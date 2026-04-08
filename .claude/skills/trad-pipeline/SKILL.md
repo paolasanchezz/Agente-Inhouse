@@ -14,7 +14,7 @@ Executa em sequência: `/trad-traduzir` → `/trad-revisar`.
 `$ARGUMENTS` deve ter dois valores: `[arquivo] [target]`
 
 **Se o arquivo não for fornecido**, pare e informe:
-> "Nenhuma copy fornecida. Uso:\n  /pipeline-traducao meu-texto.md pt-pt\n  /pipeline-traducao meu-texto.md es-latam"
+> "Nenhuma copy fornecida. Uso:\n  /trad-pipeline meu-texto.md pt-pt\n  /trad-pipeline meu-texto.md es-latam"
 
 **Se o target não for `pt-pt` nem `es-latam`**, pare e informe o uso correto.
 

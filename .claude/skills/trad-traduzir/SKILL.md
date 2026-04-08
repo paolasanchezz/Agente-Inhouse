@@ -17,7 +17,7 @@ Faça o parsing de `$ARGUMENTS` da seguinte forma:
 - Um nome customizado de output é opcional como terceiro argumento: `[arquivo] [target] [nome-customizado]`
 
 **Se o arquivo não for fornecido**, pare imediatamente e informe:
-> "Nenhuma copy fornecida. Uso:\n  /traduzir meu-texto.md pt-pt\n  /traduzir meu-texto.md es-latam\n\nForneça o caminho do arquivo com a copy a ser traduzida."
+> "Nenhuma copy fornecida. Uso:\n  /trad-traduzir meu-texto.md pt-pt\n  /trad-traduzir meu-texto.md es-latam\n\nForneça o caminho do arquivo com a copy a ser traduzida."
 
 **Se o target não for `pt-pt` nem `es-latam`**, pare e informe:
 > "Target inválido. Use `pt-pt` para Português Europeu ou `es-latam` para Espanhol Latino-Americano."

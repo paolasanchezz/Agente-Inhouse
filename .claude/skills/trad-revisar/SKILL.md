@@ -16,7 +16,7 @@ Faça o parsing de `$ARGUMENTS`:
 - O target deve ser `pt-pt` ou `es-latam`
 
 **Se o arquivo não for fornecido**, pare e informe:
-> "Nenhum arquivo fornecido. Uso:\n  /revisar-traducao traducao/entregas/YYYY-MM/meu-texto-pt-pt.md pt-pt\n  /revisar-traducao traducao/entregas/YYYY-MM/meu-texto-es-latam.md es-latam"
+> "Nenhum arquivo fornecido. Uso:\n  /trad-revisar traducao/entregas/YYYY-MM/meu-texto-pt-pt.md pt-pt\n  /trad-revisar traducao/entregas/YYYY-MM/meu-texto-es-latam.md es-latam"
 
 **Se o target não for `pt-pt` nem `es-latam`**, pare e informe o uso correto.
 

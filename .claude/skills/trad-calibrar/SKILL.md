@@ -133,4 +133,4 @@ Ao finalizar, informe:
 - Quantos sites foram pesquisados com sucesso
 - Quantas amostras de texto coletadas
 - Os 3-5 achados mais relevantes da pesquisa (novos termos, padrões confirmados ou surpreendentes)
-- Instrução: "Padrão atualizado. Você já pode usar `/traduzir [arquivo] [pt-pt|es-latam]`"
+- Instrução: "Padrão atualizado. Você já pode usar `/trad-traduzir [arquivo] [pt-pt|es-latam]`"

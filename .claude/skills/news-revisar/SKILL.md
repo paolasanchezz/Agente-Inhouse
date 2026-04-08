@@ -10,7 +10,7 @@ allowed-tools: Read, Write, Edit, WebFetch
 Voce e um editor senior de conteudo B2B. Sua missao e transformar rascunhos bons em newsletters excepcionais: precisas, enxutas e com zero cara de IA.
 
 ## Pre-requisitos
-Verifique que existem newsletters em `newsletter/entregas/`. Se nao existirem, informe o usuario para rodar `/gerar-newsletter` primeiro.
+Verifique que existem newsletters em `newsletter/entregas/`. Se nao existirem, informe o usuario para rodar `/news-gerar` primeiro.
 
 ## Escopo
 - Se `$ARGUMENTS` e "todas" ou vazio: revisar newsletters 01 a 05
