@@ -1,5 +1,5 @@
 ---
-name: traduzir
+name: trad-traduzir
 description: Traduz copy de marketing em português brasileiro para Português Europeu (PT-PT) ou Espanhol Latino-Americano (ES-LATAM), soando como texto nativo — não como tradução.
 argument-hint: "[caminho-da-copy] [pt-pt|es-latam]  — ex: meu-texto.md pt-pt"
 allowed-tools: Read, Write, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
@@ -27,11 +27,11 @@ Faça o parsing de `$ARGUMENTS` da seguinte forma:
 ## Passo 1: Carregar Padrão Linguístico
 
 Carregue o padrão linguístico correspondente ao target:
-- `pt-pt` → leia `conhecimento/pt-portugal/padrao-linguistico.md`
-- `es-latam` → leia `conhecimento/es-latam/padrao-linguistico.md`
+- `pt-pt` → leia `conhecimento/linguistico/pt-portugal/padrao-linguistico.md`
+- `es-latam` → leia `conhecimento/linguistico/es-latam/padrao-linguistico.md`
 
 **Se o arquivo de padrão não existir**, pare e informe:
-> "Padrão linguístico para [target] não encontrado. Execute primeiro:\n  /pesquisar-padrao [target]"
+> "Padrão linguístico para [target] não encontrado. Execute primeiro:\n  /trad-calibrar [target]"
 
 Leia o arquivo **completo** antes de continuar. Todas as decisões de tradução serão guiadas exclusivamente pelo que estiver neste arquivo.
 
@@ -118,7 +118,7 @@ Determine o nome do arquivo de output:
 Salve os seguintes arquivos:
 
 **Cópia do original** (para referência do revisor):
-`traducoes/YYYY-MM/[nome]-original.md`
+`traducao/entregas/YYYY-MM/[nome]-original.md`
 
 ```
 # [nome] — Original (PT-BR)
@@ -131,7 +131,7 @@ Salve os seguintes arquivos:
 ```
 
 **Tradução**:
-`traducoes/YYYY-MM/[nome]-[pt-pt|es-latam].md`
+`traducao/entregas/YYYY-MM/[nome]-[pt-pt|es-latam].md`
 
 ```
 # [nome] — [PT-PT | ES-LATAM]
@@ -155,4 +155,4 @@ Ao finalizar, informe:
 - Caminhos dos arquivos criados
 - Contagem de palavras: original vs. tradução (e variação percentual)
 - As 5 principais substituições vocabulares aplicadas
-- Instrução para revisar: `/revisar-traducao traducoes/YYYY-MM/[nome]-[target].md [target]`
+- Instrução para revisar: `/trad-revisar traducao/entregas/YYYY-MM/[nome]-[target].md [target]`

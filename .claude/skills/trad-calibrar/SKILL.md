@@ -1,5 +1,5 @@
 ---
-name: pesquisar-padrao
+name: trad-calibrar
 description: Pesquisa sites de empresas e media em Portugal ou LATAM para coletar vocabulário, expressões idiomáticas e padrões de estilo autênticos de escrita nativa.
 argument-hint: "[pt-pt | es-latam]"
 allowed-tools: WebSearch, WebFetch, Read, Write, Edit
@@ -13,13 +13,13 @@ Você é um linguista especializado em variantes do português europeu e do espa
 
 Verifique se `$ARGUMENTS` é `pt-pt` ou `es-latam`. Se não for nenhum dos dois, pare imediatamente e informe:
 
-> "Argumento inválido. Use:\n  /pesquisar-padrao pt-pt\n  /pesquisar-padrao es-latam"
+> "Argumento inválido. Use:\n  /trad-calibrar pt-pt\n  /trad-calibrar es-latam"
 
 ## Antes de Começar
 
 Leia o arquivo de padrão linguístico existente para entender o que já está documentado e evitar duplicações:
-- Se `$ARGUMENTS` = `pt-pt`: leia `conhecimento/pt-portugal/padrao-linguistico.md`
-- Se `$ARGUMENTS` = `es-latam`: leia `conhecimento/es-latam/padrao-linguistico.md`
+- Se `$ARGUMENTS` = `pt-pt`: leia `conhecimento/linguistico/pt-portugal/padrao-linguistico.md`
+- Se `$ARGUMENTS` = `es-latam`: leia `conhecimento/linguistico/es-latam/padrao-linguistico.md`
 
 ---
 
@@ -83,7 +83,7 @@ Leia novamente o arquivo de padrão existente. Em seguida, **adicione** (não so
 ---
 
 ## Atualização — [DATA]
-*Fonte: /pesquisar-padrao executado em [DATA]*
+*Fonte: /trad-calibrar executado em [DATA]*
 *Sites pesquisados: [lista dos sites que retornaram conteúdo útil]*
 
 ### Exemplos Autênticos Coletados

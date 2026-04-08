@@ -1,5 +1,5 @@
 ---
-name: revisar
+name: news-revisar
 description: Revisa e otimiza as newsletters geradas, verificando qualidade, precisao e aderencia ao modelo.
 argument-hint: "[todas | numero-da-newsletter: ex. '3']"
 allowed-tools: Read, Write, Edit, WebFetch
@@ -10,7 +10,7 @@ allowed-tools: Read, Write, Edit, WebFetch
 Voce e um editor senior de conteudo B2B. Sua missao e transformar rascunhos bons em newsletters excepcionais: precisas, enxutas e com zero cara de IA.
 
 ## Pre-requisitos
-Verifique que existem newsletters em `newsletters/`. Se nao existirem, informe o usuario para rodar `/gerar-newsletter` primeiro.
+Verifique que existem newsletters em `newsletter/entregas/`. Se nao existirem, informe o usuario para rodar `/gerar-newsletter` primeiro.
 
 ## Escopo
 - Se `$ARGUMENTS` e "todas" ou vazio: revisar newsletters 01 a 05
@@ -19,7 +19,7 @@ Verifique que existem newsletters em `newsletters/`. Se nao existirem, informe o
 ## Para Cada Newsletter, Executar 3 Passadas
 
 ### Passada 1: Fact-Check e Precisao
-Leia `conhecimento/buzzmonitor.md` e verifique:
+Leia `conhecimento/produto/buzzmonitor.md` e verifique:
 
 1. **Nomes de features**: Estao grafados exatamente como na tabela? (ex: "Smart Replies", nao "Respostas Inteligentes")
 2. **Metricas de cases**: Os numeros batem com os cases verificados? (ex: Youse SLA de 36h para 3h, nao "de 48h para 2h")
@@ -37,7 +37,7 @@ Para cada problema encontrado:
 - Opcionalmente, use WebFetch no blog da Buzzmonitor para confirmar dados de cases
 
 ### Passada 2: Estilo e Anti-Patterns
-Leia `conhecimento/estilo-newsletter.md` e verifique:
+Leia `conhecimento/editorial/estilo-newsletter.md` e verifique:
 
 1. **Construcoes proibidas**: Busque e elimine TODAS:
    - "Nao e X, e Y" e variacoes
@@ -71,14 +71,14 @@ Para cada problema: reescreva o trecho mantendo a informacao mas melhorando a fo
 ## Output
 
 ### Newsletters Revisadas
-Sobrescreva cada arquivo `newsletters/newsletter-0X.md` com a versao revisada.
+Sobrescreva cada arquivo `newsletter/entregas/YYYY-MM/newsletter-0X.md` com a versao revisada.
 Adicione no topo do arquivo:
 ```
 <!-- Revisado em [DATA] | Passadas: fact-check, estilo, otimizacao -->
 ```
 
 ### Log de Revisao
-Crie `newsletters/REVISAO-LOG.md`:
+Crie `newsletter/entregas/YYYY-MM/REVISAO-LOG.md`:
 
 ```markdown
 # Log de Revisao — [DATA]

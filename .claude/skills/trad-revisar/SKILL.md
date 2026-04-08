@@ -1,7 +1,7 @@
 ---
-name: revisar-traducao
+name: trad-revisar
 description: Revisa traduções como especialista nativo em copywriting, corrigindo naturalidade, precisão e comprimento, e publica o resultado final no Notion (pasta Entregas).
-argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducoes/2026-04/newsletter-pt-pt.md pt-pt"
+argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducao/entregas/2026-04/newsletter-pt-pt.md pt-pt"
 allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
 ---
 
@@ -16,7 +16,7 @@ Faça o parsing de `$ARGUMENTS`:
 - O target deve ser `pt-pt` ou `es-latam`
 
 **Se o arquivo não for fornecido**, pare e informe:
-> "Nenhum arquivo fornecido. Uso:\n  /revisar-traducao traducoes/YYYY-MM/meu-texto-pt-pt.md pt-pt\n  /revisar-traducao traducoes/YYYY-MM/meu-texto-es-latam.md es-latam"
+> "Nenhum arquivo fornecido. Uso:\n  /revisar-traducao traducao/entregas/YYYY-MM/meu-texto-pt-pt.md pt-pt\n  /revisar-traducao traducao/entregas/YYYY-MM/meu-texto-es-latam.md es-latam"
 
 **Se o target não for `pt-pt` nem `es-latam`**, pare e informe o uso correto.
 
@@ -29,8 +29,8 @@ Leia os seguintes arquivos na ordem:
 1. **Arquivo de tradução** — o arquivo indicado em `$ARGUMENTS`
 2. **Arquivo original** — substitua `[nome]-[target].md` por `[nome]-original.md` no mesmo diretório. Se não existir, continue mas anote no log que a comparação com o original não foi possível.
 3. **Padrão linguístico**:
-   - `pt-pt` → `conhecimento/pt-portugal/padrao-linguistico.md`
-   - `es-latam` → `conhecimento/es-latam/padrao-linguistico.md`
+   - `pt-pt` → `conhecimento/linguistico/pt-portugal/padrao-linguistico.md`
+   - `es-latam` → `conhecimento/linguistico/es-latam/padrao-linguistico.md`
 
 ---
 

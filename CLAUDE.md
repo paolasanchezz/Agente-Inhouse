@@ -1,32 +1,62 @@
-# Agente de Newsletter - Buzzmonitor
+# Agente Inhouse — Buzzmonitor
 
-Este projeto automatiza a criacao de newsletters semanais para a Buzzmonitor, plataforma brasileira de social listening e inteligencia de redes sociais.
+Este agente automatiza a criacao de newsletters e traducoes de copy para a Buzzmonitor, plataforma brasileira de social listening e inteligencia de redes sociais.
 
 ## Idioma
 Todo conteudo gerado deve ser em **portugues brasileiro**.
 
+---
+
+## Como Usar Este Agente
+
+| Comando | O que faz |
+|---|---|
+| `/news-pipeline` | Faz tudo: pesquisa, gera 5 newsletters e revisa. Use para o fluxo completo. |
+| `/news-pesquisar` | So a pesquisa (blog Buzzmonitor, noticias, concorrentes) |
+| `/news-gerar` | So gera os rascunhos (requer pesquisa feita antes) |
+| `/news-revisar` | So revisa os rascunhos gerados |
+| `/trad-pipeline [arquivo] pt-pt` | Traduz e revisa para Portugues Europeu |
+| `/trad-pipeline [arquivo] es-latam` | Traduz e revisa para Espanhol Latino-Americano |
+| `/trad-traduzir [arquivo] [pt-pt\|es-latam]` | So traduz (sem revisar) |
+| `/trad-revisar [arquivo] [pt-pt\|es-latam]` | So revisa uma traducao ja feita |
+| `/trad-calibrar pt-pt` | Atualiza o padrao linguistico PT-PT com novos exemplos nativos |
+| `/trad-calibrar es-latam` | Atualiza o padrao linguistico ES-LATAM com novos exemplos nativos |
+
+**Exemplo de traducao**: `/trad-pipeline meu-texto.md pt-pt`
+
+---
+
+## Onde Encontrar os Resultados
+
+| O que procura | Onde esta |
+|---|---|
+| Newsletters do mes atual | `newsletter/entregas/YYYY-MM/` |
+| Pesquisa que originou as newsletters | `newsletter/pesquisa/` |
+| Newsletters de meses anteriores | `newsletter/entregas/arquivo/` |
+| Traducoes do mes atual | `traducao/entregas/YYYY-MM/` |
+| Informacoes sobre o produto | `conhecimento/produto/` |
+| Guia de estilo de escrita | `conhecimento/editorial/` |
+| Padroes linguisticos (PT-PT / ES-LATAM) | `conhecimento/linguistico/` |
+
+---
+
 ## Estrutura do Projeto
-- `conhecimento/` — Base de conhecimento verificada (produto, concorrentes, estilo)
-- `conhecimento/pt-portugal/` — Padrao linguistico do Portugues Europeu
-- `conhecimento/es-latam/` — Padrao linguistico do Espanhol Latino-Americano
-- `pesquisa/` — Output da fase de pesquisa do mes corrente (arquivos anteriores em `pesquisa/arquivo/YYYY-MM/`)
-- `newsletters/YYYY-MM/` — Newsletters finais organizadas por mes
-- `traducoes/YYYY-MM/` — Traducoes de copy organizadas por mes
 
-## Skills Disponiveis
+```
+CLAUDE.md                        <- voce esta aqui
+conhecimento/
+  produto/                       <- buzzmonitor.md, concorrentes.md
+  editorial/                     <- estilo-newsletter.md
+  linguistico/                   <- pt-portugal/, es-latam/
+newsletter/
+  pesquisa/                      <- material do ciclo atual
+  entregas/YYYY-MM/              <- newsletters finais por mes
+traducao/
+  entregas/YYYY-MM/              <- traducoes finais por mes
+.claude/                         <- configuracao do agente (nao editar)
+```
 
-### Newsletter
-- `/pesquisar` — Pesquisa blog, noticias e concorrentes
-- `/gerar-newsletter` — Gera 5 rascunhos a partir da pesquisa
-- `/revisar` — Revisa qualidade, fatos e estilo
-- `/pipeline` — Executa tudo em sequencia
-
-### Traducao de Copy
-- `/pesquisar-padrao pt-pt` — Pesquisa sites portugueses e atualiza o padrao linguistico PT-PT
-- `/pesquisar-padrao es-latam` — Pesquisa sites LATAM e atualiza o padrao linguistico ES-LATAM
-- `/traduzir [arquivo] [pt-pt|es-latam]` — Traduz copy BR para PT-PT ou ES-LATAM (requer arquivo e padrao linguistico)
-- `/revisar-traducao [arquivo] [pt-pt|es-latam]` — Revisa como nativo e publica no Notion (pasta Entregas)
-- `/pipeline-traducao [arquivo] [pt-pt|es-latam]` — Executa traducao + revisao em sequencia
+---
 
 ## Regras de Qualidade (OBRIGATORIAS)
 
@@ -44,17 +74,19 @@ Todo conteudo gerado deve ser em **portugues brasileiro**.
 - Buzzmonitor deve ser posicionada como facilitadora, nunca como protagonista
 - Preferir dados concretos e exemplos reais a afirmacoes genericas
 - **Maximo 600 palavras por newsletter**
-- Verificar nomes de features contra `conhecimento/buzzmonitor.md` antes de publicar
+- Verificar nomes de features contra `conhecimento/produto/buzzmonitor.md` antes de publicar
 - **Todo texto deve ter acentuacao e pontuacao corretas em portugues brasileiro** (nao omitir acentos)
 - **Se usar nome de vies cognitivo ou efeito psicologico, a descricao deve corresponder a definicao real do conceito**
+
+---
 
 ## Arquivos de Referencia
 
 ### Newsletter
-- `conhecimento/buzzmonitor.md` — Features, cases, nomes corretos do produto
-- `conhecimento/concorrentes.md` — Mapa competitivo com diferenciais
-- `conhecimento/estilo-newsletter.md` — Guia de estilo detalhado e anti-patterns
+- `conhecimento/produto/buzzmonitor.md` — Features, cases, nomes corretos do produto
+- `conhecimento/produto/concorrentes.md` — Mapa competitivo com diferenciais
+- `conhecimento/editorial/estilo-newsletter.md` — Guia de estilo detalhado e anti-patterns
 
 ### Traducao
-- `conhecimento/pt-portugal/padrao-linguistico.md` — Vocabulario, tom e anti-patterns PT-PT
-- `conhecimento/es-latam/padrao-linguistico.md` — Vocabulario, tom e anti-patterns ES-LATAM
+- `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` — Vocabulario, tom e anti-patterns PT-PT
+- `conhecimento/linguistico/es-latam/padrao-linguistico.md` — Vocabulario, tom e anti-patterns ES-LATAM
