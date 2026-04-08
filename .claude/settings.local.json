@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(pipeline)",
+      "Skill(pipeline:*)",
+      "Skill(pesquisar)",
+      "Skill(pesquisar:*)",
+      "Skill(pesquisar-padrao)",
+      "Skill(pesquisar-padrao:*)",
+      "Skill(traduzir)",
+      "Skill(traduzir:*)",
+      "Skill(revisar-traducao)",
+      "Skill(revisar-traducao:*)",
+      "Skill(pipeline-traducao)",
+      "Skill(pipeline-traducao:*)",
+      "WebFetch(domain:www.publico.pt)",
+      "WebFetch(domain:observador.pt)",
+      "WebFetch(domain:www.jornaldenegocios.pt)",
+      "WebSearch",
+      "WebFetch(domain:www.itinsight.pt)",
+      "WebFetch(domain:expresso.pt)"
+    ]
+  }
+}
