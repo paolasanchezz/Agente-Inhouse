@@ -33,37 +33,50 @@ Leia `conhecimento/produto/{brand}/concorrentes.md` para contexto competitivo.
 Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` e `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md`.
 
 ### Fase 1.1: Arquivar Pesquisa Anterior
-Antes de iniciar, verifique se existem arquivos em `newsletter/{brand}/pesquisa/` (exceto `newsletter/{brand}/pesquisa/arquivo/`). Se existirem, mova-os para `newsletter/{brand}/pesquisa/arquivo/YYYY-MM/`.
+Antes de iniciar, verifique se existem arquivos em `conhecimento/produto/{brand}/pesquisa/` (exceto `conhecimento/produto/{brand}/pesquisa/arquivo/`). Se existirem, mova-os para `conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/`.
 
-### Fase 1.2: Blog da Marca → `newsletter/{brand}/pesquisa/blog-{brand}.md`
+### Fase 1.2: Blog da Marca → `conhecimento/produto/{brand}/pesquisa/blog-{brand}.md`
 - WebFetch na URL do blog extraida de `conhecimento/produto/{brand}/{brand}.md`
 - WebFetch nos 5-8 posts mais recentes
 - Extrair: titulo, resumo, case, metricas, diferencial, angulo para newsletter
 - Se `$ARGUMENTS` incluiu foco tematico, priorize posts relacionados
 - Escrever no idioma da regiao
 
-### Fase 1.3: Noticias do Mercado → `newsletter/{brand}/pesquisa/noticias-mercado.md`
-- WebSearch com termos adaptados a regiao:
-  - brasil: "social listening tendencias 2026", "atendimento ao cliente IA novidades", etc.
-  - latam: "social listening tendencias 2026 latinoamerica", "atencion al cliente redes sociales", etc.
-  - portugal: "social listening tendencias 2026 portugal", "atendimento ao cliente redes sociais portugal", etc.
+### Fase 1.3: Noticias do Mercado → `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md`
+- Ler `## Visao Geral` de `conhecimento/produto/{brand}/{brand}.md` para identificar o setor e posicionamento da marca
+- Construir 5 queries combinando: tema principal do produto + tendencias/IA + regiao + 2026
+  - Exemplos: "social listening tendencias 2026 brasil" (Buzzmonitor), "atendimento omnichannel tendencias 2026 brasil" (Cxpress), "influencer marketing tendencias 2026 brasil" (Buzzcreators)
+  - Se `$ARGUMENTS` incluiu foco tematico, adicionar esse tema as queries
 - WebFetch nos 5-6 melhores resultados
 - Extrair: dados surpreendentes, tendencias conectadas ao produto e ao mercado da regiao
 - Escrever no idioma da regiao
 
-### Fase 1.4: Concorrentes → `newsletter/{brand}/pesquisa/analise-concorrentes.md`
+### Fase 1.4: Concorrentes → `conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md`
 - WebSearch em 4-5 concorrentes da lista em `conhecimento/produto/{brand}/concorrentes.md` (rotacionar)
 - Priorizar concorrentes relevantes para a `{region}`
 - Extrair: novidades, posicionamento, gaps vs {NomeDaMarca}
 - Escrever no idioma da regiao
 
-### Fase 1.5: Resumo → `newsletter/{brand}/pesquisa/RESUMO.md`
+### Fase 1.5: Resumo → `conhecimento/produto/{brand}/pesquisa/RESUMO.md`
 - Top 5 angulos para newsletters
 - Dados mais impactantes
 - Temas prioritarios
 - Escrever no idioma da regiao
 
-**Checkpoint**: Verificar que os 4 arquivos existem em `newsletter/{brand}/pesquisa/` antes de continuar.
+### Fase 1.6: Atualizar Base de Conhecimento do Produto
+Apos gravar o RESUMO.md, releia `conhecimento/produto/{brand}/{brand}.md` e `conhecimento/produto/{brand}/concorrentes.md` e aplique via Edit apenas o que mudou:
+
+**Em `{brand}.md`**:
+- Se vazio ou com secoes "a preencher": preencha com o que foi descoberto no site/blog (apenas informacoes verificadas)
+- Se ja preenchido: adicione novos cases com metricas, novas features mencionadas no blog, correcoes de URL, atualizacoes de posicionamento
+
+**Em `concorrentes.md`**:
+- Se vazio: preencha com os concorrentes pesquisados na Fase 3
+- Se ja preenchido: adicione novos movimentos de mercado (lancamentos, aquisicoes), novos players encontrados, dados de tendencias atualizados
+
+Regra: nao invente features, cases ou diferenciais. Use apenas o que foi verificado na pesquisa.
+
+**Checkpoint**: Verificar que os 4 arquivos existem em `conhecimento/produto/{brand}/pesquisa/` antes de continuar.
 
 ---
 
@@ -72,7 +85,7 @@ Antes de iniciar, verifique se existem arquivos em `newsletter/{brand}/pesquisa/
 Execute todas as instrucoes da skill `/news-gerar`.
 
 ### Passo 2.1: Carregar Contexto (ja carregado na Etapa 1 — reuse)
-Confirmar que todos os arquivos de pesquisa existem em `newsletter/{brand}/pesquisa/`.
+Confirmar que todos os arquivos de pesquisa existem em `conhecimento/produto/{brand}/pesquisa/`.
 
 ### Passo 2.2: Planejar Grade de Diversidade
 Definir combinacao unica de gancho + tema + case + CTA para cada newsletter. Ganchos disponiveis: vies cognitivo, dado surpreendente, cenario real, insight contraintuitivo, tendencia silenciosa, efeito domino, analogia inesperada, pergunta incomoda, mito do mercado, numero invisivel. Consulte `conhecimento/editorial/estilo-newsletter.md` para descricao completa de cada tipo.
@@ -90,8 +103,8 @@ Salvar em `newsletter/{brand}/entregas/YYYY-MM/INDICE.md` com marca, regiao e id
 Notion Newsletter ID: `33c3934026fd80778073f1868c5bf11c`
 
 1. Busque a sintaxe correta de toggles e outros blocos fazendo fetch de `notion://docs/enhanced-markdown-spec`
-2. Localizar ou criar subpasta `📁 {NomeDaMarca}` dentro da pagina Newsletter
-3. Localizar ou criar pasta mensal `📁 [Mes] de [Ano] — [IDIOMA-SIGLA]` dentro da subpasta da marca
+2. Localizar ou criar subpasta `{NomeDaMarca}` dentro da pagina Newsletter (icon: 📁, sem emoji no titulo)
+3. Localizar ou criar pasta mensal `[Mes] de [Ano] — [IDIOMA-SIGLA]` dentro da subpasta da marca (icon: 📁, sem emoji no titulo)
    - IDIOMA-SIGLA: `PT-BR` | `ES` | `PT-PT`
 4. Adicionar as 5 newsletters como toggles dentro da pasta mensal
 5. Confirmar URL da pagina publicada

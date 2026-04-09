@@ -33,13 +33,13 @@ O gancho deve:
 ## 4. CASO DE USO / MINI CASE (2-3 paragrafos)
 Contar uma historia real ou realista seguindo a estrutura:
 - **Situacao**: Contexto da empresa/equipe antes
-- **Acao**: O que foi feito (mencionar Buzzmonitor naturalmente, como facilitador)
+- **Acao**: O que foi feito (mencionar [MARCA] naturalmente, como facilitador)
 - **Resultado**: Metricas concretas e impacto no negocio
 
 Regras:
 - Se for case real do blog, manter fidelidade aos dados
 - Se for cenario realista, deixar claro que e um exemplo ilustrativo
-- Buzzmonitor aparece como ferramenta que possibilitou, NAO como heroina da historia
+- [MARCA] aparece como ferramenta que possibilitou o resultado, NAO como heroina da historia
 - Incluir pelo menos 1 metrica concreta
 
 ## 5. INSIGHT / LICAO (1-2 paragrafos)
@@ -72,8 +72,8 @@ Equipe [MARCA]
 ---
 
 ## Especificacoes Gerais
-- **Palavras**: Maximo 800 por newsletter
+- **Palavras**: Maximo 600 por newsletter
 - **Paragrafos**: Curtos (3-4 frases no maximo)
-- **Idioma**: Portugues brasileiro
+- **Idioma**: Definido pela regiao — PT-BR (brasil) | ES-LATAM (latam) | PT-PT (portugal)
 - **Saudacao**: "Oi, [Nome] 👋" (usar merge tag se possivel)
 - **Tom**: Profissional mas acessivel

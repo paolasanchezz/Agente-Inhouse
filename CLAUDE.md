@@ -52,7 +52,7 @@ Cada comando aceita `[brand]` e `[region]` como argumentos. Default: `buzzmonito
 | Newsletters da Buzzcreators | `newsletter/buzzcreators/entregas/YYYY-MM/` |
 | Newsletters da Cxpress | `newsletter/cxpress/entregas/YYYY-MM/` |
 | Newsletters da Elife | `newsletter/elife/entregas/YYYY-MM/` |
-| Pesquisa que originou as newsletters | `newsletter/{brand}/pesquisa/` |
+| Pesquisa que originou as newsletters | `conhecimento/produto/{brand}/pesquisa/` |
 | Traducoes do mes atual | `traducao/entregas/YYYY-MM/` |
 | Conhecimento de produto por marca | `conhecimento/produto/{brand}/` |
 | Guia de estilo de escrita | `conhecimento/editorial/` |
@@ -67,14 +67,15 @@ CLAUDE.md                             <- voce esta aqui
 conhecimento/
   produto/
     buzzmonitor/                      <- buzzmonitor.md, concorrentes.md, pt-pt/, es/
-    buzzcreators/                     <- buzzcreators.md, concorrentes.md, pt-pt/, es/
-    cxpress/                          <- cxpress.md, concorrentes.md, pt-pt/, es/
-    elife/                            <- elife.md, concorrentes.md, pt-pt/, es/
+      pesquisa/                       <- material do ciclo atual (blog, noticias, concorrentes)
+      pesquisa/arquivo/YYYY-MM/       <- pesquisas anteriores arquivadas
+    buzzcreators/                     <- idem
+    cxpress/                          <- idem
+    elife/                            <- idem
   editorial/                          <- estilo-newsletter.md
   linguistico/                        <- pt-portugal/, es-latam/
 newsletter/
   buzzmonitor/
-    pesquisa/                         <- material do ciclo atual
     entregas/YYYY-MM/                 <- newsletters finais por mes
   buzzcreators/ ...
   cxpress/ ...
@@ -114,6 +115,8 @@ traducao/
 ### Newsletter
 - `conhecimento/produto/{brand}/{brand}.md` — Features, cases, nomes corretos do produto e configuracao (blog URL, assinatura)
 - `conhecimento/produto/{brand}/concorrentes.md` — Mapa competitivo com diferenciais por marca
+- `conhecimento/produto/{brand}/pesquisa/` — Pesquisa do ciclo atual: blog, noticias de mercado, analise de concorrentes, RESUMO
+- `conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/` — Pesquisas de ciclos anteriores
 - `conhecimento/produto/{brand}/pt-pt/{brand}.md` — Terminologia PT-PT adaptada para a marca
 - `conhecimento/produto/{brand}/es/{brand}.md` — Terminologia ES-LATAM adaptada para a marca
 - `conhecimento/editorial/estilo-newsletter.md` — Guia de estilo detalhado e anti-patterns

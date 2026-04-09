@@ -21,7 +21,7 @@ Mapeamento de `region`:
 - `portugal` → idioma: PT-PT | nome idioma: "Portugues Europeu" | pasta linguistico: `pt-portugal` | pasta produto lang: `pt-pt`
 
 ## Pre-requisitos
-Verifique que os arquivos de pesquisa existem em `newsletter/{brand}/pesquisa/`. Se nao existirem, informe o usuario para rodar `/news-pesquisar {brand} {region}` primeiro.
+Verifique que os arquivos de pesquisa existem em `conhecimento/produto/{brand}/pesquisa/`. Se nao existirem, informe o usuario para rodar `/news-pesquisar {brand} {region}` primeiro.
 
 ## Passo 1: Carregar Contexto
 
@@ -32,10 +32,10 @@ Leia os seguintes arquivos na ordem:
 3. Se `region` != `brasil`: `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md` — padrao de escrita nativa (CRITICO — rege todo o idioma da newsletter)
 4. `conhecimento/editorial/estilo-newsletter.md` — regras de estilo e anti-patterns
 5. `.claude/skills/news-gerar/template-newsletter.md` — estrutura obrigatoria
-6. `newsletter/{brand}/pesquisa/RESUMO.md` — angulos prioritarios
-7. `newsletter/{brand}/pesquisa/blog-{brand}.md` — cases e diferenciais
-8. `newsletter/{brand}/pesquisa/noticias-mercado.md` — dados e tendencias
-9. `newsletter/{brand}/pesquisa/analise-concorrentes.md` — contexto competitivo
+6. `conhecimento/produto/{brand}/pesquisa/RESUMO.md` — angulos prioritarios
+7. `conhecimento/produto/{brand}/pesquisa/blog-{brand}.md` — cases e diferenciais
+8. `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md` — dados e tendencias
+9. `conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md` — contexto competitivo
 
 Extraia do arquivo de conhecimento do produto:
 - **NomeDaMarca**: campo "Nome de exibicao" em `## Configuracao`
@@ -131,8 +131,8 @@ Notion Newsletter ID (pagina raiz compartilhada por todas as marcas): `33c393402
 ### Estrutura alvo no Notion
 ```
 Newsletter (ID: 33c3934026fd80778073f1868c5bf11c)
-└── 📁 {NomeDaMarca}                          ← subpasta da marca
-    └── 📁 [Mês] de [Ano] — [IDIOMA]          ← pasta mensal com idioma
+└── {NomeDaMarca}                          ← subpasta da marca (icon: 📁)
+    └── [Mês] de [Ano] — [IDIOMA]          ← pasta mensal com idioma (icon: 📁)
         ├── ▶ Newsletter 01 — [Assunto]        (toggle)
         ├── ▶ Newsletter 02 — [Assunto]        (toggle)
         ├── ▶ Newsletter 03 — [Assunto]        (toggle)
@@ -140,20 +140,20 @@ Newsletter (ID: 33c3934026fd80778073f1868c5bf11c)
         └── ▶ Newsletter 05 — [Assunto]        (toggle)
 ```
 
-O titulo da pasta mensal inclui o idioma para distinguir ciclos diferentes do mesmo mes: ex. `📁 Abril de 2026 — PT-BR`, `📁 Abril de 2026 — ES`, `📁 Abril de 2026 — PT-PT`.
+O titulo da pasta mensal inclui o idioma para distinguir ciclos diferentes do mesmo mes: ex. `Abril de 2026 — PT-BR`, `Abril de 2026 — ES`, `Abril de 2026 — PT-PT`. O emoji fica apenas no icon da pagina, nao no titulo.
 
 ### Passo 5.1: Localizar ou criar subpasta da marca
 1. Busque a sintaxe correta de toggles e outros blocos fazendo fetch de `notion://docs/enhanced-markdown-spec`
 2. Use `notion-search` com query `{NomeDaMarca}` para localizar a subpasta da marca dentro da pagina Newsletter
 3. Se encontrar: anote o ID
-4. Se nao encontrar: crie com `notion-create-pages`, parent = `33c3934026fd80778073f1868c5bf11c`, title = `📁 {NomeDaMarca}`, icon = `📁`
+4. Se nao encontrar: crie com `notion-create-pages`, parent = `33c3934026fd80778073f1868c5bf11c`, title = `{NomeDaMarca}`, icon = `📁`
 
 ### Passo 5.2: Localizar ou criar pasta mensal
-1. Faca fetch da subpasta da marca para ver se ja existe uma subpagina com o titulo do mes corrente no formato `📁 [Mês] de [Ano] — [IDIOMA-SIGLA]`
+1. Faca fetch da subpasta da marca para ver se ja existe uma subpagina com o titulo do mes corrente no formato `[Mês] de [Ano] — [IDIOMA-SIGLA]`
    - IDIOMA-SIGLA: `PT-BR` para brasil | `ES` para latam | `PT-PT` para portugal
-   - Ex: "📁 Abril de 2026 — PT-BR"
+   - Ex: "Abril de 2026 — PT-BR"
 2. Se existir: anote o ID
-3. Se nao existir: crie com `notion-create-pages`, parent = ID da subpasta da marca, title = `📁 [Mês] de [Ano] — [IDIOMA-SIGLA]`, icon = `📁`
+3. Se nao existir: crie com `notion-create-pages`, parent = ID da subpasta da marca, title = `[Mês] de [Ano] — [IDIOMA-SIGLA]`, icon = `📁`
 
 ### Passo 5.3: Adicionar as 5 newsletters como toggles
 Dentro da pagina mensal, adicione o conteudo com `notion-update-page` (se a pagina ja existia) ou inclua diretamente no `content` ao criar (se for nova).

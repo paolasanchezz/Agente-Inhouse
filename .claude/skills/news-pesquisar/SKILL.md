@@ -35,21 +35,21 @@ Extraia do arquivo de conhecimento do produto:
 
 ## Fase 0: Arquivar Pesquisa Anterior
 
-Antes de gravar qualquer arquivo novo, verifique se ja existem arquivos em `newsletter/{brand}/pesquisa/` (exceto a pasta `newsletter/{brand}/pesquisa/arquivo/`).
+Antes de gravar qualquer arquivo novo, verifique se ja existem arquivos em `conhecimento/produto/{brand}/pesquisa/` (exceto a pasta `conhecimento/produto/{brand}/pesquisa/arquivo/`).
 
 Se existirem arquivos anteriores (`blog-{brand}.md`, `noticias-mercado.md`, `analise-concorrentes.md`, `RESUMO.md`):
 1. Leia a data no cabecalho de qualquer um desses arquivos para identificar o mes da pesquisa anterior (formato `YYYY-MM`)
 2. Use Bash para criar a pasta de arquivo e mover os arquivos:
    ```bash
-   mkdir -p newsletter/{brand}/pesquisa/arquivo/YYYY-MM
-   mv newsletter/{brand}/pesquisa/blog-{brand}.md newsletter/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv newsletter/{brand}/pesquisa/noticias-mercado.md newsletter/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv newsletter/{brand}/pesquisa/analise-concorrentes.md newsletter/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv newsletter/{brand}/pesquisa/RESUMO.md newsletter/{brand}/pesquisa/arquivo/YYYY-MM/
+   mkdir -p conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM
+   mv conhecimento/produto/{brand}/pesquisa/blog-{brand}.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
+   mv conhecimento/produto/{brand}/pesquisa/noticias-mercado.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
+   mv conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
+   mv conhecimento/produto/{brand}/pesquisa/RESUMO.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
    ```
 
 ## Fase 1: Blog da Marca
-**Output**: `newsletter/{brand}/pesquisa/blog-{brand}.md`
+**Output**: `conhecimento/produto/{brand}/pesquisa/blog-{brand}.md`
 
 1. Use WebFetch em `{BlogURL}` (extraido do arquivo de conhecimento) para obter a listagem de posts
 2. Identifique os 5-8 posts mais recentes
@@ -78,32 +78,25 @@ Formato do arquivo de saida (escreva no idioma da regiao):
 ```
 
 ## Fase 2: Noticias do Mercado
-**Output**: `newsletter/{brand}/pesquisa/noticias-mercado.md`
+**Output**: `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md`
 
-Adapte os termos de busca ao idioma e regiao:
+**PASSO 1 — Extrair o setor da marca**: Leia o campo `## Visao Geral` de `conhecimento/produto/{brand}/{brand}.md` para identificar o setor e posicionamento da marca. Use essas informacoes para construir os termos de busca desta fase.
 
-**Se region = brasil:**
-- "social listening tendencias 2026"
-- "social media monitoring news brasil"
-- "atendimento ao cliente IA novidades 2026"
-- "customer experience social media trends brasil"
-- "monitoramento de redes sociais Brasil"
+**PASSO 2 — Montar as queries adaptadas ao setor e regiao**:
 
-**Se region = latam:**
-- "social listening tendencias 2026 latinoamerica"
-- "marketing digital IA latam 2026"
-- "atencion al cliente redes sociales tendencias"
-- "customer experience social media latam"
-- "monitoreo redes sociales america latina"
+A partir do setor identificado, construa 5 queries combinando:
+- Tema principal do produto (ex: "social listening", "atendimento omnichannel", "influencer marketing")
+- Termos de mercado relevantes (tendencias, IA, dados de comportamento do consumidor)
+- Regiao no idioma correto: "brasil" / "latinoamerica" / "portugal"
+- Ano atual (2026)
 
-**Se region = portugal:**
-- "social listening tendencias 2026 portugal"
-- "marketing digital IA portugal 2026"
-- "atendimento ao cliente redes sociais portugal"
-- "customer experience tendencias europa"
-- "monitorizacao redes sociais portugal"
+**Exemplos de adaptacao por setor** (ajuste conforme o produto real):
+- Social listening/monitoramento → "social listening tendencias 2026 [regiao]", "monitoramento de redes sociais IA 2026"
+- Atendimento ao cliente/CX → "atendimento omnichannel tendencias 2026 [regiao]", "customer experience IA [regiao] 2026"
+- Marketing de influenciadores → "influencer marketing tendencias 2026 [regiao]", "creator economy brasil 2026"
+- Servicos de CX/outsourcing → "customer experience outsourcing tendencias 2026", "CX como servico brasil 2026"
 
-Se `$ARGUMENTS` incluiu foco tematico, adicione esse tema as queries.
+Se `$ARGUMENTS` incluiu foco tematico, adicione esse tema as queries e priorize resultados relacionados.
 
 Para os 5-6 resultados mais relevantes, use WebFetch para extrair pontos-chave. Foque em:
 - Tendencias conectadas ao produto e ao mercado da regiao
@@ -127,7 +120,7 @@ Formato do arquivo de saida (no idioma da regiao):
 ```
 
 ## Fase 3: Analise de Concorrentes
-**Output**: `newsletter/{brand}/pesquisa/analise-concorrentes.md`
+**Output**: `conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md`
 
 1. Leia `conhecimento/produto/{brand}/concorrentes.md` e selecione 4-5 concorrentes (rotacione a cada execucao)
 2. Priorize concorrentes relevantes para a `{region}`: se `region` = `latam`, foque em players LATAM; se `region` = `portugal`, inclua players europeus se existirem no arquivo
@@ -153,11 +146,44 @@ Formato do arquivo de saida (no idioma da regiao):
 [repetir para cada concorrente]
 ```
 
-## Ao Finalizar
-Crie um resumo executivo em `newsletter/{brand}/pesquisa/RESUMO.md` (no idioma da regiao) com:
+## Ao Finalizar — Parte A: Resumo de Pesquisa
+Crie um resumo executivo em `conhecimento/produto/{brand}/pesquisa/RESUMO.md` (no idioma da regiao) com:
 - Data da pesquisa
 - Marca, regiao e idioma
 - Quantidade de posts analisados, noticias encontradas, concorrentes pesquisados
 - Top 5 angulos mais promissores para newsletters
 - Dados/estatisticas mais impactantes encontrados
 - Recomendacao de temas prioritarios
+
+## Ao Finalizar — Parte B: Atualizar Base de Conhecimento do Produto
+
+Apos gravar o RESUMO.md, releia `conhecimento/produto/{brand}/{brand}.md` e `conhecimento/produto/{brand}/concorrentes.md` e aplique as atualizacoes abaixo. Use Edit para alterar apenas o que mudou — nao reescreva o arquivo inteiro.
+
+### Atualizacoes em `conhecimento/produto/{brand}/{brand}.md`
+
+**Se o arquivo estiver vazio ou com secoes marcadas como "a preencher":**
+Preencha com o que foi descoberto na pesquisa (site, blog, posts). Apenas informacoes verificadas — nao invente features, modulos ou cases.
+
+**Se o arquivo ja tiver conteudo:**
+Verifique se a pesquisa revelou algo novo nao presente no arquivo:
+1. **Novos cases ou resultados**: Se o blog citou um case com empresa e metricas verificaveis, adicione em `## Cases de Sucesso Verificados`
+2. **Novas features ou modulos**: Se o blog ou site menciona uma feature ou modulo nao listado, adicione em `## Modulos Principais` ou `## Features de IA` com nota de fonte
+3. **Correcoes de URL**: Se o Blog URL ou Site URL retornou redirect ou erro, corrija em `## Configuracao`
+4. **Posicionamento atualizado**: Se o site usa um novo tagline ou posicionamento diferente do registrado, atualize `## Visao Geral`
+
+**Nao altere:**
+- Nomes oficiais de features ja verificados (a menos que o proprio site os corrija)
+- Cases ja verificados (a menos que o blog traga dados atualizados do mesmo case)
+- Grafias corretas ja registradas
+
+### Atualizacoes em `conhecimento/produto/{brand}/concorrentes.md`
+
+**Se o arquivo estiver vazio:**
+Preencha com os concorrentes pesquisados na Fase 3, incluindo posicionamento e diferenciais identificados.
+
+**Se o arquivo ja tiver conteudo:**
+1. **Novos movimentos**: Se a Fase 3 revelou lancamento, aquisicao ou mudanca de posicionamento de um concorrente, adicione em `## Movimentos Recentes do Mercado`
+2. **Novos concorrentes**: Se encontrou um player relevante nao listado, adicione na tabela do segmento correto
+3. **Tendencias de mercado**: Se a Fase 2 trouxe dados novos de mercado relevantes para o contexto competitivo, adicione ou atualize `## Tendencias do Mercado`
+
+**Nao invente** diferenciais ou posicionamentos — use apenas o que foi observado na pesquisa.

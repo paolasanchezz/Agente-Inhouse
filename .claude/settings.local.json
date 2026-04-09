@@ -23,7 +23,17 @@
       "WebSearch",
       "WebFetch(domain:www.itinsight.pt)",
       "WebFetch(domain:expresso.pt)",
-      "Bash(find /c/Users/titof/Downloads/Claude/\"Agente Inhouse\"/.claude/skills/news-* -type f -name \"*.md\")"
+      "Bash(find /c/Users/titof/Downloads/Claude/\"Agente Inhouse\"/.claude/skills/news-* -type f -name \"*.md\")",
+      "WebFetch(domain:blog.cxpress.io)",
+      "WebFetch(domain:blog.escallo.com.br)",
+      "WebFetch(domain:theshift.info)",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "WebFetch(domain:blog.hubspot.es)",
+      "WebFetch(domain:neilpatel.com)",
+      "WebFetch(domain:www.canva.com)",
+      "WebFetch(domain:blog.hotmart.com)",
+      "WebFetch(domain:hotmart.com)",
+      "WebFetch(domain:www.rdstation.com)"
     ]
   }
 }

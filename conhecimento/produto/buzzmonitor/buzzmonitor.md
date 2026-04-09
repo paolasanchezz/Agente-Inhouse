@@ -98,6 +98,30 @@
 - **Uso**: Relatorios eficientes e monitoramento
 - **Transformacao**: Visibilidade de dados e controle centralizado
 
+### Politize!
+- **Setor**: Educacao civica / ONG
+- **Resultados**: 2M+ pessoas alcançadas; Reels com 230K views (vs. historico de 30-40K)
+- **Uso**: Dashboards Instagram/LinkedIn + monitoramento em tempo real para ajustar estrategia de conteudo
+- **Transformacao**: Equipe enxuta com alcance de grande marca por meio de dados em tempo real
+
+### E-CLIK
+- **Setor**: (nao especificado — empresa de tecnologia/servicos)
+- **Resultados**: 28 melhorias de produto via VoC (voz do cliente); crise de reputacao detectada e resolvida em 1 hora
+- **Uso**: Alertas inteligentes + SAC centralizado para gestao de crise e feedback de produto
+- **Transformacao**: Produto melhorado continuamente a partir de dados de clientes; tempo de resposta a crises drasticamente reduzido
+
+### Casa Fiat de Cultura
+- **Setor**: Cultura / entretenimento
+- **Resultados**: 100% de visibilidade de mensagens; relatorios por exposicao
+- **Uso**: Dashboards em tempo real + SAC 2.0 para gestao de interacoes e medicao de impacto
+- **Transformacao**: Controle centralizado da presenca digital e do atendimento ao publico
+
+### Prime Energy
+- **Setor**: Bebidas energeticas / CPG
+- **Resultados**: Horas economizadas por semana na analise de dados; problema de marca homonima resolvido
+- **Uso**: Buzz Pills para resumos rapidos + Auto Tag Suggestions para filtrar mencoes da marca correta
+- **Transformacao**: Equipe liberta de analise manual; monitoramento preciso mesmo em categoria competitiva
+
 ## Grafias INCORRETAS (Nunca usar)
 
 | ERRADO | CORRETO |
