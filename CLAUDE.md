@@ -1,20 +1,38 @@
-# Agente Inhouse — Buzzmonitor
+# Agente Inhouse — Grupo Elife
 
-Este agente automatiza a criacao de newsletters e traducoes de copy para a Buzzmonitor, plataforma brasileira de social listening e inteligencia de redes sociais.
-
-## Idioma
-Todo conteudo gerado deve ser em **portugues brasileiro**.
+Este agente automatiza a criacao de newsletters e traducoes de copy para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
 
 ---
 
 ## Como Usar Este Agente
 
+### Newsletters
+
+Cada comando aceita `[brand]` e `[region]` como argumentos. Default: `buzzmonitor brasil`.
+
 | Comando | O que faz |
 |---|---|
-| `/news-pipeline` | Faz tudo: pesquisa, gera 5 newsletters e revisa. Use para o fluxo completo. |
-| `/news-pesquisar` | So a pesquisa (blog Buzzmonitor, noticias, concorrentes) |
-| `/news-gerar` | So gera os rascunhos (requer pesquisa feita antes) |
-| `/news-revisar` | So revisa os rascunhos gerados |
+| `/news-pipeline [brand] [region]` | Faz tudo: pesquisa, gera 5 newsletters e revisa |
+| `/news-pesquisar [brand] [region]` | So a pesquisa (blog da marca, noticias, concorrentes) |
+| `/news-gerar [brand] [region]` | So gera os rascunhos (requer pesquisa feita antes) |
+| `/news-revisar [brand] [region]` | So revisa os rascunhos gerados |
+
+**Valores validos:**
+- `[brand]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[region]`: `brasil` (PT-BR) | `latam` (ES-LATAM) | `portugal` (PT-PT)
+
+**Exemplos:**
+```
+/news-pipeline buzzmonitor brasil
+/news-pipeline buzzcreators latam
+/news-pipeline cxpress portugal
+/news-gerar elife brasil
+```
+
+### Traducao de Copy
+
+| Comando | O que faz |
+|---|---|
 | `/trad-pipeline [arquivo] pt-pt` | Traduz e revisa para Portugues Europeu |
 | `/trad-pipeline [arquivo] es-latam` | Traduz e revisa para Espanhol Latino-Americano |
 | `/trad-traduzir [arquivo] [pt-pt\|es-latam]` | So traduz (sem revisar) |
@@ -30,11 +48,13 @@ Todo conteudo gerado deve ser em **portugues brasileiro**.
 
 | O que procura | Onde esta |
 |---|---|
-| Newsletters do mes atual | `newsletter/entregas/YYYY-MM/` |
-| Pesquisa que originou as newsletters | `newsletter/pesquisa/` |
-| Newsletters de meses anteriores | `newsletter/entregas/arquivo/` |
+| Newsletters da Buzzmonitor | `newsletter/buzzmonitor/entregas/YYYY-MM/` |
+| Newsletters da Buzzcreators | `newsletter/buzzcreators/entregas/YYYY-MM/` |
+| Newsletters da Cxpress | `newsletter/cxpress/entregas/YYYY-MM/` |
+| Newsletters da Elife | `newsletter/elife/entregas/YYYY-MM/` |
+| Pesquisa que originou as newsletters | `newsletter/{brand}/pesquisa/` |
 | Traducoes do mes atual | `traducao/entregas/YYYY-MM/` |
-| Informacoes sobre o produto | `conhecimento/produto/` |
+| Conhecimento de produto por marca | `conhecimento/produto/{brand}/` |
 | Guia de estilo de escrita | `conhecimento/editorial/` |
 | Padroes linguisticos (PT-PT / ES-LATAM) | `conhecimento/linguistico/` |
 
@@ -43,17 +63,25 @@ Todo conteudo gerado deve ser em **portugues brasileiro**.
 ## Estrutura do Projeto
 
 ```
-CLAUDE.md                        <- voce esta aqui
+CLAUDE.md                             <- voce esta aqui
 conhecimento/
-  produto/                       <- buzzmonitor.md, concorrentes.md
-  editorial/                     <- estilo-newsletter.md
-  linguistico/                   <- pt-portugal/, es-latam/
+  produto/
+    buzzmonitor/                      <- buzzmonitor.md, concorrentes.md, pt-pt/, es/
+    buzzcreators/                     <- buzzcreators.md, concorrentes.md, pt-pt/, es/
+    cxpress/                          <- cxpress.md, concorrentes.md, pt-pt/, es/
+    elife/                            <- elife.md, concorrentes.md, pt-pt/, es/
+  editorial/                          <- estilo-newsletter.md
+  linguistico/                        <- pt-portugal/, es-latam/
 newsletter/
-  pesquisa/                      <- material do ciclo atual
-  entregas/YYYY-MM/              <- newsletters finais por mes
+  buzzmonitor/
+    pesquisa/                         <- material do ciclo atual
+    entregas/YYYY-MM/                 <- newsletters finais por mes
+  buzzcreators/ ...
+  cxpress/ ...
+  elife/ ...
 traducao/
-  entregas/YYYY-MM/              <- traducoes finais por mes
-.claude/                         <- configuracao do agente (nao editar)
+  entregas/YYYY-MM/                   <- traducoes finais por mes
+.claude/                              <- configuracao do agente (nao editar)
 ```
 
 ---
@@ -71,11 +99,12 @@ traducao/
 
 ### Obrigacoes
 - Cada newsletter deve abrir com gancho baseado em dado real, vies cognitivo ou cenario surpreendente
-- Buzzmonitor deve ser posicionada como facilitadora, nunca como protagonista
+- A marca deve ser posicionada como facilitadora, nunca como protagonista
 - Preferir dados concretos e exemplos reais a afirmacoes genericas
 - **Maximo 600 palavras por newsletter**
-- Verificar nomes de features contra `conhecimento/produto/buzzmonitor.md` antes de publicar
-- **Todo texto deve ter acentuacao e pontuacao corretas em portugues brasileiro** (nao omitir acentos)
+- Verificar nomes de features contra `conhecimento/produto/{brand}/{brand}.md` antes de publicar
+- **Idioma definido pela regiao**: brasil → PT-BR | latam → ES-LATAM | portugal → PT-PT
+- **Todo texto deve ter acentuacao e pontuacao corretas no idioma da regiao** (nao omitir acentos)
 - **Se usar nome de vies cognitivo ou efeito psicologico, a descricao deve corresponder a definicao real do conceito**
 
 ---
@@ -83,8 +112,10 @@ traducao/
 ## Arquivos de Referencia
 
 ### Newsletter
-- `conhecimento/produto/buzzmonitor.md` — Features, cases, nomes corretos do produto
-- `conhecimento/produto/concorrentes.md` — Mapa competitivo com diferenciais
+- `conhecimento/produto/{brand}/{brand}.md` — Features, cases, nomes corretos do produto e configuracao (blog URL, assinatura)
+- `conhecimento/produto/{brand}/concorrentes.md` — Mapa competitivo com diferenciais por marca
+- `conhecimento/produto/{brand}/pt-pt/{brand}.md` — Terminologia PT-PT adaptada para a marca
+- `conhecimento/produto/{brand}/es/{brand}.md` — Terminologia ES-LATAM adaptada para a marca
 - `conhecimento/editorial/estilo-newsletter.md` — Guia de estilo detalhado e anti-patterns
 
 ### Traducao

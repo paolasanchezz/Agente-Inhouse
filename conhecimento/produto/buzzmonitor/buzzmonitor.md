@@ -1,5 +1,15 @@
 # Buzzmonitor — Base de Conhecimento
 
+## Configuracao
+- **Nome de exibicao**: Buzzmonitor
+- **Assinatura**: Equipe Buzzmonitor
+- **Site Brasil**: https://buzzmonitor.com.br
+- **Blog Brasil**: https://buzzmonitor.com/blog/
+- **Site Latam**: https://buzzmonitor.com/
+- **Blog Latam**: https://buzzmonitor.com/blog/
+- **Site Portugal**: https://buzzmonitor.com/
+- **Blog Portugal**: https://buzzmonitor.com/blog/
+
 ## Visao Geral
 - **Nome**: Buzzmonitor
 - **Site**: https://buzzmonitor.com.br

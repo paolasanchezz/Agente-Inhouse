@@ -1,4 +1,4 @@
-# Template de Newsletter — Buzzmonitor
+# Template de Newsletter — [MARCA]
 
 Cada newsletter deve seguir esta estrutura com exatamente 7 secoes.
 
@@ -64,7 +64,7 @@ Regras:
 
 ## 7. ASSINATURA
 ```
-Equipe Buzzmonitor
+Equipe [MARCA]
 
 [LinkedIn] [Instagram] [Site]
 ```
