@@ -62,13 +62,13 @@ def run_full_analysis(account_key: str, period_mode: str, only_report: bool = Fa
         # ── Etapa 2: Estrutura (incremental) ────────────────────────
         print("\n[1/3] Atualizando estrutura de campanhas...")
         from fetch_campaigns import fetch_all
-        fetch_all(account_key, incremental=True)
+        fetch_all(account_key)
 
         # ── Etapa 3: Insights (incremental) ─────────────────────────
         print(f"\n[2/3] Atualizando insights ({period_mode})...")
         fetch_all_insights(account_key, period_mode)
     else:
-        print("ℹ  Modo --only-report: pulando coleta da API, usando dados do banco.\n")
+        print("[INFO] Modo --only-report: pulando coleta da API, usando dados do banco.\n")
 
     # ── Etapa 4: Relatório ───────────────────────────────────────
     print("\n[3/3] Gerando relatório...")

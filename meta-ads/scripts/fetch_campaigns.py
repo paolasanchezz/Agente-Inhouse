@@ -215,7 +215,7 @@ def fetch_all(account_key: str, days: int = 30, include_ads: bool = False) -> No
                         save_ad(ad)
                     total_ads += len(ads)
 
-        time.sleep(5.0)  # 5s entre campanhas
+        time.sleep(BATCH_DELAY)
 
     print(f"\n[OK] Coleta concluída: {len(campaign_ids)} campanhas | {total_adsets} adsets | {total_ads} anúncios")
 
