@@ -1,0 +1,35 @@
+# Skill: /meta-ads-report — Gerar Relatório (sem nova coleta)
+
+## Quando usar
+Quando os dados já foram coletados e o usuário quer apenas gerar ou re-gerar
+o relatório Markdown sem fazer novas chamadas à API.
+
+## Restrição Absoluta
+**SOMENTE LEITURA.** Zero chamadas à Meta API — apenas leitura do banco local.
+
+---
+
+## Fluxo
+
+```bash
+cd meta-ads
+python scripts/full_analysis.py --account [conta] --period [periodo] --only-report
+```
+
+O relatório é salvo em `meta-ads/data/reports/YYYY-MM-DD_{conta}_{periodo}.md`.
+
+---
+
+## Estrutura do relatório gerado
+1. Visão Geral (totais consolidados)
+2. 🔵 Topo de Funil — por campanha / adset / anúncio
+3. 🔴 Fundo de Funil — por campanha / adset / anúncio
+4. ⚪ Campanhas Não Classificadas (se houver)
+5. 📈 Análise de Tendências (3d / 7d / 15d / 30d)
+6. 💚 Pontos Fortes (a preencher com análise)
+7. 🔴 Pontos de Atenção (a preencher com análise)
+8. 🎯 Sugestões de Ação (a preencher com análise)
+
+## Após gerar
+Ler o arquivo e apresentar a análise completa ao usuário, preenchendo as seções
+de Pontos Fortes, Pontos de Atenção e Sugestões de Ação com base nos dados.

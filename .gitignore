@@ -1,0 +1,28 @@
+# Credenciais — NUNCA commitar (cada colaborador cria o seu)
+meta-ads/.env
+
+# Banco de dados local (cada colaborador popula rodando o fetch)
+meta-ads/data/meta_ads.db
+
+# Cache de estrutura bruta da API (preserva pasta via .gitkeep)
+meta-ads/data/cache/*
+!meta-ads/data/cache/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo

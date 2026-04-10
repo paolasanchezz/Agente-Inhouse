@@ -1,0 +1,68 @@
+{
+  "_instrucoes": "Valores de referência por grupo de moeda e tipo de campanha. Status: bom (verde), aceitavel (amarelo), ruim (vermelho). Frequência usa benchmarks globais independente da conta. Edite os valores conforme a realidade histórica de cada conta.",
+
+  "global": {
+    "frequency": {
+      "bom":       { "max": 5.0 },
+      "aceitavel": { "min": 5.0, "max": 7.0 },
+      "ruim":      { "min": 7.0 }
+    }
+  },
+
+  "brl": {
+    "_contas": ["buzzmonitor_brl", "cxpress_brl"],
+    "webinar": {
+      "cost_per_lead":      { "bom": { "max": 12.0 },  "aceitavel": { "max": 18.0 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "material_rico": {
+      "cost_per_lead":      { "bom": { "max": 8.0 },   "aceitavel": { "max": 12.0 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "remarketing": {
+      "cost_per_lead":      { "bom": { "max": 150.0 }, "aceitavel": { "max": 220.0 } },
+      "ctr_link":           { "bom": { "min": 1.0 },   "aceitavel": { "min": 0.6 } },
+      "lp_conversion_rate": { "bom": { "min": 8.0 },   "aceitavel": { "min": 5.0 } }
+    }
+  },
+
+  "usd": {
+    "_contas": ["buzzmonitor_usd", "cxpress_usd"],
+    "webinar": {
+      "cost_per_lead":      { "bom": { "max": 3.0 },   "aceitavel": { "max": 5.0 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "material_rico": {
+      "cost_per_lead":      { "bom": { "max": 2.0 },   "aceitavel": { "max": 3.5 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "remarketing": {
+      "cost_per_lead":      { "bom": { "max": 50.0 },  "aceitavel": { "max": 75.0 } },
+      "ctr_link":           { "bom": { "min": 1.0 },   "aceitavel": { "min": 0.6 } },
+      "lp_conversion_rate": { "bom": { "min": 8.0 },   "aceitavel": { "min": 5.0 } }
+    }
+  },
+
+  "eur": {
+    "_contas": ["buzzmonitor_eur", "cxpress_eur"],
+    "webinar": {
+      "cost_per_lead":      { "bom": { "max": 5.0 },   "aceitavel": { "max": 8.0 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "material_rico": {
+      "cost_per_lead":      { "bom": { "max": 4.0 },   "aceitavel": { "max": 6.5 } },
+      "ctr_link":           { "bom": { "min": 1.5 },   "aceitavel": { "min": 1.0 } },
+      "lp_conversion_rate": { "bom": { "min": 15.0 },  "aceitavel": { "min": 10.0 } }
+    },
+    "remarketing": {
+      "cost_per_lead":      { "bom": { "max": 40.0 },  "aceitavel": { "max": 60.0 } },
+      "ctr_link":           { "bom": { "min": 1.0 },   "aceitavel": { "min": 0.6 } },
+      "lp_conversion_rate": { "bom": { "min": 8.0 },   "aceitavel": { "min": 5.0 } }
+    }
+  }
+}

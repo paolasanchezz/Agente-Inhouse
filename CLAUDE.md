@@ -1,6 +1,6 @@
 # Agente Inhouse — Grupo Elife
 
-Este agente automatiza a criacao de newsletters e traducoes de copy para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
+Este agente automatiza a criacao de newsletters, traducoes de copy e analise de campanhas Meta Ads para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
 
 ---
 
@@ -44,6 +44,38 @@ Cada comando aceita `[brand]` e `[region]` como argumentos. Default: `buzzmonito
 
 ---
 
+### Meta Ads (SOMENTE LEITURA)
+
+Requer Python 3.10+ e token Meta Ads configurado no `.env` (veja `meta-ads/.env.example`).
+
+| Comando | O que faz |
+|---|---|
+| `/meta-ads [conta] [periodo]` | Pipeline completo: coleta estrutura + insights + gera relatorio |
+| `/meta-ads-fetch [conta] [periodo]` | So atualiza dados locais (sem gerar relatorio) |
+| `/meta-ads-report [conta] [periodo]` | So gera relatorio (dados ja no banco, sem nova coleta) |
+| `/meta-ads-trends [conta]` | Foco em tendencias temporais (3d/7d/15d/30d) |
+
+**Contas validas:**
+- `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur`
+- `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
+
+**Periodos validos:** `mes_atual` | `mes_anterior` | `ultimos_30`
+
+**Exemplos:**
+```
+/meta-ads buzzmonitor_brl mes_atual
+/meta-ads cxpress_usd ultimos_30
+/meta-ads-fetch buzzmonitor_eur mes_anterior
+/meta-ads-report cxpress_brl mes_atual
+```
+
+**Primeira execucao:** instalar dependencias antes:
+```bash
+cd meta-ads && pip install -r requirements.txt
+```
+
+---
+
 ## Onde Encontrar os Resultados
 
 | O que procura | Onde esta |
@@ -57,6 +89,8 @@ Cada comando aceita `[brand]` e `[region]` como argumentos. Default: `buzzmonito
 | Conhecimento de produto por marca | `conhecimento/produto/{brand}/` |
 | Guia de estilo de escrita | `conhecimento/editorial/` |
 | Padroes linguisticos (PT-PT / ES-LATAM) | `conhecimento/linguistico/` |
+| Relatorios Meta Ads gerados | `meta-ads/data/reports/` |
+| Benchmarks Meta Ads (editavel) | `meta-ads/data/benchmarks.json` |
 
 ---
 
@@ -82,6 +116,22 @@ newsletter/
   elife/ ...
 traducao/
   entregas/YYYY-MM/                   <- traducoes finais por mes
+meta-ads/
+  scripts/                            <- Python: fetch, analise, relatorio
+    cache_manager.py                  <- banco SQLite, ACCOUNTS, inferencia de campanha
+    fetch_campaigns.py                <- coleta hierarquica (campanhas->adsets->ads)
+    fetch_insights.py                 <- coleta incremental de metricas
+    trend_analyzer.py                 <- tendencias por janelas 3/7/15/30 dias
+    benchmark_checker.py              <- classificacao vs valores de referencia
+    report_generator.py               <- geracao de relatorio Markdown
+    full_analysis.py                  <- orquestrador end-to-end
+  data/
+    benchmarks.json                   <- valores de referencia por moeda/tipo (versionado)
+    meta_ads.db                       <- banco SQLite local (gitignored)
+    reports/                          <- relatorios gerados (gitignored)
+    cache/                            <- jsons brutos da API (gitignored)
+  requirements.txt
+  .env.example                        <- template de configuracao (nao commitar .env real)
 .claude/                              <- configuracao do agente (nao editar)
 ```
 
