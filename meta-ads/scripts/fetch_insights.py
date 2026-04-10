@@ -40,6 +40,10 @@ from cache_manager import (
     RATE_LIMIT_DELAY,
     extract_leads,
     extract_cost_per_lead,
+    extract_primary_conversions,
+    extract_primary_cost,
+    get_campaign_indicators,
+    get_adset_campaign_map,
     calc_lp_conversion_rate,
 )
 
@@ -145,12 +149,13 @@ def group_into_intervals(dates: list) -> list:
 # Parsing de resultado bruto da API
 # ============================================================
 
-def parse_insight_row(raw, entity_id: str, entity_type: str, account_key: str) -> dict:
+def parse_insight_row(raw, entity_id: str, entity_type: str, account_key: str,
+                      indicator: str = None) -> dict:
     actions = raw.get("actions", []) or []
     cost_per_action = raw.get("cost_per_action_type", []) or []
     link_clicks = int(raw.get("inline_link_clicks", 0) or 0)
-    leads = extract_leads(actions)
-    cost_per_lead = extract_cost_per_lead(cost_per_action)
+    leads = extract_primary_conversions(actions, indicator)
+    cost_per_lead = extract_primary_cost(cost_per_action, indicator)
 
     def get_video(field):
         v = raw.get(field, [])
@@ -255,9 +260,11 @@ def _fetch_account_level_async(account_id: str, level: str,
 # ============================================================
 
 def fetch_level_for_interval(account_id: str, account_key: str,
-                              level: str, date_start: str, date_end: str) -> int:
+                              level: str, date_start: str, date_end: str,
+                              indicators: dict = None) -> int:
     """
     Busca todos os insights de um nível para o intervalo e salva no banco.
+    indicators: {entity_id: results_indicator} — usado para extrair a conversão correta.
     Retorna número de linhas salvas.
     """
     num_days = (datetime.date.fromisoformat(date_end) -
@@ -274,7 +281,8 @@ def fetch_level_for_interval(account_id: str, account_key: str,
         entity_id = raw.get(id_field)
         if not entity_id:
             continue
-        insight = parse_insight_row(raw, entity_id, level, account_key)
+        indicator = (indicators or {}).get(entity_id)
+        insight = parse_insight_row(raw, entity_id, level, account_key, indicator)
         if insight["date"]:
             save_insight(insight)
             saved += 1
@@ -315,6 +323,19 @@ def fetch_all_insights(account_key: str, period_mode: str,
     print(f"   Datas ausentes: {len(missing)} ({missing[0]} a {missing[-1]})\n")
     intervals = group_into_intervals(missing)
 
+    # Pré-carrega indicadores de conversão por entidade (1 consulta SQL por nível)
+    camp_indicators = get_campaign_indicators(account_key)
+    adset_camp_map = get_adset_campaign_map(account_key)
+    adset_indicators = {
+        adset_id: camp_indicators.get(camp_id)
+        for adset_id, camp_id in adset_camp_map.items()
+    }
+    level_indicators = {
+        "campaign": camp_indicators,
+        "adset": adset_indicators,
+        "ad": {},
+    }
+
     levels = ["campaign", "adset"]
     if include_ads:
         levels.append("ad")
@@ -323,8 +344,10 @@ def fetch_all_insights(account_key: str, period_mode: str,
     for level in levels:
         level_saved = 0
         for date_start_i, date_end_i in intervals:
-            n = fetch_level_for_interval(account_id, account_key,
-                                         level, date_start_i, date_end_i)
+            n = fetch_level_for_interval(
+                account_id, account_key, level, date_start_i, date_end_i,
+                indicators=level_indicators.get(level, {}),
+            )
             level_saved += n
             time.sleep(RATE_LIMIT_DELAY)
 

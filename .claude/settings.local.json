@@ -33,7 +33,11 @@
       "WebFetch(domain:www.canva.com)",
       "WebFetch(domain:blog.hotmart.com)",
       "WebFetch(domain:hotmart.com)",
-      "WebFetch(domain:www.rdstation.com)"
+      "WebFetch(domain:www.rdstation.com)",
+      "Bash(grep -in \"TODO\\\\|FIXME\\\\|XXX\\\\|placeholder\\\\|incomplete\\\\|WIP\\\\|work in progress\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)",
+      "Bash(grep -c \"Ladeira\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)",
+      "Bash(bash /tmp/check_refs.sh)",
+      "Bash(grep -h \"## 3\\\\.\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)"
     ]
   }
 }

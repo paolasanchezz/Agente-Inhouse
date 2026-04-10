@@ -28,6 +28,23 @@ Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
 | `/trad-revisar [arquivo] [pt-pt\|es-latam]` | So revisa |
 | `/trad-calibrar [pt-pt\|es-latam]` | Atualiza padrao linguistico |
 
+### Copywriting
+
+| Comando | O que faz |
+|---|---|
+| `/copy-criar [marca] [regiao] [tipo] [estagio] ["briefing"]` | Cria 3 variacoes de copy com hooks e angulos diferentes |
+| `/copy-pesquisar [marca] [pais] [tipo]` | Pesquisa referencias frescas de copy |
+| `/copy-revisar [arquivo-ou-texto] [marca]` | Revisa copy (tecnica + produto + IA) e corrige |
+| `/copy-swipefile add [url-ou-texto]` | Adiciona exemplo ao swipe file |
+| `/copy-swipefile buscar [tema]` | Busca exemplos no swipe file |
+
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[regiao]`/`[pais]`: `brasil` | `portugal` | `latam`
+- `[tipo]`: `video-curto` | `estatico` | `email` | `geral`
+- `[estagio]`: `tofu` | `mofu` | `bofu` (default: `tofu`)
+
+Base de conhecimento: `conhecimento/copywriting/` (fundamentos, video-curto, estatico, email, funil)
+
 ### Meta Ads (SOMENTE LEITURA)
 
 Requer Python 3.10+ e `meta-ads/.env` configurado (ver `.env.example`).

@@ -45,11 +45,14 @@
 
 ## Classificação de Campanhas
 
+A ordem abaixo é a ordem de prioridade das regras (mais específico primeiro):
+
 | Tipo | Palavras-chave no nome da campanha | Grupo de funil |
 |---|---|---|
-| `webinar` | webinar, live, aula, evento | Topo |
-| `material_rico` | ebook, guia, kit, template, checklist, material, download, infográfico | Topo |
-| `remarketing` | remarketing, retargeting, remarket, retarget | Fundo |
+| `evento_presencial` | buzztalk, buzztalks, presencial | Topo |
+| `webinar` | webinar, live, aula, evento, workshop, masterclass | Topo |
+| `material_rico` | ebook, guia, kit, template, checklist, playbook, manual, material, whitepaper, planilha, rico | Topo |
+| `remarketing` | remarketing, retargeting, remarket, rmkt, rtg | Fundo |
 | `nao_classificada` | (nenhuma das acima) | — |
 
 ---

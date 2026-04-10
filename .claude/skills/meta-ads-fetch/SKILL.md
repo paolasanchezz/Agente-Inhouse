@@ -39,7 +39,8 @@ python scripts/fetch_insights.py --account [conta] --period [periodo]
 ---
 
 ## Comportamento incremental (by design)
-- Apenas campanhas com spend > 0 nos últimos 30 dias são coletadas
+- Campanhas coletadas = ACTIVE atualmente ∪ spend > 0 nos últimos 30 dias (3 chamadas)
+- Adsets incluem `daily_budget` e `lifetime_budget` (orçamento ABO coletado corretamente)
 - Datas de insights já presentes no banco não geram nova chamada à API
 - Dados de hoje nunca são coletados (dia incompleto)
 - Se a saída indicar "0 novas linhas inseridas", é correto — dados já estavam no cache

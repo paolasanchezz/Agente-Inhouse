@@ -149,13 +149,17 @@ def check_token_expiry() -> None:
 CAMPAIGN_TYPE_RULES = [
     # Ordem importa: mais específico primeiro
     {
+        "keywords": ["buzztalk", "buzztalks", "presencial"],
+        "type": "evento_presencial",
+    },
+    {
         "keywords": ["webinar", "aula", "evento", "workshop", "masterclass"],
         "type": "webinar",
     },
     {
         "keywords": [
-            "ebook", "e-book", "material", "guia", "checklist",
-            "whitepaper", "planilha", "template", "kit", "rico",
+            "ebook", "e-book", "material", "guia", "checklist", "playbook",
+            "manual", "whitepaper", "planilha", "template", "kit", "rico",
         ],
         "type": "material_rico",
     },
@@ -178,7 +182,7 @@ def infer_campaign_type(campaign_name: str) -> str:
 
 
 def get_funnel_group(campaign_type: str) -> str:
-    if campaign_type in ["webinar", "material_rico"]:
+    if campaign_type in ["webinar", "material_rico", "evento_presencial"]:
         return "topo"
     if campaign_type == "remarketing":
         return "fundo"
@@ -191,17 +195,18 @@ def get_funnel_group(campaign_type: str) -> str:
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS campaigns (
-    id              TEXT PRIMARY KEY,
-    account_key     TEXT NOT NULL,
-    name            TEXT NOT NULL,
-    objective       TEXT,
-    status          TEXT,
-    campaign_type   TEXT,
-    funnel_group    TEXT,
-    daily_budget    REAL,
-    lifetime_budget REAL,
-    last_active_date TEXT,
-    fetched_at      TEXT NOT NULL
+    id                TEXT PRIMARY KEY,
+    account_key       TEXT NOT NULL,
+    name              TEXT NOT NULL,
+    objective         TEXT,
+    status            TEXT,
+    campaign_type     TEXT,
+    funnel_group      TEXT,
+    daily_budget      REAL,
+    lifetime_budget   REAL,
+    results_indicator TEXT,
+    last_active_date  TEXT,
+    fetched_at        TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS adsets (
@@ -211,6 +216,8 @@ CREATE TABLE IF NOT EXISTS adsets (
     name            TEXT NOT NULL,
     status          TEXT,
     optimization_goal TEXT,
+    daily_budget    REAL,
+    lifetime_budget REAL,
     fetched_at      TEXT NOT NULL,
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );
@@ -270,6 +277,23 @@ def get_connection() -> sqlite3.Connection:
     return conn
 
 
+def migrate_database() -> None:
+    """Aplica migrações incrementais no banco existente. Idempotente."""
+    conn = get_connection()
+    migrations = [
+        "ALTER TABLE adsets ADD COLUMN daily_budget REAL",
+        "ALTER TABLE adsets ADD COLUMN lifetime_budget REAL",
+        "ALTER TABLE campaigns ADD COLUMN results_indicator TEXT",
+    ]
+    with conn:
+        for sql in migrations:
+            try:
+                conn.execute(sql)
+            except Exception:
+                pass  # Coluna já existe — ignorar
+    conn.close()
+
+
 def setup_database() -> None:
     """Cria tabelas e índices se não existirem. Idempotente."""
     conn = get_connection()
@@ -278,6 +302,7 @@ def setup_database() -> None:
         for idx_sql in INDEXES_SQL:
             conn.execute(idx_sql)
     conn.close()
+    migrate_database()
     print(f"[OK] Banco inicializado: {DB_PATH}")
 
 
@@ -292,8 +317,8 @@ def save_campaign(campaign: dict) -> None:
         conn.execute(
             """INSERT OR REPLACE INTO campaigns
                (id, account_key, name, objective, status, campaign_type, funnel_group,
-                daily_budget, lifetime_budget, last_active_date, fetched_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                daily_budget, lifetime_budget, results_indicator, last_active_date, fetched_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 campaign["id"],
                 campaign["account_key"],
@@ -304,11 +329,45 @@ def save_campaign(campaign: dict) -> None:
                 campaign.get("funnel_group", get_funnel_group(infer_campaign_type(campaign["name"]))),
                 campaign.get("daily_budget"),
                 campaign.get("lifetime_budget"),
+                campaign.get("results_indicator"),
                 campaign.get("last_active_date"),
                 now,
             ),
         )
     conn.close()
+
+
+def update_campaign_indicator(campaign_id: str, indicator: str) -> None:
+    """Atualiza o indicador de conversão primária da campanha."""
+    conn = get_connection()
+    with conn:
+        conn.execute(
+            "UPDATE campaigns SET results_indicator=? WHERE id=?",
+            (indicator, campaign_id),
+        )
+    conn.close()
+
+
+def get_campaign_indicators(account_key: str) -> dict:
+    """Retorna {campaign_id: results_indicator} para todas as campanhas da conta."""
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT id, results_indicator FROM campaigns WHERE account_key=?",
+        [account_key],
+    ).fetchall()
+    conn.close()
+    return {r["id"]: r["results_indicator"] for r in rows}
+
+
+def get_adset_campaign_map(account_key: str) -> dict:
+    """Retorna {adset_id: campaign_id} para todos os adsets da conta."""
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT id, campaign_id FROM adsets WHERE account_key=?",
+        [account_key],
+    ).fetchall()
+    conn.close()
+    return {r["id"]: r["campaign_id"] for r in rows}
 
 
 def save_adset(adset: dict) -> None:
@@ -317,8 +376,9 @@ def save_adset(adset: dict) -> None:
     with conn:
         conn.execute(
             """INSERT OR REPLACE INTO adsets
-               (id, campaign_id, account_key, name, status, optimization_goal, fetched_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+               (id, campaign_id, account_key, name, status, optimization_goal,
+                daily_budget, lifetime_budget, fetched_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 adset["id"],
                 adset["campaign_id"],
@@ -326,6 +386,8 @@ def save_adset(adset: dict) -> None:
                 adset["name"],
                 adset.get("status"),
                 adset.get("optimization_goal"),
+                adset.get("daily_budget"),
+                adset.get("lifetime_budget"),
                 now,
             ),
         )
@@ -493,6 +555,40 @@ def extract_cost_per_lead(cost_per_action: list) -> float:
     lead_types = ["lead", "offsite_conversion.fb_pixel_lead"]
     for item in cost_per_action:
         if item.get("action_type") in lead_types:
+            return float(item.get("value", 0.0))
+    return 0.0
+
+
+def extract_primary_conversions(actions: list, indicator: str) -> int:
+    """
+    Extrai conversões usando o indicador primário configurado na campanha (results_indicator).
+    Fallback para extract_leads() se indicator for None ou 'mixed'.
+
+    indicator formato: "actions:offsite_conversion.custom.XXXXX" ou "actions:lead" etc.
+    """
+    if not indicator or indicator == "mixed":
+        return extract_leads(actions)
+    if not actions:
+        return 0
+    action_type = indicator.replace("actions:", "").strip()
+    for action in actions:
+        if action.get("action_type") == action_type:
+            return int(action.get("value", 0))
+    return 0
+
+
+def extract_primary_cost(cost_per_action: list, indicator: str) -> float:
+    """
+    Extrai custo por conversão usando o indicador primário da campanha.
+    Fallback para extract_cost_per_lead() se indicator for None ou 'mixed'.
+    """
+    if not indicator or indicator == "mixed":
+        return extract_cost_per_lead(cost_per_action)
+    if not cost_per_action:
+        return 0.0
+    action_type = indicator.replace("actions:", "").strip()
+    for item in cost_per_action:
+        if item.get("action_type") == action_type:
             return float(item.get("value", 0.0))
     return 0.0
 

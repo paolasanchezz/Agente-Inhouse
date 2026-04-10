@@ -35,9 +35,11 @@ from cache_manager import (
     check_token_expiry,
     infer_campaign_type,
     get_funnel_group,
+    get_campaigns,
     save_campaign,
     save_adset,
     save_ad,
+    update_campaign_indicator,
     setup_database,
     retry_on_throttle,
     BATCH_DELAY,
@@ -124,9 +126,63 @@ def fetch_campaign_details(campaign_id: str, account_key: str) -> dict:
 # ============================================================
 
 @retry_on_throttle()
+def get_active_campaign_ids(account_id: str) -> set:
+    """
+    Retorna IDs de campanhas com status ACTIVE atualmente — independente de spend.
+    Garante que campanhas recém-criadas sem gasto ainda sejam incluídas.
+    """
+    from facebook_business.adobjects.adaccount import AdAccount
+
+    account = AdAccount(account_id)
+    campaigns = account.get_campaigns(
+        fields=["id"],
+        params={"effective_status": ["ACTIVE"]},
+    )
+    ids = {c["id"] for c in campaigns}
+    print(f"   Campanhas ACTIVE atualmente: {len(ids)}")
+    return ids
+
+
+def fetch_campaign_indicators(account_id: str, account_key: str, days: int = 30) -> None:
+    """
+    Busca o indicador de conversão primária (results) de cada campanha.
+    Uma única chamada à API — atualiza campaigns.results_indicator no banco.
+    """
+    import warnings
+    import datetime
+    from facebook_business.adobjects.adaccount import AdAccount
+
+    today = datetime.date.today()
+    date_start = (today - datetime.timedelta(days=days)).isoformat()
+    date_end = (today - datetime.timedelta(days=1)).isoformat()
+
+    account = AdAccount(account_id)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        rows = list(account.get_insights(
+            fields=["campaign_id", "results"],
+            params={
+                "level": "campaign",
+                "time_range": {"since": date_start, "until": date_end},
+                "filtering": [{"field": "spend", "operator": "GREATER_THAN", "value": "0"}],
+            },
+        ))
+
+    updated = 0
+    for row in rows:
+        campaign_id = row.get("campaign_id")
+        results = row.get("results") or []
+        if campaign_id and results and results[0].get("indicator"):
+            update_campaign_indicator(campaign_id, results[0]["indicator"])
+            updated += 1
+
+    print(f"   Indicadores de conversao atualizados: {updated} campanhas")
+
+
+@retry_on_throttle()
 def fetch_adsets_for_campaign(campaign_id: str, account_key: str) -> list:
     from facebook_business.adobjects.campaign import Campaign
-    fields = ["id", "name", "status", "optimization_goal"]
+    fields = ["id", "name", "status", "optimization_goal", "daily_budget", "lifetime_budget"]
     adsets_raw = Campaign(campaign_id).get_ad_sets(fields=fields)
     return [
         {
@@ -136,6 +192,8 @@ def fetch_adsets_for_campaign(campaign_id: str, account_key: str) -> list:
             "name": a.get("name", ""),
             "status": a.get("status"),
             "optimization_goal": a.get("optimization_goal"),
+            "daily_budget": float(a["daily_budget"]) / 100 if a.get("daily_budget") else None,
+            "lifetime_budget": float(a["lifetime_budget"]) / 100 if a.get("lifetime_budget") else None,
         }
         for a in adsets_raw
     ]
@@ -175,14 +233,22 @@ def fetch_all(account_key: str, days: int = 30, include_ads: bool = False) -> No
     account_id = get_account_id(account_key)
 
     print(f"\n>> Coletando estrutura: {account['label']} ({account_id})")
-    print(f"   Filtro: spend > 0 nos últimos {days} dias\n")
+    print(f"   Filtro: ACTIVE atualmente + spend > 0 nos ultimos {days} dias\n")
 
-    # Passo 1: IDs com gasto — 2 chamadas à API
-    campaign_ids = get_ids_with_spend(account_id, "campaign", days)
+    # Passo 1: IDs via dual approach incremental — 3 chamadas à API
+    campaign_ids_with_spend = get_ids_with_spend(account_id, "campaign", days)
+    existing_ids = {c["id"] for c in get_campaigns(account_key)}
+    all_active_ids = get_active_campaign_ids(account_id)
+    new_active_ids = all_active_ids - existing_ids  # apenas as que ainda não estão no banco
+    campaign_ids = campaign_ids_with_spend | new_active_ids
     adset_ids_with_spend = get_ids_with_spend(account_id, "adset", days)
 
+    if new_active_ids:
+        print(f"   Campanhas novas (ACTIVE, fora do banco): {len(new_active_ids)}")
+    print(f"   Total unico: {len(campaign_ids)} campanhas\n")
+
     if not campaign_ids:
-        print("[AVISO] Nenhuma campanha com gasto no período. Verifique o período ou a conta.")
+        print("[AVISO] Nenhuma campanha encontrada. Verifique a conta.")
         return
 
     total_adsets = 0
@@ -217,7 +283,10 @@ def fetch_all(account_key: str, days: int = 30, include_ads: bool = False) -> No
 
         time.sleep(BATCH_DELAY)
 
-    print(f"\n[OK] Coleta concluída: {len(campaign_ids)} campanhas | {total_adsets} adsets | {total_ads} anúncios")
+    print(f"\n[OK] Coleta concluida: {len(campaign_ids)} campanhas | {total_adsets} adsets | {total_ads} anuncios")
+
+    print("\n>> Buscando indicadores de conversao primaria...")
+    fetch_campaign_indicators(account_id, account_key, days=days)
 
     if unclassified:
         print(f"\n[AVISO] {len(unclassified)} campanha(s) NAO CLASSIFICADA(S) — revisão manual:")
