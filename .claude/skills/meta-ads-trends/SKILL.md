@@ -1,6 +1,6 @@
 ---
 name: meta-ads-trends
-description: Análise focada em tendências temporais de Meta Ads — CpL melhorando? CTR caiu nos últimos 3 dias? Frequência subindo? Compara janelas 3d/7d/15d/30d.
+description: Análise focada em tendências temporais de Meta Ads — CpL melhorando? CTR caiu nos últimos 7 dias? Frequência subindo? Compara janelas 7d/15d/30d.
 argument-hint: "[conta] — ex: buzzmonitor_brl | cxpress_usd"
 allowed-tools: Bash, Read
 ---
@@ -11,7 +11,7 @@ allowed-tools: Bash, Read
 
 ## Quando usar
 Quando o usuário quer focar especificamente em tendências temporais de métricas —
-se o CpL está melhorando, se o CTR caiu nos últimos 3 dias, se a frequência está subindo, etc.
+se o CpL está melhorando, se o CTR caiu nos últimos 7 dias, se a frequência está subindo, etc.
 
 ---
 
@@ -47,18 +47,20 @@ EOF
 ---
 
 ## Métricas de tendência disponíveis
-| Métrica | Janelas | Direção positiva |
-| --- | --- | --- |
-| spend | 3d/7d/15d/30d | Caindo (custo menor) |
-| leads | 3d/7d/15d/30d | Alta |
-| link_clicks | 3d/7d/15d/30d | Alta |
-| ctr_link | 3d/7d/15d/30d | Alta |
-| cost_per_lead | 3d/7d/15d/30d | Caindo |
-| cpm | 3d/7d/15d/30d | Caindo |
-| frequency | 3d/7d/15d/30d | Caindo |
-| lp_conversion_rate | 3d/7d/15d/30d | Alta |
+| Métrica | Janelas | Direção positiva | Cálculo |
+| --- | --- | --- | --- |
+| spend | 7d/15d/30d | Caindo (custo menor) | SUM |
+| leads | 7d/15d/30d | Alta | SUM |
+| link_clicks | 7d/15d/30d | Alta | SUM |
+| ctr_link | 7d/15d/30d | Alta | SUM(cliques)/SUM(impressões) |
+| cost_per_lead | 7d/15d/30d | Caindo | SUM(spend)/SUM(leads) |
+| cpm | 7d/15d/30d | Caindo | SUM(spend)/SUM(impressões)×1000 |
+| cpc_link | 7d/15d/30d | Caindo | SUM(spend)/SUM(cliques) |
+| frequency | 7d/15d/30d | Caindo | SUM(impressões)/SUM(alcance) |
+| lp_conversion_rate | 7d/15d/30d | Alta | SUM(leads)/SUM(cliques) |
 
 ## Legenda
-- **Tendência recente**: compara janela 3d vs 7d (variação dos últimos 3 dias)
-- **Tendência estrutural**: compara janela 7d vs 30d (tendência de médio prazo)
+- **Tendência recente**: compara janela 7d vs 15d
+- **Tendência estrutural**: compara janela 15d vs 30d
 - Limiar de variação: ±10% para classificar como Alta/Queda (abaixo = Estável)
+- Métricas derivadas sempre calculadas sobre somas do período — nunca como média de médias diárias
