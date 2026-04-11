@@ -2,7 +2,7 @@
 name: trad-pipeline
 description: Executa o pipeline completo de tradução — traduz a copy e revisa como nativo, publicando o resultado no Notion (pasta Entregas).
 argument-hint: "[arquivo] [pt-pt|es-latam]  — ex: meu-texto.md pt-pt"
-allowed-tools: Read, Write, Edit, WebSearch, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
+allowed-tools: Read, Write, Edit, WebSearch, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
 ---
 
 # Skill: Pipeline de Tradução

@@ -2,7 +2,7 @@
 name: trad-revisar
 description: Revisa traduções como especialista nativo em copywriting, corrigindo naturalidade, precisão e comprimento, e publica o resultado final no Notion (pasta Entregas).
 argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducao/entregas/2026-04/newsletter-pt-pt.md pt-pt"
-allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
+allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
 ---
 
 # Skill: Revisar Tradução
@@ -175,18 +175,8 @@ Determine o diretório do arquivo de tradução e crie `[nome]-revisao-log.md` n
 
 ## Passo 4: Publicar no Notion (pasta "Entregas")
 
-### 4.1: Localizar a pasta "Entregas"
-
-Use `notion-search` para encontrar a página "Entregas" no workspace geral do Notion:
-- Query: "Entregas"
-- A pasta "Entregas" está no workspace geral — **não** dentro da pasta de Newsletter
-
-Se mais de um resultado for retornado, identifique a página com o título exato "Entregas" ou mais próximo. Se não encontrar, informe ao usuário e peça o ID da página "Entregas".
-
-### 4.2: Criar nova página dentro de "Entregas"
-
 Use `notion-create-pages` para criar uma nova página com:
-- **Parent**: ID da página "Entregas" encontrada no passo anterior
+- **Parent**: `33b3934026fd80ceb414dd22cb7dbe1f` (pasta Entregas — ID fixo, não buscar)
 - **Título**: `[nome-do-arquivo] — [PT-PT | ES-LATAM] — [DATA]`
   - Exemplo: `newsletter-produto — PT-PT — 2026-04-07`
 - **Ícone**: 📄
