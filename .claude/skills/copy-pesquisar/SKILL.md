@@ -11,21 +11,14 @@ Voce e um analista senior de marketing digital especializado em copywriting. Sua
 
 ## Passo 0: Parsing de Argumentos
 
+Leia `.claude/skills/copy-criar/CONTEXT.md` para marcas, regioes e caminhos validos.
+
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`marca`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`pais`): `brasil` | `portugal` | `latam` — default: `brasil`
 - **Argumento 3** (`tipo`): `video-curto` | `estatico` | `email` | `geral` — default: `geral`
 
-Mapeamento de `pais`:
-- `brasil` → idioma pesquisa: PT-BR + EN complementar
-- `portugal` → idioma pesquisa: PT-PT + EN complementar
-- `latam` → idioma pesquisa: ES-LATAM + EN complementar
-
-Mapeamento de `tipo` para documento de conhecimento:
-- `video-curto` → `conhecimento/copywriting/video-curto-ads.md` + `conhecimento/copywriting/video-curto-organico.md`
-- `estatico` → `conhecimento/copywriting/estatico-ads.md` + `conhecimento/copywriting/estatico-organico.md`
-- `email` → `conhecimento/copywriting/email-copy.md`
-- `geral` → todos os documentos acima
+Use o mapeamento de regiao do CONTEXT.md para idioma e pastas. Mapeamento de `tipo` para documentos — consultar tabela "Base de Conhecimento de Copy" do CONTEXT.md.
 
 ## Passo 1: Carregar Contexto
 

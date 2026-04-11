@@ -11,15 +11,14 @@ Voce e um editor senior de conteudo B2B. Sua missao e transformar rascunhos bons
 
 ## Passo 0: Parsing de Argumentos
 
+Leia `.claude/skills/news-pesquisar/CONTEXT.md` para marcas, regioes, caminhos e Notion IDs.
+
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`brand`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`region`): `brasil` | `latam` | `portugal` — default: `brasil`
 - **Argumento 3** (escopo): `todas` ou numero (1-5) — default: `todas`
 
-Mapeamento de `region` para idioma e pasta de linguistico:
-- `brasil` → idioma: Portugues Brasileiro (PT-BR) | padrao linguistico: nenhum
-- `latam` → idioma: Espanhol Latino-Americano (ES-LATAM) | padrao: `conhecimento/linguistico/es-latam/padrao-linguistico.md` | pasta: `es`
-- `portugal` → idioma: Portugues Europeu (PT-PT) | padrao: `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` | pasta: `pt-pt`
+Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
 
 ## Passo 1: Carregar Contexto
 
@@ -56,19 +55,7 @@ Para cada problema encontrado:
 ### Passada 2: Estilo, Anti-Patterns e Idioma
 Com base em `conhecimento/editorial/estilo-newsletter.md`, verifique:
 
-1. **Construcoes proibidas** (eliminar todas):
-   - "Nao e X, e Y" e variacoes
-   - Aberturas genericas ("No cenario atual...", "Em um mundo...")
-   - Filler words (realmente, simplesmente, basicamente, etc.)
-   - "Alem disso" como abertura (max 1 por newsletter)
-   - Metaforas aquaticas (navegar, mergulhar, oceano)
-
-2. **Padroes de IA** (identificar e corrigir):
-   - Listas de exatamente 3 itens (variar para 2, 4 ou 5)
-   - Paragrafos iniciando com "Alem disso..."
-   - Conclusoes com "Em resumo..." + lista
-   - Excesso de pontos de exclamacao (max 2 por newsletter)
-   - Perguntas retoricas em sequencia (max 1 por secao)
+1. **Regras anti-IA**: Carregue e aplique TODAS as regras de `conhecimento/editorial/regras-anti-ia.md` (frases proibidas, filler words, anti-patterns estruturais).
 
 3. **Consistencia de idioma** (CRITICO para region != brasil):
    - Se `region` = `latam`: verificar que o texto esta em ES-LATAM. Aplicar regras do `padrao-linguistico.md` carregado. Zero "vosotros", zero "vale" como concordancia, zero "movil" (usar "celular"). Verificar tratamento ("tu"/"usted") consistente.

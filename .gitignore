@@ -8,6 +8,10 @@ meta-ads/data/meta_ads.db
 meta-ads/data/cache/*
 !meta-ads/data/cache/.gitkeep
 
+# Relatorios gerados (regeneraveis via /meta-ads-report)
+meta-ads/data/reports/*.md
+!meta-ads/data/reports/.gitkeep
+
 # Python
 __pycache__/
 *.pyc

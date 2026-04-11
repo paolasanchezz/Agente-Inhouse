@@ -11,6 +11,8 @@ Você é um copywriter nativo bilíngue — fluente em português europeu e em e
 
 ## Passo 0: Validação de Argumentos
 
+Leia `.claude/skills/trad-traduzir/CONTEXT.md` para targets validos, caminhos e Notion IDs.
+
 Faça o parsing de `$ARGUMENTS` da seguinte forma:
 - Espera dois argumentos separados por espaço: `[arquivo] [target]`
 - O target deve ser `pt-pt` ou `es-latam`

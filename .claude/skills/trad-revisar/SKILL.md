@@ -11,6 +11,8 @@ Você é um copywriter nativo e editor sênior — especializado em português e
 
 ## Passo 0: Validação de Argumentos
 
+Leia `.claude/skills/trad-traduzir/CONTEXT.md` para targets validos, caminhos e Notion IDs.
+
 Faça o parsing de `$ARGUMENTS`:
 - Espera dois argumentos: `[arquivo-traduzido] [target]`
 - O target deve ser `pt-pt` ou `es-latam`
@@ -54,37 +56,20 @@ Antes de qualquer outra verificação, confirmar:
 - Verbos de suporte (ter, fazer, dar) usados como em PT-BR mas desnaturais na língua alvo
 
 ### Construções de IA a Eliminar
-- "No cenário atual..." / "En el escenario actual..."
-- "Em um mundo cada vez mais..." / "En un mundo cada vez más..."
-- "É inegável que..." / "Es innegable que..."
-- "Vale ressaltar que..." / "Vale la pena destacar que..."
-- Listas de exatamente 3 itens como padrão único
-- Conclusões com "Em resumo..." / "En resumen..." seguido de lista repetitiva
-- "Além disso" / "Además" a abrir mais de 1 parágrafo
+Carregue e aplique TODAS as regras de `conhecimento/editorial/regras-anti-ia.md`. Adicionalmente, para traduções, eliminar as versões em espanhol: "En el escenario actual...", "Es innegable que...", "Vale la pena destacar que...", "En resumen...", "Además" a abrir mais de 1 parágrafo.
 
 ### Checklist PT-PT (se target = pt-pt)
 Verifique cada item. Para cada falha, corrija diretamente com Edit:
-- [ ] Tratamento consistente com o padrão documentado em `padrao-linguistico.md` (secção "Tom e Registo"). Se o padrão recomenda "você": todos os verbos na 3.ª pessoa (imperativo: "descubra", "experimente", "registe-se"), pronomes "o/a seu/sua" — zero ocorrências de "tu/teu/tua". Se o padrão recomenda "tu": todos os verbos na 2.ª pessoa (imperativo: "descobre", "experimenta", "regista-te"), pronomes "o/a teu/tua" — zero ocorrências de "você" informal
-- [ ] "celular" → "telemóvel"
-- [ ] "aplicativo" → "aplicação"
-- [ ] "time" (equipe) → "equipa"
-- [ ] "Acesse" → "Aceda"
-- [ ] "Cadastre-se" → "Registe-se"
-- [ ] "Baixe" → "Descarregue"
-- [ ] "de graça" → "de borla" / "gratuitamente"
-- [ ] "Fale conosco" → "Fale connosco"
+- [ ] Tratamento consistente com o padrão documentado em `padrao-linguistico.md` (secção "Tom e Registo"). Se o padrão recomenda "você": todos os verbos na 3.ª pessoa (imperativo: "descubra", "experimente", "registe-se"), pronomes "o/a seu/sua" — zero ocorrências de "tu/teu/tua". Se o padrão recomenda "tu": todos os verbos na 2.ª pessoa, pronomes "o/a teu/tua" — zero ocorrências de "você" informal
+- [ ] Aplicar TODAS as substituições de vocabulário das tabelas de `padrao-linguistico.md` (Tecnologia e Produto, CTAs, Geral e Negócios) — ex: celular→telemóvel, aplicativo→aplicação, time→equipa, Acesse→Aceda, etc.
 - [ ] Nenhuma gíria ou expressão tipicamente brasileira presente
 - [ ] CTAs soam naturais em PT-PT
 
 ### Checklist ES-LATAM (se target = es-latam)
 Verifique cada item. Para cada falha, corrija diretamente com Edit:
-- [ ] Zero ocorrências de "vosotros" / "vuestro"
-- [ ] Zero ocorrências de "vale" como concordância
-- [ ] Zero ocorrências de "móvil" (usar "celular")
-- [ ] Zero ocorrências de "ordenador" (usar "computadora")
-- [ ] "coger" não aparece (substituir por "tomar" / "agarrar")
+- [ ] Zero ocorrências de "vosotros" / "vuestro" — usar "ustedes" no plural
 - [ ] Tratamento consistente: "tú" (informal) / "usted" (formal) — nunca misturar
-- [ ] "ustedes" no plural (não "vosotros")
+- [ ] Aplicar TODAS as substituições de vocabulário das tabelas de `padrao-linguistico.md` — ex: móvil→celular, ordenador→computadora, coger→tomar/agarrar, etc.
 - [ ] CTAs usam imperativo LATAM: "Regístrate", "Descarga", "Accede", "Conoce", "Prueba"
 - [ ] Nenhum anglicismo desnecessário que não seja padrão no LATAM digital
 

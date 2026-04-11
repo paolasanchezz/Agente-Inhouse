@@ -11,14 +11,13 @@ Voce e um copywriter senior especializado em newsletters B2B de tecnologia. Seu 
 
 ## Passo 0: Parsing de Argumentos
 
+Leia `.claude/skills/news-pesquisar/CONTEXT.md` para marcas, regioes, caminhos e Notion IDs.
+
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`brand`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`region`): `brasil` | `latam` | `portugal` — default: `brasil`
 
-Mapeamento de `region`:
-- `brasil` → idioma: PT-BR | nome idioma: "Portugues Brasileiro" | pasta linguistico: nenhuma | pasta produto lang: nenhuma
-- `latam` → idioma: ES-LATAM | nome idioma: "Espanol Latinoamericano" | pasta linguistico: `es-latam` | pasta produto lang: `es`
-- `portugal` → idioma: PT-PT | nome idioma: "Portugues Europeu" | pasta linguistico: `pt-portugal` | pasta produto lang: `pt-pt`
+Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
 
 ## Pre-requisitos
 Verifique que os arquivos de pesquisa existem em `conhecimento/produto/{brand}/pesquisa/`. Se nao existirem, informe o usuario para rodar `/news-pesquisar {brand} {region}` primeiro.

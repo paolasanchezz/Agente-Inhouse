@@ -11,6 +11,8 @@ Voce e um copywriter senior especializado em marketing digital para SaaS B2B. Se
 
 ## Passo 0: Parsing de Argumentos
 
+Leia `.claude/skills/copy-criar/CONTEXT.md` para marcas, regioes e caminhos validos.
+
 Faca o parsing de `$ARGUMENTS`:
 
 | Argumento | Valores | Default | Obrigatorio |
@@ -405,15 +407,3 @@ Apresente ao usuario:
    - `/copy-swipefile add [arquivo]` para salvar a melhor no banco de referencias
    - `/trad-pipeline [arquivo] [pt-pt|es-latam]` se precisar traduzir para outra regiao
 
----
-
-## Regras Gerais
-
-- **Sempre carregue a base de conhecimento completa antes de criar.** Nao confie na memoria — leia os arquivos.
-- **Cada variacao deve ser genuinamente diferente.** Nao reescreva o mesmo texto 3 vezes com palavras diferentes. Mude o angulo, o hook, a estrutura, o tom.
-- **Zero linguagem de IA.** Esse e o criterio mais importante. Se a copy soa como ChatGPT, ela falhou.
-- **Premissas, nao promessas.** Construa argumentos logicos, nao imperativos de vendedor.
-- **Lo-fi > Hi-fi.** Para video e estatico, prefira tom natural e direto a linguagem corporativa polida.
-- **Dados reais ou nenhum dado.** Nunca invente metricas. Se o produto nao tem cases publicados, nao crie numeros — use beneficios qualitativos.
-- **Acentuacao e idioma corretos.** Nunca omita acentos. Nunca misture idiomas.
-- **Preserve a voz da marca.** Consulte o arquivo de produto para entender o posicionamento antes de escrever.

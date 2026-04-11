@@ -1,6 +1,52 @@
 # Agente Inhouse — Grupo Elife
 
-Este agente automatiza a criacao de newsletters, traducoes de copy e analise de campanhas Meta Ads para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
+Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de copy e analise de campanhas Meta Ads para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
+
+---
+
+## Arquitetura
+
+### Fluxo das Skills
+
+```
+Newsletters:  /news-pipeline → /news-pesquisar → /news-gerar → /news-revisar
+Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
+Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
+Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
+Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
+```
+
+### Diretorios
+
+| Diretorio | O que contem |
+|---|---|
+| `conhecimento/` | Base de conhecimento — fonte de verdade sobre produtos, copy, linguistica e editorial |
+| `newsletter/` | Entregas de newsletters geradas (publicadas no Notion) |
+| `traducao/` | Traducoes geradas (publicadas no Notion) |
+| `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
+| `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
+
+### Contextos Compartilhados
+
+Cada familia de skills tem um `CONTEXT.md` com marcas, regioes, caminhos e IDs do Notion:
+- `.claude/skills/copy-criar/CONTEXT.md` — para skills copy-*
+- `.claude/skills/news-pesquisar/CONTEXT.md` — para skills news-*
+- `.claude/skills/trad-traduzir/CONTEXT.md` — para skills trad-*
+- `.claude/skills/meta-ads/CONTEXT.md` — para skills meta-ads-*
+
+---
+
+## Setup
+
+### Meta Ads (unico que requer instalacao)
+1. `cd meta-ads && python -m pip install -r requirements.txt`
+2. Copiar `meta-ads/.env.example` para `meta-ads/.env` e preencher token + IDs de conta
+
+### Notion
+Requer MCP Notion conectado. IDs das pastas ja estao hardcoded nas skills e nos CONTEXT.md.
+
+### Demais skills
+Funcionam sem setup adicional.
 
 ---
 

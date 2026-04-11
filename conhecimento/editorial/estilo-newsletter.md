@@ -1,4 +1,4 @@
-# Guia de Estilo — Newsletter Buzzmonitor
+# Guia de Estilo — Conteudo Grupo Elife
 
 ## Tom e Voz
 - **Profissional mas acessivel**: como um especialista compartilhando um cafe com um colega
@@ -17,31 +17,7 @@ Modelo baseado na newsletter da YouScan:
 
 ## Construcoes PROIBIDAS
 
-### Frases Tipicas de IA (NUNCA usar)
-- "Nao e X, e Y" / "Nao se trata de X, mas sim de Y"
-- "No cenario atual..." / "No mundo de hoje..."
-- "Em um mundo cada vez mais conectado/digital/competitivo..."
-- "Nos ultimos anos..." / "Com o avanco da tecnologia..."
-- "E inegavel que..." / "E fato que..."
-- "Nesse sentido..." / "Diante disso..."
-- "Vale ressaltar que..." / "E importante destacar que..."
-- "Em suma..." / "Em resumo..." / "Para concluir..."
-- "Voce ja parou para pensar...?" (como abertura — pode usar no meio do texto com moderacao)
-
-### Filler Words (NUNCA usar)
-- realmente, verdadeiramente, simplesmente, basicamente
-- literalmente, definitivamente, absolutamente, certamente
-- extremamente, incrivelmente, impressionantemente
-- revolucionario, transformador, disruptivo (salvo com dados que comprovem)
-
-### Anti-Patterns de Escrita IA
-- Listas de exatamente 3 itens sempre (variar: 2, 4, 5)
-- Paragrafos que comecam com "Alem disso..." (max 1 por newsletter)
-- Conclusoes com "Em resumo..." seguido de lista
-- Metaforas aquaticas ("navegar", "mergulhar", "oceano de dados")
-- Excesso de pontos de exclamacao (max 2 por newsletter inteira)
-- Perguntas retoricas em sequencia (max 1 por secao)
-- Emoji em excesso (max 2-3 por newsletter, apenas no assunto ou CTA)
+Consulte `conhecimento/editorial/regras-anti-ia.md` para a lista completa de frases de IA, filler words e anti-patterns estruturais proibidos. Todas essas regras se aplicam integralmente a newsletters.
 
 ---
 
@@ -131,7 +107,7 @@ Se a newsletter usar um vies cognitivo ou efeito psicologico pelo nome, a descri
 - [ ] O gancho prende atencao nos primeiros 2 paragrafos?
 - [ ] Existe pelo menos 1 dado concreto ou metrica?
 - [ ] O case/exemplo e real e verificavel?
-- [ ] As informacoes sobre a Buzzmonitor estao corretas? (checar `conhecimento/buzzmonitor.md`)
+- [ ] As informacoes sobre a marca estao corretas? (checar `conhecimento/produto/{marca}/{marca}.md`)
 - [ ] Nenhuma construcao proibida foi usada?
 - [ ] O texto tem menos de 600 palavras?
 - [ ] O CTA e natural e contextual?

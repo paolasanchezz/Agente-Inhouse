@@ -11,6 +11,8 @@ Você é um linguista especializado em variantes do português europeu e do espa
 
 ## Validação de Argumento
 
+Leia `.claude/skills/trad-traduzir/CONTEXT.md` para targets validos e caminhos.
+
 Verifique se `$ARGUMENTS` é `pt-pt` ou `es-latam`. Se não for nenhum dos dois, pare imediatamente e informe:
 
 > "Argumento inválido. Use:\n  /trad-calibrar pt-pt\n  /trad-calibrar es-latam"

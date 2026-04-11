@@ -11,15 +11,14 @@ Voce e um pesquisador especializado em marketing digital e tecnologia. Sua taref
 
 ## Passo 0: Parsing de Argumentos
 
+Leia `.claude/skills/news-pesquisar/CONTEXT.md` para marcas, regioes, caminhos e Notion IDs.
+
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`brand`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`region`): `brasil` | `latam` | `portugal` — default: `brasil`
 - **Argumento 3** (foco opcional): tema para direcionar a pesquisa (ex: "atendimento ao cliente")
 
-Mapeamento de `region`:
-- `brasil` → idioma: PT-BR | pasta linguistico: nenhuma | pasta produto: (nenhuma adicional)
-- `latam` → idioma: ES-LATAM | pasta linguistico: `es-latam` | pasta produto lang: `es`
-- `portugal` → idioma: PT-PT | pasta linguistico: `pt-portugal` | pasta produto lang: `pt-pt`
+Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
 
 ## Passo 1: Carregar Contexto
 
