@@ -21,7 +21,8 @@ from cache_manager import get_connection
 TREND_WINDOWS = [7, 15, 30]  # dias — do mais recente ao mais longo
 
 # Métricas base somadas diretamente do banco
-BASE_METRICS = ["spend", "impressions", "link_clicks", "leads", "reach"]
+BASE_METRICS = ["spend", "impressions", "link_clicks", "leads", "reach",
+                "video_p25", "video_p50", "video_p100"]
 
 # Métricas derivadas calculadas a partir das somas brutas (nunca AVG de médias)
 # Cada lambda recebe o dict {metric: valor} da janela e retorna o valor derivado
@@ -32,10 +33,15 @@ DERIVED_METRICS = {
     "cpc_link":           lambda d: d["spend"] / d["link_clicks"]             if d["link_clicks"] > 0 else 0.0,
     "lp_conversion_rate": lambda d: d["leads"] / d["link_clicks"] * 100      if d["link_clicks"] > 0 else 0.0,
     "frequency":          lambda d: d["impressions"] / d["reach"]             if d["reach"] > 0       else 0.0,
+    # Vídeo: hook_rate = % que assistiu 25%+ do vídeo (mede força do gancho)
+    "hook_rate":          lambda d: d["video_p25"] / d["impressions"] * 100  if d["impressions"] > 0 and d["video_p25"] > 0 else 0.0,
+    # Vídeo: completion_rate = % que assistiu até o fim
+    "completion_rate":    lambda d: d["video_p100"] / d["impressions"] * 100 if d["impressions"] > 0 and d["video_p100"] > 0 else 0.0,
 }
 
 # Direção positiva: aumento é BOM
-POSITIVE_DIRECTION = ["leads", "link_clicks", "ctr_link", "lp_conversion_rate", "impressions", "reach"]
+POSITIVE_DIRECTION = ["leads", "link_clicks", "ctr_link", "lp_conversion_rate",
+                      "impressions", "reach", "hook_rate", "completion_rate"]
 
 # Direção negativa: aumento é RUIM (custos)
 NEGATIVE_DIRECTION = ["cost_per_lead", "cpm", "cpc_link", "frequency", "spend"]
@@ -185,6 +191,8 @@ def format_trends_table(trends: dict, currency_symbol: str = "R$") -> str:
         "cost_per_lead":       f"CpL ({currency_symbol})",
         "frequency":           "Frequência",
         "lp_conversion_rate":  "Conv. LP (%)",
+        "hook_rate":           "Hook Rate — % assistiu 25%+ (vídeo)",
+        "completion_rate":     "Completion Rate — % assistiu até o fim (vídeo)",
     }
 
     for metric, data in trends.items():
