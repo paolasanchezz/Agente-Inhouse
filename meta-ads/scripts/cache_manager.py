@@ -370,6 +370,17 @@ def get_adset_campaign_map(account_key: str) -> dict:
     return {r["id"]: r["campaign_id"] for r in rows}
 
 
+def get_ad_campaign_map(account_key: str) -> dict:
+    """Retorna {ad_id: campaign_id} para todos os anúncios da conta."""
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT id, campaign_id FROM ads WHERE account_key=?",
+        [account_key],
+    ).fetchall()
+    conn.close()
+    return {r["id"]: r["campaign_id"] for r in rows}
+
+
 def save_adset(adset: dict) -> None:
     conn = get_connection()
     now = datetime.datetime.utcnow().isoformat()

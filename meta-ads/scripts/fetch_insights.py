@@ -44,6 +44,7 @@ from cache_manager import (
     extract_primary_cost,
     get_campaign_indicators,
     get_adset_campaign_map,
+    get_ad_campaign_map,
     calc_lp_conversion_rate,
 )
 
@@ -107,17 +108,17 @@ def generate_date_range(date_start: str, date_end: str) -> list:
             for i in range((end - start).days + 1)]
 
 
-def get_missing_dates_for_account(account_key: str, date_start: str, date_end: str) -> list:
+def get_missing_dates_for_account(account_key: str, date_start: str, date_end: str,
+                                   level: str = "campaign") -> list:
     """
-    Retorna datas do intervalo que ainda não têm dados no banco para esta conta.
-    Usa o nível 'campaign' como referência — se há dados de campanha para a data,
-    consideramos que o dia está completo.
+    Retorna datas do intervalo que ainda não têm dados no banco para esta conta/nível.
+    Por padrão usa 'campaign' como referência. Passe level='ad' para checar dados de anúncio.
     """
     conn = get_connection()
     existing = {
         row["date"] for row in conn.execute(
-            "SELECT DISTINCT date FROM insights WHERE account_key=? AND entity_type='campaign'",
-            [account_key],
+            "SELECT DISTINCT date FROM insights WHERE account_key=? AND entity_type=?",
+            [account_key, level],
         ).fetchall()
     }
     conn.close()
@@ -313,27 +314,22 @@ def fetch_all_insights(account_key: str, period_mode: str,
     print(f"\n>> Coletando insights: {account['label']}")
     print(f"   Período: {period_mode} ({date_start} -> {date_end})")
 
-    # Verifica datas ausentes (1 consulta SQL)
-    missing = get_missing_dates_for_account(account_key, date_start, date_end)
-
-    if not missing:
-        print("   [OK] Todos os dados já estão no banco — nenhuma chamada à API necessária.")
-        return
-
-    print(f"   Datas ausentes: {len(missing)} ({missing[0]} a {missing[-1]})\n")
-    intervals = group_into_intervals(missing)
-
     # Pré-carrega indicadores de conversão por entidade (1 consulta SQL por nível)
     camp_indicators = get_campaign_indicators(account_key)
     adset_camp_map = get_adset_campaign_map(account_key)
+    ad_camp_map = get_ad_campaign_map(account_key)
     adset_indicators = {
         adset_id: camp_indicators.get(camp_id)
         for adset_id, camp_id in adset_camp_map.items()
     }
+    ad_indicators = {
+        ad_id: camp_indicators.get(camp_id)
+        for ad_id, camp_id in ad_camp_map.items()
+    }
     level_indicators = {
         "campaign": camp_indicators,
         "adset": adset_indicators,
-        "ad": {},
+        "ad": ad_indicators,
     }
 
     levels = ["campaign", "adset"]
@@ -342,6 +338,15 @@ def fetch_all_insights(account_key: str, period_mode: str,
 
     total_saved = 0
     for level in levels:
+        # Verifica datas ausentes por nível — evita re-fetch do que já existe
+        missing = get_missing_dates_for_account(account_key, date_start, date_end, level=level)
+        if not missing:
+            print(f"   {level.capitalize():10} -> ja no banco, nenhuma chamada necessaria")
+            continue
+
+        print(f"   {level.capitalize()}: {len(missing)} datas ausentes ({missing[0]} a {missing[-1]})")
+        intervals = group_into_intervals(missing)
+
         level_saved = 0
         for date_start_i, date_end_i in intervals:
             n = fetch_level_for_interval(
@@ -355,7 +360,10 @@ def fetch_all_insights(account_key: str, period_mode: str,
         total_saved += level_saved
         time.sleep(BATCH_DELAY)
 
-    print(f"\n[OK] Total: {total_saved} linhas inseridas no banco.")
+    if total_saved == 0:
+        print("   [OK] Todos os dados ja estao no banco — nenhuma chamada a API necessaria.")
+    else:
+        print(f"\n[OK] Total: {total_saved} linhas inseridas no banco.")
 
 
 # ============================================================

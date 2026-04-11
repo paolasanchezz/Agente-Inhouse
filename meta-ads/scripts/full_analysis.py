@@ -49,7 +49,7 @@ def run_full_analysis(account_key: str, period_mode: str, only_report: bool = Fa
     print(f"\n{'='*60}")
     print(f"  Meta Ads — Análise Completa")
     print(f"  Conta:   {account['label']}")
-    print(f"  Período: {period_mode} ({date_start} → {date_end})")
+    print(f"  Periodo: {period_mode} ({date_start} a {date_end})")
     print(f"{'='*60}\n")
 
     # ── Etapa 1: Verificações ────────────────────────────────────
@@ -82,7 +82,7 @@ def run_full_analysis(account_key: str, period_mode: str, only_report: bool = Fa
     # Exibe primeiras linhas do relatório como preview
     with open(report_path, "r", encoding="utf-8") as f:
         preview = "".join(f.readlines()[:30])
-    print("── Preview do relatório (primeiras 30 linhas) ──\n")
+    print("-- Preview do relatorio (primeiras 30 linhas) --\n")
     print(preview)
     print("... (arquivo completo em data/reports/)\n")
 
