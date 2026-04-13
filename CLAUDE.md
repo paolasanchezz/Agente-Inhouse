@@ -52,6 +52,17 @@ Funcionam sem setup adicional.
 
 ## Comandos Disponiveis
 
+### Nao sabe qual comando rodar? Use um destes (advisors):
+
+| Comando | Quando usar |
+|---|---|
+| `/traduzir` | Traduzir copy para PT-PT ou ES-LATAM |
+| `/escrever` | Criar, revisar ou pesquisar copy |
+| `/newsletter` | Gerar newsletters semanais |
+| `/anuncios` | Analisar performance de Meta Ads |
+
+Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam funcionando para quem ja tem pratica.
+
 ### Newsletters
 Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
 
