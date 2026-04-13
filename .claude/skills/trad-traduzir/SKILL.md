@@ -3,6 +3,7 @@ name: trad-traduzir
 description: Traduz copy de marketing em português brasileiro para Português Europeu (PT-PT) ou Espanhol Latino-Americano (ES-LATAM), soando como texto nativo — não como tradução.
 argument-hint: "[caminho-da-copy] [pt-pt|es-latam]  — ex: meu-texto.md pt-pt"
 allowed-tools: Read, Write, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
+version: 1.0.0
 ---
 
 # Skill: Traduzir Copy de Marketing

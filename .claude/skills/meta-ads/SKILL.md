@@ -3,6 +3,7 @@ name: meta-ads
 description: Pipeline completo de Meta Ads — coleta estrutura + insights + gera relatório. Usar quando o usuário pede análise de performance, CpL alto, frequência, criativos, tendências, comparação de períodos, etc.
 argument-hint: "[conta] [periodo] — ex: buzzmonitor_brl mes_atual | cxpress_usd ultimos_30"
 allowed-tools: Bash, Read
+version: 1.0.0
 ---
 
 # Skill: /meta-ads — Análise Completa de Meta Ads

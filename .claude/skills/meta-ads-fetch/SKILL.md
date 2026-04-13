@@ -3,6 +3,7 @@ name: meta-ads-fetch
 description: Atualiza dados locais de campanhas e insights sem gerar relatório. Usar antes de análise manual ou quando o usuário quer só sincronizar o banco local.
 argument-hint: "[conta] [periodo] — ex: buzzmonitor_brl mes_atual | cxpress_eur ultimos_30"
 allowed-tools: Bash, Read
+version: 1.0.0
 ---
 
 # Skill: /meta-ads-fetch — Atualização de Dados

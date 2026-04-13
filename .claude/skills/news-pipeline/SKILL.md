@@ -3,6 +3,7 @@ name: news-pipeline
 description: Executa o pipeline completo de geracao de newsletters — pesquisa, geracao e revisao em sequencia, para a marca e regiao indicadas.
 argument-hint: "[brand] [region] [foco-opcional]  — ex: buzzmonitor brasil | cxpress latam 'ia'"
 allowed-tools: WebFetch, WebSearch, Read, Write, Edit, Agent, Bash, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search
+version: 1.0.0
 ---
 
 # Skill: Pipeline Completo de Newsletter

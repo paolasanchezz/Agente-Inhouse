@@ -3,6 +3,7 @@ name: meta-ads-trends
 description: Análise focada em tendências temporais de Meta Ads — CpL melhorando? CTR caiu nos últimos 7 dias? Frequência subindo? Compara janelas 7d/15d/30d.
 argument-hint: "[conta] — ex: buzzmonitor_brl | cxpress_usd"
 allowed-tools: Bash, Read, mcp__claude_ai_Notion__notion-create-pages
+version: 1.0.0
 ---
 
 # Skill: /meta-ads-trends — Análise de Tendências
