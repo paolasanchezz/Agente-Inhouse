@@ -3,6 +3,7 @@ name: news-pesquisar
 description: Pesquisa blog da marca, noticias do mercado e concorrentes para coletar material para newsletters — adaptado ao idioma da regiao.
 argument-hint: "[brand] [region] [foco-opcional]  — ex: buzzmonitor brasil 'atendimento ao cliente'"
 allowed-tools: WebFetch, WebSearch, Read, Write, Agent, Bash
+version: 1.0.0
 ---
 
 # Skill: Pesquisar Material para Newsletters

@@ -34,6 +34,10 @@ Cada familia de skills tem um `CONTEXT.md` com marcas, regioes, caminhos e IDs d
 - `.claude/skills/trad-traduzir/CONTEXT.md` — para skills trad-*
 - `.claude/skills/meta-ads/CONTEXT.md` — para skills meta-ads-*
 
+### Versionamento
+
+Cada skill tem `version` no frontmatter (semver simplificado). Mudanças vão em `CHANGELOG.md` no mesmo PR. Bump MAJOR ao quebrar interface da skill.
+
 ---
 
 ## Setup

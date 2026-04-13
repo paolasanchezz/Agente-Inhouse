@@ -3,6 +3,7 @@ name: news-revisar
 description: Revisa e otimiza as newsletters geradas, verificando qualidade, precisao e aderencia ao modelo.
 argument-hint: "[brand] [region] [todas|numero: ex. '3']  — ex: buzzmonitor brasil todas"
 allowed-tools: Read, Write, Edit, WebFetch
+version: 1.0.0
 ---
 
 # Skill: Revisar Newsletters

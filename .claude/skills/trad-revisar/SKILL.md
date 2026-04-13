@@ -3,6 +3,7 @@ name: trad-revisar
 description: Revisa traduções como especialista nativo em copywriting, corrigindo naturalidade, precisão e comprimento, e publica o resultado final no Notion (pasta Entregas).
 argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducao/entregas/2026-04/newsletter-pt-pt.md pt-pt"
 allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
+version: 1.0.0
 ---
 
 # Skill: Revisar Tradução

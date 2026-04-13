@@ -3,6 +3,7 @@ name: copy-revisar
 description: Revisa uma copy verificando qualidade tecnica, precisao sobre o produto e linguagem de IA — e corrige automaticamente o que encontrar.
 argument-hint: "[arquivo-ou-texto] [marca] — ex: copy-meta-abril.md buzzmonitor"
 allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebSearch
+version: 1.0.0
 ---
 
 # Skill: Revisar e Corrigir Copy

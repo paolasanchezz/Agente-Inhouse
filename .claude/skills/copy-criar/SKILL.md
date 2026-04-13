@@ -3,6 +3,7 @@ name: copy-criar
 description: Cria 3 variacoes originais de copy com hooks, angulos e premissas diferentes, escritas nativamente no idioma da regiao.
 argument-hint: "[marca] [regiao] [tipo] [estagio] [\"briefing\"] — ex: buzzmonitor brasil video-curto bofu \"remarketing social listening\""
 allowed-tools: Read, Write, Glob, Grep, Agent, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
+version: 1.0.0
 ---
 
 # Skill: Criar Copy Original

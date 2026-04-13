@@ -3,6 +3,7 @@ name: copy-swipefile
 description: Mantém um swipe file (banco de referencias) de boas copys organizado e pesquisavel.
 argument-hint: "add [url-ou-texto] | buscar [tema]"
 allowed-tools: WebFetch, WebSearch, Read, Write, Bash, Glob, Grep
+version: 1.0.0
 ---
 
 # Skill: Swipe File de Copy

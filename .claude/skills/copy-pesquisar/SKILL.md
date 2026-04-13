@@ -3,6 +3,7 @@ name: copy-pesquisar
 description: Pesquisa referencias frescas de copy (ads, organico, email) para a marca e pais indicados, analisando concorrentes e tendencias.
 argument-hint: "[marca] [pais] [tipo] — ex: buzzmonitor brasil video-curto"
 allowed-tools: WebFetch, WebSearch, Read, Write, Agent, Bash, Glob, Grep
+version: 1.0.0
 ---
 
 # Skill: Pesquisar Referencias de Copy

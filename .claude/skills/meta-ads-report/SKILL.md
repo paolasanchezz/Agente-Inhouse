@@ -3,6 +3,7 @@ name: meta-ads-report
 description: Gera relatório Markdown de Meta Ads a partir de dados já no banco local. Zero chamadas à API. Usar quando dados já foram coletados e o usuário quer re-gerar ou atualizar o relatório.
 argument-hint: "[conta] [periodo] — ex: buzzmonitor_brl mes_atual | cxpress_usd mes_anterior"
 allowed-tools: Bash, Read
+version: 1.0.0
 ---
 
 # Skill: /meta-ads-report — Gerar Relatório (sem nova coleta)

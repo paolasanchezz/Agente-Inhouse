@@ -3,6 +3,7 @@ name: trad-calibrar
 description: Pesquisa sites de empresas e media em Portugal ou LATAM para coletar vocabulário, expressões idiomáticas e padrões de estilo autênticos de escrita nativa.
 argument-hint: "[pt-pt | es-latam]"
 allowed-tools: WebSearch, WebFetch, Read, Write, Edit
+version: 1.0.0
 ---
 
 # Skill: Pesquisar Padrão Linguístico
