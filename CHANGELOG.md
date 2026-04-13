@@ -75,3 +75,12 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ## trad-calibrar
 ### 1.0.0 — 2026-04-13
 - Baseline após refactor `f580823`.
+
+## setup-agencia
+### 0.1.0 — 2026-04-13
+- Skill nova: guia interativo de primeiro setup (Python, Notion MCP, token Meta) para newbies. Acompanha `meta-ads/SETUP.md` e `meta-ads/scripts/check_setup.py`.
+
+## meta-ads (módulo Python)
+### 2026-04-13
+- IDs das 6 contas hardcoded em `cache_manager.py` (`ACCOUNTS[*]["account_id"]`); `get_account_id` simplificado. `.env.example` reduzido a token + data + API version (de 36 para ~24 linhas, sem `META_ACCOUNT_*`).
+- `scripts/check_setup.py` novo: valida `.env`, expiração do token e acesso a cada uma das 6 contas via `AdAccount.api_get`. Exit 0/1.

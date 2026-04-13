@@ -61,64 +61,61 @@ def retry_on_throttle(max_retries=MAX_RETRIES, backoff=BACKOFF_BASE):
 # Mapa de contas
 # ============================================================
 
+# IDs sao iguais para todo o time (nao sao secretos — qualquer pessoa com acesso ao
+# Business Manager os enxerga). Hardcodados aqui para reduzir friccao no setup do .env.
+# Para adicionar uma conta nova: incluir nova entrada com account_id correspondente.
 ACCOUNTS = {
     "buzzmonitor_brl": {
         "label": "Buzzmonitor Brasil (BRL)",
         "currency": "BRL",
         "currency_symbol": "R$",
-        "env_key": "META_ACCOUNT_BUZZMONITOR_BRL",
+        "account_id": "act_733381876770151",
         "benchmark_group": "brl",
     },
     "buzzmonitor_usd": {
         "label": "Buzzmonitor Latam (USD)",
         "currency": "USD",
         "currency_symbol": "$",
-        "env_key": "META_ACCOUNT_BUZZMONITOR_USD",
+        "account_id": "act_300991508612624",
         "benchmark_group": "usd",
     },
     "buzzmonitor_eur": {
         "label": "Buzzmonitor Portugal (EUR)",
         "currency": "EUR",
         "currency_symbol": "€",
-        "env_key": "META_ACCOUNT_BUZZMONITOR_EUR",
+        "account_id": "act_1510240806113985",
         "benchmark_group": "eur",
     },
     "cxpress_brl": {
         "label": "Cxpress Brasil (BRL)",
         "currency": "BRL",
         "currency_symbol": "R$",
-        "env_key": "META_ACCOUNT_CXPRESS_BRL",
+        "account_id": "act_1266529690796936",
         "benchmark_group": "brl",
     },
     "cxpress_usd": {
         "label": "Cxpress Latam (USD)",
         "currency": "USD",
         "currency_symbol": "$",
-        "env_key": "META_ACCOUNT_CXPRESS_USD",
+        "account_id": "act_1999993677432010",
         "benchmark_group": "usd",
     },
     "cxpress_eur": {
         "label": "Cxpress Portugal (EUR)",
         "currency": "EUR",
         "currency_symbol": "€",
-        "env_key": "META_ACCOUNT_CXPRESS_EUR",
+        "account_id": "act_1246835670520012",
         "benchmark_group": "eur",
     },
 }
 
 
 def get_account_id(account_key: str) -> str:
-    """Retorna o ID da conta (act_XXXXXXXXX) a partir da variável de ambiente."""
+    """Retorna o ID da conta (act_XXXXXXXXX) a partir do mapa hardcoded."""
     account = ACCOUNTS.get(account_key)
     if not account:
         raise ValueError(f"Conta desconhecida: '{account_key}'. Válidas: {list(ACCOUNTS.keys())}")
-    account_id = os.getenv(account["env_key"])
-    if not account_id:
-        raise EnvironmentError(
-            f"Variável de ambiente '{account['env_key']}' não encontrada. "
-            f"Configure o .env com o ID da conta {account['label']}."
-        )
-    return account_id
+    return account["account_id"]
 
 
 def check_token_expiry() -> None:

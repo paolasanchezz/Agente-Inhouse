@@ -42,9 +42,11 @@ Cada skill tem `version` no frontmatter (semver simplificado). Mudanças vão em
 
 ## Setup
 
+**Primeira vez? Rode `/setup-agencia`** — guia interativo que conduz instalacao de Python, MCP do Notion e token Meta. Recomendado para todos os colaboradores no primeiro uso.
+
 ### Meta Ads (unico que requer instalacao)
-1. `cd meta-ads && python -m pip install -r requirements.txt`
-2. Copiar `meta-ads/.env.example` para `meta-ads/.env` e preencher token + IDs de conta
+Use `/setup-agencia` ou veja `meta-ads/SETUP.md` para passo-a-passo escrito.
+Resumo: `python -m pip install -r meta-ads/requirements.txt`, copiar `.env.example` para `.env`, preencher token + data, validar com `python meta-ads/scripts/check_setup.py`. IDs das contas ja vem hardcoded.
 
 ### Notion
 Requer MCP Notion conectado. IDs das pastas ja estao hardcoded nas skills e nos CONTEXT.md.
@@ -55,6 +57,12 @@ Funcionam sem setup adicional.
 ---
 
 ## Comandos Disponiveis
+
+### Primeira vez? Comece aqui:
+
+| Comando | Quando usar |
+|---|---|
+| `/setup-agencia` | Setup interativo do zero — token Meta, Notion MCP, Python. Use na primeira vez ou ao trocar de maquina. |
 
 ### Nao sabe qual comando rodar? Use um destes (advisors):
 
@@ -108,7 +116,7 @@ Base de conhecimento: `conhecimento/copywriting/` (fundamentos, video-curto, est
 
 ### Meta Ads (SOMENTE LEITURA)
 
-Requer Python 3.10+ e `meta-ads/.env` configurado (ver `.env.example`).
+Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setup-agencia` ou veja `meta-ads/SETUP.md`.
 
 | Comando | O que faz |
 |---|---|
@@ -119,5 +127,3 @@ Requer Python 3.10+ e `meta-ads/.env` configurado (ver `.env.example`).
 
 - `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
 - `[periodo]`: `mes_atual` | `mes_anterior` | `ultimos_30`
-
-**Primeira execucao:** `cd meta-ads && python -m pip install -r requirements.txt`
