@@ -37,7 +37,9 @@
       "Bash(grep -in \"TODO\\\\|FIXME\\\\|XXX\\\\|placeholder\\\\|incomplete\\\\|WIP\\\\|work in progress\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)",
       "Bash(grep -c \"Ladeira\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)",
       "Bash(bash /tmp/check_refs.sh)",
-      "Bash(grep -h \"## 3\\\\.\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)"
+      "Bash(grep -h \"## 3\\\\.\" \"C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse/conhecimento/copywriting\"/*.md)",
+      "mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-update-page",
+      "Bash(npx skills:*)"
     ]
   }
 }
