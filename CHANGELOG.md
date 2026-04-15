@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## anuncios (advisor)
+### 1.0.0 — 2026-04-14
+- Reescrita completa: SKILL.md cortado de 156 para ~65 linhas (~58% menor).
+- Removido step de confirmação (2 turnos LLM a menos por invocação).
+- Adicionado fast-path: `/anuncios performance buzzmonitor_brl mes_atual` dispara em 1 turno.
+- Removidas seções Princípios, Fallback e Passo 0 (aviso inline).
+
+## escrever (advisor)
+### 1.0.0 — 2026-04-14
+- Reescrita completa: SKILL.md cortado de 206 para ~75 linhas (~64% menor).
+- Removido step de confirmação. Adicionado fast-path para os 4 sub-fluxos.
+- Removidas seções Princípios e Fallback.
+
+## newsletter (advisor)
+### 1.0.0 — 2026-04-14
+- Reescrita completa: SKILL.md cortado de 122 para ~50 linhas (~59% menor).
+- Removido step de confirmação. Adicionado fast-path.
+- Removidas seções Princípios e Fallback.
+
+## traduzir (advisor)
+### 1.0.0 — 2026-04-14
+- Reescrita completa: SKILL.md cortado de 122 para ~50 linhas (~59% menor).
+- Removido step de confirmação. Adicionado fast-path.
+- Removidas seções Princípios e Fallback.
+
+---
+
 ## copy-criar
 ### 1.0.0 — 2026-04-13
 - Baseline após refactor `f580823` (eliminação de duplicação, criação de CONTEXT.md compartilhado).
