@@ -30,3 +30,6 @@ env/
 .idea/
 *.swp
 *.swo
+
+# Git worktrees (checkouts temporarios de outras branches)
+.claude/worktrees/
