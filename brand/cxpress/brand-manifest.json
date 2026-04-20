@@ -1,0 +1,45 @@
+{
+  "$schema": "brand-manifest/v1",
+  "brand": {
+    "name": "Cxpress",
+    "displayName": "Cxpress",
+    "parentBrand": "Grupo Elife",
+    "tagline": "",
+    "mission": "",
+    "websites": {
+      "brasil": "https://cxpress.io",
+      "latam": "https://cxpress.io",
+      "portugal": "https://cxpress.io"
+    },
+    "blog": ""
+  },
+  "voice": {
+    "personality": [],
+    "toneAttributes": {
+      "formality": 0.5,
+      "enthusiasm": 0.6,
+      "technicalDepth": 0.5,
+      "warmth": 0.6
+    },
+    "messagingPillars": [],
+    "samplePhrases": {
+      "do": [],
+      "dont": []
+    }
+  },
+  "audience": {
+    "primary": "",
+    "segments": []
+  },
+  "positioning": {
+    "category": "",
+    "differentiators": [],
+    "competitiveFrame": ""
+  },
+  "crossReferences": {
+    "productKnowledge": "conhecimento/produto/cxpress/cxpress.md",
+    "competitors": "conhecimento/produto/cxpress/concorrentes.md",
+    "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
+    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"
+  }
+}

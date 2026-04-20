@@ -1,0 +1,12 @@
+{
+  "$schema": "tracking/v1",
+  "gtm": {
+    "default": "GTM-WFJVK858",
+    "regions": {
+      "brasil": "GTM-WFJVK858",
+      "latam": "GTM-WFJVK858",
+      "portugal": "GTM-WFJVK858"
+    },
+    "notes": "Container unico Buzzmonitor cobre Brasil, LATAM e Portugal. Caso seja feito split futuro, preencher regions com IDs distintos."
+  }
+}

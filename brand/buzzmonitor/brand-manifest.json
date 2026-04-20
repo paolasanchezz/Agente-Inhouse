@@ -1,0 +1,77 @@
+{
+  "$schema": "brand-manifest/v1",
+  "brand": {
+    "name": "Buzzmonitor",
+    "displayName": "Buzzmonitor",
+    "parentBrand": "Grupo Elife",
+    "tagline": "Social listening potencializado por inteligencia artificial",
+    "mission": "Transformar o volume de dados sociais em decisoes rapidas, precisas e escalaveis com IA",
+    "websites": {
+      "brasil": "https://buzzmonitor.com.br",
+      "latam": "https://buzzmonitor.com/",
+      "portugal": "https://buzzmonitor.com/"
+    },
+    "blog": "https://buzzmonitor.com.br/blog/"
+  },
+  "voice": {
+    "personality": [
+      "analitica",
+      "inovadora",
+      "confiavel",
+      "acessivel",
+      "vibrante"
+    ],
+    "toneAttributes": {
+      "formality": 0.6,
+      "enthusiasm": 0.5,
+      "technicalDepth": 0.7,
+      "warmth": 0.5,
+      "aiConfidence": 0.8
+    },
+    "messagingPillars": [
+      "IA aplicada ao social listening — capacidade presente, nao promessa futura",
+      "Parceiro que facilita e aprimora analises, nao substitui equipes",
+      "Dados acionaveis em tempo real para decisoes mais rapidas",
+      "Plataforma preparada para o futuro — arquitetura aberta para novos modelos de IA"
+    ],
+    "samplePhrases": {
+      "do": [
+        "A IA da Buzzmonitor analisou 50 mil mencoes em 3 minutos.",
+        "Deixe a inteligencia artificial filtrar o ruido — voce foca nas decisoes.",
+        "Insights automaticos que sua equipe levaria dias para encontrar.",
+        "Monitore, entenda e aja — com IA trabalhando ao seu lado."
+      ],
+      "dont": [
+        "A IA mais revolucionaria do mercado.",
+        "Substitua toda sua equipe de analistas.",
+        "Tecnologia disruptiva que vai mudar tudo.",
+        "Nossa super plataforma incrivel faz tudo que voce precisa!!!"
+      ]
+    }
+  },
+  "audience": {
+    "primary": "Equipes de marketing, CX e atendimento que precisam de dados acionaveis sobre presenca digital",
+    "segments": [
+      "Gestores de redes sociais",
+      "Analistas de social listening",
+      "Diretores de marketing e CX",
+      "Agencias de comunicacao"
+    ]
+  },
+  "positioning": {
+    "category": "Social listening e gestao de redes sociais com IA",
+    "differentiators": [
+      "IA integrada para analise de sentimento, deteccao de tendencias e resumos automaticos",
+      "Plataforma completa (listening + atendimento + analytics) em um so lugar",
+      "Preparada para o futuro — arquitetura aberta para novos modelos de IA",
+      "Parceiro que potencializa equipes em vez de substituir pessoas"
+    ],
+    "competitiveFrame": "Diferente de ferramentas que oferecem IA como recurso add-on, a Buzzmonitor integra inteligencia artificial como motor central de cada funcionalidade"
+  },
+  "crossReferences": {
+    "productKnowledge": "conhecimento/produto/buzzmonitor/buzzmonitor.md",
+    "competitors": "conhecimento/produto/buzzmonitor/concorrentes.md",
+    "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
+    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"
+  }
+}

@@ -1,6 +1,6 @@
 # Agente Inhouse — Grupo Elife
 
-Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de copy e analise de campanhas Meta Ads para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
+Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de copy, landing pages e analise de campanhas Meta Ads para as marcas do Grupo Elife: Buzzmonitor, Buzzcreators, Cxpress e Elife.
 
 ---
 
@@ -12,6 +12,7 @@ Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de c
 Newsletters:  /news-pipeline → /news-pesquisar → /news-gerar → /news-revisar
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
+Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 ```
@@ -20,9 +21,11 @@ Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 
 | Diretorio | O que contem |
 |---|---|
+| `brand/` | Identidade visual, tokens de design e regras de geracao por marca (ver `brand/DESIGN.md`) |
 | `conhecimento/` | Base de conhecimento — fonte de verdade sobre produtos, copy, linguistica e editorial |
 | `newsletter/` | Entregas de newsletters geradas (publicadas no Notion) |
 | `traducao/` | Traducoes geradas (publicadas no Notion) |
+| `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
 
@@ -32,7 +35,18 @@ Cada familia de skills tem um `CONTEXT.md` com marcas, regioes, caminhos e IDs d
 - `.claude/skills/copy-criar/CONTEXT.md` — para skills copy-*
 - `.claude/skills/news-pesquisar/CONTEXT.md` — para skills news-*
 - `.claude/skills/trad-traduzir/CONTEXT.md` — para skills trad-*
+- `.claude/skills/lp-preparar/CONTEXT.md` — para skills lp-*
 - `.claude/skills/meta-ads/CONTEXT.md` — para skills meta-ads-*
+
+### Brand / Design System
+
+Ao criar landing pages, criativos ou componentes para uma marca especifica, carregar:
+1. `brand/DESIGN.md` (visao geral e hierarquia)
+2. `brand/{marca}/tokens.json` (cores, tipografia, espacamento — formato W3C DTCG)
+3. `brand/{marca}/generation-rules.json` (regras de composicao para AI)
+4. `brand/{marca}/brand-manifest.json` (identidade, tom de voz, messaging)
+
+Conhecimento de produto fica em `conhecimento/produto/` — nao duplicar em `brand/`.
 
 ### Versionamento
 
@@ -71,6 +85,7 @@ Funcionam sem setup adicional.
 | `/traduzir` | Traduzir copy para PT-PT ou ES-LATAM |
 | `/escrever` | Criar, revisar ou pesquisar copy |
 | `/newsletter` | Gerar newsletters semanais |
+| `/landing-page` | Criar, revisar, integrar form ou publicar LP |
 | `/anuncios` | Analisar performance de Meta Ads |
 
 Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam funcionando para quem ja tem pratica.
@@ -114,6 +129,23 @@ Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
 
 Base de conhecimento: `conhecimento/copywriting/` (fundamentos, video-curto, estatico, email, funil)
 
+### Landing Pages
+
+Aceita `[marca]` e `[slug]`. Guidelines universais em `landing-pages/GUIDELINES.md`. Fonte em `landing-pages/{marca}/{slug}/`, deploy em pasta sibling isolada.
+
+| Comando | O que faz |
+|---|---|
+| `/lp-pipeline [marca] [slug] [fonte] [dominio]` | Fluxo completo: preparar → gerar → revisar → (pausa) → publicar |
+| `/lp-preparar [marca] [slug] [fonte]` | Estrutura copy crua em blocos rotulados + anti-IA |
+| `/lp-gerar [marca] [slug]` | Gera HTML estatico invocando `frontend-design` |
+| `/lp-revisar [marca]/[slug]` | Audita (design + a11y) e aplica criticos |
+| `/lp-integrar-form [marca]/[slug] "snippet"` | Troca form mock por embed real (manual-trigger) |
+| `/lp-publicar [marca] [slug] [dominio]` | Sync sibling + deploy Vercel + PageSpeed + relatorio Notion |
+
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[slug]`: kebab-case curto (ex: `monitoramento-maio`)
+- `[fonte]`: URL Notion, caminho de arquivo ou texto colado
+
 ### Meta Ads (SOMENTE LEITURA)
 
 Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setup-agencia` ou veja `meta-ads/SETUP.md`.
@@ -124,6 +156,7 @@ Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setu
 | `/meta-ads-fetch [conta] [periodo]` | So atualiza dados locais |
 | `/meta-ads-report [conta] [periodo]` | So gera relatorio (sem nova coleta) |
 | `/meta-ads-trends [conta]` | Tendencias temporais (3d/7d/15d/30d) |
+| `/meta-ads-geral` | Relatorio consolidado das 6 contas — drill-down Conta->Funil->Adset->Ad, publica no Notion |
 
 - `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
 - `[periodo]`: `mes_atual` | `mes_anterior` | `ultimos_30`

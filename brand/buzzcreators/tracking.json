@@ -1,0 +1,12 @@
+{
+  "$schema": "tracking/v1",
+  "gtm": {
+    "default": null,
+    "regions": {
+      "brasil": null,
+      "latam": null,
+      "portugal": null
+    },
+    "notes": "TODO: preencher com o container GTM da Buzzcreators quando disponivel. Enquanto estiver null, lp-gerar nao injeta GTM."
+  }
+}

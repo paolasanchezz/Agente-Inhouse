@@ -43,6 +43,17 @@
 
 ---
 
+## Identidade de Marca
+
+Ao gerar relatorios, carregar `brand/{marca}/tokens.json` para cores nos graficos se aplicavel.
+
+| Conta | Marca | Tokens |
+|---|---|---|
+| `buzzmonitor_brl/usd/eur` | Buzzmonitor | `brand/buzzmonitor/tokens.json` |
+| `cxpress_brl/usd/eur` | Cxpress | `brand/cxpress/tokens.json` |
+
+---
+
 ## Classificação de Campanhas
 
 A ordem abaixo é a ordem de prioridade das regras (mais específico primeiro):

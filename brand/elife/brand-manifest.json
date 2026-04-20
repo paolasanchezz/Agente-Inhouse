@@ -1,0 +1,45 @@
+{
+  "$schema": "brand-manifest/v1",
+  "brand": {
+    "name": "Elife",
+    "displayName": "Elife",
+    "parentBrand": "Grupo Elife",
+    "tagline": "",
+    "mission": "",
+    "websites": {
+      "brasil": "https://elife.com.br",
+      "latam": "",
+      "portugal": ""
+    },
+    "blog": ""
+  },
+  "voice": {
+    "personality": [],
+    "toneAttributes": {
+      "formality": 0.7,
+      "enthusiasm": 0.4,
+      "technicalDepth": 0.5,
+      "warmth": 0.5
+    },
+    "messagingPillars": [],
+    "samplePhrases": {
+      "do": [],
+      "dont": []
+    }
+  },
+  "audience": {
+    "primary": "",
+    "segments": []
+  },
+  "positioning": {
+    "category": "",
+    "differentiators": [],
+    "competitiveFrame": ""
+  },
+  "crossReferences": {
+    "productKnowledge": "conhecimento/produto/elife/elife.md",
+    "competitors": "conhecimento/produto/elife/concorrentes.md",
+    "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
+    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"
+  }
+}

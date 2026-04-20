@@ -1,0 +1,91 @@
+{
+  "$schema": "generation-rules/v1",
+  "brand": "buzzmonitor",
+  "rules": {
+    "landingPage": {
+      "layout": {
+        "maxWidth": "1200px",
+        "heroStyle": "left-text-right-image ou gradient-background",
+        "sectionCount": "4-6",
+        "ctaPlacement": ["hero", "mid-page", "footer"]
+      },
+      "colorUsage": {
+        "background": "neutral.0 ou neutral.100 para secoes claras",
+        "heroBackground": "gradiente 1 (roxo→laranja) ou gradiente 4 (teal→roxo) para hero impactante",
+        "heroTextOnGradient": "neutral.0 (branco)",
+        "ctaButton": "secondary (#EB7C2E laranja) com neutral.0 como texto",
+        "ctaButtonHover": "primary (#390155 roxo)",
+        "textPrimary": "neutral.900",
+        "textSecondary": "neutral.700",
+        "sectionAccent": "usar variantes claras (primaryLight, tealLight, yellowLight) como fundo de secoes alternadas",
+        "decorativeShapes": "formas geometricas nas 5 cores da marca como elementos de fundo"
+      },
+      "typographyUsage": {
+        "h1": "League Spartan, 5xl ou 4xl, bold/black",
+        "h2": "League Spartan, 3xl, bold",
+        "h3": "HK Grotesk, xl, light",
+        "body": "Lato, base, regular",
+        "cta": "Lato, lg, semibold"
+      },
+      "components": [
+        "hero com gradiente + tagline em League Spartan + CTA laranja",
+        "barra de prova social (logos ou metricas) — fundo primaryLight",
+        "grid de features (3 ou 4 colunas) com icones em teal ou laranja",
+        "secao de depoimentos com fundo tealLight ou yellowLight",
+        "tabela de precos ou comparacao (se BOFU) — destaque em laranja",
+        "secao final com CTA sobre gradiente"
+      ]
+    },
+    "adCreative": {
+      "static": {
+        "logoPlacement": "top-left ou bottom-center",
+        "logoSize": "max 15% da largura do canvas",
+        "colorDominance": "usar 2-3 cores da paleta por peca (nao todas 5)",
+        "textHierarchy": "hook > beneficio > CTA",
+        "safeZone": "margem de 10% em todos os lados para crop de plataforma",
+        "backgroundOptions": "gradiente da marca OU cor solida clara com formas geometricas OU foto com overlay roxo/teal",
+        "hookColor": "neutral.0 em fundo escuro OU primary em fundo claro",
+        "ctaColor": "secondary (laranja) sempre"
+      },
+      "carousel": {
+        "coverCard": "hook forte, gradiente da marca, sem poluicao de logo",
+        "innerCards": "uma ideia por card, fundo alternando entre cores claras da paleta",
+        "lastCard": "CTA + logo + fundo com gradiente 1 (roxo→laranja)"
+      }
+    },
+    "email": {
+      "headerLogo": true,
+      "maxWidth": "600px",
+      "buttonStyle": "border-radius md, cor secondary (laranja), texto branco",
+      "buttonStyleSecondary": "border-radius md, cor primary (roxo), texto branco",
+      "footerElements": ["logo", "links sociais", "unsubscribe"],
+      "accentDivider": "linha de 2px em teal ou laranja entre secoes"
+    },
+    "newsletter": {
+      "headerFormat": "logo da marca + numero da edicao",
+      "sectionDivider": "linha fina em neutral.300",
+      "ctaStyle": "link inline no texto em secondary (laranja), nao botao",
+      "highlightBox": "fundo primaryLight (#F2D8FF) com borda-left 3px primary (#390155)"
+    }
+  },
+  "constraints": {
+    "logoMinClearSpace": "igual a altura do icone do tucano em todos os lados",
+    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto sobre qualquer fundo)",
+    "maxColorsPerPiece": "2-3 cores fortes por peca (variantes claras nao contam)",
+    "geometricShapes": "usar circulos, semicirculos, retangulos e triangulos como decoracao visual, nas cores da marca",
+    "neverDo": [
+      "Usar as 5 cores fortes simultaneamente sem hierarquia",
+      "Colocar texto sobre formas geometricas coloridas sem contraste",
+      "Usar League Spartan para corpo de texto (apenas titulos)",
+      "Usar HK Grotesk abaixo de 14px",
+      "Distorcer, recortar ou alterar cores do tucano",
+      "Colocar texto sobre imagens sem overlay de contraste (min 60% opacidade)",
+      "Misturar identidade Buzzmonitor com Buzzcreators/Cxpress/Elife no mesmo header"
+    ]
+  },
+  "figmaSync": {
+    "fileKey": "",
+    "variableCollections": [],
+    "lastSyncDate": ""
+  }
+}

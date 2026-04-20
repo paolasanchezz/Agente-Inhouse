@@ -1,0 +1,20 @@
+{
+  "brand": "buzzcreators",
+  "assets": {
+    "logos": {
+      "primary": {
+        "png": "logos/logo-primary.png",
+        "usage": "Versao positiva (preto) — fundos claros. Inclui subtitulo 'Media & Influencer Marketing'"
+      },
+      "reversed": {
+        "png": "logos/logo-reversed.png",
+        "usage": "Versao negativa (branco) — fundos escuros"
+      },
+      "colorido": {
+        "png": "logos/logo-colorido.png",
+        "usage": "Versao colorida (vermelho coral #F04E4A) — uso em materiais de marketing"
+      }
+    },
+    "patterns": {}
+  }
+}

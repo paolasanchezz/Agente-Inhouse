@@ -10,6 +10,7 @@ meta-ads/data/cache/*
 
 # Relatorios gerados (regeneraveis via /meta-ads-report)
 meta-ads/data/reports/*.md
+meta-ads/data/reports/*.txt
 !meta-ads/data/reports/.gitkeep
 
 # Python
@@ -33,3 +34,6 @@ env/
 
 # Git worktrees (checkouts temporarios de outras branches)
 .claude/worktrees/
+
+# Runtime lockfile do MCP de tarefas agendadas
+.claude/scheduled_tasks.lock

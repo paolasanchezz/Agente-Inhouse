@@ -1,0 +1,23 @@
+{
+  "brand": "elife",
+  "assets": {
+    "logos": {
+      "primary": {
+        "path": "logos/logo-primary.svg",
+        "format": "svg",
+        "usage": "Uso principal em fundos claros"
+      },
+      "reversed": {
+        "path": "logos/logo-reversed.svg",
+        "format": "svg",
+        "usage": "Para fundos escuros"
+      },
+      "icon": {
+        "path": "logos/logo-icon.svg",
+        "format": "svg",
+        "usage": "Favicon, avatar, espacos reduzidos"
+      }
+    },
+    "patterns": {}
+  }
+}

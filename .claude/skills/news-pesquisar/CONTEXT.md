@@ -23,6 +23,17 @@
 
 Se `region` != `brasil`: carregar tambem `conhecimento/produto/{brand}/{pasta-lang}/{brand}.md` e `conhecimento/linguistico/{pasta-linguistico}/padrao-linguistico.md`.
 
+## Identidade de Marca
+
+| Marca | Manifest | Tokens | Regras de Geracao |
+|---|---|---|---|
+| `buzzmonitor` | `brand/buzzmonitor/brand-manifest.json` | `brand/buzzmonitor/tokens.json` | `brand/buzzmonitor/generation-rules.json` |
+| `buzzcreators` | `brand/buzzcreators/brand-manifest.json` | `brand/buzzcreators/tokens.json` | `brand/buzzcreators/generation-rules.json` |
+| `cxpress` | `brand/cxpress/brand-manifest.json` | `brand/cxpress/tokens.json` | `brand/cxpress/generation-rules.json` |
+| `elife` | `brand/elife/brand-manifest.json` | `brand/elife/tokens.json` | `brand/elife/generation-rules.json` |
+
+Ao gerar newsletters, carregar `brand/{marca}/brand-manifest.json` para personalidade e voz. Para newsletters em HTML, carregar tambem `brand/{marca}/tokens.json` para cores e tipografia.
+
 ## Caminhos
 
 | O que | Onde |

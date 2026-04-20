@@ -1,0 +1,109 @@
+---
+name: lp-integrar-form
+description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §10).
+argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
+allowed-tools: Read, Edit, Glob, Grep
+version: 1.1.0
+---
+
+# Skill: Integrar Formulario em Landing Page
+
+Substitui o form mock (`<form action="#">`) por um embed externo. Aplica o CSS wrapper canonico para manter layout. **Nao roda dentro do pipeline** — usuario invoca manualmente quando o design esta aprovado.
+
+## Passo 0: Parsing
+
+Leia `.claude/skills/lp-preparar/CONTEXT.md`.
+
+Parsing de `$ARGUMENTS`:
+
+| Argumento | Formato | Obrigatorio |
+|---|---|---|
+| `target` | `{marca}/{slug}` ou `{marca} {slug}` | Sim |
+| `snippet` | HTML do embed, entre aspas | Sim |
+
+Normalize target para `landing-pages/{marca}/{slug}/index.html`. Se nao existe, PARE.
+
+### Identificar provedor (heuristica do snippet)
+
+- Contem `jotform.com` → Jotform
+- Contem `rdstation` → RD Station
+- Contem `hsforms.net` ou `hubspot` → HubSpot
+- Outro → "embed generico"
+
+So serve para rotular o log. Nao muda a logica de substituicao.
+
+## Passo 1: Localizar Form Mock
+
+Grep em `landing-pages/{marca}/{slug}/index.html`:
+
+- Procurar `<form` (primeira ocorrencia com `action="#"` ou com classe `form` que contenha `onsubmit="event.preventDefault()"`).
+- Capturar do `<form` ate o `</form>` correspondente (incluindo atributos e filhos).
+
+Se nao encontrar form mock — talvez ja tenha embed. PARE e avise o usuario: "LP parece ja ter form integrado. Reverter para mock primeiro se quiser trocar."
+
+## Passo 2: Substituir pelo Embed
+
+Use `Edit` para trocar o bloco `<form ... >...</form>` por:
+
+```html
+<div class="form jotform-embed" {preservar_data_attrs_se_houver}>
+  {snippet}
+</div>
+```
+
+Observacoes:
+- A classe `jotform-embed` vale para qualquer provedor (ativa o wrapper CSS canonico). Nao renomear por provedor.
+- Preserve animacao reveal: se o form mock tinha `class="form reveal"` com `style="--d: XXms"`, replicar no `<div>` wrapper.
+
+## Passo 2.5: Remover JS placeholder do form
+
+O `lp-gerar` inclui um bloco JS placeholder que escuta `submit` no `<form>` mock (mostra "Inscricao registrada", valida campos, etc). Com o embed real, esse form nao existe mais como `<form>` na pagina (Jotform/HubSpot renderizam via iframe) — `document.querySelector('form')` retorna `null` e dispara `Cannot read properties of null (reading 'addEventListener')` no console.
+
+Grep em `<script>` inline por `querySelector('form')` ou `addEventListener('submit'`. Se encontrar, remover o bloco inteiro — do comentario `// Placeholder form` (se existir) ou da linha `var form = document.querySelector('form');` ate o `});` de fechamento do handler de submit.
+
+Nao confundir com outros scripts da LP (reveal on scroll, countdown, etc). So remover o handler do form.
+
+## Passo 3: Garantir CSS Wrapper
+
+Grep no `<style>` inline por `.form.jotform-embed`. Se **nao** existe, inserir no final do `<style>`:
+
+```css
+.form.jotform-embed { padding: 16px; overflow: hidden; }
+.form.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+```
+
+Se ja existe, nao duplicar.
+
+## Passo 4: Atualizar README
+
+Em `landing-pages/{marca}/{slug}/README.md`:
+
+- Marcar checkbox `- [x] Formulario integrado` (se a secao existir).
+- Adicionar linha: `**Form provider:** {provedor identificado} ({data integracao})`
+
+Se o README nao existe, criar minimalista com essas informacoes.
+
+## Passo 5: Relatorio Final
+
+```
+Form integrado — {marca}/{slug}
+
+Provedor: {provedor}
+Form mock substituido: sim
+Wrapper CSS: aplicado ({"novo" ou "ja existia"})
+
+Arquivo: landing-pages/{marca}/{slug}/index.html
+
+Testar antes de publicar:
+1. Abrir index.html no browser local
+2. Conferir que iframe carrega dentro do wrapper (sem overflow)
+3. Submeter form-teste para ver resposta do provedor
+
+Proximo: /lp-publicar {marca} {slug} [dominio]
+```
+
+## Notas
+
+- Nao validar o snippet (nao fazer HTTP request para ver se URL e valida — risco de bloquear por CSP ou timeout).
+- Nao configurar CSP automaticamente — embeds externos + CSP estrito e complicado, deixar para ajuste manual caso usuario queira endurecer.
+- Se o usuario quiser reverter: `Edit` manual (trocar wrapper por `<form action="#" onsubmit="event.preventDefault()">` novamente).

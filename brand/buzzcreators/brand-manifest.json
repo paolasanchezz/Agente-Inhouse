@@ -1,0 +1,45 @@
+{
+  "$schema": "brand-manifest/v1",
+  "brand": {
+    "name": "Buzzcreators",
+    "displayName": "Buzzcreators",
+    "parentBrand": "Grupo Elife",
+    "tagline": "",
+    "mission": "",
+    "websites": {
+      "brasil": "https://buzzcreators.com.br",
+      "latam": "",
+      "portugal": ""
+    },
+    "blog": ""
+  },
+  "voice": {
+    "personality": [],
+    "toneAttributes": {
+      "formality": 0.4,
+      "enthusiasm": 0.7,
+      "technicalDepth": 0.4,
+      "warmth": 0.7
+    },
+    "messagingPillars": [],
+    "samplePhrases": {
+      "do": [],
+      "dont": []
+    }
+  },
+  "audience": {
+    "primary": "",
+    "segments": []
+  },
+  "positioning": {
+    "category": "",
+    "differentiators": [],
+    "competitiveFrame": ""
+  },
+  "crossReferences": {
+    "productKnowledge": "conhecimento/produto/buzzcreators/buzzcreators.md",
+    "competitors": "conhecimento/produto/buzzcreators/concorrentes.md",
+    "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
+    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"
+  }
+}

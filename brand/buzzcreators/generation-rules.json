@@ -1,0 +1,76 @@
+{
+  "$schema": "generation-rules/v1",
+  "brand": "buzzcreators",
+  "rules": {
+    "landingPage": {
+      "layout": {
+        "maxWidth": "1200px",
+        "heroStyle": "left-text-right-image",
+        "sectionCount": "4-6",
+        "ctaPlacement": ["hero", "mid-page", "footer"]
+      },
+      "colorUsage": {
+        "background": "neutral.0 ou neutral.100",
+        "heroAccent": "primary",
+        "ctaButton": "primary com neutral.0 como texto",
+        "textPrimary": "neutral.900",
+        "textSecondary": "neutral.700"
+      },
+      "typographyUsage": {
+        "h1": "heading font, 4xl, bold",
+        "h2": "heading font, 3xl, semibold",
+        "body": "body font, base, regular",
+        "cta": "body font, lg, semibold"
+      },
+      "components": [
+        "hero com tagline + CTA",
+        "barra de prova social (logos ou metricas)",
+        "grid de features (3 ou 4 colunas)",
+        "secao de depoimentos",
+        "tabela de precos ou comparacao (se BOFU)",
+        "secao final com CTA"
+      ]
+    },
+    "adCreative": {
+      "static": {
+        "logoPlacement": "top-left ou bottom-center",
+        "logoSize": "max 15% da largura do canvas",
+        "colorDominance": "primary como acento (max 30%), neutral como base",
+        "textHierarchy": "hook > beneficio > CTA",
+        "safeZone": "margem de 10% em todos os lados para crop de plataforma"
+      },
+      "carousel": {
+        "coverCard": "hook forte, cores da marca, sem poluicao de logo",
+        "innerCards": "uma ideia por card, estilo consistente",
+        "lastCard": "CTA + logo + fundo com cor primaria"
+      }
+    },
+    "email": {
+      "headerLogo": true,
+      "maxWidth": "600px",
+      "buttonStyle": "arredondado, cor primaria, texto branco",
+      "footerElements": ["logo", "links sociais", "unsubscribe"]
+    },
+    "newsletter": {
+      "headerFormat": "logo da marca + numero da edicao",
+      "sectionDivider": "linha fina em neutral.300",
+      "ctaStyle": "link inline no texto, nao botao"
+    }
+  },
+  "constraints": {
+    "logoMinClearSpace": "igual a altura do icone do logo em todos os lados",
+    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto)",
+    "neverDo": [
+      "Usar a cor primaria como fundo de blocos grandes de texto",
+      "Colocar texto sobre imagens sem overlay de contraste",
+      "Distorcer ou recortar o logo",
+      "Usar fontes fora do sistema tipografico definido",
+      "Misturar identidade visual de marcas irmas"
+    ]
+  },
+  "figmaSync": {
+    "fileKey": "",
+    "variableCollections": [],
+    "lastSyncDate": ""
+  }
+}

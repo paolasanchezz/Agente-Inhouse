@@ -1,0 +1,25 @@
+{
+  "brand": "buzzmonitor",
+  "assets": {
+    "logos": {
+      "primary": {
+        "png": "logos/logo-primary.png",
+        "svg": "logos/logo-primary.svg",
+        "usage": "Uso principal em fundos claros (branco, cinza claro)"
+      },
+      "reversed": {
+        "png": "logos/logo-reversed.png",
+        "svg": "logos/logo-reversed.svg",
+        "usage": "Para fundos escuros (roxo #390155, preto)"
+      },
+      "icon": {
+        "png": "logos/logo-icon.png",
+        "svg": "logos/logo-icon.svg",
+        "usage": "Favicon, avatar, espacos reduzidos. Tucano geometrico."
+      }
+    },
+    "patterns": {
+      "description": "Formas geometricas (circulos, semicirculos, retangulos, triangulos, arcos) nas 5 cores da marca. Usar como elementos decorativos em layouts."
+    }
+  }
+}

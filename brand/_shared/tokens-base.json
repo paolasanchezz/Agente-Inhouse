@@ -1,0 +1,87 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$metadata": {
+    "brand": "",
+    "version": "0.1.0",
+    "lastUpdated": "",
+    "figmaFileKey": ""
+  },
+  "colors": {
+    "primary": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Cor principal — logo, CTAs, elementos de destaque"
+    },
+    "primaryLight": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Variante clara da primaria — hovers, fundos suaves"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Cor secundaria — destaques, acentos"
+    },
+    "neutral": {
+      "900": { "$type": "color", "$value": "#1a1a1a", "$description": "Texto principal" },
+      "700": { "$type": "color", "$value": "#4a4a4a", "$description": "Texto secundario" },
+      "300": { "$type": "color", "$value": "#d1d1d1", "$description": "Bordas, divisores" },
+      "100": { "$type": "color", "$value": "#f5f5f5", "$description": "Fundo claro" },
+      "0":   { "$type": "color", "$value": "#ffffff", "$description": "Fundo branco" }
+    },
+    "semantic": {
+      "success": { "$type": "color", "$value": "#22c55e" },
+      "warning": { "$type": "color", "$value": "#f59e0b" },
+      "error":   { "$type": "color", "$value": "#ef4444" },
+      "info":    { "$type": "color", "$value": "#3b82f6" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": { "$type": "fontFamily", "$value": "", "$description": "Fonte de titulos" },
+      "body":    { "$type": "fontFamily", "$value": "", "$description": "Fonte de corpo" },
+      "mono":    { "$type": "fontFamily", "$value": "monospace", "$description": "Fonte monoespacada" }
+    },
+    "fontSize": {
+      "xs":   { "$type": "dimension", "$value": "12px" },
+      "sm":   { "$type": "dimension", "$value": "14px" },
+      "base": { "$type": "dimension", "$value": "16px" },
+      "lg":   { "$type": "dimension", "$value": "18px" },
+      "xl":   { "$type": "dimension", "$value": "20px" },
+      "2xl":  { "$type": "dimension", "$value": "24px" },
+      "3xl":  { "$type": "dimension", "$value": "30px" },
+      "4xl":  { "$type": "dimension", "$value": "36px" }
+    },
+    "fontWeight": {
+      "regular":  { "$type": "fontWeight", "$value": 400 },
+      "medium":   { "$type": "fontWeight", "$value": 500 },
+      "semibold": { "$type": "fontWeight", "$value": 600 },
+      "bold":     { "$type": "fontWeight", "$value": 700 }
+    },
+    "lineHeight": {
+      "tight":   { "$type": "dimension", "$value": "1.25" },
+      "normal":  { "$type": "dimension", "$value": "1.5" },
+      "relaxed": { "$type": "dimension", "$value": "1.75" }
+    }
+  },
+  "spacing": {
+    "xs":  { "$type": "dimension", "$value": "4px" },
+    "sm":  { "$type": "dimension", "$value": "8px" },
+    "md":  { "$type": "dimension", "$value": "16px" },
+    "lg":  { "$type": "dimension", "$value": "24px" },
+    "xl":  { "$type": "dimension", "$value": "32px" },
+    "2xl": { "$type": "dimension", "$value": "48px" },
+    "3xl": { "$type": "dimension", "$value": "64px" }
+  },
+  "borderRadius": {
+    "sm":   { "$type": "dimension", "$value": "4px" },
+    "md":   { "$type": "dimension", "$value": "8px" },
+    "lg":   { "$type": "dimension", "$value": "16px" },
+    "full": { "$type": "dimension", "$value": "9999px" }
+  },
+  "shadow": {
+    "sm": { "$type": "shadow", "$value": "0 1px 2px rgba(0,0,0,0.05)" },
+    "md": { "$type": "shadow", "$value": "0 4px 6px rgba(0,0,0,0.07)" },
+    "lg": { "$type": "shadow", "$value": "0 10px 15px rgba(0,0,0,0.1)" }
+  }
+}
