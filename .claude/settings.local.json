@@ -189,7 +189,12 @@
       "Bash(cp \"/c/Users/titof/Downloads/Claude/Agente Inhouse/landing-pages/buzzmonitor/monitoramento-concorrentes-maio-2026/index.html\" \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/monitoramento-concorrentes-maio-2026/index.html\")",
       "Bash(sed -i 's|\\\\.\\\\./\\\\.\\\\./brand/buzzmonitor/assets/|/assets/|g' \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/monitoramento-concorrentes-maio-2026/index.html\")",
       "Bash(cp \"/c/Users/titof/Downloads/Logo Buzzmonitor Branca.svg\" \"/c/Users/titof/Downloads/Claude/Agente Inhouse/brand/buzzmonitor/assets/logos/logo-reversed.svg\")",
-      "Bash(cp \"/c/Users/titof/Downloads/Logo Buzzmonitor Branca.svg\" \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/assets/logos/logo-reversed.svg\")"
+      "Bash(cp \"/c/Users/titof/Downloads/Logo Buzzmonitor Branca.svg\" \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/assets/logos/logo-reversed.svg\")",
+      "Bash(curl -s -o /dev/null -w \"mascot relative: %{http_code}\\\\n\" \"https://webinar.buzzmonitor.com/monitoramento-concorrentes-maio-2026/assets/mascot.webp\")",
+      "Bash(curl -s -o /dev/null -w \"mascot root:     %{http_code}\\\\n\" \"https://webinar.buzzmonitor.com/assets/mascot.webp\")",
+      "Bash(mkdir -p \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/monitoramento-concorrentes-maio-2026-pt\")",
+      "Bash(cp \"/c/Users/titof/Downloads/Claude/Agente Inhouse/landing-pages/buzzmonitor/monitoramento-concorrentes-maio-2026-pt/index.html\" \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/monitoramento-concorrentes-maio-2026-pt/index.html\")",
+      "Bash(sed -i 's|\\\\.\\\\./\\\\.\\\\./brand/buzzmonitor/assets/|/assets/|g' \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/monitoramento-concorrentes-maio-2026-pt/index.html\")"
     ]
   }
 }
