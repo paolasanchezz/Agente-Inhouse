@@ -183,7 +183,9 @@
       "Bash(grep -rEil \"VERCEL_TOKEN|META_ACCESS_TOKEN|FB_ACCESS_TOKEN|api[_-]?key[\\\\\"'=: ]|secret[\\\\\"'=: ]|bearer [A-Za-z0-9_-]{20,}|-----BEGIN \\(RSA |EC |OPENSSH \\)?PRIVATE KEY\" \"/c/Users/titof/Downloads/Claude/cxpress-lp-playbook-whatsapp2026/\")",
       "Bash(npx --yes vercel deploy --prod --yes --force --name cxpress-lp-playbook-whatsapp2026)",
       "Bash(curl -sI \"https://cxpress-lp-playbook-whatsapp2026.vercel.app/playbook-whatsapp2026\")",
-      "Bash(openssl s_client -servername cxpress-lp-playbook-whatsapp2026.vercel.app -connect cxpress-lp-playbook-whatsapp2026.vercel.app:443)"
+      "Bash(openssl s_client -servername cxpress-lp-playbook-whatsapp2026.vercel.app -connect cxpress-lp-playbook-whatsapp2026.vercel.app:443)",
+      "Bash(cp \"/c/Users/titof/Downloads/Logo Buzzmonitor.svg\" \"/c/Users/titof/Downloads/Claude/Agente Inhouse/brand/buzzmonitor/assets/logos/logo-primary.svg\")",
+      "Bash(cp \"/c/Users/titof/Downloads/Logo Buzzmonitor.svg\" \"/c/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/assets/logos/logo-primary.svg\")"
     ]
   }
 }
