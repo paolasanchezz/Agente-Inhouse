@@ -711,6 +711,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   footer .f-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; align-items: center; }
   footer .powered { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  footer .ig-link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: color 180ms ease; }
+  footer .ig-link:hover, footer .ig-link:focus-visible { color: var(--c-accent); }
+  footer .ig-link svg { flex-shrink: 0; display: block; }
   footer .legal { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 32px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; }
 
   /* ----- Reveal (progressive enhancement — texto SEMPRE visível se JS/CSS falhar) ----- */
@@ -1001,7 +1004,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="f-grid">
       <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="110" height="22" loading="lazy" />
-      <span class="powered" translate="no">Powered by &middot; Grupo Elife</span>
+      <a class="powered ig-link" href="https://www.instagram.com/buzzmonitorbr/" target="_blank" rel="noopener noreferrer" aria-label="Buzzmonitor no Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span translate="no">@buzzmonitorbr</span>
+      </a>
     </div>
     <p class="legal">
       &copy; 2026 <span translate="no">Buzzmonitor</span> &middot; Todos os direitos reservados. Evento gratuito, sujeito a alterações de horário.
