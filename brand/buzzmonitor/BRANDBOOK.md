@@ -1,10 +1,14 @@
 # Buzzmonitor — Brandbook
 
-> Este arquivo complementa os dados estruturados em `brand-manifest.json`,
-> `tokens.json` e `generation-rules.json`. Aqui ficam as diretrizes
-> qualitativas que exigem contexto e nuance.
+> Fonte unica de identidade + produto para a marca Buzzmonitor.
+> Complementa dados estruturados em `brand-manifest.json`, `tokens.json`,
+> `generation-rules.json` e `tracking.json` (machine-readable).
+> Aqui ficam as diretrizes qualitativas que exigem contexto e nuance,
+> alem do conhecimento de produto (modulos, features de IA, cases, URLs).
 
-## Identidade
+---
+
+## 1. Identidade
 
 ### Sobre a Marca
 Buzzmonitor e a plataforma de social listening, atendimento e analytics do Grupo Elife.
@@ -17,8 +21,8 @@ gerar resumos de crises em tempo real e recomendar acoes baseadas em padroes que
 de identificar manualmente. Nao e uma promessa de futuro — e capacidade presente, em constante evolucao.
 
 ### Posicionamento
-O parceiro de social listening que usa inteligencia artificial para transformar o volume
-de dados sociais em decisoes rapidas, precisas e escaláveis — preparado para o que vem a seguir.
+
+Plataforma completa de inteligencia digital e atendimento ao cliente em redes sociais.
 
 ### Narrativa de IA
 
@@ -44,9 +48,7 @@ cada funcionalidade da plataforma:
 - **Acessivel:** interface intuitiva, linguagem clara — IA complexa com UX simples
 - **Vibrante:** paleta colorida e energetica, formas geometricas ousadas
 
-## Tom de Voz
-
-### Principios
+### Tom de Voz — Principios
 
 | Principio | Significa | NAO significa |
 |---|---|---|
@@ -56,28 +58,158 @@ cada funcionalidade da plataforma:
 | Energetico | Tom ativo, verbos de acao | Hype vazio, exageros |
 | Inteligente | IA como ferramenta concreta com resultados tangiveis | Buzzwords vazios, promessas futuristas sem entrega |
 
-### Exemplos de Voz
+### Publico-Alvo
+- Equipes de marketing (analytics e tendencias)
+- Equipes de atendimento ao cliente (SAC multicanal)
+- Agencias digitais (gestao de multiplos clientes)
+- Empresas enterprise (reputacao de marca)
+- Analistas de BI (dashboards e relatorios)
 
-**Bom:**
-> "Monitore mais de 30 redes sociais em tempo real e transforme mencoes em insights acionaveis."
+---
 
-> "A IA da Buzzmonitor analisou 50 mil mencoes em 3 minutos e identificou uma tendencia que sua equipe levaria dias para encontrar."
+## 2. Produto
 
-> "Deixe a inteligencia artificial filtrar o ruido — voce foca nas decisoes que importam."
+### Configuracao
+- **Nome de exibicao:** Buzzmonitor
+- **Assinatura em newsletters:** Equipe Buzzmonitor
+- **Mercados:** Brasil e America Latina (+ Portugal)
+- **Idiomas:** Portugues, Espanhol, Ingles
 
-**Ruim:**
-> "Nossa super plataforma incrivel faz tudo que voce precisa!!!"
+### Modulos Principais
 
-> "A IA mais revolucionaria e disruptiva do mercado de social listening."
+#### 1. Social Listening
+- Monitoramento em tempo real de conversas nas redes sociais
+- Rastreamento de mencoes e reputacao de marca
+- Analise de sentimento automatizada
+- Identificacao de tendencias e temas emergentes
 
-> "Substitua toda sua equipe de analistas por nossa IA."
+#### 2. SAC 2.0 (Atendimento Multicanal)
+- Gestao de tickets omnichannel
+- Distribuicao automatica de tickets
+- Controle de SLA
+- Suporte a multiplas localidades
+- Integracao com redes sociais para resposta direta
 
-### Adaptacao por Regiao
-- **Brasil (PT-BR):** tom mais proximo e coloquial, uso de "voce", exemplos com marcas brasileiras
-- **Portugal (PT-PT):** usar "voce" (3.a pessoa), nunca "tu"; registro mais formal, vocabulario europeu (telemovel, registar, gestor)
-- **LATAM (ES):** usar "tu" (informal) ou "usted" (formal conforme contexto); nunca "vosotros"; adaptar referencias culturais
+#### 3. Dashboards e Analytics
+- Dashboards customizaveis em tempo real
+- KPIs e metricas de performance
+- Relatorios automatizados com IA
+- Analise comparativa de concorrentes
 
-## Diretrizes Visuais
+#### 4. Agendamento e Publicacao
+- Calendario editorial
+- Publicacao programada em multiplas redes
+- Aprovacao de conteudo em equipe
+
+#### 5. Analytics Avancado
+- Inteligencia de rede social (network analysis)
+- Benchmarking competitivo
+- Insights de consumidor baseados em dados
+
+### Features de IA (Nomes Oficiais — USAR EXATAMENTE ASSIM)
+
+| Nome Oficial | Descricao |
+|---|---|
+| AI Insights | Geracao automatica de insights a partir de dados |
+| Smart Replies | Respostas inteligentes sugeridas por IA |
+| Buzz Pills | Resumos rapidos de informacoes-chave |
+| Buzz GPT | Assistente de IA generativa integrado |
+| Media Transcription | Transcricao de conteudo de midia |
+| Bulk Transcription | Transcricao em massa de conteudos |
+| Auto Tag Suggestions | Sugestoes automaticas de tags |
+| Sentiment Classification | Classificacao automatica de sentimento |
+| Theme Monitoring | Monitoramento por temas |
+| Interest Classification | Classificacao por interesses |
+| Gender Classification | Classificacao por genero |
+| Language Classification | Classificacao por idioma |
+| Location Detection | Deteccao de localizacao |
+
+### Grafias INCORRETAS (Nunca usar)
+
+| ERRADO | CORRETO |
+|---|---|
+| BuzzMonitor | Buzzmonitor |
+| Respostas Inteligentes | Smart Replies |
+| Insights de IA | AI Insights |
+| Pilulas Buzz | Buzz Pills |
+| BuzzGPT | Buzz GPT |
+| SAC2.0 | SAC 2.0 |
+
+### Diferenciais-Chave
+1. Plataforma integrada (listening + atendimento + analytics em um so lugar)
+2. IA nativa embarcada em todo o fluxo de trabalho
+3. Otimizada para portugues e espanhol (mercado LATAM)
+4. Cases com metricas comprovadas de ROI
+5. Suporte a operacoes multi-localidade em escala
+
+### Cases de Sucesso Verificados
+
+#### Caffeine Army
+- **Setor:** Alimentos/Suplementos
+- **Resultados:** 3.000+ comentarios mensais monitorados, 9.000+ interacoes automatizadas, 8% taxa media de engajamento
+- **Uso:** Descobriram sabor "doce de leite" atraves de mencoes de clientes; otimizacao de campanhas; deteccao de crises (atrasos de entrega); rastreamento de ROI de influenciadores
+- **Transformacao:** De processos manuais para operacao digital integrada
+
+#### Grupo Herval
+- **Setor:** Varejo (142 lojas)
+- **Resultados:** 100% de taxa de resposta, 142 lojas monitoradas no Google Meu Negocio
+- **Uso:** Gestao de reputacao multi-localidade, roteamento de reclamacoes, monitoramento de satisfacao
+- **Transformacao:** Consolidacao operacional em escala enterprise com IA
+
+#### Youse Seguros
+- **Setor:** Insurtech
+- **Resultados:** SLA reduzido de 36 horas para 3 horas, reducao de 75% no headcount da equipe de atendimento
+- **Uso:** Atendimento ao cliente com IA, monitoramento de marca, analise de padroes
+- **Transformacao:** Internalizacao do atendimento com ganho massivo de eficiencia
+
+#### 14bits (Agencia)
+- **Setor:** Agencia digital
+- **Resultados:** Aumento de 220% em produtividade
+- **Uso:** Gestao de multiplas contas de clientes
+- **Transformacao:** Escala operacional sem aumento proporcional de equipe
+
+#### Unicred
+- **Setor:** Financeiro/Cooperativa de credito
+- **Uso:** Relatorios eficientes e monitoramento
+- **Transformacao:** Visibilidade de dados e controle centralizado
+
+#### Politize!
+- **Setor:** Educacao civica / ONG
+- **Resultados:** 2M+ pessoas alcançadas; Reels com 230K views (vs. historico de 30-40K)
+- **Uso:** Dashboards Instagram/LinkedIn + monitoramento em tempo real para ajustar estrategia de conteudo
+- **Transformacao:** Equipe enxuta com alcance de grande marca por meio de dados em tempo real
+
+#### E-CLIK
+- **Setor:** (nao especificado — empresa de tecnologia/servicos)
+- **Resultados:** 28 melhorias de produto via VoC (voz do cliente); crise de reputacao detectada e resolvida em 1 hora
+- **Uso:** Alertas inteligentes + SAC centralizado para gestao de crise e feedback de produto
+- **Transformacao:** Produto melhorado continuamente a partir de dados de clientes; tempo de resposta a crises drasticamente reduzido
+
+#### Casa Fiat de Cultura
+- **Setor:** Cultura / entretenimento
+- **Resultados:** 100% de visibilidade de mensagens; relatorios por exposicao
+- **Uso:** Dashboards em tempo real + SAC 2.0 para gestao de interacoes e medicao de impacto
+- **Transformacao:** Controle centralizado da presenca digital e do atendimento ao publico
+
+#### Prime Energy
+- **Setor:** Bebidas energeticas / CPG
+- **Resultados:** Horas economizadas por semana na analise de dados; problema de marca homonima resolvido
+- **Uso:** Buzz Pills para resumos rapidos + Auto Tag Suggestions para filtrar mencoes da marca correta
+- **Transformacao:** Equipe liberta de analise manual; monitoramento preciso mesmo em categoria competitiva
+
+---
+
+## 3. URLs e Contatos Oficiais
+
+| Regiao | Site | Blog |
+|---|---|---|
+| Brasil | https://buzzmonitor.com.br | https://buzzmonitor.com/blog/ |
+| LATAM | https://buzzmonitor.com/ | https://buzzmonitor.com/blog/ |
+| Portugal | https://buzzmonitor.com/ | https://buzzmonitor.com/blog/ |
+
+---
+
+## 4. Visual
 
 > Valores exatos (hex, px, font-family) estao em `tokens.json`.
 > Aqui explicamos o PORQUE e QUANDO usar cada elemento.
@@ -141,7 +273,85 @@ Podem ser usadas como backgrounds decorativos, separadores ou elementos de layou
 - Area de respiro: manter distancia igual a altura do icone do tucano em todos os lados
 - Tamanho minimo: icone nao menor que 24px de altura em digital
 
-## Do's & Don'ts
+---
+
+## 5. Mensagem-Chave e Exemplos de Copy
+
+### Exemplos de Voz
+
+**Bom:**
+> "Monitore mais de 30 redes sociais em tempo real e transforme mencoes em insights acionaveis."
+
+> "A IA da Buzzmonitor analisou 50 mil mencoes em 3 minutos e identificou uma tendencia que sua equipe levaria dias para encontrar."
+
+> "Deixe a inteligencia artificial filtrar o ruido — voce foca nas decisoes que importam."
+
+**Ruim:**
+> "Nossa super plataforma incrivel faz tudo que voce precisa!!!"
+
+> "A IA mais revolucionaria e disruptiva do mercado de social listening."
+
+> "Substitua toda sua equipe de analistas por nossa IA."
+
+---
+
+## 6. Adaptacao por Regiao
+
+### PT-BR (Brasil)
+- Tom mais proximo e coloquial, uso de "voce"
+- Exemplos com marcas brasileiras
+- Registro: informal-profissional
+
+### PT-PT (Portugal)
+
+> Stub — a preencher via `/trad-calibrar pt-pt` (conteudo originalmente em `conhecimento/produto/buzzmonitor/pt-pt/buzzmonitor.md`).
+> Deve conter terminologia adaptada para Portugues Europeu, baseada em pesquisa nos sites da marca na regiao e em portais de noticia portugueses. NAO e uma traducao literal do PT-BR — e adaptacao com linguagem nativa.
+
+**Regras gerais:**
+- Usar "voce" (3.a pessoa), nunca "tu"
+- Registo mais formal
+- Vocabulario europeu (telemovel, registar, gestor)
+
+**Termos-chave PT-PT:**
+
+| Termo PT-BR | Equivalente PT-PT | Notas |
+|---|---|---|
+| social listening | social listening | (termo tecnico mantido em ingles) |
+| atendimento ao cliente | apoio ao cliente / atendimento ao cliente | verificar uso no mercado PT |
+| redes sociais | redes sociais | |
+| dashboard | dashboard | (mantido em ingles no setor) |
+| relatorio | relatorio | |
+
+**CTAs e Linguagem Comercial:** a preencher com exemplos reais do site e materiais de marketing da Buzzmonitor em Portugal.
+
+**Notas de Tom e Registo:** consultar `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` para regras gerais. Registar aqui especificidades do tom da Buzzmonitor em PT-PT.
+
+### ES-LATAM
+
+> Stub — completar via `/trad-calibrar es-latam` (conteudo originalmente em `conhecimento/produto/buzzmonitor/es/buzzmonitor.md`).
+> Debe contener la terminologia adaptada para Espanol Latinoamericano, basada en investigacion en los sitios de la marca en la region y portales de noticias latinoamericanos. NO es una traduccion literal del PT-BR — es una adaptacion con lenguaje nativo.
+
+**Reglas generales:**
+- Usar "tu" (informal) o "usted" (formal segun contexto); nunca "vosotros"
+- Adaptar referencias culturales a mercados LATAM
+
+**Terminos clave ES-LATAM:**
+
+| Termino PT-BR | Equivalente ES-LATAM | Notas |
+|---|---|---|
+| social listening | social listening / monitoreo social | verificar uso predominante en LATAM |
+| atendimento ao cliente | atencion al cliente | |
+| redes sociais | redes sociales | |
+| dashboard | dashboard | (mantenido en ingles en el sector) |
+| relatorio | informe / reporte | "reporte" mas comun en LATAM que "informe" |
+
+**CTAs y Lenguaje Comercial:** completar con ejemplos reales del sitio y materiales de marketing de Buzzmonitor en LATAM.
+
+**Notas de Tono y Registro:** consultar `conhecimento/linguistico/es-latam/padrao-linguistico.md` para reglas generales. Registrar aqui especificidades del tono de Buzzmonitor en ES-LATAM.
+
+---
+
+## 7. Anti-patterns de Comunicacao
 
 ### Fazer
 - Usar formas geometricas como elementos decorativos nos criativos
@@ -165,8 +375,14 @@ Podem ser usadas como backgrounds decorativos, separadores ou elementos de layou
 - Prometer capacidades de IA que a plataforma nao entrega hoje
 - Tratar IA como diferencial unico — e o resultado (decisao mais rapida e precisa) que importa
 
+---
+
 ## Referencia Cruzada
-- Conhecimento de produto: `conhecimento/produto/buzzmonitor/buzzmonitor.md`
-- Concorrentes: `conhecimento/produto/buzzmonitor/concorrentes.md`
+
+- Tokens de design (machine-readable): `brand/buzzmonitor/tokens.json`
+- Regras de composicao para AI: `brand/buzzmonitor/generation-rules.json`
+- Manifest de marca (identidade estruturada): `brand/buzzmonitor/brand-manifest.json`
+- Concorrentes (inteligencia competitiva): `conhecimento/produto/buzzmonitor/concorrentes.md`
+- Snapshots de pesquisa: `conhecimento/produto/buzzmonitor/pesquisa/`
 - Tom editorial global: `conhecimento/editorial/estilo-newsletter.md`
 - Regras anti-IA: `conhecimento/editorial/regras-anti-ia.md`

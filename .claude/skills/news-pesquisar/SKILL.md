@@ -24,14 +24,14 @@ Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
 ## Passo 1: Carregar Contexto
 
 Leia os seguintes arquivos na ordem:
-1. `conhecimento/produto/{brand}/{brand}.md` — produto, blog URL, nome de exibicao
+1. `brand/{brand}/BRANDBOOK.md` — produto, blog URL, nome de exibicao
 2. `conhecimento/produto/{brand}/concorrentes.md` — mapa competitivo da marca
 3. Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` (terminologia nativa) e `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md` (padrao de escrita)
 
-Extraia do arquivo de conhecimento do produto:
-- **NomeDaMarca**: campo "Nome de exibicao" do bloco `## Configuracao`
-- **BlogURL**: campo "Blog {Regiao}" do bloco `## Configuracao` (use "Blog Brasil" se a regiao nao tiver URL especifica)
-- **SiteURL**: campo "Site {Regiao}" do bloco `## Configuracao`
+Extraia do BRANDBOOK:
+- **NomeDaMarca**: campo "Nome de exibicao" do bloco `### Configuracao` (dentro de `## 2. Produto`)
+- **BlogURL**: coluna "Blog" da tabela de URLs no bloco `## 3. URLs e Contatos Oficiais` para a regiao indicada (use a linha "Brasil" se a regiao nao tiver URL especifica)
+- **SiteURL**: coluna "Site" da mesma tabela em `## 3. URLs e Contatos Oficiais`
 
 ## Fase 0: Arquivar Pesquisa Anterior
 
@@ -80,7 +80,7 @@ Formato do arquivo de saida (escreva no idioma da regiao):
 ## Fase 2: Noticias do Mercado
 **Output**: `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md`
 
-**PASSO 1 — Extrair o setor da marca**: Leia o campo `## Visao Geral` de `conhecimento/produto/{brand}/{brand}.md` para identificar o setor e posicionamento da marca. Use essas informacoes para construir os termos de busca desta fase.
+**PASSO 1 — Extrair o setor da marca**: Leia a secao `## 1. Identidade` de `brand/{brand}/BRANDBOOK.md` (sub-blocos "### Sobre a Marca" e "### Posicionamento") para identificar o setor e posicionamento da marca. Use essas informacoes para construir os termos de busca desta fase.
 
 **PASSO 2 — Montar as queries adaptadas ao setor e regiao**:
 
@@ -157,24 +157,30 @@ Crie um resumo executivo em `conhecimento/produto/{brand}/pesquisa/RESUMO.md` (n
 
 ## Ao Finalizar — Parte B: Atualizar Base de Conhecimento do Produto
 
-Apos gravar o RESUMO.md, releia `conhecimento/produto/{brand}/{brand}.md` e `conhecimento/produto/{brand}/concorrentes.md` e aplique as atualizacoes abaixo. Use Edit para alterar apenas o que mudou — nao reescreva o arquivo inteiro.
+Apos gravar o RESUMO.md, releia `brand/{brand}/BRANDBOOK.md` e `conhecimento/produto/{brand}/concorrentes.md` e aplique as atualizacoes abaixo. Use Edit para alterar apenas o que mudou — nao reescreva o arquivo inteiro.
 
-### Atualizacoes em `conhecimento/produto/{brand}/{brand}.md`
+### Atualizacoes em `brand/{brand}/BRANDBOOK.md`
 
-**Se o arquivo estiver vazio ou com secoes marcadas como "a preencher":**
+O BRANDBOOK segue a estrutura canonica: §1 Identidade, §2 Produto, §3 URLs e Contatos, §4 Visual, §5 Mensagem-Chave, §6 Adaptacao por Regiao, §7 Anti-patterns. A pesquisa alimenta principalmente §2 e §3 — nao toque em §4 (Visual) nem em §7 (Anti-patterns).
+
+**Se o arquivo estiver vazio ou com secoes marcadas como "a preencher" / "stub":**
 Preencha com o que foi descoberto na pesquisa (site, blog, posts). Apenas informacoes verificadas — nao invente features, modulos ou cases.
 
 **Se o arquivo ja tiver conteudo:**
 Verifique se a pesquisa revelou algo novo nao presente no arquivo:
-1. **Novos cases ou resultados**: Se o blog citou um case com empresa e metricas verificaveis, adicione em `## Cases de Sucesso Verificados`
-2. **Novas features ou modulos**: Se o blog ou site menciona uma feature ou modulo nao listado, adicione em `## Modulos Principais` ou `## Features de IA` com nota de fonte
-3. **Correcoes de URL**: Se o Blog URL ou Site URL retornou redirect ou erro, corrija em `## Configuracao`
-4. **Posicionamento atualizado**: Se o site usa um novo tagline ou posicionamento diferente do registrado, atualize `## Visao Geral`
+1. **Novos cases ou resultados**: Se o blog citou um case com empresa e metricas verificaveis, adicione em `### Cases de Sucesso Verificados` (dentro de `## 2. Produto`)
+2. **Novas features ou modulos**: Se o blog ou site menciona uma feature ou modulo nao listado, adicione em `### Modulos Principais` ou `### Features de IA` (ambos em `## 2. Produto`) com nota de fonte
+3. **Correcoes de URL**: Se o Blog URL ou Site URL retornou redirect ou erro, corrija a tabela em `## 3. URLs e Contatos Oficiais`
+4. **Posicionamento atualizado**: Se o site usa um novo tagline ou posicionamento diferente do registrado, atualize os sub-blocos "### Sobre a Marca" ou "### Posicionamento" em `## 1. Identidade`. ATENCAO: se alterar posicionamento, cheque coerencia com a versao paralela (o BRANDBOOK pode ter "Versao brand" e "Versao produto") e com a secao §5 Mensagem-Chave.
+5. **Novos diferenciais**: Se a pesquisa trouxer um diferencial claro nao listado, adicione em `### Diferenciais-Chave` (dentro de `## 2. Produto`).
 
 **Nao altere:**
 - Nomes oficiais de features ja verificados (a menos que o proprio site os corrija)
 - Cases ja verificados (a menos que o blog traga dados atualizados do mesmo case)
-- Grafias corretas ja registradas
+- Grafias corretas ja registradas (tabela `### Grafias INCORRETAS`)
+- `## 4. Visual` (tokens visuais vivem em `tokens.json` / `generation-rules.json`)
+- `## 7. Anti-patterns de Comunicacao` (mudanca so com calibracao editorial dedicada)
+- `## 6. Adaptacao por Regiao` (atualizado via `/trad-calibrar`, nao aqui)
 
 ### Atualizacoes em `conhecimento/produto/{brand}/concorrentes.md`
 

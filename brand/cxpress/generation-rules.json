@@ -5,72 +5,88 @@
     "landingPage": {
       "layout": {
         "maxWidth": "1200px",
-        "heroStyle": "left-text-right-image",
+        "heroStyle": "left-text-right-visual (visual = foto em pill/arco + formas decorativas)",
         "sectionCount": "4-6",
         "ctaPlacement": ["hero", "mid-page", "footer"]
       },
       "colorUsage": {
-        "background": "neutral.0 ou neutral.100",
-        "heroAccent": "primary",
-        "ctaButton": "primary com neutral.0 como texto",
-        "textPrimary": "neutral.900",
+        "background": "neutral.0 (branco) ou primaryLighter para secoes alternadas",
+        "heroAccent": "primary (royal) como background de hero em variantes escuras, ou formas decorativas em primary/accent/warning sobre fundo claro",
+        "ctaButton": "primaryDark com neutral.0 como texto (CTA padrao); accent (laranja) para CTA secundario",
+        "textPrimary": "primaryDark",
         "textSecondary": "neutral.700"
       },
       "typographyUsage": {
-        "h1": "heading font, 4xl, bold",
-        "h2": "heading font, 3xl, semibold",
-        "body": "body font, base, regular",
-        "cta": "body font, lg, semibold"
+        "h1": "Open Sans, 5xl-6xl, bold/extrabold, primaryDark",
+        "h2": "Open Sans, 3xl-4xl, bold, primaryDark",
+        "h3": "Open Sans, 2xl, semibold, primaryDark",
+        "body": "Source Sans 3, base-lg, regular, primaryDark ou neutral.900",
+        "cta": "Open Sans, base-lg, bold",
+        "accent": "Bitter, usar em citacoes ou destaque pontual — NUNCA em corpo"
+      },
+      "decorativeElements": {
+        "pills": "Usar em hero como composicao vertical (2-4 pills coloridos empilhados no canto)",
+        "arcos": "Emoldurar fotos de pessoas dentro de arcos; usar como pilastras decorativas",
+        "placement": "Laterais do hero, canto inferior de secoes, rodape",
+        "density": "max 5 formas por composicao"
       },
       "components": [
-        "hero com tagline + CTA",
-        "barra de prova social (logos ou metricas)",
-        "grid de features (3 ou 4 colunas)",
-        "secao de depoimentos",
-        "tabela de precos ou comparacao (se BOFU)",
-        "secao final com CTA"
+        "hero com h1 + subtitulo + CTA + composicao de pills/arcos",
+        "barra de prova social (logos de clientes ou numero agregado)",
+        "grid de beneficios (3 ou 4 colunas) com icones ou mini-ilustracoes em arcos",
+        "secao de modulos (centralizacao, IA, tickets, dashboards, voz, chatbots)",
+        "secao de depoimentos com foto da pessoa dentro de arco/pill",
+        "secao final com CTA + composicao decorativa + logo reversed"
       ]
     },
     "adCreative": {
       "static": {
         "logoPlacement": "top-left ou bottom-center",
         "logoSize": "max 15% da largura do canvas",
-        "colorDominance": "primary como acento (max 30%), neutral como base",
-        "textHierarchy": "hook > beneficio > CTA",
-        "safeZone": "margem de 10% em todos os lados para crop de plataforma"
+        "colorDominance": "primary (royal) ou primaryDark como fundo (50-70%), accent (laranja) como ponto de tensao (10-15%), neutral como base de texto",
+        "textHierarchy": "hook (Open Sans bold, branco ou primaryDark) > beneficio (Source Sans) > CTA",
+        "safeZone": "margem de 10% em todos os lados para crop de plataforma",
+        "decorativeShapes": "Usar 2-3 pills ou arcos como acento, nao como fundo inteiro"
       },
       "carousel": {
-        "coverCard": "hook forte, cores da marca, sem poluicao de logo",
-        "innerCards": "uma ideia por card, estilo consistente",
-        "lastCard": "CTA + logo + fundo com cor primaria"
+        "coverCard": "hook forte em Open Sans bold, fundo primary ou primaryDark, mascote visivel",
+        "innerCards": "uma ideia por card, fundo alternando branco e primaryLighter, composicao decorativa consistente",
+        "lastCard": "CTA + logo + composicao de pills/arcos no rodape"
       }
     },
     "email": {
       "headerLogo": true,
+      "headerLogoVariant": "logo-primary em fundo branco",
       "maxWidth": "600px",
-      "buttonStyle": "arredondado, cor primaria, texto branco",
-      "footerElements": ["logo", "links sociais", "unsubscribe"]
+      "buttonStyle": "arredondado (9px), cor primaryDark ou accent, texto branco, Open Sans bold",
+      "footerElements": ["logo", "links sociais", "unsubscribe"],
+      "typography": "titulos em Open Sans bold, corpo em Source Sans 3 regular"
     },
     "newsletter": {
-      "headerFormat": "logo da marca + numero da edicao",
-      "sectionDivider": "linha fina em neutral.300",
-      "ctaStyle": "link inline no texto, nao botao"
+      "headerFormat": "logo da marca + numero da edicao em Bitter (destaque com personalidade)",
+      "sectionDivider": "pill horizontal fina em primaryLight (ou linha em neutral.300)",
+      "ctaStyle": "link inline no texto, nao botao (estilo editorial)"
     }
   },
   "constraints": {
-    "logoMinClearSpace": "igual a altura do icone do logo em todos os lados",
-    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto)",
+    "logoMinClearSpace": "igual a altura do icone do mascote em todos os lados",
+    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto). Verificar especialmente primary (#4A69BD) sobre branco — texto grande OK, texto pequeno pode exigir primaryDark",
     "neverDo": [
-      "Usar a cor primaria como fundo de blocos grandes de texto",
-      "Colocar texto sobre imagens sem overlay de contraste",
-      "Distorcer ou recortar o logo",
-      "Usar fontes fora do sistema tipografico definido",
-      "Misturar identidade visual de marcas irmas"
+      "Usar cor fora da paleta oficial (roxo, verde, rosa — pertencem a outras marcas do grupo)",
+      "Aplicar mais de 3 cores primarias na mesma composicao",
+      "Distorcer, recortar ou girar o logo (so as formas decorativas giram em multiplos de 90 graus)",
+      "Usar Bitter em corpo de texto longo (e fonte de destaque)",
+      "Misturar identidade visual com Buzzmonitor ou outras marcas irmas",
+      "Combinar pills/arcos com formas nao-canonicas (triangulos, estrelas, hexagonos)",
+      "Empilhar mais de 5 elementos decorativos na mesma composicao"
     ]
   },
   "figmaSync": {
-    "fileKey": "",
+    "fileKey": "arGIts9tqKJUzkPTk4I80s",
+    "fileName": "Site Cxpress",
+    "referenceNode": "437-1206",
     "variableCollections": [],
-    "lastSyncDate": ""
+    "lastSyncDate": "",
+    "notes": "Acesso ao Figma requer permissao (falha ao sincronizar via MCP em 2026-04-21). Usar como referencia visual humana ate permissao liberar."
   }
 }

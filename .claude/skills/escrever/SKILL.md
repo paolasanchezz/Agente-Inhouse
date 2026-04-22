@@ -9,9 +9,13 @@ allowed-tools: AskUserQuestion, Read, Glob
 
 Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` já responde. Dispare direto após última pergunta — sem pedir confirmação.
 
+## Normalização de inputs
+
+Antes de validar qualquer argumento, **converta para lowercase** os identificadores (`marca`, `regiao`, `pais`, `tipo`, `estagio`). Ex: `Buzzmonitor` → `buzzmonitor`; `Vídeo-Curto` → `video-curto`. Se após a normalização o valor ainda não estiver na lista permitida, trate como ausente e faça a pergunta via AskUserQuestion.
+
 ## Fast-path
 
-Se `$ARGUMENTS` contém tarefa + parâmetros válidos, pule para Disparo.
+Se `$ARGUMENTS` contém tarefa + parâmetros válidos (já normalizados), pule para Disparo.
 
 | Atalho | Disparo |
 |---|---|

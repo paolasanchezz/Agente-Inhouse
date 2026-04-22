@@ -4,40 +4,80 @@
     "name": "Cxpress",
     "displayName": "Cxpress",
     "parentBrand": "Grupo Elife",
-    "tagline": "",
-    "mission": "",
+    "tagline": "Todo seu atendimento em um so lugar.",
+    "taglineAlternatives": [
+      "Atendimento que nao se perde.",
+      "Escuta seus clientes. Voce responde.",
+      "Menos canais abertos. Mais clientes resolvidos."
+    ],
+    "taglineNote": "Proposta ativa: usar a descritiva (A) que ja e headline reconhecida no site. As alternativas ficam para testes A/B ou substituicao se o time de brand preferir.",
+    "mission": "Transformar o atendimento ao cliente de fragmentado e reativo em unificado, automatizado e com contexto — para que empresas escalem relacionamento sem perder qualidade.",
     "websites": {
-      "brasil": "https://cxpress.io",
-      "latam": "https://cxpress.io",
-      "portugal": "https://cxpress.io"
+      "brasil": "https://home.cxpress.io",
+      "latam": "https://home.cxpress.io",
+      "portugal": "https://www.cxpress.pt"
     },
-    "blog": ""
+    "blog": "https://blog.cxpress.io"
   },
   "voice": {
-    "personality": [],
+    "personality": [
+      "Pratica",
+      "Consultiva",
+      "Humana",
+      "Confiavel",
+      "Clara"
+    ],
     "toneAttributes": {
       "formality": 0.5,
       "enthusiasm": 0.6,
       "technicalDepth": 0.5,
-      "warmth": 0.6
+      "warmth": 0.7
     },
-    "messagingPillars": [],
+    "messagingPillars": [
+      "Unificacao de canais (WhatsApp, e-mail, redes, voz, chat) em um painel",
+      "Automacao com IA no primeiro nivel, com handoff contextualizado para humano",
+      "Historico unificado por cliente independente do canal"
+    ],
     "samplePhrases": {
-      "do": [],
-      "dont": []
+      "do": [
+        "Durante muito tempo, o atendimento foi tratado como uma funcao simples. Mas o contexto mudou.",
+        "Unifique, simplifique e automatize seu atendimento pelo WhatsApp.",
+        "O problema do atendimento ao cliente nao e o volume. E o sistema.",
+        "Todo seu atendimento ao cliente em um so lugar."
+      ],
+      "dont": [
+        "Em um mundo cada vez mais conectado, as empresas precisam estar onde o cliente esta.",
+        "Nossa solucao inovadora oferece atendimento omnichannel com IA de ponta.",
+        "Eleve seu atendimento a outro patamar.",
+        "Oi, amiga! Chega de sofrer com WhatsApp bagunçado!"
+      ]
     }
   },
   "audience": {
-    "primary": "",
-    "segments": []
+    "primary": "Gestores de atendimento ao cliente em PMEs brasileiras que operam em multiplos canais",
+    "segments": [
+      "Clinicas e servicos de saude",
+      "Escolas e instituicoes de ensino",
+      "Imobiliarias",
+      "Empresas de servicos tecnicos",
+      "PMEs com operacao de atendimento multicanal"
+    ]
   },
   "positioning": {
-    "category": "",
-    "differentiators": [],
-    "competitiveFrame": ""
+    "category": "Plataforma omnicanal de atendimento ao cliente (CX) com IA",
+    "differentiators": [
+      "API oficial do WhatsApp (nao WhatsApp Web)",
+      "ChatGPT integrado para automacao do primeiro nivel",
+      "Historico unificado por cliente em todos os canais",
+      "Implementacao voltada a PMEs (nao e enterprise complexo)",
+      "Produto Elife — suporte em portugues brasileiro"
+    ],
+    "competitiveFrame": "Entre Zendesk/Intercom (complexos para PME) e ferramentas isoladas de WhatsApp (sem omnicanal real)"
   },
   "crossReferences": {
-    "productKnowledge": "conhecimento/produto/cxpress/cxpress.md",
+    "brandbook": "brand/cxpress/BRANDBOOK.md",
+    "tokens": "brand/cxpress/tokens.json",
+    "generationRules": "brand/cxpress/generation-rules.json",
     "competitors": "conhecimento/produto/cxpress/concorrentes.md",
     "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
     "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"

@@ -125,16 +125,11 @@ Expressões que denunciam imediatamente texto escrito para PT-BR:
 
 ---
 
-## Construções de IA a Evitar (válidas para qualquer idioma)
+## Construções de IA a Evitar
 
-- "No cenário atual..."
-- "Em um mundo cada vez mais..."
-- "É inegável que..."
-- "Vale ressaltar que..."
-- "Cabe salientar que..."
-- "Em suma..." seguido de lista repetindo o que foi dito
-- Listas de exatamente 3 itens como único padrão (variar entre 2, 4, 5)
-- "Além disso" a abrir mais de 1 parágrafo por texto
+Fonte canônica: `conhecimento/editorial/regras-anti-ia.md` (secção principal + Anexo PT-PT com as frases traduzidas). Não duplicar aqui — se encontrar nova construção PT-PT típica de IA, adicionar lá, não neste arquivo.
+
+Este arquivo cobre apenas padrões **específicos de PT-PT** que não existem em PT-BR: vocabulário, tratamento, construções gramaticais ("está a + infinitivo"), expressões idiomáticas nativas.
 
 ---
 

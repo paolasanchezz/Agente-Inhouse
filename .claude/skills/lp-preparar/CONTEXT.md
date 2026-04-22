@@ -8,10 +8,10 @@
 
 | Marca | Arquivo de produto | Dominio de publicacao (default) |
 |---|---|---|
-| `buzzmonitor` | `conhecimento/produto/buzzmonitor/buzzmonitor.md` | `webinar.buzzmonitor.com` |
-| `buzzcreators` | `conhecimento/produto/buzzcreators/buzzcreators.md` | a definir |
-| `cxpress` | `conhecimento/produto/cxpress/cxpress.md` | a definir |
-| `elife` | `conhecimento/produto/elife/elife.md` | a definir |
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `webinar.buzzmonitor.com` |
+| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | a definir |
+| `cxpress` | `brand/cxpress/BRANDBOOK.md` | a definir |
+| `elife` | `brand/elife/BRANDBOOK.md` | a definir |
 
 Dominios sao sugeridos, nao impostos. `lp-publicar` so adiciona dominio quando o usuario passa `[dominio]` explicitamente.
 
@@ -92,12 +92,13 @@ Resolucao: `regions[{regiao}]` > `default` > omitir GTM. `lp-gerar` injeta no HT
 
 ## Skills reutilizadas (nao duplicar)
 
-- `frontend-design` — gerar HTML ou auditar em review mode (argumento: "review mode: ...").
+- `frontend-design` — gerar HTML. Para revisao, invocar com prompt "REVIEW ONLY — NAO implemente..." (convencao do projeto, nao e modo nativo da skill; detalhes em `.claude/skills/lp-revisar/SKILL.md` Passo 1).
 - `web-design-guidelines` — auditar acessibilidade / HTML semantico via Vercel Labs.
 
 ## Notion
 
-- Pasta Entregas (publicacao): `33b3934026fd80ceb414dd22cb7dbe1f`
+IDs sao lidos de `conhecimento/config/notion-ids.md` (fonte unica). Para publicacao, use a chave `entregas`.
+
 - `lp-preparar` publica copy estruturada.
 - `lp-publicar` publica relatorio final (URL publica + PageSpeed + headers + pendencias).
 

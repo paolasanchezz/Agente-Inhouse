@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling isolada, deploya via Vercel CLI, adiciona dominio opcional, roda validacao PageSpeed + headers e publica relatorio final no Notion. Garante zero vazamento do repo interno.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzmonitor monitoramento-maio webinar.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.2.0
+version: 1.3.0
 ---
 
 # Skill: Publicar Landing Page
@@ -135,33 +135,113 @@ Esta pasta e apenas o artefato de deploy — isolada do repo interno. Para atual
 
 ## Passo 2: Validacao de Isolamento (pre-deploy)
 
-**Antes** de chamar `vercel deploy`, faca um grep defensivo na pasta sibling:
+**Antes** de chamar `vercel deploy`, rode **3 checks** na pasta sibling. Qualquer um que retorne hit → PARE e avise o usuario. Nao deployar.
+
+### 2.1 Paths/nomes sensíveis (estrutura)
 
 ```bash
 grep -ril "meta-ads\|\.env\|conhecimento/\|\.claude/" "{sibling}/" || true
 ```
 
-Se a busca retornar **qualquer** arquivo, PARE e avise o usuario. Algo vazou. Nao deployar.
-
-Tambem verifique:
+### 2.2 Diretorios do repo interno na raiz da sibling
 
 ```bash
 ls "{sibling}/" | grep -E "^(meta-ads|conhecimento|brand|\.claude|\.env)$" && echo "VAZOU"
 ```
 
-Se imprimir `VAZOU`, PARE.
+### 2.3 Strings sensíveis no conteudo (tokens, segredos)
+
+Grep procura por padroes de credencial que nao deveriam estar num HTML/JS publico:
+
+```bash
+grep -rEil "VERCEL_TOKEN|META_ACCESS_TOKEN|FB_ACCESS_TOKEN|api[_-]?key[\"'=: ]|secret[\"'=: ]|bearer [A-Za-z0-9_-]{20,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" "{sibling}/" || true
+```
+
+Exceções legítimas: nada. Se um provedor de form usa uma public key/publishable key, documentar como falso-positivo conhecido antes de prosseguir — nunca silenciar o check globalmente.
+
+Se qualquer um dos 3 retornar hit, PARE. Corrija a origem (lp-gerar, sync) e rode de novo. Nao deployar com vazamento.
 
 ## Passo 3: Deploy
 
+### 3.1 Baseline antes do deploy
+
+Capture o hash do HTML que voce **quer** publicar. Ele e o ground-truth para validar depois se a live bate com o que voce subiu.
+
 ```bash
-cd "{sibling}" && npx --yes vercel deploy --prod --yes
+LOCAL_HASH=$(md5sum "{sibling}/{slug}/index.html" | awk '{print $1}')
+LOCAL_MTIME=$(stat -c "%Y" "{sibling}/{slug}/index.html")
+echo "local: $LOCAL_HASH (mtime $LOCAL_MTIME)"
 ```
 
-Capturar:
-- URL provisoria `.vercel.app` (stdout do comando, linha `https://...vercel.app`)
-- Se primeiro deploy: aparecera prompt de projeto. Usar `--name {marca}-lp-{slug}` se necessario.
+Se `{sibling}/.vercel/project.json` existe, leia `projectId` e `orgId` dele — sao uteis no fallback do 3.3.
 
-Se comando falhar, reportar erro integralmente. Nao tentar auto-resolver.
+### 3.2 Rodar deploy
+
+LP e site estatico (sem build step real) — use `--force` por padrao. Ele ignora cache de build server-side, o que evita o caso de a Vercel reusar um build anterior quando so os assets mudaram. Custo: zero (build estatico completa em <100ms).
+
+```bash
+cd "{sibling}" && npx --yes vercel deploy --prod --yes --force
+```
+
+**Rodar sempre em background** (`run_in_background: true` no Bash tool) com timeout >= 240s. O upload inicial costuma dedup 90%+ via content-hash (Vercel reconhece assets ja subidos em deploys anteriores), entao o passo demorado costuma ser o `Building...` e o alias swap, nao o upload.
+
+Capturar do stdout final, que tem este formato quando sucesso:
+
+```
+Production: https://{hash}.vercel.app [Ns]
+Aliased: https://{dominio} [Ns]
+{ "status": "ok", "deployment": { "id": "dpl_...", ... } }
+```
+
+- URL provisoria: linha `Production: ...`
+- Deploy ID: campo `deployment.id` do JSON final
+- Alias confirmado: linha `Aliased: ...` (so aparece se o projeto ja tem alias configurado)
+
+Se primeiro deploy do projeto, o comando pede confirmacao de projeto — passar `--name {marca}-lp-{slug}` na primeira vez e deixar o CLI salvar `.vercel/project.json`.
+
+### 3.3 Se a CLI falhar — checar API antes de retry
+
+A CLI da Vercel tem um bug intermitente onde o upload sobe corretamente, o deploy fica **READY server-side**, mas a CLI nao recebe a resposta final e aborta com:
+
+```
+FetchError: invalid json response body at https://api.vercel.com/v2/files?teamId=... reason: Unexpected end of JSON input
+```
+
+**Nao faca retry cego.** Em vez disso, consulte o estado real via MCP Vercel (ou API direta):
+
+```
+mcp__{vercel-mcp}__list_deployments
+  projectId: <orgId+projectId de .vercel/project.json>
+  teamId:    <orgId>
+```
+
+Ou via HTTP com token (`VERCEL_TOKEN`):
+
+```bash
+curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
+  "https://api.vercel.com/v6/deployments?projectId={projectId}&teamId={orgId}&limit=1" | jq .
+```
+
+O deployment mais recente tem `createdAt` em ms-epoch. Se ele foi criado **nos ultimos ~120s** e `state == "READY"` e `target == "production"`, o deploy passou — ignore o erro da CLI e siga para 3.4 com esse `deployment.id`.
+
+Caso contrario (mais antigo, ou state != READY), re-rode o comando do 3.2 **com o sibling igualzinho** — nao edite nada entre tentativas, senao voce arrisca publicar versao intermediaria como aconteceu na entrega de 2026-04-20.
+
+### 3.4 Verificar que a live tem o conteudo certo
+
+O teste de fumaca mais confiavel e comparar hash local com ETag/MD5 do HTML servido:
+
+```bash
+LIVE_URL="https://{dominio-ou-vercel-app}/{slug}"
+LIVE_HASH=$(curl -s "$LIVE_URL" | md5sum | awk '{print $1}')
+echo "local: $LOCAL_HASH"
+echo "live:  $LIVE_HASH"
+```
+
+- **Hashes iguais:** perfeito, siga para Passo 4.
+- **Hashes diferentes + headers mostram `X-Vercel-Cache: HIT` com `Age` alto:** cache de borda ainda nao rotacionou. Aguarde 60s e re-teste. Se persistir > 3 min, deploy falhou silenciosamente (3.3 acertou mas o alias nao mudou) — re-rode 3.2 com `--force`.
+- **Hashes diferentes + `X-Vercel-Cache: MISS`:** a live serve um build antigo. Re-rode 3.2 com `--force`. Nao publique relatorio enquanto nao bater.
+
+Comparacao bit-a-bit e paranoia necessaria: em static sites sem teste de build, o unico sinal de que o deploy publicou o que voce queria e o conteudo servido bater com o fonte-sibling.
 
 ## Passo 4: Dominio (se fornecido)
 
@@ -236,7 +316,7 @@ Capturar emissor (Let's Encrypt) e validade.
 
 ## Passo 6: Relatorio Notion
 
-Crie pagina filha de `33b3934026fd80ceb414dd22cb7dbe1f` (pasta Entregas).
+Crie pagina filha da pasta Entregas — ID lido de `conhecimento/config/notion-ids.md` (chave `entregas`).
 
 - **Titulo:** `Entrega LP · {Marca} · {Slug} · YYYY-MM-DD`
 - **Icon:** 🚀

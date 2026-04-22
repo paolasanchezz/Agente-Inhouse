@@ -28,7 +28,7 @@ Leia os seguintes arquivos na ordem:
 1. `conhecimento/copywriting/fundamentos-copy.md` — principios gerais de copy (sempre)
 2. Documento(s) do tipo selecionado (conforme mapeamento acima)
 3. `conhecimento/copywriting/funil-copy.md` — orientacoes por estagio do funil
-4. `conhecimento/produto/{marca}/{marca}.md` — produto, publico-alvo, features, diferenciais
+4. `brand/{marca}/BRANDBOOK.md` — produto, publico-alvo, features, diferenciais
 5. `conhecimento/produto/{marca}/concorrentes.md` — mapa competitivo e nomes dos concorrentes
 
 Extraia do arquivo de produto:

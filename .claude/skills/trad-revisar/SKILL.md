@@ -162,7 +162,7 @@ Determine o diretório do arquivo de tradução e crie `[nome]-revisao-log.md` n
 ## Passo 4: Publicar no Notion (pasta "Entregas")
 
 Use `notion-create-pages` para criar uma nova página com:
-- **Parent**: `33b3934026fd80ceb414dd22cb7dbe1f` (pasta Entregas — ID fixo, não buscar)
+- **Parent**: ID lido de `conhecimento/config/notion-ids.md` (chave `entregas`) — fixo, não buscar
 - **Título**: `[nome-do-arquivo] — [PT-PT | ES-LATAM] — [DATA]`
   - Exemplo: `newsletter-produto — PT-PT — 2026-04-07`
 - **Ícone**: 📄

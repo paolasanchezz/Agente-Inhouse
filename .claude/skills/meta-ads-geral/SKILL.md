@@ -69,7 +69,7 @@ Mostrar **apenas o Resumo Executivo** ao usuário (primeiras seções do relató
 > "Deseja publicar este relatório no Notion?"
 
 Se sim, criar página com `mcp__claude_ai_Notion__notion-create-pages`:
-- **parent**: `33b3934026fd80ceb414dd22cb7dbe1f` (ID fixo da pasta Entregas — não buscar)
+- **parent**: ID lido de `conhecimento/config/notion-ids.md` (chave `entregas`) — fixo, não buscar
 - **title**: `Meta Ads — Tendências Gerais — {YYYY-MM-DD}`
 - **content**: conteúdo completo do arquivo `.md` gerado
 

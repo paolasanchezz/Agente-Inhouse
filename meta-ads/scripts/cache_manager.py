@@ -14,7 +14,7 @@ from pathlib import Path
 from functools import wraps
 from dotenv import load_dotenv
 
-# Carrega .env da raiz do projeto (um nível acima de meta-ads/)
+# Carrega .env de meta-ads/ (arquivo em meta-ads/.env)
 ROOT_DIR = Path(__file__).parent.parent  # meta-ads/
 load_dotenv(ROOT_DIR / ".env")
 

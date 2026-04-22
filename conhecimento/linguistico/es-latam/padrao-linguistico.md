@@ -124,16 +124,11 @@ Expresiones que revelan inmediatamente que el texto es de España o está mal ad
 
 ---
 
-## Construções de IA a Evitar (válidas para qualquer idioma)
+## Construcciones de IA a Evitar
 
-- "En el escenario actual..."
-- "En un mundo cada vez más..."
-- "Es innegable que..."
-- "Vale la pena destacar que..."
-- "Cabe mencionar que..."
-- "En resumen..." seguido de lista repetindo o que foi dito
-- Listas de exactamente 3 itens como único padrão (variar entre 2, 4, 5)
-- "Además" a abrir mais de 1 parágrafo por texto
+Fuente canónica: `conhecimento/editorial/regras-anti-ia.md` (sección principal + Anexo ES-LATAM con las frases traducidas). No duplicar aquí — si encuentra nueva construcción ES-LATAM típica de IA, agregar allá, no en este archivo.
+
+Este archivo cubre solo patrones **específicos de ES-LATAM** que no existen en PT-BR: vocabulario, tratamiento, construcciones gramaticales, expresiones idiomáticas nativas.
 
 ---
 

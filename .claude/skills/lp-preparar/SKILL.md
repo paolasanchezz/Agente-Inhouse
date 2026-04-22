@@ -35,7 +35,7 @@ Leia, na ordem:
 1. `landing-pages/GUIDELINES.md` — §5 (copy), §8 (secoes-tipo), §9 (copy dita estrutura), §10 (integracao tardia). Use estas regras como filtro.
 2. `conhecimento/editorial/regras-anti-ia.md` — frases bloqueadas, filler words, anti-patterns estruturais.
 3. `brand/{marca}/brand-manifest.json` — tom de voz e messaging (para reconhecer termos proprios da marca antes de revisar).
-4. `conhecimento/produto/{marca}/{marca}.md` — grafias corretas (ex: "Buzzmonitor" nao "BuzzMonitor") e nomes oficiais de features.
+4. `brand/{marca}/BRANDBOOK.md` — grafias corretas (ex: "Buzzmonitor" nao "BuzzMonitor") e nomes oficiais de features.
 
 ## Passo 2: Obter Copy Bruta
 
@@ -136,11 +136,17 @@ Se nao encontrar nada: escreva ao final `# Revisao anti-IA: sem achados.`
 
 Caminho: `landing-pages/{marca}/{slug}/copy.txt`
 
-Se a pasta nao existe, criar. Se `copy.txt` ja existe, **sobrescrever** (esta e a versao autoritativa para `lp-gerar`).
+Se a pasta nao existe, criar. Se `copy.txt` **ja existe**, antes de sobrescrever fazer backup:
+
+```bash
+cp "landing-pages/{marca}/{slug}/copy.txt" "landing-pages/{marca}/{slug}/copy.txt.$(date +%Y-%m-%d_%H%M).bak"
+```
+
+Depois sobrescrever (`copy.txt` e a versao autoritativa para `lp-gerar`). O .bak preserva edicoes manuais anteriores — se o usuario tiver alterado o arquivo fora do pipeline, nao se perde.
 
 ## Passo 6: Publicar no Notion
 
-Publique na pasta Entregas (`33b3934026fd80ceb414dd22cb7dbe1f`).
+Publique na pasta Entregas — ID lido de `conhecimento/config/notion-ids.md` (chave `entregas`).
 
 - **Titulo:** `Copy LP · {Marca} · {Slug} · YYYY-MM-DD`
 - **Icon:** 📝

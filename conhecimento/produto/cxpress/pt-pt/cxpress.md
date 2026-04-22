@@ -1,11 +1,5 @@
-# Cxpress — Terminologia PT-PT
+# Cxpress PT-PT — movido para BRANDBOOK
 
-> **Stub — a preencher via `/news-calibrar cxpress pt-pt`**
+Este ficheiro foi consolidado. A terminologia PT-PT agora vive na seccao "Adaptacao por Regiao" de `brand/cxpress/BRANDBOOK.md` (fonte unica).
 
-## Termos-Chave em PT-PT
-
-> A preencher.
-
-## CTAs e Linguagem Comercial
-
-> A preencher.
+Para skills que procuravam este ficheiro: carregar `brand/cxpress/BRANDBOOK.md` e ler a subseccao PT-PT.

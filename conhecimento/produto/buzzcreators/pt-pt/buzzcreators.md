@@ -1,16 +1,5 @@
-# Buzzcreators — Terminologia PT-PT
+# Buzzcreators PT-PT — movido para BRANDBOOK
 
-> **Stub — a preencher via `/news-calibrar buzzcreators pt-pt`**
-> Este arquivo deve conter a terminologia adaptada para Português Europeu.
+Este ficheiro foi consolidado. A terminologia PT-PT agora vive na seccao "Adaptacao por Regiao" de `brand/buzzcreators/BRANDBOOK.md` (fonte unica).
 
-## Termos-Chave em PT-PT
-
-> A preencher com pesquisa nos sites e materiais da Buzzcreators em Portugal.
-
-## CTAs e Linguagem Comercial
-
-> A preencher.
-
-## Notas de Tom e Registo
-
-> Consultar `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` para regras gerais.
+Para skills que procuravam este ficheiro: carregar `brand/buzzcreators/BRANDBOOK.md` e ler a subseccao PT-PT.

@@ -50,7 +50,7 @@ Leia todos os seguintes arquivos na ordem. **Nao confie na memoria — leia os a
 3. `conhecimento/copywriting/funil-copy.md` — SEMPRE. Orientacoes por estagio do funil.
 
 ### Produto e marca
-4. `conhecimento/produto/{marca}/{marca}.md` — produto, features, diferenciais, cases verificados, grafias corretas.
+4. `brand/{marca}/BRANDBOOK.md` — produto, features, diferenciais, cases verificados, grafias corretas.
 5. `conhecimento/produto/{marca}/concorrentes.md` — contexto competitivo.
 6. Se `regiao` != `brasil`: `conhecimento/produto/{marca}/{lang-pasta}/{marca}.md` — terminologia localizada do produto.
 
@@ -377,14 +377,14 @@ O `{slug}` e derivado do titulo descritivo da variacao (kebab-case, sem acentos,
 
 ## Passo 6: Publicar no Notion
 
-Publique na pasta **Entregas** (ID: `33b3934026fd80ceb414dd22cb7dbe1f`).
+Publique na pasta **Entregas**. ID e lido de `conhecimento/config/notion-ids.md`, chave `entregas` — use esse valor abaixo.
 
 ### Passo 6.1: Buscar spec de markdown Notion
 Faca fetch de `notion://docs/enhanced-markdown-spec` para obter a sintaxe correta de toggles e blocos.
 
 ### Passo 6.2: Criar pagina
 Use `notion-create-pages` com:
-- **Parent:** `33b3934026fd80ceb414dd22cb7dbe1f` (Entregas)
+- **Parent:** ID lido de `conhecimento/config/notion-ids.md` (chave `entregas`)
 - **Titulo:** `{tipo} — {NomeDaMarca} — {estagio} — YYYY-MM-DD`
 - **Icon:** ✍️
 - **Conteudo:** 3 variacoes como toggles, cada uma com:

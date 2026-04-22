@@ -37,4 +37,4 @@ Ao traduzir, consultar `brand/{marca}/brand-manifest.json` secao `voice.samplePh
 
 ## Notion
 
-- Pasta Entregas (publicacao): `33b3934026fd80ceb414dd22cb7dbe1f`
+IDs sao lidos de `conhecimento/config/notion-ids.md` (fonte unica). Para publicacao, use a chave `entregas`.

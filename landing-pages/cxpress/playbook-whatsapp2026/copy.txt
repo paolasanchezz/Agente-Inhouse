@@ -1,0 +1,48 @@
+=== HERO ===
+H1: Sua integração com o WhatsApp vai precisar de ajuste em 2026.
+SUB: O playbook da Cxpress explica o quê, quando e como.
+BODY: BSUID e Usernames entram em vigor ao longo de 2026. Integrações com CRM, fluxos de automação e links de captação são afetados — e a janela para se preparar está aberta agora.
+LABEL: 📄 Disponível agora · Gratuito
+CTA: BAIXAR O PLAYBOOK
+
+=== O QUE MUDA ===
+H2: Três pontos que a maioria das operações ainda não mapeou
+LIST ITEM: Seu CRM usa o número de telefone como chave de contato. O WhatsApp vai mudar o identificador padrão — e integrações não atualizadas param de funcionar corretamente.
+LIST ITEM: Quando um cliente troca de número, o histórico some. Com a mudança de BSUID, isso tem solução — mas só se a integração for ajustada antes.
+LIST ITEM: Links e QR codes de captação criados hoje precisarão de atualização quando os Usernames forem ativados. Quem tem campanhas ativas descobre isso no pior momento.
+BODY: Não é uma mudança que chega com aviso pop-up. Chega como incidente de produção para quem não se preparou.
+CTA: BAIXAR O PLAYBOOK
+
+=== O QUE O PLAYBOOK COBRE ===
+H2: Seis seções, do cronograma ao checklist de preparação
+H3: Seção 1 — O que são BSUID e Usernames
+BODY: O que muda na estrutura da API e por que afeta quem usa o WhatsApp como canal de atendimento ou vendas.
+H3: Seção 2 — Cronograma oficial 2026
+BODY: Q1 a Q4: o que está disponível, o que é opcional, o que passa a ser obrigatório e quando.
+H3: Seção 3 — O que muda na prática
+BODY: Atendimento, CRM e processo de vendas — o impacto concreto em cada área.
+H3: Seção 4 — Qual o impacto na sua operação
+BODY: Como o efeito varia dependendo de como a empresa opera hoje: App, API direta ou plataforma omnichannel.
+H3: Seção 5 — Como aproveitar as mudanças
+BODY: BSUID como base para histórico real do cliente. Usernames como upgrade no processo de captação.
+H3: Seção 6 — Checklist de preparação
+BODY: Cinco passos com ordem certa para adaptar a operação antes dos prazos obrigatórios.
+
+=== PARA QUEM É ===
+LIST ITEM: Gestores de atendimento que usam WhatsApp como canal principal
+LIST ITEM: Equipes de CRM e operações com integrações via API do WhatsApp
+LIST ITEM: Empresas que preferem mapear o problema antes de encontrá-lo em produção
+
+=== QUEM PREPAROU ===
+H2: Preparado pela Cxpress
+BODY: Plataforma omnichannel com API oficial do WhatsApp. Acompanhamos as atualizações do Meta e ajudamos PMEs a estruturar o atendimento sem depender de remendos.
+
+=== CTA FINAL ===
+H2: BAIXE O PLAYBOOK GRATUITO
+SUB: Sem spam. Sem curso por trás. Só o mapa do que está mudando e o que fazer antes que mude.
+LABEL: Nome
+LABEL: E-mail corporativo
+LABEL: Empresa
+CTA: BAIXAR AGORA
+
+# Revisao anti-IA: sem achados.

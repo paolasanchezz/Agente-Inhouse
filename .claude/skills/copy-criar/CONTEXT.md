@@ -8,10 +8,10 @@
 
 | Marca | Arquivo de produto |
 |---|---|
-| `buzzmonitor` | `conhecimento/produto/buzzmonitor/buzzmonitor.md` |
-| `buzzcreators` | `conhecimento/produto/buzzcreators/buzzcreators.md` |
-| `cxpress` | `conhecimento/produto/cxpress/cxpress.md` |
-| `elife` | `conhecimento/produto/elife/elife.md` |
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` |
+| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` |
+| `cxpress` | `brand/cxpress/BRANDBOOK.md` |
+| `elife` | `brand/elife/BRANDBOOK.md` |
 
 ## Regioes e Mapeamento de Idioma
 
@@ -54,4 +54,4 @@ Ao criar copy, carregar `brand/{marca}/brand-manifest.json` para tom de voz e me
 
 ## Notion
 
-- Pasta Entregas (publicacao): `33b3934026fd80ceb414dd22cb7dbe1f`
+IDs sao lidos de `conhecimento/config/notion-ids.md` (fonte unica). Para publicacao, use a chave `entregas`.

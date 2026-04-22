@@ -432,6 +432,9 @@ Cada vez que você treina uma associação, o caminho neural se fortalece. É co
 
 ## 12. Anti-padrões de copy (o que NUNCA fazer)
 
+> Esta seção cobre anti-padrões de **eficácia e ética de copy** (escassez falsa, promessas impossíveis, excesso de produção). Para detecção de **linguagem típica de IA** (frases, filler words, estrutura robótica), ver `conhecimento/editorial/regras-anti-ia.md` — fonte canônica única.
+
+
 | Anti-padrão | Por que é ruim | O que fazer em vez disso |
 |---|---|---|
 | **Promessas impossíveis** ("emagreça sem fazer nada") | Ninguém acredita, destrói credibilidade | Use premissas verdadeiras |

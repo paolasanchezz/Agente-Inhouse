@@ -34,6 +34,7 @@
 - Título principal no peso mais pesado da display font. Subtítulo em peso leve para contraste tipográfico.
 - Elemento da direita: **um** elemento forte (card de data, ilustração minimalista, foto com crop editorial). Não encher de formas.
 - CTA primário visível sem scroll. CTA secundário (opcional) ghost ao lado.
+- Indicador de data/formato no header (ex.: "Webinar gratuito", dot pulsante): texto curto e **sempre em uma única linha** (`white-space: nowrap`). Nunca duplicar info que já aparece em outro lugar do hero — o indicador é um resumo discreto, não um repositório de dados. Se a tela for estreita demais para a linha única, preferir esconder via `@media` a quebrar em duas linhas.
 
 ## 4. Animação
 

@@ -36,7 +36,7 @@ Leia todos os seguintes arquivos:
 3. `conhecimento/copywriting/funil-copy.md` — orientacoes por estagio do funil
 
 ### Produto e marca
-4. `conhecimento/produto/{marca}/{marca}.md` — produto, features, diferenciais, publico-alvo, grafias
+4. `brand/{marca}/BRANDBOOK.md` — produto, features, diferenciais, publico-alvo, grafias
 5. Se existir, leia tambem `conhecimento/produto/{marca}/concorrentes.md`
 
 ### Linguagem e estilo
@@ -101,7 +101,7 @@ Verifique contra `fundamentos-copy.md` e o documento do tipo especifico:
 
 ### Dimensao 2: Precisao sobre o produto
 
-Verifique contra `conhecimento/produto/{marca}/{marca}.md`.
+Verifique contra `brand/{marca}/BRANDBOOK.md`.
 
 **REGRA CENTRAL:** So sinalize o que **contradiz explicitamente** a base de conhecimento. Se a copy traz uma informacao que nao consta na base (ex: uma metrica, um dado de mercado, um detalhe de feature), **nao trate como erro** — a copy pode ter informacoes legitimas que a base simplesmente nao cobre. Apenas corrija o que for **demonstravelmente incorreto** com base no que voce tem.
 

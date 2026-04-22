@@ -54,12 +54,15 @@ Analise a copy nos seguintes aspectos:
 
 ### Passo 3: Salvar no swipe file
 
-Determine o proximo numero sequencial verificando os arquivos existentes:
+Determine o proximo numero sequencial com sort numerico (NAO lexicografico — `10` deve vir depois de `001`):
+
 ```bash
-ls conhecimento/copywriting/swipe-file/ | sort -n | tail -1
+ls conhecimento/copywriting/swipe-file/ | grep -E '^[0-9]+-' | sort -V | tail -1
 ```
 
-Crie o arquivo `conhecimento/copywriting/swipe-file/NNN-{slug}.md`:
+`sort -V` (version sort) ordena `001`, `002`, ..., `009`, `010`, `011`... corretamente. `sort -n` tambem funciona mas so se os nomes comecarem com digito puro; `sort -V` tolera separadores. Extraia o numero do primeiro trecho (antes do `-`), incremente e preencha com zeros a 3 digitos.
+
+Crie o arquivo `conhecimento/copywriting/swipe-file/NNN-{slug}.md` (NNN com padding: `001`, `010`, `123`):
 
 ```markdown
 ---

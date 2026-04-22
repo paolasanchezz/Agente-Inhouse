@@ -23,7 +23,7 @@ Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
 
 ## Passo 1: Carregar Contexto
 
-1. Leia `conhecimento/produto/{brand}/{brand}.md` — para fact-checking do produto e nome de exibicao
+1. Leia `brand/{brand}/BRANDBOOK.md` — para fact-checking do produto e nome de exibicao
 2. Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` e `conhecimento/linguistico/{lang-pasta-linguistico}/padrao-linguistico.md`
 3. Leia `conhecimento/editorial/estilo-newsletter.md` — para regras de estilo e anti-patterns
 
@@ -37,7 +37,7 @@ Verifique que existem newsletters em `newsletter/{brand}/entregas/`. Se nao exis
 ## Para Cada Newsletter, Executar 3 Passadas
 
 ### Passada 1: Fact-Check e Precisao
-Com base em `conhecimento/produto/{brand}/{brand}.md`, verifique:
+Com base em `brand/{brand}/BRANDBOOK.md`, verifique:
 
 1. **Nomes de features**: Estao grafados exatamente como no arquivo de conhecimento?
 2. **Metricas de cases**: Os numeros batem com os cases verificados no arquivo?

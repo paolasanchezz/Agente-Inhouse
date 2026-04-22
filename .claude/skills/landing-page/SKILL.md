@@ -9,9 +9,13 @@ allowed-tools: AskUserQuestion, Read, Glob
 
 Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` ja responde. Dispare direto apos ultima pergunta — sem pedir confirmacao.
 
+## Normalizacao de inputs
+
+Antes de validar, **converta `marca` e `slug` para lowercase**. O slug deve ser kebab-case minusculo (se vier `Monitoramento-Maio`, normalize para `monitoramento-maio`). Se `marca` nao estiver na lista permitida apos normalizar, trate como ausente e pergunte via AskUserQuestion.
+
 ## Fast-path
 
-Se `$ARGUMENTS` contem tarefa + parametros validos, pule para Disparo.
+Se `$ARGUMENTS` contem tarefa + parametros validos (ja normalizados), pule para Disparo.
 
 | Atalho | Disparo |
 |---|---|

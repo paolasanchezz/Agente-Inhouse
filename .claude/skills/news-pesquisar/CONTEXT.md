@@ -8,10 +8,10 @@
 
 | Marca | Arquivo de produto | Concorrentes |
 |---|---|---|
-| `buzzmonitor` | `conhecimento/produto/buzzmonitor/buzzmonitor.md` | `conhecimento/produto/buzzmonitor/concorrentes.md` |
-| `buzzcreators` | `conhecimento/produto/buzzcreators/buzzcreators.md` | `conhecimento/produto/buzzcreators/concorrentes.md` |
-| `cxpress` | `conhecimento/produto/cxpress/cxpress.md` | `conhecimento/produto/cxpress/concorrentes.md` |
-| `elife` | `conhecimento/produto/elife/elife.md` | `conhecimento/produto/elife/concorrentes.md` |
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `conhecimento/produto/buzzmonitor/concorrentes.md` |
+| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | `conhecimento/produto/buzzcreators/concorrentes.md` |
+| `cxpress` | `brand/cxpress/BRANDBOOK.md` | `conhecimento/produto/cxpress/concorrentes.md` |
+| `elife` | `brand/elife/BRANDBOOK.md` | `conhecimento/produto/elife/concorrentes.md` |
 
 ## Regioes e Mapeamento de Idioma
 
@@ -47,5 +47,6 @@ Ao gerar newsletters, carregar `brand/{marca}/brand-manifest.json` para personal
 
 ## Notion
 
-- Pagina raiz Newsletter: `33c3934026fd80778073f1868c5bf11c`
-- Estrutura: Newsletter > {NomeDaMarca} > [Mes] de [Ano] — [IDIOMA-SIGLA]
+IDs sao lidos de `conhecimento/config/notion-ids.md` (fonte unica). Para publicacao, use a chave `newsletter`.
+
+Estrutura: Newsletter > {NomeDaMarca} > [Mes] de [Ano] — [IDIOMA-SIGLA]

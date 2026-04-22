@@ -22,11 +22,14 @@ Se arquivo nao existe: PARE e avise.
 
 ## Passo 1: Passada 1 — Design Review
 
-Invoque `frontend-design` em **review mode**:
+> **Nota sobre "review mode":** `frontend-design` e uma skill upstream da Anthropic voltada a GERAR UI. Ela nao tem modo de revisao nativo. O "review mode" aqui e uma **convencao de prompt deste projeto**: a primeira linha do argumento instrui explicitamente "NAO implemente — apenas liste achados", e a skill obedece ao texto do prompt. Se a chamada voltar com HTML gerado em vez de uma lista de achados, o prompt foi mal formatado — refaca com o bloco exato abaixo.
+
+Invoque `frontend-design` com o prompt exato abaixo (primeira linha obrigatoria, nao remover):
 
 ```
-review mode: audite a landing page em `landing-pages/{marca}/{slug}/index.html`.
-NAO implemente mudancas — apenas liste achados.
+REVIEW ONLY — NAO implemente nem reescreva codigo. Apenas liste achados em bullets.
+
+Audite a landing page em `landing-pages/{marca}/{slug}/index.html`.
 
 Contexto: LP da marca {marca}, brand em brand/{marca}/, guidelines vivas em landing-pages/GUIDELINES.md (10 secoes).
 
@@ -35,8 +38,10 @@ Reporte em bullets agrupados por severidade:
 - MELHORIA — ajuste que melhora mas nao quebra (espacamento, micro-ajuste tipografico, refinement de cor)
 - NICE-TO-HAVE — estilistico, opiniao
 
-Para cada achado: citar linha ou seletor CSS, dizer o que esta errado, sugerir a correcao.
+Para cada achado: citar linha ou seletor CSS, dizer o que esta errado, sugerir a correcao (texto, nao codigo).
 ```
+
+Se o output voltar contendo blocos de codigo HTML/CSS novos em vez de lista, descartar e reinvocar reforcando "REVIEW ONLY — apenas texto, zero codigo".
 
 Salve o output inteiro em memoria (nao escrever em disco ainda).
 

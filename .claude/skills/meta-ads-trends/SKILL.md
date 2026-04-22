@@ -131,6 +131,6 @@ Após apresentar a análise, perguntar ao usuário:
 > "Deseja subir este relatório de tendências no Notion?"
 
 Se sim:
-1. Criar uma página com `mcp__claude_ai_Notion__notion-create-pages` com parent `33b3934026fd80ceb414dd22cb7dbe1f` (pasta Entregas — ID fixo, não buscar) contendo:
+1. Criar uma página com `mcp__claude_ai_Notion__notion-create-pages` com parent lido de `conhecimento/config/notion-ids.md` (chave `entregas`) — ID fixo, não buscar — contendo:
    - **Título:** `Tendências Meta Ads — [conta] — [data]`
    - **Conteúdo:** a análise completa apresentada ao usuário (tabelas + diagnóstico + resumo executivo)

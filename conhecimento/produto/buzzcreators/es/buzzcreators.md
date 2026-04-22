@@ -1,16 +1,5 @@
-# Buzzcreators — Terminología ES-LATAM
+# Buzzcreators ES-LATAM — movido para BRANDBOOK
 
-> **Stub — completar via `/news-calibrar buzzcreators latam`**
-> Este archivo debe contener la terminología adaptada para Español Latinoamericano.
+Este archivo fue consolidado. La terminologia ES-LATAM ahora vive en la seccion "Adaptacion por Region" de `brand/buzzcreators/BRANDBOOK.md` (fuente unica).
 
-## Términos Clave en ES-LATAM
-
-> Completar con investigación en los sitios y materiales de Buzzcreators en LATAM.
-
-## CTAs y Lenguaje Comercial
-
-> Completar.
-
-## Notas de Tono y Registro
-
-> Consultar `conhecimento/linguistico/es-latam/padrao-linguistico.md` para reglas generales.
+Para skills que buscaban este archivo: cargar `brand/buzzcreators/BRANDBOOK.md` y leer la subseccion ES-LATAM.

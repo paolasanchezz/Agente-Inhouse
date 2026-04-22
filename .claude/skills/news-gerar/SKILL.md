@@ -27,7 +27,7 @@ Verifique que os arquivos de pesquisa existem em `conhecimento/produto/{brand}/p
 
 Leia os seguintes arquivos na ordem:
 
-1. `conhecimento/produto/{brand}/{brand}.md` — produto, nome de exibicao, assinatura
+1. `brand/{brand}/BRANDBOOK.md` — produto, nome de exibicao, assinatura
 2. Se `region` != `brasil`: `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` — terminologia nativa
 3. Se `region` != `brasil`: `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md` — padrao de escrita nativa (CRITICO — rege todo o idioma da newsletter)
 4. `conhecimento/editorial/estilo-newsletter.md` — regras de estilo e anti-patterns
@@ -37,9 +37,9 @@ Leia os seguintes arquivos na ordem:
 8. `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md` — dados e tendencias
 9. `conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md` — contexto competitivo
 
-Extraia do arquivo de conhecimento do produto:
-- **NomeDaMarca**: campo "Nome de exibicao" em `## Configuracao`
-- **Assinatura**: campo "Assinatura" em `## Configuracao`
+Extraia do BRANDBOOK:
+- **NomeDaMarca**: campo "Nome de exibicao" em `### Configuracao` (dentro de `## 2. Produto`)
+- **Assinatura**: campo "Assinatura em newsletters" em `### Configuracao` (dentro de `## 2. Produto`)
 
 ## Passo 2: Planejar as 5 Newsletters
 
@@ -74,7 +74,7 @@ Para cada newsletter (1 a 5), sequencialmente:
    - Para `latam`: usar vocabulario LATAM (nao espanhol europeu). Zero "vosotros", zero "vale" como concordancia. Verificar tratamento ("tu"/"usted") conforme o padrao.
    - Para `portugal`: usar vocabulario PT-PT. Zero brasileirismos. Verificar tratamento conforme o padrao linguistico.
 3. Use dados reais da pesquisa (nunca invente estatisticas)
-4. Se citar case da marca, mantenha fidelidade total aos dados em `conhecimento/produto/{brand}/{brand}.md`
+4. Se citar case da marca, mantenha fidelidade total aos dados em `brand/{brand}/BRANDBOOK.md`
 5. Aplique TODAS as regras de `conhecimento/editorial/estilo-newsletter.md`
 6. **Maximo de 600 palavras** — priorize corte de contexto de mercado se necessario; o gancho e o case sao inegociaveis
 7. **Acentuacao obrigatoria**: escreva com acentuacao e pontuacao corretas do idioma da regiao
@@ -126,11 +126,11 @@ Apos escrever todas, crie `newsletter/{brand}/entregas/YYYY-MM/INDICE.md`:
 
 ## Passo 5: Publicar no Notion
 
-Notion Newsletter ID (pagina raiz compartilhada por todas as marcas): `33c3934026fd80778073f1868c5bf11c`
+**ID da pagina raiz Newsletter:** leia `conhecimento/config/notion-ids.md`, chave `newsletter`. Use `{NEWSLETTER_ROOT}` abaixo como placeholder desse valor.
 
 ### Estrutura alvo no Notion
 ```
-Newsletter (ID: 33c3934026fd80778073f1868c5bf11c)
+Newsletter (ID: {NEWSLETTER_ROOT})
 └── {NomeDaMarca}                          ← subpasta da marca (icon: 📁)
     └── [Mês] de [Ano] — [IDIOMA]          ← pasta mensal com idioma (icon: 📁)
         ├── ▶ Newsletter 01 — [Assunto]        (toggle)
@@ -146,7 +146,7 @@ O titulo da pasta mensal inclui o idioma para distinguir ciclos diferentes do me
 1. Busque a sintaxe correta de toggles e outros blocos fazendo fetch de `notion://docs/enhanced-markdown-spec`
 2. Use `notion-search` com query `{NomeDaMarca}` para localizar a subpasta da marca dentro da pagina Newsletter
 3. Se encontrar: anote o ID
-4. Se nao encontrar: crie com `notion-create-pages`, parent = `33c3934026fd80778073f1868c5bf11c`, title = `{NomeDaMarca}`, icon = `📁`
+4. Se nao encontrar: crie com `notion-create-pages`, parent = `{NEWSLETTER_ROOT}` (valor lido de `conhecimento/config/notion-ids.md`), title = `{NomeDaMarca}`, icon = `📁`
 
 ### Passo 5.2: Localizar ou criar pasta mensal
 1. Faca fetch da subpasta da marca para ver se ja existe uma subpagina com o titulo do mes corrente no formato `[Mês] de [Ano] — [IDIOMA-SIGLA]`
@@ -191,7 +191,7 @@ Apos publicar, informe ao usuario:
 - NUNCA invente dados, metricas ou nomes de empresas
 - NUNCA use construcoes proibidas listadas em `conhecimento/editorial/estilo-newsletter.md`
 - Cada newsletter deve funcionar de forma independente (o leitor pode receber apenas 1)
-- Verifique nomes de features da marca contra `conhecimento/produto/{brand}/{brand}.md`
+- Verifique nomes de features da marca contra `brand/{brand}/BRANDBOOK.md`
 - Se um dado da pesquisa nao tiver fonte clara, nao use ou marque como [VERIFICAR]
 - NUNCA omita acentos — o texto final deve estar no idioma da regiao correto
 - NUNCA use nome tecnico de vies ou efeito psicologico sem verificar a definicao exata

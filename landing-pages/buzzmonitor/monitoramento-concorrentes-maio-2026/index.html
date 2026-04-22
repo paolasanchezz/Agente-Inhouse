@@ -135,6 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: var(--ff-sub); font-size: 12px;
     letter-spacing: .16em; text-transform: uppercase;
     display: flex; align-items: center; gap: 10px;
+    white-space: nowrap; /* guideline §3: indicador do header nunca quebra em 2 linhas */
   }
   .nav-meta .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--c-accent-2); }
   .nav-meta .dot::after {
@@ -154,7 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      ============================================================ */
   .hero {
     position: relative;
-    padding: 160px 0 120px;
+    padding: 128px 0 96px;
     background: var(--c-n0);
     overflow: hidden;
   }
@@ -256,13 +257,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: var(--ff-sub);
     border: 1px solid var(--c-n300);
     box-shadow: 0 30px 60px -30px rgba(57,1,85,.18), 0 8px 20px -12px rgba(20,17,26,.1);
+    overflow: hidden; /* recorta o gradiente do ::before no border-radius do card */
   }
-  /* Marca do ticket: linha gradiente full width no topo, encaixada como régua */
+  /* Marca do ticket: régua gradiente contida dentro do card, colada ao topo */
   .ticket::before {
     content: ""; position: absolute;
-    top: -1px; left: -1px; right: -1px; height: 6px;
+    top: 0; left: 0; right: 0; height: 5px;
     background: var(--grad-hot);
-    border-radius: var(--r-lg) var(--r-lg) 0 0;
   }
   .ticket-label {
     font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
@@ -332,10 +333,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ============================================================
      SEÇÕES — só alternam entre branco e off-white, sem cores
      ============================================================ */
-  section { padding: 160px 0; position: relative; }
-  @media (max-width: 720px) { section { padding: 100px 0; } }
+  section { padding: 128px 0; position: relative; }
+  @media (max-width: 720px) { section { padding: 80px 0; } }
 
-  .sec-head { display: grid; gap: 16px; margin-bottom: 72px; max-width: 780px; }
+  .sec-head { display: grid; gap: 16px; margin-bottom: 58px; max-width: 780px; }
   .sec-head .eyebrow { color: var(--c-accent-2); }
   .sec-head h2 { font-size: clamp(34px, 4.6vw, 62px); color: var(--c-n900); }
 
@@ -379,7 +380,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Punchline: gradiente rosa→laranja (a estrela da LP) */
   .punchline {
-    margin-top: 110px;
+    margin-top: 88px;
     text-align: center;
     position: relative;
   }
@@ -399,29 +400,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-wrap: balance;
   }
   .punchline-cta { margin-top: 44px; display: flex; justify-content: center; }
-
-  /* Transição (branco, respiro extra) — com ornament sutil */
-  .transition-band {
-    padding: 140px 0;
-    background: var(--c-n0);
-    position: relative;
-  }
-  .transition-band .tb-mark {
-    display: flex; align-items: center; gap: 14px;
-    font-family: var(--ff-sub); font-weight: 500;
-    font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
-    color: var(--c-accent-2);
-    margin-bottom: 28px;
-  }
-  .transition-band .tb-mark::before {
-    content: ""; width: 40px; height: 1.5px; background: var(--c-accent-2);
-  }
-  .transition-band h2 {
-    font-size: clamp(34px, 4.6vw, 58px);
-    max-width: 24ch;
-    color: var(--c-n900);
-  }
-  .transition-band h2 em { font-style: italic; color: var(--c-accent-2); font-weight: 500; }
 
   /* O que vai aprender (off-white, sem tint colorido) */
   .learn { background: var(--c-n0); }
@@ -450,16 +428,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Oferta (off-white) — apresentação oficial do webinar com arte em gradiente */
   .different { background: var(--c-n100); }
-  .diff-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 88px; align-items: center; }
+  .diff-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 72px; align-items: center; }
   @media (max-width: 960px) { .diff-grid { grid-template-columns: 1fr; gap: 48px; } }
   .diff-art {
     position: relative;
-    aspect-ratio: 5/6;
+    aspect-ratio: 4/5;
+    max-width: 360px;
     border-radius: var(--r-lg);
     background: var(--grad-hot);
     overflow: hidden;
     isolation: isolate;
-    padding: 40px;
+    padding: 32px;
     display: flex; flex-direction: column; justify-content: space-between;
   }
   /* grid denser + pontos nos cruzamentos */
@@ -484,18 +463,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-quote {
     position: relative; z-index: 2;
     color: #fff; font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(42px, 5vw, 72px);
-    line-height: .92; letter-spacing: -0.035em;
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: .95; letter-spacing: -0.03em;
     margin: 0;
     text-wrap: balance;
+    hyphens: auto;
   }
   .diff-quote .kicker {
     display: block;
     font-family: var(--ff-sub); font-weight: 300;
-    font-size: clamp(15px, 1.3vw, 17px);
+    font-size: clamp(13px, 1.1vw, 15px);
     letter-spacing: .01em; text-transform: none;
     color: rgba(255,255,255,.82);
-    margin-top: 18px;
+    margin-top: 14px;
     max-width: 28ch;
     line-height: 1.5;
   }
@@ -541,24 +521,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position: relative;
     display: grid; place-items: center;
     aspect-ratio: 1/1;
-    max-width: 340px;
+    max-width: 380px;
     margin-inline: auto;
     width: 100%;
   }
-  .for-visual .emoji {
-    font-size: clamp(140px, 18vw, 220px);
-    line-height: 1;
-    filter: drop-shadow(0 20px 40px rgba(235,124,46,.25));
+  .for-visual .mascot {
+    height: 102%;
+    width: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 22px 38px rgba(57,1,85,.18));
     position: relative;
     z-index: 2;
     animation: gentle-bob 5s ease-in-out infinite;
-    transform-origin: center;
+    transform-origin: center bottom;
   }
   @keyframes gentle-bob {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50%      { transform: translateY(-10px) rotate(2deg); }
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50%      { transform: translateY(-8px) rotate(1.5deg); }
   }
-  @media (prefers-reduced-motion: reduce) { .for-visual .emoji { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .for-visual .mascot { animation: none; } }
   .for-visual::before,
   .for-visual::after {
     content: "";
@@ -631,7 +612,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #fff;
     overflow: hidden;
     position: relative;
-    padding: 180px 0;
+    padding: 144px 0;
   }
   .urgency::before {
     content: ""; position: absolute;
@@ -760,7 +741,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
     <div class="nav-meta">
       <span class="dot" aria-hidden="true"></span>
-      <span>Webinar · 26 Mai · 11h</span>
+      <span>Webinar gratuito</span>
     </div>
   </div>
 </header>
@@ -771,10 +752,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <div class="hero-eyebrow">
-          <span class="rule" aria-hidden="true"></span>
-          <span class="eyebrow">Webinar gratuito &middot; 26 Mai &middot; 11h</span>
-        </div>
         <h1 id="hero-title">
           Não deixe a concorrência <span class="ital">dominar</span><br />
           o mercado que <span class="grad">deveria ser seu.</span>
@@ -874,14 +851,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ===== TRANSIÇÃO ===== -->
-  <section class="transition-band">
-    <div class="wrap">
-      <div class="tb-mark reveal"><span>O próximo passo</span></div>
-      <h2 class="reveal">Chegou a hora de sair na <em>frente</em>.</h2>
-    </div>
-  </section>
-
   <!-- ===== OFERTA (apresentação oficial do webinar) ===== -->
   <section class="different" aria-labelledby="offer-title">
     <div class="wrap diff-grid">
@@ -898,12 +867,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 id="offer-title">Como sair na frente na corrida do mercado com analytics e dados.</h2>
         <p>Vamos mostrar como unir <strong>Analytics</strong> e <strong>Social Listening</strong> para criar uma estratégia de <em>&ldquo;ataque&rdquo;</em> &mdash; e ocupar os espaços vazios deixados pelo mercado.</p>
         <p>Menos suposição, mais evidência. Menos &ldquo;olhadinha&rdquo;, mais movimento.</p>
-        <div class="cta-row">
-          <a href="#inscricao" class="btn-primary">
-            <span>Inscrever-me gratuitamente</span>
-            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -970,7 +933,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div class="for-visual reveal" style="--d: 200ms" aria-hidden="true">
-          <span class="emoji">😃</span>
+          <picture>
+            <source srcset="./assets/mascot.webp" type="image/webp" />
+            <img class="mascot" src="./assets/mascot.png" alt="" width="810" height="1080" loading="lazy" decoding="async" />
+          </picture>
         </div>
       </div>
     </div>

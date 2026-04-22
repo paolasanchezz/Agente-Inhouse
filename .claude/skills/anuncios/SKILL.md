@@ -9,9 +9,13 @@ allowed-tools: AskUserQuestion, Read, Glob
 
 Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` já responde. Dispare direto após última pergunta — sem pedir confirmação. Meta Ads é **SOMENTE LEITURA**.
 
+## Normalização de inputs
+
+Antes de validar, **converta `conta` e `periodo` para lowercase**. Ex: `Buzzmonitor_BRL` → `buzzmonitor_brl`, `Mes_Atual` → `mes_atual`. Se o valor não estiver na lista permitida após normalizar, trate como ausente e pergunte via AskUserQuestion.
+
 ## Fast-path
 
-Se `$ARGUMENTS` contém tarefa + conta (+ período quando aplicável), pule todas as perguntas e vá direto ao Disparo.
+Se `$ARGUMENTS` contém tarefa + conta (+ período quando aplicável, já normalizados), pule todas as perguntas e vá direto ao Disparo.
 
 | Atalho | Disparo |
 |---|---|
@@ -29,7 +33,7 @@ Se parcial, use o que tem e pergunte só o que falta.
 
 ## Q1 — Tarefa
 
-AskUserQuestion — question: "O que quer saber dos anúncios?" header: "Análise" multiSelect: false
+AskUserQuestion — question: "O que quer saber dos anúncios?" header: "Tarefa" multiSelect: false
 
 1. "Performance geral (Recomendado)" → skill=meta-ads, precisa_periodo=sim
 2. "Tendências (CpL/CTR caindo?)" → skill=meta-ads-trends, precisa_periodo=não
