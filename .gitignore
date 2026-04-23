@@ -37,3 +37,6 @@ env/
 
 # Runtime lockfile do MCP de tarefas agendadas
 .claude/scheduled_tasks.lock
+
+# Dados temporarios de /pull-request-review (JSON da API + patches). Relatorios .md ficam versionados.
+reviews/.tmp/

@@ -250,7 +250,11 @@
       "Bash(curl -sI https://webinar.buzzmonitor.com/favicon.png)",
       "Bash(cp 'C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\Agente Inhouse\\\\brand\\\\buzzmonitor\\\\assets\\\\logos\\\\logo-icon.png' 'C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\buzzmonitor-lp-monitoramento-concorrentes/assets/logos/logo-icon.png')",
       "Bash(rm -f 'C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\buzzmonitor-lp-monitoramento-concorrentes/__TRACKED_VAR__/favicon.svg' 'C:\\\\Users\\\\titof\\\\Downloads\\\\Claude\\\\buzzmonitor-lp-monitoramento-concorrentes/__TRACKED_VAR__/favicon.png')",
-      "Bash(curl -s https://webinar.buzzmonitor.com/__TRACKED_VAR__)"
+      "Bash(curl -s https://webinar.buzzmonitor.com/__TRACKED_VAR__)",
+      "Bash(git credential *)",
+      "Bash(grep -v '^\\\\.$\\\\|^\\\\.\\\\.$')",
+      "Bash(set -e)",
+      "Bash(git add *)"
     ]
   }
 }

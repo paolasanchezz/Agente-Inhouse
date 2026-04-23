@@ -90,13 +90,16 @@ Funcionam sem setup adicional.
 
 Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam funcionando para quem ja tem pratica.
 
-### Entrega (commit + PR)
+### Entrega e revisao (commit + PR)
 
 Ao final das alteracoes, rode `/commit` para entregar ao Victor revisar. A skill cria branch nova, commita, faz push e abre pull request automaticamente. **Nunca commita em main.**
+
+Para revisar um PR, o Victor roda `/pull-request-review` com o link ou numero — gera relatorio local com achados em 3 niveis de severidade. Nao posta comentario no GitHub.
 
 | Comando | O que faz |
 |---|---|
 | `/commit` | Cria branch `claude/{slug}`, commita, push e abre PR pra main. Sem args — totalmente automatico. Primeira vez requer `gh auth login` (skill guia). |
+| `/pull-request-review [url-ou-num]` | Revisa PR localmente — diff + dominio-especifico do repo (skills/brand/LP/meta-ads). Relatorio em `reviews/pr-{N}-YYYY-MM-DD.md` com criticos, importantes e nice-to-haves. |
 
 ### Newsletters
 Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
