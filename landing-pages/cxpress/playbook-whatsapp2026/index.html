@@ -236,8 +236,8 @@
       font-weight: 600;
       font-size: 14px;
       letter-spacing: 0.01em;
-      color: var(--primary);
-      background: var(--primary-lighter);
+      color: var(--neutral-0);
+      background: var(--primary-dark);
       padding: 8px 16px;
       border-radius: var(--radius-pill);
       margin-bottom: 28px;
@@ -430,10 +430,6 @@
       letter-spacing: -0.05em;
       line-height: .85;
       margin-top: -4px;
-    }
-    .pbook-year em {
-      font-style: normal;
-      color: var(--accent);
     }
     .pbook-subtitle {
       font-family: var(--font-accent);
@@ -664,10 +660,21 @@
     .audience { background: var(--neutral-0); }
     .audience-inner {
       display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 72px;
-      align-items: flex-start;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
       max-width: 1080px;
+    }
+    .audience-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .audience-mascot {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      margin-top: 20px;
     }
     .audience-list {
       list-style: none;
@@ -711,25 +718,19 @@
     .author-inner {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 56px;
+      gap: 48px;
       align-items: center;
       max-width: 960px;
       margin: 0 auto;
     }
     .author-visual {
-      width: 144px; height: 144px;
-      border-radius: 50%;
-      background: var(--neutral-0);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
+      width: 200px;
       flex-shrink: 0;
     }
     .author-visual img {
-      width: 100%; height: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .author-text h2 {
       font-size: clamp(26px, 3vw, 34px);
@@ -742,12 +743,14 @@
       line-height: 1.6;
       color: var(--neutral-700);
       max-width: 620px;
+      margin-bottom: 28px;
     }
+    .author-cta { margin-top: 4px; }
 
     /* ============ CTA FINAL ============ */
     .cta-final {
-      background: var(--primary-dark);
-      color: var(--neutral-0);
+      background: var(--primary-lighter);
+      color: var(--primary-dark);
       position: relative;
       overflow: hidden;
     }
@@ -757,7 +760,7 @@
       top: -140px; left: -100px;
       width: 380px; height: 380px;
       border-radius: 50% 50% 0 0;
-      background: rgba(74,105,189,.18);
+      background: rgba(74,105,189,.14);
       pointer-events: none;
     }
     .cta-final::after {
@@ -766,7 +769,7 @@
       bottom: -200px; right: -120px;
       width: 480px; height: 240px;
       border-radius: var(--radius-pill);
-      background: rgba(239,134,60,.12);
+      background: rgba(239,134,60,.18);
       transform: rotate(-14deg);
       pointer-events: none;
     }
@@ -777,7 +780,7 @@
       text-align: center;
     }
     .cta-final h2 {
-      color: var(--neutral-0);
+      color: var(--primary-dark);
       font-size: clamp(32px, 4.4vw, 52px);
       font-weight: 800;
       line-height: 1.05;
@@ -787,17 +790,16 @@
     .cta-final-sub {
       font-size: 19px;
       line-height: 1.5;
-      color: rgba(255,255,255,.78);
+      color: var(--neutral-700);
       margin-bottom: 44px;
     }
     .form {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
+      background: var(--neutral-0);
+      border: 1px solid rgba(35, 41, 96, 0.08);
       padding: 40px;
       border-radius: var(--radius-xl);
       text-align: left;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-md);
     }
     .form-field { margin-bottom: 20px; }
     .form-field label {
@@ -806,7 +808,7 @@
       font-weight: 600;
       font-size: 13px;
       letter-spacing: 0.02em;
-      color: rgba(255,255,255,.88);
+      color: var(--primary-dark);
       margin-bottom: 8px;
     }
     .form-field .required {
@@ -817,22 +819,20 @@
       width: 100%;
       font-family: var(--font-body);
       font-size: 16px;
-      color: var(--neutral-0);
-      background: rgba(255,255,255,.06);
-      border: 1.5px solid rgba(255,255,255,.16);
+      color: var(--primary-dark);
+      background: var(--neutral-0);
+      border: 1.5px solid var(--neutral-300);
       border-radius: var(--radius-md);
       padding: 14px 16px;
       transition: background 180ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease);
     }
-    .form-field input::placeholder { color: rgba(255,255,255,.38); }
+    .form-field input::placeholder { color: rgba(74, 74, 74, 0.5); }
     .form-field input:hover {
-      border-color: rgba(255,255,255,.28);
-      background: rgba(255,255,255,.08);
+      border-color: var(--primary);
     }
     .form-field input:focus {
       outline: none;
       border-color: var(--accent);
-      background: rgba(255,255,255,.08);
       box-shadow: 0 0 0 3px rgba(239,134,60,.22);
     }
     .form-submit {
@@ -842,7 +842,7 @@
     }
     .form-note {
       font-size: 13px;
-      color: rgba(255,255,255,.52);
+      color: var(--neutral-700);
       text-align: center;
       margin-top: 20px;
     }
@@ -900,6 +900,8 @@
         grid-template-columns: 1fr;
         gap: 36px;
       }
+      .audience-header { align-items: center; text-align: center; }
+      .audience-mascot { max-width: 440px; margin-top: 16px; }
       .author-inner {
         grid-template-columns: 1fr;
         gap: 28px;
@@ -957,7 +959,7 @@
               Sua integração com o WhatsApp vai precisar de <span class="mark">ajuste em 2026</span>.
             </h1>
             <p class="hero-sub">O playbook da Cxpress explica o quê, quando e como.</p>
-            <p class="hero-body">BSUID e Usernames entram em vigor ao longo de 2026. Integrações com CRM, fluxos de automação e links de captação são afetados — e a janela para se preparar está aberta agora.</p>
+            <p class="hero-body">BSUID e Usernames entram em vigor ao longo de 2026. Integrações com CRM, fluxos de automação e links de captação são afetadas. A janela de preparação está aberta.</p>
             <div class="hero-actions">
               <a href="#form" class="btn btn-primary">
                 Baixar o playbook
@@ -978,11 +980,11 @@
             <div class="pbook">
               <div class="pbook-top">
                 <div class="pbook-label">Playbook Cxpress</div>
-                <div class="pbook-edition">Edição 2026 — Operações WhatsApp</div>
+                <div class="pbook-edition">Edição 2026 · Operações WhatsApp</div>
               </div>
               <div class="pbook-main">
                 <div class="pbook-title">WhatsApp</div>
-                <div class="pbook-year">20<em>2</em>6</div>
+                <div class="pbook-year">2026</div>
                 <div class="pbook-subtitle">O que muda na API, quando e como adaptar sua operação antes dos prazos obrigatórios.</div>
               </div>
               <div class="pbook-bottom">
@@ -1000,7 +1002,7 @@
       <div class="container">
         <div class="changes-header">
           <span class="section-label">O que muda</span>
-          <h2 class="section-h2">Três pontos que a maioria das operações ainda não mapeou</h2>
+          <h2 class="section-h2">3 pontos que a maioria das operações ainda não viu</h2>
         </div>
         <ul class="changes-list">
           <li class="change-item">
@@ -1010,7 +1012,7 @@
                 <line x1="18" y1="6" x2="6" y2="18"/>
               </svg>
             </span>
-            <p class="change-text">Seu CRM usa o número de telefone como chave de contato. O WhatsApp vai mudar o identificador padrão — e integrações não atualizadas param de funcionar corretamente.</p>
+            <p class="change-text">Seu CRM usa o número de telefone como chave de contato. O WhatsApp vai trocar esse identificador padrão, e integrações não atualizadas param de funcionar.</p>
           </li>
           <li class="change-item">
             <span class="change-icon" aria-hidden="true">
@@ -1019,7 +1021,7 @@
                 <line x1="18" y1="6" x2="6" y2="18"/>
               </svg>
             </span>
-            <p class="change-text">Quando um cliente troca de número, o histórico some. Com a mudança de BSUID, isso tem solução — mas só se a integração for ajustada antes.</p>
+            <p class="change-text">Quando um cliente troca de número, o histórico some. A mudança de BSUID resolve isso, desde que a integração seja ajustada antes.</p>
           </li>
           <li class="change-item">
             <span class="change-icon" aria-hidden="true">
@@ -1028,16 +1030,9 @@
                 <line x1="18" y1="6" x2="6" y2="18"/>
               </svg>
             </span>
-            <p class="change-text">Links e QR codes de captação criados hoje precisarão de atualização quando os Usernames forem ativados. Quem tem campanhas ativas descobre isso no pior momento.</p>
+            <p class="change-text">Links e QR codes de captação criados hoje vão precisar de atualização quando os Usernames forem ativados. Quem tem campanha no ar descobre isso no pior momento.</p>
           </li>
         </ul>
-        <div class="changes-closing">
-          <p class="changes-closing-text">Não é uma mudança que chega com aviso pop-up. Chega como incidente de produção para quem não se preparou.</p>
-          <a href="#form" class="btn btn-accent">
-            Baixar o playbook
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -1046,38 +1041,38 @@
       <div class="container">
         <div class="covers-header">
           <span class="section-label">O que o playbook cobre</span>
-          <h2 class="section-h2">Seis seções, do cronograma ao checklist de preparação</h2>
+          <h2 class="section-h2">6 seções, do cronograma ao checklist</h2>
         </div>
         <div class="covers-grid">
           <article class="cover-card">
             <span class="cover-number">01</span>
             <h3 class="cover-title">O que são BSUID e Usernames</h3>
-            <p class="cover-body">O que muda na estrutura da API e por que afeta quem usa o WhatsApp como canal de atendimento ou vendas.</p>
+            <p class="cover-body">O que muda na API e por que afeta quem usa o WhatsApp para atender ou vender.</p>
           </article>
           <article class="cover-card">
             <span class="cover-number">02</span>
             <h3 class="cover-title">Cronograma oficial 2026</h3>
-            <p class="cover-body">Q1 a Q4: o que está disponível, o que é opcional, o que passa a ser obrigatório e quando.</p>
+            <p class="cover-body">Do Q1 ao Q4: o que está disponível, o que é opcional, o que vira obrigatório e em que mês.</p>
           </article>
           <article class="cover-card">
             <span class="cover-number">03</span>
             <h3 class="cover-title">O que muda na prática</h3>
-            <p class="cover-body">Atendimento, CRM e processo de vendas — o impacto concreto em cada área.</p>
+            <p class="cover-body">O impacto real em atendimento, CRM e processo de vendas.</p>
           </article>
           <article class="cover-card">
             <span class="cover-number">04</span>
             <h3 class="cover-title">Qual o impacto na sua operação</h3>
-            <p class="cover-body">Como o efeito varia dependendo de como a empresa opera hoje: App, API direta ou plataforma omnichannel.</p>
+            <p class="cover-body">Como o efeito muda se sua empresa opera via App, via API direta ou plataforma omnichannel.</p>
           </article>
           <article class="cover-card">
             <span class="cover-number">05</span>
             <h3 class="cover-title">Como aproveitar as mudanças</h3>
-            <p class="cover-body">BSUID como base para histórico real do cliente. Usernames como upgrade no processo de captação.</p>
+            <p class="cover-body">BSUID vira base para o histórico real do cliente. Usernames são upgrade no processo de captação.</p>
           </article>
           <article class="cover-card">
             <span class="cover-number">06</span>
             <h3 class="cover-title">Checklist de preparação</h3>
-            <p class="cover-body">Cinco passos com ordem certa para adaptar a operação antes dos prazos obrigatórios.</p>
+            <p class="cover-body">5 passos, na ordem certa, para ajustar a operação antes dos prazos obrigatórios.</p>
           </article>
         </div>
       </div>
@@ -1089,6 +1084,7 @@
         <div class="audience-inner">
           <div class="audience-header">
             <span class="section-label">Para quem é</span>
+            <img src="../../brand/cxpress/assets/mascot/samir-laptop.png" alt="Samir, mascote da Cxpress, trabalhando no laptop" class="audience-mascot" width="320" height="320" loading="lazy">
           </div>
           <ul class="audience-list">
             <li class="audience-item">
@@ -1113,25 +1109,9 @@
                   <polyline points="4 12 10 18 20 6"/>
                 </svg>
               </span>
-              <p class="audience-text">Empresas que preferem mapear o problema antes de encontrá-lo em produção</p>
+              <p class="audience-text">Empresas que preferem antecipar o problema, em vez de descobrir em produção</p>
             </li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUEM PREPAROU -->
-    <section class="author reveal">
-      <div class="container">
-        <div class="author-inner">
-          <div class="author-visual">
-            <img src="../../brand/cxpress/assets/logos/logo-icon.png" alt="Cxpress — mascote Samir" width="140" height="140">
-          </div>
-          <div class="author-text">
-            <span class="section-label">Quem preparou</span>
-            <h2>Preparado pela Cxpress</h2>
-            <p>Plataforma omnichannel com API oficial do WhatsApp. Acompanhamos as atualizações do Meta e ajudamos PMEs a estruturar o atendimento sem depender de remendos.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1142,7 +1122,7 @@
         <div class="cta-final-inner">
           <h2>Baixe o playbook gratuito</h2>
           <p class="cta-final-sub">Sem spam. Sem curso por trás. Só o mapa do que está mudando e o que fazer antes que mude.</p>
-          <form class="form" action="#" method="post" onsubmit="event.preventDefault(); this.querySelector('.form-submit').textContent = 'Enviado — em breve no seu e-mail';" novalidate>
+          <form class="form" action="#" method="post" onsubmit="event.preventDefault(); this.querySelector('.form-submit').textContent = 'Enviado, em breve no seu e-mail';" novalidate>
             <div class="form-field">
               <label for="field-nome">Nome <span class="required" aria-hidden="true">*</span></label>
               <input type="text" id="field-nome" name="nome" required placeholder="Seu nome" autocomplete="name">
@@ -1164,11 +1144,30 @@
         </div>
       </div>
     </section>
+
+    <!-- MATERIAL PRODUZIDO -->
+    <section class="author reveal">
+      <div class="container">
+        <div class="author-inner">
+          <div class="author-visual">
+            <img src="../../brand/cxpress/assets/mascot/samir-sticker.png" alt="Samir, mascote da Cxpress" width="180" height="180">
+          </div>
+          <div class="author-text">
+            <h2>Material produzido pela Cxpress</h2>
+            <p>Plataforma omnichannel com API oficial do WhatsApp. Se você quer ver como funciona no seu atendimento, agende uma demonstração.</p>
+            <a href="https://home.cxpress.io/atendimento-omnicanal-whatsapp?utm_source=material-rico&utm_content=lp-playbook-wpp2026" class="btn btn-primary author-cta" target="_blank" rel="noopener">
+              Agendar demonstração
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <img src="../../brand/cxpress/assets/logos/logo-reversed.png" alt="Cxpress" class="footer-logo" width="130" height="30">
+      <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" class="footer-logo" width="130" height="30">
       <div class="footer-meta">
         <span>© 2026 Cxpress. Todos os direitos reservados.</span>
         <a href="https://home.cxpress.io" target="_blank" rel="noopener noreferrer">home.cxpress.io</a>

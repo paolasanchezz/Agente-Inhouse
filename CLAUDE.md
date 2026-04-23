@@ -90,6 +90,14 @@ Funcionam sem setup adicional.
 
 Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam funcionando para quem ja tem pratica.
 
+### Entrega (commit + PR)
+
+Ao final das alteracoes, rode `/commit` para entregar ao Victor revisar. A skill cria branch nova, commita, faz push e abre pull request automaticamente. **Nunca commita em main.**
+
+| Comando | O que faz |
+|---|---|
+| `/commit` | Cria branch `claude/{slug}`, commita, push e abre PR pra main. Sem args — totalmente automatico. Primeira vez requer `gh auth login` (skill guia). |
+
 ### Newsletters
 Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
 

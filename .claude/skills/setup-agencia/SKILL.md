@@ -3,7 +3,7 @@ name: setup-agencia
 description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, configurar token Meta) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
 argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so meta ads' | /setup-agencia 'so copy e newsletter'"
 allowed-tools: AskUserQuestion, Read, Bash, Glob
-version: 0.1.0
+version: 0.2.0
 ---
 
 # Skill: /setup-agencia — Setup guiado para newbies
@@ -321,6 +321,8 @@ Exiba (substitua os ✓/✗ conforme o estado real):
 > - `/newsletter` — newsletters
 > - `/traduzir` — traducao PT-PT / ES-LATAM
 > - `/anuncios` — analise de Meta Ads
+>
+> **Quando terminar alteracoes:** rode `/commit` — ele cria uma branch, commita e abre um Pull Request pro Victor revisar. Nunca commita em main.
 >
 > **Quando o token expirar** (em ~60 dias), voce vai ver `[AVISO] Token Meta Ads expira em N dia(s)` ao rodar `/anuncios`. Quando aparecer, repita o Passo 1 deste setup ou veja `meta-ads/SETUP.md` (passo "Renovacao").
 >

@@ -16,6 +16,11 @@
         "path": "logos/logo-icon.svg",
         "format": "svg",
         "usage": "Favicon, avatar, espacos reduzidos"
+      },
+      "vertical": {
+        "path": "logos/logo-vertical.svg",
+        "format": "svg",
+        "usage": "Variante vertical — hero centrado, apps, redes sociais quadradas"
       }
     },
     "patterns": {}

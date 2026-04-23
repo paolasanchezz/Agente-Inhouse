@@ -235,11 +235,10 @@ Samir e um **sagui**, primata brasileiro pequeno e expressivo. E o personagem da
 | Arquivo | Pose | Uso ideal |
 |---|---|---|
 | `samir-laptop.png` | Sagui com headset trabalhando no laptop | Hero de LP sobre atendimento, sessao de features de ticketing |
-| `samir-joinha.png` | De pe, polegar para cima | Confirmacao de sucesso, pos-conversao, CTA positivo |
-| `samir-trabalhando.png` | Em postura de trabalho | Secao "Como funciona", onboarding |
-| `samir-dashboard.png` | Com dashboard/interface | Features analiticas, relatorios |
-| `samir-balao.png` | Com balao de fala | Chat, comunicacao, atendimento conversacional |
-| `samir-sticker.png` | Pose limpa para sticker | Elementos avulsos, decoracao de email, assinatura |
+| `samir-joinha.png` | Close-up com polegar para cima | Confirmacao de sucesso, pos-conversao, CTA positivo |
+| `samir-trabalhando.png` | Com headset segurando um coracao | Secao sobre relacionamento/cuidado com cliente, CSAT, depoimentos |
+| `samir-dashboard.png` | Com headset apontando para dashboard | Features analiticas, relatorios |
+| `samir-sticker.png` | Pose limpa de corpo inteiro, hoodie Cxpress | Elementos avulsos, decoracao de email, assinatura, avatar |
 
 **Regras de uso do mascote:**
 - Samir e opcional — nao obrigatorio em todo material. Usar quando for acrescentar calor humano, nao como preenchimento visual.

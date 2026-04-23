@@ -100,6 +100,33 @@ Wrapper para embed (quando chegar a hora):
 
 Logo em hero/CTA: **pode ser grande se for transparente** (SVG com fundo transparente). PNG com fundo branco fica pequeno ou vira "adesivo". Regra: logo respira se o formato permite.
 
+## 11. Favicon — PNG do brand, path absoluto
+
+Toda LP **tem que ter** favicon. Padrão único, sem variação:
+
+**No source (repo):**
+```html
+<link rel="icon" type="image/png" href="../../brand/{marca}/assets/logos/logo-icon.png" />
+```
+
+**No sibling/deploy (após `lp-publicar`):**
+```html
+<link rel="icon" type="image/png" href="/assets/logos/logo-icon.png" />
+```
+
+Regras:
+- **Um link só.** Não adicionar `apple-touch-icon` duplicado nem `<link rel="icon" type="image/svg+xml">`.
+- **Usar `logo-icon.png` do brand** (~13KB). Nunca os SVGs de `brand/{marca}/assets/logos/*.svg` — são auto-traceados, pesam 100KB+ e Edge/Chrome rejeitam em silêncio (aparece globinho genérico).
+- **Path absoluto com `/` inicial no deploy.** Relativo (`favicon.png`) **quebra** porque `vercel.json` usa `cleanUrls: true` + `trailingSlash: false` — o browser resolve URL sem barra como se o último segmento fosse arquivo, e busca no root do domínio em vez da subrota.
+- Não criar `favicon.png`/`favicon.svg` na pasta da LP. Sempre apontar pro `logo-icon.png` que já existe no brand.
+
+**Validar pós-deploy:**
+```bash
+curl -I https://{dominio}/assets/logos/logo-icon.png  # deve dar 200
+```
+
+Se vier 404, a skill `lp-publicar` não copiou o `logo-icon.png` pro `assets/logos/` da sibling — checar antes de fechar.
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.

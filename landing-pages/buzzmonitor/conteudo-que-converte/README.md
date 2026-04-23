@@ -21,7 +21,7 @@ Logos são referenciados por caminho relativo (`../../brand/buzzmonitor/assets/l
 - **Tracking:** adicionar GA4 / Pixel / UTM handling conforme a stack do time.
 - **Fonte HK Grotesk:** fallback `Manrope` está em uso (HK Grotesk é comercial, não está no Google Fonts). Se o time tiver licença, trocar o `@font-face`/`<link>`.
 - **OG image:** faltando — gerar peça social e adicionar `<meta property="og:image">`.
-- **Favicon:** ausente — adicionar quando tiver asset definitivo.
+- **Favicon:** `favicon.svg` + `favicon.png` (mascote Buzzmonitor — `logo-icon` do brand).
 
 ## Decisões de design
 

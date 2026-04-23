@@ -31,7 +31,7 @@
 
 - `../../brand/cxpress/assets/logos/logo-primary.svg` (header)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon + secao Quem Preparou)
-- `../../brand/cxpress/assets/logos/logo-reversed.png` (footer)
+- `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - Google Fonts: Open Sans 400/600/700/800, Source Sans 3 400/500/600, Bitter 400/600
 
 ## GTM
