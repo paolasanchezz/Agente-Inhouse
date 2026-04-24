@@ -35,8 +35,11 @@ env/
 # Git worktrees (checkouts temporarios de outras branches)
 .claude/worktrees/
 
+# Permissoes pessoais do Claude Code (cada colaborador tem as suas)
+.claude/settings.local.json
+
 # Runtime lockfile do MCP de tarefas agendadas
 .claude/scheduled_tasks.lock
 
-# Dados temporarios de /pull-request-review (JSON da API + patches). Relatorios .md ficam versionados.
-reviews/.tmp/
+# Relatorios locais de /pull-request-review (JSON da API, patches e .md). Artefatos pessoais, nao versionar.
+reviews/
