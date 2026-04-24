@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -39,13 +39,18 @@ Leia, na ordem:
 6. `brand/{marca}/tracking.json` — GTM container id por regiao. Se o arquivo nao existir ou o id for `null`, pular injecao de GTM.
 7. `ls brand/{marca}/assets/logos/` via Glob — inventariar logos disponiveis (primary, reversed, mark-only).
 
-### Resolver GTM ID
+### Resolver regiao e GTM ID
 
-Se `tracking.json` existe e esta preenchido, resolver nesta ordem:
+Detectar regiao pela cascata (ver CONTEXT.md "Deteccao de regiao"):
 
-1. Se a LP tem regiao explicita (do briefing ou do CTX regional) e `gtm.regions[{regiao}]` != null → usar esse ID.
-2. Senao, usar `gtm.default`.
-3. Se ambos forem `null`, nao injetar GTM — anotar em "Assets referenciados" do README que GTM nao foi injetado.
+1. Sufixo do `{slug}`: `-pt` → portugal, `-latam`/`-es` → latam, `-br` → brasil.
+2. Se ainda nao resolvido, `lp-gerar` esta criando a LP do zero (sem HTML ainda) — usar default `brasil`.
+
+Com a regiao em maos, resolver GTM ID em `tracking.json`:
+
+1. `regions[{regiao}]` != null → usar.
+2. Senao, `gtm.default`.
+3. Ambos null → omitir (anotar em README que GTM nao foi injetado).
 
 ## Passo 2: Mapear Copy para Estrutura Visual
 

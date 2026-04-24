@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Revisar Landing Page
@@ -67,6 +67,66 @@ Unifique as 2 listas. Deduplicate (se os dois auditores pegaram o mesmo problema
 - CRITICOS (apply now)
 - MELHORIAS (marcar em REVISAO.md, nao aplicar)
 - NICE-TO-HAVES (marcar em REVISAO.md, nao aplicar)
+
+## Passo 3.5: Auditoria de GTM (CRITICO)
+
+### Resolver regiao (cascata)
+
+Ver CONTEXT.md "Deteccao de regiao":
+
+1. Sufixo do slug: `-pt` → portugal, `-latam`/`-es` → latam, `-br` → brasil.
+2. `<html lang>` do index.html: `pt-PT` → portugal, `es-*` → latam, `pt-BR` → brasil.
+3. Fallback: `brasil`.
+
+### Resolver GTM esperado
+
+Ler `brand/{marca}/tracking.json`:
+
+```
+expected_gtm_id = gtm.regions[{regiao}] || gtm.default || null
+```
+
+### Auditar HTML
+
+Grep em `landing-pages/{marca}/{slug}/index.html` por `GTM-` (script no `<head>` e `<noscript>` apos `<body>`). Comparar com `expected_gtm_id`:
+
+| Estado no HTML | expected_gtm_id | Severidade | Acao |
+|---|---|---|---|
+| Ausente | != null | CRITICO | Injetar script + noscript com ID correto |
+| Presente, ID bate | != null | OK | Nenhuma |
+| Presente, ID diferente | != null | CRITICO | Substituir ID nos 2 blocos |
+| Presente (qualquer ID) | null | MELHORIA | Anotar em REVISAO.md — `tracking.json` da marca esta null mas LP tem GTM |
+| Ausente | null | OK | Nenhuma |
+
+### Snippet canonico para injetar (se ausente)
+
+No `<head>`, apos `<meta name="viewport">` e antes de `<title>`:
+
+```html
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{GTM_ID}');</script>
+<!-- End Google Tag Manager -->
+```
+
+Imediatamente apos `<body>`:
+
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+```
+
+Substituir `{GTM_ID}` pelo valor resolvido (ex: `GTM-NCFT22CW`). Para substituir ID errado, usar `Edit` com `replace_all` no ID antigo → novo (pega os 2 lugares numa operacao).
+
+Registrar o achado com os demais criticos para aplicacao no Passo 4. Formato sugerido:
+
+- `GTM ausente para {marca}/{regiao} (esperado {expected_gtm_id}) — injetar script em <head> e noscript apos <body>`
+- `GTM com ID errado: encontrado {found_id}, esperado {expected_gtm_id} para {marca}/{regiao}`
 
 ## Passo 4: Aplicar Criticos
 

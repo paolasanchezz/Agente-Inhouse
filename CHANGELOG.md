@@ -47,6 +47,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 - Nenhum passo de setup adicional foi introduzido — `/commit` v2.0.0 funciona com a credencial do Git Credential Manager que todos já têm do clone HTTPS.
 
 ## landing-page (advisor) + familia lp-*
+### 1.3.0 — 2026-04-23
+- `lp-revisar` (v1.1.0): novo **Passo 3.5 — Auditoria de GTM (CRITICO)**. Resolve regiao via cascata (sufixo slug `-pt`/`-latam`/`-br` → `<html lang>` → fallback `brasil`), resolve GTM esperado em `tracking.json` e audita os 2 snippets no HTML. GTM ausente ou com ID errado vira CRITICO e eh corrigido automaticamente no Passo 4; caso "tracking.json null mas LP tem GTM" vira MELHORIA em `REVISAO.md`.
+- `lp-gerar` (v1.2.0): Passo 1 agora detecta regiao explicitamente por cascata (sufixo slug → fallback `brasil`). Antes dependia de "briefing ou CTX regional", sem mecanismo deterministico — motivo pelo qual LPs PT recebiam GTM BR.
+- `lp-integrar-form`: nota em `## Notas` delega auditoria de GTM para `lp-revisar` (Passo 3.5). Skill continua focada so em trocar form mock por embed real, sem auditoria duplicada.
+- **Tracking.json atualizado com IDs reais por regiao:**
+  - Buzzmonitor: BR `GTM-WFJVK858` (ja existia), LATAM `GTM-MKQBX2MG` (novo), PT `GTM-NCFT22CW` (novo).
+  - Cxpress: BR `GTM-T4XDWHL3`, LATAM `GTM-WRQ47B9R`, PT `GTM-NW6V5KBM` (antes tudo `null`).
+- **Cascata de deteccao de regiao documentada em CONTEXT.md:** sufixo do slug → `<html lang>` → fallback `brasil`. Fonte unica usada por `lp-gerar` e `lp-revisar`.
+- **Fix:** LP `buzzmonitor/monitoramento-concorrentes-maio-2026-pt` estava com GTM BR (`GTM-WFJVK858`) em vez de PT (`GTM-NCFT22CW`) — bug causado pela regiao implicita antes desta versao. Trocado nos 2 lugares (script e noscript).
+
 ### 1.2.0 — 2026-04-20
 - `lp-gerar` (v1.1.0): injeta automaticamente **Google Tag Manager** no HTML gerado, lendo o container id de `brand/{marca}/tracking.json` (`gtm.regions[{regiao}]` > `gtm.default`; se ambos `null`, omite).
 - Novo arquivo canonico **`brand/{marca}/tracking.json`** — schema `tracking/v1` com `gtm.default` + `gtm.regions.{brasil,latam,portugal}`. Buzzmonitor preenchido (`GTM-WFJVK858` cobre BR/LATAM/PT); Cxpress/Buzzcreators/Elife ficam como stubs `null` ate IDs oficiais.

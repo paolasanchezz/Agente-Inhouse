@@ -36,4 +36,4 @@
 
 ## GTM
 
-Nao injetado (brand/cxpress/tracking.json retorna null). Quando disponivel, atualizar tracking.json e re-gerar.
+Injetado: `GTM-T4XDWHL3` (Cxpress Brasil — resolvido via cascata `<html lang="pt-BR">` + `brand/cxpress/tracking.json` `regions.brasil`). Script no `<head>` e `<noscript>` apos `<body>`.

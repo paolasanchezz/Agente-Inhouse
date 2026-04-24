@@ -107,3 +107,4 @@ Proximo: /lp-publicar {marca} {slug} [dominio]
 - Nao validar o snippet (nao fazer HTTP request para ver se URL e valida — risco de bloquear por CSP ou timeout).
 - Nao configurar CSP automaticamente — embeds externos + CSP estrito e complicado, deixar para ajuste manual caso usuario queira endurecer.
 - Se o usuario quiser reverter: `Edit` manual (trocar wrapper por `<form action="#" onsubmit="event.preventDefault()">` novamente).
+- GTM e responsabilidade de `lp-revisar` (Passo 3.5). Se a LP nao foi revisada antes, rode `/lp-revisar {marca}/{slug}` — ele injeta/corrige o snippet certo para marca+regiao.

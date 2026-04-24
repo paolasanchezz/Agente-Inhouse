@@ -254,7 +254,9 @@
       "Bash(git credential *)",
       "Bash(grep -v '^\\\\.$\\\\|^\\\\.\\\\.$')",
       "Bash(set -e)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Skill(commit)",
+      "Skill(commit:*)"
     ]
   }
 }

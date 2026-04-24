@@ -82,6 +82,16 @@ Ao gerar ou revisar LP, carregar:
 
 Resolucao: `regions[{regiao}]` > `default` > omitir GTM. `lp-gerar` injeta no HTML; `lp-revisar` audita se o snippet esta presente quando esperado.
 
+### Deteccao de regiao (cascata)
+
+Usada por `lp-gerar` e `lp-revisar` para resolver `regions[{regiao}]`:
+
+1. Sufixo do slug: `-pt` → portugal, `-latam` ou `-es` → latam, `-br` → brasil.
+2. `<html lang>` do index.html (quando ele ja existe): `pt-PT` → portugal, `es-*` → latam, `pt-BR` → brasil.
+3. Fallback: `brasil`.
+
+O primeiro criterio que resolver ganha. A regiao detectada alimenta o lookup de `tracking.json`.
+
 ## Guidelines e anti-IA
 
 | Arquivo | Quando carregar |

@@ -1,12 +1,12 @@
 {
   "$schema": "tracking/v1",
   "gtm": {
-    "default": null,
+    "default": "GTM-T4XDWHL3",
     "regions": {
-      "brasil": null,
-      "latam": null,
-      "portugal": null
+      "brasil": "GTM-T4XDWHL3",
+      "latam": "GTM-WRQ47B9R",
+      "portugal": "GTM-NW6V5KBM"
     },
-    "notes": "TODO: preencher com o container GTM da Cxpress quando disponivel. Enquanto estiver null, lp-gerar nao injeta GTM."
+    "notes": "Containers distintos por regiao. Fallback default = BR."
   }
 }
