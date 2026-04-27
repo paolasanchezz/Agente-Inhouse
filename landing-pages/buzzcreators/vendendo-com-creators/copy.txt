@@ -1,0 +1,92 @@
+=== HOOK ===
+H2: Transforme campanhas com influenciadores em um canal de vendas
+BODY: Suas campanhas com influenciadores geram alcance e engajamento, mas não geram vendas?
+BODY: É o padrão da marca que escolhe creator no feeling, mede sucesso por curtida e trata cada campanha como ação isolada.
+BODY: Mas dá pra fazer diferente.
+
+=== HERO ===
+OVERLINE: Evento presencial gratuito
+H1: Vendendo com Creators: Como transformar influência em dados, recorrência e canal de receita
+LABEL: 20 de Maio · 14h às 18h · São Paulo · [X] vagas presenciais
+CTA: QUERO PARTICIPAR
+
+=== PROBLEMA ===
+H2: Por que a maioria das marcas ainda não vende com creators?
+LIST ITEM: Escolhem creator pelo número de seguidor, não pelo perfil de quem segue
+LIST ITEM: Medem campanha por curtida
+LIST ITEM: Não reaproveitam no próximo briefing o que funcionou no anterior
+LIST ITEM: Tratam cada campanha como evento isolado, sem narrativa de marca
+BODY: Resultado: muito esforço, zero previsibilidade.
+
+=== BENEFICIOS ===
+H2: O que você sai sabendo depois dessa tarde
+LIST ITEM: Como transformar influenciadores em um canal de vendas
+LIST ITEM: Como sair de campanhas isoladas para um modelo de crescimento contínuo
+LIST ITEM: Como usar dados para entender o que realmente gera receita
+LIST ITEM: Como criar recorrência com creators sem depender de negociações constantes
+LIST ITEM: Como conectar influência + conteúdo + performance em uma estratégia única
+LIST ITEM: Como medir ROI de influência de forma clara
+
+=== SPEAKER ===
+H2: Quem conduz a conversa?
+LABEL: [NOME DO MENTOR] — [cargo / posição atual]
+BODY: [1-2 frases sobre autoridade: anos no mercado, marcas que conduziu, número que prova o método. Manter o tom direto. Sem listas de prêmios — autodepreciação leve permitida.]
+BODY: [Foto opcional, recortada em proporção quadrada/3:4]
+
+=== PROVA ===
+H2: Por que confiar no método
+BODY: O Buzzcreators é a plataforma de media e influencer marketing do Grupo Elife. O que apresentamos no evento é o método que já roda nessa escala:
+LIST ITEM: 1.000+ marcas usam a plataforma globalmente
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agências parceiras
+LIST ITEM: Microinfluenciadores na nossa base entregam ROI 3x maior e 60% mais engajamento do que macros — e é desse perfil que sai a maior parte das campanhas que vendem
+
+=== CTA INTERMEDIARIO ===
+H2: Quando você faz do jeito certo, deixa de "testar" e começa a lucrar.
+LABEL: 20 de Maio · 14h às 18h · São Paulo · Vagas limitadas
+CTA: QUERO PARTICIPAR
+
+=== PARA QUEM ===
+H2: Pra quem é esse evento?
+LIST ITEM: Gestores de marketing e growth
+LIST ITEM: Profissionais de performance e mídia
+LIST ITEM: Times de social media e branding
+LIST ITEM: Agências que operam campanhas com creators
+LIST ITEM: Marcas cansadas de pagar influência sem ver venda
+
+=== URGENCIA ===
+H2: Se você não agir agora, vai continuar investindo em influência sem saber exatamente o que está trazendo retorno.
+BODY: E enquanto isso, outras marcas já estão:
+LIST ITEM: Aprendendo mais rápido
+LIST ITEM: Otimizando melhor
+LIST ITEM: Escalando o que funciona
+
+=== CTA FINAL ===
+H2: Quatro horas presenciais sobre o que separa influência que viraliza de influência que vende.
+FORM: [mock — integração real via /lp-integrar-form com Jotform 260213440661648]
+
+# === REVISAO ANTI-IA (conservadora — apenas sugestoes) ===
+#
+# [SUGESTAO anti-IA] Em-dash detectado em "[NOME DO MENTOR] — [cargo / posição atual]" (secao SPEAKER).
+#   Regras anti-IA pedem 0 em-dash. Substituir por virgula ou ponto.
+#   Alternativa: "[NOME DO MENTOR], [cargo / posição atual]" ou "[NOME DO MENTOR]. [cargo / posição atual]"
+#
+# [SUGESTAO anti-IA] Em-dash detectado em "Sem listas de prêmios — autodepreciação leve permitida." (briefing SPEAKER).
+#   Sugestao: "Sem listas de prêmios. Autodepreciação leve permitida." (briefing interno, baixo impacto)
+#
+# [SUGESTAO anti-IA] Em-dash detectado em "macros — e é desse perfil que sai a maior parte das campanhas que vendem" (PROVA).
+#   Sugestao: trocar por ponto ou virgula. Ex: "macros. E é desse perfil..." ou "macros, e e desse perfil..."
+#
+# [SUGESTAO brand] Artigo gramatical da marca (PROVA): "A Buzzcreators é a plataforma..."
+#   Brandbook Buzzcreators trata a marca como MASCULINO em PT-BR/PT-PT: "o Buzzcreators".
+#   Sugestao: "O Buzzcreators é a plataforma de media e influencer marketing do Grupo Elife."
+#   E reflexo: "marcas usam a plataforma" -> "marcas usam o Buzzcreators globalmente"
+#   (este ponto e CRITICO de marca, recomendado aplicar antes de gerar HTML)
+#
+# [SUGESTAO opcional] "creator no feeling" (HOOK).
+#   "Feeling" como ornamento e suspeito anti-IA. Aqui e expressao coloquial PT-BR valida ("no feeling" = "no instinto").
+#   Pode manter — apenas registrado para revisao consciente.
+#
+# [PLACEHOLDERS pendentes] [X] vagas presenciais, [NOME DO MENTOR], [cargo], [foto opcional]
+#   Sao placeholders de copy que precisam ser preenchidos antes de publicar.
+#   /lp-gerar vai renderizar os placeholders como esta. Substituir antes do deploy ou marcar como pendencia em REVISAO.md.
