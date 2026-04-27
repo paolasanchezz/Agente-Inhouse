@@ -129,11 +129,15 @@ cada funcionalidade da plataforma:
 | ERRADO | CORRETO |
 |---|---|
 | BuzzMonitor | Buzzmonitor |
+| o Buzzmonitor / do Buzzmonitor | a Buzzmonitor / da Buzzmonitor |
+| no Buzzmonitor / pelo Buzzmonitor / ao Buzzmonitor | na Buzzmonitor / pela Buzzmonitor / à Buzzmonitor |
 | Respostas Inteligentes | Smart Replies |
 | Insights de IA | AI Insights |
 | Pilulas Buzz | Buzz Pills |
 | BuzzGPT | Buzz GPT |
 | SAC2.0 | SAC 2.0 |
+
+> **Artigo gramatical**: ver secao 6 "Adaptacao por Regiao" para regra completa. Resumo: em portugues, sempre **feminino** ("a Buzzmonitor"); em espanhol, **sem artigo** ("Buzzmonitor analiza...").
 
 ### Diferenciais-Chave
 1. Plataforma integrada (listening + atendimento + analytics em um so lugar)
@@ -296,6 +300,28 @@ Podem ser usadas como backgrounds decorativos, separadores ou elementos de layou
 ---
 
 ## 6. Adaptacao por Regiao
+
+### Artigo gramatical (universal — PT-BR e PT-PT)
+
+**Buzzmonitor e tratada como substantivo feminino em ambas as variantes do portugues** (subentende-se "a plataforma" / "a empresa" / "a marca"). Aplicar em copy, traducao, newsletter, ad, landing page, blog, roteiro de video — qualquer conteudo escrito que mencione a marca.
+
+| Correto | Errado |
+|---|---|
+| a Buzzmonitor | o Buzzmonitor |
+| da Buzzmonitor | do Buzzmonitor |
+| à Buzzmonitor | ao Buzzmonitor |
+| pela Buzzmonitor | pelo Buzzmonitor |
+| na Buzzmonitor | no Buzzmonitor |
+
+**Exemplos canonicos:**
+- "A Buzzmonitor analisou 50 mil mencoes em 3 minutos."
+- "Marque uma demonstracao gratuita com a Buzzmonitor."
+- "Veja como o social listening da Buzzmonitor pode ajudar."
+- "Fale com a equipa da Buzzmonitor."
+
+### Artigo em ES-LATAM
+
+Em espanhol, marcas tecnologicas LATAM geralmente vao **sem artigo**: "Buzzmonitor analiza...", nao "el/la Buzzmonitor analiza...". Quando o artigo for obrigatorio na construcao da frase (raro), preferir feminino "la" por consistencia com o portugues.
 
 ### PT-BR (Brasil)
 - Tom mais proximo e coloquial, uso de "voce"

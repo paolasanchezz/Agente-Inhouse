@@ -104,6 +104,10 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 | BuzzCreators | Buzzcreators |
 | Buzz Creators | Buzzcreators |
 | buzz creators | Buzzcreators |
+| a Buzzcreators / da Buzzcreators | o Buzzcreators / do Buzzcreators |
+| na Buzzcreators / pela Buzzcreators / à Buzzcreators | no Buzzcreators / pelo Buzzcreators / ao Buzzcreators |
+
+> **Artigo gramatical**: ver secao 6 "Adaptacao por Regiao" para regra completa. Resumo: em portugues, sempre **masculino** ("o Buzzcreators"); em espanhol, **sem artigo** ("Buzzcreators centraliza...").
 
 ### Diferenciais-Chave
 1. Unica plataforma do mercado brasileiro integrada nativamente ao Buzzmonitor (social listening + gestao de influencia no mesmo ecossistema)
@@ -213,6 +217,28 @@ Exemplo do brandbook:
 ---
 
 ## 6. Adaptacao por Regiao
+
+### Artigo gramatical (universal — PT-BR e PT-PT)
+
+**Buzzcreators e tratado como substantivo masculino em ambas as variantes do portugues** (subentende-se "o produto" / "o ecossistema" / "a marca" como produto masculino). Aplicar em copy, traducao, newsletter, ad, landing page, blog, roteiro de video — qualquer conteudo escrito que mencione a marca.
+
+| Correto | Errado |
+|---|---|
+| o Buzzcreators | a Buzzcreators |
+| do Buzzcreators | da Buzzcreators |
+| ao Buzzcreators | à Buzzcreators |
+| pelo Buzzcreators | pela Buzzcreators |
+| no Buzzcreators | na Buzzcreators |
+
+**Exemplos canonicos:**
+- "O Buzzcreators centraliza briefing, aprovacoes, entrega e pagamento num so ecra."
+- "Marque uma demonstracao gratuita com o Buzzcreators."
+- "Veja como o Buzzcreators integra nativamente com a Buzzmonitor (social listening)."
+- "Fale com a equipa do Buzzcreators."
+
+### Artigo em ES-LATAM
+
+Em espanhol, marcas tecnologicas LATAM geralmente vao **sem artigo**: "Buzzcreators conecta marcas e creators...", nao "el/la Buzzcreators conecta...".
 
 ### PT-BR (Brasil)
 - Tom mais proximo e coloquial, "voce"

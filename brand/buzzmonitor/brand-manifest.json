@@ -11,7 +11,16 @@
       "latam": "https://buzzmonitor.com/",
       "portugal": "https://buzzmonitor.com/"
     },
-    "blog": "https://buzzmonitor.com.br/blog/"
+    "blog": "https://buzzmonitor.com.br/blog/",
+    "nameUsage": {
+      "article": {
+        "pt-br": "feminino — a Buzzmonitor (subentende 'a plataforma' / 'a empresa' / 'a marca')",
+        "pt-pt": "feminino — a Buzzmonitor (subentende 'a plataforma' / 'a empresa' / 'a marca')",
+        "es-latam": "sin articulo — Buzzmonitor (no 'la/el Buzzmonitor')"
+      },
+      "correct": ["a Buzzmonitor", "da Buzzmonitor", "à Buzzmonitor", "pela Buzzmonitor", "na Buzzmonitor"],
+      "incorrect": ["o Buzzmonitor", "do Buzzmonitor", "ao Buzzmonitor", "pelo Buzzmonitor", "no Buzzmonitor"]
+    }
   },
   "voice": {
     "personality": [

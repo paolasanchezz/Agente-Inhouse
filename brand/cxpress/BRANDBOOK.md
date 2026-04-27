@@ -128,6 +128,10 @@ Derivada da comunicacao real da marca (home.cxpress.io, blog.cxpress.io, posts d
 | CX Press | Cxpress |
 | cx press | Cxpress |
 | cXpress | Cxpress |
+| o Cxpress / do Cxpress | a Cxpress / da Cxpress |
+| no Cxpress / pelo Cxpress / ao Cxpress | na Cxpress / pela Cxpress / à Cxpress |
+
+> **Artigo gramatical**: ver secao 6 "Adaptacao por Regiao" para regra completa. Resumo: em portugues, sempre **feminino** ("a Cxpress"); em espanhol, **sem artigo** ("Cxpress unifica...").
 
 ### Diferenciais-Chave
 1. API oficial do WhatsApp — nao usa WhatsApp Web, usa integracao certificada
@@ -366,6 +370,28 @@ Por que falha: tom "amiga" infantiliza (publico e gestor profissional), "REVOLUC
 ---
 
 ## 6. Adaptacao por Regiao
+
+### Artigo gramatical (universal — PT-BR e PT-PT)
+
+**Cxpress e tratada como substantivo feminino em ambas as variantes do portugues** (subentende-se "a plataforma" / "a empresa" / "a marca"). Aplicar em copy, traducao, newsletter, ad, landing page, blog, roteiro de video — qualquer conteudo escrito que mencione a marca.
+
+| Correto | Errado |
+|---|---|
+| a Cxpress | o Cxpress |
+| da Cxpress | do Cxpress |
+| à Cxpress | ao Cxpress |
+| pela Cxpress | pelo Cxpress |
+| na Cxpress | no Cxpress |
+
+**Exemplos canonicos:**
+- "A Cxpress unifica WhatsApp, e-mail, chat e voz num so painel."
+- "Marque uma demonstracao gratuita com a Cxpress."
+- "Veja como a IA da Cxpress automatiza o primeiro nivel de atendimento."
+- "Fale com a equipa da Cxpress."
+
+### Artigo em ES-LATAM
+
+Em espanhol, marcas tecnologicas LATAM geralmente vao **sem artigo**: "Cxpress unifica todos los canales...", nao "el/la Cxpress unifica...".
 
 ### PT-BR (Brasil)
 

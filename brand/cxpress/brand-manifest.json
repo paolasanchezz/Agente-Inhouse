@@ -17,7 +17,16 @@
       "latam": "https://home.cxpress.io",
       "portugal": "https://www.cxpress.pt"
     },
-    "blog": "https://blog.cxpress.io"
+    "blog": "https://blog.cxpress.io",
+    "nameUsage": {
+      "article": {
+        "pt-br": "feminino — a Cxpress (subentende 'a plataforma' / 'a empresa' / 'a marca')",
+        "pt-pt": "feminino — a Cxpress",
+        "es-latam": "sin articulo — Cxpress (no 'el/la Cxpress')"
+      },
+      "correct": ["a Cxpress", "da Cxpress", "à Cxpress", "pela Cxpress", "na Cxpress"],
+      "incorrect": ["o Cxpress", "do Cxpress", "ao Cxpress", "pelo Cxpress", "no Cxpress"]
+    }
   },
   "voice": {
     "personality": [

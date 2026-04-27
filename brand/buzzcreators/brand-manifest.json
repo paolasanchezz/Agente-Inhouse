@@ -14,6 +14,15 @@
     "blog": "https://buzzcreators.com.br/blog/",
     "contact": {
       "comercial": "comercial@buzzcreators.com.br"
+    },
+    "nameUsage": {
+      "article": {
+        "pt-br": "masculino — o Buzzcreators (subentende 'o produto' / 'o ecossistema' / 'a marca' como produto masculino)",
+        "pt-pt": "masculino — o Buzzcreators",
+        "es-latam": "sin articulo — Buzzcreators (no 'el/la Buzzcreators')"
+      },
+      "correct": ["o Buzzcreators", "do Buzzcreators", "ao Buzzcreators", "pelo Buzzcreators", "no Buzzcreators"],
+      "incorrect": ["a Buzzcreators", "da Buzzcreators", "à Buzzcreators", "pela Buzzcreators", "na Buzzcreators"]
     }
   },
   "voice": {
