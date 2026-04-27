@@ -62,5 +62,18 @@ Renderizados literalmente no HTML conforme briefing. Substituir antes do deploy:
 
 ## Próximos passos
 
-- Design aprovado pelo Victor → `/lp-integrar-form buzzcreators/vendendo-com-creators "<jotform-snippet>"` (snippet já fornecido: `https://form.jotform.com/jsform/260213440661648`)
-- Após integração → `/lp-publicar buzzcreators vendendo-com-creators`
+- [x] Form Jotform integrado (`260213440661648`)
+- [x] Publicada em `https://webinar.buzzmonitor.com/vendendo-com-creators` (sibling guarda-chuva `buzzmonitor-lp-monitoramento-concorrentes`, sem quebrar as 2 LPs Buzzmonitor existentes)
+- [ ] Preencher placeholders de copy (`[X] vagas`, `[NOME DO MENTOR]`, etc) e re-rodar publicação
+- [ ] PageSpeed manual em https://pagespeed.web.dev/
+
+## Anomalia de processo (2026-04-27)
+
+`/lp-publicar` v1.4.0 ainda assume **1 sibling = 1 projeto = 1 LP**, mas o domínio `webinar.buzzmonitor.com` segue padrão **multi-LP em projeto guarda-chuva** (uma LP por subpasta do mesmo sibling). Esta entrega foi consolidada manualmente nesse padrão:
+
+1. Source ajustado pra usar `./assets/buzzcreators/...` (LP-local com namespace de marca, evitando colisão com `/assets/logos/logo-icon.png` da Buzzmonitor).
+2. LP integrada em `buzzmonitor-lp-monitoramento-concorrentes/vendendo-com-creators/`.
+3. Re-deploy do projeto guarda-chuva (`prj_bqOBy4RXCnPFu8Fn7csQ6wzyjwb6`).
+4. Projeto Vercel novo (`buzzcreators-lp-vendendo-com-creators`) que foi criado no primeiro deploy ficou órfão — remover manualmente via Dashboard.
+
+**Followup recomendado para a skill:** documentar o padrão multi-LP guarda-chuva. O Passo 0 deveria detectar que o domínio passado já está atribuído a outro projeto e propor consolidar lá em vez de criar projeto novo. Ver `lp-publicar/SKILL.md` v1.4.0 Passo 0 e Passo 1.

@@ -35,11 +35,22 @@
 
 ## URL pública
 
-- **Live:** https://buzzcreators-lp-vendendo-com-creators-essqyku4t-elife-group.vercel.app/vendendo-com-creators
-- **Inspect (Vercel):** https://vercel.com/elife-group/buzzcreators-lp-vendendo-com-creators/BpFrQHF1BcJ4AJX2xw9b8ZV1FjAy
-- **Deployment ID:** `dpl_BpFrQHF1BcJ4AJX2xw9b8ZV1FjAy`
+- **Live:** https://webinar.buzzmonitor.com/vendendo-com-creators
+- **Inspect (Vercel):** https://vercel.com/elife-group/buzzmonitor-lp-monitoramento-concorrentes/AEmQ3GZdS1bf2ZYqnvh4FVkJzfuU
+- **Deployment ID:** `dpl_AEmQ3GZdS1bf2ZYqnvh4FVkJzfuU`
+- **Project:** `buzzmonitor-lp-monitoramento-concorrentes` (`prj_bqOBy4RXCnPFu8Fn7csQ6wzyjwb6`) — guarda-chuva Buzzmonitor que serve `webinar.buzzmonitor.com`
 
-> **Nota de segurança:** Vercel SSO Protection foi **desabilitada apenas neste projeto** (`prj_qwXzsA7qo0QPhsVyNyGDEOkAqBx6`) para permitir acesso público à LP. Default da org `elife-group` permanece com SSO ligada. Para reabilitar: PATCH `ssoProtection: { deploymentType: "all_except_custom_domains" }` ou via Dashboard → Project Settings → Deployment Protection.
+## Convivência no projeto guarda-chuva
+
+`webinar.buzzmonitor.com` é multi-LP. Esta LP coexiste com:
+- `webinar.buzzmonitor.com/monitoramento-concorrentes-maio-2026` (Buzzmonitor BR)
+- `webinar.buzzmonitor.com/monitoramento-concorrentes-maio-2026-pt` (Buzzmonitor PT)
+
+Para evitar colisão de assets (Buzzmonitor e Buzzcreators têm `logo-icon.png` com nomes iguais), os assets desta LP ficam em `/assets/buzzcreators/...` (namespace por marca) — não em `/assets/logos/...` (que é da Buzzmonitor).
+
+**Source uses LP-local paths** (`./assets/buzzcreators/X`) em vez do padrão brand (`../../brand/{marca}/assets/X`). Os arquivos físicos estão em `landing-pages/buzzcreators/vendendo-com-creators/assets/buzzcreators/`.
+
+> **Projeto Vercel separado** `buzzcreators-lp-vendendo-com-creators` (`prj_qwXzsA7qo0QPhsVyNyGDEOkAqBx6`) foi criado em deploy anterior e ficou **órfão** (sem domínio, conteúdo idêntico ao do guarda-chuva). Pode ser removido manualmente via Vercel Dashboard sem impacto. SSO Protection foi desabilitada lá (irrelevante depois da remoção).
 
 ## Assets referenciados
 
