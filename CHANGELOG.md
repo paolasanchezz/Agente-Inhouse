@@ -60,6 +60,10 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 - Nenhum passo de setup adicional foi introduzido — `/commit` v2.0.0 funciona com a credencial do Git Credential Manager que todos já têm do clone HTTPS.
 
 ## landing-page (advisor) + familia lp-*
+### 1.4.0 — 2026-04-27
+- `lp-publicar` (v1.4.0): §1.3-1.5 reescritos para suportar **assets LP-locais** além de assets do `brand/`. Antes, §1.4 só sabia copiar de `brand/{marca}/assets/` — assets em `landing-pages/{marca}/{slug}/assets/` (ex: mascot específico de uma LP) não eram copiados ao sibling, e o redeploy quebrava. Agora classifica cada referência por padrão (`../../brand/...` → brand, `./assets/...` → LP-local, `/assets/...` → checa brand primeiro, senão LP-local) e copia da origem certa. §1.5 ganhou verificação obrigatória pós-rewrite (grep por `../assets/`, `./assets/`, `../../brand/` remanescente — se sobrar, aborta).
+- **Fix:** LP `buzzmonitor/monitoramento-concorrentes-maio-2026` (BR + PT) com mascot.png 404 no live — caminho relativo `./assets/mascot.png` resolvendo para `/assets/mascot.png` (raiz vazia) por causa de `cleanUrls: true` + `trailingSlash: false` no Vercel. Path corrigido para absoluto, mascot levado pro sibling root e redeployado.
+
 ### 1.3.0 — 2026-04-23
 - `lp-revisar` (v1.1.0): novo **Passo 3.5 — Auditoria de GTM (CRITICO)**. Resolve regiao via cascata (sufixo slug `-pt`/`-latam`/`-br` → `<html lang>` → fallback `brasil`), resolve GTM esperado em `tracking.json` e audita os 2 snippets no HTML. GTM ausente ou com ID errado vira CRITICO e eh corrigido automaticamente no Passo 4; caso "tracking.json null mas LP tem GTM" vira MELHORIA em `REVISAO.md`.
 - `lp-gerar` (v1.2.0): Passo 1 agora detecta regiao explicitamente por cascata (sufixo slug → fallback `brasil`). Antes dependia de "briefing ou CTX regional", sem mecanismo deterministico — motivo pelo qual LPs PT recebiam GTM BR.

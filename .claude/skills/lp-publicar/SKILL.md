@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling isolada, deploya via Vercel CLI, adiciona dominio opcional, roda validacao PageSpeed + headers e publica relatorio final no Notion. Garante zero vazamento do repo interno.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzmonitor monitoramento-maio webinar.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Skill: Publicar Landing Page
@@ -61,28 +61,41 @@ cp "landing-pages/{marca}/{slug}/index.html" "{sibling}/{slug}/index.html"
 
 ### 1.3 Descobrir assets referenciados
 
-Grep `src=` e `url(` no index.html fonte. Capture qualquer path que:
-- Contenha `brand/{marca}/assets/` (referencia relativa `../../brand/{marca}/assets/...`)
-- OU `/assets/` (ja absoluto)
-- OU `./assets/` (relativo a raiz do site)
+Grep `src=`, `srcset=`, `href=` e `url(` no index.html fonte. Para cada referência, classificar pela origem do path:
 
-Produza lista de filenames unicos.
+| Padrão no source | Vem do disco em | Vai para no deploy |
+|---|---|---|
+| `../../brand/{marca}/assets/X` | `brand/{marca}/assets/X` | `/assets/X` |
+| `./assets/X` | `landing-pages/{marca}/{slug}/assets/X` | `/assets/X` |
+| `/assets/X` (já absoluto) | checar `brand/{marca}/assets/X` primeiro, senão `landing-pages/{marca}/{slug}/assets/X` | `/assets/X` |
+
+Produzir lista de triplas: `(path-no-source, disco-origem, alvo-no-sibling)`.
 
 ### 1.4 Copiar **apenas** esses assets
 
-Para cada asset na lista, copiar de `brand/{marca}/assets/...` para `{sibling}/assets/...` preservando subcaminho (logos/, icons/, images/).
+Para cada tripla, copiar `disco-origem` para `{sibling}/assets/...` preservando subcaminho (`logos/`, `icons/`, `images/`, ou raiz).
 
-**Nao** usar `cp -r brand/{marca}/` cego — isso copiaria todos os assets da marca, inclusive nao-usados. Copiar so os que o HTML referencia.
+Se `disco-origem` não existe (asset referenciado mas arquivo ausente em ambos os candidatos para refs absolutas), PARE com erro: `asset referenciado em linha {N} mas arquivo não encontrado nem em brand/ nem em landing-pages/{marca}/{slug}/assets/`.
+
+**Não** usar `cp -r brand/{marca}/` cego — copiaria assets não-usados. Copiar só os que o HTML referencia.
 
 ### 1.5 Reescrever paths no HTML copiado
 
-No `{sibling}/{slug}/index.html`, substituir:
+No `{sibling}/{slug}/index.html`, substituir todos para absoluto:
 - `../../brand/{marca}/assets/` → `/assets/`
 - `./assets/` → `/assets/`
 
-Use `Edit` com `replace_all: true` por padrao.
+Use `Edit` com `replace_all: true`.
 
-Remover tambem do `<title>` qualquer sufixo de trabalho: `[REVISADO]`, `[TESTE]`, `[DRAFT]`.
+**Verificação obrigatória pós-rewrite** — grep no HTML do sibling:
+
+```bash
+grep -nE "\\.\\./assets/|\\./assets/|\\.\\./\\.\\./brand/" "{sibling}/{slug}/index.html" && echo "VAZOU"
+```
+
+Se aparecer qualquer match, PARE — o rewrite não cobriu todos os casos. Caminho relativo + `cleanUrls: true` + `trailingSlash: false` resolve `./assets/X` para `/assets/X` na raiz do site (não para a pasta da LP), então qualquer `./` ou `../` sobrando vai 404 no live. Incidente 2026-04-27 (mascot.png da Buzzmonitor LP `monitoramento-concorrentes-maio-2026` 404 por dois deploys consecutivos com asset LP-local não copiado e path relativo intacto).
+
+Remover também do `<title>` qualquer sufixo de trabalho: `[REVISADO]`, `[TESTE]`, `[DRAFT]`.
 
 ### 1.6 Escrever vercel.json
 
