@@ -94,7 +94,7 @@ Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam
 
 ### Entrega e revisao (commit + PR)
 
-Ao final das alteracoes, rode `/commit` para entregar ao Victor revisar. A skill cria branch nova, commita, faz push e abre pull request automaticamente. **Nunca commita em main.**
+Ao final das alteracoes, rode `/commit` para entregar ao Victor revisar. A skill cria branch nova, commita, faz push e abre pull request automaticamente. **Nunca commita em main**, com uma excecao: quando o proprio Victor (admin do repo) pedir explicitamente sem usar a skill (ex: "commit direto em main", "sem branch", "sem PR", "faz direto"). Nesse caso, commitar + push em main mantendo as demais regras: nunca `--force`, nunca `--no-verify`, nunca pular hooks, mensagem PT-BR sem assinatura de IA, nunca incluir `.env` ou credentials no stage. O override so vale para o Victor. Outros colaboradores sempre via `/commit`.
 
 Para revisar um PR, o Victor roda `/pull-request-review` com o link ou numero — gera relatorio local com achados em 3 niveis de severidade. Nao posta comentario no GitHub.
 
