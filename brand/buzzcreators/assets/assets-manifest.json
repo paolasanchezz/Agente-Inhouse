@@ -1,20 +1,54 @@
 {
   "brand": "buzzcreators",
+  "source": "Brandbook oficial Buzzcreators (ID Visual p IA.pdf, abril 2026)",
   "assets": {
     "logos": {
-      "primary": {
-        "png": "logos/logo-primary.png",
-        "usage": "Versao positiva (preto) — fundos claros. Inclui subtitulo 'Media & Influencer Marketing'"
+      "fullColor": {
+        "svg": "logos/logo-full-color.svg",
+        "usage": "Logo horizontal completa COM tagline 'Media & Influencer Marketing' — colorida (roxo + laranja). Uso em fundos claros, materiais oficiais, primeira aparicao da marca."
       },
-      "reversed": {
-        "png": "logos/logo-reversed.png",
-        "usage": "Versao negativa (branco) — fundos escuros"
+      "fullWhite": {
+        "svg": "logos/logo-full-white.svg",
+        "usage": "Logo horizontal completa COM tagline — versao branca. Uso em fundos escuros (roxo escuro #3a1652, fotos)."
       },
-      "colorido": {
-        "png": "logos/logo-colorido.png",
-        "usage": "Versao colorida (vermelho coral #F04E4A) — uso em materiais de marketing"
+      "color": {
+        "svg": "logos/logo-color.svg",
+        "usage": "Logo horizontal SEM tagline — colorida. Uso em headers, emails, espacos restritos onde a tagline nao cabe legivel."
+      },
+      "white": {
+        "svg": "logos/logo-white.svg",
+        "usage": "Logo horizontal SEM tagline — versao branca. Uso em headers/footers de fundo escuro."
+      },
+      "verticalColor": {
+        "svg": "logos/logo-vertical-color.svg",
+        "usage": "Logo vertical (simbolo em cima, wordmark embaixo) — colorida. Uso em formatos quadrados, posts sociais, badges."
+      },
+      "verticalWhite": {
+        "svg": "logos/logo-vertical-white.svg",
+        "usage": "Logo vertical — versao branca. Uso em fundos escuros."
+      },
+      "iconColor": {
+        "svg": "logos/logo-icon-color.svg",
+        "png": "logos/logo-icon.png",
+        "usage": "Simbolo isolado (papagaio em balao de fala) — colorido. Uso em favicon, avatar, app icon, contextos minimalistas."
+      },
+      "iconWhite": {
+        "svg": "logos/logo-icon-white.svg",
+        "usage": "Simbolo isolado — branco. Uso em fundos escuros."
+      },
+      "favicon": {
+        "png": "logos/favicon.png",
+        "usage": "Favicon raster (PNG). Para LPs, copiar como /assets/logos/logo-icon.png conforme padrao do projeto."
       }
     },
     "patterns": {}
+  },
+  "namingConvention": {
+    "full": "Versao com tagline 'Media & Influencer Marketing'",
+    "(sem-sufixo)": "Versao SEM tagline (apenas wordmark + simbolo)",
+    "vertical": "Layout vertical (simbolo em cima)",
+    "icon": "Apenas o simbolo (papagaio em balao de fala)",
+    "color": "Versao colorida (roxo + laranja)",
+    "white": "Versao toda branca (para fundos escuros)"
   }
 }

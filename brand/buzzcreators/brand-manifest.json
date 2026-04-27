@@ -4,37 +4,70 @@
     "name": "Buzzcreators",
     "displayName": "Buzzcreators",
     "parentBrand": "Grupo Elife",
-    "tagline": "",
-    "mission": "",
+    "tagline": "Media & Influencer Marketing",
+    "mission": "Transformar o marketing de influencia com controle total do ROI e simplicidade para marcas e influenciadores.",
     "websites": {
       "brasil": "https://buzzcreators.com.br",
-      "latam": "",
-      "portugal": ""
+      "latam": "https://buzzcreators.com",
+      "portugal": "https://buzzcreators.com"
     },
-    "blog": ""
+    "blog": "https://buzzcreators.com.br/blog/",
+    "contact": {
+      "comercial": "comercial@buzzcreators.com.br"
+    }
   },
   "voice": {
-    "personality": [],
+    "personality": [
+      "Conectora",
+      "Criativa",
+      "Dinamica",
+      "Confiavel"
+    ],
     "toneAttributes": {
       "formality": 0.4,
       "enthusiasm": 0.7,
       "technicalDepth": 0.4,
       "warmth": 0.7
     },
-    "messagingPillars": [],
+    "messagingPillars": [
+      "Controle total do ROI em campanhas de influencia",
+      "Simplicidade ponta a ponta — do briefing ao pagamento",
+      "Conexao direta entre marcas e criadores autenticos",
+      "Integracao nativa com Buzzmonitor (social listening)"
+    ],
     "samplePhrases": {
-      "do": [],
-      "dont": []
+      "do": [
+        "Encontre os criadores ideais para sua marca e acompanhe resultados reais de cada campanha.",
+        "Centralize briefing, aprovacoes, entrega e pagamento em um so lugar.",
+        "Microinfluenciadores entregam ROI 3x maior — opere em escala sem perder controle."
+      ],
+      "dont": [
+        "A melhor plataforma de influencers do mundo com milhoes de criadores!!!",
+        "Revolucione o marketing de influencia hoje mesmo!",
+        "Solucao 360 omnichannel para creators."
+      ]
     }
   },
   "audience": {
-    "primary": "",
-    "segments": []
+    "primary": "Times de marketing e agencias que rodam campanhas com multiplos influenciadores e precisam de controle de ROI",
+    "segments": [
+      "Times de marketing de marcas com campanhas recorrentes de influencia",
+      "Agencias digitais que gerenciam campanhas para varios clientes",
+      "Empresas escalando influencer marketing sem aumentar equipe proporcional",
+      "Clientes Buzzmonitor que querem integrar listening + gestao de influencia"
+    ]
   },
   "positioning": {
-    "category": "",
-    "differentiators": [],
-    "competitiveFrame": ""
+    "category": "Plataforma de gestao de influencer marketing / creator economy",
+    "differentiators": [
+      "Unica plataforma do mercado brasileiro integrada nativamente ao Buzzmonitor",
+      "Ciclo completo (briefing → convite → aprovacao → entrega → pagamento → relatorio) num so lugar",
+      "Pagamento automatizado pos-aprovacao",
+      "Sem limite de influenciadores por campanha",
+      "Trilha de auditoria de briefings para compliance",
+      "Foco em micro/nanoinfluenciadores (ROI 3x, +60% engajamento)"
+    ],
+    "competitiveFrame": "Vs. plataformas globais de influencer marketing (que cobram por volume e nao integram social listening) e vs. gestao manual via planilha + e-mail."
   },
   "crossReferences": {
     "productKnowledge": "conhecimento/produto/buzzcreators/buzzcreators.md",

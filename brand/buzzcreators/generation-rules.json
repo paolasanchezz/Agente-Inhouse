@@ -10,62 +10,70 @@
         "ctaPlacement": ["hero", "mid-page", "footer"]
       },
       "colorUsage": {
-        "background": "neutral.0 ou neutral.100",
-        "heroAccent": "primary",
-        "ctaButton": "primary com neutral.0 como texto",
+        "background": "neutral.0 (#ffffff) ou neutral.100 (#f7f9fb)",
+        "sectionAlternation": "alternar neutral.0 e neutral.100/neutral.200 para criar ritmo visual",
+        "heroAccent": "gradient.brand (roxo → laranja) em titulo principal ou divisor",
+        "ctaButton": "secondary (#ff8119) com neutral.0 como texto; hover: secondaryDark (#ff7300)",
+        "ctaButtonAlt": "primary (#3a1652) com neutral.0 como texto — para CTAs secundarios",
         "textPrimary": "neutral.900",
-        "textSecondary": "neutral.700"
+        "textSecondary": "neutral.700",
+        "linkAndAccent": "primaryLight (#6a3895)",
+        "constraint": "Maximo 2-3 cores principais por LP (roxo escuro + laranja + neutros). Nunca usar as 4 cores como blocos grandes simultaneamente."
       },
       "typographyUsage": {
-        "h1": "heading font, 4xl, bold",
-        "h2": "heading font, 3xl, semibold",
-        "body": "body font, base, regular",
-        "cta": "body font, lg, semibold"
+        "h1": "DM Sans Bold, 4xl-6xl, line-height tight, letter-spacing tight",
+        "h2": "DM Sans Bold, 3xl-4xl, line-height snug",
+        "subheading": "HK Grotesk Light (fallback DM Sans Light), sm-base, UPPERCASE, letter-spacing 0.15em",
+        "body": "DM Sans Regular, base-lg, line-height normal-relaxed",
+        "cta": "DM Sans Bold, base-lg"
       },
       "components": [
-        "hero com tagline + CTA",
-        "barra de prova social (logos ou metricas)",
-        "grid de features (3 ou 4 colunas)",
-        "secao de depoimentos",
-        "tabela de precos ou comparacao (se BOFU)",
-        "secao final com CTA"
+        "hero clean (fundo branco, muito respiro) com tagline + CTA laranja",
+        "barra de prova social (logos de clientes ou metricas chave)",
+        "grid de features (3 ou 4 colunas, icones em roxo)",
+        "secao de depoimentos (cards em neutral.100)",
+        "tabela comparativa ou de precos (se BOFU)",
+        "secao final com CTA forte (gradiente brand ou laranja solido)"
       ]
     },
     "adCreative": {
       "static": {
-        "logoPlacement": "top-left ou bottom-center",
+        "logoPlacement": "top-left (logo-color.svg) ou bottom-center",
         "logoSize": "max 15% da largura do canvas",
-        "colorDominance": "primary como acento (max 30%), neutral como base",
-        "textHierarchy": "hook > beneficio > CTA",
+        "colorDominance": "primary (#3a1652) como base ou neutros; secondary (#ff8119) como acento (max 25%)",
+        "textHierarchy": "hook (DM Sans Bold) > beneficio (DM Sans Regular) > CTA (DM Sans Bold em laranja)",
         "safeZone": "margem de 10% em todos os lados para crop de plataforma"
       },
       "carousel": {
-        "coverCard": "hook forte, cores da marca, sem poluicao de logo",
-        "innerCards": "uma ideia por card, estilo consistente",
-        "lastCard": "CTA + logo + fundo com cor primaria"
+        "coverCard": "hook forte em DM Sans Bold, fundo com gradiente brand ou roxo solido, sem poluicao de logo",
+        "innerCards": "uma ideia por card, fundo neutral.100 ou branco, acento laranja/roxo",
+        "lastCard": "CTA + logo-full-white.svg + fundo com primary (#3a1652)"
       }
     },
     "email": {
-      "headerLogo": true,
+      "headerLogo": "logo-color.svg (sem tagline) — 160px de largura maxima",
       "maxWidth": "600px",
-      "buttonStyle": "arredondado, cor primaria, texto branco",
-      "footerElements": ["logo", "links sociais", "unsubscribe"]
+      "buttonStyle": "arredondado (radius md), cor secondary (#ff8119), texto branco, DM Sans Bold",
+      "footerElements": ["logo-color.svg", "links sociais", "comercial@buzzcreators.com.br", "unsubscribe"]
     },
     "newsletter": {
-      "headerFormat": "logo da marca + numero da edicao",
-      "sectionDivider": "linha fina em neutral.300",
-      "ctaStyle": "link inline no texto, nao botao"
+      "headerFormat": "logo-color.svg + numero da edicao em HK Grotesk Light",
+      "sectionDivider": "linha 1px em neutral.300 OU gradiente brand sutil 2px",
+      "ctaStyle": "link inline em primaryLight (#6a3895) com underline; OR botao laranja para CTA principal"
     }
   },
   "constraints": {
-    "logoMinClearSpace": "igual a altura do icone do logo em todos os lados",
-    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto)",
+    "logoMinClearSpace": "igual a altura do simbolo (papagaio) em todos os lados",
+    "logoMinSize": "icone nao menor que 24px de altura em digital",
+    "colorAccessibility": "WCAG AA minimo (4.5:1 para texto). Texto sobre laranja #ff8119 deve ser branco (contraste 3.5 — usar so em texto bold large)",
     "neverDo": [
-      "Usar a cor primaria como fundo de blocos grandes de texto",
-      "Colocar texto sobre imagens sem overlay de contraste",
-      "Distorcer ou recortar o logo",
-      "Usar fontes fora do sistema tipografico definido",
-      "Misturar identidade visual de marcas irmas"
+      "Usar as 4 cores principais como blocos grandes simultaneamente — manter 2-3 por composicao",
+      "Texto pequeno em laranja sobre branco (contraste insuficiente)",
+      "Distorcer, recortar ou separar o simbolo do papagaio do wordmark",
+      "Usar fontes fora do par DM Sans + HK Grotesk",
+      "Misturar identidade visual com Buzzmonitor (que tem outra paleta)",
+      "Aplicar gradiente brand em areas pequenas (perde a transicao)",
+      "Usar laranja como cor de fundo de blocos grandes de texto"
     ]
   },
   "figmaSync": {

@@ -12,6 +12,19 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## pauta-quente
+### 1.0.0 — 2026-04-24
+- Skill nova `/pauta-quente` para transformar noticia recente em conteudo multi-formato x multi-idioma por marca. Orientada a evento externo (URL obrigatoria), complementar a `/copy-criar` (standalone).
+- Inputs: `[url] [marca] [tipos-csv] [idiomas-csv]`. Tipos: `carrossel`, `video-curto`, `blog`, `linkedin`, `email`. Idiomas: `br` (PT-BR), `pt` (PT-PT), `es` (ES-LATAM). Combinacoes cartesianas tipos x idiomas numa unica execucao.
+- Pipeline de 10 passos: parsing -> fingerprint URL (primaria/imprensa-com-fonte/agregador) -> pesquisa expandida ate fonte primaria (ate 3 queries WebSearch quando necessario + 1 query de contexto) -> carregar base de conhecimento (brand + copy + anti-ia + linguistico por idioma) -> definir angulo edutainment + conector com produto -> **gerar pecas** (em memoria) -> **revisao anti-IA pos-geracao dedicada** (varre frases tipicas, filler words, anti-patterns estruturais; corrige em lugar; log em REVISAO-LOG.md) -> salvar local -> publicar Notion (gate: so publica pecas sem `requer-atencao-humana`) -> resumo final.
+- Diretrizes editoriais obrigatorias: edutainment (educacao + entretenimento), fontes primarias rastreadas (nunca "noticia da noticia"), conector com produto ao final com feature especifica + beneficio concreto, CTA focado em beneficio por canal.
+- Output local em `pauta-quente/{marca}/YYYY-MM-DD-{slug-noticia}/` (pasta raiz nova, versionada, espelhando `newsletter/` e `traducao/`).
+- Output Notion em `Entregas > Pauta Quente {Marca} > YYYY-MM-DD — {tema}` com toggles organizados por tipo primeiro, idioma dentro (corte natural para distribuidor por canal). Icon 🔥.
+- **Docs novos criados junto:** `conhecimento/copywriting/blog-copy.md` (9 secoes — titulo, estrutura, lead, corpo, fontes, conector, CTA, extensao, checklist) e `conhecimento/copywriting/linkedin-copy.md` (10 secoes — hook, estruturas por tamanho, ritmo visual, storytelling, tom, conector, CTA, hashtags, anti-padroes, checklist). Ambos espelham o padrao de `email-copy.md`.
+- Gate automatico: pecas marcadas `revisao: requer-atencao-humana` apos 2 rodadas de revisao ficam so em disco local, nao sao publicadas no Notion — evita vazamento de IA em entrega oficial.
+
+---
+
 ## pull-request-review
 ### 1.0.1 — 2026-04-23
 - **Fix Windows:** `/tmp/` não persiste entre bash calls no Claude Code no Windows (shell state some). Passo 2 agora salva em `reviews/.tmp/` (dentro do repo, persiste).
@@ -112,6 +125,13 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 - Baseline após refactor `f580823`.
 
 ## copy-revisar
+### 1.1.0 — 2026-04-27
+- **Novo Passo 4.5 obrigatório — re-revisão sobre as próprias correções.** Disparado por feedback do Victor após revisão da Copy LP do evento Vendendo com Creators (Buzzcreators), onde a v2 publicada no Notion vazou 3 padrões de IA introduzidos *durante* a correção: (a) antítese-por-negação ("X, não Y") repetida 6× em ~400 palavras, (b) 6 em-dashes de ênfase em texto que tinha zero, (c) substitutos decorativos no lugar dos fillers removidos ("planilha mágica", "com achismo" para "de forma clara").
+- O Passo 4.5 roda 4 contagens no texto **corrigido**: antítese-por-negação (max 2 / peça), **em-dash (tolerância zero — qualquer `—` no output vaza IA)**, substitutos decorativos (filler 2.0 — palavras que dão ritmo sem trazer info), ritmo sintático repetitivo (2+ frases consecutivas com mesma forma).
+- Causa-raiz documentada: a skill antes terminava em "aplicar correções → apresentar resultado", sem loop sobre o output. Os erros de IA mais previsíveis são introduzidos *durante* o conserto (especialmente quando o revisor tenta dar "punch" no lugar de filler removido).
+- Atualização paralela em `conhecimento/editorial/regras-anti-ia.md`: nova seção "Estruturas Viciadas" com 3 sub-regras (antítese-por-negação, **em-dash com tolerância zero**, filler 2.0); regra "de forma X" adicionada à lista de filler words; "Teste Final de Naturalidade" agora inclui re-checagem pós-correção como obrigatória; "Não é X, é Y" tirado da lista de frases (era específico demais) e absorvido pela nova regra estrutural mais ampla.
+- **Em-dash com tolerância zero (decisão do Victor 2026-04-27):** "nenhum ser humano usa isso". Regra ficou absoluta — Ctrl+F por `—` no texto final, esperado 0 ocorrências. Substitutos: vírgula (pausa curta), ponto (pausa forte), parênteses (aparte), nova linha (atribuição de citação). Única exceção é separador de seção markdown `---` (três hifens, vira `<hr>`, não é em-dash).
+
 ### 1.0.0 — 2026-04-13
 - Baseline após refactor `f580823`.
 

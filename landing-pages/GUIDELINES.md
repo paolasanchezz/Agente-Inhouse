@@ -127,6 +127,10 @@ curl -I https://{dominio}/assets/logos/logo-icon.png  # deve dar 200
 
 Se vier 404, a skill `lp-publicar` não copiou o `logo-icon.png` pro `assets/logos/` da sibling — checar antes de fechar.
 
+## 12. Performance — PageSpeed basta
+
+GTmetrix avaliado e descartado (free tier redireciona pra signup após o 1º teste público; API dá só 5 trial credits totais). Se um dia precisar de segunda ferramenta, usar WebPageTest.org (API grátis, 200/dia).
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.

@@ -12,6 +12,7 @@ Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de c
 Newsletters:  /news-pipeline → /news-pesquisar → /news-gerar → /news-revisar
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
+Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
@@ -25,6 +26,7 @@ Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 | `conhecimento/` | Base de conhecimento — fonte de verdade sobre produtos, copy, linguistica e editorial |
 | `newsletter/` | Entregas de newsletters geradas (publicadas no Notion) |
 | `traducao/` | Traducoes geradas (publicadas no Notion) |
+| `pauta-quente/` | Conteudos gerados a partir de noticia recente por marca (`pauta-quente/{marca}/YYYY-MM-DD-{slug}/`) |
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
@@ -138,7 +140,20 @@ Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
 - `[tipo]`: `video-curto` | `estatico` | `email` | `geral`
 - `[estagio]`: `tofu` | `mofu` | `bofu` (default: `tofu`)
 
-Base de conhecimento: `conhecimento/copywriting/` (fundamentos, video-curto, estatico, email, funil)
+Base de conhecimento: `conhecimento/copywriting/` (fundamentos, video-curto, estatico, blog, linkedin, email, funil)
+
+### Pauta Quente
+
+Transforma uma noticia recente em conteudo multi-formato e multi-idioma. Rastreia fonte primaria, aplica edutainment + conector com produto e publica no Notion em `Entregas > Pauta Quente {Marca}`.
+
+| Comando | O que faz |
+|---|---|
+| `/pauta-quente [url] [marca] [tipos-csv] [idiomas-csv]` | Gera N pecas (tipos x idiomas) a partir da noticia. Ex: `/pauta-quente https://... buzzmonitor "carrossel,blog,email" "br,pt,es"` |
+
+- `[url]`: link completo da noticia (http:// ou https://)
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[tipos-csv]`: combinacao de `carrossel` | `video-curto` | `blog` | `linkedin` | `email`
+- `[idiomas-csv]`: combinacao de `br` (PT-BR) | `pt` (PT-PT) | `es` (ES-LATAM)
 
 ### Landing Pages
 

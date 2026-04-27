@@ -12,8 +12,17 @@
 
 ### Sobre a Marca
 Buzzcreators e a plataforma de media e influencer marketing do Grupo Elife.
-Conecta marcas a criadores de conteudo e influenciadores para campanhas autenticass e mensuráveis.
+Conecta marcas a criadores de conteudo e influenciadores para campanhas autenticas e mensuraveis.
 Atende equipes de marketing e agencias que precisam gerenciar campanhas com influenciadores de ponta a ponta.
+
+### Tagline Oficial
+**Media & Influencer Marketing** — assinatura visual fixa abaixo do wordmark.
+
+### Mission Statement (Brandbook)
+> "Vamos transformar o marketing de influencia com controle total do ROI e simplicidade para marcas e influenciadores."
+
+### Contato Comercial
+- **Email:** comercial@buzzcreators.com.br
 
 ### Posicionamento
 
@@ -132,25 +141,62 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 
 > Valores exatos (hex, px, font-family) estao em `tokens.json`.
 > Aqui explicamos o PORQUE e QUANDO usar cada elemento.
+> **Fonte de verdade:** Brandbook oficial Buzzcreators (`ID Visual p IA.pdf`).
 
-### Uso de Cores
-- **Primaria (preto #1A1A1A):** logotipo, titulos, texto principal — transmite seriedade e elegancia
-- **Secundaria (coral #F04E4A):** CTAs, acentos, versao colorida do logo — energia e criatividade
-- **Neutros:** fundos brancos e cinzas claros para manter a marca limpa e editorial
+### Paleta de Cores
+
+| Token | Hex | Quando usar |
+|---|---|---|
+| **Roxo escuro** | `#3a1652` | Cor principal — wordmark "BUZZ", titulos, fundos escuros, footer. Transmite seriedade e autoridade. |
+| **Roxo medio** | `#6a3895` | Cor secundaria — wordmark "CREATORS" (parte inicial), simbolo, links, acentos. |
+| **Laranja claro** | `#ff8119` | CTA principal, destaques de acao. Parte final do gradiente do wordmark. |
+| **Laranja escuro** | `#ff7300` | Hover de CTA, acentos firmes. |
+| **Cinza claro 1** | `#eaeef1` | Fundos de secao, cards, divisores suaves. |
+| **Cinza claro 2** | `#f7f9fb` | Fundo principal alternativo (off-white) para alternar com branco puro. |
+
+**Gradiente assinatura:** `linear-gradient(90deg, #3a1652 → #6a3895 → #ff8119 → #ff7300)` — usado no wordmark, em titulos hero e em divisores de destaque. Aplicar so em areas grandes o suficiente para a transicao ser visivel.
+
+**Regra de composicao:** maximo 2-3 cores principais por composicao. Nunca usar as 4 cores como blocos grandes simultaneamente — perde impacto.
 
 ### Tipografia
-- **Titulos:** League Spartan — mesmo DNA visual do grupo Buzz, impacto e leitura rapida
-- **Corpo:** Lato — legibilidade maxima, funciona em todos os tamanhos
 
-### Logo
-- Versao principal (preto): `assets/logos/logo-primary.png`
-- Versao invertida (branco): `assets/logos/logo-reversed.png`
-- Versao colorida (coral): `assets/logos/logo-colorido.png`
-- O icone e um elefante estilizado dentro de um balao de fala (line art)
-- Subtitulo integrado: "MEDIA & INFLUENCER MARKETING"
-- Nome: "BUZZ" em bold + "CREATORS" em regular
-- Area de respiro: manter distancia igual a altura do icone em todos os lados
-- Tamanho minimo: icone nao menor que 24px de altura em digital
+| Uso | Fonte | Peso | Observacao |
+|---|---|---|---|
+| **Titulos (H1, H2, H3)** | DM Sans | Bold (700) | Geometrica, moderna, leitura rapida. |
+| **Subtitulos / overlines** | HK Grotesk | Light (300) | Em UPPERCASE com tracking generoso (~0.15em). Fallback: DM Sans Light. |
+| **Corpo** | DM Sans | Regular (400) | Mesma familia dos titulos para coerencia. |
+
+Exemplo do brandbook:
+- Titulo: **`Titulos - DM Sans Bold`** (DM Sans Bold)
+- Subtitulo: `S U B T I T U L O S  -  H K  G R O S T E K  L I G H T` (HK Grotesk Light, uppercase, tracking)
+- Corpo: `Corpo: DM Sans` (DM Sans Regular)
+
+### Logo — Anatomia
+
+**Composicao:**
+- **Simbolo:** ave estilizada (papagaio) dentro de um balao de fala em line art roxo (#6a3895). Representa voz autentica de criador + conversa de marca.
+- **Wordmark:** "BUZZ" em DM Sans Bold roxo escuro (#3a1652) + "CREATORS" em DM Sans Regular com gradiente roxo → laranja.
+- **Tagline integrada:** "MEDIA & INFLUENCER MARKETING" em HK Grotesk Light, UPPERCASE, tracking generoso, abaixo do wordmark.
+
+**Versoes disponiveis em `assets/logos/`:**
+
+| Arquivo | Quando usar |
+|---|---|
+| `logo-full-color.svg` | Horizontal completa COM tagline, colorida — fundos claros, materiais oficiais, primeira aparicao da marca |
+| `logo-full-white.svg` | Horizontal completa COM tagline, branca — fundos escuros (roxo, fotos) |
+| `logo-color.svg` | Horizontal SEM tagline, colorida — headers, emails, espacos restritos |
+| `logo-white.svg` | Horizontal SEM tagline, branca — fundos escuros restritos |
+| `logo-vertical-color.svg` | Vertical (simbolo em cima), colorida — formatos quadrados, posts sociais |
+| `logo-vertical-white.svg` | Vertical, branca — posts em fundo escuro |
+| `logo-icon-color.svg` | Apenas o simbolo, colorido — favicon, avatar, app icon |
+| `logo-icon-white.svg` | Apenas o simbolo, branco — favicon em fundo escuro |
+| `logo-icon.png` / `favicon.png` | Raster do simbolo (PNG) — favicon de LPs (copiar para `/assets/logos/logo-icon.png`) |
+
+**Regras de uso:**
+- Area de respiro: distancia igual a altura do simbolo (papagaio) em todos os lados.
+- Tamanho minimo: simbolo nao menor que 24px de altura em digital.
+- Nunca distorcer, recortar ou separar o simbolo do wordmark.
+- Sempre que houver espaco, usar a versao COM tagline ("logo-full-*"). Em headers/footers compactos, usar a versao SEM tagline.
 
 ---
 
@@ -206,16 +252,22 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 ## 7. Anti-patterns de Comunicacao
 
 ### Fazer
-- Manter visual limpo e editorial — a marca e mais minimalista que o Buzzmonitor
-- Usar coral como cor de destaque em CTAs e elementos interativos
-- Priorizar preto + branco como base, coral como acento
-- Incluir subtitulo "Media & Influencer Marketing" quando houver espaco
+- Manter visual limpo e editorial com muito respiro — a marca tem alma minimalista apesar das cores vibrantes
+- Usar laranja (#ff8119) como cor de destaque em CTAs e elementos interativos
+- Priorizar branco/cinzas claros como base; roxo escuro como cor de autoridade; laranja como acento de acao
+- Aplicar o gradiente assinatura (roxo → laranja) em titulos hero ou divisores grandes — nunca em textos pequenos
+- Incluir tagline "Media & Influencer Marketing" quando houver espaco (logo-full-*)
+- Usar HK Grotesk Light em UPPERCASE com tracking generoso para overlines/subtitulos (gera contraste com DM Sans Bold)
 
 ### Evitar
-- Usar coral como cor de fundo em grandes areas
-- Misturar a paleta colorida do Buzzmonitor com a identidade da Buzzcreators
-- Omitir o subtitulo em materiais oficiais (exceto favicon/avatar)
-- Distorcer ou separar o icone do elefante do nome
+- Usar laranja como cor de fundo em grandes blocos de texto (cansa visualmente)
+- Aplicar o gradiente em areas pequenas (perde a transicao e vira borrao)
+- Texto pequeno em laranja sobre branco (contraste insuficiente — usar so em texto bold large)
+- Combinar as 4 cores principais como blocos grandes simultaneos — manter 2-3 por composicao
+- Misturar a paleta com a identidade do Buzzmonitor
+- Omitir a tagline em materiais oficiais (exceto favicon/avatar/app icon)
+- Distorcer, recortar ou separar o simbolo do papagaio do wordmark
+- Substituir DM Sans/HK Grotesk por outras fontes geometricas "parecidas" (Poppins, Montserrat, etc.)
 
 ---
 

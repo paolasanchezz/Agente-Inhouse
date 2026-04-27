@@ -3,7 +3,7 @@ name: copy-revisar
 description: Revisa uma copy verificando qualidade tecnica, precisao sobre o produto e linguagem de IA — e corrige automaticamente o que encontrar.
 argument-hint: "[arquivo-ou-texto] [marca] — ex: copy-meta-abril.md buzzmonitor"
 allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebSearch
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Revisar e Corrigir Copy
@@ -191,6 +191,37 @@ Aplique TODAS as correcoes identificadas no Passo 3:
 - **Anti-patterns estruturais:** Reestruture (listas de 3 → variar, remover transicoes mecanicas, etc.)
 
 **IMPORTANTE:** Mantenha a essencia e a intencao original da copy. Voce esta refinando, nao reescrevendo do zero. A voz do autor deve ser preservada — so elimine o que e errado.
+
+**ATENCAO:** As proprias correcoes que voce aplica neste passo podem introduzir IA (especialmente filler 2.0 e antitese-por-negacao em serie). Apos terminar, **execute o Passo 4.5 sem excecao** antes de seguir para o Passo 5.
+
+## Passo 4.5: Re-revisao (loop final anti-IA — OBRIGATORIO)
+
+O Passo 4 corrige a copy original. Este passo corrige as **proprias correcoes** — que e onde a maioria dos vazamentos de IA pos-revisao acontece (substituir um filler por outro, abusar de antitese, encher de em-dash pra dar "punch").
+
+Releia o texto corrigido e rode as 4 contagens abaixo de verdade — busque cada padrao no texto final. Nao passe direto.
+
+**1. Antitese-por-negacao** (`X, nao Y` | `X — nao Y` | `X (nao Y)` | `Nao X, mas Y` | `Nao se trata de X, mas Y` | `Nao e X, e Y`)
+- Conte cada instancia. Em peca de ate 500 palavras, **maximo 2**.
+- Mais que isso, refaca pelo menos um trecho usando outra estrutura (afirmacao direta, pergunta, comparacao por sinonimo).
+
+**2. Em-dash (—) — TOLERANCIA ZERO**
+- Ctrl+F (ou Grep) por `—` no texto final. Esperado: **0 ocorrencias.**
+- Separadores de secao markdown (`---` na linha sozinha) nao contam — sao tres hifens, viram `<hr>`.
+- Para cada `—` encontrado, substituir por: virgula (pausa curta), ponto (pausa forte, quebrar em duas frases) ou parenteses (aparte). Citacao com atribuicao (`— Autor`) tambem vira virgula ou nova linha.
+- Regra absoluta. Nao tem "salvo se". Pessoa real PT-BR nao usa em-dash em copy — qualquer em-dash no output vaza IA mesmo com todo o resto impecavel.
+
+**3. Substitutos decorativos** (filler 2.0)
+- Para cada palavra que voce ADICIONOU ao remover um filler, pergunte: "responde 'o que' ou 'como' especificamente, ou so da ritmo?"
+- Suspeitos: magica, real, verdadeiro, autentico, genuino, transformador, achismo (quando vira ornamento sem dado).
+- Se for ornamento, remova ou troque por algo concreto (numero, nome de feature, exemplo verificavel).
+
+**4. Ritmo sintatico repetitivo**
+- 2+ frases consecutivas com mesma estrutura (ex: tres frases seguidas terminadas em "X, nao Y") viram cantilena.
+- Varie comprimento e forma — quebre uma das frases ou inverta.
+
+**Regra de saida:** se qualquer das 4 contagens falhar, refaca antes de seguir. So vai pro Passo 5 quando o texto corrigido passa nas 4.
+
+**Referencia canonica:** secao "Estruturas Viciadas" + "Teste Final de Naturalidade" em `conhecimento/editorial/regras-anti-ia.md`. Quando esta skill diverge desse arquivo, **vence o arquivo** — atualize a skill no mesmo PR.
 
 ## Passo 5: Apresentar Resultado
 
