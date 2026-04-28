@@ -488,14 +488,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-copy .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
   /* Para quem (off-white) — lista vertical à esquerda, emoji grande à direita */
-  .for { background: var(--c-n100); }
+  .for { background: var(--c-n100); padding: 88px 0; }
+  .for .sec-head { margin-bottom: 28px; }
   .for-grid {
     display: grid;
     grid-template-columns: 1.2fr .8fr;
-    gap: 80px;
-    align-items: center;
+    gap: 56px;
+    align-items: start;
   }
-  @media (max-width: 900px) { .for-grid { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 900px) { .for-grid { grid-template-columns: 1fr; gap: 36px; } }
 
   .for-list {
     display: flex; flex-direction: column; gap: 18px;
@@ -560,53 +561,80 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1.5px dashed var(--c-n300);
   }
 
-  /* Speakers (branco, respiro largo) — tease único centralizado */
+  /* Speakers (branco, respiro largo) — 2 cards lado a lado */
   .speakers { background: var(--c-n0); }
-  .sp-tease {
-    max-width: 560px;
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 760px;
     margin-inline: auto;
+  }
+  @media (max-width: 640px) {
+    .sp-grid { grid-template-columns: 1fr; gap: 20px; max-width: 360px; }
+  }
+  .sp-card {
     text-align: center;
-    padding: 48px 40px;
-    background: var(--c-n100);
+    background: transparent;
+    padding: 36px 24px 28px;
     border-radius: var(--r-lg);
-    border: 1px dashed var(--c-n300);
-    position: relative;
+    border: 1px solid var(--c-n300);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    transition: transform var(--t-quick), background var(--t-quick), box-shadow var(--t-quick);
   }
-  .sp-avatars {
-    display: flex; justify-content: center; gap: -12px;
-    margin-bottom: 24px;
+  .sp-card:hover {
+    transform: translateY(-3px);
+    background: var(--c-n100);
+    box-shadow: var(--sh-md);
   }
-  .sp-avatars .sp-dot {
-    width: 68px; height: 68px; border-radius: 50%;
-    background: #fff;
-    border: 2px solid var(--c-n0);
-    box-shadow: 0 0 0 1.5px var(--c-n300);
-    position: relative;
-  }
-  .sp-avatars .sp-dot + .sp-dot { margin-left: -20px; }
-  .sp-avatars .sp-dot::after {
-    content: "";
-    position: absolute; inset: 14px;
+  .sp-photo {
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    background: var(--grad-hot);
-    opacity: .18;
+    overflow: hidden;
+    background: var(--c-n100);
+    box-shadow: 0 8px 24px rgba(57, 1, 85, .12);
   }
-  .sp-tease .tease-label {
-    font-family: var(--ff-sub); font-weight: 500;
-    font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
-    color: var(--c-accent-2);
-    margin-bottom: 12px;
+  .sp-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
-  .sp-tease h3 {
-    font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(24px, 2.6vw, 32px);
-    color: var(--c-n900); line-height: 1.1;
-    margin-bottom: 10px;
+  .sp-name {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(20px, 2vw, 24px);
+    color: var(--c-n900);
+    line-height: 1.2;
+    margin: 4px 0 0;
   }
-  .sp-tease p {
-    color: var(--c-n700); font-size: 15px;
-    font-family: var(--ff-sub); font-weight: 400;
+  .sp-role {
+    font-family: var(--ff-sub);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--c-n700);
+    margin: 0;
   }
+  .sp-company {
+    margin-top: 8px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sp-company img {
+    max-height: 44px;
+    max-width: 140px;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+  .sp-company--lg { height: 66px; }
+  .sp-company--lg img { max-height: 66px; max-width: 200px; }
 
   /* Urgência — única seção dark (roxo), usada como pausa dramática */
   .urgency {
@@ -954,15 +982,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 id="sp-title">Especialistas em <em style="font-style: italic; font-weight: 500; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent;">inteligência&nbsp;competitiva</em></h2>
       </header>
 
-      <!-- TODO: substituir este tease por cards reais de speakers (foto, nome, cargo) -->
-      <div class="sp-tease reveal">
-        <div class="sp-avatars" aria-hidden="true">
-          <span class="sp-dot"></span>
-          <span class="sp-dot"></span>
-        </div>
-        <span class="tease-label">Em breve</span>
-        <h3>Speakers revelados em breve</h3>
-        <p>Especialistas em inteligência competitiva, prontos pra mostrar o jogo por dentro.</p>
+      <div class="sp-grid reveal">
+        <article class="sp-card">
+          <div class="sp-photo">
+            <img src="/assets/michelle-carmo.png" alt="Michelle Carmo" width="320" height="320" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="sp-name">Michelle Carmo</h3>
+          <p class="sp-role">Executiva de Novos Negócios</p>
+          <div class="sp-company sp-company--lg">
+            <img src="/assets/logo-buzzmonitor-vertical.avif" alt="Buzzmonitor" loading="lazy" decoding="async" />
+          </div>
+        </article>
+        <article class="sp-card">
+          <div class="sp-photo">
+            <img src="/assets/isabella-aki-matsunami.jpg" alt="Isabella Aki Matsunami" width="320" height="320" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="sp-name">Isabella Aki Matsunami</h3>
+          <p class="sp-role">Social Media</p>
+          <div class="sp-company">
+            <img src="/assets/logo-turbi.jpg" alt="Turbi" loading="lazy" decoding="async" />
+          </div>
+        </article>
       </div>
     </div>
   </section>

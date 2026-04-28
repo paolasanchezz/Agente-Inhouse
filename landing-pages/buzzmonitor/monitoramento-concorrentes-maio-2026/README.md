@@ -16,7 +16,7 @@ Logos são referenciados por caminho relativo (`../../brand/buzzmonitor/assets/l
 
 ## TODOs antes de publicar
 
-- **Speakers:** substituir os 2 cards placeholder na seção "Com quem você vai aprender" por fotos/nomes/cargos reais.
+- ~~**Speakers:**~~ Michelle Carmo (Executiva de Novos Negócios — Buzzmonitor) e Isabella Aki Matsunami (Social Media — Turbi) inseridas com fotos e logos das empresas.
 - **Formulário:** `<form action="#">` é mock. Integrar com RD Station / HubSpot / Mautic / etc.
 - **Tracking:** adicionar GA4 / Pixel / UTM handling conforme a stack do time.
 - **Fonte HK Grotesk:** fallback `Manrope` está em uso (HK Grotesk é comercial, não está no Google Fonts). Se o time tiver licença, trocar o `<link>`.
