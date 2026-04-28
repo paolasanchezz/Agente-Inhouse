@@ -12,6 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-preparar (CONTEXT.md), landing-pages/CONTEXT.md
+### 2026-04-28 — Documentação dos guarda-chuvas Buzzmonitor (3 subdomínios) + Cxpress
+- Tabela de marcas em `lp-preparar/CONTEXT.md` ampliada: Buzzmonitor agora tem 3 subdomínios guarda-chuva (`evento.*`, `material.*`, `webinar.*`) com convenção de uso por tipo de LP. Cxpress documentado com `content.cxpress.io` (subdomínio único, qualquer tipo de LP).
+- `landing-pages/CONTEXT.md` §4.2 ganhou tabela "Guarda-chuvas ativos hoje" com mapping subdomínio→projeto Vercel→LPs ativas, mais regra editorial: LPs novas devem priorizar subdomínio mais específico.
+- Argument-hint de `lp-pipeline` e `lp-publicar` atualizado: exemplo agora usa `evento.buzzmonitor.com` (mais alinhado com convenção atual). PageSpeed example em `lp-publicar` Passo 5.1 também atualizado.
+- **Comportamento das skills inalterado** — `lp-publicar` Passo 0.5 já era genérico, detecta qualquer guarda-chuva via API Vercel. Mudança é puramente documentacional.
+- **Migração concomitante:** LP `vendendo-com-creators` (Buzzcreators, evento presencial) movida de `webinar.buzzmonitor.com` → `evento.buzzmonitor.com`. Redirect 301 ativo no antigo para preservar URLs já compartilhadas. Detalhes em `landing-pages/buzzcreators/vendendo-com-creators/REVISAO.md` Iteração 2.5.
+
+---
+
 ## pauta-quente
 ### 1.0.0 — 2026-04-24
 - Skill nova `/pauta-quente` para transformar noticia recente em conteudo multi-formato x multi-idioma por marca. Orientada a evento externo (URL obrigatoria), complementar a `/copy-criar` (standalone).

@@ -35,34 +35,33 @@
 
 ## URL pública
 
-- **Live:** https://webinar.buzzmonitor.com/vendendo-com-creators
-- **Inspect (Vercel):** https://vercel.com/elife-group/buzzmonitor-lp-monitoramento-concorrentes/AEmQ3GZdS1bf2ZYqnvh4FVkJzfuU
-- **Deployment ID:** `dpl_AEmQ3GZdS1bf2ZYqnvh4FVkJzfuU`
-- **Project:** `buzzmonitor-lp-monitoramento-concorrentes` (`prj_bqOBy4RXCnPFu8Fn7csQ6wzyjwb6`) — guarda-chuva Buzzmonitor que serve `webinar.buzzmonitor.com`
+- **Live:** https://evento.buzzmonitor.com/vendendo-com-creators (migrada de `webinar.*` em 2026-04-28)
+- **Project Vercel:** `buzzmonitor-evento` — guarda-chuva Buzzmonitor de eventos presenciais que serve `evento.buzzmonitor.com`
+- **Redirect 301 ativo** em `webinar.buzzmonitor.com/vendendo-com-creators` → `evento.buzzmonitor.com/vendendo-com-creators` (preserva URLs já compartilhadas).
 
 ## Convivência no projeto guarda-chuva
 
-`webinar.buzzmonitor.com` é multi-LP. Esta LP coexiste com:
-- `webinar.buzzmonitor.com/monitoramento-concorrentes-maio-2026` (Buzzmonitor BR)
-- `webinar.buzzmonitor.com/monitoramento-concorrentes-maio-2026-pt` (Buzzmonitor PT)
+`evento.buzzmonitor.com` é guarda-chuva de **eventos presenciais** (Buzzmonitor + Buzzcreators). Esta é a primeira LP do projeto; futuras LPs presenciais cairão aqui.
 
-Para evitar colisão de assets (Buzzmonitor e Buzzcreators têm `logo-icon.png` com nomes iguais), os assets desta LP ficam em `/assets/buzzcreators/...` (namespace por marca) — não em `/assets/logos/...` (que é da Buzzmonitor).
+Para evitar colisão de assets entre marcas (Buzzmonitor e Buzzcreators têm `logo-icon.png` com nomes iguais), os assets desta LP ficam em `/assets/buzzcreators/...` (namespace por marca).
 
-**Source uses LP-local paths** (`./assets/buzzcreators/X`) em vez do padrão brand (`../../brand/{marca}/assets/X`). Os arquivos físicos estão em `landing-pages/buzzcreators/vendendo-com-creators/assets/buzzcreators/`.
-
-> **Projeto Vercel separado** `buzzcreators-lp-vendendo-com-creators` (`prj_qwXzsA7qo0QPhsVyNyGDEOkAqBx6`) foi criado em deploy anterior e ficou **órfão** (sem domínio, conteúdo idêntico ao do guarda-chuva). Pode ser removido manualmente via Vercel Dashboard sem impacto. SSO Protection foi desabilitada lá (irrelevante depois da remoção).
+**Source uses LP-local paths** (`./assets/buzzcreators/X`). Os arquivos físicos estão em `landing-pages/buzzcreators/vendendo-com-creators/assets/buzzcreators/`.
 
 ## Assets referenciados
 
-- `../../brand/buzzcreators/assets/logos/logo-full-color.svg` (header)
-- `../../brand/buzzcreators/assets/logos/logo-icon.png` (favicon)
+- `./assets/buzzcreators/logo-full-color.svg` (header)
+- `./assets/buzzcreators/logo-icon.png` (favicon)
+- `./assets/buzzcreators/bruno-filho.png` (foto do speaker)
 
-## Pendências de copy (placeholders)
+## Estrutura visual atual (pós Iteração 2)
 
-Renderizados literalmente como aparecem:
-- `[X] vagas presenciais` (HERO label)
-- `[NOME DO MENTOR] — [cargo / posição atual]` (SPEAKER name)
-- `[1-2 frases sobre autoridade...]` (SPEAKER bio)
-- `[Foto opcional...]` (SPEAKER photo note)
-
-Substituir antes do deploy ou marcar como pendência em `REVISAO.md`.
+- HERO (com ticket "save the date" rotacionado, gradiente assinatura no H1, label "Apenas 80 vagas presenciais")
+- HOOK (callout com dado YOUPIX/Nielsen 2025: 53% / 48%)
+- BENEFICIOS (lista vertical, 6 itens com checks roxos sólidos, CTA "Quero estar lá dia 20/05", fundo branco)
+- SPEAKER (Bruno Filho — Coordenador de Novos Negócios Buzzcreators, foto circular)
+- CTA INTERMEDIARIO (banner gradiente assinatura)
+- PARA QUEM (lista com setas →, 5 itens)
+- CTA FINAL (card branco completo: H2 + chips de evento + form Jotform `260213440661648` + endereço Espaço Paulista + botão Google Maps)
+- URGENCIA (fundo dark roxo + tag laranja rotacionada)
+- VIDEO BUZZCREATORS (H2 "Conheça o Buzzcreators" + lead institucional + iframe YouTube `nBK4ehM0YLo`)
+- FOOTER (Buzzcreators · Buzzmonitor · eventos@buzzmonitor.com.br)

@@ -134,11 +134,22 @@ Sibling: `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/` (criada do zero pe
 
 ### 4.2 Quando GUARDA-CHUVA
 
-- Domínio já tem projeto Vercel ativo com outras LPs (ex: `webinar.buzzmonitor.com` hospeda BR + PT + Buzzcreators)
+- Domínio já tem projeto Vercel ativo com outras LPs (ex: `evento.buzzmonitor.com` hospeda eventos presenciais Buzzmonitor + Buzzcreators; `content.cxpress.io` hospeda materiais Cxpress)
 - Detecção automática: `lp-publicar` Passo 0.5 consulta API Vercel
-- Multi-marca: namespace `/assets/{marca}/` evita colisão
+- Multi-marca: namespace `/assets/{marca}/` evita colisão (ex: assets Buzzcreators dentro do guarda-chuva Buzzmonitor ficam em `/assets/buzzcreators/`)
 
 Sibling: a do projeto existente (`C:/Users/titof/Downloads/Claude/{nome-detectado}/`). LP nova é anexada como subpasta sem tocar nas vizinhas.
+
+#### Guarda-chuvas ativos hoje
+
+| Subdomínio | Tipo de LP | Projeto Vercel | LPs ativas |
+|---|---|---|---|
+| `evento.buzzmonitor.com` | Eventos presenciais Buzzmonitor + Buzzcreators | `buzzmonitor-evento` | `vendendo-com-creators` (Buzzcreators) |
+| `material.buzzmonitor.com` | Material rico evergreen Buzzmonitor | `buzzmonitor-material` | (em popularização) |
+| `webinar.buzzmonitor.com` | Eventos online Buzzmonitor (legacy) | `buzzmonitor-lp-monitoramento-concorrentes` | BR + PT |
+| `content.cxpress.io` | Material rico Cxpress (subdomínio único, qualquer tipo) | `cxpress-lp-playbook-whatsapp2026` | `playbook-whatsapp2026` |
+
+LPs novas devem priorizar o subdomínio mais específico (ex: evento presencial Buzzmonitor → `evento.*`, não `webinar.*`). Convenção completa em [`.claude/skills/lp-preparar/CONTEXT.md`](../.claude/skills/lp-preparar/CONTEXT.md).
 
 ### 4.3 Promessa do guarda-chuva: ZERO regressão em vizinhas
 

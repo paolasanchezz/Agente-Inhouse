@@ -1,7 +1,7 @@
 ---
 name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
-argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzmonitor monitoramento-maio webinar.buzzmonitor.com"
+argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
 version: 1.7.0
 ---
@@ -32,7 +32,7 @@ Parsing de `$ARGUMENTS`:
 |---|---|---|
 | `marca` | `buzzmonitor` \| `buzzcreators` \| `cxpress` \| `elife` | Sim |
 | `slug` | kebab-case | Sim |
-| `dominio` | FQDN (ex: `webinar.buzzmonitor.com`) | Nao |
+| `dominio` | FQDN (ex: `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.cxpress.io`, `webinar.buzzmonitor.com`) | Nao |
 
 Paths default (modo solo):
 - Fonte: `landing-pages/{marca}/{slug}/index.html`
@@ -450,10 +450,10 @@ URL alvo: se dominio configurado, usar dominio final; senao, URL `.vercel.app`.
 
 ### 5.1 PageSpeed Insights
 
-Use `WebFetch`. URL do site alvo deve ser **URL-encoded** no parametro `url=` (ex: `:` vira `%3A`, `/` vira `%2F`). Exemplo com `https://webinar.buzzmonitor.com/monitoramento-maio`:
+Use `WebFetch`. URL do site alvo deve ser **URL-encoded** no parametro `url=` (ex: `:` vira `%3A`, `/` vira `%2F`). Exemplo com `https://evento.buzzmonitor.com/vendendo-com-creators`:
 
 ```
-https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Fwebinar.buzzmonitor.com%2Fmonitoramento-maio&strategy=mobile&category=performance&category=accessibility&category=seo&category=best-practices
+https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Fevento.buzzmonitor.com%2Fvendendo-com-creators&strategy=mobile&category=performance&category=accessibility&category=seo&category=best-practices
 ```
 
 Extrair do JSON de resposta:

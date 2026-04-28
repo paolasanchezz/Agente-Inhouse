@@ -7,7 +7,7 @@
 
 ## Iteração 2 — 2026-04-28 (rodada de melhorias do Victor)
 
-Aplicado direto no source (não passou por `/lp-revisar`). Pendente `/lp-publicar buzzcreators vendendo-com-creators webinar.buzzmonitor.com` para sincronizar com a sibling guarda-chuva e fazer deploy.
+Aplicado direto no source (não passou por `/lp-revisar`). Pendente `/lp-publicar buzzcreators vendendo-com-creators evento.buzzmonitor.com` para sincronizar com a sibling guarda-chuva e fazer deploy.
 
 ### Assets substituídos
 - [x] `assets/buzzcreators/logo-full-color.svg` — substituído pela nova versão do brandbook (`logo-colorida.svg` da pasta `Downloads/buzzcreators logo/`, renomeado mantendo o nome original do projeto)
@@ -37,12 +37,19 @@ Aplicado direto no source (não passou por `/lp-revisar`). Pendente `/lp-publica
 Já permitido no `vercel.json` da sibling (`frame-src ... https://www.youtube.com`). Sem ajuste necessário.
 
 ### Próximo passo
-- [ ] Rodar `/lp-publicar buzzcreators vendendo-com-creators webinar.buzzmonitor.com` para sincronizar sibling + deploy guarda-chuva preservando as outras 2 LPs Buzzmonitor.
+- [ ] Rodar `/lp-publicar buzzcreators vendendo-com-creators evento.buzzmonitor.com` para sincronizar sibling + deploy guarda-chuva preservando as outras 2 LPs Buzzmonitor.
 
 ### Iteração 2.1 — ajustes editoriais sobre a Iteração 2
 
 - [x] **Checks da seção benefícios trocados de verde para roxo escuro** — `color: var(--c-success)` + `background: rgba(34,197,94,0.15)` virou `color: var(--c-purple-dark)` + `background: rgba(58,22,82,0.12)`. Motivo: verde sobre fundo `peach` (#fff4ec) não harmonizava com a paleta brand (a marca é roxo + laranja). Roxo escuro mantém alternância de cor entre seções e integra melhor.
 - [x] **Reordenação de seções pós-form** — nova ordem: hero → hook → problema → beneficios → speaker → cta-banner → para-quem → **cta-final (form)** → **urgencia** → **video-buzzcreators**. A urgência agora atua como "segunda chance" para quem rolou sem converter, e o vídeo institucional fecha a página como reforço de marca. Antes, urgência vinha pré-form e o vídeo ficava no meio (depois do speaker, no slot da antiga seção `.prova`).
+
+### Iteração 2.5 — migração webinar → evento
+
+- [x] **LP migrada** de `webinar.buzzmonitor.com/vendendo-com-creators` para **`evento.buzzmonitor.com/vendendo-com-creators`** (subdomínio guarda-chuva específico para eventos presenciais Buzzmonitor + Buzzcreators).
+- [x] **Novo projeto Vercel** `buzzmonitor-evento` (`prj_*`, sibling `C:/Users/titof/Downloads/Claude/buzzmonitor-evento/`). Subdomínio irmão `material.buzzmonitor.com` (projeto `buzzmonitor-material`) também criado para futuras LPs de material rico.
+- [x] **Redirect 301 (308 permanent) ativo** em `webinar.buzzmonitor.com/vendendo-com-creators` → `evento.buzzmonitor.com/vendendo-com-creators` no `vercel.json` do guarda-chuva antigo. URLs já compartilhadas continuam funcionando.
+- [x] **LP removida do guarda-chuva antigo** (pasta `vendendo-com-creators/` + assets `assets/buzzcreators/` apagados). LPs vizinhas Buzzmonitor BR/PT permanecem intactas (smoke test confirmado).
 
 ### Iteração 2.4 — remover PROBLEMA + benefícios sobre branco
 
@@ -124,7 +131,7 @@ Todos resolvidos na Iteração 2 (2026-04-28):
 ## Próximos passos
 
 - [x] Form Jotform integrado (`260213440661648`)
-- [x] Publicada em `https://webinar.buzzmonitor.com/vendendo-com-creators` (sibling guarda-chuva `buzzmonitor-lp-monitoramento-concorrentes`, sem quebrar as 2 LPs Buzzmonitor existentes)
+- [x] Publicada em `https://evento.buzzmonitor.com/vendendo-com-creators` (sibling guarda-chuva `buzzmonitor-lp-monitoramento-concorrentes`, sem quebrar as 2 LPs Buzzmonitor existentes)
 - [ ] Preencher placeholders de copy (`[X] vagas`, `[NOME DO MENTOR]`, etc) e re-rodar publicação
 - [ ] PageSpeed manual em https://pagespeed.web.dev/
 

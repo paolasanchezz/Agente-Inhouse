@@ -1,7 +1,7 @@
 ---
 name: lp-pipeline
 description: Executa o pipeline de landing page — preparar copy, gerar HTML, revisar e (apos aprovacao manual) publicar. Pausa explicita antes de integrar form e antes de publicar.
-argument-hint: "[marca] [slug] [fonte] [dominio-opcional] — ex: buzzmonitor monitoramento-maio https://notion.so/... webinar.buzzmonitor.com"
+argument-hint: "[marca] [slug] [fonte] [dominio-opcional] — ex: buzzcreators evento-creators https://notion.so/... evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
 version: 1.1.0
 ---

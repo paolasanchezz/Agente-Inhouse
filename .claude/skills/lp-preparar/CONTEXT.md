@@ -6,14 +6,37 @@
 
 ## Marcas Validas
 
-| Marca | Arquivo de produto | Dominio de publicacao (default) |
+| Marca | Arquivo de produto | Subdominios guarda-chuva ativos |
 |---|---|---|
-| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `webinar.buzzmonitor.com` |
-| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | a definir |
-| `cxpress` | `brand/cxpress/BRANDBOOK.md` | a definir |
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `evento.buzzmonitor.com` (presencial), `material.buzzmonitor.com` (rico/evergreen), `webinar.buzzmonitor.com` (online — legacy) |
+| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | sem subdominio proprio — LPs caem em algum guarda-chuva Buzzmonitor (assets em `/assets/buzzcreators/X` por namespace) |
+| `cxpress` | `brand/cxpress/BRANDBOOK.md` | `content.cxpress.io` (subdominio unificado — qualquer tipo de LP Cxpress) |
 | `elife` | `brand/elife/BRANDBOOK.md` | a definir |
 
 Dominios sao sugeridos, nao impostos. `lp-publicar` so adiciona dominio quando o usuario passa `[dominio]` explicitamente.
+
+### Convencao de subdominio Buzzmonitor
+
+Buzzmonitor tem 3 subdominios guarda-chuva especializados — escolher conforme o tipo de LP:
+
+| Subdominio | Tipo de LP | Exemplos |
+|---|---|---|
+| `evento.buzzmonitor.com` | Eventos **presenciais** | workshops, meetups, palestras fisicas, "Vendendo com Creators" |
+| `material.buzzmonitor.com` | Material rico **evergreen** | playbooks, ebooks, guias, notion-share, conteudos perenes |
+| `webinar.buzzmonitor.com` | Eventos **online** | webinars ao vivo, lives, transmissoes (legacy — LPs novas devem priorizar `evento.*` ou `material.*` quando aplicavel) |
+
+Cxpress mantem 1 subdominio so (`content.cxpress.io`) para qualquer tipo — nao tem essa subdivisao por tipo.
+
+### Projetos Vercel correspondentes
+
+| Subdominio | Projeto Vercel | Sibling local |
+|---|---|---|
+| `evento.buzzmonitor.com` | `buzzmonitor-evento` | `C:/Users/titof/Downloads/Claude/buzzmonitor-evento/` |
+| `material.buzzmonitor.com` | `buzzmonitor-material` | `C:/Users/titof/Downloads/Claude/buzzmonitor-material/` |
+| `webinar.buzzmonitor.com` | `buzzmonitor-lp-monitoramento-concorrentes` | `C:/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/` |
+| `content.cxpress.io` | `cxpress-lp-playbook-whatsapp2026` | `C:/Users/titof/Downloads/Claude/cxpress-lp-playbook-whatsapp2026/` |
+
+Nomes "legacy" (com slug da primeira LP) sao herdados — `lp-publicar` Passo 0.5 detecta o projeto via API Vercel, nome nao importa para o fluxo.
 
 ## Estrutura de arquivos
 
