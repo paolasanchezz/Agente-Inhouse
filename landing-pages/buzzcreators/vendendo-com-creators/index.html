@@ -217,6 +217,28 @@ button.cta-primary:active {
   color: var(--c-purple);
   font-size: 18px;
 }
+.hook__stat {
+  margin: 32px auto !important;
+  max-width: 660px;
+  background: rgba(255, 129, 25, 0.08);
+  border-left: 4px solid var(--c-orange);
+  padding: 22px 26px;
+  border-radius: 4px 14px 14px 4px;
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  color: var(--c-text-2);
+  text-align: left;
+  font-weight: 500 !important;
+}
+.hook__stat strong { color: var(--c-orange-dark); font-weight: 700; }
+.hook__stat-source {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--c-text-3);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
 
 /* ─── HERO ──────────────────────────────────────── */
 .hero {
@@ -399,75 +421,11 @@ button.cta-primary:active {
   min-width: 64px;
 }
 
-/* ─── PROBLEMA ──────────────────────────────────── */
-.problema {
-  padding: var(--section-y) var(--pad-x);
-  background: var(--c-white);
-}
-.problema__inner { max-width: 880px; margin: 0 auto; }
-.problema h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  margin-bottom: 56px;
-  color: var(--c-text);
-  max-width: 720px;
-}
-.problema__list { list-style: none; }
-.problema__list li {
-  display: flex;
-  gap: 22px;
-  align-items: flex-start;
-  padding: 24px 4px;
-  border-top: 1px solid var(--c-gray-100);
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--c-text-2);
-  transition: padding-left 0.25s ease, color 0.25s ease;
-}
-.problema__list li:last-child { border-bottom: 1px solid var(--c-gray-100); }
-.problema__list li:hover { padding-left: 12px; color: var(--c-text); }
-.problema__list .x-mark {
-  flex-shrink: 0;
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  background: rgba(239, 68, 68, 0.12);
-  color: var(--c-error);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  margin-top: 1px;
-}
-.problema__conclusion {
-  margin-top: 44px;
-  font-size: clamp(20px, 2.4vw, 26px);
-  font-weight: 700;
-  color: var(--c-purple-dark);
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-}
-
 /* ─── BENEFICIOS ────────────────────────────────── */
 .beneficios {
   padding: var(--section-y) var(--pad-x);
-  background: var(--c-peach);
-  position: relative;
-  overflow: hidden;
+  background: var(--c-white);
 }
-.beneficios::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(600px 300px at 100% 0%, rgba(255,129,25,0.08), transparent 60%),
-    radial-gradient(500px 250px at 0% 100%, rgba(106,56,149,0.06), transparent 60%);
-  pointer-events: none;
-}
-.beneficios__inner { position: relative; z-index: 1; }
 .beneficios__inner { max-width: var(--max-w); margin: 0 auto; }
 .beneficios h2 {
   font-family: var(--font-display);
@@ -521,6 +479,43 @@ button.cta-primary:active {
 @media (max-width: 600px) {
   .beneficios__grid { grid-template-columns: 1fr; }
 }
+.beneficios__list {
+  list-style: none;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.beneficios__list li {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 22px 4px;
+  border-top: 1px solid rgba(58, 22, 82, 0.10);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--c-text);
+  transition: padding-left 0.25s ease, color 0.25s ease;
+}
+.beneficios__list li:last-child { border-bottom: 1px solid rgba(58, 22, 82, 0.10); }
+.beneficios__list li:hover { padding-left: 12px; color: var(--c-purple-dark); }
+.beneficios__list .check {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--c-purple-dark);
+  color: var(--c-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 2px;
+  box-shadow: 0 2px 6px rgba(58, 22, 82, 0.20);
+}
+.beneficios__cta {
+  display: block;
+  width: fit-content;
+  margin: 44px auto 0;
+}
 
 /* ─── SPEAKER ───────────────────────────────────── */
 .speaker {
@@ -544,18 +539,19 @@ button.cta-primary:active {
   align-items: center;
 }
 .speaker__photo {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
+  width: 240px;
   background: var(--c-gray-100);
-  border: 2px dashed var(--c-gray-300);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--c-text-3);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(58, 22, 82, 0.12);
+}
+.speaker__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .speaker__text { font-size: 17px; line-height: 1.7; color: var(--c-text-2); }
 .speaker__name {
@@ -579,18 +575,18 @@ button.cta-primary:active {
 }
 
 @media (max-width: 760px) {
-  .speaker__card { grid-template-columns: 1fr; gap: 32px; }
-  .speaker__photo { max-width: 280px; margin: 0 auto; width: 100%; }
+  .speaker__card { grid-template-columns: 1fr; gap: 32px; justify-items: center; text-align: center; }
+  .speaker__photo { max-width: 220px; width: 100%; }
 }
 
-/* ─── PROVA ─────────────────────────────────────── */
-.prova {
+/* ─── VIDEO BUZZCREATORS ────────────────────────── */
+.video-buzzcreators {
   padding: var(--section-y) var(--pad-x);
   background: var(--c-lavender);
   position: relative;
   overflow: hidden;
 }
-.prova::before {
+.video-buzzcreators::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -599,9 +595,14 @@ button.cta-primary:active {
     radial-gradient(500px 300px at 5% 5%, rgba(255,129,25,0.06), transparent 60%);
   pointer-events: none;
 }
-.prova__inner { position: relative; z-index: 1; }
-.prova__inner { max-width: var(--max-w); margin: 0 auto; }
-.prova h2 {
+.video-buzzcreators__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+.video-buzzcreators h2 {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
@@ -610,60 +611,30 @@ button.cta-primary:active {
   letter-spacing: -0.025em;
   line-height: 1.12;
 }
-.prova__intro {
+.video-buzzcreators__lead {
   font-size: 18px;
   line-height: 1.65;
   color: var(--c-text-2);
-  max-width: 760px;
-  margin-bottom: 64px;
+  margin: 0 auto 44px;
+  max-width: 720px;
 }
-.prova__intro strong { color: var(--c-purple-dark); font-weight: 700; }
-.prova__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 2px solid var(--c-text);
-  border-bottom: 2px solid var(--c-text);
+.video-buzzcreators__embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: #000;
 }
-.stat {
-  padding: 40px 24px;
-  border-right: 1px solid var(--c-gray-200);
-  text-align: center;
-}
-.stat:last-child { border-right: 0; }
-.stat__num {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 7vw, 88px);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--c-purple-dark);
-  letter-spacing: -0.05em;
-  display: block;
-  margin-bottom: 14px;
-}
-.stat__label {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--c-text-2);
-  letter-spacing: 0.02em;
-  line-height: 1.45;
-}
-.prova__note {
-  margin-top: 36px;
-  padding: 32px 36px;
-  background: var(--c-white);
-  border-left: 4px solid var(--c-orange);
-  border-radius: 4px var(--radius-md) var(--radius-md) 4px;
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--c-text-2);
-}
-.prova__note strong { color: var(--c-orange-dark); font-weight: 700; font-size: 18px; }
-.prova__note .purple { color: var(--c-purple-dark); font-weight: 700; }
-
-@media (max-width: 760px) {
-  .prova__stats { grid-template-columns: 1fr; }
-  .stat { border-right: 0; border-bottom: 1px solid var(--c-gray-200); padding: 32px 16px; }
-  .stat:last-child { border-bottom: 0; }
+.video-buzzcreators__embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ─── CTA INTERMEDIARIO (mesh gradient fluido) ──── */
@@ -903,14 +874,36 @@ button.cta-primary:active {
 }
 .cta-final__inner { position: relative; z-index: 1; }
 .cta-final__inner { max-width: 720px; margin: 0 auto; text-align: center; }
-.cta-final h2 {
+.form__title {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(26px, 3.6vw, 38px);
   font-weight: 700;
   line-height: 1.18;
-  margin-bottom: 48px;
-  color: var(--c-text);
+  margin: 0 0 24px;
+  color: var(--c-purple-dark);
   letter-spacing: -0.025em;
+  text-align: center;
+}
+.form__event-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 30px;
+  padding: 0 0 28px;
+  border-bottom: 1px solid rgba(58, 22, 82, 0.10);
+}
+.form__event-info span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  background: rgba(58, 22, 82, 0.06);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-purple-dark);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .form {
@@ -964,8 +957,61 @@ button.cta-primary:active {
 }
 
 /* Wrapper Jotform — canonico (CONTEXT.md) */
-.form.jotform-embed { padding: 16px; overflow: hidden; }
+.form.jotform-embed { padding: 56px 48px 36px; overflow: hidden; }
 .form.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+@media (max-width: 600px) {
+  .form.jotform-embed { padding: 36px 22px 24px; }
+}
+
+/* ─── CTA FINAL — endereco + Maps ───────────────── */
+.cta-final__location {
+  margin-top: 32px;
+  padding: 26px 28px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(58, 22, 82, 0.10);
+  border-radius: var(--radius-md);
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+.cta-final__location-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-purple);
+  margin-bottom: 8px;
+}
+.cta-final__address {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--c-text);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--c-white);
+  border: 2px solid var(--c-purple-dark);
+  color: var(--c-purple-dark);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.cta-secondary:hover {
+  background: var(--c-purple-dark);
+  color: var(--c-white);
+  transform: translateY(-1px);
+}
+.cta-secondary svg { width: 16px; height: 16px; }
 
 /* ─── Footer ────────────────────────────────────── */
 .site-footer {
@@ -1070,7 +1116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span>20 de Maio</span>
           <span>14h às 18h</span>
           <span>São Paulo</span>
-          <span>[X] vagas presenciais</span>
+          <span>Apenas 80 vagas presenciais</span>
         </div>
         <a href="#cta-final" class="cta-primary">Quero participar</a>
       </div>
@@ -1097,34 +1143,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 id="hook-title">Transforme campanhas com influenciadores em um canal de vendas</h2>
       <p>Suas campanhas com influenciadores geram alcance e engajamento, mas não geram vendas?</p>
       <p>É o padrão da marca que escolhe creator no feeling, mede sucesso por curtida e trata cada campanha como ação isolada.</p>
+      <p class="hook__stat"><strong>53% dos anunciantes</strong> têm dificuldade para quantificar o ROI e <strong>48%</strong> têm dificuldade para comprovar a efetividade do influenciador.<span class="hook__stat-source">YOUPIX/Nielsen 2025</span></p>
       <p>Mas dá pra fazer diferente.</p>
-    </div>
-  </section>
-
-  <section class="problema" aria-labelledby="problema-title">
-    <div class="problema__inner">
-      <h2 id="problema-title" class="reveal">Por que a maioria das marcas ainda não vende com creators?</h2>
-      <ul class="problema__list">
-        <li class="reveal"><span class="x-mark" aria-hidden="true">✕</span><span>Escolhem creator pelo número de seguidor, não pelo perfil de quem segue</span></li>
-        <li class="reveal"><span class="x-mark" aria-hidden="true">✕</span><span>Medem campanha por curtida</span></li>
-        <li class="reveal"><span class="x-mark" aria-hidden="true">✕</span><span>Não reaproveitam no próximo briefing o que funcionou no anterior</span></li>
-        <li class="reveal"><span class="x-mark" aria-hidden="true">✕</span><span>Tratam cada campanha como evento isolado, sem narrativa de marca</span></li>
-      </ul>
-      <p class="problema__conclusion reveal">Resultado: muito esforço, zero previsibilidade.</p>
     </div>
   </section>
 
   <section class="beneficios" aria-labelledby="beneficios-title">
     <div class="beneficios__inner">
       <h2 id="beneficios-title" class="reveal">O que você sai sabendo depois dessa tarde</h2>
-      <div class="beneficios__grid">
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como transformar influenciadores em um canal de vendas</p></div>
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como sair de campanhas isoladas para um modelo de crescimento contínuo</p></div>
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como usar dados para entender o que realmente gera receita</p></div>
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como criar recorrência com creators sem depender de negociações constantes</p></div>
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como conectar influência + conteúdo + performance em uma estratégia única</p></div>
-        <div class="benefit-card reveal"><span class="check" aria-hidden="true">✓</span><p>Como medir ROI de influência de forma clara</p></div>
-      </div>
+      <ul class="beneficios__list">
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como transformar influenciadores em um canal de vendas</span></li>
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como sair de campanhas isoladas para um modelo de crescimento contínuo</span></li>
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como usar dados para entender o que realmente gera receita</span></li>
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como criar recorrência com creators sem depender de negociações constantes</span></li>
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como conectar influência + conteúdo + performance em uma estratégia única</span></li>
+        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span>Como medir ROI de influência de forma clara</span></li>
+      </ul>
+      <a href="#cta-final" class="cta-primary reveal beneficios__cta">Quero estar lá dia 20/05</a>
     </div>
   </section>
 
@@ -1132,35 +1167,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="speaker__inner">
       <h2 id="speaker-title" class="reveal">Quem conduz a conversa?</h2>
       <div class="speaker__card reveal">
-        <div class="speaker__photo" aria-hidden="true">Foto</div>
+        <div class="speaker__photo">
+          <img src="./assets/buzzcreators/bruno-filho.png" alt="Bruno Filho, Coordenador de Novos Negócios da Buzzcreators" />
+        </div>
         <div class="speaker__text">
-          <p class="speaker__name">[NOME DO MENTOR] — [cargo / posição atual]</p>
-          <p class="speaker__bio">[1-2 frases sobre autoridade: anos no mercado, marcas que conduziu, número que prova o método. Manter o tom direto. Sem listas de prêmios — autodepreciação leve permitida.]</p>
-          <p class="speaker__photo-note">[Foto opcional, recortada em proporção quadrada/3:4]</p>
+          <p class="speaker__name">Bruno Filho — Coordenador de Novos Negócios Buzzcreators</p>
+          <p class="speaker__bio">Especialista em transformar dados sociais em decisões estratégicas que fortalecem marcas. Com mais de 10 anos de experiência em SaaS, e-commerce e marketing digital, fundou e vendeu sua primeira startup aos 27 anos.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="prova" aria-labelledby="prova-title">
-    <div class="prova__inner">
-      <h2 id="prova-title" class="reveal">Por que confiar no método</h2>
-      <p class="prova__intro reveal">O <strong>Buzzcreators</strong> é a plataforma de media e influencer marketing do Grupo Elife. O que apresentamos no evento é o método que já roda nessa escala:</p>
-      <div class="prova__stats reveal">
-        <div class="stat">
-          <span class="stat__num">1.000+</span>
-          <span class="stat__label">marcas usam a plataforma globalmente</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">300+</span>
-          <span class="stat__label">clientes enterprise</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">500+</span>
-          <span class="stat__label">agências parceiras</span>
-        </div>
-      </div>
-      <p class="prova__note reveal">Microinfluenciadores na nossa base entregam <strong>ROI 3x maior</strong> e <strong>60% mais engajamento</strong> do que macros — e é desse perfil que sai a maior parte das campanhas que vendem.</p>
     </div>
   </section>
 
@@ -1190,6 +1204,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <section class="cta-final" id="cta-final" aria-labelledby="cta-final-title">
+    <div class="cta-final__inner">
+      <div class="form jotform-embed reveal">
+        <h2 id="cta-final-title" class="form__title">Dê o próximo passo para obter ROI com creators</h2>
+        <div class="form__event-info" aria-label="Detalhes do evento">
+          <span>20 de Maio · 2026</span>
+          <span>14h às 18h</span>
+          <span>São Paulo · Espaço Paulista</span>
+        </div>
+        <script type="text/javascript" src="https://form.jotform.com/jsform/260213440661648"></script>
+      </div>
+      <div class="cta-final__location reveal">
+        <span class="cta-final__location-label">Onde acontece</span>
+        <p class="cta-final__address">Av. Paulista, 807 — 17º Andar, Bela Vista, São Paulo · SP, 01311-100 — Espaço Paulista</p>
+        <a href="https://maps.google.com/?cid=18153340522743061978&amp;g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&amp;hl=pt-BR&amp;gl=BR&amp;source=embed" class="cta-secondary" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Abrir no Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="urgencia" aria-labelledby="urgencia-title">
     <div class="urgencia__inner">
       <span class="urgencia__tag" aria-hidden="true">Últimas vagas</span>
@@ -1203,11 +1239,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="cta-final" id="cta-final" aria-labelledby="cta-final-title">
-    <div class="cta-final__inner">
-      <h2 id="cta-final-title" class="reveal">Quatro horas presenciais sobre o que separa influência que viraliza de influência que vende.</h2>
-      <div class="form jotform-embed reveal">
-        <script type="text/javascript" src="https://form.jotform.com/jsform/260213440661648"></script>
+  <section class="video-buzzcreators" aria-labelledby="video-title">
+    <div class="video-buzzcreators__inner">
+      <h2 id="video-title" class="reveal">Conheça o Buzzcreators</h2>
+      <p class="video-buzzcreators__lead reveal">Revolucione suas campanhas de marketing de influência com o Buzzcreators, a plataforma que simplifica e potencializa sua conexão com influenciadores.</p>
+      <div class="video-buzzcreators__embed reveal">
+        <iframe src="https://www.youtube.com/embed/nBK4ehM0YLo?si=ua9Fi4GtQVWwgJrN&amp;controls=0" title="Conheça o Buzzcreators" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -1215,7 +1252,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <footer class="site-footer" role="contentinfo">
-  <p>© 2026 Buzzcreators · Grupo Elife · <a href="mailto:comercial@buzzcreators.com.br">comercial@buzzcreators.com.br</a></p>
+  <p>© 2026 Buzzcreators · Buzzmonitor · <a href="mailto:eventos@buzzmonitor.com.br">eventos@buzzmonitor.com.br</a></p>
 </footer>
 
 <script>
