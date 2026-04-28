@@ -3,16 +3,19 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §10).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Integrar Formulario em Landing Page
 
 Substitui o form mock (`<form action="#">`) por um embed externo. Aplica o CSS wrapper canonico para manter layout. **Nao roda dentro do pipeline** — usuario invoca manualmente quando o design esta aprovado.
 
-## Passo 0: Parsing
+## Passo 0: Parsing e Contexto
 
-Leia `.claude/skills/lp-preparar/CONTEXT.md`.
+Leia, na ordem:
+
+1. `landing-pages/CONTEXT.md` — runbook operacional. Use principalmente §6 (troubleshooting) — entradas "Form nao carrega no live", "Form duplicado / erro no console".
+2. `.claude/skills/lp-preparar/CONTEXT.md` — convencoes de marca.
 
 Parsing de `$ARGUMENTS`:
 

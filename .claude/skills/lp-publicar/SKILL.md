@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzmonitor monitoramento-maio webinar.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.5.0
+version: 1.7.0
 ---
 
 # Skill: Publicar Landing Page
@@ -21,7 +21,10 @@ A diferenca pratica: no modo guarda-chuva voce **nao cria projeto Vercel novo**,
 
 ## Passo 0: Parsing e Contexto
 
-Leia `.claude/skills/lp-preparar/CONTEXT.md`.
+Leia, na ordem:
+
+1. `landing-pages/CONTEXT.md` — runbook operacional. Use principalmente §3 (convencao de assets — paths source vs deploy, namespace solo vs guarda-chuva), §4 (modos de deploy), §6 (troubleshooting de erros conhecidos: favicon 404, mascote 404, CSP, smoke test divergente, FetchError CLI), §7 (anti-padroes documentados).
+2. `.claude/skills/lp-preparar/CONTEXT.md` — convencoes de marca, IDs Notion, formato `tracking.json`.
 
 Parsing de `$ARGUMENTS`:
 
@@ -607,10 +610,4 @@ Relatorio Notion: {URL}
 
 ## Anti-padroes documentados
 
-| Anti-padrao | Por que evitar | Quando aconteceu |
-|---|---|---|
-| Criar projeto Vercel novo quando dominio ja esta atribuido | Domino fica conflitando, e voce acaba com projeto orfao depois de consolidar manualmente | 2026-04-27, LP Buzzcreators `vendendo-com-creators` (Passo 0.5 nao existia) |
-| Sobrescrever `vercel.json` no sibling guarda-chuva | Pode mudar CSP/headers e quebrar form/script de outras LPs vizinhas | Risco hipotetico (motivou §1.6 nao-sobrescrever em guarda-chuva) |
-| Copiar asset com filename igual ao de uma LP vizinha sem namespace | Ultima LP a publicar sobrescreve assets das anteriores em silencio (favicon errado, mascot trocado) | Risco real evitado em 2026-04-27 (Buzzmonitor e Buzzcreators ambos com `logo-icon.png`) |
-| Path relativo (`./assets/X` ou `../../brand/X`) sobrando no HTML do sibling | `cleanUrls: true` + `trailingSlash: false` resolve `./` na raiz, gerando 404 | 2026-04-27, mascot 404 Buzzmonitor (motivou verificacao pos-rewrite v1.4.0) |
-| Misturar atualizacao de duas LPs no mesmo deploy guarda-chuva | Quebra a promessa de "1 deploy = 1 LP nova/atualizada" e dificulta debugging quando algo quebra | Risco hipotetico (motivou nota em §2.4) |
+Lista canonica em `landing-pages/CONTEXT.md` §7.1 (categoria) e §7.2 (historico de incidentes). Os anti-padroes especificos a `lp-publicar` (criar projeto duplicado, sobrescrever vercel.json em guarda-chuva, colidir asset sem namespace, path relativo sobrando, misturar 2 LPs no mesmo deploy) estao documentados la com referencia cruzada de versao.

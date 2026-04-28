@@ -60,6 +60,53 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 - Nenhum passo de setup adicional foi introduzido — `/commit` v2.0.0 funciona com a credencial do Git Credential Manager que todos já têm do clone HTTPS.
 
 ## landing-page (advisor) + familia lp-*
+### 1.7.0 — 2026-04-28 (consolidacao pos-revisao critica)
+
+Round de fixes a partir de revisao critica das skills LP + CONTEXT/GUIDELINES (3 alta + 5 media + 4 baixa severidade). Foco: eliminar contradicoes, deduplicar regras espalhadas, fonte unica para regras canonicas (cascata GTM, snippet GTM, anti-padroes, wrapper CSS form).
+
+#### Alta severidade (bugs reais)
+- **`landing-pages/CONTEXT.md` §5.1:** documentar explicitamente que `lp-gerar` pula o passo 2 da cascata (HTML ainda nao existe) — antes essa diferenca nao estava em lugar nenhum, gerava confusao entre lp-gerar (2 passos) vs lp-revisar (3 passos).
+- **`landing-pages/CONTEXT.md` §3.7 (validacao favicon):** `curl` de exemplo trocou `{path}` (variavel inexistente — favicon resolve em `/` absoluto) por paths corretos solo (`/assets/logos/...`) e guarda-chuva (`/assets/{marca}/logos/...`).
+- **`landing-page` (advisor) v1.1.0 → v1.2.0:** Q1 reduzida de 7 → 3 opcoes (LP nova / Alterar / Etapa especifica) — AskUserQuestion suporta no maximo 4. Q1b expande "Etapa especifica" se necessario. Fluxo: Alterar agora delega decisao fina a `landing-pages/CONTEXT.md` §2.2 em vez de duplicar a tabela.
+
+#### Media severidade (deduplicacao)
+- **Cascata de regiao centralizada em `landing-pages/CONTEXT.md` §5.1.** Removida de `lp-gerar` e `lp-revisar` (substituida por ref) e do brand CONTEXT (`.claude/skills/lp-preparar/CONTEXT.md`). Antes vivia em 4 lugares — qualquer mudanca exigia atualizar 4 arquivos com risco de divergir.
+- **Snippet GTM canonico em `landing-pages/CONTEXT.md` §5.3.** Removido de `lp-gerar` Passo 3 (briefing) e `lp-revisar` Passo 3.5. Skills agora apontam pro snippet em §5.3. Se Google atualizar o snippet, 1 lugar pra atualizar.
+- **Wrapper CSS `.form.jotform-embed` so em `lp-integrar-form` Passo 3.** Removido de GUIDELINES §10 e do brand CONTEXT — esses agora referenciam.
+- **Anti-padroes consolidados em `landing-pages/CONTEXT.md` §7** (categoria + historico). `lp-publicar` substituiu sua lista propria por referencia a §7.1. CONTEXT §2.3 (anti-padroes de fluxo) tambem virou ref para §7.1.
+- **Fluxo de alteracao alinhado:** `landing-page` advisor agora delega 100% a `landing-pages/CONTEXT.md` §2.2 (matriz canonica de 11 linhas) em vez de manter tabela propria com 6 categorias incompletas.
+
+#### Baixa severidade (polish)
+- **Adicionada `landing-pages/CONTEXT.md` §5.2 — ownership chain:** `lp-gerar` injeta inicial, `lp-revisar` audita+corrige, `lp-publicar` valida no live. Antes essa cadeia ficava implicita em 3 SKILL.md sem visao consolidada.
+- **PageSpeed endpoint movido** do brand CONTEXT (.claude/skills/lp-preparar/CONTEXT.md) — so `lp-publicar` Passo 5.1 usa, ja tinha duplicado la. Brand CONTEXT e shared entre todas skills lp-* — endpoint de validacao pos-deploy nao pertencia ali.
+- **Brand CONTEXT "Pasta sibling" atualizada** pra refletir solo + guarda-chuva (antes so descrevia formato solo `{marca}-lp-{slug}/` — desatualizado desde lp-publicar v1.5.0). Detalhes operacionais redirecionam pra `landing-pages/CONTEXT.md` §4.
+- **Refs "CONTEXT.md" agora sempre com path completo** nas skills lp-* (`landing-pages/CONTEXT.md` ou `.claude/skills/lp-preparar/CONTEXT.md`). Tira ambiguidade entre os dois CONTEXT.
+
+#### Skills bumpadas
+- `lp-gerar` 1.3.0 → 1.4.0 (cascata removida, snippet GTM removido, ref pro CONTEXT §5.1/§5.3)
+- `lp-revisar` 1.2.0 → 1.3.0 (idem)
+- `lp-publicar` 1.6.0 → 1.7.0 (anti-padroes removidos, ref pro CONTEXT §7)
+- `landing-page` (advisor) 1.1.0 → 1.2.0 (Q1 enxuta, Fluxo Alterar delegado)
+- Brand CONTEXT (`.claude/skills/lp-preparar/CONTEXT.md`) — sem campo version, mas reescrita
+
+#### Skills nao tocadas neste round
+- `lp-preparar` (carga ja correta em 1.1.0)
+- `lp-integrar-form` (carga ja correta em 1.2.0; agora e fonte canonica do wrapper CSS)
+- `lp-pipeline` (carga ja correta em 1.1.0)
+
+### 1.6.0 — 2026-04-28
+- **Novo `landing-pages/CONTEXT.md`** — runbook operacional unificado para todas as skills lp-*. Cobre: mapa mental (fonte-verdade vs sibling), fluxo padrao de LP nova, **matriz de alteracao pós-deploy** (§2.2 — "o que mudou → o que rodar", endereça problema recorrente do Victor de não saber qual skill rodar quando pede ajuste numa LP já viva), convenção unificada de assets/imagens (brand vs LP-local, paths source vs deploy, namespace solo vs guarda-chuva, formatos por tipo, regra do favicon, mascotes por marca), modos de deploy, cascata de detecção de região (deduplicada — antes em 3 skills), **troubleshooting** (sintoma → causa → solução cobrindo favicon 404, mascote 404, colisão de assets, CSP bloqueando form, GTM ausente/errado, FetchError CLI, smoke test divergente, sibling apagada/divergente, vazamento de path interno, conflito de domínio), anti-padrões documentados (linkados aos incidentes que motivaram cada versão), checklist pré-deploy, quando-não-usar-este-pipeline, e referências cruzadas. Complementar a `landing-pages/GUIDELINES.md` (que segue como regras de **design** — paleta, hero, motion, copy, seções-tipo, favicon §11). CONTEXT cobre o "como operar"; GUIDELINES cobre o "como deve ser".
+- **Skills bumpadas** (todas adicionam `landing-pages/CONTEXT.md` ao Passo 0/1 de carga de insumos):
+  - `lp-preparar` 1.0.0 → 1.1.0
+  - `lp-gerar` 1.2.0 → 1.3.0
+  - `lp-revisar` 1.1.0 → 1.2.0
+  - `lp-integrar-form` 1.1.0 → 1.2.0
+  - `lp-publicar` 1.5.0 → 1.6.0
+  - `lp-pipeline` 1.0.0 → 1.1.0 (novo bloco "Contexto comum" que carrega GUIDELINES + CONTEXT antes da validação de argumentos; e detecção de pedido de alteração vs LP nova com redirect para CONTEXT.md §2.2)
+  - `landing-page` (advisor) — adicionado `version: 1.1.0` ao frontmatter (não tinha versionamento antes); nova opção "Alterar LP existente" no Q1 + novo Fluxo: Alterar com sub-pergunta sobre o que mudou (copy/visual/asset/form/tracking/dominio) que dispara a skill correta conforme a matriz §2.2 do CONTEXT
+- **Motivo (do Victor):** "toda vez que peço alterações numa LP, o agente tem dificuldade em deploy correto, em qual passo seguir quando é alteração, e em tratar imagens (logos, ilustrações, onde guardar, como evitar 404)". A exploração confirmou que a base é sólida mas o conhecimento operacional estava disperso em 6 SKILL.md + CHANGELOG + READMEs por LP. Agora 1 doc canonico e carregado pelas 6 skills cobre fluxo de alteração, assets e troubleshooting num lugar só.
+- **Não-mudancas (intencionais):** `landing-pages/GUIDELINES.md` segue identico (regras de design não mudaram). `.claude/skills/lp-preparar/CONTEXT.md` segue como compartilhado para convenções de marca/IDs Notion (papel diferente do CONTEXT operacional recém-criado). LPs existentes em `landing-pages/{marca}/{slug}/` não foram tocadas. `brand/` não tocado.
+
 ### 1.5.0 — 2026-04-27
 - `lp-publicar` (v1.5.0): novo **modo guarda-chuva** para LPs que compartilham domínio. Quando `[dominio]` é fornecido, o **Passo 0.5** consulta a API da Vercel (`GET /v9/projects?teamId=...`) checando se algum projeto já tem esse domínio nos aliases. Se sim, a skill anexa a LP nova como subpasta do sibling existente em vez de criar projeto novo. Comportamento default (modo solo) inalterado.
 - **Namespace de assets por marca em multi-LP:** no modo guarda-chuva, paths são reescritos para `/assets/{marca}/X` em vez de `/assets/X`, evitando colisão de filename entre marcas (ex: Buzzmonitor e Buzzcreators têm ambos `logo-icon.png`). Source pode usar `../../brand/{marca}/...` ou `./assets/...` que a skill faz a conversão correta.

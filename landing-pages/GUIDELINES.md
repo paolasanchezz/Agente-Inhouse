@@ -89,14 +89,7 @@ Formulário real (Jotform, RD Station, HubSpot embed) **só entra depois do desi
 </form>
 ```
 
-Razão: embeds externos atrapalham iteração de design (iframe lento, CSS de terceiros, altura dinâmica) e obrigam retrabalho a cada ajuste de layout. Integrar via skill `lp-integrar-form` só quando o layout está travado.
-
-Wrapper para embed (quando chegar a hora):
-
-```css
-.form.jotform-embed { padding: 16px; overflow: hidden; }
-.form.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-```
+Razão: embeds externos atrapalham iteração de design (iframe lento, CSS de terceiros, altura dinâmica) e obrigam retrabalho a cada ajuste de layout. Integrar via skill `lp-integrar-form` só quando o layout está travado. Wrapper CSS canônico do embed em `.claude/skills/lp-integrar-form/SKILL.md` Passo 3.
 
 Logo em hero/CTA: **pode ser grande se for transparente** (SVG com fundo transparente). PNG com fundo branco fica pequeno ou vira "adesivo". Regra: logo respira se o formato permite.
 

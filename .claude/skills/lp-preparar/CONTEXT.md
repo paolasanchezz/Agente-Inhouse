@@ -43,7 +43,12 @@ Evitar dia no slug (o README guarda a data completa). Manter tudo minusculo, ape
 
 ## Pasta sibling (deploy artifact)
 
-Base: `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/`
+Base padrao: `C:/Users/titof/Downloads/Claude/{nome-do-projeto}/` (fora do repo).
+
+- **Modo solo:** `{nome}` = `{marca}-lp-{slug}` (1 LP por projeto Vercel; criada do zero pelo lp-publicar).
+- **Modo guarda-chuva:** `{nome}` = nome do projeto Vercel ja existente que ja serve o dominio (ex: `buzzmonitor-lp-monitoramento-concorrentes`); LP nova vira subpasta sem tocar nas vizinhas.
+
+Detalhes operacionais (quando cada modo, namespace de assets, smoke test de regressao em vizinhas) em `landing-pages/CONTEXT.md` §4.
 
 - Existe **fora** do repo do agente — nunca commitar path dela.
 - Contem apenas `{slug}/index.html`, `assets/` (so arquivos referenciados pelo HTML), `vercel.json`, `.gitignore`, `README.md`.
@@ -80,17 +85,9 @@ Ao gerar ou revisar LP, carregar:
 }
 ```
 
-Resolucao: `regions[{regiao}]` > `default` > omitir GTM. `lp-gerar` injeta no HTML; `lp-revisar` audita se o snippet esta presente quando esperado.
+Resolucao: `regions[{regiao}]` > `default` > omitir GTM.
 
-### Deteccao de regiao (cascata)
-
-Usada por `lp-gerar` e `lp-revisar` para resolver `regions[{regiao}]`:
-
-1. Sufixo do slug: `-pt` → portugal, `-latam` ou `-es` → latam, `-br` → brasil.
-2. `<html lang>` do index.html (quando ele ja existe): `pt-PT` → portugal, `es-*` → latam, `pt-BR` → brasil.
-3. Fallback: `brasil`.
-
-O primeiro criterio que resolver ganha. A regiao detectada alimenta o lookup de `tracking.json`.
+**Cascata de regiao + ownership chain (quem injeta, audita, valida) + snippet canonico estao em `landing-pages/CONTEXT.md` §5** — fonte unica para todas as skills lp-*.
 
 ## Guidelines e anti-IA
 
@@ -119,21 +116,5 @@ Mantido em `.claude/skills/lp-publicar/vercel.template.json` — headers de segu
 ## Formulario
 
 Durante design e revisao: mock `<form action="#" onsubmit="event.preventDefault()">`.
-Integracao real so via `lp-integrar-form` (Jotform, RD Station, HubSpot), manual-trigger apos aprovacao do design.
+Integracao real so via `lp-integrar-form` (Jotform, RD Station, HubSpot), manual-trigger apos aprovacao do design. Wrapper CSS canonico em `.claude/skills/lp-integrar-form/SKILL.md` Passo 3.
 
-Wrapper CSS canonico:
-
-```css
-.form.jotform-embed { padding: 16px; overflow: hidden; }
-.form.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-```
-
-## PageSpeed Insights (validacao pos-deploy)
-
-Endpoint (sem chave, usado via WebFetch):
-
-```
-https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={URL}&strategy=mobile&category=performance&category=accessibility&category=seo&category=best-practices
-```
-
-Metas: performance >= 85, accessibility = 100, seo >= 90, best-practices >= 90. Incluir no relatorio Notion.

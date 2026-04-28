@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.1.0
+version: 1.3.0
 ---
 
 # Skill: Revisar Landing Page
@@ -12,7 +12,11 @@ Voce audita uma LP em 2 passadas independentes (design + acessibilidade/HTML), a
 
 ## Passo 0: Parsing e Contexto
 
-Leia `.claude/skills/lp-preparar/CONTEXT.md`.
+Leia, na ordem:
+
+1. `landing-pages/GUIDELINES.md` — regras de design (filtro para os achados de design review).
+2. `landing-pages/CONTEXT.md` — runbook operacional. Use principalmente §5 (cascata de regiao — usada no Passo 3.5 GTM) e §6 (troubleshooting — para reconhecer sintomas conhecidos durante a auditoria).
+3. `.claude/skills/lp-preparar/CONTEXT.md` — convencoes de marca e formato canonico de `tracking.json`.
 
 Parsing de `$ARGUMENTS`:
 - Aceita `{marca}/{slug}` ou `{marca} {slug}` ou path completo `landing-pages/{marca}/{slug}/`.
@@ -70,21 +74,9 @@ Unifique as 2 listas. Deduplicate (se os dois auditores pegaram o mesmo problema
 
 ## Passo 3.5: Auditoria de GTM (CRITICO)
 
-### Resolver regiao (cascata)
+### Resolver regiao + GTM esperado
 
-Ver CONTEXT.md "Deteccao de regiao":
-
-1. Sufixo do slug: `-pt` → portugal, `-latam`/`-es` → latam, `-br` → brasil.
-2. `<html lang>` do index.html: `pt-PT` → portugal, `es-*` → latam, `pt-BR` → brasil.
-3. Fallback: `brasil`.
-
-### Resolver GTM esperado
-
-Ler `brand/{marca}/tracking.json`:
-
-```
-expected_gtm_id = gtm.regions[{regiao}] || gtm.default || null
-```
+Cascata de deteccao de regiao + resolucao do GTM ID seguem `landing-pages/CONTEXT.md` §5.1 (fonte canonica). lp-revisar usa a cascata completa (3 passos — sufixo do slug → `<html lang>` → fallback `brasil`), porque o HTML ja existe.
 
 ### Auditar HTML
 
@@ -100,28 +92,7 @@ Grep em `landing-pages/{marca}/{slug}/index.html` por `GTM-` (script no `<head>`
 
 ### Snippet canonico para injetar (se ausente)
 
-No `<head>`, apos `<meta name="viewport">` e antes de `<title>`:
-
-```html
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','{GTM_ID}');</script>
-<!-- End Google Tag Manager -->
-```
-
-Imediatamente apos `<body>`:
-
-```html
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-```
-
-Substituir `{GTM_ID}` pelo valor resolvido (ex: `GTM-NCFT22CW`). Para substituir ID errado, usar `Edit` com `replace_all` no ID antigo → novo (pega os 2 lugares numa operacao).
+Snippet em `landing-pages/CONTEXT.md` §5.3 — copiar literal de la, substituindo `{GTM_ID}` pelo valor resolvido (ex: `GTM-NCFT22CW`). Para substituir ID errado em LP que ja tem GTM, usar `Edit` com `replace_all` no ID antigo → novo (pega os 2 blocos numa operacao).
 
 Registrar o achado com os demais criticos para aplicacao no Passo 4. Formato sugerido:
 

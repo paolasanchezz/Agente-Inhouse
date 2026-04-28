@@ -1,8 +1,9 @@
 ---
 name: landing-page
 description: Guia interativo de landing pages. Faz perguntas com chips clicaveis e dispara a skill correta do pipeline lp-*. Usar quando o usuario digitar /landing-page sem saber qual comando rodar.
-argument-hint: "(opcional) Ex: /landing-page | /landing-page nova buzzmonitor monitoramento-maio https://notion.so/... | /landing-page publicar buzzmonitor monitoramento-maio"
+argument-hint: "(opcional) Ex: /landing-page | /landing-page nova buzzmonitor monitoramento-maio https://notion.so/... | /landing-page alterar buzzmonitor monitoramento-maio | /landing-page publicar buzzmonitor monitoramento-maio"
 allowed-tools: AskUserQuestion, Read, Glob
+version: 1.2.0
 ---
 
 # /landing-page — Router deterministico
@@ -20,6 +21,7 @@ Se `$ARGUMENTS` contem tarefa + parametros validos (ja normalizados), pule para 
 | Atalho | Disparo |
 |---|---|
 | `nova {marca} {slug} {fonte} [dominio]` | `/lp-pipeline {marca} {slug} {fonte} {dominio}` |
+| `alterar {marca} {slug}` | seguir Fluxo: Alterar (sub-pergunta sobre o que mudou) |
 | `preparar {marca} {slug} {fonte}` | `/lp-preparar {marca} {slug} {fonte}` |
 | `gerar {marca} {slug}` | `/lp-gerar {marca} {slug}` |
 | `revisar {marca}/{slug}` | `/lp-revisar {marca}/{slug}` |
@@ -35,11 +37,41 @@ Marcas: `buzzmonitor` `buzzcreators` `cxpress` `elife`
 AskUserQuestion — question: "O que quer fazer com a landing page?" header: "Tarefa" multiSelect: false
 
 1. "LP nova do zero (pipeline completo) (Recomendado)" → fluxo=nova
-2. "So estruturar copy" → fluxo=preparar
-3. "So gerar HTML (ja tenho copy estruturada)" → fluxo=gerar
-4. "Revisar LP existente" → fluxo=revisar
-5. "Integrar formulario real (apos design aprovado)" → fluxo=form
-6. "Publicar (deploy + dominio + relatorio)" → fluxo=publicar
+2. "Alterar LP existente (ja publicada)" → fluxo=alterar
+3. "Etapa especifica do pipeline" → fluxo=etapa (Q1b decide qual)
+
+(AskUserQuestion suporta ate 4 opcoes + Other automatico — manter Q1 enxuta. Detalhamento via Q1b se a opcao 3 for escolhida, ou via fast-path direto na linha de comando.)
+
+### Q1b — Etapa especifica (so se Q1 = etapa)
+
+AskUserQuestion — question: "Qual etapa do pipeline?" header: "Etapa" multiSelect: false
+
+1. "Preparar copy (estruturar em blocos rotulados)" → fluxo=preparar
+2. "Gerar HTML (ja tenho copy.txt)" → fluxo=gerar
+3. "Revisar LP existente (auditoria + a11y + GTM)" → fluxo=revisar
+4. "Integrar formulario real ou Publicar" → AskUserQuestion: "Qual?" → form/publicar → fluxo=form OU fluxo=publicar
+
+---
+
+## Fluxo: Alterar
+
+Antes de perguntar, abrir `landing-pages/CONTEXT.md` e ler **§2.2** (matriz canonica "o que mudou → o que rodar") e **§7.1** (anti-padroes — em especial nao editar a sibling).
+
+O advisor coleta marca/slug + categoria de mudanca; **a decisao fina (qual skill, em que ordem) sai da §2.2 do CONTEXT**, nao desta skill. Se a §2.2 for atualizada, o advisor segue automaticamente — nao duplicar a tabela aqui.
+
+Q: Marca → `marca`
+Q: Slug → `slug`
+Q: O que mudou? — AskUserQuestion: "O que voce esta alterando nessa LP?" header: "Mudanca" multiSelect: false
+
+1. "Copy / texto" → mudanca=copy
+2. "Visual / CSS / HTML" → mudanca=visual
+3. "Imagem (logo, mascote, ilustracao) ou Form ou GTM ou Dominio" → mudanca=outros (Q sub-categoria)
+
+Se `mudanca=outros`, perguntar sub-categoria (asset / form / tracking / dominio) com AskUserQuestion 4-options.
+
+**Resolucao:** consultar `landing-pages/CONTEXT.md §2.2` na linha correspondente a `mudanca` e seguir o roteiro literal (qual arquivo editar, quais skills rodar, em que ordem). Se a categoria for ambigua (ex: "mudanca grande de copy" vs "typo"), perguntar ao usuario antes de disparar.
+
+Em todos os casos, ao final lembrar: "fonte fica em `landing-pages/{marca}/{slug}/`, sibling fora do repo e descartavel — nunca editar la direto" (CONTEXT §7.1).
 
 ---
 

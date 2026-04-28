@@ -3,7 +3,7 @@ name: lp-preparar
 description: Estrutura copy crua em blocos rotulados (OVERLINE, H1, H2, BODY, CTA, etc.) e passa revisao anti-IA conservadora, sem alterar o tom. Publica no Notion e salva arquivo local para o lp-gerar consumir.
 argument-hint: "[marca] [slug] [fonte] — ex: buzzmonitor monitoramento-maio https://notion.so/... ou buzzmonitor monitoramento-maio ./copy-bruta.txt"
 allowed-tools: Read, Write, Glob, Grep, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Preparar Copy de Landing Page
@@ -32,10 +32,11 @@ Exemplo: /lp-preparar buzzmonitor webinar-maio https://www.notion.so/Copy-LP...
 
 Leia, na ordem:
 
-1. `landing-pages/GUIDELINES.md` — §5 (copy), §8 (secoes-tipo), §9 (copy dita estrutura), §10 (integracao tardia). Use estas regras como filtro.
-2. `conhecimento/editorial/regras-anti-ia.md` — frases bloqueadas, filler words, anti-patterns estruturais.
-3. `brand/{marca}/brand-manifest.json` — tom de voz e messaging (para reconhecer termos proprios da marca antes de revisar).
-4. `brand/{marca}/BRANDBOOK.md` — grafias corretas (ex: "Buzzmonitor" nao "BuzzMonitor") e nomes oficiais de features.
+1. `landing-pages/GUIDELINES.md` — §5 (copy), §8 (secoes-tipo), §9 (copy dita estrutura), §10 (integracao tardia). Regras de design.
+2. `landing-pages/CONTEXT.md` — runbook operacional comum a todas as skills lp-* (fluxos, assets, troubleshooting). Use principalmente §2.2 (matriz de alteracao) se a copy ja foi publicada antes.
+3. `conhecimento/editorial/regras-anti-ia.md` — frases bloqueadas, filler words, anti-patterns estruturais.
+4. `brand/{marca}/brand-manifest.json` — tom de voz e messaging (para reconhecer termos proprios da marca antes de revisar).
+5. `brand/{marca}/BRANDBOOK.md` — grafias corretas (ex: "Buzzmonitor" nao "BuzzMonitor") e nomes oficiais de features.
 
 ## Passo 2: Obter Copy Bruta
 

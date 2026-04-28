@@ -157,7 +157,7 @@ Transforma uma noticia recente em conteudo multi-formato e multi-idioma. Rastrei
 
 ### Landing Pages
 
-Aceita `[marca]` e `[slug]`. Guidelines universais em `landing-pages/GUIDELINES.md`. Fonte em `landing-pages/{marca}/{slug}/`, deploy em pasta sibling isolada.
+Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; runbook operacional (fluxos, assets, troubleshooting, fluxo de alteracao pos-deploy) em `landing-pages/CONTEXT.md` — carregado por todas as skills lp-*. Fonte em `landing-pages/{marca}/{slug}/`, deploy em pasta sibling isolada.
 
 | Comando | O que faz |
 |---|---|

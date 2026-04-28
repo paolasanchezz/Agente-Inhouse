@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.2.0
+version: 1.4.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -32,25 +32,19 @@ Rode /lp-preparar {marca} {slug} [fonte] primeiro.
 Leia, na ordem:
 
 1. `landing-pages/{marca}/{slug}/copy.txt` — copy estruturada (fonte-verdade de conteudo e ordem).
-2. `landing-pages/GUIDELINES.md` — todas as 10 secoes.
-3. `brand/{marca}/tokens.json` — cores, tipografia, espacamento.
-4. `brand/{marca}/generation-rules.json` — regras de composicao.
-5. `brand/{marca}/brand-manifest.json` — tom.
-6. `brand/{marca}/tracking.json` — GTM container id por regiao. Se o arquivo nao existir ou o id for `null`, pular injecao de GTM.
-7. `ls brand/{marca}/assets/logos/` via Glob — inventariar logos disponiveis (primary, reversed, mark-only).
+2. `landing-pages/GUIDELINES.md` — todas as 10 secoes (regras de design).
+3. `landing-pages/CONTEXT.md` — runbook operacional. Use principalmente §3 (convencao de assets — paths source vs deploy) e §5 (cascata de deteccao de regiao).
+4. `brand/{marca}/tokens.json` — cores, tipografia, espacamento.
+5. `brand/{marca}/generation-rules.json` — regras de composicao.
+6. `brand/{marca}/brand-manifest.json` — tom.
+7. `brand/{marca}/tracking.json` — GTM container id por regiao. Se o arquivo nao existir ou o id for `null`, pular injecao de GTM.
+8. `ls brand/{marca}/assets/logos/` via Glob — inventariar logos disponiveis (primary, reversed, mark-only).
 
 ### Resolver regiao e GTM ID
 
-Detectar regiao pela cascata (ver CONTEXT.md "Deteccao de regiao"):
+Cascata de regiao + resolucao do GTM ID seguem `landing-pages/CONTEXT.md` §5.1 (fonte canonica). lp-gerar pula o passo 2 da cascata (HTML ainda nao existe — sem `<html lang>` para ler) e cai direto pro fallback `brasil` se o slug nao tiver sufixo.
 
-1. Sufixo do `{slug}`: `-pt` → portugal, `-latam`/`-es` → latam, `-br` → brasil.
-2. Se ainda nao resolvido, `lp-gerar` esta criando a LP do zero (sem HTML ainda) — usar default `brasil`.
-
-Com a regiao em maos, resolver GTM ID em `tracking.json`:
-
-1. `regions[{regiao}]` != null → usar.
-2. Senao, `gtm.default`.
-3. Ambos null → omitir (anotar em README que GTM nao foi injetado).
+Se `expected_gtm_id == null` apos cascata, omitir GTM (anotar em README que GTM nao foi injetado).
 
 ## Passo 2: Mapear Copy para Estrutura Visual
 
@@ -101,25 +95,7 @@ Copy estruturada (fonte-verdade, nao reescrever):
 
 Paths de asset: usar "../../brand/{marca}/assets/logos/{filename}" nos <img src>. Atributo alt sempre presente. Logo em hero pode ser grande se for transparente.
 
-Google Tag Manager ({GTM_ID}): injetar OBRIGATORIAMENTE se {GTM_ID} != null.
-- No <head>, logo APOS o <meta name="viewport"> e ANTES do <title>:
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','{GTM_ID}');</script>
-  <!-- End Google Tag Manager -->
-
-- Imediatamente APOS a <body>:
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-Substituir {GTM_ID} pelo valor resolvido (ex: GTM-WFJVK858). Se null, omitir ambos os blocos.
+Google Tag Manager: injetar OBRIGATORIAMENTE o snippet canonico de `landing-pages/CONTEXT.md` §5.3 (script no <head> apos viewport e antes de title; noscript imediatamente apos <body>) com {GTM_ID} substituido pelo valor resolvido (ex: GTM-WFJVK858). Se {GTM_ID} == null, omitir ambos os blocos. Nao parafrasear o snippet — copiar literal de §5.3.
 
 Output: HTML completo, pronto para servir. CSS inline. Zero dependencia externa alem de Google Fonts + GTM se preciso.
 ```

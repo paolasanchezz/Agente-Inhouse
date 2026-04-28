@@ -3,12 +3,21 @@ name: lp-pipeline
 description: Executa o pipeline de landing page — preparar copy, gerar HTML, revisar e (apos aprovacao manual) publicar. Pausa explicita antes de integrar form e antes de publicar.
 argument-hint: "[marca] [slug] [fonte] [dominio-opcional] — ex: buzzmonitor monitoramento-maio https://notion.so/... webinar.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Pipeline de Landing Page
 
 Executa em sequencia: `/lp-preparar` → `/lp-gerar` → `/lp-revisar` → (pausa para form + aprovacao) → `/lp-publicar`.
+
+## Contexto comum
+
+Antes de validar argumentos, leia:
+
+1. `landing-pages/GUIDELINES.md` — regras de design.
+2. `landing-pages/CONTEXT.md` — runbook operacional (fluxos, assets, troubleshooting). Cada etapa abaixo recarrega esses arquivos por conta propria; voce os mantem em mente para responder perguntas do usuario nos checkpoints.
+
+Se o usuario invocou `/lp-pipeline` para **alterar** uma LP existente (nao criar do zero), pare e oriente: este pipeline e para LP nova. Para alteracao, consultar `landing-pages/CONTEXT.md` §2.2 (matriz "o que mudou → o que rodar") — geralmente edit do source + `/lp-gerar` (se copy mudou) + `/lp-publicar`.
 
 ## Validacao de Argumentos
 
