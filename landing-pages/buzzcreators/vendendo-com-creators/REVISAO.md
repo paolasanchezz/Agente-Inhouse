@@ -44,12 +44,13 @@ Já permitido no `vercel.json` da sibling (`frame-src ... https://www.youtube.co
 - [x] **Checks da seção benefícios trocados de verde para roxo escuro** — `color: var(--c-success)` + `background: rgba(34,197,94,0.15)` virou `color: var(--c-purple-dark)` + `background: rgba(58,22,82,0.12)`. Motivo: verde sobre fundo `peach` (#fff4ec) não harmonizava com a paleta brand (a marca é roxo + laranja). Roxo escuro mantém alternância de cor entre seções e integra melhor.
 - [x] **Reordenação de seções pós-form** — nova ordem: hero → hook → problema → beneficios → speaker → cta-banner → para-quem → **cta-final (form)** → **urgencia** → **video-buzzcreators**. A urgência agora atua como "segunda chance" para quem rolou sem converter, e o vídeo institucional fecha a página como reforço de marca. Antes, urgência vinha pré-form e o vídeo ficava no meio (depois do speaker, no slot da antiga seção `.prova`).
 
-### Iteração 2.5 — migração webinar → evento
+### Iteração 2.5 — migração webinar → evento + remoção do órfão
 
 - [x] **LP migrada** de `webinar.buzzmonitor.com/vendendo-com-creators` para **`evento.buzzmonitor.com/vendendo-com-creators`** (subdomínio guarda-chuva específico para eventos presenciais Buzzmonitor + Buzzcreators).
 - [x] **Novo projeto Vercel** `buzzmonitor-evento` (`prj_*`, sibling `C:/Users/titof/Downloads/Claude/buzzmonitor-evento/`). Subdomínio irmão `material.buzzmonitor.com` (projeto `buzzmonitor-material`) também criado para futuras LPs de material rico.
 - [x] **Redirect 301 (308 permanent) ativo** em `webinar.buzzmonitor.com/vendendo-com-creators` → `evento.buzzmonitor.com/vendendo-com-creators` no `vercel.json` do guarda-chuva antigo. URLs já compartilhadas continuam funcionando.
 - [x] **LP removida do guarda-chuva antigo** (pasta `vendendo-com-creators/` + assets `assets/buzzcreators/` apagados). LPs vizinhas Buzzmonitor BR/PT permanecem intactas (smoke test confirmado).
+- [x] **Projeto Vercel órfão `buzzcreators-lp-vendendo-com-creators` removido** via API Vercel (DELETE 204). Validado via smoke test: 4 LPs ativas (`evento.buzzmonitor.com/vendendo-com-creators`, BR e PT no `webinar.*`, `content.cxpress.io/playbook-whatsapp2026`) continuam 200 OK.
 
 ### Iteração 2.4 — remover PROBLEMA + benefícios sobre branco
 
@@ -142,6 +143,6 @@ Todos resolvidos na Iteração 2 (2026-04-28):
 1. Source ajustado pra usar `./assets/buzzcreators/...` (LP-local com namespace de marca, evitando colisão com `/assets/logos/logo-icon.png` da Buzzmonitor).
 2. LP integrada em `buzzmonitor-lp-monitoramento-concorrentes/vendendo-com-creators/`.
 3. Re-deploy do projeto guarda-chuva (`prj_bqOBy4RXCnPFu8Fn7csQ6wzyjwb6`).
-4. Projeto Vercel novo (`buzzcreators-lp-vendendo-com-creators`) que foi criado no primeiro deploy ficou órfão — remover manualmente via Dashboard.
+4. Projeto Vercel novo (`buzzcreators-lp-vendendo-com-creators`, `prj_qwXzsA7qo0QPhsVyNyGDEOkAqBx6`) ficou órfão no primeiro deploy. **Removido em 2026-04-28** via API Vercel (DELETE → 204). Sibling local em `C:/Users/titof/Downloads/Claude/buzzcreators-lp-vendendo-com-creators/` permanece — pode ser apagada manualmente sem impacto.
 
 **Followup recomendado para a skill:** documentar o padrão multi-LP guarda-chuva. O Passo 0 deveria detectar que o domínio passado já está atribuído a outro projeto e propor consolidar lá em vez de criar projeto novo. Ver `lp-publicar/SKILL.md` v1.4.0 Passo 0 e Passo 1.
