@@ -12,6 +12,23 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## meta-ads (benchmarks)
+### 1.1.0 — 2026-04-30 — Threshold único nos benchmarks
+- `meta-ads/data/benchmarks.json` simplificado: removida a tier "bom"/"aceitável", agora é **um threshold só = mínimo aceitável**. Status binário `[OK]` / `[RUIM]` (antes 3-tier).
+- Valores atualizados conforme padrão atual da agência:
+  - **CTR link** (cliques/impressões): Topo ≥ 1,0% / Remarketing ≥ 0,6%.
+  - **Taxa de conversão LP** (leads/cliques): Topo ≥ 15% / Remarketing ≥ 5%.
+  - **CpL** (gasto/leads):
+    - BRL: Webinar ≤ R$ 18 / Material rico ≤ R$ 12 / Remarketing ≤ R$ 220.
+    - USD (Latam): Webinar ≤ US$ 5 / Material rico ≤ US$ 3 / Remarketing ≤ US$ 60.
+    - EUR (Portugal): Webinar ≤ € 6 / Material rico ≤ € 6 / Remarketing ≤ € 60.
+  - **Frequência** (global): ≤ 7,0.
+- `benchmark_checker.py` adaptado: `get_metric_status()` retorna `[OK]` ou `[RUIM]` (sem `[OK] Aceitável`).
+- `full_trends_report.py` `_benchmarks_for()` adaptado para nova estrutura: `_bom` e `_ruim` apontam ao mesmo threshold (matriz de cenários CpL × CTR × Conv.LP segue funcionando como classificação binária).
+- Skill `meta-ads/SKILL.md` (1.0.0 → 1.1.0): seção "Status dos Benchmarks" reescrita com tabela explícita por etapa de funil e moeda. `meta-ads/CONTEXT.md` ganha tabela de referência idêntica para colaboradores consultarem.
+
+---
+
 ## lp-preparar (CONTEXT.md), landing-pages/CONTEXT.md
 ### 2026-04-28 — Documentação dos guarda-chuvas Buzzmonitor (3 subdomínios) + Cxpress
 - Tabela de marcas em `lp-preparar/CONTEXT.md` ampliada: Buzzmonitor agora tem 3 subdomínios guarda-chuva (`evento.*`, `material.*`, `webinar.*`) com convenção de uso por tipo de LP. Cxpress documentado com `content.cxpress.io` (subdomínio único, qualquer tipo de LP).

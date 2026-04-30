@@ -3,7 +3,7 @@ name: meta-ads
 description: Pipeline completo de Meta Ads — coleta estrutura + insights + gera relatório. Usar quando o usuário pede análise de performance, CpL alto, frequência, criativos, tendências, comparação de períodos, etc.
 argument-hint: "[conta] [periodo] — ex: buzzmonitor_brl mes_atual | cxpress_usd ultimos_30"
 allowed-tools: Bash, Read
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: /meta-ads — Análise Completa de Meta Ads
@@ -77,9 +77,24 @@ Nunca pular níveis. Anomalias no nível inferior têm contexto no superior.
 - ⚪ **Não Classificadas**: listar separado, sinalizar para revisão manual
 
 ## Status dos Benchmarks
-🟢 Bom / 🟡 Aceitável / 🔴 Ruim
+🟢 OK (dentro do mínimo aceitável) / 🔴 Ruim (fora)
 Carregados de `meta-ads/data/benchmarks.json` conforme conta (grupo de moeda) e tipo.
-Frequência: <5 = 🟢 | 5–7 = 🟡 | >7 = 🔴 (benchmark global)
+
+Padrões (mínimo aceitável):
+
+| Métrica | Topo (webinar / material rico) | Fundo (remarketing) |
+|---|---|---|
+| **CTR link** | ≥ 1,0% | ≥ 0,6% |
+| **Conv. LP** (leads ÷ cliques) | ≥ 15% | ≥ 5% |
+| **Frequência** (global) | ≤ 7,0 | ≤ 7,0 |
+
+CpL (gasto ÷ leads) — máximo aceitável por moeda:
+
+| Moeda | Webinar | Material rico | Remarketing |
+|---|---|---|---|
+| BRL | ≤ R$ 18 | ≤ R$ 12 | ≤ R$ 220 |
+| USD (Latam) | ≤ US$ 5 | ≤ US$ 3 | ≤ US$ 60 |
+| EUR (Portugal) | ≤ € 6 | ≤ € 6 | ≤ € 60 |
 
 ## Regras de Apresentação
 - Todos os valores monetários usam o símbolo da moeda da conta (R$, $ ou €)

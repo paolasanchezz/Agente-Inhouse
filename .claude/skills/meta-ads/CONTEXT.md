@@ -73,7 +73,29 @@ A ordem abaixo é a ordem de prioridade das regras (mais específico primeiro):
 Os benchmarks ficam em `meta-ads/data/benchmarks.json`. Grupos: `brl`, `usd`, `eur`.
 Métricas avaliadas: `cost_per_lead`, `ctr_link`, `lp_conversion_rate`, `frequency` (global).
 
-Status: `[BOM]` / `[OK] Aceitável` / `[RUIM]`
+Threshold único = mínimo aceitável. Status binário: `[OK]` (dentro) / `[RUIM]` (fora).
+
+### Padrões atuais (mínimo aceitável)
+
+**CTR link** (cliques no link ÷ impressões)
+- Topo (webinar / material rico / evento presencial): **≥ 1,0%**
+- Fundo (remarketing): **≥ 0,6%**
+
+**Taxa de conversão da LP** (leads ÷ cliques no link)
+- Topo: **≥ 15%**
+- Fundo (remarketing): **≥ 5%**
+
+**CpL** (gasto ÷ leads) — varia por moeda
+
+| Moeda | Webinar | Material rico | Remarketing |
+|---|---|---|---|
+| BRL (Brasil) | ≤ R$ 18 | ≤ R$ 12 | ≤ R$ 220 |
+| USD (Latam) | ≤ US$ 5 | ≤ US$ 3 | ≤ US$ 60 |
+| EUR (Portugal) | ≤ € 6 | ≤ € 6 | ≤ € 60 |
+
+**Frequência** (global, todas as etapas e moedas): **≤ 7,0**
+
+> Editar valores diretamente em `meta-ads/data/benchmarks.json` conforme realidade histórica de cada conta.
 
 ---
 

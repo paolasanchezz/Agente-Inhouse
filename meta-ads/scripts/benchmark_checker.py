@@ -1,8 +1,8 @@
 """
 benchmark_checker.py — Classificação de métricas contra valores de referência.
 
-Carrega benchmarks.json e classifica cada métrica em:
-  [BOM] Bom / [OK] Aceitável / [RUIM] Ruim / [ ] N/A
+Carrega benchmarks.json (threshold único = mínimo aceitável) e classifica
+cada métrica em: [OK] OK / [RUIM] Ruim / [ ] N/A.
 
 Zero chamadas à API — apenas lógica local.
 """
@@ -23,7 +23,7 @@ def get_metric_status(metric: str, value: float,
                       benchmark_group: str, campaign_type: str) -> str:
     """
     Retorna string com ícone de status:
-      [BOM] Bom | [OK] Aceitável | [RUIM] Ruim | [ ] N/A
+      [OK] OK | [RUIM] Ruim | [ ] N/A
     """
     if campaign_type == "nao_classificada":
         return "[ ] N/A"
@@ -35,13 +35,9 @@ def get_metric_status(metric: str, value: float,
     # Frequência: benchmark global (independe de moeda)
     if metric == "frequency":
         b = benchmarks.get("global", {}).get("frequency", {})
-        if not b:
+        if not b or "max" not in b:
             return "[ ] Sem benchmark"
-        if value <= b["bom"]["max"]:
-            return "[BOM] Bom"
-        if value <= b["aceitavel"]["max"]:
-            return "[OK] Aceitável"
-        return "[RUIM] Ruim"
+        return "[OK] OK" if value <= b["max"] else "[RUIM] Ruim"
 
     # Outras métricas: por grupo de moeda e tipo de campanha
     b = (
@@ -54,20 +50,12 @@ def get_metric_status(metric: str, value: float,
         return "[ ] Sem benchmark"
 
     # Métricas onde menor = melhor (custo)
-    if metric == "cost_per_lead":
-        if value <= b["bom"]["max"]:
-            return "[BOM] Bom"
-        if value <= b["aceitavel"]["max"]:
-            return "[OK] Aceitável"
-        return "[RUIM] Ruim"
+    if metric == "cost_per_lead" and "max" in b:
+        return "[OK] OK" if value <= b["max"] else "[RUIM] Ruim"
 
     # Métricas onde maior = melhor (taxa/conversão)
-    if metric in ["ctr_link", "lp_conversion_rate"]:
-        if value >= b["bom"]["min"]:
-            return "[BOM] Bom"
-        if value >= b["aceitavel"]["min"]:
-            return "[OK] Aceitável"
-        return "[RUIM] Ruim"
+    if metric in ["ctr_link", "lp_conversion_rate"] and "min" in b:
+        return "[OK] OK" if value >= b["min"] else "[RUIM] Ruim"
 
     return "[ ] Sem benchmark"
 

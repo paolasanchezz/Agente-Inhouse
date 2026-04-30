@@ -116,18 +116,16 @@ def _classify_scenario(trends: dict, benchmarks: dict, currency: str) -> str:
 
 
 def _benchmarks_for(group: str, campaign_type: str) -> dict:
-    """Extrai thresholds de bom/ruim para um grupo de moeda + tipo de campanha.
+    """Extrai threshold único (mínimo aceitável) e expõe como bom/ruim para a matriz binária.
 
     Formato do benchmarks.json:
-      { "brl": { "webinar": { "cost_per_lead": {"bom": {"max": 12.0},
-                                                 "aceitavel": {"max": 18.0}}, ... } } }
+      { "brl": { "webinar": { "cost_per_lead": {"max": 18.0},
+                              "ctr_link":      {"min": 1.0}, ... } } }
 
-    Retorna dict flat:
-      { "cost_per_lead_bom": 12.0, "cost_per_lead_ruim": 18.0,
-        "ctr_link_bom": 1.5, "ctr_link_ruim": 1.0, ... }
-
-    "bom" usa max (para cost) ou min (para ctr/conv).
-    "ruim" usa o limite do "aceitavel" (acima/abaixo dele é ruim).
+    Retorna dict flat com "_bom" e "_ruim" apontando para o mesmo threshold —
+    classificação binária: dentro = bom, fora = ruim (sem zona intermediária).
+      { "cost_per_lead_bom": 18.0, "cost_per_lead_ruim": 18.0,
+        "ctr_link_bom": 1.0, "ctr_link_ruim": 1.0, ... }
     """
     try:
         from cache_manager import load_benchmarks
@@ -142,19 +140,15 @@ def _benchmarks_for(group: str, campaign_type: str) -> dict:
     type_data = group_data.get(type_key, {})
 
     flat = {}
-    for metric, levels in type_data.items():
-        bom = levels.get("bom", {})
-        aceit = levels.get("aceitavel", {})
-        # cost_per_lead: bom=max menor, ruim=acima do aceitavel.max
-        if "max" in bom:
-            flat[f"{metric}_bom"] = bom["max"]
-        if "max" in aceit:
-            flat[f"{metric}_ruim"] = aceit["max"]
-        # ctr/conv: bom=min maior, ruim=abaixo do aceitavel.min
-        if "min" in bom:
-            flat[f"{metric}_bom"] = bom["min"]
-        if "min" in aceit:
-            flat[f"{metric}_ruim"] = aceit["min"]
+    for metric, threshold in type_data.items():
+        # cost_per_lead: max — abaixo é bom, acima é ruim
+        if "max" in threshold:
+            flat[f"{metric}_bom"] = threshold["max"]
+            flat[f"{metric}_ruim"] = threshold["max"]
+        # ctr/conv: min — acima é bom, abaixo é ruim
+        if "min" in threshold:
+            flat[f"{metric}_bom"] = threshold["min"]
+            flat[f"{metric}_ruim"] = threshold["min"]
     return flat
 
 
