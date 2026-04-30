@@ -231,6 +231,7 @@ Se o snippet oficial do Google mudar, **atualizar este arquivo** — todas as sk
 | Asset de uma LP aparece em outra (guarda-chuva) | Mesmo nome de arquivo sem namespace (logo-icon.png, mascot.png, etc.) | Confirmar que `lp-publicar` resolveu modo GUARDA-CHUVA (Passo 0.5) e que paths no live têm `/assets/{marca}/`. Se solo em domínio errado, mover pro projeto guarda-chuva. |
 | Form não carrega no live (iframe vazio) | CSP bloqueia provedor — domínio não está em `frame-src` / `form-action` / `script-src` | Editar `{sibling}/vercel.json` adicionando o domínio do provedor às 3 directives. Re-deploy. Em modo guarda-chuva, NÃO sobrescrever — patch cirúrgico. |
 | Form duplicado, ou erro `Cannot read properties of null (reading 'addEventListener')` | Placeholder JS do form mock não foi removido pelo `lp-integrar-form` | Re-rodar `lp-integrar-form` (Passo 2.5 remove o handler) ou editar manual. |
+| Form com "card-dentro-de-card" no live (dois cards brancos aninhados) | Wrapper `<div class="form jotform-embed">` herdou estilos do mock (`.form` é card visual no `lp-gerar`) e o provedor já vem com card proprio | Editar wrapper removendo a classe `form` (deixar só `jotform-embed reveal`), reduzir CSS para `.jotform-embed iframe { width: 100% !important; ... }`. Versão atualizada em `lp-integrar-form` v1.3.0. |
 | GTM não aparece no live (curl retorna 0 matches) | `tracking.json` sem ID pra região, ou snippet não injetado | Validar `brand/{marca}/tracking.json` tem `regions[{regiao}]` ou `default`. Rodar `lp-revisar` (Passo 3.5 injeta automático se ausente). Re-deploy. |
 | GTM aparece com ID errado | Detecção de região errada (cascata) | Renomear slug com sufixo `-pt`/`-latam`/`-br`, ou setar `<html lang>` correto, rodar `lp-revisar`. |
 | PageSpeed Performance < 85 | Imagens grandes, fonts não otimizadas, JS bloqueante | Comprimir imagens (WebP via `<picture>`), `<link rel="preload">` para fonts críticas, `font-display: swap` no `@font-face`. |
@@ -271,6 +272,7 @@ Fonte canônica única — `lp-publicar` e outras skills referenciam aqui em vez
 | 2026-04-23 | `favicon.png` / `favicon.svg` na pasta da LP causando 404 | — | GUIDELINES §11 + CONTEXT §3.7 (sempre apontar pro brand) |
 | 2026-04-27 | mascot.png 404 (path relativo `./assets/` não reescrito) | lp-publicar | v1.4.0 (suporte `./assets/` + grep validation pós-rewrite — §3.5) |
 | 2026-04-27 | Buzzcreators publicada em projeto separado em vez de guarda-chuva existente | lp-publicar | v1.5.0 (Passo 0.5 detecção via API Vercel + namespace por marca — §3.4) |
+| 2026-04-30 | Card-dentro-de-card no embed Jotform (LP `social-listening-mayo-2026-latam`) | lp-integrar-form | v1.3.0 (wrapper sem heranca de `.form`, CSS canonico reduzido) |
 
 ---
 

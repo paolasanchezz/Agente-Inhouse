@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Skill: Revisar Landing Page
@@ -98,6 +98,89 @@ Registrar o achado com os demais criticos para aplicacao no Passo 4. Formato sug
 
 - `GTM ausente para {marca}/{regiao} (esperado {expected_gtm_id}) — injetar script em <head> e noscript apos <body>`
 - `GTM com ID errado: encontrado {found_id}, esperado {expected_gtm_id} para {marca}/{regiao}`
+
+## Passo 3.6: Auditoria de Fidelidade da Copy (CRITICO)
+
+Verifica se o HTML respeita literal a copy aprovada em `landing-pages/{marca}/{slug}/copy.txt`. Vazamentos sao tratados com a mesma prioridade do GTM — sao CRITICOS, nao opcionais.
+
+### Por que existir
+
+Durante `lp-gerar`, a `frontend-design` (skill upstream) recebe a copy + a estrutura visual desejada. Em casos com elementos visuais ricos (pull-quotes, kickers, tags rotacionadas, art cards), ela tende a inventar texto novo para preencher esses componentes — porque a propria descricao da estrutura sugere "tem espaco visual aqui". Resultado: pull-quotes inventados, frase-ancora truncada, em-dashes adicionados, sinonimos cosmeticos. Isso vaza tom de IA.
+
+`lp-gerar` v1.5.0+ ja tem guard no Passo 4.2, mas e prudente ter uma segunda verificacao independente em `lp-revisar` (defesa em camadas — o agente que gera nao e o melhor a auditar a si mesmo).
+
+### Procedimento
+
+1. **Carregar `copy.txt`** da pasta da LP. Se nao existir, registrar a auditoria como "skipped (copy-fonte ausente)" e seguir.
+
+2. **Extrair textos visiveis do HTML** (`landing-pages/{marca}/{slug}/index.html`):
+   - Conteudo entre tags inline e block: h1/h2/h3/h4/h5/p/li/span/em/strong/button/a/aside/blockquote/figcaption/dt/dd/small.
+   - Atributos de `placeholder`, `alt` (so de imagem semantica, nao decorativa), `value` de `<option>`, `aria-label` (so se contem palavra de copy, nao label funcional curto).
+   - Excluir: scripts, styles, comentarios HTML, atributos `aria-hidden=true` SVGs decorativos, microformat de SEO (og:, twitter:).
+
+3. **Classificar cada string** em 4 buckets:
+   - **(a) Literal da copy.txt** — match exato (apos normalizar aspas curvas e ellipsis para Unicode). OK.
+   - **(b) Whitelist** — pertence a uma das categorias permitidas:
+     * Nav meta minimal (max 3 palavras, sem repetir info de outra parte do hero)
+     * Ticket/badge boilerplate factual (rotulos como "Formato", "Duracao", valores como datas, horarios, "Online", "Gratis")
+     * Form labels (campos do `<form>`) e disclaimer compliance generico (consentimento de comunicacao)
+     * Footer: copyright, mailto, links institucionais
+     * Skip-link, aria-labels funcionais ("Encabezado", "Saltar al contenido")
+     * `<title>`, `<meta description>`, `og:*` (textos de SEO derivados, OK se nao introduzem copy nova)
+   - **(c) Cosmetico permitido** — copy literal apos substituir `--` por `—`, aspas retas por curvas, `...` por `…`. OK.
+   - **(d) VAZAMENTO** — texto visivel que nao bate com nenhum bucket acima. Registrar como CRITICO.
+
+4. **Procurar especificamente os 4 padroes mais comuns:**
+
+   | Padrao | Onde procurar | Como detectar |
+   |---|---|---|
+   | **Pull-quote inventado** | `<aside>`, `<blockquote>`, `class*="quote"`, `class*="pull"` | Texto multiline em destaque que nao esta em `copy.txt` |
+   | **Kicker/tagline em art card** | `class*="kicker"`, `class*="tag"`, `class*="art"` dentro de hero panels | Frase curta decorativa que nao e label da copy |
+   | **Tag rotacionada com texto novo** | `transform: rotate` no CSS + texto dentro | Palavra dentro do badge que nao aparece em outro lugar da copy |
+   | **Punchline de marketing** | `class*="disclaimer"`, `class*="punch"`, paragrafos curtos perto de CTAs | "sem spam", "sem enrolacao", "100% gratis", "vagas limitadas", "demo" — qualquer slogan punchy nao-literal |
+
+5. **Auditoria especifica de em-dash (regras-anti-ia.md tolerancia zero):**
+
+   ```bash
+   # Contar em-dash no HTML (excluindo comentarios CSS e scripts)
+   grep -oE "[^&]—|&mdash;" "landing-pages/{marca}/{slug}/index.html" | wc -l
+   # Contar em-dash na copy.txt
+   grep -oE "—|&mdash;" "landing-pages/{marca}/{slug}/copy.txt" | wc -l
+   ```
+
+   Se HTML > copy.txt, o gerador adicionou em-dashes durante a expansao de bullets. CRITICO. Substituir por virgula, ponto ou parenteses conforme regras-anti-ia.md tabela.
+
+6. **Auditoria especifica de frase-ancora:**
+
+   Identificar a ultima H2 antes do CTA final (geralmente seccao "cierre"/"urgencia"). Comparar com a frase H2 marcada como CIERRE/URGENCIA na `copy.txt`. Diferenca em **comprimento de palavras** ou **estrutura semantica** (ex: "no son X, sino Y entendien lo que se dice de ellas" virou "no son X, sino Y escuchan") = CRITICO.
+
+7. **Auditoria de sinonimos cosmeticos:**
+
+   Comparar as primeiras 20 palavras de cada H1/H2/H3/SUB com as linhas correspondentes em `copy.txt`. Trocas de "utilizar"/"usar", virgula+conjuncao por ponto+frase, ou qualquer parafraseamento = CRITICO.
+
+### Severidade e acao
+
+| Achado | Severidade | Acao |
+|---|---|---|
+| Pull-quote inventado em `<aside>`/`<blockquote>` | CRITICO | Remover o bloco, ou substituir o texto por extracao literal de uma frase da copy (geralmente do CIERRE) |
+| Kicker/tagline novo em art card | CRITICO | Remover o texto (deixar so decoracao geometrica) ou repetir literal o H3 da secao adjacente |
+| Tag rotacionada com palavra inventada | CRITICO | Trocar por palavra de label da copy (ex: data, horario, "Gratis") ou esvaziar o texto e manter so a forma rotacionada |
+| Punchline de marketing nao-literal | CRITICO | Remover. So volta se aparecer literal em copy.txt apos discussao com o autor |
+| Frase-ancora truncada | CRITICO | Restaurar literal, mesmo que exija ajuste de tipografia/quebra de linha |
+| Sinonimos cosmeticos | CRITICO | Restaurar literal |
+| Em-dash adicionado | CRITICO | Substituir por virgula/ponto/parenteses (tabela regras-anti-ia.md) |
+| Disclaimer compliance generico | OK (whitelist) | Anotar mas nao alterar — eh boilerplate de form |
+
+Registrar todos os achados de fidelidade junto com os criticos do Passo 3 e GTM (Passo 3.5) para aplicacao no Passo 4.
+
+### Formato sugerido para o registro
+
+```
+- COPY-VAZAMENTO: pull-quote inventado em <aside class="for-quote"> linha 1027 — remover bloco; copy.txt nao tem essa frase
+- COPY-VAZAMENTO: cierre H2 (linha 1042) truncou frase-ancora — restaurar "...sino las que mejor entienden lo que se dice de ellas"
+- COPY-VAZAMENTO: 5 em-dashes adicionados ao body (linhas 858, 876, 902, 929, 1097) — substituir por virgula/ponto
+- COPY-COSMETICA: hero h1 (linha 787) "usar" -> restaurar "utilizar" da copy.txt
+```
 
 ## Passo 4: Aplicar Criticos
 

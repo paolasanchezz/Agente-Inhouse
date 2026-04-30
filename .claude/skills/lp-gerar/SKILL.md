@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.4.0
+version: 1.5.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -90,6 +90,39 @@ Guidelines universais (obrigatorias — landing-pages/GUIDELINES.md):
 - §9 Copy dita estrutura — ordem e contagem dos blocos NAO podem mudar
 - §10 Form = mock <form action="#" onsubmit="event.preventDefault()"> (integracao real vira depois)
 
+REGRA DE FIDELIDADE DA COPY (CRITICA — vale mais que qualquer escolha estetica):
+
+TODO texto visivel ao usuario no HTML deve vir LITERAL da copy estruturada abaixo. Aplica a:
+- titulos (h1/h2/h3), subtitulos, paragrafos, list items, eyebrows, CTAs, frase de fechamento;
+- texto dentro de cards visuais, pull-quotes, kickers, taglines decorativas, captions;
+- texto em tags rotacionadas, badges, banners, ticker/marquee, frases de suporte.
+
+NAO inventar:
+- pull-quotes, frases de impacto, slogans decorativos que "soam bem";
+- kickers ou subtitulos novos para preencher art cards/hero panels;
+- frases na tag de urgencia ou em ticker que nao venham da copy;
+- disclaimers de marketing/UX punchy (ex: "sem spam", "sem enrolacao") — apenas boilerplate compliance estritamente necessario para form (ver whitelist);
+- frases derivadas/parafraseadas — se a copy diz "X, sino Y", o HTML escreve "X, sino Y" (literal), nao um sinonimo.
+
+NAO truncar nem encurtar:
+- frases-ancora (ex: a frase de fechamento da LP) ficam na integra;
+- se a copy tem 25 palavras e o layout pede 10, reduz tipografia ou quebra em multiplas linhas — nunca corta semantica.
+
+NAO reescrever cosmeticamente:
+- "utilizar" -> "usar", virgula+conjuncao -> ponto+frase, sinonimos por preferencia de ritmo NAO sao cosmeticos. Sao reescrita. Manter literal.
+- ajustes permitidos: aspas curvas (`&ldquo; &rdquo;`), ellipsis (`&hellip;`), substituir `--` por `&mdash;` (nunca o inverso — em-dash so se ja estava no source).
+
+Whitelist de TEXTOS PERMITIDOS fora da copy.txt (estritamente):
+1. Nav meta minimal (ex: "Webinar gratuito", "En vivo") — texto curto, max 3 palavras, sem repetir info da copy.
+2. Ticket card boilerplate factual: rotulos como "Formato", "Duracao", "Inversion" + valores do briefing (data, hora, "Online · En vivo", "Gratis", "60 min").
+3. Form labels e disclaimer compliance generico (ex: "Email", "Empresa", "Al registrarte aceptas recibir comunicaciones de {marca}..."). Boilerplate punchy ("sem spam") NAO entra.
+4. Footer: copyright, mailto contato, links institucionais.
+5. Skip link e aria-labels (a11y) — texto funcional.
+
+Tudo fora da whitelist: vem do copy.txt ou nao existe no HTML.
+
+Pull-quote, kicker, tag rotacionada e ticker — se o briefing pede o componente visual mas a copy nao tem texto pra ele, faca o componente sem texto (apenas decoracao geometrica) OU repita literal a frase mais relevante da copy. Nunca inventar.
+
 Copy estruturada (fonte-verdade, nao reescrever):
 {cole o conteudo integral de copy.txt}
 
@@ -104,7 +137,9 @@ Invocar: `Invoke Skill(frontend-design, args: "{briefing_acima}")` — montar o 
 
 ## Passo 4: Validar Output da frontend-design
 
-Antes de escrever o arquivo, verifique o HTML retornado:
+Antes de escrever o arquivo, verifique o HTML retornado.
+
+### 4.1 Checklist tecnico
 
 - [ ] `<!doctype html>` + `<html lang="{idioma-marca}">`
 - [ ] `<meta name="viewport" content="width=device-width, initial-scale=1">`
@@ -114,8 +149,37 @@ Antes de escrever o arquivo, verifique o HTML retornado:
 - [ ] Form esta em mock (`action="#"`)
 - [ ] Numero de itens em cada secao bate com a copy (GUIDELINES §9)
 - [ ] Nenhum emoji decorativo injetado que nao estava na copy
+- [ ] **Reveal-on-scroll com fallback robusto se JS quebrar.** Se houver classe `.reveal` com `opacity:0`, deve haver `<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>` no `<head>` (ou esquema equivalente: `.no-js` + remocao via JS). So o `@media (prefers-reduced-motion: reduce)` nao basta — protege apenas usuarios com reduced motion, nao o caso geral de JS bloqueado/falhado.
 
-Se algum item falhar, re-invocar `frontend-design` com a correcao especifica, nao editar a mao.
+### 4.2 Auditoria de fidelidade da copy (CRITICO)
+
+Antes de aceitar o output, faca **diff textual** entre `copy.txt` e os textos visiveis do HTML.
+
+Procedimento (manual — nao automatizar prematuramente):
+
+1. **Extraia** os textos visiveis do HTML retornado pela `frontend-design`. Foco: conteudo entre tags (h1/h2/h3/p/li/span/em/strong/button/a/aside/blockquote), placeholders de input, valores de `<option>`, alt de imagem semantica.
+2. **Compare** linha-por-linha com `copy.txt`. Para cada string do HTML, classifique:
+   - **(a) Match literal com copy.txt** — OK.
+   - **(b) Match apos normalizacao cosmetica** (aspas curvas, ellipsis, espacos) — OK.
+   - **(c) Whitelist** (nav meta minimal, ticket boilerplate factual, form labels/disclaimer, footer, skip-link, aria-labels) — OK, anotar.
+   - **(d) Texto novo nao-whitelist** — VIOLACAO. Reescreva, ou remova.
+3. **Procure especificamente** os 4 padroes de vazamento mais comuns:
+   - **Pull-quote inventado** (em `<aside>`, `<blockquote>`, ou cards "decorativos") com texto que nao esta na copy. Buscar `<aside`, `<blockquote`, `class*="quote"` no HTML e verificar match.
+   - **Kicker/tagline** dentro de art cards/hero panels (ex: `.kicker`, `.hero-panel-tag`) com texto novo.
+   - **Tag rotacionada** (ex: `transform: rotate`) com palavra ou frase fora da copy. A tag pode usar literal de label da copy ou ficar sem texto (so cor + decoracao geometrica).
+   - **Disclaimer/punchline de marketing** em CTA final ou form (ex: "sem spam", "sem enrolacao", "100% gratis", "vagas limitadas") — so entra se for palavra-por-palavra do copy.txt.
+
+4. **Procure especificamente reescrita cosmetica nao autorizada:**
+   - **Frase-ancora truncada/encurtada.** Identifique a frase de fechamento da LP (geralmente ultima H2 antes do CTA final) e confirme que esta literal. AI tende a encurtar "no son las que mais X, sino las que melhor Y" para "no son X, sino Y" — isso vaza tom.
+   - **Sinonimos.** Se copy diz "utilizar", HTML deve dizer "utilizar" (nao "usar"). Se copy tem "pero", HTML tem "pero" (nao ponto + frase nova). Se copy tem em-dash, HTML tem em-dash; se copy NAO tem em-dash, HTML NAO tem.
+   - **Em-dash adicionado.** Contar em-dash (`—` ou `&mdash;`) no HTML e comparar com a contagem na copy.txt. Se HTML > copy = vazamento (regras-anti-ia.md tolerancia zero). Substituir por virgula/ponto/parenteses.
+
+5. **Se encontrar qualquer item (d) ou padrao de vazamento:**
+   - Re-invocar `frontend-design` com instrucao especifica `"REMOVER os seguintes textos inventados: [lista]. RESTAURAR a copy literal de copy.txt nestes pontos: [lista de seletores e valores corretos]"`.
+   - Alternativa: aplicar fixes cirurgicos via `Edit` apos salvar (Passo 5). Documentar todos os fixes no `REVISAO.md` para o usuario validar.
+
+Se algum item do 4.1 falhar, re-invocar `frontend-design` com a correcao especifica, nao editar a mao.
+Se algum item do 4.2 falhar, decidir entre re-invocar ou aplicar fix cirurgico — documentar a escolha no `REVISAO.md`.
 
 ## Passo 5: Salvar Arquivos
 

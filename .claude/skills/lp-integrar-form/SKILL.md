@@ -3,7 +3,7 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §10).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.2.0
+version: 1.3.0
 ---
 
 # Skill: Integrar Formulario em Landing Page
@@ -49,14 +49,15 @@ Se nao encontrar form mock — talvez ja tenha embed. PARE e avise o usuario: "L
 Use `Edit` para trocar o bloco `<form ... >...</form>` por:
 
 ```html
-<div class="form jotform-embed" {preservar_data_attrs_se_houver}>
+<div class="jotform-embed" {preservar_data_attrs_se_houver}>
   {snippet}
 </div>
 ```
 
 Observacoes:
 - A classe `jotform-embed` vale para qualquer provedor (ativa o wrapper CSS canonico). Nao renomear por provedor.
-- Preserve animacao reveal: se o form mock tinha `class="form reveal"` com `style="--d: XXms"`, replicar no `<div>` wrapper.
+- **NAO** herdar a classe `form` do mock. O `.form` no `lp-gerar` e um card visual (`background: #fff`, `padding: 40px`, `border`, `box-shadow`) e os provedores (Jotform/RD/HubSpot) ja vem com card proprio — manter `form` causa "card dentro de card" no live (incidente 2026-04-30).
+- Preserve animacao reveal: se o form mock tinha `class="form reveal"` com `style="--d: XXms"`, replicar **apenas o `reveal` + `style`** no `<div>` wrapper (descartar o `form`).
 
 ## Passo 2.5: Remover JS placeholder do form
 
@@ -68,14 +69,19 @@ Nao confundir com outros scripts da LP (reveal on scroll, countdown, etc). So re
 
 ## Passo 3: Garantir CSS Wrapper
 
-Grep no `<style>` inline por `.form.jotform-embed`. Se **nao** existe, inserir no final do `<style>`:
+Grep no `<style>` inline por `.jotform-embed iframe`. Se **nao** existe, inserir no final do `<style>`:
 
 ```css
-.form.jotform-embed { padding: 16px; overflow: hidden; }
-.form.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+/* ----- Jotform embed wrapper (canonico) -----
+   Sem padding/background/border: o provedor ja vem com card proprio.
+   A regra do iframe garante que, se o provedor renderizar via iframe, ele
+   ocupa 100% da largura sem borda. */
+.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 ```
 
-Se ja existe, nao duplicar.
+Se ja existe regra antiga `.form.jotform-embed { padding... }` (versao <=1.2.0), substituir pela versao acima — a regra antiga adiciona um card visual extra que colide com o card do provedor (incidente 2026-04-30).
+
+Se ja existe a versao nova, nao duplicar.
 
 ## Passo 4: Atualizar README
 

@@ -87,6 +87,66 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 - Nenhum passo de setup adicional foi introduzido — `/commit` v2.0.0 funciona com a credencial do Git Credential Manager que todos já têm do clone HTTPS.
 
 ## landing-page (advisor) + familia lp-*
+### 1.9.0 — 2026-04-30 (lp-integrar-form: card-dentro-de-card)
+
+Round de fix a partir de incidente visual durante integracao do form Jotform na LP `buzzmonitor/social-listening-mayo-2026-latam`. Foco: garantir que o wrapper do embed nao herde o card visual do form mock.
+
+#### Sintoma observado
+Apos `/lp-integrar-form` substituir o `<form>` mock pelo embed Jotform, o live mostrou **dois cards aninhados**: o card branco com `padding: 40px`, `border` e `box-shadow` do `.form` (estilo do mock no `lp-gerar`) envolvendo outro card branco que o Jotform renderiza por padrao em volta dos campos.
+
+#### Causa-raiz
+- `lp-integrar-form` Passo 2 instruia: `<div class="form jotform-embed">{snippet}</div>`. A classe `form` foi mantida com a intencao de "preservar tamanho/contexto" do mock.
+- Mas `.form` no `lp-gerar` e um **card visual completo** (`background: #fff; padding: 40px; border: 1px solid; box-shadow`) — nao so estilos de campo. Provedores externos (Jotform, RD Station, HubSpot) ja vem com card proprio. Resultado: dois cards.
+- O CSS canonico `.form.jotform-embed { padding: 16px; overflow: hidden }` (Passo 3 da v1.2.0) so sobrescrevia o padding — nao desligava background/border/shadow herdados.
+
+#### Mudancas
+- **`lp-integrar-form` 1.2.0 → 1.3.0** — Passo 2 atualizado: wrapper agora usa apenas `<div class="jotform-embed">` (sem `form`). Passo 2 explicita "NAO herdar a classe `form` do mock" com referencia ao incidente. Passo 3 reduzido: `.jotform-embed iframe { width: 100% !important; ... }` (sem padding/background/overflow no wrapper — o provedor cuida do card). Passo 3 inclui regra de migracao: se LP antiga tem `.form.jotform-embed` (v<=1.2.0), substituir pelo novo seletor.
+- **CHANGELOG entry** (este) — registra incidente para referencia futura, conforme `feedback_skill_improvement.md` (bug em skill durante uso → atualizar a skill antes de fechar caso pontual).
+
+#### Skills bumpadas
+- `lp-integrar-form` 1.2.0 → 1.3.0 (wrapper limpo, sem heranca de card mock)
+
+#### Skills nao tocadas
+- `lp-gerar`, `lp-revisar`, `lp-preparar`, `lp-publicar`, `lp-pipeline`, `landing-page` (advisor) — nao envolvidas. O `.form` no `lp-gerar` continua sendo card visual valido para o mock; mudanca foi apenas no que `lp-integrar-form` faz na transicao mock → embed.
+
+#### Como impacta a LP afetada
+A LP `buzzmonitor/social-listening-mayo-2026-latam` foi consertada in-place no mesmo round: `index.html` ajustado (classe `form` removida do wrapper, CSS reduzido) e re-deploy via `/lp-publicar`. Skill atualizada previne o cenario na proxima integracao.
+
+### 1.8.0 — 2026-04-29 (guard anti-vazamento de copy)
+
+Round de fixes a partir de incidente de geracao da LP `buzzmonitor/social-listening-mayo-2026-latam`. Foco: prevenir o gerador de inventar texto novo durante `lp-gerar` quando o briefing pede componentes visuais ricos (pull-quotes, kickers, tags rotacionadas, art cards).
+
+#### Sintoma observado
+Auditoria pos-`lp-gerar` (modo review) detectou **5 vazamentos CRITICOS** no HTML gerado:
+- Frase-ancora do CIERRE truncada: `"...sino las que mejor entienden lo que se dice de ellas"` virou `"...sino las que mejor escuchan"`.
+- Pull-quote inventado em `<aside class="for-quote">` na secao Para Quien (frase nao existia em `copy.txt`).
+- Question inventada na secao Cierre (`"Sobran datos. Falta lectura. Vamos a leer juntos el 28 de Mayo."` — nao em `copy.txt`).
+- Punchline de marketing inventada: `"Sin spam, sin enredos."` no CTA final.
+- 5 em-dashes adicionados ao body durante expansao de bullets em `<h3>+<p>` (regras-anti-ia.md tem tolerancia zero para em-dash).
+
+Plus: sinonimos cosmeticos (hero h1 `"utilizar"` -> `"usar"`), virgula+conjuncao reescrita como ponto+frase no hero sub.
+
+#### Causa-raiz
+- `lp-gerar` Passo 3 (briefing) instruia "estrutura solicitada" descrevendo elementos visuais (`card visual`, `tag rotacionada`, `pull-quote`) sem amarrar o texto desses elementos a uma linha especifica de `copy.txt`. O gerador interpretou "tem espaco visual aqui" como permissao para inventar.
+- `lp-gerar` Passo 4 (validacao) so checava contagem de itens e emoji — nao fazia diff textual entre `copy.txt` e strings do HTML.
+- `lp-revisar` tinha auditoria de GTM (Passo 3.5) mas nao tinha equivalente para fidelidade da copy.
+- Incentivo composicional perverso: `frontend-design` e otimizada para gerar UIs "memoraveis" — quando ve um art card com slot vazio, preenche com texto criativo, nao com decoracao geometrica.
+
+#### Mudancas
+- **`lp-gerar` 1.4.0 -> 1.5.0** — Passo 3 (briefing pra `frontend-design`) ganhou bloco **REGRA DE FIDELIDADE DA COPY** explicitando: (a) todo texto visivel vem literal de `copy.txt`, (b) lista do que NAO inventar (pull-quotes, kickers, taglines, disclaimers punchy), (c) regra de nao truncar nem reescrever cosmeticamente, (d) whitelist exata do que pode aparecer fora da copy (5 categorias), (e) instrucao explicita "se componente visual pede texto e copy nao tem, fazer sem texto OU repetir literal frase relevante da copy". Passo 4 dividido em 4.1 (checklist tecnico — adicionado item de fallback robusto de reveal-on-scroll via `<noscript>`) e 4.2 (auditoria de fidelidade — diff textual em 4 buckets, busca dos 4 padroes mais comuns de vazamento, contagem de em-dash, validacao da frase-ancora, deteccao de sinonimos).
+- **`lp-revisar` 1.3.0 -> 1.4.0** — novo **Passo 3.6: Auditoria de Fidelidade da Copy (CRITICO)**. Defesa em camadas: roda independente da auditoria que a `lp-gerar` ja faz. Procedimento de 7 etapas: carregar `copy.txt`, extrair textos do HTML, classificar em 4 buckets (literal/whitelist/cosmetica/vazamento), procurar 4 padroes (pull-quote, kicker, tag rotacionada, punchline), auditar em-dash com grep, validar frase-ancora, detectar sinonimos. Tabela de severidade-acao mapeia cada tipo de achado. Vazamentos sao tratados com mesma prioridade do GTM — CRITICOS, nao opcionais.
+- **CHANGELOG entry** (este) — registra incidente para referencia futura, conforme `feedback_skill_improvement.md` (bug em skill durante uso -> atualizar a skill antes de fechar caso pontual).
+
+#### Skills bumpadas
+- `lp-gerar` 1.4.0 -> 1.5.0 (regra de fidelidade no briefing + checklist auditoria de fidelidade no Passo 4.2 + fallback robusto de reveal Passo 4.1)
+- `lp-revisar` 1.3.0 -> 1.4.0 (novo Passo 3.6 — auditoria de fidelidade da copy)
+
+#### Skills nao tocadas
+- `lp-preparar`, `lp-publicar`, `lp-integrar-form`, `lp-pipeline`, `landing-page` (advisor) — nao envolvidas no path de geracao do HTML.
+
+#### Como impacta a LP afetada
+A LP `buzzmonitor/social-listening-mayo-2026-latam` foi consertada in-place no mesmo round (5 criticos + 4 melhorias aplicados via `Edit` em `index.html`, documentados em `REVISAO.md`). Nao precisa re-rodar `lp-gerar` — fix cirurgico foi suficiente. Skills atualizadas previnem o cenario na proxima LP.
+
 ### 1.7.0 — 2026-04-28 (consolidacao pos-revisao critica)
 
 Round de fixes a partir de revisao critica das skills LP + CONTEXT/GUIDELINES (3 alta + 5 media + 4 baixa severidade). Foco: eliminar contradicoes, deduplicar regras espalhadas, fonte unica para regras canonicas (cascata GTM, snippet GTM, anti-padroes, wrapper CSS form).

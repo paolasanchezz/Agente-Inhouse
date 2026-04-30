@@ -1,0 +1,64 @@
+=== HERO ===
+LABEL: Webinar gratuito · 28 de Mayo
+H1: Social Listening para Marcas y Agencias: cómo utilizar las redes sociales para detectar oportunidades y anticipar crisis.
+SUB: Las conversaciones en redes sociales ya están mostrando lo que los consumidores piensan, esperan y critican sobre las marcas, pero la mayoría de equipos aún no sabe cómo transformar toda esa información en algo útil para tomar mejores decisiones.
+LABEL: 18:00 MX · 19:00 COL · 19:00 PER · 20:00 CL · 21:00 ARG
+CTA: Quiero inscribirme gratis
+
+=== PROBLEMA ===
+BODY: Cada día se generan miles de menciones, opiniones y comentarios sobre marcas, productos y experiencias en redes sociales.
+BODY: Pero en la práctica:
+LIST ITEM: se acumula información sin interpretación
+LIST ITEM: se pierden señales importantes del mercado
+LIST ITEM: las decisiones se toman tarde o sin contexto
+LIST ITEM: la competencia detecta oportunidades antes
+BODY: Sobran datos. Falta lectura.
+CTA: Quiero inscribirme gratis
+
+=== DIFERENCIAL ===
+# Posição: junto al registro de inscripción (lado a lado com o form/CTA)
+H3: El Social Listening no es solo monitorear redes sociales
+SUB: Es entender lo que el mercado está diciendo a través de las conversaciones digitales.
+BODY: En lugar de leer comentarios uno a uno, permite detectar patrones, señales y cambios reales en cómo los consumidores perciben una marca o categoría.
+
+=== BENEFICIOS ===
+H2: En este webinar aprenderás cómo aplicar Social Listening para entender mejor a tu audiencia y mejorar tus decisiones de marketing.
+BODY: Vas a ver cómo:
+LIST ITEM: identificar insights estratégicos en conversaciones digitales
+LIST ITEM: analizar percepción de marca y sentimiento del consumidor
+LIST ITEM: detectar tendencias, oportunidades y riesgos en redes sociales
+LIST ITEM: comparar tu marca con la competencia
+LIST ITEM: transformar datos sociales en decisiones accionables
+BODY: 👉 Todo aplicado con ejemplos reales.
+CTA: Quiero inscribirme gratis
+
+=== SPEAKERS ===
+# Bloque vacío en el briefing — usar [Speaker TBD] como placeholder en el HTML; reemplazar antes de publicar.
+
+=== PARA QUIEN ===
+H2: Este webinar es para:
+LIST ITEM: Equipos de marketing y comunicación
+LIST ITEM: Profesionales de branding y social media
+LIST ITEM: Agencias digitales
+LIST ITEM: Analistas de insights o datos
+LIST ITEM: Marcas que quieren entender mejor a su audiencia
+
+=== CIERRE ===
+H2: Las marcas que mejor crecen no son las que más hablan… sino las que mejor entienden lo que se dice de ellas
+CTA: Quiero inscribirme gratis
+
+=== REFERENCIA-VISUAL ===
+# Usar como referencia de estructura/layout: https://contenido.getbuzzmonitor.com/webinar-reputacion-de-marca-blindada
+# (No replicar copy — solo referencia visual.)
+
+# === REVISAO ANTI-IA — RESUMO (pos-edicao) ===
+# Em-dash: 0 ocorrencias — OK
+# Filler words: 0 (removidos "realmente" e "de forma aislada") — OK
+# Antitese-por-negacao: 2 (DIFERENCIAL "no es solo X" + CIERRE "no son X, sino Y") — dentro do limite
+# Antitese reescrita: PROBLEMA agora "Sobran datos. Falta lectura." (afirmativa-contraste, sem negacao direta)
+# Frases tipicas de IA em ES: 0 — OK
+# Exclamacoes: 0 — OK
+# Perguntas retoricas: 0 — OK
+# Emojis: 1 (👉) — dentro do limite
+# Transicoes mecanicas: 0 — OK
+# Listas de exatamente 3: 0 (problema=4, beneficios=5, para-quien=5) — OK
