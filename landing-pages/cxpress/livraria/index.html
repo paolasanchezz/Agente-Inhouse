@@ -1,0 +1,3598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livraria · Agente Inhouse — Catálogo de animações e componentes CSS</title>
+<meta name="description" content="Catálogo de animações, componentes e objetos CSS prontos para usar em landing pages do grupo Elife. Preview ao vivo, código limpo, zero dependências.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" href="/assets/logos/logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1124;
+  --bg-2: #131a2e;
+  --surface: #1a2238;
+  --surface-2: #232c46;
+  --border: #2a3552;
+  --border-strong: #3a4870;
+  --text: #f0f4ff;
+  --text-soft: #c8d1e8;
+  --muted: #8593b3;
+  --accent: #EF863C;
+  --accent-soft: #f9a464;
+  --accent-deep: #c66721;
+  --secondary: #F1A908;
+  --primary: #6b85d0;
+  --primary-deep: #4A69BD;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --paper: #f4ede0;
+  --ink: #1a1815;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(239, 134, 60, 0.10), transparent 42%),
+    radial-gradient(circle at 88% 78%, rgba(241, 169, 8, 0.06), transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(74, 105, 189, 0.08), transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============ HEADER ============ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(13, 17, 36, 0.78);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Bitter', serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.brand-mark::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 2px solid var(--bg);
+  border-radius: 4px;
+  border-right-color: transparent;
+  animation: brand-spin 2.5s linear infinite;
+}
+@keyframes brand-spin { to { transform: rotate(360deg); } }
+
+.brand em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.brand-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+  margin-top: 2px;
+  display: block;
+}
+
+.site-nav {
+  display: flex;
+  gap: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 60%;
+}
+.site-nav a {
+  color: var(--text-soft);
+  text-decoration: none;
+  padding: 6px 11px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+.site-nav a:hover {
+  color: var(--accent);
+  background: rgba(239, 134, 60, 0.10);
+}
+.site-nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .site-nav { display: none; }
+  .site-header .inner { padding: 14px 20px; }
+}
+
+/* ============ HERO ============ */
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px 60px;
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: 'Bitter', serif;
+  font-weight: 400;
+  font-size: clamp(44px, 7.5vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 28px;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+.hero h1 .underline-mark {
+  position: relative;
+  display: inline-block;
+}
+.hero h1 .underline-mark::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0.05em;
+  height: 0.12em;
+  background: var(--secondary);
+  z-index: -1;
+}
+
+.hero-lead {
+  font-size: 19px;
+  max-width: 640px;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.hero-meta {
+  margin-top: 48px;
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.hero-meta div span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-meta strong {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 18px;
+  font-family: 'Bitter', serif;
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 48px 20px 40px; }
+  .hero-meta { gap: 28px; }
+}
+
+/* ============ SECTION ============ */
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+.section-title {
+  font-family: 'Bitter', serif;
+  font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-top: 12px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.section-desc {
+  color: var(--text-soft);
+  font-size: 16px;
+  max-width: 480px;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 56px 20px; }
+  .section-head { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ============ EXAMPLE GRID ============ */
+.examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.example {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease;
+}
+.example:hover { border-color: var(--border-strong); }
+
+.example-preview {
+  flex: 0 0 auto;
+  height: 200px;
+  background:
+    linear-gradient(var(--bg-2), var(--bg-2)),
+    radial-gradient(circle, var(--border) 1px, transparent 1px) 0 0 / 16px 16px;
+  background-blend-mode: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+}
+.example-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+.example-preview.preview-tall { height: 240px; }
+
+.example-meta {
+  padding: 18px 20px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.example-meta h3 {
+  font-family: 'Bitter', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.example-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.example-desc {
+  padding: 6px 20px 16px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.example-code-wrap {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  position: relative;
+  background: var(--bg-2);
+}
+.example-code-wrap details summary {
+  padding: 12px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-soft);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.example-code-wrap details summary::-webkit-details-marker { display: none; }
+.example-code-wrap details summary::after {
+  content: '+';
+  font-size: 18px;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+.example-code-wrap details[open] summary::after { content: '−'; }
+.example-code-wrap details summary:hover { color: var(--accent); }
+.example-code-wrap details summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.code-block {
+  position: relative;
+  border-top: 1px solid var(--border);
+  background: #060914;
+}
+.code-block pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 18px 20px;
+  overflow-x: auto;
+  color: var(--text-soft);
+  max-height: 420px;
+}
+.code-block .copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-soft);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+}
+.code-block .copy-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+.code-block .copy-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.code-block .copy-btn.copied {
+  background: var(--secondary);
+  color: var(--bg);
+  border-color: var(--secondary);
+}
+
+/* code syntax */
+.tok-prop { color: var(--accent-soft); }
+.tok-val  { color: var(--secondary); }
+.tok-sel  { color: var(--text); font-weight: 500; }
+.tok-com  { color: #6b758f; font-style: italic; }
+.tok-kw   { color: var(--accent); }
+.tok-num  { color: var(--secondary); }
+.tok-str  { color: #a4d68f; }
+
+/* ============ FOOTER ============ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 80px;
+  padding: 60px 32px 80px;
+  text-align: center;
+}
+.site-footer .mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  font-family: 'Bitter', serif;
+}
+.footer-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+.footer-title {
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.footer-line {
+  width: 80px;
+  height: 1px;
+  background: var(--border-strong);
+  margin: 8px auto;
+}
+.footer-note {
+  font-family: 'Source Sans 3', sans-serif;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ====================================== */
+/* ============== EXAMPLES ============== */
+/* ====================================== */
+
+/* ---- LOADERS ---- */
+
+.demo-spinner {
+  width: 50px; height: 50px;
+  border: 4px solid rgba(255,255,255,0.10);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.demo-pulse {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(0.6); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+.demo-dots { display: flex; gap: 8px; }
+.demo-dots span {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dot-bounce 1.2s ease-in-out infinite;
+}
+.demo-dots span:nth-child(2) { animation-delay: 0.15s; }
+.demo-dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-14px); opacity: 1; }
+}
+
+.demo-bars { display: flex; gap: 4px; align-items: center; height: 50px; }
+.demo-bars span {
+  width: 6px;
+  background: var(--accent);
+  border-radius: 3px;
+  animation: bar-stretch 1s ease-in-out infinite;
+}
+.demo-bars span:nth-child(1) { animation-delay: -0.4s; }
+.demo-bars span:nth-child(2) { animation-delay: -0.3s; }
+.demo-bars span:nth-child(3) { animation-delay: -0.2s; }
+.demo-bars span:nth-child(4) { animation-delay: -0.1s; }
+.demo-bars span:nth-child(5) { animation-delay: 0s; }
+@keyframes bar-stretch {
+  0%, 100% { height: 12px; }
+  50% { height: 50px; }
+}
+
+.demo-ring {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0deg, var(--accent) 270deg, transparent 360deg);
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+.demo-ring::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--bg-2);
+  border-radius: 50%;
+}
+
+.demo-ripple {
+  position: relative;
+  width: 60px; height: 60px;
+}
+.demo-ripple span {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  animation: ripple 1.6s ease-out infinite;
+}
+.demo-ripple span:nth-child(2) { animation-delay: 0.5s; }
+.demo-ripple span:nth-child(3) { animation-delay: 1s; }
+@keyframes ripple {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+/* ---- BUTTONS ---- */
+.demo-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-slide {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.4s ease;
+}
+.btn-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateX(-101%);
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+.btn-slide:hover { color: var(--bg); }
+.btn-slide:hover::before { transform: translateX(0); }
+
+.btn-glow {
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 9px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(239, 134, 60, 0);
+}
+.btn-glow:hover {
+  box-shadow: 0 0 32px rgba(239, 134, 60, 0.6), 0 0 12px rgba(239, 134, 60, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-border {
+  background: transparent;
+  color: var(--text);
+  padding: 14px 28px;
+  position: relative;
+  border: none;
+}
+.btn-border span { position: relative; z-index: 1; }
+.btn-border::before, .btn-border::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  transition: all 0.3s ease;
+}
+.btn-border::before {
+  top: 0; left: 0;
+  width: 0; height: 2px;
+}
+.btn-border::after {
+  bottom: 0; right: 0;
+  width: 0; height: 2px;
+}
+.btn-border:hover::before, .btn-border:hover::after { width: 100%; }
+.btn-border > i {
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--accent);
+  transition: height 0.3s ease 0.3s;
+}
+.btn-border > b {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 2px; height: 0;
+  background: var(--accent);
+  transition: height 0.3s ease 0.3s;
+}
+.btn-border:hover > i, .btn-border:hover > b { height: 100%; }
+
+.btn-push {
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 9px;
+  box-shadow: 0 6px 0 var(--accent-deep);
+  transition: all 0.1s ease;
+}
+.btn-push:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--accent-deep);
+}
+.btn-push:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--accent-deep);
+}
+
+.btn-shine {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: var(--bg);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 700;
+}
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+  transition: left 0.6s ease;
+}
+.btn-shine:hover::before { left: 100%; }
+
+/* ---- CARDS ---- */
+.demo-card {
+  width: 220px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'Bitter', serif;
+  font-size: 14px;
+}
+.demo-card .card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 8px;
+}
+.demo-card .card-title {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.card-lift { transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-lift:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -10px rgba(239, 134, 60, 0.25);
+}
+
+.card-tilt {
+  transition: transform 0.4s ease;
+  transform-style: preserve-3d;
+}
+.card-tilt:hover {
+  transform: perspective(800px) rotateX(8deg) rotateY(-8deg) translateZ(10px);
+  border-color: var(--accent);
+}
+
+.card-glow {
+  position: relative;
+  background: var(--surface-2);
+  z-index: 0;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: conic-gradient(from var(--angle, 0deg), var(--accent), var(--secondary), var(--accent));
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: rotate-angle 4s linear infinite;
+}
+.card-glow:hover::before { opacity: 1; }
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate-angle { to { --angle: 360deg; } }
+
+.card-reveal { position: relative; overflow: hidden; }
+.card-reveal::after {
+  content: 'VER MAIS →';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 13px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-reveal:hover::after { transform: translateY(0); }
+
+/* ---- TEXT ---- */
+.demo-text {
+  font-family: 'Bitter', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--secondary), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 3s linear infinite;
+}
+@keyframes text-shine {
+  to { background-position: 200% center; }
+}
+
+.text-wave span {
+  display: inline-block;
+  animation: wave-letter 1.6s ease-in-out infinite;
+}
+.text-wave span:nth-child(1) { animation-delay: 0s; }
+.text-wave span:nth-child(2) { animation-delay: 0.08s; }
+.text-wave span:nth-child(3) { animation-delay: 0.16s; }
+.text-wave span:nth-child(4) { animation-delay: 0.24s; }
+.text-wave span:nth-child(5) { animation-delay: 0.32s; }
+.text-wave span:nth-child(6) { animation-delay: 0.4s; }
+@keyframes wave-letter {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-12px); color: var(--accent); }
+}
+
+.text-typing {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  display: inline-block;
+  border-right: 3px solid var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(20) infinite, caret 0.8s step-end infinite;
+}
+@keyframes typing {
+  0%, 90%, 100% { width: 0; }
+  30%, 60% { width: 12ch; }
+}
+@keyframes caret {
+  50% { border-color: transparent; }
+}
+
+.text-glitch {
+  position: relative;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.text-glitch::before, .text-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.text-glitch::before {
+  color: var(--accent);
+  animation: glitch-1 2.5s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+.text-glitch::after {
+  color: var(--secondary);
+  animation: glitch-2 2.5s infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+}
+@keyframes glitch-1 {
+  0%, 90%, 100% { transform: translate(0); }
+  10% { transform: translate(-2px, 1px); }
+  20% { transform: translate(2px, -1px); }
+}
+@keyframes glitch-2 {
+  0%, 90%, 100% { transform: translate(0); }
+  10% { transform: translate(2px, -1px); }
+  20% { transform: translate(-2px, 1px); }
+}
+
+/* ---- OBJETOS ---- */
+.shape-heart {
+  position: relative;
+  width: 50px; height: 45px;
+  animation: heart-beat 1.2s ease-in-out infinite;
+}
+.shape-heart::before, .shape-heart::after {
+  content: '';
+  position: absolute;
+  width: 26px; height: 40px;
+  background: #ff3d57;
+  border-radius: 26px 26px 0 0;
+  top: 0;
+}
+.shape-heart::before {
+  left: 25px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.shape-heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(0.92); }
+  20%, 40% { transform: scale(1.1); }
+}
+
+.shape-star {
+  width: 0; height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 22px solid var(--secondary);
+  position: relative;
+  transform: rotate(35deg);
+  filter: drop-shadow(0 0 8px rgba(241, 169, 8, 0.5));
+}
+.shape-star::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -18px;
+  width: 0; height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 30px solid var(--secondary);
+  transform: rotate(-35deg);
+}
+.shape-star::after {
+  content: '';
+  position: absolute;
+  top: 1px; left: -34px;
+  width: 0; height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 22px solid var(--secondary);
+  transform: rotate(-70deg);
+}
+
+.shape-cloud {
+  position: relative;
+  width: 90px; height: 32px;
+  background: #e5e7eb;
+  border-radius: 50px;
+  animation: cloud-float 4s ease-in-out infinite;
+}
+.shape-cloud::before, .shape-cloud::after {
+  content: '';
+  position: absolute;
+  background: #e5e7eb;
+  border-radius: 50%;
+}
+.shape-cloud::before {
+  width: 36px; height: 36px;
+  top: -18px; left: 12px;
+}
+.shape-cloud::after {
+  width: 50px; height: 50px;
+  top: -28px; right: 12px;
+}
+@keyframes cloud-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.shape-moon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  box-shadow: -14px 6px 0 0 #f4f4f5;
+  background: transparent;
+  transform: rotate(-20deg);
+  filter: drop-shadow(0 0 16px rgba(244, 244, 245, 0.3));
+}
+
+.shape-sun {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--secondary);
+  position: relative;
+  box-shadow: 0 0 24px rgba(241, 169, 8, 0.6);
+  animation: sun-spin 12s linear infinite;
+}
+.shape-sun::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg, transparent 20deg,
+      var(--secondary) 22deg, var(--secondary) 23deg, transparent 25deg, transparent 65deg,
+      var(--secondary) 67deg, var(--secondary) 68deg, transparent 70deg, transparent 110deg,
+      var(--secondary) 112deg, var(--secondary) 113deg, transparent 115deg, transparent 155deg,
+      var(--secondary) 157deg, var(--secondary) 158deg, transparent 160deg, transparent 200deg,
+      var(--secondary) 202deg, var(--secondary) 203deg, transparent 205deg, transparent 245deg,
+      var(--secondary) 247deg, var(--secondary) 248deg, transparent 250deg, transparent 290deg,
+      var(--secondary) 292deg, var(--secondary) 293deg, transparent 295deg, transparent 335deg,
+      var(--secondary) 337deg, var(--secondary) 338deg, transparent 340deg);
+  border-radius: 50%;
+  z-index: -1;
+}
+@keyframes sun-spin { to { transform: rotate(360deg); } }
+
+.shape-bubble {
+  position: relative;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-size: 18px;
+  padding: 14px 22px;
+  border-radius: 18px;
+}
+.shape-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 28px;
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 14px solid var(--accent);
+}
+
+/* ---- BACKGROUNDS ---- */
+.demo-bg {
+  width: 100%; height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--secondary), var(--primary), var(--accent));
+  background-size: 400% 400%;
+  animation: bg-shift 12s ease infinite;
+}
+@keyframes bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-dots {
+  background-color: var(--bg-2);
+  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  animation: bg-dots-move 20s linear infinite;
+}
+@keyframes bg-dots-move {
+  to { background-position: 22px 22px; }
+}
+
+.bg-stripes {
+  background:
+    repeating-linear-gradient(45deg,
+      var(--accent) 0,
+      var(--accent) 12px,
+      var(--bg-2) 12px,
+      var(--bg-2) 24px);
+  animation: bg-stripes-move 1.5s linear infinite;
+}
+@keyframes bg-stripes-move {
+  to { background-position: 34px 0; }
+}
+
+.bg-aurora {
+  background-color: #06091a;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 30% 30%, rgba(239, 134, 60, 0.5), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 70% 60%, rgba(241, 169, 8, 0.3), transparent 60%),
+    radial-gradient(ellipse 45% 30% at 50% 80%, rgba(74, 105, 189, 0.5), transparent 60%);
+  filter: blur(0px);
+  animation: aurora-move 10s ease-in-out infinite alternate;
+}
+@keyframes aurora-move {
+  0%   { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  100% { background-position: 30% 20%, -25% 15%, 15% -20%; }
+}
+
+/* ---- HOVER EFFECTS ---- */
+.demo-hover-img {
+  width: 200px;
+  height: 130px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep) 50%, var(--primary-deep));
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.demo-hover-img::after {
+  content: 'IMAGE';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.7);
+}
+
+.hover-zoom > div { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.hover-zoom:hover > div { transform: scale(1.15); }
+
+.hover-link {
+  font-family: 'Bitter', serif;
+  font-size: 24px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  font-style: italic;
+  cursor: pointer;
+}
+.hover-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hover-shift {
+  font-family: 'Bitter', serif;
+  font-size: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.hover-shift span {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-shift span:last-child {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--accent);
+  font-style: italic;
+}
+.hover-shift:hover span { transform: translateY(-100%); }
+
+.hover-border {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.hover-border span { position: relative; z-index: 1; transition: color 0.4s; }
+.hover-border::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--secondary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-border:hover { border-color: var(--secondary); }
+.hover-border:hover::before { transform: scaleX(1); }
+.hover-border:hover span { color: var(--bg); }
+
+/* ---- ENTRADAS ---- */
+.demo-box {
+  width: 60px; height: 60px;
+  background: var(--accent);
+  border-radius: 9px;
+}
+
+.in-fade { animation: fade-up 2.5s ease-in-out infinite; }
+@keyframes fade-up {
+  0%, 100% { transform: translateY(20px); opacity: 0; }
+  40%, 60% { transform: translateY(0); opacity: 1; }
+}
+
+.in-bounce { animation: bounce-in 2.5s ease-in-out infinite; }
+@keyframes bounce-in {
+  0%, 100% { transform: scale(0); opacity: 0; }
+  20% { transform: scale(1.2); opacity: 1; }
+  35%, 65% { transform: scale(1); opacity: 1; }
+  85% { transform: scale(1); opacity: 1; }
+}
+
+.in-flip {
+  animation: flip-in 3s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+@keyframes flip-in {
+  0%, 100% { transform: perspective(400px) rotateY(90deg); opacity: 0; }
+  40%, 60% { transform: perspective(400px) rotateY(0); opacity: 1; }
+}
+
+.in-slide { animation: slide-in 2.5s ease-in-out infinite; }
+@keyframes slide-in {
+  0%, 100% { transform: translateX(-80px); opacity: 0; }
+  40%, 60% { transform: translateX(0); opacity: 1; }
+}
+
+/* ====================================== */
+/* ============== NOVOS ================= */
+/* ====================================== */
+
+/* ---- FORMULÁRIOS ---- */
+.demo-field {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* FM01 — Float label */
+.field-float {
+  position: relative;
+}
+.field-float input {
+  width: 100%;
+  padding: 18px 16px 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  color: var(--text);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.field-float input:focus { border-color: var(--accent); }
+.field-float label {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+.field-float input:focus + label,
+.field-float input:not(:placeholder-shown) + label {
+  top: 4px;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* FM02 — Checkbox custom */
+.field-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-soft);
+  cursor: pointer;
+  user-select: none;
+}
+.field-check input { position: absolute; opacity: 0; pointer-events: none; }
+.field-check .box {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.field-check .box::after {
+  content: '';
+  width: 6px;
+  height: 11px;
+  border: solid var(--bg);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.18s ease;
+  margin-bottom: 2px;
+}
+.field-check input:checked + .box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.field-check input:checked + .box::after { transform: rotate(45deg) scale(1); }
+.field-check input:focus-visible + .box {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* FM03 — Radio cards */
+.radio-cards {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 100%;
+}
+.radio-cards label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-soft);
+  transition: all 0.2s ease;
+}
+.radio-cards input { position: absolute; opacity: 0; }
+.radio-cards .dot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+.radio-cards .dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: scale(0);
+  transition: transform 0.18s ease;
+}
+.radio-cards input:checked ~ .dot { border-color: var(--accent); }
+.radio-cards input:checked ~ .dot::after { transform: scale(1); }
+.radio-cards label:has(input:checked) {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(239, 134, 60, 0.06);
+}
+
+/* FM04 — Select estilizado */
+.field-select {
+  position: relative;
+  width: 100%;
+}
+.field-select select {
+  width: 100%;
+  padding: 14px 40px 14px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  color: var(--text);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.field-select select:focus { border-color: var(--accent); }
+.field-select::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent);
+  border-top: none;
+  border-left: none;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* ---- LISTAS ---- */
+.demo-list {
+  width: 100%;
+  max-width: 280px;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+.demo-list li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+/* LI01 — Problema com X vermelho */
+.list-problem li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.list-problem li {
+  position: relative;
+}
+.list-problem li::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background:
+    linear-gradient(45deg, transparent 45%, var(--danger) 45% 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, var(--danger) 45% 55%, transparent 55%);
+}
+
+/* LI02 — Benefício com check verde */
+.list-benefit li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+}
+.list-benefit li {
+  position: relative;
+}
+.list-benefit li::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--success);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* LI03 — Timeline numerada */
+.list-timeline {
+  counter-reset: step;
+  position: relative;
+}
+.list-timeline li {
+  counter-increment: step;
+  padding: 8px 0 8px 38px;
+  position: relative;
+  border-left: 2px solid var(--border);
+  margin-left: 12px;
+}
+.list-timeline li::before {
+  content: counter(step);
+  position: absolute;
+  left: -14px;
+  top: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+.list-timeline li:last-child { border-left-color: transparent; }
+
+/* ---- MÉTRICAS ---- */
+
+/* M01 — Stat callout */
+.stat-callout {
+  font-family: 'Bitter', serif;
+  text-align: center;
+}
+.stat-callout .num {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+}
+.stat-callout .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  -webkit-text-fill-color: var(--muted);
+}
+
+/* M02 — Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  width: 100%;
+  max-width: 300px;
+}
+.stats-grid .stat {
+  font-family: 'Bitter', serif;
+  text-align: left;
+}
+.stats-grid .stat .num {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stats-grid .stat .label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+
+/* M03 — Progress bar */
+.progress-bar {
+  width: 80%;
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius: 999px;
+  animation: progress-fill 2.5s ease-in-out infinite;
+}
+@keyframes progress-fill {
+  0% { width: 0%; }
+  60% { width: 70%; }
+  100% { width: 70%; }
+}
+
+/* ---- PILLS / BADGES ---- */
+.pill-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+  color: var(--text-soft);
+  border: 1px solid var(--border-strong);
+}
+
+.pill-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(239, 68, 68, 0.10);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.pill-live::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+  animation: live-dot 1.5s ease-in-out infinite;
+}
+@keyframes live-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+.pill-urgency {
+  display: inline-block;
+  padding: 8px 18px;
+  background: var(--secondary);
+  color: var(--bg);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transform: rotate(-3deg);
+  box-shadow: 0 6px 16px -4px rgba(241, 169, 8, 0.4);
+}
+
+.pill-gradient {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(120deg, var(--accent), var(--secondary));
+  color: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- DECORATIVOS Cxpress ---- */
+.deco-canvas {
+  position: relative;
+  width: 200px;
+  height: 140px;
+}
+
+/* D01 — Composição de pills */
+.deco-pills {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.deco-pills .p-pill {
+  position: absolute;
+  border-radius: 999px;
+}
+.deco-pills .p1 {
+  width: 24px; height: 80px;
+  background: var(--accent);
+  left: 30px; top: 30px;
+}
+.deco-pills .p2 {
+  width: 24px; height: 80px;
+  border: 2px solid var(--accent);
+  left: 60px; top: 20px;
+}
+.deco-pills .p3 {
+  width: 80px; height: 24px;
+  background: var(--primary);
+  left: 90px; top: 60px;
+}
+.deco-pills .p4 {
+  width: 24px; height: 50px;
+  background: var(--secondary);
+  left: 96px; top: 25px;
+}
+
+/* D02 — Arcos rotacionados */
+.deco-arcs {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.deco-arcs .arc {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-radius: 60px 60px 0 0;
+}
+.deco-arcs .a1 {
+  background: var(--accent);
+  left: 20px; top: 40px;
+  transform: rotate(0deg);
+}
+.deco-arcs .a2 {
+  background: var(--primary);
+  left: 80px; top: 20px;
+  transform: rotate(90deg);
+}
+.deco-arcs .a3 {
+  background: var(--secondary);
+  left: 110px; top: 60px;
+  transform: rotate(-90deg);
+  width: 40px; height: 40px;
+  border-radius: 40px 40px 0 0;
+}
+
+/* D03 — Grupo signature */
+.deco-mix {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.deco-mix .blob1 {
+  position: absolute;
+  width: 90px; height: 30px;
+  background: var(--accent);
+  border-radius: 999px;
+  left: 20px;
+  top: 50px;
+  transform: rotate(-15deg);
+}
+.deco-mix .blob2 {
+  position: absolute;
+  width: 60px; height: 60px;
+  border: 3px solid var(--primary);
+  border-radius: 60px 60px 0 0;
+  left: 100px;
+  top: 30px;
+  transform: rotate(45deg);
+}
+.deco-mix .blob3 {
+  position: absolute;
+  width: 18px; height: 18px;
+  background: var(--secondary);
+  border-radius: 50%;
+  left: 70px;
+  top: 25px;
+}
+
+/* ---- AVANÇADOS ---- */
+
+/* A01 — FAQ Accordion */
+.demo-accordion {
+  width: 100%;
+  max-width: 300px;
+}
+.demo-accordion details {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.demo-accordion summary {
+  padding: 14px 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.demo-accordion summary::-webkit-details-marker { display: none; }
+.demo-accordion summary::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--accent);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+.demo-accordion details[open] summary::after { transform: rotate(-135deg); }
+.demo-accordion .acc-body {
+  padding: 0 16px 14px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* A02 — Tooltip */
+.demo-tooltip {
+  position: relative;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  border-bottom: 1px dashed var(--accent);
+  cursor: help;
+  padding: 4px 0;
+}
+.demo-tooltip::before, .demo-tooltip::after {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateX(-50%) translateY(4px);
+}
+.demo-tooltip::before {
+  content: attr(data-tip);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  border: 1px solid var(--border-strong);
+}
+.demo-tooltip::after {
+  content: '';
+  bottom: calc(100% + 2px);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--surface-2);
+}
+.demo-tooltip:hover::before, .demo-tooltip:hover::after,
+.demo-tooltip:focus::before, .demo-tooltip:focus::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* A03 — Sticky CTA */
+.sticky-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-2);
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 12px;
+}
+.sticky-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: none;
+  box-shadow: 0 10px 30px -10px rgba(239, 134, 60, 0.6), 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+  animation: sticky-bob 3s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+.sticky-cta:hover { transform: scale(1.05); }
+.sticky-cta::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--bg);
+  animation: live-dot 1.5s ease-in-out infinite;
+}
+@keyframes sticky-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* A04 — Scroll reveal */
+.reveal-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.reveal-stage .r-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: var(--text-soft);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: reveal-item 3s ease infinite;
+}
+.reveal-stage .r-item:nth-child(1) { animation-delay: 0s; }
+.reveal-stage .r-item:nth-child(2) { animation-delay: 0.2s; }
+.reveal-stage .r-item:nth-child(3) { animation-delay: 0.4s; }
+@keyframes reveal-item {
+  0%, 100% { opacity: 0; transform: translateY(16px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+}
+
+/* A05 — Skeleton loader */
+.skeleton {
+  width: 220px;
+  background: var(--surface-2);
+  border-radius: 9px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.skeleton .sk-line {
+  height: 12px;
+  background: linear-gradient(90deg,
+    var(--border) 0%,
+    var(--border-strong) 50%,
+    var(--border) 100%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: shimmer 1.4s linear infinite;
+}
+.skeleton .sk-line.short { width: 60%; }
+.skeleton .sk-line.med   { width: 85%; }
+.skeleton .sk-row { display: flex; gap: 10px; align-items: center; }
+.skeleton .sk-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(90deg,
+    var(--border) 0%,
+    var(--border-strong) 50%,
+    var(--border) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  flex-shrink: 0;
+}
+.skeleton .sk-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+</style>
+</head>
+<body>
+
+<a href="#loaders" class="skip-link" style="position:absolute;left:-9999px;top:8px;background:var(--accent);color:var(--bg);padding:10px 16px;border-radius:6px;z-index:200;font-family:'Open Sans',sans-serif;font-weight:700;font-size:13px;" onfocus="this.style.left='12px';" onblur="this.style.left='-9999px';">Pular para conteúdo</a>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <div>Livraria<em>·</em>CSS</div>
+        <span class="brand-sub">Agente Inhouse</span>
+      </div>
+    </div>
+    <nav class="site-nav" aria-label="Navegação por categoria">
+      <a href="#loaders">Loaders</a>
+      <a href="#botoes">Botões</a>
+      <a href="#cards">Cards</a>
+      <a href="#texto">Texto</a>
+      <a href="#objetos">Objetos</a>
+      <a href="#fundos">Fundos</a>
+      <a href="#hover">Hover</a>
+      <a href="#entrada">Entradas</a>
+      <a href="#formularios">Forms</a>
+      <a href="#listas">Listas</a>
+      <a href="#metricas">Métricas</a>
+      <a href="#pills">Pills</a>
+      <a href="#decorativos">Decorativos</a>
+      <a href="#avancados">Avançados</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Catálogo · Edição 01 · 2026</div>
+  <h1>
+    Livraria de <em>animações</em><br>
+    & <span class="underline-mark">componentes</span><br>
+    para landing pages.
+  </h1>
+  <p class="hero-lead">
+    Espécimes prontos para colar em LPs do grupo Elife — Buzzmonitor, Buzzcreators, Cxpress, Elife. Cada exemplo vem com preview ao vivo, código limpo e zero dependência. Copie, cole, adapte ao brand de plantão.
+  </p>
+  <div class="hero-meta">
+    <div><span>Espécimes</span><strong>59</strong></div>
+    <div><span>Categorias</span><strong>Quatorze</strong></div>
+    <div><span>Marcas</span><strong>Quatro</strong></div>
+    <div><span>Dependências</span><strong>Nenhuma</strong></div>
+  </div>
+</section>
+
+<!-- ============= LOADERS ============= -->
+<section class="section" id="loaders">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 01 / Loaders</div>
+      <h2 class="section-title">Indicadores de <em>carregamento</em></h2>
+    </div>
+    <p class="section-desc">Spinners, dots e barras para sinalizar processamento. Todos rodam com keyframes simples e funcionam em qualquer tamanho.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-spinner"></div></div>
+      <div class="example-meta"><h3>Spinner clássico</h3><span class="example-id">L01</span></div>
+      <p class="example-desc">Borda parcial girando — o tradicional.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L01">COPIAR</button><pre id="code-L01"><span class="tok-sel">.spinner</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">height</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">4px</span> <span class="tok-val">solid</span> <span class="tok-num">rgba(255,255,255,0.1)</span>;
+  <span class="tok-prop">border-top-color</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">spin</span> <span class="tok-num">0.9s</span> <span class="tok-val">linear infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">spin</span> {
+  <span class="tok-val">to</span> { <span class="tok-prop">transform</span>: <span class="tok-val">rotate(360deg)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-pulse"></div></div>
+      <div class="example-meta"><h3>Pulse</h3><span class="example-id">L02</span></div>
+      <p class="example-desc">Círculo que respira — discreto e elegante.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L02">COPIAR</button><pre id="code-L02"><span class="tok-sel">.pulse</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">50px</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">pulse 1.4s ease-in-out infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">pulse</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(0.6)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0.5</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-dots"><span></span><span></span><span></span></div></div>
+      <div class="example-meta"><h3>Dots wave</h3><span class="example-id">L03</span></div>
+      <p class="example-desc">Três pontos saltando em sequência com delays.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L03">COPIAR</button><pre id="code-L03"><span class="tok-com">/* HTML: &lt;div class="dots"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt; */</span>
+<span class="tok-sel">.dots</span> { <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">gap</span>: <span class="tok-num">8px</span>; }
+<span class="tok-sel">.dots span</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">12px</span>; <span class="tok-prop">height</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">bounce 1.2s ease-in-out infinite</span>;
+}
+<span class="tok-sel">.dots span:nth-child(2)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">0.15s</span>; }
+<span class="tok-sel">.dots span:nth-child(3)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">0.3s</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">bounce</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">80%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0.4</span>; }
+  <span class="tok-num">40%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-14px)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="example-meta"><h3>Equalizer</h3><span class="example-id">L04</span></div>
+      <p class="example-desc">Cinco barras pulsando em escada.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L04">COPIAR</button><pre id="code-L04"><span class="tok-com">/* HTML: 5 spans dentro de .bars */</span>
+<span class="tok-sel">.bars</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">gap</span>: <span class="tok-num">4px</span>;
+  <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>;
+}
+<span class="tok-sel">.bars span</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">6px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">3px</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">stretch 1s ease-in-out infinite</span>;
+}
+<span class="tok-sel">.bars span:nth-child(1)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">-0.4s</span>; }
+<span class="tok-sel">.bars span:nth-child(2)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">-0.3s</span>; }
+<span class="tok-sel">.bars span:nth-child(3)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">-0.2s</span>; }
+<span class="tok-sel">.bars span:nth-child(4)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">-0.1s</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">stretch</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">height</span>: <span class="tok-num">12px</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">height</span>: <span class="tok-num">50px</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-ring"></div></div>
+      <div class="example-meta"><h3>Ring gradient</h3><span class="example-id">L05</span></div>
+      <p class="example-desc">Anel com gradiente cônico, sem border.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L05">COPIAR</button><pre id="code-L05"><span class="tok-sel">.ring</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">50px</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">conic-gradient(from 0deg,
+    transparent 0deg, #EF863C 270deg, transparent 360deg)</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">spin 1s linear infinite</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+}
+<span class="tok-sel">.ring::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">inset</span>: <span class="tok-num">4px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#131a2e</span>; <span class="tok-com">/* cor de fundo */</span>
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">spin</span> { <span class="tok-val">to</span> { <span class="tok-prop">transform</span>: <span class="tok-val">rotate(360deg)</span>; } }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-ripple"><span></span><span></span><span></span></div></div>
+      <div class="example-meta"><h3>Ripple</h3><span class="example-id">L06</span></div>
+      <p class="example-desc">Ondas concêntricas — bom para botões e ícones.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="L06">COPIAR</button><pre id="code-L06"><span class="tok-com">/* HTML: 3 spans dentro de .ripple */</span>
+<span class="tok-sel">.ripple</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">60px</span>; <span class="tok-prop">height</span>: <span class="tok-num">60px</span>;
+}
+<span class="tok-sel">.ripple span</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">inset</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #EF863C</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">ripple 1.6s ease-out infinite</span>;
+}
+<span class="tok-sel">.ripple span:nth-child(2)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">0.5s</span>; }
+<span class="tok-sel">.ripple span:nth-child(3)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">1s</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">ripple</span> {
+  <span class="tok-num">0%</span>   { <span class="tok-prop">transform</span>: <span class="tok-val">scale(0.3)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+  <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1.2)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= BOTÕES ============= -->
+<section class="section" id="botoes">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 02 / Botões</div>
+      <h2 class="section-title">Botões com <em>caráter</em></h2>
+    </div>
+    <p class="section-desc">Hover states que vão além do troca-de-cor. Passe o mouse em cada exemplo para ver a interação.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><button class="demo-btn btn-slide">Hover me</button></div>
+      <div class="example-meta"><h3>Slide background</h3><span class="example-id">B01</span></div>
+      <p class="example-desc">Fundo desliza por dentro da borda no hover.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="B01">COPIAR</button><pre id="code-B01"><span class="tok-sel">.btn-slide</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #EF863C</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">color 0.4s ease</span>;
+}
+<span class="tok-sel">.btn-slide::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">inset</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateX(-101%)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s ease</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">-1</span>;
+}
+<span class="tok-sel">.btn-slide:hover</span> { <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>; }
+<span class="tok-sel">.btn-slide:hover::before</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateX(0)</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><button class="demo-btn btn-glow">Glow</button></div>
+      <div class="example-meta"><h3>Neon glow</h3><span class="example-id">B02</span></div>
+      <p class="example-desc">Brilho difuso e leve elevação no hover.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="B02">COPIAR</button><pre id="code-B02"><span class="tok-sel">.btn-glow</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">600</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.3s ease</span>;
+}
+<span class="tok-sel">.btn-glow:hover</span> {
+  <span class="tok-prop">box-shadow</span>:
+    <span class="tok-num">0 0 32px rgba(239, 134, 60, 0.6)</span>,
+    <span class="tok-num">0 0 12px rgba(239, 134, 60, 0.4)</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-2px)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><button class="demo-btn btn-border"><i></i><b></b><span>Border draw</span></button></div>
+      <div class="example-meta"><h3>Border draw</h3><span class="example-id">B03</span></div>
+      <p class="example-desc">Borda é desenhada lado a lado em sequência.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="B03">COPIAR</button><pre id="code-B03"><span class="tok-com">/* HTML: &lt;button class="btn-border"&gt;&lt;i&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;span&gt;Texto&lt;/span&gt;&lt;/button&gt; */</span>
+<span class="tok-sel">.btn-border</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+}
+<span class="tok-sel">.btn-border::before, .btn-border::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.3s ease</span>;
+}
+<span class="tok-sel">.btn-border::before</span> { <span class="tok-prop">top</span>: <span class="tok-num">0</span>; <span class="tok-prop">left</span>: <span class="tok-num">0</span>; <span class="tok-prop">width</span>: <span class="tok-num">0</span>; <span class="tok-prop">height</span>: <span class="tok-num">2px</span>; }
+<span class="tok-sel">.btn-border::after</span>  { <span class="tok-prop">bottom</span>: <span class="tok-num">0</span>; <span class="tok-prop">right</span>: <span class="tok-num">0</span>; <span class="tok-prop">width</span>: <span class="tok-num">0</span>; <span class="tok-prop">height</span>: <span class="tok-num">2px</span>; }
+<span class="tok-sel">.btn-border:hover::before, .btn-border:hover::after</span> { <span class="tok-prop">width</span>: <span class="tok-num">100%</span>; }
+<span class="tok-com">/* &lt;i&gt; e &lt;b&gt; pintam as bordas verticais com delay */</span></pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><button class="demo-btn btn-push">Press me</button></div>
+      <div class="example-meta"><h3>3D push</h3><span class="example-id">B04</span></div>
+      <p class="example-desc">Botão tátil que afunda quando clicado.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="B04">COPIAR</button><pre id="code-B04"><span class="tok-sel">.btn-push</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 6px 0 #c66721</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.1s ease</span>;
+}
+<span class="tok-sel">.btn-push:hover</span> {
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(2px)</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 4px 0 #c66721</span>;
+}
+<span class="tok-sel">.btn-push:active</span> {
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(6px)</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 0 0 #c66721</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><button class="demo-btn btn-shine">Shine</button></div>
+      <div class="example-meta"><h3>Shine sweep</h3><span class="example-id">B05</span></div>
+      <p class="example-desc">Faixa de luz cruza o botão no hover.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="B05">COPIAR</button><pre id="code-B05"><span class="tok-sel">.btn-shine</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(135deg, #EF863C, #c66721)</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+}
+<span class="tok-sel">.btn-shine::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">top</span>: <span class="tok-num">0</span>; <span class="tok-prop">left</span>: <span class="tok-num">-100%</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>; <span class="tok-prop">height</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(120deg,
+    transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">left 0.6s ease</span>;
+}
+<span class="tok-sel">.btn-shine:hover::before</span> { <span class="tok-prop">left</span>: <span class="tok-num">100%</span>; }</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= CARDS ============= -->
+<section class="section" id="cards">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 03 / Cards</div>
+      <h2 class="section-title">Cards <em>interativos</em></h2>
+    </div>
+    <p class="section-desc">Quatro padrões de hover para cards: levantar, inclinar, brilhar e revelar. Passe o mouse para ver.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-card card-lift"><span class="card-num">N° 001</span><div class="card-title">Levantar</div><div style="font-size:13px;color:var(--muted);font-family:'Source Sans 3';">Sutil e profissional.</div></div></div>
+      <div class="example-meta"><h3>Card lift</h3><span class="example-id">C01</span></div>
+      <p class="example-desc">Sobe levemente e ganha sombra colorida.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="C01">COPIAR</button><pre id="code-C01"><span class="tok-sel">.card</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #2a3552</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">20px</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.35s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.card:hover</span> {
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-8px)</span>;
+  <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 20px 40px -10px rgba(239, 134, 60, 0.25)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-card card-tilt"><span class="card-num">N° 002</span><div class="card-title">Inclinar</div><div style="font-size:13px;color:var(--muted);font-family:'Source Sans 3';">Profundidade 3D.</div></div></div>
+      <div class="example-meta"><h3>Tilt 3D</h3><span class="example-id">C02</span></div>
+      <p class="example-desc">Inclinação em perspectiva sem JavaScript.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="C02">COPIAR</button><pre id="code-C02"><span class="tok-sel">.card-tilt</span> {
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s ease</span>;
+  <span class="tok-prop">transform-style</span>: <span class="tok-val">preserve-3d</span>;
+}
+<span class="tok-sel">.card-tilt:hover</span> {
+  <span class="tok-prop">transform</span>: <span class="tok-val">perspective(800px) rotateX(8deg) rotateY(-8deg) translateZ(10px)</span>;
+  <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-card card-glow"><span class="card-num">N° 003</span><div class="card-title">Brilhar</div><div style="font-size:13px;color:var(--muted);font-family:'Source Sans 3';">Borda em gradiente cônico.</div></div></div>
+      <div class="example-meta"><h3>Glow border</h3><span class="example-id">C03</span></div>
+      <p class="example-desc">Borda gira com gradiente cônico no hover.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="C03">COPIAR</button><pre id="code-C03"><span class="tok-kw">@property</span> <span class="tok-sel">--angle</span> {
+  <span class="tok-prop">syntax</span>: <span class="tok-str">'&lt;angle&gt;'</span>;
+  <span class="tok-prop">initial-value</span>: <span class="tok-num">0deg</span>;
+  <span class="tok-prop">inherits</span>: <span class="tok-val">false</span>;
+}
+<span class="tok-sel">.card-glow</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">0</span>;
+}
+<span class="tok-sel">.card-glow::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">inset</span>: <span class="tok-num">-1px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">conic-gradient(from var(--angle), #EF863C, #F1A908, #EF863C)</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">-1</span>;
+  <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">opacity 0.4s</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">rotate-angle 4s linear infinite</span>;
+}
+<span class="tok-sel">.card-glow:hover::before</span> { <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">rotate-angle</span> { <span class="tok-val">to</span> { <span class="tok-prop">--angle</span>: <span class="tok-num">360deg</span>; } }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-card card-reveal"><span class="card-num">N° 004</span><div class="card-title">Revelar</div><div style="font-size:13px;color:var(--muted);font-family:'Source Sans 3';">Camada sobe no hover.</div></div></div>
+      <div class="example-meta"><h3>Slide reveal</h3><span class="example-id">C04</span></div>
+      <p class="example-desc">CTA aparece deslizando por baixo.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="C04">COPIAR</button><pre id="code-C04"><span class="tok-sel">.card-reveal</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>; }
+<span class="tok-sel">.card-reveal::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">'VER MAIS →'</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">inset</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>;
+  <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>;
+  <span class="tok-prop">justify-content</span>: <span class="tok-val">center</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.2em</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(100%)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.card-reveal:hover::after</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; }</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= TEXTO ============= -->
+<section class="section" id="texto">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 04 / Texto</div>
+      <h2 class="section-title">Texto em <em>movimento</em></h2>
+    </div>
+    <p class="section-desc">Animações tipográficas para títulos e destaques. Use com moderação para máximo impacto.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-text text-gradient">Gradiente</div></div>
+      <div class="example-meta"><h3>Gradient shine</h3><span class="example-id">T01</span></div>
+      <p class="example-desc">Gradiente animado dentro do texto.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="T01">COPIAR</button><pre id="code-T01"><span class="tok-sel">.text-gradient</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(90deg, #EF863C, #F1A908, #EF863C)</span>;
+  <span class="tok-prop">background-size</span>: <span class="tok-num">200% auto</span>;
+  <span class="tok-prop">-webkit-background-clip</span>: <span class="tok-val">text</span>;
+  <span class="tok-prop">background-clip</span>: <span class="tok-val">text</span>;
+  <span class="tok-prop">-webkit-text-fill-color</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">shine 3s linear infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">shine</span> {
+  <span class="tok-val">to</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">200%</span> <span class="tok-val">center</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-text text-wave"><span>O</span><span>n</span><span>d</span><span>i</span><span>n</span><span>a</span></div></div>
+      <div class="example-meta"><h3>Wave letters</h3><span class="example-id">T02</span></div>
+      <p class="example-desc">Letras saltam em onda, uma após a outra.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="T02">COPIAR</button><pre id="code-T02"><span class="tok-com">/* HTML: cada letra dentro de um &lt;span&gt; */</span>
+<span class="tok-sel">.text-wave span</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-block</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">wave 1.6s ease-in-out infinite</span>;
+}
+<span class="tok-sel">.text-wave span:nth-child(2)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">0.08s</span>; }
+<span class="tok-sel">.text-wave span:nth-child(3)</span> { <span class="tok-prop">animation-delay</span>: <span class="tok-num">0.16s</span>; }
+<span class="tok-com">/* incremente 0.08s para cada letra */</span>
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">wave</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">60%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; }
+  <span class="tok-num">30%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-12px)</span>; <span class="tok-prop">color</span>: <span class="tok-val">#EF863C</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="text-typing">digitando texto</div></div>
+      <div class="example-meta"><h3>Typing</h3><span class="example-id">T03</span></div>
+      <p class="example-desc">Efeito máquina de escrever com cursor.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="T03">COPIAR</button><pre id="code-T03"><span class="tok-sel">.typing</span> {
+  <span class="tok-prop">font-family</span>: <span class="tok-val">monospace</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-block</span>;
+  <span class="tok-prop">border-right</span>: <span class="tok-num">3px</span> <span class="tok-val">solid #EF863C</span>;
+  <span class="tok-prop">white-space</span>: <span class="tok-val">nowrap</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">animation</span>:
+    <span class="tok-val">typing 3s steps(20) infinite</span>,
+    <span class="tok-val">caret 0.8s step-end infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">typing</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">90%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">width</span>: <span class="tok-num">0</span>; }
+  <span class="tok-num">30%</span>, <span class="tok-num">60%</span> { <span class="tok-prop">width</span>: <span class="tok-num">12ch</span>; }
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">caret</span> {
+  <span class="tok-num">50%</span> { <span class="tok-prop">border-color</span>: <span class="tok-val">transparent</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-text text-glitch" data-text="GLITCH">GLITCH</div></div>
+      <div class="example-meta"><h3>Glitch</h3><span class="example-id">T04</span></div>
+      <p class="example-desc">RGB shift estilo cyberpunk.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="T04">COPIAR</button><pre id="code-T04"><span class="tok-com">/* HTML: &lt;div class="glitch" data-text="GLITCH"&gt;GLITCH&lt;/div&gt; */</span>
+<span class="tok-sel">.glitch</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>; }
+<span class="tok-sel">.glitch::before, .glitch::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-val">attr(data-text)</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">0</span>; <span class="tok-prop">top</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+}
+<span class="tok-sel">.glitch::before</span> {
+  <span class="tok-prop">color</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">g1 2.5s infinite</span>;
+  <span class="tok-prop">clip-path</span>: <span class="tok-val">polygon(0 0, 100% 0, 100% 45%, 0 45%)</span>;
+}
+<span class="tok-sel">.glitch::after</span> {
+  <span class="tok-prop">color</span>: <span class="tok-val">#F1A908</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">g2 2.5s infinite</span>;
+  <span class="tok-prop">clip-path</span>: <span class="tok-val">polygon(0 60%, 100% 60%, 100% 100%, 0 100%)</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">g1</span> { <span class="tok-num">0%</span>,<span class="tok-num">90%</span>,<span class="tok-num">100%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(0)</span>} <span class="tok-num">10%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(-2px,1px)</span>} <span class="tok-num">20%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(2px,-1px)</span>} }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">g2</span> { <span class="tok-num">0%</span>,<span class="tok-num">90%</span>,<span class="tok-num">100%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(0)</span>} <span class="tok-num">10%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(2px,-1px)</span>} <span class="tok-num">20%</span>{<span class="tok-prop">transform</span>:<span class="tok-val">translate(-2px,1px)</span>} }</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= OBJETOS ============= -->
+<section class="section" id="objetos">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 05 / Objetos</div>
+      <h2 class="section-title">Formas <em>desenhadas</em> com CSS</h2>
+    </div>
+    <p class="section-desc">Ícones, símbolos e objetos construídos sem SVG nem PNG. Tudo no CSS, escalável e leve.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="shape-heart"></div></div>
+      <div class="example-meta"><h3>Coração batendo</h3><span class="example-id">O01</span></div>
+      <p class="example-desc">Dois retângulos rotacionados + animação de batida.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O01">COPIAR</button><pre id="code-O01"><span class="tok-sel">.heart</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">50px</span>; <span class="tok-prop">height</span>: <span class="tok-num">45px</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">beat 1.2s ease-in-out infinite</span>;
+}
+<span class="tok-sel">.heart::before, .heart::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">26px</span>; <span class="tok-prop">height</span>: <span class="tok-num">40px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#ff3d57</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">26px 26px 0 0</span>;
+  <span class="tok-prop">top</span>: <span class="tok-num">0</span>;
+}
+<span class="tok-sel">.heart::before</span> { <span class="tok-prop">left</span>: <span class="tok-num">25px</span>; <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-45deg)</span>; <span class="tok-prop">transform-origin</span>: <span class="tok-num">0 100%</span>; }
+<span class="tok-sel">.heart::after</span>  { <span class="tok-prop">left</span>: <span class="tok-num">0</span>; <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg)</span>; <span class="tok-prop">transform-origin</span>: <span class="tok-num">100% 100%</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">beat</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1)</span>; }
+  <span class="tok-num">10%</span>, <span class="tok-num">30%</span>  { <span class="tok-prop">transform</span>: <span class="tok-val">scale(0.92)</span>; }
+  <span class="tok-num">20%</span>, <span class="tok-num">40%</span>  { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1.1)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="shape-star"></div></div>
+      <div class="example-meta"><h3>Estrela</h3><span class="example-id">O02</span></div>
+      <p class="example-desc">Triângulos sobrepostos formam uma estrela de cinco pontas.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O02">COPIAR</button><pre id="code-O02"><span class="tok-com">/* Truque clássico de 3 triângulos sobrepostos */</span>
+<span class="tok-sel">.star</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">0</span>; <span class="tok-prop">height</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">border-left</span>: <span class="tok-num">30px</span> <span class="tok-val">solid transparent</span>;
+  <span class="tok-prop">border-right</span>: <span class="tok-num">30px</span> <span class="tok-val">solid transparent</span>;
+  <span class="tok-prop">border-bottom</span>: <span class="tok-num">22px</span> <span class="tok-val">solid #F1A908</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(35deg)</span>;
+}
+<span class="tok-com">/* ::before e ::after viram triângulos rotacionados em -35° e -70° */</span></pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="shape-cloud"></div></div>
+      <div class="example-meta"><h3>Nuvem flutuante</h3><span class="example-id">O03</span></div>
+      <p class="example-desc">Três círculos compõem a nuvem.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O03">COPIAR</button><pre id="code-O03"><span class="tok-sel">.cloud</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">90px</span>; <span class="tok-prop">height</span>: <span class="tok-num">32px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#e5e7eb</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">float 4s ease-in-out infinite</span>;
+}
+<span class="tok-sel">.cloud::before, .cloud::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#e5e7eb</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+}
+<span class="tok-sel">.cloud::before</span> { <span class="tok-prop">width</span>: <span class="tok-num">36px</span>; <span class="tok-prop">height</span>: <span class="tok-num">36px</span>; <span class="tok-prop">top</span>: <span class="tok-num">-18px</span>; <span class="tok-prop">left</span>: <span class="tok-num">12px</span>; }
+<span class="tok-sel">.cloud::after</span>  { <span class="tok-prop">width</span>: <span class="tok-num">50px</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>; <span class="tok-prop">top</span>: <span class="tok-num">-28px</span>; <span class="tok-prop">right</span>: <span class="tok-num">12px</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">float</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-8px)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="shape-moon"></div></div>
+      <div class="example-meta"><h3>Lua crescente</h3><span class="example-id">O04</span></div>
+      <p class="example-desc">Truque clássico: <code>box-shadow</code> deslocado em um círculo transparente.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O04">COPIAR</button><pre id="code-O04"><span class="tok-sel">.moon</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">60px</span>; <span class="tok-prop">height</span>: <span class="tok-num">60px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-val">-14px 6px 0 0 #f4f4f5</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-20deg)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="shape-sun"></div></div>
+      <div class="example-meta"><h3>Sol com raios</h3><span class="example-id">O05</span></div>
+      <p class="example-desc">Disco + gradiente cônico para os raios.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O05">COPIAR</button><pre id="code-O05"><span class="tok-sel">.sun</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">50px</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">spin 12s linear infinite</span>;
+}
+<span class="tok-sel">.sun::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">inset</span>: <span class="tok-num">-14px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">conic-gradient(from 0deg,
+    transparent 0deg 20deg, #F1A908 22deg 23deg,
+    transparent 25deg 65deg, #F1A908 67deg 68deg
+    /* ... oito raios em incrementos de 45° */)</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">-1</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="shape-bubble">Olá!</div></div>
+      <div class="example-meta"><h3>Balão de fala</h3><span class="example-id">O06</span></div>
+      <p class="example-desc">Retângulo arredondado + triângulo via <code>::after</code>.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="O06">COPIAR</button><pre id="code-O06"><span class="tok-sel">.bubble</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">font-style</span>: <span class="tok-val">italic</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 22px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">18px</span>;
+}
+<span class="tok-sel">.bubble::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">bottom</span>: <span class="tok-num">-10px</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">28px</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">0</span>; <span class="tok-prop">height</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">border-left</span>: <span class="tok-num">12px</span> <span class="tok-val">solid transparent</span>;
+  <span class="tok-prop">border-right</span>: <span class="tok-num">4px</span> <span class="tok-val">solid transparent</span>;
+  <span class="tok-prop">border-top</span>: <span class="tok-num">14px</span> <span class="tok-val">solid #EF863C</span>;
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= FUNDOS ============= -->
+<section class="section" id="fundos">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 06 / Fundos</div>
+      <h2 class="section-title">Padrões e <em>atmosferas</em></h2>
+    </div>
+    <p class="section-desc">Backgrounds animados para hero sections, banners e cards. Sem imagens — só CSS.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-bg bg-gradient"></div></div>
+      <div class="example-meta"><h3>Gradiente animado</h3><span class="example-id">F01</span></div>
+      <p class="example-desc">Posição do gradiente desliza em loop.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="F01">COPIAR</button><pre id="code-F01"><span class="tok-sel">.bg-gradient</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(135deg,
+    #EF863C, #F1A908, #6b85d0, #EF863C)</span>;
+  <span class="tok-prop">background-size</span>: <span class="tok-num">400% 400%</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">shift 12s ease infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">shift</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">0% 50%</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">100% 50%</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-bg bg-dots"></div></div>
+      <div class="example-meta"><h3>Pontos animados</h3><span class="example-id">F02</span></div>
+      <p class="example-desc">Grade de pontos que desliza lentamente.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="F02">COPIAR</button><pre id="code-F02"><span class="tok-sel">.bg-dots</span> {
+  <span class="tok-prop">background-color</span>: <span class="tok-val">#131a2e</span>;
+  <span class="tok-prop">background-image</span>: <span class="tok-val">radial-gradient(circle, #EF863C 1.5px, transparent 1.5px)</span>;
+  <span class="tok-prop">background-size</span>: <span class="tok-num">22px 22px</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">dots 20s linear infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">dots</span> {
+  <span class="tok-val">to</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">22px 22px</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-bg bg-stripes"></div></div>
+      <div class="example-meta"><h3>Listras móveis</h3><span class="example-id">F03</span></div>
+      <p class="example-desc">Barber pole — listras diagonais que escorrem.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="F03">COPIAR</button><pre id="code-F03"><span class="tok-sel">.bg-stripes</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">repeating-linear-gradient(45deg,
+    #EF863C 0, #EF863C 12px,
+    #131a2e 12px, #131a2e 24px)</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">stripes 1.5s linear infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">stripes</span> {
+  <span class="tok-val">to</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">34px 0</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-bg bg-aurora"></div></div>
+      <div class="example-meta"><h3>Aurora</h3><span class="example-id">F04</span></div>
+      <p class="example-desc">Manchas radiais coloridas se movem suavemente.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="F04">COPIAR</button><pre id="code-F04"><span class="tok-sel">.bg-aurora</span> {
+  <span class="tok-prop">background-color</span>: <span class="tok-val">#06091a</span>;
+  <span class="tok-prop">background-image</span>:
+    <span class="tok-val">radial-gradient(ellipse 60% 40% at 30% 30%,
+      rgba(239, 134, 60, 0.5), transparent 60%)</span>,
+    <span class="tok-val">radial-gradient(ellipse 50% 35% at 70% 60%,
+      rgba(241, 169, 8, 0.3), transparent 60%)</span>,
+    <span class="tok-val">radial-gradient(ellipse 45% 30% at 50% 80%,
+      rgba(74, 105, 189, 0.5), transparent 60%)</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">aurora 10s ease-in-out infinite alternate</span>;
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= HOVER ============= -->
+<section class="section" id="hover">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 07 / Hover</div>
+      <h2 class="section-title">Efeitos de <em>passagem</em></h2>
+    </div>
+    <p class="section-desc">Microinterações para imagens, links e botões. Passe o mouse sobre cada exemplo.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="hover-zoom" style="overflow:hidden;border-radius:10px;"><div class="demo-hover-img"></div></div></div>
+      <div class="example-meta"><h3>Image zoom</h3><span class="example-id">H01</span></div>
+      <p class="example-desc">Imagem amplia dentro do contêiner.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="H01">COPIAR</button><pre id="code-H01"><span class="tok-com">/* HTML: &lt;div class="frame"&gt;&lt;img src="..."&gt;&lt;/div&gt; */</span>
+<span class="tok-sel">.frame</span> { <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>; <span class="tok-prop">border-radius</span>: <span class="tok-num">10px</span>; }
+<span class="tok-sel">.frame img</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>; <span class="tok-prop">display</span>: <span class="tok-val">block</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.frame:hover img</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1.15)</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><a class="hover-link">link elegante</a></div>
+      <div class="example-meta"><h3>Underline draw</h3><span class="example-id">H02</span></div>
+      <p class="example-desc">Sublinhado é desenhado da esquerda para a direita.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="H02">COPIAR</button><pre id="code-H02"><span class="tok-sel">.link</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">text-decoration</span>: <span class="tok-val">none</span>; }
+<span class="tok-sel">.link::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">0</span>; <span class="tok-prop">bottom</span>: <span class="tok-num">-4px</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>; <span class="tok-prop">height</span>: <span class="tok-num">2px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">scaleX(0)</span>;
+  <span class="tok-prop">transform-origin</span>: <span class="tok-val">right</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.link:hover::after</span> {
+  <span class="tok-prop">transform</span>: <span class="tok-val">scaleX(1)</span>;
+  <span class="tok-prop">transform-origin</span>: <span class="tok-val">left</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="hover-shift"><span>Hover me</span><span>Hover me</span></div></div>
+      <div class="example-meta"><h3>Color shift</h3><span class="example-id">H03</span></div>
+      <p class="example-desc">Texto de baixo sobe e substitui o de cima.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="H03">COPIAR</button><pre id="code-H03"><span class="tok-com">/* HTML: &lt;div class="shift"&gt;&lt;span&gt;A&lt;/span&gt;&lt;span&gt;A&lt;/span&gt;&lt;/div&gt; */</span>
+<span class="tok-sel">.shift</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>; <span class="tok-prop">display</span>: <span class="tok-val">inline-block</span>; }
+<span class="tok-sel">.shift span</span> { <span class="tok-prop">display</span>: <span class="tok-val">block</span>; <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)</span>; }
+<span class="tok-sel">.shift span:last-child</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">top</span>: <span class="tok-num">100%</span>; <span class="tok-prop">left</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#EF863C</span>; <span class="tok-prop">font-style</span>: <span class="tok-val">italic</span>;
+}
+<span class="tok-sel">.shift:hover span</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-100%)</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><button class="hover-border"><span>Slide fill</span></button></div>
+      <div class="example-meta"><h3>Border fill</h3><span class="example-id">H04</span></div>
+      <p class="example-desc">Cor preenche o botão da esquerda para a direita.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="H04">COPIAR</button><pre id="code-H04"><span class="tok-com">/* HTML: &lt;button class="fill"&gt;&lt;span&gt;Texto&lt;/span&gt;&lt;/button&gt; */</span>
+<span class="tok-sel">.fill</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 28px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+}
+<span class="tok-sel">.fill span</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">z-index</span>: <span class="tok-num">1</span>; <span class="tok-prop">transition</span>: <span class="tok-val">color 0.4s</span>; }
+<span class="tok-sel">.fill::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">inset</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">scaleX(0)</span>;
+  <span class="tok-prop">transform-origin</span>: <span class="tok-val">left</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.fill:hover</span> { <span class="tok-prop">border-color</span>: <span class="tok-val">#F1A908</span>; }
+<span class="tok-sel">.fill:hover::before</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scaleX(1)</span>; }
+<span class="tok-sel">.fill:hover span</span> { <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>; }</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= ENTRADAS ============= -->
+<section class="section" id="entrada">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 08 / Entradas</div>
+      <h2 class="section-title">Animações de <em>entrada</em></h2>
+    </div>
+    <p class="section-desc">Para elementos surgindo na tela. Use sem o <code>infinite</code> para rodar uma única vez no carregamento.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-box in-fade"></div></div>
+      <div class="example-meta"><h3>Fade up</h3><span class="example-id">E01</span></div>
+      <p class="example-desc">Sobe enquanto fica visível. Clássico.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="E01">COPIAR</button><pre id="code-E01"><span class="tok-sel">.fade-up</span> { <span class="tok-prop">animation</span>: <span class="tok-val">fade-up 0.8s ease-out</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">fade-up</span> {
+  <span class="tok-val">from</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(20px)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+  <span class="tok-val">to</span>   { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+}
+<span class="tok-com">/* Para escalonar: animation-delay em :nth-child */</span></pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-box in-bounce"></div></div>
+      <div class="example-meta"><h3>Bounce in</h3><span class="example-id">E02</span></div>
+      <p class="example-desc">Aparece com um quique elástico.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="E02">COPIAR</button><pre id="code-E02"><span class="tok-sel">.bounce-in</span> { <span class="tok-prop">animation</span>: <span class="tok-val">bounce-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">bounce-in</span> {
+  <span class="tok-num">0%</span>   { <span class="tok-prop">transform</span>: <span class="tok-val">scale(0)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+  <span class="tok-num">60%</span>  { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1.2)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+  <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-box in-flip"></div></div>
+      <div class="example-meta"><h3>Flip in</h3><span class="example-id">E03</span></div>
+      <p class="example-desc">Vira em torno do eixo Y para revelar.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="E03">COPIAR</button><pre id="code-E03"><span class="tok-sel">.flip-in</span> {
+  <span class="tok-prop">animation</span>: <span class="tok-val">flip-in 0.7s ease-out</span>;
+  <span class="tok-prop">transform-style</span>: <span class="tok-val">preserve-3d</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">flip-in</span> {
+  <span class="tok-val">from</span> { <span class="tok-prop">transform</span>: <span class="tok-val">perspective(400px) rotateY(90deg)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+  <span class="tok-val">to</span>   { <span class="tok-prop">transform</span>: <span class="tok-val">perspective(400px) rotateY(0)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="demo-box in-slide"></div></div>
+      <div class="example-meta"><h3>Slide in</h3><span class="example-id">E04</span></div>
+      <p class="example-desc">Desliza da esquerda. Mude o sinal para inverter.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="E04">COPIAR</button><pre id="code-E04"><span class="tok-sel">.slide-in</span> { <span class="tok-prop">animation</span>: <span class="tok-val">slide-in 0.6s cubic-bezier(0.4, 0, 0.2, 1)</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">slide-in</span> {
+  <span class="tok-val">from</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateX(-80px)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+  <span class="tok-val">to</span>   { <span class="tok-prop">transform</span>: <span class="tok-val">translateX(0)</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; }
+}
+<span class="tok-com">/* Da direita: troque -80px por 80px */</span></pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= FORMULÁRIOS ============= -->
+<section class="section" id="formularios">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 09 / Formulários</div>
+      <h2 class="section-title">Inputs com <em>identidade</em></h2>
+    </div>
+    <p class="section-desc">Campos que toda LP nossa precisa. Estilizados para não brigar com o brand e sem perder a acessibilidade nativa.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="demo-field field-float"><input type="text" id="d-fm01" placeholder=" "><label for="d-fm01">Seu e-mail</label></div></div>
+      <div class="example-meta"><h3>Float label</h3><span class="example-id">FM01</span></div>
+      <p class="example-desc">Label que sobe quando o campo é focado ou preenchido.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="FM01">COPIAR</button><pre id="code-FM01"><span class="tok-com">/* HTML: &lt;div class="field"&gt;&lt;input placeholder=" "&gt;&lt;label&gt;Email&lt;/label&gt;&lt;/div&gt; */</span>
+<span class="tok-com">/* O placeholder=" " (espaço) é OBRIGATÓRIO — habilita :placeholder-shown */</span>
+<span class="tok-sel">.field</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; }
+<span class="tok-sel">.field input</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">18px 16px 8px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">outline</span>: <span class="tok-val">none</span>;
+}
+<span class="tok-sel">.field input:focus</span> { <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>; }
+<span class="tok-sel">.field label</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">16px</span>; <span class="tok-prop">top</span>: <span class="tok-num">14px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#8593b3</span>;
+  <span class="tok-prop">pointer-events</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.2s ease</span>;
+}
+<span class="tok-sel">.field input:focus + label,
+.field input:not(:placeholder-shown) + label</span> {
+  <span class="tok-prop">top</span>: <span class="tok-num">4px</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-num">11px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#EF863C</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><label class="field-check"><input type="checkbox" checked><span class="box"></span><span>Aceito os termos</span></label></div>
+      <div class="example-meta"><h3>Checkbox custom</h3><span class="example-id">FM02</span></div>
+      <p class="example-desc">Caixa estilizada que mantém o input nativo (acessível por padrão).</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="FM02">COPIAR</button><pre id="code-FM02"><span class="tok-com">/* HTML: &lt;label class="check"&gt;&lt;input type="checkbox"&gt;&lt;span class="box"&gt;&lt;/span&gt;Texto&lt;/label&gt; */</span>
+<span class="tok-sel">.check</span> { <span class="tok-prop">display</span>: <span class="tok-val">inline-flex</span>; <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>; <span class="tok-prop">gap</span>: <span class="tok-num">10px</span>; <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>; }
+<span class="tok-sel">.check input</span> { <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+<span class="tok-sel">.check .box</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">22px</span>; <span class="tok-prop">height</span>: <span class="tok-num">22px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">6px</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">grid</span>; <span class="tok-prop">place-items</span>: <span class="tok-val">center</span>;
+}
+<span class="tok-sel">.check .box::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">6px</span>; <span class="tok-prop">height</span>: <span class="tok-num">11px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-val">solid #0d1124</span>;
+  <span class="tok-prop">border-width</span>: <span class="tok-num">0 2.5px 2.5px 0</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg) scale(0)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.18s ease</span>;
+}
+<span class="tok-sel">.check input:checked + .box</span> { <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>; <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>; }
+<span class="tok-sel">.check input:checked + .box::after</span> { <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg) scale(1)</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview preview-tall"><div class="radio-cards" style="max-width:240px;"><label><input type="radio" name="d-fm03" checked><span class="dot"></span><span>Webinar gratuito</span></label><label><input type="radio" name="d-fm03"><span class="dot"></span><span>Material rico</span></label></div></div>
+      <div class="example-meta"><h3>Radio cards</h3><span class="example-id">FM03</span></div>
+      <p class="example-desc">Opções clicáveis no card inteiro — não só no círculo.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="FM03">COPIAR</button><pre id="code-FM03"><span class="tok-sel">.radios</span> { <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">flex-direction</span>: <span class="tok-val">column</span>; <span class="tok-prop">gap</span>: <span class="tok-num">10px</span>; }
+<span class="tok-sel">.radios label</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>; <span class="tok-prop">gap</span>: <span class="tok-num">10px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">12px 14px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+}
+<span class="tok-sel">.radios input</span> { <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>; }
+<span class="tok-sel">.radios .dot</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">16px</span>; <span class="tok-prop">height</span>: <span class="tok-num">16px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">grid</span>; <span class="tok-prop">place-items</span>: <span class="tok-val">center</span>;
+}
+<span class="tok-sel">.radios .dot::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">8px</span>; <span class="tok-prop">height</span>: <span class="tok-num">8px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">scale(0)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.18s ease</span>;
+}
+<span class="tok-sel">.radios input:checked ~ .dot</span> { <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>; }
+<span class="tok-sel">.radios input:checked ~ .dot::after</span> { <span class="tok-prop">transform</span>: <span class="tok-val">scale(1)</span>; }
+<span class="tok-sel">.radios label:has(input:checked)</span> { <span class="tok-prop">border-color</span>: <span class="tok-val">#EF863C</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="field-select" style="max-width:240px;"><select><option>Empresa de até 10</option><option>10–50</option><option>50+</option></select></div></div>
+      <div class="example-meta"><h3>Select estilizado</h3><span class="example-id">FM04</span></div>
+      <p class="example-desc">Esconde a seta nativa e desenha uma com border, mantendo o select acessível.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="FM04">COPIAR</button><pre id="code-FM04"><span class="tok-sel">.field-select</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; }
+<span class="tok-sel">.field-select select</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 40px 14px 16px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">appearance</span>: <span class="tok-val">none</span>;
+}
+<span class="tok-sel">.field-select::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">right</span>: <span class="tok-num">18px</span>; <span class="tok-prop">top</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">10px</span>; <span class="tok-prop">height</span>: <span class="tok-num">10px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #EF863C</span>;
+  <span class="tok-prop">border-top</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">border-left</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-70%) rotate(45deg)</span>;
+  <span class="tok-prop">pointer-events</span>: <span class="tok-val">none</span>;
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= LISTAS ============= -->
+<section class="section" id="listas">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 10 / Listas</div>
+      <h2 class="section-title">Listas com <em>gramática</em> visual</h2>
+    </div>
+    <p class="section-desc">Cada tipo de lista tem código de cor e ícone. Problema é vermelho, benefício é verde, timeline é numerada. O olho aprende.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview preview-tall"><ul class="demo-list list-problem"><li>Time gasta horas em planilha</li><li>Vendas perde lead frio</li><li>Sem visão da concorrência</li></ul></div>
+      <div class="example-meta"><h3>Lista de problemas</h3><span class="example-id">LI01</span></div>
+      <p class="example-desc">Bullet com X vermelho. Use em seções de "dor".</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="LI01">COPIAR</button><pre id="code-LI01"><span class="tok-com">/* HTML: &lt;ul class="problem"&gt;&lt;li&gt;Texto&lt;/li&gt;&lt;/ul&gt; */</span>
+<span class="tok-sel">.problem li</span> {
+  <span class="tok-prop">list-style</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">align-items</span>: <span class="tok-val">flex-start</span>; <span class="tok-prop">gap</span>: <span class="tok-num">10px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">8px 0</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+}
+<span class="tok-sel">.problem li::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">18px</span>; <span class="tok-prop">height</span>: <span class="tok-num">18px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">rgba(239, 68, 68, 0.15)</span>;
+  <span class="tok-prop">flex-shrink</span>: <span class="tok-num">0</span>;
+}
+<span class="tok-sel">.problem li::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">4px</span>; <span class="tok-prop">top</span>: <span class="tok-num">14px</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">10px</span>; <span class="tok-prop">height</span>: <span class="tok-num">10px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(45deg, transparent 45%, #ef4444 45% 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, #ef4444 45% 55%, transparent 55%)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview preview-tall"><ul class="demo-list list-benefit"><li>Dashboards prontos em minutos</li><li>Alerta automático de menção</li><li>Relatório executivo em 1 clique</li></ul></div>
+      <div class="example-meta"><h3>Lista de benefícios</h3><span class="example-id">LI02</span></div>
+      <p class="example-desc">Bullet com check verde. Use em seções de "o que você vai levar".</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="LI02">COPIAR</button><pre id="code-LI02"><span class="tok-com">/* HTML: &lt;ul class="benefit"&gt;&lt;li&gt;Texto&lt;/li&gt;&lt;/ul&gt; */</span>
+<span class="tok-sel">.benefit li</span> {
+  <span class="tok-prop">list-style</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>; <span class="tok-prop">align-items</span>: <span class="tok-val">flex-start</span>; <span class="tok-prop">gap</span>: <span class="tok-num">10px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">8px 0</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+}
+<span class="tok-sel">.benefit li::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">18px</span>; <span class="tok-prop">height</span>: <span class="tok-num">18px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">rgba(34, 197, 94, 0.15)</span>;
+  <span class="tok-prop">flex-shrink</span>: <span class="tok-num">0</span>;
+}
+<span class="tok-sel">.benefit li::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">6px</span>; <span class="tok-prop">top</span>: <span class="tok-num">15px</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">5px</span>; <span class="tok-prop">height</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-val">solid #22c55e</span>;
+  <span class="tok-prop">border-width</span>: <span class="tok-num">0 2px 2px 0</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview preview-tall"><ol class="demo-list list-timeline"><li>Inscreva-se</li><li>Acompanhe o webinar</li><li>Aplique na sua marca</li></ol></div>
+      <div class="example-meta"><h3>Timeline numerada</h3><span class="example-id">LI03</span></div>
+      <p class="example-desc">Etapas com número grande e linha conectora à esquerda.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="LI03">COPIAR</button><pre id="code-LI03"><span class="tok-com">/* HTML: &lt;ol class="timeline"&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ol&gt; */</span>
+<span class="tok-sel">.timeline</span> { <span class="tok-prop">counter-reset</span>: <span class="tok-val">step</span>; <span class="tok-prop">list-style</span>: <span class="tok-val">none</span>; }
+<span class="tok-sel">.timeline li</span> {
+  <span class="tok-prop">counter-increment</span>: <span class="tok-val">step</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">8px 0 8px 38px</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">border-left</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #2a3552</span>;
+  <span class="tok-prop">margin-left</span>: <span class="tok-num">12px</span>;
+}
+<span class="tok-sel">.timeline li::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-val">counter(step)</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">-14px</span>; <span class="tok-prop">top</span>: <span class="tok-num">6px</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">26px</span>; <span class="tok-prop">height</span>: <span class="tok-num">26px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">grid</span>; <span class="tok-prop">place-items</span>: <span class="tok-val">center</span>;
+}
+<span class="tok-sel">.timeline li:last-child</span> { <span class="tok-prop">border-left-color</span>: <span class="tok-val">transparent</span>; }</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= MÉTRICAS ============= -->
+<section class="section" id="metricas">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 11 / Métricas</div>
+      <h2 class="section-title">Números que <em>impressionam</em></h2>
+    </div>
+    <p class="section-desc">Stats grandes para hero, callouts e prova quantitativa. Use com parcimônia — números todos juntos perdem peso.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="stat-callout"><div class="num">+87%</div><div class="label">Mais leads qualificados</div></div></div>
+      <div class="example-meta"><h3>Stat callout</h3><span class="example-id">M01</span></div>
+      <p class="example-desc">Número gigante com gradiente + label discreto embaixo.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="M01">COPIAR</button><pre id="code-M01"><span class="tok-sel">.stat .num</span> {
+  <span class="tok-prop">font-size</span>: <span class="tok-num">64px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">500</span>;
+  <span class="tok-prop">line-height</span>: <span class="tok-num">1</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(135deg, #EF863C, #F1A908)</span>;
+  <span class="tok-prop">-webkit-background-clip</span>: <span class="tok-val">text</span>;
+  <span class="tok-prop">background-clip</span>: <span class="tok-val">text</span>;
+  <span class="tok-prop">-webkit-text-fill-color</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">-0.04em</span>;
+}
+<span class="tok-sel">.stat .label</span> {
+  <span class="tok-prop">font-size</span>: <span class="tok-num">11px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#8593b3</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.18em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">margin-top</span>: <span class="tok-num">6px</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="stats-grid"><div class="stat"><div class="num">+30%</div><div class="label">Conversão média</div></div><div class="stat"><div class="num">5x</div><div class="label">Volume de leads</div></div><div class="stat"><div class="num">15h</div><div class="label">Economizadas/sem</div></div><div class="stat"><div class="num">3</div><div class="label">Marcas atendidas</div></div></div></div>
+      <div class="example-meta"><h3>Stats grid</h3><span class="example-id">M02</span></div>
+      <p class="example-desc">Grade de 4 métricas — alinhada e respiráveis.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="M02">COPIAR</button><pre id="code-M02"><span class="tok-sel">.stats-grid</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">grid</span>;
+  <span class="tok-prop">grid-template-columns</span>: <span class="tok-val">1fr 1fr</span>;
+  <span class="tok-prop">gap</span>: <span class="tok-num">18px</span>;
+}
+<span class="tok-sel">.stats-grid .num</span> {
+  <span class="tok-prop">font-size</span>: <span class="tok-num">32px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">500</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">line-height</span>: <span class="tok-num">1</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">-0.02em</span>;
+}
+<span class="tok-sel">.stats-grid .label</span> {
+  <span class="tok-prop">font-size</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#c8d1e8</span>;
+  <span class="tok-prop">margin-top</span>: <span class="tok-num">4px</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="progress-bar"></div></div>
+      <div class="example-meta"><h3>Progress bar</h3><span class="example-id">M03</span></div>
+      <p class="example-desc">Barra com gradiente que enche em loop. Trocar para um valor estático em produção.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="M03">COPIAR</button><pre id="code-M03"><span class="tok-sel">.progress</span> {
+  <span class="tok-prop">width</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">height</span>: <span class="tok-num">8px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">overflow</span>: <span class="tok-val">hidden</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+}
+<span class="tok-sel">.progress::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">top</span>: <span class="tok-num">0</span>; <span class="tok-prop">left</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">height</span>: <span class="tok-num">100%</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">70%</span>; <span class="tok-com">/* valor real */</span>
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(90deg, #EF863C, #F1A908)</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">fill 2.5s ease-in-out</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">fill</span> {
+  <span class="tok-val">from</span> { <span class="tok-prop">width</span>: <span class="tok-num">0</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= PILLS / BADGES ============= -->
+<section class="section" id="pills">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 12 / Pills & Badges</div>
+      <h2 class="section-title">Selos e <em>etiquetas</em></h2>
+    </div>
+    <p class="section-desc">Indicadores curtos pra hero, header e seções. Tudo em uma linha — quando quebram em duas, perdem força (regra GUIDELINES §3).</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="pill-row"><span class="pill-base">Webinar gratuito</span><span class="pill-base">Material rico</span></div></div>
+      <div class="example-meta"><h3>Pill básica</h3><span class="example-id">P01</span></div>
+      <p class="example-desc">Cápsula neutra para indicar tipo de conteúdo.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="P01">COPIAR</button><pre id="code-P01"><span class="tok-sel">.pill</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-flex</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">6px 14px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#c8d1e8</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">600</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.08em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">white-space</span>: <span class="tok-val">nowrap</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="pill-row"><span class="pill-live">Ao vivo agora</span></div></div>
+      <div class="example-meta"><h3>Live indicator</h3><span class="example-id">P02</span></div>
+      <p class="example-desc">Dot vermelho pulsante — usa em hero de evento que está rodando.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="P02">COPIAR</button><pre id="code-P02"><span class="tok-sel">.pill-live</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-flex</span>; <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>; <span class="tok-prop">gap</span>: <span class="tok-num">8px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">6px 14px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">rgba(239, 68, 68, 0.10)</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#ef4444</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid rgba(239, 68, 68, 0.3)</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.08em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+}
+<span class="tok-sel">.pill-live::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">8px</span>; <span class="tok-prop">height</span>: <span class="tok-num">8px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#ef4444</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">live-dot 1.5s ease-in-out infinite</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">live-dot</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 0 0 0 rgba(239, 68, 68, 0.6)</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 0 0 8px rgba(239, 68, 68, 0)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><span class="pill-urgency">Últimas 12 horas</span></div>
+      <div class="example-meta"><h3>Selo de urgência</h3><span class="example-id">P03</span></div>
+      <p class="example-desc">Selo amarelo levemente rotacionado — segue GUIDELINES §8 (aparece <strong>uma vez</strong> na LP).</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="P03">COPIAR</button><pre id="code-P03"><span class="tok-sel">.urgency</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-block</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">8px 18px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">800</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-num">13px</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.06em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">6px</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-3deg)</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-num">0 6px 16px -4px rgba(241, 169, 8, 0.4)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><span class="pill-gradient">Novo</span></div>
+      <div class="example-meta"><h3>Pill gradient</h3><span class="example-id">P04</span></div>
+      <p class="example-desc">Cápsula com gradiente da marca — destaque sem rotação.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="P04">COPIAR</button><pre id="code-P04"><span class="tok-sel">.pill-gradient</span> {
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-flex</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">6px 14px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(120deg, #EF863C, #F1A908)</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-num">12px</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.08em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= DECORATIVOS ============= -->
+<section class="section" id="decorativos">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 13 / Decorativos</div>
+      <h2 class="section-title">Formas <em>signature</em></h2>
+    </div>
+    <p class="section-desc">Pílulas e arcos do brandbook Cxpress — combinar 2 a 5 elementos preenchidos + outline para compor backgrounds e bordas de hero.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview"><div class="deco-canvas deco-pills"><span class="p-pill p1"></span><span class="p-pill p2"></span><span class="p-pill p3"></span><span class="p-pill p4"></span></div></div>
+      <div class="example-meta"><h3>Composição de pílulas</h3><span class="example-id">D01</span></div>
+      <p class="example-desc">Quatro cápsulas em proporções diferentes — preenchidas e outline misturadas.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="D01">COPIAR</button><pre id="code-D01"><span class="tok-com">/* 4 spans posicionados em absolute. Tokens Cxpress (tokens.json) */</span>
+<span class="tok-sel">.deco</span> { <span class="tok-prop">position</span>: <span class="tok-val">relative</span>; <span class="tok-prop">width</span>: <span class="tok-num">200px</span>; <span class="tok-prop">height</span>: <span class="tok-num">140px</span>; }
+<span class="tok-sel">.deco span</span> { <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>; <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>; }
+<span class="tok-sel">.p1</span> { <span class="tok-prop">width</span>: <span class="tok-num">24px</span>; <span class="tok-prop">height</span>: <span class="tok-num">80px</span>; <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>; <span class="tok-prop">left</span>: <span class="tok-num">30px</span>; <span class="tok-prop">top</span>: <span class="tok-num">30px</span>; }
+<span class="tok-sel">.p2</span> { <span class="tok-prop">width</span>: <span class="tok-num">24px</span>; <span class="tok-prop">height</span>: <span class="tok-num">80px</span>; <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #EF863C</span>; <span class="tok-prop">left</span>: <span class="tok-num">60px</span>; <span class="tok-prop">top</span>: <span class="tok-num">20px</span>; }
+<span class="tok-sel">.p3</span> { <span class="tok-prop">width</span>: <span class="tok-num">80px</span>; <span class="tok-prop">height</span>: <span class="tok-num">24px</span>; <span class="tok-prop">background</span>: <span class="tok-val">#6b85d0</span>; <span class="tok-prop">left</span>: <span class="tok-num">90px</span>; <span class="tok-prop">top</span>: <span class="tok-num">60px</span>; }
+<span class="tok-sel">.p4</span> { <span class="tok-prop">width</span>: <span class="tok-num">24px</span>; <span class="tok-prop">height</span>: <span class="tok-num">50px</span>; <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>; <span class="tok-prop">left</span>: <span class="tok-num">96px</span>; <span class="tok-prop">top</span>: <span class="tok-num">25px</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="deco-canvas deco-arcs"><span class="arc a1"></span><span class="arc a2"></span><span class="arc a3"></span></div></div>
+      <div class="example-meta"><h3>Arcos rotacionados</h3><span class="example-id">D02</span></div>
+      <p class="example-desc">Meias-pílulas em rotações de 0° / 90° / -90° — primitivo do brandbook.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="D02">COPIAR</button><pre id="code-D02"><span class="tok-sel">.arc</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">60px</span>; <span class="tok-prop">height</span>: <span class="tok-num">60px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">60px 60px 0 0</span>; <span class="tok-com">/* topo arredondado */</span>
+}
+<span class="tok-sel">.a1</span> { <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>; <span class="tok-prop">transform</span>: <span class="tok-val">rotate(0deg)</span>; }
+<span class="tok-sel">.a2</span> { <span class="tok-prop">background</span>: <span class="tok-val">#6b85d0</span>; <span class="tok-prop">transform</span>: <span class="tok-val">rotate(90deg)</span>; }
+<span class="tok-sel">.a3</span> { <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>; <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-90deg)</span>; }
+<span class="tok-com">/* Regra brandbook: rotações em múltiplos de 90° */</span></pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="deco-canvas deco-mix"><span class="blob1"></span><span class="blob2"></span><span class="blob3"></span></div></div>
+      <div class="example-meta"><h3>Grupo signature</h3><span class="example-id">D03</span></div>
+      <p class="example-desc">Mistura: pílula horizontal + arco outline + bola pequena. Padrão de bordas de hero.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="D03">COPIAR</button><pre id="code-D03"><span class="tok-sel">.blob1</span> { <span class="tok-com">/* pílula deitada rotada -15° */</span>
+  <span class="tok-prop">width</span>: <span class="tok-num">90px</span>; <span class="tok-prop">height</span>: <span class="tok-num">30px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-15deg)</span>;
+}
+<span class="tok-sel">.blob2</span> { <span class="tok-com">/* arco outline rotado 45° */</span>
+  <span class="tok-prop">width</span>: <span class="tok-num">60px</span>; <span class="tok-prop">height</span>: <span class="tok-num">60px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">3px</span> <span class="tok-val">solid #6b85d0</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">60px 60px 0 0</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg)</span>;
+}
+<span class="tok-sel">.blob3</span> { <span class="tok-com">/* bolinha amarela */</span>
+  <span class="tok-prop">width</span>: <span class="tok-num">18px</span>; <span class="tok-prop">height</span>: <span class="tok-num">18px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#F1A908</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>;
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============= AVANÇADOS ============= -->
+<section class="section" id="avancados">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 14 / Avançados</div>
+      <h2 class="section-title">Componentes <em>completos</em></h2>
+    </div>
+    <p class="section-desc">Padrões compostos que aparecem com frequência em LPs — accordion, tooltip, sticky CTA, scroll reveal e skeleton loader.</p>
+  </div>
+  <div class="examples">
+    <article class="example">
+      <div class="example-preview preview-tall"><div class="demo-accordion"><details open><summary>É gratuito?</summary><div class="acc-body">Sim, 100% gratuito.</div></details><details><summary>Vou receber a gravação?</summary><div class="acc-body">Sim, no seu e-mail.</div></details></div></div>
+      <div class="example-meta"><h3>FAQ accordion</h3><span class="example-id">A01</span></div>
+      <p class="example-desc">Native &lt;details&gt; com seta animada — zero JS, acessível por padrão.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="A01">COPIAR</button><pre id="code-A01"><span class="tok-com">/* HTML: &lt;details&gt;&lt;summary&gt;Pergunta&lt;/summary&gt;&lt;div&gt;Resposta&lt;/div&gt;&lt;/details&gt; */</span>
+<span class="tok-sel">details</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">1px</span> <span class="tok-val">solid #3a4870</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">9px</span>;
+  <span class="tok-prop">margin-bottom</span>: <span class="tok-num">8px</span>;
+}
+<span class="tok-sel">summary</span> {
+  <span class="tok-prop">padding</span>: <span class="tok-num">14px 16px</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">600</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">flex</span>;
+  <span class="tok-prop">justify-content</span>: <span class="tok-val">space-between</span>;
+  <span class="tok-prop">list-style</span>: <span class="tok-val">none</span>;
+}
+<span class="tok-sel">summary::-webkit-details-marker</span> { <span class="tok-prop">display</span>: <span class="tok-val">none</span>; }
+<span class="tok-sel">summary::after</span> {
+  <span class="tok-prop">content</span>: <span class="tok-str">''</span>;
+  <span class="tok-prop">width</span>: <span class="tok-num">8px</span>; <span class="tok-prop">height</span>: <span class="tok-num">8px</span>;
+  <span class="tok-prop">border</span>: <span class="tok-num">2px</span> <span class="tok-val">solid #EF863C</span>;
+  <span class="tok-prop">border-top</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">border-left</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">rotate(45deg)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">transform 0.25s ease</span>;
+}
+<span class="tok-sel">details[open] summary::after</span> { <span class="tok-prop">transform</span>: <span class="tok-val">rotate(-135deg)</span>; }</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><span class="demo-tooltip" tabindex="0" data-tip="Definição completa do termo">Termo técnico</span></div>
+      <div class="example-meta"><h3>Tooltip CSS-only</h3><span class="example-id">A02</span></div>
+      <p class="example-desc">Hover ou foco mostra a explicação. Acessível via teclado pelo <code>tabindex</code>.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="A02">COPIAR</button><pre id="code-A02"><span class="tok-com">/* HTML: &lt;span class="tip" tabindex="0" data-tip="..."&gt;Termo&lt;/span&gt; */</span>
+<span class="tok-sel">.tip</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">relative</span>;
+  <span class="tok-prop">border-bottom</span>: <span class="tok-num">1px</span> <span class="tok-val">dashed #EF863C</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">help</span>;
+}
+<span class="tok-sel">.tip::before</span> {
+  <span class="tok-prop">content</span>: <span class="tok-val">attr(data-tip)</span>;
+  <span class="tok-prop">position</span>: <span class="tok-val">absolute</span>;
+  <span class="tok-prop">bottom</span>: <span class="tok-val">calc(100% + 8px)</span>;
+  <span class="tok-prop">left</span>: <span class="tok-num">50%</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#232c46</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#f0f4ff</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">8px 12px</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">6px</span>;
+  <span class="tok-prop">white-space</span>: <span class="tok-val">nowrap</span>;
+  <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateX(-50%) translateY(4px)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.2s ease</span>;
+  <span class="tok-prop">pointer-events</span>: <span class="tok-val">none</span>;
+}
+<span class="tok-sel">.tip:hover::before, .tip:focus::before</span> {
+  <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateX(-50%) translateY(0)</span>;
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="sticky-stage"><button class="sticky-cta">Inscreva-se</button></div></div>
+      <div class="example-meta"><h3>Sticky CTA</h3><span class="example-id">A03</span></div>
+      <p class="example-desc">Botão flutuante no canto que respira sozinho. Em produção use <code>position: fixed</code>.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="A03">COPIAR</button><pre id="code-A03"><span class="tok-sel">.sticky-cta</span> {
+  <span class="tok-prop">position</span>: <span class="tok-val">fixed</span>;
+  <span class="tok-prop">bottom</span>: <span class="tok-num">24px</span>;
+  <span class="tok-prop">right</span>: <span class="tok-num">24px</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-num">12px 20px</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">#EF863C</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">#0d1124</span>;
+  <span class="tok-prop">border-radius</span>: <span class="tok-num">999px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-num">700</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-num">0.05em</span>;
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">box-shadow</span>:
+    <span class="tok-num">0 10px 30px -10px rgba(239, 134, 60, 0.6)</span>,
+    <span class="tok-num">0 4px 12px rgba(0,0,0,0.4)</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">bob 3s ease-in-out infinite</span>;
+  <span class="tok-prop">z-index</span>: <span class="tok-num">90</span>;
+}
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">bob</span> {
+  <span class="tok-num">0%</span>, <span class="tok-num">100%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>; }
+  <span class="tok-num">50%</span> { <span class="tok-prop">transform</span>: <span class="tok-val">translateY(-4px)</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview preview-tall"><div class="reveal-stage" style="width:240px;"><div class="r-item">Item revelado #01</div><div class="r-item">Item revelado #02</div><div class="r-item">Item revelado #03</div></div></div>
+      <div class="example-meta"><h3>Scroll reveal</h3><span class="example-id">A04</span></div>
+      <p class="example-desc">Em produção, dispare a animação com <code>IntersectionObserver</code> ao entrar na viewport.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS + JS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="A04">COPIAR</button><pre id="code-A04"><span class="tok-com">/* CSS: estado inicial + classe ativa */</span>
+<span class="tok-sel">.reveal</span> {
+  <span class="tok-prop">opacity</span>: <span class="tok-num">0</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(20px)</span>;
+  <span class="tok-prop">transition</span>: <span class="tok-val">all 0.7s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+<span class="tok-sel">.reveal.in-view</span> {
+  <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>;
+  <span class="tok-prop">transform</span>: <span class="tok-val">translateY(0)</span>;
+}
+<span class="tok-com">/* Importante (GUIDELINES §4): manter fallback */</span>
+<span class="tok-kw">@media</span> <span class="tok-val">(prefers-reduced-motion: reduce)</span> {
+  <span class="tok-sel">.reveal</span> { <span class="tok-prop">opacity</span>: <span class="tok-num">1</span>; <span class="tok-prop">transform</span>: <span class="tok-val">none</span>; }
+}
+
+<span class="tok-com">/* JS: */</span>
+<span class="tok-kw">const</span> io = <span class="tok-kw">new</span> <span class="tok-sel">IntersectionObserver</span>(entries =&gt; {
+  entries.forEach(e =&gt; {
+    <span class="tok-kw">if</span> (e.isIntersecting) {
+      e.target.classList.add(<span class="tok-str">'in-view'</span>);
+      io.unobserve(e.target); <span class="tok-com">// uma vez só</span>
+    }
+  });
+}, { threshold: <span class="tok-num">0.15</span> });
+<span class="tok-sel">document</span>.querySelectorAll(<span class="tok-str">'.reveal'</span>).forEach(el =&gt; io.observe(el));</pre></div>
+      </details></div>
+    </article>
+
+    <article class="example">
+      <div class="example-preview"><div class="skeleton"><div class="sk-row"><div class="sk-circle"></div><div class="sk-col"><div class="sk-line med"></div><div class="sk-line short"></div></div></div><div class="sk-line"></div><div class="sk-line med"></div></div></div>
+      <div class="example-meta"><h3>Skeleton loader</h3><span class="example-id">A05</span></div>
+      <p class="example-desc">Placeholder para conteúdo carregando. Shimmer com gradiente animado.</p>
+      <div class="example-code-wrap"><details><summary>Ver código CSS</summary>
+        <div class="code-block"><button class="copy-btn" data-copy="A05">COPIAR</button><pre id="code-A05"><span class="tok-sel">.sk-line, .sk-circle</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">linear-gradient(90deg,
+    #2a3552 0%, #3a4870 50%, #2a3552 100%)</span>;
+  <span class="tok-prop">background-size</span>: <span class="tok-num">200% 100%</span>;
+  <span class="tok-prop">animation</span>: <span class="tok-val">shimmer 1.4s linear infinite</span>;
+}
+<span class="tok-sel">.sk-line</span> { <span class="tok-prop">height</span>: <span class="tok-num">12px</span>; <span class="tok-prop">border-radius</span>: <span class="tok-num">6px</span>; }
+<span class="tok-sel">.sk-circle</span> { <span class="tok-prop">width</span>: <span class="tok-num">36px</span>; <span class="tok-prop">height</span>: <span class="tok-num">36px</span>; <span class="tok-prop">border-radius</span>: <span class="tok-num">50%</span>; }
+<span class="tok-kw">@keyframes</span> <span class="tok-sel">shimmer</span> {
+  <span class="tok-num">0%</span>   { <span class="tok-prop">background-position</span>: <span class="tok-num">200% 0</span>; }
+  <span class="tok-num">100%</span> { <span class="tok-prop">background-position</span>: <span class="tok-num">-200% 0</span>; }
+}</pre></div>
+      </details></div>
+    </article>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="mark">
+    <div class="footer-num">— FIM —</div>
+    <div class="footer-title">Catálogo encerrado.</div>
+    <div class="footer-line"></div>
+    <div class="footer-note">Livraria · Agente Inhouse · 59 espécimes · Boa codificação ✱</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const id = btn.getAttribute('data-copy');
+    const codeEl = document.getElementById('code-' + id);
+    if (!codeEl) return;
+    const text = codeEl.innerText;
+    const restore = () => {
+      btn.textContent = 'COPIAR';
+      btn.classList.remove('copied');
+    };
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = 'COPIADO!';
+      btn.classList.add('copied');
+      setTimeout(restore, 1500);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'COPIADO!';
+      btn.classList.add('copied');
+      setTimeout(restore, 1500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
