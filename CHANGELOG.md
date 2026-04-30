@@ -12,6 +12,19 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## landing-pages/GUIDELINES.md
+### 2026-04-30 — §10 Posicionamento do formulário (sugestão)
+- Nova seção §10 com defaults de posicionamento por tipo de LP, válidos para todas as marcas:
+  - **Webinar / material rico** → form na 2ª dobra (lead frio, otimizar volume).
+  - **BoFu (demo, falar com vendas)** → form no meio da página (scroll filtra intenção, otimiza qualificação).
+  - Sempre manter CTA visível na 1ª dobra que rola suave até o form.
+- Sugestão, não obrigação. Override permitido com justificativa no PR/REVISAO.md.
+- §6 (Estrutura mínima) ajustada: "CTA final com formulário" → "CTA final", desacoplando posição do form da estrutura narrativa (a §10 decide onde o form aparece).
+- §§ 11-13 renumeradas (antigas §§ 10-12: integração tardia, favicon, performance).
+- Base de pesquisa: CXL (long vs short form), MarketingExperiments (Sierra Tucson +220% com form abaixo da dobra), Unbounce Conversion Benchmark Report, Clearbit (lead form quality).
+
+---
+
 ## meta-ads (benchmarks)
 ### 1.1.0 — 2026-04-30 — Threshold único nos benchmarks
 - `meta-ads/data/benchmarks.json` simplificado: removida a tier "bom"/"aceitável", agora é **um threshold só = mínimo aceitável**. Status binário `[OK]` / `[RUIM]` (antes 3-tier).

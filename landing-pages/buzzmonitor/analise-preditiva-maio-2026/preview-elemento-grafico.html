@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Preview · Forma orgânica animada (v2)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --purple: #390155;
+      --purple-deep: #1F002E;
+      --orange: #EB7C2E;
+      --rose: #DE2451;
+      --peach: #FFC79A;
+      --bg: #FAFAFA;
+      --ink: #1A1A1A;
+      --muted: #6E6E73;
+    }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 32px);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-head {
+      max-width: 960px;
+      margin: 0 auto 48px;
+    }
+    .page-head .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 12px;
+    }
+    .page-head h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin: 0 0 12px;
+    }
+    .page-head h1 .grad {
+      background: linear-gradient(90deg, var(--rose) 0%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .page-head p {
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0;
+      font-size: 15px;
+    }
+    .page-head code, .note code, .footer-meta code {
+      background: #EFEAF4;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+      color: var(--purple);
+    }
+
+    .demo {
+      max-width: 960px;
+      margin: 0 auto 56px;
+    }
+    .demo-label {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .demo-label h2 {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--ink); font-weight: 700; margin: 0;
+    }
+    .demo-label small { color: var(--muted); font-size: 13px; }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      isolation: isolate;
+      box-shadow: 0 1px 0 rgba(57,1,85,0.04), 0 24px 48px -24px rgba(57,1,85,0.18);
+      display: grid;
+      place-items: center;
+      padding: 56px 32px;
+      min-height: 520px;
+    }
+    .stage--showcase {
+      background:
+        radial-gradient(circle at 20% 20%, #FAF5FE 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, #FFF7F0 0%, transparent 50%),
+        #FFFFFF;
+      border: 1px solid #EFEAF4;
+    }
+    .stage--hero {
+      background: #FFFFFF;
+      border: 1px solid #EFEAF4;
+      min-height: 460px;
+    }
+    .stage--dark {
+      background:
+        radial-gradient(circle at 70% 30%, #4A1B6B 0%, transparent 60%),
+        var(--purple-deep);
+      min-height: 460px;
+    }
+
+    /* ==========================
+       O OBJETO
+       ========================== */
+    .organic {
+      position: relative;
+      width: clamp(260px, 42vw, 460px);
+      aspect-ratio: 1;
+      filter: drop-shadow(0 30px 60px rgba(222, 36, 81, 0.35))
+              drop-shadow(0 0 80px rgba(235, 124, 46, 0.18));
+    }
+    .stage--dark .organic {
+      filter: drop-shadow(0 30px 60px rgba(222, 36, 81, 0.5))
+              drop-shadow(0 0 100px rgba(235, 124, 46, 0.35));
+    }
+    .organic svg {
+      width: 100%; height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* ===== Hero simulation (demo 2) ===== */
+    .hero-sim {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      width: 100%;
+      max-width: 820px;
+    }
+    .hero-sim h3 {
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+    .hero-sim h3 em { font-style: italic; font-weight: 400; }
+    .hero-sim h3 .grad {
+      background: linear-gradient(90deg, var(--rose) 0%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-sim p { color: var(--muted); margin: 0; font-size: 14px; max-width: 32ch; }
+    .hero-sim .organic { width: 100%; max-width: 380px; margin-left: auto; }
+
+    /* ===== Notes & footer ===== */
+    .note {
+      font-size: 13px; color: var(--muted);
+      margin-top: 14px; line-height: 1.5;
+      max-width: 60ch;
+    }
+    .footer-meta {
+      max-width: 960px;
+      margin: 64px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid #EFEAF4;
+      font-size: 13px; color: var(--muted);
+    }
+    .footer-meta strong { color: var(--ink); font-weight: 600; }
+    .footer-meta p { margin: 0 0 12px; }
+
+    @media (max-width: 640px) {
+      .hero-sim { grid-template-columns: 1fr; text-align: center; }
+      .hero-sim .organic { margin: 0 auto; max-width: 280px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .organic svg animate { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <span class="eyebrow">Preview · v2 · não publicado</span>
+    <h1>Forma orgânica · <span class="grad">degradê fluido</span></h1>
+    <p>
+      Refeito com SVG path morfando entre 3 estados (curvas Bézier cúbicas) + mesh gradient via
+      radial-gradients sobrepostos com centros animados (sem conic, sem "costura"). Cores brand
+      Buzzmonitor. CSS + SMIL puro. Respeita <code>prefers-reduced-motion</code>.
+    </p>
+  </header>
+
+  <!-- ============================
+       Demo 1 — objeto isolado
+       ============================ -->
+  <section class="demo">
+    <div class="demo-label">
+      <h2>1 · O objeto isolado</h2>
+      <small>showcase — pra apreciar a forma e o movimento</small>
+    </div>
+    <div class="stage stage--showcase">
+      <div class="organic" aria-hidden="true">
+        <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <clipPath id="blob-mask-1">
+              <path d="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z">
+                <animate attributeName="d"
+                  values="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z;
+                          M 290,60 C 400,90 450,190 410,290 C 380,400 290,440 200,420 C 110,400 60,310 80,200 C 100,90 190,30 290,60 Z;
+                          M 270,90 C 370,70 460,170 430,260 C 400,360 320,440 230,420 C 140,410 50,330 70,220 C 90,110 170,110 270,90 Z;
+                          M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z"
+                  dur="22s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"/>
+              </path>
+            </clipPath>
+            <radialGradient id="blob-r1-1" cx="30%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFC79A" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#FFC79A" stop-opacity="0"/>
+              <animate attributeName="cx" values="30%;65%;25%;30%" dur="16s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="30%;55%;70%;30%" dur="20s" repeatCount="indefinite"/>
+            </radialGradient>
+            <radialGradient id="blob-r2-1" cx="65%" cy="55%" r="60%">
+              <stop offset="0%" stop-color="#DE2451" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#DE2451" stop-opacity="0"/>
+              <animate attributeName="cx" values="65%;30%;70%;65%" dur="18s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="55%;30%;65%;55%" dur="14s" repeatCount="indefinite"/>
+            </radialGradient>
+            <radialGradient id="blob-r3-1" cx="50%" cy="80%" r="55%">
+              <stop offset="0%" stop-color="#EB7C2E" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#EB7C2E" stop-opacity="0"/>
+              <animate attributeName="cx" values="50%;20%;75%;50%" dur="24s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="80%;50%;25%;80%" dur="19s" repeatCount="indefinite"/>
+            </radialGradient>
+          </defs>
+          <g clip-path="url(#blob-mask-1)">
+            <rect width="500" height="500" fill="#5A0E7C"/>
+            <rect width="500" height="500" fill="url(#blob-r3-1)"/>
+            <rect width="500" height="500" fill="url(#blob-r2-1)"/>
+            <rect width="500" height="500" fill="url(#blob-r1-1)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <p class="note">
+      <strong>Como funciona</strong> — um único path SVG (curvas Bézier cúbicas) morfa entre 3
+      estados em 22s. Dentro dele, três radial-gradients (peach, rosa, laranja) deslizam com
+      centros animados em durações dessincronizadas (16s/18s/24s). Sem conic — o resultado é uma
+      mistura suave e contínua, tipo "luz líquida". Glow ao redor via <code>drop-shadow</code>.
+    </p>
+  </section>
+
+  <!-- ============================
+       Demo 2 — aplicado na hero
+       ============================ -->
+  <section class="demo">
+    <div class="demo-label">
+      <h2>2 · Aplicado · hero (fundo branco)</h2>
+      <small>como complementaria o ticket-card à direita do hero atual</small>
+    </div>
+    <div class="stage stage--hero">
+      <div class="hero-sim">
+        <div>
+          <h3>Análise Preditiva<br /><span class="grad">na Prática</span></h3>
+          <p>Como usar dados, analytics e social listening para dominar o mercado.</p>
+        </div>
+        <div class="organic" aria-hidden="true">
+          <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <clipPath id="blob-mask-2">
+                <path d="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z">
+                  <animate attributeName="d"
+                    values="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z;
+                            M 290,60 C 400,90 450,190 410,290 C 380,400 290,440 200,420 C 110,400 60,310 80,200 C 100,90 190,30 290,60 Z;
+                            M 270,90 C 370,70 460,170 430,260 C 400,360 320,440 230,420 C 140,410 50,330 70,220 C 90,110 170,110 270,90 Z;
+                            M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z"
+                    dur="22s"
+                    repeatCount="indefinite"
+                    calcMode="spline"
+                    keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"/>
+                </path>
+              </clipPath>
+              <radialGradient id="blob-r1-2" cx="30%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#FFC79A" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#FFC79A" stop-opacity="0"/>
+                <animate attributeName="cx" values="30%;65%;25%;30%" dur="16s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="30%;55%;70%;30%" dur="20s" repeatCount="indefinite"/>
+              </radialGradient>
+              <radialGradient id="blob-r2-2" cx="65%" cy="55%" r="60%">
+                <stop offset="0%" stop-color="#DE2451" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#DE2451" stop-opacity="0"/>
+                <animate attributeName="cx" values="65%;30%;70%;65%" dur="18s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="55%;30%;65%;55%" dur="14s" repeatCount="indefinite"/>
+              </radialGradient>
+              <radialGradient id="blob-r3-2" cx="50%" cy="80%" r="55%">
+                <stop offset="0%" stop-color="#EB7C2E" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#EB7C2E" stop-opacity="0"/>
+                <animate attributeName="cx" values="50%;20%;75%;50%" dur="24s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="80%;50%;25%;80%" dur="19s" repeatCount="indefinite"/>
+              </radialGradient>
+            </defs>
+            <g clip-path="url(#blob-mask-2)">
+              <rect width="500" height="500" fill="#5A0E7C"/>
+              <rect width="500" height="500" fill="url(#blob-r3-2)"/>
+              <rect width="500" height="500" fill="url(#blob-r2-2)"/>
+              <rect width="500" height="500" fill="url(#blob-r1-2)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      Esta é só uma simulação visual da hierarquia — na LP real ele entraria como elemento
+      decorativo atrás/ao lado do ticket-card, sem competir com a copy. Te mostro o layout
+      definitivo antes de aplicar.
+    </p>
+  </section>
+
+  <!-- ============================
+       Demo 3 — aplicado na seção dark
+       ============================ -->
+  <section class="demo">
+    <div class="demo-label">
+      <h2>3 · Aplicado · seção dark</h2>
+      <small>bloco urgência ou CTA final — alto impacto</small>
+    </div>
+    <div class="stage stage--dark">
+      <div class="organic" aria-hidden="true">
+        <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <clipPath id="blob-mask-3">
+              <path d="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z">
+                <animate attributeName="d"
+                  values="M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z;
+                          M 290,60 C 400,90 450,190 410,290 C 380,400 290,440 200,420 C 110,400 60,310 80,200 C 100,90 190,30 290,60 Z;
+                          M 270,90 C 370,70 460,170 430,260 C 400,360 320,440 230,420 C 140,410 50,330 70,220 C 90,110 170,110 270,90 Z;
+                          M 280,70 C 380,80 450,160 430,270 C 410,380 320,440 220,420 C 120,400 60,320 80,210 C 100,100 180,60 280,70 Z"
+                  dur="22s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"/>
+              </path>
+            </clipPath>
+            <radialGradient id="blob-r1-3" cx="30%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#FFC79A" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#FFC79A" stop-opacity="0"/>
+              <animate attributeName="cx" values="30%;65%;25%;30%" dur="16s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="30%;55%;70%;30%" dur="20s" repeatCount="indefinite"/>
+            </radialGradient>
+            <radialGradient id="blob-r2-3" cx="65%" cy="55%" r="60%">
+              <stop offset="0%" stop-color="#DE2451" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#DE2451" stop-opacity="0"/>
+              <animate attributeName="cx" values="65%;30%;70%;65%" dur="18s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="55%;30%;65%;55%" dur="14s" repeatCount="indefinite"/>
+            </radialGradient>
+            <radialGradient id="blob-r3-3" cx="50%" cy="80%" r="55%">
+              <stop offset="0%" stop-color="#EB7C2E" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#EB7C2E" stop-opacity="0"/>
+              <animate attributeName="cx" values="50%;20%;75%;50%" dur="24s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="80%;50%;25%;80%" dur="19s" repeatCount="indefinite"/>
+            </radialGradient>
+          </defs>
+          <g clip-path="url(#blob-mask-3)">
+            <rect width="500" height="500" fill="#5A0E7C"/>
+            <rect width="500" height="500" fill="url(#blob-r3-3)"/>
+            <rect width="500" height="500" fill="url(#blob-r2-3)"/>
+            <rect width="500" height="500" fill="url(#blob-r1-3)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <p class="note">
+      Sobre o roxo profundo, o glow externo (drop-shadow) ganha intensidade automática. A forma
+      vira o ponto focal da seção — copy curta ao lado.
+    </p>
+  </section>
+
+  <footer class="footer-meta">
+    <p>
+      <strong>Diferença pra v1</strong> — saiu o conic-gradient (que deixava costura visível) e o
+      highlight branco (que dava aparência de bola de vidro). Entrou path SVG morfando de verdade
+      + mesh de radial-gradients animados. Forma muito mais orgânica e mistura de cor sem
+      transição abrupta.
+    </p>
+    <p>
+      <strong>Próximos passos</strong> — me diz: (a) gostou agora? (b) ajustes? (mais saturado /
+      mais discreto, paleta diferente, forma mais geométrica vs mais irregular, com pontos
+      orbitando de novo, etc) (c) onde aplicar? Aí integro no <code>index.html</code>, deleto este
+      preview, faço deploy.
+    </p>
+  </footer>
+</body>
+</html>

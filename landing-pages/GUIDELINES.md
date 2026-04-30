@@ -50,7 +50,7 @@
 
 ## 6. Estrutura mínima
 
-Toda LP tem: **Hero → Problema/contexto → Oferta/Programa → Diferencial → Para quem → Prova (speakers/social proof) → Urgência → CTA final com formulário → Footer.** Pode cortar seções, mas não inverter a ordem narrativa.
+Toda LP tem: **Hero → Problema/contexto → Oferta/Programa → Diferencial → Para quem → Prova (speakers/social proof) → Urgência → CTA final → Footer.** Pode cortar seções, mas não inverter a ordem narrativa. Onde o formulário aparece dentro dessa estrutura é decidido pela §10 (varia entre 2ª dobra, meio ou fim conforme o tipo de LP).
 
 ## 7. Acessibilidade (non-negotiable)
 
@@ -79,7 +79,17 @@ A ordem e a quantidade de blocos da LP seguem a narrativa da copy — não o gos
 
 Regra prática: se precisou adicionar ou cortar bloco para "a LP ficar equilibrada", pare — o desequilíbrio é da copy, não do HTML. Volte ao autor da copy.
 
-## 10. Integração tardia de formulário
+## 10. Posicionamento do formulário (sugestão, não obrigação)
+
+A pesquisa sobre tradeoff conversão × qualificação (CXL, MarketingExperiments, Unbounce) aponta que a posição ideal varia com a temperatura do tráfego e a complexidade da oferta. Defaults sugeridos, válidos para todas as marcas:
+
+- **Webinar / material rico (lead frio, oferta gratuita)** → formulário na **segunda dobra**, logo após o hero. Lead frio aceita preencher por curiosidade — o objetivo é volume, MQL pipeline filtra depois. Mover o form para o fim aqui só desperdiça intenção quente.
+- **Fundo de funil — agendar demo, solicitar demonstração, falar com vendas** → formulário **no meio da página**, depois de prova social, casos e diferencial. O scroll funciona como filtro de intenção: quem chega ao form passou pelo argumento e tende a converter como SQL. Form no topo aqui inflaciona CPL com leads que ainda não entenderam a oferta.
+- **Em todos os casos**, manter um **CTA visível na primeira dobra** (botão que rola suave até o form). Captura o tráfego decidido sem sacrificar quem precisa do contexto.
+
+Override permitido quando o briefing pedir explicitamente, quando a marca já for muito conhecida do tráfego (lead quente), ou quando teste A/B local provar o contrário. Justificar no PR / REVISAO.md da LP.
+
+## 11. Integração tardia de formulário
 
 Formulário real (Jotform, RD Station, HubSpot embed) **só entra depois do design aprovado**. Durante toda a fase de design e revisão, usar mock:
 
@@ -93,7 +103,7 @@ Razão: embeds externos atrapalham iteração de design (iframe lento, CSS de te
 
 Logo em hero/CTA: **pode ser grande se for transparente** (SVG com fundo transparente). PNG com fundo branco fica pequeno ou vira "adesivo". Regra: logo respira se o formato permite.
 
-## 11. Favicon — PNG do brand, path absoluto
+## 12. Favicon — PNG do brand, path absoluto
 
 Toda LP **tem que ter** favicon. Padrão único, sem variação:
 
@@ -120,7 +130,7 @@ curl -I https://{dominio}/assets/logos/logo-icon.png  # deve dar 200
 
 Se vier 404, a skill `lp-publicar` não copiou o `logo-icon.png` pro `assets/logos/` da sibling — checar antes de fechar.
 
-## 12. Performance — PageSpeed basta
+## 13. Performance — PageSpeed basta
 
 GTmetrix avaliado e descartado (free tier redireciona pra signup após o 1º teste público; API dá só 5 trial credits totais). Se um dia precisar de segunda ferramenta, usar WebPageTest.org (API grátis, 200/dia).
 
