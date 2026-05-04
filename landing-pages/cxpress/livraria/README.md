@@ -43,9 +43,29 @@ Domínio guarda-chuva já existe (vide `landing-pages/CONTEXT.md` §4.2). É a �
 
 Esta LP **não usa o pipeline lp-publicar** porque é página interna single-file (sem brand assets locais, sem GTM, sem form). Para atualizar:
 
-1. Editar `landing-pages/cxpress/livraria/index.html` no repo
-2. Copiar para sibling: `cp landing-pages/cxpress/livraria/index.html "C:/Users/titof/Downloads/Claude/cxpress-lp-playbook-whatsapp2026/livraria/index.html"`
-3. Deploy: `cd "C:/Users/titof/Downloads/Claude/cxpress-lp-playbook-whatsapp2026" && npx vercel deploy --prod --yes`
+```bash
+# 1. Resolver SIBLING_BASE da sua máquina.
+#    Configurado uma vez via /setup-agencia (escreve .env.local na raiz).
+SIBLING_BASE="${LP_SIBLING_BASE:-$(grep -E "^LP_SIBLING_BASE=" .env.local 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" | tr -d '\r')}"
+[ -z "$SIBLING_BASE" ] && { echo "Rode /setup-agencia primeiro para configurar LP_SIBLING_BASE"; exit 1; }
+SIBLING="$SIBLING_BASE/cxpress-lp-playbook-whatsapp2026"
+
+# 2. Garantir que o sibling existe e está linkado ao projeto Vercel certo
+[ ! -f "$SIBLING/.vercel/project.json" ] && {
+  mkdir -p "$SIBLING"
+  cd "$SIBLING" && npx --yes vercel link --yes \
+    --project="cxpress-lp-playbook-whatsapp2026" \
+    --scope team_nC991VqUuSU2jXZN152xqqEg
+}
+
+# 3. Editar `landing-pages/cxpress/livraria/index.html` no repo
+
+# 4. Copiar para sibling
+cp landing-pages/cxpress/livraria/index.html "$SIBLING/livraria/index.html"
+
+# 5. Deploy
+cd "$SIBLING" && npx --yes vercel deploy --prod --yes
+```
 
 Smoke test obrigatório pós-deploy (validar que a vizinha `playbook-whatsapp2026` não regrediu):
 

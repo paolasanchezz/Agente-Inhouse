@@ -1,9 +1,9 @@
 ---
 name: setup-agencia
-description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, configurar token Meta) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
-argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so meta ads' | /setup-agencia 'so copy e newsletter'"
+description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, configurar token Meta, autenticar Vercel CLI para Landing Pages) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
+argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so meta ads' | /setup-agencia 'so copy e newsletter' | /setup-agencia 'so lp'"
 allowed-tools: AskUserQuestion, Read, Bash, Glob
-version: 0.2.0
+version: 0.4.0
 ---
 
 # Skill: /setup-agencia — Setup guiado para newbies
@@ -60,10 +60,12 @@ Guarde como `os_user`. Determina exemplos de comando ao longo da skill.
   2. "Copy / anuncios escritos (/escrever)" — "Criar, revisar ou pesquisar copy."
   3. "Traducao de copy (/traduzir)" — "Traduzir copy para PT-PT ou ES-LATAM."
   4. "Analise de Meta Ads (/anuncios)" — "Relatorios de performance de campanhas."
+  5. "Landing Pages (/landing-page)" — "Criar e publicar LPs no Vercel."
 
 Guarde como `modulos`. Determina quais blocos de setup vamos rodar:
 - **Newsletter / Copy / Traducao** → exigem **Notion MCP** funcionando → **rodar Passo 2**
 - **Meta Ads** → exige **Python + .env do meta-ads** → **rodar Passo 3**
+- **Landing Pages** → exige **Vercel CLI autenticado** → **rodar Passo 4**
 - Quem marca tudo, faz tudo.
 
 ---
@@ -284,7 +286,132 @@ Interprete a saida:
 
 ---
 
-## Passo 4 — Test drive (opcional)
+## Passo 4 — Setup do Vercel CLI (Landing Pages)
+
+> **Pular este passo se `modulos` nao inclui Landing Pages.**
+
+A skill `/lp-publicar` precisa do **Vercel CLI** instalado e autenticado na org `elife-group`. Importante: o **MCP Vercel** que aparece em `/mcp` no Claude Code e uma autenticacao SEPARADA — nao serve para a skill. Precisamos do CLI.
+
+### 4.1 — Verificar se ja tem Vercel CLI
+
+`AskUserQuestion`:
+- question: "Voce ja usa Vercel CLI nessa maquina?"
+- header: "Vercel CLI"
+- multiSelect: false
+- options:
+  1. "Sim, ja tenho instalado e logado" — "Ja rodei `vercel login` aqui antes."
+  2. "Nao / nao sei (Recomendado)" — "Quero que voce me ajude."
+
+Se "Sim" → pular para 4.3 (validacao).
+Se "Nao" → continuar com 4.2.
+
+### 4.2 — Instalar e logar
+
+Exiba **literalmente**:
+
+> **O Vercel CLI vem via npm.** Vou usar `npx` (que baixa on-demand sem precisar instalar global). Na primeira chamada pode demorar 30-60s.
+
+Use `Bash` (rodar em background com timeout 90s):
+```
+npx --yes vercel --version
+```
+
+- Sucesso (retorna versao tipo `41.x.x`) → exibir `[OK] Vercel CLI disponivel via npx` e seguir.
+- Erro → Fallback "vercel-cli-falhou".
+
+Em seguida, exiba **literalmente**:
+
+> **Agora vou abrir o login.** Vou rodar `npx vercel login`. Vai abrir o navegador pedindo pra voce escolher um metodo (Google, GitHub, Email...). Use a conta vinculada ao Grupo Elife. Depois autoriza no navegador e volta aqui.
+
+Use `Bash` (background, timeout 180s):
+```
+npx --yes vercel login
+```
+
+Aguarde retorno do CLI. Se falhar, Fallback "vercel-login-falhou".
+
+### 4.3 — Validar autenticacao no escopo elife-group
+
+Use `Bash`:
+```
+npx --yes vercel whoami --scope team_nC991VqUuSU2jXZN152xqqEg
+```
+
+- Sucesso (retorna o username) → exibir `[OK] Vercel autenticado em elife-group como {user}` e marcar `vercel_ok = true`.
+- Erro "scope not found" / "not a member" → Fallback "vercel-org-falhou".
+- Erro "please log in" → repetir 4.2.
+
+### 4.4 — Configurar `LP_SIBLING_BASE` (escreve `.env.local`)
+
+Exiba **literalmente**:
+
+> **Sobre a "pasta sibling".** Quando voce publica uma LP, o pipeline copia os arquivos finais pra uma pasta IRMA do repo (fora dele) e roda `vercel deploy` la. Isso protege o repo interno de vazar pro deploy publico.
+>
+> Vou guardar essa preferencia em `.env.local` (na raiz do repo, gitignored). Voce so configura uma vez. **Importante:** evite OneDrive/iCloud/Dropbox (sync vai brigar com o vercel deploy) e nao escolha uma pasta dentro do repo.
+
+Calcule a sugestao baseada no parent do repo:
+
+```bash
+REPO_ROOT=$(git rev-parse --show-toplevel)
+SUGGESTED_BASE=$(dirname "$REPO_ROOT")
+```
+
+Detecte se a sugestao cai em pasta sync-watched:
+
+```bash
+case "$SUGGESTED_BASE" in
+  *OneDrive*|*iCloud*|*Dropbox*)
+    SUGGESTED_BASE=""  # nao sugerir uma pasta sync
+    ;;
+esac
+```
+
+`AskUserQuestion`:
+- question: "Onde guardar os artefatos de deploy de LPs? (sugestao: pasta-mae do repo, fora de sync)"
+- header: "Sibling base"
+- multiSelect: false
+- options:
+  1. Se `$SUGGESTED_BASE` nao vazia: `"Usar {$SUGGESTED_BASE} (Recomendado)"` — "A pasta-mae do seu repo, fora de qualquer sync."
+  2. "Quero escolher outra pasta" — "Vou digitar o caminho manualmente."
+
+Se "outra pasta" (ou se a sugestao foi vazia), pedir o path:
+
+`AskUserQuestion`:
+- question: "Qual o caminho? (use barras `/` mesmo no Windows; sem espacos no final)"
+- header: "Caminho"
+- multiSelect: false
+- options:
+  1. "Cancelar" — "Voltar atras, deixa pra configurar depois."
+
+(O usuario respondera via "Other" com o caminho real.) Aceitar o input como `CHOSEN_BASE` e validar:
+
+- Existe ou pode ser criado? `mkdir -p "$CHOSEN_BASE" 2>&1` deve dar exit 0.
+- Nao e dentro do repo? `case "$CHOSEN_BASE" in $REPO_ROOT*) reject ;; esac`
+- Nao e sync-watched? Mesmo case acima de OneDrive/iCloud/Dropbox.
+
+Se reprovou em qualquer check, exiba o motivo e re-pergunte. Se passou, segue.
+
+Escrever `.env.local` na raiz (criar se nao existe; substituir linha `LP_SIBLING_BASE=` se ja existe):
+
+Use `Read` em `.env.local` (se existir). Se a linha `LP_SIBLING_BASE=` ja esta la, use `Edit` pra trocar o valor. Se nao existe ou nao tem a linha, use `Write` (para criar) ou `Edit` (para append) com:
+
+```
+LP_SIBLING_BASE={base-escolhida}
+```
+
+Confirme:
+```bash
+grep -E "^LP_SIBLING_BASE=" .env.local
+```
+
+- Sucesso → exibir `[OK] LP_SIBLING_BASE={base} salvo em .env.local` e marcar `vercel_ok = true`.
+- Falha → Fallback "lp-sibling-falhou".
+
+Em qualquer caso, seguir para Passo 5.
+
+---
+
+## Passo 5 — Test drive (opcional)
 
 `AskUserQuestion`:
 - question: "Quer fazer um teste rapido pra confirmar que tudo funciona?"
@@ -305,9 +432,9 @@ Aguarde "sim". Depois envie literalmente:
 
 ---
 
-## Passo 5 — Resumo final (texto literal)
+## Passo 6 — Resumo final (texto literal)
 
-Exiba (substitua os ✓/✗ conforme o estado real):
+Exiba (substitua os ✓/✗ conforme o estado real — omita as linhas que nao se aplicam ao perfil do usuario, ex: nao mostrar "Vercel CLI" se Landing Pages nao foi marcado):
 
 > 🎉 **Setup completo!** Aqui esta o que esta pronto:
 >
@@ -315,12 +442,14 @@ Exiba (substitua os ✓/✗ conforme o estado real):
 > - [✓ ou ✗] Python {versao} instalado
 > - [✓ ou ✗] Token Meta valido (expira em ~60 dias, **anote na agenda pra renovar**)
 > - [✓ ou ✗] 6 contas Meta acessiveis
+> - [✓ ou ✗] Vercel CLI autenticado em elife-group
 >
 > **Comandos pra comecar (todos abrem guias interativos):**
 > - `/escrever` — copy
 > - `/newsletter` — newsletters
 > - `/traduzir` — traducao PT-PT / ES-LATAM
 > - `/anuncios` — analise de Meta Ads
+> - `/landing-page` — landing pages
 >
 > **Quando terminar alteracoes:** rode `/commit` — ele cria uma branch, commita e abre um Pull Request pro Victor revisar. Nunca commita em main.
 >
@@ -371,5 +500,36 @@ Exiba (substitua os ✓/✗ conforme o estado real):
 ### "conta-sem-acesso"
 > Sua conta foi criada, mas o admin ainda nao te deu permissao em alguma das 6 contas de anuncio. Peca pra te adicionar com `ads_read` em todas. Voce pode usar as contas que **estao** acessiveis enquanto isso. Quer continuar mesmo assim?
 
+### "vercel-cli-falhou"
+> Nao consegui rodar o Vercel CLI via npx. Causas comuns:
+> 1. Sem internet ou firewall corporativo
+> 2. Node.js nao instalado (Vercel CLI precisa de Node 16+)
+>
+> Tente abrir um terminal novo e rodar `node --version`. Se der "command not found", instale Node em https://nodejs.org/ (LTS). Depois retome com `/setup-agencia`.
+
+### "vercel-login-falhou"
+> O login no Vercel nao completou. Causas comuns:
+> 1. Voce fechou o navegador antes de autorizar
+> 2. Login com conta errada (use a conta vinculada ao Grupo Elife)
+> 3. Timeout (mais de 3min sem clicar)
+>
+> Rode `npx vercel logout` pra limpar e me diga "tentar de novo". Vou refazer o login.
+
+### "vercel-org-falhou"
+> Voce esta logado mas nao esta na org `elife-group` (`team_nC991VqUuSU2jXZN152xqqEg`). Peca ao admin pra te adicionar como membro do team Vercel. Sem isso, `/lp-publicar` nao consegue acessar os projetos guarda-chuva.
+>
+> Pode pular esse modulo por enquanto e usar so as outras skills. Quer continuar?
+
+### "lp-sibling-falhou"
+> Nao consegui escrever `.env.local` na raiz do repo. Causas comuns:
+> 1. Permissao de escrita negada (rode o terminal como admin se for Windows)
+> 2. O caminho que voce escolheu nao existe e nao consegui criar
+> 3. O caminho cai dentro do repo ou em pasta sync-watched (OneDrive/iCloud/Dropbox)
+>
+> Tente de novo escolhendo outra pasta, ou crie `.env.local` manualmente na raiz com:
+> ```
+> LP_SIBLING_BASE=/caminho/que/voce/quer
+> ```
+
 ### "usuario-trava" (use a qualquer momento)
-> Sem problemas. Voce pode parar aqui e voltar depois — basta rodar `/setup-agencia` de novo. O que ja configurou (Notion, Python, .env, etc.) fica salvo. Quer parar?
+> Sem problemas. Voce pode parar aqui e voltar depois — basta rodar `/setup-agencia` de novo. O que ja configurou (Notion, Python, .env, Vercel etc.) fica salvo. Quer parar?

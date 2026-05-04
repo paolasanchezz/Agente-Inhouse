@@ -10,7 +10,8 @@
 ## 1. Mapa mental
 
 - **Fonte-verdade:** `landing-pages/{marca}/{slug}/` (no repo). É o que o pipeline edita.
-- **Sibling (artefato de deploy):** `C:/Users/titof/Downloads/Claude/{nome}/` — fora do repo, isolada. NUNCA editar lá direto: o próximo `lp-publicar` sobrescreve.
+- **Sibling (artefato de deploy):** `${SIBLING_BASE}/{nome}/` — fora do repo, isolada. NUNCA editar lá direto: o próximo `lp-publicar` sobrescreve.
+- **`SIBLING_BASE` é resolvido em runtime** pela skill `lp-publicar` (Passo 0.1) em ordem de precedência: env var `LP_SIBLING_BASE` no shell → linha `LP_SIBLING_BASE=...` em `.env.local` (raiz, gitignored — escrito pelo `/setup-agencia`). Se nenhum estiver setado, `lp-publicar` invoca `/setup-agencia` automaticamente. Nunca hardcodar paths absolutos neste doc.
 - **Pipeline:** preparar → gerar → revisar → [integrar-form manual] → publicar.
 - **Dois modos de deploy:** SOLO (1 LP/projeto Vercel) e GUARDA-CHUVA (N LPs/domínio).
 - **Versionamento:** cada skill `lp-*` tem `version` no frontmatter. Bump minor ao mudar comportamento; entry no `CHANGELOG.md` no mesmo PR.
@@ -130,7 +131,7 @@ GUIDELINES §11 manda. Resumindo aqui em modo operacional:
 - Domínio não fornecido → default `.vercel.app`
 - Primeira LP a usar um domínio novo
 
-Sibling: `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/` (criada do zero pelo `lp-publicar`).
+Sibling: `${SIBLING_BASE}/{marca}-lp-{slug}/` (criada do zero pelo `lp-publicar`).
 
 ### 4.2 Quando GUARDA-CHUVA
 
@@ -138,7 +139,7 @@ Sibling: `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/` (criada do zero pe
 - Detecção automática: `lp-publicar` Passo 0.5 consulta API Vercel
 - Multi-marca: namespace `/assets/{marca}/` evita colisão (ex: assets Buzzcreators dentro do guarda-chuva Buzzmonitor ficam em `/assets/buzzcreators/`)
 
-Sibling: a do projeto existente (`C:/Users/titof/Downloads/Claude/{nome-detectado}/`). LP nova é anexada como subpasta sem tocar nas vizinhas.
+Sibling: a do projeto existente (`${SIBLING_BASE}/{nome-detectado}/`). LP nova é anexada como subpasta sem tocar nas vizinhas.
 
 #### Guarda-chuvas ativos hoje
 
@@ -237,7 +238,7 @@ Se o snippet oficial do Google mudar, **atualizar este arquivo** — todas as sk
 | PageSpeed Performance < 85 | Imagens grandes, fonts não otimizadas, JS bloqueante | Comprimir imagens (WebP via `<picture>`), `<link rel="preload">` para fonts críticas, `font-display: swap` no `@font-face`. |
 | Vercel CLI falha com `FetchError: invalid json response body` | Bug intermitente da CLI — deploy chega READY server-side mas CLI aborta antes da resposta | Consultar API Vercel direto (`lp-publicar` Passo 3.3). Se state=READY nos últimos 120s, ignorar erro CLI. NÃO retry cego. |
 | Smoke test acusa hash divergente em LP vizinha (guarda-chuva) | `vercel.json` foi sobrescrito, asset removido, ou rewrite agressivo de path | NÃO publicar relatório. Reverter mudança. Investigar diff. Promessa do guarda-chuva é zero regressão. |
-| Sibling apagada por engano | Pasta `C:/Users/titof/Downloads/Claude/{nome}/` foi deletada | `lp-publicar` recria do zero a partir do source. |
+| Sibling apagada por engano | Pasta `${SIBLING_BASE}/{nome}/` foi deletada | `lp-publicar` recria do zero a partir do source. |
 | Sibling divergente do source | Alguém editou direto na sibling (anti-padrão) | `lp-publicar` sobrescreve sibling com source. Se a edição era importante, recuperar antes do deploy via `git diff` na sibling (se for git) ou copiar manualmente pro source antes. |
 | `<title>` com sufixo `[REVISADO]` / `[TESTE]` / `[DRAFT]` no live | Sufixo de trabalho não foi removido no Passo 1.5 do `lp-publicar` | Editar source `index.html` removendo sufixo. Re-deploy. |
 | Vazamento de path interno (`.env`, `meta-ads/`, `conhecimento/`, `.claude/`) na sibling | Algo do repo interno foi copiado pra sibling | `lp-publicar` Passo 2 (validação de isolamento) deveria ter abortado. Se passou, é bug — investigar a origem do vazamento (provavelmente em `lp-gerar` ou step de cópia). |

@@ -2,8 +2,8 @@
 name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.7.0
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
+version: 3.0.0
 ---
 
 # Skill: Publicar Landing Page
@@ -14,8 +14,10 @@ A skill opera em dois modos:
 
 | Modo | Quando | Sibling | Resultado URL |
 |---|---|---|---|
-| **solo** | dominio nao fornecido OU fornecido mas sem projeto Vercel atribuido | `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/` (novo) | `https://{marca}-lp-{slug}-{hash}.vercel.app/{slug}` ou dominio fresco |
-| **guarda-chuva** | dominio ja atribuido a outro projeto Vercel (Passo 0.5 detecta) | `C:/Users/titof/Downloads/Claude/{nome-do-projeto-detectado}/` (existente) | `https://{dominio}/{slug}` (LP nova convive com vizinhas) |
+| **solo** | dominio nao fornecido OU fornecido mas sem projeto Vercel atribuido | `{SIBLING_BASE}/{marca}-lp-{slug}/` (novo) | `https://{marca}-lp-{slug}-{hash}.vercel.app/{slug}` ou dominio fresco |
+| **guarda-chuva** | dominio ja atribuido a outro projeto Vercel (Passo 0.5 detecta) | `{SIBLING_BASE}/{nome-do-projeto-detectado}/` (existente) | `https://{dominio}/{slug}` (LP nova convive com vizinhas) |
+
+`{SIBLING_BASE}` e resolvido em runtime pelo Passo 0.1 (env var `LP_SIBLING_BASE` > linha em `.env.local` na raiz). Configurado uma vez via `/setup-agencia`. Nunca hardcodar path absoluto da maquina aqui.
 
 A diferenca pratica: no modo guarda-chuva voce **nao cria projeto Vercel novo**, **anexa a LP** como subpasta ao sibling existente, **namespaceia assets por marca** (`/assets/{marca}/X`) para evitar colisao com vizinhas, e o relatorio inclui smoke test de **todas** as LPs do projeto.
 
@@ -34,48 +36,108 @@ Parsing de `$ARGUMENTS`:
 | `slug` | kebab-case | Sim |
 | `dominio` | FQDN (ex: `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.cxpress.io`, `webinar.buzzmonitor.com`) | Nao |
 
+### 0.1 Resolver `SIBLING_BASE`
+
+Duas fontes, em ordem de precedencia:
+
+1. **Env var `LP_SIBLING_BASE`** no shell (override pontual).
+2. **Linha `LP_SIBLING_BASE=...` em `.env.local`** (raiz do repo, gitignored — escrito pelo `/setup-agencia`).
+
+Comando unico:
+
+```bash
+SIBLING_BASE="${LP_SIBLING_BASE:-$(grep -E "^LP_SIBLING_BASE=" .env.local 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" | tr -d '\r')}"
+```
+
+**Se `SIBLING_BASE` ficar vazio** (nem env var nem `.env.local` existem com a chave): NAO abortar com erro seco. Em vez disso:
+
+1. Avise o usuario em uma frase: "Falta `LP_SIBLING_BASE`. Vou rodar `/setup-agencia` agora pra configurar — depois retomo este deploy."
+2. Use o tool `Skill` invocando `setup-agencia` com argumento `"so lp"` (escopo restrito a Landing Pages — pula Notion/Meta).
+3. Apos o setup-agencia terminar (ele escreve `.env.local`), **re-execute o comando de leitura acima**. Agora deve resolver. Se ainda falhar (usuario abortou setup), pare com mensagem clara.
+
+Garantir que `SIBLING_BASE` existe (`mkdir -p "$SIBLING_BASE"`, no-op se ja existe).
+
+**Por que sem fallback automatico (parent-do-repo)?** Tinhamos isso em v2.0.0 com sanity check de OneDrive/iCloud/Dropbox. Removido em v3.0.0 porque adicionava complexidade significativa pra cobrir um caso que o setup-agencia ja resolve melhor (perguntando ao usuario qual path quer, sem adivinhacao).
+
+### 0.2 Paths derivados
+
 Paths default (modo solo):
 - Fonte: `landing-pages/{marca}/{slug}/index.html`
-- Sibling: `C:/Users/titof/Downloads/Claude/{marca}-lp-{slug}/`
+- Sibling: `${SIBLING_BASE}/{marca}-lp-{slug}/`
 - Dentro da sibling: `{slug}/index.html` + `assets/` + `vercel.json` + `.gitignore` + `README.md`
 
 Se fonte nao existe, PARE.
 
 ## Passo 0.5: Detectar modo (solo vs guarda-chuva)
 
-Se `$dominio` foi fornecido, checar se ja esta atribuido a algum projeto Vercel da org.
+### 0.5.a Pre-flight do Vercel CLI (cross-platform)
+
+Antes de qualquer chamada Vercel, validar que o CLI esta instalado e autenticado. **Nao** ler `$APPDATA/.../auth.json` direto — path varia por SO e por versao do CLI.
 
 ```bash
-VERCEL_TOKEN=$(cat "$APPDATA/com.vercel.cli/Data/auth.json" | python -c "import sys,json;print(json.load(sys.stdin).get('token',''))")
 TEAM=team_nC991VqUuSU2jXZN152xqqEg  # elife-group
 
-curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
-  "https://api.vercel.com/v9/projects?teamId=$TEAM&limit=100" | \
-  python -c "
-import sys, json, os
-data = json.load(sys.stdin)
-target = os.environ['DOMAIN']
-for p in data.get('projects', []):
-    targets = p.get('targets', {}) or {}
-    aliases = []
-    for tgt in targets.values():
-        if isinstance(tgt, dict):
-            aliases.extend(tgt.get('alias') or [])
-    if target in aliases:
-        print(f'{p[\"name\"]}|{p[\"id\"]}')
-        break
-" DOMAIN="$DOMAIN"
+# 1. CLI disponivel? (npx baixa on-demand se nao existir global)
+npx --yes vercel --version >/dev/null 2>&1 || {
+  echo "ERRO: Vercel CLI indisponivel. Instale com 'npm i -g vercel' ou aguarde npx baixar."
+  exit 1
+}
+
+# 2. Autenticado na org elife-group?
+npx --yes vercel whoami --scope "$TEAM" >/dev/null 2>&1 || {
+  echo "ERRO: nao autenticado no Vercel CLI (escopo $TEAM)."
+  echo "Rode 'npx vercel login' e autorize no navegador. Importante: o MCP Vercel do Claude Code"
+  echo "e uma autenticacao SEPARADA do CLI — esta skill precisa do CLI autenticado."
+  exit 1
+}
 ```
 
-Tres saidas possiveis:
+### 0.5.b Detectar guarda-chuva via `vercel alias ls`
 
-| Saida | Modo | Decisao |
+Se `$dominio` foi fornecido, descobrir se algum projeto Vercel da org ja serve esse dominio. **Nao** precisar do token na shell — o CLI ja gerencia auth internamente em qualquer SO. Basta chamar `vercel alias ls` e procurar o dominio.
+
+```bash
+DOMAIN="$dominio"  # vem do parsing do Passo 0
+
+# Lista TODOS os aliases da org. Cada linha tem: source-deployment-url | alias-url
+# Quando $DOMAIN aparece como alias, extrair o nome do projeto do prefixo da source URL
+# (formato: {projeto}-{hash7-12}-elife-group.vercel.app).
+PROJECT=$(npx --yes vercel alias ls --scope "$TEAM" 2>&1 | awk -v d="$DOMAIN" '
+  $2 == d {
+    src = $1
+    sub(/-[a-z0-9]+-elife-group\.vercel\.app$/, "", src)
+    print src
+    exit
+  }
+')
+```
+
+Possiveis saidas:
+
+| `$PROJECT` | Modo | Decisao |
 |---|---|---|
-| Nenhum projeto encontrado | **solo** | Sibling = `{marca}-lp-{slug}` (novo). Comportamento default. |
-| 1 projeto encontrado | **guarda-chuva** | Sibling = nome do projeto retornado pela API. Anexar LP como subpasta nele. |
-| Erro de auth/API | **solo, com aviso** | Reportar erro mas seguir como solo. Anotar em "Pendencias" pra revisar. |
+| Vazio | **solo** | Sibling = `${SIBLING_BASE}/{marca}-lp-{slug}` (novo). Comportamento default. |
+| Nome do projeto | **guarda-chuva** | Sibling = `${SIBLING_BASE}/{$PROJECT}` (existente OU recem-criado-localmente). Anexar LP como subpasta. |
 
-Se modo guarda-chuva: ler `{sibling-detectado}/.vercel/project.json` para confirmar `projectId` e `orgId` batem com o que a API retornou. Se nao baterem (sibling local stale), regenerar via `cd "{sibling}" && npx vercel link --yes --project={nome}` antes de seguir.
+**Por que nao `curl` + API V9 direto?** Porque exigia ler o token Vercel do filesystem (`$APPDATA/com.vercel.cli/Data/auth.json`), e isso quebra em pelo menos 3 cenarios reais: (a) Python da Microsoft Store rodando em sandbox AppContainer no Windows nao consegue acessar paths absolutos em `AppData/Roaming/` (testado e confirmado em 2026-05-04); (b) macOS e Linux usam paths totalmente diferentes; (c) versoes futuras do CLI podem mudar o local. `vercel alias ls` deixa o CLI cuidar de auth — funciona em qualquer SO/versao.
+
+**Por que nao `vercel projects ls`?** Esse comando so retorna a "Latest Production URL" de cada projeto, que vem como `.vercel.app` quando o projeto ainda nao teve deploy production aliasado ao dominio custom (cenario "guarda-chuva recem-criado, em popularizacao"). `vercel alias ls` lista TODOS os aliases (inclusive subdomains custom atribuidos sem deploy proprio ainda), evitando o falso-negativo. Validado em 2026-05-04: detecta corretamente `material.buzzmonitor.com` → `buzzmonitor-material` mesmo o projeto ainda mostrando `.vercel.app` em `projects ls`.
+
+**Edge case:** projeto sem dominio custom (so `.vercel.app`) nao aparece como alias para nenhum FQDN externo, entao `$PROJECT` fica vazio = modo solo. Correto.
+
+### 0.5.c Garantir `.vercel/project.json` no sibling de guarda-chuva
+
+Se modo guarda-chuva: pode ser que o sibling local nao exista nesta maquina (primeira vez que alguem que nao seja o dono original roda em guarda-chuva). Sempre garantir:
+
+1. Pasta existe: `mkdir -p "${SIBLING_BASE}/{nome-do-projeto}"`.
+2. `.vercel/project.json` existe e bate com o que a API retornou:
+   ```bash
+   SIBLING="${SIBLING_BASE}/{nome-do-projeto}"
+   if [ ! -f "$SIBLING/.vercel/project.json" ]; then
+     cd "$SIBLING" && npx --yes vercel link --yes --project="{nome-do-projeto}" --scope "$TEAM"
+   fi
+   ```
+3. Se ja existe mas `projectId`/`orgId` nao batem com a API (sibling local stale), re-rodar o `vercel link` acima para regenerar.
 
 **Importante:** dominio nao fornecido sempre = modo solo, mesmo se outro projeto da org ja serve um dominio. Sem dominio, a skill nao tem sinal pra inferir guarda-chuva.
 
@@ -360,22 +422,23 @@ A CLI da Vercel tem um bug intermitente onde o upload sobe corretamente, o deplo
 FetchError: invalid json response body at https://api.vercel.com/v2/files?teamId=... reason: Unexpected end of JSON input
 ```
 
-**Nao faca retry cego.** Em vez disso, consulte o estado real via MCP Vercel (ou API direta):
+**Nao faca retry cego.** Em vez disso, consulte o estado real via CLI (cross-platform, sem precisar de token na shell):
+
+```bash
+# Lista o deployment production mais recente do projeto.
+# Output JSON inclui state, createdAt, url, etc.
+cd "{sibling}" && npx --yes vercel ls --prod --scope "$TEAM" --json 2>&1 | head -50
+```
+
+Alternativa via MCP Vercel (se MCP estiver registrado no Claude Code):
 
 ```
 mcp__{vercel-mcp}__list_deployments
-  projectId: <orgId+projectId de .vercel/project.json>
+  projectId: <projectId de .vercel/project.json>
   teamId:    <orgId>
 ```
 
-Ou via HTTP com token (`VERCEL_TOKEN`):
-
-```bash
-curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
-  "https://api.vercel.com/v6/deployments?projectId={projectId}&teamId={orgId}&limit=1" | jq .
-```
-
-O deployment mais recente tem `createdAt` em ms-epoch. Se ele foi criado **nos ultimos ~120s** e `state == "READY"` e `target == "production"`, o deploy passou — ignore o erro da CLI e siga para 3.4 com esse `deployment.id`.
+O deployment mais recente tem `createdAt` em ms-epoch (ou ISO). Se ele foi criado **nos ultimos ~120s** e `state == "READY"` e `target == "production"`, o deploy passou — ignore o erro da CLI e siga para 3.4 com esse `deployment.id`.
 
 Caso contrario (mais antigo, ou state != READY), re-rode o comando do 3.2 **com o sibling igualzinho** — nao edite nada entre tentativas, senao voce arrisca publicar versao intermediaria como aconteceu na entrega de 2026-04-20.
 
@@ -602,7 +665,7 @@ Relatorio Notion: {URL}
 
 ## Notas de seguranca
 
-- **Nunca** rodar `vercel deploy` dentro do repo do agente (`C:/Users/titof/Downloads/Claude/Agente Inhouse/`). So na pasta sibling.
+- **Nunca** rodar `vercel deploy` dentro do repo do agente (`$(git rev-parse --show-toplevel)`). So na pasta sibling (`${SIBLING_BASE}/{nome}/`).
 - **Nunca** copiar `.env`, `meta-ads/`, `conhecimento/`, `.claude/` para a sibling.
 - Se o usuario pedir para deployar direto sem pasta sibling, PARE e explique o risco.
 - **Modo guarda-chuva** tem promessa de zero regressao. Qualquer divergencia de hash em LP vizinha apos deploy = bug bloqueante. Reverter, investigar, replanejar.

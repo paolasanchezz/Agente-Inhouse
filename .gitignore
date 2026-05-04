@@ -39,6 +39,9 @@ env/
 # Permissoes pessoais do Claude Code (cada colaborador tem as suas)
 .claude/settings.local.json
 
+# Config local per-colaborador do agente (cross-skill: LP_SIBLING_BASE etc.)
+.env.local
+
 # Runtime lockfile do MCP de tarefas agendadas
 .claude/scheduled_tasks.lock
 

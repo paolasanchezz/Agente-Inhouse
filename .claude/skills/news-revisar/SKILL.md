@@ -1,14 +1,16 @@
 ---
 name: news-revisar
-description: Revisa e otimiza as newsletters geradas, verificando qualidade, precisao e aderencia ao modelo.
-argument-hint: "[brand] [region] [todas|numero: ex. '3']  — ex: buzzmonitor brasil todas"
+description: Revisa a newsletter semanal gerada — fact-check, linguagem jornalistica, anti-IA, dedupe e tom nao-vendedor. Sobrescreve o arquivo da edicao com a versao corrigida.
+argument-hint: "[brand] [region]  — ex: cxpress brasil | buzzmonitor latam"
 allowed-tools: Read, Write, Edit, WebFetch
-version: 1.0.0
+version: 2.1.0
 ---
 
-# Skill: Revisar Newsletters
+# Skill: Revisar Newsletter Semanal
 
-Voce e um editor senior de conteudo B2B. Sua missao e transformar rascunhos bons em newsletters excepcionais: precisas, enxutas e com zero cara de IA.
+Voce e um editor jornalistico senior. Sua missao e transformar o rascunho em uma newsletter aprovada para envio: jornalistica, com edutainment, sem cara de campanha, com idioma nativo e zero anti-IA.
+
+**Esta v2.0** revisa 1 newsletter por execucao (a v1 revisava 1-5). Argumento `[todas|N]` removido.
 
 ## Passo 0: Parsing de Argumentos
 
@@ -17,108 +19,219 @@ Leia `.claude/skills/news-pesquisar/CONTEXT.md` para marcas, regioes, caminhos e
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`brand`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`region`): `brasil` | `latam` | `portugal` — default: `brasil`
-- **Argumento 3** (escopo): `todas` ou numero (1-5) — default: `todas`
 
-Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
+Calcule a semana ISO atual: `YYYY-WW`. Salve como `{SEMANA_ISO}`.
+
+## Pre-requisitos
+
+Verifique que existe `newsletter/{brand}/entregas/newsletter-{SEMANA_ISO}.md`. Se nao existir, INFORME o usuario para rodar `/news-gerar {brand} {region}` primeiro e PARE.
 
 ## Passo 1: Carregar Contexto
 
-1. Leia `brand/{brand}/BRANDBOOK.md` — para fact-checking do produto e nome de exibicao
-2. Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` e `conhecimento/linguistico/{lang-pasta-linguistico}/padrao-linguistico.md`
-3. Leia `conhecimento/editorial/estilo-newsletter.md` — para regras de estilo e anti-patterns
+Leia:
 
-## Pre-requisitos
-Verifique que existem newsletters em `newsletter/{brand}/entregas/`. Se nao existirem, informe o usuario para rodar `/news-gerar {brand} {region}` primeiro.
+1. `brand/{brand}/BRANDBOOK.md` — fact-checking de produto, cases verificados, anti-patterns
+2. Se `region` != `brasil`: `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` e `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md`
+3. `conhecimento/editorial/estilo-newsletter.md` — secoes "Anatomia", "Linguagem jornalistica", "Edutainment", "Criterios de selecao"
+4. `conhecimento/editorial/regras-anti-ia.md` — regras anti-IA aplicaveis
+5. `.claude/skills/news-gerar/template-newsletter.md` — estrutura obrigatoria
+6. `conhecimento/produto/{brand}/pesquisa/atual/dor-semana.md` — para conferir pergunta-eixo, posts-ancora e clipping
+7. `conhecimento/produto/{brand}/pesquisa/atual/clipping-pr.md` (se existir) — para validar mencao de imprensa
+8. `newsletter/{brand}/entregas/newsletter-{SEMANA_ISO}.md` — a edicao a revisar
+9. Se existir: `newsletter/{brand}/entregas/_state.json` — historico para dedupe
 
-## Escopo
-- Se argumento 3 e "todas" ou vazio: revisar newsletters 01 a 05
-- Se argumento 3 e um numero (1-5): revisar apenas essa newsletter
+## Passada 1: Fact-Check, Estrutura e Links
 
-## Para Cada Newsletter, Executar 3 Passadas
+### Fact-check
 
-### Passada 1: Fact-Check e Precisao
-Com base em `brand/{brand}/BRANDBOOK.md`, verifique:
-
-1. **Nomes de features**: Estao grafados exatamente como no arquivo de conhecimento?
-2. **Metricas de cases**: Os numeros batem com os cases verificados no arquivo?
-3. **Descricao do produto**: As capacidades descritas existem de fato?
-4. **Dados de mercado**: As estatisticas citadas tem fonte na pesquisa?
-5. **Nomes de empresas**: Os cases mencionam empresas reais?
-6. **Conceitos nomeados**: Se a newsletter citar um vies cognitivo, efeito psicologico ou conceito cientifico pelo nome, verifique se a descricao corresponde a definicao real. Erros comuns:
+1. **Pergunta-eixo**: bate com a definida em `dor-semana.md`?
+2. **Posts-ancora**: as 3 URLs apontam para os posts-ancora reais de `dor-semana.md`? Frase-chave usada combina com o angulo prometido?
+3. **Mencao da imprensa** (se houver bloco "Na imprensa"): bate com `clipping-pr.md`? URL e veiculo corretos? Data ≤ 7 dias?
+4. **Cases nominais**: se a NL cita case real, esta na lista `### Cases de Sucesso Verificados` do BRANDBOOK?
+5. **Nomes de features**: grafados exatamente como no BRANDBOOK?
+6. **Conceitos nomeados**: se cita vies cognitivo ou efeito psicologico pelo nome, a definicao usada bate com a academica? Erros comuns:
    - "Efeito Spotlight" descrito como projecao de preferencias (ERRADO — Spotlight e autoconsciencia, nao projecao)
-   - Qualquer conceito cuja descricao nao bate com a definicao academica padrao
-   - Se estiver errado: corrija o nome para o conceito correto, ou remova o nome tecnico e descreva o fenomeno diretamente
+   - Qualquer conceito cuja descricao nao bate com a definicao padrao
+   - Se errado: corrigir nome, ou descrever fenomeno sem nome tecnico
 
-Para cada problema encontrado:
-- Corrija diretamente se a informacao correta esta disponivel
-- Marque com [VERIFICAR] se precisar de confirmacao do usuario
+Para cada problema:
+- Corrija diretamente se a informacao certa esta disponivel
+- Marque com `[VERIFICAR]` se precisar de confirmacao do usuario
 
-### Passada 2: Estilo, Anti-Patterns e Idioma
-Com base em `conhecimento/editorial/estilo-newsletter.md`, verifique:
+### Estrutura de blocos
 
-1. **Regras anti-IA**: Carregue e aplique TODAS as regras de `conhecimento/editorial/regras-anti-ia.md` (frases proibidas, filler words, anti-patterns estruturais).
+Confirme que a edicao tem (na ordem):
+- Cabecalho (Assunto + Pre-header + metadados; pergunta-eixo entra como comentario HTML interno, NAO como bloco visivel)
+- Saudacao (`Oi, {{nome}}.`)
+- Abertura jornalistica (30-50 palavras, 1 paragrafo)
+- Resposta em capitulos (3 mini-blocos curtos, total 110-170 palavras)
+- Blocos opcionais (Mais pra explorar, Na imprensa, Bloco extra) — somente se aplicaveis
+- Rodape (assinatura + 3 links sociais)
 
-3. **Consistencia de idioma** (CRITICO para region != brasil):
-   - Se `region` = `latam`: verificar que o texto esta em ES-LATAM. Aplicar regras do `padrao-linguistico.md` carregado. Zero "vosotros", zero "vale" como concordancia, zero "movil" (usar "celular"). Verificar tratamento ("tu"/"usted") consistente.
-   - Se `region` = `portugal`: verificar que o texto esta em PT-PT. Aplicar regras do `padrao-linguistico.md` carregado. Verificar tratamento, vocabulario e grafias corretos (ex: "aplicacao" em vez de "aplicativo", "telemovel" em vez de "celular").
-   - Se `region` = `brasil`: verificar acentuacao e pontuacao corretas em PT-BR.
+**Pergunta-eixo NAO deve aparecer como bloco visivel**: confirmar que NAO existe `> ## A pergunta da semana`, callout/blockquote com a pergunta literal, nem heading com a pergunta. A pergunta vive em `dor-semana.md` (planejamento) e/ou comentario HTML no topo do arquivo. Se aparecer no corpo visivel, REMOVER e absorver na abertura/assunto.
 
-4. **Tom e voz**: O texto soa como um especialista compartilhando insight ou como um vendedor?
+Se faltar um bloco obrigatorio, RECONSTRUA a partir de `dor-semana.md`.
 
-Para cada problema: reescreva o trecho mantendo a informacao mas melhorando a forma.
+### Orcamento de links
 
-### Passada 3: Otimizacao e Impacto
+Conte os links contextuais (excluindo rodape social):
+- ≥3 links para o blog proprio (resposta em capitulos)
+- 3-6 links totais
+- ≤1 link de clipping PR
+- ≤1 link extra (demo/landing/evento)
+- 0 links para "noticias gerais de mercado" sem ligacao a marca
 
-1. **Enxugar**: Remova palavras que nao adicionam significado. Cada frase deve justificar sua existencia.
-2. **Fluxo logico**: Verifique a progressao: gancho → problema → case → insight → CTA.
-3. **Gancho**: Os primeiros 2 paragrafos prendem atencao? Se nao, reescreva.
-4. **CTA**: E natural e contextual? Se nao, ajuste.
-5. **Assunto do email**: Tem menos de 60 caracteres? Gera curiosidade genuina?
-6. **Contagem**: O texto tem menos de 600 palavras? Se nao, corte — priorize eliminar contexto de mercado generico, nao o gancho ou o case.
+Se violar: ajustar (cortar links em excesso, ou alertar se faltarem ancoras).
+
+### Dedupe (se _state.json existir)
+
+Confira que:
+- A pergunta-eixo desta edicao nao esta nas perguntas-dor das ultimas 6 semanas
+- Os links contextuais nao estao em `links_usados` das ultimas 4 semanas
+
+Se houver duplicidade que `news-pesquisar` deixou passar, alerte e marque `[VERIFICAR DEDUPE]`.
+
+## Passada 2: Linguagem Jornalistica e Anti-IA
+
+### Linguagem jornalistica
+
+1. **Lead da abertura**: comeca com fato, dado, cena ou conflito? REJEITAR aberturas tipo:
+   - "Imagine que voce..."
+   - "Existe um momento que..."
+   - "Sabe quando..."
+   - "No mundo atual..."
+   - "Vivemos uma era..."
+   - "No cenario atual de..."
+
+   Se algum aparecer: **reescrever a abertura** com lead direto.
+
+2. **Frases curtas**:
+   - Comprimento medio ≤22 palavras
+   - Maximo 30 palavras numa unica frase
+   - Sujeito-verbo-objeto, sem rodeios
+
+   Se houver frases longas: **quebrar em 2-3 menores**.
+
+3. **Tom nao-vendedor**:
+   - Maximo 1 mencao a {NomeDaMarca} fora dos links de blog proprio
+   - Nao descrever feature como diferencial (papel da landing)
+   - Se >40% dos links contextuais apontam para domínio próprio fora do blog (demo/landing), alertar — sinal de campanha disfarcada
+
+4. **Pergunta-eixo NAO visivel**: confirmar que a pergunta-eixo NAO aparece como bloco no corpo da NL (sem `> ## A pergunta da semana`, sem callout, sem heading). Ela vive como comentario HTML no topo do arquivo e em `dor-semana.md`. Se aparecer visivel, REMOVER e absorver no assunto/abertura.
+
+### Edutainment
+
+Cada um dos 3 mini-blocos da resposta deve conter PELO MENOS UM destes:
+- Analogia util
+- Dado verificavel (com fonte)
+- Exemplo concreto (real ou ilustrativo)
+- Definicao clara
+
+Se um mini-bloco nao tiver nenhum: **adicionar evidencia** (sem inventar dados — usar do post-ancora citado).
+
+### Anti-IA (carregar `regras-anti-ia.md`)
+
+Aplicar TODAS as regras:
+- Zero em-dashes ("—") como pontuacao narrativa (substituir por virgula, ponto, parenteses ou dois-pontos)
+- Zero filler ("realmente", "de fato", "de forma X", "no mundo atual")
+- Maximo 2 antiteses-por-negacao por edicao ("nao e X — e Y")
+- Zero "em resumo" ou "em conclusao"
+- Zero listas de 3 itens decorativas
+- Acentuacao correta no idioma da regiao
+
+Para cada item: corrigir diretamente.
+
+### Idioma (CRITICO)
+
+1. **Brasil (PT-BR)**: acentuacao + pontuacao corretas; sem hispanismos ou lusitanismos
+2. **LATAM (ES-LATAM)**: aplicar `padrao-linguistico.md`. Zero "vosotros". Zero "vale" como concordancia. Zero "movil" (usar "celular"). Tratamento ("tu"/"usted") consistente.
+3. **Portugal (PT-PT)**: aplicar `padrao-linguistico.md`. Zero brasileirismos. "Telemovel", "aplicacao", "casa de banho". Tratamento "voce" (3.a pessoa).
+
+Reescrever trechos que escaparem ao padrao.
+
+## Passada 3: Otimizacao e Impacto
+
+1. **Enxugar**: cada palavra deve justificar sua existencia. Cortar adjetivos vazios, adverbios redundantes.
+2. **Fluxo logico**: abertura → pergunta-eixo → 3 capitulos → opcionais → rodape. Cada bloco deve emendar no proximo sem quebra de tom.
+3. **Cabecalho**:
+   - Assunto ≤60 chars, jornalistico, sem clickbait
+   - Pre-header ≤80 chars, complementa assunto
+4. **Contagem**: corpo (sem cabecalho e rodape) ≤300 palavras. Se passar, cortar — priorizar enxugar abertura e mini-blocos da resposta, mantendo as 3 frases-chave.
 
 ## Output
 
-### Newsletters Revisadas
-Sobrescreva cada arquivo `newsletter/{brand}/entregas/YYYY-MM/newsletter-0X.md` com a versao revisada.
-Adicione no topo do arquivo:
+### Newsletter Revisada
+
+Sobrescreva `newsletter/{brand}/entregas/newsletter-{SEMANA_ISO}.md` com a versao revisada.
+
+Adicione no topo do arquivo (acima do cabecalho de metadados):
 ```
-<!-- Revisado em [DATA] | Passadas: fact-check, estilo, otimizacao -->
+<!-- Revisado em [DATA] | Passadas: fact-check, linguagem, otimizacao -->
 ```
 
 ### Log de Revisao
-Crie `newsletter/{brand}/entregas/YYYY-MM/REVISAO-LOG.md`:
+
+Crie `newsletter/{brand}/entregas/REVISAO-LOG-{SEMANA_ISO}.md`:
 
 ```markdown
-# Log de Revisao — [DATA]
-**Marca**: [{NomeDaMarca}] | **Regiao**: [{region}] | **Idioma**: [{idioma}]
+# Log de Revisao — Newsletter Semanal {SEMANA_ISO}
+**Marca**: {NomeDaMarca} | **Regiao**: {region} | **Idioma**: {idioma}
+**Data da revisao**: {DATA}
 
-## Newsletter 01: [Assunto]
-- **Fact-check**: [problemas encontrados e correcoes feitas]
-- **Estilo/Idioma**: [padroes IA removidos, reescritas e correcoes de idioma]
-- **Otimizacao**: [palavras cortadas, fluxo ajustado]
-- **Palavras**: [antes] → [depois]
+## Edicao revisada
+- **Assunto**: ...
+- **Pergunta-eixo**: ...
 - **Status**: APROVADA | REQUER ATENCAO
 
-[repetir para cada newsletter revisada]
+## Passada 1: Fact-check, estrutura, links
+- Problemas encontrados: ...
+- Correcoes aplicadas: ...
+- Links contextuais: N (3-6 ✓ | violacao detectada)
+- Dedupe: ok | duplicidade marcada [VERIFICAR DEDUPE]
 
-## Resumo Geral
-- Newsletters aprovadas: X/5
-- Newsletters que requerem atencao: X/5
-- Problemas mais comuns encontrados: [listar]
+## Passada 2: Linguagem jornalistica e anti-IA
+- Aberturas narrativas reescritas: N
+- Frases longas quebradas: N
+- Em-dashes removidos: N
+- Filler removidos: N
+- Idioma: corrigido | ja estava ok
+- Edutainment: adicionado em mini-bloco N | ja estava ok
+
+## Passada 3: Otimizacao
+- Palavras: antes [N] → depois [N]
+- Cortes principais: ...
+- Cabecalho ajustado: assunto / pre-header
+
+## Pendencias para o usuario
+- [Items marcados como VERIFICAR]
+
+## Resumo
+- APROVADA | REQUER ATENCAO
 ```
 
 ## Criterios de Aprovacao
-Uma newsletter e APROVADA quando:
-- Zero construcoes proibidas
-- Todas as informacoes sobre {NomeDaMarca} estao corretas
-- Menos de 600 palavras
-- Gancho prende atencao
-- CTA e natural
-- Nenhum dado sem fonte
-- Idioma e tom consistentes do inicio ao fim (conforme a regiao)
-- Conceitos nomeados verificados contra definicao real (ou removidos se incertos)
 
-Uma newsletter REQUER ATENCAO quando:
-- Algum dado marcado como [VERIFICAR]
-- Informacao sobre produto que nao pode ser confirmada
-- Gancho fraco que precisa de input criativo do usuario
+Uma newsletter e **APROVADA** quando:
+- Zero anti-IA (em-dashes, fillers, antiteses-por-negacao em excesso, "em resumo")
+- ≥3 links para o blog proprio
+- 3-6 links contextuais totais
+- ≤1 link de clipping PR
+- 0 links para noticias gerais de mercado
+- Pergunta-eixo NAO aparece como bloco visivel (so no comentario HTML interno e em `dor-semana.md`)
+- Estrutura: Abertura + Resposta em capitulos (Mais pra explorar, Clipping e Extra opcionais)
+- Corpo ≤300 palavras
+- Lead jornalistico (sem aberturas narrativas proibidas)
+- Frases medias ≤22 palavras
+- Tom nao-vendedor (max 1 mencao a {NomeDaMarca} fora dos links de blog)
+- Edutainment em cada mini-bloco da resposta
+- Cases nominais validados contra BRANDBOOK
+- Conceitos nomeados validados contra definicao real
+- Idioma e tom consistentes (PT-BR | ES-LATAM | PT-PT conforme regiao)
+- Dedupe ok (pergunta-dor 6 semanas, links 4 semanas)
+- ≤600 palavras no corpo
+
+Uma newsletter **REQUER ATENCAO** quando:
+- Algum dado marcado `[VERIFICAR]` ou `[VERIFICAR DEDUPE]`
+- Mencao de imprensa nao validada na fonte
+- Tom borderline vendedor (ex: 30-40% dos links sao para domínio próprio fora do blog)
+- Abertura ainda fraca apos uma reescrita

@@ -23,6 +23,7 @@ Se `$ARGUMENTS` contém tarefa + marca + região válidos (já normalizados), pu
 | `pesquisar {marca} {regiao}` | `/news-pesquisar {marca} {regiao}` |
 | `gerar {marca} {regiao}` | `/news-gerar {marca} {regiao}` |
 | `revisar {marca} {regiao}` | `/news-revisar {marca} {regiao}` |
+| `criar-post {marca} {regiao}` | `/news-criar-post {marca} {regiao}` |
 
 Marcas: `buzzmonitor` `buzzcreators` `cxpress` `elife`
 Regiões: `brasil` `latam` `portugal`
@@ -31,14 +32,16 @@ Regiões: `brasil` `latam` `portugal`
 
 ## Q1 — Tarefa
 
-AskUserQuestion — question: "O que quer fazer com newsletters?" header: "Tarefa" multiSelect: false
+AskUserQuestion — question: "O que quer fazer com newsletter?" header: "Tarefa" multiSelect: false
 
 1. "Pipeline completo (Recomendado)" → skill=news-pipeline
 2. "Só pesquisar" → skill=news-pesquisar
-3. "Só gerar rascunhos" → skill=news-gerar
-4. "Só revisar rascunhos" → skill=news-revisar
+3. "Só gerar a newsletter" → skill=news-gerar
+4. "Só revisar a newsletter" → skill=news-revisar
 
 Se tarefa ∈ {gerar, revisar}, avise em 1 linha: "Essa etapa requer que `/news-pesquisar` já tenha sido executado."
+
+Se o usuário precisar criar manualmente um post de blog para preencher uma lacuna identificada (sem rodar o pipeline), use o atalho `criar-post {marca} {regiao}` — pré-requisito: `pauta-sugerida.md` em `pesquisa/atual/` (gerado pelo `news-pesquisar`).
 
 ## Q2 — Marca
 

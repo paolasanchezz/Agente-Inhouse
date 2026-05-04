@@ -12,6 +12,168 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar, setup-agencia (+ docs LP)
+### 2026-05-04 — `.env.local` central + auto-invoke setup-agencia em fallback (v3.0.0)
+
+Iteração de DX em cima da v2.0.0. Reduz precedência de `SIBLING_BASE` de 4 caminhos para 2, elimina branching do sanity check OneDrive/iCloud (vira responsabilidade do setup-agencia) e fecha o loop entre as skills: se config falta, lp-publicar invoca setup-agencia automaticamente.
+
+- **`.env.local.example` (novo, raiz, versionado)**: template KEY=VALUE com `LP_SIBLING_BASE`. Documento auto-explicativo do formato pra colaboradores. Por enquanto só essa chave; preparado pra crescer com outras configs cross-skill per-máquina.
+
+- **`.env.local` (gitignored)**: arquivo real escrito pelo setup-agencia. Substitui o `landing-pages/.lp-config.local.json` da v2.0.0 (removido do `.gitignore`).
+
+- **lp-publicar 2.0.0 → 3.0.0 (MAJOR — comportamento muda)**:
+  - Passo 0.1 simplificado de 4 caminhos → 2: env var `LP_SIBLING_BASE` no shell > linha em `.env.local`. Fim do fallback "parent-do-repo + sanity check OneDrive/iCloud/Dropbox" (v2.0.0). Config é responsabilidade do setup-agencia.
+  - **Auto-invoke setup-agencia em fallback**: se nem env var nem `.env.local` resolverem, lp-publicar usa o tool `Skill` para invocar `setup-agencia` com argumento `"so lp"`, espera ele escrever `.env.local`, e re-resolve. Loop fechado, zero "rode X primeiro depois volte".
+  - `allowed-tools` ganhou `Skill` para o auto-invoke acima.
+  - **Migração necessária**: colaboradores existentes (Victor) precisam rodar `/setup-agencia` uma vez em modo `"so lp"` pra criar `.env.local`. Sem isso, primeira chamada de `/lp-publicar` automaticamente dispara o setup. Sem quebra silenciosa — só uma pergunta extra na primeira vez.
+
+- **setup-agencia 0.3.0 → 0.4.0**:
+  - Passo 4.4 reescrito: ao invés de instruir o user a rodar `setx`/`export` no shell (com fricção cross-platform: reabrir terminal, escolher entre bashrc/zshrc/etc), agora pergunta o path com `AskUserQuestion` (sugerindo parent-do-repo se não for sync-watched) e escreve `.env.local` direto via `Write`/`Edit`.
+  - Validação de path: rejeita pasta dentro do repo, dentro de OneDrive/iCloud/Dropbox; pede outra.
+  - Novo fallback `lp-sibling-falhou`.
+
+- **landing-pages/CONTEXT.md §1**: precedência atualizada para 2 caminhos. Menciona auto-invoke do setup-agencia.
+
+- **lp-preparar/CONTEXT.md** (sem bump — só doc): atualizada referência de precedência.
+
+- **landing-pages/cxpress/livraria/README.md**: instrução manual de cópia atualizada para ler `.env.local` em vez do fallback `${LP_SIBLING_BASE:-../}` da v2.0.0. Mensagem clara "rode /setup-agencia primeiro" se faltar.
+
+- **`.gitignore`**: substituído `landing-pages/.lp-config.local.json` por `.env.local`.
+
+- **Motivação de DX**: o ponto crítico do Victor depois da v2.0.0 era que cada execução de `/lp-publicar` recomputava o ambiente (`git rev-parse` + `dirname` + sanity check). Custo em tokens marginal mas a complexidade era real — 4 caminhos pra entender e debugar. v3.0.0 troca essa complexidade por um arquivo de config persistente, mais alinhado com `meta-ads/.env` que já existe há tempo.
+
+---
+
+## news-gerar, news-revisar, template-newsletter.md, estilo-newsletter.md
+### 2026-05-04 — Enxugamento + pergunta-eixo INTERNA (v2.1.0)
+
+Feedback do Victor pos primeiro teste end-to-end com Cxpress BR: NL "muito grande, estrutura feia". Pediu reducao pela metade dos caracteres + remocao da pergunta-eixo do output visivel ("deixe como algo interno, que so nos vemos na hora de construir, mas que nao aparece de forma explicita para o cliente").
+
+- **news-gerar 2.0.0 → 2.1.0**:
+  - Limite do corpo: ≤600 → **≤300 palavras**
+  - Bloco "## A pergunta da semana" no template **REMOVIDO** — pergunta-eixo agora vive como comentario HTML interno no topo do arquivo local (`<!-- Pergunta-eixo (planejamento interno, NAO publicar): "..." -->`) e em `dor-semana.md`. NUNCA aparece como bloco visivel ao leitor.
+  - Mini-blocos da resposta encurtados: 95-115 → 35-55 palavras cada (total 110-170 vs 280-340 antes)
+  - Abertura encurtada: 40-60 → 30-50 palavras
+  - "Mais pra explorar": 1-2 bullets → 1 bullet (15-25 palavras)
+  - Estrutura visivel: 2 blocos obrigatorios (Abertura + Resposta em capitulos) + 3 opcionais (era 3 obrigatorios + 3 opcionais)
+
+- **news-revisar 2.0.0 → 2.1.0**:
+  - Validar limite ≤300 palavras no corpo
+  - Adicionar checagem: pergunta-eixo **NAO** aparece como bloco visivel (sem `> ## A pergunta da semana`, sem callout/blockquote com a pergunta literal). Se aparecer, REMOVER e absorver no assunto/abertura
+  - Atualizar criterios de aprovacao
+
+- **template-newsletter.md** (em news-gerar):
+  - Reescrito conforme nova anatomia
+  - Bloco "Pergunta da semana" removido como elemento visivel — vira nota explicativa de que a pergunta-eixo e elemento INTERNO de planejamento
+
+- **conhecimento/editorial/estilo-newsletter.md**:
+  - Anatomia atualizada: 2 blocos obrigatorios + 3 opcionais (em vez de 3 + 3)
+  - Limite ≤300 palavras no corpo
+  - Checklist atualizada: "Pergunta-eixo NAO aparece como bloco visivel"
+
+- **Cxpress 2026-W19** (newsletter ja gerada): reescrita do corpo aplicando v2.1.0 (~376 → ~185 palavras), bloco da pergunta-eixo removido, Notion atualizado via `notion-update-page` (`replace_content`).
+
+- **Sem mudanca em**: news-pesquisar (continua gerando `dor-semana.md` com a pergunta-eixo), news-pipeline, news-criar-post.
+
+---
+
+## news-* (familia) + estilo-newsletter.md + CLAUDE.md
+### 2026-05-04 — Newsletter semanal noticiosa com eixo no blog proprio (v2.0.0)
+
+- **Migracao da familia news-* de 5 NLs/mes formato campanha → 1 NL/semana formato curadoria editorial.**
+- **Feedback de origem:** Alessandro (socio) leu as 4 NLs do mes e disse "esta com muita cara de campanha de email marketing", pediu formato mais noticioso, 90% conteudo do blog proprio (oportunidade de revisar centenas de posts antes de divulgar), 10-20% clipping de imprensa, foco em dores, linguagem jornalistica e direta, sugestao de "uma pergunta por edicao", edutainment (educacao + entretenimento). Benchmark: a propria newsletter Buzzmonitor.
+
+- **news-pesquisar 1.0.0 → 2.0.0 (MAJOR):**
+  - Foco totalmente reorientado: mapear dores (BRANDBOOK §Publico-Alvo) + indexar blog proprio em profundidade + clipping PR (mencoes da marca em imprensa, data ≤ 7 dias).
+  - Removidos da news: noticias gerais de mercado e analise de concorrentes (concorrentes.md preservado para outras skills).
+  - Cache cumulativo `conhecimento/produto/{brand}/blog-cache.md` indexa posts ja conhecidos (nao deleta entre semanas).
+  - Versionamento de pasta: `pesquisa/atual/` (semana corrente) + `pesquisa/arquivo/YYYY-WW/` (historico).
+  - Novos outputs: `dores-candidatas.md`, `indice-blog.md`, `dor-semana.md`, `pauta-sugerida.md` (condicional), `clipping-pr.md`, `RESUMO.md`.
+  - Detecta lacuna: dor com cobertura <3 posts gera pauta sugerida.
+  - Argumento `foco` removido (era engessante).
+
+- **news-criar-post 1.0.0 (NOVO):**
+  - Skill manual-trigger invocada pelo `news-pipeline` apos aprovacao explicita da pauta.
+  - Le `pesquisa/atual/pauta-sugerida.md`, escreve post completo (1500-2500 palavras) seguindo `conhecimento/copywriting/blog-copy.md` com edutainment + tom jornalistico.
+  - Salva local em `newsletter/{brand}/posts-sugeridos/post-{slug}-{semana}.md` e publica draft no Notion sob `Entregas > Drafts de Blog > {Marca} > [{semana}] {H1}`.
+  - Atualiza `dor-semana.md` adicionando o novo post como ancora 1, e `_state.json` registrando a pauta consumida.
+  - Time editorial revisa, publica no blog real e atualiza dor-semana.md com URL final antes do disparo da news.
+
+- **news-gerar 1.0.0 → 2.0.0 (MAJOR):**
+  - Output: 1 NL em `newsletter/{brand}/entregas/newsletter-{semana}.md` (sem subpasta YYYY-WW — direto na pasta `entregas/`).
+  - Le `dor-semana.md`, `clipping-pr.md`, `_state.json` e (se existir) swipe-file Buzzmonitor.
+  - Estrutura nova: 3 blocos obrigatorios (Abertura jornalistica + Pergunta da semana + Resposta em capitulos) + 3 opcionais (Mais pra explorar + Na imprensa + Bloco extra).
+  - Limites: ≤600 palavras no corpo, 3-6 links contextuais (≥3 blog proprio, ≤1 clipping, ≤1 extra).
+  - Notion: 1 pagina por edicao (nao toggle), titulo `[{semana}] {Assunto}`.
+  - Atualiza `_state.json` com pergunta-dor e links da edicao para dedupe (6 semanas pergunta, 4 semanas links).
+
+- **news-revisar 1.0.0 → 2.0.0 (MAJOR):**
+  - Argumento `[todas|N]` removido (sempre 1 NL).
+  - Novas validacoes: ≥3 links blog proprio, 3-6 links totais, ≤1 clipping PR, ≤1 extra, 0 noticias gerais de mercado, dedupe vs `_state.json`.
+  - Linguagem jornalistica: rejeita aberturas "imagine que...", "no mundo atual...", frases medias ≤22 palavras.
+  - Tom nao-vendedor: max 1 mencao a marca fora dos links de blog; alerta se >40% links forem para dominio proprio fora do blog.
+  - Edutainment: cada mini-bloco da resposta valida ter analogia, dado, exemplo ou definicao.
+  - Limite mantido em 600 palavras (corpo).
+
+- **news-pipeline 1.0.0 → 2.0.0 (MAJOR):**
+  - Novo fluxo: pesquisa → (pausa explicita: aprovar pauta sugerida?) → news-criar-post (se aprovada) → news-gerar → news-revisar.
+  - Argumento `foco` removido.
+  - Adicionada nota de cadencia semanal (loop ou schedule).
+  - Relatorio final consolida estado da edicao + draft de blog (se houver) + pendencias do time editorial.
+
+- **template-newsletter.md (em news-gerar):** reescrito completo. Estrutura espelha a anatomia: Abertura jornalistica (40-60 palavras) + Pergunta da semana (15-20 palavras em destaque) + Resposta em tres tempos (3 mini-blocos, 280-340 palavras, 3 links) + opcionais.
+
+- **conhecimento/editorial/estilo-newsletter.md (in-place):**
+  - Referencia de estilo: YouScan → newsletter oficial Buzzmonitor (com pointer para swipe-file a popular com amostras reais).
+  - Adicionadas secoes: Anatomia da newsletter semanal, Linguagem jornalistica e direta, Edutainment, Criterios de selecao de post proprio, Criterios de clipping PR, Bloco extra (sem cadencia fixa).
+  - Demovidos: "Tipos de Gancho (10 tipos)" → "Aberturas jornalisticas (referencia opcional)" — tipos viram inspiracao para abertura curta, nao eixo da NL. "Tipos de CTA" → removido (sem cadencia fixa).
+  - Checklist pre-publicacao reescrita.
+
+- **CLAUDE.md:** fluxo `Newsletters` atualizado (inclui pausa de aprovacao + news-criar-post). Tabela de comandos news-* expandida (5 comandos). Nota de cadencia semanal via `/loop` ou `/schedule`.
+
+- **Conhecimento sustentado:** `conhecimento/copywriting/swipe-file/buzzmonitor-newsletter.md` sera populado com 3-5 edicoes reais da newsletter Buzzmonitor (Victor envia). Sem o swipe, news-gerar usa fallback editorial baseado em estilo-newsletter.md.
+
+- **Migracao:** sem modo legacy. Pesquisas e entregas mensais antigas ficam em `entregas/YYYY-MM/` e `pesquisa/arquivo/` como historico. Primeira execucao da v2.0 cria `entregas/newsletter-{semana}.md`, `_state.json` zerado e `blog-cache.md` zerado.
+
+- **BREAKING:** argumento `foco` removido de news-pipeline e news-pesquisar; argumento `[todas|N]` removido de news-revisar; pesquisa nao gera mais `noticias-mercado.md` nem `analise-concorrentes.md` para a news.
+
+- Plano de implementacao em `~/.claude/plans/n-s-rodamos-a-skill-eventual-token.md`.
+
+---
+
+## lp-publicar, lp-preparar, setup-agencia, landing-pages/CONTEXT.md
+### 2026-05-04 — Cross-platform: paths sibling e auth Vercel parametrizados
+
+- **lp-publicar 1.7.0 → 2.0.0 (MAJOR — comportamento muda por máquina):**
+  - Novo Passo 0.1: `SIBLING_BASE` resolvido em runtime em ordem de precedência: env var `LP_SIBLING_BASE` > `landing-pages/.lp-config.local.json` (campo `siblingBase`, gitignored) > pasta-mãe do repo (`dirname(git rev-parse --show-toplevel)`). Sanity check aborta se default cair em pasta sync-watched (OneDrive/iCloud/Dropbox/node_modules/.git/worktrees) — exige `LP_SIBLING_BASE` explícita.
+  - Passo 0.5 reescrito em 3 sub-passos: pre-flight do CLI Vercel (`vercel --version` + `vercel whoami --scope $TEAM`, abortando com erro claro se faltar instalação ou auth), detecção de guarda-chuva via `vercel alias ls` + awk (CLI cuida de auth internamente — zero dependência de filesystem cross-platform), garantia de `.vercel/project.json` no sibling de guarda-chuva (auto-link via `vercel link` se ausente — destrava primeira execução em outra máquina).
+  - **Por que `alias ls` em vez de `curl + Python lendo auth.json` (escolha original do plano):** verificação descobriu que Python da Microsoft Store (caso comum no Windows) roda em sandbox AppContainer e não consegue acessar paths absolutos em `AppData/Roaming/`, mesmo com paths corretos. Validado: `Path('auth.json').exists()` no CWD = True; `Path(os.environ['APPDATA']) / '...'` = False. Pivot para CLI nativo elimina toda essa categoria de bug. Bônus: `alias ls` cobre o caso "domínio atribuído mas projeto sem deploy custom-domain" (cenário "guarda-chuva em popularização" — `material.buzzmonitor.com` hoje), que `vercel projects ls` não pega.
+  - Removidas todas as menções a `C:/Users/titof/Downloads/Claude/{nome}/` no SKILL.md (substituídas por `${SIBLING_BASE}/{nome}/`).
+  - Removida a leitura direta de `$APPDATA/com.vercel.cli/Data/auth.json` (Windows-only e quebrava com Python sandboxed).
+  - **Migração para Victor:** comportamento default (parent-do-repo) já bate com o setup atual (`Downloads/Claude` é o parent de `Agente Inhouse/`). Verificação end-to-end confirmou que SIBLING_BASE resolve igual ao path antes hardcoded. Nenhuma ação necessária.
+
+- **lp-preparar 1.1.0 → 1.2.0:**
+  - Tabela "Projetos Vercel correspondentes" no `CONTEXT.md` perdeu coluna "Sibling local" (derivada em runtime, era redundante). Restaram subdomínio + projeto Vercel.
+  - Seção "Pasta sibling (deploy artifact)" agora documenta `${SIBLING_BASE}/{nome}/` em vez de path absoluto.
+
+- **landing-pages/CONTEXT.md:**
+  - §1 (Mapa mental): adicionada linha sobre resolução de `SIBLING_BASE` em runtime.
+  - §4.1, §4.2, §6 (troubleshooting): paths absolutos `C:/Users/titof/...` substituídos por `${SIBLING_BASE}/...`.
+
+- **setup-agencia 0.2.0 → 0.3.0:**
+  - Passo 1.2 ganhou opção 5 — "Landing Pages (/landing-page)" — que dispara o novo Passo 4.
+  - Novo **Passo 4** (Vercel CLI) com sub-passos: validar CLI via `npx vercel --version`, login via `npx vercel login`, validar org com `vercel whoami --scope team_nC991VqUuSU2jXZN152xqqEg`, e configuração opcional de `LP_SIBLING_BASE`. Explicita que **MCP Vercel ≠ CLI Vercel**.
+  - Passo 4 antigo (Test drive) renumerado para 5; Passo 5 (Resumo) para 6 — agora inclui `/landing-page` e o checkmark de Vercel.
+  - Novos fallbacks: `vercel-cli-falhou`, `vercel-login-falhou`, `vercel-org-falhou`.
+
+- **landing-pages/cxpress/livraria/README.md:** instrução manual de cópia atualizada para usar `LP_SIBLING_BASE` com fallback a parent-do-repo + auto-link via `vercel link` se `.vercel/project.json` ausente. Funciona cross-máquina.
+
+- **`.gitignore`:** adicionado `landing-pages/.lp-config.local.json` (config pessoal por colaborador).
+
+- **Motivação:** colega tentou rodar `/lp-pipeline` em máquina nova e falhou em 2 frentes — sibling apontando pra `C:/Users/titof/...` inexistente, e leitura de auth Vercel via `$APPDATA` falhando porque ela autenticou só o MCP Vercel (não o CLI). Pós-mortem em `~/.claude/plans/uma-colega-rodou-lp-pipeline-staged-biscuit.md`.
+
+---
+
 ## landing-pages/GUIDELINES.md
 ### 2026-04-30 — §10 Posicionamento do formulário (sugestão)
 - Nova seção §10 com defaults de posicionamento por tipo de LP, válidos para todas as marcas:

@@ -29,12 +29,14 @@ Cxpress mantem 1 subdominio so (`content.cxpress.io`) para qualquer tipo — nao
 
 ### Projetos Vercel correspondentes
 
-| Subdominio | Projeto Vercel | Sibling local |
-|---|---|---|
-| `evento.buzzmonitor.com` | `buzzmonitor-evento` | `C:/Users/titof/Downloads/Claude/buzzmonitor-evento/` |
-| `material.buzzmonitor.com` | `buzzmonitor-material` | `C:/Users/titof/Downloads/Claude/buzzmonitor-material/` |
-| `webinar.buzzmonitor.com` | `buzzmonitor-lp-monitoramento-concorrentes` | `C:/Users/titof/Downloads/Claude/buzzmonitor-lp-monitoramento-concorrentes/` |
-| `content.cxpress.io` | `cxpress-lp-playbook-whatsapp2026` | `C:/Users/titof/Downloads/Claude/cxpress-lp-playbook-whatsapp2026/` |
+| Subdominio | Projeto Vercel |
+|---|---|
+| `evento.buzzmonitor.com` | `buzzmonitor-evento` |
+| `material.buzzmonitor.com` | `buzzmonitor-material` |
+| `webinar.buzzmonitor.com` | `buzzmonitor-lp-monitoramento-concorrentes` |
+| `content.cxpress.io` | `cxpress-lp-playbook-whatsapp2026` |
+
+Sibling local em runtime = `${SIBLING_BASE}/{Projeto Vercel}/` — nao documentar paths absolutos aqui, eles variam por maquina (ver `lp-publicar` Passo 0.1 para resolucao de `SIBLING_BASE`).
 
 Nomes "legacy" (com slug da primeira LP) sao herdados — `lp-publicar` Passo 0.5 detecta o projeto via API Vercel, nome nao importa para o fluxo.
 
@@ -66,7 +68,7 @@ Evitar dia no slug (o README guarda a data completa). Manter tudo minusculo, ape
 
 ## Pasta sibling (deploy artifact)
 
-Base padrao: `C:/Users/titof/Downloads/Claude/{nome-do-projeto}/` (fora do repo).
+Base padrao: `${SIBLING_BASE}/{nome-do-projeto}/` (fora do repo). `SIBLING_BASE` resolvido em runtime — env var `LP_SIBLING_BASE` no shell > linha `LP_SIBLING_BASE=...` em `.env.local` na raiz (escrito por `/setup-agencia`). Ver `lp-publicar` Passo 0.1.
 
 - **Modo solo:** `{nome}` = `{marca}-lp-{slug}` (1 LP por projeto Vercel; criada do zero pelo lp-publicar).
 - **Modo guarda-chuva:** `{nome}` = nome do projeto Vercel ja existente que ja serve o dominio (ex: `buzzmonitor-lp-monitoramento-concorrentes`); LP nova vira subpasta sem tocar nas vizinhas.

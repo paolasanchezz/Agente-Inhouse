@@ -1,0 +1,43 @@
+{
+  "ultima_atualizacao": "2026-05-04",
+  "perguntas_dor": [
+    {
+      "semana": "2026-W19",
+      "dor": "Atendimento que nao escala - mais gente nao resolve um sistema fragmentado",
+      "pergunta": "Quando o atendimento da sua empresa trava, o problema e o volume ou o sistema?"
+    }
+  ],
+  "links_usados": [
+    {
+      "semana": "2026-W19",
+      "url": "https://blog.cxpress.io/o-problema-do-atendimento-ao-cliente-nao-e-o-volume-e-o-sistema/",
+      "titulo": "O problema do atendimento ao cliente nao e o volume. E o sistema",
+      "tipo": "post-proprio-ancora"
+    },
+    {
+      "semana": "2026-W19",
+      "url": "https://blog.cxpress.io/centralizacao-de-canais-otimize-whatsapp-chat-e-email-centralizacao-de-canais/",
+      "titulo": "Centralizacao de canais: como organizar WhatsApp, chat e e-mail em um so lugar",
+      "tipo": "post-proprio-ancora"
+    },
+    {
+      "semana": "2026-W19",
+      "url": "https://blog.cxpress.io/reduzir-tma-melhore-atendimento-satisfacao/",
+      "titulo": "Como reduzir o tempo medio de atendimento (TMA) sem perder qualidade",
+      "tipo": "post-proprio-ancora"
+    },
+    {
+      "semana": "2026-W19",
+      "url": "https://blog.cxpress.io/implantar-atendimento-ia-em-sua-empresa/",
+      "titulo": "Check-list completo para implantar atendimento IA em sua empresa",
+      "tipo": "post-proprio-secundario"
+    },
+    {
+      "semana": "2026-W19",
+      "url": "https://blog.cxpress.io/atendimento-remoto-e-suporte-hibrido-2026/",
+      "titulo": "Atendimento remoto e suporte hibrido: tendencias em 2026",
+      "tipo": "post-proprio-secundario"
+    }
+  ],
+  "pautas_sugeridas_consumidas": []
+}

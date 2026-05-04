@@ -9,7 +9,7 @@ Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de c
 ### Fluxo das Skills
 
 ```
-Newsletters:  /news-pipeline → /news-pesquisar → /news-gerar → /news-revisar
+Newsletters:  /news-pipeline → /news-pesquisar → (pausa: aprovar pauta?) → /news-criar-post → /news-gerar → /news-revisar
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
@@ -104,17 +104,19 @@ Para revisar um PR, o Victor roda `/pull-request-review` com o link ou numero �
 | `/pull-request-review [url-ou-num]` | Revisa PR localmente — diff + dominio-especifico do repo (skills/brand/LP/meta-ads). Relatorio em `reviews/pr-{N}-YYYY-MM-DD.md` com criticos, importantes e nice-to-haves. |
 
 ### Newsletters
-Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`.
+Aceita `[brand]` e `[region]`. Default: `buzzmonitor brasil`. **Newsletter semanal noticiosa, eixo no blog proprio** (90% links blog, 10-20% clipping da marca em imprensa). 1 NL por execucao.
 
 | Comando | O que faz |
 |---|---|
-| `/news-pipeline [brand] [region]` | Pesquisa, gera 5 newsletters e revisa |
-| `/news-pesquisar [brand] [region]` | So a pesquisa |
-| `/news-gerar [brand] [region]` | So gera os rascunhos |
-| `/news-revisar [brand] [region]` | So revisa os rascunhos |
+| `/news-pipeline [brand] [region]` | Pesquisa + (pausa para aprovar pauta sugerida, se houver lacuna) + criacao de post + geracao + revisao. 1 NL/execucao |
+| `/news-pesquisar [brand] [region]` | Mapeia dores + indexa blog + busca clipping PR; gera dor da semana, posts-ancora e (se houver lacuna) pauta sugerida |
+| `/news-criar-post [brand] [region]` | Cria post de blog (1500-2500 palavras) para preencher lacuna identificada; publica draft no Notion. Manual-trigger (so apos aprovar pauta) |
+| `/news-gerar [brand] [region]` | Gera 1 newsletter da semana a partir de dor-semana.md |
+| `/news-revisar [brand] [region]` | Revisa 1 newsletter (fact-check, linguagem jornalistica, anti-IA, dedupe) |
 
 - `[brand]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
 - `[region]`: `brasil` (PT-BR) | `latam` (ES-LATAM) | `portugal` (PT-PT)
+- Para automatizar cadencia semanal: `/loop 7d /news-pipeline {brand} {region}` ou `/schedule` (decisao por marca/regiao do usuario)
 
 ### Traducao de Copy
 

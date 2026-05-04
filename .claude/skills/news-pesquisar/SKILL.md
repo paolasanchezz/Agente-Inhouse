@@ -1,14 +1,16 @@
 ---
 name: news-pesquisar
-description: Pesquisa blog da marca, noticias do mercado e concorrentes para coletar material para newsletters — adaptado ao idioma da regiao.
-argument-hint: "[brand] [region] [foco-opcional]  — ex: buzzmonitor brasil 'atendimento ao cliente'"
-allowed-tools: WebFetch, WebSearch, Read, Write, Agent, Bash
-version: 1.0.0
+description: Mapeia dores da marca, indexa o blog proprio em profundidade e busca clipping de imprensa para alimentar a newsletter semanal. Output: dor da semana + posts-ancora + pauta sugerida (se houver lacuna) + clipping PR.
+argument-hint: "[brand] [region]  — ex: buzzmonitor brasil | cxpress latam | buzzcreators portugal"
+allowed-tools: WebFetch, WebSearch, Read, Write, Edit, Agent, Bash
+version: 2.0.0
 ---
 
-# Skill: Pesquisar Material para Newsletters
+# Skill: Pesquisar Material para Newsletter Semanal
 
-Voce e um pesquisador especializado em marketing digital e tecnologia. Sua tarefa e coletar material de alta qualidade para a geracao de newsletters, adaptado a marca e regiao indicadas.
+Voce e um pesquisador editorial especializado em curadoria de blog proprio + clipping de imprensa. Sua missao e (1) escolher a pergunta-dor da semana, (2) mapear quais posts do blog respondem a ela, (3) detectar lacunas que merecam virar post novo, e (4) coletar mencoes da marca em midia externa.
+
+**ESTA SKILL NAO COLETA MAIS** noticias gerais de mercado nem analise de concorrentes para a news (esse material existia na v1 mas a v2 foca no blog proprio com clipping pontual).
 
 ## Passo 0: Parsing de Argumentos
 
@@ -17,179 +19,312 @@ Leia `.claude/skills/news-pesquisar/CONTEXT.md` para marcas, regioes, caminhos e
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`brand`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
 - **Argumento 2** (`region`): `brasil` | `latam` | `portugal` — default: `brasil`
-- **Argumento 3** (foco opcional): tema para direcionar a pesquisa (ex: "atendimento ao cliente")
 
-Use o mapeamento de regiao do CONTEXT.md para idioma e pastas.
+Use o mapeamento do CONTEXT.md para idioma e pastas.
+
+Calcule a semana ISO atual: formato `YYYY-WW` (ex: `2026-W18`). Salve como `{SEMANA_ISO}` para usar nos paths.
 
 ## Passo 1: Carregar Contexto
 
-Leia os seguintes arquivos na ordem:
-1. `brand/{brand}/BRANDBOOK.md` — produto, blog URL, nome de exibicao
-2. `conhecimento/produto/{brand}/concorrentes.md` — mapa competitivo da marca
-3. Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` (terminologia nativa) e `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md` (padrao de escrita)
+Leia os seguintes arquivos:
+
+1. `brand/{brand}/BRANDBOOK.md` — produto, blog URL, nome de exibicao, **publico-alvo e dores**
+2. Se existir, `newsletter/{brand}/entregas/_state.json` — historico de perguntas-dor, posts e links das ultimas 6 semanas (para dedupe)
+3. Se existir, `conhecimento/produto/{brand}/blog-cache.md` — indice cumulativo de posts ja conhecidos
+4. Se `region` != `brasil`: leia tambem `conhecimento/produto/{brand}/{lang-pasta}/{brand}.md` e `conhecimento/linguistico/{lang-linguistico}/padrao-linguistico.md`
 
 Extraia do BRANDBOOK:
 - **NomeDaMarca**: campo "Nome de exibicao" do bloco `### Configuracao` (dentro de `## 2. Produto`)
-- **BlogURL**: coluna "Blog" da tabela de URLs no bloco `## 3. URLs e Contatos Oficiais` para a regiao indicada (use a linha "Brasil" se a regiao nao tiver URL especifica)
-- **SiteURL**: coluna "Site" da mesma tabela em `## 3. URLs e Contatos Oficiais`
+- **BlogURL**: coluna "Blog" da tabela em `## 3. URLs e Contatos Oficiais` para a regiao indicada (use a linha "Brasil" se a regiao nao tiver URL especifica)
+- **SiteURL**: coluna "Site" da mesma tabela
+- **Dores e publico-alvo**: bloco `### Publico-Alvo` em `## 1. Identidade` — extraia lista de dores nomeadas, perfis, contextos. Se a granularidade for baixa, complete com inferencias claras a partir do posicionamento e features.
 
 ## Fase 0: Arquivar Pesquisa Anterior
 
-Antes de gravar qualquer arquivo novo, verifique se ja existem arquivos em `conhecimento/produto/{brand}/pesquisa/` (exceto a pasta `conhecimento/produto/{brand}/pesquisa/arquivo/`).
-
-Se existirem arquivos anteriores (`blog-{brand}.md`, `noticias-mercado.md`, `analise-concorrentes.md`, `RESUMO.md`):
-1. Leia a data no cabecalho de qualquer um desses arquivos para identificar o mes da pesquisa anterior (formato `YYYY-MM`)
-2. Use Bash para criar a pasta de arquivo e mover os arquivos:
+Se existir `conhecimento/produto/{brand}/pesquisa/atual/` com arquivos:
+1. Leia o cabecalho de qualquer arquivo em `atual/` para identificar a semana anterior (formato `YYYY-WW`)
+2. Use Bash para mover:
    ```bash
-   mkdir -p conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM
-   mv conhecimento/produto/{brand}/pesquisa/blog-{brand}.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv conhecimento/produto/{brand}/pesquisa/noticias-mercado.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
-   mv conhecimento/produto/{brand}/pesquisa/RESUMO.md conhecimento/produto/{brand}/pesquisa/arquivo/YYYY-MM/
+   mkdir -p "conhecimento/produto/{brand}/pesquisa/arquivo/{SEMANA_ANTERIOR}"
+   mv conhecimento/produto/{brand}/pesquisa/atual/* "conhecimento/produto/{brand}/pesquisa/arquivo/{SEMANA_ANTERIOR}/" 2>/dev/null || true
    ```
 
-## Fase 1: Blog da Marca
-**Output**: `conhecimento/produto/{brand}/pesquisa/blog-{brand}.md`
+A pasta `atual/` agora deve estar vazia. Ela sera repopulada com a pesquisa desta semana.
 
-1. Use WebFetch em `{BlogURL}` (extraido do arquivo de conhecimento) para obter a listagem de posts
-2. Identifique os 5-8 posts mais recentes
-3. Para cada post, use WebFetch na URL do post e extraia:
-   - Titulo
-   - Resumo (2-3 frases)
-   - Caso de uso ou case de sucesso mencionado
-   - Metricas ou resultados citados
-   - Diferencial do produto destacado
-   - Potencial angulo para newsletter
-4. Se `$ARGUMENTS` incluiu foco tematico, priorize posts relacionados a esse tema
+## Fase 1: Mapear Dores Candidatas
+**Output**: `conhecimento/produto/{brand}/pesquisa/atual/dores-candidatas.md`
 
-Formato do arquivo de saida (escreva no idioma da regiao):
+A partir das dores extraidas do BRANDBOOK no Passo 1, monte uma lista de dores candidatas para virarem pergunta da semana. Para cada dor:
+
+- **Nome da dor** (curta, frase nominal — ex: "atendimento que nao escala", "monitoramento de marca em multiplos canais")
+- **Descricao** (1-2 frases sobre o que esse leitor sente no dia a dia)
+- **Perfil afetado** (qual perfil do publico-alvo sente essa dor — ex: "gestor de SAC em rede varejista", "head de marketing digital")
+- **Sinais de quentitude** (heuristica: a dor aparece em queries do nicho? em discussoes recentes? em pesquisas do setor?)
+- **Ultima vez usada na newsletter** (consultar `_state.json`; se ausente, "nunca")
+
+**Filtragem por dedupe**: descarte dores usadas como pergunta da semana nas ultimas 6 semanas (campo `pergunta_dor.dor` em `_state.json`).
+
+Saida (no idioma da regiao):
 ```
-# Pesquisa Blog {NomeDaMarca} — [DATA]
+# Dores Candidatas — {NomeDaMarca}, semana {SEMANA_ISO}
 **Marca**: {NomeDaMarca} | **Regiao**: {region} | **Idioma**: {idioma}
 
-## Post 1: [Titulo]
-- **URL**: [link]
-- **Resumo**: [2-3 frases]
-- **Case/Exemplo**: [empresa e resultado]
-- **Metricas**: [numeros citados]
-- **Angulo para Newsletter**: [como usar este material]
+## Dor 1: [Nome curto]
+- **Descricao**: ...
+- **Perfil afetado**: ...
+- **Sinais de quentitude**: ...
+- **Ultima vez usada**: nunca | YYYY-WW
 
-[repetir para cada post]
+[repetir para 4-6 dores]
 ```
 
-## Fase 2: Noticias do Mercado
-**Output**: `conhecimento/produto/{brand}/pesquisa/noticias-mercado.md`
+## Fase 2: Indexar o Blog em Profundidade
+**Output**: `conhecimento/produto/{brand}/pesquisa/atual/indice-blog.md`
+**Cache cumulativo**: `conhecimento/produto/{brand}/blog-cache.md`
 
-**PASSO 1 — Extrair o setor da marca**: Leia a secao `## 1. Identidade` de `brand/{brand}/BRANDBOOK.md` (sub-blocos "### Sobre a Marca" e "### Posicionamento") para identificar o setor e posicionamento da marca. Use essas informacoes para construir os termos de busca desta fase.
+A meta NAO e coletar 3-4 posts recentes — e mapear posts do blog que respondam as dores candidatas, mesmo que sejam antigos.
 
-**PASSO 2 — Montar as queries adaptadas ao setor e regiao**:
+### Fase 2.1: WebFetch da listagem do blog
 
-A partir do setor identificado, construa 5 queries combinando:
-- Tema principal do produto (ex: "social listening", "atendimento omnichannel", "influencer marketing")
-- Termos de mercado relevantes (tendencias, IA, dados de comportamento do consumidor)
-- Regiao no idioma correto: "brasil" / "latinoamerica" / "portugal"
-- Ano atual (2026)
+Use WebFetch em `{BlogURL}` para obter a lista de posts visiveis. Anote URL, titulo e data quando disponiveis.
 
-**Exemplos de adaptacao por setor** (ajuste conforme o produto real):
-- Social listening/monitoramento → "social listening tendencias 2026 [regiao]", "monitoramento de redes sociais IA 2026"
-- Atendimento ao cliente/CX → "atendimento omnichannel tendencias 2026 [regiao]", "customer experience IA [regiao] 2026"
-- Marketing de influenciadores → "influencer marketing tendencias 2026 [regiao]", "creator economy brasil 2026"
-- Servicos de CX/outsourcing → "customer experience outsourcing tendencias 2026", "CX como servico brasil 2026"
+### Fase 2.2: WebSearch por dor
 
-Se `$ARGUMENTS` incluiu foco tematico, adicione esse tema as queries e priorize resultados relacionados.
-
-Para os 5-6 resultados mais relevantes, use WebFetch para extrair pontos-chave. Foque em:
-- Tendencias conectadas ao produto e ao mercado da regiao
-- Dados surpreendentes que funcionam como ganchos
-- Mudancas de comportamento do consumidor
-- Pesquisas e relatorios recentes do setor
-
-Formato do arquivo de saida (no idioma da regiao):
+Para cada dor candidata da Fase 1, faca uma busca dirigida no dominio do blog:
 ```
-# Noticias do Mercado — [DATA]
-**Marca**: {NomeDaMarca} | **Regiao**: {region} | **Idioma**: {idioma}
-
-## Noticia 1: [Titulo]
-- **Fonte**: [nome da fonte e URL]
-- **Resumo**: [2-3 frases]
-- **Dado-chave**: [estatistica ou insight principal]
-- **Conexao com {NomeDaMarca}**: [como isso se relaciona com o produto]
-- **Potencial como Gancho**: [como usar como abertura de newsletter]
-
-[repetir para cada noticia]
+site:{dominio_do_blog} [palavras-chave da dor]
 ```
 
-## Fase 3: Analise de Concorrentes
-**Output**: `conhecimento/produto/{brand}/pesquisa/analise-concorrentes.md`
+Exemplos:
+- Buzzmonitor (CX/social listening): `site:buzzmonitor.com.br atendimento omnichannel`
+- Cxpress (CX/atendimento): `site:cxpress.com.br SLA chatbot`
+- Buzzcreators (creator economy): `site:buzzcreators.com.br influenciadores B2B`
+- Elife (estrategia digital): `site:elife.com.br estrategia conteudo`
 
-1. Leia `conhecimento/produto/{brand}/concorrentes.md` e selecione 4-5 concorrentes (rotacione a cada execucao)
-2. Priorize concorrentes relevantes para a `{region}`: se `region` = `latam`, foque em players LATAM; se `region` = `portugal`, inclua players europeus se existirem no arquivo
-3. Para cada concorrente selecionado, use WebSearch para buscar novidades recentes
-4. Extraia:
-   - O que estao comunicando/lancando
-   - Gaps que {NomeDaMarca} preenche
-   - Temas em comum que podemos abordar de forma diferenciada
+Colete 3-6 URLs por dor. Para cada URL nova (que nao esteja no `blog-cache.md`), use WebFetch para extrair: titulo, data publicacao (se disponivel), descricao/snippet, dores cobertas (heuristica por palavras-chave do conteudo), tags/categorias.
 
-**IMPORTANTE**: NAO copie conteudo de concorrentes. Apenas resuma posicionamento estrategico.
+### Fase 2.3: Atualizar cache cumulativo
 
-Formato do arquivo de saida (no idioma da regiao):
+Para cada post novo encontrado, adicione entrada em `conhecimento/produto/{brand}/blog-cache.md`:
+
+```markdown
+## [Titulo do post]
+- **URL**: ...
+- **Data publicacao**: YYYY-MM-DD (ou "desconhecida")
+- **Snippet**: ...
+- **Dores cobertas**: dor-1, dor-3
+- **Tags**: cx, atendimento, ia
+- **Ultima verificacao**: {data atual}
 ```
-# Analise de Concorrentes — [DATA]
+
+Posts ja existentes no cache: atualize apenas o campo "Ultima verificacao". NAO delete posts antigos do cache.
+
+Se o cache nao existir, crie com cabecalho:
+```markdown
+# Cache de Blog — {NomeDaMarca}
+> Indice cumulativo de posts ja indexados. Nao deletar entradas antigas — o blog e cumulativo.
+```
+
+### Fase 2.4: Gerar indice da semana
+
+Saida em `pesquisa/atual/indice-blog.md`:
+```markdown
+# Indice de Blog — {NomeDaMarca}, semana {SEMANA_ISO}
+**Marca**: {NomeDaMarca} | **Posts encontrados nesta busca**: N
+
+## Por Dor
+
+### Dor: [Nome da dor]
+- [Titulo do post] — [data] — [URL]
+- [Titulo do post] — [data] — [URL]
+
+[repetir para cada dor candidata]
+
+## Posts novos adicionados ao cache nesta semana
+- [Titulo] — [URL]
+```
+
+## Fase 3: Match Dor ↔ Posts (escolher pergunta-eixo)
+**Output**: `conhecimento/produto/{brand}/pesquisa/atual/dor-semana.md`
+
+Para cada dor candidata, conte quantos posts do `indice-blog.md` cobrem **angulos diferentes** da resposta.
+
+**Criterio de cobertura suficiente**: ≥3 posts cobrindo angulos distintos da mesma dor (ex: para "atendimento omnichannel" — 1 post sobre integracao de canais, 1 sobre roteamento por IA, 1 sobre metricas de SLA = 3 angulos distintos).
+
+**Selecao**:
+1. Filtre dores com cobertura ≥3
+2. Entre essas, escolha a com sinais de quentitude mais fortes E menor uso recente
+3. Se houver empate, priorize a que tenha posts publicados nos ultimos 18 meses
+
+**Se nenhuma dor candidata atingir cobertura ≥3**: escolha a dor mais quente com cobertura 1-2 e marque para a Fase 3.5 (lacuna).
+
+Output (no idioma da regiao):
+```markdown
+# Dor da Semana — {NomeDaMarca}, semana {SEMANA_ISO}
 **Marca**: {NomeDaMarca} | **Regiao**: {region}
 
-## [Nome do Concorrente]
-- **Novidades**: [lancamentos ou anuncios recentes]
-- **Posicionamento**: [como se apresentam]
-- **Gap vs {NomeDaMarca}**: [o que nao oferecem que nos oferecemos]
-- **Tema Aproveitavel**: [tema que podemos abordar melhor]
+## Dor escolhida
+**[Nome da dor]**
 
-[repetir para cada concorrente]
+[Descricao 2-3 frases]
+
+## Pergunta-eixo formulada
+**[Pergunta direta que essa dor se torna — 15-20 palavras, formato jornalistico]**
+
+## Posts-ancora (3 obrigatorios)
+
+### 1. [Titulo do post]
+- **URL**: ...
+- **Angulo desta dor**: [como esse post responde a pergunta]
+- **Frase-chave para usar na news**: [tese curta]
+
+### 2. [Titulo do post]
+- **URL**: ...
+- **Angulo desta dor**: ...
+- **Frase-chave para usar na news**: ...
+
+### 3. [Titulo do post]
+- **URL**: ...
+- **Angulo desta dor**: ...
+- **Frase-chave para usar na news**: ...
+
+## Posts secundarios (1-2 — opcional, para "Mais pra explorar")
+
+- [Titulo] — [URL] — [angulo correlato]
+
+## Cobertura
+- Posts-ancora encontrados: N
+- Status: SUFICIENTE (≥3) | INSUFICIENTE (1-2 — gera pauta sugerida)
 ```
 
-## Ao Finalizar — Parte A: Resumo de Pesquisa
-Crie um resumo executivo em `conhecimento/produto/{brand}/pesquisa/RESUMO.md` (no idioma da regiao) com:
-- Data da pesquisa
-- Marca, regiao e idioma
-- Quantidade de posts analisados, noticias encontradas, concorrentes pesquisados
-- Top 5 angulos mais promissores para newsletters
-- Dados/estatisticas mais impactantes encontrados
-- Recomendacao de temas prioritarios
+## Fase 3.5: Detectar Lacuna e Sugerir Pauta (CONDICIONAL)
+**Output**: `conhecimento/produto/{brand}/pesquisa/atual/pauta-sugerida.md`
 
-## Ao Finalizar — Parte B: Atualizar Base de Conhecimento do Produto
+Execute esta fase APENAS se a dor escolhida na Fase 3 tiver cobertura insuficiente (1-2 posts).
 
-Apos gravar o RESUMO.md, releia `brand/{brand}/BRANDBOOK.md` e `conhecimento/produto/{brand}/concorrentes.md` e aplique as atualizacoes abaixo. Use Edit para alterar apenas o que mudou — nao reescreva o arquivo inteiro.
+A pauta sugerida vai ser apresentada ao usuario pelo `news-pipeline`. Se aprovada, a skill `news-criar-post` escreve o post completo.
 
-### Atualizacoes em `brand/{brand}/BRANDBOOK.md`
+Output (no idioma da regiao):
+```markdown
+# Pauta Sugerida — {NomeDaMarca}, semana {SEMANA_ISO}
+**Marca**: {NomeDaMarca} | **Regiao**: {region}
 
-O BRANDBOOK segue a estrutura canonica: §1 Identidade, §2 Produto, §3 URLs e Contatos, §4 Visual, §5 Mensagem-Chave, §6 Adaptacao por Regiao, §7 Anti-patterns. A pesquisa alimenta principalmente §2 e §3 — nao toque em §4 (Visual) nem em §7 (Anti-patterns).
+## Dor sem cobertura suficiente
+**[Nome da dor]**
 
-**Se o arquivo estiver vazio ou com secoes marcadas como "a preencher" / "stub":**
-Preencha com o que foi descoberto na pesquisa (site, blog, posts). Apenas informacoes verificadas — nao invente features, modulos ou cases.
+[Descricao 2-3 frases sobre por que essa dor merece um post novo]
 
-**Se o arquivo ja tiver conteudo:**
-Verifique se a pesquisa revelou algo novo nao presente no arquivo:
-1. **Novos cases ou resultados**: Se o blog citou um case com empresa e metricas verificaveis, adicione em `### Cases de Sucesso Verificados` (dentro de `## 2. Produto`)
-2. **Novas features ou modulos**: Se o blog ou site menciona uma feature ou modulo nao listado, adicione em `### Modulos Principais` ou `### Features de IA` (ambos em `## 2. Produto`) com nota de fonte
-3. **Correcoes de URL**: Se o Blog URL ou Site URL retornou redirect ou erro, corrija a tabela em `## 3. URLs e Contatos Oficiais`
-4. **Posicionamento atualizado**: Se o site usa um novo tagline ou posicionamento diferente do registrado, atualize os sub-blocos "### Sobre a Marca" ou "### Posicionamento" em `## 1. Identidade`. ATENCAO: se alterar posicionamento, cheque coerencia com a versao paralela (o BRANDBOOK pode ter "Versao brand" e "Versao produto") e com a secao §5 Mensagem-Chave.
-5. **Novos diferenciais**: Se a pesquisa trouxer um diferencial claro nao listado, adicione em `### Diferenciais-Chave` (dentro de `## 2. Produto`).
+## Por que vale virar post
+- Sinais de demanda: [pesquisas do nicho, queries no Google, discussao em comunidade — citar evidencia]
+- Posts existentes que cobrem parcialmente: [titulos + gap especifico de cada um]
+- Diferencial proposto: [o que o post novo cobre que os existentes nao cobrem]
 
-**Nao altere:**
-- Nomes oficiais de features ja verificados (a menos que o proprio site os corrija)
-- Cases ja verificados (a menos que o blog traga dados atualizados do mesmo case)
-- Grafias corretas ja registradas (tabela `### Grafias INCORRETAS`)
-- `## 4. Visual` (tokens visuais vivem em `tokens.json` / `generation-rules.json`)
-- `## 7. Anti-patterns de Comunicacao` (mudanca so com calibracao editorial dedicada)
-- `## 6. Adaptacao por Regiao` (atualizado via `/trad-calibrar`, nao aqui)
+## Pergunta-eixo proposta para o post
+**[Pergunta direta — 15-20 palavras]**
 
-### Atualizacoes em `conhecimento/produto/{brand}/concorrentes.md`
+## Outline sugerido
 
-**Se o arquivo estiver vazio:**
-Preencha com os concorrentes pesquisados na Fase 3, incluindo posicionamento e diferenciais identificados.
+### H1
+[Titulo jornalistico — sem clickbait]
 
-**Se o arquivo ja tiver conteudo:**
-1. **Novos movimentos**: Se a Fase 3 revelou lancamento, aquisicao ou mudanca de posicionamento de um concorrente, adicione em `## Movimentos Recentes do Mercado`
-2. **Novos concorrentes**: Se encontrou um player relevante nao listado, adicione na tabela do segmento correto
-3. **Tendencias de mercado**: Se a Fase 2 trouxe dados novos de mercado relevantes para o contexto competitivo, adicione ou atualize `## Tendencias do Mercado`
+### H2 1: [Subtitulo]
+[Pontos a cobrir, 3-4 bullets]
 
-**Nao invente** diferenciais ou posicionamentos — use apenas o que foi observado na pesquisa.
+### H2 2: [Subtitulo]
+[Pontos a cobrir]
+
+### H2 3: [Subtitulo]
+[Pontos a cobrir]
+
+### H2 4: Acao pratica / proximos passos
+[Como o leitor aplica isso]
+
+## Tom
+- Edutainment: definicao clara + analogia util + exemplo concreto + acao pratica
+- Linguagem jornalistica e direta
+- Termina com 1-2 perguntas para reflexao (sem CTA vendedor)
+
+## Tamanho alvo
+1500-2500 palavras
+```
+
+## Fase 4: Clipping PR (mencoes da marca em midia externa)
+**Output**: `conhecimento/produto/{brand}/pesquisa/atual/clipping-pr.md`
+
+Use WebSearch ativo para encontrar mencoes da marca em veiculos terceiros nos ultimos 7 dias.
+
+### Fase 4.1: Montar queries de clipping
+
+A partir do `{NomeDaMarca}` e do setor da marca, monte queries em veiculos relevantes para a regiao:
+
+- Brasil: `"{NomeDaMarca}" site:meioemensagem.com.br OR site:proxxima.com.br OR site:portaldemarketing.com.br OR site:ecommercebrasil.com.br`
+- Portugal: `"{NomeDaMarca}" site:marketeer.sapo.pt OR site:dinheirovivo.pt OR site:exame.pt`
+- LATAM: `"{NomeDaMarca}" site:puromarketing.com OR site:marketingdirecto.com OR site:reasonwhy.es`
+
+Adicione filtro de data quando suportado pelo provedor de busca: ultimos 7 dias.
+
+### Fase 4.2: Filtrar mencoes relevantes
+
+Para cada resultado, faca WebFetch e classifique:
+- **Relevante**: entrevista com porta-voz, citacao em reportagem, premio, ranking, parceria, lancamento mencionado
+- **Nao relevante**: mencao casual sem contexto, listagem em diretorio, post pago
+
+Mantenha apenas as relevantes (maximo 2 — a melhor entra na news).
+
+### Fase 4.3: Output
+
+```markdown
+# Clipping PR — {NomeDaMarca}, semana {SEMANA_ISO}
+**Marca**: {NomeDaMarca} | **Regiao**: {region}
+
+## Mencao 1
+- **Veiculo**: [nome]
+- **URL**: ...
+- **Data**: YYYY-MM-DD (≤7 dias)
+- **Contexto**: [tipo: entrevista | citacao em reportagem | premio | ranking | parceria | lancamento]
+- **Resumo**: [2-3 frases sobre o que foi dito]
+- **Frase-chave**: [trecho curto que pode ser usado na news]
+
+[repetir se houver mencao 2]
+
+## Sem mencoes
+[Se nada relevante for encontrado, escrever: "Nenhuma mencao relevante de {NomeDaMarca} em midia externa nos ultimos 7 dias."]
+```
+
+## Fase 5: RESUMO
+
+Crie `conhecimento/produto/{brand}/pesquisa/atual/RESUMO.md` (no idioma da regiao):
+
+```markdown
+# Resumo da Pesquisa — Semana {SEMANA_ISO}
+**Marca**: {NomeDaMarca} | **Regiao**: {region} | **Idioma**: {idioma}
+**Data**: {data atual}
+
+## Dor da semana
+[Nome da dor]
+
+## Pergunta-eixo
+[Pergunta]
+
+## Cobertura
+- Posts-ancora encontrados: N (status: SUFICIENTE | INSUFICIENTE — pauta sugerida em pauta-sugerida.md)
+- Posts secundarios: N
+- Posts novos adicionados ao cache nesta semana: N
+
+## Clipping PR
+- Mencoes encontradas: N
+- Veiculos: [listar]
+
+## Proximas etapas
+[Se cobertura SUFICIENTE]: pipeline segue direto para news-gerar.
+[Se cobertura INSUFICIENTE]: pipeline apresenta pauta-sugerida.md para aprovacao manual antes de news-criar-post.
+```
+
+## Regras Criticas
+
+- NAO coletar noticias gerais de mercado — esta v2 foca em blog proprio e clipping de marca
+- NAO copiar conteudo de concorrentes (analise de concorrentes preservada em `conhecimento/produto/{brand}/concorrentes.md` para outras skills, mas NAO entra no fluxo desta news)
+- NAO inventar URLs ou postss — se WebSearch nao encontrar, marque "Nenhum post encontrado" honestamente
+- Escrever os outputs no idioma da regiao (PT-BR | ES-LATAM | PT-PT)
+- Cache cumulativo (`blog-cache.md`) NUNCA e deletado — apenas adicionar/atualizar entradas
+- Pasta `atual/` e sempre limpa pela Fase 0 antes de gravar nova pesquisa
