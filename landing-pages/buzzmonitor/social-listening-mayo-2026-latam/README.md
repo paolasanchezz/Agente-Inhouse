@@ -3,13 +3,13 @@
 **Gerado em:** 2026-04-29
 **Copy-fonte:** `copy.txt` (output de /lp-preparar)
 **Idioma:** ES-LATAM
-**Webinar:** 28 de Mayo de 2026 · 18:00 MX · 19:00 COL/PER · 20:00 CL · 21:00 ARG · Online y En Vivo
+**Webinar:** 28 de Mayo de 2026 · 16:00 MX · 17:00 COL/PER · 18:00 CL · 19:00 ARG · Online y En Vivo
 
 ## Estrutura
 
 1. Header — logo + indicador "En vivo · 28 May" (dot pulsante)
 2. Hero — eyebrow + H1 com destaque tipográfico ("Social Listening" gradiente, "detectar oportunidades"/"anticipar crisis" itálicas) + sub + CTA + linha multi-país
-3. Hero ticket card — 28/05 · Jueves · 18:00 MX + Formato/Duración/Inversión
+3. Hero ticket card — 28/05 · Jueves · 16:00 MX + Formato/Duración/Inversión
 4. Ticker roxo — "Las marcas que escuchan crecen"
 5. Problema — 4 dores em lista vertical com X vermelhos + punchline "Sobran datos. Falta lectura." em gradiente rosa→laranja + CTA
 6. Diferencial — split: card gradiente "Escuchar es estrategia" + copy "El Social Listening no es solo monitorear..."

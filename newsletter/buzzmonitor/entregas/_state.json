@@ -1,0 +1,24 @@
+{
+  "ultima_atualizacao": "2026-05-04",
+  "perguntas_dor": [
+    {
+      "semana": "2026-W14",
+      "dor": "CX / Exigência brasileira",
+      "pergunta": "Quanto custa, em prática, um único erro no atendimento brasileiro de hoje?"
+    },
+    {
+      "semana": "2026-W19",
+      "dor": "Detecção precoce de crise de reputação",
+      "pergunta": "Quanto tempo passa entre o primeiro sinal de uma crise nas redes e o estouro que vira manchete? E por que a maioria das marcas só descobre quando já saiu da bolha social?"
+    }
+  ],
+  "links_usados": [
+    {"semana": "2026-W19", "url": "https://buzzmonitor.com/blog/analise-de-sentimento-como-usar-redes-sociais-para-proteger-a-saude-da-marca-e-aprimorar-o-atendimento-online/", "titulo": "Análise de sentimento como sismógrafo", "tipo": "post-proprio-ancora"},
+    {"semana": "2026-W19", "url": "https://buzzmonitor.com/blog/termometro-de-saude-da-marca-ajuda-voce-a-entender-quao-negativa-esta-a-percepcao-do-seu-consumidor-frente-a-concorrencia/", "titulo": "Termômetro de saúde da marca", "tipo": "post-proprio-ancora"},
+    {"semana": "2026-W19", "url": "https://buzzmonitor.com/blog/crise-nas-redes-sociais-como-superar-e-aprender-a-lidar-com-esse-tipo-de-situacao/", "titulo": "Crise nas redes sociais: como superar", "tipo": "post-proprio-ancora"},
+    {"semana": "2026-W19", "url": "https://buzzmonitor.com/blog/saude-da-marca-o-que-e-e-como-monitorar-a-sua/", "titulo": "Saúde da marca: o que é e como monitorar", "tipo": "post-proprio-secundario"},
+    {"semana": "2026-W19", "url": "https://www.meioemensagem.com.br/comunicacao/shakira-no-rio-o-buzz-nas-redes-e-as-marcas-mais-lembradas", "titulo": "Meio & Mensagem: Buzz Shakira Rio (citação Buzzmonitor)", "tipo": "clipping-pr"},
+    {"semana": "2026-W19", "url": "https://buzzmonitor.com/blog/mais-ia-e-mais-automacao-veja-tudo-o-que-chegou-na-buzzmonitor-em-abril-de-2026/", "titulo": "Novidades Buzzmonitor — abril 2026", "tipo": "extra"}
+  ],
+  "pautas_sugeridas_consumidas": []
+}

@@ -2,7 +2,7 @@
 LABEL: Webinar gratuito · 28 de Mayo
 H1: Social Listening para Marcas y Agencias: cómo utilizar las redes sociales para detectar oportunidades y anticipar crisis.
 SUB: Las conversaciones en redes sociales ya están mostrando lo que los consumidores piensan, esperan y critican sobre las marcas, pero la mayoría de equipos aún no sabe cómo transformar toda esa información en algo útil para tomar mejores decisiones.
-LABEL: 18:00 MX · 19:00 COL · 19:00 PER · 20:00 CL · 21:00 ARG
+LABEL: 16:00 MX · 17:00 COL · 17:00 PER · 18:00 CL · 19:00 ARG
 CTA: Quiero inscribirme gratis
 
 === PROBLEMA ===
