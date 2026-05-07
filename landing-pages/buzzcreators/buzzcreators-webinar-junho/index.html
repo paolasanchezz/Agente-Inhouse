@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vendendo com Creators — Webinar Gratuito | Buzzcreators</title>
+  <meta name="description" content="Aprenda a transformar influenciadores em canal de receita previsível. Webinar ao vivo e gratuito com o Buzzcreators. Garanta sua vaga." />
+  <meta property="og:title" content="Vendendo com Creators — Webinar Gratuito | Buzzcreators" />
+  <meta property="og:description" content="Aprenda a transformar influenciadores em canal de receita previsível. Webinar ao vivo e gratuito com o Buzzcreators. Garanta sua vaga." />
+  <meta property="og:image:alt" content="Webinar Vendendo com Creators — Buzzcreators" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="../../brand/buzzcreators/assets/logos/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <style>
+    /* ── Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        #3a1652;
+      --purple-mid:    #6a3895;
+      --orange:        #ff8119;
+      --orange-dark:   #ff7300;
+      --n100:          #f7f9fb;
+      --n200:          #eaeef1;
+      --n300:          #d1d1d1;
+      --n700:          #4a4a4a;
+      --n900:          #1a1a1a;
+      --white:         #ffffff;
+      --red:           #ef4444;
+      --green:         #22c55e;
+
+      --grad: linear-gradient(90deg, #3a1652 0%, #6a3895 35%, #ff8119 75%, #ff7300 100%);
+
+      --sh-sm: 0 1px 2px rgba(58,22,82,.06);
+      --sh-md: 0 4px 12px rgba(58,22,82,.09);
+      --sh-lg: 0 10px 30px rgba(58,22,82,.13);
+
+      --r8:  8px;
+      --r12: 12px;
+      --r16: 16px;
+      --r24: 24px;
+      --rpill: 9999px;
+
+      --f: 'DM Sans', system-ui, sans-serif;
+      --mw: 1160px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--n900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── Skip Link ─────────────────────────────────────────────── */
+    .skip {
+      position: absolute; top: -120%; left: 1rem;
+      background: var(--purple); color: var(--white);
+      padding: .5rem 1rem; border-radius: var(--r8);
+      font-weight: 700; font-size: .875rem;
+      text-decoration: none; z-index: 9999;
+      transition: top .2s;
+    }
+    .skip:focus { top: 1rem; }
+
+    /* ── Focus ─────────────────────────────────────────────────── */
+    :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Reveal ────────────────────────────────────────────────── */
+    .rv {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .rv.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv { opacity:1!important; transform:none!important; transition:none!important; }
+    }
+
+    /* ── Container ─────────────────────────────────────────────── */
+    .wrap { max-width: var(--mw); margin: 0 auto; padding: 0 2rem; }
+    @media (max-width: 600px) { .wrap { padding: 0 1.25rem; } }
+
+    /* ── Buttons ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--f); font-size: 1rem; font-weight: 700; line-height: 1.2;
+      text-decoration: none; cursor: pointer;
+      border: 2px solid #EF863C; border-radius: var(--rpill);
+      padding: .875rem 2rem;
+      position: relative; overflow: hidden; z-index: 0;
+      transition: color 0.4s ease;
+    }
+    .btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: #EF863C;
+      transform: translateX(-101%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+    .btn:hover { color: #0d1124; }
+    .btn:hover::before { transform: translateX(0); }
+    .btn:active { opacity: .9; }
+
+    .btn-orange { background: #EF863C; color: var(--white); }
+    .btn-orange::before { background: #fff; }
+    .btn-orange:hover { color: #EF863C; }
+
+    .btn-ghost { background: transparent; color: var(--purple); }
+    .btn-ghost:hover { color: #0d1124; }
+
+    .btn-ghost-w { background: transparent; color: var(--white); border-color: rgba(255,255,255,.7); }
+    .btn-ghost-w::before { background: #EF863C; }
+    .btn-ghost-w:hover { color: #0d1124; border-color: #EF863C; }
+
+    .btn-w { background: var(--white); color: var(--purple); border-color: var(--white); }
+    .btn-w::before { background: #EF863C; }
+    .btn-w:hover { color: #0d1124; border-color: #EF863C; }
+
+    /* ── HEADER ────────────────────────────────────────────────── */
+    .hdr {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--n200);
+      box-shadow: var(--sh-sm);
+    }
+    .hdr-i {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .875rem 2rem; max-width: var(--mw); margin: 0 auto;
+    }
+    .hdr-logo { height: 34px; width: auto; }
+    @media (max-width: 600px) {
+      .hdr-i { padding: .75rem 1.25rem; }
+      .hdr-logo { height: 26px; }
+      .hdr .btn { font-size: .8125rem; padding: .625rem 1.125rem; }
+    }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero { background: var(--white); padding: 100px 0; }
+    .hero-g {
+      display: grid; grid-template-columns: 1fr 400px;
+      gap: 3.5rem; align-items: center;
+    }
+    .hero-over {
+      font-weight: 300; font-size: .8125rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 1rem;
+    }
+    .hero-titulo {
+      display: block;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700; font-size: clamp(2rem, 4.5vw, 3.75rem);
+      line-height: 1.05; letter-spacing: -.03em;
+      margin-bottom: 1.25rem;
+      filter: drop-shadow(0 2px 18px rgba(255,129,25,.3));
+    }
+    @supports not (-webkit-background-clip: text) {
+      .hero-titulo { color: var(--purple); background: none; filter: none; }
+    }
+    .hero-h1 {
+      font-weight: 700; font-size: clamp(1.625rem, 2.8vw, 2.375rem);
+      line-height: 1.1; letter-spacing: -.025em;
+      color: var(--purple); margin-bottom: 1.25rem;
+    }
+    .hero-sub {
+      font-size: 1.0625rem; line-height: 1.65;
+      color: var(--n700); max-width: 520px; margin-bottom: 2rem;
+    }
+
+    /* Ticket card */
+    .ticket {
+      background: var(--white); border-radius: var(--r24);
+      box-shadow: var(--sh-lg); padding: 2.25rem;
+      position: relative; overflow: hidden;
+      border: 1px solid var(--n200);
+    }
+    .ticket::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: var(--grad);
+    }
+    .ticket-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #3a1652, #6a3895);
+      color: var(--white); font-size: .75rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .3rem .9rem; border-radius: var(--rpill); margin-bottom: 1.5rem;
+    }
+    .ticket-rows { display: flex; flex-direction: column; gap: 0; }
+    .ticket-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .875rem 0; border-bottom: 1px solid var(--n200);
+    }
+    .ticket-row:last-of-type { border-bottom: none; }
+    .ticket-row-date {
+      flex-direction: column; align-items: flex-start; gap: .25rem;
+      padding: 1rem 1.125rem; margin: .5rem -.25rem .75rem;
+      background: linear-gradient(135deg, rgba(58,22,82,.06) 0%, rgba(255,129,25,.08) 100%);
+      border-radius: 12px; border-bottom: none;
+    }
+    .ticket-row-date .ticket-lbl { margin-bottom: .1rem; }
+    .ticket-date-wrap { display: flex; align-items: center; gap: .75rem; }
+    .ticket-date-day {
+      font-size: 3.5rem; font-weight: 800; line-height: 1;
+      color: var(--purple); letter-spacing: -.03em;
+    }
+    .ticket-date-info { display: flex; flex-direction: column; gap: .2rem; }
+    .ticket-row-date .ticket-val {
+      font-size: .9375rem; font-weight: 700;
+      color: var(--purple); line-height: 1.2;
+    }
+    .ticket-row-date .ticket-hora {
+      font-size: .9375rem; font-weight: 600; color: var(--orange);
+    }
+    .ticket-lbl {
+      font-size: .75rem; font-weight: 300;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--n700);
+    }
+    .ticket-val { font-size: .9375rem; font-weight: 700; color: var(--n900); }
+    .ticket-val-free {
+      font-size: .9375rem; font-weight: 700;
+      color: var(--purple-mid);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: .5rem; margin: 1.25rem 0 0;
+    }
+    .cd-unit {
+      background: var(--n100); border-radius: var(--r8);
+      padding: .625rem .25rem; text-align: center;
+      border: 1px solid var(--n200);
+    }
+    .cd-num {
+      font-family: var(--f); font-weight: 700;
+      font-size: 1.5rem; line-height: 1; color: var(--purple);
+      display: block; letter-spacing: -.02em;
+      transition: transform .15s;
+    }
+    .cd-num.flip { transform: scale(1.15); color: var(--orange); }
+    .cd-label {
+      font-size: .625rem; font-weight: 300;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--n700); display: block; margin-top: .3rem;
+    }
+    .cd-ended {
+      font-size: .8125rem; font-weight: 700;
+      color: var(--purple-mid); text-align: center;
+      padding: .75rem 0 0; letter-spacing: .04em;
+    }
+
+    @media (max-width: 960px) {
+      .hero-g { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero { padding: 80px 0; }
+      .ticket { max-width: 440px; }
+    }
+    @media (max-width: 600px) {
+      .hero-h1 { font-size: 1.875rem; }
+      .hero-sub { font-size: 1rem; }
+      .ticket { padding: 1.75rem; }
+    }
+
+    /* ── ABERTURA ──────────────────────────────────────────────── */
+    .abertura {
+      background: var(--grad);
+      padding: 80px 0; text-align: center;
+    }
+    .abertura h2 {
+      font-weight: 700; font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+      line-height: 1.2; color: var(--white); max-width: 700px;
+      margin: 0 auto 1rem;
+    }
+    .abertura p {
+      font-size: 1.0625rem; color: rgba(255,255,255,.88);
+      max-width: 500px; margin: 0 auto;
+    }
+
+    /* ── PROBLEMA ──────────────────────────────────────────────── */
+    .problema { background: var(--white); padding: 100px 0; }
+    .problema-q {
+      font-weight: 300; font-size: .8125rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--purple-mid); text-align: center;
+      margin-bottom: 3rem;
+    }
+    .cards3 {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .pcard {
+      background: var(--n100); border-radius: var(--r16);
+      padding: 1.75rem; border: 1px solid var(--n200);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .pcard:hover { box-shadow: var(--sh-md); transform: translateY(-3px); }
+    .pcard-x {
+      width: 32px; height: 32px; background: #fef2f2;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1rem; flex-shrink: 0;
+    }
+    .pcard h3 { font-size: 1.0625rem; font-weight: 700; color: var(--n900); margin-bottom: .625rem; }
+    .pcard p { font-size: .9375rem; color: var(--n700); line-height: 1.6; }
+    .problema-cta { text-align: center; }
+
+    @media (max-width: 768px) {
+      .cards3 { grid-template-columns: 1fr; }
+      .problema { padding: 80px 0; }
+    }
+
+    /* ── PROPOSTA ──────────────────────────────────────────────── */
+    .proposta { background: var(--n100); padding: 100px 0; text-align: center; }
+    .proposta h2 {
+      font-weight: 700; font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      line-height: 1.15; max-width: 700px; margin: 0 auto 1.25rem;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @supports not (-webkit-background-clip: text) {
+      .proposta h2 { color: var(--purple); background: none; }
+    }
+    .proposta p {
+      font-size: 1.0625rem; color: var(--n700);
+      max-width: 580px; margin: 0 auto; line-height: 1.65;
+    }
+
+    /* ── EQUAÇÃO VISUAL ────────────────────────────────────────── */
+    .eq-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap; margin: 3rem auto 2.5rem;
+      max-width: 860px;
+    }
+    .eq-pillar {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--white); border-radius: var(--r16);
+      padding: 1.75rem 1.5rem; width: 160px; flex-shrink: 0;
+      box-shadow: var(--sh-md); border: 1px solid var(--n200);
+      position: relative; transition: transform .25s, box-shadow .25s;
+    }
+    .eq-pillar:hover { transform: translateY(-5px); box-shadow: var(--sh-lg); }
+    .eq-icon {
+      width: 48px; height: 48px; border-radius: var(--r12);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .eq-icon-dados   { background: #ede7f6; }
+    .eq-icon-processo{ background: #fff3e0; }
+    .eq-icon-criadores{ background: #e8f5e9; }
+    .eq-pillar-label {
+      font-weight: 700; font-size: .9375rem; color: var(--purple);
+      margin-bottom: .35rem; text-align: center;
+    }
+    .eq-pillar-sub {
+      font-size: .75rem; color: var(--n700);
+      line-height: 1.45; text-align: center;
+    }
+    .eq-op {
+      font-weight: 700; font-size: 1.75rem; color: var(--n300);
+      padding: 0 .75rem; flex-shrink: 0; align-self: center;
+      transition: color .3s;
+    }
+    .eq-op.active { color: var(--orange); }
+    .eq-result {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--purple); border-radius: var(--r16);
+      padding: 1.75rem 1.5rem; width: 160px; flex-shrink: 0;
+      box-shadow: 0 8px 28px rgba(58,22,82,.28);
+      position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .eq-result:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(58,22,82,.38); }
+    .eq-result::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(106,56,149,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .eq-result-icon {
+      width: 48px; height: 48px; border-radius: var(--r12);
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .eq-result .eq-result-label {
+      font-weight: 800; font-size: 1.0625rem; color: #fff !important;
+      margin-bottom: .35rem; text-align: center;
+    }
+    .eq-result .eq-result-sub {
+      font-size: .8125rem; color: #fff !important;
+      line-height: 1.45; text-align: center; font-weight: 500;
+    }
+
+    /* pulse glow on result card */
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 8px 28px rgba(58,22,82,.28); }
+      50%       { box-shadow: 0 8px 40px rgba(255,129,25,.45); }
+    }
+    .eq-result.on { animation: glow 2.8s ease-in-out infinite; }
+
+    @media (max-width: 768px) {
+      .eq-wrap { flex-direction: column; gap: .5rem; }
+      .eq-pillar, .eq-result { width: 100%; max-width: 280px; flex-direction: row; padding: 1.25rem; gap: 1rem; }
+      .eq-icon, .eq-result-icon { margin-bottom: 0; flex-shrink: 0; }
+      .eq-pillar-label, .eq-result-label { text-align: left; }
+      .eq-pillar-sub, .eq-result-sub { text-align: left; }
+      .eq-op { padding: 0; font-size: 1.25rem; align-self: auto; }
+    }
+
+    /* ── PROGRAMA ──────────────────────────────────────────────── */
+    .programa { background: var(--white); padding: 100px 0; }
+    .sec-head { margin-bottom: 3rem; }
+    .sec-head h2 {
+      font-weight: 700; font-size: clamp(1.75rem, 3vw, 2.25rem);
+      color: var(--purple); line-height: 1.2; letter-spacing: -.015em;
+    }
+    .grid22 {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .pcard2 {
+      background: var(--n100); border-radius: var(--r12);
+      border-left: 3px solid var(--orange);
+      padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .pcard2:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .pcard2-ck {
+      flex-shrink: 0; width: 26px; height: 26px;
+      background: var(--orange); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .pcard2-body {}
+    .pcard2-body strong { display: block; font-size: 1rem; font-weight: 700; color: var(--purple); margin-bottom: .375rem; }
+    .pcard2-body p { font-size: .9rem; color: var(--n700); line-height: 1.55; }
+
+    @media (max-width: 700px) {
+      .grid22 { grid-template-columns: 1fr; }
+      .programa { padding: 80px 0; }
+    }
+
+    /* ── PARA QUEM ─────────────────────────────────────────────── */
+    .paraquem { background: var(--n200); padding: 100px 0; }
+    .paraquem .sec-head { text-align: center; }
+    .check-list {
+      max-width: 640px; margin: 0 auto 2.5rem;
+      display: flex; flex-direction: column; gap: .875rem;
+    }
+    .check-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--white); border-radius: var(--r12);
+      padding: 1rem 1.25rem; border: 1px solid var(--n200);
+      box-shadow: var(--sh-sm);
+    }
+    .check-icon {
+      flex-shrink: 0; width: 26px; height: 26px;
+      background: var(--green); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .check-item p { font-size: .9375rem; color: var(--n900); line-height: 1.55; }
+    .paraquem-cta { text-align: center; }
+
+    @media (max-width: 600px) { .paraquem { padding: 80px 0; } }
+
+    /* ── SPEAKERS ─────────────────────────────────────────────── */
+    .speakers {
+      background: var(--white); padding: 80px 0; text-align: center;
+    }
+    .speakers h2 {
+      font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: var(--purple); margin-bottom: 1rem;
+    }
+    .speakers-sub {
+      font-size: 1.0625rem; color: var(--n700); max-width: 580px;
+      margin: 0 auto 3rem; line-height: 1.65;
+    }
+    .speaker-card {
+      background: var(--n100); border-radius: 24px;
+      padding: 40px; max-width: 640px; margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(58,22,82,.08);
+      display: flex; flex-direction: row; align-items: flex-start; gap: 2rem;
+    }
+    .speaker-avatar {
+      width: 160px; height: 160px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .speaker-info { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+    .speaker-name {
+      font-family: var(--ff); font-weight: 700;
+      font-size: 1.375rem; color: var(--purple); margin-bottom: .35rem;
+    }
+    .speaker-role {
+      font-size: .9375rem; color: var(--purple-mid); margin-bottom: 1rem;
+    }
+    .speaker-bio {
+      font-size: 1rem; color: var(--n700); line-height: 1.65; text-align: left;
+    }
+
+    /* ── URGÊNCIA ──────────────────────────────────────────────── */
+    .urgencia {
+      background: var(--purple); padding: 100px 0;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .urgencia::before {
+      content: ''; position: absolute; top: -50%; right: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(106,56,149,.45) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .urg-tag {
+      display: inline-block;
+      background: var(--orange); color: var(--white);
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .35rem 1.1rem; border-radius: var(--rpill);
+      transform: rotate(-2deg); margin-bottom: 2rem;
+    }
+    .urgencia h2 {
+      font-weight: 700; font-size: clamp(1.625rem, 3.5vw, 2.625rem);
+      color: var(--white); max-width: 620px; margin: 0 auto 1rem;
+      line-height: 1.2; letter-spacing: -.015em;
+    }
+    .urgencia p {
+      font-size: 1.0625rem; color: rgba(255,255,255,.82);
+      max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.65;
+    }
+
+    /* ── FORM ──────────────────────────────────────────────────── */
+    .form-sec {
+      background: var(--white); padding: 100px 0;
+    }
+    .form-wrap {
+      max-width: 480px; margin: 0 auto; text-align: center;
+    }
+    .form-wrap h2 {
+      font-weight: 700; font-size: clamp(1.625rem, 3vw, 2.125rem);
+      color: var(--purple); margin-bottom: 2rem;
+      line-height: 1.2; letter-spacing: -.015em;
+    }
+    .form-box {
+      background: var(--n100); border: 1px solid var(--n200);
+      border-radius: var(--r24); padding: 2.25rem;
+      box-shadow: var(--sh-md); text-align: left;
+    }
+    .fgrp { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.1rem; }
+    .fgrp:last-of-type { margin-bottom: 0; }
+    .flbl { font-size: .8125rem; font-weight: 700; color: var(--n900); }
+    .finp {
+      font-family: var(--f); font-size: .9375rem; color: var(--n900);
+      background: var(--white); border: 1.5px solid var(--n300);
+      border-radius: var(--r8); padding: .75rem 1rem;
+      width: 100%; transition: border-color .2s, box-shadow .2s;
+      -webkit-appearance: none;
+    }
+    .finp:focus { outline: none; border-color: var(--purple-mid); box-shadow: 0 0 0 3px rgba(106,56,149,.12); }
+    .finp::placeholder { color: #aaa; }
+    .fsub { width: 100%; margin-top: 1.5rem; font-size: 1rem; padding: 1rem 1.5rem; }
+    .fdisclaimer {
+      font-size: .75rem; color: var(--n700);
+      margin-top: .875rem; line-height: 1.5; text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .form-sec { padding: 80px 0; }
+      .form-box { padding: 1.75rem; }
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    .ftr { background: var(--purple); padding: 3rem 0; }
+    .ftr-i {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+    .ftr-logo { height: 28px; width: auto; }
+    .ftr-links { display: flex; flex-direction: column; gap: .35rem; align-items: flex-end; }
+    .ftr-link {
+      font-size: .875rem; color: rgba(255,255,255,.65);
+      text-decoration: none; transition: color .2s;
+    }
+    .ftr-link:hover { color: var(--white); }
+    .ftr-copy { font-size: .8125rem; color: rgba(255,255,255,.4); }
+    .ftr-aviso { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: .5rem; text-align: right; max-width: 300px; line-height: 1.5; }
+
+    @media (max-width: 640px) {
+      .ftr-i { flex-direction: column; align-items: flex-start; }
+      .ftr-links { align-items: flex-start; }
+      .ftr-aviso { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip" href="#main">Ir para o conteúdo principal</a>
+
+<!-- ── HEADER ─────────────────────────────────────────────────── -->
+<header class="hdr" role="banner">
+  <div class="hdr-i">
+    <a href="https://buzzcreators.com.br" aria-label="Buzzcreators — página inicial">
+      <img class="hdr-logo" src="../../brand/buzzcreators/assets/logos/logo-color.png" alt="Buzzcreators" width="148" height="34" />
+    </a>
+    <a class="btn btn-ghost" href="#inscricao">Quero garantir minha vaga</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Apresentação do webinar">
+    <div class="wrap">
+      <div class="hero-g">
+
+        <div>
+          <p class="hero-over rv">WEBINAR GRATUITO · AO VIVO</p>
+          <span class="hero-titulo rv d1">O método para vender com creators</span>
+          <h1 class="hero-h1 rv d2">Transforme influenciadores em canal de receita previsível</h1>
+          <p class="hero-sub rv d2">Para times de marketing que querem parar de tratar creators como aposta e começar a operar como canal.</p>
+          <a class="btn btn-orange rv d3" href="#inscricao">Quero garantir minha vaga</a>
+        </div>
+
+        <div class="rv d2" aria-label="Detalhes do evento">
+          <div class="ticket">
+            <span class="ticket-badge">Inscrição aberta</span>
+            <div class="ticket-rows">
+              <div class="ticket-row ticket-row-date">
+                <span class="ticket-lbl">Data &amp; Horário</span>
+                <div class="ticket-date-wrap">
+                  <span class="ticket-date-day">18</span>
+                  <div class="ticket-date-info">
+                    <span class="ticket-val">de junho, quinta-feira</span>
+                    <span class="ticket-hora">11h (Brasília)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-lbl">Formato</span>
+                <span class="ticket-val">Online · Ao vivo</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-lbl">Duração</span>
+                <span class="ticket-val">60 minutos</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-lbl">Acesso</span>
+                <span class="ticket-val-free">Gratuito</span>
+              </div>
+            </div>
+            <div class="countdown" id="countdown" aria-live="polite" aria-label="Contagem regressiva para o evento">
+              <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Dias</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABERTURA DE IMPACTO ───────────────────────────────────── -->
+  <section class="abertura" aria-label="Abertura">
+    <div class="wrap">
+      <h2 class="rv">Chega de post patrocinado sem retorno mensurável.</h2>
+      <p class="rv d1">Acesso ao vivo, gratuito e sem pitch de venda. Só método.</p>
+    </div>
+  </section>
+
+  <!-- ── PROBLEMA ──────────────────────────────────────────────── -->
+  <section class="problema" aria-labelledby="prob-h">
+    <div class="wrap">
+      <p class="problema-q rv" id="prob-h">Você sabe quanto os seus creators geraram de receita no último trimestre?</p>
+      <div class="cards3">
+
+        <article class="pcard rv">
+          <div class="pcard-x" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 2l10 10M12 2L2 12" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Influência sem dados é aposta</h3>
+          <p>Você contratou o creator, o post foi bem — mas quanto isso virou em venda? Sem rastreamento, você está operando no escuro.</p>
+        </article>
+
+        <article class="pcard rv d1">
+          <div class="pcard-x" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 2l10 10M12 2L2 12" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Cada campanha começa do zero</h3>
+          <p>Planilha, e-mail, briefing manual, cobrança de prazo. O processo não escala porque não existe processo — existe esforço repetido.</p>
+        </article>
+
+        <article class="pcard rv d2">
+          <div class="pcard-x" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 2l10 10M12 2L2 12" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Recorrência não acontece por acidente</h3>
+          <p>Os criadores que viram canal de aquisição estável têm algo em comum: processo de ativação, contrato, dado e pagamento automatizado. Não é sorte.</p>
+        </article>
+
+      </div>
+      <div class="problema-cta rv d3">
+        <a class="btn btn-orange" href="#inscricao">Quero aprender a montar esse processo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROPOSTA DE VALOR ─────────────────────────────────────── -->
+  <section class="proposta" aria-labelledby="prop-h">
+    <div class="wrap">
+      <h2 class="rv" id="prop-h">Dados + Processo + Criadores = Canal de receita</h2>
+
+      <!-- Diagrama animado da equação -->
+      <div class="eq-wrap" aria-hidden="true">
+        <!-- Dados -->
+        <div class="eq-pillar rv d1">
+          <div class="eq-icon eq-icon-dados">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6a3895" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+          </div>
+          <p class="eq-pillar-label">Dados</p>
+          <p class="eq-pillar-sub">Métricas reais de cada creator</p>
+        </div>
+
+        <span class="eq-op rv d2">+</span>
+
+        <!-- Processo -->
+        <div class="eq-pillar rv d2">
+          <div class="eq-icon eq-icon-processo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff8119" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
+          <p class="eq-pillar-label">Processo</p>
+          <p class="eq-pillar-sub">Pipeline do briefing ao pagamento</p>
+        </div>
+
+        <span class="eq-op rv d3">+</span>
+
+        <!-- Criadores -->
+        <div class="eq-pillar rv d3">
+          <div class="eq-icon eq-icon-criadores">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="eq-pillar-label">Criadores</p>
+          <p class="eq-pillar-sub">Canal de aquisição recorrente</p>
+        </div>
+
+        <span class="eq-op rv d4">=</span>
+
+        <!-- Resultado -->
+        <div class="eq-result rv d4" id="eq-result">
+          <div class="eq-result-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="eq-result-label">Canal de receita</p>
+          <p class="eq-result-sub">Previsível e escalável</p>
+        </div>
+      </div>
+
+      <p class="rv d1">Quando você conecta as métricas certas ao processo certo, influencer marketing para de ser linha de custo e vira linha de receita previsível.</p>
+    </div>
+  </section>
+
+  <!-- ── PROGRAMA ───────────────────────────────────────────────── -->
+  <section class="programa" aria-labelledby="prog-h">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="prog-h">O que você vai levar deste webinar</h2>
+      </div>
+      <div class="grid22">
+
+        <article class="pcard2 rv">
+          <div class="pcard2-ck" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pcard2-body">
+            <strong>Mapear quais creators têm potencial de canal — não só de alcance</strong>
+            <p>Como identificar criadores com audiência qualificada para o seu produto, além do número de seguidores.</p>
+          </div>
+        </article>
+
+        <article class="pcard2 rv d1">
+          <div class="pcard2-ck" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pcard2-body">
+            <strong>Estruturar um pipeline de ativação recorrente com dados</strong>
+            <p>Do briefing ao pagamento automatizado: as etapas que transformam campanha pontual em canal contínuo.</p>
+          </div>
+        </article>
+
+        <article class="pcard2 rv d2">
+          <div class="pcard2-ck" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pcard2-body">
+            <strong>Medir ROI real de cada creator — sem planilha</strong>
+            <p>As métricas que importam para justificar orçamento e escalar o que funciona.</p>
+          </div>
+        </article>
+
+        <article class="pcard2 rv d3">
+          <div class="pcard2-ck" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pcard2-body">
+            <strong>Sair com um modelo operacional para aplicar na semana seguinte</strong>
+            <p>Não é teoria de tendência — é estrutura para operar.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARA QUEM ─────────────────────────────────────────────── -->
+  <section class="paraquem" aria-labelledby="pq-h">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="pq-h">Este webinar foi feito para você se...</h2>
+      </div>
+      <ul class="check-list" role="list">
+
+        <li class="check-item rv">
+          <span class="check-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p>Você gerencia campanhas com influenciadores e ainda usa planilha e e-mail para coordenar</p>
+        </li>
+
+        <li class="check-item rv d1">
+          <span class="check-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p>Você quer provar o ROI do influencer marketing para a diretoria — mas os dados não estão organizados</p>
+        </li>
+
+        <li class="check-item rv d2">
+          <span class="check-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p>Você quer transformar creators em canal previsível, não em ação pontual de mídia</p>
+        </li>
+
+        <li class="check-item rv d3">
+          <span class="check-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5l3.5 3.5 5.5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p>Você já investiu em influencer marketing mas sente que poderia extrair muito mais resultado</p>
+        </li>
+
+      </ul>
+      <div class="paraquem-cta rv d4">
+        <a class="btn btn-orange" href="#inscricao">Quero minha vaga gratuita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPEAKERS ──────────────────────────────────────────────── -->
+  <section class="speakers reveal" aria-labelledby="spk-h">
+    <div class="wrap">
+      <h2 class="rv" id="spk-h">Com quem você vai aprender</h2>
+      <p class="speakers-sub rv d1">Bruno Filho traz para este webinar mais de uma década operando em SaaS e marketing digital — com foco em transformar dados em decisões que geram receita.</p>
+      <div class="speaker-card rv d2">
+        <img class="speaker-avatar" src="https://evento.buzzmonitor.com/assets/buzzcreators/bruno-filho.png" alt="Bruno Filho" />
+        <div class="speaker-info">
+          <p class="speaker-name">Bruno Filho</p>
+          <p class="speaker-role">Coordenador de Novos Negócios · Buzzcreators</p>
+          <p class="speaker-bio">Especialista em transformar dados sociais em decisões estratégicas que fortalecem marcas. Com mais de 10 anos de experiência em SaaS, e-commerce e marketing digital, fundou e vendeu sua primeira startup aos 27 anos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── URGÊNCIA ───────────────────────────────────────────────── -->
+  <section class="urgencia" aria-labelledby="urg-h">
+    <div class="wrap">
+      <div class="rv">
+        <span class="urg-tag" aria-label="Ao vivo e gratuito">Ao vivo · Gratuito</span>
+      </div>
+      <h2 class="rv d1" id="urg-h">Enquanto você planeja, seus concorrentes estão operando.</h2>
+      <p class="rv d2">Os times que já tratam creators como canal têm vantagem de processo — não de orçamento. Esse webinar está aqui para fechar essa distância.</p>
+      <div class="rv d3">
+        <a class="btn btn-ghost-w" href="#inscricao">Quero sair na frente</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FORM ───────────────────────────────────────────────────── -->
+  <section class="form-sec" id="inscricao" aria-labelledby="form-h">
+    <div class="wrap">
+      <div class="form-wrap">
+        <h2 class="rv" id="form-h">Quero garantir minha vaga</h2>
+        <div class="rv d1">
+          <div class="form-box">
+            <form action="#" method="post" onsubmit="event.preventDefault()" aria-label="Formulário de inscrição">
+              <div class="fgrp">
+                <label class="flbl" for="f-nome">Nome</label>
+                <input class="finp" type="text" id="f-nome" name="nome" placeholder="Seu nome" autocomplete="name" required />
+              </div>
+              <div class="fgrp">
+                <label class="flbl" for="f-email">E-mail</label>
+                <input class="finp" type="email" id="f-email" name="email" placeholder="seu@email.com" autocomplete="email" required />
+              </div>
+              <div class="fgrp">
+                <label class="flbl" for="f-empresa">Empresa</label>
+                <input class="finp" type="text" id="f-empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" />
+              </div>
+              <div class="fgrp">
+                <label class="flbl" for="f-cargo">Cargo</label>
+                <input class="finp" type="text" id="f-cargo" name="cargo" placeholder="Seu cargo" autocomplete="organization-title" />
+              </div>
+              <button class="btn btn-orange fsub" type="submit">Quero garantir minha vaga</button>
+              <p class="fdisclaimer">Ao se inscrever, você concorda em receber comunicações do Buzzcreators.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="ftr" role="contentinfo">
+  <div class="wrap">
+    <div class="ftr-i">
+      <a href="https://buzzcreators.com.br" aria-label="Buzzcreators — página inicial">
+        <img class="ftr-logo" src="../../brand/buzzcreators/assets/logos/logo-color.png" alt="Buzzcreators" width="140" height="28" />
+      </a>
+      <div class="ftr-links">
+        <a class="ftr-link" href="mailto:comercial@buzzcreators.com.br">comercial@buzzcreators.com.br</a>
+        <span class="ftr-link">@buzzcreatorsbr</span>
+        <p class="ftr-copy">© 2026 Buzzcreators</p>
+        <p class="ftr-aviso">O horário pode ser alterado. Inscritos serão notificados por e-mail.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Countdown ── */
+(function(){
+  var target = new Date('2026-06-18T11:00:00-03:00').getTime();
+  var elD = document.getElementById('cd-d');
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+  if (!elD) return;
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function flip(el, val){
+    var cur = el.textContent;
+    if (cur !== val){
+      el.classList.add('flip');
+      el.textContent = val;
+      setTimeout(function(){ el.classList.remove('flip'); }, 150);
+    }
+  }
+  function tick(){
+    var now  = Date.now();
+    var diff = target - now;
+    if (diff <= 0){
+      document.getElementById('countdown').innerHTML =
+        '<p class="cd-ended">O evento já começou!</p>';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000)  / 60000);
+    var s = Math.floor((diff % 60000)    / 1000);
+    flip(elD, pad(d));
+    flip(elH, pad(h));
+    flip(elM, pad(m));
+    flip(elS, pad(s));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── Reveals ── */
+(function(){
+  var els = document.querySelectorAll('.rv');
+  if (!els.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function(e){ e.classList.add('on'); }); return;
+  }
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('on'); }); return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){
+        en.target.classList.add('on');
+        obs.unobserve(en.target);
+        /* ativa ops coloridos quando os pilares entram */
+        if (en.target.classList.contains('eq-pillar') || en.target.classList.contains('eq-result')) {
+          document.querySelectorAll('.eq-op').forEach(function(op){ op.classList.add('active'); });
+        }
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  els.forEach(function(e){ obs.observe(e); });
+})();
+</script>
+
+</body>
+</html>

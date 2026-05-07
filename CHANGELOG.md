@@ -13,7 +13,29 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar, setup-agencia (+ docs LP)
-### 2026-05-07 — CSP libera Meta Pixel via GTM (lp-publicar v3.2.0)
+### 2026-05-07 (tarde 2) — Recovery `webinar.buzzmonitor.com` (JSON wrapper bug) + LP `buzzcreators-webinar-junho` recuperada (sem bump — só doc)
+
+Segundo incidente real do dia, em `webinar.buzzmonitor.com`. Deploy `dpl_AVT1U37u4ZDMQpyTLQVTsxTrK9pv` foi feito por colaboradora rodando versão antiga do `sync_sibling.py` (anterior à v3.1.0, ou implementação manual da API). Em vez de decodificar o `data` base64 do response `/v7/deployments/{id}/files/{uid}`, o helper escreveu o JSON cru (`{"data":"<base64>"}`) direto em cada `index.html` na sibling DELA. O deploy publicou esse JSON como HTML — visitante recebia 200 OK + Content-Type `text/html` mas o conteúdo era literalmente `{"data":"PCFkb2N0eXBlIGh0bWw+..."}`.
+
+Diagnóstico: `curl https://webinar.buzzmonitor.com/analise-preditiva-maio-2026 | head -c 30` retornava `{"data":"PCFkb2N0eXBlIGh0bWw+`. As 3 LPs vizinhas estavam corrompidas; a LP nova (`buzzcreators-webinar-junho`) era a única íntegra porque foi copiada direto do filesystem da colaboradora, não baixada do live.
+
+**Correção em 1 sessão:**
+1. Discovery: validar Vercel CLI/token, listar últimos 10 deploys (todos os 4 de hoje afetados), inspecionar árvores via API V6 — confirmar que todas as 4 LPs aparecem na árvore (estrutura existe, conteúdo é que está errado).
+2. Curl em cada LP no live → confirmar que 3 servem JSON, 1 serve HTML.
+3. Confirmar sibling local da máquina do Victor ainda tem as 3 vizinhas íntegras (HTML puro, intactas pré-incidente — a colega não rodou da máquina dele).
+4. Baixar `buzzcreators-webinar-junho/` do `dpl_AVT1U...` via `sync_sibling.py` v3.1.0 (decodifica base64 corretamente). Promover `logo-color.png` (PNG, 2.6KB) ao brand. Reverter paths absolutos `/assets/buzzcreators/...` para padrão source `../../brand/buzzcreators/assets/...`. Salvar em `landing-pages/buzzcreators/buzzcreators-webinar-junho/` com README documentando origem e débito técnico.
+5. Adicionar a LP nova ao sibling local com paths reescritos guarda-chuva. Validar isolamento + capturar baseline MD5.
+6. Deploy unificado `dpl_5RvZD27rGojJn3Xdifibc46WjAcb` — restaura as 3 LPs corrompidas (do sibling local íntegro) + preserva LP nova. Smoke test pós-deploy: 4/4 status 200, 4/4 MD5 batem com sibling, 4/4 começam com `<!doctype html>` (HTML puro, fim do JSON wrapper). Headers 7/7 ativos.
+
+**Não requer bump de skill** — v3.1.0 do `sync_sibling.py` já faz `base64.b64decode(data, validate=True)`. Causa-raiz é máquina rodando versão antiga do helper. Mitigação operacional documentada: alinhar versão do repo (`git pull`) antes de delegar deploys guarda-chuva.
+
+- **landing-pages/CONTEXT.md** (sem bump — só doc):
+  - §6 (Troubleshooting): linha nova "LP responde 200 mas conteúdo começa com `{\"data\":\"<base64>\"}`" — sintoma, causa, solução.
+  - §7.2 (Histórico): linha 2026-05-07 (tarde) documentando o **segundo incidente real** do dia + recovery.
+- **`landing-pages/buzzcreators/buzzcreators-webinar-junho/` (NOVA)**: source recuperado do live. `index.html` (~46KB) com paths revertidos pro padrão (`../../brand/buzzcreators/...`) + README documentando origem + débito técnico (sem `copy.txt`, sem `REVISAO.md`, dependência cross-domain de `bruno-filho.png`).
+- **`brand/buzzcreators/assets/logos/logo-color.png` (NOVO)**: versão PNG do logo color que só existia no deploy. Promovido ao brand para reuso futuro por outras LPs Buzzcreators.
+
+### 2026-05-07 (tarde 1) — CSP libera Meta Pixel via GTM (lp-publicar v3.2.0)
 
 LP `webinar-tecnologia-maio2026` (Cxpress) tinha GTM `GTM-T4XDWHL3` carregando, mas o pixel Meta nao disparava: CSP em producao recusava `connect.facebook.net` (onde mora o `fbevents.js`) e `www.facebook.com` (endpoint `/tr/` que recebe os eventos). Como o pixel e disparado pelo GTM em runtime, nem sempre aparece grep-avel no HTML — entao precisa estar coberto **por padrao** no template, nao caso-a-caso.
 
