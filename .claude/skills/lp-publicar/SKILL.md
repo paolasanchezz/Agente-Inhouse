@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.1.0
+version: 3.2.0
 ---
 
 # Skill: Publicar Landing Page
@@ -427,7 +427,7 @@ diff "{sibling}/vercel.json" ".claude/skills/lp-publicar/vercel.template.json"
 
 Se o sibling tem CSP/headers desatualizados em relacao ao template (ex: novo provedor de form recem-adicionado ao template), **avisar** o usuario e perguntar antes de patch-ar — outras LPs vizinhas podem depender de configuracao especifica nao-padrao.
 
-O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM) e video (YouTube, Vimeo).
+O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM), video (YouTube, Vimeo) e **Meta Pixel via GTM** (`connect.facebook.net` em `script-src`/`connect-src`; `www.facebook.com` em `connect-src`/`frame-src` — desde v3.2.0).
 
 **Quando ajustar o CSP:**
 - LP usa provedor de form fora do default (ex: Typeform, Tally, Formspree) → adicionar dominio em `script-src`, `frame-src` e `form-action`.
@@ -439,6 +439,14 @@ Faca essa decisao **antes** do deploy grep-ando scripts e iframes no HTML:
 ```bash
 grep -oiE "src=\"https?://[^\"]+\"|<iframe[^>]*src=\"[^\"]+\"" "{sibling}/{slug}/index.html" | sort -u
 ```
+
+**Check proativo Meta Pixel (GTM dispara o pixel mesmo sem snippet inline na LP):**
+
+```bash
+grep -oE "fbq\(|connect\.facebook\.net|fbevents\.js|www\.facebook\.com/tr" "{sibling}/{slug}/index.html"
+```
+
+Se houver match, validar que o CSP cobre `connect.facebook.net` (script + connect) e `www.facebook.com` (connect + frame). Coberto por padrao desde o template v3.2.0 — se voce esta editando o sibling em modo guarda-chuva e ele ainda esta no CSP antigo (pre-v3.2.0), adicione manualmente.
 
 Se algum dominio nao estiver coberto pelo CSP default, edite `{sibling}/vercel.json` antes de deployar. Nao use `*` permissivo — quebra o sentido do header.
 

@@ -13,6 +13,18 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar, setup-agencia (+ docs LP)
+### 2026-05-07 — CSP libera Meta Pixel via GTM (lp-publicar v3.2.0)
+
+LP `webinar-tecnologia-maio2026` (Cxpress) tinha GTM `GTM-T4XDWHL3` carregando, mas o pixel Meta nao disparava: CSP em producao recusava `connect.facebook.net` (onde mora o `fbevents.js`) e `www.facebook.com` (endpoint `/tr/` que recebe os eventos). Como o pixel e disparado pelo GTM em runtime, nem sempre aparece grep-avel no HTML — entao precisa estar coberto **por padrao** no template, nao caso-a-caso.
+
+- **lp-publicar 3.1.0 → 3.2.0 (MINOR — capacidade nova retro-compat)**:
+  - **`vercel.template.json`**: CSP ganha `https://connect.facebook.net` em `script-src` e `connect-src`; `https://www.facebook.com` em `connect-src` e `frame-src`. `img-src` ja permitia `https:` global, entao pixel GIF estava coberto.
+  - **Passo 1.6**: nova checagem proativa antes do deploy — `grep -oE "fbq\(|connect\.facebook\.net|fbevents\.js|www\.facebook\.com/tr"` no HTML do sibling, alertando quando aparece (caso CSP do sibling guarda-chuva ainda esteja no template antigo).
+  - **Passo 1.6**: descritivo do CSP padrao atualizado para mencionar Meta Pixel via GTM como provedor coberto.
+  - Sibling de producao `cxpress-lp-playbook-whatsapp2026` ja recebeu o patch e foi redeployada (`dpl_9E2xEQdbWU2ocg47RpPCidgifV8g`). Smoke test 4/4 LPs intactas (livraria, playbook-whatsapp2026, latam-webinar-atencionalcliente, webinar-tecnologia-maio2026).
+
+- **`landing-pages/CONTEXT.md` §6** (sem bump — so doc): nova linha de troubleshooting "Pixel Meta via GTM nao dispara" → CSP nao cobre Facebook → cobertura default a partir do template v3.2.0.
+
 ### 2026-05-07 — Sync sibling via Vercel API + LP `webinar-tecnologia-maio2026` recuperada (lp-publicar v3.1.0, setup-agencia v0.5.0)
 
 Hardening de modo guarda-chuva apos **incidente real** que apagou `/livraria` da production por ~2h. Causa-raiz: deploy feito de maquina sem `livraria/` na sibling local, `BASELINES_OTHERS` (Passo 2.4) vazio, smoke test 3.4.b iterou sobre lista vazia e nao detectou regressao. Production foi substituida por snapshot que tinha apenas `playbook-whatsapp2026` + LP nova.
