@@ -154,7 +154,13 @@ LPs novas devem priorizar o subdomínio mais específico (ex: evento presencial 
 
 ### 4.3 Promessa do guarda-chuva: ZERO regressão em vizinhas
 
-`lp-publicar` faz hash baseline ANTES (Passo 2.4) e smoke test DEPOIS (Passo 3.4.b). Se vizinha mudou hash → reverter, não publicar relatório. Qualquer divergência inesperada é bug bloqueante.
+`lp-publicar` aplica três camadas de defesa em modo guarda-chuva:
+
+1. **Sync prévio (Passo 0.5.d, v3.1.0+)** — antes de qualquer modificação, baixa o último deploy production via Vercel API e popula a sibling local. Garante que a sibling reflete o live mesmo em primeira execução numa máquina nova.
+2. **Hash baseline (Passo 2.4)** — captura MD5 do `index.html` de cada vizinha na sibling pós-sync.
+3. **Smoke test pós-deploy (Passo 3.4.b)** — refaz hash via curl no live e compara com o baseline. Se vizinha mudou → reverter, não publicar relatório.
+
+Antes da v3.1.0 só existiam as camadas 2 e 3, e baseline era capturado da sibling local — vazia em primeira execução, ocultando regressões. v3.1.0 fechou esse buraco; ver §7.2 (2026-05-07) para o quase-incidente motivador.
 
 ---
 
@@ -238,6 +244,8 @@ Se o snippet oficial do Google mudar, **atualizar este arquivo** — todas as sk
 | PageSpeed Performance < 85 | Imagens grandes, fonts não otimizadas, JS bloqueante | Comprimir imagens (WebP via `<picture>`), `<link rel="preload">` para fonts críticas, `font-display: swap` no `@font-face`. |
 | Vercel CLI falha com `FetchError: invalid json response body` | Bug intermitente da CLI — deploy chega READY server-side mas CLI aborta antes da resposta | Consultar API Vercel direto (`lp-publicar` Passo 3.3). Se state=READY nos últimos 120s, ignorar erro CLI. NÃO retry cego. |
 | Smoke test acusa hash divergente em LP vizinha (guarda-chuva) | `vercel.json` foi sobrescrito, asset removido, ou rewrite agressivo de path | NÃO publicar relatório. Reverter mudança. Investigar diff. Promessa do guarda-chuva é zero regressão. |
+| LPs vizinhas viraram 404 após deploy guarda-chuva | Sibling local sem vizinhas + deploy substituiu prod (cenário pré-v3.1.0 ou sync do 0.5.d falhou) | Reverter via Vercel UI (Promote do penúltimo deploy READY). Confirmar que `VERCEL_TOKEN` resolve em `.env.local`/env/auth.json. Re-rodar `lp-publicar` — o sync do 0.5.d deve agora popular a sibling antes do deploy. |
+| `lp-publicar` aborta com "Sync incompleto. Slugs vivos em {dominio} mas faltando na sibling" | Token Vercel sem permissão de read no projeto, ou bug no sync recursivo do 0.5.d | Confirmar que o token tem escopo do team Inhouse-Elife. Se persistir, baixar manualmente o último deploy (Vercel UI → Deployments → Source) e popular a sibling antes de re-rodar. |
 | Sibling apagada por engano | Pasta `${SIBLING_BASE}/{nome}/` foi deletada | `lp-publicar` recria do zero a partir do source. |
 | Sibling divergente do source | Alguém editou direto na sibling (anti-padrão) | `lp-publicar` sobrescreve sibling com source. Se a edição era importante, recuperar antes do deploy via `git diff` na sibling (se for git) ou copiar manualmente pro source antes. |
 | `<title>` com sufixo `[REVISADO]` / `[TESTE]` / `[DRAFT]` no live | Sufixo de trabalho não foi removido no Passo 1.5 do `lp-publicar` | Editar source `index.html` removendo sufixo. Re-deploy. |
@@ -274,6 +282,7 @@ Fonte canônica única — `lp-publicar` e outras skills referenciam aqui em vez
 | 2026-04-27 | mascot.png 404 (path relativo `./assets/` não reescrito) | lp-publicar | v1.4.0 (suporte `./assets/` + grep validation pós-rewrite — §3.5) |
 | 2026-04-27 | Buzzcreators publicada em projeto separado em vez de guarda-chuva existente | lp-publicar | v1.5.0 (Passo 0.5 detecção via API Vercel + namespace por marca — §3.4) |
 | 2026-04-30 | Card-dentro-de-card no embed Jotform (LP `social-listening-mayo-2026-latam`) | lp-integrar-form | v1.3.0 (wrapper sem heranca de `.form`, CSS canonico reduzido) |
+| 2026-05-07 | **Incidente real**: deploy de `webinar-tecnologia-maio2026` em `content.cxpress.io` (deploy `dpl_3rKKvvAfdinBXbQB1MeFFdJP51Au`, ~11h) feito de máquina sem `livraria/` na sibling — production substituída sem livraria, `/livraria` virou 404 por ~2h. `BASELINES_OTHERS` ficou vazio (sibling sem vizinhas), smoke test 3.4.b iterou sobre lista vazia, skill reportou sucesso. Restaurado por `/lp-publicar cxpress livraria` em v3.1.0 (sync via Vercel API baixou playbook + webinar do live, sibling local manteve livraria, deploy preservou as 3 LPs). | lp-publicar | v3.1.0 (Passo 0.5.d sync via Vercel API antes de modificar a sibling — §4.3). LP `webinar-tecnologia-maio2026` recuperada pro repo via download do live + reverse de paths absolutos. |
 
 ---
 

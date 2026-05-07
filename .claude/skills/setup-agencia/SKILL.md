@@ -3,7 +3,7 @@ name: setup-agencia
 description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, configurar token Meta, autenticar Vercel CLI para Landing Pages) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
 argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so meta ads' | /setup-agencia 'so copy e newsletter' | /setup-agencia 'so lp'"
 allowed-tools: AskUserQuestion, Read, Bash, Glob
-version: 0.4.0
+version: 0.5.0
 ---
 
 # Skill: /setup-agencia — Setup guiado para newbies
@@ -406,6 +406,67 @@ grep -E "^LP_SIBLING_BASE=" .env.local
 
 - Sucesso → exibir `[OK] LP_SIBLING_BASE={base} salvo em .env.local` e marcar `vercel_ok = true`.
 - Falha → Fallback "lp-sibling-falhou".
+
+Em qualquer caso, seguir para Passo 4.5.
+
+### 4.5 — Vercel API token (opcional, mas recomendado pra guarda-chuva)
+
+Exiba **literalmente**:
+
+> **Por que um token Vercel?**
+> Quando voce publica uma LP num dominio guarda-chuva (ex: `content.cxpress.io`, `evento.buzzmonitor.com`), a skill `lp-publicar` precisa **baixar o ultimo deploy production** antes de adicionar a LP nova — pra nao apagar as vizinhas. Isso vai numa API que precisa de token.
+>
+> Sem token, a skill tenta ler do `auth.json` do CLI Vercel automaticamente. Funciona na maioria dos casos, mas em algumas configuracoes (Python da Microsoft Store no Windows, paths de auth diferentes) pode falhar. **Salvar um token agora deixa a skill 100% deterministica.**
+
+`AskUserQuestion`:
+- question: "Quer salvar um token Vercel agora? (Recomendado se voce vai publicar em guarda-chuva)"
+- header: "Token Vercel"
+- multiSelect: false
+- options:
+  1. "Sim, vou pegar e colar agora (Recomendado)" — "Vou abrir vercel.com e gerar um token."
+  2. "Pular (uso o auth.json do CLI quando precisar)" — "A skill vai tentar resolver automaticamente; caso falhe, ela me avisa pra rodar setup de novo."
+
+Se "Pular" → seguir pro Passo 5.
+
+Se "Sim", exiba **literalmente**:
+
+> **Como gerar:**
+> 1. Acesse https://vercel.com/account/tokens
+> 2. Clique em "Create Token"
+> 3. Nome: `agente-inhouse` (ou o que preferir)
+> 4. Scope: **Full Account** (precisa de read em deployments + files)
+> 5. Expiration: 1 ano e ok
+> 6. Copie o token gerado e cole abaixo.
+
+`AskUserQuestion`:
+- question: "Cole o token Vercel (comeca com sequencia alfanumerica longa):"
+- header: "Token"
+- multiSelect: false
+- options:
+  1. "Cancelar" — "Pular essa etapa, configurar depois."
+
+(O usuario colara via "Other" com o token.) Capturar como `$VERCEL_TOKEN` e validar:
+
+- Formato basico: `^[a-zA-Z0-9_-]{24,}$`
+- Funciona? Testar com: `curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v2/user"` deve retornar `200`.
+
+Se reprovou (formato invalido ou 401/403): exibir o erro, oferecer cancelar ou tentar de novo.
+
+Se passou, append em `.env.local` (criar linha nova se nao existe; substituir se ja existe):
+
+Use `Read` em `.env.local`. Se `VERCEL_TOKEN=` ja esta la, use `Edit` pra trocar valor. Senao, use `Edit` (append) com:
+
+```
+VERCEL_TOKEN={token}
+```
+
+Confirmar:
+```bash
+grep -E "^VERCEL_TOKEN=" .env.local && echo "OK" || echo "FALHA"
+```
+
+- Sucesso → exibir `[OK] VERCEL_TOKEN salvo em .env.local — pronto pra publicar em guarda-chuva.`
+- Falha → Fallback "vercel-token-falhou" (mensagem hardcoded: `Nao consegui gravar VERCEL_TOKEN no .env.local. Voce pode adicionar manualmente: edite .env.local na raiz do repo e acrescente uma linha "VERCEL_TOKEN={seu-token}".`).
 
 Em qualquer caso, seguir para Passo 5.
 

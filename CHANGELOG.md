@@ -13,6 +13,43 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar, setup-agencia (+ docs LP)
+### 2026-05-07 — Sync sibling via Vercel API + LP `webinar-tecnologia-maio2026` recuperada (lp-publicar v3.1.0, setup-agencia v0.5.0)
+
+Hardening de modo guarda-chuva apos **incidente real** que apagou `/livraria` da production por ~2h. Causa-raiz: deploy feito de maquina sem `livraria/` na sibling local, `BASELINES_OTHERS` (Passo 2.4) vazio, smoke test 3.4.b iterou sobre lista vazia e nao detectou regressao. Production foi substituida por snapshot que tinha apenas `playbook-whatsapp2026` + LP nova.
+
+**O fluxo da correcao em 1 sessao:**
+1. Investigacao do 404 reportado pelo Victor leva ao deploy `dpl_3rKKvvAfdinBXbQB1MeFFdJP51Au` (criado ~11h, 1.35h antes do diagnostico).
+2. Plano: hardenizar `lp-publicar` com sync via Vercel API antes de modificar sibling.
+3. Implementacao do Passo 0.5.d.
+4. Primeiro teste em producao (`/lp-publicar cxpress livraria content.cxpress.io`): sync baixa playbook + webinar do live, sibling local mantem livraria, deploy preserva as 3 LPs. **livraria restaurada com sucesso**.
+5. 4 bugs descobertos durante o teste foram corrigidos no mesmo PR.
+6. LP `webinar-tecnologia-maio2026` recuperada do live pro repo (estava no Vercel mas sem source — foi publicada de outra maquina sem commit).
+
+- **lp-publicar 3.0.0 → 3.1.0 (MINOR — capacidade nova retro-compat)**:
+  - **Novo Passo 0.5.d "Sync sibling com ultimo deploy production"** entre 0.5.c e Passo 1, executado SO em modo guarda-chuva.
+  - **0.5.d.i**: resolve `VERCEL_TOKEN` em 4 camadas — env var > `.env.local` no CWD > `.env.local` no repo principal (suporta worktrees via `git rev-parse --git-common-dir`) > parse de `auth.json` do CLI Vercel (sempre em `com.vercel.cli/Data/auth.json`, com `/Data/` no meio do path; cross-platform Linux/macOS/Windows). Token resolvido **sempre validado** via `curl /v2/user` antes de usar — descarta tokens expirados que o CLI renova internamente mas a API REST direta nao tem fallback.
+  - **0.5.d.iii**: logica de download recursivo extraida pra arquivo helper `.claude/skills/lp-publicar/sync_sibling.py` (em vez de heredoc Python inline na skill). Heredoc combinado com escape de backslash em paths Windows + redirecionamento de stdin gerava bugs sutis. Script externo isola tudo, le env vars com `os.environ`, da pra testar isolado.
+  - **0.5.d.iv**: validacao pos-sync cruza slugs vivos no dominio (curl 200) com `landing-pages/{*}/{*}/` no repo. Se algum slug vivo NAO esta na sibling pos-sync, aborta com mensagem clara — sem isso, deploy apagaria a vizinha.
+  - **Edge case re-publicacao**: se o slug atual ja existe na sibling pos-sync, deixa — Passo 1.2 sobrescreve com a versao do source.
+  - **Passo 0.1**: tambem ganhou fallback worktree pro `.env.local` (mesma logica do 0.5.d.i).
+  - **Comentarios em 2.4 e 3.4.b**: explicitando 3 camadas de defesa (sync, baseline, smoke test).
+  - Sem mudanca em interface, args ou comandos invocaveis.
+
+- **setup-agencia 0.4.0 → 0.5.0**:
+  - **Novo Passo 4.5 "Vercel API token (opcional)"** depois de 4.4. Recomendado pra colaboradores que vao publicar em guarda-chuva. Pulavel — fallback continua sendo `auth.json` do CLI.
+  - Novo fallback `vercel-token-falhou` (mensagem hardcoded com instrucao manual).
+
+- **`.claude/skills/lp-publicar/sync_sibling.py` (NOVO)**: script helper invocado pelo Passo 0.5.d.iii. Le env vars (`DEPLOY_ID`, `ORG_ID`, `VERCEL_TOKEN`, `SIBLING`), faz GET na arvore de arquivos do deploy, baixa cada folha via V7 e grava em `$SIBLING/`. Descarta o wrapper top-level `src/` que o Vercel envelopa.
+
+- **landing-pages/CONTEXT.md** (sem bump — so doc):
+  - §4.3 reescrita pra explicitar 3 camadas de defesa (sync, baseline, smoke test) e referenciar §7.2.
+  - §6 (Troubleshooting): 2 linhas novas — "vizinhas viraram 404" e "Sync incompleto".
+  - §7.2 (Historico): linha 2026-05-07 documentando o **incidente real** (livraria apagada e restaurada na mesma sessao via v3.1.0) + recuperacao da LP webinar.
+
+- **`landing-pages/cxpress/webinar-tecnologia-maio2026/` (NOVA)**: source recuperado do live (deploy production atual). Contem `index.html` (~42KB) + `README.md` documentando origem + debito tecnico (sem `copy.txt`, sem `REVISAO.md`). Paths revertidos de absolutos (`/assets/...`) pra padrao source (`../../brand/cxpress/assets/...`).
+
+- **`.env.local.example`**: nova secao "Vercel API (opcional)" documentando `VERCEL_TOKEN` e como gerar.
+
 ### 2026-05-04 — `.env.local` central + auto-invoke setup-agencia em fallback (v3.0.0)
 
 Iteração de DX em cima da v2.0.0. Reduz precedência de `SIBLING_BASE` de 4 caminhos para 2, elimina branching do sanity check OneDrive/iCloud (vira responsabilidade do setup-agencia) e fecha o loop entre as skills: se config falta, lp-publicar invoca setup-agencia automaticamente.

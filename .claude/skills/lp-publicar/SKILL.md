@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.0.0
+version: 3.1.0
 ---
 
 # Skill: Publicar Landing Page
@@ -41,12 +41,21 @@ Parsing de `$ARGUMENTS`:
 Duas fontes, em ordem de precedencia:
 
 1. **Env var `LP_SIBLING_BASE`** no shell (override pontual).
-2. **Linha `LP_SIBLING_BASE=...` em `.env.local`** (raiz do repo, gitignored — escrito pelo `/setup-agencia`).
-
-Comando unico:
+2. **Linha `LP_SIBLING_BASE=...` em `.env.local`** na raiz do repo (gitignored — escrito pelo `/setup-agencia`). Em worktrees, o `.env.local` mora no repo principal — usar `git rev-parse --git-common-dir` pra resolver corretamente.
 
 ```bash
-SIBLING_BASE="${LP_SIBLING_BASE:-$(grep -E "^LP_SIBLING_BASE=" .env.local 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" | tr -d '\r')}"
+SIBLING_BASE="$LP_SIBLING_BASE"
+
+if [ -z "$SIBLING_BASE" ]; then
+  # Tentar .env.local no CWD (caso normal) e no repo principal (caso worktree)
+  for ENV_DIR in . "$(git rev-parse --git-common-dir 2>/dev/null | sed 's|/.git$||')"; do
+    [ -z "$ENV_DIR" ] && continue
+    if [ -f "$ENV_DIR/.env.local" ]; then
+      SIBLING_BASE=$(grep -E "^LP_SIBLING_BASE=" "$ENV_DIR/.env.local" 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" | tr -d '\r')
+      [ -n "$SIBLING_BASE" ] && break
+    fi
+  done
+fi
 ```
 
 **Se `SIBLING_BASE` ficar vazio** (nem env var nem `.env.local` existem com a chave): NAO abortar com erro seco. Em vez disso:
@@ -140,6 +149,154 @@ Se modo guarda-chuva: pode ser que o sibling local nao exista nesta maquina (pri
 3. Se ja existe mas `projectId`/`orgId` nao batem com a API (sibling local stale), re-rodar o `vercel link` acima para regenerar.
 
 **Importante:** dominio nao fornecido sempre = modo solo, mesmo se outro projeto da org ja serve um dominio. Sem dominio, a skill nao tem sinal pra inferir guarda-chuva.
+
+### 0.5.d Sync sibling com ultimo deploy production (modo guarda-chuva)
+
+Pular em modo solo.
+
+No modo guarda-chuva, popular a sibling local com arquivos do ultimo deploy production **antes** do Passo 1 modificar nada. Sem isso, primeira execucao numa maquina sem sibling local resulta em deploy que apaga vizinhas em silencio — `BASELINES_OTHERS` (Passo 2.4) e capturado da sibling LOCAL, e se ela esta vazia, o smoke test 3.4.b nao detecta a regressao. Incidente motivador documentado em `landing-pages/CONTEXT.md` §7.2 (2026-05-07).
+
+#### 0.5.d.i Resolver e validar VERCEL_TOKEN
+
+Precedencia:
+
+1. Env var `VERCEL_TOKEN` no shell.
+2. Linha `VERCEL_TOKEN=...` em `.env.local` na raiz do repo (gitignored). Em worktrees, o `.env.local` mora no repo principal — usar `git rev-parse --git-common-dir` pra resolver.
+3. Parse de `auth.json` do CLI Vercel — sempre dentro de `.../com.vercel.cli/Data/auth.json` (note `/Data/` no meio):
+   - Linux/WSL: `~/.local/share/com.vercel.cli/Data/auth.json`
+   - macOS: `~/Library/Application Support/com.vercel.cli/Data/auth.json`
+   - Windows: `$APPDATA/com.vercel.cli/Data/auth.json`
+
+**Atencao:** o token do `auth.json` tem `expiresAt` curto (horas). O CLI Vercel renova automaticamente via `refreshToken` quando voce roda `vercel <cmd>`, MAS chamadas API REST direta (que esta skill usa pra sync) nao tem esse fallback. Por isso, **sempre validar o token resolvido** com `curl /v2/user` antes de usar — se 200, OK; se 401/403, descartar e tentar fonte alternativa.
+
+```bash
+# 1. Tentar env var
+TOKEN_CANDIDATE="$VERCEL_TOKEN"
+
+# 2. Tentar .env.local (CWD primeiro, depois repo principal — suporta worktree)
+if [ -z "$TOKEN_CANDIDATE" ]; then
+  for ENV_DIR in . "$(git rev-parse --git-common-dir 2>/dev/null | sed 's|/.git$||')"; do
+    [ -z "$ENV_DIR" ] && continue
+    if [ -f "$ENV_DIR/.env.local" ]; then
+      TOKEN_CANDIDATE=$(grep -E "^VERCEL_TOKEN=" "$ENV_DIR/.env.local" 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" | tr -d '\r')
+      [ -n "$TOKEN_CANDIDATE" ] && break
+    fi
+  done
+fi
+
+# 3. Tentar auth.json do CLI (cross-platform, sempre com /Data/)
+if [ -z "$TOKEN_CANDIDATE" ]; then
+  for AUTH_PATH in \
+    "$HOME/.local/share/com.vercel.cli/Data/auth.json" \
+    "$HOME/Library/Application Support/com.vercel.cli/Data/auth.json" \
+    "$APPDATA/com.vercel.cli/Data/auth.json"; do
+    [ -f "$AUTH_PATH" ] || continue
+    # bash extrai sem dependencia em python (que pode falhar lendo AppData no Windows sandbox)
+    TOKEN_CANDIDATE=$(sed -n 's/.*"token"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$AUTH_PATH" | head -1)
+    [ -n "$TOKEN_CANDIDATE" ] && break
+  done
+fi
+
+# 4. Validar token via /v2/user (descarta se expirado/invalido)
+if [ -n "$TOKEN_CANDIDATE" ]; then
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN_CANDIDATE" "https://api.vercel.com/v2/user")
+  if [ "$STATUS" = "200" ]; then
+    VERCEL_TOKEN="$TOKEN_CANDIDATE"
+  else
+    echo "Token resolvido nao valida (HTTP $STATUS) — provavelmente expirado. Tentando proxima fonte..."
+    VERCEL_TOKEN=""
+  fi
+fi
+```
+
+Se ainda vazio apos 4 tentativas: invocar `setup-agencia` com argumento `"so lp"` (que vai coletar e gravar em `.env.local`) e re-resolver. Se ainda falhar (usuario abortou), parar com mensagem clara: `Sem VERCEL_TOKEN valido — nao posso sincronizar sibling em modo guarda-chuva. Sem sync, deploy pode apagar vizinhas. Aborte ou rode setup-agencia.`
+
+**Notas de bash cross-platform:**
+- Usar `sed -n 's/.*"token"...//p' | head -1` em vez de Python pra extrair o token. Python da Microsoft Store no Windows roda em sandbox AppContainer e NAO consegue abrir paths absolutos em `AppData/Roaming/` (testado e confirmado em 2026-05-04 e 2026-05-07). bash via Git Bash tem acesso normal.
+- A regex do `sed` e nao-greedy o suficiente porque `auth.json` tem `"token"` como primeira chave (apos as anotacoes `// Note` e `// Docs`). Se a estrutura mudar e `creator.uid` ou `userId` aparecer antes de `token`, o `sed` ainda pega o primeiro match correto pelo nome da chave.
+
+**Por que API direto e nao MCP Vercel:** o MCP Vercel disponivel no Claude Code expoe `list_deployments` / `get_deployment` mas NAO os endpoints `/v6/deployments/{id}/files` (tree) nem `/v7/.../files/{uid}` (download de bytes). Pra sincronizar a sibling precisa ir na REST API direto.
+
+#### 0.5.d.ii Pegar ultimo deploy production READY
+
+Ler IDs do projeto a partir do `.vercel/project.json` que o 0.5.c garantiu existir:
+
+```bash
+PROJECT_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['projectId'])")
+ORG_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['orgId'])")
+
+DEPLOY_ID=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
+  "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1" | \
+  python -c "import json,sys; d=json.load(sys.stdin).get('deployments',[]); print(d[0]['uid'] if d else '')")
+
+if [ -z "$DEPLOY_ID" ]; then
+  echo "Nenhum deploy production READY ainda — pulando sync (projeto guarda-chuva sem deploy anterior)."
+fi
+```
+
+Se `DEPLOY_ID` vazio: skip sync (cenario "guarda-chuva recem-criado"). Continuar para Passo 1 — o deploy desta sessao sera o primeiro do projeto.
+
+#### 0.5.d.iii Baixar arquivos do deploy recursivamente
+
+A API V6 retorna uma arvore de nos `{ name, type: "file" | "directory", uid, children?[] }`. Recursar ate folhas, baixar cada arquivo via V7.
+
+A logica vive em `.claude/skills/lp-publicar/sync_sibling.py` (script Python helper). Invocar via env vars:
+
+```bash
+[ -n "$DEPLOY_ID" ] && {
+  export DEPLOY_ID ORG_ID VERCEL_TOKEN SIBLING
+  python "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" || {
+    echo "ERRO: sync_sibling.py falhou. Aborte e investigue."
+    exit 1
+  }
+}
+```
+
+**Por que script externo e nao heredoc inline:** heredoc tem 3 problemas combinados:
+- Interpolacao de `$variable` quebra com paths que tem espaco/parenteses (windows usuario "Program Files (x86)" etc).
+- Escape de backslash no Python heredoc fica fragil (`r"$SIBLING"` vira raw string com backslash literal em paths Windows).
+- Heredoc redireciona stdin do Python — se quiser pipe `curl | python`, conflita com `<<EOF`.
+
+Script externo isola tudo, le env vars com `os.environ`, e da pra testar isolado: `DEPLOY_ID=dpl_xxx ORG_ID=team_xxx VERCEL_TOKEN=xxx SIBLING=/tmp/test python sync_sibling.py`.
+
+#### 0.5.d.iv Validacao pos-sync
+
+Confirmar que cada slug que responde 200 no dominio agora tem `{sibling}/{slug}/index.html`. Se algum esta faltando, abortar — sync nao foi completo.
+
+```bash
+[ -n "$DEPLOY_ID" ] && {
+  # Slugs com index.html na sibling apos sync
+  SIBLING_SLUGS=$(find "$SIBLING" -mindepth 2 -maxdepth 2 -name "index.html" -type f 2>/dev/null | \
+    awk -F/ '{print $(NF-1)}' | sort -u)
+
+  # Slugs candidatos: marcas/slugs no repo
+  REPO_SLUGS=$(find landing-pages -mindepth 3 -maxdepth 3 -name "index.html" -type f 2>/dev/null | \
+    awk -F/ '{print $3}' | sort -u)
+
+  # Slugs vivos no dominio (responde 200)
+  MISSING=""
+  for SLUG in $REPO_SLUGS; do
+    [ "$SLUG" = "{slug}" ] && continue  # a LP nova nao precisa estar no live ainda
+    STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://$DOMAIN/$SLUG" 2>/dev/null)
+    if [ "$STATUS" = "200" ]; then
+      echo "$SIBLING_SLUGS" | grep -q "^$SLUG$" || MISSING="$MISSING $SLUG"
+    fi
+  done
+
+  if [ -n "$MISSING" ]; then
+    echo "ERRO: Sync incompleto. Slugs vivos em $DOMAIN mas faltando na sibling:$MISSING"
+    echo "Causas possiveis: VERCEL_TOKEN sem permissao de read, slug fora de landing-pages/{marca}/, ou bug no sync recursivo."
+    echo "Aborte e investigue — deploy agora apagaria essas LPs."
+    exit 1
+  fi
+}
+```
+
+#### 0.5.d.v Edge case: re-publicacao
+
+Se `{slug}` (a LP que voce esta publicando) ja existe na sibling pos-sync, e re-publicacao (nao LP nova). Deixar como esta — Passo 1.2 sobrescreve com versao atualizada do source. Sem acao especial.
+
+---
 
 ## Passo 1: Preparar Pasta Sibling
 
@@ -362,6 +519,8 @@ Pular esta validacao em modo solo.
 
 No modo guarda-chuva, capturar hash MD5 do `index.html` de **cada outra LP** do sibling **antes** do deploy. Esses hashes sao o baseline para o smoke test do Passo 3.4 — qualquer divergencia depois do deploy = regressao.
 
+**Pos-Passo 0.5.d (v3.1.0):** a sibling agora sempre reflete o live antes deste passo (sync via Vercel API). Antes da v3.1.0, primeira execucao numa maquina nova podia capturar baseline vazio (sibling sem vizinhas), o que ocultava regressoes. Se mesmo assim o baseline ficar vazio aqui, e porque: (a) projeto guarda-chuva nunca teve deploy anterior — caso legitimo, OK seguir; (b) sync do 0.5.d falhou silenciosamente — investigar antes de prosseguir.
+
 ```bash
 for OTHER_DIR in "{sibling}"/*/; do
   OTHER_SLUG=$(basename "$OTHER_DIR")
@@ -484,6 +643,8 @@ Se **qualquer** vizinha quebrou:
 3. O modo guarda-chuva tem promessa de zero regressao — qualquer divergencia inesperada e bug.
 
 Comparacao bit-a-bit e paranoia necessaria: em static sites sem teste de build, o unico sinal de que o deploy publicou o que voce queria e o conteudo servido bater com o fonte-sibling. Em multi-LP, esse sinal precisa cobrir cada LP.
+
+**Defesa em camadas (v3.1.0):** este smoke test e a **segunda** linha de defesa contra regressao em vizinhas. A primeira e o sync do Passo 0.5.d, que garante que a sibling local esteja em paridade com o live antes de qualquer modificacao. Sync falho seria capturado aqui — se uma vizinha quebrou, ou (a) o sync do 0.5.d nao baixou esse slug (bug), ou (b) o deploy realmente quebrou a vizinha (asset removido, vercel.json sobrescrito). Em ambos os casos: NAO publicar relatorio, reverter, investigar.
 
 ## Passo 4: Dominio (se fornecido)
 
