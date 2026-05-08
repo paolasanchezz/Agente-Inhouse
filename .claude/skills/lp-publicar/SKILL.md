@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.2.0
+version: 3.4.0
 ---
 
 # Skill: Publicar Landing Page
@@ -150,9 +150,26 @@ Se modo guarda-chuva: pode ser que o sibling local nao exista nesta maquina (pri
 
 **Importante:** dominio nao fornecido sempre = modo solo, mesmo se outro projeto da org ja serve um dominio. Sem dominio, a skill nao tem sinal pra inferir guarda-chuva.
 
-### 0.5.d Sync sibling com ultimo deploy production (modo guarda-chuva)
+### 0.5.d Sync sibling com ultimo deploy production (guarda-chuva e solo re-publicacao)
 
-Pular em modo solo.
+**Quando rodar:**
+
+| Cenario | Sibling tem `.vercel/project.json`? | Acao |
+|---|---|---|
+| **Guarda-chuva** (qualquer execucao) | sim (garantido pelo 0.5.c) | rodar sync |
+| **Solo, re-publicacao** | sim (de execucao anterior) | rodar sync |
+| **Solo, primeira publicacao** | nao | **pular sync** com mensagem clara: "Solo, primeira publicacao — sem deploy anterior para sincronizar" |
+
+```bash
+if [ ! -f "$SIBLING/.vercel/project.json" ]; then
+  echo "Solo, primeira publicacao — sem deploy anterior para sincronizar. Pulando 0.5.d."
+  # Pular para Passo 1
+else
+  # Executar 0.5.d.i a 0.5.d.iv
+fi
+```
+
+**Por que sync tambem em solo:** historicamente o 0.5.d so rodava em guarda-chuva (v3.1.0) porque o incidente motivador era de regressao em vizinha. Mas o **buraco simetrico** existe em solo re-publicacao: se outra pessoa deployou de outra maquina sem commitar (ou aplicou hotfix manual via Vercel UI), o `lp-publicar` solo sobrescreve sem aviso. Fechado em v3.3.0 — sync popula a sibling com a versao do live antes do drift-check do Passo 1.0.
 
 No modo guarda-chuva, popular a sibling local com arquivos do ultimo deploy production **antes** do Passo 1 modificar nada. Sem isso, primeira execucao numa maquina sem sibling local resulta em deploy que apaga vizinhas em silencio — `BASELINES_OTHERS` (Passo 2.4) e capturado da sibling LOCAL, e se ela esta vazia, o smoke test 3.4.b nao detecta a regressao. Incidente motivador documentado em `landing-pages/CONTEXT.md` §7.2 (2026-05-07).
 
@@ -225,16 +242,52 @@ Ler IDs do projeto a partir do `.vercel/project.json` que o 0.5.c garantiu exist
 PROJECT_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['projectId'])")
 ORG_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['orgId'])")
 
-DEPLOY_ID=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
-  "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1" | \
-  python -c "import json,sys; d=json.load(sys.stdin).get('deployments',[]); print(d[0]['uid'] if d else '')")
+RESPONSE=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
+  "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1")
 
-if [ -z "$DEPLOY_ID" ]; then
-  echo "Nenhum deploy production READY ainda — pulando sync (projeto guarda-chuva sem deploy anterior)."
-fi
+# Distinguir 3 casos: erro de API (token sem read), sem deploys ainda, deploy encontrado
+PARSED=$(echo "$RESPONSE" | python -c "
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    print('ERR:invalid_json:resposta nao e JSON valido')
+    sys.exit(0)
+if 'error' in d:
+    err = d['error']
+    print('ERR:' + err.get('code', 'unknown') + ':' + err.get('message', ''))
+elif d.get('deployments'):
+    print('OK:' + d['deployments'][0]['uid'])
+else:
+    print('EMPTY:')
+")
+
+case "$PARSED" in
+  ERR:forbidden:*|ERR:not_found:*)
+    echo "ERRO: VERCEL_TOKEN nao tem permissao de read no projeto $PROJECT_ID."
+    echo "  Causa: token foi gerado com escopo restrito, ou projeto nao esta na org $TEAM."
+    echo "  Solucao: regere o token em https://vercel.com/account/tokens com escopo 'Full Account'"
+    echo "  na org elife-group, ou rode '/setup-agencia so lp' para reconfigurar."
+    echo "  Detalhe da API: ${PARSED#ERR:}"
+    exit 1
+    ;;
+  ERR:*)
+    echo "ERRO inesperado da API Vercel: ${PARSED#ERR:}. Aborte e investigue."
+    exit 1
+    ;;
+  EMPTY:)
+    echo "Nenhum deploy production READY ainda — pulando sync (projeto sem deploy anterior)."
+    DEPLOY_ID=""
+    ;;
+  OK:*)
+    DEPLOY_ID="${PARSED#OK:}"
+    ;;
+esac
 ```
 
-Se `DEPLOY_ID` vazio: skip sync (cenario "guarda-chuva recem-criado"). Continuar para Passo 1 — o deploy desta sessao sera o primeiro do projeto.
+**Por que distinguir os 3 casos:** antes da v3.3.0, qualquer falha caia silenciosamente no "projeto sem deploy anterior" — confundia debugging quando o problema real era token sem permissao de read. Agora forbidden/not_found abortam com mensagem acionavel, e EMPTY (caso legitimo de projeto recem-criado) segue normalmente.
+
+Se `DEPLOY_ID` vazio (caso EMPTY): skip sync. Continuar para Passo 1 — o deploy desta sessao sera o primeiro do projeto.
 
 #### 0.5.d.iii Baixar arquivos do deploy recursivamente
 
@@ -259,9 +312,11 @@ A logica vive em `.claude/skills/lp-publicar/sync_sibling.py` (script Python hel
 
 Script externo isola tudo, le env vars com `os.environ`, e da pra testar isolado: `DEPLOY_ID=dpl_xxx ORG_ID=team_xxx VERCEL_TOKEN=xxx SIBLING=/tmp/test python sync_sibling.py`.
 
-#### 0.5.d.iv Validacao pos-sync
+#### 0.5.d.iv Validacao pos-sync (presenca + integridade)
 
-Confirmar que cada slug que responde 200 no dominio agora tem `{sibling}/{slug}/index.html`. Se algum esta faltando, abortar — sync nao foi completo.
+Dois checks independentes. Qualquer um que falhe → abortar.
+
+**Check 1 — presenca:** confirmar que cada slug que responde 200 no dominio agora tem `{sibling}/{slug}/index.html`. Se algum esta faltando, sync nao foi completo (token sem read, bug no sync recursivo, etc.).
 
 ```bash
 [ -n "$DEPLOY_ID" ] && {
@@ -292,9 +347,49 @@ Confirmar que cada slug que responde 200 no dominio agora tem `{sibling}/{slug}/
 }
 ```
 
+**Check 2 — integridade:** confirmar que cada `index.html` na sibling pos-sync comeca com HTML valido (`<!doctype html>` ou `<html>`). JSON wrapper, pagina em branco ou outro lixo no live indica que o **ultimo deploy production esta corrompido** — propagar via lp-publicar republicaria o lixo em silencio.
+
+**Por que este check existe (motivacao real, 2026-05-08):** o `sync_sibling.py` baixa o conteudo dos arquivos exatamente como esta no deploy. Se o deploy publicou `{"data":"<base64>"}` (cenario do incidente 2026-05-07 tarde 2 e do **re-incidente 2026-05-08** quando outra colaboradora rodou versao antiga do helper sem `base64.b64decode`), o sync traz esse JSON cru pra sibling local, sobrescrevendo versoes integras que existiam ali. Sem este check: baseline (2.4) captura hash do JSON wrapper, deploy publica, smoke test (3.4.b) confirma que live mantem o mesmo hash → bug propagado, skill reporta sucesso. O que evitou propagacao em 2026-05-08 foi intuicao do operador, nao a skill. Fechado em v3.3.1.
+
+```bash
+[ -n "$DEPLOY_ID" ] && {
+  CORRUPTED=""
+  for SLUG_DIR in "$SIBLING"/*/; do
+    [ -d "$SLUG_DIR" ] || continue
+    HTML="$SLUG_DIR/index.html"
+    [ -f "$HTML" ] || continue
+    # HTML valido comeca com <!doctype html> ou <html (case-insensitive, ignora whitespace inicial)
+    if ! head -c 100 "$HTML" | tr 'A-Z' 'a-z' | grep -qE '^[[:space:]]*<(!doctype|html)'; then
+      CORRUPTED="$CORRUPTED $(basename $SLUG_DIR)"
+    fi
+  done
+
+  if [ -n "$CORRUPTED" ]; then
+    echo "ERRO: Sync trouxe LP(s) corrompida(s) do live:$CORRUPTED"
+    echo "Conteudo nao comeca com <!doctype html> nem <html — provavelmente JSON wrapper,"
+    echo "pagina em branco ou outro lixo. Ultimo deploy production esta corrompido."
+    echo ""
+    echo "Causa-raiz tipica: outra maquina rodou versao antiga do sync_sibling.py"
+    echo "(sem base64.b64decode) e propagou JSON cru como conteudo do index.html."
+    echo ""
+    echo "Recovery (NAO rode lp-publicar enquanto live estiver corrompido — propagaria o bug):"
+    echo "1. Sua sibling local pre-sync foi sobrescrita por este sync. Veja se voce tem backup."
+    echo "2. Se outra maquina (ex: do Victor) tem sibling com versoes integras das vizinhas, use ela."
+    echo "3. Recovery manual: atualize so a LP nova/alterada na sibling integra, mantenha vizinhas,"
+    echo "   deploy direto via 'cd \$SIBLING && npx vercel deploy --prod --yes --force --scope \$TEAM'."
+    echo "4. Documente em landing-pages/CONTEXT.md §7.2."
+    echo ""
+    echo "Historico: ver §7.2 incidentes 2026-05-07 (tarde 2) e 2026-05-08."
+    exit 1
+  fi
+}
+```
+
+**Falsos positivos previstos:** apenas `index.html` que comecam com BOM UTF-8 (`\xEF\xBB\xBF`) podem disparar o check. Se isso aparecer, ajustar o regex pra `^(\xEF\xBB\xBF)?[[:space:]]*<(!doctype|html)`. Em pratica, lp-gerar nunca gera BOM — entao falso positivo so apareceria se HTML viesse de outro pipeline.
+
 #### 0.5.d.v Edge case: re-publicacao
 
-Se `{slug}` (a LP que voce esta publicando) ja existe na sibling pos-sync, e re-publicacao (nao LP nova). Deixar como esta — Passo 1.2 sobrescreve com versao atualizada do source. Sem acao especial.
+Se `{slug}` (a LP que voce esta publicando) ja existe na sibling pos-sync, e re-publicacao (nao LP nova). **Nao** sobrescrever ainda — o **Passo 1.0** (drift-check) compara o conteudo do live com o que seu source local geraria, e pede confirmacao se divergir. Sem este check, alteracoes feitas por outra pessoa (deploy de outra maquina sem commit, hotfix manual no Vercel) seriam apagadas em silencio.
 
 ---
 
@@ -334,6 +429,64 @@ Sibling ja existe e ja tem LPs vizinhas. Voce **adiciona** sua LP como mais uma 
 ├── .gitignore
 └── README.md               ← anexar nova LP a tabela existente
 ```
+
+### 1.0 Drift-check pre-overwrite
+
+**Quando rodar:** apos sync (0.5.d), antes de qualquer copia source → sibling. Pular se 0.5.d foi pulado (solo primeira publicacao) ou se `DEPLOY_ID` ficou vazio (caso EMPTY).
+
+**O que protege:** se outra pessoa publicou esta LP de outra maquina sem commitar (ou aplicou hotfix manual via Vercel UI), o source local pode estar stale. Sem este check, Passo 1.2 sobrescreve o trabalho dela em silencio. Buraco fechado em v3.3.0.
+
+**Logica:**
+
+```bash
+# So roda se sync trouxe a LP atual do live para a sibling
+if [ -f "$SIBLING/{slug}/index.html" ] && [ -n "$DEPLOY_ID" ]; then
+  # 1. Copiar source para temp e simular reescrita do Passo 1.5 antes de comparar.
+  #    Hash bruto sempre divergiria — source tem '../../brand/...', live tem '/assets/...'.
+  TEMP_HTML=$(mktemp --suffix=.html 2>/dev/null || mktemp -t drift.html)
+  cp "landing-pages/{marca}/{slug}/index.html" "$TEMP_HTML"
+
+  if [ "$MODE" = "guarda-chuva" ]; then
+    sed -i.bak "s|\.\./\.\./brand/{marca}/assets/|/assets/{marca}/|g; s|\./assets/|/assets/{marca}/|g" "$TEMP_HTML"
+  else
+    sed -i.bak "s|\.\./\.\./brand/{marca}/assets/|/assets/|g; s|\./assets/|/assets/|g" "$TEMP_HTML"
+  fi
+  rm -f "$TEMP_HTML.bak"
+
+  # 2. Hash dos dois (normalizando \r de line-ending Windows pra evitar falso-positivo)
+  EXPECTED=$(tr -d '\r' < "$TEMP_HTML" | md5sum | awk '{print $1}')
+  LIVE=$(tr -d '\r' < "$SIBLING/{slug}/index.html" | md5sum | awk '{print $1}')
+
+  if [ "$EXPECTED" != "$LIVE" ]; then
+    echo "AVISO: a versao de '{slug}' no Vercel NAO bate com o que seu source local geraria."
+    echo "  Hash esperado (do source local + reescrita):  $EXPECTED"
+    echo "  Hash do live (sincronizado agora):            $LIVE"
+    echo ""
+    echo "Possiveis causas:"
+    echo "  - Outra pessoa publicou de outra maquina sem commitar."
+    echo "  - Hotfix manual aplicado fora deste fluxo."
+    echo "  - Seu git esta desatualizado (rode: git pull --rebase)."
+    echo ""
+    echo "Para diff detalhado antes de decidir:"
+    echo "  diff '$TEMP_HTML' '$SIBLING/{slug}/index.html'"
+    # Mantem $TEMP_HTML para o usuario inspecionar — limpar depois da decisao
+  else
+    rm -f "$TEMP_HTML"
+  fi
+fi
+```
+
+**Se hashes divergirem:** pare e pergunte ao usuario via `AskUserQuestion` com 3 opcoes (NAO seguir adiante por conta propria — esta e uma decisao de quem opera):
+
+| Opcao | Acao |
+|---|---|
+| **Continuar — sobrescrever live com meu source** | Aceita o risco, segue para Passo 1.1. Limpar `$TEMP_HTML`. Logar a decisao. |
+| **Abortar — vou investigar o diff** | Parar a skill. Mostrar comando `diff` no relatorio final. NAO limpar `$TEMP_HTML` para o usuario inspecionar. |
+| **Pull primeiro — rode `git pull --rebase` e me chame de novo** | Parar a skill. Limpar `$TEMP_HTML`. Mensagem final: "Rode `git pull --rebase` na raiz do repo, confira se a LP foi atualizada por colega, depois rode `/lp-publicar` de novo." |
+
+**Por que comparar hash normalizado e nao diff completo inline:** mostrar diff inline polui o contexto e o usuario nao consegue ler bem em multiplos resultados. Hash + comando para diff manual mantem ruido baixo e da controle.
+
+**Falsos positivos previstos:** mtime de `$TEMP_HTML` afetando hash NAO é problema — md5 calcula sobre conteudo, nao metadata. Line-ending `\r\n` (Windows) vs `\n` (Linux) NAO é problema — o `tr -d '\r'` normaliza ambos antes do hash. Se mesmo assim aparecer drift inesperado em re-publicacao logo apos publicacao bem-sucedida da mesma maquina, investigar (pode ser bug na reescrita do Passo 1.5).
 
 ### 1.1 Criar pasta da LP
 
@@ -419,13 +572,32 @@ Remover também do `<title>` qualquer sufixo de trabalho: `[REVISADO]`, `[TESTE]
 
 **Modo solo:** copiar `.claude/skills/lp-publicar/vercel.template.json` para `{sibling}/vercel.json` **sem modificacao**.
 
-**Modo guarda-chuva:** **NAO sobrescrever** o `{sibling}/vercel.json` existente. Ele ja foi configurado para servir multi-LP. Em vez disso, comparar com o template:
+**Modo guarda-chuva:** **NAO sobrescrever** o `{sibling}/vercel.json` existente. Ele ja foi configurado para servir multi-LP. Em vez disso, rodar **drift-check ativo de CSP** comparando com o template:
 
 ```bash
-diff "{sibling}/vercel.json" ".claude/skills/lp-publicar/vercel.template.json"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+SIBLING_VERCEL_JSON="{sibling}/vercel.json" \
+  TEMPLATE_VERCEL_JSON="$REPO_ROOT/.claude/skills/lp-publicar/vercel.template.json" \
+  python "$REPO_ROOT/.claude/skills/lp-publicar/csp_drift_check.py"
 ```
 
-Se o sibling tem CSP/headers desatualizados em relacao ao template (ex: novo provedor de form recem-adicionado ao template), **avisar** o usuario e perguntar antes de patch-ar — outras LPs vizinhas podem depender de configuracao especifica nao-padrao.
+Saidas possiveis:
+
+| Exit | Significado | Acao |
+|---|---|---|
+| 0 | CSP do sibling cobre todos os dominios do template | Continuar (modo guarda-chuva nao mexe em vercel.json) |
+| 1 | DRIFT — template tem dominio que sibling nao tem | Pausar via `AskUserQuestion` (ver 3 opcoes abaixo), mostrar `missing_in_sibling` ao usuario |
+| 2 | Erro de leitura, parsing ou env var faltando | Abortar e investigar |
+
+**Quando exit 1 (drift detectado):** o stdout do helper traz JSON com `missing_in_sibling` (dominios novos no template ausentes no sibling — drift que precisa de patch) e `extra_in_sibling` (customizacoes do sibling que NAO estao no template — preservar caso o operador escolha patch automatico). Mostrar a lista completa ao usuario e oferecer 3 opcoes via `AskUserQuestion`:
+
+| Opcao | Acao |
+|---|---|
+| **Patch CSP no sibling com versao do template (Recomendado)** | Substituir o `Content-Security-Policy` em `{sibling}/vercel.json` pelo do template via `Edit replace_all` cirurgico (1 troca por directive afetado em `missing_in_sibling`). Preservar `redirects` + outros headers + `extra_in_sibling` (concatenar dominios custom de volta as directives correspondentes). Re-rodar o drift-check pos-patch — esperar exit 0. |
+| **Deixar como esta — anotar em pendencias** | Continua o deploy sem alterar CSP. Anota em "Pendencias" do relatorio Notion (Passo 6) com a lista `missing_in_sibling` para o operador endurecer depois. |
+| **Abortar e investigar manualmente** | Para a skill. Cenario raro: sibling com CSP intencionalmente divergente onde o operador prefere decidir fora do fluxo. |
+
+**Por que existe esse drift-check (motivacao real, 2026-05-08):** apos v3.2.0 atualizar o template para liberar Meta Pixel via Facebook, apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 outros guarda-chuvas Buzzmonitor (`webinar.*`, `evento.*`, `material.*`) continuaram com CSP antigo bloqueando o pixel em runtime — `Refused to load https://connect.facebook.net` no DevTools. O `diff` generico que existia antes flagava a divergencia, mas o operador podia nao notar (CR/LF + multiplas linhas) e o problema ficou silencioso por dias ate alguem reportar. v3.4.0 fecha o gap: helper programatico extrai conjuntos de dominios por directive, lista exata do que falta, e pausa via AskUserQuestion antes do deploy.
 
 O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM), video (YouTube, Vimeo) e **Meta Pixel via GTM** (`connect.facebook.net` em `script-src`/`connect-src`; `www.facebook.com` em `connect-src`/`frame-src` — desde v3.2.0).
 

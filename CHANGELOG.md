@@ -12,6 +12,69 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar (+ docs LP)
+### 2026-05-08 (noite) — Drift-check ativo de CSP em modo guarda-chuva (lp-publicar v3.4.0)
+
+Hardening preventivo motivado por feedback que Victor recebeu de equipe externa: depois da v3.2.0 atualizar o template para liberar Meta Pixel via Facebook (`connect.facebook.net` + `www.facebook.com` em `script-src`/`connect-src`/`frame-src`), apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 guarda-chuvas Buzzmonitor (`webinar.buzzmonitor.com`, `evento.buzzmonitor.com`, `material.buzzmonitor.com`) continuaram servindo CSP antigo por ~24h — pixel Meta era bloqueado em runtime via `Refused to load https://connect.facebook.net` mas a skill nao detectava porque o `diff` generico do Passo 1.6 era ignoravel (CR/LF + multiplas linhas). Verificacao manual via `curl -sI` em todos os deploys confirmou o gap em 5 LPs ativas. Correcao pos-fato: 2 deploys com patch cirurgico de CSP (`dpl_BGADTQUh963ZsC62Qqa2eTx5jh9p` em evento, `dpl_qnvc2iyfy...` em webinar; 5/5 vizinhas intactas, 2/2 redirects 308 preservados). Material ficou pendente (sem LP ativa).
+
+- **lp-publicar 3.3.1 → 3.4.0 (MINOR — capacidade nova retro-compat)**:
+  - **Novo helper `csp_drift_check.py`**: extrai CSP do sibling e do template, parseia por directive (`script-src`, `connect-src`, `frame-src`, etc.), compara conjuntos de dominios. Exit 0 = OK, exit 1 = DRIFT (template tem dominio que sibling nao tem), exit 2 = erro. Stdout em JSON com `missing_in_sibling` (lista por directive — drift que precisa de patch) e `extra_in_sibling` (customizacoes do sibling a preservar). Stdlib so (~110 linhas, testavel isolado via env vars).
+  - **Passo 1.6 reestruturado** em modo guarda-chuva: `diff` generico substituido pelo helper. Quando exit 1, pausa via `AskUserQuestion` com 3 opcoes — (a) **Patch CSP no sibling com versao do template (Recomendado)** preservando `redirects` + `extra_in_sibling`; (b) **Deixar como esta** e anotar em pendencias do relatorio Notion; (c) **Abortar e investigar manualmente**. Modo solo nao muda (continua sobrescrevendo template).
+  - **Sem mudanca em interface ou comportamento de happy-path** (sibling ja sincronizado com template). Skill so se comporta diferente quando ha drift de CSP — pausa em vez de seguir silencioso.
+
+- **landing-pages/CONTEXT.md** (sem bump — so doc):
+  - **§6 Troubleshooting**: 2 atualizacoes — linha existente "Pixel Meta via GTM nao dispara" agora menciona que v3.4.0 detecta automaticamente; linha nova "lp-publicar Passo 1.6 emite 'DRIFT — CSP do sibling guarda-chuva esta atras do template'" com instrucao das 3 opcoes.
+  - **§7.2 Historico**: linha 2026-05-08 (noite) documentando o feedback Meta Pixel, patch manual nos 2 deploys (smoke test 5/5 LPs intactas + 2/2 redirects 308 + 9/9 endpoints com Facebook coverage), e o hardening v3.4.0.
+
+- **`.claude/skills/lp-publicar/csp_drift_check.py` (NOVO)**: helper Python invocado pelo Passo 1.6 (modo guarda-chuva). Le `SIBLING_VERCEL_JSON` e `TEMPLATE_VERCEL_JSON` por env var. Testavel isolado: `SIBLING_VERCEL_JSON=foo.json TEMPLATE_VERCEL_JSON=bar.json python csp_drift_check.py`. Validado contra 3 cenarios pre-merge: sibling patcheado (exit 0 OK), sibling com CSP antigo (exit 1 DRIFT com lista exata de 3 dominios faltantes em 3 directives), env vazio (exit 2 ERROR).
+
+### 2026-05-08 (tarde) — Validacao de integridade pos-sync (lp-publicar v3.3.1)
+
+Re-incidente JSON wrapper em `webinar.buzzmonitor.com` (mesma causa-raiz do incidente 2026-05-07 tarde 2: outra colaboradora rodou versao antiga do `sync_sibling.py` sem `base64.b64decode`). 3 das 4 LPs vizinhas ficaram servindo JSON wrapper. Durante o recovery manual, Victor levantou: "tem algum bug na skill que atrapalhou isso?" — e tinha.
+
+**Bug descoberto na propria v3.3.0:** se o operador rodasse `lp-publicar` para fazer recovery, o sync 0.5.d teria baixado as 3 LPs corrompidas do live e sobrescrito as integras na sibling local — propagando o bug. Validacao 0.5.d.iv so checava **presenca** (`index.html` existe?), nao **integridade** (e HTML valido?). Drift-check 1.0 (v3.3.0) so compara a LP que esta sendo publicada, nao vizinhas. Baseline 2.4 + smoke test 3.4.b confirmariam que live mantem o hash do JSON wrapper = false positive. O que evitou propagacao em 2026-05-08 foi intuicao do operador (Victor interrompeu pedindo recovery manual), nao a skill.
+
+- **lp-publicar 3.3.0 → 3.3.1 (PATCH — bug fix puro)**:
+  - **Passo 0.5.d.iv reestruturado** em 2 checks independentes:
+    - **Check 1 — presenca** (existente): cada slug vivo no live tem `index.html` na sibling pos-sync. Aborta se algum esta faltando (token sem read, bug no sync recursivo).
+    - **Check 2 — integridade (NOVO)**: cada `index.html` na sibling pos-sync comeca com `<!doctype html>` ou `<html>` (case-insensitive, ignora whitespace). Aborta se algum nao bate, com mensagem orientando recovery manual ("NAO rode lp-publicar enquanto live estiver corrompido — propagaria o bug. Use sibling integra de outra maquina e deploy direto via npx vercel deploy").
+  - Validacao usa `head -c 100 | tr A-Z a-z | grep -qE '^[[:space:]]*<(!doctype|html)'` — robusto contra line-ending, caps de tag, e BOM ASCII. Falso positivo previsto so com BOM UTF-8 (`\xEF\xBB\xBF`); lp-gerar nao gera BOM.
+  - Sem mudanca em interface ou comportamento de happy-path. Skill so se comporta diferente quando o live esta de fato corrompido — nesse caso, aborta cedo em vez de propagar.
+
+- **landing-pages/CONTEXT.md** (sem bump — so doc):
+  - **§6 Troubleshooting**: 2 atualizacoes — linha existente do "JSON wrapper" agora menciona que v3.3.1 detecta automaticamente; linha nova "lp-publicar aborta em 0.5.d.iv com 'Sync trouxe LP(s) corrompida(s)'" com instrucao de recovery manual.
+  - **§7.2 Historico**: linha 2026-05-08 (tarde) documentando o re-incidente, o bug descoberto na v3.3.0, recovery manual (`dpl_Bn9NmxFpJU8SSLAVokRk28mH9HjA` em 6s) e fix v3.3.1.
+
+- **Mitigacao operacional permanente:** garantir `git pull` antes de qualquer deploy guarda-chuva. Versao antiga do `sync_sibling.py` continua sendo a causa-raiz nas maquinas que nao atualizaram, e o fix v3.3.1 e detector pos-fato — nao impede a corrupcao original. So `git pull` (ou treinamento da equipe) resolve na origem.
+
+### 2026-05-08 — Drift-check pre-overwrite + sync em solo re-publicacao + bug fix de diagnostico de token (lp-publicar v3.3.0)
+
+Hardening preventivo motivado por revisao de Victor — nenhum incidente novo, mas dois buracos simetricos ao caso JSON wrapper de 2026-05-07 ainda existiam:
+
+1. **Buraco 1 — drift na propria LP em guarda-chuva**: o sync 0.5.d (v3.1.0) baixava todas as LPs do live para a sibling, mas o Passo 1.2 imediatamente sobrescrevia `sibling/{slug}/index.html` com o source local sem comparar. Se outra pessoa publicou a mesma LP de outra maquina sem commitar (cenario do incidente JSON wrapper), o trabalho era apagado em silencio.
+
+2. **Buraco 2 — modo solo sem sync**: Passo 0.5.d explicitamente dizia "Pular em modo solo". Re-publicacao solo de maquina diferente da ultima sobrescrevia o live sem rede de protecao. Probabilidade real subiu apos a equipe crescer (varios colaboradores rotativos).
+
+3. **Bug menor de UX em 0.5.d.ii**: se o token Vercel era valido mas sem permissao de read no projeto-alvo, `DEPLOY_ID` ficava vazio e a skill emitia "projeto recem-criado" — confundia debugging.
+
+- **lp-publicar 3.2.0 → 3.3.0 (MINOR — capacidade nova retro-compat + bug fix)**:
+  - **Passo 0.5.d ampliado** para guarda-chuva **e solo re-publicacao**. Pre-check no inicio do passo: se `[ ! -f "$SIBLING/.vercel/project.json" ]`, pular sync com mensagem clara ("Solo, primeira publicacao — sem deploy anterior para sincronizar"). Caso contrario, executar 0.5.d.i a 0.5.d.iv normalmente.
+  - **Novo Passo 1.0 "Drift-check pre-overwrite"** entre 0.5.d e 1.1. So roda se sibling pos-sync ja contem `{slug}/index.html` (= re-publicacao). Logica: copia source local pra temp, simula a reescrita do Passo 1.5 (modo solo OU guarda-chuva), normaliza line-endings, calcula md5 dos dois lados. Se divergem, **pausa e pergunta ao usuario via `AskUserQuestion`** com 3 opcoes (Continuar / Abortar / Pull primeiro). Nao decide por conta — drift e sinal forte de que outra pessoa pode ter publicado.
+  - **Bug fix em 0.5.d.ii**: case statement com 4 branches distinguindo `ERR:forbidden|not_found` (token sem read — aborta com mensagem acionavel pra regerar token), `ERR:*` (erro inesperado da API — aborta), `EMPTY:` (caso legitimo de projeto sem deploy — pula sync), `OK:*` (tem deploy — segue normal). Antes, qualquer branch caia silenciosamente em "projeto recem-criado".
+  - **Comentarios atualizados** no 0.5.d.v explicando que re-publicacao agora passa pelo drift-check do 1.0 antes de sobrescrever.
+  - Sem mudanca em interface, args ou comandos invocaveis.
+
+- **landing-pages/CONTEXT.md** (sem bump — so doc):
+  - **§4.3 reescrita** explicitando 4 camadas de defesa em 2 eixos: vizinhas em guarda-chuva (sync + baseline + smoke test) e propria LP em qualquer modo (drift-check). Documenta historico das camadas (v3.1.0 fechou buraco de vizinhas, v3.3.0 fechou buraco de propria LP + sync em solo).
+  - **§6 Troubleshooting**: 3 linhas atualizadas/novas — "Sync incompleto" reformulada (token sem read agora detectado mais cedo); nova "VERCEL_TOKEN nao tem permissao de read no projeto"; nova "AVISO: a versao de '{slug}' no Vercel NAO bate com o que seu source local geraria" (drift-check do 1.0).
+  - **§7.2 Historico**: linha 2026-05-08 documentando o hardening preventivo + motivacao (varios colaboradores rotativos = disciplina humana nao escala).
+
+- **`.env.local.example`**: secao "Vercel API" promovida de "(opcional)" para "(recomendado)". `VERCEL_TOKEN=` descomentado para sinalizar que e variavel ativa, nao opcional. Comentario explicativo expandido cobrindo solo re-publicacao.
+
+- **Nao requer mudanca em `sync_sibling.py`**: helper continua igual — recebe `DEPLOY_ID`/`ORG_ID`/`VERCEL_TOKEN`/`SIBLING` por env vars e baixa recursivamente. So o codigo que decide *quando* invocar o helper mudou.
+
+---
+
 ## lp-publicar, setup-agencia (+ docs LP)
 ### 2026-05-07 (tarde 2) — Recovery `webinar.buzzmonitor.com` (JSON wrapper bug) + LP `buzzcreators-webinar-junho` recuperada (sem bump — só doc)
 
