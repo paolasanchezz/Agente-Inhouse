@@ -95,7 +95,13 @@ Se houver duplicidade que `news-pesquisar` deixou passar, alerte e marque `[VERI
 
 ### Linguagem jornalistica
 
-1. **Lead da abertura**: comeca com fato, dado, cena ou conflito? REJEITAR aberturas tipo:
+1. **Piramide invertida — abertura**:
+   - A **primeira frase** da abertura contem o apex: O Que (fato/insight central)?
+   - A abertura responde O Que + Por Que importa em ≤50 palavras?
+   - A abertura e completa em si (se o leitor parar aqui, entendeu o ponto)?
+   - Se a primeira frase for contexto/aquecimento em vez de apex: **reescrever pondo o apex primeiro**.
+
+2. **Lead da abertura**: comeca com fato, dado, cena ou conflito? REJEITAR aberturas tipo:
    - "Imagine que voce..."
    - "Existe um momento que..."
    - "Sabe quando..."
@@ -105,19 +111,24 @@ Se houver duplicidade que `news-pesquisar` deixou passar, alerte e marque `[VERI
 
    Se algum aparecer: **reescrever a abertura** com lead direto.
 
-2. **Frases curtas**:
+3. **Mini-piramide invertida — capitulos**:
+   - Cada mini-bloco comeca com a tese (resposta/conclusao) na primeira frase?
+   - A evidencia/edutainment vem DEPOIS da tese (nao antes)?
+   - Se um mini-bloco comecar com contexto antes da tese: **mover a tese para a primeira frase**.
+
+4. **Frases curtas**:
    - Comprimento medio ≤22 palavras
    - Maximo 30 palavras numa unica frase
    - Sujeito-verbo-objeto, sem rodeios
 
    Se houver frases longas: **quebrar em 2-3 menores**.
 
-3. **Tom nao-vendedor**:
+5. **Tom nao-vendedor**:
    - Maximo 1 mencao a {NomeDaMarca} fora dos links de blog proprio
    - Nao descrever feature como diferencial (papel da landing)
    - Se >40% dos links contextuais apontam para domínio próprio fora do blog (demo/landing), alertar — sinal de campanha disfarcada
 
-4. **Pergunta-eixo NAO visivel**: confirmar que a pergunta-eixo NAO aparece como bloco no corpo da NL (sem `> ## A pergunta da semana`, sem callout, sem heading). Ela vive como comentario HTML no topo do arquivo e em `dor-semana.md`. Se aparecer visivel, REMOVER e absorver no assunto/abertura.
+6. **Pergunta-eixo NAO visivel**: confirmar que a pergunta-eixo NAO aparece como bloco no corpo da NL (sem `> ## A pergunta da semana`, sem callout, sem heading). Ela vive como comentario HTML no topo do arquivo e em `dor-semana.md`. Se aparecer visivel, REMOVER e absorver no assunto/abertura.
 
 ### Edutainment
 
@@ -220,6 +231,8 @@ Uma newsletter e **APROVADA** quando:
 - Pergunta-eixo NAO aparece como bloco visivel (so no comentario HTML interno e em `dor-semana.md`)
 - Estrutura: Abertura + Resposta em capitulos (Mais pra explorar, Clipping e Extra opcionais)
 - Corpo ≤300 palavras
+- **Piramide invertida — abertura**: primeira frase e o apex (O Que + Por Que importa); abertura completa em si
+- **Piramide invertida — capitulos**: cada mini-bloco tem tese na primeira frase, evidencia depois
 - Lead jornalistico (sem aberturas narrativas proibidas)
 - Frases medias ≤22 palavras
 - Tom nao-vendedor (max 1 mencao a {NomeDaMarca} fora dos links de blog)

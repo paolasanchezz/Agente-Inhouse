@@ -73,11 +73,72 @@ Comecar com fato, dado, cena ou conflito. **Nunca** com gancho narrativo de mark
 
 ## Linguagem jornalistica e direta
 
-1. **Lead 5W1H simplificado**: o que aconteceu / quem / quando / por que importa.
+1. **Lead 5W1H**: ver secao "Piramide Invertida e Lead Jornalistico" abaixo para o framework completo.
 2. **Frases curtas**: comprimento medio ≤22 palavras, max 30 numa unica frase.
 3. **Sujeito-verbo-objeto**: evitar inversoes elaboradas, oracoes encaixadas em excesso.
 4. **Sem hype**: zero "incrivel", "imperdivel", "revolucionario", "definitivo".
 5. **Verbos no presente** quando possivel — newsletter editorial vive no presente.
+
+---
+
+## Piramide Invertida e Lead Jornalistico
+
+### Estrutura da piramide invertida na newsletter
+
+```
+[Apex]  Abertura (lead)          — a resposta central: O Que + Por Que importa
+[Body]  Resposta em capitulos    — 3 angulos que sustentam e expandem o lead
+[Tail]  Blocos opcionais         — mais para explorar, clipping, extra
+```
+
+A abertura deve ser **completa em si mesma**: se o leitor parar depois dela, ja entendeu o ponto principal da edicao. Os capitulos aprofundam; os opcionais enriquecem.
+
+### Lead jornalistico: template 5W1H
+
+O lead responde, na ordem de importancia:
+
+| Elemento | Obrigatorio? | Descricao |
+|---|---|---|
+| **O Que** | Sim | O fato, insight ou tensao central desta edicao |
+| **Por Que importa** | Sim | O que muda ou esta em risco para quem le |
+| **Quem / Quando / Onde** | Se relevante | Acrescenta so quando concretiza o lead |
+
+**Template mental**: "[O Que: fato/insight central]. [Por Que importa ao leitor]."
+
+**Exemplos bons:**
+- "25 clientes insatisfeitos nao reclamam. Eles somem — e levam outros com eles."
+  *(O Que: comportamento real de churn silencioso | Por Que: a metrica de reclamacoes esconde o problema)*
+- "79% dos consumidores brasileiros trocam de empresa apos um unico erro de atendimento. Um."
+  *(O Que: dado + tensao | Por Que implicito: margem de erro e zero)*
+- "O setor diz que IA cuida do volume. Os dados mostram que ela mantem o ticket, mas perde o cliente."
+  *(O Que: conflito dado vs. discurso | Por Que: a metrica que a empresa acompanha esta errada)*
+
+**Exemplos ruins:**
+- "Esta semana vamos falar sobre atendimento ao cliente..." *(contexto antes do apex)*
+- "A discussao tem sido muito rica em torno de..." *(vago, apex adiado)*
+- "Voce ja se perguntou por que clientes saem sem dar feedback?" *(gancho narrativo, nao lead)*
+
+### Regra central: informacao mais importante NA PRIMEIRA FRASE
+
+A primeira frase da abertura e o apex da piramide. Nao aquece, nao contextualiza, nao faz pergunta — entrega. O restante da abertura e evidencia ou tensao que sustenta esse apex.
+
+### Mini-piramide invertida nos capitulos
+
+Cada mini-bloco da resposta em capitulos tambem e uma piramide invertida em miniatura:
+
+```
+1. Subtitulo  → apex: a tese do bloco em 6-10 palavras (em negrito)
+2. Tese       → resposta/conclusao vem PRIMEIRO (nao depois de contextualizar)
+3. Evidencia  → dado, analogia, exemplo ou definicao que sustenta a tese
+4. Link       → aprofundamento no blog
+```
+
+**Errado** (contexto antes da tese):
+> "Muitas empresas usam chatbots hoje. Isso pode ser uma armadilha — o bot resolve o volume, mas o cliente que recebe atendimento frio nao volta."
+
+**Certo** (tese primeiro):
+> "Chatbot resolve volume, nao relacionamento. Empresas que medem so ticket fechado perdem o sinal real: o cliente que nao volta nao reclama."
+> → [Ler no blog](URL)
 
 ---
 

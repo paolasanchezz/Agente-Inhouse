@@ -112,7 +112,7 @@ A pergunta-eixo (15-20 palavras) **NAO** aparece como bloco visivel. Vai como co
 ### Regras de redacao inegociaveis
 
 1. **Idioma**: PT-BR (brasil) | ES-LATAM (latam) | PT-PT (portugal). Texto deve parecer nativo. Para LATAM: zero "vosotros", zero "vale" como concordancia, vocabulario LATAM. Para PT: zero brasileirismos, vocabulario europeu (ex: "telemovel", "aplicacao").
-2. **Lead jornalistico**: comecar com fato, dado, cena ou conflito — NUNCA com "imagine que...", "no mundo atual...", "sabe quando...".
+2. **Piramide invertida + Lead jornalistico**: a abertura coloca a informacao mais importante NA PRIMEIRA FRASE (apex da piramide). Template: [O Que: fato/insight central] + [Por Que importa ao leitor]. A abertura deve ser completa em si — se o leitor parar aqui, ja entendeu o ponto. NUNCA comecar com contexto, aquecimento ou gancho narrativo ("imagine que...", "no mundo atual...", "sabe quando..."). Cada mini-bloco da resposta tambem e mini-piramide: tese primeiro, evidencia depois.
 3. **Pergunta-eixo NAO visivel**: a pergunta-eixo da semana vive em `dor-semana.md` como planejamento interno. Ela direciona assunto, pre-header e abertura, mas NAO aparece como bloco visivel ao leitor (sem `> ## A pergunta da semana`, sem callout). O leitor recebe os recortes/teses diretamente.
 4. **Edutainment por mini-bloco**: cada um dos 3 mini-blocos da resposta deve ter PELO MENOS UM destes — analogia util, dado verificavel, exemplo concreto, definicao clara.
 5. **Frases**: medias ≤22 palavras, max 30 numa frase.

@@ -18,9 +18,11 @@ Estrutura fixa: 2 blocos obrigatorios (Abertura, Resposta em capitulos) + 3 bloc
 
 ## 2. Abertura jornalistica (30-50 palavras, 1 paragrafo)
 
-Lead direto. Comeca com fato, dado ou contexto — nunca com gancho narrativo de marketing. A abertura pode ja "embutir" a tese da pergunta-eixo (sem formula-la como pergunta visivel ao leitor).
+**PIRAMIDE INVERTIDA**: a informacao mais importante vem na **primeira frase** (apex). O restante da abertura e evidencia ou tensao que sustenta esse apex. A abertura deve ser completa em si: se o leitor parar aqui, ja entendeu o ponto central.
 
-**FORMATO**: [O que aconteceu / foi discutido / e tendencia sobre essa dor] + [por que importa pra quem le].
+**TEMPLATE DO LEAD**: [O Que: fato/insight central]. [Por Que importa ao leitor]. (+ Quem/Quando/Onde se concretizar)
+
+Lead direto — nunca com gancho narrativo de marketing. A abertura embute a tese da pergunta-eixo (sem formula-la como pergunta visivel ao leitor).
 
 **A evitar**:
 - "Imagine que voce..."
@@ -29,12 +31,13 @@ Lead direto. Comeca com fato, dado ou contexto — nunca com gancho narrativo de
 - "No mundo atual..."
 - "Vivemos uma era..."
 - "No cenario atual de..."
+- Qualquer frase de contexto/aquecimento antes do apex
 
-**A buscar**:
-- Cena vivida ("Uma rede de varejo em Sao Paulo...")
-- Dado impactante ("Entre janeiro e marco, X cresceu Y%...")
-- Conflito ("O setor diz X. Os dados mostram Y.")
-- Contexto direto ("A discussao na ultima semana voltou a um problema antigo...")
+**A buscar** (todos comecam pelo apex — O Que — na primeira frase):
+- Cena vivida ("Uma rede de varejo em Sao Paulo demitiu 30 atendentes. Nao por corte — o chatbot passou a resolver 62% dos tickets.")
+- Dado impactante ("79% dos consumidores trocam de empresa apos um unico erro. Um.")
+- Conflito ("O setor diz que IA cuida do volume. Os dados mostram que ela mantem o ticket, mas perde o cliente.")
+- Insight direto ("Atendimento omnichannel nao falha por falta de canal. Falha por falta de contexto entre canais.")
 
 ## 3. Resposta em capitulos (110-170 palavras, 3 mini-blocos)
 
@@ -42,10 +45,14 @@ Tres mini-respostas. Cada mini-bloco aponta para 1 post do blog proprio. **Os 3 
 
 **A pergunta-eixo nao aparece como bloco**. Os mini-blocos sao apresentados como recortes/teses — nao como "respostas" a uma pergunta visivel.
 
-**Estrutura por mini-bloco** (~35-55 palavras cada):
-- **Subtitulo curto** (frase-chave do recorte, 6-10 palavras, em negrito)
-- **Tese + evidencia/exemplo** (1-2 frases curtas, com edutainment)
-- **Link**: → [Ler no blog](URL_post)
+**Cada mini-bloco e uma mini-piramide invertida** (~35-55 palavras):
+1. **Subtitulo curto** — apex do bloco: frase-chave em negrito, 6-10 palavras
+2. **Tese** — a resposta/conclusao vem PRIMEIRO (nao apos contexto)
+3. **Evidencia/edutainment** — dado, analogia, exemplo ou definicao que sustenta a tese
+4. **Link** → [Ler no blog](URL_post)
+
+> **Errado** (contexto antes da tese): "Muitas empresas usam chatbots hoje. Isso pode ser armadilha."
+> **Certo** (tese primeiro): "Chatbot resolve volume, nao relacionamento. Empresas que medem so ticket fechado perdem o sinal real."
 
 **Edutainment por mini-bloco** — cada um deve ter PELO MENOS UM destes:
 - **Definicao clara** de um conceito relevante
@@ -55,6 +62,7 @@ Tres mini-respostas. Cada mini-bloco aponta para 1 post do blog proprio. **Os 3 
 
 **A evitar**:
 - Repetir o mesmo angulo nos 3 mini-blocos
+- Comecar mini-bloco com contexto antes da tese (viola piramide invertida)
 - Citar a {NomeDaMarca} fora desses links como produto a vender
 - Frases longas — alvo medio ≤22 palavras por frase
 

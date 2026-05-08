@@ -1,5 +1,5 @@
 # Relatório — Pipeline Newsletter Semanal 2026-W19
-**Data**: 2026-05-04
+**Data**: 2026-05-08 (v2 — pirâmide invertida aplicada)
 **Marca**: Cxpress
 **Região**: brasil | **Idioma**: PT-BR
 
@@ -30,8 +30,8 @@ Tempo aproximado: pesquisa profunda do blog + clipping PR + geração + revisão
 | Clipping PR | 0 |
 | Bloco extra | NÃO |
 | Total de links contextuais | 4 (≥3 blog próprio ✓ / 3-6 ✓ / ≤1 clipping ✓) |
-| Palavras (corpo) | ~185 (≤ 300 ✓ — passe de enxugamento aplicado) |
-| Status | **APROVADA** com 1 pendência (URLs sociais) |
+| Palavras (corpo) | ~175 (≤ 300 ✓) |
+| Status | **APROVADA** — v2 com pirâmide invertida aplicada |
 
 ### Posts-âncora citados
 1. **O problema do atendimento ao cliente não é o volume. É o sistema** (mar/26) — https://blog.cxpress.io/o-problema-do-atendimento-ao-cliente-nao-e-o-volume-e-o-sistema/
