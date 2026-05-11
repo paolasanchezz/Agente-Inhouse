@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aprende a centralizar y automatizar la atención al cliente sin sobrecargar a tu equipo. Webinar gratuito en vivo el 20/05.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Webinar Cxpress · Cómo organizar y unificar la atención al cliente">
+<meta property="og:description" content="Aprende a centralizar y automatizar la atención al cliente sin sobrecargar a tu equipo. Webinar gratuito en vivo el 20/05.">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRQ47B9R');</script>
+<!-- End Google Tag Manager -->
+
+<title>Webinar Cxpress · Cómo organizar y unificar la atención al cliente</title>
+
+<link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500&family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #4A69BD;
+    --primary-dark: #232960;
+    --primary-darker: #1a1f4a;
+    --primary-light: #C1C7FF;
+    --primary-lighter: #D7E2FF;
+    --accent: #EF863C;
+    --accent-hover: #dd7730;
+    --accent-light: #FFDCC3;
+    --warning: #F1A908;
+    --neutral-0: #ffffff;
+    --neutral-100: #f5f5f5;
+    --neutral-300: #d1d1d1;
+    --neutral-500: #767676;
+    --neutral-700: #4a4a4a;
+    --neutral-900: #1a1a1a;
+    --danger: #dc2626;
+    --danger-bg: rgba(220, 38, 38, 0.1);
+    --success: #16a34a;
+    --success-bg: rgba(22, 163, 74, 0.12);
+    --max-w: 1200px;
+    --pad-x: clamp(20px, 4vw, 48px);
+    --section-y: clamp(80px, 12vw, 140px);
+    --section-y-lg: clamp(96px, 14vw, 160px);
+    --radius-sm: 9px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --shadow-card: 0 12px 40px rgba(35, 41, 96, 0.08);
+    --shadow-cta: 0 6px 20px rgba(35, 41, 96, 0.25);
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    color: var(--primary-dark);
+    background: var(--neutral-0);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--primary-dark);
+    color: var(--neutral-0);
+    padding: 12px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-weight: 600;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .reveal:nth-child(4) { transition-delay: 0.24s; }
+  .reveal:nth-child(5) { transition-delay: 0.32s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; scroll-behavior: auto !important; }
+  }
+
+  /* Container */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--pad-x);
+  }
+
+  /* Header */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid rgba(209, 209, 209, 0.6);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--pad-x);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    gap: 16px;
+  }
+  .header__logo {
+    display: inline-flex;
+    align-items: center;
+  }
+  .header__logo img { height: 36px; width: auto; }
+  .header__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--neutral-700);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .header__dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.7; }
+  }
+  @media (max-width: 760px) {
+    .header__meta { display: none; }
+    .header__logo img { height: 30px; }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    line-height: 1.2;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .btn--primary {
+    background: var(--primary-dark);
+    color: var(--neutral-0);
+    box-shadow: var(--shadow-cta);
+  }
+  .btn--primary:hover {
+    background: var(--primary-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(35, 41, 96, 0.35);
+  }
+  .btn--accent {
+    background: var(--accent);
+    color: var(--primary-dark);
+    box-shadow: 0 6px 20px rgba(239, 134, 60, 0.32);
+  }
+  .btn--accent:hover {
+    background: #ffa05c;
+    transform: translateY(-2px);
+  }
+  .btn--lg {
+    padding: 18px 40px;
+    font-size: 17px;
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Eyebrow */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--primary-lighter);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+  .eyebrow__dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @media (max-width: 480px) {
+    .eyebrow { font-size: 11px; padding: 6px 14px; white-space: normal; max-width: 100%; }
+  }
+
+  /* Hero */
+  .hero {
+    padding: clamp(60px, 8vw, 100px) 0 clamp(80px, 12vw, 120px);
+    background: var(--neutral-0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .hero__content > * + * { margin-top: 24px; }
+  .hero__title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: clamp(34px, 5.4vw, 60px);
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-top: 24px;
+  }
+  .hero__sub {
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+    color: var(--neutral-700);
+    max-width: 520px;
+    font-weight: 400;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+    font-size: 14.5px;
+    color: var(--neutral-700);
+    padding-top: 12px;
+  }
+  .hero__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Bitter', serif;
+    font-weight: 500;
+  }
+  .hero__meta-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Hero visual */
+  .hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px;
+  }
+  .ticket {
+    position: relative;
+    background: linear-gradient(180deg, var(--primary-dark) 0%, #2a2f6a 100%);
+    color: var(--neutral-0);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 3.5vw, 40px);
+    box-shadow: 0 24px 60px rgba(35, 41, 96, 0.32);
+    width: 100%;
+    max-width: 440px;
+    z-index: 3;
+  }
+  .ticket__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.22);
+  }
+  .ticket__brand {
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    font-weight: 500;
+  }
+  .ticket__free {
+    background: var(--accent);
+    color: var(--primary-dark);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 9999px;
+  }
+  .ticket__date-label {
+    font-family: 'Bitter', serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 4px;
+  }
+  .ticket__date {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 7.5vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .ticket__date-month {
+    font-size: 0.45em;
+    opacity: 0.65;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+  .ticket__rows { display: grid; gap: 16px; }
+  .ticket__row {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  .ticket__row-label {
+    font-family: 'Bitter', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    font-weight: 500;
+  }
+  .ticket__row-value {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--neutral-0);
+    line-height: 1.35;
+  }
+
+  /* Hero decor + samir */
+  .decor-pill {
+    position: absolute;
+    border-radius: 9999px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero__pill-1 {
+    width: 60px; height: 220px;
+    background: var(--accent);
+    bottom: 30px;
+    right: -20px;
+  }
+  .hero__pill-2 {
+    width: 130px; height: 50px;
+    background: var(--primary-light);
+    top: 0;
+    left: -30px;
+  }
+  .hero__arc {
+    position: absolute;
+    width: 120px;
+    height: 220px;
+    background: var(--primary-lighter);
+    border-radius: 9999px 9999px 12px 12px;
+    top: -40px;
+    right: 40px;
+    z-index: 1;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .hero__samir {
+    position: absolute;
+    bottom: -40px;
+    right: -50px;
+    width: clamp(140px, 22vw, 220px);
+    height: auto;
+    z-index: 4;
+    pointer-events: none;
+    filter: drop-shadow(0 16px 32px rgba(35, 41, 96, 0.2));
+  }
+
+  @media (max-width: 980px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 56px; }
+    .hero__visual { min-height: 360px; }
+    .hero__samir { right: -10px; bottom: -20px; width: 150px; }
+    .hero__pill-1 { right: -10px; }
+  }
+
+  /* Section base */
+  .section {
+    padding: var(--section-y) 0;
+    position: relative;
+  }
+  .section--tinted { background: var(--neutral-100); }
+  .section__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary-dark);
+    max-width: 900px;
+  }
+  .section__overline {
+    display: inline-block;
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    color: var(--primary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  /* Problema + Form */
+  .problem-form {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .problem-form { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .problem__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 3.4vw, 38px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--primary-dark);
+    margin-bottom: 22px;
+    max-width: 600px;
+  }
+  .problem__body {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--neutral-700);
+    margin-bottom: 14px;
+    max-width: 560px;
+  }
+  .problem__h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    color: var(--primary-dark);
+    margin-top: 36px;
+    margin-bottom: 22px;
+  }
+  .problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+  }
+  .problem-item {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 14px;
+    align-items: start;
+    font-size: 16.5px;
+    line-height: 1.5;
+    color: var(--primary-dark);
+  }
+  .problem-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: var(--danger-bg);
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .problem-icon svg { width: 14px; height: 14px; }
+
+  /* Form */
+  .form-card {
+    position: sticky;
+    top: 96px;
+    background: var(--neutral-0);
+    border: 1px solid rgba(209, 209, 209, 0.7);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 3vw, 36px);
+    box-shadow: var(--shadow-card);
+  }
+  @media (max-width: 980px) {
+    .form-card { position: static; }
+  }
+  .form-card__heading {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(21px, 2.6vw, 26px);
+    color: var(--primary-dark);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .form-card__sub {
+    font-size: 15px;
+    color: var(--neutral-700);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form__label {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--primary-dark);
+    letter-spacing: 0.01em;
+  }
+  .form__input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--neutral-300);
+    border-radius: var(--radius-sm);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    color: var(--primary-dark);
+    background: var(--neutral-0);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .form__input:hover { border-color: var(--neutral-500); }
+  .form__input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(74, 105, 189, 0.14);
+  }
+  .form__submit {
+    margin-top: 8px;
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--primary-dark);
+    color: var(--neutral-0);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .form__submit:hover {
+    background: var(--primary-darker);
+    transform: translateY(-1px);
+  }
+  .form__submit:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .form__disclaimer {
+    font-size: 12.5px;
+    color: var(--neutral-700);
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  /* Beneficios */
+  .benefits-header {
+    margin-bottom: clamp(48px, 6vw, 72px);
+    max-width: 820px;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  @media (min-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(6, 1fr);
+      max-width: none;
+      gap: 24px;
+    }
+    .benefit-card { grid-column: span 2; }
+    .benefit-card:nth-child(4) { grid-column: 2 / span 2; }
+    .benefit-card:nth-child(5) { grid-column: 4 / span 2; }
+  }
+  @media (max-width: 720px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+  .benefit-card {
+    background: var(--neutral-0);
+    border: 1px solid rgba(209, 209, 209, 0.6);
+    border-radius: var(--radius-lg);
+    padding: clamp(26px, 3vw, 34px);
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .benefit-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(74, 105, 189, 0.12);
+  }
+  .benefit-check {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: var(--success-bg);
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .benefit-check svg { width: 20px; height: 20px; }
+  .benefit__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--primary-dark);
+    letter-spacing: -0.005em;
+  }
+  .benefit__body {
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--neutral-700);
+  }
+  .benefits-closing {
+    margin-top: clamp(48px, 6vw, 64px);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    text-align: center;
+  }
+  .benefits-closing__text {
+    font-family: 'Bitter', serif;
+    font-size: clamp(19px, 2.2vw, 24px);
+    line-height: 1.4;
+    color: var(--primary-dark);
+    max-width: 760px;
+    font-weight: 500;
+  }
+
+  /* Para quien */
+  .audience {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .audience { grid-template-columns: 1fr; gap: 56px; }
+  }
+  .audience__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary-dark);
+    margin-bottom: 32px;
+  }
+  .audience-list {
+    display: grid;
+    gap: 18px;
+    list-style: none;
+    margin-bottom: 36px;
+  }
+  .audience-item {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 14px;
+    align-items: start;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--primary-dark);
+    font-weight: 500;
+  }
+  .audience-check {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--neutral-0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .audience-check svg { width: 14px; height: 14px; }
+
+  .audience__visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 460px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  @media (max-width: 980px) {
+    .audience__visual { max-width: 360px; aspect-ratio: 4 / 3; }
+  }
+  .audience__samir {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 32px rgba(35, 41, 96, 0.18));
+  }
+  .audience__bg-arc {
+    position: absolute;
+    inset: 18% -2% 0 8%;
+    background: var(--primary-lighter);
+    border-radius: 9999px 9999px 24px 24px;
+    z-index: 1;
+  }
+  .audience__pill {
+    position: absolute;
+    width: 50px;
+    height: 170px;
+    background: var(--accent);
+    border-radius: 9999px;
+    top: 4%;
+    right: 8%;
+    z-index: 2;
+    opacity: 0.92;
+  }
+  .audience__pill-2 {
+    position: absolute;
+    width: 90px;
+    height: 36px;
+    background: var(--primary-light);
+    border-radius: 9999px;
+    bottom: 8%;
+    left: -3%;
+    z-index: 2;
+  }
+
+  /* Speakers */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: clamp(48px, 6vw, 72px);
+  }
+  @media (max-width: 980px) {
+    .speakers-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+  }
+  .speaker-card {
+    background: var(--neutral-100);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid rgba(209, 209, 209, 0.5);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  }
+  .speaker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 48px rgba(35, 41, 96, 0.12);
+    border-color: var(--primary-light);
+  }
+  .speaker-avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-lighter), var(--primary-light));
+    margin: 0 auto 24px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: 5px solid var(--neutral-0);
+    box-shadow: 0 10px 28px rgba(35, 41, 96, 0.14);
+  }
+  .speaker-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  .speaker-name {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .speaker-role {
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .speaker-bio {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--neutral-700);
+  }
+
+  /* Urgencia (CTA final) */
+  .urgency {
+    background: var(--primary-dark);
+    color: var(--neutral-0);
+    padding: var(--section-y-lg) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .urgency::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 380px;
+    height: 380px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.28;
+    pointer-events: none;
+  }
+  .urgency::after {
+    content: '';
+    position: absolute;
+    bottom: -140px;
+    left: -100px;
+    width: 320px;
+    height: 320px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.2;
+    pointer-events: none;
+    filter: blur(8px);
+  }
+  @media (max-width: 768px) {
+    .urgency::after { filter: none; opacity: 0.15; }
+    .urgency::before { width: 260px; height: 260px; opacity: 0.22; }
+  }
+  .urgency__inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .urgency__tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary-dark);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    transform: rotate(-3deg);
+    margin-bottom: 36px;
+    box-shadow: 0 12px 32px rgba(239, 134, 60, 0.3);
+  }
+  .urgency__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 5vw, 54px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--neutral-0);
+    margin-bottom: 36px;
+  }
+  .urgency__meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Bitter', serif;
+    font-size: 16px;
+    margin-bottom: 44px;
+    font-weight: 500;
+  }
+  .urgency__meta-sep { opacity: 0.4; }
+
+  /* Footer */
+  .footer {
+    background: var(--neutral-100);
+    padding: 48px 0 36px;
+    border-top: 1px solid rgba(209, 209, 209, 0.6);
+  }
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer__logo img { height: 32px; width: auto; }
+  .footer__decor {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .footer__pill {
+    width: 36px;
+    height: 10px;
+    border-radius: 9999px;
+    background: var(--primary);
+  }
+  .footer__pill--accent { background: var(--accent); }
+  .footer__pill--light { background: var(--primary-light); width: 24px; }
+  .footer__copyright {
+    font-size: 13px;
+    color: var(--neutral-700);
+  }
+  .footer__copyright small {
+    display: block;
+    font-size: 12px;
+    color: var(--neutral-500);
+    margin-top: 4px;
+  }
+  @media (max-width: 640px) {
+    .footer__inner { flex-direction: column; text-align: center; }
+  }
+</style>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRQ47B9R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+<header class="header" role="banner">
+  <div class="header__inner">
+    <a href="#" class="header__logo" aria-label="Cxpress">
+      <img src="../../brand/cxpress/assets/logos/logo-primary.png" alt="Cxpress" />
+    </a>
+    <span class="header__meta" aria-hidden="true">
+      <span class="header__dot"></span>
+      Webinar gratuito
+    </span>
+    <a href="#form" class="btn btn--primary">Quiero participar</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="eyebrow reveal">
+          <span class="eyebrow__dot" aria-hidden="true"></span>
+          Webinar Cxpress &middot; Exclusivo y gratuito
+        </span>
+        <h1 id="hero-title" class="hero__title reveal">Cómo organizar y unificar la atención al cliente</h1>
+        <p class="hero__sub reveal">Aprende a centralizar y automatizar la atención al cliente sin sobrecargar a tu equipo.</p>
+        <div class="hero__actions reveal">
+          <a href="#form" class="btn btn--primary btn--lg">Quiero participar</a>
+        </div>
+        <div class="hero__meta reveal">
+          <span class="hero__meta-item"><span class="hero__meta-dot" aria-hidden="true"></span>Online y en vivo &middot; 20/05</span>
+          <span class="hero__meta-item"><span class="hero__meta-dot" aria-hidden="true"></span>Mx 10h &middot; Col 11h &middot; Per 11h &middot; Cl 12h &middot; Ar 13h</span>
+        </div>
+      </div>
+      <div class="hero__visual reveal">
+        <span class="decor-pill hero__pill-2" aria-hidden="true"></span>
+        <span class="hero__arc" aria-hidden="true"></span>
+        <div class="ticket" role="group" aria-label="Detalles del webinar">
+          <div class="ticket__top">
+            <span class="ticket__brand">Webinar Cxpress</span>
+            <span class="ticket__free">Gratis</span>
+          </div>
+          <div>
+            <div class="ticket__date-label">Fecha</div>
+            <div class="ticket__date">20<span class="ticket__date-month">/05</span></div>
+          </div>
+          <div class="ticket__rows">
+            <div class="ticket__row">
+              <span class="ticket__row-label">Horario</span>
+              <span class="ticket__row-value">Mx 10h &middot; Col 11h &middot; Per 11h &middot; Cl 12h &middot; Ar 13h</span>
+            </div>
+            <div class="ticket__row">
+              <span class="ticket__row-label">Formato</span>
+              <span class="ticket__row-value">Online y en vivo</span>
+            </div>
+            <div class="ticket__row">
+              <span class="ticket__row-label">Duración</span>
+              <span class="ticket__row-value">60 min</span>
+            </div>
+          </div>
+        </div>
+        <span class="decor-pill hero__pill-1" aria-hidden="true"></span>
+        <img class="hero__samir" src="../../brand/cxpress/assets/mascot/samir-laptop.png" alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA + FORM -->
+<section class="section section--tinted" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="problem-form">
+      <div class="problem">
+        <h2 id="problem-title" class="problem__title reveal">Hoy, la atención al cliente se gestiona de forma fragmentada entre múltiples canales y equipos.</h2>
+        <p class="problem__body reveal">Muchas empresas no tienen un sistema unificado para organizar y controlar toda su operación.</p>
+        <p class="problem__body reveal">En este webinar descubrirás cómo pasar a una atención centralizada, más ordenada y eficiente.</p>
+        <h3 class="problem__h3 reveal">¿Tu equipo enfrenta alguno de estos desafíos?</h3>
+        <ul class="problem-list reveal">
+          <li class="problem-item">
+            <span class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+            </span>
+            <span>Exceso de solicitudes y dificultad para priorizar lo importante.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+            </span>
+            <span>Interacciones repartidas entre canales sin una gestión unificada.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+            </span>
+            <span>Falta de claridad sobre el estado real de cada atención.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+            </span>
+            <span>Procesos dependientes de hojas de cálculo y control manual.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+            </span>
+            <span>Retrasos en la respuesta y falta de seguimiento entre equipo.</span>
+          </li>
+        </ul>
+      </div>
+      <section class="form-card reveal" id="form" aria-labelledby="form-heading">
+        <h3 id="form-heading" class="form-card__heading">Completa el formulario e inscríbete ahora</h3>
+        <p class="form-card__sub">Reserva tu lugar en el webinar gratuito del 20/05.</p>
+        <form class="form" action="#" method="post" onsubmit="event.preventDefault(); return false;" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="form-nombre">Nombre completo</label>
+            <input class="form__input" type="text" id="form-nombre" name="nombre" required autocomplete="name" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="form-email">Correo electrónico de trabajo</label>
+            <input class="form__input" type="email" id="form-email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="form-empresa">Empresa</label>
+            <input class="form__input" type="text" id="form-empresa" name="empresa" required autocomplete="organization" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="form-cargo">Cargo</label>
+            <input class="form__input" type="text" id="form-cargo" name="cargo" required autocomplete="organization-title" />
+          </div>
+          <button type="submit" class="form__submit">QUIERO UNIFICAR MI ATENCIÓN</button>
+          <p class="form__disclaimer">Al registrarte aceptas recibir comunicaciones de Cxpress sobre el webinar y contenidos relacionados.</p>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="section" aria-labelledby="benefits-title">
+  <div class="container">
+    <div class="benefits-header reveal">
+      <h2 id="benefits-title" class="section__title">En este webinar 100% gratuito, descubrirás:</h2>
+    </div>
+    <div class="benefits-grid">
+      <article class="benefit-card reveal">
+        <div class="benefit-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+        </div>
+        <h3 class="benefit__title">Cómo centralizar todos los canales en un solo lugar</h3>
+        <p class="benefit__body">WhatsApp, Instagram, Facebook, correo electrónico y chat integrados.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="benefit-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+        </div>
+        <h3 class="benefit__title">Cómo estructurar la gestión y distribución entre equipos</h3>
+        <p class="benefit__body">Automatiza la asignación de solicitudes al área correcta, evitando duplicidades, retrasos y pérdida de seguimiento.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="benefit-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+        </div>
+        <h3 class="benefit__title">Distribución inteligente de tickets</h3>
+        <p class="benefit__body">Direccionamiento automático al colaborador adecuado, sin perder solicitudes ni dejar clientes sin atención.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="benefit-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+        </div>
+        <h3 class="benefit__title">Cómo reducir la carga operativa con automatización</h3>
+        <p class="benefit__body">Optimiza tareas repetitivas y mejora la eficiencia sin aumentar recursos.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="benefit-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+        </div>
+        <h3 class="benefit__title">Casos reales de empresas que ya lo están aplicando</h3>
+        <p class="benefit__body">Cómo organizaciones han pasado de una atención fragmentada a una operación centralizada, más eficiente y controlada.</p>
+      </article>
+    </div>
+    <div class="benefits-closing reveal">
+      <p class="benefits-closing__text">Participa y descubre cómo estructurar una atención al cliente más organizada y con control de la operación.</p>
+      <a href="#form" class="btn btn--primary btn--lg">Quiero participar</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIEN -->
+<section class="section section--tinted" aria-labelledby="audience-title">
+  <div class="container">
+    <div class="audience">
+      <div class="audience__copy">
+        <h2 id="audience-title" class="audience__title reveal">Este webinar está dirigido a:</h2>
+        <ul class="audience-list reveal">
+          <li class="audience-item">
+            <span class="audience-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+            </span>
+            <span>Responsables de atención al cliente y soporte.</span>
+          </li>
+          <li class="audience-item">
+            <span class="audience-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+            </span>
+            <span>Líderes de CX y Customer Success.</span>
+          </li>
+          <li class="audience-item">
+            <span class="audience-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+            </span>
+            <span>Responsables de operaciones que buscan escalar sin aumentar el equipo.</span>
+          </li>
+          <li class="audience-item">
+            <span class="audience-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 5"></polyline></svg>
+            </span>
+            <span>Coordinadores que necesitan reducir costos y mejorar la eficiencia operativa.</span>
+          </li>
+        </ul>
+        <a href="#form" class="btn btn--primary btn--lg">QUIERO UNIFICAR MI ATENCIÓN</a>
+      </div>
+      <div class="audience__visual reveal">
+        <span class="audience__pill" aria-hidden="true"></span>
+        <span class="audience__pill-2" aria-hidden="true"></span>
+        <span class="audience__bg-arc" aria-hidden="true"></span>
+        <img class="audience__samir" src="../../brand/cxpress/assets/mascot/samir-trabalhando.png" alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="section" aria-labelledby="speakers-title">
+  <div class="container">
+    <span class="section__overline reveal">Con la participación de especialistas</span>
+    <h2 id="speakers-title" class="section__title reveal">Aprende con profesionales que ya han ayudado a diversas empresas a mantener un alto nivel de rendimiento, incluso en los periodos más intensos de ventas.</h2>
+    <div class="speakers-grid">
+      <!-- TODO: substituir nome/cargo/bio quando Victor enviar dados do speaker 1 -->
+      <article class="speaker-card reveal">
+        <div class="speaker-avatar">
+          <img src="../../brand/cxpress/assets/mascot/samir-sticker.png" alt="Avatar provisorio" />
+        </div>
+        <h3 class="speaker-name">Especialista en CX</h3>
+        <p class="speaker-role">A confirmar</p>
+        <p class="speaker-bio">Profesional con experiencia en gestión y centralización de la atención al cliente.</p>
+      </article>
+      <!-- TODO: substituir nome/cargo/bio quando Victor enviar dados do speaker 2 -->
+      <article class="speaker-card reveal">
+        <div class="speaker-avatar">
+          <img src="../../brand/cxpress/assets/mascot/samir-joinha.png" alt="Avatar provisorio" />
+        </div>
+        <h3 class="speaker-name">Especialista en CX</h3>
+        <p class="speaker-role">A confirmar</p>
+        <p class="speaker-bio">Profesional con experiencia en gestión y centralización de la atención al cliente.</p>
+      </article>
+      <!-- TODO: substituir nome/cargo/bio quando Victor enviar dados do speaker 3 -->
+      <article class="speaker-card reveal">
+        <div class="speaker-avatar">
+          <img src="../../brand/cxpress/assets/mascot/samir-dashboard.png" alt="Avatar provisorio" />
+        </div>
+        <h3 class="speaker-name">Especialista en CX</h3>
+        <p class="speaker-role">A confirmar</p>
+        <p class="speaker-bio">Profesional con experiencia en gestión y centralización de la atención al cliente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIA / CTA FINAL -->
+<section class="urgency" aria-labelledby="urgency-title">
+  <div class="container">
+    <div class="urgency__inner">
+      <span class="urgency__tag reveal">Online y en vivo &middot; 20/05</span>
+      <h2 id="urgency-title" class="urgency__title reveal">Aprende a estructurar una operación de atención más organizada y con control en tiempo real.</h2>
+      <div class="urgency__meta reveal">
+        <span>Mx 10h</span>
+        <span class="urgency__meta-sep" aria-hidden="true">&middot;</span>
+        <span>Col 11h</span>
+        <span class="urgency__meta-sep" aria-hidden="true">&middot;</span>
+        <span>Per 11h</span>
+        <span class="urgency__meta-sep" aria-hidden="true">&middot;</span>
+        <span>Cl 12h</span>
+        <span class="urgency__meta-sep" aria-hidden="true">&middot;</span>
+        <span>Ar 13h</span>
+      </div>
+      <a href="#form" class="btn btn--accent btn--lg reveal">QUIERO UNIFICAR MI ATENCIÓN</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <a href="#" class="footer__logo" aria-label="Cxpress">
+        <img src="../../brand/cxpress/assets/logos/logo-primary.png" alt="Cxpress" />
+      </a>
+      <div class="footer__decor" aria-hidden="true">
+        <span class="footer__pill"></span>
+        <span class="footer__pill footer__pill--accent"></span>
+        <span class="footer__pill footer__pill--light"></span>
+      </div>
+      <p class="footer__copyright">
+        &copy; 2026 Cxpress &middot; Todos los derechos reservados.
+        <small>Cxpress &middot; Producto del Grupo Elife</small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('in-view');
+      });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
+
+</body>
+</html>
