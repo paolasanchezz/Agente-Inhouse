@@ -488,7 +488,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-copy .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
   /* Para quem (off-white) — lista vertical à esquerda, emoji grande à direita */
-  .for { background: var(--c-n100); padding: 88px 0; }
+  .for { background: var(--c-n100); padding: 88px 0; overflow: hidden; }
   .for .sec-head { margin-bottom: 28px; }
   .for-grid {
     display: grid;
@@ -532,6 +532,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height: 102%;
     width: auto;
     max-width: 100%;
+    min-height: 0; /* Safari iOS: sem isso, grid item cai pra altura intrinseca. GUIDELINES §14. */
     filter: drop-shadow(0 22px 38px rgba(57,1,85,.18));
     position: relative;
     z-index: 2;

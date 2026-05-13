@@ -13,6 +13,51 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar (+ docs LP)
+### 2026-05-13 (tarde) — Em-dash bloqueado em todo o pipeline LP (lp-preparar v1.2.1, lp-revisar v1.4.1)
+
+Colaboradora publicou LP com em-dash (`—`) na copy ao ar. Em-dash tem tolerância zero por `conhecimento/editorial/regras-anti-ia.md` — é o tique de IA mais identificável em PT-BR. Auditoria revelou **3 contradições internas** na cadeia de skills LP que permitiram o vazamento:
+
+1. **`landing-pages/GUIDELINES.md` §5 linha 48** instruía literalmente "Usar aspas curvas, ellipsis e em-dash (`&mdash;`) corretos" — ordem direta de USAR em-dash, contradizendo `regras-anti-ia.md`.
+2. **`.claude/skills/lp-preparar/SKILL.md` Passo 3 (Regras)** mandava "Preservar aspas curvas, en-dash, pontuação original" — se a copy bruta vinha com em-dash, a skill preservava. Passo 4 (anti-IA conservadora) **não listava em-dash** entre os itens a marcar.
+3. **`.claude/skills/lp-revisar/SKILL.md` Passo 3.6 bucket (c) Cosmético permitido** autorizava explicitamente "substituir `--` por `—`" como cosmética OK — a skill de revisão liberava a injeção.
+
+Resultado: 11 LPs ativas com 202 em-dashes em produção (não retrofitadas neste PR — apenas barrar novos casos, decisão do Victor).
+
+**Correções:**
+
+- **landing-pages/GUIDELINES.md §5** (sem bump — só doc): linha de em-dash invertida para "**Em-dash (`—` / `&mdash;`) PROIBIDO** — tolerância zero, ver `conhecimento/editorial/regras-anti-ia.md`. Substituir por vírgula, ponto ou parênteses conforme função. Vale para copy bruta, copy estruturada e HTML renderizado. Validação: `grep -c "—" index.html` deve retornar 0".
+
+- **lp-preparar 1.2.0 → 1.2.1 (PATCH — correção de bug)**:
+  - Passo 3 (Regras): "preservar en-dash" virou "preservar en-dash (`–`)" explícito (não em-dash) + linha nova "Em-dash (`—`) NUNCA é preservado".
+  - **Passo 4 reestruturado** com subseção 4.1 (em-dash) e 4.2 (resto anti-IA). 4.1 é exceção à regra "apenas marque" — em-dash **substitui direto** (contagem obrigatória `grep -c "—" copy.txt` antes e depois, esperado 0). Tabela de substituição por função (pausa curta → vírgula, pausa forte → ponto, aparte → parênteses, atribuição de citação → vírgula/nova linha).
+
+- **lp-revisar 1.4.0 → 1.4.1 (PATCH — correção de bug)**:
+  - **Passo 3.6 bucket (c) Cosmético permitido**: removido "substituir `--` por `—`" da lista. Inserida linha explícita: "**`--` (hífen duplo) NUNCA vira `—` (em-dash) — isso é VAZAMENTO, não cosmética.**"
+  - **Passo 3.6.5 Auditoria de em-dash**: mudou de **relativa** (HTML > copy.txt = crítico) para **absoluta** (qualquer ocorrência no HTML = crítico, independe de copy.txt). Se copy.txt também tem em-dash, registrar para corrigir no mesmo passo — o gap está upstream (lp-preparar 4.1 falhou). Tabela de substituição embutida na auditoria.
+  - **Tabela de severidade**: linha "Em-dash adicionado" virou "Em-dash (`—` ou `&mdash;`) presente no HTML | CRITICO (tolerancia zero)" — ação inclui corrigir copy.txt no mesmo passo se também contaminada.
+
+**Não retrofitado nesta passada:** as 11 LPs ativas com 202 em-dashes ficam como estão até alguém editar/re-publicar cada uma (decisão do Victor: corrigir cadeia agora, limpeza retroativa em outro momento). A próxima execução de `/lp-revisar {marca}/{slug}` em qualquer LP existente vai detectar e oferecer fix automático.
+
+### 2026-05-13 — GUIDELINES §10 reescrita + numeração corrigida em skills LP
+
+§10 trocou vocabulário de "dobra" (posição visual ao scroll) por contagem de seções (hero = §1, blocos subsequentes = §2, §3, ...) — mais determinístico para quem gera e para quem revisa, sem julgamento subjetivo de "isso é meio da página?". Cobertura expandida de 2 para 3 buckets de tráfego, com **remarketing** entrando explicitamente no mesmo grupo de tráfego quente/qualificado. Default forte com override justificado mantido.
+
+- **landing-pages/GUIDELINES.md** (sem bump — só doc):
+  - **§10 reescrita**: ToFu (webinar, material rico, lead frio) → form na **2ª seção** (logo após o hero); MoFu/BoFu/Remarketing (material avançado, comparativos, demo, vendas, retargeting) → form na **4ª ou última seção** (meio/fim da página, após prova social e diferencial); CTA visível no hero (§1) em todos os casos. Override permitido se briefing pedir, lead já quente, ou A/B test provar — justificar no PR / REVISAO.md.
+  - **Título trocado** de "Posicionamento do formulário (sugestão, não obrigação)" para "Posicionamento do formulário por tipo de LP" — força ("default forte") agora aparece no corpo, não no título.
+  - **§6 (Estrutura mínima)**: referência cruzada à §10 alinhada ao novo vocabulário (substituído "2ª dobra, meio ou fim" por "2ª seção para ToFu; 4ª ou última para MoFu/BoFu/Remarketing").
+
+- **5 skills LP — correção de numeração de referência cruzada (sem bump — só doc):**
+  - `lp-pipeline/SKILL.md`, `lp-preparar/SKILL.md`, `lp-integrar-form/SKILL.md`, `lp-gerar/SKILL.md` (2 lugares): 5 referências a "GUIDELINES §10" que apontavam para mock form / integração tardia agora apontam para **§11** (a numeração havia ficado quebrada em algum momento quando §10 — posicionamento do form — foi inserida e empurrou integração tardia para §11). `lp-preparar/SKILL.md` ganhou referência explícita a §10 (posicionamento) na lista de seções a ler.
+  - `lp-preparar/CONTEXT.md`: range "§1 a §10" no diagrama de árvore atualizado para "§1 a §14" (GUIDELINES tem 14 seções hoje).
+
+### 2026-05-11 — Padrão `<img>` em grid container documentado em GUIDELINES §14
+
+Victor reportou no iPhone que o mascote da LP `analise-preditiva-maio-2026` renderizava em tamanho gigante, sobrepondo a seção `.speakers`. Diagnóstico: `<img>` com dimensões intrínsecas (`width="810" height="1080"`) dentro de grid item com `min-height: auto` (default) e pai com `aspect-ratio: 1/1` quebra em Safari iOS — Chrome/Firefox aplicam `max-width: 100%` como cap retroativo, Safari iOS faz fallback para a altura intrínseca da imagem. Mesmo padrão presente em outras 2 LPs Buzzmonitor (`monitoramento-concorrentes-maio-2026-pt`, `social-listening-mayo-2026-latam`) — bug latente, ainda não relatado mas confirmado por leitura do CSS idêntico.
+
+- **landing-pages/GUIDELINES.md** (sem bump — só doc): **§14 nova** documenta a regra inegociável `min-height: 0` em `<img>` filho de grid item com `aspect-ratio` no pai, além de defesa em profundidade com `overflow: hidden` em seções que contêm imagens decorativas vazáveis. Histórico do incidente registrado.
+- **3 LPs corrigidas em `landing-pages/buzzmonitor/{slug}/index.html`** (`analise-preditiva-maio-2026`, `monitoramento-concorrentes-maio-2026-pt`, `social-listening-mayo-2026-latam`): adicionado `min-height: 0` em `.for-visual .mascot` e `overflow: hidden` em `.for`. Re-deploys via `/lp-publicar` no guarda-chuva `webinar.buzzmonitor.com`.
+
 ### 2026-05-08 (noite) — Drift-check ativo de CSP em modo guarda-chuva (lp-publicar v3.4.0)
 
 Hardening preventivo motivado por feedback que Victor recebeu de equipe externa: depois da v3.2.0 atualizar o template para liberar Meta Pixel via Facebook (`connect.facebook.net` + `www.facebook.com` em `script-src`/`connect-src`/`frame-src`), apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 guarda-chuvas Buzzmonitor (`webinar.buzzmonitor.com`, `evento.buzzmonitor.com`, `material.buzzmonitor.com`) continuaram servindo CSP antigo por ~24h — pixel Meta era bloqueado em runtime via `Refused to load https://connect.facebook.net` mas a skill nao detectava porque o `diff` generico do Passo 1.6 era ignoravel (CR/LF + multiplas linhas). Verificacao manual via `curl -sI` em todos os deploys confirmou o gap em 5 LPs ativas. Correcao pos-fato: 2 deploys com patch cirurgico de CSP (`dpl_BGADTQUh963ZsC62Qqa2eTx5jh9p` em evento, `dpl_qnvc2iyfy...` em webinar; 5/5 vizinhas intactas, 2/2 redirects 308 preservados). Material ficou pendente (sem LP ativa).

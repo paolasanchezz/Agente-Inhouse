@@ -6,6 +6,18 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5180", "--bind", "127.0.0.1"],
       "port": 5180
+    },
+    {
+      "name": "lp-pocket-events",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5181", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/pocket-events"],
+      "port": 5181
+    },
+    {
+      "name": "lp-analise-preditiva",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5182", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/analise-preditiva-maio-2026"],
+      "port": 5182
     }
   ]
 }

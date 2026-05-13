@@ -46,7 +46,7 @@ Toda LP vive em `landing-pages/{marca}/{slug}/`:
 
 ```
 landing-pages/
-├── GUIDELINES.md                                  (regras universais — §1 a §10)
+├── GUIDELINES.md                                  (regras universais — §1 a §14)
 ├── buzzmonitor/
 │   ├── monitoramento-concorrentes-maio-2026/
 │   │   ├── index.html

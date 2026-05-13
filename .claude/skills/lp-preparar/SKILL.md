@@ -3,7 +3,7 @@ name: lp-preparar
 description: Estrutura copy crua em blocos rotulados (OVERLINE, H1, H2, BODY, CTA, etc.) e passa revisao anti-IA conservadora, sem alterar o tom. Publica no Notion e salva arquivo local para o lp-gerar consumir.
 argument-hint: "[marca] [slug] [fonte] — ex: buzzmonitor monitoramento-maio https://notion.so/... ou buzzmonitor monitoramento-maio ./copy-bruta.txt"
 allowed-tools: Read, Write, Glob, Grep, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.2.0
+version: 1.2.1
 ---
 
 # Skill: Preparar Copy de Landing Page
@@ -32,7 +32,7 @@ Exemplo: /lp-preparar buzzmonitor webinar-maio https://www.notion.so/Copy-LP...
 
 Leia, na ordem:
 
-1. `landing-pages/GUIDELINES.md` — §5 (copy), §8 (secoes-tipo), §9 (copy dita estrutura), §10 (integracao tardia). Regras de design.
+1. `landing-pages/GUIDELINES.md` — §5 (copy), §8 (secoes-tipo), §9 (copy dita estrutura), §10 (posicionamento do form), §11 (integracao tardia). Regras de design.
 2. `landing-pages/CONTEXT.md` — runbook operacional comum a todas as skills lp-* (fluxos, assets, troubleshooting). Use principalmente §2.2 (matriz de alteracao) se a copy ja foi publicada antes.
 3. `conhecimento/editorial/regras-anti-ia.md` — frases bloqueadas, filler words, anti-patterns estruturais.
 4. `brand/{marca}/brand-manifest.json` — tom de voz e messaging (para reconhecer termos proprios da marca antes de revisar).
@@ -105,15 +105,34 @@ FOOTER: (c) 2026 Buzzmonitor. Todos os direitos reservados.
 
 ### Regras
 
-- **Copy literal.** Preservar aspas curvas, en-dash, pontuacao original. Nao parafrasear.
+- **Copy literal.** Preservar aspas curvas, ellipsis, en-dash (`–`) e pontuacao original. Nao parafrasear.
+- **Em-dash (`—`) NUNCA e preservado.** Mesmo que apareca na copy bruta, substituir por virgula/ponto/parenteses conforme tabela do Passo 4 antes de salvar. Tolerancia zero por `conhecimento/editorial/regras-anti-ia.md` e GUIDELINES §5.
 - **Nao criar rotulos novos.** Se algo nao cabe em nenhum rotulo, usar `BODY`.
 - **Agrupar por secao** com marcadores `=== NOME-DA-SECAO ===` (maiusculas, kebab com hifen ou espaco). Nome curto e descritivo.
 
 ## Passo 4: Revisao Anti-IA Conservadora
 
-Passe a copy estruturada contra `regras-anti-ia.md`. **Nao reescreva.** Apenas marque.
+Passe a copy estruturada contra `regras-anti-ia.md`. **Nao reescreva.** Apenas marque. **Excecao:** em-dash, que tem fix automatico (ver 4.1).
 
-### O que marcar
+### 4.1: Em-dash (`—`) — fix automatico antes de marcar qualquer outra coisa
+
+Tolerancia zero por `regras-anti-ia.md`. **Substituir direto, nao marcar.** Antes de qualquer marcacao do 4.2 em diante:
+
+1. Contar: `grep -c "—" copy.txt` (esperado: 0). Se > 0, prosseguir.
+2. Para cada `—`, ler contexto (palavra antes + palavra depois) e substituir conforme tabela:
+
+| Funcao do em-dash | Substituto |
+|---|---|
+| Pausa curta dentro da frase | virgula |
+| Pausa forte / quebra de pensamento | ponto (duas frases, capitalizando a seguinte) |
+| Aparte / informacao adicional | parenteses (envolvendo o trecho) |
+| Atribuicao de citacao (`— Autor`) | nova linha + virgula, ou so virgula |
+
+3. Re-contar: `grep -c "—" copy.txt` deve dar **0**. Se ainda > 0, refazer o sweep.
+
+Tambem cuidar de `&mdash;` (entidade HTML) se a copy bruta veio de fonte HTML — mesma logica.
+
+### 4.2: O que marcar (sem reescrever)
 
 - Frases tipicas de IA ("No cenario atual", "E inegavel que", "Vale ressaltar", etc.)
 - Filler words (realmente, simplesmente, basicamente, incrivelmente, efetivamente, etc.)
@@ -131,7 +150,7 @@ BODY: No cenario atual, monitorar concorrentes e essencial.
 # [SUGESTAO anti-IA] "No cenario atual" e frase de IA. Alternativa: "Monitorar concorrentes deixou de ser opcional." (deixar a escolha com o usuario)
 ```
 
-Se nao encontrar nada: escreva ao final `# Revisao anti-IA: sem achados.`
+Se nao encontrar nada (depois do 4.1 e 4.2): escreva ao final `# Revisao anti-IA: sem achados (em-dash: 0).`
 
 ## Passo 5: Salvar Arquivo Local
 

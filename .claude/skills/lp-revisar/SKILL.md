@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.4.0
+version: 1.4.1
 ---
 
 # Skill: Revisar Landing Page
@@ -127,7 +127,7 @@ Durante `lp-gerar`, a `frontend-design` (skill upstream) recebe a copy + a estru
      * Footer: copyright, mailto, links institucionais
      * Skip-link, aria-labels funcionais ("Encabezado", "Saltar al contenido")
      * `<title>`, `<meta description>`, `og:*` (textos de SEO derivados, OK se nao introduzem copy nova)
-   - **(c) Cosmetico permitido** — copy literal apos substituir `--` por `—`, aspas retas por curvas, `...` por `…`. OK.
+   - **(c) Cosmetico permitido** — copy literal apos substituir aspas retas por curvas e `...` por `…`. OK. **`--` (hifen duplo) NUNCA vira `—` (em-dash) — isso e VAZAMENTO, nao cosmetica.** Em-dash tem tolerancia zero por `regras-anti-ia.md` e GUIDELINES §5; substituir `--` por virgula/ponto/parenteses conforme contexto.
    - **(d) VAZAMENTO** — texto visivel que nao bate com nenhum bucket acima. Registrar como CRITICO.
 
 4. **Procurar especificamente os 4 padroes mais comuns:**
@@ -139,16 +139,25 @@ Durante `lp-gerar`, a `frontend-design` (skill upstream) recebe a copy + a estru
    | **Tag rotacionada com texto novo** | `transform: rotate` no CSS + texto dentro | Palavra dentro do badge que nao aparece em outro lugar da copy |
    | **Punchline de marketing** | `class*="disclaimer"`, `class*="punch"`, paragrafos curtos perto de CTAs | "sem spam", "sem enrolacao", "100% gratis", "vagas limitadas", "demo" — qualquer slogan punchy nao-literal |
 
-5. **Auditoria especifica de em-dash (regras-anti-ia.md tolerancia zero):**
+5. **Auditoria especifica de em-dash (regras-anti-ia.md + GUIDELINES §5 tolerancia zero):**
 
    ```bash
-   # Contar em-dash no HTML (excluindo comentarios CSS e scripts)
-   grep -oE "[^&]—|&mdash;" "landing-pages/{marca}/{slug}/index.html" | wc -l
-   # Contar em-dash na copy.txt
-   grep -oE "—|&mdash;" "landing-pages/{marca}/{slug}/copy.txt" | wc -l
+   # Contagem absoluta no HTML — qualquer ocorrencia e CRITICO (tolerancia zero)
+   grep -oE "—|&mdash;" "landing-pages/{marca}/{slug}/index.html" | wc -l
    ```
 
-   Se HTML > copy.txt, o gerador adicionou em-dashes durante a expansao de bullets. CRITICO. Substituir por virgula, ponto ou parenteses conforme regras-anti-ia.md tabela.
+   **Esperado: 0.** Se > 0, CRITICO **sempre** — independe do que tem em `copy.txt`. A regra anti-IA proibe em-dash em **todo conteudo renderizado**, nao so o "adicionado pelo gerador". Se a copy.txt tambem tem em-dash, o gap esta upstream (lp-preparar Passo 4.1 falhou) — registrar tambem para corrigir copy.txt no Passo 4 deste revisor.
+
+   Para cada ocorrencia, identificar o substituto conforme contexto (tabela em regras-anti-ia.md):
+
+   | Funcao do em-dash | Substituto |
+   |---|---|
+   | Pausa curta dentro da frase | virgula |
+   | Pausa forte / quebra de pensamento | ponto (duas frases) |
+   | Aparte / informacao adicional | parenteses |
+   | Atribuicao de citacao (`— Autor`) | virgula ou nova linha |
+
+   Fix aplicado no Passo 4 (criticos), com `Edit` ocorrencia por ocorrencia.
 
 6. **Auditoria especifica de frase-ancora:**
 
@@ -168,7 +177,7 @@ Durante `lp-gerar`, a `frontend-design` (skill upstream) recebe a copy + a estru
 | Punchline de marketing nao-literal | CRITICO | Remover. So volta se aparecer literal em copy.txt apos discussao com o autor |
 | Frase-ancora truncada | CRITICO | Restaurar literal, mesmo que exija ajuste de tipografia/quebra de linha |
 | Sinonimos cosmeticos | CRITICO | Restaurar literal |
-| Em-dash adicionado | CRITICO | Substituir por virgula/ponto/parenteses (tabela regras-anti-ia.md) |
+| Em-dash (`—` ou `&mdash;`) presente no HTML | CRITICO (tolerancia zero) | Substituir cada ocorrencia por virgula/ponto/parenteses (tabela regras-anti-ia.md). Se copy.txt tambem tem em-dash, corrigir copy.txt no mesmo passo |
 | Disclaimer compliance generico | OK (whitelist) | Anotar mas nao alterar — eh boilerplate de form |
 
 Registrar todos os achados de fidelidade junto com os criticos do Passo 3 e GTM (Passo 3.5) para aplicacao no Passo 4.

@@ -66,7 +66,7 @@ Apos Etapa 3, informe ao usuario:
 ```
 Design revisado. Criticos aplicados. Melhorias opcionais em REVISAO.md.
 
-Proximo passo e integrar formulario real. Isso NAO roda automaticamente (GUIDELINES §10).
+Proximo passo e integrar formulario real. Isso NAO roda automaticamente (GUIDELINES §11).
 
 Quando tiver o snippet do embed (Jotform/RD/HubSpot), rode:
   /lp-integrar-form {marca}/{slug} "<snippet>"

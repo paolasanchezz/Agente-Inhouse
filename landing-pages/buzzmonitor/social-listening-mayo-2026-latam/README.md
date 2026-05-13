@@ -51,7 +51,7 @@
 
 ## Assets referenciados
 
-- `../../brand/buzzmonitor/assets/logos/logo-icon.png` — favicon (PNG ~13KB, GUIDELINES §11)
+- `../../brand/buzzmonitor/assets/logos/logo-icon.png` — favicon (PNG ~13KB, GUIDELINES §12)
 - `../../brand/buzzmonitor/assets/logos/logo-primary.png` — logo header (fundo claro)
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.png` — logo footer (fundo escuro)
 

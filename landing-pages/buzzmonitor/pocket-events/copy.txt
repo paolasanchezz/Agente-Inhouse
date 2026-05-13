@@ -1,0 +1,111 @@
+META
+slug: pocket-events
+marca: buzzmonitor
+regiao: brasil
+idioma: pt-br
+tipo: evento-fechado
+formato: pocket-event (10 vagas, 1 BD apresentando)
+status: modelo-preview (placeholders para reuso por edicao)
+
+---
+
+SECAO: HERO
+
+LABEL: Apenas 10 vagas · Encontro exclusivo
+H1: {{ TÍTULO DO ENCONTRO }}
+SUB: Discussão prática sobre {{ NICHO }} com foco em {{ MÓDULO BUZZMONITOR }}.
+INFO: {{ DATA }} · {{ HORÁRIO }} · Online ao vivo
+CTA: Quero minha vaga
+
+TICKET_TAG: Pocket Event Buzzmonitor
+TICKET_FORMAT: Online · Gratuito
+TICKET_DAY: {{ DD }}
+TICKET_MONTH: {{ MÊS }}
+TICKET_TIME: {{ HORÁRIO }}
+TICKET_TITLE: {{ TEMA DO ENCONTRO }}
+TICKET_BRAND: Buzzmonitor
+TICKET_DURATION: ~ 60 min
+
+---
+
+SECAO: SPEAKER + FORM
+
+OVERLINE: Encontro com especialista
+H2: Confirme seu encontro com o especialista
+SUB: Mini-encontro fechado: apenas 10 vagas.
+
+SPEAKER_AVATAR: [FOTO DO SPEAKER]
+SPEAKER_NAME: {{ NOME DO SPEAKER }}
+SPEAKER_ROLE: {{ CARGO }} · Buzzmonitor
+SPEAKER_BIO: {{ BREVE BIO — 1 a 2 linhas }}
+
+FORM_FIELD: nome | Nome completo
+FORM_FIELD: email | E-mail corporativo
+FORM_FIELD: empresa | Empresa
+FORM_FIELD: cargo | Cargo
+FORM_CTA: Confirmar minha vaga
+FORM_NOTE: Ao confirmar você aceita receber comunicações da Buzzmonitor sobre o encontro.
+
+---
+
+SECAO: EMPRESAS QUE CONFIAM (mural slider + KPIs overlay nas esquinas)
+
+H2: Empresas que já confiam na Buzzmonitor
+
+SLIDER:
+  IMG: assets/logos/mural-1.jpeg | Mural de marcas clientes — varejo, alimentos, financeiro, automotivo, entretenimento
+  IMG: assets/logos/mural-2.jpeg | Mural de marcas clientes — telecom, saúde, educação, agências, indústria
+  ANIMATION: auto-play, 16s loop, ease-in-out, prefers-reduced-motion respeitado
+
+KPI_OVERLAY_TL: 1.000+ | clientes em todo o mundo
+KPI_OVERLAY_TR: 300+ | clientes enterprise
+KPI_OVERLAY_BL: 500+ | agências
+KPI_OVERLAY_BR: 10k | usuários
+
+---
+
+SECAO: DEPOIMENTOS
+
+OVERLINE: O que dizem quem já participou
+H2: Pocket Events em uma frase
+
+QUOTE: Foi excelente, com muitos insights importantes para o dia a dia de trabalho.
+AUTHOR: Rafaela Rodrigues
+COMPANY: Kobber Alimentos
+
+QUOTE: Adorei o evento ser colaborativo tanto dos palestrantes quanto dos que estavam presentes!
+AUTHOR: Gustavo de Souza Lima
+COMPANY: Vivo
+
+QUOTE: O evento foi ótimo e muito esclarecedor. Com certeza um grande norteador para o trabalho de monitoramento para quem já é cliente da Buzz e também para quem não é.
+AUTHOR: Patrícia
+COMPANY: Portal Publicidade
+
+QUOTE: Grato pela iniciativa e estarei presente nas próximas!
+AUTHOR: Evandro Siqueira
+COMPANY: Bluefit
+
+QUOTE: Por mais eventos como esse!
+AUTHOR: Andreia Borba
+COMPANY: Lojas Marisa
+
+QUOTE: Gostaria de parabenizar a condução e forma de comunicação do Bruno. Transmitindo as informações de forma simples e objetiva. E toda a organização do evento.
+AUTHOR: Rogério Brambilla
+COMPANY: Air Branding
+
+---
+
+SECAO: URGÊNCIA / CTA FINAL
+
+LABEL: 10 vagas · Encontro fechado
+H2: Reserve sua vaga antes que esgote
+INFO: {{ DATA }} · {{ HORÁRIO }} · Online ao vivo
+CTA: Confirmar agora
+
+---
+
+SECAO: FOOTER
+
+LOGO: brand/buzzmonitor logo reversed
+COPYRIGHT: © 2026 Buzzmonitor · Todos os direitos reservados
+LINK: Política de Privacidade | #

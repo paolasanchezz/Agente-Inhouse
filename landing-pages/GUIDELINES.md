@@ -45,12 +45,13 @@
 ## 5. Copy
 
 - Respeitar copy do briefing/Notion — ajustes cosméticos ok, mas não reescrever tom.
-- Usar aspas curvas (`&ldquo; &rdquo;`), ellipsis (`&hellip;`) e em-dash (`&mdash;`) corretos.
+- Usar aspas curvas (`&ldquo; &rdquo;`) e ellipsis (`&hellip;`) corretos.
+- **Em-dash (`—` / `&mdash;`) PROIBIDO** — tolerância zero, ver `conhecimento/editorial/regras-anti-ia.md`. Substituir por vírgula, ponto ou parênteses conforme a função. Vale para copy bruta, copy estruturada e HTML renderizado. Validação: `grep -c "—" index.html` deve retornar 0; `grep -c "&mdash;" index.html` deve retornar 0.
 - Números em algarismos (23 de Abril, não "vinte e três").
 
 ## 6. Estrutura mínima
 
-Toda LP tem: **Hero → Problema/contexto → Oferta/Programa → Diferencial → Para quem → Prova (speakers/social proof) → Urgência → CTA final → Footer.** Pode cortar seções, mas não inverter a ordem narrativa. Onde o formulário aparece dentro dessa estrutura é decidido pela §10 (varia entre 2ª dobra, meio ou fim conforme o tipo de LP).
+Toda LP tem: **Hero → Problema/contexto → Oferta/Programa → Diferencial → Para quem → Prova (speakers/social proof) → Urgência → CTA final → Footer.** Pode cortar seções, mas não inverter a ordem narrativa. Onde o formulário aparece dentro dessa estrutura é decidido pela §10 (2ª seção para ToFu; 4ª ou última para MoFu/BoFu/Remarketing).
 
 ## 7. Acessibilidade (non-negotiable)
 
@@ -79,15 +80,15 @@ A ordem e a quantidade de blocos da LP seguem a narrativa da copy — não o gos
 
 Regra prática: se precisou adicionar ou cortar bloco para "a LP ficar equilibrada", pare — o desequilíbrio é da copy, não do HTML. Volte ao autor da copy.
 
-## 10. Posicionamento do formulário (sugestão, não obrigação)
+## 10. Posicionamento do formulário por tipo de LP
 
-A pesquisa sobre tradeoff conversão × qualificação (CXL, MarketingExperiments, Unbounce) aponta que a posição ideal varia com a temperatura do tráfego e a complexidade da oferta. Defaults sugeridos, válidos para todas as marcas:
+A posição ideal varia com a temperatura do tráfego. **Default forte** — override permitido quando o briefing pedir explicitamente, quando a marca já for muito conhecida do tráfego (lead quente), ou quando teste A/B local provar o contrário. Justificar no PR / REVISAO.md.
 
-- **Webinar / material rico (lead frio, oferta gratuita)** → formulário na **segunda dobra**, logo após o hero. Lead frio aceita preencher por curiosidade — o objetivo é volume, MQL pipeline filtra depois. Mover o form para o fim aqui só desperdiça intenção quente.
-- **Fundo de funil — agendar demo, solicitar demonstração, falar com vendas** → formulário **no meio da página**, depois de prova social, casos e diferencial. O scroll funciona como filtro de intenção: quem chega ao form passou pelo argumento e tende a converter como SQL. Form no topo aqui inflaciona CPL com leads que ainda não entenderam a oferta.
-- **Em todos os casos**, manter um **CTA visível na primeira dobra** (botão que rola suave até o form). Captura o tráfego decidido sem sacrificar quem precisa do contexto.
+**Contagem de seções:** hero é §1. Cada bloco visual subsequente (problema, benefícios, prova, urgência, CTA final) conta como §2, §3, §4 etc. Footer não conta.
 
-Override permitido quando o briefing pedir explicitamente, quando a marca já for muito conhecida do tráfego (lead quente), ou quando teste A/B local provar o contrário. Justificar no PR / REVISAO.md da LP.
+- **ToFu — webinar, material rico, lead frio** → formulário na **2ª seção** (logo após o hero). Lead frio aceita preencher por curiosidade; o objetivo é volume, MQL pipeline filtra depois. Mover o form para o fim aqui desperdiça intenção quente.
+- **MoFu / BoFu / Remarketing — material avançado, comparativos, agendar demo, falar com vendas, retargeting** → formulário na **4ª seção ou na última seção** (meio/fim da página, após prova social e diferencial). O scroll funciona como filtro de intenção: quem chega ao form passou pelo argumento e tende a converter como SQL. Form no topo aqui infla CPL com leads que ainda não entenderam a oferta.
+- **Em todos os casos**: manter um **CTA visível no hero (§1)** — botão que rola suave até o form. Captura tráfego decidido sem sacrificar quem precisa do contexto.
 
 ## 11. Integração tardia de formulário
 
@@ -133,6 +134,33 @@ Se vier 404, a skill `lp-publicar` não copiou o `logo-icon.png` pro `assets/log
 ## 13. Performance — PageSpeed basta
 
 GTmetrix avaliado e descartado (free tier redireciona pra signup após o 1º teste público; API dá só 5 trial credits totais). Se um dia precisar de segunda ferramenta, usar WebPageTest.org (API grátis, 200/dia).
+
+## 14. `<img>` em grid container — `min-height: 0` obrigatório
+
+Padrão recorrente em LPs (mascote, hero image, ilustração de seção) é colocar `<img>` com dimensões intrínsecas (`width`/`height` HTML) dentro de um container grid com `aspect-ratio` no pai. **Sem `min-height: 0` no `<img>`, Safari iOS quebra**: o default `min-height: auto` de grid items combinado com a altura intrínseca grande da imagem faz Safari ignorar a referência percentual e renderizar a imagem em tamanho gigante. Chrome/Firefox aplicam `max-width: 100%` como cap retroativo; Safari iOS não.
+
+**Regra:**
+
+```css
+.container {
+  display: grid; place-items: center;
+  aspect-ratio: 1/1;     /* ou outro ratio */
+  max-width: 380px;
+  width: 100%;
+}
+.container img {
+  height: 102%;          /* ou outra % */
+  width: auto;
+  max-width: 100%;
+  min-height: 0;         /* ← INEGOCIÁVEL: sem isso, Safari iOS explode pra altura intrínseca */
+}
+```
+
+**Defesa em profundidade:** seções que contêm `.for-visual`-like (qualquer container com imagem decorativa que possa vazar) devem ter `overflow: hidden`. Custo zero, blinda contra qualquer outro overflow futuro.
+
+Aplica-se a qualquer `<img>` filho de grid item — não só mascote. Mesma armadilha cabe em `<picture>` (o `<img>` interno é o renderizado, pega o bug).
+
+Histórico: 2026-05-11, LP `analise-preditiva-maio-2026` (Buzzmonitor) reportada pelo Victor com mascote oversized cobrindo a seção `.speakers` no iPhone. Mesmo padrão presente em `monitoramento-concorrentes-maio-2026-pt` e `social-listening-mayo-2026-latam` (todas Buzzmonitor, todas com mascot.png 810×1080). Fix aplicada nas 3 e documentada aqui.
 
 ---
 

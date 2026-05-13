@@ -56,7 +56,7 @@ PROBLEMA (lista vertical de dores)              → §8 — X vermelhos em lista
 BENEFICIOS (grid de beneficios)                 → §8 — ✓ verdes em grid (N colunas = N da copy)
 URGENCIA (label + h2 + CTA)                     → §8 — fundo dark + tag rotacionada
 PROVA (speakers/cases) [se houver na copy]
-CTA FINAL (form mock)                           → §10 — form action="#", sem embed real
+CTA FINAL (form mock)                           → §11 — form action="#", sem embed real
 FOOTER
 ```
 
@@ -88,7 +88,7 @@ Guidelines universais (obrigatorias — landing-pages/GUIDELINES.md):
     * Beneficios = grid com ✓ verdes (N colunas = N da copy)
     * Urgencia = fundo dark + tag cor quente rotacionada
 - §9 Copy dita estrutura — ordem e contagem dos blocos NAO podem mudar
-- §10 Form = mock <form action="#" onsubmit="event.preventDefault()"> (integracao real vira depois)
+- §11 Form = mock <form action="#" onsubmit="event.preventDefault()"> (integracao real vira depois)
 
 REGRA DE FIDELIDADE DA COPY (CRITICA — vale mais que qualquer escolha estetica):
 

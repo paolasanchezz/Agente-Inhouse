@@ -1,6 +1,6 @@
 ---
 name: lp-integrar-form
-description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §10).
+description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §11).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
 version: 1.3.0

@@ -103,7 +103,7 @@ Se aparecer match → PARE, corrija o rewrite.
 
 ### 3.7 Favicon — regra inegociável
 
-GUIDELINES §11 manda. Resumindo aqui em modo operacional:
+GUIDELINES §12 manda. Resumindo aqui em modo operacional:
 
 - **Source:** `<link rel="icon" type="image/png" href="../../brand/{marca}/assets/logos/logo-icon.png" />`
 - **Deploy SOLO:** `<link rel="icon" type="image/png" href="/assets/logos/logo-icon.png" />`
@@ -304,7 +304,7 @@ Fonte canônica única — `lp-publicar` e outras skills referenciam aqui em vez
 | Data | Incidente | Skill afetada | Versão que corrigiu |
 |---|---|---|---|
 | 2026-04-20 | LP PT-PT recebendo GTM Brasil | lp-gerar / lp-revisar | lp-gerar v1.2.0 + lp-revisar v1.1.0 (cascata de detecção de região — §5.1) |
-| 2026-04-23 | `favicon.png` / `favicon.svg` na pasta da LP causando 404 | — | GUIDELINES §11 + CONTEXT §3.7 (sempre apontar pro brand) |
+| 2026-04-23 | `favicon.png` / `favicon.svg` na pasta da LP causando 404 | — | GUIDELINES §12 + CONTEXT §3.7 (sempre apontar pro brand) |
 | 2026-04-27 | mascot.png 404 (path relativo `./assets/` não reescrito) | lp-publicar | v1.4.0 (suporte `./assets/` + grep validation pós-rewrite — §3.5) |
 | 2026-04-27 | Buzzcreators publicada em projeto separado em vez de guarda-chuva existente | lp-publicar | v1.5.0 (Passo 0.5 detecção via API Vercel + namespace por marca — §3.4) |
 | 2026-04-30 | Card-dentro-de-card no embed Jotform (LP `social-listening-mayo-2026-latam`) | lp-integrar-form | v1.3.0 (wrapper sem heranca de `.form`, CSS canonico reduzido) |
@@ -344,7 +344,7 @@ Antes de chamar `lp-publicar`, conferir:
 
 ## 10. Referências cruzadas
 
-- **`landing-pages/GUIDELINES.md`** — regras de design (§1 paleta, §3 hero, §11 favicon, etc.)
+- **`landing-pages/GUIDELINES.md`** — regras de design (§1 paleta, §3 hero, §10 posicionamento do form, §11 integração tardia, §12 favicon, etc.)
 - **`.claude/skills/lp-preparar/CONTEXT.md`** — convenções de marca, IDs do Notion, formato de `tracking.json`
 - **`.claude/skills/lp-publicar/vercel.template.json`** — headers de segurança + CSP padrão (Jotform, RD Station, HubSpot, GTM, Google Fonts, YouTube, Vimeo)
 - **`brand/{marca}/`** — `tokens.json`, `generation-rules.json`, `brand-manifest.json`, `tracking.json`, `assets/`
