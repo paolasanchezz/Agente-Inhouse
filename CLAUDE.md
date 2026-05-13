@@ -13,7 +13,7 @@ Newsletters:  /news-pipeline → /news-pesquisar → (pausa: aprovar pauta?) →
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
-Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling)
+Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 ```
@@ -172,6 +172,7 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 | `/lp-integrar-form [marca]/[slug] "snippet"` | Troca form mock por embed real (manual-trigger) |
 | `/lp-publicar [marca] [slug] [dominio]` | Sync sibling + deploy Vercel + PageSpeed + relatorio Notion |
 | `/lp-sync [dominio]` | Read-only — popula sibling local com snapshot do ultimo deploy READY (antes de inspecao/debug manual). Nao deploya. |
+| `/lp-health-check [--dry-run] [--no-drift]` | Descobre todas LPs em producao via Vercel API + HTTP check + email pra Victor se houver falha. Silenciosa quando OK. Pra rodar diariamente via `/schedule`. |
 
 - `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
 - `[slug]`: kebab-case curto (ex: `monitoramento-maio`)

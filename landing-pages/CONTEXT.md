@@ -358,3 +358,40 @@ Antes de chamar `lp-publicar`, conferir:
 - **`CHANGELOG.md`** raiz — histórico de versões das skills `lp-*`
 
 Este arquivo é vivo. Quando aparecer um sintoma novo de troubleshooting (ou um anti-padrão novo), adicionar aqui na mesma branch da correção.
+
+---
+
+## 11. Health check pós-deploy (rotina diária)
+
+Skill `/lp-health-check` (v1.0.0+) faz monitoramento contínuo das LPs em produção, complementar ao smoke test que `/lp-publicar` faz no momento do deploy. Roda diariamente via `/schedule` (cloud Anthropic, independente de máquina ligada) e envia email pra `victor.lopes@buzzmonitor.com.br` **só quando há falha** — silenciosa quando tudo OK.
+
+### 11.1 O que ela faz
+
+1. **Descoberta dinâmica** via Vercel API: lista todos projetos da org `elife-group`, filtra os que têm FQDN custom (ignora `*.vercel.app`), pega último deploy READY, walk no file tree pra identificar todas as LPs (solo ou guarda-chuva).
+2. **HTTP check** em cada URL (HEAD com fallback GET, timeout 10s, retry 1× em 5xx, paralelo até 5).
+3. **Drift detection (opcional)** cross-check com source no repo: alerta se LP no repo não tem deploy, ou deploy sem source.
+4. **Relatório + email** apenas se houver falha/warning. Caso contrário, exit 0 silencioso.
+
+### 11.2 Quando agir em cada cenário
+
+| O que aparece | Causa típica | Ação |
+|---|---|---|
+| HTTP 404 final em LP que devia estar ativa | Subpasta apagada (deploy de outra LP no mesmo guarda-chuva sobrescreveu), ou rollback parcial | Rodar `/lp-sync {dominio}` pra inspeção, depois `/lp-publicar` pra restaurar |
+| HTTP 5xx persistente (após retry) | Vercel instável, edge function quebrada, problema upstream | Verificar status.vercel.com; aguardar 10min e re-rodar `/lp-health-check` manual |
+| Timeout / DNS | Domínio expirado ou cert lapsou | Conferir DNS + cert na Vercel UI ou registrar |
+| Drift "fonte sem deploy" | LP em rascunho no repo (esperado) OU foi despublicada de propósito | Sem ação se intencional; se não, rodar `/lp-publicar` |
+| Drift "deploy órfão" | Source foi removido do repo mas LP segue no ar | Decidir entre re-criar source ou despublicar via Vercel UI |
+
+### 11.3 Configuração
+
+- **Token Vercel:** mesma precedência do `lp-publicar` (env → `.env.local` → `auth.json` CLI → valida `/v2/user`)
+- **Email:** `RESEND_API_KEY` em `.env.local` (criar conta free em resend.com — 100/dia). Se ausente, skill roda mas não envia email (apenas salva relatório local)
+- **Agendamento:** rodar `/schedule create "Health check diário LPs" --cron "0 9 * * *" --tz "America/Sao_Paulo" --command "/lp-health-check"`
+
+### 11.4 Não é substituto do smoke test do `lp-publicar`
+
+`lp-publicar` Passo 3.4.b já valida vizinhas pós-deploy (hash MD5 baseline + smoke test). Health check diário é a **segunda camada** que cobre:
+- LP que cai dias depois do deploy (rollback parcial, infra Vercel)
+- Cert / DNS expirando
+- Mudança feita de outra máquina sem `lp-publicar` (anti-padrão §7.1)
+- Drift entre repo e produção

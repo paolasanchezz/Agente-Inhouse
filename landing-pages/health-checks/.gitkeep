@@ -1,0 +1,7 @@
+# Pasta de relatorios de incidente de health check
+#
+# Mantida vazia no commit. A skill `/lp-health-check` salva aqui arquivos
+# `INCIDENT-YYYY-MM-DD-HHMM.md` quando detecta falha ou warning. Quando tudo
+# esta OK, nada e salvo (skill silenciosa).
+#
+# Para inspecionar incidentes passados: `ls landing-pages/health-checks/`

@@ -12,6 +12,34 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-health-check
+### 2026-05-13 — v1.0.0 nova: rotina diária de health check com descoberta dinâmica
+
+Skill nova `/lp-health-check` que cobre o gap entre o smoke test do `lp-publicar` (no momento do deploy) e a detecção de incidente em produção (LP cai dias depois — rollback parcial, cert lapsa, deploy de outra LP no mesmo guarda-chuva quebra vizinha, drift entre repo e Vercel). Antes desta skill, Victor só descobria LP fora do ar quando o tráfego começava a reclamar; com `/schedule` cron diário rodando `/lp-health-check`, agora chega email assim que algo cai.
+
+Características chave:
+
+- **Descoberta dinâmica zero-manutenção** via Vercel API — lista todos projetos da org `elife-group`, filtra os que têm FQDN custom (ignora `*.vercel.app`), pega último deploy READY, walk no file tree pra identificar todas LPs (solo `index.html` na raiz; guarda-chuva subpastas com `index.html`). Reusa endpoints e padrão de token resolution do `lp-publicar` §0.5.d.i (env → `.env.local` → `auth.json` CLI → validação `/v2/user`).
+- **HTTP check paralelo** (até 5 simultâneos) com HEAD method e fallback GET pra CDNs que retornam 405. Timeout 10s, retry 1× em 5xx, classificação ok/warning/fail.
+- **Drift detection bonus** cross-check com source no repo (`landing-pages/{marca}/{slug}/index.html`): alerta como warning (não falha) quando há LP no repo sem deploy ou deploy órfão sem source. `--no-drift` desliga.
+- **Silenciosa por design** — 0 falhas e 0 drift = exit 0 sem arquivo nem email. Reduz ruído.
+- **Email via Resend** quando há falha — free tier 100/dia (suficiente). Configurar `RESEND_API_KEY` em `.env.local`. Sem a key, skill ainda roda mas só salva relatório local em `landing-pages/health-checks/INCIDENT-YYYY-MM-DD-HHMM.md`.
+- **Modo `--dry-run`** descobre + checa + imprime no console, sem salvar arquivo nem enviar email — pra debug.
+- **Pra agendar:** `/schedule create "Health check diário LPs" --cron "0 9 * * *" --tz "America/Sao_Paulo" --command "/lp-health-check"`. Roda no cloud Anthropic — independente da máquina do Victor estar ligada.
+
+Arquivos:
+- `.claude/skills/lp-health-check/SKILL.md` (orquestra, v1.0.0)
+- `.claude/skills/lp-health-check/discover.py` (Vercel API → lista de URLs)
+- `.claude/skills/lp-health-check/check.py` (HTTP checks paralelos)
+- `.claude/skills/lp-health-check/notify.py` (email via Resend)
+- `landing-pages/health-checks/` (pasta de relatórios — gitkeep)
+- `landing-pages/CONTEXT.md` §11 nova (documenta a rotina + matriz de ação por sintoma)
+- `CLAUDE.md` raiz (linha `/lp-health-check` na tabela Landing Pages)
+
+Não-objetivos v1: validação de conteúdo (só status), PageSpeed (já no `lp-publicar`), auto-remediação, dashboard histórico.
+
+---
+
 ## lp-publicar (+ docs LP)
 ### 2026-05-13 (noite) — Hardening contra bypass da skill: lp-sync v1.0.0 nova + anti-padrão "deploy manual" + doc §7.2
 
