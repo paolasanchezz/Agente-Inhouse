@@ -13,7 +13,7 @@ Newsletters:  /news-pipeline → /news-pesquisar → (pausa: aprovar pauta?) →
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
-Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar
+Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling)
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 ```
@@ -161,6 +161,8 @@ Transforma uma noticia recente em conteudo multi-formato e multi-idioma. Rastrei
 
 Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; runbook operacional (fluxos, assets, troubleshooting, fluxo de alteracao pos-deploy) em `landing-pages/CONTEXT.md` — carregado por todas as skills lp-*. Fonte em `landing-pages/{marca}/{slug}/`, deploy em pasta sibling isolada.
 
+**Regra inegociavel:** toda alteracao ou deploy de LP roda pela skill `lp-publicar`. Fluxo manual (`cd sibling && vercel deploy ...`) e anti-padrao — mata as 4 camadas de defesa da skill (sync via Vercel API, drift-check, baseline, smoke test) e historicamente causa regressao silenciosa em vizinhas. Se voce precisa apenas de snapshot fresh da sibling para inspecao/debug (sem deploy), use `/lp-sync [dominio]`. Detalhes em `landing-pages/CONTEXT.md` §7.1 (anti-padroes) e §7.2 (incidentes 2026-05-11 e 2026-05-13).
+
 | Comando | O que faz |
 |---|---|
 | `/lp-pipeline [marca] [slug] [fonte] [dominio]` | Fluxo completo: preparar → gerar → revisar → (pausa) → publicar |
@@ -169,10 +171,12 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 | `/lp-revisar [marca]/[slug]` | Audita (design + a11y) e aplica criticos |
 | `/lp-integrar-form [marca]/[slug] "snippet"` | Troca form mock por embed real (manual-trigger) |
 | `/lp-publicar [marca] [slug] [dominio]` | Sync sibling + deploy Vercel + PageSpeed + relatorio Notion |
+| `/lp-sync [dominio]` | Read-only — popula sibling local com snapshot do ultimo deploy READY (antes de inspecao/debug manual). Nao deploya. |
 
 - `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
 - `[slug]`: kebab-case curto (ex: `monitoramento-maio`)
 - `[fonte]`: URL Notion, caminho de arquivo ou texto colado
+- `[dominio]`: FQDN do guarda-chuva (ex: `content.cxpress.io`, `webinar.buzzmonitor.com`)
 
 ### Meta Ads (SOMENTE LEITURA)
 

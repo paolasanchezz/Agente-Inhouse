@@ -13,6 +13,26 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar (+ docs LP)
+### 2026-05-13 (noite) — Hardening contra bypass da skill: lp-sync v1.0.0 nova + anti-padrão "deploy manual" + doc §7.2
+
+Reação ao incidente 2026-05-13 (LP `latam-webinar-atencionalcliente` 404 por ~1h40min — diagnóstico completo em [Notion 35f3934026fd815ab641cd00714cfcbc](https://www.notion.so/35f3934026fd815ab641cd00714cfcbc)). Causa-raiz: outra colaboradora bypassou `lp-publicar` e fez 4 deploys consecutivos com `vercel deploy --force` direto, usando lista hardcoded de vizinhas via `curl + grep` que nunca incluiu a LATAM. Skill `lp-publicar` v3.4.0 já protegia o cenário desde v3.1.0 (sync via Vercel API descobre vizinhas dinamicamente) — não houve bug de skill, houve bypass.
+
+Hardening em 3 níveis para tornar o bypass mais difícil e o caminho-skill mais óbvio:
+
+- **Nova skill `lp-sync` v1.0.0** — standalone read-only que popula sibling local com snapshot do último deploy production READY via Vercel API. Reusa o helper `sync_sibling.py` canônico de `lp-publicar`. Caso de uso: fluxo manual inevitável (debug, inspeção, recovery, primeira sessão numa máquina nova) — em vez de inventar `curl` hardcoded, rodar `/lp-sync [dominio]` antes para garantir sibling fresh. Cobre Passos 0.5.a/b/c/d.i/ii/iii/iv da `lp-publicar`, sem nenhum deploy. Argumento único `[dominio]` FQDN do guarda-chuva. Não cobre modo solo (re-publicação solo via `lp-publicar` já faz sync desde v3.3.0).
+
+- **landing-pages/CONTEXT.md** (sem bump — só doc):
+  - **§7.1 anti-padrões**: 2 anti-padrões novos. (a) "Rodar `vercel deploy` direto na sibling sem usar `lp-publicar` (fluxo manual)" — explica que mata as 4 camadas de defesa e referencia §7.2 (2026-05-13). (b) "Preservar vizinhas em deploy manual com lista hardcoded (`curl live > sibling/X` para slugs conhecidos)" — subset crítico do anterior; sublinha que descoberta de vizinhas deve vir da Vercel API, não de inferência humana.
+  - **§7.2 histórico**: entrada nova 2026-05-13 documentando a janela 14:12-15:51 UTC, os 4 deploys (`dpl_DAV2`, `dpl_3299`, `dpl_63nL`, `dpl_BCzc`) e o recovery via `dpl_DruoX...`. Cita explicitamente que skill já cobria o cenário e o problema foi bypass — sem bump de skill, hardening organizacional.
+  - **§2.2 matriz fluxo de alteração**: nova linha "Inspeção / debug local sem deploy" mapeando para `/lp-sync`. Parágrafo novo de regra geral logo após a tabela.
+  - **§8 checklist pré-deploy**: bullet novo "Nunca rodar `vercel deploy` direto na sibling" — referência cruzada para §7.1 e §7.2.
+
+- **CLAUDE.md raiz** (sem bump — só doc):
+  - **Fluxo no topo**: linha LP ganha `| /lp-sync (standalone — snapshot sibling)`.
+  - **Seção Landing Pages**: parágrafo "Regra inegociável" novo logo abaixo do parágrafo introdutório, antes da tabela — define que toda alteração/deploy roda por `lp-publicar`, fluxo manual é anti-padrão, `/lp-sync` é a saída quando só precisa snapshot. Tabela de comandos LP ganha linha `/lp-sync [dominio]` + bullet `[dominio]` na legenda.
+
+**Não há bump em `lp-publicar`** — comportamento dela continua idêntico, hardening é em torno (skill nova + docs). Próxima sessão de qualquer colaborador entra com sinalização tripla (CLAUDE.md raiz + CONTEXT §7.1/§7.2 + ferramenta `/lp-sync` à mão).
+
 ### 2026-05-13 (tarde) — Em-dash bloqueado em todo o pipeline LP (lp-preparar v1.2.1, lp-revisar v1.4.1)
 
 Colaboradora publicou LP com em-dash (`—`) na copy ao ar. Em-dash tem tolerância zero por `conhecimento/editorial/regras-anti-ia.md` — é o tique de IA mais identificável em PT-BR. Auditoria revelou **3 contradições internas** na cadeia de skills LP que permitiram o vazamento:
