@@ -35,6 +35,7 @@
 - Elemento da direita: **um** elemento forte (card de data, ilustração minimalista, foto com crop editorial). Não encher de formas.
 - CTA primário visível sem scroll. CTA secundário (opcional) ghost ao lado.
 - Indicador de data/formato no header (ex.: "Webinar gratuito", dot pulsante): texto curto e **sempre em uma única linha** (`white-space: nowrap`). Nunca duplicar info que já aparece em outro lugar do hero — o indicador é um resumo discreto, não um repositório de dados. Se a tela for estreita demais para a linha única, preferir esconder via `@media` a quebrar em duas linhas.
+- **Mobile — headline sempre primeiro.** No `@media (max-width: 980px)` o `.hero-content` (overline + H1 + body + CTA) precede o visual (card-ticket / ilustração). Nunca usar `order: -1` no `.hero-visual` para "puxar" o card pra cima — quebra a hierarquia narrativa (usuário precisa entender O QUÊ antes de QUANDO). Se o DOM tiver `.hero-content` antes de `.hero-visual` (padrão do `lp-gerar`), basta NÃO aplicar `order` no mobile e o grid empilha naturalmente na ordem certa. Histórico: 2026-05-15, LP `latam-webinar-atencionalcliente` (Cxpress) reportada pelo Victor com card de data acima da headline no mobile. Mesmo padrão presente em `playbook-whatsapp2026` e `webinar-tecnologia-maio2026` (todas Cxpress).
 
 ## 4. Animação
 
