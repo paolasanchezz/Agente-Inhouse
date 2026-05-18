@@ -40,7 +40,21 @@ Não-objetivos v1: validação de conteúdo (só status), PageSpeed (já no `lp-
 
 ---
 
-## lp-publicar (+ docs LP)
+## lp-publicar
+### 2026-05-18 — v3.5.0: patch CSP automatico quando nao ha decisao real a tomar
+
+Ao publicar a LP `mcp` em `material.buzzmonitor.com` hoje, o Passo 1.6 (drift-check ativo de CSP, v3.4.0) detectou que o sibling estava com CSP antigo — faltava `connect.facebook.net`/`www.facebook.com` para liberar Meta Pixel via GTM (pendente documentado em §7.2 2026-05-08). A skill pausou via `AskUserQuestion` oferecendo 3 opcoes (patch / deixar / abortar), e o usuario respondeu pra patchar automaticamente E ajustar a skill para nao perguntar mais nesse caso.
+
+Mudanca: Passo 1.6 separa em dois casos baseado em `extra_in_sibling` (saida do `csp_drift_check.py`):
+
+- **`extra_in_sibling == {}` (caso comum)** — patch automatico, sem `AskUserQuestion`. Sibling esta apenas atrasado em relacao ao template; nao ha decisao real (sem dominio custom para preservar). Skill reporta em uma frase o que vai adicionar, substitui o CSP via `Edit replace_all: false` cirurgico, re-roda drift-check pos-patch e segue. A acao fica logada no relatorio Notion em "Mudancas desta entrega".
+
+- **`extra_in_sibling != {}` (raro, decisao real)** — mantem o fluxo v3.4.0 com `AskUserQuestion` e 3 opcoes. Aqui ha dominios custom no sibling fora do template que poderiam ser apagados em silencio se o patch fosse cego.
+
+Por que esta separacao: depois da v3.4.0, todo deploy guarda-chuva em sibling defasado pagava o custo de uma pergunta extra que sempre tinha a mesma resposta ("patch recomendado") porque era o unico caminho que destravava o pixel sem perder customizacoes (que naquele caso nao existiam). Automatizamos o caminho-sem-decisao mantendo a pausa onde ela ainda agrega seguranca.
+
+Validacao: o proprio deploy desta sessao (`dpl_ED9nkC1NHwVB3L9EtWbWu6p642JD` em `material.buzzmonitor.com`) executou o patch manual; proxima execucao em `webinar.buzzmonitor.com` ou `evento.buzzmonitor.com` (que tambem estao com CSP pre-v3.2.0 conforme §7.2 2026-05-08) deve rodar pelo novo Caso 1 e patchar sozinha. Sem mudanca em `csp_drift_check.py` nem em `vercel.template.json` — toda logica fica no SKILL.md.
+
 ### 2026-05-13 (noite) — Hardening contra bypass da skill: lp-sync v1.0.0 nova + anti-padrão "deploy manual" + doc §7.2
 
 Reação ao incidente 2026-05-13 (LP `latam-webinar-atencionalcliente` 404 por ~1h40min — diagnóstico completo em [Notion 35f3934026fd815ab641cd00714cfcbc](https://www.notion.so/35f3934026fd815ab641cd00714cfcbc)). Causa-raiz: outra colaboradora bypassou `lp-publicar` e fez 4 deploys consecutivos com `vercel deploy --force` direto, usando lista hardcoded de vizinhas via `curl + grep` que nunca incluiu a LATAM. Skill `lp-publicar` v3.4.0 já protegia o cenário desde v3.1.0 (sync via Vercel API descobre vizinhas dinamicamente) — não houve bug de skill, houve bypass.

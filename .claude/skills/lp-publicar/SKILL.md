@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.4.0
+version: 3.5.0
 ---
 
 # Skill: Publicar Landing Page
@@ -586,18 +586,29 @@ Saidas possiveis:
 | Exit | Significado | Acao |
 |---|---|---|
 | 0 | CSP do sibling cobre todos os dominios do template | Continuar (modo guarda-chuva nao mexe em vercel.json) |
-| 1 | DRIFT — template tem dominio que sibling nao tem | Pausar via `AskUserQuestion` (ver 3 opcoes abaixo), mostrar `missing_in_sibling` ao usuario |
+| 1 | DRIFT — template tem dominio que sibling nao tem | Decidir entre patch automatico (default) ou pausa, ver logica abaixo |
 | 2 | Erro de leitura, parsing ou env var faltando | Abortar e investigar |
 
-**Quando exit 1 (drift detectado):** o stdout do helper traz JSON com `missing_in_sibling` (dominios novos no template ausentes no sibling — drift que precisa de patch) e `extra_in_sibling` (customizacoes do sibling que NAO estao no template — preservar caso o operador escolha patch automatico). Mostrar a lista completa ao usuario e oferecer 3 opcoes via `AskUserQuestion`:
+**Quando exit 1 (drift detectado):** o stdout do helper traz JSON com `missing_in_sibling` (dominios novos no template ausentes no sibling — drift que precisa de patch) e `extra_in_sibling` (customizacoes do sibling que NAO estao no template — preservar se o operador escolher patch). A acao depende de `extra_in_sibling`:
+
+**Caso 1 — `extra_in_sibling == {}` (sem customizacoes divergentes, caso comum):** patch automatico sem perguntar.
+
+1. Reportar ao usuario em uma frase o que vai ser adicionado (lista compacta de `missing_in_sibling`).
+2. Substituir o valor inteiro do `Content-Security-Policy` em `{sibling}/vercel.json` pelo do template via `Edit replace_all: false` cirurgico (1 troca atomica do CSP completo). Preserva `redirects`, `$schema`, `cleanUrls`, `trailingSlash` e os outros 6 headers porque a troca afeta apenas o valor do CSP.
+3. Re-rodar o drift-check pos-patch — esperar exit 0. Se nao zerar, abortar.
+4. Logar a acao no relatorio Notion (Passo 6) em "Mudancas desta entrega".
+
+**Caso 2 — `extra_in_sibling != {}` (sibling tem dominios custom fora do template):** NAO decidir por conta. Pausar via `AskUserQuestion` mostrando `missing_in_sibling` E `extra_in_sibling`, com 3 opcoes:
 
 | Opcao | Acao |
 |---|---|
-| **Patch CSP no sibling com versao do template (Recomendado)** | Substituir o `Content-Security-Policy` em `{sibling}/vercel.json` pelo do template via `Edit replace_all` cirurgico (1 troca por directive afetado em `missing_in_sibling`). Preservar `redirects` + outros headers + `extra_in_sibling` (concatenar dominios custom de volta as directives correspondentes). Re-rodar o drift-check pos-patch — esperar exit 0. |
-| **Deixar como esta — anotar em pendencias** | Continua o deploy sem alterar CSP. Anota em "Pendencias" do relatorio Notion (Passo 6) com a lista `missing_in_sibling` para o operador endurecer depois. |
-| **Abortar e investigar manualmente** | Para a skill. Cenario raro: sibling com CSP intencionalmente divergente onde o operador prefere decidir fora do fluxo. |
+| **Patch CSP preservando customizacoes (Recomendado)** | Reescrever CSP combinando template + `extra_in_sibling` (concatenar dominios custom de volta as directives correspondentes). Re-rodar drift-check pos-patch. |
+| **Deixar como esta — anotar em pendencias** | Continua o deploy sem alterar CSP. Anota em "Pendencias" do relatorio Notion. |
+| **Abortar e investigar manualmente** | Para a skill. |
 
-**Por que existe esse drift-check (motivacao real, 2026-05-08):** apos v3.2.0 atualizar o template para liberar Meta Pixel via Facebook, apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 outros guarda-chuvas Buzzmonitor (`webinar.*`, `evento.*`, `material.*`) continuaram com CSP antigo bloqueando o pixel em runtime — `Refused to load https://connect.facebook.net` no DevTools. O `diff` generico que existia antes flagava a divergencia, mas o operador podia nao notar (CR/LF + multiplas linhas) e o problema ficou silencioso por dias ate alguem reportar. v3.4.0 fecha o gap: helper programatico extrai conjuntos de dominios por directive, lista exata do que falta, e pausa via AskUserQuestion antes do deploy.
+**Por que automatizar Caso 1:** o cenario `extra_in_sibling == {}` significa que o sibling esta apenas atrasado em relacao ao template — nao ha decisao real ali, so trabalho de copia. Antes da v3.5.0 a skill perguntava sempre, e o operador respondia sempre "patch recomendado" porque era o unico caminho que destravava o pixel sem perder customizacoes (que nao existem nesse caso). Cada deploy guarda-chuva em sibling defasado pagava o custo de uma pergunta extra. Mantemos `AskUserQuestion` apenas quando ha decisao real a tomar (`extra_in_sibling != {}` — risco de remover dominio custom do sibling sem querer).
+
+**Por que existe esse drift-check (motivacao real, 2026-05-08):** apos v3.2.0 atualizar o template para liberar Meta Pixel via Facebook, apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 outros guarda-chuvas Buzzmonitor (`webinar.*`, `evento.*`, `material.*`) continuaram com CSP antigo bloqueando o pixel em runtime — `Refused to load https://connect.facebook.net` no DevTools. O `diff` generico que existia antes flagava a divergencia, mas o operador podia nao notar (CR/LF + multiplas linhas) e o problema ficou silencioso por dias ate alguem reportar. v3.4.0 fechou o gap com helper programatico + pausa via AskUserQuestion. v3.5.0 reduziu friccao quando nao ha decisao real a tomar (`extra_in_sibling == {}`).
 
 O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM), video (YouTube, Vimeo) e **Meta Pixel via GTM** (`connect.facebook.net` em `script-src`/`connect-src`; `www.facebook.com` em `connect-src`/`frame-src` — desde v3.2.0).
 

@@ -18,6 +18,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5182", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/analise-preditiva-maio-2026"],
       "port": 5182
+    },
+    {
+      "name": "lp-mcp",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5183", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/mcp"],
+      "port": 5183
     }
   ]
 }
