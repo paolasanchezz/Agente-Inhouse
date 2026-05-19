@@ -1,6 +1,12 @@
 # Credenciais — NUNCA commitar (cada colaborador cria o seu)
 meta-ads/.env
 meta-ads/credentials-snapshot.md
+dashboard/.env
+dashboard/data.json
+
+# Dashboard CM gerada (PII de leads + valores de contratos — regenerar via gerar_relatorio.py)
+dashboard/relatorio-*.html
+dashboard/relatorio-*.html.bak
 
 # Banco de dados local (cada colaborador popula rodando o fetch)
 meta-ads/data/meta_ads.db
