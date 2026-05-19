@@ -1,0 +1,110 @@
+name: LP Health Check
+
+# Health check diario das LPs em producao na elife-group (Vercel).
+# Equivalente ao /lp-health-check rodando local, mas dispara do cloud do GitHub
+# em vez do harness Anthropic (que e bloqueado por Resend/Vercel anti-abuse).
+#
+# Roda 9h America/Sao_Paulo (= 12:00 UTC, sem DST desde 2019).
+# Para testar manualmente: aba Actions > LP Health Check > Run workflow.
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run health check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          HEALTH_EMAIL_TO: victor.lopes@buzzmonitor.com.br
+          HEALTH_EMAIL_FROM: "Health Check <onboarding@resend.dev>"
+        run: |
+          set -euo pipefail
+
+          # 1. Discover URLs em producao
+          python .claude/skills/lp-health-check/discover.py > /tmp/discovered.json
+          ERRORS=$(python -c "import json; print(len(json.load(open('/tmp/discovered.json')).get('errors', [])))")
+          if [ "$ERRORS" != "0" ]; then
+            echo "::error::Discover retornou erros:"
+            cat /tmp/discovered.json
+            exit 1
+          fi
+          N_URLS=$(python -c "import json; print(len(json.load(open('/tmp/discovered.json'))['urls']))")
+          echo "Descobertas $N_URLS URLs em producao."
+
+          # 2. HTTP check
+          cat /tmp/discovered.json | python .claude/skills/lp-health-check/check.py > /tmp/results.json
+          python -c "
+          import json
+          r = json.load(open('/tmp/results.json'))
+          s = r['summary']
+          print(f\"Resultado: {s['ok']}/{s['total']} OK, {s['warning']} warning, {s['fail']} fail\")
+          "
+
+          # 3. Drift detection (source vs deploy)
+          python - <<'PYEOF' > /tmp/drift.json
+          import json
+          from pathlib import Path
+
+          discovered = json.load(open('/tmp/discovered.json'))
+          deployed = {u['slug'] for u in discovered['urls'] if u.get('slug')}
+
+          source = set()
+          for p in Path('landing-pages').glob('*/*/index.html'):
+              source.add(p.parent.name)
+
+          drift = []
+          for s in sorted(source - deployed):
+              drift.append({'kind': 'fonte sem deploy', 'item': s, 'note': 'index.html no repo sem URL deployada'})
+          for s in sorted(deployed - source):
+              drift.append({'kind': 'deploy orfao', 'item': s, 'note': 'URL deployada sem source no repo'})
+
+          print(json.dumps(drift))
+          PYEOF
+          DRIFT_N=$(python -c "import json; print(len(json.load(open('/tmp/drift.json'))))")
+          echo "Drift items: $DRIFT_N"
+
+          # 4. Notificar via Resend se houver incidente; falhar job se houver fail
+          python - <<'PYEOF'
+          import json, subprocess, sys
+
+          results = json.load(open('/tmp/results.json'))
+          drift = json.load(open('/tmp/drift.json'))
+          s = results['summary']
+
+          if s['fail'] == 0 and s['warning'] == 0 and not drift:
+              print('Tudo verde - nada a notificar')
+              sys.exit(0)
+
+          payload = {
+              'summary': s,
+              'results': results['results'],
+              'drift': drift,
+              'report_path': 'GitHub Actions run (ver logs do workflow)',
+          }
+
+          p = subprocess.run(
+              ['python', '.claude/skills/lp-health-check/notify.py'],
+              input=json.dumps(payload),
+              capture_output=True, text=True,
+          )
+          if p.stdout: print(p.stdout)
+          if p.stderr: print(p.stderr, file=sys.stderr)
+          if p.returncode != 0:
+              sys.exit(p.returncode)
+
+          if s['fail'] > 0:
+              print(f"::error::{s['fail']} URLs fora do ar")
+              sys.exit(1)
+          PYEOF
