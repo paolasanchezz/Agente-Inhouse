@@ -12,6 +12,30 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## social-plan
+### 2026-05-19 — v1.0.0 nova: planejamento editorial mensal de redes sociais Buzzmonitor
+
+Skill nova `/social-plan` que gera planejamento editorial mensal para LinkedIn, Instagram e Facebook da Buzzmonitor. Fluxo: parsing do mês → leitura do brand-manifest + produto + concorrentes → 4 agentes de pesquisa em paralelo (concorrentes nas redes, perfis de referência B2B SaaS, tendências do nicho, blog Buzzmonitor reutilizável) → síntese (pilares, temas de oportunidade, formato por rede) → calendário com 3 posts/semana por rede + 2-3 slots de oportunidade em aberto → publicação no Notion (página principal + database com calendar view).
+
+Características chave:
+
+- **Pesquisa real, dados próprios primeiro** — agentes pesquisam concorrentes (Sprinklr, Brandwatch, mLabs, Etus, Stilingue), referências (HubSpot, Sprout Social, Buffer, RD Station) e tendências do nicho. A pesquisa do blog Buzzmonitor é obrigatória para ancorar conteúdo em posts existentes.
+- **Adaptação por rede obrigatória** — mesmo tema pode aparecer nas 3 redes na mesma semana, mas com formato e linguagem diferentes (LinkedIn técnico/dados, Instagram visual/leve, Facebook comunitário).
+- **Publicação no Notion estruturada** — cria página principal com resumo estratégico, pilares, insights e calendário detalhado; abaixo, uma database de posts com propriedades (Tema, Data, Rede, Formato, Pilar, Hook, Tipo) e visualização em calendário.
+- **Conector com /copy-criar** — cada post no planejamento já vem com hook, briefing e referência de blog; copy real é gerada chamando `/copy-criar buzzmonitor brasil [tipo] [estagio] "[tema]"` quando o momento de produzir chegar.
+- **Notion ID** — chave `redes-sociais` em `conhecimento/config/notion-ids.md` (3603934026fd8158876dd38d432aceef).
+
+Arquivos:
+- `.claude/skills/social-plan/SKILL.md` (v1.0.0)
+- `social-media/{marca}/{YYYY-MM}/planejamento.md` (output local)
+- `social-media/{marca}/{YYYY-MM}/pesquisa/*.md` (4 docs de pesquisa)
+- `CLAUDE.md` raiz (linha `/social-plan` na tabela Redes Sociais)
+- `conhecimento/config/notion-ids.md` (chave `redes-sociais` + mapping da skill)
+
+Não-objetivos v1: outras marcas além de Buzzmonitor, agendamento automático de publicação, geração de copy/criativo (delegado a `/copy-criar`).
+
+---
+
 ## lp-health-check
 ### 2026-05-13 — v1.0.0 nova: rotina diária de health check com descoberta dinâmica
 

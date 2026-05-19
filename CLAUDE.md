@@ -16,6 +16,7 @@ Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-i
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
+Redes Sociais: /social-plan (standalone — planejamento editorial mensal Buzzmonitor)
 ```
 
 ### Diretorios
@@ -28,6 +29,7 @@ Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 | `traducao/` | Traducoes geradas (publicadas no Notion) |
 | `pauta-quente/` | Conteudos gerados a partir de noticia recente por marca (`pauta-quente/{marca}/YYYY-MM-DD-{slug}/`) |
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
+| `social-media/` | Planejamentos editoriais de redes sociais por marca (`social-media/{marca}/YYYY-MM/`) |
 | `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
 
@@ -178,6 +180,15 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 - `[slug]`: kebab-case curto (ex: `monitoramento-maio`)
 - `[fonte]`: URL Notion, caminho de arquivo ou texto colado
 - `[dominio]`: FQDN do guarda-chuva (ex: `content.cxpress.io`, `webinar.buzzmonitor.com`)
+
+### Redes Sociais — Buzzmonitor
+
+| Comando | O que faz |
+|---|---|
+| `/social-plan [mes]` | Pesquisa referencias + gera calendario mensal (3 posts/semana por rede) + publica no Notion em "Redes Sociais" |
+
+- `[mes]`: `junho`, `junho 2026`, `2026-06` (default: mes atual)
+- Para a copy de cada post: `/copy-criar buzzmonitor brasil [tipo] [estagio] "[tema]"`
 
 ### Meta Ads (SOMENTE LEITURA)
 
