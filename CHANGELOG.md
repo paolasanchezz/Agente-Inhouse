@@ -41,6 +41,30 @@ Não-objetivos v1: validação de conteúdo (só status), PageSpeed (já no `lp-
 ---
 
 ## lp-publicar
+### 2026-05-18 (tarde) — v3.5.1: sync_sibling.py usa `slug=` em vez de `teamId=` na API V6/V7 files
+
+Ao publicar as LPs `mcp-es` e `mcp-pt` em `material.buzzmonitor.com`, o Passo 0.5.d.iii (sync via Vercel API) falhou com `HTTP 403 missingToken` no endpoint `/v6/deployments/{id}/files?teamId=team_nC991VqUuSU2jXZN152xqqEg`. Estranho porque o mesmo token (resolvido de `auth.json` do CLI) validava 200 em `/v2/user` e o endpoint `/v13/deployments/{id}` retornava metadata sem problema.
+
+Causa-raiz: tokens OAuth do CLI Vercel (gerados via `vercel login`) **não autorizam** os endpoints V6/V7 de files quando o team scope é passado como `teamId=team_xxx` — exigem `slug=elife-group`. Access Tokens manuais (Settings → Tokens) aceitam ambos. Diferença não documentada na referência da API. Validado empiricamente:
+
+```
+# Falha:
+curl -H "Authorization: Bearer $TOKEN_OAUTH" \
+  "https://api.vercel.com/v6/deployments/.../files?teamId=team_xxx"
+# {"error":{"code":"forbidden","message":"missingToken","missingToken":true}} HTTP 403
+
+# Funciona:
+curl -H "Authorization: Bearer $TOKEN_OAUTH" \
+  "https://api.vercel.com/v6/deployments/.../files?slug=elife-group"
+# Retorna tree JSON normalmente
+```
+
+Mudança: `sync_sibling.py` ganhou env var opcional `ORG_SLUG` (default `elife-group`) e usa `?slug=...` nos dois endpoints (`/v6/deployments/{id}/files` e `/v7/deployments/{id}/files/{uid}`). `ORG_ID` continua aceito mas só seria usado se `ORG_SLUG` for explicitamente vazio (fallback para Access Tokens em workspaces hipotéticos sem slug conhecido). Para qualquer execução normal no repo, o default `elife-group` resolve.
+
+Por que default hardcoded e não obrigatoriamente via env: o repo serve uma única org Vercel (`elife-group`). Forçar declaração explícita em todas as máquinas adicionaria atrito sem ganho — mantemos `ORG_SLUG` como override para o caso (improvável) de migração futura.
+
+Sem o fix, primeiro deploy guarda-chuva em qualquer máquina que use `vercel login` (em vez de Access Token manual em `.env.local`) aborta no Passo 0.5.d.ii com mensagem genérica "forbidden — token sem permissão de read", levando o operador a regerar token desnecessariamente. Encontrado e corrigido durante o deploy desta sessão; validado em seguida (sync das 11 arquivos do guarda-chuva `buzzmonitor-material`, integridade OK, deploys de `mcp-es` e `mcp-pt` concluídos sem regressão em vizinhas).
+
 ### 2026-05-18 — v3.5.0: patch CSP automatico quando nao ha decisao real a tomar
 
 Ao publicar a LP `mcp` em `material.buzzmonitor.com` hoje, o Passo 1.6 (drift-check ativo de CSP, v3.4.0) detectou que o sibling estava com CSP antigo — faltava `connect.facebook.net`/`www.facebook.com` para liberar Meta Pixel via GTM (pendente documentado em §7.2 2026-05-08). A skill pausou via `AskUserQuestion` oferecendo 3 opcoes (patch / deixar / abortar), e o usuario respondeu pra patchar automaticamente E ajustar a skill para nao perguntar mais nesse caso.

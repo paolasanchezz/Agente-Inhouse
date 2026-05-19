@@ -24,6 +24,11 @@ import urllib.request
 def main():
     deploy_id = os.environ["DEPLOY_ID"]
     team_id = os.environ["ORG_ID"]
+    # Token OAuth do CLI Vercel autentica nos endpoints REST V6/V7 de files
+    # apenas com `slug=...`; `teamId=team_...` retorna 403 missingToken.
+    # Access Tokens (Settings → Tokens) aceitam ambos. Preferir slug quando setado.
+    team_slug = os.environ.get("ORG_SLUG", "elife-group")
+    team_param = f"slug={team_slug}" if team_slug else f"teamId={team_id}"
     token = os.environ["VERCEL_TOKEN"]
     sibling = os.environ["SIBLING"].replace("\\", "/")
 
@@ -47,7 +52,7 @@ def main():
             target = os.path.join(sibling, base_path, name).replace("\\", "/")
             os.makedirs(os.path.dirname(target) or ".", exist_ok=True)
             file_data = api_get(
-                f"https://api.vercel.com/v7/deployments/{deploy_id}/files/{node['uid']}?teamId={team_id}"
+                f"https://api.vercel.com/v7/deployments/{deploy_id}/files/{node['uid']}?{team_param}"
             )
             data = file_data.get("data", "")
             try:
@@ -65,7 +70,7 @@ def main():
                 walk(c, new_base)
 
     tree = api_get(
-        f"https://api.vercel.com/v6/deployments/{deploy_id}/files?teamId={team_id}"
+        f"https://api.vercel.com/v6/deployments/{deploy_id}/files?{team_param}"
     )
     for root_node in tree if isinstance(tree, list) else [tree]:
         walk(root_node, "")
