@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NCFT22CW');</script>
+  <!-- End Google Tag Manager -->
+  <title>Buzzmonitor MCP: Crie relatórios de Social Listening com 1 prompt</title>
+  <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Lato:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:       #390155;
+      --primary-light: #F2D8FF;
+      --secondary:     #EB7C2E;
+      --secondary-aa:  #B5571F; /* contraste >= AA sobre branco para texto pequeno */
+      --teal:          #0E9D9B;
+      --teal-light:    #CDFDFC;
+      --neutral-900:   #1a1a1a;
+      --neutral-700:   #4a4a4a;
+      --neutral-300:   #d1d1d1;
+      --neutral-100:   #f5f5f5;
+      --neutral-0:     #ffffff;
+      --gradient-hero: linear-gradient(135deg, #390155 0%, #EB7C2E 100%);
+      --font-heading:  'League Spartan', sans-serif;
+      --font-body:     'Lato', sans-serif;
+      --font-mono:     'Courier New', Courier, monospace;
+      --radius-sm:     4px;
+      --radius-md:     8px;
+      --radius-lg:     16px;
+      --radius-full:   9999px;
+      --shadow-sm:     0 1px 2px rgba(0,0,0,.05);
+      --shadow-md:     0 4px 6px rgba(0,0,0,.07);
+      --shadow-lg:     0 10px 15px rgba(0,0,0,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--neutral-900);
+      background: var(--neutral-0);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--secondary);
+      color: var(--neutral-0);
+      padding: .5rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      z-index: 9999;
+      text-decoration: none;
+      font-family: var(--font-body);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ===== FOCUS VISIBLE ===== */
+    *:focus-visible {
+      outline: 2px solid var(--secondary);
+      outline-offset: 3px;
+    }
+
+    /* ===== REVEAL ===== */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity .55s ease, transform .55s ease;
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+      .reveal-d1 { transition-delay: .08s; }
+      .reveal-d2 { transition-delay: .16s; }
+      .reveal-d3 { transition-delay: .24s; }
+      .reveal-d4 { transition-delay: .32s; }
+      .reveal-d5 { transition-delay: .40s; }
+      .reveal-d6 { transition-delay: .48s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ===== CONTAINER ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== OVERLINE ===== */
+    .overline {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--secondary-aa);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* ===== SECTION H2 ===== */
+    .section-h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--primary);
+      letter-spacing: -.015em;
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.78;
+      color: var(--neutral-700);
+      margin-bottom: 16px;
+    }
+    .section-body:last-of-type { margin-bottom: 0; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 0;
+    }
+    .navbar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar__logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+    @media (max-width: 680px) {
+      .navbar__logo img { height: 24px; }
+    }
+    .navbar__badge {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(120deg, #DE2451 0%, #EB7C2E 100%);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      border: 0;
+      box-shadow: 0 10px 24px -10px rgba(222,36,81,.55);
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) { .navbar__badge { display: none; } }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--neutral-0);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 110px;
+      padding-bottom: 110px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(57,1,85,.06);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -180px; right: -180px;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, rgba(235,124,46,.10) 0%, rgba(235,124,46,0) 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -140px; left: -120px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(57,1,85,.08) 0%, rgba(57,1,85,0) 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero__decor-dot {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero__decor-dot--teal {
+      top: 22%; left: 7%;
+      width: 12px; height: 12px;
+      background: var(--teal);
+      opacity: .55;
+    }
+    .hero__decor-dot--yellow {
+      bottom: 24%; right: 11%;
+      width: 8px; height: 8px;
+      background: var(--secondary);
+      opacity: .55;
+    }
+    .hero__decor-ring {
+      position: absolute;
+      top: 18%; right: 6%;
+      width: 28px; height: 28px;
+      border: 2px solid rgba(14,157,155,.32);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    /* DOM: .hero-content first, .hero-visual second */
+    /* Mobile: empilha naturalmente na ordem correta sem order: */
+    .hero-content {}
+    .hero-visual {}
+
+    .hero__overline {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--secondary-aa);
+      margin-bottom: 18px;
+      display: block;
+    }
+    .hero__h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 4.5vw, 56px);
+      font-weight: 900;
+      line-height: 1.04;
+      color: var(--primary);
+      letter-spacing: -.02em;
+      margin-bottom: 22px;
+    }
+    .hero__h1-accent {
+      color: var(--secondary);
+      white-space: nowrap;
+    }
+    .hero__sub {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.68;
+      color: var(--neutral-700);
+      margin-bottom: 38px;
+      max-width: 500px;
+    }
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      background: var(--secondary);
+      color: var(--neutral-0);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(235,124,46,.28);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      letter-spacing: -.01em;
+    }
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      background: var(--primary);
+      box-shadow: 0 12px 30px rgba(57,1,85,.32);
+    }
+    .btn-hero:active { transform: translateY(0); }
+
+    /* Terminal card (mantem look escuro, representa o console do Claude) */
+    .hero-visual { position: relative; }
+    .terminal {
+      background: #0F0A1A;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 24px;
+      box-shadow: 0 28px 60px rgba(57,1,85,.18), 0 8px 20px rgba(57,1,85,.10);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Chips flutuantes representando o output do prompt */
+    .hero-chip {
+      position: absolute;
+      background: var(--neutral-0);
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      box-shadow: 0 10px 28px rgba(57,1,85,.12), 0 2px 6px rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.04);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .hero-chip__dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .hero-chip__dot--teal { background: var(--teal); }
+    .hero-chip__dot--orange { background: var(--secondary); }
+    .hero-chip--sentiment {
+      top: -22px; left: -32px;
+      transform: rotate(-3deg);
+    }
+    .hero-chip--mentions {
+      bottom: -20px; right: -28px;
+      transform: rotate(2deg);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-chip--sentiment { animation: chipFloat 5s ease-in-out infinite; }
+      .hero-chip--mentions { animation: chipFloat 6s ease-in-out infinite 1s; }
+    }
+    @keyframes chipFloat {
+      0%, 100% { transform: rotate(-3deg) translateY(0); }
+      50% { transform: rotate(-3deg) translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-chip--mentions { animation-name: chipFloat2; }
+    }
+    @keyframes chipFloat2 {
+      0%, 100% { transform: rotate(2deg) translateY(0); }
+      50% { transform: rotate(2deg) translateY(-7px); }
+    }
+    .terminal__bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+    .terminal__dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+    }
+    .terminal__dot:nth-child(1) { background: #ff5f57; }
+    .terminal__dot:nth-child(2) { background: #febc2e; }
+    .terminal__dot:nth-child(3) { background: #28c840; }
+    .terminal__title {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      font-family: var(--font-body);
+    }
+    .terminal__prompt {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .terminal__avatar {
+      width: 26px; height: 26px;
+      background: var(--gradient-hero);
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .terminal__user-text {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.88);
+      flex: 1;
+    }
+    .terminal__cursor {
+      display: inline-block;
+      width: 2px; height: 14px;
+      background: var(--secondary);
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .terminal__cursor { animation: blink 1s step-end infinite; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 980px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 72px;
+      }
+      .hero {
+        min-height: auto;
+        padding-top: 120px;
+        padding-bottom: 80px;
+      }
+      .hero__sub { font-size: 16px; }
+      .hero-chip--sentiment { top: -22px; left: -8px; }
+      .hero-chip--mentions { bottom: -28px; right: -8px; }
+      .hero__decor-dot, .hero__decor-ring { display: none; }
+    }
+
+    /* ===== TRANSFORMACAO ===== */
+    .transformacao {
+      padding: 100px 0;
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .transformacao::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,.03);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .transformacao::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 280px; height: 280px;
+      background: rgba(235,124,46,.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .transformacao__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .transformacao__text {}
+    .transformacao .overline { color: var(--secondary); }
+    .transformacao .section-h2 { color: var(--neutral-0); }
+    .transformacao .section-body { color: rgba(255,255,255,.72); margin-bottom: 18px; }
+
+    /* Claude 3D badge */
+    .transformacao__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .claude-badge-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .claude-badge-wrap { animation: claudeFloat 4.5s ease-in-out infinite; }
+    }
+    @keyframes claudeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+    .claude-badge-wrap__glow {
+      position: absolute;
+      bottom: -18px;
+      width: 180px; height: 44px;
+      background: radial-gradient(ellipse, rgba(235,124,46,.45) 0%, transparent 70%);
+      filter: blur(8px);
+      border-radius: 50%;
+    }
+    .mcp-icon {
+      display: block;
+      width: 220px;
+      height: 220px;
+      filter: drop-shadow(0 24px 38px rgba(0,0,0,.32));
+      position: relative;
+      z-index: 1;
+    }
+    .claude-badge-label {
+      margin-top: 22px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+    }
+
+    @media (max-width: 900px) {
+      .transformacao { padding: 72px 0; }
+      .transformacao__inner { grid-template-columns: 1fr; gap: 44px; }
+    }
+
+    /* ===== MODULOS ===== */
+    .modulos {
+      padding: 100px 0;
+      background: var(--neutral-100);
+      position: relative;
+      overflow: hidden;
+    }
+    .modulos__bg-circle {
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      opacity: .35;
+      pointer-events: none;
+    }
+    .modulos__bg-circle-2 {
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 220px; height: 220px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      opacity: .3;
+      pointer-events: none;
+    }
+    .modulos__header {
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 1;
+    }
+    .modulos__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .modulo-card {
+      background: var(--neutral-0);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,.045);
+      transition: box-shadow .22s ease, transform .22s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .modulo-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .modulo-card__icon {
+      width: 42px; height: 42px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+    .modulo-card__icon--teal { background: var(--teal-light); }
+    .modulo-card__icon--orange { background: #FFD5C3; }
+    .modulo-card__content { flex: 1; min-width: 0; }
+    .modulo-card__name {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .modulo-card__desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--neutral-700);
+    }
+
+    @media (max-width: 580px) {
+      .modulos { padding: 68px 0; }
+      .modulo-card {
+        flex-direction: column;
+        gap: 14px;
+        padding: 24px;
+      }
+    }
+
+    /* ===== EXEMPLOS PROMPT ===== */
+    .exemplos {
+      padding: 100px 0;
+      background: var(--neutral-0);
+    }
+    .exemplos__header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .exemplos__sub {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--neutral-700);
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 52px;
+    }
+    .exemplos__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .prompt-card {
+      background: var(--primary);
+      border-radius: 14px;
+      padding: 30px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .prompt-card::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 130px; height: 130px;
+      background: rgba(255,255,255,.04);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .prompt-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 90px; height: 90px;
+      background: rgba(235,124,46,.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .prompt-card__num {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #FFB07A;
+      margin-bottom: 14px;
+    }
+    .prompt-card__quote-mark {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      line-height: .8;
+      color: var(--secondary);
+      opacity: .45;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .prompt-card__text {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      line-height: 1.72;
+      color: rgba(255,255,255,.96);
+      position: relative;
+      z-index: 1;
+    }
+    .prompt-card__text strong {
+      color: #FCBD4F;
+      font-weight: 700;
+    }
+
+    @media (max-width: 960px) {
+      .exemplos__grid { grid-template-columns: 1fr; gap: 14px; }
+      .exemplos { padding: 68px 0; }
+      .exemplos__sub { text-align: left; margin-left: 0; margin-right: 0; }
+    }
+
+    /* ===== FORM ===== */
+    .form-section {
+      padding: 100px 0;
+      background: var(--neutral-100);
+    }
+    .form-section__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .form-copy .section-h2 { margin-bottom: 16px; }
+    .form-wrapper {
+      background: var(--neutral-0);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--neutral-900);
+      margin-bottom: 7px;
+      letter-spacing: .01em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--neutral-300);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--neutral-900);
+      background: var(--neutral-0);
+      transition: border-color .15s, box-shadow .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(57,1,85,.09);
+      outline: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4a4a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .btn-form {
+      width: 100%;
+      padding: 16px;
+      background: var(--secondary);
+      color: var(--neutral-0);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      letter-spacing: .01em;
+      transition: background .18s, transform .15s;
+      margin-top: 6px;
+    }
+    .btn-form:hover { background: #d06824; transform: translateY(-1px); }
+    .btn-form:active { transform: translateY(0); }
+    .form-disclaimer {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--neutral-700);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 860px) {
+      .form-section__inner { grid-template-columns: 1fr; gap: 36px; }
+      .form-section { padding: 68px 0; }
+    }
+
+    /* ===== SOCIAL PROOF: slider + KPIs overlay (referencia pocket-events) ===== */
+    .social-proof {
+      padding: 120px 0;
+      background: var(--neutral-0);
+    }
+    .social-proof__header {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 56px;
+    }
+    .social-proof__header .section-h2 { margin-bottom: 0; }
+
+    .mural-stage {
+      position: relative;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px 80px;
+    }
+    .mural-frame {
+      position: relative;
+      max-width: 940px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      border: 1px solid var(--neutral-300);
+      box-shadow: var(--shadow-md);
+    }
+    .mural-track {
+      display: flex;
+      width: 200%;
+      animation: mural-slide 16s ease-in-out infinite;
+    }
+    .mural-track .logos-img {
+      width: 50%;
+      flex-shrink: 0;
+      display: block;
+      margin: 0;
+      padding: 24px;
+      background: white;
+      box-sizing: border-box;
+      min-height: 0; /* GUIDELINES §14: Safari iOS em grid */
+      height: auto;
+    }
+    @keyframes mural-slide {
+      0%, 45%   { transform: translateX(0); }
+      50%, 95%  { transform: translateX(-50%); }
+      100%      { transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mural-track { animation: none; }
+    }
+    .mural-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .mural-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--neutral-300);
+      animation: dot-cycle 16s ease-in-out infinite;
+    }
+    .mural-dot:nth-child(2) { animation-delay: 8s; }
+    @keyframes dot-cycle {
+      0%, 45%   { background: var(--secondary); transform: scale(1.25); }
+      50%, 100% { background: var(--neutral-300); transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mural-dot { animation: none; background: var(--neutral-300); }
+    }
+
+    .kpi-overlay {
+      position: absolute;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 16px 22px;
+      border: 1px solid var(--neutral-300);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      z-index: 2;
+      min-width: 130px;
+    }
+    .kpi-overlay-number {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 32px;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .kpi-overlay-label {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 12.5px;
+      color: var(--neutral-700);
+      line-height: 1.35;
+    }
+    .kpi-overlay-tl { top: -18px;    left: -18px; }
+    .kpi-overlay-tr { top: -18px;    right: -18px; }
+    .kpi-overlay-bl { bottom: -18px; left: -18px; }
+    .kpi-overlay-br { bottom: -18px; right: -18px; }
+
+    @media (max-width: 960px) {
+      .social-proof { padding: 80px 0; }
+      .mural-stage {
+        padding: 0;
+        display: grid;
+        grid-template-areas:
+          "mural mural"
+          "tl tr"
+          "bl br";
+        gap: 14px;
+      }
+      .mural-frame { grid-area: mural; }
+      .kpi-overlay {
+        position: static;
+        max-width: none;
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        text-align: left;
+        min-width: 0;
+      }
+      .kpi-overlay-tl { grid-area: tl; }
+      .kpi-overlay-tr { grid-area: tr; }
+      .kpi-overlay-bl { grid-area: bl; }
+      .kpi-overlay-br { grid-area: br; }
+      .kpi-overlay-number { font-size: 26px; }
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary);
+      padding: 44px 0;
+    }
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer__logo img { height: 22px; width: auto; display: block; }
+    .footer__copy {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+    }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__links a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer__links a:hover { color: rgba(255,255,255,.9); }
+
+    @media (max-width: 600px) {
+      .footer__inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    /* ----- Jotform embed wrapper (canonico lp-integrar-form v1.3.0+) -----
+       Sem padding/background/border: o provedor ja vem com card proprio.
+       O iframe ocupa 100% da largura sem borda. */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCFT22CW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a href="#main-content" class="skip-link">Ir para o conte&uacute;do principal</a>
+
+<main id="main-content">
+<!-- ===== HERO ===== -->
+<section class="hero" aria-label="Apresenta&ccedil;&atilde;o">
+  <span class="hero__decor-dot hero__decor-dot--teal" aria-hidden="true"></span>
+  <span class="hero__decor-dot hero__decor-dot--yellow" aria-hidden="true"></span>
+  <span class="hero__decor-ring" aria-hidden="true"></span>
+  <nav class="navbar" aria-label="Navega&ccedil;&atilde;o principal">
+    <div class="navbar__inner">
+      <a href="/" class="navbar__logo" aria-label="Buzzmonitor: p&aacute;gina inicial">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg"
+             alt=""
+             width="220" height="44"
+             fetchpriority="high">
+      </a>
+      <span class="navbar__badge">Buzzmonitor MCP</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero__inner">
+      <!-- hero-content SEMPRE primeiro no DOM (GUIDELINES §3 mobile: hero-content precede hero-visual) -->
+      <div class="hero-content">
+        <span class="hero__overline reveal">Buzzmonitor MCP &middot; Buzzmonitor for Claude &middot; Buzzmonitor for LLMs</span>
+        <h1 class="hero__h1 reveal reveal-d1">Crie um relat&oacute;rio de Social Listening <span class="hero__h1-accent">com 1 prompt</span></h1>
+        <p class="hero__sub reveal reveal-d2">Conecte a sua conta da Buzzmonitor ao Claude. Pesquise menções, gere dashboards e responda a tickets sem sair da conversa.</p>
+        <a href="#form-section" class="btn-hero reveal reveal-d3">Quero acesso antecipado</a>
+      </div>
+
+      <!-- hero-visual DEPOIS no DOM. Mobile: sem order aplicado, empilha abaixo do conteudo naturalmente. -->
+      <div class="hero-visual reveal reveal-d2" aria-hidden="true">
+        <span class="hero-chip hero-chip--sentiment">
+          <span class="hero-chip__dot hero-chip__dot--teal"></span>
+          Sentimento: 68% positivo
+        </span>
+        <div class="terminal">
+          <div class="terminal__bar">
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__title">Claude &middot; Buzzmonitor MCP</span>
+          </div>
+          <div class="terminal__prompt">
+            <div class="terminal__avatar">&#x1F4AC;</div>
+            <p class="terminal__user-text">Traga-me as 5 menções mais negativas das últimas 48h sobre a minha marca e separe por canal.<span class="terminal__cursor"></span></p>
+          </div>
+        </div>
+        <span class="hero-chip hero-chip--mentions">
+          <span class="hero-chip__dot hero-chip__dot--orange"></span>
+          1,2k menções / 48h
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRANSFORMACAO ===== -->
+<section class="transformacao" id="transformacao">
+  <div class="container">
+    <div class="transformacao__inner">
+
+      <!-- Coluna de texto -->
+      <div class="transformacao__text">
+        <span class="overline reveal reveal-d1">Do dashboard ao prompt</span>
+        <h2 class="section-h2 reveal reveal-d1">Social listening direto no seu Claude</h2>
+        <p class="section-body reveal reveal-d2">Hoje, criar um relatório de social listening implica abrir três janelas, exportar dois CSV e copiar o gráfico para dentro do slide. A Buzzmonitor MCP encurta este caminho. A sua conta da Buzzmonitor passa a ser uma ferramenta dentro do Claude, com acesso aos módulos de listening, trends, concorrentes e dashboards.</p>
+        <p class="section-body reveal reveal-d3">Você descreve o que quer ver. O Claude consulta a plataforma, organiza os dados e devolve-lhe o relatório pronto para colar no deck. Sem mudar de separador, sem exportar folha de cálculo.</p>
+      </div>
+
+      <!-- Icone do produto (MCP) -->
+      <div class="transformacao__visual reveal reveal-d2" aria-hidden="true">
+        <div class="claude-badge-wrap">
+          <div class="claude-badge-wrap__glow"></div>
+          <img src="./assets/icon-mcp.png"
+               alt="Buzzmonitor MCP"
+               width="220" height="220"
+               class="mcp-icon"
+               loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODULOS ===== -->
+<section class="modulos" id="modulos" aria-label="M&oacute;dulos dispon&iacute;veis">
+  <div class="modulos__bg-circle" aria-hidden="true"></div>
+  <div class="modulos__bg-circle-2" aria-hidden="true"></div>
+  <div class="container">
+    <div class="modulos__header">
+      <span class="overline reveal">4 m&oacute;dulos dispon&iacute;veis via MCP</span>
+      <h2 class="section-h2 reveal reveal-d1">O que entra na sua conversa</h2>
+    </div>
+    <div class="modulos__grid">
+      <article class="modulo-card reveal reveal-d1">
+        <div class="modulo-card__icon modulo-card__icon--teal" aria-hidden="true">&#x1F514;</div>
+        <div class="modulo-card__content">
+          <h3 class="modulo-card__name">Listening</h3>
+          <p class="modulo-card__desc">Men&ccedil;&otilde;es, sentimento e picos das suas marcas, em tempo real.</p>
+        </div>
+      </article>
+      <article class="modulo-card reveal reveal-d2">
+        <div class="modulo-card__icon modulo-card__icon--orange" aria-hidden="true">&#x1F4C8;</div>
+        <div class="modulo-card__content">
+          <h3 class="modulo-card__name">Trends</h3>
+          <p class="modulo-card__desc">Temas em alta e termos que estão a crescer no seu nicho.</p>
+        </div>
+      </article>
+      <article class="modulo-card reveal reveal-d3">
+        <div class="modulo-card__icon modulo-card__icon--teal" aria-hidden="true">&#x1F50D;</div>
+        <div class="modulo-card__content">
+          <h3 class="modulo-card__name">Concorrentes</h3>
+          <p class="modulo-card__desc">Benchmark automático das contas que segue.</p>
+        </div>
+      </article>
+      <article class="modulo-card reveal reveal-d4">
+        <div class="modulo-card__icon modulo-card__icon--orange" aria-hidden="true">&#x1F5C2;</div>
+        <div class="modulo-card__content">
+          <h3 class="modulo-card__name">Dashboards</h3>
+          <p class="modulo-card__desc">Relatórios personalizáveis gerados a partir do prompt.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXEMPLOS PROMPT ===== -->
+<section class="exemplos" id="exemplos" aria-label="Exemplos de uso">
+  <div class="container">
+    <div class="exemplos__header">
+      <span class="overline reveal">Como vai utilizar</span>
+      <h2 class="section-h2 reveal reveal-d1">Três pedidos para começar</h2>
+    </div>
+    <p class="exemplos__sub reveal reveal-d2">Tudo isto corre no seu Claude, com dados em direto da sua conta da Buzzmonitor.</p>
+    <div class="exemplos__grid">
+      <article class="prompt-card reveal reveal-d1">
+        <p class="prompt-card__num">Prompt 01</p>
+        <span class="prompt-card__quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="prompt-card__text">Traga-me as <strong>5 menções mais negativas</strong> das últimas 48h sobre a minha marca e separe por canal.</p>
+      </article>
+      <article class="prompt-card reveal reveal-d2">
+        <p class="prompt-card__num">Prompt 02</p>
+        <span class="prompt-card__quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="prompt-card__text">Compare o <strong>sentimento das três marcas</strong> que monitorizo em junho e mostre os assuntos que puxaram cada uma para baixo.</p>
+      </article>
+      <article class="prompt-card reveal reveal-d3">
+        <p class="prompt-card__num">Prompt 03</p>
+        <span class="prompt-card__quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="prompt-card__text">Liste as <strong>hashtags do meu nicho</strong> que estão a crescer no Instagram esta semana, com o volume de menções de cada uma.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="form-section" id="form-section" aria-label="Acesso antecipado">
+  <div class="container">
+    <div class="form-section__inner">
+      <div class="form-copy reveal">
+        <span class="overline">Acesso antecipado</span>
+        <h2 class="section-h2">Entre na lista para ativar o MCP na sua conta</h2>
+        <p class="section-body">A integração está em rollout para clientes da Buzzmonitor. Deixe o seu contacto e avisamos assim que estiver disponível para o seu workspace.</p>
+      </div>
+      <div class="jotform-embed reveal reveal-d1">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/252995108251662"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF: slider animado + KPIs overlay ===== -->
+<section class="social-proof reveal" id="social-proof" aria-labelledby="logos-title">
+  <div class="container">
+    <header class="social-proof__header">
+      <h2 class="section-h2" id="logos-title">Marcas que confiam na Buzzmonitor</h2>
+    </header>
+
+    <div class="mural-stage">
+      <div class="mural-frame" role="region" aria-label="Mural de marcas clientes da Buzzmonitor">
+        <div class="mural-track">
+          <img src="./assets/logos/mural-1.jpeg"
+               alt="Mural de marcas clientes da Buzzmonitor: retalho, alimentos, financeiro, automóvel, entretenimento"
+               loading="lazy"
+               class="logos-img">
+          <img src="./assets/logos/mural-2.jpeg"
+               alt="Mural de marcas clientes da Buzzmonitor: telecom, sa&uacute;de, educa&ccedil;&atilde;o, ag&ecirc;ncias, ind&uacute;stria"
+               loading="lazy"
+               class="logos-img">
+        </div>
+      </div>
+      <div class="kpi-overlay kpi-overlay-tl">
+        <span class="kpi-overlay-number">1.000+</span>
+        <span class="kpi-overlay-label">clientes em<br>todo o mundo</span>
+      </div>
+      <div class="kpi-overlay kpi-overlay-tr">
+        <span class="kpi-overlay-number">300+</span>
+        <span class="kpi-overlay-label">clientes enterprise</span>
+      </div>
+      <div class="kpi-overlay kpi-overlay-bl">
+        <span class="kpi-overlay-number">500+</span>
+        <span class="kpi-overlay-label">ag&ecirc;ncias</span>
+      </div>
+      <div class="kpi-overlay kpi-overlay-br">
+        <span class="kpi-overlay-number">10k</span>
+        <span class="kpi-overlay-label">utilizadores</span>
+      </div>
+    </div>
+
+    <div class="mural-dots" aria-hidden="true">
+      <span class="mural-dot"></span>
+      <span class="mural-dot"></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" aria-label="Rodap&eacute;">
+  <div class="container">
+    <div class="footer__inner">
+      <a href="/" class="footer__logo" aria-label="Buzzmonitor: p&aacute;gina inicial">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg"
+             alt=""
+             width="110" height="22"
+             loading="lazy">
+      </a>
+      <p class="footer__copy">&copy; 2026 Buzzmonitor &middot; Todos os direitos reservados</p>
+      <nav class="footer__links" aria-label="Links rodap&eacute;">
+        <a href="/politica-de-privacidade">Pol&iacute;tica de Privacidade</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+  function check() {
+    var wh = window.innerHeight;
+    for (var i = 0; i < reveals.length; i++) {
+      var rect = reveals[i].getBoundingClientRect();
+      if (rect.top < wh * 0.92) reveals[i].classList.add('visible');
+    }
+  }
+  check();
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check, { passive: true });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+# mcp-pt — Original (PT-BR)
+**Data**: 2026-05-18
+**Idioma alvo**: Português Europeu
+
+---
+
+=== HERO ===
+OVERLINE: Buzzmonitor MCP · Buzzmonitor for Claude · Buzzmonitor for LLMs
+H1: Crie um relatório de Social Listening com 1 prompt
+SUB: Conecte sua conta da Buzzmonitor ao Claude. Pesquise menções, gere dashboards e responda tickets sem sair da conversa.
+CTA: Quero acesso antecipado
+
+=== TRANSFORMACAO ===
+OVERLINE: Do dashboard ao prompt
+H2: Social listening direto no seu Claude
+BODY: Hoje, montar um relatório de social listening é abrir três telas, exportar dois CSVs e copiar gráfico pra dentro do slide. A Buzzmonitor MCP encurta esse caminho. Sua conta da Buzzmonitor passa a ser uma ferramenta dentro do Claude, com acesso aos módulos de listening, trends, concorrentes e dashboards.
+BODY: Você descreve o que quer ver. O Claude consulta a plataforma, organiza os dados e devolve o relatório pronto pra colar no deck. Sem trocar de aba, sem exportar planilha.
+
+=== MODULOS ===
+OVERLINE: 4 módulos disponíveis via MCP
+H2: O que entra na sua conversa
+LIST ITEM: Listening · Menções, sentimento e picos das suas marcas, em tempo real.
+LIST ITEM: Trends · Pautas em alta e termos que estão escalando no seu nicho.
+LIST ITEM: Concorrentes · Benchmark automático das contas que você acompanha.
+LIST ITEM: Dashboards · Relatórios customizáveis gerados a partir do prompt.
+
+=== EXEMPLOS-PROMPT ===
+OVERLINE: Como você vai usar
+H2: Três pedidos pra começar
+SUB: Tudo isso roda no seu Claude, com dados ao vivo da sua conta da Buzzmonitor.
+QUOTE: Me traz as 5 menções mais negativas das últimas 48h sobre a minha marca e separa por canal.
+QUOTE: Compara o sentimento das três marcas que monitoro em junho e mostra os assuntos que puxaram cada uma pra baixo.
+QUOTE: Lista as hashtags do meu nicho que estão crescendo no Instagram esta semana, com o volume de menções de cada uma.
+
+=== FORM ===
+OVERLINE: Acesso antecipado
+H2: Entre na lista pra liberar o MCP na sua conta
+BODY: A integração está em rollout para clientes da Buzzmonitor. Deixe seu contato e avisamos você assim que estiver disponível pro seu workspace.
+LABEL: Nome completo
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Você trabalha em (Inhouse / Agência)
+CTA: Quero o acesso
+BODY: Ao confirmar você aceita receber comunicações da Buzzmonitor sobre o MCP.
+
+=== SOCIAL-PROOF ===
+H2: Marcas que confiam na Buzzmonitor
+LABEL: 1.000+ clientes no mundo
+LABEL: 300+ enterprise
+LABEL: 500+ agências
+LABEL: 10 mil usuários
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos os direitos reservados
+FOOTER: Política de Privacidade

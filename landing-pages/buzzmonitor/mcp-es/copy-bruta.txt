@@ -1,0 +1,117 @@
+META
+slug: mcp
+marca: buzzmonitor
+regiao: brasil
+idioma: pt-br
+tipo: produto-feature (lançamento de integração MCP)
+formato: lp curta (hero + 3 seções de conteúdo + form + logo wall)
+status: rascunho para revisão do Victor
+fonte: briefing oral 2026-05-15 - produto sem documentação interna prévia
+
+===============================================================================
+
+HERO
+
+Buzzmonitor MCP | Buzzmonitor for Claude | Buzzmonitor for LLMs
+
+Crie um relatório de Social Listening com 1 prompt
+
+Conecte sua conta da Buzzmonitor ao Claude. Pesquise menções, gere dashboards e responda tickets sem sair da conversa.
+
+CTA: Quero acesso antecipado
+
+===============================================================================
+
+SEÇÃO 1 - Do dashboard ao prompt
+
+Eyebrow: Do dashboard ao prompt
+
+H2: Listening, atendimento e analytics direto no seu Claude
+
+Hoje, montar um relatório de social listening é abrir três telas, exportar dois CSVs e copiar gráfico pra dentro do slide. A Buzzmonitor MCP encurta esse caminho. Sua conta da Buzzmonitor passa a ser uma ferramenta dentro do Claude, com acesso aos módulos de listening, trends, concorrentes, atendimento, analytics e dashboards.
+
+Você descreve o que quer ver. O Claude consulta a plataforma, organiza os dados e devolve o relatório pronto pra colar no deck. Sem trocar de aba, sem exportar planilha.
+
+===============================================================================
+
+SEÇÃO 2 - Os 6 módulos
+
+Eyebrow: 6 módulos disponíveis via MCP
+
+H2: O que entra na sua conversa
+
+Listening
+Menções, sentimento e picos das suas marcas, em tempo real.
+
+Trends
+Pautas em alta e termos que estão escalando no seu nicho.
+
+Concorrentes
+Benchmark automático das contas que você acompanha.
+
+Atendimento
+Fila do SAC 2.0, SLA e respostas pelo próprio Claude.
+
+Analytics
+KPIs dos seus perfis sociais, com filtros sob demanda.
+
+Dashboards
+Relatórios customizáveis gerados a partir do prompt.
+
+===============================================================================
+
+SEÇÃO 3 - Exemplos de prompt
+
+Eyebrow: Como você vai usar
+
+H2: Três pedidos pra começar
+
+Sub: Tudo isso roda no seu Claude, com dados ao vivo da sua conta da Buzzmonitor.
+
+Exemplo 1
+"Me traz as 5 menções mais negativas das últimas 48h sobre a minha marca e separa por canal."
+
+Exemplo 2
+"Compara o sentimento das três marcas que monitoro em junho e mostra os assuntos que puxaram cada uma pra baixo."
+
+Exemplo 3
+"Lista as hashtags do meu nicho que estão crescendo no Instagram esta semana, com o volume de menções de cada uma."
+
+===============================================================================
+
+SEÇÃO 4 - Form (acesso antecipado)
+
+Eyebrow: Acesso antecipado
+
+H2: Entre na lista pra liberar o MCP na sua conta
+
+Body: A integração está em rollout para clientes da Buzzmonitor. Deixe seu contato e avisamos você assim que estiver disponível pro seu workspace.
+
+FORM_FIELD: nome | Nome completo
+FORM_FIELD: email | E-mail corporativo
+FORM_FIELD: empresa | Empresa
+FORM_FIELD: tipo | Você trabalha em (Inhouse / Agência)
+FORM_CTA: Quero o acesso
+FORM_NOTE: Ao confirmar você aceita receber comunicações da Buzzmonitor sobre o MCP.
+
+===============================================================================
+
+SEÇÃO 5 - Logo wall (reaproveitar mural da pocket-events)
+
+H2: Marcas que confiam na Buzzmonitor
+
+Faixa horizontal com mural-1.jpeg e mural-2.jpeg (copiar de landing-pages/buzzmonitor/pocket-events/assets/logos/).
+
+KPI 1: 1.000+ clientes no mundo
+KPI 2: 300+ enterprise
+KPI 3: 500+ agências
+KPI 4: 10 mil usuários
+
+===============================================================================
+
+FOOTER
+
+Logo Buzzmonitor (reverse)
+© 2026 Buzzmonitor · Todos os direitos reservados
+Link: Política de Privacidade
+
