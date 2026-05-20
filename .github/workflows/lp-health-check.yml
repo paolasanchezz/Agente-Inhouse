@@ -4,12 +4,14 @@ name: LP Health Check
 # Equivalente ao /lp-health-check rodando local, mas dispara do cloud do GitHub
 # em vez do harness Anthropic (que e bloqueado por Resend/Vercel anti-abuse).
 #
-# Roda 9h America/Sao_Paulo (= 12:00 UTC, sem DST desde 2019).
+# Roda 9h17 America/Sao_Paulo (= 12:17 UTC, sem DST desde 2019).
+# Minuto 17 (nao :00) evita o pico de demanda do cron do GitHub Actions,
+# que historicamente atrasa runs agendados no comeco de cada hora.
 # Para testar manualmente: aba Actions > LP Health Check > Run workflow.
 
 on:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "17 12 * * *"
   workflow_dispatch:
 
 jobs:
