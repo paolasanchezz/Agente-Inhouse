@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard CM · Buzzmonitor Brasil · Victor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --border: #E5E7EB;
+    --border-soft: #F1F5F9;
+    --text: #1F2937;
+    --text-soft: #374151;
+    --text-muted: #4B5563;
+    --text-subtle: #6B7280;
+    --brand-blue: #0B63FF;
+    --brand-blue-dark: #073FA3;
+    --brand-blue-deep: #1E3A8A;
+    --brand-blue-mid: #3D85FF;
+    --brand-blue-light: #6EA7FF;
+    --brand-blue-pale: #A0C8FF;
+    --brand-blue-ice: #D3E4FF;
+    --brand-blue-soft: rgba(11,99,255,0.08);
+    --brand-blue-border: rgba(11,99,255,0.20);
+    --success: #16A34A;
+    --success-soft: rgba(34,197,94,0.12);
+    --warning: #D97706;
+    --warning-soft: rgba(245,158,11,0.12);
+    --danger: #DC2626;
+    --danger-soft: rgba(239,68,68,0.10);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.05);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 20px;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  .container { max-width: 1320px; margin: 0 auto; width: 100%; }
+
+  /* ============ HEADER ============ */
+  .top {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+  }
+  .top .chip {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brand-blue);
+    background: var(--brand-blue-soft);
+    border: 1px solid var(--brand-blue-border);
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .top h1 {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.6px;
+    line-height: 1.15;
+  }
+  .top .sub {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .top .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .top .meta .item { display: flex; flex-direction: column; gap: 3px; }
+  .top .meta .item .lbl {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text-subtle);
+    font-weight: 600;
+  }
+  .top .meta .item .val {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .top .sources {
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .top .sources b { color: var(--text); font-weight: 600; }
+
+  /* ============ PERIOD PICKER ============ */
+  .picker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 44px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .picker .pgroup {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .picker .pbtn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.2px;
+  }
+  .picker .pbtn:hover { background: var(--surface); color: var(--text); }
+  .picker .pbtn.active {
+    background: var(--brand-blue);
+    color: white;
+    box-shadow: 0 1px 2px rgba(11,99,255,0.25);
+  }
+  .picker .dgroup {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .picker .dgroup label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-subtle);
+    font-weight: 600;
+  }
+  .picker input[type=date] {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .picker input[type=date]:hover,
+  .picker input[type=date]:focus {
+    border-color: var(--brand-blue);
+    outline: none;
+  }
+  .picker .apply {
+    appearance: none;
+    border: 1px solid var(--brand-blue);
+    background: var(--brand-blue);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.15s;
+  }
+  .picker .apply:hover { background: var(--brand-blue-dark); }
+  .picker .range-label {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .picker .range-label b { color: var(--text); }
+  .picker .cache-pill {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--border-soft);
+    color: var(--text-muted);
+  }
+  .picker .cache-pill.fresh { background: var(--brand-blue-soft); color: var(--brand-blue); }
+  .picker .refresh-btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s, transform 0.4s;
+  }
+  .picker .refresh-btn:hover { background: var(--brand-blue-soft); color: var(--brand-blue); }
+  .picker .refresh-btn.spinning { transform: rotate(360deg); pointer-events: none; }
+
+  /* ============ STATUS BAR ============ */
+  .status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--brand-blue);
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(11,99,255,0.25);
+    transform: translateY(-100%);
+    transition: transform 0.2s ease;
+  }
+  .status-bar.show { transform: translateY(0); }
+  .status-bar.error { background: var(--danger); }
+
+  /* ============ SECTION ============ */
+  section { margin-bottom: 64px; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .section-head h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .section-head .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+  .section-head .icon {
+    width: 36px; height: 36px;
+    background: var(--brand-blue);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .sub-head {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 30px 0 14px;
+  }
+
+  /* ============ KPI ROW ============ */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .kpi-item {
+    padding: 22px 16px 30px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    min-height: 150px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .kpi-item:last-child { border-right: none; }
+  .kpi-item .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .kpi-item .main {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .kpi-item .val {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--brand-blue);
+    line-height: 1;
+    letter-spacing: -1.4px;
+  }
+  .kpi-item .pct {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .kpi-item .delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    margin-top: 12px;
+  }
+  .kpi-item .foot {
+    position: absolute;
+    bottom: 12px; right: 16px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .d-up { background: var(--success-soft); color: var(--success); }
+  .d-down { background: var(--danger-soft); color: var(--danger); }
+  .d-flat { background: rgba(107,114,128,0.1); color: var(--text-muted); }
+  .d-new { background: var(--warning-soft); color: var(--warning); }
+
+  /* ============ LOSS PANEL ============ */
+  .loss-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+  }
+  .loss-item {
+    padding: 24px 26px;
+    border-right: 1px solid var(--border);
+  }
+  .loss-item:last-child { border-right: none; }
+  .loss-item .label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text); letter-spacing: 0.6px; }
+  .loss-item .pct { font-size: 40px; font-weight: 800; color: var(--brand-blue); line-height: 1; margin-top: 10px; letter-spacing: -1.2px; }
+  .loss-item .abs { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+  .loss-item .bar { height: 6px; background: var(--border-soft); border-radius: 999px; margin-top: 14px; overflow: hidden; }
+  .loss-item .bar > span { display: block; height: 100%; background: var(--brand-blue); border-radius: 999px; opacity: 0.7; }
+
+  /* ============ TOGGLES ============ */
+  .toggle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .toggle > summary {
+    cursor: pointer;
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    letter-spacing: 0.4px;
+    transition: background 0.15s;
+  }
+  .toggle > summary::-webkit-details-marker { display: none; }
+  .toggle > summary::marker { content: ''; }
+  .toggle > summary:hover { background: var(--bg); }
+  .toggle > summary .toggle-title { display: flex; align-items: center; gap: 12px; }
+  .toggle > summary .toggle-count {
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--brand-blue-soft);
+    color: var(--brand-blue);
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+  }
+  .toggle > summary .caret {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .toggle[open] > summary .caret { transform: rotate(180deg); }
+  .toggle .table-wrap { border: none; border-top: 1px solid var(--border); border-radius: 0; margin-bottom: 0; box-shadow: none; }
+
+  /* ============ TABLES ============ */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+    max-width: 100%;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: var(--border-soft); }
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.center, th.center { text-align: center; }
+  td.dim { color: var(--text-muted); font-size: 13px; }
+  td .deal-name { font-weight: 600; }
+  .no-upper { text-transform: none; letter-spacing: 0; }
+
+  /* ============ SORTABLE HEADERS ============ */
+  th.sortable { cursor: pointer; user-select: none; transition: background 0.15s, color 0.15s; }
+  th.sortable .sort-ind {
+    display: inline-block; margin-left: 5px; opacity: 0.35;
+    font-size: 9px; vertical-align: 1px; font-weight: 700;
+  }
+  th.sortable.sort-asc .sort-ind,
+  th.sortable.sort-desc .sort-ind { opacity: 1; color: var(--brand-blue); }
+  th.sortable:hover { background: rgba(11,99,255,0.05); color: var(--brand-blue); }
+  th.sortable:hover .sort-ind { opacity: 0.7; }
+
+  /* ============ BADGES ============ */
+  .b {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+    background: rgba(107,114,128,0.1);
+    color: var(--text-muted);
+  }
+  .b-meta { background: rgba(11,99,255,0.12); color: #0B63FF; }
+  .b-chatgpt { background: rgba(30,58,138,0.10); color: #1E3A8A; }
+  .b-email { background: rgba(7,63,163,0.10); color: #073FA3; }
+  .b-blog { background: rgba(61,133,255,0.12); color: #3D85FF; }
+  .b-lp { background: rgba(110,167,255,0.18); color: #1D4ED8; }
+  .b-webinar { background: rgba(107,114,128,0.10); color: var(--text-muted); }
+  .b-notion { background: rgba(107,114,128,0.10); color: var(--text-muted); }
+  .b-linkedin { background: rgba(107,114,128,0.10); color: var(--text-muted); }
+  .b-status-ok { background: var(--success-soft); color: var(--success); font-weight: 700; }
+  .b-status-pending { background: var(--warning-soft); color: var(--warning); font-weight: 700; }
+  .b-status-no { background: rgba(107,114,128,0.1); color: var(--text-muted); }
+  .b-reason { background: var(--danger-soft); color: var(--danger); font-weight: 600; }
+  .b-reason-soft { background: rgba(107,114,128,0.1); color: var(--text-muted); }
+
+  /* ============ RANKING ============ */
+  .rk {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    font-size: 12px; font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .rk-1 { background: rgba(11,99,255,0.14); color: #0B63FF; }
+  .rk-2 { background: rgba(29,78,216,0.12); color: #1D4ED8; }
+  .rk-3 { background: rgba(61,133,255,0.14); color: #3D85FF; }
+  .rk-n { background: var(--border-soft); color: var(--text-muted); }
+
+  /* ============ TWO-COL ============ */
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+  .two-col + .two-col { margin-top: 28px; }
+  .two-col > div { min-width: 0; }
+  .two-col .table-wrap { overflow-x: hidden; }
+  .two-col .table-wrap table { table-layout: auto; }
+  .two-col .table-wrap th,
+  .two-col .table-wrap td { padding: 6px 6px; font-size: 11px; }
+  .two-col .table-wrap th { font-size: 9px; letter-spacing: 0.2px; padding: 6px 4px; }
+  .two-col .table-wrap td.dim { font-size: 10px; }
+  .two-col .table-wrap .b { padding: 1px 5px; font-size: 10px; }
+  .two-col .table-wrap thead th:first-child,
+  .two-col .table-wrap tbody td:first-child { display: none; }
+  .col-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+  .col-head .title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .col-head .period { font-size: 12px; color: var(--text-subtle); font-weight: 500; }
+
+  /* ============ CHARTS ============ */
+  .chart-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+  }
+  .chart-wrap .chart-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chart-wrap .chart-head h3 { font-size: 18px; font-weight: 700; color: var(--text); }
+  .chart-wrap .chart-head .ctx { font-size: 13px; color: var(--text-muted); }
+  .chart-canvas { position: relative; height: 420px; }
+  .chart-canvas-tall { height: 280px; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    margin-top: 64px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  footer b { color: var(--text); }
+
+  /* ============ LOADING STATE ============ */
+  .container.loading { opacity: 0.4; pointer-events: none; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1280px) {
+    .kpi-row { grid-template-columns: repeat(4, 1fr); }
+    .kpi-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .kpi-item:nth-child(4n) { border-right: none; }
+    .kpi-item:nth-last-child(-n+3) { border-bottom: none; }
+  }
+  @media (max-width: 960px) {
+    .two-col { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .loss-panel { grid-template-columns: 1fr; }
+    .loss-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .loss-item:last-child { border-bottom: none; }
+    .picker .range-label { margin-left: 0; }
+  }
+  @media (max-width: 640px) {
+    body { padding: 20px 14px; }
+    .top { padding: 24px; }
+    .top h1 { font-size: 28px; }
+    .kpi-row { grid-template-columns: 1fr; }
+    .kpi-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .kpi-item:last-child { border-bottom: none; }
+    .table-wrap { overflow-x: auto; }
+    table { min-width: 680px; }
+    .picker { padding: 14px 16px; }
+    .picker .pbtn { padding: 7px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="status-bar" id="statusBar">Carregando...</div>
+
+<div class="container" id="container">
+
+  <!-- ============ HEADER ============ -->
+  <div class="top">
+    <div class="chip">Content Marketing · Buzzmonitor Brasil · Uso pessoal</div>
+    <h1>Resultados Content Marketing</h1>
+    <div class="sub">Dashboard com seletor de período</div>
+    <div class="meta">
+      <div class="item">
+        <span class="lbl">Período</span>
+        <span class="val" data-bind="header.periodo">—</span>
+      </div>
+      <div class="item">
+        <span class="lbl">vs. Anterior</span>
+        <span class="val" data-bind="header.ant">—</span>
+      </div>
+      <div class="item">
+        <span class="lbl"><span class="no-upper">MtD</span> · Mês corrente</span>
+        <span class="val" data-bind="header.mtd">—</span>
+      </div>
+      <div class="item">
+        <span class="lbl"><span class="no-upper">YtD</span> · Acumulado do ano</span>
+        <span class="val" data-bind="header.ytd">—</span>
+      </div>
+      <div class="item">
+        <span class="lbl">Gerado em</span>
+        <span class="val" data-bind="header.gerado_em">—</span>
+      </div>
+    </div>
+    <div class="sources">
+      <b>Fontes:</b> Supabase (deals, leads, conversões) · UTM tracking (meta, blog, lp, email) · CRM SDR (campo motivo_perda_bd_sdr) · Filtro CM + regra 90d idênticos ao dashboard oficial
+    </div>
+  </div>
+
+  <!-- ============ PERIOD PICKER ============ -->
+  <div class="picker">
+    <div class="pgroup" id="presetGroup">
+      <button class="pbtn active" data-preset="7d">7d</button>
+      <button class="pbtn" data-preset="15d">15d</button>
+      <button class="pbtn" data-preset="30d">30d</button>
+      <button class="pbtn" data-preset="90d">90d</button>
+      <button class="pbtn" data-preset="mtd">MtD</button>
+      <button class="pbtn" data-preset="ytd">YtD</button>
+    </div>
+    <div class="dgroup">
+      <label for="iniInput">De</label>
+      <input type="date" id="iniInput">
+      <label for="fimInput">até</label>
+      <input type="date" id="fimInput">
+      <button class="apply" id="applyBtn">Aplicar</button>
+    </div>
+    <div class="range-label" id="rangeLabel">
+      <span id="rangeText">—</span>
+      <span class="cache-pill" id="cachePill" title="">—</span>
+      <button class="refresh-btn" id="refreshBtn" title="Atualizar dados do banco (ignora cache)">↻</button>
+    </div>
+  </div>
+
+  <!-- ============ BLOCO 1 — VISAO GERAL ============ -->
+  <section>
+    <div class="section-head">
+      <div class="icon">1</div>
+      <h2>Visão Geral · Período</h2>
+      <span class="tag" data-bind="tag.periodo">—</span>
+    </div>
+
+    <div class="kpi-row" id="kpisAtual"></div>
+
+    <div class="sub-head">Acumulado <span class="no-upper">MtD</span></div>
+    <div class="kpi-row" id="kpisMtd"></div>
+
+    <div class="sub-head">Acumulado <span class="no-upper">YtD</span></div>
+    <div class="kpi-row" id="kpisYtd"></div>
+  </section>
+
+  <!-- ============ BLOCO 2 — PERDAS ============ -->
+  <section>
+    <div class="section-head">
+      <div class="icon">2</div>
+      <h2>Perdas · Período / MtD / YtD</h2>
+      <span class="tag">motivo_perda_bd_sdr ≠ null</span>
+    </div>
+
+    <div class="loss-panel" id="lossPanel"></div>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>Leads Perdidos no MtD · detalhe</span>
+          <span class="toggle-count" data-bind="count.perdidos_mtd">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th>
+              <th>E-mail</th>
+              <th>UTM Source</th>
+              <th>UTM Content</th>
+              <th>Última conversão</th>
+              <th>Motivo da perda</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="perdidos_mtd"></tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ BLOCO 3 — LISTAS ============ -->
+  <section>
+    <div class="section-head">
+      <div class="icon">3</div>
+      <h2>Listas de Acesso Fácil · Período</h2>
+      <span class="tag">drill-down do funil</span>
+    </div>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>3.1 · Leads do período</span>
+          <span class="toggle-count" data-bind="count.leads">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th><th>E-mail</th><th>UTM Source</th><th>UTM Content</th><th>Data conversão</th><th>BD</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="leads"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>3.2 · Reuniões Agendadas no período</span>
+          <span class="toggle-count" data-bind="count.ra">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th><th>BD</th><th>UTM Source</th><th>UTM Content</th><th>Data agendada</th><th>Realizou?</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="ra"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>3.3 · Reuniões Realizadas no período</span>
+          <span class="toggle-count" data-bind="count.rr">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th><th>BD</th><th>UTM Source</th><th>Data realizada</th><th>Proposta?</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="rr"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>3.4 · Propostas enviadas no período</span>
+          <span class="toggle-count" data-bind="count.prop">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th><th>BD</th><th>UTM Source</th><th>UTM Content</th><th>Data proposta</th><th class="num">Valor estimado</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="prop"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="toggle">
+      <summary>
+        <span class="toggle-title">
+          <span>3.5 · Fechamentos no período</span>
+          <span class="toggle-count" data-bind="count.fech">—</span>
+        </span>
+        <span class="caret">▼</span>
+      </summary>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Deal</th><th>BD</th><th>UTM Source</th><th>UTM Content</th><th>Data fechamento</th><th class="num">Valor</th>
+            </tr>
+          </thead>
+          <tbody data-bind-rows="fech"></tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ BLOCO 4 — DETALHAMENTO ============ -->
+  <section>
+    <div class="section-head">
+      <div class="icon">4</div>
+      <h2>Detalhamento · Período / Anterior / MtD / YtD</h2>
+      <span class="tag">% CE = CE/Leads · % RA = RA/CE</span>
+    </div>
+
+    <div class="sub-head">4.a · Ranking de Sources</div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-head">
+          <span class="title">Período</span>
+          <span class="period" data-bind="rank.source.atual.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">CE</th><th class="num">% CE</th>
+                <th class="num">RA</th><th class="num">% RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_source_atual"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="col-head">
+          <span class="title">Período Anterior</span>
+          <span class="period" data-bind="rank.source.ant.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">CE</th><th class="num">% CE</th>
+                <th class="num">RA</th><th class="num">% RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_source_ant"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-head">
+          <span class="title">MtD</span>
+          <span class="period" data-bind="rank.source.mtd.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">CE</th><th class="num">% CE</th>
+                <th class="num">RA</th><th class="num">% RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_source_mtd"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="col-head">
+          <span class="title">YtD</span>
+          <span class="period" data-bind="rank.source.ytd.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">CE</th><th class="num">% CE</th>
+                <th class="num">RA</th><th class="num">% RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_source_ytd"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-head">4.b · Ranking de Content (UTM Content)</div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-head">
+          <span class="title">Período</span>
+          <span class="period" data-bind="rank.content.atual.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Content</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_content_atual"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="col-head">
+          <span class="title">Período Anterior</span>
+          <span class="period" data-bind="rank.content.ant.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Content</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_content_ant"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-head">
+          <span class="title">MtD</span>
+          <span class="period" data-bind="rank.content.mtd.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Content</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_content_mtd"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="col-head">
+          <span class="title">YtD</span>
+          <span class="period" data-bind="rank.content.ytd.period">—</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Content</th><th>Source</th>
+                <th class="num">Leads</th><th class="num">RA</th>
+                <th class="num">RR</th><th class="num">Prop.</th><th class="num">Fech.</th>
+              </tr>
+            </thead>
+            <tbody data-bind-rows="ranking_content_ytd"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 5 — GRAFICOS 12 MESES ============ -->
+  <section>
+    <div class="section-head">
+      <div class="icon">5</div>
+      <h2>Tendências · Últimos 12 meses</h2>
+      <span class="tag" data-bind="chart.range">—</span>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-head">
+        <h3>Série temporal semanal · Funil completo + Tx Contato Efetivo</h3>
+        <span class="ctx">52 semanas · clique na legenda para ocultar séries</span>
+      </div>
+      <div class="chart-canvas">
+        <canvas id="chartTimeseries"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-head">
+        <h3>Proporção de reuniões por source · 12 meses</h3>
+        <span class="ctx">RA = Reuniões Agendadas · RR = Reuniões Realizadas</span>
+      </div>
+      <div class="chart-canvas chart-canvas-tall">
+        <canvas id="chartSourceShare"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <b>Dashboard CM pessoal · Victor · dados reais do Supabase (filtro CM + regra 90d)</b><br>
+    <span data-bind="footer.periodos">—</span><br>
+    Reuniões, Propostas e Fechamentos contabilizados por data do evento (não data de criação do deal)<br>
+    Buzzmonitor Brasil · Content Marketing · uso pessoal
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+/* ============================================================
+   DASHBOARD CM · CLIENT
+   ============================================================ */
+
+/* ---------- FORMATTERS ---------- */
+const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+const MESES_CURTOS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+const DIAS_ACENTO = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'];
+
+function fmtInt(n) {
+  if (n === null || n === undefined) return '0';
+  return Number(n).toLocaleString('pt-BR').replace(/,/g, '.');
+}
+function fmtDecimalBr(n, casas = 1) {
+  if (n === null || n === undefined) return '—';
+  return n.toFixed(casas).replace('.', ',');
+}
+function fmtPctSafe(num, den) {
+  if (!den) return '—';
+  return `${Math.round(100 * num / den)}%`;
+}
+function fmtDataBr(s) {
+  if (!s) return '—';
+  const d = new Date(s + 'T00:00:00');
+  if (isNaN(d.getTime())) return s;
+  return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+}
+function fmtDataLonga(s) {
+  if (!s) return '—';
+  const d = new Date(s + 'T00:00:00');
+  if (isNaN(d.getTime())) return s;
+  return `${String(d.getDate()).padStart(2,'0')} de ${MESES[d.getMonth()]} (${DIAS_ACENTO[(d.getDay()+6)%7]})`;
+}
+function fmtMoedaBr(v) {
+  if (v === null || v === undefined || v === 0) return '—';
+  const n = Math.round(Number(v));
+  if (!isFinite(n)) return '—';
+  return `R$ ${n.toLocaleString('pt-BR').replace(/,/g,'.')}/mês`;
+}
+function parseValorText(v) {
+  if (!v) return '—';
+  let s = String(v).trim();
+  if (!s) return '—';
+  s = s.replace(/R\$/gi, '').trim();
+  if (s.includes('/')) s = s.split('/')[0].trim();
+  if (s.includes(',')) s = s.replace(/\./g, '').replace(',', '.');
+  const n = parseFloat(s);
+  if (!isFinite(n)) return '—';
+  return fmtMoedaBr(n);
+}
+function fmtPeriodo(ini, fim) {
+  const a = new Date(ini + 'T00:00:00');
+  const b = new Date(fim + 'T00:00:00');
+  if (a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth()) {
+    return `${String(a.getDate()).padStart(2,'0')}-${String(b.getDate()).padStart(2,'0')} ${MESES_CURTOS[b.getMonth()]} ${b.getFullYear()}`;
+  }
+  if (a.getFullYear() === b.getFullYear()) {
+    return `${String(a.getDate()).padStart(2,'0')} ${MESES_CURTOS[a.getMonth()]} - ${String(b.getDate()).padStart(2,'0')} ${MESES_CURTOS[b.getMonth()]} ${b.getFullYear()}`;
+  }
+  return `${String(a.getDate()).padStart(2,'0')}/${String(a.getMonth()+1).padStart(2,'0')}/${a.getFullYear()} - ${String(b.getDate()).padStart(2,'0')}/${String(b.getMonth()+1).padStart(2,'0')}/${b.getFullYear()}`;
+}
+function fmtPeriodoLongo(ini, fim) {
+  return `${fmtDataLonga(ini)} → ${fmtDataLonga(fim)}`;
+}
+function fmtPeriodoMtd(mtd_ini, mtd_fim) {
+  const a = new Date(mtd_ini + 'T00:00:00');
+  const b = new Date(mtd_fim + 'T00:00:00');
+  return `${String(a.getDate()).padStart(2,'0')} → ${String(b.getDate()).padStart(2,'0')} ${MESES_CURTOS[b.getMonth()]} ${b.getFullYear()}`;
+}
+function fmtPeriodoYtd(ytd_ini, ytd_fim, periodos_dec) {
+  const b = new Date(ytd_fim + 'T00:00:00');
+  return `Jan → ${MESES_CURTOS[b.getMonth()]} ${b.getFullYear()} (${periodos_dec} períodos)`;
+}
+function fmtGeradoEm(s) {
+  const d = new Date(s + 'T00:00:00');
+  return `${String(d.getDate()).padStart(2,'0')} ${MESES_CURTOS[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+/* ---------- BADGES & ESCAPE ---------- */
+const BADGE_CLASSES = {
+  'meta': 'b-meta', 'chatgpt.com': 'b-chatgpt', 'email': 'b-email', 'blog': 'b-blog',
+  'lp-agradecimento': 'b-lp', 'lp-agradecimento-oferta-trends': 'b-lp', 'lp-agradecimento-evento': 'b-lp',
+  'webinar-ao-vivo': 'b-webinar', 'apresentacao-webinar': 'b-webinar', 'pos-webinar': 'b-webinar',
+  'notion': 'b-notion', 'linkedin': 'b-linkedin',
+};
+function escapeHtml(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function badgeSource(name) {
+  const n = (name || '').trim();
+  if (!n) return '<span class="b">(vazio)</span>';
+  const cls = BADGE_CLASSES[n];
+  return cls ? `<span class="b ${cls}">${escapeHtml(n)}</span>` : `<span class="b">${escapeHtml(n)}</span>`;
+}
+function rankCell(idx) {
+  const cls = idx === 0 ? 'rk-1' : idx === 1 ? 'rk-2' : idx === 2 ? 'rk-3' : 'rk-n';
+  return `<span class="rk ${cls}">${idx + 1}</span>`;
+}
+
+/* ---------- DELTA ---------- */
+function formatDelta(atual, anterior, invert) {
+  if (anterior === 0 && atual === 0) return { texto: '— igual ant.', classe: 'd-flat' };
+  if (anterior === 0 && atual > 0)   return { texto: `▲ novo (0 → ${atual})`, classe: 'd-new' };
+  if (atual === anterior)            return { texto: '— igual ant.', classe: 'd-flat' };
+  const delta = atual - anterior;
+  const pct = anterior ? Math.round((delta / anterior) * 100) : 0;
+  const arrow = delta > 0 ? '▲' : '▼';
+  const sign = delta > 0 ? '+' : '−';
+  const texto = `${arrow} ${sign}${Math.abs(pct)}% vs ant.`;
+  const classe = invert ? (delta < 0 ? 'd-up' : 'd-down') : (delta > 0 ? 'd-up' : 'd-down');
+  return { texto, classe };
+}
+
+/* ---------- ROW RENDERS ---------- */
+function rowLead(d) {
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td class="dim">${escapeHtml(d.email || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
+    <td class="dim">${fmtDataBr(d.data_conversao)}</td>
+    <td>${escapeHtml(d.bd || '—')}</td>
+  </tr>`;
+}
+function rowRa(d) {
+  const realizou = d.data_realizada
+    ? `<span class="b b-status-ok">✓ ${fmtDataBr(d.data_realizada)}</span>`
+    : '<span class="b b-status-pending">Pendente</span>';
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${escapeHtml(d.bd || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
+    <td class="dim">${fmtDataBr(d.data_evento)}</td>
+    <td>${realizou}</td>
+  </tr>`;
+}
+function rowRr(d) {
+  const prop = d.data_proposta
+    ? '<span class="b b-status-ok">✓ Sim</span>'
+    : '<span class="b b-status-no">Não</span>';
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${escapeHtml(d.bd || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${fmtDataBr(d.data_evento)}</td>
+    <td>${prop}</td>
+  </tr>`;
+}
+function rowProp(d) {
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${escapeHtml(d.bd || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
+    <td class="dim">${fmtDataBr(d.data_evento)}</td>
+    <td class="num">${parseValorText(d.valor_text)}</td>
+  </tr>`;
+}
+function rowFech(d) {
+  const v = d.valor;
+  const valorHtml = v !== null && v !== undefined && Number(v) > 0 ? `<b>${fmtMoedaBr(v)}</b>` : '—';
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${escapeHtml(d.bd || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
+    <td class="dim">${fmtDataBr(d.data_evento)}</td>
+    <td class="num">${valorHtml}</td>
+  </tr>`;
+}
+function rowPerda(d) {
+  const motivo = d.motivo || '';
+  const strong = ['Sem fit', 'Sem orçamento', 'Desqualificado'];
+  const cls = strong.includes(motivo) ? 'b-reason' : 'b-reason-soft';
+  return `<tr>
+    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td class="dim">${escapeHtml(d.email || '—')}</td>
+    <td>${badgeSource(d.utm_source)}</td>
+    <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
+    <td class="dim">${fmtDataBr(d.ultima_conversao)}</td>
+    <td><span class="b ${cls}">${escapeHtml(motivo)}</span></td>
+  </tr>`;
+}
+function rowRankingSrc(idx, r) {
+  const leads = r.leads || 0;
+  const leadsHtml = idx < 3 ? `<b>${fmtInt(leads)}</b>` : fmtInt(leads);
+  return `<tr>
+    <td>${rankCell(idx)}</td>
+    <td>${badgeSource(r.dim)}</td>
+    <td class="num">${leadsHtml}</td>
+    <td class="num">${fmtInt(r.ce || 0)}</td>
+    <td class="num">${fmtPctSafe(r.ce || 0, leads)}</td>
+    <td class="num">${fmtInt(r.ra || 0)}</td>
+    <td class="num">${fmtPctSafe(r.ra || 0, r.ce || 0)}</td>
+    <td class="num">${fmtInt(r.rr || 0)}</td>
+    <td class="num">${fmtInt(r.prop || 0)}</td>
+    <td class="num">${fmtInt(r.fech || 0)}</td>
+  </tr>`;
+}
+function rowRankingSrcOutros(r) {
+  return `<tr>
+    <td><span class="rk rk-n">—</span></td>
+    <td class="dim">${escapeHtml(r.dim)}</td>
+    <td class="num">${fmtInt(r.leads)}</td>
+    <td class="num">${fmtInt(r.ce)}</td>
+    <td class="num">—</td>
+    <td class="num">${fmtInt(r.ra)}</td>
+    <td class="num">—</td>
+    <td class="num">${fmtInt(r.rr)}</td>
+    <td class="num">${fmtInt(r.prop)}</td>
+    <td class="num">${fmtInt(r.fech)}</td>
+  </tr>`;
+}
+function rowRankingCt(idx, r) {
+  const leads = r.leads || 0;
+  const fech = r.fech || 0;
+  const leadsHtml = idx < 3 ? `<b>${fmtInt(leads)}</b>` : fmtInt(leads);
+  const fechHtml = fech > 0 ? `<b>${fmtInt(fech)}</b>` : fmtInt(fech);
+  const content = r.dim || '(sem content)';
+  return `<tr>
+    <td>${rankCell(idx)}</td>
+    <td>${escapeHtml(content)}</td>
+    <td>${badgeSource(r.source)}</td>
+    <td class="num">${leadsHtml}</td>
+    <td class="num">${fmtInt(r.ra || 0)}</td>
+    <td class="num">${fmtInt(r.rr || 0)}</td>
+    <td class="num">${fmtInt(r.prop || 0)}</td>
+    <td class="num">${fechHtml}</td>
+  </tr>`;
+}
+function rowRankingCtOutros(r) {
+  return `<tr>
+    <td><span class="rk rk-n">—</span></td>
+    <td class="dim">${escapeHtml(r.dim)}</td>
+    <td class="dim">—</td>
+    <td class="num">${fmtInt(r.leads)}</td>
+    <td class="num">${fmtInt(r.ra)}</td>
+    <td class="num">${fmtInt(r.rr)}</td>
+    <td class="num">${fmtInt(r.prop)}</td>
+    <td class="num">${fmtInt(r.fech)}</td>
+  </tr>`;
+}
+
+function renderRankingSource(rows, topN = 8) {
+  if (!rows || !rows.length) return '<tr><td colspan="10" class="dim center">(sem dados no período)</td></tr>';
+  const top = rows.slice(0, topN);
+  const outros = rows.slice(topN);
+  const html = top.map((r, i) => rowRankingSrc(i, r));
+  if (outros.length) {
+    const ag = { leads: 0, ce: 0, ra: 0, rr: 0, prop: 0, fech: 0 };
+    for (const r of outros) for (const k of Object.keys(ag)) ag[k] += r[k] || 0;
+    ag.dim = `outros (${outros.length})`;
+    html.push(rowRankingSrcOutros(ag));
+  }
+  return html.join('');
+}
+function renderRankingContent(rows, topN = 12) {
+  if (!rows || !rows.length) return '<tr><td colspan="8" class="dim center">(sem dados no período)</td></tr>';
+  const top = rows.slice(0, topN);
+  const outros = rows.slice(topN);
+  const html = top.map((r, i) => rowRankingCt(i, r));
+  if (outros.length) {
+    const ag = { leads: 0, ra: 0, rr: 0, prop: 0, fech: 0 };
+    for (const r of outros) for (const k of Object.keys(ag)) ag[k] += r[k] || 0;
+    ag.dim = `outros (${outros.length})`;
+    html.push(rowRankingCtOutros(ag));
+  }
+  return html.join('');
+}
+
+/* ---------- KPI CARDS ---------- */
+const KPI_LABELS = {
+  leads: 'Leads', ce: 'Contatos Efetivos', ra: 'Reun. Agendadas',
+  rr: 'Reun. Realizadas', prop: 'Propostas', fech: 'Fechamentos', perd: 'Perdidos'
+};
+const KPI_ORDER = ['leads', 'ce', 'ra', 'rr', 'prop', 'fech', 'perd'];
+const KPI_DENOM = { leads: null, ce: 'leads', ra: 'ce', rr: 'ra', prop: 'rr', fech: 'prop', perd: 'leads' };
+const INVERT_DELTA = new Set(['perd']);
+
+function renderKpiAtual(ks, ksa, kytd, sem_div) {
+  const html = [];
+  for (const k of KPI_ORDER) {
+    const v = ks[k] || 0;
+    const denom = KPI_DENOM[k] ? (ks[KPI_DENOM[k]] || 0) : null;
+    const pctHtml = denom !== null ? `<div class="pct">${fmtPctSafe(v, denom)}</div>` : '';
+    const { texto, classe } = formatDelta(v, ksa[k] || 0, INVERT_DELTA.has(k));
+    const med = (kytd[k] || 0) / Math.max(1, sem_div);
+    html.push(`<div class="kpi-item">
+      <div class="label">${KPI_LABELS[k]}</div>
+      <div class="main"><div class="val">${fmtInt(v)}</div>${pctHtml}</div>
+      <div class="delta ${classe}">${texto}</div>
+      <div class="foot">méd. ${fmtDecimalBr(med, 1)}</div>
+    </div>`);
+  }
+  return html.join('');
+}
+function renderKpiSimples(ks) {
+  const html = [];
+  for (const k of KPI_ORDER) {
+    const v = ks[k] || 0;
+    const denom = KPI_DENOM[k] ? (ks[KPI_DENOM[k]] || 0) : null;
+    const pctHtml = denom !== null ? `<div class="pct">${fmtPctSafe(v, denom)}</div>` : '';
+    html.push(`<div class="kpi-item">
+      <div class="label">${KPI_LABELS[k]}</div>
+      <div class="main"><div class="val">${fmtInt(v)}</div>${pctHtml}</div>
+    </div>`);
+  }
+  return html.join('');
+}
+
+function renderLossPanel(ks, km, ky, periodos) {
+  const items = [
+    { lbl: 'Período',  k: 'atual', src: ks, periodo: `${String(new Date(periodos.ini_atual+'T00:00:00').getDate()).padStart(2,'0')}–${String(new Date(periodos.fim_atual+'T00:00:00').getDate()).padStart(2,'0')} ${MESES_CURTOS[new Date(periodos.fim_atual+'T00:00:00').getMonth()]}` },
+    { lbl: '<span class="no-upper">MtD</span>', k: 'mtd', src: km, periodo: `${String(new Date(periodos.mtd_ini+'T00:00:00').getDate()).padStart(2,'0')}–${String(new Date(periodos.mtd_fim+'T00:00:00').getDate()).padStart(2,'0')} ${MESES_CURTOS[new Date(periodos.mtd_fim+'T00:00:00').getMonth()]}` },
+    { lbl: '<span class="no-upper">YtD</span>', k: 'ytd', src: ky, periodo: `Jan–${MESES_CURTOS[new Date(periodos.ytd_fim+'T00:00:00').getMonth()]}` },
+  ];
+  return items.map(i => {
+    const perd = i.src.perd || 0;
+    const leads = i.src.leads || 0;
+    const pct = leads ? Math.round(100 * perd / leads) : 0;
+    return `<div class="loss-item">
+      <div class="label">% Perdidos · ${i.lbl}</div>
+      <div class="pct">${pct}%</div>
+      <div class="abs">${perd} perdidos · ${leads} leads · ${i.periodo}</div>
+      <div class="bar"><span style="width:${Math.min(pct, 100)}%"></span></div>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- BIND HELPERS ---------- */
+function bindText(key, value) {
+  const els = document.querySelectorAll(`[data-bind="${key}"]`);
+  els.forEach(el => { el.textContent = value; });
+}
+function bindRows(key, html) {
+  const el = document.querySelector(`[data-bind-rows="${key}"]`);
+  if (el) el.innerHTML = html;
+}
+
+/* ---------- MAIN RENDER ---------- */
+let charts = { ts: null, ss: null };
+
+function render(data) {
+  const p = data.periodos;
+  const ks = data.kpis.atual, ksa = data.kpis.ant, km = data.kpis.mtd, ky = data.kpis.ytd;
+
+  // Header
+  bindText('header.periodo', `${fmtDataLonga(p.ini_atual)} → ${fmtDataLonga(p.fim_atual)} · ${new Date(p.fim_atual+'T00:00:00').getFullYear()}`);
+  bindText('header.ant', `${fmtDataBr(p.ini_ant)} → ${fmtDataBr(p.fim_ant)}`);
+  bindText('header.mtd', fmtPeriodoMtd(p.mtd_ini, p.mtd_fim));
+  bindText('header.ytd', fmtPeriodoYtd(p.ytd_ini, p.ytd_fim, p.periodos_decorridos_ytd));
+  bindText('header.gerado_em', fmtGeradoEm(p.hoje));
+  bindText('tag.periodo', fmtPeriodo(p.ini_atual, p.fim_atual));
+
+  // KPIs
+  document.getElementById('kpisAtual').innerHTML = renderKpiAtual(ks, ksa, ky, p.periodos_decorridos_ytd);
+  document.getElementById('kpisMtd').innerHTML = renderKpiSimples(km);
+  document.getElementById('kpisYtd').innerHTML = renderKpiSimples(ky);
+
+  // Perdas
+  document.getElementById('lossPanel').innerHTML = renderLossPanel(ks, km, ky, p);
+
+  // Listas
+  const lists = [
+    ['perdidos_mtd', rowPerda,  data.listas.perdidos_mtd],
+    ['leads',        rowLead,   data.listas.leads],
+    ['ra',           rowRa,     data.listas.ra],
+    ['rr',           rowRr,     data.listas.rr],
+    ['prop',         rowProp,   data.listas.prop],
+    ['fech',         rowFech,   data.listas.fech],
+  ];
+  for (const [k, fn, items] of lists) {
+    const html = items && items.length
+      ? items.map(fn).join('')
+      : '<tr><td colspan="10" class="dim center">(sem dados no período)</td></tr>';
+    bindRows(k, html);
+    const unit = (items?.length === 1) ? 'deal' : 'deals';
+    bindText(`count.${k}`, `${items?.length || 0} ${unit}`);
+  }
+
+  // Rankings
+  const rangeAtual = fmtPeriodo(p.ini_atual, p.fim_atual);
+  const rangeAnt = fmtPeriodo(p.ini_ant, p.fim_ant);
+  const rangeMtd = fmtPeriodo(p.mtd_ini, p.mtd_fim);
+  const rangeYtd = `Jan–${MESES_CURTOS[new Date(p.ytd_fim+'T00:00:00').getMonth()]} ${new Date(p.ytd_fim+'T00:00:00').getFullYear()}`;
+
+  bindText('rank.source.atual.period', rangeAtual);
+  bindText('rank.source.ant.period', rangeAnt);
+  bindText('rank.source.mtd.period', rangeMtd);
+  bindText('rank.source.ytd.period', rangeYtd);
+  bindText('rank.content.atual.period', rangeAtual);
+  bindText('rank.content.ant.period', rangeAnt);
+  bindText('rank.content.mtd.period', rangeMtd);
+  bindText('rank.content.ytd.period', rangeYtd);
+
+  for (const periodo of ['atual', 'ant', 'mtd', 'ytd']) {
+    bindRows(`ranking_source_${periodo}`, renderRankingSource(data.rankings.source[periodo], 8));
+    bindRows(`ranking_content_${periodo}`, renderRankingContent(data.rankings.content[periodo], 12));
+  }
+
+  // Charts 12m (só se data.serie_12m existir — primeiro fetch)
+  if (data.serie_12m) renderCharts(data.serie_12m, data.proporcao_sources);
+
+  // Range label (top)
+  document.getElementById('rangeText').innerHTML = `<b>${rangeAtual}</b> · ${p.dias_periodo} ${p.dias_periodo === 1 ? 'dia' : 'dias'}`;
+
+  // Cache pill
+  const meta = data._meta || {};
+  const pill = document.getElementById('cachePill');
+  if (meta.cached) {
+    pill.textContent = `cache · ${meta.cached_at?.slice(11, 16) || ''}`;
+    pill.classList.remove('fresh');
+    pill.title = `Cached desde ${meta.cached_at || '?'} · clique no ↻ pra forçar refresh`;
+  } else {
+    pill.textContent = 'fresh';
+    pill.classList.add('fresh');
+    pill.title = `Buscado agora · ${meta.cached_at || ''}`;
+  }
+
+  // Footer
+  bindText('footer.periodos',
+    `Período ${fmtDataBr(p.ini_atual)}–${fmtDataBr(p.fim_atual)} ${new Date(p.fim_atual+'T00:00:00').getFullYear()} · MtD ${fmtDataBr(p.mtd_ini)}–${fmtDataBr(p.mtd_fim)} · YtD Jan–${MESES_CURTOS[new Date(p.ytd_fim+'T00:00:00').getMonth()]} ${new Date(p.ytd_fim+'T00:00:00').getFullYear()}`);
+
+  // Chart tag (12m range estatico)
+  const hoje = new Date(p.hoje+'T00:00:00');
+  const um_ano_atras = new Date(hoje);
+  um_ano_atras.setFullYear(hoje.getFullYear() - 1);
+  bindText('chart.range', `${MESES_CURTOS[um_ano_atras.getMonth()]} ${um_ano_atras.getFullYear()} → ${MESES_CURTOS[hoje.getMonth()]} ${hoje.getFullYear()}`);
+
+  // Sortable tables (registra apos render)
+  document.querySelectorAll('table').forEach(makeSortable);
+}
+
+/* ---------- CHARTS ---------- */
+function renderCharts(serie, sources) {
+  const labels = serie.labels;
+  const leads = serie.leads;
+  const ce = serie.ce;
+  const ag = serie.agendadas;
+  const pr = serie.propostas;
+  const fe = serie.fechamentos;
+  const txCE = leads.map((l, i) => l ? Math.round((ce[i] / l) * 100) : 0);
+
+  if (charts.ts) charts.ts.destroy();
+  const ctxTS = document.getElementById('chartTimeseries').getContext('2d');
+  charts.ts = new Chart(ctxTS, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Leads', data: leads, borderColor: '#1F2937', backgroundColor: 'rgba(31,41,55,0.05)', borderWidth: 2.6, tension: 0.35, pointRadius: 0, pointHoverRadius: 5, yAxisID: 'y' },
+        { label: 'Contato Efetivo', data: ce, borderColor: '#0B63FF', backgroundColor: 'rgba(11,99,255,0.05)', borderWidth: 2.2, tension: 0.35, pointRadius: 0, pointHoverRadius: 5, yAxisID: 'y' },
+        { label: 'Tx Contato Efetivo (%)', data: txCE, borderColor: '#6EA7FF', backgroundColor: 'rgba(110,167,255,0.05)', borderWidth: 2, borderDash: [6,3], tension: 0.35, pointRadius: 0, pointHoverRadius: 4, yAxisID: 'yPct' },
+        { label: 'Reun. Agendadas', data: ag, borderColor: '#6B7280', backgroundColor: 'rgba(107,114,128,0.05)', borderWidth: 1.8, borderDash: [3,3], tension: 0.35, pointRadius: 0, pointHoverRadius: 4, yAxisID: 'y' },
+        { label: 'Propostas', data: pr, borderColor: '#073FA3', backgroundColor: 'rgba(7,63,163,0.05)', borderWidth: 2, tension: 0.35, pointRadius: 0, pointHoverRadius: 4, yAxisID: 'y' },
+        { label: 'Fechamentos', data: fe, borderColor: '#16A34A', backgroundColor: 'rgba(22,163,74,0.1)', borderWidth: 2.5, tension: 0.2, pointRadius: 3, pointHoverRadius: 5, yAxisID: 'y' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', align: 'end', labels: { font: { family: 'Inter', size: 13, weight: '500' }, color: '#374151', usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { backgroundColor: '#1F2937', titleFont: { family: 'Inter', size: 13, weight: '600' }, bodyFont: { family: 'Inter', size: 13 }, padding: 12, cornerRadius: 8, displayColors: true,
+          callbacks: { label: ctx => ctx.dataset.yAxisID === 'yPct' ? `${ctx.dataset.label}: ${ctx.parsed.y}%` : `${ctx.dataset.label}: ${ctx.parsed.y}` } }
+      },
+      scales: {
+        x: { ticks: { font: { family: 'Inter', size: 11 }, color: '#6B7280', maxRotation: 0, autoSkip: true, maxTicksLimit: 13 }, grid: { display: false } },
+        y: { type: 'linear', position: 'left', beginAtZero: true, title: { display: true, text: 'Volumes (Leads · CE · RA · Prop. · Fech.)', font: { family: 'Inter', size: 12, weight: '600' }, color: '#4B5563' }, ticks: { font: { family: 'Inter', size: 12 }, color: '#6B7280' }, grid: { color: '#F1F5F9' } },
+        yPct: { type: 'linear', position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Tx Contato Efetivo (%)', font: { family: 'Inter', size: 12, weight: '600' }, color: '#0B63FF' }, ticks: { callback: v => v + '%', font: { family: 'Inter', size: 12 }, color: '#0B63FF' }, grid: { display: false } }
+      }
+    }
+  });
+
+  if (charts.ss) charts.ss.destroy();
+  const ctxSS = document.getElementById('chartSourceShare').getContext('2d');
+  charts.ss = new Chart(ctxSS, {
+    type: 'bar',
+    data: {
+      labels: ['Reuniões Agendadas (12m)', 'Reuniões Realizadas (12m)'],
+      datasets: (sources || []).map(s => ({
+        label: s.label, data: [s.RA, s.RR],
+        backgroundColor: s.color, borderWidth: 0, borderRadius: 4,
+        barPercentage: 0.7, categoryPercentage: 0.7
+      }))
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', align: 'start', labels: { font: { family: 'Inter', size: 12, weight: '500' }, color: '#374151', usePointStyle: true, pointStyle: 'rectRounded', padding: 14, boxWidth: 14 } },
+        tooltip: { backgroundColor: '#1F2937', titleFont: { family: 'Inter', size: 13, weight: '600' }, bodyFont: { family: 'Inter', size: 13 }, padding: 12, cornerRadius: 8,
+          callbacks: { label: ctx => {
+            const total = ctx.chart.data.datasets.reduce((s, ds) => s + ds.data[ctx.dataIndex], 0);
+            const v = ctx.parsed.x;
+            const pct = total ? ((v / total) * 100).toFixed(1) : 0;
+            return `${ctx.dataset.label}: ${v} (${pct}%)`;
+          } } }
+      },
+      scales: {
+        x: { stacked: true, beginAtZero: true, ticks: { font: { family: 'Inter', size: 12 }, color: '#6B7280' }, grid: { color: '#F1F5F9' } },
+        y: { stacked: true, ticks: { font: { family: 'Inter', size: 13, weight: '600' }, color: '#374151' }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+/* ---------- SORTABLE ---------- */
+function makeSortable(table) {
+  if (table.dataset.sortable === '1') return;
+  const ths = table.querySelectorAll('thead th');
+  ths.forEach((th, idx) => {
+    if (th.textContent.trim() === '#') return;
+    th.classList.add('sortable');
+    if (!th.querySelector('.sort-ind')) {
+      const ind = document.createElement('span');
+      ind.className = 'sort-ind';
+      ind.textContent = '⇅';
+      th.appendChild(ind);
+    }
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      if (!tbody) return;
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const wasAsc = th.classList.contains('sort-asc');
+      const dir = wasAsc ? 'desc' : 'asc';
+      ths.forEach(t => {
+        t.classList.remove('sort-asc', 'sort-desc');
+        const i = t.querySelector('.sort-ind');
+        if (i) i.textContent = '⇅';
+      });
+      th.classList.add(dir === 'asc' ? 'sort-asc' : 'sort-desc');
+      const ind = th.querySelector('.sort-ind');
+      if (ind) ind.textContent = dir === 'asc' ? '▲' : '▼';
+      const tryNum = s => {
+        const m = (s || '').match(/-?[\d.,]+/);
+        if (!m) return NaN;
+        return parseFloat(m[0].replace(/\./g, '').replace(',', '.'));
+      };
+      rows.sort((a, b) => {
+        const sa = (a.children[idx]?.innerText || '').trim();
+        const sb = (b.children[idx]?.innerText || '').trim();
+        const na = tryNum(sa); const nb = tryNum(sb);
+        let cmp;
+        if (!isNaN(na) && !isNaN(nb)) cmp = na - nb;
+        else cmp = sa.localeCompare(sb, 'pt-BR', { numeric: true, sensitivity: 'base' });
+        return dir === 'asc' ? cmp : -cmp;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+  table.dataset.sortable = '1';
+}
+
+/* ---------- FETCH & STATE ---------- */
+let firstLoad = true;
+const statusBar = document.getElementById('statusBar');
+const container = document.getElementById('container');
+
+function showStatus(msg, isError = false) {
+  statusBar.textContent = msg;
+  statusBar.classList.toggle('error', isError);
+  statusBar.classList.add('show');
+}
+function hideStatus() {
+  statusBar.classList.remove('show');
+}
+
+async function loadDashboard(ini, fim, includeHistorico, refresh = false) {
+  container.classList.add('loading');
+  const msg = refresh
+    ? 'Refazendo busca no banco (≈12s)…'
+    : (firstLoad ? 'Carregando dados (pode demorar ~14s na primeira vez)…' : 'Atualizando…');
+  showStatus(msg);
+  try {
+    const params = new URLSearchParams({ ini, fim, historico: includeHistorico ? '1' : '0' });
+    if (refresh) params.set('refresh', '1');
+    const res = await fetch(`/api/dashboard?${params}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: res.statusText }));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    render(data);
+    hideStatus();
+    firstLoad = false;
+  } catch (e) {
+    showStatus(`Erro: ${e.message}`, true);
+    console.error(e);
+  } finally {
+    container.classList.remove('loading');
+  }
+}
+
+/* ---------- PRESETS ---------- */
+function presetRange(name) {
+  const fim = new Date();
+  const f = new Date(fim);
+  let ini = new Date(fim);
+  if (name === '7d') ini.setDate(fim.getDate() - 6);
+  else if (name === '15d') ini.setDate(fim.getDate() - 14);
+  else if (name === '30d') ini.setDate(fim.getDate() - 29);
+  else if (name === '90d') ini.setDate(fim.getDate() - 89);
+  else if (name === 'mtd') ini = new Date(fim.getFullYear(), fim.getMonth(), 1);
+  else if (name === 'ytd') ini = new Date(fim.getFullYear(), 0, 1);
+  return { ini: toISO(ini), fim: toISO(f) };
+}
+function toISO(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function setPickerInputs(ini, fim) {
+  document.getElementById('iniInput').value = ini;
+  document.getElementById('fimInput').value = fim;
+}
+
+/* ---------- INIT ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  // Preset buttons
+  document.querySelectorAll('#presetGroup .pbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#presetGroup .pbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const { ini, fim } = presetRange(btn.dataset.preset);
+      setPickerInputs(ini, fim);
+      loadDashboard(ini, fim, firstLoad);
+    });
+  });
+
+  // Apply button (custom range)
+  document.getElementById('applyBtn').addEventListener('click', () => {
+    const ini = document.getElementById('iniInput').value;
+    const fim = document.getElementById('fimInput').value;
+    if (!ini || !fim) { showStatus('Preencha as duas datas', true); return; }
+    if (new Date(ini) > new Date(fim)) { showStatus('Início precisa ser anterior ao fim', true); return; }
+    document.querySelectorAll('#presetGroup .pbtn').forEach(b => b.classList.remove('active'));
+    loadDashboard(ini, fim, firstLoad);
+  });
+
+  // Enter no input dispara apply
+  ['iniInput', 'fimInput'].forEach(id => {
+    document.getElementById(id).addEventListener('keyup', e => {
+      if (e.key === 'Enter') document.getElementById('applyBtn').click();
+    });
+  });
+
+  // Refresh button — refaz busca ignorando cache
+  document.getElementById('refreshBtn').addEventListener('click', () => {
+    const ini = document.getElementById('iniInput').value;
+    const fim = document.getElementById('fimInput').value;
+    if (!ini || !fim) return;
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    loadDashboard(ini, fim, true, true).finally(() => {
+      setTimeout(() => btn.classList.remove('spinning'), 400);
+    });
+  });
+
+  // Default: 7d
+  const { ini, fim } = presetRange('7d');
+  setPickerInputs(ini, fim);
+  loadDashboard(ini, fim, true);
+});
+</script>
+</body>
+</html>

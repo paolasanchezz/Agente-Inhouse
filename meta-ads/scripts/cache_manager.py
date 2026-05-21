@@ -378,6 +378,53 @@ def get_ad_campaign_map(account_key: str) -> dict:
     return {r["id"]: r["campaign_id"] for r in rows}
 
 
+def count_ads_for_account(account_key: str) -> tuple:
+    """
+    Retorna (n_ads, last_fetched_at) para a conta.
+    last_fetched_at é o ISO timestamp da última inserção/atualização ou None.
+    """
+    conn = get_connection()
+    row = conn.execute(
+        "SELECT COUNT(*) AS c, MAX(fetched_at) AS last FROM ads WHERE account_key=?",
+        [account_key],
+    ).fetchone()
+    conn.close()
+    return int(row["c"] or 0), row["last"]
+
+
+def count_adsets_for_account(account_key: str) -> int:
+    """Retorna número de adsets registrados para a conta."""
+    conn = get_connection()
+    row = conn.execute(
+        "SELECT COUNT(*) AS c FROM adsets WHERE account_key=?",
+        [account_key],
+    ).fetchone()
+    conn.close()
+    return int(row["c"] or 0)
+
+
+def adsets_in_campaigns_with_indicator(account_key: str) -> set:
+    """
+    Retorna conjunto de adset_ids cujas campanhas têm `results_indicator` não-trivial
+    (i.e., diferente de NULL e diferente de 'mixed'). Usado para detectar a armadilha
+    de coletar insights de ad sem ter o ad->campaign map populado para campanhas que
+    usam pixel custom.
+    """
+    conn = get_connection()
+    rows = conn.execute(
+        """SELECT a.id
+           FROM adsets a
+           JOIN campaigns c ON c.id = a.campaign_id
+           WHERE a.account_key = ?
+             AND c.results_indicator IS NOT NULL
+             AND c.results_indicator != ''
+             AND c.results_indicator != 'mixed'""",
+        [account_key],
+    ).fetchall()
+    conn.close()
+    return {r["id"] for r in rows}
+
+
 def save_adset(adset: dict) -> None:
     conn = get_connection()
     now = datetime.datetime.utcnow().isoformat()

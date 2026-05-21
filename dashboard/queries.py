@@ -34,23 +34,32 @@ CM_UTM_SOURCES: list[str] = [
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
 
-# Filtro de funil: dashboard principal trata so deals Inbound.
-# Deals Outbound (262 em 2026) com UTM CM serao tratados em pagina separada
-# "Impacto de Conteudo" (proxima iteracao).
+# Filtro de funil:
+# Originalmente restrito a 'Inbound', mas decisao de 2026-05-19 (Victor) foi
+# capturar TODOS os leads CM independente do funil_inicial_lead_auto, porque:
+#   - ~4220 leads em 2026 tem funil vazio (nao classificado) mas tem UTM CM legitimo
+#   - 262 Outbound + UTM CM ainda foram impactados por content
+# Pra preservar o ponto de extensao sem reescrever as queries, a funcao virou no-op
+# (retorna "TRUE"). Quando quiser reativar restricao por funil, mudar o corpo.
 def filtro_inbound(alias: str = '') -> str:
-    """Filtro funil_inicial_lead_auto = 'Inbound'. `alias` opcional (ex: 'd', 'ct')."""
-    prefix = f'{alias}.' if alias else ''
-    return f"{prefix}funil_inicial_lead_auto = 'Inbound'"
+    """No-op. Retorna 'TRUE' pra nao filtrar por funil_inicial_lead_auto."""
+    return "TRUE"
 
 # Override manual (overrides §2 do mapeamento)
 EMAIL_WHITELIST: list[str] = [
     'jessica.rua@wealthmoney.com.br',     # Wealth — converteu via blog, tracking nao preservou
     'ronaldozottolo@gmail.com',           # Agencia CROP — Outbound no CRM, mas CM confirmado pelo Victor
     'equipelarissaneiva@gmail.com',       # NEIVA Brand — Outbound no CRM mas CM confirmado pelo Victor
+    'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
+    'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
 ]
 
 EMAIL_BLACKLIST: list[str] = [
-    'julianacastro@idwcompany.com.br',
+    'julianacastro@idwcompany.com.br',        # IDW — Google Ads em outra ferramenta
+    # Outbound reclassificados pelo Victor (CRM marca Inbound mas operacionalmente sao Outbound).
+    # Saem da dashboard principal; entrarao em futura pagina "Impacto de Conteudo".
+    'valdofmendes@gmail.com',                 # Webinar Analise Preditiva
+    'raissaboniolo.consultoria@gmail.com',    # Buzzcreators evento
 ]
 
 # Slugs CM na URL conteudo.buzzmonitor.com.br (whitelist)
@@ -162,15 +171,24 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 # ============ CONTAGENS POR KPI ============
 
 def q_count_leads(ini: date, fim: date) -> str:
-    """Count de Leads CM Inbound no periodo (sem regra 90d; cdate e o proprio evento)."""
+    """Count de Leads CM unicos por email no periodo.
+
+    Dedupe por email: mesmo email criado em 2 deals no mesmo periodo conta 1 vez.
+    """
     f = filtro_cm()
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
-SELECT COUNT(*) AS n
+WITH wl AS ({wl}), bl AS ({bl})
+SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
 FROM deals_comercial_prod
 WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND email_contato_principal_bd_sdr IS NOT NULL
-  AND {filtro_inbound()}
-  AND {f}
+  AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND (
+    lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+    OR {f}
+  )
 """
 
 
@@ -203,15 +221,21 @@ def q_count_perdidos(ini: date, fim: date) -> str:
     denominador errado. Agora % = Perdidos / Leads do mesmo periodo, <= 100%.
     """
     f = filtro_cm()
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
-SELECT COUNT(*) AS n
+WITH wl AS ({wl}), bl AS ({bl})
+SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
 FROM deals_comercial_prod
 WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND email_contato_principal_bd_sdr IS NOT NULL
   AND data_negocio_perdido_auto IS NOT NULL
   AND motivo_perda_bd_sdr IS NOT NULL
-  AND {filtro_inbound()}
-  AND {f}
+  AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND (
+    lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+    OR {f}
+  )
 """
 
 
@@ -250,20 +274,33 @@ WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isofor
 # ============ LISTAS DE DEALS (DETALHADO) ============
 
 def q_lista_leads(ini: date, fim: date) -> str:
+    """Lista de Leads dedupada por email (pega o deal mais recente quando ha duplicata)."""
     f = filtro_cm()
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
-SELECT
-  d.id, d.title AS deal,
-  d.email_contato_principal_bd_sdr AS email,
-  d.utm_source, d.utm_content,
-  d.cdate::date AS data_conversao,
-  COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd
-FROM deals_comercial_prod d
-WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND d.email_contato_principal_bd_sdr IS NOT NULL
-  AND {filtro_inbound("d")}
-  AND {f}
-ORDER BY d.cdate
+WITH wl AS ({wl}), bl AS ({bl}),
+filtrados AS (
+  SELECT DISTINCT ON (lower(trim(d.email_contato_principal_bd_sdr)))
+    d.id, d.title AS deal,
+    d.email_contato_principal_bd_sdr AS email,
+    d.utm_source, d.utm_content,
+    d.cdate::date AS data_conversao,
+    COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
+    d.cdate
+  FROM deals_comercial_prod d
+  WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+    AND d.email_contato_principal_bd_sdr IS NOT NULL
+    AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND (
+      lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+      OR {f}
+    )
+  ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.cdate DESC
+)
+SELECT id, deal, email, utm_source, utm_content, data_conversao, bd
+FROM filtrados
+ORDER BY cdate
 """
 
 
@@ -359,29 +396,41 @@ ORDER BY ct.data_fechamento_auto
 
 def q_lista_perdidos(ini: date, fim: date) -> str:
     """
-    Lista detalhada de leads CM Inbound criados no periodo E perdidos (definicao coorte).
-    Ordenado pela data de perda (mais recente primeiro).
+    Lista detalhada de leads CM criados no periodo E perdidos (definicao coorte),
+    dedupada por email (pega o deal perdido mais recente quando ha duplicata).
+    Ordenada pela data de perda (mais recente primeiro).
     """
     f = filtro_cm()
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
-SELECT
-  d.id, d.title AS deal,
-  d.email_contato_principal_bd_sdr AS email,
-  d.utm_source, d.utm_content,
-  COALESCE(
-    d.data_efetividade_contato_auto::date,
-    d.cdate::date
-  ) AS ultima_conversao,
-  d.motivo_perda_bd_sdr AS motivo,
-  d.data_negocio_perdido_auto::date AS data_perda
-FROM deals_comercial_prod d
-WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND d.email_contato_principal_bd_sdr IS NOT NULL
-  AND d.data_negocio_perdido_auto IS NOT NULL
-  AND d.motivo_perda_bd_sdr IS NOT NULL
-  AND {filtro_inbound("d")}
-  AND {f}
-ORDER BY d.data_negocio_perdido_auto DESC
+WITH wl AS ({wl}), bl AS ({bl}),
+filtrados AS (
+  SELECT DISTINCT ON (lower(trim(d.email_contato_principal_bd_sdr)))
+    d.id, d.title AS deal,
+    d.email_contato_principal_bd_sdr AS email,
+    d.utm_source, d.utm_content,
+    COALESCE(
+      d.data_efetividade_contato_auto::date,
+      d.cdate::date
+    ) AS ultima_conversao,
+    d.motivo_perda_bd_sdr AS motivo,
+    d.data_negocio_perdido_auto::date AS data_perda
+  FROM deals_comercial_prod d
+  WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+    AND d.email_contato_principal_bd_sdr IS NOT NULL
+    AND d.data_negocio_perdido_auto IS NOT NULL
+    AND d.motivo_perda_bd_sdr IS NOT NULL
+    AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND (
+      lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+      OR {f}
+    )
+  ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.data_negocio_perdido_auto DESC
+)
+SELECT id, deal, email, utm_source, utm_content, ultima_conversao, motivo, data_perda
+FROM filtrados
+ORDER BY data_perda DESC
 """
 
 
@@ -412,8 +461,11 @@ leads_p AS (
   FROM deals_comercial_prod
   WHERE cdate::date BETWEEN '{d1}' AND '{d2}'
     AND email_contato_principal_bd_sdr IS NOT NULL
-    AND {filtro_inbound()}
-    AND {f}
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND (
+      lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+      OR {f}
+    )
   GROUP BY {dim}
 ),
 ce_p AS (
@@ -518,12 +570,15 @@ ORDER BY leads DESC, ra DESC
 
 def q_source_por_content(ini: date, fim: date) -> str:
     """
-    Pra cada utm_content, retorna o utm_source mais frequente no periodo (so Inbound).
+    Pra cada utm_content, retorna o utm_source mais frequente no periodo.
     Usado em render_ranking_content pra colorir o badge da source ao lado do content.
     """
     f = filtro_cm()
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
-WITH ranked AS (
+WITH wl AS ({wl}), bl AS ({bl}),
+ranked AS (
   SELECT
     utm_content,
     utm_source,
@@ -532,8 +587,11 @@ WITH ranked AS (
   FROM deals_comercial_prod
   WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     AND email_contato_principal_bd_sdr IS NOT NULL
-    AND {filtro_inbound()}
-    AND {f}
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND (
+      lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+      OR {f}
+    )
     AND utm_content IS NOT NULL
   GROUP BY utm_content, utm_source
 )
@@ -572,8 +630,11 @@ eventos AS (
   FROM deals_comercial_prod
   WHERE cdate::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND email_contato_principal_bd_sdr IS NOT NULL
-    AND {filtro_inbound()}
-    AND {f}
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND (
+      lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+      OR {f}
+    )
   UNION ALL
   SELECT date_trunc('week', d.data_efetividade_contato_auto)::date, 'ce'
   FROM deals_comercial_prod d

@@ -46,7 +46,13 @@ from cache_manager import (
     get_adset_campaign_map,
     get_ad_campaign_map,
     calc_lp_conversion_rate,
+    count_ads_for_account,
+    count_adsets_for_account,
+    adsets_in_campaigns_with_indicator,
 )
+
+# Tabela `ads` é considerada defasada após este intervalo (forçará repopular).
+ADS_STALE_HOURS = 24
 
 import os
 from dotenv import load_dotenv
@@ -292,6 +298,92 @@ def fetch_level_for_interval(account_id: str, account_key: str,
 
 
 # ============================================================
+# Garantia da estrutura de anúncios
+# ============================================================
+
+def _ads_table_is_stale(account_key: str) -> tuple:
+    """
+    Decide se a tabela `ads` precisa ser repopulada para a conta.
+    Retorna (needs_populate: bool, reason: str).
+
+    Heurística — repopular se:
+      (a) tabela vazia para a conta; OU
+      (b) há adsets de campanhas com `results_indicator` não-trivial mas zero ads
+          registrados dessas mesmas campanhas (cobre o caso em que ads foram populados
+          parcialmente e a coleta de insight de ad ficaria com leads=0); OU
+      (c) último fetch > ADS_STALE_HOURS atrás.
+    """
+    n_ads, last_fetch = count_ads_for_account(account_key)
+    n_adsets = count_adsets_for_account(account_key)
+
+    if n_ads == 0 and n_adsets > 0:
+        return True, f"tabela `ads` vazia ({n_adsets} adsets registrados sem ads)"
+
+    # Cobertura por campanha com indicator: detecta caso de ads parciais
+    adsets_needing_ads = adsets_in_campaigns_with_indicator(account_key)
+    if adsets_needing_ads:
+        conn = get_connection()
+        ad_camps = {
+            r["campaign_id"]
+            for r in conn.execute(
+                "SELECT DISTINCT campaign_id FROM ads WHERE account_key=?",
+                [account_key],
+            ).fetchall()
+        }
+        adset_camps = {
+            r["campaign_id"]
+            for r in conn.execute(
+                "SELECT DISTINCT a.campaign_id "
+                "FROM adsets a JOIN campaigns c ON c.id=a.campaign_id "
+                "WHERE a.account_key=? AND c.results_indicator IS NOT NULL "
+                "AND c.results_indicator != '' AND c.results_indicator != 'mixed'",
+                [account_key],
+            ).fetchall()
+        }
+        conn.close()
+        uncovered = adset_camps - ad_camps
+        if uncovered:
+            return True, (
+                f"{len(uncovered)} campanha(s) com `results_indicator` custom sem ads "
+                f"na tabela — leads seriam salvos como 0"
+            )
+
+    # Idade
+    if last_fetch:
+        try:
+            last_dt = datetime.datetime.fromisoformat(last_fetch.replace("Z", ""))
+            age_h = (datetime.datetime.utcnow() - last_dt).total_seconds() / 3600
+            if age_h > ADS_STALE_HOURS:
+                return True, f"última atualização {age_h:.1f}h atrás (> {ADS_STALE_HOURS}h)"
+        except Exception:
+            return True, "fetched_at em formato inválido"
+
+    return False, ""
+
+
+def _ensure_ads_populated(account_key: str, days: int = 30) -> None:
+    """
+    Garante que a tabela `ads` esteja populada e fresca antes da coleta de insights
+    no nível ad. Sem isso, `ad_camp_map` fica vazio/parcial, `ad_indicators` perde
+    o pixel custom da campanha, e o `extract_primary_conversions` cai em fallback
+    silencioso que conta 0 leads.
+
+    Faz a chamada à API via `fetch_campaigns.fetch_all(..., include_ads=True)`.
+    """
+    needs, reason = _ads_table_is_stale(account_key)
+    if not needs:
+        return
+
+    print(f"\n   [!] Estrutura de anuncios desatualizada: {reason}")
+    print(f"   [!] Auto-populando via fetch_campaigns.fetch_all (1x antes da coleta)...")
+
+    # Import lazy para evitar ciclo de import entre os scripts
+    import fetch_campaigns
+    fetch_campaigns.fetch_all(account_key, days=days, include_ads=True)
+    print(f"   [OK] Estrutura de anuncios atualizada.\n")
+
+
+# ============================================================
 # Orquestrador principal
 # ============================================================
 
@@ -305,6 +397,9 @@ def fetch_all_insights(account_key: str, period_mode: str,
       - Tipicamente: 2-3 calls no total (campaign + adset + opcional ad)
       - Se todos os dados já existem: 0 calls
 
+    Quando `include_ads=True`, garante antes que a tabela `ads` está populada
+    para evitar bug silencioso de leads=0 em campanhas com pixel custom.
+
     Dados de hoje nunca são coletados (dia incompleto).
     """
     account = ACCOUNTS[account_key]
@@ -313,6 +408,10 @@ def fetch_all_insights(account_key: str, period_mode: str,
 
     print(f"\n>> Coletando insights: {account['label']}")
     print(f"   Período: {period_mode} ({date_start} -> {date_end})")
+
+    # Pré-condição: estrutura de anúncios precisa estar pronta antes da coleta nível ad
+    if include_ads:
+        _ensure_ads_populated(account_key)
 
     # Pré-carrega indicadores de conversão por entidade (1 consulta SQL por nível)
     camp_indicators = get_campaign_indicators(account_key)
@@ -331,6 +430,31 @@ def fetch_all_insights(account_key: str, period_mode: str,
         "adset": adset_indicators,
         "ad": ad_indicators,
     }
+
+    # Validação final: alerta se ainda houver campanhas com indicator custom sem ads
+    # mapeados (a auto-populate não cobriu — provável caso de campanha pausada há +30d
+    # sem gasto no período de fetch_campaigns). Não aborta: a coleta continua nos níveis
+    # campaign/adset (que continuam corretos), apenas avisa que o nível ad ficará incompleto.
+    if include_ads:
+        adsets_needing_ads = adsets_in_campaigns_with_indicator(account_key)
+        ad_camps_covered = set(ad_camp_map.values())
+        uncovered_camps = {
+            adset_camp_map[adset_id]
+            for adset_id in adsets_needing_ads
+            if adset_id in adset_camp_map
+            and adset_camp_map[adset_id] not in ad_camps_covered
+        }
+        if uncovered_camps:
+            print(
+                f"\n[AVISO] {len(uncovered_camps)} campanha(s) com `results_indicator` "
+                f"custom NAO tem ads mapeados — leads do nivel ad podem ficar 0:"
+            )
+            for camp_id in list(uncovered_camps)[:10]:
+                print(f"   - campaign_id={camp_id} (indicator={camp_indicators.get(camp_id)})")
+            print(
+                f"   Considere rodar `python scripts/fetch_campaigns.py "
+                f"--account {account_key} --include-ads --days 90` para janela mais ampla.\n"
+            )
 
     levels = ["campaign", "adset"]
     if include_ads:

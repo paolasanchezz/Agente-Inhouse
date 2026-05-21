@@ -24,6 +24,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5183", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/mcp"],
       "port": 5183
+    },
+    {
+      "name": "dashboard-pessoal",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-pessoal/run_local.py"],
+      "port": 8000
     }
   ]
 }

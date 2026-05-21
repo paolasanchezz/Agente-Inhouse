@@ -34,6 +34,7 @@ Sempre que uma skill precisar de um `parent` id para `mcp__*__notion-create-page
 | `trad-traduzir`, `trad-revisar`, `trad-pipeline` | `entregas` |
 | `lp-preparar`, `lp-publicar` | `entregas` |
 | `meta-ads-trends`, `meta-ads-geral` | `entregas` |
+| `bunzzai` | `entregas` |
 | `news-gerar`, `news-pesquisar`, `news-pipeline` | `newsletter` |
 | `social-plan` | `redes-sociais` |
 

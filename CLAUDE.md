@@ -204,3 +204,13 @@ Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setu
 
 - `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
 - `[periodo]`: `mes_atual` | `mes_anterior` | `ultimos_30`
+
+### Bunzzai (fonte alternativa via MCP — SOMENTE LEITURA)
+
+Mesma cobertura do `/meta-ads-trends` (Buzzmonitor + Cxpress, todas as moedas), mas via MCP do Bunzzai (snapshots cumulativos no CRM proprio) em vez da Meta API direta. Zero setup local — tudo via MCP em tempo real. Util para cross-check, quando o token Meta expirou ou para auditar `cron travado` (snapshots congelados do Bunzzai). Diferencas importantes — cliques **totais** vs `link_clicks`, conversoes **amplas** vs `leads custom` — estao detalhadas em `.claude/skills/bunzzai/CONTEXT.md` §Diferencas metricas. Sugere cross-check com `/meta-ads-trends` antes de decisao de budget grande.
+
+| Comando | O que faz |
+|---|---|
+| `/bunzzai [conta]` | Drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado. Reaproveita benchmarks do meta-ads. |
+
+- `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur` (mesma lista do `/meta-ads`)
