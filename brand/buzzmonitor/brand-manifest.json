@@ -6,10 +6,31 @@
     "parentBrand": "Grupo Elife",
     "tagline": "Social listening potencializado por inteligencia artificial",
     "mission": "Transformar o volume de dados sociais em decisoes rapidas, precisas e escalaveis com IA",
-    "websites": {
-      "brasil": "https://buzzmonitor.com.br",
-      "latam": "https://buzzmonitor.com/",
-      "portugal": "https://buzzmonitor.com/"
+    "regions": {
+      "brasil": {
+        "home": "https://buzzmonitor.com/",
+        "instagram": "https://www.instagram.com/buzzmonitorbr/",
+        "htmlLang": "pt-BR",
+        "hreflang": "pt-BR",
+        "ogLocale": "pt_BR"
+      },
+      "latam": {
+        "home": "https://getbuzzmonitor.com/es/",
+        "instagram": "https://www.instagram.com/getbuzzmonitor.es/",
+        "htmlLang": "es-419",
+        "hreflang": "es-419",
+        "ogLocale": "es_LA"
+      },
+      "portugal": {
+        "home": "https://getbuzzmonitor.com/pt/",
+        "instagram": "https://www.instagram.com/buzzmonitor.pt/",
+        "htmlLang": "pt-PT",
+        "hreflang": "pt-PT",
+        "ogLocale": "pt_PT"
+      }
+    },
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/buzzmonitor/"
     },
     "blog": "https://buzzmonitor.com.br/blog/",
     "nameUsage": {

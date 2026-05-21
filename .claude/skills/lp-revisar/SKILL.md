@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.4.1
+version: 1.5.0
 ---
 
 # Skill: Revisar Landing Page
@@ -189,6 +189,131 @@ Registrar todos os achados de fidelidade junto com os criticos do Passo 3 e GTM 
 - COPY-VAZAMENTO: cierre H2 (linha 1042) truncou frase-ancora — restaurar "...sino las que mejor entienden lo que se dice de ellas"
 - COPY-VAZAMENTO: 5 em-dashes adicionados ao body (linhas 858, 876, 902, 929, 1097) — substituir por virgula/ponto
 - COPY-COSMETICA: hero h1 (linha 787) "usar" -> restaurar "utilizar" da copy.txt
+```
+
+## Passo 3.7: Auditoria SEO + multi-idioma + logo regional (v1.5.0, CRITICO)
+
+Audita o pacote SEO obrigatorio (GUIDELINES §15), hreflang (§16), logo regional (§17) e OG image (§18). Vazamentos sao CRITICOS — afetam ranking, social previews e clickthrough.
+
+### 3.7.a Pacote SEO obrigatorio (GUIDELINES §15)
+
+```bash
+HTML="landing-pages/{marca}/{slug}/index.html"
+DESC=$(grep -c '<meta name="description"' "$HTML")          # esperado: 1
+ROBOTS=$(grep -c '<meta name="robots"' "$HTML")             # esperado: 1
+OG=$(grep -c '<meta property="og:' "$HTML")                 # esperado: >= 8
+TW=$(grep -c '<meta name="twitter:' "$HTML")                # esperado: >= 4
+JSONLD=$(grep -c 'application/ld+json' "$HTML")             # esperado: 1
+CANONICAL=$(grep -c '<link rel="canonical"' "$HTML")        # esperado: 1
+```
+
+| Check | Threshold | Severidade se falha |
+|---|---|---|
+| `meta description` | == 1 | CRITICO (sem description, Google usa snippet aleatorio) |
+| `meta robots` | == 1 | MELHORIA (default index,follow funciona, mas explicito e melhor) |
+| `og:` count | >= 8 | CRITICO (preview social quebrado) |
+| `twitter:` count | >= 4 | MELHORIA (X aceita fallback de og:) |
+| JSON-LD | == 1 | CRITICO (sem rich results no Google) |
+| canonical | == 1 | CRITICO (Google pode tratar como duplicado) |
+
+### 3.7.b JSON-LD parseia + referencia regions corretas
+
+```bash
+python -c "
+import re, json, sys
+html = open('$HTML', encoding='utf-8').read()
+m = re.search(r'<script type=\"application/ld\+json\">(.*?)</script>', html, re.S)
+if not m:
+    print('FAIL: JSON-LD ausente')
+    sys.exit(1)
+try:
+    obj = json.loads(m.group(1))
+except Exception as e:
+    print(f'FAIL: JSON-LD nao parseia: {e}')
+    sys.exit(1)
+graph = obj.get('@graph', [obj])
+types = [item.get('@type') for item in graph]
+print('OK', types)
+"
+```
+
+Validar tambem que `Organization.url` bate com `brand/{marca}/brand-manifest.json#regions.{regiao}.home` e que `Organization.sameAs[]` inclui o Instagram regional + LinkedIn da marca. Se nao bate, CRITICO — alguem hardcodou URL no HTML em vez de ler do manifest.
+
+### 3.7.c Multi-idioma (GUIDELINES §16)
+
+Detectar LPs irmas (mesma marca, slug-base + sufixo `-es`/`-pt`):
+
+```bash
+SLUG_BASE=$(echo "{slug}" | sed -E 's/-(es|pt)$//')
+SIBLINGS=$(ls landing-pages/{marca}/ | grep -E "^${SLUG_BASE}(-es|-pt)?$")
+SIBLING_COUNT=$(echo "$SIBLINGS" | wc -l)
+```
+
+| Cenario | hreflang esperado | Severidade se falta |
+|---|---|---|
+| LP unica (sem irmas) | apenas `canonical` proprio, sem hreflang | OK omitir hreflang |
+| LP com 1+ irmas | `<link rel="alternate" hreflang>` para cada irma + `x-default` | CRITICO se ausente |
+
+Validar:
+
+```bash
+HREFLANG_COUNT=$(grep -c '<link rel="alternate" hreflang=' "$HTML")
+# Esperado: == SIBLING_COUNT + 1 (x-default)
+```
+
+Codigo de hreflang da LP atual deve bater com `regions.{regiao}.hreflang` do manifest (`pt-BR`, `es-419`, `pt-PT`). `es-LA` ou `es-LATAM` sao INVALIDOS — abortar com critico "codigo hreflang nao reconhecido pelo Google".
+
+### 3.7.d Logo regional (GUIDELINES §17)
+
+```bash
+# Logo navbar+footer NAO pode ter href="/" — precisa apontar pra home regional
+BAD_LOGO=$(grep -E 'class="(navbar|footer)__logo"[^>]*href="/"' "$HTML" | wc -l)
+# Esperado: 0
+```
+
+Se BAD_LOGO > 0, CRITICO. Fix: substituir `href="/"` por `href="{regions.{regiao}.home}"` + adicionar `target="_blank" rel="noopener"`.
+
+Validar tambem que a URL no href bate com o manifest (defesa contra hardcode):
+
+```bash
+grep -oE 'class="navbar__logo"[^>]*href="[^"]*"' "$HTML"
+# A URL deve == manifest.regions.{regiao}.home
+```
+
+### 3.7.e OG image (GUIDELINES §18)
+
+```bash
+OG_IMAGE_URL=$(grep -oE '<meta property="og:image" content="[^"]*"' "$HTML" | head -1 | sed 's/.*content="\([^"]*\)".*/\1/')
+OG_IMAGE_FILE_SOURCE="landing-pages/{marca}/{slug}/assets/og-image.png"
+
+# Check 1: og:image e URL absoluta com https://
+echo "$OG_IMAGE_URL" | grep -qE '^https://' || echo "CRITICO: og:image nao e URL absoluta"
+
+# Check 2: arquivo existe no source
+test -f "$OG_IMAGE_FILE_SOURCE" || echo "CRITICO: og-image.png ausente em $OG_IMAGE_FILE_SOURCE"
+
+# Check 3: dimensoes 1200x630
+python -c "
+from PIL import Image
+im = Image.open('$OG_IMAGE_FILE_SOURCE')
+if im.size != (1200, 630):
+    print(f'CRITICO: og-image.png tem {im.size}, esperado (1200, 630)')
+"
+```
+
+### Registrar achados
+
+Adicionar todos os criticos de SEO/hreflang/logo/OG no bucket principal de criticos para aplicacao no Passo 4. Formato sugerido:
+
+```
+- SEO-MISSING: meta description ausente — adicionar derivando da copy (~155 chars, localizada para {regiao})
+- SEO-JSONLD-BROKEN: JSON-LD nao parseia — erro em linha N
+- SEO-ORG-URL-MISMATCH: Organization.url hardcoded ({url-encontrada}), deveria ser {manifest.regions.{regiao}.home}
+- I18N-HREFLANG-MISSING: 3 LPs irmas detectadas (mcp, mcp-es, mcp-pt) mas 0 hreflang no HTML — adicionar bloco
+- I18N-HREFLANG-INVALID: hreflang="es-LA" nao e codigo valido — usar "es-419"
+- LOGO-BAD-HREF: navbar logo aponta para "/" (linha 977) — trocar para "{manifest.regions.{regiao}.home}" + target=_blank
+- OG-IMAGE-MISSING: og:image referenciado mas arquivo nao existe em landing-pages/{marca}/{slug}/assets/og-image.png
+- OG-IMAGE-DIMENSIONS: og-image.png tem (1024, 512), esperado (1200, 630)
 ```
 
 ## Passo 4: Aplicar Criticos

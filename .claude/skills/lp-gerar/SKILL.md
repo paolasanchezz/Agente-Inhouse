@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.5.0
+version: 1.6.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -45,6 +45,37 @@ Leia, na ordem:
 Cascata de regiao + resolucao do GTM ID seguem `landing-pages/CONTEXT.md` §5.1 (fonte canonica). lp-gerar pula o passo 2 da cascata (HTML ainda nao existe — sem `<html lang>` para ler) e cai direto pro fallback `brasil` se o slug nao tiver sufixo.
 
 Se `expected_gtm_id == null` apos cascata, omitir GTM (anotar em README que GTM nao foi injetado).
+
+### Resolver dados SEO da regiao (v1.6.0)
+
+Apos resolver a regiao, ler de `brand/{marca}/brand-manifest.json`:
+
+| Campo | Uso no HTML gerado |
+|---|---|
+| `regions.{regiao}.htmlLang` | `<html lang="...">` |
+| `regions.{regiao}.hreflang` | `<link rel="alternate" hreflang="...">` da propria LP |
+| `regions.{regiao}.ogLocale` | `<meta property="og:locale" content="...">` |
+| `regions.{regiao}.home` | `href` da logo header/footer (§17 GUIDELINES) + `Organization.url` no JSON-LD |
+| `regions.{regiao}.instagram` | `Organization.sameAs[]` no JSON-LD |
+| `socials.linkedin` | `Organization.sameAs[]` no JSON-LD (mesmo valor pras 3 regioes) |
+
+Se o manifest da marca **nao tem o bloco `regions`** (manifest antigo, formato `websites`), tratar como degradacao: usar `websites.{regiao}` para `home` e omitir `instagram`/`linkedin` no JSON-LD (cair pra `Organization` sem `sameAs`). Anotar no README que o manifest da marca precisa ser migrado para o formato `regions`.
+
+### Identificar LPs irmas (para hreflang)
+
+Detectar se a LP atual faz parte de uma familia multi-idioma checando se ja existem outras LPs com mesmo slug-base + sufixo de regiao:
+
+```bash
+SLUG_BASE=$(echo "{slug}" | sed -E 's/-(es|pt)$//')
+SIBLINGS=$(ls landing-pages/{marca}/ | grep -E "^${SLUG_BASE}(-es|-pt)?$" | grep -v "^{slug}$")
+```
+
+Convencao de nomenclatura (estabelecida em 2026-05-18, sessao MCP):
+- BR (padrao): slug sem sufixo (`mcp`, `monitoramento-concorrentes-maio`)
+- LATAM/ES: sufixo `-es` (`mcp-es`)
+- PT: sufixo `-pt` (`mcp-pt`)
+
+Se houver irmas, montar bloco `hreflang` no Passo 3 (briefing). Se for unica, omitir hreflang mas manter `canonical` + bloco SEO completo.
 
 ## Passo 2: Mapear Copy para Estrutura Visual
 
@@ -89,6 +120,89 @@ Guidelines universais (obrigatorias — landing-pages/GUIDELINES.md):
     * Urgencia = fundo dark + tag cor quente rotacionada
 - §9 Copy dita estrutura — ordem e contagem dos blocos NAO podem mudar
 - §11 Form = mock <form action="#" onsubmit="event.preventDefault()"> (integracao real vira depois)
+- §15 SEO obrigatorio (bloco completo no <head> — ver instrucoes abaixo)
+- §16 Multi-idioma: hreflang + canonical (so se houver LPs irmas)
+- §17 Header/footer: logo aponta pra home regional com target=_blank rel=noopener
+- §18 OG image: 1200x630, namespace por slug em guarda-chuva
+
+BLOCO SEO OBRIGATORIO (montar conforme §15 e §16 do GUIDELINES, usando placeholders {{DOMAIN}} e {{OG_IMAGE_PATH}} que serao substituidos pela skill lp-publicar):
+
+```html
+<title>{title-localizado}</title>
+<link rel="canonical" href="https://{{DOMAIN}}/{slug}">
+{IRMAS_HREFLANG_BLOCK}
+<link rel="alternate" hreflang="x-default" href="https://{{DOMAIN}}/{slug-default}">
+
+<meta name="description" content="{descricao-localizada-150-chars}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{Marca}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{Marca}">
+<meta property="og:locale" content="{regions.{regiao}.ogLocale}">
+{IRMAS_OG_LOCALE_ALTERNATE}
+<meta property="og:url" content="https://{{DOMAIN}}/{slug}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{descricao-localizada-curta}">
+<meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{descricao-visual-da-imagem}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{descricao-localizada-curta}">
+<meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{regions.brasil.home}#organization",
+      "name": "{Marca}",
+      "url": "{regions.{regiao}.home}",
+      "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}",
+      "sameAs": [
+        "{socials.linkedin}",
+        "{regions.{regiao}.instagram}"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://{{DOMAIN}}/{slug}#webpage",
+      "name": "{title}",
+      "url": "https://{{DOMAIN}}/{slug}",
+      "inLanguage": "{regions.{regiao}.hreflang}",
+      "isPartOf": { "@id": "{regions.brasil.home}#organization" },
+      "description": "{descricao}"
+    },
+    {
+      "@type": "{tipo-conforme-natureza-da-LP}",
+      "name": "{nome-do-produto-ou-evento}",
+      "url": "https://{{DOMAIN}}/{slug}",
+      "description": "...",
+      "inLanguage": "{regions.{regiao}.hreflang}",
+      "publisher": { "@id": "{regions.brasil.home}#organization" }
+    }
+  ]
+}
+</script>
+```
+
+Regras de preenchimento do bloco SEO:
+- {descricao-localizada-150-chars}: sintetize a oferta sem espelhar o <h1>. Linguagem nativa do idioma da regiao. 150-160 chars maximo.
+- {descricao-localizada-curta}: versao mais curta (~130 chars) para og:description e twitter:description, ja que aparece em previews truncados.
+- {IRMAS_HREFLANG_BLOCK}: se houver LPs irmas, gerar uma linha <link rel="alternate" hreflang="..."> por cada (BR/LATAM/PT). Se for LP unica, omitir esse bloco.
+- {IRMAS_OG_LOCALE_ALTERNATE}: idem, mas em <meta property="og:locale:alternate"> com o ogLocale das outras regioes.
+- {tipo-conforme-natureza-da-LP}: SoftwareApplication para LP de produto, Event para LP de webinar/evento, Article para conteudo editorial. Se incerto, usar SoftwareApplication.
+- {{BRAND_LOGO_PNG_PATH}}: caminho do logo PNG que sera servido apos lp-publicar. Em solo = `assets/logos/logo-primary.png`. Em guarda-chuva = `assets/{marca}/logos/logo-primary.png`. lp-publicar resolve.
+
+REGRA HEADER/FOOTER LOGO (§17 GUIDELINES, OBRIGATORIO):
+- href da logo nao pode ser "/" — usa {regions.{regiao}.home} do brand-manifest.
+- Sempre target="_blank" rel="noopener".
+- aria-label localizado por idioma (PT-BR/PT-PT: "pagina inicial"; ES: "pagina principal").
 
 REGRA DE FIDELIDADE DA COPY (CRITICA — vale mais que qualquer escolha estetica):
 
@@ -141,7 +255,7 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 
 ### 4.1 Checklist tecnico
 
-- [ ] `<!doctype html>` + `<html lang="{idioma-marca}">`
+- [ ] `<!doctype html>` + `<html lang="{regions.{regiao}.htmlLang}">`
 - [ ] `<meta name="viewport" content="width=device-width, initial-scale=1">`
 - [ ] `<title>` preenchido (nao contem `[REVISADO]`, `[TESTE]`, nem placeholders)
 - [ ] GTM injetado (se `{GTM_ID}` != null): `<script>` no `<head>` apos viewport **e** `<noscript>` apos `<body>`. ID correto em ambos os blocos.
@@ -150,6 +264,38 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 - [ ] Numero de itens em cada secao bate com a copy (GUIDELINES §9)
 - [ ] Nenhum emoji decorativo injetado que nao estava na copy
 - [ ] **Reveal-on-scroll com fallback robusto se JS quebrar.** Se houver classe `.reveal` com `opacity:0`, deve haver `<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>` no `<head>` (ou esquema equivalente: `.no-js` + remocao via JS). So o `@media (prefers-reduced-motion: reduce)` nao basta — protege apenas usuarios com reduced motion, nao o caso geral de JS bloqueado/falhado.
+
+### 4.1.1 Checklist SEO (v1.6.0, GUIDELINES §15-§18)
+
+- [ ] `<link rel="canonical" href="https://{{DOMAIN}}/{slug}">` presente
+- [ ] `<meta name="description" content="...">` preenchido e localizado (nao copia/cola do BR em LP de outro idioma)
+- [ ] `<meta name="robots" content="index, follow">` presente
+- [ ] >= 8 tags `<meta property="og:` (type, site_name, locale, url, title, description, image, image:width, image:height, image:alt)
+- [ ] >= 4 tags `<meta name="twitter:` (card, title, description, image)
+- [ ] `og:image` e `twitter:image` apontam para `https://{{DOMAIN}}/{{OG_IMAGE_PATH}}` (URLs absolutas com placeholder)
+- [ ] `og:locale` = `{regions.{regiao}.ogLocale}`
+- [ ] JSON-LD presente em `<script type="application/ld+json">` e parseia (`python -c "import json; json.load(open(...))"` valido)
+- [ ] JSON-LD `Organization.url` = `{regions.{regiao}.home}` do manifest
+- [ ] JSON-LD `Organization.sameAs[]` inclui LinkedIn + Instagram regional
+- [ ] **Se houver LPs irmas (multi-idioma):** todas as variantes listadas em `<link rel="alternate" hreflang="...">` + `x-default`
+- [ ] **Se houver LPs irmas:** `<meta property="og:locale:alternate">` para cada idioma alternativo
+
+### 4.1.2 Checklist Header/Footer regional (v1.6.0, GUIDELINES §17)
+
+- [ ] Logo navbar tem `href="{regions.{regiao}.home}"` (NAO `href="/"`)
+- [ ] Logo footer tem `href="{regions.{regiao}.home}"` (NAO `href="/"`)
+- [ ] Ambos tem `target="_blank" rel="noopener"`
+- [ ] `aria-label` localizado por idioma
+
+### 4.1.3 Sinalizar OG image pendente
+
+A OG image (1200x630 PNG) **nao e gerada pela lp-gerar** — e binary, e a frontend-design gera apenas HTML. Anotar no README do Passo 5: "Gerar OG image antes de publicar — template em `.claude/skills/lp-gerar/og-template.html` + Chrome headless. Path final: `landing-pages/{marca}/{slug}/assets/og-image.png`."
+
+Se a sessao atual ja produziu OG image (raro nesta fase), confirmar dimensoes:
+```bash
+python -c "from PIL import Image; print(Image.open('landing-pages/{marca}/{slug}/assets/og-image.png').size)"
+# espera (1200, 630)
+```
 
 ### 4.2 Auditoria de fidelidade da copy (CRITICO)
 

@@ -1,9 +1,9 @@
 ---
 name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
-argument-hint: "[marca] [slug] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com"
+argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.5.1
+version: 3.6.0
 ---
 
 # Skill: Publicar Landing Page
@@ -33,8 +33,49 @@ Parsing de `$ARGUMENTS`:
 | Argumento | Valores | Obrigatorio |
 |---|---|---|
 | `marca` | `buzzmonitor` \| `buzzcreators` \| `cxpress` \| `elife` | Sim |
-| `slug` | kebab-case | Sim |
+| `slug` | kebab-case unico OU multiplos slugs em CSV (`mcp,mcp-es,mcp-pt`) — ver "Modo batch" abaixo | Sim |
 | `dominio` | FQDN (ex: `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.cxpress.io`, `webinar.buzzmonitor.com`) | Nao |
+
+### Modo batch (v3.6.0)
+
+Quando `slug` contem virgula, a skill entra em **modo batch**: publica N LPs irmas no mesmo guarda-chuva em **1 unico deploy**. Cenario tipico: familia multi-idioma (`mcp`, `mcp-es`, `mcp-pt`) que precisa ir pro live junta — sem isso, deployar uma de cada vez gera 3 entradas no historico Vercel + 3 syncs redundantes + janela em que so 1 das 3 esta atualizada.
+
+```bash
+# Detectar modo batch
+if echo "$slug" | grep -q ','; then
+  MODE_BATCH=true
+  SLUGS=$(echo "$slug" | tr ',' '\n' | sed 's/^ *//;s/ *$//')   # array de slugs
+  SLUG_COUNT=$(echo "$SLUGS" | wc -l)
+else
+  MODE_BATCH=false
+  SLUGS="$slug"
+  SLUG_COUNT=1
+fi
+```
+
+**Quais passos rodam N vezes vs 1 vez em modo batch:**
+
+| Passo | Quantas vezes em batch |
+|---|---|
+| 0.1, 0.5.a-c (pre-flight, deteccao de modo) | 1x |
+| 0.5.d sync via Vercel API | **1x** (mesma sibling baixa o live inteiro uma vez) |
+| 1.0 drift-check pre-overwrite | **Nx** (1 por slug) |
+| 1.1-1.5 copy + assets + rewrite + grep VAZOU | **Nx** (1 por slug) |
+| 1.6 CSP drift-check | 1x |
+| 2.1-2.3 validacao isolamento | 1x |
+| 2.4 baseline vizinhas | 1x (vizinhas = LPs no sibling que NAO estao em SLUGS) |
+| 3.2 deploy | **1x** (1 entry no historico Vercel) |
+| 3.4 smoke test | 1x (loop sobre SLUGS + baseline) |
+| 5.1-5.4 PageSpeed + headers + GTM + cert | **Nx** (1 por slug) |
+| 6 relatorio Notion | 1 relatorio agregado das N LPs |
+
+**Restricoes:**
+
+- Modo batch so faz sentido em **guarda-chuva** (todas as LPs no mesmo dominio). Em solo, batch nao se aplica — cada LP teria projeto Vercel proprio. Se `MODE_BATCH=true` e Passo 0.5.b detecta `solo`, abortar com: "Modo batch requer guarda-chuva (dominio compartilhado). Slugs detectados: $SLUGS. Sem dominio fornecido ou dominio nao atribuido — rode `/lp-publicar {marca} {slug-individual}` para cada um."
+- Todos os slugs no batch devem ser da MESMA marca. Misturar (`buzzmonitor/mcp,cxpress/playbook`) nao e suportado.
+- Se algum slug do batch nao tem fonte em `landing-pages/{marca}/{slug}/index.html`, abortar antes de iniciar — listar todos os ausentes.
+
+**Historico:** convencao estabelecida em 2026-05-18 (sessao MCP `material.buzzmonitor.com`). 3 LPs irmas publicadas em 1 deploy via fluxo manual da skill — virou suporte nativo na v3.6.0.
 
 ### 0.1 Resolver `SIBLING_BASE`
 
@@ -537,6 +578,37 @@ Se `disco-origem` não existe, PARE com erro: `asset referenciado em linha {N} m
 
 **Não** usar `cp -r brand/{marca}/` cego — copiaria assets não-usados.
 
+### 1.4.1 Caso especial: OG image (v3.6.0, GUIDELINES §18)
+
+`og-image.png` (LP-local em `landing-pages/{marca}/{slug}/assets/og-image.png`) **NAO** segue a heuristica de grep do 1.3 — ela e referenciada via URL absoluta no `<meta property="og:image" content="https://...">`, nao via `src`/`href` relativo. Tratar manualmente:
+
+| Modo | Source | Destino na sibling | Renomear? |
+|---|---|---|---|
+| **solo** | `landing-pages/{marca}/{slug}/assets/og-image.png` | `{sibling}/assets/og-image.png` | nao (nome unico no projeto solo) |
+| **guarda-chuva** | `landing-pages/{marca}/{slug}/assets/og-image.png` | `{sibling}/assets/{marca}/og-{slug}.png` | **sim** — sufixo de slug evita colisao com LPs irmas |
+
+```bash
+SRC_OG="landing-pages/{marca}/{slug}/assets/og-image.png"
+if [ -f "$SRC_OG" ]; then
+  if [ "$MODE" = "guarda-chuva" ]; then
+    DST_OG="{sibling}/assets/{marca}/og-{slug}.png"
+  else
+    DST_OG="{sibling}/assets/og-image.png"
+  fi
+  mkdir -p "$(dirname "$DST_OG")"
+  cp "$SRC_OG" "$DST_OG"
+fi
+```
+
+**Logo PNG da marca (para JSON-LD)**: alem dos SVGs ja copiados via grep do 1.4, garantir que `logo-primary.png` tambem esta na sibling — JSON-LD `Organization.logo` aponta para esse arquivo via URL absoluta, e a heuristica do grep nao pega (referencia esta dentro de `<script type="application/ld+json">`, nao em atributo). Mesma logica de namespace:
+
+| Modo | Source | Destino |
+|---|---|---|
+| **solo** | `brand/{marca}/assets/logos/logo-primary.png` | `{sibling}/assets/logos/logo-primary.png` |
+| **guarda-chuva** | `brand/{marca}/assets/logos/logo-primary.png` | `{sibling}/assets/{marca}/logos/logo-primary.png` |
+
+**Historico:** 2026-05-18 (sessao MCP) — JSON-LD novo referenciou `logo-primary.png` mas o sync trouxe apenas o `.svg` (do live anterior, sem JSON-LD). Resultado: `Organization.logo` apontava pra URL com 404 ate copiar manualmente. Convencao agora explicita.
+
 ### 1.5 Reescrever paths no HTML copiado
 
 No `{sibling}/{slug}/index.html`, substituir todos para absoluto:
@@ -553,6 +625,45 @@ No `{sibling}/{slug}/index.html`, substituir todos para absoluto:
 - (`/assets/{marca}/X` ja absoluto: nao reescreve)
 
 Use `Edit` com `replace_all: true`.
+
+#### Substituir placeholders SEO (v3.6.0)
+
+`lp-gerar` produz HTML com placeholders absolutos para URLs SEO que so podem ser resolvidos no momento do deploy (porque dependem do `{dominio}`):
+
+| Placeholder | Substituir por (solo) | Substituir por (guarda-chuva) |
+|---|---|---|
+| `{{DOMAIN}}` | `{dominio}` (ou `.vercel.app` se solo sem dominio) | `{dominio}` |
+| `{{OG_IMAGE_PATH}}` | `assets/og-image.png` | `assets/{marca}/og-{slug}.png` |
+| `{{BRAND_LOGO_PNG_PATH}}` | `assets/logos/logo-primary.png` | `assets/{marca}/logos/logo-primary.png` |
+
+```bash
+# Resolver dominio (em batch, todas as LPs compartilham o mesmo dominio do guarda-chuva)
+EFFECTIVE_DOMAIN="$dominio"
+[ -z "$EFFECTIVE_DOMAIN" ] && EFFECTIVE_DOMAIN="$VERCEL_FALLBACK_DOMAIN"  # vindo do output do deploy em solo
+
+# Substituir
+if [ "$MODE" = "guarda-chuva" ]; then
+  OG_PATH="assets/{marca}/og-{slug}.png"
+  LOGO_PATH="assets/{marca}/logos/logo-primary.png"
+else
+  OG_PATH="assets/og-image.png"
+  LOGO_PATH="assets/logos/logo-primary.png"
+fi
+
+sed -i \
+  -e "s|{{DOMAIN}}|$EFFECTIVE_DOMAIN|g" \
+  -e "s|{{OG_IMAGE_PATH}}|$OG_PATH|g" \
+  -e "s|{{BRAND_LOGO_PNG_PATH}}|$LOGO_PATH|g" \
+  "{sibling}/{slug}/index.html"
+```
+
+**Verificacao obrigatoria pos-substituicao:**
+
+```bash
+grep -nE '\{\{(DOMAIN|OG_IMAGE_PATH|BRAND_LOGO_PNG_PATH|[A-Z_]+)\}\}' "{sibling}/{slug}/index.html" && echo "PLACEHOLDER NAO RESOLVIDO"
+```
+
+Se aparecer qualquer placeholder `{{...}}` sobrando, PARE — alguem (lp-gerar futuro ou hotfix manual) adicionou placeholder novo nao previsto aqui. Adicionar ao mapeamento acima ou tratar manualmente.
 
 **Verificação obrigatória pós-rewrite** — grep no HTML do sibling:
 

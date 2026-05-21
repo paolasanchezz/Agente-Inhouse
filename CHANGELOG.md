@@ -12,6 +12,125 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## brand/buzzmonitor
+### 2026-05-21 — Buzzmonitor: `websites` → `regions` (com Instagram, htmlLang, hreflang, ogLocale) + `socials.linkedin`
+
+Refatoração estrutural do `brand-manifest.json` para suportar geração SEO localizada. O bloco antigo `websites: {brasil, latam, portugal}` virou `regions: {brasil, latam, portugal}.{home, instagram, htmlLang, hreflang, ogLocale}` + `socials.linkedin` único. As home URLs foram corrigidas:
+
+- BR: `https://buzzmonitor.com.br` → `https://buzzmonitor.com/`
+- LATAM: `https://buzzmonitor.com/` → `https://getbuzzmonitor.com/es/`
+- PT: `https://buzzmonitor.com/` → `https://getbuzzmonitor.com/pt/`
+
+Instagram por região: `buzzmonitorbr`, `getbuzzmonitor.es`, `buzzmonitor.pt`. LinkedIn global: `linkedin.com/company/buzzmonitor`. Esses dados são consumidos por `lp-gerar` (bloco SEO + JSON-LD + logo header/footer) e `lp-revisar` (validação).
+
+Outras marcas (cxpress, buzzcreators, elife) ainda usam o formato antigo `websites` — migrar caso a caso quando precisar de SEO localizado.
+
+---
+
+## landing-pages/GUIDELINES.md
+### 2026-05-21 — §15-§18 novos: SEO obrigatório, hreflang, logo regional, OG image
+
+Quatro seções novas codificam padrões descobertos na sessão MCP (`material.buzzmonitor.com/mcp`, `/mcp-es`, `/mcp-pt`):
+
+- **§15 SEO obrigatório** — pacote completo no `<head>`: meta description + robots + 8 OG tags + 4 Twitter Card + JSON-LD (Organization + WebPage + SoftwareApplication/Article/Event). Inclui templates, regras de URL absoluta vs relativa, regras de encoding e comandos de validação local (grep counts + parse JSON-LD).
+- **§16 hreflang + canonical** — quando há LPs irmãs multi-idioma, cada uma lista todas as variantes + `x-default`; cada LP tem `canonical` próprio (não para o default). Códigos válidos: `pt-BR`, `pt-PT`, `es-419`. Inválidos: `es-LA`, `pt-LATAM`.
+- **§17 Logo header/footer regional** — `href` aponta para `regions.{regiao}.home` do manifest (NÃO `/`), com `target="_blank" rel="noopener"`. Justificativa: em guarda-chuva `/` resolve para raiz do domínio sem LP (link quebrado).
+- **§18 OG image 1200×630** — geração via template HTML + Chrome headless. Convenção de path: solo `assets/og-image.png`, guarda-chuva `assets/{marca}/og-{slug}.png` (sufixo de slug evita colisão entre LPs irmãs no mesmo namespace de marca).
+
+---
+
+## lp-gerar
+### 2026-05-21 — v1.6.0: gerar bloco SEO completo + ler `regions` do manifest
+
+Passo 0.1 e 0.2 novos para ler `brand/{marca}/brand-manifest.json#regions.{regiao}` + `#socials.linkedin` e identificar LPs irmãs (multi-idioma). Briefing do Passo 3 expandido para instruir `frontend-design` a gerar o bloco SEO completo conforme GUIDELINES §15-§17, usando placeholders `{{DOMAIN}}` / `{{OG_IMAGE_PATH}}` / `{{BRAND_LOGO_PNG_PATH}}` que `lp-publicar` resolve no deploy.
+
+Novas validações no Passo 4:
+- 4.1.1 — checklist SEO (1 description, ≥8 og, ≥4 twitter, JSON-LD parseia, canonical presente)
+- 4.1.2 — checklist header/footer regional (href = manifest.home, target=_blank, aria-label localizado)
+- 4.1.3 — sinalizar OG image pendente no README
+
+Fallback documentado para marcas com manifest antigo (formato `websites`): cair pra `Organization` sem `sameAs` e anotar migração pendente.
+
+---
+
+## lp-revisar
+### 2026-05-21 — v1.5.0: Passo 3.7 — auditoria SEO + multi-idioma + logo regional + OG image
+
+Novo Passo 3.7 trata vazamentos SEO como CRÍTICOS (mesma prioridade de GTM e fidelidade de copy). Subpassos:
+
+- **3.7.a** — counts de meta description, robots, og:, twitter:, JSON-LD, canonical (thresholds por GUIDELINES §15).
+- **3.7.b** — JSON-LD parseia e `Organization.url` + `sameAs[]` batem com `brand/{marca}/brand-manifest.json#regions.{regiao}`. Detecta URL hardcoded.
+- **3.7.c** — multi-idioma: detecta LPs irmãs por sufixo de slug (`-es`/`-pt`), exige hreflang completo + `x-default`, rejeita códigos inválidos (`es-LA`, `pt-LATAM`).
+- **3.7.d** — logo regional: zero `href="/"` em `navbar__logo`/`footer__logo`; URL deve bater com manifest.
+- **3.7.e** — OG image: URL absoluta, arquivo existe no source, dimensões 1200×630 (validado com PIL).
+
+Cada achado vai pro bucket de críticos com formato `SEO-MISSING:`, `I18N-HREFLANG-MISSING:`, `LOGO-BAD-HREF:`, `OG-IMAGE-DIMENSIONS:`, etc.
+
+---
+
+## lp-publicar
+### 2026-05-21 — v3.6.0: modo batch (CSV de slugs) + namespace OG image + substituição de placeholders SEO
+
+Suporte nativo a publicar N LPs irmãs num único deploy (`/lp-publicar buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com`). Motivação: sessão MCP de 2026-05-18 fez essa orquestração manualmente (3 LPs em 1 deploy), o padrão virou primitiva.
+
+**Modo batch (só em guarda-chuva):** sync 1×, drift-check N×, copy+rewrite N×, deploy 1×, smoke test 1× cobrindo os N alvos + vizinhas. Tabela detalhada no Passo 0 documenta quais passos rodam 1× vs N×.
+
+**Convenção OG image (Passo 1.4.1 novo):**
+- solo: `landing-pages/{marca}/{slug}/assets/og-image.png` → `{sibling}/assets/og-image.png`
+- guarda-chuva: `landing-pages/{marca}/{slug}/assets/og-image.png` → `{sibling}/assets/{marca}/og-{slug}.png` (com rename — sufixo de slug evita colisão entre LPs irmãs).
+
+`logo-primary.png` também é copiado explicitamente (JSON-LD `Organization.logo` referencia ele via URL absoluta — heurística de grep não pega referência dentro de `<script type="application/ld+json">`).
+
+**Substituição de placeholders SEO (Passo 1.5):** `{{DOMAIN}}`, `{{OG_IMAGE_PATH}}`, `{{BRAND_LOGO_PNG_PATH}}` são resolvidos com base no modo (solo/guarda-chuva) + domínio efetivo. Verificação obrigatória pós-substituição: grep procura qualquer `{{...}}` sobrando — se aparecer, abortar.
+
+Restrições do batch: todos slugs mesma marca, todos com fonte em `landing-pages/{marca}/{slug}/`, modo guarda-chuva obrigatório.
+
+---
+
+## bunzzai
+### 2026-05-19 — v1.0.0 nova: análise de tendências via MCP Bunzzai (snapshots cumulativos)
+
+Skill nova `/bunzzai` que espelha o `/meta-ads-trends` mas usando o MCP do Bunzzai como fonte. Aceita apenas contas Buzzmonitor e Cxpress (mesma lista do `/meta-ads`), faz drill-down `Conta → Campanha → Adset → Ad`, calcula janelas 7d/15d/30d via **diff de snapshots cumulativos** (não dados diários como a Meta API), aplica diagnóstico cruzado (CpL × CTR × Conv. LP) e detecta `cron travado` (snapshots consecutivos idênticos indicando que o coletor do Bunzzai parou de atualizar).
+
+Características chave:
+
+- **Fonte alternativa, mesma cobertura** — Buzzmonitor + Cxpress nas 3 moedas (BRL/USD/EUR). Útil para cross-check quando o token Meta expirou, validação cruzada, ou auditoria do cron Bunzzai.
+- **Diff de snapshots** — `janela(X dias) = snapshot(ontem) − snapshot(ontem − X dias)`. Reconstitui agregados sem precisar de cache local. Validado pelo `stress_test_bunzzai.py` (2026-05-19).
+- **Detecção de cron travado** — se 2+ snapshots consecutivos têm acumulado idêntico, badge `[CRON TRAVADO: N dias congelados desde YYYY-MM-DD]` aparece ao lado do ad afetado. Janela 7d contaminada vira `N/A` e o diagnóstico usa 15d como recente.
+- **Benchmarks reaproveitados** — `meta-ads/data/benchmarks.json` (mesmos thresholds CpL/CTR/Conv.LP por moeda × tipo de campanha). CONTEXT.md alerta para a inflação esperada (Bunzzai conta cliques totais e conversões amplas, então CTR vem maior e CpL menor que os benchmarks calibrados em link_clicks + leads custom — sugerir cross-check com `/meta-ads-trends` quando a decisão de budget passar de R$ 1.000).
+- **Sem setup local** — zero arquivos Python novos, zero SQLite. Tudo via tools `mcp__bunzzai__tool_find_company`, `list_campaigns`, `list_campaign_ads`, `tool_get_ad_performance`. Python embed inline só para o diff e classificação de tendência.
+- **Publicação no Notion** — chave `entregas` em `conhecimento/config/notion-ids.md`.
+
+Arquivos:
+- `.claude/skills/bunzzai/SKILL.md` (skill principal — fluxo de 9 passos)
+- `.claude/skills/bunzzai/CONTEXT.md` (contas válidas, diferenças métricas Bunzzai vs Meta API, matriz de diagnóstico)
+- `CLAUDE.md` (nova seção "Bunzzai (fonte alternativa via MCP — SOMENTE LEITURA)")
+- `conhecimento/config/notion-ids.md` (adicionado `bunzzai` aos consumers de `entregas`)
+
+---
+
+## meta-ads-fetch
+### 2026-05-19 — v1.1.0 fix: auto-popular tabela `ads` antes da coleta nível ad
+
+Corrigido bug silencioso onde `fetch_insights.py --include-ads` salvava `leads = 0` para todos os ads de campanhas com pixel custom (`offsite_conversion.custom.*`) quando a tabela `ads` do banco estava vazia ou parcial. Sem ela, `get_ad_campaign_map()` retornava `{}`, `ad_indicators` ficava vazio, e `extract_primary_conversions` caía em fallback (`extract_leads`) que procura apenas `lead` ou `offsite_conversion.fb_pixel_lead` — não acertando o pixel custom da campanha.
+
+A coleta seguia sem erro, gerando dados aparentemente válidos mas com leads zerados — o pior tipo de bug, pois quem usasse `meta-ads-trends` ou `meta-ads-report` tomaria decisão de budget em cima de dados falsos.
+
+Fix:
+
+- **Auto-populate em `fetch_all_insights`** quando `include_ads=True`: chama `fetch_campaigns.fetch_all(include_ads=True)` automaticamente se detectar que a tabela `ads` precisa atualização. Três gatilhos: (a) tabela vazia para a conta; (b) campanhas com `results_indicator` custom sem nenhum ad mapeado; (c) último fetch da estrutura há mais de 24h.
+- **Validação final** após carregar `ad_indicators`: imprime AVISO claro se ainda houver campanhas com indicator custom sem ads mapeados (caso de campanhas pausadas há +30d, fora da janela de fetch_campaigns). Não aborta — coleta segue nos demais níveis.
+- **3 helpers novos em `cache_manager.py`**: `count_ads_for_account`, `count_adsets_for_account`, `adsets_in_campaigns_with_indicator`.
+
+Reproduzido durante stress test de comparação com Bunzzai MCP (2026-05-19) para a campanha Webinar-Analise-Preditiva (buzzmonitor_brl). Após o fix, todos os 6 ads da campanha tem leads > 0; antes do fix, todos tinham leads = 0.
+
+Arquivos:
+- `meta-ads/scripts/fetch_insights.py` (`_ads_table_is_stale`, `_ensure_ads_populated`, chamada em `fetch_all_insights`, validação final)
+- `meta-ads/scripts/cache_manager.py` (3 helpers novos)
+- `.claude/skills/meta-ads-fetch/SKILL.md` (seção nova "Coleta nível ad — pré-requisito automático")
+
+---
+
 ## social-plan
 ### 2026-05-19 — v1.0.0 nova: planejamento editorial mensal de redes sociais Buzzmonitor
 

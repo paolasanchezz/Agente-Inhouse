@@ -163,6 +163,156 @@ Aplica-se a qualquer `<img>` filho de grid item — não só mascote. Mesma arma
 
 Histórico: 2026-05-11, LP `analise-preditiva-maio-2026` (Buzzmonitor) reportada pelo Victor com mascote oversized cobrindo a seção `.speakers` no iPhone. Mesmo padrão presente em `monitoramento-concorrentes-maio-2026-pt` e `social-listening-mayo-2026-latam` (todas Buzzmonitor, todas com mascot.png 810×1080). Fix aplicada nas 3 e documentada aqui.
 
+## 15. SEO obrigatório — pacote completo no `<head>`
+
+Toda LP **tem que ter** o pacote SEO completo. Não é opcional. Without `meta description` Google usa o primeiro parágrafo aleatório; sem `og:image` o WhatsApp/LinkedIn renderizam o logo do navbar minúsculo; sem JSON-LD a marca não aparece em rich results.
+
+**Obrigatórios:**
+
+```html
+<!-- 1. Descrição (~150-160 chars, copy localizada por idioma) -->
+<meta name="description" content="...">
+<meta name="robots" content="index, follow">
+
+<!-- 2. Open Graph (mínimo 8 tags) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{Marca}">
+<meta property="og:locale" content="{pt_BR | es_LA | pt_PT}">
+<meta property="og:url" content="https://{dominio}/{slug}">
+<meta property="og:title" content="{título da LP — pode ser igual ao <title>}">
+<meta property="og:description" content="{descrição curta — 150 chars}">
+<meta property="og:image" content="https://{dominio}/assets/{marca}/og-{slug}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{descrição da imagem}">
+
+<!-- 3. Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="...">
+<meta name="twitter:description" content="...">
+<meta name="twitter:image" content="{mesma URL de og:image}">
+
+<!-- 4. JSON-LD (Organization + WebPage + SoftwareApplication/Article/Event conforme natureza da LP) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "{home-da-marca}#organization", "name": "{Marca}", "url": "{home-regional-da-marca}", "logo": "https://{dominio}/assets/{marca}/logos/logo-primary.png", "sameAs": ["{linkedin}", "{instagram-regional}"] },
+    { "@type": "WebPage", "@id": "https://{dominio}/{slug}#webpage", "url": "https://{dominio}/{slug}", "name": "{<title>}", "inLanguage": "{pt-BR | es-419 | pt-PT}", "isPartOf": { "@id": "{home-da-marca}#organization" }, "description": "..." },
+    { "@type": "{SoftwareApplication | Article | Event ...}", "name": "...", "url": "...", "inLanguage": "...", "publisher": { "@id": "{home-da-marca}#organization" } }
+  ]
+}
+</script>
+```
+
+**Regras:**
+
+- `og:image` precisa ser **URL absoluta** (não relativa) — Facebook/LinkedIn não resolvem relativa. Mesma regra para `twitter:image` e logos em JSON-LD.
+- `og:image` deve apontar para arquivo `.png` ou `.jpg` que **existe** no domínio (`curl -I` retorna 200). Sem isso o preview some.
+- `meta description` tem que ser **única por idioma** — não duplicar a copy do BR no PT/ES. Sintaxe nativa importa.
+- JSON-LD: o objeto `Organization` referencia `home-regional-da-marca`, `sameAs` lista LinkedIn global + Instagram da região, `logo` aponta para PNG absoluto. Source de verdade é o `brand/{marca}/brand-manifest.json` (campos `regions.{regiao}.home`, `regions.{regiao}.instagram`, `socials.linkedin`).
+- O `<title>` da página NÃO deve ter sufixos de trabalho (`[REVISADO]`, `[TESTE]`, `[DRAFT]`) — `lp-publicar` remove, mas geração já deve sair limpa.
+- Encoding: usar UTF-8 literal no `content="..."` (acentos diretos). Entidades HTML (`&aacute;`) também funcionam mas misturam estilo — escolher uma.
+
+**Validação local antes de publicar:**
+
+```bash
+# 1. Counts esperados (1 description, ≥8 og, ≥4 twitter, 1 jsonld)
+grep -c 'meta name="description"' index.html  # 1
+grep -c 'meta property="og:' index.html       # >= 8
+grep -c 'meta name="twitter:' index.html      # >= 4
+grep -c 'application/ld+json' index.html      # 1
+
+# 2. JSON-LD parseia
+python -c "import re,json,sys; m=re.search(r'<script type=\"application/ld\+json\">(.*?)</script>', open('index.html').read(), re.S); json.loads(m.group(1)); print('OK')"
+```
+
+## 16. Multi-idioma — `hreflang` + `canonical`
+
+Quando a LP tem variantes em outros idiomas (ex: `mcp`, `mcp-es`, `mcp-pt`), **cada uma** das LPs precisa listar TODAS as variantes (incluindo a si mesma) via `<link rel="alternate" hreflang="...">`, mais um `x-default` apontando para a versão principal.
+
+```html
+<link rel="canonical" href="https://{dominio}/{slug-desta-LP}">
+<link rel="alternate" hreflang="pt-BR" href="https://{dominio}/{slug-br}">
+<link rel="alternate" hreflang="es-419" href="https://{dominio}/{slug-es}">
+<link rel="alternate" hreflang="pt-PT" href="https://{dominio}/{slug-pt}">
+<link rel="alternate" hreflang="x-default" href="https://{dominio}/{slug-default}">
+```
+
+**Regras:**
+
+- `x-default` é a versão **autoritativa** (geralmente a do mercado principal, ex: BR).
+- Cada LP tem `canonical` apontando para **si mesma** — não para o default. Sem isso, Google pode tratar todas as variantes como duplicadas e indexar só uma.
+- `<html lang>` deve bater com o `hreflang` da própria LP (`pt-BR` em BR, `es-419` em LATAM, `pt-PT` em PT).
+- Códigos válidos: `pt-BR`, `pt-PT`, `es-419` (latin america), `es-ES` (espanha). Inventar `es-LA` ou `pt-LATAM` quebra a validação do Google.
+- Source de verdade dos códigos: `brand/{marca}/brand-manifest.json#regions.{regiao}.{htmlLang, hreflang, ogLocale}`.
+
+## 17. Header / Footer — logo regional, abrir em nova aba
+
+Logo na navbar e footer **não** linka para `/` (página que pode não existir no guarda-chuva). Linka para a **home oficial da marca naquela região**, abrindo em nova aba para não interromper a LP.
+
+```html
+<!-- Header -->
+<a href="{home-da-regiao}" class="navbar__logo" target="_blank" rel="noopener" aria-label="{Marca}: página inicial">
+  <img src="../../brand/{marca}/assets/logos/logo-primary.svg" alt="" ...>
+</a>
+
+<!-- Footer -->
+<a href="{home-da-regiao}" class="footer__logo" target="_blank" rel="noopener" aria-label="{Marca}: página inicial">
+  <img src="../../brand/{marca}/assets/logos/logo-reversed.svg" alt="" ...>
+</a>
+```
+
+**Regras:**
+
+- `{home-da-regiao}` vem de `brand/{marca}/brand-manifest.json#regions.{regiao}.home`. Nunca hardcodar URL no HTML.
+- `target="_blank" rel="noopener"` sempre (segurança contra `window.opener` + UX: usuário não perde o scroll/form preenchido).
+- `aria-label` localizado por idioma (`página inicial` em PT, `página principal` em ES).
+
+**Por que não `href="/"`:** em guarda-chuva (`material.buzzmonitor.com/mcp`), `/` resolve para a raiz do domínio onde **não existe LP**. Logo vira link quebrado. Em solo com domínio próprio (`webinar.buzzmonitor.com`), `/` resolve para a própria LP — auto-link que não acrescenta nada. Em ambos os casos, a home da marca é o destino correto.
+
+## 18. OG image — 1200×630 com namespace por slug em guarda-chuva
+
+Cada LP **tem que ter** uma OG image dedicada (1200×630 px, PNG ou JPG, idealmente < 600 KB). Sem isso, preview no WhatsApp/LinkedIn/X usa fallback inconsistente (primeira imagem encontrada, geralmente o logo do navbar minúsculo).
+
+**Geração:** template HTML 1200×630 com brand tokens + headline localizado, renderizar com Chrome headless:
+
+```bash
+chrome --headless=new --disable-gpu --hide-scrollbars \
+  --window-size=1200,630 --virtual-time-budget=4000 \
+  --screenshot="og-{slug}.png" \
+  "file:///path/to/og-template.html?lang={br|es|pt}"
+```
+
+**Convenção de path no source (repo):**
+
+```
+landing-pages/{marca}/{slug}/assets/og-image.png
+```
+
+**Convenção de path no deploy:**
+
+| Modo | Source HTML (`og:image content=`) | Path no sibling/deploy |
+|---|---|---|
+| **solo** | `https://{dominio}/assets/og-image.png` | `{sibling}/assets/og-image.png` (copia direta de `landing-pages/{marca}/{slug}/assets/og-image.png`) |
+| **guarda-chuva** | `https://{dominio}/assets/{marca}/og-{slug}.png` | `{sibling}/assets/{marca}/og-{slug}.png` (copia com **rename**: source `og-image.png` → deploy `og-{slug}.png`) |
+
+**Por que sufixo de slug em guarda-chuva:** sem `og-{slug}.png`, três LPs irmãs (`mcp`, `mcp-es`, `mcp-pt`) com mesmo nome de arquivo (`og-image.png`) colidem em `{sibling}/assets/{marca}/og-image.png` — o último deploy sobrescreve as duas anteriores e todas as 3 LPs ficam com a OG image errada. Histórico: 2026-05-18, sessão MCP material.buzzmonitor.com — convenção estabelecida.
+
+**Validação:**
+
+```bash
+# 1. Existe no source
+test -f "landing-pages/{marca}/{slug}/assets/og-image.png" && echo OK
+
+# 2. Dimensões corretas (1200×630)
+python -c "from PIL import Image; im=Image.open('landing-pages/{marca}/{slug}/assets/og-image.png'); print(im.size)"
+# espera (1200, 630)
+
+# 3. Pós-deploy: retorna 200
+curl -I https://{dominio}/assets/{marca}/og-{slug}.png  # solo: /assets/og-image.png
+```
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.
