@@ -120,7 +120,10 @@ deals_cm AS (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM cm_whitelist)
       -- Filtro CM normal:
       OR (
-        NOT (utm_source = 'google' AND utm_medium = 'cpc')   -- exclui Google Ads
+        -- exclui Google Ads. COALESCE protege contra utm_source/medium NULL:
+        -- sem ele, `NULL = 'google'` vira NULL, `NOT NULL` vira NULL e o WHERE
+        -- descarta o lead silenciosamente (bug corrigido em 2026-05-26).
+        NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
         AND (
           utm_source IN (
             'meta','lp-agradecimento','ig','instagram','linkedin','notion','email',
@@ -524,7 +527,7 @@ Pegar top 6 em Python, agregar resto como "outros".
 ### Casos excluídos corretamente
 - **180 Seguros** (`utm_source=cs` — canal interno)
 - **modó, CULLIGAN** (`utm_source=comercial` — canal interno)
-- **NUPIXEL MARKETING** (deal anterior do account era Google Ads cpc — não há conversão CM real)
+- **NUPIXEL MARKETING** (deal anterior do account era Google Ads cpc — não há conversão CM real). Desde 2026-05-26 a exclusão é explícita via blacklist (`stella.santana@parceiros-npx.com.br`, email do contrato): o fix do bug NULL passou a aceitar o contrato (URL `report-trends-2026` + utm_source NULL), então a blacklist garante que ele continue fora.
 - **IDW ENTRETENIMENTO** (blacklist — Google Ads antes em outra ferramenta)
 - **Hypera Pharma** (conversão CM em jul/2025, fechamento em fev/2026 = 225 dias, fora dos 90)
 - **Catraca Livre, GWA, AGIS** (conversão CM antiga, fora dos 90 dias)

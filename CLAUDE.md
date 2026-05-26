@@ -190,6 +190,16 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 - `[mes]`: `junho`, `junho 2026`, `2026-06` (default: mes atual)
 - Para a copy de cada post: `/copy-criar buzzmonitor brasil [tipo] [estagio] "[tema]"`
 
+### Dashboard CM (Buzzmonitor Brasil)
+
+Dashboard interna semanal de Content Marketing — KPIs do funil de leads + fechamentos. Atualizada toda semana pelo Victor (admin). Single-purpose: nao cobre outras marcas/dashboards.
+
+| Comando | O que faz |
+|---|---|
+| `/dashboard-atualizar` | Roda gerador Python, lida com gate de regressao (fechamentos novos via chips), copia HTML pra sibling fora do repo, deploya na Vercel, valida via HTTP + Basic Auth. Manual-trigger. |
+
+Fonte: `dashboard/` (gerador Python + queries Supabase). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (fora do repo — evita PII no git). Runbook manual: `dashboard/DEPLOY.md`.
+
 ### Meta Ads (SOMENTE LEITURA)
 
 Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setup-agencia` ou veja `meta-ads/SETUP.md`.

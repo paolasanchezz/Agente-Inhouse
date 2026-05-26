@@ -12,6 +12,59 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## dashboard/queries.py + dashboard-pessoal/lib/queries.py
+### 2026-05-26 — Exclusao de deals por URL (+ opcionalmente data) (`DEALS_EXCLUIDOS_URL_DATA`)
+
+Nova estrutura pra remover deals **sem** banir o email globalmente (como faria a `EMAIL_BLACKLIST`). Cada entrada e `{url_like, datas?}` — `datas` opcional: com datas, exclui so naqueles dias; sem datas, exclui qualquer data que case a URL. O helper `_sql_exclusao_deals()` gera `NOT ((url ILIKE ... [AND cdate IN (...)]) OR ...)` injetado no topo do `filtro_cm()`.
+
+**Primeiro caso — webinar Analise Preditiva:** inscricoes em `webinar.buzzmonitor.com/analise-preditiva-maio-2026` nunca devem virar lead CM (e topo de funil — pagina de inscricao, nao oportunidade). Decisao do Victor 2026-05-26 apos investigar: a falha comecou como lote em 25/05 (34 deals) e 06/03 (19 deals), mas havia inscricoes pingadas em ~24 outros dias — todas a mesma URL. Optou-se por excluir **todas** (regra de URL sem data) em vez de so os lotes. A OFERTA (`conteudo.buzzmonitor.com.br/oferta-webinar-analise-preditiva-na-pratica`) tem URL distinta e **continua contando** (3 leads). Vantagem sobre blacklist por email: os emails voltam a contar em conversoes futuras por outras campanhas.
+
+**Impacto:** Leads CM YtD 2026 caiu de 323 (so com fix NULL) pra 255 (−68 acumulado: −34 inscricoes + dedupe de emails que so vinham do webinar). Fechamentos inalterados (7 · R$ 19.270 — nenhuma inscricao tinha fechado). Aplicado nos dois queries.py (paridade validada).
+
+### 2026-05-26 — Fix do bug NULL no filtro CM + 4 emails na blacklist
+
+**Bug:** a primeira regra do `filtro_cm()` era `NOT (utm_source = 'google' AND utm_medium = 'cpc')`. Em SQL, `NULL = 'google'` retorna `NULL`, `NOT NULL` retorna `NULL`, e `NULL` no `WHERE` descarta a linha. Resultado: **todo lead com `utm_source NULL` era silenciosamente excluido da dashboard CM**, mesmo com `url_conversao` batendo numa whitelist legitima (blog, oferta-*, gestao-de-crises, buzztalk-, etc.). 14-19 leads YtD 2026 estavam sumindo.
+
+**Fix:** `NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')`. Aplicado nos dois arquivos (oficial + pessoal) pra manter paridade. Descoberto investigando por que a LP `oferta-webinar-analise-preditiva-na-pratica` (que ja estava na whitelist via prefix `oferta-`) so contava 1 dos 3 leads.
+
+**Blacklist:** +4 emails apos o fix expor leads que nao deviam contar:
+- `stella.santana@parceiros-npx.com.br` (contrato NUPIXEL — lead original era Google CPC; mantem fech YtD em 7 · R$ 19.270)
+- `teste@teste.com` (teste)
+- `thamires.oliveira@buzzmonitor.com.br`, `albali@elife.com.br` (emails internos)
+
+**Impacto:** fechamentos YtD inalterados (7 · R$ 19.270). Leads CM YtD agora 323 (antes excluia ~16 leads NULL/CM legitimos). Doc atualizada em `dashboard/MAPEAMENTO-CAMPOS.md` §2 e §7.
+
+---
+
+## .claude/skills/dashboard-atualizar
+### 2026-05-25 — v1.0.1 — Fixes do smoke test inicial (3 bugs)
+
+Bugs descobertos rodando a skill pela primeira vez em 2026-05-25:
+
+- **§2.1 threshold**: era `> 100KB`, HTML real ~72KB → falsa-fail. Baixado pra `> 50KB`.
+- **§3.3 regex**: buscava `dpl_[a-zA-Z0-9]+` no output de `vercel ls`, mas `vercel ls` lista URLs (subdomain) — nao `dpl_id`. Trocado pra match no padrao `https://dashboard-buzzmonitor-brasil-[a-z0-9]+-elife-group\.vercel\.app`. Adicionado atalho: se `vercel deploy` ja imprimiu "Aliased", pular `vercel ls` direto.
+- **§4.3 grep data**: buscava `$TODAY` no formato ISO (`2026-05-25`), HTML do gerador escreve PT-BR (`25 Mai 2026`). Trocado pra extrair `LOCAL_DATA` no §2.2 e comparar com `REMOTE_DATA` (mesma extracao) no §4.3.
+
+### 2026-05-25 — v1.0.0 — Skill nova
+
+Encapsula o fluxo semanal de atualizacao da dashboard CM Buzzmonitor Brasil (https://dashboard-buzzmonitor-brasil.vercel.app) que antes era prosa em `dashboard/DEPLOY.md`. Manual-trigger sem args. Orquestra:
+
+- Geracao do HTML via `dashboard/gerar_relatorio.py` (consome Supabase).
+- Gate de regressao do smoke test (fechamentos novos): lista os deltas via `AskUserQuestion` com 3 chips ("Sim — atualizar e deployar" / "Atualizar mas pular deploy" / "Investigar antes — abortar"). Se aprovado, auto-patcha `EXPECTED_FECH_YTD_2026` e `EXPECTED_FECH_VALOR_YTD_2026` em `dashboard/gerar_relatorio.py:48-58` (backup em `tmp/gerar_relatorio.py.bak-{data}` antes do edit).
+- Divergencia negativa (fech sumiu do banco) aborta sem perguntar — evita esconder regressao.
+- Aviso no bloco textual do gate quando `dashboard/queries.py` mudou nos ultimos 7 dias (commit recente em filtro CM pode explicar fech "novos").
+- Deploy via pasta sibling em `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (mesma convencao das LPs — sibling tem middleware Basic Auth + vercel.json + package.json).
+- Auto-promove deploy se alias principal nao atualizou (defesa pos-rollback).
+- Verificacao: HTTP 200 + Basic Auth + tamanho bate vs sibling + grep da data "gerado em".
+
+Configuracao: `DASHBOARD_SIBLING_BASE` em `.env.local` (mesmo padrao do `LP_SIBLING_BASE`).
+
+Motivacao: incidente 2026-05-25 — `vercel deploy` saiu de `dashboard/` direto (sem middleware Basic Auth nem `index.html`), site retornou 404, restaurado via rollback em ~30s. Skill force-feeds o padrao sibling pra evitar repeticao.
+
+Padrao reusado: `lp-publicar` (estrutura step-by-step + envvar sibling), `news-pipeline` (pausa de aprovacao com chips).
+
+---
+
 ## brand/buzzmonitor
 ### 2026-05-21 — Buzzmonitor: `websites` → `regions` (com Instagram, htmlLang, hreflang, ogLocale) + `socials.linkedin`
 

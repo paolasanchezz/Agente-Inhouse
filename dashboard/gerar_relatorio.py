@@ -48,9 +48,10 @@ BAK_PATH = HTML_PATH.with_suffix('.html.bak')
 # §7 do MAPEAMENTO — gate de regressao.
 # Decisao 2026-05-18: whitelist override o filtro Inbound (Victor confirmou que
 # CROP e NEIVA, marcados como Outbound no CRM, sao fechamentos CM legitimos).
-# Total YtD 2026: 6 deals · R$ 16.580.
-EXPECTED_FECH_YTD_2026 = 6
-EXPECTED_FECH_VALOR_YTD_2026 = 16580.0
+# Revisao 2026-05-25: +1 fechamento (Lide Comunicacao, meta/RMKT 13, R$ 2.690).
+# Total YtD 2026: 7 deals · R$ 19.270.
+EXPECTED_FECH_YTD_2026 = 7
+EXPECTED_FECH_VALOR_YTD_2026 = 19270.0
 
 _MESES_CURTOS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 

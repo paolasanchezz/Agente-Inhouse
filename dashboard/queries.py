@@ -52,6 +52,7 @@ EMAIL_WHITELIST: list[str] = [
     'equipelarissaneiva@gmail.com',       # NEIVA Brand — Outbound no CRM mas CM confirmado pelo Victor
     'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
     'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
+    'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
 ]
 
 EMAIL_BLACKLIST: list[str] = [
@@ -60,6 +61,27 @@ EMAIL_BLACKLIST: list[str] = [
     # Saem da dashboard principal; entrarao em futura pagina "Impacto de Conteudo".
     'valdofmendes@gmail.com',                 # Webinar Analise Preditiva
     'raissaboniolo.consultoria@gmail.com',    # Buzzcreators evento
+    # Adicionados 2026-05-26 (apos fix do bug NULL no filtro CM):
+    'stella.santana@parceiros-npx.com.br',    # NUPIXEL — lead original Gisele era Google CPC, contrato veio com URL CM mas origem nao-CM
+    'teste@teste.com',                        # Teste obvio
+    'thamires.oliveira@buzzmonitor.com.br',   # Email interno Buzzmonitor
+    'albali@elife.com.br',                    # Email interno Elife
+]
+
+# Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
+# Diferente da EMAIL_BLACKLIST (que bane o email pra sempre, em qualquer campanha),
+# isto remove apenas deals que casam URL + intervalo de datas — o mesmo email volta
+# a contar normalmente em conversoes futuras.
+DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
+    {
+        # Webinar Analise Preditiva: inscricao NUNCA vira lead CM (decisao Victor 2026-05-26).
+        # A pagina de inscricao (webinar.buzzmonitor.com/analise-preditiva-maio-2026) e topo
+        # de funil — nao deveria gerar deal. So a OFERTA
+        # (conteudo.buzzmonitor.com.br/oferta-webinar-analise-preditiva-na-pratica) conta como CM.
+        # Sem chave 'datas' => exclui qualquer data. (Originou de falha de lote em 25/05 e 06/03,
+        # mas a decisao final foi excluir todas as inscricoes, nao so os lotes.)
+        'url_like': 'https://webinar.buzzmonitor.com/analise-preditiva-maio-2026%',
+    },
 ]
 
 # Slugs CM na URL conteudo.buzzmonitor.com.br (whitelist)
@@ -107,6 +129,26 @@ def _sql_email_list(emails: list[str]) -> str:
     return f"SELECT lower(trim(email)) AS email FROM (VALUES {rows}) AS t(email)"
 
 
+def _sql_exclusao_deals() -> str:
+    """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA.
+
+    Retorna 'TRUE' (no-op) se a lista estiver vazia. Usa colunas sem alias
+    (url_conversao, cdate) — mesmo contrato do filtro_cm().
+    """
+    if not DEALS_EXCLUIDOS_URL_DATA:
+        return "TRUE"
+    clauses = []
+    for d in DEALS_EXCLUIDOS_URL_DATA:
+        datas = d.get('datas')
+        if datas:
+            datas_sql = ", ".join(f"'{dt}'" for dt in datas)
+            clauses.append(f"(url_conversao ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+        else:
+            # Sem datas => exclui qualquer data que case a URL.
+            clauses.append(f"(url_conversao ILIKE '{d['url_like']}')")
+    return "NOT (" + " OR ".join(clauses) + ")"
+
+
 # ============ FILTRO CM UNIVERSAL ============
 
 def filtro_cm() -> str:
@@ -114,18 +156,20 @@ def filtro_cm() -> str:
     Retorna a string SQL do filtro Content Marketing universal.
 
     Usa nomes de colunas sem prefixo de alias — aplicar em WHERE de queries onde
-    `utm_source`, `utm_medium` e `url_conversao` nao sao ambiguos.
+    `utm_source`, `utm_medium`, `url_conversao` e `cdate` nao sao ambiguos.
 
     Espelha §2 do MAPEAMENTO-CAMPOS.md.
     """
     sources = _sql_list(CM_UTM_SOURCES)
     internos = _sql_list(INTERNOS_EXCLUIR)
+    exclusao = _sql_exclusao_deals()
     slugs_clauses = "\n          OR ".join(
         f"url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
         for slug in CM_SLUGS_PREFIXES
     )
     return f"""(
-    NOT (utm_source = 'google' AND utm_medium = 'cpc')
+    {exclusao}
+    AND NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
     AND (
       utm_source IN ({sources})
       OR url_conversao ILIKE 'https://buzzmonitor.com/blog/%'

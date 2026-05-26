@@ -33,12 +33,29 @@ EMAIL_WHITELIST: list[str] = [
     'equipelarissaneiva@gmail.com',
     'm.lima@blankschool.com.br',
     'para.fabianogomes@gmail.com',
+    'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar 26/05, tracking NULL
 ]
 
 EMAIL_BLACKLIST: list[str] = [
     'julianacastro@idwcompany.com.br',
     'valdofmendes@gmail.com',
     'raissaboniolo.consultoria@gmail.com',
+    # Adicionados 2026-05-26 (apos fix do bug NULL no filtro CM):
+    'stella.santana@parceiros-npx.com.br',    # NUPIXEL — lead original Google CPC
+    'teste@teste.com',                        # Teste obvio
+    'thamires.oliveira@buzzmonitor.com.br',   # Email interno Buzzmonitor
+    'albali@elife.com.br',                    # Email interno Elife
+]
+
+# Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
+# Espelha dashboard/queries.py. Remove deals que casam URL + data sem banir o email.
+DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
+    {
+        # Webinar Analise Preditiva: inscricao NUNCA vira lead CM (decisao Victor 2026-05-26).
+        # So a OFERTA (oferta-webinar-analise-preditiva-na-pratica) conta como CM.
+        # Sem 'datas' => exclui qualquer data. Espelha dashboard/queries.py.
+        'url_like': 'https://webinar.buzzmonitor.com/analise-preditiva-maio-2026%',
+    },
 ]
 
 CM_SLUGS_PREFIXES: list[str] = [
@@ -78,15 +95,32 @@ def _sql_email_list(emails: list[str]) -> str:
     return f"SELECT lower(trim(email)) AS email FROM (VALUES {rows}) AS t(email)"
 
 
+def _sql_exclusao_deals() -> str:
+    """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA."""
+    if not DEALS_EXCLUIDOS_URL_DATA:
+        return "TRUE"
+    clauses = []
+    for d in DEALS_EXCLUIDOS_URL_DATA:
+        datas = d.get('datas')
+        if datas:
+            datas_sql = ", ".join(f"'{dt}'" for dt in datas)
+            clauses.append(f"(url_conversao ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+        else:
+            clauses.append(f"(url_conversao ILIKE '{d['url_like']}')")
+    return "NOT (" + " OR ".join(clauses) + ")"
+
+
 def filtro_cm() -> str:
     sources = _sql_list(CM_UTM_SOURCES)
     internos = _sql_list(INTERNOS_EXCLUIR)
+    exclusao = _sql_exclusao_deals()
     slugs_clauses = "\n          OR ".join(
         f"url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
         for slug in CM_SLUGS_PREFIXES
     )
     return f"""(
-    NOT (utm_source = 'google' AND utm_medium = 'cpc')
+    {exclusao}
+    AND NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
     AND (
       utm_source IN ({sources})
       OR url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
