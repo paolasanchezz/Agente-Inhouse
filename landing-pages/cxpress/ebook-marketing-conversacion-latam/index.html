@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WRQ47B9R');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Ebook El nuevo marketing es conversación &middot; Cxpress</title>
+  <meta name="description" content="Ebook gratuito de Cxpress: cómo centralizar conversaciones, responder más rápido y crear experiencias omnicanal reales sin aumentar la estructura.">
+  <meta property="og:title" content="Ebook El nuevo marketing es conversación · Cxpress">
+  <meta property="og:description" content="Aprende a centralizar conversaciones, responder más rápido y crear experiencias omnicanal reales. Descarga gratis el ebook de Cxpress.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/assets/logos/logo-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=Bitter:wght@400;500;600&display=swap">
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --primary: #4A69BD;
+      --primary-dark: #232960;
+      --primary-darker: #1a1f4a;
+      --primary-light: #C1C7FF;
+      --primary-lighter: #D7E2FF;
+      --accent: #EF863C;
+      --accent-hover: #dd7730;
+      --accent-light: #FFDCC3;
+      --warning: #F1A908;
+      --warning-light: #FFF3DA;
+      --neutral-0: #ffffff;
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #ececec;
+      --neutral-300: #d1d1d1;
+      --neutral-700: #4a4a4a;
+      --neutral-900: #1a1a1a;
+      --error: #dc2626;
+
+      --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-accent: 'Bitter', Georgia, serif;
+
+      --section-y: 140px;
+      --section-y-sm: 80px;
+      --container-max: 1200px;
+      --container-pad: 24px;
+
+      --radius-md: 9px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(35, 41, 96, 0.05);
+      --shadow-md: 0 8px 24px rgba(35, 41, 96, 0.08);
+      --shadow-lg: 0 16px 48px rgba(35, 41, 96, 0.14);
+    }
+
+    /* ============ RESET ============ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--neutral-0);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--primary-dark);
+      line-height: 1.15;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0; }
+
+    /* ============ A11Y ============ */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--primary-dark);
+      color: var(--neutral-0);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      z-index: 200;
+      font-weight: 600;
+      transition: top .2s ease;
+    }
+    .skip-link:focus { top: 16px; outline: 3px solid var(--accent); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    /* ============ LAYOUT ============ */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+    section { padding: var(--section-y) 0; position: relative; overflow: hidden; }
+
+    /* ============ MOTION ============ */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(35, 41, 96, 0.06);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .header-logo img { height: 32px; width: auto; }
+    .header-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      background: var(--primary-lighter);
+      color: var(--primary-dark);
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .header-meta::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 17px 32px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.005em;
+      border: 2px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+      text-align: center;
+      line-height: 1.15;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-on-dark {
+      background: var(--neutral-0);
+      color: var(--primary-dark);
+    }
+    .btn-on-dark:hover { background: var(--warning); color: var(--primary-dark); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+    .btn-ghost:hover { background: var(--primary-dark); color: var(--neutral-0); }
+    .btn .arrow { transition: transform .2s ease; display: inline-block; }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 80px 0 var(--section-y);
+      position: relative;
+      background: var(--neutral-0);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 18%;
+      left: -180px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, var(--primary-lighter) 0%, transparent 70%);
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-overline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 28px;
+    }
+    .hero-overline::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(40px, 5.4vw, 68px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+    .hero h1 .accent-word {
+      font-family: var(--font-accent);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--primary);
+    }
+    .hero-sub {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--neutral-700);
+      margin-bottom: 16px;
+      max-width: 580px;
+    }
+    .hero-sub strong { color: var(--primary-dark); font-weight: 600; }
+    .hero-body {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--neutral-700);
+      margin-bottom: 36px;
+      max-width: 540px;
+    }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+    /* ============ EBOOK MOCKUP ============ */
+    .hero-visual {
+      position: relative;
+      min-height: 460px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ebook-stage {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+    .ebook-cover {
+      position: relative;
+      aspect-ratio: 3 / 4.1;
+      background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
+      border-radius: 4px 14px 14px 4px;
+      box-shadow:
+        0 24px 60px rgba(35, 41, 96, 0.28),
+        inset 4px 0 0 rgba(0, 0, 0, 0.18);
+      padding: 44px 38px 38px;
+      color: var(--neutral-0);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: perspective(1200px) rotateY(-7deg) rotateX(1deg);
+      transform-origin: left center;
+      transition: transform .5s ease;
+    }
+    .ebook-cover:hover { transform: perspective(1200px) rotateY(-3deg) rotateX(0deg) translateY(-4px); }
+    .ebook-cover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18px;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .ebook-shape-a {
+      position: absolute;
+      right: -32px;
+      top: -32px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(193, 199, 255, 0.28);
+    }
+    .ebook-shape-b {
+      position: absolute;
+      right: 22px;
+      bottom: -30px;
+      width: 110px;
+      height: 220px;
+      background: var(--accent);
+      border-radius: var(--radius-pill);
+      opacity: 0.85;
+    }
+    .ebook-shape-c {
+      position: absolute;
+      left: -28px;
+      bottom: 40px;
+      width: 70px;
+      height: 140px;
+      background: var(--warning);
+      border-radius: var(--radius-pill);
+      transform: rotate(180deg);
+      opacity: 0.95;
+    }
+    .ebook-logo {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 32px;
+    }
+    .ebook-eyebrow {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: var(--warning);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 22px;
+    }
+    .ebook-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--neutral-0);
+      margin-bottom: 24px;
+    }
+    .ebook-title em {
+      font-family: var(--font-accent);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--warning);
+    }
+    .ebook-meta {
+      margin-top: auto;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ebook-meta::before {
+      content: "";
+      width: 24px;
+      height: 1.5px;
+      background: var(--warning);
+    }
+    .ebook-pages {
+      position: absolute;
+      right: -10px;
+      top: 14px;
+      bottom: 14px;
+      width: 10px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.0) 100%);
+      border-radius: 0 4px 4px 0;
+      box-shadow: 2px 0 4px rgba(35, 41, 96, 0.12);
+    }
+    .hero-decor-pill {
+      position: absolute;
+      left: -80px;
+      top: -40px;
+      width: 60px;
+      height: 160px;
+      background: var(--primary-lighter);
+      border-radius: var(--radius-pill);
+      z-index: -1;
+    }
+    .hero-decor-arc {
+      position: absolute;
+      right: -50px;
+      bottom: -60px;
+      width: 220px;
+      height: 110px;
+      background: var(--accent-light);
+      border-radius: 220px 220px 0 0;
+      z-index: -1;
+      transform: rotate(-15deg);
+    }
+
+    /* ============ CONTEXTO ============ */
+    .contexto {
+      background: var(--neutral-100);
+      padding: 110px 0;
+      position: relative;
+    }
+    .contexto::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -120px;
+      width: 280px;
+      height: 280px;
+      transform: translateY(-50%);
+      background: var(--primary-lighter);
+      border-radius: 50%;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .contexto-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+    .contexto-body {
+      font-size: 21px;
+      line-height: 1.55;
+      color: var(--neutral-900);
+      margin-bottom: 36px;
+      max-width: 780px;
+    }
+    .contexto-pull {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 3.6vw, 40px);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--primary-dark);
+      padding-left: 28px;
+      border-left: 4px solid var(--accent);
+      max-width: 820px;
+    }
+    .contexto-pull span {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    /* ============ BENEFICIOS ============ */
+    .beneficios { background: var(--neutral-0); }
+    .section-head {
+      max-width: 720px;
+      margin: 0 auto 72px;
+      text-align: center;
+    }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 22px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .section-head h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -0.02em;
+    }
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .benefit-card {
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg);
+      padding: 38px 32px 34px;
+      position: relative;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+    .benefit-num {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .benefit-num::after {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: var(--radius-pill);
+      margin-left: 8px;
+      align-self: center;
+    }
+    .benefit-card h3 {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+    }
+    .benefit-card p {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--neutral-700);
+    }
+
+    /* ============ FORMULARIO ============ */
+    .form-section {
+      background: var(--primary-lighter);
+      position: relative;
+    }
+    .form-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(35, 41, 96, 0.06);
+      pointer-events: none;
+    }
+    .form-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .form-card {
+      background: var(--neutral-0);
+      border-radius: var(--radius-xl);
+      padding: 48px 44px 40px;
+      box-shadow: 0 24px 60px rgba(35, 41, 96, 0.14);
+      border: 1px solid rgba(35, 41, 96, 0.06);
+      position: relative;
+    }
+    .form-card::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      right: 40px;
+      width: 60px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: var(--radius-pill);
+      transform: rotate(8deg);
+      box-shadow: 0 8px 16px rgba(239, 134, 60, 0.25);
+    }
+    .form-card::after {
+      content: "";
+      position: absolute;
+      bottom: -22px;
+      left: -28px;
+      width: 90px;
+      height: 45px;
+      background: var(--primary-lighter);
+      border-radius: 90px 90px 0 0;
+      transform: rotate(190deg);
+      z-index: -1;
+    }
+    .form { display: grid; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-family: var(--font-body);
+      letter-spacing: 0.01em;
+    }
+    .field input {
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 13px 16px;
+      border: 1.5px solid var(--neutral-200);
+      border-radius: var(--radius-md);
+      background: var(--neutral-0);
+      color: var(--primary-dark);
+      transition: border-color .2s ease, box-shadow .2s ease;
+      width: 100%;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.16);
+    }
+    .form-submit {
+      margin-top: 14px;
+      width: 100%;
+    }
+    .form-disclaimer {
+      margin-top: 18px;
+      font-size: 12.5px;
+      color: var(--neutral-700);
+      line-height: 1.45;
+    }
+
+    /* ============ FECHAMENTO (DARK) ============ */
+    .fechamento {
+      background: var(--primary-dark);
+      color: var(--neutral-0);
+      padding: 130px 0;
+      position: relative;
+    }
+    .fechamento::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+      opacity: 0.4;
+    }
+    .fechamento-decor-a {
+      position: absolute;
+      top: 60px;
+      right: -120px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 1px solid rgba(193, 199, 255, 0.14);
+      pointer-events: none;
+    }
+    .fechamento-decor-b {
+      position: absolute;
+      bottom: -80px;
+      left: -60px;
+      width: 80px;
+      height: 280px;
+      background: var(--primary);
+      border-radius: var(--radius-pill);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .fechamento-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .fechamento h2 {
+      color: var(--neutral-0);
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 56px;
+      max-width: 780px;
+    }
+    .fechamento h2 .accent-word {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--warning);
+    }
+    .fechamento-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 56px;
+      display: grid;
+      gap: 18px;
+      max-width: 720px;
+    }
+    .fechamento-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(20px, 2.2vw, 26px);
+      letter-spacing: -0.005em;
+      color: var(--neutral-0);
+      line-height: 1.35;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(193, 199, 255, 0.14);
+    }
+    .fechamento-list li:last-child { border-bottom: none; }
+    .fechamento-list .num {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--accent);
+      flex-shrink: 0;
+      width: 28px;
+      letter-spacing: 0.05em;
+    }
+    .fechamento-list li.emphasis {
+      color: var(--warning);
+    }
+
+    /* ============ CIERRE ============ */
+    .cierre {
+      background: var(--neutral-0);
+      padding: var(--section-y) 0;
+      position: relative;
+    }
+    .cierre::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -100px;
+      width: 200px;
+      height: 400px;
+      background: var(--primary-lighter);
+      border-radius: var(--radius-pill);
+      transform: translateY(-50%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .cierre::after {
+      content: "";
+      position: absolute;
+      bottom: 80px;
+      right: -60px;
+      width: 140px;
+      height: 70px;
+      background: var(--accent-light);
+      border-radius: 140px 140px 0 0;
+      transform: rotate(20deg);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .cierre-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cierre h2 {
+      font-size: clamp(30px, 3.8vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+    }
+    .cierre h2 .pipe {
+      color: var(--accent);
+      font-weight: 800;
+      margin: 0 6px;
+      display: inline-block;
+    }
+    .cierre p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--neutral-700);
+      margin-bottom: 18px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cierre .cta-wrap { margin-top: 36px; }
+
+    /* ============ FOOTER ============ */
+    .site-footer {
+      background: var(--primary-darker);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 56px 0 40px;
+      font-size: 14px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo img { height: 28px; width: auto; opacity: 0.92; }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: rgba(255, 255, 255, 0.7); transition: color .2s ease; }
+    .footer-links a:hover { color: var(--neutral-0); }
+    .footer-copyright {
+      width: 100%;
+      padding-top: 28px;
+      margin-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ============ RESPONSIVO ============ */
+    @media (max-width: 980px) {
+      :root { --section-y: 80px; }
+      section { padding: var(--section-y) 0; }
+      .hero { padding: 56px 0 var(--section-y); }
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-visual { min-height: auto; margin: 0 auto; max-width: 360px; }
+      .ebook-cover { transform: none; }
+      .ebook-cover:hover { transform: translateY(-2px); }
+      .hero-decor-pill, .hero-decor-arc { display: none; }
+      .contexto { padding: 64px 0; }
+      .beneficios-grid { grid-template-columns: 1fr; gap: 18px; }
+      .section-head { margin-bottom: 48px; }
+      .fechamento { padding: 80px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .container { padding: 0 20px; }
+      .header-meta { font-size: 11px; padding: 7px 12px; }
+      .header-logo img { height: 28px; }
+      .hero h1 { font-size: 38px; }
+      .hero-sub { font-size: 17px; }
+      .form-card { padding: 32px 24px 28px; }
+      .ebook-cover { padding: 36px 28px 28px; }
+      .ebook-title { font-size: 24px; }
+      .btn { padding: 15px 24px; font-size: 15px; }
+      .fechamento-list li { font-size: 18px; gap: 14px; }
+      .contexto-pull { padding-left: 18px; font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRQ47B9R"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#" class="header-logo" aria-label="Cxpress">
+        <img src="/assets/logos/logo-primary.png" alt="Cxpress" />
+      </a>
+      <span class="header-meta" aria-label="Ebook gratuito">Ebook gratuito</span>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content reveal">
+            <span class="hero-overline">EBOOK GRATUITO</span>
+            <h1 id="hero-title">El nuevo marketing es <span class="accent-word">conversación</span></h1>
+            <p class="hero-sub"><strong>&iquest;Tu empresa est&aacute; respondiendo&hellip; o solo intentando seguir el ritmo?</strong> Hoy el marketing ocurre en cada interacci&oacute;n, en cada canal y en cada respuesta.</p>
+            <p class="hero-body">Y cuando una conversaci&oacute;n no tiene continuidad, el cliente no espera: toma una decisi&oacute;n.</p>
+            <div class="hero-cta-group">
+              <a href="#formulario" class="btn btn-primary">&iexcl;Quiero descargar el ebook gratis! <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="hero-visual reveal" aria-hidden="true">
+            <div class="hero-decor-pill"></div>
+            <div class="hero-decor-arc"></div>
+            <div class="ebook-stage">
+              <div class="ebook-cover">
+                <span class="ebook-shape-a"></span>
+                <span class="ebook-shape-b"></span>
+                <span class="ebook-shape-c"></span>
+                <span class="ebook-pages"></span>
+                <div class="ebook-logo">Cxpress</div>
+                <div class="ebook-eyebrow">Ebook gratuito</div>
+                <h2 class="ebook-title">El nuevo marketing es <em>conversaci&oacute;n</em></h2>
+                <div class="ebook-meta">IA + automatizaci&oacute;n + omnicanalidad + casos reales</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTEXTO ============ -->
+    <section class="contexto" aria-labelledby="contexto-title">
+      <div class="container">
+        <div class="contexto-inner">
+          <p class="contexto-body reveal">Al contrario de lo que muchas empresas creen, el problema no es la falta de canales, herramientas o personas. El problema no es la cantidad de canales, es la falta de contexto, continuidad y coordinaci&oacute;n en las conversaciones.</p>
+          <h2 class="contexto-pull reveal" id="contexto-title">M&aacute;s canales, m&aacute;s clientes&hellip; <span>pero la misma operaci&oacute;n fragmentada.</span></h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENEFICIOS ============ -->
+    <section class="beneficios" aria-labelledby="beneficios-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Lo que vas a aprender</span>
+          <h2 id="beneficios-title">Este ebook es para l&iacute;deres que buscan aprender a:</h2>
+        </div>
+        <div class="beneficios-grid">
+          <article class="benefit-card reveal">
+            <div class="benefit-num">01</div>
+            <h3>Centralizar conversaciones en un solo lugar</h3>
+            <p>WhatsApp, redes sociales, email y voz conectados en una experiencia continua. Sin p&eacute;rdida de contexto entre canales.</p>
+          </article>
+          <article class="benefit-card reveal">
+            <div class="benefit-num">02</div>
+            <h3>Responder m&aacute;s r&aacute;pido sin aumentar estructura</h3>
+            <p>C&oacute;mo utilizar IA y automatizaci&oacute;n para reducir tiempos de respuesta en operaciones saturadas.</p>
+          </article>
+          <article class="benefit-card reveal">
+            <div class="benefit-num">03</div>
+            <h3>Crear experiencias omnicanal reales</h3>
+            <p>Evita que el cliente tenga que repetir su problema en cada interacci&oacute;n o canal.</p>
+          </article>
+          <article class="benefit-card reveal">
+            <div class="benefit-num">04</div>
+            <h3>Detectar riesgos y oportunidades en tiempo real</h3>
+            <p>Convierte conversaciones, menciones y rese&ntilde;as en se&ntilde;ales para la toma de decisiones.</p>
+          </article>
+          <article class="benefit-card reveal">
+            <div class="benefit-num">05</div>
+            <h3>Mantener consistencia de marca</h3>
+            <p>Responde con el mismo contexto, tono y nivel de servicio en todos los puntos de contacto.</p>
+          </article>
+          <article class="benefit-card reveal">
+            <div class="benefit-num">06</div>
+            <h3>Escalar operaciones sin perder experiencia</h3>
+            <p>Automatiza lo repetitivo para que los equipos puedan enfocarse en lo cr&iacute;tico.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMULARIO ============ -->
+    <section class="form-section" id="formulario-section" aria-label="Formulario de descarga">
+      <div class="container">
+        <div class="form-wrap">
+          <div class="form-card reveal">
+            <form class="form" id="formulario" action="#" method="post" onsubmit="event.preventDefault()" novalidate>
+              <div class="field">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email corporativo</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input id="empresa" name="empresa" type="text" autocomplete="organization" required>
+              </div>
+              <div class="field">
+                <label for="telefono">Tel&eacute;fono (opcional)</label>
+                <input id="telefono" name="telefono" type="tel" autocomplete="tel">
+              </div>
+              <button type="submit" class="btn btn-primary form-submit">Descargar ebook ahora <span class="arrow" aria-hidden="true">&rarr;</span></button>
+              <p class="form-disclaimer">Al registrarte aceptas recibir comunicaciones de Cxpress sobre productos y contenidos relacionados. Puedes cancelar la suscripci&oacute;n en cualquier momento.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO (DARK) ============ -->
+    <section class="fechamento" aria-labelledby="fechamento-title">
+      <span class="fechamento-decor-a" aria-hidden="true"></span>
+      <span class="fechamento-decor-b" aria-hidden="true"></span>
+      <div class="container">
+        <div class="fechamento-inner">
+          <h2 id="fechamento-title" class="reveal">El marketing ya no ocurre <span class="accent-word">en campa&ntilde;as</span>.</h2>
+          <ul class="fechamento-list" role="list">
+            <li class="reveal"><span class="num" aria-hidden="true">01</span> Ocurre en cada interacci&oacute;n.</li>
+            <li class="reveal"><span class="num" aria-hidden="true">02</span> En cada respuesta.</li>
+            <li class="reveal"><span class="num" aria-hidden="true">03</span> En cada conversaci&oacute;n.</li>
+            <li class="reveal"><span class="num" aria-hidden="true">04</span> Las marcas que lideran hoy no son las que m&aacute;s publican.</li>
+            <li class="reveal emphasis"><span class="num" aria-hidden="true">05</span> Son las que mejor responden.</li>
+          </ul>
+          <div class="reveal">
+            <a href="#formulario" class="btn btn-on-dark">&iexcl;Quiero descargar el ebook gratis! <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE ============ -->
+    <section class="cierre" aria-labelledby="cierre-title">
+      <div class="container">
+        <div class="cierre-inner">
+          <h2 id="cierre-title" class="reveal">IA <span class="pipe">+</span> automatizaci&oacute;n <span class="pipe">+</span> omnicanalidad <span class="pipe">+</span> casos reales</h2>
+          <p class="reveal">Si tu empresa est&aacute; gestionando m&uacute;ltiples canales, equipos saturados y respuestas inconsistentes, este material te ayudar&aacute; a reorganizar la forma en que operas la atenci&oacute;n al cliente.</p>
+          <p class="reveal">No se trata de hacer m&aacute;s. Se trata de responder mejor, m&aacute;s r&aacute;pido y con contexto.</p>
+          <div class="cta-wrap reveal">
+            <a href="#formulario" class="btn btn-primary">&iexcl;Desc&aacute;rgalo gratis! <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="https://home.cxpress.io" class="footer-logo" aria-label="Cxpress" rel="noopener">
+          <img src="/assets/logos/logo-reversed.png" alt="Cxpress" />
+        </a>
+        <nav class="footer-links" aria-label="Enlaces institucionales">
+          <a href="mailto:contacto@cxpress.io">contacto@cxpress.io</a>
+          <a href="https://home.cxpress.io" rel="noopener">home.cxpress.io</a>
+          <a href="https://home.cxpress.io/aviso-de-privacidad" rel="noopener">Aviso de privacidad</a>
+        </nav>
+      </div>
+      <div class="footer-copyright">&copy; 2026 Cxpress. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        reveals.forEach(function(el) { el.classList.add('in'); });
+        return;
+      }
+
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(function(el, i) {
+        el.style.transitionDelay = (Math.min(i, 6) * 60) + 'ms';
+        io.observe(el);
+      });
+
+      var safety = setTimeout(function() {
+        reveals.forEach(function(el) { el.classList.add('in'); });
+      }, 2500);
+      window.addEventListener('load', function() { setTimeout(function(){clearTimeout(safety);}, 100); });
+    })();
+  </script>
+</body>
+</html>

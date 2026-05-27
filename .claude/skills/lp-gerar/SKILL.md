@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.6.0
+version: 1.7.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -38,7 +38,7 @@ Leia, na ordem:
 5. `brand/{marca}/generation-rules.json` — regras de composicao.
 6. `brand/{marca}/brand-manifest.json` — tom.
 7. `brand/{marca}/tracking.json` — GTM container id por regiao. Se o arquivo nao existir ou o id for `null`, pular injecao de GTM.
-8. `ls brand/{marca}/assets/logos/` via Glob — inventariar logos disponiveis (primary, reversed, mark-only).
+8. `ls brand/{marca}/assets/logos/` via Glob — inventariar logos disponiveis (primary, reversed, mark-only). **Validar cada SVG de wordmark com `grep -c '<text' {logo}.svg` (GUIDELINES §19): se > 0, o SVG serifa no browser (fonte fallback) — NAO usar no header/footer/OG. Preferir o raster (base64), o PNG, ou um SVG com paths/outline. Anotar quais sao web-safe e passar so esses no briefing.** Buzzcreators: os SVGs de wordmark do brand tem `<text>` — usar `logo-color.png` (sem tagline) ou o raster `logo-full-color.svg` do deploy.
 
 ### Resolver regiao e GTM ID
 
@@ -204,6 +204,11 @@ REGRA HEADER/FOOTER LOGO (§17 GUIDELINES, OBRIGATORIO):
 - Sempre target="_blank" rel="noopener".
 - aria-label localizado por idioma (PT-BR/PT-PT: "pagina inicial"; ES: "pagina principal").
 
+REGRA DE LOGO WEB-SAFE (§19 GUIDELINES, OBRIGATORIO):
+- NUNCA usar SVG de logo com `<text>` vivo no header/footer/OG — sem a fonte embarcada, o browser troca por serifada e a logo sai errada.
+- Usar SOMENTE os logos web-safe identificados no Passo 1 (raster base64, PNG, ou SVG com paths/outline).
+- Buzzcreators: os SVGs de wordmark do brand serifam — usar `logo-color.png` (sem tagline) ou o raster `logo-full-color.svg` do deploy. Footer escuro: `filter: brightness(0) invert(1)` no logo colorido.
+
 REGRA DE FIDELIDADE DA COPY (CRITICA — vale mais que qualquer escolha estetica):
 
 TODO texto visivel ao usuario no HTML deve vir LITERAL da copy estruturada abaixo. Aplica a:
@@ -286,6 +291,7 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 - [ ] Logo footer tem `href="{regions.{regiao}.home}"` (NAO `href="/"`)
 - [ ] Ambos tem `target="_blank" rel="noopener"`
 - [ ] `aria-label` localizado por idioma
+- [ ] **Logo SVG referenciado no header/footer NAO tem `<text>` vivo (§19)** — `grep -c '<text' brand/{marca}/assets/logos/{logo-referenciado}.svg` == 0. Se > 0, serifa no browser: trocar pelo raster/PNG. Buzzcreators: usar `logo-color.png` ou o raster do deploy.
 
 ### 4.1.3 Sinalizar OG image pendente
 

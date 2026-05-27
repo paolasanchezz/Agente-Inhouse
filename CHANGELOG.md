@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## .claude/skills/criativo-gerar + .claude/skills/criativo
+### 2026-05-27 — v1.0.0 — Skills novas (gerador de criativos + advisor)
+
+Formaliza em skill o pipeline de criativo estatico que ate entao era a POC `criativos/render_poc.py`
+(usada no teste do webinar 2026-05-22 e no carrossel Cxpress "10→4" de 2026-05-26).
+
+- **`criativo-gerar` (worker):** gera PNGs de criativo (carrossel 5 cards ou estatico) a partir de
+  copy estruturada + brandbook da marca, via HTML/CSS -> Playwright (Chromium headless), DPR=1.
+  Texto sempre pixel-perfect — **nao usa IA de imagem** pra camada de texto (Bloom erra tipografia
+  PT-BR; ver memoria `feedback-bloom-mcp-detalhes`). Complementa `copy-criar` (que escreve a copy).
+- **Flag `uso` (organico|anuncio) × `formato` (1x1|4x5|9x16) = margem de seguranca automatica.**
+  Pedido do Victor (2026-05-27). `base.css` deriva `--safe-top/-bottom/-x` de dois data-attributes;
+  `render.py` injeta uso/formato no `.canvas` antes do screenshot (um HTML serve todos os formatos).
+  Anuncio 9:16 reserva topo 250px / base 340px (UI do Stories/Reels) — numeros da POC do webinar.
+  Em `uso=anuncio`, `render.py` gera tambem um `-guia.png` com overlay das zonas reservadas
+  (faixas vermelhas) + limite da area segura (tracejado verde) pra QA visual.
+- **`criativo` (advisor):** roteador deterministico com chips (marca, tipo, uso, formato, slug, copy),
+  igual aos advisors `/escrever`, `/landing-page`. Dispara `criativo-gerar`.
+- Scaffold reutilizavel em `.claude/skills/criativo-gerar/assets/` (`base.css` + `render.py`),
+  copiado pra pasta da peca. Output em `criativos/{marca}/{regiao}/{slug}/` (gitignored — entrega
+  por caminho no chat, upload manual; ver `feedback-criativos-pasta-local`).
+- Lembretes de marca embutidos: contraste WCAG (texto branco sobre laranja Cxpress/Buzzmonitor
+  REPROVA — usar texto escuro), cases Cxpress pendentes (prova social), artigo via `nameUsage`.
+- `.gitignore`: adicionado `criativos/` (estava fora — PNGs pesados + copias de asset nao versionam).
+
+---
+
 ## dashboard/queries.py + dashboard-pessoal/lib/queries.py
 ### 2026-05-26 — Exclusao de deals por URL (+ opcionalmente data) (`DEALS_EXCLUIDOS_URL_DATA`)
 
@@ -81,6 +108,12 @@ Outras marcas (cxpress, buzzcreators, elife) ainda usam o formato antigo `websit
 ---
 
 ## landing-pages/GUIDELINES.md
+### 2026-05-27 — §19 nova: logo SVG com `<text>` vivo proibido (serifa no browser)
+
+SVG de logo com `<text>` vivo (fonte não embarcada) cai no fallback serifado do browser — a logo sai com tipografia errada (ex.: "BUZZ" sans + "CREATORS" serifada). §19 adiciona validação obrigatória (`grep -c '<text'` deve ser 0) e tabela de estado por marca: Buzzcreators serifa (usar `logo-color.png` ou o raster do deploy), Buzzmonitor já é raster, Cxpress/Elife são outline. Origem: LP `buzzcreators-estado-arte-influencia` foi ao ar 2× com "CREATORS" serifada porque a review trocou o raster pelo "vetor limpo".
+
+---
+
 ### 2026-05-21 — §15-§18 novos: SEO obrigatório, hreflang, logo regional, OG image
 
 Quatro seções novas codificam padrões descobertos na sessão MCP (`material.buzzmonitor.com/mcp`, `/mcp-es`, `/mcp-pt`):
@@ -93,6 +126,12 @@ Quatro seções novas codificam padrões descobertos na sessão MCP (`material.b
 ---
 
 ## lp-gerar
+### 2026-05-27 — v1.7.0: validar logo web-safe (sem `<text>` vivo, GUIDELINES §19)
+
+Passo 1 valida cada SVG de wordmark com `grep -c '<text'` e passa só os logos web-safe no briefing. Briefing do Passo 3 ganha "REGRA DE LOGO WEB-SAFE". Passo 4.1.2 ganha check de `<text>` no logo referenciado. Previne logo serifada no browser (Buzzcreators: usar `logo-color.png` ou o raster do deploy).
+
+---
+
 ### 2026-05-21 — v1.6.0: gerar bloco SEO completo + ler `regions` do manifest
 
 Passo 0.1 e 0.2 novos para ler `brand/{marca}/brand-manifest.json#regions.{regiao}` + `#socials.linkedin` e identificar LPs irmãs (multi-idioma). Briefing do Passo 3 expandido para instruir `frontend-design` a gerar o bloco SEO completo conforme GUIDELINES §15-§17, usando placeholders `{{DOMAIN}}` / `{{OG_IMAGE_PATH}}` / `{{BRAND_LOGO_PNG_PATH}}` que `lp-publicar` resolve no deploy.
@@ -107,6 +146,12 @@ Fallback documentado para marcas com manifest antigo (formato `websites`): cair 
 ---
 
 ## lp-revisar
+### 2026-05-27 — v1.6.0: Passo 3.7.d audita logo web-safe (sem `<text>` vivo, §19)
+
+3.7.d (logo regional) agora também checa que os SVG de logo do header/footer não têm `<text>` vivo (serifa no browser) — CRÍTICO. Rede de segurança independente do `lp-gerar`.
+
+---
+
 ### 2026-05-21 — v1.5.0: Passo 3.7 — auditoria SEO + multi-idioma + logo regional + OG image
 
 Novo Passo 3.7 trata vazamentos SEO como CRÍTICOS (mesma prioridade de GTM e fidelidade de copy). Subpassos:
@@ -209,6 +254,20 @@ Não-objetivos v1: outras marcas além de Buzzmonitor, agendamento automático d
 ---
 
 ## lp-health-check
+### 2026-05-27 — v1.1.0 — drift determinístico (corta falso-positivo no relatório)
+
+O drift detection da v1.0.0 era prosa no `SKILL.md` (o agente rodava `find` e compunha a lista à mão), e **qualquer** item de drift disparava email. Resultado: relatório diário cheio de ruído benigno — o placeholder estrutural do guarda-chuva (`_placeholder`) aparecia sempre, LPs no ar só em `*.vercel.app` apareciam como "fonte sem deploy", e uma mesma LP com nome de pasta ≠ nome do path no deploy aparecia 2× (uma de cada lado). Victor abriu a questão ao receber um relatório com 9 entradas estando todas as páginas no ar.
+
+- **Novo `drift.py` determinístico** — lê o output do `discover.py` (stdin) + escaneia `landing-pages/` no disco. Substitui a composição manual em prosa. Classifica cada item num `kind`:
+  - `fonte_sem_deploy` (ACIONÁVEL) — source no repo sem deploy em lugar nenhum.
+  - `deploy_orfao` (ACIONÁVEL) — slug deployado no guarda-chuva sem source no repo.
+  - `vercel_app_only` (INFORMATIVO) — source deployado só em `*.vercel.app` (cross-ref com `skipped` do discover). Estado legítimo; **não dispara email**.
+- **Slugs com prefixo `_` ignorados dos dois lados** — `_placeholder` (raiz de guarda-chuva) e similares são estruturais, não LPs. Param de aparecer.
+- **`ACTIONABLE_KINDS` é fonte única de verdade** — definido em `drift.py`, importado por `notify.py` e pelo gate do `SKILL.md`. Só drift acionável conta pra decidir enviar email; `vercel_app_only` vai numa seção "Informativo" separada no corpo.
+- Resultado no estado atual: de 9 entradas ruidosas → 0 acionáveis + 2 informativas (`pocket-events`, `hallmark-stat-led-...`), email não dispara.
+
+Arquivos: novo `drift.py`; `SKILL.md` (Passo 2 chama o script, Passo 4 conta acionável, relatório/troubleshooting atualizados, v1.0.0→v1.1.0); `notify.py` (importa `ACTIONABLE_KINDS`, assunto+gate+corpo por categoria).
+
 ### 2026-05-13 — v1.0.0 nova: rotina diária de health check com descoberta dinâmica
 
 Skill nova `/lp-health-check` que cobre o gap entre o smoke test do `lp-publicar` (no momento do deploy) e a detecção de incidente em produção (LP cai dias depois — rollback parcial, cert lapsa, deploy de outra LP no mesmo guarda-chuva quebra vizinha, drift entre repo e Vercel). Antes desta skill, Victor só descobria LP fora do ar quando o tráfego começava a reclamar; com `/schedule` cron diário rodando `/lp-health-check`, agora chega email assim que algo cai.

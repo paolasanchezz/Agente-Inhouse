@@ -3,7 +3,7 @@ name: lp-health-check
 description: Rotina de health check que descobre dinamicamente todas as LPs em producao via Vercel API, faz HTTP check em cada uma, e envia email para victor.lopes@buzzmonitor.com.br quando ha falha. Silenciosa quando tudo OK. Pode rodar manualmente ou via /schedule diario.
 argument-hint: "[--dry-run] [--no-drift]"
 allowed-tools: Read, Glob, Bash, Skill
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Health Check Diario das LPs
@@ -123,22 +123,25 @@ Se `errors` tiver itens no JSON, **abortar e mostrar pro usuario** — descobert
 
 ## Passo 2: Cross-check com source no repo (drift detection)
 
-Pulado se `--no-drift`. Caso contrario, comparar slugs descobertos no Vercel com pastas-source no repo:
+Pulado se `--no-drift`. Caso contrario, `drift.py` (este diretorio) faz o cross-check **deterministico**: le o output do `discover.py` via stdin e escaneia `landing-pages/{marca}/{slug}/index.html` no disco.
 
 ```bash
 if [ "$INCLUDE_DRIFT" = "1" ]; then
-  # Listar todos os index.html em landing-pages/{marca}/{slug}/index.html
-  SOURCE_SLUGS=$(find landing-pages -mindepth 3 -maxdepth 3 -name index.html -printf "%h\n" 2>/dev/null | sed 's|^landing-pages/||')
-  # Resultado: linhas tipo "buzzmonitor/pocket-events", "cxpress/playbook-whatsapp2026"
+  DRIFT_JSON=$(echo "$DISCOVERED" | python .claude/skills/lp-health-check/drift.py)
+else
+  DRIFT_JSON="[]"
 fi
 ```
 
-Compor `drift[]`:
+`drift.py` classifica cada item num `kind`:
 
-- **fonte sem deploy:** existe `landing-pages/{marca}/{slug}/index.html` mas slug nao aparece em nenhuma URL descoberta no Vercel. Pode ser legitimo (rascunho, despublicada) — reportar como warning, nao falha.
-- **deploy orfao:** slug aparece no Vercel mas nao tem source em `landing-pages/{marca}/{slug}/`. Pode ser legitimo (hospeda LP de outra estrutura) — warning.
+- **`fonte_sem_deploy`** (ACIONAVEL) — `landing-pages/{marca}/{slug}/index.html` existe mas nao ha deploy em producao em lugar nenhum. Provavel rascunho ou LP despublicada. Acao: confirmar se foi de proposito; se nao, `/lp-publicar`.
+- **`deploy_orfao`** (ACIONAVEL) — slug deployado num guarda-chuva sem source no repo. Acao: trazer o source pro repo (pull do deploy live) ou despublicar.
+- **`vercel_app_only`** (INFORMATIVO) — source deployado **apenas** em `*.vercel.app` (projeto sem dominio custom). Estado legitimo (preview/experimento); **nao dispara email**.
 
-Anexar `drift[]` ao payload que vai pro Passo 4.
+Slugs com prefixo `_` (ex: `_placeholder`, raiz de guarda-chuva) sao estruturais e ignorados dos dois lados.
+
+Anexar `DRIFT_JSON` ao payload que vai pro Passo 4. So os kinds acionaveis (`fonte_sem_deploy`, `deploy_orfao` — ver `drift.ACTIONABLE_KINDS`) contam pra decisao de notificar; `vercel_app_only` aparece no relatorio mas nao gera alerta.
 
 ## Passo 3: HTTP check em paralelo
 
@@ -155,7 +158,8 @@ echo "Resultado: $SUMMARY"
 ```bash
 FAIL=$(echo "$RESULTS" | python -c "import json,sys; print(json.load(sys.stdin)['summary']['fail'])")
 WARN=$(echo "$RESULTS" | python -c "import json,sys; print(json.load(sys.stdin)['summary']['warning'])")
-DRIFT_N=$(echo "$DRIFT_JSON" | python -c "import json,sys; print(len(json.load(sys.stdin)))" 2>/dev/null || echo 0)
+# So drift ACIONAVEL (fonte_sem_deploy/deploy_orfao) conta — vercel_app_only e informativo.
+DRIFT_N=$(echo "$DRIFT_JSON" | python -c "import json,sys; sys.path.insert(0,'.claude/skills/lp-health-check'); from drift import ACTIONABLE_KINDS; d=json.load(sys.stdin); print(sum(1 for x in d if x.get('kind') in ACTIONABLE_KINDS))" 2>/dev/null || echo 0)
 
 if [ "$FAIL" = "0" ] && [ "$WARN" = "0" ] && [ "$DRIFT_N" = "0" ]; then
   echo "Tudo verde. Sem relatorio, sem email."
@@ -189,7 +193,7 @@ Conteudo do `INCIDENT-...md`:
 
 ## Drift (D)
 
-(se houver — fonte sem deploy ou deploy orfao)
+Acionavel: `fonte_sem_deploy` + `deploy_orfao`. O `vercel_app_only` (no ar so em `*.vercel.app`) vai numa secao **Informativo** separada e nao dispara email.
 
 ## URLs OK (N)
 
@@ -199,7 +203,7 @@ Lista comprida — manter so como confirmacao.
 
 1. Para 404 em LP que deveria estar ativa: rodar `/lp-sync {dominio}` para inspecao read-only da sibling, depois decidir entre `/lp-publicar` (re-deploy) ou rollback via Vercel UI.
 2. Para 5xx persistente: pode ser problema da Vercel (status.vercel.com), DNS, ou cert. Aguardar 10min e re-rodar `/lp-health-check`.
-3. Para drift "fonte sem deploy": verificar se LP foi despublicada de proposito. Se nao, rodar `/lp-publicar` para re-deployar.
+3. Para `fonte_sem_deploy`: verificar se a LP foi despublicada de proposito; se nao, `/lp-publicar` pra re-deployar. Para `deploy_orfao`: trazer o source pro repo (pull do deploy live) ou despublicar. `vercel_app_only` e informativo — sem acao.
 ```
 
 Se `--dry-run`, NAO criar o arquivo — so imprimir o conteudo no console.
@@ -260,7 +264,8 @@ Apos validar manualmente:
 | `discover.py` retorna 401/403 | Token expirado (auth.json do CLI tem TTL curto) | Regerar token em vercel.com/account/tokens com escopo Full Account na org elife-group |
 | Nenhuma URL descoberta | Org sem projetos com FQDN custom, OU filtro de FQDN excluiu todos | Conferir `npx vercel ls --scope team_nC991VqUuSU2jXZN152xqqEg` |
 | Email nao chega | (a) RESEND_API_KEY invalido, (b) dominio nao verificado em Resend, (c) email caiu no spam | Logs do Resend em https://resend.com/emails; usar `onboarding@resend.dev` como FROM provisoriamente (so envia pra dono da conta) |
-| Drift falso-positivo (LP listada no repo mas marcada como sem deploy) | Source em `landing-pages/{marca}/{slug}/` ainda nao foi publicada | Esperado — drift e warning, nao falha |
+| LP no repo aparece como `fonte_sem_deploy` mas voce sabe que esta no ar | Deployada so em `*.vercel.app` → `drift.py` classifica como `vercel_app_only` (informativo). Se ainda cai em `fonte_sem_deploy`, o projeto Vercel tem nome diferente do slug da pasta | Conferir nome do projeto vs slug; promover pra dominio custom se for LP de verdade |
+| `deploy_orfao` recorrente numa LP live legitima | Source nunca foi versionado no repo | Trazer o source: pull do `index.html` do deploy live pra `landing-pages/{marca}/{slug}/` |
 
 ## Nao-objetivos (v1)
 

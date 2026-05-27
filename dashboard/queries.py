@@ -84,6 +84,34 @@ DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
     },
 ]
 
+# Reconversoes manuais (deal_id -> data efetiva da nova conversao).
+# Quando um lead CM reconverte de verdade mas o CRM so EDITA o deal antigo (nao gera
+# deal novo), o cdate fica preso na data original. Este override recoloca o LEAD na
+# data real da reconversao. Afeta SO a metrica de Leads (q_count_leads / q_lista_leads);
+# os eventos de funil (CE/RA/proposta) permanecem nas datas reais, e a serie temporal
+# 12m nao reflete o override (1 lead nao muda a forma do grafico — limitacao aceita).
+# MANUTENCAO: REMOVER a entrada quando o pipeline AC->Supabase passar a gerar deal novo
+# em reconversao, senao conta duplicado (deal novo + override).
+RECONVERSOES_MANUAIS: dict[int, str] = {
+    183266: '2026-05-26',  # Karol/Cely — reconverteu na oferta webinar; CRM so editou o deal de 09/mar. Mover (Victor 2026-05-27).
+}
+
+
+def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
+    """SQL do cdate efetivo aplicando RECONVERSOES_MANUAIS.
+
+    Retorna cdate_col puro se nao ha overrides; senao um CASE que troca a data
+    dos deals listados pela data manual da reconversao.
+    """
+    if not RECONVERSOES_MANUAIS:
+        return cdate_col
+    cases = ' '.join(
+        f"WHEN {id_col} = {did} THEN '{data}'::timestamptz"
+        for did, data in RECONVERSOES_MANUAIS.items()
+    )
+    return f"(CASE {cases} ELSE {cdate_col} END)"
+
+
 # Slugs CM na URL conteudo.buzzmonitor.com.br (whitelist)
 CM_SLUGS_PREFIXES: list[str] = [
     'plataforma-completa',
@@ -222,11 +250,12 @@ def q_count_leads(ini: date, fim: date) -> str:
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
+    cde = _cdate_efetivo()
     return f"""
 WITH wl AS ({wl}), bl AS ({bl})
 SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
 FROM deals_comercial_prod
-WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND email_contato_principal_bd_sdr IS NOT NULL
   AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
   AND (
@@ -322,6 +351,7 @@ def q_lista_leads(ini: date, fim: date) -> str:
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
+    cde = _cdate_efetivo('d.id', 'd.cdate')
     return f"""
 WITH wl AS ({wl}), bl AS ({bl}),
 filtrados AS (
@@ -329,11 +359,11 @@ filtrados AS (
     d.id, d.title AS deal,
     d.email_contato_principal_bd_sdr AS email,
     d.utm_source, d.utm_content,
-    d.cdate::date AS data_conversao,
+    {cde}::date AS data_conversao,
     COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
-    d.cdate
+    {cde} AS cdate
   FROM deals_comercial_prod d
-  WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+  WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     AND d.email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
     AND (

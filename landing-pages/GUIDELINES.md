@@ -313,6 +313,29 @@ python -c "from PIL import Image; im=Image.open('landing-pages/{marca}/{slug}/as
 curl -I https://{dominio}/assets/{marca}/og-{slug}.png  # solo: /assets/og-image.png
 ```
 
+## 19. Logo do header/footer/OG — SVG com `<text>` vivo é PROIBIDO
+
+Logo de marca em `<img src="...svg">` **tem que** renderizar a tipografia certa em qualquer navegador. SVG que usa `<text>` vivo (a fonte não está embutida) cai no fallback do browser — tipicamente **serifada** — e a logo sai errada (ex.: "BUZZ" sans + "CREATORS" serifada). O usuário percebe na hora.
+
+**Validação obrigatória antes de usar qualquer logo SVG:**
+
+```bash
+grep -c '<text' brand/{marca}/assets/logos/{logo}.svg   # TEM que ser 0
+```
+
+- `> 0` → o SVG serifa no browser. **Não usar.** Alternativas, em ordem:
+  1. **SVG raster** do mesmo logo (`grep -c base64 {logo}.svg` > 0) — fonte achatada na imagem, renderiza sempre certo. Mais pesado (100KB+) mas correto.
+  2. **PNG** do logo (ex.: `logo-color.png`) — leve e correto, pode não ter todas as variantes (cor/branco/tagline).
+  3. Converter o `<text>` em contornos (outline/paths) e re-exportar.
+- `== 0` e sem base64 → vetor com paths (outline). OK usar.
+
+**Estado por marca (2026-05-27):**
+- **Buzzcreators:** TODOS os SVGs de wordmark do brand (`logo-color.svg`, `logo-full-color.svg`, `logo-white.svg`, `logo-vertical-*`) têm `<text>` vivo → serifam. Usar `logo-color.png` (354×50, sem tagline, no brand) **ou** o raster `logo-full-color.svg` que está no deploy (`/assets/buzzcreators/logo-full-color.svg`, ~115KB, com tagline). Footer escuro: `filter: brightness(0) invert(1)` no logo colorido.
+- **Buzzmonitor:** SVGs de logo já são raster (base64) → OK.
+- **Cxpress / Elife:** SVGs com paths (outline) → OK.
+
+Histórico: 2026-05-27, LP `buzzcreators-estado-arte-influencia` publicada 2× com "CREATORS" serifada — a review (e o `lp-gerar`) trocaram o raster correto pelo "vetor limpo" sem checar o `<text>`. Referência viva correta: `evento.buzzmonitor.com/vendendo-com-creators`.
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.

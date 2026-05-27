@@ -155,15 +155,34 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 )"""
 
 
+# Reconversoes manuais (deal_id -> data efetiva). Espelha dashboard/queries.py.
+# Move o LEAD pra data real da reconversao quando o CRM so editou o deal antigo.
+# Afeta SO q_count_leads / q_lista_leads. REMOVER quando o pipeline gerar deal novo.
+RECONVERSOES_MANUAIS: dict[int, str] = {
+    183266: '2026-05-26',  # Karol/Cely — reconverteu na oferta; CRM so editou o deal de 09/mar.
+}
+
+
+def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
+    if not RECONVERSOES_MANUAIS:
+        return cdate_col
+    cases = ' '.join(
+        f"WHEN {id_col} = {did} THEN '{data}'::timestamptz"
+        for did, data in RECONVERSOES_MANUAIS.items()
+    )
+    return f"(CASE {cases} ELSE {cdate_col} END)"
+
+
 def q_count_leads(ini: date, fim: date) -> str:
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
+    cde = _cdate_efetivo()
     return f"""
 WITH wl AS ({wl}), bl AS ({bl})
 SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
 FROM deals_comercial_prod
-WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND email_contato_principal_bd_sdr IS NOT NULL
   AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
   AND (
@@ -242,6 +261,7 @@ def q_lista_leads(ini: date, fim: date) -> str:
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
+    cde = _cdate_efetivo('d.id', 'd.cdate')
     return f"""
 WITH wl AS ({wl}), bl AS ({bl}),
 filtrados AS (
@@ -249,11 +269,11 @@ filtrados AS (
     d.id, d.title AS deal,
     d.email_contato_principal_bd_sdr AS email,
     d.utm_source, d.utm_content,
-    d.cdate::date AS data_conversao,
+    {cde}::date AS data_conversao,
     COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
-    d.cdate
+    {cde} AS cdate
   FROM deals_comercial_prod d
-  WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+  WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     AND d.email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
     AND (

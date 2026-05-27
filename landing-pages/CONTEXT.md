@@ -369,7 +369,7 @@ Skill `/lp-health-check` (v1.0.0+) faz monitoramento contínuo das LPs em produ�
 
 1. **Descoberta dinâmica** via Vercel API: lista todos projetos da org `elife-group`, filtra os que têm FQDN custom (ignora `*.vercel.app`), pega último deploy READY, walk no file tree pra identificar todas as LPs (solo ou guarda-chuva).
 2. **HTTP check** em cada URL (HEAD com fallback GET, timeout 10s, retry 1× em 5xx, paralelo até 5).
-3. **Drift detection (opcional)** cross-check com source no repo: alerta se LP no repo não tem deploy, ou deploy sem source.
+3. **Drift detection (opcional, determinístico via `drift.py` — v1.1.0+)** cross-check com source no repo, classificado em `kind`: `fonte_sem_deploy` e `deploy_orfao` são **acionáveis** (disparam email); `vercel_app_only` (LP no ar só em `*.vercel.app`) é **informativo** (não dispara). Slugs `_`-prefix (ex: `_placeholder`) são estruturais e ignorados.
 4. **Relatório + email** apenas se houver falha/warning. Caso contrário, exit 0 silencioso.
 
 ### 11.2 Quando agir em cada cenário
@@ -379,8 +379,9 @@ Skill `/lp-health-check` (v1.0.0+) faz monitoramento contínuo das LPs em produ�
 | HTTP 404 final em LP que devia estar ativa | Subpasta apagada (deploy de outra LP no mesmo guarda-chuva sobrescreveu), ou rollback parcial | Rodar `/lp-sync {dominio}` pra inspeção, depois `/lp-publicar` pra restaurar |
 | HTTP 5xx persistente (após retry) | Vercel instável, edge function quebrada, problema upstream | Verificar status.vercel.com; aguardar 10min e re-rodar `/lp-health-check` manual |
 | Timeout / DNS | Domínio expirado ou cert lapsou | Conferir DNS + cert na Vercel UI ou registrar |
-| Drift "fonte sem deploy" | LP em rascunho no repo (esperado) OU foi despublicada de propósito | Sem ação se intencional; se não, rodar `/lp-publicar` |
-| Drift "deploy órfão" | Source foi removido do repo mas LP segue no ar | Decidir entre re-criar source ou despublicar via Vercel UI |
+| Drift `fonte_sem_deploy` | LP em rascunho no repo (esperado) OU foi despublicada de propósito | Sem ação se intencional; se não, rodar `/lp-publicar` |
+| Drift `deploy_orfao` | Source nunca foi versionado, ou foi removido, mas a LP segue no ar | Trazer o source pro repo (pull do `index.html` do deploy live pra `landing-pages/{marca}/{slug}/`) ou despublicar via Vercel UI |
+| Drift `vercel_app_only` (informativo) | Source no repo deployado só em `*.vercel.app`, sem domínio custom | Sem alerta. Se devia ser LP de verdade, promover pra guarda-chuva com FQDN; se abandonada, apagar o source |
 
 ### 11.3 Configuração
 

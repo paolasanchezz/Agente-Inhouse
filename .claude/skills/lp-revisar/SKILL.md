@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.5.0
+version: 1.6.0
 ---
 
 # Skill: Revisar Landing Page
@@ -280,6 +280,18 @@ grep -oE 'class="navbar__logo"[^>]*href="[^"]*"' "$HTML"
 # A URL deve == manifest.regions.{regiao}.home
 ```
 
+**Logo web-safe (GUIDELINES §19) — CRITICO:** o SVG de logo referenciado no header/footer NAO pode ter `<text>` vivo — sem a fonte embarcada, o browser troca por serifada e a logo sai errada (ex.: "BUZZ" sans + "CREATORS" serifada). Identificar os SVG de logo referenciados e checar:
+
+```bash
+# Listar os logos .svg referenciados
+grep -oE 'src="[^"]*logo[^"]*\.svg"' "$HTML" | sed 's/.*src="\([^"]*\)".*/\1/' | sort -u
+# Para cada um, resolver no source (../../brand/{marca}/assets/logos/ ou ./assets/) e checar:
+#   grep -c '<text' {arquivo}.svg   → TEM que ser 0 (se > 0, serifa no browser)
+#   grep -c base64 {arquivo}.svg    → raster (renderiza certo) e aceitavel
+```
+
+Qualquer logo SVG com `<text>` > 0 = CRITICO. Fix: trocar a referencia pelo raster (base64), PNG, ou SVG outline (§19). Buzzcreators: `logo-color.png` (sem tagline) ou o raster `logo-full-color.svg` do deploy.
+
 ### 3.7.e OG image (GUIDELINES §18)
 
 ```bash
@@ -314,6 +326,7 @@ Adicionar todos os criticos de SEO/hreflang/logo/OG no bucket principal de criti
 - LOGO-BAD-HREF: navbar logo aponta para "/" (linha 977) — trocar para "{manifest.regions.{regiao}.home}" + target=_blank
 - OG-IMAGE-MISSING: og:image referenciado mas arquivo nao existe em landing-pages/{marca}/{slug}/assets/og-image.png
 - OG-IMAGE-DIMENSIONS: og-image.png tem (1024, 512), esperado (1200, 630)
+- LOGO-SERIF: logo-color.svg (header, linha N) tem <text> vivo — serifa no browser; trocar por logo-color.png ou raster (§19)
 ```
 
 ## Passo 4: Aplicar Criticos

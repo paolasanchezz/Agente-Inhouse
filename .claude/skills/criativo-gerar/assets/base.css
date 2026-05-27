@@ -1,0 +1,66 @@
+/* ============================================================
+   base.css — chassi universal de criativo (skill criativo-gerar)
+   A peca copia este arquivo e cria um {carousel|static}.css que:
+     1. importa este via <link> (base.css) ANTES do css da peca;
+     2. define os tokens da marca (--brand-*) e o layout dos cards.
+   Este arquivo NAO tem cor de marca — so estrutura + SAFE ZONES.
+   ============================================================ */
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ width:100vw; height:100vh; overflow:hidden; }
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+}
+
+/* ------------------------------------------------------------
+   CANVAS + SAFE ZONES  (uso × formato)
+   render.py injeta data-uso e data-fmt no .canvas conforme o
+   PNG sendo gerado, entao um mesmo HTML serve a todos os formatos.
+   padding do canvas == zona de seguranca (lida pelo overlay-guia).
+   ------------------------------------------------------------ */
+.canvas{
+  --safe-x:7%; --safe-top:7%; --safe-bottom:7%;   /* default: organico feed */
+  position:relative;
+  width:100vw; height:100vh; overflow:hidden;
+  display:flex; flex-direction:column;
+  padding:var(--safe-top) var(--safe-x) var(--safe-bottom);
+}
+/* organico stories/reels — evita so os extremos */
+.canvas[data-fmt="9x16"]{ --safe-x:64px; --safe-top:120px; --safe-bottom:160px; }
+/* anuncio feed (1x1, 4x5) — margem de seguranca leve */
+.canvas[data-uso="anuncio"]{ --safe-x:10%; --safe-top:10%; --safe-bottom:11%; }
+/* anuncio stories/reels — safe-zone forte do Meta (topo perfil / base CTA-swipe) */
+.canvas[data-uso="anuncio"][data-fmt="9x16"]{ --safe-x:64px; --safe-top:250px; --safe-bottom:340px; }
+
+/* ------------------------------------------------------------
+   PRIMITIVOS COMUNS  (cor/tamanho final vem do css da peca)
+   ------------------------------------------------------------ */
+
+/* Topbar: logo + contador de card */
+.topbar{ display:flex; justify-content:space-between; align-items:center; position:relative; z-index:6; }
+.logo{ height:46px; width:auto; display:block; }
+.counter{ font-weight:700; font-size:20px; letter-spacing:.18em; }
+
+/* Bloco central (cresce e centraliza vertical) */
+.core{ flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:5; }
+
+/* Eyebrow / tag de secao */
+.eyebrow{ display:inline-flex; align-items:center; gap:14px; font-weight:800; font-size:21px; letter-spacing:.24em; text-transform:uppercase; }
+.eyebrow .e-dot{ width:13px; height:13px; border-radius:50%; }
+
+/* Decorativos canonicos — cor definida na peca via classes utilitarias */
+.deco{ position:absolute; pointer-events:none; z-index:0; }
+.pill{ border-radius:9999px; }
+.arco{ border-radius:9999px 9999px 0 0; }      /* topo arredondado; rotacionar em multiplos de 90deg */
+.glow{ position:absolute; border-radius:50%; filter:blur(12px); pointer-events:none; z-index:0; }
+
+/* CTA em pill */
+.cta-btn{ display:inline-flex; align-items:center; gap:16px; align-self:flex-start; border-radius:9999px; font-weight:800; }
+.cta-btn svg{ display:block; }
+
+/* Mascote (marcas que tem). Use .bleed p/ sangrar a borda em organico. */
+.mascot{ position:absolute; z-index:4; height:auto; }
+/* Em anuncio, conter o sangramento do mascote pra dentro da safe zone. */
+.canvas[data-uso="anuncio"] .mascot.bleed{ right:var(--safe-x); bottom:var(--safe-bottom); }

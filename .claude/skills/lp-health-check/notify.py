@@ -28,12 +28,18 @@ import sys
 import urllib.request
 import urllib.error
 
+# Fonte de verdade do que conta como drift acionavel vive em drift.py (mesmo dir).
+try:
+    from drift import ACTIONABLE_KINDS
+except ImportError:
+    ACTIONABLE_KINDS = ("fonte_sem_deploy", "deploy_orfao")
+
 
 def build_subject(payload):
     s = payload.get("summary", {})
     fails = s.get("fail", 0)
     warns = s.get("warning", 0)
-    drift_n = len(payload.get("drift") or [])
+    drift_n = sum(1 for d in (payload.get("drift") or []) if d.get("kind") in ACTIONABLE_KINDS)
     parts = []
     if fails:
         parts.append(f"{fails} fora do ar")
@@ -76,10 +82,17 @@ def build_text_body(payload):
         lines.append("")
 
     drift = payload.get("drift") or []
-    if drift:
+    actionable = [d for d in drift if d.get("kind") in ACTIONABLE_KINDS]
+    informative = [d for d in drift if d.get("kind") not in ACTIONABLE_KINDS]
+    if actionable:
         lines.append("=== DRIFT (source vs deploy) ===")
-        for d in drift:
-            lines.append(f"  {d.get('kind', '?')}: {d.get('item', '?')}  — {d.get('note', '')}")
+        for d in actionable:
+            lines.append(f"  {d.get('kind', '?')}: {d.get('item', '?')}  - {d.get('note', '')}")
+        lines.append("")
+    if informative:
+        lines.append("=== INFORMATIVO (nao acionavel, sem alerta) ===")
+        for d in informative:
+            lines.append(f"  {d.get('kind', '?')}: {d.get('item', '?')}  - {d.get('note', '')}")
         lines.append("")
 
     report = payload.get("report_path")
@@ -141,9 +154,11 @@ def main():
         print(f"erro: stdin nao e JSON valido — {e}", file=sys.stderr)
         sys.exit(1)
 
-    # Defensive: nao enviar se 0 falhas + 0 warnings + 0 drift
+    # Defensive: nao enviar se 0 falhas + 0 warnings + 0 drift ACIONAVEL.
+    # vercel_app_only (informativo) nao dispara email sozinho.
     s = payload.get("summary", {})
-    if s.get("fail", 0) == 0 and s.get("warning", 0) == 0 and not (payload.get("drift") or []):
+    actionable_drift = [d for d in (payload.get("drift") or []) if d.get("kind") in ACTIONABLE_KINDS]
+    if s.get("fail", 0) == 0 and s.get("warning", 0) == 0 and not actionable_drift:
         print("ok: nada para notificar (tudo verde)")
         return
 
