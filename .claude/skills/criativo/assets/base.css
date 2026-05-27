@@ -1,5 +1,5 @@
 /* ============================================================
-   base.css — chassi universal de criativo (skill criativo-gerar)
+   base.css — chassi universal de criativo (skill criativo)
    A peca copia este arquivo e cria um {carousel|static}.css que:
      1. importa este via <link> (base.css) ANTES do css da peca;
      2. define os tokens da marca (--brand-*) e o layout dos cards.
@@ -60,7 +60,7 @@ body{
 .cta-btn{ display:inline-flex; align-items:center; gap:16px; align-self:flex-start; border-radius:9999px; font-weight:800; }
 .cta-btn svg{ display:block; }
 
-/* Mascote (marcas que tem). Use .bleed p/ sangrar a borda em organico. */
+/* Mascote (marcas que tem). .bleed = pode sangrar a borda (organico).
+   NAO ha auto-containment em anuncio: a posicao e decisao humana; o overlay-guia
+   (render.py) sinaliza se algo critico invade a safe-zone, e a revisao aponta. */
 .mascot{ position:absolute; z-index:4; height:auto; }
-/* Em anuncio, conter o sangramento do mascote pra dentro da safe zone. */
-.canvas[data-uso="anuncio"] .mascot.bleed{ right:var(--safe-x); bottom:var(--safe-bottom); }

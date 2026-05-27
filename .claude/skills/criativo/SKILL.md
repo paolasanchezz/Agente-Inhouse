@@ -1,72 +1,113 @@
 ---
 name: criativo
-description: Guia interativo de criativos. Faz perguntas com chips clicaveis e dispara a skill criativo-gerar com o enquadramento certo (tipo, uso organico/anuncio, formato). Usar quando o usuario digitar /criativo sem saber os parametros.
-argument-hint: "(opcional) Ex: /criativo | /criativo cxpress brasil carrossel anuncio 4x5 case-10-para-4"
-allowed-tools: AskUserQuestion, Read, Glob, Skill
+description: Gera imagens de criativo (estatico/carrossel) ponta a ponta — adapta a copy, carrega brandbook + GUIDELINES, gera (HTML/Playwright por padrao ou Bloom sob pedido), revisa as imagens e entrega numa pasta local. Aplica margem de seguranca por uso (organico|anuncio) e formato (1x1|4x5|9x16). Texto pixel-perfect no caminho HTML.
+argument-hint: "[marca] [regiao] [tipo] [uso] [formato] [slug] + copy (colada/arquivo/Notion). Sem args, pergunta com chips. Ex: cxpress brasil carrossel anuncio 4x5 case-10-para-4"
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_check_credits, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_list_brands, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_onboard_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_create_logo_upload_url, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_generate_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_edit_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_image
+version: 1.0.0
 ---
 
-# /criativo — Router deterministico
+# Skill: /criativo — gerar criativo ponta a ponta
 
-Script fixo. Uma pergunta por vez. Pule a pergunta se `$ARGUMENTS` ja responde. Dispare direto
-apos a ultima pergunta — sem pedir confirmacao.
+Voce gera imagens de criativo (estatico/carrossel) do comeco ao fim: **adapta a copy → carrega
+brandbook + GUIDELINES → gera (engine HTML ou Bloom) → revisa as imagens → entrega numa pasta local**.
 
-## Normalizacao de inputs
+**Leia `criativos/GUIDELINES.md` ANTES de gerar e de revisar.** Ele e a fonte das REGRAS (formato,
+safe-zone, cor, tipografia, fidelidade, revisao, entrega). Este SKILL.md e o PROCESSO. Nao duplicar
+regras — citar `GUIDELINES §N`.
 
-Antes de validar, **converta para lowercase** os identificadores (`marca`, `regiao`, `tipo`,
-`uso`, `formato`). Ex: `Cxpress`->`cxpress`, `4:5`/`4X5`->`4x5`, `Anuncio`/`Anúncio`->`anuncio`.
-Se apos normalizar o valor nao estiver na lista permitida, trate como ausente e pergunte.
+## Dados de referencia
 
-## Fast-path
+| marca | regiao (CLI) | idioma | artigo |
+|---|---|---|---|
+| `buzzmonitor` `buzzcreators` `cxpress` `elife` | `brasil` (PT-BR) · `portugal` (PT-PT) · `latam` (ES-LATAM) | — | de `nameUsage` no manifest; ES-LATAM sem artigo |
 
-Se `$ARGUMENTS` ja tem marca + slug (e idealmente tipo/uso/formato validos), pule pro Disparo,
-assumindo defaults pros que faltarem (`regiao=brasil`, `tipo=carrossel`, `uso=organico`, `formato=4x5`).
+Marca: `brand/{marca}/` (`tokens.json`, `generation-rules.json`, `brand-manifest.json`, `BRANDBOOK.md`,
+`assets/logos/`, `assets/mascot/`). Saida: `criativos/{marca}/{regiao}/{slug}/`. Scaffold da engine
+HTML: `.claude/skills/criativo/assets/` (`base.css`, `render.py`).
 
-Marcas: `buzzmonitor` `buzzcreators` `cxpress` `elife`
-Regioes: `brasil` `portugal` `latam`
-Tipos: `carrossel` `estatico`
-Uso: `organico` `anuncio`
-Formatos: `1x1` `4x5` `9x16`
+## Passo 0 — Parsing + perguntas (chips)
 
----
+Parse de `$ARGUMENTS`:
 
-## Q1 — Marca
-AskUserQuestion: "Qual marca?" header: "Marca" → Buzzmonitor | Buzzcreators | Cxpress | Elife → `marca`
+| Arg | Valores | Default |
+|---|---|---|
+| `marca` | buzzmonitor·buzzcreators·cxpress·elife | — (obrigatorio) |
+| `regiao` | brasil·portugal·latam | brasil |
+| `tipo` | carrossel·estatico | carrossel |
+| `uso` | organico·anuncio | organico |
+| `formato` | 1x1·4x5·9x16 (CSV) | 4x5 (GUIDELINES §1) |
+| `slug` | kebab-case | — (obrigatorio) |
 
-## Q2 — Regiao
-AskUserQuestion: "Qual regiao?" header: "Regiao" → Brasil (Recomendado) | Portugal | LATAM → `regiao`
+Para qualquer parametro ausente, pergunte com `AskUserQuestion` (chips). **Engine:** verifique se o
+MCP do Bloom esta disponivel (tente `bloom_check_credits` ou `ToolSearch "bloom"`). Se SIM, pergunte
+"Bloom ou HTML?" (GUIDELINES §3). Se NAO, **nao mencione Bloom** — siga HTML (degrada sem erro).
+**Copy:** colada no chat, caminho de arquivo, ou URL Notion. Se nao houver copy, sugira
+`/copy-criar {marca} {regiao} estatico {estagio} "{tema}"` e pare.
 
-## Q3 — Tipo de peca
-AskUserQuestion: "Carrossel ou estatico?" header: "Tipo"
-1. "Carrossel (5 cards)" → `tipo=carrossel`
-2. "Estatico (1 imagem)" → `tipo=estatico`
+## Passo 1 — Copy (adaptativo · GUIDELINES §9)
 
-## Q4 — Uso (define a margem de seguranca)
-AskUserQuestion: "Vai ser organico ou anuncio?" header: "Uso"
-1. "Organico (Recomendado)" — pode usar a borda inteira, mascote sangrando → `uso=organico`
-2. "Anuncio (margem de seguranca Meta)" — puxa conteudo critico pra dentro + gera overlay-guia de QA → `uso=anuncio`
+Avalie a qualidade da copy recebida:
+- **Ja bem estruturada e encaixa no layout → LITERAL** (so diagrama, nao mexe nas palavras).
+- **Crua/desestruturada → adapta** estrutura (quebra em cards/blocos) + enxuga leve + passa anti-IA
+  (`conhecimento/editorial/regras-anti-ia.md`).
+- **Sempre** preserva numeros/dados/claims exatos; nunca inventa frase/hook/CTA. Rotulos neutros de
+  organizacao ("Antes"/"Depois") sao OK.
 
-## Q5 — Formato
-AskUserQuestion: "Qual formato?" header: "Formato" (multiSelect: true — pode pedir mais de um)
-1. "Feed 4:5 (Recomendado)" → `4x5`
-2. "Quadrado 1:1" → `1x1`
-3. "Stories/Reels 9:16" → `9x16`
-→ junte os escolhidos em CSV → `formato`
+Salve a copy final em `criativos/{marca}/{regiao}/{slug}/copy.txt` (blocos rotulados por card).
+A estrutura SAI DA COPY — sem template fixo (GUIDELINES §4).
 
-## Q6 — Slug
-Texto livre: "Nome curto da peca em kebab-case (ex: case-10-para-4)." → `slug`
+## Passo 2 — Marca
 
-## Q7 — Copy
-Texto livre: "Cole a copy (por card, se carrossel) ou o caminho/URL do arquivo. Se ja existe
-copy.txt na pasta da peca, pode dizer 'usar existente'." → `copy`
+Leia (nao confie na memoria): `tokens.json` → `generation-rules.json` (bloco `adCreative` +
+`constraints.neverDo`) → `brand-manifest.json` (`nameUsage` + tom) → `BRANDBOOK.md` (secao Visual:
+paleta/decorativos/mascote/grafia). Glob `assets/logos/` e `assets/mascot/` pra inventariar.
 
-Se o usuario nao tiver copy ainda, sugira gerar antes:
-`/copy-criar {marca} {regiao} estatico {estagio} "{tema}"` e retomar depois.
+## Passo 3 — Gerar (pela engine escolhida)
 
----
+### 3A — Engine HTML/Playwright (padrao)
 
-## Disparo
+1. Scaffold: `mkdir -p criativos/{marca}/{regiao}/{slug}/assets`; copie `.claude/skills/criativo/assets/base.css`
+   e `render.py` pra pasta da peca; copie os assets de marca USADOS (logo do fundo certo, poses de
+   mascote escolhidas) pra `assets/` (referencie por caminho relativo simples, ex: `assets/logo-reversed.svg`).
+2. Crie `{carousel|static}.css` que **`@import url("base.css");`** no topo + define os tokens da marca
+   (`--brand-*`, fontes) + layout dos cards. Crie `card-N.html` (um por card/peca) ligando esse css +
+   Google Fonts da marca, estrutura `.canvas > .topbar + .core + (deco/mascot)`.
+3. Aplique as regras de design do GUIDELINES: §5 tipografia (display vs body), §6 cor + **auto-AA**
+   (nunca branco sobre laranja — texto escuro), §7 decorativos canonicos, §8 mascote so quando agrega.
+   `render.py` injeta `data-uso`/`data-fmt` no `.canvas` — nao hardcodar safe-zone no css da peca.
+4. Render: `cd criativos/{marca}/{regiao}/{slug} && python render.py {formato-csv} {uso}`.
+   (Pre-req Playwright+Chromium — GUIDELINES §Lembretes. Em `anuncio` gera tambem `-guia.png`.)
 
-Invoke Skill(criativo-gerar, args: "{marca} {regiao} {tipo} {uso} {formato} {slug}\n\nCOPY:\n{copy}")
+### 3B — Engine Bloom (opt-in · so se escolhida E MCP disponivel)
 
-(Os parametros vao na 1a linha; a copy vai apos o marcador `COPY:`. Se `copy` = "usar existente",
-omita o bloco COPY — o worker le o copy.txt da pasta.)
+Bloom monta a **peca inteira** por IA (GUIDELINES §3). Use so quando o conceito e um key-visual generativo.
+1. Marca no Bloom: `bloom_list_brands` → se ja onboarded (ver memoria `reference_bloom_buzzmonitor`),
+   reusa o brand id; senao `bloom_onboard_brand`. Se voltar `logo_required`: `bloom_create_logo_upload_url`
+   + upload do logo do brand com **≥300px** (upscale via Pillow se preciso; token single-use) — memoria
+   `feedback_bloom_mcp_detalhes`.
+2. `bloom_generate_image` com o DNA da marca + prompt. **Texto curto** no prompt (Bloom erra tipografia
+   PT-BR). Baixe o PNG com `curl -sL -A "Mozilla/5.0" -o ...` (URL e redirect — `-L` obrigatorio).
+3. Salve em `criativos/{marca}/{regiao}/{slug}/`. Trate como peca inteira (sem camada HTML de texto —
+   este e o caminho independente; pra texto preciso, o usuario usa a engine HTML).
+
+## Passo 4 — Revisao automatica (GUIDELINES §10)
+
+**Leia (Read) cada PNG.** Checklist: copy fiel (numero/texto literal), marca (paleta/fontes/grafia/artigo),
+contraste AA, layout (sem overflow/colisao), safe-zone em `anuncio` (abrir `-guia.png` — nada critico no
+vermelho), tipografia (sem caractere torto — **forte no Bloom**). Em `anuncio`, **avise se a peca estiver
+muito textual** (entrega Meta) e sugira enxugar.
+
+Comportamento: **auto-corrige o corrigivel e re-renderiza** ate passar (HTML). Bloom com texto corrompido
+→ `bloom_edit_image` ou regenerar. Nao pausa pra aprovacao (GUIDELINES §11).
+
+## Passo 5 — Entrega (GUIDELINES §11)
+
+Entregue o **caminho absoluto da pasta no chat**. Liste os PNGs por card/formato; em `anuncio`, cite os
+`-guia.png`. Sem upload automatico. **Cxpress + prova social:** se a copy cita metrica de cliente, avise
+que os cases verificados estao pendentes. Sugira proximos: outro formato/uso, ou copy via `/copy-criar`.
+
+## Erro recorrente → melhorar a skill
+
+Bug/regra de marca recorrente durante a geracao (contraste, vazamento de IA, path de asset, safe-zone,
+tipografia Bloom): conserte a skill / `base.css` / `GUIDELINES.md` **antes de fechar** (memoria
+`feedback_skill_improvement`). Bumpe `version` e registre no CHANGELOG.

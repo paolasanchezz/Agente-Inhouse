@@ -12,30 +12,34 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
-## .claude/skills/criativo-gerar + .claude/skills/criativo
-### 2026-05-27 — v1.0.0 — Skills novas (gerador de criativos + advisor)
+## .claude/skills/criativo + criativos/GUIDELINES.md
+### 2026-05-27 — v1.0.0 — Skill nova (gerador de criativos ponta a ponta) — co-desenhada com o Victor
 
 Formaliza em skill o pipeline de criativo estatico que ate entao era a POC `criativos/render_poc.py`
-(usada no teste do webinar 2026-05-22 e no carrossel Cxpress "10→4" de 2026-05-26).
+(usada no teste do webinar 2026-05-22 e no carrossel Cxpress "10→4" de 2026-05-26). Arquitetura,
+engines e GUIDELINES **decididos ponto a ponto com o Victor** (sessao 2026-05-27) — nao foi build solo.
 
-- **`criativo-gerar` (worker):** gera PNGs de criativo (carrossel 5 cards ou estatico) a partir de
-  copy estruturada + brandbook da marca, via HTML/CSS -> Playwright (Chromium headless), DPR=1.
-  Texto sempre pixel-perfect — **nao usa IA de imagem** pra camada de texto (Bloom erra tipografia
-  PT-BR; ver memoria `feedback-bloom-mcp-detalhes`). Complementa `copy-criar` (que escreve a copy).
-- **Flag `uso` (organico|anuncio) × `formato` (1x1|4x5|9x16) = margem de seguranca automatica.**
-  Pedido do Victor (2026-05-27). `base.css` deriva `--safe-top/-bottom/-x` de dois data-attributes;
-  `render.py` injeta uso/formato no `.canvas` antes do screenshot (um HTML serve todos os formatos).
-  Anuncio 9:16 reserva topo 250px / base 340px (UI do Stories/Reels) — numeros da POC do webinar.
-  Em `uso=anuncio`, `render.py` gera tambem um `-guia.png` com overlay das zonas reservadas
-  (faixas vermelhas) + limite da area segura (tracejado verde) pra QA visual.
-- **`criativo` (advisor):** roteador deterministico com chips (marca, tipo, uso, formato, slug, copy),
-  igual aos advisors `/escrever`, `/landing-page`. Dispara `criativo-gerar`.
-- Scaffold reutilizavel em `.claude/skills/criativo-gerar/assets/` (`base.css` + `render.py`),
-  copiado pra pasta da peca. Output em `criativos/{marca}/{regiao}/{slug}/` (gitignored — entrega
-  por caminho no chat, upload manual; ver `feedback-criativos-pasta-local`).
-- Lembretes de marca embutidos: contraste WCAG (texto branco sobre laranja Cxpress/Buzzmonitor
-  REPROVA — usar texto escuro), cases Cxpress pendentes (prova social), artigo via `nameUsage`.
-- `.gitignore`: adicionado `criativos/` (estava fora — PNGs pesados + copias de asset nao versionam).
+- **`/criativo` = skill unica ponta a ponta:** adapta a copy → carrega brandbook + GUIDELINES → gera →
+  **revisa as imagens** → entrega numa pasta local. Sem args, pergunta com chips. (Decisao: skill unica,
+  nao pipeline modular.)
+- **Duas engines independentes** (decisao do Victor): **HTML/CSS + Playwright** (padrao, texto
+  pixel-perfect, DPR=1) e **Bloom** (IA, peca inteira, opt-in). Bloom e **desligavel** — sem MCP/assinatura,
+  a opcao nao aparece e tudo vai por HTML (degrada sem erro). Escolha: HTML por padrao, Bloom sob pedido.
+- **Margem de seguranca por `uso` (organico|anuncio) × `formato` (1x1|4x5|9x16).** `base.css` deriva
+  `--safe-top/-bottom/-x` de dois data-attributes; `render.py` injeta uso/formato no `.canvas` (um HTML
+  serve todos os formatos). Anuncio 9:16 reserva topo 250 / base 340 / lados 64 (UI do Stories/Reels).
+  Em `anuncio`: gera `-guia.png` (overlay das zonas reservadas) + avisa se a peca tiver texto demais.
+  **Nao** ha auto-containment de mascote/decorativo (decisao: a recomposicao e humana; o guia sinaliza).
+- **`criativos/GUIDELINES.md` (novo, versionado):** 11 secoes co-desenhadas — formatos, safe-zones,
+  escolha de engine, estrutura (a copy dita), tipografia, cor (auto-AA), decorativos, mascote (so quando
+  agrega), fidelidade da copy (adaptativo: copy boa → literal; copy crua → adapta + anti-IA), revisao
+  (auto-corrige e re-renderiza), entrega. E a fonte de regras; o SKILL.md so descreve o processo.
+- Scaffold em `.claude/skills/criativo/assets/` (`base.css` + `render.py`), copiado pra pasta da peca.
+  Output em `criativos/{marca}/{regiao}/{slug}/` — entrega por caminho no chat, upload manual.
+- Lembretes embutidos: contraste WCAG auto-corrigido (branco sobre laranja Cxpress/Buzzmonitor REPROVA),
+  cases Cxpress pendentes (prova social), artigo via `nameUsage`, tipografia reforcada no Bloom.
+- `.gitignore`: ignora `criativos/*` (era `criativos/`) + excecao `!criativos/GUIDELINES.md` — assim o
+  GUIDELINES versiona e os outputs (PNGs) ficam de fora. (Negacao so funciona ignorando o conteudo, nao a pasta.)
 
 ---
 

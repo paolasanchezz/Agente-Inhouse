@@ -59,4 +59,8 @@ reviews/
 
 # Criativos estaticos gerados (PNGs + copias de assets de marca). Pesados e regeneraveis
 # via render.py — upload manual pro Drive/Slack (ver memoria feedback-criativos-pasta-local).
-criativos/
+# Ignora o CONTEUDO (criativos/*), nao a pasta — senao a excecao do GUIDELINES nao funciona
+# (git nao re-inclui arquivo cujo diretorio-pai esta excluido).
+criativos/*
+# Excecao: o GUIDELINES universal de criativos e versionado (igual landing-pages/GUIDELINES.md).
+!criativos/GUIDELINES.md

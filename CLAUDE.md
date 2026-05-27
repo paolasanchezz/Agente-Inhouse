@@ -14,7 +14,7 @@ Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
-Criativos:    /criativo (advisor) → criativo-gerar | /criativo-gerar (worker — estatico/carrossel, organico|anuncio, 1x1/4x5/9x16)
+Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 Redes Sociais: /social-plan (standalone — planejamento editorial mensal Buzzmonitor)
@@ -31,7 +31,7 @@ Redes Sociais: /social-plan (standalone — planejamento editorial mensal Buzzmo
 | `pauta-quente/` | Conteudos gerados a partir de noticia recente por marca (`pauta-quente/{marca}/YYYY-MM-DD-{slug}/`) |
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `social-media/` | Planejamentos editoriais de redes sociais por marca (`social-media/{marca}/YYYY-MM/`) |
-| `criativos/` | Criativos estaticos gerados por marca/regiao (`criativos/{marca}/{regiao}/{slug}/`). **Gitignored** — PNGs pesados, upload manual |
+| `criativos/` | Criativos gerados por marca/regiao (`criativos/{marca}/{regiao}/{slug}/`) + `GUIDELINES.md` universal. Outputs **gitignored** (PNGs pesados, upload manual); só o GUIDELINES versiona |
 | `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
 
@@ -43,7 +43,8 @@ Cada familia de skills tem um `CONTEXT.md` com marcas, regioes, caminhos e IDs d
 - `.claude/skills/trad-traduzir/CONTEXT.md` — para skills trad-*
 - `.claude/skills/lp-preparar/CONTEXT.md` — para skills lp-*
 - `.claude/skills/meta-ads/CONTEXT.md` — para skills meta-ads-*
-- `.claude/skills/criativo-gerar/CONTEXT.md` — para skills criativo-*
+
+A skill `/criativo` nao usa CONTEXT.md — suas regras universais ficam em `criativos/GUIDELINES.md`.
 
 ### Brand / Design System
 
@@ -165,17 +166,16 @@ Transforma uma noticia recente em conteudo multi-formato e multi-idioma. Rastrei
 
 ### Criativos (imagens estaticas / carrossel)
 
-Renderiza PNGs de criativo a partir de copy + brandbook (HTML/CSS -> Playwright). Texto pixel-perfect. Saida em `criativos/{marca}/{regiao}/{slug}/` (gitignored — upload manual). Requer Playwright+Chromium (`/setup-agencia` ou `python -m pip install playwright && python -m playwright install chromium`). Regras e safe-zones em `.claude/skills/criativo-gerar/CONTEXT.md`.
+Skill unica **ponta a ponta**: adapta a copy → carrega brandbook + GUIDELINES → gera → revisa as imagens → entrega numa pasta local. Duas engines independentes: **HTML/CSS + Playwright** (padrao, texto pixel-perfect) e **Bloom** (IA, opt-in e desligavel — sem assinatura, a opcao some). Regras universais co-desenhadas em `criativos/GUIDELINES.md`. Saida em `criativos/{marca}/{regiao}/{slug}/` (outputs gitignored — upload manual). Engine HTML requer Playwright+Chromium (`/setup-agencia`).
 
 | Comando | O que faz |
 |---|---|
-| `/criativo` | Advisor — pergunta marca, tipo, uso (organico/anuncio), formato com chips e dispara o worker |
-| `/criativo-gerar [marca] [regiao] [tipo] [uso] [formato] [slug]` | Gera os PNGs. `uso=anuncio` aplica a margem de seguranca do Meta + gera overlay-guia de QA |
+| `/criativo [marca] [regiao] [tipo] [uso] [formato] [slug]` | Gera o criativo ponta a ponta. Sem args, pergunta com chips. `uso=anuncio` aplica a margem de seguranca do Meta + gera overlay-guia de QA |
 
-- `[tipo]`: `carrossel` (5 cards: cover→contexto→insight→conector→CTA) | `estatico` (1 imagem)
+- `[tipo]`: `carrossel` (estrutura ditada pela copy; arco-ref cover→contexto→insight→conector→CTA) | `estatico` (1 imagem)
 - `[uso]`: `organico` (borda livre, mascote sangra) | `anuncio` (safe-zone Meta; 9:16 reserva topo 250 / base 340)
-- `[formato]`: `1x1` (1080²) | `4x5` (1080×1350, recomendado feed) | `9x16` (1080×1920) — aceita CSV
-- Copy vem de `/copy-criar` ou `/pauta-quente` ou colada. Bloom (IA) so p/ key visual SEM texto critico (tipografia PT-BR falha).
+- `[formato]`: `1x1` (1080²) | `4x5` (1080×1350, default feed) | `9x16` (1080×1920) — aceita CSV
+- Copy vem de `/copy-criar` ou `/pauta-quente` ou colada (a skill adapta se vier crua, ou diagrama literal se ja vier boa).
 
 ### Landing Pages
 
