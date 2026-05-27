@@ -1,0 +1,59 @@
+=== HERO ===
+OVERLINE: Material rico · Acesso gratuito
+H1: O guia do marketing de influência para colocar em prática agora
+SUB: Os cases que viraram referência, os números que decidem orçamento e os bônus prontos para colocar a sua próxima campanha de pé. Tudo num só material.
+CTA: Quero o material
+
+=== FORM ===
+H2: Receba agora no seu e-mail
+SUB: Acesso imediato. Sem custo, sem etapa intermediária.
+LABEL: Nome completo
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Cargo
+CTA: Quero acessar
+
+=== O QUE TEM DENTRO ===
+H2: O que você vai encontrar
+LIST ITEM: Os cases globais que redesenharam o marketing de influência, lidos por estratégia e prontos para aplicar agora.
+LIST ITEM: Os principais cases brasileiros do ciclo atual, com leitura por trás dos números (não só pela viralização).
+LIST ITEM: Benchmark completo do setor: tamanho de mercado, alocação de orçamento, ROI por plataforma e taxas de mercado por nível de criador.
+LIST ITEM: Playbook 30-60-90 dias para sair do briefing à escala, com checklists por fase.
+LIST ITEM: Template de briefing pronto para campanhas com criadores.
+LIST ITEM: Rota Buzzcreators de curadoria e negociação com creators, passo a passo.
+LIST ITEM: Playbook Estratégico 2026, com os 5 essenciais para colocar em prática este ano.
+
+=== POR QUE IMPORTA ===
+H2: Os números que estão definindo o jogo agora
+BODY: A conversa sobre influência saiu da pauta de mídia e entrou na pauta de receita. Estes dados explicam porque, e ajudam a defender o próximo orçamento.
+LIST ITEM: US$ 32 bilhões. Tamanho do mercado global de marketing de influência, com crescimento de 36% num único ciclo.
+LIST ITEM: 71% das marcas aumentaram o orçamento do canal.
+LIST ITEM: 26% já alocam mais de 40% do total de marketing para criadores.
+LIST ITEM: US$ 5,78 por dólar investido. ROI médio do setor (o top 10% chega a US$ 18).
+LIST ITEM: Microinfluenciadores entregam até 3x mais ROI e 60% mais engajamento que macros.
+
+=== PARA QUEM É ===
+H2: Feito para quem está construindo o jogo agora
+LIST ITEM: Times de marketing que rodam campanhas com vários criadores e querem comparar performance entre perfis com critério.
+LIST ITEM: Agências que gerenciam influência para múltiplos clientes e precisam padronizar briefing, contrato e relatório.
+LIST ITEM: Lideranças que vão defender orçamento de influência na próxima rodada de planejamento e querem dados na manga.
+LIST ITEM: Quem já usa o Buzzmonitor e quer somar gestão de creators ao mesmo ecossistema.
+
+=== DIFERENCIAL ===
+H2: Três bônus dentro do mesmo pacote
+H3: Template de Briefing
+BODY: Estrutura pronta para padronizar pedidos a criadores. O mesmo formato que reduz reentrada de revisão em campanhas com 30 ou 300 perfis.
+H3: Rota Buzzcreators de Curadoria e Negociação
+BODY: Como o time mapeia, aborda e negocia com creators na prática. Da seleção ao fechamento, sem sair do método.
+H3: Playbook Estratégico 2026
+BODY: Os 5 essenciais do ano, em formato de decisão para o planejamento.
+
+=== URGENCIA ===
+LABEL: Atualizado
+H2: O material reúne em um só lugar o que ficaria espalhado em dezenas de relatórios pagos. Acesso direto, sem custo.
+CTA: Quero meu acesso
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzcreators · Media & Influencer Marketing · comercial@buzzcreators.com.br
+
+# Revisao anti-IA: sem achados (em-dash: 0).
