@@ -40,7 +40,7 @@ Ao criar copy, carregar `brand/{marca}/brand-manifest.json` para tom de voz e me
 |---|---|
 | `conhecimento/copywriting/fundamentos-copy.md` | SEMPRE |
 | `conhecimento/copywriting/funil-copy.md` | SEMPRE |
-| `conhecimento/copywriting/video-curto-ads.md` + `video-curto-organico.md` | tipo = video-curto |
+| `conhecimento/copywriting/video-curto-ads.md` + `video-curto-organico.md` + `video-curto-talking-head.md` | tipo = video-curto |
 | `conhecimento/copywriting/estatico-ads.md` + `estatico-organico.md` | tipo = estatico |
 | `conhecimento/copywriting/email-copy.md` | tipo = email |
 | `conhecimento/editorial/regras-anti-ia.md` | Em revisoes |

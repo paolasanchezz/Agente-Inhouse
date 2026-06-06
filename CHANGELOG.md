@@ -12,6 +12,27 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## .claude/skills/auditar-deals-cm + dashboard/auditar_deals_cm.py
+### 2026-06-02 — v1.0.0 — Skill nova (auditoria de deals CM nao mapeados por falha de UTM)
+
+Acha deals de Content Marketing que a dashboard CM nao conta porque chegaram ao Supabase com
+`utm_source`/`url_conversao` vazios (falha da automacao AC->Supabase, ja sintomatizada em
+`MAPEAMENTO-CAMPOS.md` §8/§9). Harness **read-only** que recupera a UTM **localmente** (nunca grava no
+banco) e re-roda o filtro CM **reaproveitado** de `queries.py`.
+
+- **3 niveis de confianca:** doador por **email** (mesmo contato) = NET-NEW alta confianca; doador por
+  **conta** (mesma empresa) e **titulo/inbound** = revisao. So o email entra no headline.
+- **Reuso, nao reimplementacao:** importa `filtro_cm`, `EMAIL_WHITELIST/BLACKLIST`, `_sql_email_list`,
+  `q_lista_leads`. Anti-drift validado: ANTES == `q_count_leads` da dashboard (287 YtD 2026).
+- **Saidas gitignored** (PII: emails + ids) em `dashboard/auditoria/`: relatorio MD + CSVs por nivel.
+- **Remediacao so proposta:** bloco de `EMAIL_WHITELIST` se N pequeno; senao recomenda corrigir a
+  automacao AC->Supabase / popular `cm_email_whitelist`. Nunca auto-edita `queries.py`; nunca toca no Supabase.
+- **Fase 2 (AC) desenhada, nao implementada** (decisao Victor 2026-06-02 "so Supabase por ora"):
+  `enrich_from_ac()` no-op + mapa AC validado (deal.id==AC id, contato/notas, campos 845–851) documentado
+  em `dashboard/AUDITORIA-DEALS-CM.md`.
+- Baseline 1a rodada (YtD 2026): 287 leads CM hoje contados -> **+43 net-new alta confianca (+15%)**;
+  ~1.148 em revisao (573 mesma empresa + 575 titulo/inbound).
+
 ## .claude/skills/criativo + criativos/GUIDELINES.md
 ### 2026-05-27 — v1.0.0 — Skill nova (gerador de criativos ponta a ponta) — co-desenhada com o Victor
 
@@ -68,6 +89,25 @@ Nova estrutura pra remover deals **sem** banir o email globalmente (como faria a
 ---
 
 ## .claude/skills/dashboard-atualizar
+### 2026-06-02 — v1.0.2 — Fix: `url_conversao` NULL derrubava leads CM (cláusula de exclusão)
+
+`_sql_exclusao_deals()` em `dashboard/queries.py` gerava `NOT (url_conversao ILIKE '<webinar>')`
+sem guarda de NULL. Com `url_conversao` NULL (lead de `utm_source` válido — ex: `meta` — mas sem
+URL de conversão capturada), `NULL ILIKE '...'` vira NULL, o `NOT (...)` propaga NULL no WHERE e o
+lead some de **todo** o filtro CM (leads, eventos 90d, rankings, série 12m). Regressão introduzida
+junto com a exclusão do webinar Análise Preditiva.
+
+- **Fix:** `COALESCE(url_conversao, '') ILIKE '...'` nas duas cláusulas (com/sem `datas`). Mesma
+  classe do bug `google/cpc` corrigido em 2026-05-25/26.
+- **Impacto:** passa a contar leads CM com source válido e URL vazia. YtD 2026: +6 deals (5 `meta`,
+  1 `chatgpt.com`); +3 no gráfico 12m (2025). Auditado com o Victor (deals conferidos no AC) antes de aplicar.
+- Detectado investigando lote de leads "Monitoramento Político" 26/05 que não apareciam na dash mesmo
+  após o time preencher `utm_source` no ActiveCampaign.
+- **Twin local sincronizado:** `dashboard-pessoal/lib/queries.py` (dashboard local com seletor de
+  período, porta 8000) tinha a mesma cláusula — corrigido no mesmo fix (o README pede manter as duas
+  cópias iguais). Precisa reiniciar o `run_local.py` pra pegar a mudança. LATAM e Cxpress não têm o
+  construto — não afetadas.
+
 ### 2026-05-25 — v1.0.1 — Fixes do smoke test inicial (3 bugs)
 
 Bugs descobertos rodando a skill pela primeira vez em 2026-05-25:
@@ -739,6 +779,12 @@ Feedback do Victor pos primeiro teste end-to-end com Cxpress BR: NL "muito grand
 ---
 
 ## pauta-quente
+### 1.1.0 — 2026-06-02 — Doc de roteiro falado à câmera (Triângulo do Yap) no tipo video-curto
+- **Liga o doc** `conhecimento/copywriting/video-curto-talking-head.md` (framework **T · MAES · A/N**) ao tipo `video-curto`, espelhando o que foi feito na `copy-criar` v1.1.0 (mesma sessão 2026-06-02).
+- **Carregamento:** Passo 3 (Copy — por tipo) passa a ler o doc quando `tipo = video-curto`; tabelas "Tipos de Conteúdo" e "Base de Conhecimento" do `CONTEXT.md` atualizadas.
+- **Aplicação:** Passo 5 (template Video-Curto) instrui a estruturar o áudio pelo esqueleto T·MAES·A/N quando for talking head, **mapeado na ancoragem jornalística da skill**: T = HOOK (fato/dado), MAES = CONTEXTO+INSIGHT num exemplo/analogia concreto, A/N = CONECTOR+CTA. Preserva a regra dura "conector + CTA sempre ao final".
+- Não-breaking: nenhum parâmetro, template ou tipo (carrossel/blog/linkedin/email) mudou; só adiciona fonte e orientação para video-curto.
+
 ### 1.0.0 — 2026-04-24
 - Skill nova `/pauta-quente` para transformar noticia recente em conteudo multi-formato x multi-idioma por marca. Orientada a evento externo (URL obrigatoria), complementar a `/copy-criar` (standalone).
 - Inputs: `[url] [marca] [tipos-csv] [idiomas-csv]`. Tipos: `carrossel`, `video-curto`, `blog`, `linkedin`, `email`. Idiomas: `br` (PT-BR), `pt` (PT-PT), `es` (ES-LATAM). Combinacoes cartesianas tipos x idiomas numa unica execucao.
@@ -962,6 +1008,11 @@ Round de fixes a partir de revisao critica das skills LP + CONTEXT/GUIDELINES (3
 ---
 
 ## copy-criar
+### 1.1.0 — 2026-06-02 — Doc de roteiro falado à câmera (Triângulo do Yap)
+- **Novo doc de conhecimento** `conhecimento/copywriting/video-curto-talking-head.md`: estrutura da fala para vídeo de uma pessoa falando direto à câmera (Reels/TikTok/Shorts/UGC). Framework **T · MAES · A/N** (Tópico → Metáfora/Analogia/Exemplo/Story → Aplicação/Próximo passo), adaptado ao método da casa (Ladeira/Light Copy) e cruzado com `fundamentos-copy.md`, `video-curto-ads.md`, `video-curto-organico.md` e `funil-copy.md`. Inclui template, exemplo mapeado, anti-padrões e checklist.
+- **Carregamento ligado:** Passo 1 (item 2) passa a ler o doc quando `tipo = video-curto`; Passo 4 (formato Video-Curto) instrui a estruturar o áudio pelo esqueleto T·MAES·A/N quando for talking head. Tabela de `CONTEXT.md` atualizada.
+- Não-breaking: nenhum parâmetro ou saída mudou; só adiciona fonte e orientação.
+
 ### 1.0.0 — 2026-04-13
 - Baseline após refactor `f580823` (eliminação de duplicação, criação de CONTEXT.md compartilhado).
 

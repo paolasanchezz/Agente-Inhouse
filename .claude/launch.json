@@ -30,6 +30,12 @@
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-pessoal/run_local.py"],
       "port": 8000
+    },
+    {
+      "name": "dashboard-latam",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-latam/server.py"],
+      "port": 8010
     }
   ]
 }

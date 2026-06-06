@@ -66,6 +66,22 @@ EMAIL_BLACKLIST: list[str] = [
     'teste@teste.com',                        # Teste obvio
     'thamires.oliveira@buzzmonitor.com.br',   # Email interno Buzzmonitor
     'albali@elife.com.br',                    # Email interno Elife
+    # Adicionados 2026-06-06 (Victor): emails de teste/webhook/CRM que poluiam a dashboard.
+    # Retirados nominalmente (nao por regra heuristica) pra evitar falso positivo em lead real.
+    'teste@webhook123.com',
+    'disparo@webhook.com',
+    'teste@conteudourl.com',
+    'teste@muniquecrm.com',
+    'munique@activecampaignteste.com',
+    'munique@testecrmlink.com',
+    'victorlopes.gestao@cxpress.com',
+    'teste@webhook.com',
+    'teste@webhook04.com',
+    'teste@utmdea.com',
+    'teste@blogmkt.com',
+    'teste@leadblogurldiferente.com',
+    'teste@utmgenertor.com',
+    'teste@webhooklsksks.com',
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
@@ -162,6 +178,11 @@ def _sql_exclusao_deals() -> str:
 
     Retorna 'TRUE' (no-op) se a lista estiver vazia. Usa colunas sem alias
     (url_conversao, cdate) — mesmo contrato do filtro_cm().
+
+    COALESCE(url_conversao, '') protege contra url_conversao NULL: sem ele,
+    `NULL ILIKE '...'` retorna NULL e o `NOT (...)` propaga NULL no WHERE,
+    derrubando do filtro CM QUALQUER lead com URL vazia — mesmo com utm_source
+    valido (ex: 'meta'). Mesma classe do bug google/cpc corrigido em 2026-05-26.
     """
     if not DEALS_EXCLUIDOS_URL_DATA:
         return "TRUE"
@@ -170,10 +191,10 @@ def _sql_exclusao_deals() -> str:
         datas = d.get('datas')
         if datas:
             datas_sql = ", ".join(f"'{dt}'" for dt in datas)
-            clauses.append(f"(url_conversao ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
         else:
             # Sem datas => exclui qualquer data que case a URL.
-            clauses.append(f"(url_conversao ILIKE '{d['url_like']}')")
+            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}')")
     return "NOT (" + " OR ".join(clauses) + ")"
 
 

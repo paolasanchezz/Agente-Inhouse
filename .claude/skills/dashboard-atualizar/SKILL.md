@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza a dashboard CM Buzzmonitor Brasil — roda gerador Python contra Supabase, lida com gate de regressao (fechamentos novos via chips), copia HTML pra pasta sibling fora do repo, deploya na Vercel via CLI, e valida via HTTP + Basic Auth. Manual-trigger semanal. Single-purpose (so este dashboard).
 argument-hint: "(sem args — totalmente automatico)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Skill: Atualizar Dashboard CM Buzzmonitor Brasil
@@ -366,7 +366,7 @@ curl -s -u "inhouse:inhouse@77" "https://dashboard-buzzmonitor-brasil.vercel.app
   -w "%{http_code} %{size_download}\n"
 ```
 
-Esperado: `200 NNNNN` com NNNNN > 100000.
+Esperado: `200 NNNNN` com NNNNN > 50000 (mesmo piso do Passo 2.1; HTML real fica em ~72-76KB). A validacao firme e o Passo 4.2 (remote == local +/-100 bytes), nao um numero absoluto.
 
 ### 4.2 Comparar tamanho com sibling
 

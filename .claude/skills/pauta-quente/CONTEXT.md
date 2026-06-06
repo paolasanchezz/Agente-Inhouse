@@ -28,7 +28,7 @@ Se idioma != `br`: carregar tambem `conhecimento/produto/{marca}/{pasta-produto-
 | Tipo | Formato base | Doc de copy |
 |---|---|---|
 | `carrossel` | 5 cards (cover -> contexto -> insight -> conector -> CTA) | `estatico-ads.md` + `estatico-organico.md` |
-| `video-curto` | Audio + overlay + caption (15-45s) | `video-curto-ads.md` + `video-curto-organico.md` |
+| `video-curto` | Audio + overlay + caption (15-45s) | `video-curto-ads.md` + `video-curto-organico.md` + `video-curto-talking-head.md` |
 | `blog` | H1 + lead + 4 H2s (600-1000 palavras) | `blog-copy.md` |
 | `linkedin` | Post longo (1300-1800 chars) com hook 3 linhas | `linkedin-copy.md` |
 | `email` | Subject + preview + corpo (hook -> problema -> valor -> CTA) | `email-copy.md` |
@@ -52,7 +52,7 @@ Ao gerar peca, carregar `brand/{marca}/brand-manifest.json` para tom de voz (`vo
 | `conhecimento/copywriting/funil-copy.md` | SEMPRE |
 | `conhecimento/editorial/regras-anti-ia.md` | SEMPRE (carregada no Passo 3 e recarregada no Passo 6) |
 | `conhecimento/copywriting/estatico-ads.md` + `estatico-organico.md` | tipo = carrossel |
-| `conhecimento/copywriting/video-curto-ads.md` + `video-curto-organico.md` | tipo = video-curto |
+| `conhecimento/copywriting/video-curto-ads.md` + `video-curto-organico.md` + `video-curto-talking-head.md` | tipo = video-curto |
 | `conhecimento/copywriting/blog-copy.md` | tipo = blog |
 | `conhecimento/copywriting/linkedin-copy.md` | tipo = linkedin |
 | `conhecimento/copywriting/email-copy.md` | tipo = email |

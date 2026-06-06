@@ -1,0 +1,14 @@
+{
+  "_comment": "Modelo de spec para audit_vs_bunzzai.py. Copie p/ tmp/audit_spec.json e preencha. Os meta_id saem do banco (get_campaigns/get_adsets/get_ads). Os caminhos sao os arquivos tool-results salvos quando eu (agente) chamo tool_get_ad_performance de CADA ad da campanha via MCP. Casar SEMPRE por meta_id, nunca por nome. Ver .claude/skills/bunzzai/AUDITORIA-vs-meta-ads.md.",
+  "account": "buzzmonitor_brl",
+  "today": "2026-05-29",
+  "windows": [7, 15, 30],
+  "cumulative_start": "2026-04-01",
+  "campaign": {"meta_id": "<campaign_meta_id>", "bunzzai_id": 0, "name": "<nome>"},
+  "adset":    {"meta_id": "<adset_meta_id>",    "bunzzai_id": 0, "name": "<nome>"},
+  "ad":       {"meta_id": "<ad_meta_id>",       "bunzzai_id": 0, "name": "<nome>"},
+  "bunzzai_ad_history": {
+    "<ad_meta_id_1>": "<caminho ao .txt salvo por tool_get_ad_performance do ad 1>",
+    "<ad_meta_id_2>": "<caminho ao .txt do ad 2 (mesmos ads da campanha, p/ somar nivel campanha)>"
+  }
+}

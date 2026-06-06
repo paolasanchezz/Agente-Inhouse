@@ -215,8 +215,9 @@ Dashboard interna semanal de Content Marketing — KPIs do funil de leads + fech
 | Comando | O que faz |
 |---|---|
 | `/dashboard-atualizar` | Roda gerador Python, lida com gate de regressao (fechamentos novos via chips), copia HTML pra sibling fora do repo, deploya na Vercel, valida via HTTP + Basic Auth. Manual-trigger. |
+| `/auditar-deals-cm [--desde] [--ate]` | Read-only. Acha deals CM que somem da dashboard por UTM vazia (falha de automacao AC->Supabase): recupera UTM localmente (contato/empresa + titulo/inbound), re-roda o filtro CM reaproveitado e lista os "CM nao mapeados" em 3 niveis de confianca. So propoe remediacao; nunca grava no Supabase. |
 
-Fonte: `dashboard/` (gerador Python + queries Supabase). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (fora do repo — evita PII no git). Runbook manual: `dashboard/DEPLOY.md`.
+Fonte: `dashboard/` (gerador Python + queries Supabase). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (fora do repo — evita PII no git). Runbook manual: `dashboard/DEPLOY.md`. Auditoria de UTM: `dashboard/AUDITORIA-DEALS-CM.md`.
 
 ### Meta Ads (SOMENTE LEITURA)
 

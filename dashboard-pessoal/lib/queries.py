@@ -96,7 +96,13 @@ def _sql_email_list(emails: list[str]) -> str:
 
 
 def _sql_exclusao_deals() -> str:
-    """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA."""
+    """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA.
+
+    COALESCE(url_conversao, '') protege contra url_conversao NULL: senao `NULL ILIKE`
+    propaga NULL no `NOT (...)` e derruba do filtro CM leads validos sem URL (ex:
+    utm_source='meta'). Sync do fix de dashboard/queries.py (2026-06-02) — manter as
+    duas copias iguais (ver README, secao Manutencao).
+    """
     if not DEALS_EXCLUIDOS_URL_DATA:
         return "TRUE"
     clauses = []
@@ -104,9 +110,9 @@ def _sql_exclusao_deals() -> str:
         datas = d.get('datas')
         if datas:
             datas_sql = ", ".join(f"'{dt}'" for dt in datas)
-            clauses.append(f"(url_conversao ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
         else:
-            clauses.append(f"(url_conversao ILIKE '{d['url_like']}')")
+            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}')")
     return "NOT (" + " OR ".join(clauses) + ")"
 
 

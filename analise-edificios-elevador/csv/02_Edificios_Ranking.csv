@@ -1,0 +1,39 @@
+rank,edificio,regiao,logradouro,numero,n_empresas,n_agencias,n_oficial,n_coworking,ancora_grande,elevadores_aprox,func_est_total,score,chave_endereco
+1,Faria Lima Plaza,faria_lima,Av. Brigadeiro Faria Lima,949,3,2,3,0,1,11.0,1020,13.25,brigadeiro faria lima | 949
+2,Patio Victor Malzoni,faria_lima,Av. Brigadeiro Faria Lima,3477,2,1,2,0,1,23.0,1250,9.25,brigadeiro faria lima | 3477
+3,JK 1909 (Torres),itaim,Av. Presidente Juscelino Kubitschek,1909,2,2,1,0,1,,450,8.3,presidente juscelino kubitschek | 1909
+4,Predio Grupo Publicis (Sansao A. Santos 400),berrini,Rua Sansao Alves dos Santos,400,2,2,1,0,1,,500,7.25,sansao alves dos santos | 400
+5,Natingui 862,pinheiros,Rua Natingui,862,1,1,1,0,1,,120,6.5,natingui | 862
+6,Frei Caneca 1355,paulista,Rua Frei Caneca,1355,1,1,1,0,1,,200,6.5,frei caneca | 1355
+7,WTorre / Eugenio de Medeiros 303,pinheiros,Rua Eugenio de Medeiros,303,1,1,1,0,1,,200,6.5,eugenio de medeiros | 303
+8,Birmann 32,faria_lima,Av. Brigadeiro Faria Lima,3732,2,0,1,0,0,,2500,4.4,brigadeiro faria lima | 3732
+9,JK 1400,itaim,Av. Presidente Juscelino Kubitschek,1400,1,0,1,0,0,,200,4.25,presidente juscelino kubitschek | 1400
+10,Capital Offices (Urussui 92),itaim,Rua Urussui,92,2,2,0,0,0,,110,3.5999999999999996,urussui | 92
+11,Lab 1404 (Mourato Coelho 1404),pinheiros,Rua Mourato Coelho,1404,1,1,1,0,0,,80,3.0,mourato coelho | 1404
+12,Viradouro 63 (COW),itaim,Rua Viradouro,63,2,1,0,1,0,,260,3.0,viradouro | 63
+13,Pedroso de Morais 1553,pinheiros,Rua Pedroso de Morais,1553,1,1,1,0,0,,130,3.0,pedroso de morais | 1553
+14,Vicente Pinzon 51,vila_olimpia,Alameda Vicente Pinzon,51,1,1,1,0,0,,120,3.0,vicente pinzon | 51
+15,Nacoes Unidas 12495,berrini,Av. das Nacoes Unidas,12495,1,1,1,0,0,,35,3.0,das nacoes unidas | 12495
+16,Gomes de Carvalho 1195,vila_olimpia,Rua Gomes de Carvalho,1195,1,1,1,0,0,,80,3.0,gomes de carvalho | 1195
+17,Berrini 1700,berrini,Av. Eng. Luis Carlos Berrini,1700,1,1,1,0,0,,60,3.0,engenheiro luiz carlos berrini | 1700
+18,Berrini 1681,berrini,Av. Eng. Luis Carlos Berrini,1681,2,1,1,1,0,,50,2.9,engenheiro luiz carlos berrini | 1681
+19,Faria Lima (3064),faria_lima,Av. Brigadeiro Faria Lima,3064,1,0,0,0,0,,1000,2.6999999999999997,brigadeiro faria lima | 3064
+20,Gomes de Carvalho 911,vila_olimpia,Rua Gomes de Carvalho,911,2,2,0,0,0,,55,2.6999999999999997,gomes de carvalho | 911
+21,Funchal 538,vila_olimpia,Rua Funchal,538,2,2,0,0,0,,52,2.6999999999999997,funchal | 538
+22,Paulista 1636,paulista,Av. Paulista,1636,2,2,2,0,0,,23,2.5,paulista | 1636
+23,Cubo Itau (Vicente Pinzon 54),vila_olimpia,Alameda Vicente Pinzon,54,1,0,1,1,0,,500,2.0,vicente pinzon | 54
+24,Leopoldo Couto 758,itaim,Rua Leopoldo Couto de Magalhaes Jr.,758,1,1,0,0,0,,120,1.7999999999999998,leopoldo couto de magalhaes junior | 758
+25,Faria Lima 2369,pinheiros,Av. Brigadeiro Faria Lima,2369,1,1,0,0,0,,35,1.7999999999999998,brigadeiro faria lima | 2369
+26,Faria Lima (2055),faria_lima,Av. Brigadeiro Faria Lima,2055,1,0,0,0,0,,300,1.62,brigadeiro faria lima | 2055
+27,Paulista 509,paulista,Av. Paulista,509,1,1,1,0,0,,20,1.5,paulista | 509
+28,Nova Independencia 87,berrini,Av. Nova Independencia,87,1,1,1,0,0,,25,1.5,nova independencia | 87
+29,Berrini 1461,berrini,Av. Eng. Luis Carlos Berrini,1461,1,1,1,0,0,,25,1.5,engenheiro luiz carlos berrini | 1461
+30,R. Renato Paes de Barros 33,itaim,Rua Dr. Renato Paes de Barros,33,1,0,1,0,0,,30,1.35,doutor renato paes de barros | 33
+31,WeWork 4055,faria_lima,Av. Brigadeiro Faria Lima,4055,1,0,0,1,0,,300,1.2,brigadeiro faria lima | 4055
+32,WeWork 3729,faria_lima,Av. Brigadeiro Faria Lima,3729,1,0,0,1,0,,300,1.2,brigadeiro faria lima | 3729
+33,Paulista 302,paulista,Av. Paulista,302,1,1,1,0,0,,10,1.0,paulista | 302
+34,Faria Lima (1355),faria_lima,Av. Brigadeiro Faria Lima,1355,1,0,0,0,0,,150,0.99,brigadeiro faria lima | 1355
+35,Paulista 807,paulista,Av. Paulista,807,1,0,1,0,0,,15,0.8999999999999999,paulista | 807
+36,Tabapua 81,itaim,Rua Tabapua,81,1,0,0,0,0,,20,0.7649999999999999,tabapua | 81
+37,Tabapua 82,itaim,Rua Tabapua,82,1,0,0,0,0,,25,0.7200000000000001,tabapua | 82
+38,Paulista 726,paulista,Av. Paulista,726,1,0,1,0,0,,8,0.6,paulista | 726

@@ -8,8 +8,14 @@ dashboard/data.json
 dashboard/relatorio-*.html
 dashboard/relatorio-*.html.bak
 
-# Logs e backups efemeros da skill /dashboard-atualizar (regeneraveis a cada run)
-tmp/dashboard-*
+# Auditoria de deals CM (PII: emails + ids de deals). Outputs regeneraveis via /auditar-deals-cm.
+# Preserva a pasta via .gitkeep; ignora os relatorios/CSVs.
+dashboard/auditoria/*
+!dashboard/auditoria/.gitkeep
+
+# Pasta de scratch efemera: logs, snapshots HTML, probes, downloads, dados temporarios
+# (inclui inscricoes de webinar = PII). Regeneravel/descartavel — nunca versionar.
+tmp/
 
 # Banco de dados local (cada colaborador popula rodando o fetch)
 meta-ads/data/meta_ads.db

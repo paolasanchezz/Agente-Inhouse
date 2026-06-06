@@ -3,7 +3,7 @@ name: copy-criar
 description: Cria 3 variacoes originais de copy com hooks, angulos e premissas diferentes, escritas nativamente no idioma da regiao.
 argument-hint: "[marca] [regiao] [tipo] [estagio] [\"briefing\"] — ex: buzzmonitor brasil video-curto bofu \"remarketing social listening\""
 allowed-tools: Read, Write, Glob, Grep, Agent, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Criar Copy Original
@@ -44,7 +44,7 @@ Leia todos os seguintes arquivos na ordem. **Nao confie na memoria — leia os a
 ### Copy e tecnica
 1. `conhecimento/copywriting/fundamentos-copy.md` — SEMPRE. Principios de copy, tecnicas Ladeira, Light Copy, elementos literarios, anti-padroes.
 2. Docs do tipo selecionado:
-   - `video-curto` → `conhecimento/copywriting/video-curto-ads.md` + `conhecimento/copywriting/video-curto-organico.md`
+   - `video-curto` → `conhecimento/copywriting/video-curto-ads.md` + `conhecimento/copywriting/video-curto-organico.md` + `conhecimento/copywriting/video-curto-talking-head.md` (esqueleto T·MAES·A/N para vídeo falado à câmera)
    - `estatico` → `conhecimento/copywriting/estatico-ads.md` + `conhecimento/copywriting/estatico-organico.md`
    - `email` → `conhecimento/copywriting/email-copy.md`
 3. `conhecimento/copywriting/funil-copy.md` — SEMPRE. Orientacoes por estagio do funil.
@@ -224,6 +224,7 @@ data: YYYY-MM-DD
 
 **Duracao total:** 15-60 segundos | 50-200 palavras no audio.
 **Escreva o audio/voiceover primeiro**, depois derive overlay e caption a partir dele.
+**Se o video for uma pessoa falando direto a camera** (talking head), estruture o audio pelo esqueleto **T · MAES · A/N** de `video-curto-talking-head.md`: 1a frase ja no assunto, sem saudacao (T) → metafora/analogia/exemplo/story concreto logo depois (MAES) → fechamento com acao clara, no tom do funil (A/N).
 
 ### Formato de saida: Estatico
 

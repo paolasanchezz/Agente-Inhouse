@@ -3,7 +3,7 @@ name: pauta-quente
 description: Transforma uma noticia recente em conteudo multi-formato e multi-idioma (carrossel, video-curto, blog, linkedin, email) para uma marca, rastreando fonte primaria, aplicando edutainment + conector com produto e publicando no Notion.
 argument-hint: "[url] [marca] [tipos-csv] [idiomas-csv] — ex: https://exemplo.com/news buzzmonitor \"carrossel,blog,email\" \"br,pt,es\""
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Pauta Quente
@@ -148,7 +148,7 @@ Para cada idioma em `idiomas`, se != `br`:
 
 Para cada tipo em `tipos`:
 - `carrossel` -> `conhecimento/copywriting/estatico-ads.md` + `conhecimento/copywriting/estatico-organico.md`
-- `video-curto` -> `conhecimento/copywriting/video-curto-ads.md` + `conhecimento/copywriting/video-curto-organico.md`
+- `video-curto` -> `conhecimento/copywriting/video-curto-ads.md` + `conhecimento/copywriting/video-curto-organico.md` + `conhecimento/copywriting/video-curto-talking-head.md` (esqueleto T·MAES·A/N para video falado a camera)
 - `blog` -> `conhecimento/copywriting/blog-copy.md`
 - `linkedin` -> `conhecimento/copywriting/linkedin-copy.md`
 - `email` -> `conhecimento/copywriting/email-copy.md`
@@ -337,6 +337,13 @@ Regras: 1 ideia por card. Texto legivel no celular. Card 1 deve funcionar como i
 ```
 
 Duracao total: 15-45s. 50-200 palavras no audio.
+
+**Se o video for uma pessoa falando direto a camera** (talking head), estruture o audio pelo esqueleto **T · MAES · A/N** de `video-curto-talking-head.md`, adaptado a ancoragem jornalistica desta skill:
+- **T** (Topico) = o beat `[0-3s] HOOK` — a 1a frase ja entrega o fato/dado da noticia, sem saudacao nem "nesse video".
+- **MAES** (Metafora/Analogia/Exemplo/Story) = os beats `CONTEXTO` + `INSIGHT` ancorados num exemplo/analogia/cena concreta (o proprio evento da noticia ja e o exemplo; o gancho escolhido no Passo 4 entra aqui).
+- **A/N** (Aplicacao/Proximo passo) = o beat `CONECTOR + CTA` (feature exata + beneficio + chamada clara).
+
+A regra da casa de **conector + CTA sempre ao final** continua valendo — o A/N e exatamente esse fechamento, nunca no meio.
 
 #### Blog (600-1000 palavras)
 
