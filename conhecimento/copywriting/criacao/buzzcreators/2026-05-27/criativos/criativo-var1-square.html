@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Var1 quadrado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root { --primary:#3a1652; --secondary:#ff8119; --white:#fff; --gradient-brand:linear-gradient(100deg,#6a3895 0%,#ff8119 60%,#ff7300 100%); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { width:1080px; height:1080px; overflow:hidden; }
+  body { font-family:'DM Sans',system-ui,sans-serif; }
+  .creative {
+    width:1080px; height:1080px;
+    background:
+      radial-gradient(circle at 80% 14%, rgba(255,129,25,0.30) 0%, transparent 46%),
+      radial-gradient(circle at 10% 90%, rgba(106,56,149,0.55) 0%, transparent 50%),
+      #2c1040;
+    position:relative; overflow:hidden; display:flex; flex-direction:column;
+    padding:76px; color:var(--white);
+  }
+  .streak { position:absolute; width:1500px; height:200px; background:var(--gradient-brand); opacity:0.16; top:300px; left:-240px; transform:rotate(-18deg); filter:blur(8px); }
+  .creative::after { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px); background-size:6px 6px; }
+  .c-top { display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2; }
+  .c-logo { height:52px; filter:brightness(0) invert(1); }
+  .c-pill { font-size:19px; font-weight:700; text-transform:uppercase; letter-spacing:0.16em; color:var(--primary); background:var(--secondary); padding:12px 22px; border-radius:999px; }
+  .c-body { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+  .c-over { font-size:38px; font-weight:400; line-height:1.2; max-width:680px; margin-bottom:32px; }
+  .c-figure { font-size:280px; font-weight:700; line-height:0.82; letter-spacing:-0.06em; margin-bottom:40px; }
+  .c-figure .unit { font-size:0.3em; font-weight:700; color:var(--secondary); vertical-align:top; display:inline-block; transform:translateY(0.45em); margin-right:0.08em; }
+  .c-figure .accent { background:var(--gradient-brand); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .c-headline { font-size:50px; font-weight:700; line-height:1.08; letter-spacing:-0.02em; max-width:720px; margin-bottom:40px; }
+  .c-headline .hl-accent { color:var(--secondary); }
+  .c-cta { align-self:flex-start; display:inline-flex; background:var(--secondary); color:var(--primary); font-size:34px; font-weight:700; padding:28px 54px; border-radius:999px; box-shadow:0 18px 40px rgba(255,115,0,0.4); }
+  .c-footer { position:relative; z-index:2; font-size:20px; color:rgba(255,255,255,0.5); border-top:1px solid rgba(255,255,255,0.14); padding-top:24px; }
+</style>
+</head>
+<body>
+  <div class="creative">
+    <div class="streak"></div>
+    <div class="c-top">
+      <img class="c-logo" src="./assets/logo-full-color.svg" alt="Buzzcreators" />
+      <span class="c-pill">Material gratuito</span>
+    </div>
+    <div class="c-body">
+      <p class="c-over">O mercado de Marketing de Influ&ecirc;ncia movimenta, por ano,</p>
+      <div class="c-figure"><span class="unit">US$</span>32 <span class="accent">bi</span></div>
+      <h1 class="c-headline">Saia do escuro e comece a <span class="hl-accent">faturar</span> com creators.</h1>
+      <span class="c-cta">Acesse o material</span>
+    </div>
+    <div class="c-footer">Fonte: Estado da Arte do Marketing de Influ&ecirc;ncia &middot; Buzzcreators</div>
+  </div>
+</body>
+</html>

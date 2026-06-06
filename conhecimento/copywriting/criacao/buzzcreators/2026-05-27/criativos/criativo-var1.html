@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Criativo Var 1 Buzzcreators (1080x1350)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #3a1652;
+    --primary-light: #6a3895;
+    --secondary: #ff8119;
+    --secondary-dark: #ff7300;
+    --white: #ffffff;
+    --gradient-brand: linear-gradient(100deg, #6a3895 0%, #ff8119 60%, #ff7300 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #d8d8dd;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    padding: 40px 20px; min-height: 100vh;
+  }
+  .export-note { font-size: 14px; color: #555; max-width: 540px; text-align: center; line-height: 1.5; }
+  .export-note code { background: #fff; padding: 2px 6px; border-radius: 4px; }
+
+  /* ===== CREATIVE 1080x1350 ===== */
+  .creative {
+    width: 1080px; height: 1350px;
+    background:
+      radial-gradient(circle at 78% 16%, rgba(255,129,25,0.30) 0%, transparent 46%),
+      radial-gradient(circle at 12% 88%, rgba(106,56,149,0.55) 0%, transparent 50%),
+      #2c1040;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    padding: 96px 88px;
+    color: var(--white);
+    transform: scale(0.5);
+    transform-origin: top center;
+    margin-bottom: -675px;
+  }
+
+  /* faixa gradiente diagonal de energia */
+  .creative .streak {
+    position: absolute;
+    width: 1600px; height: 240px;
+    background: var(--gradient-brand);
+    opacity: 0.16;
+    top: 360px; left: -260px;
+    transform: rotate(-18deg);
+    filter: blur(8px);
+  }
+  /* grão sutil */
+  .creative::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 6px 6px;
+    pointer-events: none;
+  }
+
+  .c-top {
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .c-logo { height: 60px; width: auto; filter: brightness(0) invert(1); }
+  .c-pill {
+    font-size: 21px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--primary);
+    background: var(--secondary);
+    padding: 13px 24px;
+    border-radius: 999px;
+  }
+
+  .c-body {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .c-over {
+    font-size: 46px; font-weight: 400;
+    color: var(--white);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    max-width: 760px;
+    margin-bottom: 64px;
+  }
+
+  .c-figure {
+    font-size: 360px;
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+    color: var(--white);
+    margin-bottom: 60px;
+  }
+  .c-figure .unit {
+    font-size: 0.3em; font-weight: 700;
+    color: var(--secondary);
+    vertical-align: top;
+    display: inline-block;
+    transform: translateY(0.45em);
+    margin-right: 0.08em;
+  }
+  .c-figure .accent {
+    background: var(--gradient-brand);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .c-peryear {
+    font-size: 40px; font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 60px;
+  }
+
+  .c-headline {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 780px;
+    margin-bottom: 56px;
+  }
+  .c-headline .hl-accent { color: var(--secondary); }
+
+  .c-cta {
+    align-self: flex-start;
+    display: inline-flex; align-items: center;
+    background: var(--secondary);
+    color: var(--primary);
+    font-size: 40px; font-weight: 700;
+    padding: 34px 66px;
+    border-radius: 999px;
+    box-shadow: 0 20px 48px rgba(255,115,0,0.4);
+  }
+
+  .c-footer {
+    position: relative; z-index: 2;
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+    border-top: 1px solid rgba(255,255,255,0.14);
+    padding-top: 30px;
+  }
+</style>
+</head>
+<body>
+  <p class="export-note">
+    Pr&eacute;-visualiza&ccedil;&atilde;o a 50%. Pra exportar em alta: abra no Chrome, remova <code>transform: scale(0.5)</code> e <code>margin-bottom</code> do <code>.creative</code>, e tire screenshot do bloco 1080&times;1350.
+  </p>
+
+  <div class="creative">
+    <div class="streak"></div>
+
+    <div class="c-top">
+      <img class="c-logo" src="./assets/logo-full-color.svg" alt="Buzzcreators" />
+      <span class="c-pill">Material gratuito</span>
+    </div>
+
+    <div class="c-body">
+      <p class="c-over">O mercado de Marketing de Influ&ecirc;ncia movimenta, por ano,</p>
+      <div class="c-figure"><span class="unit">US$</span>32 <span class="accent">bi</span></div>
+      <h1 class="c-headline">Saia do escuro e comece a <span class="hl-accent">faturar</span> com creators.</h1>
+      <span class="c-cta">Acesse o material</span>
+    </div>
+
+    <div class="c-footer">Fonte: Estado da Arte do Marketing de Influ&ecirc;ncia &middot; Buzzcreators</div>
+  </div>
+</body>
+</html>

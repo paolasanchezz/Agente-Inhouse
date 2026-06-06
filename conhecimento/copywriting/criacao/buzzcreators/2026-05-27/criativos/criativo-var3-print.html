@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1080, initial-scale=1" />
+<title>Criativo Var 3 Buzzcreators print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #3a1652;
+    --primary-light: #6a3895;
+    --secondary: #ff8119;
+    --secondary-dark: #ff7300;
+    --white: #ffffff;
+    --gradient-brand: linear-gradient(100deg, #6a3895 0%, #ff8119 60%, #ff7300 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  .creative {
+    width: 1080px; height: 1350px;
+    /* roxo-dominante, laranja so de acento */
+    background:
+      radial-gradient(circle at 50% -10%, rgba(106,56,149,0.6) 0%, transparent 52%),
+      radial-gradient(circle at 88% 92%, rgba(255,129,25,0.22) 0%, transparent 44%),
+      #2c1040;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    padding: 96px 88px;
+    color: var(--white);
+  }
+  .creative::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 6px 6px; pointer-events: none;
+  }
+  .c-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+  .c-logo { height: 60px; width: auto; filter: brightness(0) invert(1); }
+  .c-pill {
+    font-size: 21px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--primary); background: var(--secondary); padding: 13px 24px; border-radius: 999px;
+  }
+  .c-body { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+  .c-headline {
+    font-size: 70px; font-weight: 700; line-height: 1.06;
+    letter-spacing: -0.025em; color: var(--white); max-width: 840px; margin-bottom: 16px;
+  }
+  .c-headline .hl-accent { color: var(--secondary); }
+  .c-sub { font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72); margin-bottom: 60px; }
+  .c-list { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 72px; max-width: 900px; }
+  .c-chip {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 32px; font-weight: 500; color: var(--white);
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,255,255,0.16);
+    padding: 22px 34px; border-radius: 999px;
+  }
+  .c-chip .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--secondary); flex: none; }
+  .c-cta {
+    align-self: flex-start; display: inline-flex; align-items: center;
+    background: var(--secondary); color: var(--primary);
+    font-size: 40px; font-weight: 700; padding: 34px 66px; border-radius: 999px;
+    box-shadow: 0 20px 48px rgba(255,115,0,0.4);
+  }
+  .c-footer {
+    position: relative; z-index: 2; font-size: 22px; color: rgba(255,255,255,0.5);
+    border-top: 1px solid rgba(255,255,255,0.14); padding-top: 30px;
+  }
+</style>
+</head>
+<body>
+  <div class="creative">
+    <div class="c-top">
+      <img class="c-logo" src="./assets/logo-full-color.svg" alt="Buzzcreators" />
+      <span class="c-pill">Material gratuito</span>
+    </div>
+    <div class="c-body">
+      <h1 class="c-headline">Vai montar sua campanha de influ&ecirc;ncia <span class="hl-accent">do zero</span> de novo?</h1>
+      <p class="c-sub">Tem um atalho gratuito pra isso.</p>
+      <div class="c-list">
+        <span class="c-chip"><span class="dot"></span>Cases globais e do Brasil</span>
+        <span class="c-chip"><span class="dot"></span>Benchmark do setor</span>
+        <span class="c-chip"><span class="dot"></span>Template de briefing</span>
+        <span class="c-chip"><span class="dot"></span>Playbook 30-60-90</span>
+      </div>
+      <span class="c-cta">Acesse o material</span>
+    </div>
+    <div class="c-footer">Estado da Arte do Marketing de Influ&ecirc;ncia &middot; Buzzcreators</div>
+  </div>
+</body>
+</html>
