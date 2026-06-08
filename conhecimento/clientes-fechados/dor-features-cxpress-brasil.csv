@@ -1,0 +1,914 @@
+﻿id,title,data_fechamento,valor_fee,currency,contact,utm_source,utm_content,bd,sdr,dor_principal_queixa,dor_bant_needs,dor_spin_problema,dor_spin_implicacao,feature_canais_a_integrar,feature_necessidade_lead,feature_prioridade_implementacao,feature_spin_necessidade,area_atendida,volume_atendimentos,qualificacoes_adicionais,automacao_atendimento_atual,concorrente_avaliado,link_ac
+86542,[] Duben Seguros,2026-06-03,,brl,183510,,,Enrico Citrinite,Bruno Damásio,,,"As dores apontadas incluem alto custo e ineficiência da ferramenta Zenvia, falta de centralização dos canais de atendimento, dificuldade em automatizar processos com suporte de IA, ausência de triagem automatizada, baixa padronização e qualidade de dados com falhas no preenchimento dos cadastros, necessidade de múltiplos e-mails segmentados por setor, preconceito com chatbots ineficazes, dificuldades na configuração de horários e escalas, e receios quanto à perda da titularidade do número telefônico existente durante migração.","As consequências negativas estão relacionadas à ineficiência operacional, retrabalho manual extenso na triagem e direcionamento de demandas, perda de clientes devido a experiências ruins com chatbots, alta insatisfação da liderança com o serviço atual, risco de perda do número de telefone usado e dificuldade na gestão da qualidade dos dados e controle operacional, o que impacta negativamente a produtividade da equipe e atendimento ao cliente.","[""E-mail"",""Whatsapp""]","[""Conhecer ou avaliar uma nova solução para atendimento"",""Melhorar a operação no WhatsApp"",""Organizar o fluxo e reduzir a sobrecarga da equipe""]",Alta (nos próximos meses),"O cliente busca uma plataforma centralizada que unifique todos os canais de comunicação (WhatsApp, telefonia, e-mail, redes sociais, chat do site) em uma única timeline, com funcionalidades de automação e inteligência artificial para triagem inicial e roteamento de atendimentos, histórico unificado com base de clientes segmentada por tags e campos customizados, controle de qualidade de dados com campos obrigatórios, integração via API com sistemas externos, relatórios detalhados com análise por IA, personalização de atendimento por setor, gerenciamento interno de tarefas, suporte dedicado e humanizado, segurança e conformidade conforme requisitos legais, flexibilidade para operar múltiplas marcas/CNPJs e garantia de manutenção da titularidade dos números telefônicos. Também demandam alinhamento financeiro com pagamento pré-pago e condições ajustadas para início imediato da migração e operação.","[""Comercial"",""Suporte/sac""]",acima de 100 atendimentos,"A Duben Seguros é uma corretora de seguros com mais de 30 anos de atuação no mercado carioca e fluminense, especializada em soluções de proteção para pessoas físicas e empresas. 
+
+A empresa destaca em sua comunicação valores como atendimento personalizado, transparência e excelência na experiência do cliente.
+
+Site oficial: Hunika Seguros
+
+Atualmente a operação utiliza a plataforma Zenvia para gestão dos atendimentos.
+
+Ana Paula, Ceo, nos procurou porque  houve ocorrência recorrente de bloqueios indevidos da operação, mesmo com pagamentos regularizados.
+
+Já  haviam enfrentaram esse problema mais de uma vez, gerando insatisfação e preocupação com a estabilidade do fornecedor atual.
+
+Eles tem a necessidade de encontrar uma solução mais confiável e estável para sustentar a operação de atendimento.",,Zenvia,https://cxpress.activehosted.com/app/deals/86542
+86149,Bem Estar Natural,2026-05-29,,brl,183108,google,,Enrico Citrinite,Carine Andrade,,,"A operação depende de processos manuais e necessita automatizar o atendimento via inteligência artificial para melhorar eficiência. Há preocupação com a falta de interpretação e personalização em robôs de atendimento anteriores, que causaram experiências negativas. A necessidade de suporte humanizado é crítica para garantir a conclusão da venda e suporte ágil. Preocupação com segurança, tendo tido experiências negativas anteriores com sócios que resultaram em roubo de vendas.","Sem a automação adequada, pode haver perda de vendas e ineficiência operacional, comprometendo o faturamento. Atendimento não humanizado pode afastar clientes e dificultar a finalização de vendas. Falta de segurança pode levar a perdas financeiras e insegurança na operação.","[""Instagram"",""Whatsapp"",""Facebook""]","[""Implementar IA no atendimento""]",Média (avaliando soluções/em fase de orçamentos),"Implementar automação de atendimento com inteligência artificial que utilize processamento de linguagem natural integrado ao WhatsApp com suporte humano complementar. Precisa de plataforma que centralize atendimento múltiplo de vendedores, com distribuição automática de leads e treinamento personalizado do agente IA conforme persona e produtos. Busca custo fixo acessível, suporte dedicado, implantação rápida, segurança da operação e treinamento para independência da equipe.","[""Suporte/sac""]",41-70 atendimentos,"Nilma é afiliada. Quer saber mais sobre a possibilidade de unificar a operação de vendas online, trabalha como afiliada de produtos (encapsulados) e (Magazine de utilidades) pretende se tornar coprodutora de um produto específico. 
+
+Ela explica seu modelo de negócio, que envolve afiliação, faz muitas campanhas no Meta (Facebook/Instagram), e o uso de um site/pagina de vendas  para direcionar os clientes ao WhatsApp. Mas possui mais de um site, e um numero para cada operação. Quer entender se há possibilidade de unificar isso, pois já teve problemas anteriormente.
+
+ Ela quer implementar um IA que funcione por áudio para melhorar o atendimento ao cliente, especialmente para um público com dificuldades de leitura e idosos. Ela pretende  aumentar suas campanhas de marketing e a importância da inteligência artificial no processo.
+
+Cheguei a comentar com ela sobre o investimento e ela informou que faz sentido, só precisa entender como a plataforma roda na prática se consegue atende-la.",,,https://cxpress.activehosted.com/app/deals/86149
+85733,Bbm Net,2026-05-29,,brl,182404,whatsapp,,Luiz Fantini,Bruno Damásio,,,"O sistema Zoho Desk atual possui limitações funcionais significativas, não suporta demandas multicanais de forma adequada, não distribui chamadas nem atende fora do horário comercial, e apresenta dificuldades na automação do atendimento. Há também falta de controle e visibilidade sobre quem atende, quando e como, além de processos manuais e dispersos.","A ausência de automação e limitações do sistema atual causam atrasos no atendimento, dificuldade em gerenciar atendimentos fora do horário comercial, ocasionam insatisfação dos usuários em regiões remotas que necessitam de orientações específicas, e impactam negativamente a agilidade e qualidade do suporte, podendo levar à perda de clientes e menor eficiência operacional.","[""E-mail"",""Facebook"",""Instagram"",""Telefone"",""Whatsapp""]","[""Melhorar a operação no WhatsApp"",""Conhecer ou avaliar uma nova solução para atendimento""]",Média (avaliando soluções/em fase de orçamentos),"O cliente busca uma solução que ofereça automação no atendimento, especialmente fora do horário comercial, integração multicanal eficiente, controle e visibilidade sobre o atendimento em todas as etapas, suporte via inteligência artificial por voz e texto com manutenção de contexto, integração telefonia PABX, métricas avançadas para gestão de performance, e suporte consultivo para implementação da plataforma.","[""Suporte/sac"",""Comercial""]",acima de 100 atendimentos,"A BBMNET é uma empresa brasileira especializada em soluções de licitações eletrônicas e compras públicas digitais. A plataforma atua como um portal onde órgãos públicos e empresas podem realizar processos licitatórios online de forma mais ágil, transparente e integrada às exigências da legislação brasileira.
+
+Leandro, o coordenador, entrou em contato conosco, buscando uma solução que possa melhorar o Controle de Tickets (Atendimento e Suporte) de sua empresa, além de agilizar o acesso a informações básicas antes de falar com atendente.
+
+Hoje em dia eles utilizam a ZOHO DESK, mas não estão satisfeito com o suporte , algumas funcionalidades e estão pesquisando novos orçamentos também.",,,https://cxpress.activehosted.com/app/deals/85733
+75900,Ind Buzz Creditas POC,2026-05-29,,brl,158891,,,Luiz Fantini,,,,"Dificuldade em construir um fluxo lógico para atendimento por DM que direcione o cliente ao produto mais adequado. A maioria das mensagens se concentra em três grupos: interesse em simulação, dúvidas gerais sobre os serviços e perguntas genéricas. A solução atual consegue responder a comentários, incluindo negativos, mas tem limitações para o atendimento via DM, principalmente em relação à contextualização e construção de fluxo lógico. Há complexidade no atendimento de perguntas abreviadas e complexas no Messenger.","A falha na construção de um fluxo lógico pode levar a um atendimento ineficiente, dificultando o direcionamento correto do cliente e possivelmente impactando negativamente a experiência e a conversão dos potenciais clientes.",,,,"O cliente busca uma solução que permita construir um fluxo lógico e contextualizado para atendimento via DM, capaz de engajar usuários até após 24 horas em stories, responder perguntas complexas e abreviadas, personalizar respostas e garantir alto nível de automação e contextualização para melhorar o atendimento, especialmente nas plataformas Instagram e Facebook.",,,,,,https://cxpress.activehosted.com/app/deals/75900
+78228,Coopta,2026-05-26,,brl,160495,whatsapp,,Enrico Citrinite,Tainara Gonçalves,"O cliente deseja automatizar os atendimentos e está iniciando esse projeto na empresa. O objetivo é utilizar a IA para realizar o pré-atendimento e direcionar ao atendimento humano apenas quando necessário, com foco principal na automação do WhatsApp.
+
+Já foi informado de que trabalhamos exclusivamente com a API Oficial, sendo parceiros da Meta. Ele está ciente e demonstrou interesse em entender melhor sobre a solução.
+
+",,,,"[""Whatsapp""]","[""Implementar IA no atendimento"",""Melhorar a operação no WhatsApp"",""Centralizar e integrar canais de atendimento"",""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Ter histórico unificado e melhor gestão de dados""]",,,"[""Suporte/sac""]",41-70 atendimentos,https://www.coopta.coop.br/,true,,https://cxpress.activehosted.com/app/deals/78228
+85943,Lojas Marisa,2026-05-19,,brl,182758,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Facebook"",""Instagram""]","[""Implementar IA no atendimento""]",,,"[""Suporte/sac"",""Marketing""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/85943
+81535,Grupo Calusa,2026-05-19,,brl,181007,ig,,Higor Neubern,Carine Andrade,,,"A equipe enfrenta bloqueios e banimentos frequentes no WhatsApp devido a políticas da plataforma, o que impede o contato ativo por até 10 dias. Falta visibilidade e controle sobre o desempenho individual das supervisoras. O CRM atual gera relatórios muito simplórios. Os bloqueios ocorrem especialmente ao migrar contatos entre atendentes ou incluir novos contatos. O uso atual de números independentes prejudica a visão unificada e dificulta gerir a carteira. O custo variável dos disparos via WhatsApp na categoria marketing também é um desafio.","Os bloqueios temporários causam perda significativa de tração comercial, comprometendo a comunicação com as revendedoras por períodos que podem chegar a 10 dias. A falta de visibilidade dos atendimentos individuais dificulta a gestão e otimização da equipe. O custo elevado dos disparos de marketing impacta no orçamento da operação, podendo inviabilizar a frequência desejada de comunicação.","[""Whatsapp""]","[""Melhorar a operação no WhatsApp"",""Ter histórico unificado e melhor gestão de dados"",""Conhecer ou avaliar uma nova solução para atendimento""]",Média (avaliando soluções/em fase de orçamentos),"Implementar uma solução baseada em API oficial do WhatsApp para evitar banimentos e oferecer painel centralizado de atendimento com histórico unificado. Necessita de relatórios mais detalhados de desempenho individual e equipe, uso de templates pré-aprovados pela Meta para disparos ativos em massa com menor custo (priorizando disparos de utilidade). Deseja incorporar IA para atendimento automático de primeiro nível, mas mantendo atendimento humano humanizado na maior parte do tempo. Busca controlar os custos variáveis dos disparos, garantindo acompanhamento eficiente da carteira fixa e possibilitando a integração com múltiplos canais em uma única plataforma.","[""Suporte/sac""]",41-70 atendimentos,"O contato com o Grupo foi iniciado através do Rodrigo, Head de Sales, que demonstrou interesse via e-mail e encaminhou a demanda para o Danilo Torres, Gerente de Força de Vendas. 
+ Danilo confirmou que a operação deles ainda utiliza o WhatsApp Business convencional  e que o objetivo é implementar uma solução profissional para um time inicial de 5 atendentes
+
+O setor que quer utilizar se chama Força de Vendas, um setor estratégico que atua diretamente no suporte às revendedoras da marca no Paraná, onde o grupo opera em cerca de 20 cidades. O Grupo Calusa é um gigante do setor de franquias de cosméticos, sendo um dos principais franqueados do Grupo Boticário, lida com um volume alto de dúvidas técnicas e comerciais de revendedoras de marcas como O Boticário e Eudora.
+",false,,https://cxpress.activehosted.com/app/deals/81535
+84491,Valid,2026-05-18,,brl,180827,vtexday2026,,,Lilian Longo,,,,,"[""WhatsApp"",""Outros""]","[""Centralizar e integrar canais de atendimento"",""Implementar IA no atendimento""]",,,,,,,,https://cxpress.activehosted.com/app/deals/84491
+85582,Movida - Seminovos,2026-05-08,,brl,182171,,,Marcelo Lopes,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]","[""Implementar IA no atendimento""]",,,"[""Suporte/sac"",""Marketing""]",71-100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/85582
+85477,Claro Brasil,2026-05-05,,brl,182041,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Tiktok"",""Facebook"",""Instagram""]","[""Implementar IA no atendimento""]",,,"[""Suporte/sac""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/85477
+28606,[BOTS] Solito Brasilia Alimentos,2026-04-30,,brl,95500,google,,Luiz Fantini,,,,Dificuldade em gerenciar atendimentos simultâneos para múltiplos assuntos usando um único número de WhatsApp devido às limitações da API da Meta. Falta de ferramenta integrada para documentar e acompanhar atendimentos e cobranças feitas aos representantes. Necessidade de controlar fluxos de aprovação internos e múltiplas interações comerciais e financeiras via WhatsApp. Impossibilidade de atendimento simultâneo para diferentes temas no mesmo canal telefônico.,"Sem essa documentação e controle, o comercial pode perder o acompanhamento dos chamados, gerar atrasos nas cobranças e dificultar o rastreamento dos atendimentos e aprovações internas. Limitação na capacidade de atendimento pode causar gargalos, atrasos e confusão no fluxo de trabalho, impactando negativamente a eficiência e o relacionamento com os representantes.","[""E-mail"",""Facebook"",""Instagram"",""Whatsapp"",""Webchat"",""Telefone""]",,Média (avaliando soluções/em fase de orçamentos),"Implementar uma solução que permita documentar as interações comerciais e de cobrança com representantes, possibilitando rastrear múltiplos assuntos em um único ticket, gerenciar simultaneamente atendimentos com múltiplos números de WhatsApp, criar ciclos de aprovação internos, anexar tarefas para acompanhamento e integrar notificações automáticas via sistemas externos. A solução deve suportar pelo menos 30 atendentes com múltiplos números (seis inicialmente) e oferecer controle detalhado das cobranças e comunicação.","[""Comercial""]",,,,,https://cxpress.activehosted.com/app/deals/28606
+85146,Boston Scientific Brasil,2026-04-28,,brl,181614,,,Marcelo Lopes,,,,,,"[""Whatsapp""]","[""Melhorar a operação no WhatsApp""]",,,"[""Marketing""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/85146
+75711,[otb] Hospital de Câncer de Mato Grosso,2026-04-20,,brl,163992,,,Luiz Fantini,Carine Andrade,,,"Alta despesa mensal com plataforma atual (Bot Designer) entre R$ 8.000 e R$ 10.000. Limitações no atendimento automático devido a regras do SUS, como impossibilidade de agendamentos automáticos. Falta de integração efetiva com sistema MV para agendamento. Ausência de portal de autoatendimento para os pacientes agendarem consultas de forma autônoma. Processos manuais ou sem automação abrangente para disparo automático de lembretes que dependem de terceiros, gerando complexidade e possível aumento de custos. Atendimento não integrado em todos os canais, dificuldade em gerenciamento de histórico e comunicação interna. Necessidade de redução de custos e avaliação precisa dos benefícios de mudança da plataforma.","Manutenção de custos elevados que impactam a controladoria do hospital. Falta de automação completa prejudica a eficiência operacional e pode aumentar o trabalho manual da equipe. Sem portal de autoatendimento, o paciente depende do contato via WhatsApp que limita agilidade. Processos fragmentados de disparo automático geram necessidade de contratos com múltiplos fornecedores e custos adicionais. Falta de visibilidade e indicadores de desempenho no atendimento (ex: taxa de desistência) dificulta gestão eficiente. O hospital pode estar pagando por funcionalidades e integrações que não utiliza, reduzindo a relação custo-benefício da solução atual.","[""Whatsapp""]",,,"Buscar solução que agregue valor e reduza custos em relação à plataforma atual. Automação do atendimento via múltiplos canais, incluindo transcrição e resposta a áudios. Unificação e otimização do gerenciamento do atendimento ao paciente, com cockpit que permita acompanhar histórico e interagir internamente. Integração com sistemas hospitalares (como MV), com possibilidade de automação de lembretes e confirmações, ainda que parte disso dependa de fornecedores externos. Redução de custo global estimada em cerca de 70% em comparação ao custo atual. Possibilidade de testar a solução com contato da Santa Casa de Bragança. Interesse em ampliar automação também para atendimentos internos de TI e RH para melhorar eficiência e evitar aumento de pessoal. Necessidade de relatórios e indicadores para gerência do atendimento.","[""Suporte/sac""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/75711
+84190,[3]  Leanlogs,2026-04-17,,brl,180433,google,751020017201,Higor Neubern,Bruno Damásio,,,"O atendimento da farmácia está 'terrível' devido à falta de automação, lentidão nos processos e dificuldades na leitura de orçamentos pela IA. A resposta às mensagens é insuficiente, com atendentes respondendo menos da metade das mensagens recebidas. Existe risco associado à substituição completa das atendentes por IA, e limitações técnicas na integração dos ativos farmacêuticos devido a inconsistências de nomes e dados no sistema atual.","A baixa automação e a demora no atendimento causam frustração nos clientes, queda nas vendas da cliente, além de risco de dessincronização de preços que pode gerar expectativas erradas. A farmácia perde oportunidades de vendas devido à incapacidade de responder todas as mensagens e ao processo manual ineficiente, impactando negativamente na experiência do cliente e nos resultados comerciais.","[""Facebook"",""E-mail"",""Telefone"",""Webchat"",""Whatsapp"",""Instagram""]","[""Implementar IA no atendimento"",""Conhecer ou avaliar uma nova solução para atendimento"",""Melhorar a operação no WhatsApp""]",Urgente (implementação imediata),"O cliente precisa otimizar e automatizar o atendimento ao consumidor, especialmente o atendimento de primeiro nível, com triagem eficiente e identificação da intenção de compra. Busca uma solução que unifique canais de comunicação (WhatsApp, redes sociais, e-mail, telefonia), com CRM de atendimento, dashboards de métricas e suporte ágil. Procura também melhorar a capacidade de resposta, reduzir mão de obra, evitar erros na comunicação de preços e garantir um processo ágil que possa ser implantado em até 15 a 21 dias.","[""Comercial"",""Suporte/sac""]",21-40 atendimentos,"A Leanlogs é uma consultoria especializada em redução de custos e aumento de produtividade.
+
+O Paulo, está com um problema urgente em uma de suas contas, é uma farmácia de manipulação, segue o site: https://www.alfazemamanipulacao.com.br/ , precisam melhorar o primeiro atendimento, com NPL e deixar somente o fechamento para equipe humana.
+
+Paulo demonstrou interesse, especialmente em um chatbot inteligente e ""humanizado"" como o da Drive. Bruno explicou que o chatbot da CXpress pode se aproximar dessa experiência, mas não fecha vendas sozinho. Ele propôs uma apresentação com um especialista para demonstrar a plataforma e esclarecer dúvidas.
+
+Paulo questionou os custos. Bruno informou que o plano básico começa em R$999/mês (3 acessos) mais R$99 por acesso adicional, e que o valor pode variar dependendo do volume de interações.  As interações são cobradas pela Meta.
+
+Paulo, que também tem clientes de consultoria, vê potencial na plataforma para seus clientes e para sua própria farmácia. Ele busca melhorar a comunicação e automatizar processos, como orçamentos e pós-venda. Bruno pediu detalhes para agendar a apresentação e entender melhor as necessidades de Paulo.",,,https://cxpress.activehosted.com/app/deals/84190
+84314,[3] Spes Advocacia,2026-04-14,,brl,180594,google,797872406778,Higor Neubern,Bruno Damásio,,,"Respostas lentas e não padronizadas com demora de 3 a 4 horas para retorno; desconexões frequentes do WhatsApp Business; secretária atende vários clientes, gerando atrasos; falta de padronização e velocidade nas respostas; ausência de integração com ferramentas de IA para automatizar o atendimento inicial.","Perda de agilidade no atendimento, provável insatisfação dos clientes pela demora e falta de sistematização; dificuldade para justificar precificação dos honorários devido à falta de histórico organizado; sobrecarga da advogada e equipe no atendimento, podendo impactar o fechamento de novos contratos.","[""Whatsapp"",""E-mail"",""Instagram""]","[""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Melhorar a operação no WhatsApp"",""Centralizar e integrar canais de atendimento"",""Implementar IA no atendimento""]",Média (avaliando soluções/em fase de orçamentos),"Automatização e padronização das respostas via integração de IA ao WhatsApp para filtrar contatos iniciais e automatizar respostas com assistente comercial; ferramenta que permita transferência para advogada quando necessário; centralização dos canais de atendimento; gestão de tickets e histórico de conversas; melhoria da área comercial para aumentar o fechamento de contratos; três licenças para advogada, secretária terceirizada e nova colaboradora.","[""Comercial"",""Suporte/sac""]",10-20 atendimentos,"Spes Advocacia é um escritório pequeno/boutique com posicionamento técnico-estratégico e ênfase em humanização; 
+
+Presença digital concentrada em Instagram; sem evidência pública de chat, formulário ou operação em larga escala. Riscos: perda de leads por site fora do ar, fragmentação de canais, falta de automação/triagem e baixa visibilidade gerencial. 
+
+Bárbara busca  uma plataforma para otimizar o atendimento ao cliente via WhatsApp, integrando-o com Instagram, e-mail e formulário do site(botão). 
+
+Ela deseja centralizar tudo no WhatsApp, automatizar processos e ter pelo menos 5 operadores para atender uma média de 10-15 atendimentos diários. 
+
+O objetivo é usar a plataforma para áreas como comercial, suporte, relacionamento, envio de informações de processos e informações sobre o escritório. ",,,https://cxpress.activehosted.com/app/deals/84314
+84286,[10] Assaí Atacadista,2026-04-13,,brl,163676,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]","[""Implementar IA no atendimento""]",,,"[""Suporte/sac"",""Marketing""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/84286
+84121,[10] Zamp,2026-04-07,,brl,163292,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook"",""Tiktok""]","[""Implementar IA no atendimento""]",,,"[""Suporte/sac""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/84121
+83779,[7] Be Health Atividades Profissionais Ltda,2026-04-01,,brl,180099,,,Higor Neubern,Tainara Gonçalves,,,"Complexidade do agendamento em medicina ocupacional devido à variação dos exames conforme cargo e risco da atividade, o que exige intervenção humana para organizar múltiplas salas e horários. Atendimento manual lento e desorganizado, com tempo de resposta elevado (mínimo de 10 minutos até várias horas), sem priorização das mensagens. Risco de retrabalho e falta de agilidade na coleta e interpretação de dados para agendamento e emissão de documentos. Dificuldade de comunicação e baixa qualidade no atendimento percepcionada pela cliente. Preocupação de que IA possa ser vista como obstáculo para as empresas atendidas.","Tempo de resposta elevado pode levar a problemas de comunicação, funcionários podendo comparecer sem dados necessários ou agendamento correto. Atendimento humano sobrecarregado e com perda de tempo significativo, o que impacta a eficiência do processo e experiência do cliente. Limitação do atendimento atual pode comprometer a escalabilidade e qualidade do serviço prestado. Falta de uma solução automatizada atrasa o processo e mantém a desorganização.","[""Whatsapp""]","[""Melhorar a operação no WhatsApp"",""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Implementar IA no atendimento""]",Média (avaliando soluções/em fase de orçamentos),"Automatizar o atendimento pelo WhatsApp, especialmente a triagem inicial de casos clínicos mais simples para desafogar a equipe humana. Necessidade de integrar IA treinada com base em laudos e demandas recorrentes para fornecer informações precisas e agilizar agendamentos. Organizar e priorizar as mensagens e atendimentos via plataforma única, com canal unificado. Manter a possibilidade de transferência para atendimento humano em casos complexos. Realizar um teste estruturado (Prova de Conceito) para avaliar a eficácia da IA em paralelo ao sistema atual, incluindo configuração personalizada e acompanhamento dos resultados.","[""Suporte/sac"",""Comercial"",""Administrativo/financeiro"",""RH""]",41-70 atendimentos,"Necessidade do lead:
+
+A empresa é uma clínica de medicina ocupacional, com atuação em:
+
+Exames admissionais, demissionais e periódicos
+Mudança de função
+Exames complementares (eletrocardiograma, eletroencefalograma, etc.)
+Exames laboratoriais e raio-x (via parceiros)
+
+Além disso, a operação também envolve áreas como financeiro, recepção e comercial.
+
+O principal desafio está no alto volume de mensagens recebidas via WhatsApp, especialmente relacionado a agendamentos, que hoje representam o maior gargalo da operação.
+
+Dor principal:
+
+Grande volume de mensagens (50 a 60 por dia)
+Falta de organização no atendimento (respostas em ordem manual no WhatsApp)
+Demora no retorno devido à alta demanda
+Mensagens fora do horário comercial, acumulando fila de atendimento
+Dificuldade em direcionar corretamente os atendimentos por tipo de demanda
+
+O lead busca uma solução que permita:
+
+Organizar e estruturar os atendimentos
+Implementar respostas automatizadas (IA) para ganho de agilidade
+Direcionar os atendimentos por tipo, como:
+Agendamentos (ocupacional, empresas, exames)
+Financeiro
+Comercial
+Distribuir demandas entre diferentes fluxos ou responsáveis
+
+Informações levantadas:
+
+Área de atuação: Comercial, agendamentos, financeiro e suporte
+Canal principal: WhatsApp
+Volume médio: 50 a 60 atendimentos por dia
+Estrutura: 5 operadores
+Interesse em automação: Sim, com foco em agilidade e organização
+
+Atualmente utilizam WhatsApp Business, e estão abertos a novas soluções.
+
+Alinhamentos realizados:
+
+Foi informado ao lead que não somos uma plataforma de agendamentos, e que os agendamentos não são realizados diretamente pela nossa IA, atuando como apoio no pré-atendimento e organização das demandas.
+Foi alinhado que trabalhamos exclusivamente com a API Oficial do WhatsApp, garantindo mais segurança, estabilidade e possibilidades de automação.
+O site da empresa está em desenvolvimento, e o lead está ciente da necessidade de possuir um site ativo para utilização da solução.
+
+Expectativa:
+Entender se a plataforma permite automatizar, organizar e direcionar os atendimentos, além de compreender o funcionamento e custos envolvidos.
+
+Aderência da solução:
+Alta aderência, principalmente para:
+
+Organização e centralização do atendimento
+Automação no primeiro contato (IA)
+Direcionamento inteligente das demandas
+Ganho de eficiência e redução do tempo de resposta
+
+O lead demonstra interesse real em avançar, buscando entender a solução de forma prática e avaliando viabilidade financeira.",,,https://cxpress.activehosted.com/app/deals/83779
+82083,Synergy Studios Ltda,2026-04-01,,brl,175945,fb,ad_03,Enrico Citrinite,Maira Cavenaghi,"Sofreu alguns bloqueios pela Meta, se inscreveu no Webinar mas não conseguiu assistir. Se interessou pela API para evitar bloqueios, além de ter algo centralizado pra atendimento e IA para atendimento nível 1 e dúvidas. São 4 usuários e cerca de 50 atendimentos por dia. Enviam disparos quando fazem ações ou promoções, então precisa saber o valor que a Meta cobra. Quer IA pra sanar dúvidas, prefere o time focado no atendimento presencial que é um volume expressivo.",,,,"[""Whatsapp"",""Instagram"",""Telefone"",""E-mail""]","[""Centralizar e integrar canais de atendimento"",""Melhorar a operação no WhatsApp"",""Implementar IA no atendimento"",""Ter histórico unificado e melhor gestão de dados""]",,,"[""Comercial"",""Suporte/sac""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/82083
+83529,[10] Gama Manufatura Avançada Ltda,2026-03-31,,brl,179755,google,791679721106,Higor Neubern,Tainara Gonçalves,,,"A empresa enfrenta lentidão no suporte devido à dispersão do atendimento em muitos grupos de WhatsApp, dificuldade para gerenciar áudios, falta de controle e rastreamento dos chamados, impossibilidade de medir SLA, e ausência de um painel de acompanhamento dos indicadores. Não há centralização das informações, dificultando a avaliação de performance dos técnicos e gestão dos tickets. Também há dificuldades em escalonar chamados e limitar o uso do WhatsApp como canal único.","A lentidão e falta de rastreamento impedem a medição do SLA e tornam difícil acompanhar a performance individual dos técnicos. O atendimento descentralizado compromete a agilidade e assertividade do suporte técnico, que é estratégico para a empresa, podendo se tornar um ponto fraco diante da expansão e aumento da carteira de clientes. A falta de controle adequado gera risco de chamados não respondidos no tempo correto e dificulta a tomada de decisões com base em dados.","[""Whatsapp"",""E-mail"",""Instagram""]","[""Melhorar a operação no WhatsApp"",""Ter histórico unificado e melhor gestão de dados"",""Conhecer ou avaliar uma nova solução para atendimento""]",Média (avaliando soluções/em fase de orçamentos),"Centralizar o atendimento técnico em uma plataforma que possibilite rastreamento e controle dos chamados, medição de SLA, monitoramento via dashboard dos indicadores de performance, e gestão eficiente dos tickets e áudios. Implementar uma IA para pré-triagem, transcrição de áudios e escalonamento automático dos chamados urgentes para consultores humanos. Facilitar a organização do suporte, permitir segmentação por tipo de máquina e preparar a área para expansão futura, além de integrar múltiplos canais (WhatsApp, Instagram, Facebook, e-mail, webchat) em um só sistema.","[""Suporte/sac"",""Comercial""]",71-100 atendimentos,"Empresa: Gama Manufatura Avançada
+Site: https://gamabrasil.com.br/
+
+Segmento: Máquinas e equipamentos industriais / tecnologia para indústria.
+
+A empresa está em fase de crescimento e atualmente enfrenta desafios na estruturação e profissionalização do atendimento ao cliente.
+
+Hoje, grande parte das interações acontece por meio de grupos de WhatsApp, utilizados para gerenciar as demandas dos clientes. Esse formato acaba gerando dificuldades na organização dos atendimentos, na visibilidade das conversas e no acompanhamento da operação.
+
+Um dos principais pontos levantados pelo lead é a falta de indicadores e métricas de desempenho (KPIs), o que dificulta.
+
+Foi informado ao lead que a plataforma não trabalha com atendimentos em grupos, pois os atendimentos são realizados de forma individual dentro da plataforma, garantindo organização, histórico e gestão adequada das conversas. Mesmo assim, ele se mostrou aberto a entender alternativas e novas propostas de funcionamento, principalmente após assistir ao vídeo demonstrativo da solução, que segundo ele é exatamente o tipo de estrutura que está buscando implementar.
+
+Canais de interesse:
+
+Principal: WhatsApp
+
+Interesse futuro: Instagram e e-mail
+
+Estrutura planejada:
+
+Criação de uma central de operadores
+
+Estimativa inicial de 50 a 100 atendimentos por dia
+
+O objetivo principal é organizar e profissionalizar o atendimento, centralizar os canais e passar a ter controle, métricas e indicadores da operação para uma gestão mais eficiente do relacionamento com os clientes.
+Foi alinhado também, que usamos somente a API Oficial. ",,,https://cxpress.activehosted.com/app/deals/83529
+83690,Strong Grip,2026-03-30,,brl,180031,,,Higor Neubern,Carine Andrade,,,,,"[""Facebook"",""Instagram"",""Whatsapp""]","[""Implementar IA no atendimento"",""Melhorar a operação no WhatsApp"",""Ter histórico unificado e melhor gestão de dados""]",Alta (nos próximos meses),,"[""Comercial"",""Suporte/sac""]",10-20 atendimentos,,false,,https://cxpress.activehosted.com/app/deals/83690
+83390,[3] Autoamerica Ltda,2026-03-27,,brl,179593,google,793991915263,Luiz Fantini,Bruno Damásio,,,"Os colaboradores enfrentam dificuldades no acesso ao portal 'Meu RH', especialmente por falta de cadastro, e o atendimento atual no WhatsApp tem alto volume de demandas, incluindo dúvidas sobre folha de pagamento, benefícios como VR, transporte, descontos e adição de dependentes ao plano de saúde. É necessário também dividir as demandas por filiais para atendimento especializado.","O grande volume de atendimentos e as dificuldades de acesso ao portal dificultam a eficiência do RH, podendo causar insatisfação dos colaboradores e sobrecarga dos atendentes. Sem uma solução adequada, o atendimento pode se tornar ineficiente e os problemas no acesso ao portal podem persistir, afetando a experiência dos funcionários.","[""Whatsapp""]","[""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Melhorar a operação no WhatsApp""]",Alta (nos próximos meses),"O cliente busca uma solução de automação para o atendimento de RH via WhatsApp, especificamente um chatbot com agente de IA capaz de unificar canais, responder perguntas frequentes de forma humanizada, usar áudio ou texto, redirecionar atendimentos para os 6 atendentes de RH conforme a filial e tema, monitorar os atendimentos, gerenciar filas e histórico, e possibilitar personalização da solução sem necessidade de TI.","[""RH""]",acima de 100 atendimentos,"O Grupo Autoamerica é um grande player nacional no mercado de importação e fabricação de produtos automotivos.
+
+Estão buscando a implementação de um chatbot para WhatsApp que os ajude a organizar e direcionar as demandas do setor de RH.
+
+Atualmente possuem 53 filiais em todo o Brasil, então precisam de uma solução dinâmica e bem estruturada, que funcione da seguinte forma:
+
+Primeiro realizar a separação por tipo de demanda (ex.: folha de pagamento, benefícios, admissão, dúvidas gerais, etc.).
+
+Em seguida permitir a seleção da filial do colaborador.
+
+Após essas etapas, que a solicitação seja direcionada automaticamente para o responsável pelo atendimento daquela demanda.
+
+O objetivo objetivo deles é otimizar o atendimento aos colaboradores, garantindo que cada solicitação chegue diretamente à pessoa responsável.
+
+Mencionei que podemos vincular gatilhos ao atendimento para separar por tipo de demanda e em seguida setorizar esse atendimento para as filiais.",,,https://cxpress.activehosted.com/app/deals/83390
+80871,[12] C4m Soluções Para Segurança Do Trabalho,2026-03-26,,brl,164581,google,716184222955,Higor Neubern,Bruno Damásio,"A C4m tem uma expertise que abrange pesquisa e desenvolvimento, segurança do trabalho, meio ambiente, higiene ocupacional, Engenharia, além de manutenção preditiva, preventiva e corretiva.
+
+Erick, seu analista está procurando uma plataforma que seja possivel a centralização das mensagem para gerência, permita a automação com chatbot e que não tenha necessidade de celulares para o atendimento, isso é, tudo seja acessível apenas pelo computador.
+
+Falamos sobre a centralização dos canais de atendimento deles, além do direcionamento para o setores ou pessoas corretas. Alinhamos que talvez seria  uma boa alternativa interessante para o cenário deles.
+",,"Falta de controle, gestão e visão clara da operação, especialmente para operar multiusuários em um único número. Ausência de métricas sobre produtividade, número de atendimentos, tempo de resposta e desempenho por agente e por time. Não possui chatbot para triagem de dúvidas básicas e filtro de assuntos. O CRM atual não atende ao propósito da empresa.",A ausência de métricas impede um feedback mais assertivo para a equipe de atendimento e dificulta a análise de produtividade e desempenho. A falta de centralização entre canais dificulta a agilidade no atendimento e a organização das operações. Não ter um CRM adequado implica em processos menos eficientes e possíveis perdas no histórico e organização dos contatos.,"[""Whatsapp"",""E-mail"",""Telefone""]","[""Centralizar e integrar canais de atendimento"",""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Ter histórico unificado e melhor gestão de dados""]",Média (avaliando soluções/em fase de orçamentos),"Centralizar WhatsApp e telefonia PABX em uma única plataforma para agilizar e organizar o atendimento. Ter uma plataforma que ofereça gestão multicanal, CRM customizável, automação de tickets e comunicação interna. Precisam de métricas detalhadas e personalizáveis com análise de IA para melhorar o atendimento. Desejam um chatbot com IA para triagem e um menu interativo que utilize IA em determinadas opções. Desejam integração via API aberta e um sistema de telefonia integrado que dispense equipe adicional de integração.","[""Comercial""]",71-100 atendimentos,https://c4m.com.br/,,,https://cxpress.activehosted.com/app/deals/80871
+83756,Cacau Show - expansão de projeto,2026-03-25,,brl,104446,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Tiktok"",""Google My Business""]","[""Implementar IA no atendimento""]",,,"[""Marketing""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/83756
+83610,[6] Led Tools,2026-03-24,,brl,179878,blog,,Luiz Fantini,Tainara Gonçalves,,,,,"[""Whatsapp""]","[""Centralizar e integrar canais de atendimento"",""Melhorar a operação no WhatsApp""]",Média (avaliando soluções/em fase de orçamentos),,"[""Suporte/sac"",""Comercial""]",71-100 atendimentos,"Necessidade do lead (versão final):
+
+O lead atua com e-commerce e possui uma operação distribuída em 3 lojas, cada uma com um número de WhatsApp e 1 operador por unidade.
+
+Atualmente, busca profissionalizar o atendimento ao cliente, com foco em:
+
+Melhorar a qualidade e organização do suporte
+
+Ganhar mais eficiência no atendimento via WhatsApp
+
+Estruturar a operação, que hoje ainda é mais básica
+
+O volume de atendimentos é relevante, com média de 80 a 100 atendimentos por dia por loja, concentrados principalmente no início da semana (segunda e terça).
+
+Demonstra interesse em:
+
+Automação com IA, principalmente para WhatsApp
+
+Melhor estrutura de atendimento (organização, padronização e agilidade)
+
+Possível expansão futura para outros canais (Instagram, Facebook, etc.)
+
+Neste momento, o foco é 100% no WhatsApp, mas há abertura para evolução futura para uma operação multicanal.
+
+Ponto importante:
+O lead não possui site atualmente, porém se mostrou aberto a desenvolver um, caso a solução faça sentido — sendo este um requisito para utilização da API Oficial da Meta.
+
+Estrutura atual:
+
+3 números de WhatsApp (um por loja)
+
+3 operadores (1 por loja)
+
+Operação ainda pouco estruturada em termos de tecnologia e automação
+
+Validações já realizadas:
+
+Valor base da solução apresentado e validado (R$ 990,00 mensais + adicionais por acesso)
+
+Lead assistiu ao vídeo demonstrativo padrão da plataforma antes do agendamento e confirmou aderência ao que busca
+
+Aderência da solução:
+Alta aderência, principalmente para:
+
+Organização e centralização do atendimento
+
+Implementação de IA no primeiro contato
+
+Ganho de eficiência operacional
+
+Escalabilidade da operação
+
+O lead demonstra interesse real e maturidade no processo, tendo solicitado reunião para aprofundamento, indicando boa probabilidade de avanço na negociação.",,,https://cxpress.activehosted.com/app/deals/83610
+83558,[10] Yeshua Educação,2026-03-20,,brl,179787,google,751020017201,Enrico Citrinite,Bruno Damásio,,,"O principal desafio é a gestão das questões financeiras no atendimento, como envio de boletos e conferência de parcelas. O suporte atual é simples devido às perguntas repetitivas, mas a empresa deseja automatizar e substituir as três pessoas que fazem atendimento por inteligência artificial, mantendo apenas uma pessoa para verificação e organização. Também há necessidade de integração para encaminhamento de dúvidas técnicas aos professores.","Sem automatização, a empresa continua com custo maior de mão de obra e possível ineficiência no atendimento repetitivo. A ausência de uma plataforma unificada dificulta a gestão centralizada dos atendimentos e pode aumentar o tempo de resolução e esforço da equipe humana.","[""Whatsapp""]","[""Implementar IA no atendimento"",""Melhorar a operação no WhatsApp""]",Alta (nos próximos meses),"A empresa busca uma plataforma intuitiva e visual, com dashboard e recursos de inteligência artificial para centralizar e automatizar o atendimento via WhatsApp, migrando para um ou dois números únicos. Necessita de funcionalidades como gestão de tickets, classificação por tags, base de conhecimento unificada, personalização do chatbot, direcionamento automático para atendimento humano, e integração com times e professores. Além disso, deseja uma solução com custo previsível baseada em licenças, baixo custo variável, sem custo de setup e com suporte próximo na implantação.","[""Administrativo/financeiro"",""Suporte/sac""]",21-40 atendimentos,"Arthur é proprietário de uma escola digital e está em busca de uma plataforma para o auxiliar em 2 pontos: Suporte ao aluno (dúvidas gerais) e financeiro (cobrança).
+
+Segundo ele seu maior objetivo, hoje em dia é entregar um suporte rápido, eficiente e de qualidade.
+
+Ao analisar seus dados de cadastro identifiquei que sua página oficial era uma landpage.
+
+Então o questionei sobre o site oficial de sua escola, fiz um pitch adaptado ao cenário dele, que ele gostou muito, por sinal, e esclareci as condições de ativação da nossa solução necessitando de uma página oficial para análise. 
+
+Também mencionei sobre a impossibilidade de fazer disparos de cobrança pela nossa solução, por ser uma proibição da Meta.
+
+E por último, adiantei nossa faixa de investimento, para verificar se era compatível com o seu projeto.
+
+Segundo ele sobre a página oficial, ele acredita ser um detalhe apenas burocrático, e que se precisar criar um site institucional para a Meta validar,  é tranquilo.
+
+Também mencionou que sobre cobranças, além de já estar ciente, o suporte é para os seus alunos que já estão em sua base.
+
+Por fim afirmou se encaixar em seu orçamento nosso plano base de 3 acessos.",,,https://cxpress.activehosted.com/app/deals/83558
+77609,Hospital Iamada,2026-03-20,,brl,164006,,,Enrico Citrinite,Maira Cavenaghi,Banimento de whatsapp por não usarem API Oficial,,"O hospital enfrenta desafios em consolidar o atendimento em canais variados, organização de filas e setores, e gerenciamento unificado das interações dos pacientes. Há dificuldades em iniciar conversas sem cadastro prévio e em validar estruturas de dados para disparos ativos em massa. Necessitam também monitorar a efetividade do contato ativo, especialmente o retorno de pacientes para identificar complicações como infecções. O dashboard atual não permite total personalização de métricas, e a integração entre sistemas internos e a plataforma deve ser ajustada.","Sem essa consolidação e automação, o hospital pode ter atrasos no atendimento, dificuldade em gerir a carga de trabalho dos operadores, perda de informações centralizadas sobre os pacientes, dificuldade em acompanhar retornos clínicos importantes, e ineficiência nos disparos de campanhas em massa, comprometendo a qualidade do atendimento e acompanhamento dos pacientes.","[""Whatsapp"",""Instagram"",""E-mail"",""Telefone""]","[""Melhorar a operação no WhatsApp"",""Implementar IA no atendimento"",""Ter histórico unificado e melhor gestão de dados"",""Organizar o fluxo e reduzir a sobrecarga da equipe""]",,"O Hospital Iamada busca uma solução capaz de unificar canais de atendimento, oferecer histórico único de interações e cadastro customizado de pacientes, usar IA para triagem e automação de dúvidas frequentes, permitir disparos ativos em massa com validação de dados, gerar métricas personalizadas por meio de tags para monitorar efetividade e retornos, oferecer comunicação interna eficiente entre colaboradores, facilitar transferência de atendimentos, e garantir segurança e conformidade por ser API oficial da Meta. Também querem suporte contínuo, treinamento, e possível futura integração com telefonia PABX em nuvem.","[""Suporte/sac""]",acima de 100 atendimentos,Nenhuma,,,https://cxpress.activehosted.com/app/deals/77609
+83407,[10] Floricultura Estaão Das Flores,2026-03-17,,brl,179616,google,755934814747,Luiz Fantini,Bruno Damásio,,,,,"[""Whatsapp"",""Instagram""]","[""Centralizar e integrar canais de atendimento"",""Melhorar a operação no WhatsApp"",""Organizar o fluxo e reduzir a sobrecarga da equipe"",""Implementar IA no atendimento""]",Alta (nos próximos meses),,"[""Comercial"",""Suporte/sac""]",71-100 atendimentos,"Buscam uma plataforma para centralizar, organizar e otimizar o atendimento de sua empresa. Trabalham com vendas de flores e presentes, e em datas comemorativas como Dia da Mulher, Dia das Mães e Dia dos Namorados tem um aumento muito grande no volume de mensagens. 
+
+Precisam de uma ferramenta que os ajude a gerenciar melhor os atendimentos, distribuir as conversas entre os consultores e garantir respostas rápidas e organizadas para os clientes.
+
+Utilizam o atendimento principalmente para vendas (comercial), mas também para suporte ao cliente, como acompanhamento de pedidos, informações sobre entregas, dúvidas sobre produtos e pós-venda.
+
+Tem média 50 a 100 atendimentos por dia, podendo aumentar significativamente em datas comemorativas.
+
+Com a IA buscam automatizar o primeiro atendimento, responder dúvidas frequentes, direcionar os clientes para o site da loja e fornecer informações sobre produtos, horários de entrega e funcionamento. O objetivo é agilizar o atendimento e otimizar o tempo da equipe de vendas.",,,https://cxpress.activehosted.com/app/deals/83407
+83059,[ind. buzz] SoftMarketing,2026-03-13,,brl,179309,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Facebook"",""Instagram""]","[""Implementar IA no atendimento""]",,,"[""Marketing""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/83059
+80903,Catavento Cross-sell,2026-03-13,,brl,153607,email,,Higor Neubern,Prospecção do vendedor,,,,,"[""Whatsapp""]","[""Centralizar e integrar canais de atendimento""]",Média (avaliando soluções/em fase de orçamentos),,"[""RH""]",acima de 100 atendimentos,,false,,https://cxpress.activehosted.com/app/deals/80903
+83241,[inb] [3] Delima,2026-03-11,,brl,179492,google,791557950852,Enrico Citrinite,Bruno Damásio,"Cleber é dono de uma empresa de síndicos profissional, está com uma carteira de 3 condomínios, entrou em contato alegando que está com dificuldade para dar suporte aos seus condôminos e precisa melhorar essa comunicação.
+
+Ao verificar suas informações percebi que o site estava fora do ar, então ele me explicou que o ultimo site foi descontinuado e já está buscando fazer o próximo site talvez para a próxima semana.
+
+Eu citei que ja tivemos alguns cases de suporte a condomínios ele ficou animado de entender como nós podemos contribuir para o seu projeto.
+
+ Gostariam de conectar o site e as redes sociais na plataforma assim que estiverem prontos.
+
+Mencionou urgência  já estão atendendo esses condomínios , então precisam entender os benefícios do projeto e valores, para validar se está dentro da realidade deles.",,,,"[""Whatsapp"",""E-mail""]","[""Implementar IA no atendimento"",""Organizar o fluxo e reduzir a sobrecarga da equipe""]",Urgente (implementação imediata),,"[""Suporte/sac""]",acima de 100 atendimentos,Site sendo reformulado.,,,https://cxpress.activehosted.com/app/deals/83241
+82104,[7] Star Planet,2026-02-27,,brl,175968,whatsapp,,Enrico Citrinite,Tainara Gonçalves,"O lead utiliza atualmente a plataforma OpenBox Omnichannel, que vem apresentando falhas, e por isso busca migrar para uma nova solução. O principal interesse é contar com uma plataforma estável, com foco em WhatsApp, desde que opere com a API Oficial da Meta para evitar riscos de bloqueio do número.
+
+Igor atua como representante no contato inicial e informou que o proprietário da empresa participará da reunião. Por esse motivo, Igor não possui todas as informações necessárias para a triagem completa, tendo repassado apenas os dados iniciais disponíveis. As demais informações e validações ficarão a cargo do proprietário durante a apresentação.
+
+Também questionou a possibilidade de utilização da plataforma sem automação por inteligência artificial, demonstrando abertura para conhecer o modelo, desde que o uso de IA não seja obrigatório. O objetivo imediato é realizar uma reunião de apresentação para avaliação da solução e possível substituição da ferramenta atual.
+
+Alinhado com o Enrico o fato de não haver, no momento, mais informações para a triagem.",,,,"[""Whatsapp"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,https://starplanetviagens.com.br/,false,,https://cxpress.activehosted.com/app/deals/82104
+82973,Casa do Zezinho,2026-02-25,,brl,121088,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Whatsapp"",""Instagram""]",,,,"[""Suporte/sac"",""Administrativo/financeiro"",""Comercial""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/82973
+82892,[10] Papelaria Kennedy,2026-02-25,,brl,179148,google,791600083129,Luiz Fantini,Bruno Damásio,"Júnior é gerente de uma papelaria que tem um grande fluxo de atendimento pelo WhatsApp, entrou em contato alegando que precisa de soluções pra desafogar e organizar o seu atendimento via WhatsApp, pois tem demora no atendimento e perda de dados de seus clientes.
+
+Conversando mencionei sobre as possibilidades de organização do seu atendimento, mencionei o direcionamento e a setorização de sua operação, também o chatbot para desafogar as informações de perguntas frequentes e a triagem para coletar informações essenciais de seus clientes, ele gostou bastante.
+
+Lead fechado, restritivo em relação a informações sobre a sua operação, e que ofereceu uma série de dificuldades de contato para obter informações sobre sua empresa, porém insistiu em uma apresentação.",precisava liberar os atendentes do balcão e ao mesmo tempo levar um experiência unica para atendimentos via whatsapp,,,"[""Whatsapp""]",,,,"[""Comercial""]",acima de 100 atendimentos,https://papelariakennedy.lojaintegrada.com.br/,,,https://cxpress.activehosted.com/app/deals/82892
+82875,[14] Rede Express,2026-02-24,,brl,36006,google,791600083129,Enrico Citrinite,Tainara Gonçalves,"O lead busca uma plataforma que integre e-mail, WhatsApp e telefone em um único ambiente, com foco na área de Suporte.
+
+Atualmente conta com 5 operadores e deseja utilizar automação para atendimento ao cliente, com o objetivo de otimizar a rotina e centralizar os canais de comunicação.
+
+Demonstrou interesse na utilização da WhatsApp API Oficial.
+
+Não informou a média de atendimentos diários pois não tem essa informação e, apesar das tentativas de aprofundar o cenário, manteve-se objetivo nas respostas, sem detalhar muito a operação.
+",,,,"[""Whatsapp"",""E-mail"",""Telefone""]",,,,"[""Suporte/sac""]",71-100 atendimentos,https://myagmexpress.com/quem_somos.php,,,https://cxpress.activehosted.com/app/deals/82875
+82500,[10] Galuta,2026-02-11,,brl,176278,google,715021779547,Higor Neubern,Tainara Gonçalves,"O lead, Lucas, da Galuta Madeiras, busca urgentemente um provedor de WhatsApp Business API Oficial, pois atualmente utiliza o WhatsApp Business App e enfrenta bloqueios frequentes devido ao alto volume de mensagens (entre 1.000 e 1.500 conversas mensais).
+
+Seu principal interesse é exclusivamente o uso da API, com foco em estabilidade, homologação oficial da Meta e continuidade do número, não demonstrando interesse inicial em automações, IA ou demais funcionalidades da plataforma.
+
+Possui uma operação estimada de 5 usuários e precisa entender planos, valores e principalmente limites de mensagens/conversas, para realizar um filtro rápido entre fornecedores.
+
+O lead tem restrição severa de tempo, solicitando que as informações sejam priorizadas por mensagem passei o caso ao executivo e houve uma conversa antes de marcar uma demonstração, visto a necessidade do lead.
+
+Existe pressão de prazo, pois precisa definir e contratar uma solução até sexta-feira, visto que o número atual já está sendo restringido.
+
+Demonstrou interesse no valor base apresentado (R$ 990,00 mensais + R$ 99,00 por acesso adicional), desde que os limites iniciais da API atendam ao volume atual da operação.",,,,"[""Whatsapp""]",,,,"[""Suporte/sac"",""Comercial""]",acima de 100 atendimentos,Galutamadeiras.com.br,false,,https://cxpress.activehosted.com/app/deals/82500
+80812,[14] Fiberfast Solucoes Tecnologicas Ltda.,2026-02-11,,brl,164520,,,Enrico Citrinite,Bruno Damásio,"A Fiberfast é uma provedora de Internet via Fibra Ótica especializada em condomínios. Também  atuam no ramo de serviços tecnológicos, carregadores veiculares e energia sustentável.
+
+Segundo Scyomara  secretária responsável, hoje em dia eles buscam uma plataforma que una, chatbot, chat via site, e WhatsApp, de preferência no Android para, no mínimo 3 operadores. Expliquei que temos a versão de app, mas que as configurações e apresentação são realizadas pelo computador.
+
+O foco do atendimento deles seria Suporte Técnico e Comercial. Segundo ela a sua média de tickets diários varia pois, as vezes não tem nenhum acesso em um dia, e outras tem mais de duzentos.",,,,"[""Whatsapp""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,https://www.fiberfast.com.br/,,,https://cxpress.activehosted.com/app/deals/80812
+81361,Dra Oyama,2026-02-06,,brl,164989,,,Higor Neubern,Prospecção do vendedor,Mensagens repetitivas de dúvidas frequentes e alto fluxo de contatos por dia para uma operação enxuta,,,,"[""Whatsapp""]",,,,"[""Comercial""]",71-100 atendimentos,"Negociação se iniciou em out. 25, e foi pausada por troca na gestão. em dezembro realizei uma nova abordagem mas disse que só iria olhar para isso a partir de janeiro.
+INteressou em utilizar i Bot com IA para responder dúvidas frequentes, entender a demanda do cliente e oferecer login e senha para acessar conteúdos exclusivos do site. ",,,https://cxpress.activehosted.com/app/deals/81361
+80368,Decker Calçados,2026-02-06,,brl,164426,,,Enrico Citrinite,Maira Cavenaghi,Fluxo alto de atendimentos sem plataforma pra gerenciar.,,,,"[""Whatsapp"",""Instagram"",""Facebook""]",,,,"[""Suporte/sac"",""Costumer success"",""Comercial""]",41-70 atendimentos,"Se interessou pelo fato de conseguir usar a Cxpress para comunicação entre o time, no chat da propria plataforma.",,,https://cxpress.activehosted.com/app/deals/80368
+82123,[10] Projeto 60 anos,2026-02-04,,brl,175982,whatsapp,756024959744,Higor Neubern,Bruno Damásio,"A Projeto 60 anos é uma agencia de viagens com uma rede social forte que organiza viagens para pessoas 60 mais, hoje em dia eles fazem seus contatos pelos canais de atendimento com ajuda do Disisac, mas estão insatisfeitos e gostariam de automatizar esse processo.
+
+Segundo Rafael, Diretor Operacional eles tão sendo sendo parcialmente atendidos pelo Digisac, mas estão em busca de chatbot IA com potencial de manter longas conversas, com coerência de informações de seus roteiros e condutas operacionais.
+
+Usam o API Gupshup
+
+- 300k no Insta e 980k no Face e com picos de demanda de atendimento alto dependendo da nossa postagem.",,,,"[""Whatsapp"",""Instagram"",""E-mail"",""Telefone"",""Facebook""]",,,,"[""Comercial"",""Suporte/sac""]",acima de 100 atendimentos,https://www.projeto60anos.com.br/,,,https://cxpress.activehosted.com/app/deals/82123
+81723,Destinando Viagens,2026-02-03,129000,brl,165448,email,,Luiz Fantini,Bruno Damásio,"Denilson alega ter entrado em contato para conhecer as  funcionalidades de nossa plataforma, pois estão em busca de uma solução que possa otimizar o cenário de suporte ao atendimento.
+
+ Neste momento estão precisando do atendimento via chat com IA no WhatsApp.
+
+Na tentativa de aprofundar o cenário  de sua empresa, ele afirmou não ter as informações detalhadas sobre o uso comercial da solução, pois o responsável pelo comercial técnico, será uma outra pessoa, PORÉM não será utilizada para realizar cobrança.
+
+Segundo ele, também existe uma API, de um acordo que eles tem com a Decolar. Então na hora que a pessoa começar o atendimento, se for algo simples como as características de uma viagem, um aéreo, um hotel, ele acha o que o IA atende a necessidade.
+
+Se for um assunto mais complexo, transborda para o atendimento humano. ",,,,"[""Whatsapp""]",,,,"[""Comercial""]",71-100 atendimentos,https://destinando.com.br/,,,https://cxpress.activehosted.com/app/deals/81723
+81907,[14] Oaleiloes,2026-02-02,,brl,165592,google,755934814747,Enrico Citrinite,Tainara Gonçalves,"A empresa precisa automatizar os atendimentos para otimizar a rotina de trabalho no escritório, principalmente em dias de ocorrência de leilões, quando a demanda aumenta de forma significativa. Além disso, busca ferramentas eficientes de comunicação com os clientes e recursos para ações de marketing, garantindo melhor entregabilidade das mensagens e evitando que e-mails caiam na caixa de spam. O objetivo da automação é otimizar o tempo da equipe, permitindo que se concentre em outras atividades do escritório, reduzir atendimentos repetitivos por meio de respostas para dúvidas recorrentes, possibilitar o atendimento a dúvidas básicas mesmo fora do horário comercial e tornar o atendimento mais eficiente e organizado em períodos de alta demanda.",,,,"[""Facebook"",""Whatsapp"",""Instagram"",""E-mail"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",21-40 atendimentos, www.oaleiloes.com.br,,,https://cxpress.activehosted.com/app/deals/81907
+82124,AFH Matriz,2026-01-30,,brl,175986,,,Higor Neubern,Prospecção do vendedor,,,,,"[""Whatsapp"",""E-mail"",""Telefone""]",,,,"[""Comercial"",""Marketing""]",acima de 100 atendimentos,,false,,https://cxpress.activehosted.com/app/deals/82124
+81709,[14] Careli,2026-01-30,,brl,165416,google,751020017201,Enrico Citrinite,Tainara Gonçalves,"Hoje possuem uma estrutura de atendimento majoritariamente receptiva, com cerca de 80% receptivo e 20% ativo, voltada exclusivamente para atendimento de carteira, sem foco em vendas.
+
+Atualmente, utilizam a EZ Chat, porém existe uma insatisfação tanto com a solução quanto com o suporte oferecido.
+
+A principal necessidade é contar com uma IA realizando o primeiro contato com o cliente de forma natural, auxiliando na qualificação, direcionamento e organização dos atendimentos entre os diferentes pontos da operação.
+Além disso, há uma preocupação clara com maior visibilidade da operação e, em um futuro , deseja a conectividade com o sistema interno.",,,,"[""Whatsapp"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",71-100 atendimentos,https://www.careli.adm.br/,,,https://cxpress.activehosted.com/app/deals/81709
+81553,[20] Cebas Consultoria,2026-01-30,,brl,165264,whatsapp,,Enrico Citrinite,Tainara Gonçalves,"O cliente busca, como prioridade, a automação do atendimento, visando ganho de agilidade e organização no contato com os leads e clientes.
+
+Além disso, relatou outras dores relevantes na operação, principalmente a necessidade de um sistema de acompanhamento, que permita centralizar todo o processo de consultoria em um único ambiente.
+Apesar dessas demandas adicionais, o ponto mais urgente no momento é a estruturação do atendimento automatizado.",,,,"[""Whatsapp"",""Instagram""]",,,,"[""Comercial""]",21-40 atendimentos,https://www.cebas.com.br/,,,https://cxpress.activehosted.com/app/deals/81553
+80929,[13] Ws Plasticos,2026-01-29,,brl,164647,google,723654403873,Higor Neubern,Bruno Damásio,"Rosangela, que é gestora comercial da empresa está em busca de uma plataforma Omnichannel, porque segundo ela, na solução que eles utilizam, eles tem problemas todos os dias.
+
+Usam o Cvczap, eles são uma industria de plástico e recebem em torno de mais de 60k msg no WhatsApp, por dia e segundo ela a plataforma alterna o atendimento entre os vendedores e ela precisa que esse atendimento seja continuado pelo mesmo vendedor.
+
+Também precisa que esses atendimentos sejam individuais e sigilosos. Precisam também de acesso pelo app no android.
+
+Expliquei sobre o direcionamento para pessoas ou áreas com sistema de triagem e ela gostou bastante, também acredita que o dashboard de métricas vai ser importante para eles nesse momento.",,,,"[""Whatsapp""]",,,,"[""Comercial""]",acima de 100 atendimentos,https://www.wsplasticos.com.br/,,,https://cxpress.activehosted.com/app/deals/80929
+77648,Vital Lab,2026-01-27,,brl,161705,,,Enrico Citrinite,Maira Cavenaghi,,,,,"[""Whatsapp""]",,,,"[""Administrativo/financeiro"",""Suporte/sac""]",10-20 atendimentos,"5 USUÁRIOS (uma no agendamento, duas no SAC e uma nas vacina, além dela como gestão)
+Quantidade de atendimentos fiz uma base pois ela não soube me informar com precisão, a plataforma atual não tem esses dados tão compilados, focar nos dados e sumário na call.",,,https://cxpress.activehosted.com/app/deals/77648
+81794,[10] 33 Doctor,2026-01-22,,brl,165482,whatsapp,,Higor Neubern,Bruno Damásio,"Segundo Samuel, sua empresa está em busca de uma plataforma que possa otimizar o atendimento ao cliente, sem deixar ele esperando. Existem algumas perdas de dados e demora no atendimento.
+
+Samuel entrou em contato pela Cx, com urgência para decisão sobre uma plataforma, pois já estava em contato com outras 2.
+
+Também analisei o fato de sua empresa sem franqueada e segundo ele já foi verificado com a franqueadora e é possível sim utilizar o site próprio deles para a ativação da solução. 
+
+Foi repassado também uma faixa de investimento, e segunda ele gostaria de negociar. ",,,,"[""Whatsapp"",""Facebook"",""E-mail"",""Telefone"",""Instagram""]",,,,"[""Comercial"",""Suporte/sac""]",41-70 atendimentos,https://33doctorsalvador.com.br/,,,https://cxpress.activehosted.com/app/deals/81794
+81741,[7] JT Express - Filial PR,2026-01-22,,brl,165467,,,Higor Neubern,Prospecção do vendedor,Indicação da JT Express para atendimento de uma filial. Estão sofrendo com bloqueios de WhatsApp ao se comunicar com entregadores motoristas e clientes. Realizam disparos ativos e durante o processo de envio de mensagens já tiveram diversos nºs bloqueados.´Tem uma grande urgência em resolver o bloqueio de nºs e disparos ativos pois estão vinculados a um contrato que prevê um canal de atendimento para 3ºs e clientes das plataformas que atendem,,,,"[""Whatsapp"",""E-mail""]",,,,"[""Suporte/sac""]",acima de 100 atendimentos,"Conta chegou por indicação interna da JT Express para atendimento de uma filial regional. A principal dor identificada no discovery foi o alto índice de bloqueios de números de WhatsApp durante disparos ativos, utilizados para comunicação com entregadores, motoristas e clientes finais.
+
+Atualmente, a operação realiza envios proativos e, ao longo desse processo, já teve diversos números bloqueados, o que vem impactando diretamente a continuidade do atendimento. Existe urgência na resolução do problema, pois a filial possui contrato ativo que prevê obrigatoriamente um canal de atendimento para terceiros e clientes das plataformas atendidas.
+
+A proposta da Cxpress foi apresentada como solução para garantir estabilidade na comunicação, uso exclusivo de API Oficial do WhatsApp e mitigação de novos bloqueios. Foram alinhados escopo, custos de tecnologia e modelo contratual sem multa por rescisão antecipada, o que trouxe segurança para a tomada de decisão. A conta optou por seguir com a contratação.",false,,https://cxpress.activehosted.com/app/deals/81741
+80935,[20] Hf Soluções E Tecnologia,2026-01-22,,brl,164658,whatsapp,,Higor Neubern,Bruno Damásio,"Hiandro está em busca de uma solução de telefonia em nuvem, gostaria de conhecer mais os produtos da Cxpress especialmente a parte de telefonia. 
+
+A Empresa é uma especializada em software e querem disponibilizar um canal de atendimento aos seus usuários. 
+
+Falei pra ele sobre a nossa Ura inteligente, nossos agentes de atendimento e dos direcionamentos por voz, ele gostou.",Análise de proposta internamente e retorno,,,"[""Telefone""]",,,,"[""Suporte/sac""]",10-20 atendimentos,https://hfstech.com.br/,,,https://cxpress.activehosted.com/app/deals/80935
+81452,[14] Grupo Impettus,2026-01-21,120000,brl,165112,google,751020017201,Luiz Fantini,Tainara Gonçalves,"O lead possui um projeto de centralização do atendimento comercial para as marcas do grupo (Espeto Carioca, Mané, Buteco Seu Rufino, Siréne e Momento Bendito).
+
+Atualmente utilizam uma plataforma considerada básica, que não trabalha com API Oficial do WhatsApp, o que vem gerando instabilidades e problemas operacionais.
+
+Buscam uma ferramenta mais robusta, com uso de IA para otimizar o atendimento, melhorar a gestão dos contatos e garantir segurança e estabilidade nas conversas.
+
+O atendimento será focado na área comercial, com integração dos canais WhatsApp, Instagram e Facebook, atendendo hoje uma média de 60 atendimentos diários, com possibilidade de crescimento.
+
+A operação contará com 3 atendentes e 1 administrador, com a expectativa de escalar o projeto para acompanhar a expansão do grupo.",,,,"[""Whatsapp"",""Instagram"",""Facebook""]",,,,"[""Comercial""]",41-70 atendimentos,https://grupoimpettus.com.br/nossa-historia/,,,https://cxpress.activehosted.com/app/deals/81452
+80044,Ômega 3 Laboratório de Análises Clínicas,2026-01-14,117500,brl,165076,,,Luiz Fantini,Carine Andrade,,,,,"[""Whatsapp"",""Instagram""]",,,,"[""Suporte/sac""]",41-70 atendimentos,"Lais se interessou em saber mais sobre como a Cxpress funciona, O laboratório possui 4 unidades, ela possui uma pessoa responsável somente para cuidar do WhatsApp. Não usa nenhuma plataforma atualmente,  o atendimento é humano. 
+Cada unidade tem um numero diferente, quer entender como funciona e ver a possibilidade de unificar tudo.",false,,https://cxpress.activehosted.com/app/deals/80044
+80932,[10] JT Express,2025-12-17,,brl,164654,whatsapp,,Higor Neubern,Bruno Damásio,"O que mais chamou sua atenção em nossa solução foi a facilidade e segurança que ela passa.
+
+Precisam de uma solução que não bloqueie mais seus números WhatsApp, fazem disparos ativos e tem tido seus números bloqueados. 
+
+Expliquei que mesmo pela Meta eles precisam disparar para a sua própria base e esperar o cliente responder, senão vão receber o bloqueio da mesma maneira.
+
+São uma empresa de logística, por mais que tenham um setor de SAC dedicado, algumas de suas bases mantém algumas tratativas com clientes, sendo assim é  necessário o contato em massa.
+
+Dentro do projeto também tem o comercial do RH (Recrutamento e seleção)",,,,"[""Whatsapp""]",,,,"[""Comercial"",""Suporte/sac""]",acima de 100 atendimentos,https://www.jtexpress.com.br/,,,https://cxpress.activehosted.com/app/deals/80932
+79941,Ajinomoto,2025-12-11,,brl,105319,,,Enrico Citrinite,Bruno Damásio,,,,,"[""Instagram"",""Facebook""]",,,,"[""Suporte/sac""]",71-100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/79941
+75702,FK Grupos,2025-12-11,271975,brl,164517,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Telefone"",""Whatsapp"",""E-mail""]",,,,"[""Comercial"",""Suporte/sac""]",21-40 atendimentos,,,,https://cxpress.activehosted.com/app/deals/75702
+80656,Pix do Milhão,2025-12-02,,brl,164354,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]",,,,"[""Suporte/sac""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/80656
+80450,[10] Essencial Containers,2025-11-26,90000,brl,164151,google,751020017201,Luiz Fantini,Bruno Damásio,"A empresa trabalho com venda e locação de contêiners, são varias modalidades de produtos e serviços.
+
+Carla está em busca de uma plataforma que centralize todo contato em um numero principal de WhatsApp, em primeiro momento e que tenha um serviço que faça o direcionamento correto para o produto ou serviço que ele está em busca.
+
+Também gostaria de centralizar redes sociais e tem a possibilidade de conectar o contato telefônico no projeto.
+
+Está em busca de rastreabilidade e também praticidade para a busca de conversas e contatos, nas palavras dela, não quer nada complicado, gostaria de facilitar a sua operação de atendimento.",,,,"[""Whatsapp"",""Instagram"",""Facebook""]",,,,"[""Suporte/sac"",""Comercial""]",71-100 atendimentos,https://essencialcontainer.com/#index,,,https://cxpress.activehosted.com/app/deals/80450
+74941,Ticket Serviços,2025-11-25,,brl,153418,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]",,,,"[""Suporte/sac"",""Marketing""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/74941
+80445,[10] Pés Sem Dor,2025-11-19,,brl,164145,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]",,,,"[""Suporte/sac"",""Comercial""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/80445
+65851,BRBCard Indicação Buzz Athaide,2025-11-19,,brl,142932,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Facebook"",""Instagram""]",,,,"[""Comercial""]",,,,,https://cxpress.activehosted.com/app/deals/65851
+80204,[11] Grupo Guardian,2025-11-18,,brl,163848,google,715021779547,Luiz Fantini,Bruno Damásio,"Segundo João estão em busca de uma plataforma para gerenciar o atendimento comercial e de suporte da empresa, hoje em dia conversas se perdem, ficam soltas.
+
+Hoje em dias fazem os atendimentos através do Whatsapp Bussiness e precisam metrificar o atendimento, também direcionar melhor e registrar essas conversas.
+
+No primeiro momento não desejam usam o chatbot, mas gostariam de entender suas aplicações dentro do seu cenário de atendimento.",,,,"[""Whatsapp""]",,,,"[""Comercial"",""Suporte/sac""]",acima de 100 atendimentos,https://grupoguardian.com.br/,false,,https://cxpress.activehosted.com/app/deals/80204
+80434,[10] Buzz monitor,2025-11-17,,brl,164133,,,Luiz Fantini,,,,,,"[""Whatsapp"",""Instagram""]",,,,"[""Comercial""]",,,,,https://cxpress.activehosted.com/app/deals/80434
+79226,InfoServic,2025-11-17,,brl,162027,,,Enrico Citrinite,Maira Cavenaghi,Necessidade de plataforma que o auxilie em disparos e atendimento via IA.,,,,"[""Whatsapp""]",,,,"[""Comercial""]",21-40 atendimentos,"- 2 operadores inicialmente pra ele entender o volume, e daí se houver necessidade, contrata mais licenças.
+- entre 10/20 atendimentos pois ele ainda vai sentir o percentual de retorno dos disparos, então ainda não tem muita idéia.",,,https://cxpress.activehosted.com/app/deals/79226
+80266,[14] E S Santos Advocacia,2025-11-14,,brl,163927,google,771704122200,Higor Neubern,Tainara Gonçalves,"O escritório E S Santos Advocacia conta com quatro pessoas no atendimento e busca uma solução para organizar e direcionar automaticamente as conversas do WhatsApp por área, garantindo mais agilidade e controle sobre os contatos recebidos.
+
+Além disso, o cliente mencionou o interesse em centralizar e gerenciar também os contatos.
+
+Atualmente, realizam em média 15 a 20 atendimentos diários e utilizam WhatsApp Business, mas não conhecem ainda o funcionamento da automação ou da API oficial, demonstrando interesse em compreender melhor como a integração e o atendimento automatizado podem ajudar na rotina do escritório.",,,,"[""Whatsapp""]",,,,"[""Suporte/sac"",""Comercial""]",10-20 atendimentos,www.essantosadvocacia.com.br,,,https://cxpress.activehosted.com/app/deals/80266
+80399,Pagsmile,2025-11-13,,brl,102065,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Whatsapp""]",,,,"[""Suporte/sac""]",41-70 atendimentos,,false,,https://cxpress.activehosted.com/app/deals/80399
+80252,Shopping Total Brás,2025-11-06,200000,brl,160501,,,Enrico Citrinite,Tainara Gonçalves,,,,,"[""Facebook"",""Whatsapp"",""Instagram"",""E-mail"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/80252
+80251,Galeria Pagé,2025-11-06,,brl,160501,,,Enrico Citrinite,Tainara Gonçalves,,,,,"[""Whatsapp"",""Instagram"",""Facebook"",""E-mail"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/80251
+78230,Total Hotel,2025-11-06,200000,brl,160501,google,715021779547,Enrico Citrinite,Tainara Gonçalves,"Hoje o hotel já utiliza uma plataforma para WhatsApp, mas está em busca de uma solução mais completa.
+É necessário que o sistema permita armazenar o histórico de conversas dos atendimentos, ofereça filtros e respostas rápidas para agilizar dúvidas frequentes, além de possibilitar a visualização da fila de espera, acompanhar quem está online e fornecer indicadores de desempenho dos atendimentos.
+",,,,"[""Whatsapp""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,https://totalhotel.com.br/,,,https://cxpress.activehosted.com/app/deals/78230
+79596,[10] Serkam,2025-11-03,80000,brl,163058,google,751020017201,Luiz Fantini,Bruno Damásio,"Camila tem uma imobiliária e vários anúncios com placas nas ruas,  disse não fazer tráfego pago por face book nem Instagram o seu marketing é feito de maneira orgânica, nas ruas. Essas pessoas entram em contato.
+
+Ela precisa que quando essas pessoas entrem em contato exista uma triagem para filtrar informações e que também exista a possibilidade de passar algumas informações para esses leads.
+
+Mencionou que também seria interessante fazer disparos em massa para essa base de leads que entram em contato com eles, nesse ponto expliquei que caso o disparo seja feito para pessoas novas, pode ser considerado spam.
+
+Disse também pensar em automatizar o atendimento telefônico mas precisa entender como funcionaria no caso deles.",,,,"[""Whatsapp"",""Telefone""]",,,,"[""Comercial""]",21-40 atendimentos,https://serkam.com.br/,,,https://cxpress.activehosted.com/app/deals/79596
+79674,[10] Bem Bolado,2025-10-31,220000,brl,163169,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Facebook"",""Whatsapp"",""Instagram"",""Telefone""]",,,,"[""Suporte/sac""]",21-40 atendimentos,,,,https://cxpress.activehosted.com/app/deals/79674
+77439,Legend Parfum,2025-10-31,,brl,163728,,,Higor Neubern,Maira Cavenaghi,"Queixa de não conseguir atender todos os clientes que chegam por dia, queixa de nao ter uma plataforma pra facilitar e queixa de não conseguir ter dados concretos sobre seu atendimento e qualidade de venda.",,,,"[""Facebook"",""Whatsapp"",""Instagram"",""E-mail"",""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",acima de 100 atendimentos,"além dos canais que fleguei, ele tem tiktok e recebe leads por lá (entender como podemos jogar na plataforma, se link de wpp ou algo do tipo).
+2 operadores + 1 de gestão.
+ele me informou cerca de 200 atendimentos diários e uma dor é que sempre deixa clientes sem respostas, não conseguem em 3 pessoas atender a todos.
+tem instagram e pode ser uma boa o sentinela.
+falei sobre a IA natural pra tirar dúvidas e ser 24/7 pra não deixar clientes sem retorno e ele adorou.",,,https://cxpress.activehosted.com/app/deals/77439
+79272,[8] Salon Line,2025-10-27,,brl,152870,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Facebook"",""Instagram""]",,,,"[""Suporte/sac"",""Marketing""]",acima de 100 atendimentos,,,,https://cxpress.activehosted.com/app/deals/79272
+79547,[7] You Safe,2025-10-21,,brl,162984,whatsapp,,Enrico Citrinite,Tainara Gonçalves,"Guilherme  responsável por uma empresa de certificado digital. Nosso processo funciona assim: após a compra, o cliente precisa realizar um atendimento (videoconferência ou presencial) e enviar documentação. Quando o cliente agenda, ele deixa o WhatsApp para contato, e nossa equipe faz o primeiro contato para orientar o passo a passo e solicitar os documentos.
+
+Como realizamos, em média, 50–60 contatos proativos por dia, tivemos um dos números banido recentemente devido às diretrizes do WhatsApp para iniciação de conversa. Por isso, gostaria de saber se vocês oferecem a integração oficial com a WhatsApp Business Platform (API) por meio de um BSP, permitindo:
+• Envio de mensagens template (HSM) dentro das políticas do WhatsApp, com opt-in adequado;
+• Gestão de janelas de 24h e reabertura via template;",,,,"[""Whatsapp""]",,,,"[""Comercial""]",71-100 atendimentos,https://certisign.com.br/parceiros/yousafe,,,https://cxpress.activehosted.com/app/deals/79547
+75537,Super Sim,2025-10-16,140000,brl,157317,,,Enrico Citrinite,Prospecção do vendedor,,,,,"[""Instagram"",""Facebook""]",,,,"[""Suporte/sac"",""Comercial""]",41-70 atendimentos,,,,https://cxpress.activehosted.com/app/deals/75537
+79492,Advanta Seeds Ind Buzz,2025-10-14,,brl,162028,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Facebook"",""Whatsapp"",""Instagram""]",,,,"[""Suporte/sac"",""Comercial""]",21-40 atendimentos,,,,https://cxpress.activehosted.com/app/deals/79492
+79386,"[32] Almeida, Pessoa & Caldas",2025-10-14,,brl,161892,Linktree+Cxpress,,Enrico Citrinite,Tainara Gonçalves,"Deseja organizar os atendimentos e reduzir o tempo de espera dos clientes, garantindo um atendimento mais ágil e eficiente.
+",,,,"[""Whatsapp"",""E-mail""]",,,,"[""Comercial"",""Administrativo/financeiro""]",41-70 atendimentos,www.apcadvogados.com.br,false,,https://cxpress.activehosted.com/app/deals/79386
+79334,[23] clinica integralmente,2025-10-08,,brl,161807,google,751020017201,Luiz Fantini,Bruno Damásio,"Clínica, especializada em atendimentos de saúde mental, ainda está sendo montada, porém já está buscando ferramentas para auxiliar na otimização do atendimento. 
+
+Alessandro gostaria de uma ferramenta para auxiliar no agendamento das consultas ( expliquei que essa não é um função nativa da nossa plataforma, mas é possível fazer uma integração com o google agenda). Ele também gostaria de entender como utilizar a IA para passar informações sobre atendimento e não deixar o cliente esperando, além de monitorar os atendimentos.
+
+Expliquei que a nossa plataforma é Sass e precisa de um site ativo para o seu funcionamento, ele afirmou que estão desenvolvendo o site. Também mencionei API Oficial e o App em desenvolvimento.",,,,"[""Instagram"",""Whatsapp"",""E-mail""]",,,,"[""Comercial"",""Suporte/sac""]",21-40 atendimentos,Estão produzindo o site e ainda montando a clínica.,,,https://cxpress.activehosted.com/app/deals/79334
+78218,UAU Educa,2025-10-03,,brl,160470,whatsapp,,Enrico Citrinite,Bruno Damásio,"Fernanda é a dona de uma escola de reforço escolar, está buscando uma plataforma para facilitar o seu atendimento ao público aonde a automação seria somente para fazer um direcionamento correto para a demanda solicitada.
+
+Segundo ela o site está inativo, então mencionei que a nossa plataforma precisa de um site funcionando e perguntei sobre uma previsão para o retorno dele, ela respondeu que ainda estão fazendo alterações.",,,,"[""Whatsapp""]",,,,"[""Suporte/sac""]",41-70 atendimentos,Seu e-mail é coorporativo.,true,,https://cxpress.activehosted.com/app/deals/78218
+77420,[13]  One Rad Medicina Diagnostica,2025-10-02,,brl,159683,google,,Luiz Fantini,Tainara Gonçalves,"Deseja reduzir o tempo de espera dos clientes, ganhar agilidade no atendimento e utilizar a IA para filtrar as demandas, direcionando aos atendentes apenas casos específicos, como confirmações e novos agendamentos.",,,,"[""Whatsapp""]",,,,"[""Suporte/sac""]",acima de 100 atendimentos,https://onerad.com.br/,true,,https://cxpress.activehosted.com/app/deals/77420
+76098,Ind Cliente ApasValedoRibeira,2025-10-01,,brl,159214,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Whatsapp"",""Telefone""]",,,,"[""Comercial"",""Suporte/sac""]",21-40 atendimentos,,,,https://cxpress.activehosted.com/app/deals/76098
+77419,VitaFor - Ind Buzz,2025-09-29,470000,brl,159682,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Instagram"",""Whatsapp"",""Facebook""]",,,,"[""Suporte/sac"",""Comercial""]",,,,,https://cxpress.activehosted.com/app/deals/77419
+78231,Hubiah,2025-09-26,,brl,160503,,,Luiz Fantini,Prospecção do vendedor,,,,,"[""Whatsapp""]",,,,"[""Comercial""]",21-40 atendimentos,,true,,https://cxpress.activehosted.com/app/deals/78231
+37400,[23] Foncare,2025-09-25,150000,brl,106589,,,Higor Neubern,Tainara Gonçalves,"Automação, objetivo de responder dúvidas simples (convênios atendidos e método de atendimento), através da IA e otimizar o tempo.",,,,"[""Facebook"",""Instagram"",""Whatsapp""]",,,,"[""Suporte/sac""]",71-100 atendimentos,http://www.foncare.com.br,true,,https://cxpress.activehosted.com/app/deals/37400
+76016,Clínica Alergológica,2025-09-09,85000,brl,159045,whatsapp,,Luiz Fantini,Tainara Gonçalves,"O lead já contratou nossa solução para a Clínica Médica Croce, em São Paulo. Durante a conversa não demonstrou muita abertura para a triagem, destacando que deseja falar diretamente com o executivo para avançar, já que conhece a plataforma e pretende implantá-la o quanto antes na clinica de Campinas.
+",Precisa distribuir as chamadas de maneira mais organizada e ter estabilidade ,,,"[""Telefone""]",,,,"[""Suporte/sac"",""Comercial""]",10-20 atendimentos,https://www.alergologica.com.br/,true,,https://cxpress.activehosted.com/app/deals/76016
+76192,Areta Nardelli Fragrances,2025-09-08,125000,brl,159381,{utm_source},,,Tainara Gonçalves,"Busca unificar os atendimentos em um único local, com solução omnichannel autorizada pela Meta.
+",Precisa evoluir o ambiente de bs para API Ofc.,,,,,,,,,,,,https://cxpress.activehosted.com/app/deals/76192
+75927,Playtennis,2025-09-04,170500,brl,158917,whatsapp,,,Tainara Gonçalves,"Atualmente, o principal objetivo é reduzir o tempo de espera nos atendimentos, além disso, quer ter acesso a relatórios e ao histórico completo das conversas.
+","Precisa de uma solução que tenha um bom suporte e seja estavél para whatsapp,. ",,,,,,,,,https://www.playtennis.com.br/,,,https://cxpress.activehosted.com/app/deals/75927
+75501,Health Spa,2025-09-01,110,brl,157255,whatsapp,,,Tainara Gonçalves,,"Fernanda, proprietária do SPA, relatou muitas reclamações por demora nos atendimentos. O sistema atual apresenta quedas frequentes e instabilidade, o que compromete o desempenho da equipe.
+
+Atualmente, o SPA conta com 5 atendentes que recebem em média 300 solicitações por dia. A solução que utilizam hoje não está suportando esse volume, o que tem impedido um atendimento eficiente aos clientes.
+
+Buscando resolver essa situação, Fernanda pesquisou como outros SPAs estão operando e identificou fluxos mais rápidos e organizados, despertando o interesse pela automação do atendimento para otimizar o tempo de espera.
+
+Ela demonstrou interesse em contratar o quanto antes e questionou sobre o nosso suporte e se oferecemos assistência completa durante a implantação e no uso da plataforma.",,,,,,,,,https://healthspaclub.com.br/,,,https://cxpress.activehosted.com/app/deals/75501
+75078,[3] Catavento Cultural e Educacional,2025-08-27,85000,brl,153607,email,,,,,"Ernaldo é gestor de Sistemas do Museu Catavento, localizado no Parque Dom Pedro II, no centro de São Paulo.
+
+Atualmente, estão com uma demanda para automatizar a comunicação com os visitantes que acessam o site e buscam esclarecer dúvidas sobre sua operação.
+
+Hoje, realizam esse atendimento por meio de uma única linha telefônica conectada ao WhatsApp Business, onde três colaboradores se revezam para responder às perguntas dos visitantes. No entanto, gostariam de automatizar esse processo para ganhar agilidade, melhorar a experiência do usuário e reduzir a carga de trabalho da equipe.
+
+Sua ideia inicial é disponibilizar um link em seu site que direcione os visitantes ao WhatsApp Business, onde uma solução automatizada possa atender às principais dúvidas, sem necessidade de intervenção humana – ao menos nesta primeira fase.
+
+Chegou até a Cxpress através de uma pesquisa no Google.
+
+Neste momento, sua operação é relativamente simples, mas tem interesse em conhecer os planos e soluções que a Cxpress oferece para esse tipo de necessidade.
+
+1. Quantos atendimentos por dia?
+	120 atendimentos
+2. Canal de entrada. Site?
+	sim
+3. Atendimento só durante o expediente? Ou tem intenção de atender 7/24 
+	De segunda a Sexta 10h às 16h;
+4. Quais e quantas respostas padrões existentes?
+	5 padrões mais utilizadas. A Fernanda  vai fazer o levantamento das depois dúvidas.
+5. Tem intenção em utilizar IA na ferramenta?
+	Provavelmente em um segundo momento;
+6. Quantos atendentes simultaneamente?
+	2 atendentes
+7. Qual o valor do orçamento para esse projeto?
+	Para o plano básico existe recurso para 2025.
+8. 1 linha de telefone.",,,,,,,,,cataventocultural.org.br,,,https://cxpress.activehosted.com/app/deals/75078
+75317,APAS JAÚ,2025-08-18,95000,brl,157012,,,,Bruno Damásio,,"Matheus responsável pelo time de TI da empresa nos contatou por e-mail, com o seguinte projeto:
+
+""Somos uma operadora de saúde e devido a nova norma da ANS, precisamos de um software para geração automatizada de protocolos de atendimento, abrangendo os canais de WhatsApp, e-mail e contatos telefônicos.
+
+Gostaríamos de saber como funciona, quais são os canais de atendimento disponíveis no software, por quanto tempo os dados ficam armazenados (e se ficam armazenados em nosso servidor ou no de vocês) e qual é o valor do produto.""
+
+Após algumas tentativas de contato, Matheus conseguiu nos colocar em contato com o seu gestor que nos passou o seguinte cenário:
+
+9 pessoas no time
+
+Não tem uma média exata  de WhatsApp 30 +-
+
+Sem necessidade de integração
+
+Sem necessidade de Mobile
+
+Não tem volumetria de telefone ( mas possuem uma norma da ANS que precisa ser analisada pelo nosso TI para o projeto ser viável )
+
+Expliquei sobre as possibilidades de registro e direcionamento da plataforma, além de mencionar o chatbot e ura inteligente.",,,,,,,,21-40 atendimentos,http://apasjau.com.br/,true,,https://cxpress.activehosted.com/app/deals/75317
+75262,[7] XPS ELETRONICA,2025-08-13,80000,brl,156954,ActiveCampaign,,,Bruno Damásio,,"Fábio explicou que atualmente utiliza três números de WhatsApp para atendimento, mas busca unificar esse serviço em uma única plataforma, que também permita manter um histórico de mensagens e atender a demandas de diferentes departamentos, como departamento de vendas, assistência técnica, adm, suprimentos, engenharia, qualidade e suporte, sucesso so cliente, etc. ( 17 pessoas)
+
+Essa demanda de WhatsApp esta crescendo cada vez mais e precisam deixar esse atendimento mais organizado e com melhor direcionamento.
+
+Fábio destacou a necessidade de integrar diferentes departamentos e manter um histórico de mensagens, com registro e possibilidade de exportar essas conversas para controle.
+
+Centralizar o atendimento em apenas 1 dos números que eles usam hoje em dia, não tem integração com nenhuma outra plataforma, nem venda online. 
+
+Precisam de disparo em massa, para informativos. 
+
+Não tem ideia do volume mas o WhatsApp é 80% do atendimento hoje.
+
+Alinhado que é uma plataforma Sass sem mobile, por ele tudo bem.",,,,,,,,,"https://xps.com.br/
+https://br.linkedin.com/in/perafabio",,,https://cxpress.activehosted.com/app/deals/75262
+75423,GW Gallery,2025-08-11,80000,brl,157148,whatsapp,,,Tainara Gonçalves,,"Foi alinhado com o Luiz que antes de prosseguirmos com a demonstração oficial, seria fundamental realizar um bate-papo inicial para entender melhor o cenário do cliente e avaliar se faz sentido agendar a apresentação. Essa decisão foi tomada porque o cliente demonstrou estar confuso e mencionou buscar uma solução extremamente complexa, o que demandava alinhamento prévio.
+
+O lead expressou interesse em automatizar o atendimento via WhatsApp, simplificar o suporte ao cliente e estruturar uma solução específica para um evento em agosto. Após visitar o site da CXpress, confirmou que o plano base de R$ 990/mês com 3 acessos simultâneos se enquadra nas expectativas dele, mas pediu esclarecimentos sobre a negociação possível. Foi questionado sobre quantos operadores e média diária de atendimentos — e também sobre funcionalidades como armazenamento de dados personalizados.
+
+Foi explicado que:
+
+A plataforma utiliza API oficial do WhatsApp, com suporte à automação via inteligência artificial e registro completo desde o primeiro atendimento;
+
+A criação de um aplicativo móvel está prevista apenas para depois de agosto;
+
+Inclusão de banco de dados customizável e envio de disparos ativos estão disponíveis;
+
+Mesmo com a limitação atual para celular, o lead se dispôs a seguir com o processo, sugerindo até pagamento via PIX mediante envio de comprovante.",,,,,,,,10-20 atendimentos,http://gwgallery.com.br/,true,,https://cxpress.activehosted.com/app/deals/75423
+75109,[3] OSB Software,2025-08-07,267300,brl,156801,blog,,Enrico Citrinite,Bruno Damásio,,"Empresa que revende softwares softwares,  tem mais de 2 mil fabricantes parceiros, mais de 10 mil produtos e precisam de uma solução para o atendimento inicial, tanto no site quanto no WhatsApp.
+
+O objetivo é uma triagem do cliente no para identificar qual software realmente ele atende a necessidade dele,  vários clientes não sabem exatamente as questões técnicas ou exatamente qual software ele quer. Por exemplo, ele quer um acesso remoto, mas ele não sabe que existe o TeamViewer ou o Ndesk.
+
+ A ideia é alimentar essa base para que ela contenha essas possibilidades e que ela direcione o melhor software que atenda a necessidade do cliente para aí apartir dai o time de vendas possa realizar o atendimento. 
+
+Afirmou que não querem passar por cima do time de vendas, só querem esse atendimento inicial para identificar a melhor forma de atender o cliente e aí sim os vendedores serem mais assertivos na necessidade do lead.
+
+Time com 15 pessoas, não sabe exatamente a volumetria de atendimento, pensam em torno de uns 400 leads.
+
+WhatApp, site, redes sociais.",,,,,,,,,"https://www.osbsoftware.com.br/
+
+https://www.linkedin.com/in/gabrielpompermayer/?originalSubdomain=br",,,https://cxpress.activehosted.com/app/deals/75109
+41810,[11] Uniclube Brasil,2025-08-06,90500,brl,121048,google,,Enrico Citrinite,Tainara Gonçalves,,"Letícia entrou em contato buscando uma plataforma para disparos de mensagens e demonstrou interesse em centralizar seus canais de atendimento em um único sistema. Atualmente, utiliza a RD Conversas para o pós-venda, mas considera migrar para uma nova solução devido ao alto custo, especialmente para adicionar mais um número, e pela limitação de canais (hoje utiliza apenas WhatsApp).
+
+Ela deseja uma plataforma que permita uso de dois números, com bom desempenho tanto para mensagens ativas quanto receptivas, e se interessou também pela funcionalidade de e-mail.
+
+Letícia é Diretora Operacional e sua empresa conta com 3 a 4 operadores, realizando em média 1.000 a 1.500 atendimentos mensais. A operação é feita exclusivamente via computador.
+
+A intenção é substituir a atual plataforma e realizar a implantação até a segunda quinzena de agosto, dependendo da proposta apresentada. Ela demonstrou interesse em conhecer melhor a plataforma da CXpress e seus recursos.",,,,,,,,,http://uniclubebrasil.com.br/,,,https://cxpress.activehosted.com/app/deals/41810
+75428,[7] Transportadora Print,2025-08-04,90000,brl,157153,google,,,Bruno Damásio,,"A Transportadora Print atua no transporte rodoviário de cargas.
+
+Nos procuraram porque precisam melhorar a comunicação com os seus motoristas, segundo o Wesley eles possuem uma canal de atendimento para emergências via WhatsApp, nesse projeto o motorista manda mensagem precisando de informações e eles  precisam direcionar mais rapido possível aquela chamada.
+
+Seriam 2 pessoas no atendimento, um por turno, com uma media de 50 atendimentos mês.
+
+Gostariam de colocar algumas perguntas no começo do atendimento para já coletar informações para os seus operadores e também quando eles não estiverem disponíveis, utilizar o chatbot para adiantar informações. 
+
+Segundo ele neste projeto eles não pretendem conectar a nossa plataforma em nenhuma outra solução que já já utilizam, nem precisam acessar a nossa plataforma pelo telefone celular.",,,,,,,,,https://transportadoraprint.com.br/,,,https://cxpress.activehosted.com/app/deals/75428
+75376,Contabileasy,2025-07-22,169000,brl,104116,,,Enrico Citrinite,Tainara Gonçalves,,"Resumo do Levantamento de Necessidades – Guilherme Fadel | Contabileasy
+
+Nome: Guilherme Fadel
+Cargo: Sócio-diretor
+E-mail: guilhermefadel@contabileasy.com.br
+
+? Necessidades para Implantação da Plataforma CXpress
+Canais desejados para integração:
+
+WhatsApp
+
+E-mail
+
+Telefone
+
+Guilherme acredita que esses canais serão suficientes para atender bem as necessidades da equipe, centralizando tudo em um único ambiente.
+
+Volume médio de atendimentos por dia:
+Aproximadamente 100 atendimentos diários.
+
+Quantidade de operadores:
+15 usuários operando simultaneamente.
+
+Prazo para implantação:
+Não há urgência, mas a previsão é que a plataforma esteja em funcionamento dentro de 2 a 3 meses.
+
+Necessidade de aplicativo mobile para operadores:
+A princípio, não será necessário.
+
+? Integrações com sistemas
+Sistemas atualmente utilizados:
+
+Zendesk (para recebimento de e-mails e gerenciamento de tickets)
+
+Plataforma de WhatsApp nativa do sistema contábil Onville Message
+
+Possíveis integrações futuras:
+
+Avaliação de integração com RD Station para a área comercial
+
+Outras integrações podem ser consideradas posteriormente, mas não são prioridade no momento
+
+? Objetivos e Pontos Estratégicos
+Unificação dos canais de atendimento: O objetivo principal é centralizar os canais (WhatsApp, telefone e e-mail) em uma única plataforma, facilitando a organização e o monitoramento dos atendimentos.
+
+Atendimento humanizado com suporte automatizado: A empresa preza por um atendimento mais próximo e personalizado. O uso de inteligência artificial e chatbot é visto como um apoio útil principalmente fora do expediente, ajudando na triagem e filtragem das demandas.
+
+Escalabilidade e controle: A empresa quer escalar o atendimento sem perder a qualidade, garantindo que os atendimentos mais complexos sejam direcionados corretamente para operadores humanos.
+
+Melhoria na estrutura de telefonia: Deseja centralizar o atendimento telefônico para facilitar a gestão e evitar que ligações fiquem espalhadas por diferentes canais.
+
+⭐ Diferenciais valorizados na plataforma CXpress
+Customização no cadastro de clientes
+
+Aplicação de tags nos atendimentos
+
+Campos personalizados para organização interna
+
+Histórico completo e rastreável de atendimentos
+
+Controle e visibilidade da jornada do cliente
+
+Multicanalidade com foco em produtividade e experiência
+
+Guilherme destacou que o objetivo é proporcionar um atendimento mais próximo, organizado e eficiente — unificando tudo em um só lugar, com tecnologia como suporte e não como substituição ao fator humano.
+
+Histórico de relacionamento:
+Guilherme já foi cliente da CXpress anteriormente, em dezembro de 2023, mas na época optou pelo cancelamento do contrato por falta de conhecimento e familiaridade com a solução. Hoje, com uma visão mais clara sobre as possibilidades e benefícios, está reavaliando o retorno à plataforma com foco em estrutura, escalabilidade e atendimento.",,,,,,,,,https://contabileasy.com.br/,,,https://cxpress.activehosted.com/app/deals/75376
+75339,[7] Brindara Brindes,2025-07-18,129000,brl,157042,google,,,Bruno Damásio,,"A Brindara é uma empresa que comercializa  brindes personalizados para o mercado.
+
+Pelo site o cliente consegue fazer solicitação de orçamento, e pelo WhatsApp e telefone a finalização da vendas e acompanhamento.
+
+Hoje em dia utilizam o chat Guru para realizar o atendimento dos leads do site, mas estão demorando muito para retornar estes leads, além de clientes. 
+
+Buscam uma ferramenta para otimizar o WhatsApp de atendimento da empresa para passar informações sobre os serviços, produtos e finalizar vendas (suporte e comercial)
+
+Expliquei sobre a possibilidade de triagem e também da IA com NLP, além do direcionamento e pesquisa de satisfação. 
+
+Acessos são 3 pessoas com o gestor, de atendimentos,  foram 1039 mês passado (dados do chat Guru)
+
+Pediu a sugestão de um CRM para eles poderem contratar, expliquei que nossa plataforma pode ajudar nessa questão do armazenamento e organização de dados dos canais, mas NÃO substitui um CRM convencional. 
+
+Não fazem questão de utilizar a solução pelo celular. ",,,,,,,,,https://www.brindarabrindes.com.br/,,,https://cxpress.activehosted.com/app/deals/75339
+75164,Allumi Portas e Janelas,2025-07-03,85000,brl,156851,whatsapp,,,Tainara Gonçalves,,"Cenário:
+Resumo - Levantamento de Necessidades | Allumi Portas e Janelas
+
+Responsável pelo contato: Sediel Lourenço Barbosa (Diretor)
+E-mail: sediel.barbosa@gmail.com
+
+⸻
+
+Objetivo Principal da Empresa (Principal Dor):
+
+Sediel demonstrou grande preocupação com como será feita a gestão completa da operação e a otimização dos atendimentos, deixando claro que essa é a principal dor da Allumi atualmente.
+
+O foco é aumentar o volume de atendimentos de forma organizada, sem perder clientes no processo e evitando que eles fiquem esperando muito tempo por um retorno.
+
+A ideia central é que o primeiro atendimento seja ágil e resolva as dúvidas iniciais, com encaminhamento ao operador apenas nos casos mais complexos ou que exijam finalização de compra.
+
+⸻
+
+Canais de Atendimento que desejam integrar:
+	•	WhatsApp (único número, com possibilidade de divisão por setores)
+	•	Facebook
+	•	Chat no site
+	•	E-mail (o cliente ainda vai avaliar a necessidade de integração)
+
+⸻
+
+Volume Médio de Atendimentos:
+	•	Atual: Média de 20 a 30 atendimentos por dia
+	•	Meta: Aumentar o volume de atendimentos, com organização e agilidade
+
+⸻
+
+Quantidade de Operadores:
+
+Até 3 operadores
+
+⸻
+
+Aplicativo Mobile:
+
+Foi informado ao cliente que o aplicativo só será lançado a partir de agosto.
+Neste momento, Sediel disse que não vê necessidade do app, mas considerou interessante saber que estará disponível futuramente.
+
+⸻
+
+Integrações com sistemas internos:
+
+Atualmente não há integração, porém Sediel está pesquisando soluções e pode ter interesse futuro.",,,,,,,,,,,,https://cxpress.activehosted.com/app/deals/75164
+75092,[3] avila e carvalho materiais de construção ltda,2025-07-02,90000,brl,153629,google,,,Tainara Gonçalves,,"Objetivo com a CXpress: Centralizar os canais de atendimento em uma única plataforma, com prioridade para o WhatsApp.
+
+Funcionalidades desejadas:
+
+Integração com canais diversos (exceto Mercado Livre, que foi compreendido como inviável);
+
+Automação de atendimentos com IA (ChatGPT) – considerado um dos pontos principais;
+
+Distribuição de atendimentos por setor;
+
+Linha telefônica via VoIP, com possibilidade de portabilidade de número existente;
+
+Aplicativo móvel será um diferencial importante (aguardará o lançamento)
+
+Cenário atual:
+
+Equipe de 6 usuários;
+
+Média de 30 atendimentos por dia;
+
+Já utilizam um sistema com chatbot, mas sem função de telefonia no momento;
+
+Estão sem linha telefônica após desligamento da internet vinculada;
+
+Interesse em trocar o sistema o mais rápido possível.
+
+Aceita iniciar implementação e treinamentos antes do lançamento do app mobile, não é um impeditivo. ",,,,,,,,,https://www.avilamatcons.com.br/,,,https://cxpress.activehosted.com/app/deals/75092
+75077,Livedune Brasil,2025-06-25,90000,brl,153606,whatsapp,,,Tainara Gonçalves,,"Nome: Felipe
+Cargo: Gerente de Vendas e Suporte
+Telefone: +55 11 92033-9068
+
+Necessidade: Trocar de plataforma de atendimento com urgência. Hoje utiliza uma solução exclusiva para WhatsApp e está insatisfeito, principalmente pelo suporte e limitação de canais. Busca uma solução que centralize WhatsApp, Instagram, Facebook, site.
+
+Cenário atual:
+
+Utiliza uma plataforma que atende apenas o WhatsApp.
+
+Reclama de problemas com o suporte.
+
+Deseja centralizar todos os canais de atendimento.
+
+Possui 2 operadores + 2 usuários para análise de métricas (4 acessos no total).
+
+Realizam cerca de 500 atendimentos por mês.
+
+Utilizam o CRM Bitrix (internacional) e precisam continuar com ele. A integração com o CRM não é obrigatória e se precisarem, possuem equipe interna para realizar a integração via API, desde que seja aberta.
+
+Atendimento é feito via desktop. O uso pelo celular não é essencial.
+
+Deseja recursos como: relatórios, exportação de dados, análise por assunto, visão completa dos atendimentos e da produtividade da sua equipe.
+
+Informações apresentadas:
+
+Enviado vídeo com apresentação da plataforma:
+https://www.youtube.com/watch?v=36sbDc02_DU
+
+Proposta apresentada:
+Plano base de R$ 990,00/mês com 3 acessos, acessos adicionais por R$ 99,00 cada.
+
+Principais diferenciais destacados:
+
+✅ Gestão multicanal (WhatsApp, redes sociais, e-mail, telefone e webchat).
+
+✅ Distribuição automática de tickets por departamento ou atendente.
+
+✅ Comunicação interna entre operadores.
+
+✅ Controle e visibilidade por dashboards e relatórios.
+
+Status:
+Felipe sinalizou interesse: “Parece atender tudo o que preciso”.",,,,,,,,,https://livedune.com/br,,,https://cxpress.activehosted.com/app/deals/75077
+75038,[7] Tahara Comercial,2025-06-13,99000,brl,153557,google,,,Bruno Damásio,,"A Tahara é uma empresa do comércio de materiais de construção a seco com foco na venda de materiais de light steel frame, telhas Shingle e placas de Osb.
+
+Seu público é um pouco mais técnico, então demanda toda uma narrativa de explicação técnica com garantias, aplicações dos produtos, logística para obra, etc. ( expliquei sobre as possibilidades de orientação do Chatbot)
+
+Além do atendimento, procuram recursos que possam ser voltados para o follow up e envio de avaliação. (pesquisa de satisfação)
+
+Utilizam WhatsApp, Instagram e Facebook
+
+Segundo ela,  precisam de uma ferramenta que adiante o processo de sua equipe comercial (hoje composta de 3 pessoas)
+
+Seu  volume tem cerca de  1.000 contatos/semana - nem todos retornam. E hoje são feitos manualmente esses contatos.",,,,,,,,,https://taharacomercial.com.br/,,,https://cxpress.activehosted.com/app/deals/75038
+75011,[7] S2i Partners,2025-06-12,99000,brl,153520,google,,,Bruno Damásio,,"Basicamente, a S2i é uma boutique de soluções financeiras direcionada a assessorar e proporcionar um portfólio completo de soluções financeiras.
+
+Cid está buscando uma solução, pois segundo ele o seu Back office, possui alguns setores como suporte, financeiro, comercial que oferece assessoria para os consultores que acompanham os seus clientes.
+
+Essas conversas envolvem documentação, pagamento, transferência, questões administrativas que eles precisam ser centralizadas e precisam de rastreabilidade e organização, segundo ele, hoje elas estão ""soltas"".
+
+Inicialmente, 4 pessoas no back oficce dentro dos setores, são cerca de 50  atendimentos semanais, entre reconversas.",,,,,,,,,"https://www.linkedin.com/in/cid-drummond-864aa627/
+
+https://s2ipartnersco.com/",,,https://cxpress.activehosted.com/app/deals/75011
+74921,Grupo Pilar,2025-06-03,99000,brl,153347,whatsapp,,,Bruno Damásio,,"A Pilar Organizações é uma empresa especializada em fornecer soluções e equipamentos temporários para obras e eventos, como estruturas, banheiros químicos e serviços logísticos.
+
+Na ligação entre Bruno, e Diogo, um cliente em potencial, foi abordada a insatisfação de Diogo com sua atual plataforma de atendimento, que apresenta problemas de organização e estabilidade. Diogo expressou a necessidade de uma solução mais eficiente para melhorar o desempenho de seu comercial, mencionando que estava em busca de alternativas no mercado. 
+
+Bruno, por sua vez, apresentou a Cxpress como uma opção viável, destacando a segurança e a estabilidade da plataforma, além da possibilidade de integração com diversos canais de comunicação.
+
+Bruno começou a conversa reconhecendo um problema técnico, mas rapidamente se concentrou em entender as operações da empresa de Diogo. Ele fez perguntas específicas sobre a equipe de atendimento e o volume de atendimentos, o que demonstra um interesse genuíno em personalizar a apresentação da solução. 
+
+Durante a conversa, o representante destacou as funcionalidades da plataforma, como o chatbot integrado ao ChatGPT, que pode melhorar o atendimento ao cliente. Ele também foi transparente sobre os custos envolvidos, o que é crucial para estabelecer confiança.
+
+10 acessos, 1000 atendimentos",,,,,,,,,https://pilarcorp.com.br/,,,https://cxpress.activehosted.com/app/deals/74921
+68744,[7] CredutPay,2025-06-02,110000,brl,144962,google,,,Bruno Damásio,,"A Credupay é uma empresa que atua no setor de serviços financeiros, focando na oferta de soluções de crédito e pagamento.
+
+Segundo a Neiva é uma empresa super nova no setor financeiro e eles estão no processo de busca por ferramentas que vai otimizar o atendimento ao cliente e organizar a comunicação interna. 
+
+Neiva me explicou que a Credutpay está desenvolvendo um produto de PIX parcelado e que após implementação provavelmente o volume de atendimento será grande, então procura uma ferramenta que centralize todos os canais de comunicação, como e-mail, chat, telefone e redes sociais devido à limitação de mão de obra deles hoje,  que é pequena. 
+
+Também  gostariam de segmentar os setores que já existem na empresa, como o suporte e risco.
+
+Foram alinhadas as melhores funções da plataforma que podem ajudar nesse processo inicial de organização do atendimento.
+
+Seriam 4 acessos. E não sabe a previsão do volume.",,,,,,,,,https://credutpay.com.br/,,,https://cxpress.activehosted.com/app/deals/68744
+71888,[7] Petit Souvenir,2025-05-23,80000,brl,149998,google,,,Bruno Damásio,,"Marta me contou que faz tempo já que quer implementar um atendimento automatizado de WhatsApp. Porque hoje eles tem um volume pequeno, mas para uma pessoa ou duas, causa às vezes a eles perda de clientes.
+
+Estão fazendo manualmente as respostas por WhatsApp, envio de orçamento, então, querem mais uma automação na parte de atendimento mesmo.
+
+Expliquei pra ela todas as possibilidades de facilitação do atendimento que a Cx oferece, como o Bot e triagem e pesquisa de satisfação para fidelização no pós atendimento, gostou bastantes e pediu pra ver como funciona na prática.
+
+Quanto aos atendimentos explicou que tem os atendimentos novos e os atendimentos que já são clientes recorrentes. Então, por exemplo, o cliente está numa fase de desenvolvimento de layout, parte financeira, parte de contrato. Então, tem muitas mensagens durante o dia. Cerca de 50 mensagens mensagens por dia, 15 novos clientes mais ou menos ,  para uma pessoa ou duas só responderem todos prontamente, desenvolverem orçamentos está sendo muita coisa pra eles.
+
+2 Atendentes.",,,,,,,,,https://www.petitsouvenir.com.br/,,,https://cxpress.activehosted.com/app/deals/71888
+68844,[14] RBNA,2025-05-23,100000,brl,147718,google,,,Tainara Gonçalves,,"A gerente administrativa de uma empresa especializada em classificação e vistorias de embarcações está em busca de uma solução para centralizar o agendamento de atendimentos realizados pelas equipes localizadas em Manaus, Belém e Rio de Janeiro. Atualmente, as comunicações são realizadas por WhatsApp, e-mail e telefone, mas não há controle ou estimativa precisa do volume de atendimentos devido à falta de um sistema centralizado. Todos os colaboradores participam do atendimento, que abrange quatro departamentos principais. A empresa ainda não utiliza sistemas de gestão ou automação e está avaliando alternativas para melhorar a organização e a eficiência dos processos. A gerente demonstrou interesse em uma solução que atenda a essas necessidades, mas deseja entender melhor o funcionamento prático antes de tomar uma decisão. Não há necessidade de integrações ou aplicativos.
+Apresentei nossas funcionalidades e os benefícios que elas oferecem, além de mostrar o nosso vídeo. Aline se mostrou bastante interessada e acredita que a solução seja ideal para a empresa.",,,2024-09-13,,,,"Precisam passa pela aprovação do cliente, ainda levarão essa semana para bater o martelo.",,,,,https://cxpress.activehosted.com/app/deals/68844
+68796,[1] Lumma Despachantes,2025-05-23,119000,brl,145092,google,,,Bruno Damásio,,"A Lumma é uma grande empresa de assessoria veicular, sendo reconhecida como uma das maiores empresas na categoria de despachantes.
+
+O márcio é Gerente de projetos e me contou que trabalha hoje com a plataforma da Goto de telefonia e eles possuem bot para WhatsApp, mas, não possuem interface com sistemas proprietários como é o deles.
+
+Portanto eles tem uma solução, que trata a telefonia muito bem, a GoTo, e também uma solução que foi desenvolvida internamente, que é onde ele joga todas as informações que ele recebe do cliente via e-mail, ou via qualquer canal que ele use, para esse banco de dados, para essa aplicação. 
+
+Em resumo, me disse que tem um sistema de atendimento baseado em C# e SQL Server e gostaria que o Bot conseguisse responder as perguntas mais comuns, como por exemplo: Como anda o meu processo?
+
+Expliquei pra ele que temos um processo para desenvolver integrações, que elas dependem de um time interno dele para desenvolver, mas se não tiverem, podem contratar o nosso.
+
+Mencionou que gostaria se fosse possível, de ter apoio no desenvolvimento da integração também, nosso lado pois  não tem o time hoje para desenvolver essa parte dentro do sistema e que  tem outros projetos que estão andando e o  time está todo comprometido.
+
+De qualquer forma pediu uma reunião para avaliar a integração, as possibilidades do nosso sistema e as condições do nosso projeto.",,,,,,,,,"Um cara bem técnico.
+
+https://www.linkedin.com/in/marcioaguilar/?trk=org-employees&originalSubdomain=br",,,https://cxpress.activehosted.com/app/deals/68796
+38937,[10] Érica Pereira Advocacia,2025-05-23,90000,brl,113701,google,,Enrico Citrinite,Bruno Damásio,,"O Douglas é um lead que conversei no meio do ano passado, mas que não seguiu para uma apresentação por conta do momento do escritório. 
+
+Hoje ele entrou em contato novamente, interessado em nossa plataforma pois segundo ele o escritório sofreu uma expansão e esta precisando gerir melhor o seu atendimento.
+
+No momento estão com as campanhas de marketing desativadas. Então fazem em média 10 atendimentos dia. Mas esse número vai dar um salto quando voltarem a ativar as campanhas, segundo ele.
+
+Não fazem atendimento em si por telefone mas ligam para os clientes. E gostariam de fazer essa ligações via plataforma. Também gostariam de conectar as suas redes sociais a plataforma.
+
+Quando falarmos sobre a faixa de investimento novamente reafirmou que  está acima da média  de mercado, mas estão dispostos a fazer o investimento se a ferramenta der o retorno que eles procuram.
+
+2 pessoas no atendimento.",,,,,,,,,https://ericapereiraadvocacia.com.br/,,,https://cxpress.activehosted.com/app/deals/38937
+68787,[1] UEHARA COSMETICOS,2025-05-15,232500,brl,145085,,,,Bruno Damásio,,"A UEHARA Cosméticos é uma rede de perfumaria com 12 lojas, que precisa de uma ferramenta de comunicação interna WhatsApp.
+
+Seria  1  WhatsApp que atendesse em torno de 25 pontos, sendo em média 1 ponto para cada loja e 15 pontos para o escritório, onde atendam os setores de RH, Financeiro, Compras e Cadastro.
+
+Eles não possuem site, então foi alinhado com ela a necessidade da criação de um, foi dito que podemos ajudar e a lead INSISTIU para que pudesse assistir uma apresentação para que possa avaliar a plataforma.
+
+Disse que enviam mensagens o dia inteiro, não te ideia da volumetria e que a telefonia é uma possibilidade para eles, contanto que não deixe o projeto mais caro, dependo da proposta.
+
+De inicio será: em torno de 21 acessos.",,,,,,,,,Não tem site ainda,,,https://cxpress.activehosted.com/app/deals/68787
+65795,[3] Mecanica Popular,2025-04-25,,brl,142894,google,,,Tainara Gonçalves,,"Foi explicado que as demonstrações na CXpress são personalizadas, e o objetivo é entender o cenário da empresa para repassar as informações ao executivo. O cliente forneceu o site da empresa, mas de forma breve e direta, não quis abrir muito sobre o contexto.
+
+Foi possível validar as informações mais importantes, como o orçamento e a necessidade de otimização. O cliente mencionou que possui uma central de agendamentos, com 3 pessoas atendendo e agendando em 9 unidades. As atendentes verificam qual serviço o cliente necessita, marcam a hora, data e local, e os direcionam para as unidades correspondentes, de forma simples e objetiva. No entanto, ele não quis entrar em mais detalhes e disse que só conseguiria entender a solução após a demonstração, pedindo para agendar o quanto antes.
+
+Dois pontos foram destacados:
+
+A plataforma não realiza integrações no momento, mas estará disponível a partir de maio.
+
+A solução funciona apenas via desktop, sem aplicativo para celular.
+
+Após a validação do orçamento, o cliente confirmou que estava dentro do esperado, mas não entrou em mais detalhes. Ele reforçou que a demonstração seria a melhor forma de entender como a plataforma pode ajudá-los.",,,,,,,,,Cliente bem direto.,,,https://cxpress.activehosted.com/app/deals/65795
+63226,[3] RU Imobiliária,2025-04-22,90000,brl,140479,newsletter,,,Bruno Damásio,,"Hoje em dia o lead tem algumas campanhas, e isso gera uma certa demanda e às vezes eles não estão  disponíveis pra conversar, então sua intenção é automatizar esse atendimento, pois o lead viu estudos que falam que quanto mais rápido você atende o cliente, maior a taxa de conversão 
+
+Então sua ideia é passar um filtro nesses clientes e acelerar esse primeiro atendimento. gostaria que a inteligência artificial trabalhasse tanto com voz quanto por texto 
+
+E gostaria de ensinar a IA referente aos produtos que ele tem para que então ela consiga fazer um direcionamento por região e também por classe econômica.
+
+3 pessoas no time de atendimento.",,,,,,,,,Estão desenvolvendo o site.,,,https://cxpress.activehosted.com/app/deals/63226
+65731,ABHH,2025-04-17,120000,brl,138145,google,,,Bruno Damásio,,"Gabriel me contou que hoje esta buscando alguma empresa que consiga suprir a parte de atendimento por WhatsApp. 
+
+Hoje ele realiza o atendimento dos nossos associados, mas a ideia é entender como pode inserir o setor de provas e eventos nesse fluxo. 
+
+A principio é a IA no atendimento do WhatsApp sendo o fluxo que eles utilizam. 
+
+Tem um banco de dados dos associados e se a plataforma conseguir conversar com o banco, justamente para aprimorar o atendimento, será melhor ainda.
+
+Hoje tem em torno de 20 a 25 atendimentos dia.",,,,,,,,,https://www.abhhoficial.com.br/,,,https://cxpress.activehosted.com/app/deals/65731
+41979,[10] AsA Sistemas de computação,2025-03-26,90000,brl,121205,google,,,,,"Michele me contou que hoje em dia eles utilizam o MKPZap para realizar seus atendimentos e o seu Diretor viu o nosso site e achou interessando integrar o telefone também já que eles não tem na plataforma hoje em dia. 
+
+Além disso também considerou explorar os diferenciais que nós oferecemos em relação a eles e entender o valor agregado de usabilidade.
+
+São uma empresa que tem um software que é próprio pra despachantes. A maioria do atendimento deles é online. 
+
+Gostariam de um atendimento setorizado, como ja possuem hoje. E gerir melhor esses contatos.
+
+Hoje tem 14 atendentes somando todos os setores.",,,,,,,,,asasistemas.com.br,,,https://cxpress.activehosted.com/app/deals/41979
+60182,Gmétodo,2025-03-25,85000,brl,138469,whatsapp,,,Bruno Damásio,,"O grupo método é um  um centro de intervenção comportamental interdisciplinar, com características únicas no Brasil.
+
+Hoje em dia fazem o atendimento por telefone e WhatsApp convencional estão em busca de modernizar e otimizar esse processo.
+
+Vão precisar para 5 usuários, seria um usuário por departamento- RH/Financeiro/Compras
+
+Referente ao atendimento por dia ou por semanas não sabemos dizer. Vão receber  ligação tanto interna de prestadores, clientes  em geral. Hoje o atendimento é via telefone por Avaya, e ramais.
+
+Mencionaram além da utilização do Chatbot com IA no WhatsApp uma possível utilização nos outros canais escritos.",,,,,,,,,https://www.gmetodo.com.br/,,,https://cxpress.activehosted.com/app/deals/60182
+60318,Marpax,2025-03-24,169000,brl,138588,,,,Bruno Damásio,,"A Marpax é uma empresa que fornece equipamentos e suprimentos para encadernação, plastificação, impressão e papelaria. Seus produtos atendem tanto a pessoas físicas quanto a empresas, especialmente nos setores de escritório, papelaria e artesanato.
+
+Paulo é gestor de um time comercial e gostaria de uma plataforma com IA para otimizar o suporte aos seus atendimentos hoje em dia.
+
+Já utilizam outra plataforma OminiChannel, mas ela não possui IA, querem trocar e mencionou que gostaria de no futuro contratar a RdStation e integrar com a nossa palataforma (avisei que precisa ser analisado).
+
+São 4 acessos, vão chegar a 10, não tem ideia da volumetria de atendimentos.",,,,,,,,,https://www.marpax.com.br/,,,https://cxpress.activehosted.com/app/deals/60318
+60171,Dimeg,2025-03-21,218200,brl,138462,whatsapp,,,Tainara Gonçalves,,"O cliente está em busca de uma plataforma que integre telefonia e WhatsApp com API oficial para 15 operadores. Solicitou de imediato uma proposta antes de agendar a demonstração e assim marcar uma call, foi alinhado então e não teve objeção. 
+
+O cliente confirmou que não precisa de integrações externas nem de um aplicativo mobile, e sua maior dificuldade atual é o tempo de espera no atendimento. A previsão de fechamento é em cerca de 20 dias, e a empresa realiza aproximadamente 400 atendimentos via WhatsApp e 700 ligações por mês.
+
+Ele não entrou em muitos detalhes sobre suas necessidades, mesmo após meus questionamentos. Apresentei a CXpress, suas funcionalidades e benefícios, e ele demonstrou interesse. Os pontos principais foram alinhados, e sua maior demanda é otimizar o tempo de espera dos clientes.",,,,,,,,,https://www.dimeg.com.br/,,,https://cxpress.activehosted.com/app/deals/60171
+55576,Remax,2025-03-19,90000,brl,138314,whatsapp,,,Tainara Gonçalves,,"O cliente possui uma equipe de 25 a 30 colaboradores e deseja implantar a plataforma o quanto antes, com prioridade na automação e na gestão centralizada dos atendimentos e da equipe. Ele já pesquisou diversas plataformas, mas nenhuma atendeu às suas expectativas. Ao conhecer a CXpress por cima, gostou da proposta e deseja aprofundar seu entendimento sobre a solução.
+
+Foi explicado como o chatbot com IA funciona, despertando grande interesse. Além disso, ele busca um sistema que permita gerenciar múltiplos atendimentos em um único WhatsApp, realizar o envio de documentos e acompanhar o tempo de atendimento e espera. Também deseja que os clientes sejam atendidos por ordem de chegada e acompanhar o desenvolvimento dos atendimentos ao longo do processo.
+
+Foi informado que a plataforma não realiza integrações com outros sistemas e não possui aplicativo para mobile. O orçamento foi alinhado e não foi um impedimento, porém, deseja ver na prática como a CXpress funciona antes de avançar. ",,,,,,,,,,,,https://cxpress.activehosted.com/app/deals/55576
