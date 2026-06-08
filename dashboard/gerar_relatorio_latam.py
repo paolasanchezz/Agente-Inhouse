@@ -324,8 +324,10 @@ def render_html(d):
             'Solo se sincronizan los pipelines <b>Inbound</b> y <b>Outbound</b> Latam: los leads marcados '
             'como Perdidos y movidos al pipeline <b>Nutrición</b> salen del conjunto → <b>Leads y Perdidos '
             'quedan subestimados</b> (pendiente: sincronizar el pipeline Nutrición). La atribución de canal '
-            'tampoco cubre todos los leads (UTM vacío en inbound). El valor de cierres (fee mensual) y las '
-            'fechas de cierre son aproximados, pendientes de validación con el equipo LATAM.</div>')
+            'tampoco cubre todos los leads (UTM vacío en inbound). Los cierres incluyen negocios con pago, '
+            'contrato o fecha de cierre reales (no solo los marcados «Ganado», estado que casi no se mantiene '
+            'en el CRM); el valor usa el campo <b>value</b> (USD). Valores y fechas de cierre son aproximados, '
+            'pendientes de validación con el equipo LATAM.</div>')
 
     footer = (
         '<footer><b>Dashboard de Content Marketing · datos reales de Supabase (filtro CM)</b><br>'

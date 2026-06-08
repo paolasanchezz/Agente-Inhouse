@@ -79,10 +79,22 @@ def _resp(d):
     return escape(d.get('responsable') or '—')
 
 
+def _deal_cell(d: dict) -> str:
+    """Nome do deal envolto num link pro ActiveCampaign (instância LATAM = elifeeurope)."""
+    name = escape(d.get('deal'))
+    did = d.get('id')
+    if not did:
+        return f'<span class="deal-name">{name}</span>'
+    return (
+        f'<a class="deal-name" href="https://elifeeurope.activehosted.com/app/deals/{did}" '
+        f'target="_blank" rel="noopener noreferrer" title="Abrir deal no ActiveCampaign">{name}</a>'
+    )
+
+
 def row_lead(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
         f'<td class="dim">{escape(d.get("pais") or "—")}</td>'
@@ -95,7 +107,7 @@ def row_lead(d: dict) -> str:
 def row_reunion(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -110,7 +122,7 @@ def row_cierre(d: dict) -> str:
     valor_html = f'<b>{fmt_usd(v)}</b>' if (v and float(v) > 0) else '—'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("pais") or "—")}</td>'
@@ -123,7 +135,7 @@ def row_cierre(d: dict) -> str:
 def row_perda(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
         f'<td class="dim">{escape(d.get("pais") or "—")}</td>'

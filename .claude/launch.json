@@ -36,6 +36,12 @@
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-latam/server.py"],
       "port": 8010
+    },
+    {
+      "name": "dashboard-cxpress",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-cxpress/server.py"],
+      "port": 8020
     }
   ]
 }

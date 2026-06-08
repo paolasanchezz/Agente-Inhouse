@@ -108,19 +108,22 @@ O Brasil usa `account_id` + janela de 90 dias para atribuir eventos pós-convers
 | Reunión (Reunião) | `fecha_de_reunion` | leads | 1.932 | — |
 | ~~Propuesta~~ | — | — | — | **Não existe coluna de proposta na LATAM** → estágio ausente |
 | Perdido | `status='Perdido'` | leads | 662 | sem data dedicada → datar por `mdate` (limitação) |
-| Fechamento (Cierre) | `status='Ganho'` | contratos | 72 | `fecha_de_cierre_de_negocio` é esparsa (74) → usar `status` |
+| Fechamento (Cierre) | `DATA_FECHO` (cierre→inicio→primer pago) | contratos | 183 (def. ampliada) | `FECHADO_LATAM`; `status='Ganho'` quase não é mantido → ver nota |
 
-**Valor do fechamento:** `fee_mensual` (numeric, preenchido em ~233/292) ou `value` (text). Moeda: **USD**.
+**Valor do fechamento:** coluna **`value`** (USD; cast texto→numeric). `fee_mensual` foi **descartado** — inconsistente (às vezes `value`×100, às vezes não, ex.: value=1615/fee=90000).
 
-> **⚠️ Datação do cierre (decisão Victor, 2026-06-06):** removido o fallback `mdate`. As contagens e
-> listas de cierre (`q_count_fechamentos`, `q_lista_fechamentos`, `q_ranking`, `q_serie_12m`) agora datam
-> por `COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato)` — **sem `mdate`**. Deals sem
-> **nenhuma** das duas datas reais (a grande maioria — só **4 dos 73** `Ganho` têm data; apenas **2** passam
-> o filtro CM) ficam **fora de qualquer janela temporal** (backlog antigo a preencher no AC). Motivo:
-> re-syncs em massa jogam o `mdate` para a data do sync (ex.: **01/06/2026 carimbou 36 deals**), inflando
-> janelas curtas — caso real: "20 cierres em 15 dias" que, por data real, era **1** (Madison Grill, deal AC
-> [43294](https://elifeeurope.activehosted.com/app/deals/43294)). **Perdidos seguem datados por `mdate`**
-> (não têm outra data). Reverter só após backfill das datas de cierre no ActiveCampaign.
+> **⚠️ Definição e datação do cierre (decisão Victor, 2026-06-06):**
+> **(1) Fechado ≠ só `status='Ganho'`.** Esse estado quase não é mantido no AC LATAM (no stage 176 do
+> pipeline Contratos, **84 de 96** estão `Aberta` apesar de terem fee + contrato + data de cierre). A
+> definição (`FECHADO_LATAM`) passou a ser `status='Ganho'` **OU** `primer_pago_realizado_automatico`
+> **OU** `fecha_de_inicio_de_contrato` **OU** `fecha_de_cierre_de_negocio`.
+> **(2) Datação por `COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato, fecha_de_primer_pago_automatico)`** (`DATA_FECHO`) — datas reais, **sem `mdate`** (re-syncs em massa jogam o `mdate` para a data do sync — ex.: **01/06/2026 carimbou 36 deals** — inflando janelas curtas). Deals sem **nenhuma** das três datas ficam **fora de qualquer janela temporal** (backlog a preencher no AC).
+> **Impacto (cierres CM):** all-time **2 → 34** (USD 18.334) · 2026 **1 → 7** (USD 3.049). Ex.: La Firma
+> (deal [43258](https://elifeeurope.activehosted.com/app/deals/43258)), fechado 25/05 com pagamento
+> automático mas `status='Aberta'`, agora entra. Antes, por data real, "20 cierres em 15 dias" eram **1**
+> (Madison Grill, deal [43294](https://elifeeurope.activehosted.com/app/deals/43294)). **Perdidos seguem
+> datados por `mdate`** (não têm outra data). Aplicado em `q_count_fechamentos`, `q_lista_fechamentos`,
+> `q_ranking`, `q_serie_12m`.
 >
 > **Link do deal no AC:** `https://elifeeurope.activehosted.com/app/deals/{id}` (o `id` da tabela = id do deal no ActiveCampaign).
 

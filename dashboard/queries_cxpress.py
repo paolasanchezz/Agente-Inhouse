@@ -51,13 +51,15 @@ def _d(col: str) -> str:
 # ============ ESCOPO (no-op por padrao — calibrar com dados) ============
 
 def filtro_inbound(alias: str = '') -> str:
-    """Restringe ao funil inbound. NO-OP por padrao (conta tudo na tabela).
+    """Restringe ao funil INBOUND (funil_auto = 'Inbound').
 
-    Quando confirmar os valores reais de `funil_auto`/`origem_do_lead`, trocar o corpo por:
-        a = (alias + '.') if alias else ''
-        return f"{a}funil_auto ILIKE '%inbound%'"
+    Calibrado 2026-06-06 contra os dados reais: funil_auto = 'Inbound' (3004),
+    'Outbound' (3457), vazio (865). A dashboard e do funil de inbound, entao filtra 'Inbound'.
+    Os 865 sem classificacao ficam de fora — trocar por
+    `{a}funil_auto IS DISTINCT FROM 'Outbound'` se quiser incluir os vazios.
     """
-    return "TRUE"
+    a = (alias + '.') if alias else ''
+    return f"{a}funil_auto = 'Inbound'"
 
 
 # Whitelist PROVISORIA de utm_source CM (NAO calibrada — tabela vazia). Ver MAPEAMENTO §Escopo.

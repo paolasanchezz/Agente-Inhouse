@@ -477,6 +477,8 @@
   td.center, th.center { text-align: center; }
   td.dim { color: var(--text-muted); font-size: 13px; }
   td .deal-name { font-weight: 600; }
+  td a.deal-name { color: inherit; text-decoration: none; border-bottom: 1px dashed transparent; transition: color .15s, border-color .15s; }
+  td a.deal-name:hover { color: var(--brand-blue); border-bottom-color: var(--brand-blue); }
   .no-upper { text-transform: none; letter-spacing: 0; }
 
   /* ============ SORTABLE HEADERS ============ */
@@ -1177,9 +1179,15 @@ function formatDelta(atual, anterior, invert) {
 }
 
 /* ---------- ROW RENDERS ---------- */
+function dealCell(d) {
+  // Nome do deal envolto num link pro ActiveCampaign (instância BR = buzzmonitor).
+  const name = escapeHtml(d.deal);
+  if (!d.id) return `<span class="deal-name">${name}</span>`;
+  return `<a class="deal-name" href="https://buzzmonitor.activehosted.com/app/deals/${d.id}" target="_blank" rel="noopener noreferrer" title="Abrir deal no ActiveCampaign">${name}</a>`;
+}
 function rowLead(d) {
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td class="dim">${escapeHtml(d.email || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
@@ -1192,7 +1200,7 @@ function rowRa(d) {
     ? `<span class="b b-status-ok">✓ ${fmtDataBr(d.data_realizada)}</span>`
     : '<span class="b b-status-pending">Pendente</span>';
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td>${escapeHtml(d.bd || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
@@ -1205,7 +1213,7 @@ function rowRr(d) {
     ? '<span class="b b-status-ok">✓ Sim</span>'
     : '<span class="b b-status-no">Não</span>';
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td>${escapeHtml(d.bd || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${fmtDataBr(d.data_evento)}</td>
@@ -1214,7 +1222,7 @@ function rowRr(d) {
 }
 function rowProp(d) {
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td>${escapeHtml(d.bd || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
@@ -1226,7 +1234,7 @@ function rowFech(d) {
   const v = d.valor;
   const valorHtml = v !== null && v !== undefined && Number(v) > 0 ? `<b>${fmtMoedaBr(v)}</b>` : '—';
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td>${escapeHtml(d.bd || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${escapeHtml(d.utm_content || '—')}</td>
@@ -1239,7 +1247,7 @@ function rowPerda(d) {
   const strong = ['Sem fit', 'Sem orçamento', 'Desqualificado'];
   const cls = strong.includes(motivo) ? 'b-reason' : 'b-reason-soft';
   return `<tr>
-    <td><span class="deal-name">${escapeHtml(d.deal)}</span></td>
+    <td>${dealCell(d)}</td>
     <td class="dim">${escapeHtml(d.email || '—')}</td>
     <td>${badgeSource(d.utm_source)}</td>
     <td class="dim">${escapeHtml(d.utm_content || '—')}</td>

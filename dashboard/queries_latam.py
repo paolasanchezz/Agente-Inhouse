@@ -4,12 +4,14 @@ Espelha a especificacao em dashboard/MAPEAMENTO-CAMPOS-latam.md.
 
 Diferencas vs Brasil (queries.py):
 - Fonte: deals_latam_inbound_staging UNION deals_latam_outbound_staging (dedup por id),
-  + deals_latam_contratos_staging (fechamentos = status='Ganho').
+  + deals_latam_contratos_staging (fechamentos = FECHADO_LATAM; valor em `value` USD).
 - Sem account_id e sem dim de contato (dim_contacts vazia) => SEM regra de 90 dias e
   sem dedup por pessoa. Cada registro e classificado pelo proprio utm_source/url_conversao.
 - Dominio de conteudo LATAM = getbuzzmonitor.com (nao .com.br).
 - Funil mais curto: Lead -> Primer contacto -> Reunion -> Cierre. Sem etapa de proposta.
-- Moeda USD; valor do contrato em fee_mensual (numeric).
+- Moeda USD; valor do contrato na coluna `value` (USD). fee_mensual e inconsistente — nao usar.
+- Fechado (cierre) = FECHADO_LATAM: status='Ganho' raramente e marcado no AC LATAM => conta
+  tb pagamento/contrato/cierre reais. Ver constante.
 
 NOTA: tabelas _staging (decisao Victor 2026-05-29). utm_source vazio no inbound (gap de
 ETL) => leads sem atribuicao nao contam (mesma logica do Brasil). Ver §6 do mapeamento.
@@ -39,6 +41,25 @@ URL_FORTE_CM: list[str] = [
     '%oferta%',
 ]
 
+# URLs comerciais (pricing/trial) que NAO contam como CM quando vem SEM UTM (null/vazia/
+# string literal 'null'). Sem atribuicao = nao da pra reivindicar como Content Marketing.
+# Decisao Victor 2026-06-08. Match exato — variantes com query string (que carregam UTM
+# real, ex.: google_es, Instagram_Reels) seguem a regra normal do filtro CM.
+URLS_COMERCIAIS_SEM_UTM_EXCLUIR: list[str] = [
+    'https://getbuzzmonitor.com/es/planes/',
+    'https://getbuzzmonitor.com/es/freetrial/',
+    'https://getbuzzmonitor.com/es/personalizar-el-plan/',
+]
+
+# URLs que NUNCA sao CM (independente da UTM). Decisao Victor 2026-06-08.
+# Match ILIKE (padrao %...%) p/ cobrir variantes com query string.
+# IMPORTANTE: comparar com COALESCE(url, '') no SQL — sem isso, NULL ILIKE retorna NULL
+# e o NOT propaga NULL, derrubando QUALQUER deal com url_conversao IS NULL do filtro CM
+# (mesma armadilha documentada em queries.py _sql_exclusao_deals).
+URLS_FORA_CM: list[str] = [
+    '%contenido.getbuzzmonitor.com/buzzmonitor-institucional%',
+]
+
 # Colunas necessarias para o funil (identicas em inbound e outbound)
 _LEAD_COLS = (
     "id, title, cdate, mdate, status, pais, utm_source, utm_medium, utm_content, url_conversao, "
@@ -56,6 +77,24 @@ PAIS_NORM = """CASE
 END"""
 
 
+# ============ FECHAMENTO (CIERRE) — definicao ampliada (Victor 2026-06-06) ============
+# status='Ganho' quase nao e mantido no AC LATAM (ex.: stage 176 do pipeline Contratos =
+# 84/96 'Aberta' apesar de fee+cierre+contrato). Conta como fechado quem tem QUALQUER sinal
+# forte de fechamento real. Impacto CM: cierres all-time 2 -> 34, 2026 1 -> 7.
+FECHADO_LATAM = (
+    "(status = 'Ganho' OR primer_pago_realizado_automatico = TRUE "
+    "OR fecha_de_inicio_de_contrato IS NOT NULL OR fecha_de_cierre_de_negocio IS NOT NULL)"
+)
+
+# Data do fechamento: cierre > inicio de contrato > primer pago (datas reais; SEM mdate). Deals
+# sem nenhuma das tres ficam fora de janelas temporais (backlog a preencher no AC).
+DATA_FECHO = "COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato, fecha_de_primer_pago_automatico)"
+
+# Valor do contrato (USD): coluna `value`. fee_mensual e inconsistente (as vezes value*100, as
+# vezes nao — ex.: value=1615/fee=90000). Cast defensivo texto->numeric.
+VALOR_USD = "NULLIF(regexp_replace(coalesce(value,''), '[^0-9.]', '', 'g'), '')::numeric"
+
+
 # ============ FILTRO CM LATAM ============
 
 def filtro_cm_latam(alias: str = '') -> str:
@@ -65,23 +104,41 @@ def filtro_cm_latam(alias: str = '') -> str:
       (1) URL FORTE (plataforma-completa / oferta) => CM **independente da UTM**
           (sobrepoe ate google+cpc). Ver URL_FORTE_CM.
       (2) Regra geral: exclui Google Ads (google/google_es + cpc) E exige
-          dominio de conteudo OU fonte social/owned da whitelist.
+          dominio de conteudo OU fonte social/owned da whitelist; E exclui URLs
+          comerciais (planes / freetrial / personalizar-el-plan) que vem SEM UTM
+          (null/vazia/'null' literal) — sem atribuicao = sem CM.
+      (3) Wrapper externo (sempre exclui): URLs fora de CM (URLS_FORA_CM, ex.:
+          /buzzmonitor-institucional) — independente de UTM. Usa COALESCE pra
+          nao derrubar deals com url_conversao IS NULL (NULL ILIKE = NULL = falsy
+          no NOT).
     """
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES_LATAM)
     url_forte = "\n      OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in URL_FORTE_CM)
+    urls_excluir = ", ".join(f"'{u}'" for u in URLS_COMERCIAIS_SEM_UTM_EXCLUIR)
+    url_fora = "\n        OR ".join(f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in URLS_FORA_CM)
     return f"""(
-      -- (1) sinal forte de URL — CM independente da UTM
-      {url_forte}
-      -- (2) regra geral (exclui Google Ads)
-      OR (
-        NOT (lower(coalesce({a}utm_source,'')) LIKE 'google%' AND lower(coalesce({a}utm_medium,'')) = 'cpc')
-        AND (
-          {a}url_conversao ILIKE '{CONTENT_DOMAIN_LIKE}'
-          OR lower({a}utm_source) IN ({sources})
-          OR lower({a}utm_source) LIKE 'instagram%'
-          OR lower({a}utm_source) LIKE 'facebook%'
+      (
+        -- (1) sinal forte de URL — CM independente da UTM
+        {url_forte}
+        -- (2) regra geral (exclui Google Ads + URLs comerciais sem atribuicao)
+        OR (
+          NOT (lower(coalesce({a}utm_source,'')) LIKE 'google%' AND lower(coalesce({a}utm_medium,'')) = 'cpc')
+          AND NOT (
+            {a}url_conversao IN ({urls_excluir})
+            AND (NULLIF(TRIM({a}utm_source), '') IS NULL OR LOWER(TRIM({a}utm_source)) = 'null')
+          )
+          AND (
+            {a}url_conversao ILIKE '{CONTENT_DOMAIN_LIKE}'
+            OR lower({a}utm_source) IN ({sources})
+            OR lower({a}utm_source) LIKE 'instagram%'
+            OR lower({a}utm_source) LIKE 'facebook%'
+          )
         )
+      )
+      -- (3) wrapper externo: URLs fora de CM sempre (independente de UTM)
+      AND NOT (
+        {url_fora}
       )
     )"""
 
@@ -140,16 +197,17 @@ WHERE d.status = 'Perdido'
 
 
 def q_count_fechamentos(ini: date, fim: date) -> str:
-    """Fechamentos (contratos status='Ganho') no periodo, com filtro CM. Valor em fee_mensual (USD).
+    """Fechamentos (cierres) no periodo, com filtro CM. Valor pela coluna `value` (USD).
 
-    Data do fechamento: COALESCE(cierre, inicio_contrato) [removido fallback mdate em 2026-06-06] — cierre e esparsa (limitacao).
+    Fechado = FECHADO_LATAM (status='Ganho' OU pagamento/contrato/cierre reais).
+    Data: DATA_FECHO (cierre > inicio > primer pago; sem mdate, 2026-06-06).
     """
     f = filtro_cm_latam('')
     return f"""
-SELECT count(*) AS fech, COALESCE(SUM(fee_mensual), 0) AS valor
+SELECT count(*) AS fech, COALESCE(SUM({VALOR_USD}), 0) AS valor
 FROM deals_latam_contratos_staging
-WHERE status = 'Ganho'
-  AND COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato)
+WHERE {FECHADO_LATAM}
+  AND {DATA_FECHO}
       BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {f}
 """
@@ -205,14 +263,14 @@ def q_lista_fechamentos(ini: date, fim: date) -> str:
 SELECT id, title AS deal, utm_source, utm_content,
        {PAIS_NORM} AS pais,
        COALESCE(NULLIF(TRIM(closer),''), NULLIF(TRIM(sdr),'')) AS responsable,
-       fee_mensual AS valor, currency,
-       COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato) AS data_fech
+       {VALOR_USD} AS valor, currency,
+       {DATA_FECHO} AS data_fech
 FROM deals_latam_contratos_staging
-WHERE status = 'Ganho'
-  AND COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato)
+WHERE {FECHADO_LATAM}
+  AND {DATA_FECHO}
       BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {f}
-ORDER BY COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato)
+ORDER BY {DATA_FECHO}
 """
 
 
@@ -235,7 +293,7 @@ def q_ranking(dim: str, ini: date, fim: date) -> str:
     """Ranking por 'utm_source' ou 'utm_content' no período (filtro CM).
 
     Retorna: dim, leads, pc (primer contacto), reunion, cierre. Cada métrica conta pela
-    data do seu evento. Cierre vem de contratos (status='Ganho'), agrupado pelo mesmo dim.
+    data do seu evento. Cierre vem de contratos (FECHADO_LATAM), agrupado pelo mesmo dim.
     """
     assert dim in ('utm_source', 'utm_content'), dim
     i, fm = ini.isoformat(), fim.isoformat()
@@ -251,8 +309,8 @@ pc_p AS (SELECT {g} dim, count(*) pc FROM base
 reu_p AS (SELECT {g} dim, count(*) reunion FROM base
           WHERE fecha_de_reunion BETWEEN '{i}' AND '{fm}' GROUP BY 1),
 cie_p AS (SELECT {g} dim, count(*) cierre FROM deals_latam_contratos_staging
-          WHERE status='Ganho' AND {fc}
-            AND COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato) BETWEEN '{i}' AND '{fm}'
+          WHERE {FECHADO_LATAM} AND {fc}
+            AND {DATA_FECHO} BETWEEN '{i}' AND '{fm}'
           GROUP BY 1),
 dims AS (SELECT dim FROM leads_p UNION SELECT dim FROM pc_p UNION SELECT dim FROM reu_p UNION SELECT dim FROM cie_p)
 SELECT d.dim,
@@ -295,10 +353,10 @@ UNION ALL
 SELECT date_trunc('week', fecha_de_reunion)::date, 'reunion', count(*) FROM base
   WHERE fecha_de_reunion >= '{h}'::date - INTERVAL '52 weeks' GROUP BY 1
 UNION ALL
-SELECT date_trunc('week', COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato))::date, 'cierres', count(*)
+SELECT date_trunc('week', {DATA_FECHO})::date, 'cierres', count(*)
   FROM deals_latam_contratos_staging
-  WHERE status='Ganho' AND {fc}
-    AND COALESCE(fecha_de_cierre_de_negocio, fecha_de_inicio_de_contrato) >= '{h}'::date - INTERVAL '52 weeks'
+  WHERE {FECHADO_LATAM} AND {fc}
+    AND {DATA_FECHO} >= '{h}'::date - INTERVAL '52 weeks'
   GROUP BY 1
 """
 
@@ -340,14 +398,14 @@ if __name__ == '__main__':
         cur.execute("SET statement_timeout = '120s'")
         def scalar(sql, idx=0):
             cur.execute(sql); r = cur.fetchone(); return r[idx] if r else None
-        print("== Self-test LATAM (espera ~1011 leads CM all-time, 207 em 2026) ==")
+        print("== Self-test LATAM (apos exclusao buzzmonitor-institucional 2026-06-08: ~6074 all-time, ~525 em 2026) ==")
         cur.execute(q_count_kpis(all_ini, all_fim)); a = cur.fetchone()
         print(f"  CM all-time: leads={a[0]} ce={a[1]} reunion={a[2]}")
         cur.execute(q_count_kpis(y_ini, y_fim)); y = cur.fetchone()
         print(f"  CM 2026:     leads={y[0]} ce={y[1]} reunion={y[2]}")
-        # Pos-remocao do fallback mdate (2026-06-06): conta SO cierres com data real
-        # (fecha_de_cierre/inicio). Espera-se poucos (~2 all-time CM, ~1 em 2026) ate o backfill no AC.
+        # Definicao ampliada de fechado (2026-06-06): status='Ganho' OU pagamento/contrato/cierre
+        # reais; valor pela coluna `value` (USD). Espera ~34 all-time CM, ~7 em 2026 (com data real).
         cur.execute(q_count_fechamentos(all_ini, all_fim)); fa = cur.fetchone()
-        print(f"  Fechamentos CM all-time (Ganho): {fa[0]} · USD {fa[1]}")
+        print(f"  Fechamentos CM all-time: {fa[0]} · USD {fa[1]}")
         cur.execute(q_count_fechamentos(y_ini, y_fim)); fy = cur.fetchone()
-        print(f"  Fechamentos CM 2026 (Ganho):     {fy[0]} · USD {fy[1]}")
+        print(f"  Fechamentos CM 2026:     {fy[0]} · USD {fy[1]}")

@@ -28,23 +28,41 @@ def filtro_inbound(alias: str = '') -> str:
 
 
 EMAIL_WHITELIST: list[str] = [
-    'jessica.rua@wealthmoney.com.br',
-    'ronaldozottolo@gmail.com',
-    'equipelarissaneiva@gmail.com',
-    'm.lima@blankschool.com.br',
-    'para.fabianogomes@gmail.com',
-    'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar 26/05, tracking NULL
+    'jessica.rua@wealthmoney.com.br',     # Wealth — converteu via blog, tracking nao preservou
+    'ronaldozottolo@gmail.com',           # Agencia CROP — Outbound no CRM, mas CM confirmado pelo Victor
+    'equipelarissaneiva@gmail.com',       # NEIVA Brand — Outbound no CRM mas CM confirmado pelo Victor
+    'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
+    'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
+    'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
 ]
 
 EMAIL_BLACKLIST: list[str] = [
-    'julianacastro@idwcompany.com.br',
-    'valdofmendes@gmail.com',
-    'raissaboniolo.consultoria@gmail.com',
+    'julianacastro@idwcompany.com.br',        # IDW — Google Ads em outra ferramenta
+    # Outbound reclassificados pelo Victor (CRM marca Inbound mas operacionalmente sao Outbound).
+    # Saem da dashboard principal; entrarao em futura pagina "Impacto de Conteudo".
+    'valdofmendes@gmail.com',                 # Webinar Analise Preditiva
+    'raissaboniolo.consultoria@gmail.com',    # Buzzcreators evento
     # Adicionados 2026-05-26 (apos fix do bug NULL no filtro CM):
-    'stella.santana@parceiros-npx.com.br',    # NUPIXEL — lead original Google CPC
+    'stella.santana@parceiros-npx.com.br',    # NUPIXEL — lead original Gisele era Google CPC, contrato veio com URL CM mas origem nao-CM
     'teste@teste.com',                        # Teste obvio
     'thamires.oliveira@buzzmonitor.com.br',   # Email interno Buzzmonitor
     'albali@elife.com.br',                    # Email interno Elife
+    # Adicionados 2026-06-06 (Victor): emails de teste/webhook/CRM que poluiam a dashboard.
+    # Retirados nominalmente (nao por regra heuristica) pra evitar falso positivo em lead real.
+    'teste@webhook123.com',
+    'disparo@webhook.com',
+    'teste@conteudourl.com',
+    'teste@muniquecrm.com',
+    'munique@activecampaignteste.com',
+    'munique@testecrmlink.com',
+    'victorlopes.gestao@cxpress.com',
+    'teste@webhook.com',
+    'teste@webhook04.com',
+    'teste@utmdea.com',
+    'teste@blogmkt.com',
+    'teste@leadblogurldiferente.com',
+    'teste@utmgenertor.com',
+    'teste@webhooklsksks.com',
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).

@@ -149,10 +149,22 @@ def format_delta(atual: int, anterior: int, invert: bool = False) -> tuple[str, 
 
 # ============ ROWS — LISTAS DE DEALS ============
 
+def _deal_cell(d: dict) -> str:
+    """Nome do deal envolto num link pro ActiveCampaign (instancia BR = buzzmonitor)."""
+    name = escape(d.get('deal'))
+    did = d.get('id')
+    if not did:
+        return f'<span class="deal-name">{name}</span>'
+    return (
+        f'<a class="deal-name" href="https://buzzmonitor.activehosted.com/app/deals/{did}" '
+        f'target="_blank" rel="noopener noreferrer" title="Abrir deal no ActiveCampaign">{name}</a>'
+    )
+
+
 def row_lead(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td class="dim">{escape(d.get("email") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -170,7 +182,7 @@ def row_ra(d: dict) -> str:
         realizou_html = '<span class="b b-status-pending">Pendente</span>'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{escape(d.get("bd") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -185,7 +197,7 @@ def row_rr(d: dict) -> str:
     prop_html = '<span class="b b-status-ok">✓ Sim</span>' if prop else '<span class="b b-status-no">Não</span>'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{escape(d.get("bd") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
@@ -198,7 +210,7 @@ def row_prop(d: dict) -> str:
     valor_html = parse_valor_text(d.get('valor_text'))
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{escape(d.get("bd") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -216,7 +228,7 @@ def row_fech(d: dict) -> str:
         valor_html = '—'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{escape(d.get("bd") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -232,7 +244,7 @@ def row_perda(d: dict) -> str:
     motivo_class = 'b-reason' if motivo in motivos_strong else 'b-reason-soft'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td class="dim">{escape(d.get("email") or "—")}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
