@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.6.0
+version: 3.7.0
 ---
 
 # Skill: Publicar Landing Page
@@ -721,7 +721,7 @@ Saidas possiveis:
 
 **Por que existe esse drift-check (motivacao real, 2026-05-08):** apos v3.2.0 atualizar o template para liberar Meta Pixel via Facebook, apenas o sibling guarda-chuva redeployado em seguida (`cxpress-lp-playbook-whatsapp2026`) recebeu o patch. Os 3 outros guarda-chuvas Buzzmonitor (`webinar.*`, `evento.*`, `material.*`) continuaram com CSP antigo bloqueando o pixel em runtime — `Refused to load https://connect.facebook.net` no DevTools. O `diff` generico que existia antes flagava a divergencia, mas o operador podia nao notar (CR/LF + multiplas linhas) e o problema ficou silencioso por dias ate alguem reportar. v3.4.0 fechou o gap com helper programatico + pausa via AskUserQuestion. v3.5.0 reduziu friccao quando nao ha decisao real a tomar (`extra_in_sibling == {}`).
 
-O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM), video (YouTube, Vimeo) e **Meta Pixel via GTM** (`connect.facebook.net` em `script-src`/`connect-src`; `www.facebook.com` em `connect-src`/`frame-src` — desde v3.2.0).
+O template inclui 7 headers de seguranca, incluindo **Content-Security-Policy (CSP)** ja configurado para permitir os provedores de form mais comuns (Jotform, RD Station, HubSpot), Google Fonts, analytics (GA, GTM), video (YouTube, Vimeo), **Meta Pixel via GTM** (`connect.facebook.net` em `script-src`/`connect-src`; `www.facebook.com` em `connect-src`/`frame-src` — desde v3.2.0) e **TikTok Pixel via GTM** (`analytics.tiktok.com` em `script-src`/`connect-src`; `ads.tiktok.com` em `connect-src` — desde v3.7.0).
 
 **Quando ajustar o CSP:**
 - LP usa provedor de form fora do default (ex: Typeform, Tally, Formspree) → adicionar dominio em `script-src`, `frame-src` e `form-action`.
@@ -741,6 +741,14 @@ grep -oE "fbq\(|connect\.facebook\.net|fbevents\.js|www\.facebook\.com/tr" "{sib
 ```
 
 Se houver match, validar que o CSP cobre `connect.facebook.net` (script + connect) e `www.facebook.com` (connect + frame). Coberto por padrao desde o template v3.2.0 — se voce esta editando o sibling em modo guarda-chuva e ele ainda esta no CSP antigo (pre-v3.2.0), adicione manualmente.
+
+**Check proativo TikTok Pixel (mesma logica do Meta — GTM dispara mesmo sem snippet inline):**
+
+```bash
+grep -oE "ttq\(|ttq\.|analytics\.tiktok\.com|tiktok-pixel" "{sibling}/{slug}/index.html"
+```
+
+Se houver match, validar que o CSP cobre `analytics.tiktok.com` (script + connect) e `ads.tiktok.com` (connect). Coberto por padrao desde o template v3.7.0 — em sibling de guarda-chuva pre-v3.7.0, o drift-check do 1.6 ja patcha automaticamente quando `extra_in_sibling == {}`.
 
 Se algum dominio nao estiver coberto pelo CSP default, edite `{sibling}/vercel.json` antes de deployar. Nao use `*` permissivo — quebra o sentido do header.
 

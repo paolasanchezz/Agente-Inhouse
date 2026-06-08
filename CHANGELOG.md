@@ -12,6 +12,23 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## dashboard/queries_latam.py (Dashboard CM LATAM)
+### 2026-06-06 — Fechamento (cierre) ampliado + valor pela coluna `value`
+
+- **Fechado deixa de exigir `status='Ganho'`.** Esse campo quase não é mantido no AC LATAM (no stage 176
+  do pipeline Contratos, 84 de 96 deals estão `Aberta` apesar de fee + contrato + data de cierre). Nova
+  constante `FECHADO_LATAM` = `status='Ganho'` OU `primer_pago_realizado_automatico` OU
+  `fecha_de_inicio_de_contrato` OU `fecha_de_cierre_de_negocio`.
+- **Valor do contrato passa de `fee_mensual` para `value` (USD).** `fee_mensual` é inconsistente (às vezes
+  `value`×100, às vezes não — ex.: value=1615/fee=90000); o renderer mostrava 100× a mais. Cast defensivo
+  texto→numeric (`VALOR_USD`).
+- **Datação do cierre** ganha 3º fallback `fecha_de_primer_pago_automatico` (`DATA_FECHO`); segue **sem `mdate`**.
+- Aplicado em `q_count_fechamentos`, `q_lista_fechamentos`, `q_ranking`, `q_serie_12m`. Renderer
+  (`render_helpers_latam.py`/`gerar_relatorio_latam.py`) inalterado — consome os aliases `valor`/`currency`.
+- **Impacto (cierres CM):** all-time **2 → 34** (USD 18.334) · 2026 **1 → 7** (USD 3.049). Ex.: La Firma
+  (deal 43258), fechado 25/05 com pagamento automático mas `status='Aberta'`, agora aparece.
+- ⚠️ Mudança só reflete no dashboard live após regenerar + redeployar (não há skill de deploy LATAM ainda).
+
 ## .claude/skills/auditar-deals-cm + dashboard/auditar_deals_cm.py
 ### 2026-06-02 — v1.0.0 — Skill nova (auditoria de deals CM nao mapeados por falha de UTM)
 
@@ -211,6 +228,18 @@ Cada achado vai pro bucket de críticos com formato `SEO-MISSING:`, `I18N-HREFLA
 ---
 
 ## lp-publicar
+### 2026-06-08 — v3.7.0: liberação CSP para TikTok Pixel (Events JS + Events API)
+
+Template CSP (`vercel.template.json`) ganha `https://analytics.tiktok.com` em `script-src`/`connect-src` e `https://ads.tiktok.com` em `connect-src`. Motivação: campanhas TikTok via GTM precisam do pixel `https://analytics.tiktok.com/i18n/pixel/events.js` carregar + enviar eventos para `analytics.tiktok.com` (web pixel) e `ads.tiktok.com` (Events API server-side). Sem isso, browser bloqueia em runtime — `Refused to load https://analytics.tiktok.com/...` no DevTools.
+
+**Mesma estrutura do Meta Pixel (v3.2.0):** `analytics.tiktok.com` em script-src (carregar events.js) + connect-src (enviar eventos via fetch/xhr). `ads.tiktok.com` em connect-src apenas (server-side Events API, sem JS para carregar).
+
+**Sibling drift:** as 5 siblings guarda-chuva vivas no momento da bump (buzzcreators-lp-vendendo-com-creators, buzzmonitor-evento, buzzmonitor-lp-monitoramento-concorrentes, buzzmonitor-material, cxpress-lp-playbook-whatsapp2026) receberam patch no `vercel.json` local — `csp_drift_check.py` valida que todas zeraram (extra_in_sibling=={} antes do patch, sem decisão a tomar). Mudança só vale em produção após re-deploy de cada sibling (Vercel serve `vercel.json` como header de origem).
+
+**Bonus colateral (buzzcreators-lp-vendendo-com-creators):** CSP dessa sibling estava em pre-v3.2.0 (sem `connect.facebook.net` nem `www.facebook.com`). Patch sincronizou tudo de uma vez — Meta Pixel **e** TikTok Pixel agora cobertos. O drift acumulado era invisível porque a LP única daquele projeto não dispara nem fbq nem ttq hoje, mas seria buraco silencioso se uma campanha futura adicionasse pixel via GTM.
+
+**Check proativo no Passo 1.6 (SKILL):** grep no HTML procura `ttq(`, `ttq.`, `analytics.tiktok.com`, `tiktok-pixel` — espelha o check existente do Meta Pixel.
+
 ### 2026-05-21 — v3.6.0: modo batch (CSV de slugs) + namespace OG image + substituição de placeholders SEO
 
 Suporte nativo a publicar N LPs irmãs num único deploy (`/lp-publicar buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com`). Motivação: sessão MCP de 2026-05-18 fez essa orquestração manualmente (3 LPs em 1 deploy), o padrão virou primitiva.

@@ -152,8 +152,11 @@ Sibling: a do projeto existente (`${SIBLING_BASE}/{nome-detectado}/`). LP nova �
 | `material.buzzmonitor.com` | Material rico evergreen Buzzmonitor | `buzzmonitor-material` | (em popularização) |
 | `webinar.buzzmonitor.com` | Eventos online Buzzmonitor (legacy) | `buzzmonitor-lp-monitoramento-concorrentes` | BR + PT |
 | `content.cxpress.io` | Material rico Cxpress (subdomínio único, qualquer tipo) | `cxpress-lp-playbook-whatsapp2026` | `playbook-whatsapp2026` |
+| `content.elife.com` | **Reservado para LPs da marca Elife** (ainda sem deploy) | (a criar quando 1ª LP Elife sair) | — |
 
 LPs novas devem priorizar o subdomínio mais específico (ex: evento presencial Buzzmonitor → `evento.*`, não `webinar.*`). Convenção completa em [`.claude/skills/lp-preparar/CONTEXT.md`](../.claude/skills/lp-preparar/CONTEXT.md).
+
+**Importante — `content.elife.com` ≠ projeto Cxpress.** Em 08/jun/2026 alguém atribuiu `content.elife.com` como alias adicional do projeto `cxpress-lp-playbook-whatsapp2026` no painel Vercel. Foi engano (provavelmente exploração de migração de marca abandonada no meio). Removido em 08/jun/2026 mesmo dia via `DELETE /v9/projects/.../domains/content.elife.com`. O domínio segue **registrado na org elife-group** (Domain Registry), pronto pra ser atribuído ao projeto Vercel **da marca Elife** quando a primeira LP Elife for publicada. Se alguém atribuir `content.elife.com` novamente ao projeto Cxpress (ou Buzzmonitor), parar e perguntar ao Victor — não é cenário esperado. Quando a 1ª LP Elife rodar `/lp-publicar elife {slug} content.elife.com`, o Passo 0.5 vai detectar que não há projeto Vercel atribuído ainda → modo solo → cria projeto novo da marca Elife.
 
 ### 4.3 Promessa: ZERO regressão (vizinhas em guarda-chuva, e a própria LP em qualquer modo)
 
