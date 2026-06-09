@@ -13,6 +13,9 @@ dashboard/relatorio-*.html.bak
 dashboard/auditoria/*
 !dashboard/auditoria/.gitkeep
 
+# Chunks base64 temporarios de processamento de CSV no dashboard. Lixo regeneravel.
+dashboard/.csv-b64*.tmp
+
 # Pasta de scratch efemera: logs, snapshots HTML, probes, downloads, dados temporarios
 # (inclui inscricoes de webinar = PII). Regeneravel/descartavel — nunca versionar.
 tmp/
