@@ -228,6 +228,10 @@ Cada achado vai pro bucket de críticos com formato `SEO-MISSING:`, `I18N-HREFLA
 ---
 
 ## lp-publicar
+### 2026-06-09 — v3.8.0: cobertura do padrão bare `assets/X` (sem `./`) em descoberta, rewrite e drift-check
+
+Durante a publicação batch `conheca-a-cxpress,conheca-a-cxpress-confirmado` (bridge page de confirmação do webinar ClickMeeting), o drift-check 1.0 acusou divergência falsa: o HTML da LP referencia o speaker como `src="assets/enrico-chiari.jpg"` (bare, sem `./`), padrão que a simulação de rewrite e as tabelas dos Passos 1.3/1.5 não cobriam — o live estava idêntico ao HEAD, e a única diferença era exatamente esse rewrite não simulado. Mudanças: (a) nota nova no 1.3 documenta o padrão bare como equivalente a `./assets/X`, com a regra de ordem do sed (brand antes de bare, ancorado em `src="assets/`) e o namespace por slug do precedente (`/assets/cxpress/conheca-a-cxpress/...` — evita colisão entre LPs irmãs da mesma marca; ao re-publicar, manter o namespace vigente no live); (b) lista de rewrite do 1.5 (modo guarda-chuva) ganha a substituição correspondente. Sem mudança de interface.
+
 ### 2026-06-08 — v3.7.0: liberação CSP para TikTok Pixel (Events JS + Events API)
 
 Template CSP (`vercel.template.json`) ganha `https://analytics.tiktok.com` em `script-src`/`connect-src` e `https://ads.tiktok.com` em `connect-src`. Motivação: campanhas TikTok via GTM precisam do pixel `https://analytics.tiktok.com/i18n/pixel/events.js` carregar + enviar eventos para `analytics.tiktok.com` (web pixel) e `ads.tiktok.com` (Events API server-side). Sem isso, browser bloqueia em runtime — `Refused to load https://analytics.tiktok.com/...` no DevTools.

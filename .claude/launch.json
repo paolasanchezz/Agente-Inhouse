@@ -26,6 +26,12 @@
       "port": 5183
     },
     {
+      "name": "lp-cxpress-family",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5184", "--bind", "127.0.0.1", "--directory", "landing-pages/cxpress"],
+      "port": 5184
+    },
+    {
       "name": "dashboard-pessoal",
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-pessoal/run_local.py"],

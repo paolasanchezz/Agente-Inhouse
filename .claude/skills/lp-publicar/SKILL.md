@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.7.0
+version: 3.8.0
 ---
 
 # Skill: Publicar Landing Page
@@ -568,6 +568,8 @@ Grep `src=`, `srcset=`, `href=` e `url(` no index.html fonte. Para cada referên
 
 **Detecção de colisão (modo guarda-chuva):** antes de copiar, comparar md5 do source com `{sibling}/assets/{nome-base}/{filename}` se existir. Se filename identico mas md5 diferente, abortar com erro claro: `asset {filename} colide com vizinha em {sibling-asset-path} (md5 diferente). Use namespace por marca.` (Em pratica isso nunca dispara se a regra acima for respeitada — o trigger e seguranca contra erro de skill futuro.)
 
+**Padrao bare `assets/X` (sem `./`) — v3.8.0:** alguns HTMLs referenciam asset LP-local como `src="assets/X"`, sem o prefixo `./` (precedente real: `conheca-a-cxpress`, `src="assets/enrico-chiari.jpg"`). Tratar EXATAMENTE como `./assets/X` em toda a cadeia: descoberta (1.3), copia (1.4), rewrite (1.5) e simulacao do drift-check (1.0). Dois cuidados: (a) **ordem do sed** — substituir o padrao brand (`../../brand/...`) ANTES do bare, porque o path brand contem a substring `assets/` e um replace global ingenuo o corromperia; ancorar o bare em `src="assets/` (ou `href="assets/`) em vez de `assets/` solto; (b) **namespace por slug** — em guarda-chuva, LP-local bare pode ja estar publicado como `/assets/{marca}/{slug}/X` (caso `conheca-a-cxpress` → `/assets/cxpress/conheca-a-cxpress/enrico-chiari.jpg`) para evitar colisao entre LPs irmas da mesma marca; ao re-publicar, conferir com grep no HTML sincronizado do live qual namespace esta em uso e manter.
+
 Produzir lista de triplas: `(path-no-source, disco-origem, alvo-no-sibling-com-modo)`.
 
 ### 1.4 Copiar **apenas** esses assets
@@ -622,6 +624,7 @@ No `{sibling}/{slug}/index.html`, substituir todos para absoluto:
 
 - `../../brand/{marca}/assets/` → `/assets/{marca}/`
 - `./assets/` → `/assets/{marca}/`
+- `src="assets/` (bare, sem `./`) → `src="/assets/{marca}/X` ou `src="/assets/{marca}/{slug}/X` conforme namespace vigente no live (ver nota do 1.3; substituir DEPOIS do padrao brand)
 - (`/assets/{marca}/X` ja absoluto: nao reescreve)
 
 Use `Edit` com `replace_all: true`.

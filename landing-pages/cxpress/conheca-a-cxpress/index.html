@@ -1003,7 +1003,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="header">
     <div class="container header-inner">
-      <a href="#top" aria-label="Cxpress — topo">
+      <a href="#top" aria-label="Cxpress, voltar ao topo">
         <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
       </a>
       <a href="#form" class="header-cta">Garantir vaga</a>
@@ -1160,7 +1160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <polyline points="4 12 10 18 20 6"/>
               </svg>
             </span>
-            <p class="audience-text">O time ainda responde clientes em canais separados — WhatsApp pessoal, e-mail avulso, redes sociais.</p>
+            <p class="audience-text">O time ainda responde clientes em canais separados: WhatsApp pessoal, e-mail avulso, redes sociais.</p>
           </div>
           <div class="audience-card">
             <span class="audience-check" aria-hidden="true">
@@ -1238,6 +1238,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })();
 
     (function() {
+      let nextWebinar = null;
+
       const info = document.querySelector('.webinar-info');
       const infoText = info ? info.querySelector('.webinar-info-text') : null;
       if (info && infoText) {
@@ -1245,6 +1247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           .then(r => r.json())
           .then(data => {
             if (data && data.ok && data.formatted_full_pt) {
+              nextWebinar = data;
               infoText.textContent = data.formatted_full_pt;
               info.dataset.state = 'ready';
             } else {
@@ -1302,14 +1305,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (res.ok && result && result.ok && result.redirect_url) {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'webinar_lead_submitted', form_id: 'cmForm' });
+
+            // Passa o link da sala pra página de confirmação via sessionStorage.
+            // Se o storage falhar (modo privado antigo, storage bloqueado), degrada
+            // pro comportamento anterior: redirect direto pra sala do ClickMeeting.
+            let stored = false;
+            try {
+              sessionStorage.setItem('cx_webinar_confirmation', JSON.stringify({
+                v: 1,
+                join_url: result.redirect_url,
+                email: payload.email,
+                first_name: payload.first_name,
+                starts_at: (nextWebinar && nextWebinar.starts_at) || null,
+                formatted_full_pt: (nextWebinar && nextWebinar.formatted_full_pt) || null,
+                saved_at: new Date().toISOString(),
+              }));
+              stored = sessionStorage.getItem('cx_webinar_confirmation') !== null;
+            } catch (_) { stored = false; }
+
+            const dest = stored ? '/conheca-a-cxpress-confirmado' : result.redirect_url;
             setFeedback('Inscrição confirmada! Redirecionando...', 'success');
-            setTimeout(() => { window.location.href = result.redirect_url; }, 600);
+            setTimeout(() => { window.location.href = dest; }, 600);
             return;
           }
 
-          const msg = (result && result.message)
+          let msg = (result && result.message)
             ? result.message
             : 'Não foi possível concluir sua inscrição. Tente novamente.';
+          if (result && result.error === 'already_registered') {
+            msg += ' Seu link de acesso já foi enviado por email (remetente ClickMeeting).';
+          }
           setFeedback(msg, null);
           submitBtn.disabled = false;
           submitBtn.textContent = originalBtnText;
