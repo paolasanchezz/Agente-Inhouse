@@ -63,6 +63,11 @@ env/
 # Relatorios locais de /pull-request-review (JSON da API, patches e .md). Artefatos pessoais, nao versionar.
 reviews/
 
+# Junction temporario para preview local de LPs (resolve `../../brand/...` no http.server
+# sem precisar reescrever paths; o pipeline `/lp-publicar` faz o rewrite real no deploy).
+# Criado por: cmd /c mklink /J landing-pages/brand brand
+landing-pages/brand
+
 # Criativos estaticos gerados (PNGs + copias de assets de marca). Pesados e regeneraveis
 # via render.py — upload manual pro Drive/Slack (ver memoria feedback-criativos-pasta-local).
 # Ignora o CONTEUDO (criativos/*), nao a pasta — senao a excecao do GUIDELINES nao funciona

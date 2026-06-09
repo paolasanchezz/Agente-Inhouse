@@ -1,0 +1,1692 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Deals CM — Reuniao Realizada / Proposta — Buzzmonitor Brasil — 12m</title>
+<style>
+  :root {
+    --bg:#0f1115; --panel:#161a22; --border:#232935;
+    --text:#e7ecf3; --muted:#8a93a4; --accent:#5b8def;
+    --ok:#1faa6b; --warn:#d97706; --bad:#dc2626; --soft:#374151;
+  }
+  *,*::before,*::after { box-sizing:border-box; }
+  html,body { margin:0; padding:0; }
+  body { font:14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+         background:var(--bg); color:var(--text); }
+  .wrap { max-width:1480px; margin:0 auto; padding:32px 24px 80px; }
+  header h1 { font-size:22px; margin:0 0 4px; }
+  header .sub { color:var(--muted); font-size:13px; }
+  section { margin-top:32px; }
+  h2 { font-size:16px; letter-spacing:.02em; text-transform:uppercase; color:var(--muted);
+        margin:0 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+
+  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:16px; }
+  .kpi { background:var(--panel); border:1px solid var(--border); border-radius:10px;
+         padding:14px 16px; }
+  .kpi .lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+  .kpi .val { font-size:26px; font-weight:600; margin-top:4px; }
+
+  .panel { background:var(--panel); border:1px solid var(--border); border-radius:10px;
+           overflow:hidden; }
+  .table-scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th { background:#1c2230; color:var(--muted); font-weight:600; text-align:left;
+             padding:10px 12px; border-bottom:1px solid var(--border);
+             position:sticky; top:0; }
+  tbody td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tbody tr:hover { background:#1a202b; }
+  .deal-id { color:var(--muted); font-family:ui-monospace,monospace; }
+  .deal-title { max-width:280px; }
+  .mono { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; }
+  .muted { color:var(--muted); }
+  .url-cell a { color:var(--accent); text-decoration:none; }
+  .url-cell a:hover { text-decoration:underline; }
+  .btn-ac {
+    display:inline-block; white-space:nowrap; text-decoration:none;
+    background:var(--accent); color:#fff; font-weight:600; font-size:12px;
+    padding:6px 10px; border-radius:6px; border:1px solid transparent;
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+    transition:background .12s ease, transform .04s ease;
+  }
+  .btn-ac:hover  { background:#4274d6; }
+  .btn-ac:active { transform:translateY(1px); }
+
+  .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px;
+           font-weight:600; letter-spacing:.02em; }
+  .badge-stage    { background:#1e293b; color:#cbd5e1; }
+  .badge-aberto   { background:rgba(91,141,239,.18); color:#9cb8ff; }
+  .badge-ganho    { background:rgba(31,170,107,.18); color:#5ee3a5; }
+  .badge-perdido  { background:rgba(220,38,38,.18); color:#ffa6a6; }
+  .off-win { color:var(--muted); font-size:10.5px; font-style:italic; margin-left:4px; }
+
+  .rank { color:var(--muted); width:48px; }
+  .grid-2 { display:grid; grid-template-columns:1fr; gap:24px; }
+  @media (min-width:1100px) { .grid-2 { grid-template-columns:1fr 1fr; } }
+
+  .filterbar { display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+  .filterbar input, .filterbar select {
+    background:#0f1115; color:var(--text); border:1px solid var(--border);
+    border-radius:8px; padding:8px 10px; font-size:13px;
+  }
+  .filterbar input { min-width:280px; }
+  .filterbar .count { color:var(--muted); margin-left:auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Deals CM — Reuniao Realizada / Proposta (sem Ganho)</h1>
+      <div class="sub">Buzzmonitor Brasil · ultimos 12 meses (08/06/2025 a 08/06/2026) · gerado 2026-06-08 · filtro CM com regra 90d por <b>email</b> · exclui Ganho · exclui <b>Funil [BD e SDR] = Outbound</b></div>
+      <div class="kpis">
+        <div class="kpi"><div class="lbl">Total deals</div><div class="val">74</div></div>
+        <div class="kpi"><div class="lbl">Atingiram RR</div><div class="val">60</div></div>
+        <div class="kpi"><div class="lbl">Receberam Proposta</div><div class="val">37</div></div>
+        <div class="kpi"><div class="lbl">Aberto</div><div class="val" style="color:#9cb8ff">41</div></div>
+        <div class="kpi"><div class="lbl">Perdido</div><div class="val" style="color:#ffa6a6">33</div></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Tabela completa</h2>
+      <div class="filterbar">
+        <input type="text" id="q" placeholder="Buscar por deal, email, utm, URL...">
+        <select id="fStage">
+          <option value="">Todos os estagios</option>
+          <option>Reuniao Realizada</option>
+          <option>Proposta</option>
+        </select>
+        <select id="fStatus">
+          <option value="">Todos os status</option>
+          <option>Aberto</option>
+          <option>Perdido</option>
+        </select>
+        <span class="count" id="countLabel">74 deals</span>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table id="tbl">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Deal</th>
+                <th>Inscricao</th>
+                <th>Estagio</th>
+                <th>Status</th>
+                <th>Data RR</th>
+                <th>Data Proposta</th>
+                <th>UTM Source</th>
+                <th>UTM Content</th>
+                <th>URL Conversao</th>
+                <th>Valor</th>
+                <th>AC</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+        <tr>
+          <td class="deal-id">189247</td>
+          <td class="deal-title">[Monit.] os - Diran oliveira santos filho</td>
+          <td>03/06/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>03/06/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">POLÍTICA 3 - Muito antes da urna</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/189247" target="_blank" rel="noopener" title="Abrir deal 189247 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">189266</td>
+          <td class="deal-title">[MONIT.POLI] Benedito Palheta - Consultoria</td>
+          <td>03/06/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>03/06/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">POLÍTICA 3 - Muito antes da urna</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%25+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s03&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacJPs9mOfkXFQt8XmhxVEZqU-XRgdx0_qcb0jLVmrLVHtlk4gcv9xKCRpSplA_aem_oxLUIaEmzM3nigGMsKC2hg_" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%25+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s03&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacJPs9mOfkXFQt8XmhxVEZqU-XRgdx0_qcb0jLVmrLVHtlk4gcv9xKCRpSplA_aem_oxLUIaEmzM3nigGMsKC2hg_">https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/189266" target="_blank" rel="noopener" title="Abrir deal 189266 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">189223</td>
+          <td class="deal-title">[] Depyl Action - BARBARA GARCIA DOS SANTOS Martins</td>
+          <td>02/06/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>03/06/2026</td>
+          <td>—</td>
+          <td class="mono">chatgpt.com</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://buzzmonitor.com/?utm_source=chatgpt.com_" target="_blank" rel="noopener" title="https://buzzmonitor.com/?utm_source=chatgpt.com_">https://buzzmonitor.com/?utm_source=chatgpt.com_</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/189223" target="_blank" rel="noopener" title="Abrir deal 189223 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">188420</td>
+          <td class="deal-title">Monitoramento Político</td>
+          <td>26/05/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>01/06/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">POLÍTICA 3 - Muito antes da urna</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s07_e7624&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafvnA9xWOmCf4IRsoc3a-9M58rO0vOhiJsT_FxcjdT5PPD9Xrtnk_n0wiC3qA_aem_Uu3StIoRmHYxnaphipmeLQ" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s07_e7624&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafvnA9xWOmCf4IRsoc3a-9M58rO0vOhiJsT_FxcjdT5PPD9Xrtnk_n0wiC3qA_aem_Uu3StIoRmHYxnaphipmeLQ">https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/188420" target="_blank" rel="noopener" title="Abrir deal 188420 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">188402</td>
+          <td class="deal-title">Proposta Buzzmonitor &amp; Gioppo e Conti - 29052026</td>
+          <td>26/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>—</td>
+          <td>29/05/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">WEB APP - Ad06 - Loira</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 1.790,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/188402" target="_blank" rel="noopener" title="Abrir deal 188402 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">188419</td>
+          <td class="deal-title">[MONIT, POLI] João Ribeiro  - Lua Nova Consultoria</td>
+          <td>26/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>28/05/2026</td>
+          <td>28/05/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">POLÍTICA 3 - Muito antes da urna</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s03&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacVgYfqg-K714P7XyFFS84zwlm96iIrdTI5owJFFsgEMbyrddo8gTpVo9EPYw_aem_N-c2Zq5D1opNtZVFc5YEKw" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BMonitoramento-Pol%C3%ADtico%5D&amp;utm_content=POL%C3%8DTICA+3+-+Muito+antes+da+urna&amp;adset=%5BLaL+1%+Monitoramento+%2B+Interesses%5D&amp;campaignid=6976683515516&amp;adsetid=6976683515316&amp;adid=6976701176116&amp;utm_id=6976683515316_v2_s03&amp;utm_term=6976683515316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWGPdcfRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacVgYfqg-K714P7XyFFS84zwlm96iIrdTI5owJFFsgEMbyrddo8gTpVo9EPYw_aem_N-c2Zq5D1opNtZVFc5YEKw">https://conteudo.buzzmonitor.com.br/monitoramento-politico?utm_source…</a></td>
+          <td>R$ 1.590,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/188419" target="_blank" rel="noopener" title="Abrir deal 188419 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">188138</td>
+          <td class="deal-title">[] GestaoP - Jones b</td>
+          <td>22/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>25/05/2026</td>
+          <td>25/05/2026</td>
+          <td class="mono">ig</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://buzzmonitor.com/?utm_source=ig&amp;utm_medium=bio&amp;fbclid=PAZXh0bgNhZW0BMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeJK1QjENd82EmZfRFGrWFwpXD7GIn3JvISG9tQE_6yaoMsUzLQYzNlzxHtwg_aem_BifnFon4nyYFrLg5T6Y4sA" target="_blank" rel="noopener" title="https://buzzmonitor.com/?utm_source=ig&amp;utm_medium=bio&amp;fbclid=PAZXh0bgNhZW0BMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeJK1QjENd82EmZfRFGrWFwpXD7GIn3JvISG9tQE_6yaoMsUzLQYzNlzxHtwg_aem_BifnFon4nyYFrLg5T6Y4sA">https://buzzmonitor.com/?utm_source=ig&amp;utm_medium=bio&amp;fbclid=PAZXh0bg…</a></td>
+          <td>R$ 3.800,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/188138" target="_blank" rel="noopener" title="Abrir deal 188138 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">187448</td>
+          <td class="deal-title">[RMKT] Danilo Andrade - Hospital Felicio Rocho</td>
+          <td>08/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>15/05/2026</td>
+          <td>25/05/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 14 - Falando mal da marca</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Reels&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+14+-+Falando+mal+da+marca&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+14&amp;campaignid=6888094081516&amp;adsetid=6960066842516&amp;adid=6960066842716&amp;utm_id=6960066842516_v2_s06_e7606&amp;utm_term=6960066842516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGVIRZSVxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafzGalrK3qEMuoxck_GVkJLpDzY1tecplIMlrnAMgPQsxaq8ajSrHdHN7tvBg_aem_NDJSc5IznkcQW7KoFCk9wQ" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Reels&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+14+-+Falando+mal+da+marca&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+14&amp;campaignid=6888094081516&amp;adsetid=6960066842516&amp;adid=6960066842716&amp;utm_id=6960066842516_v2_s06_e7606&amp;utm_term=6960066842516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGVIRZSVxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafzGalrK3qEMuoxck_GVkJLpDzY1tecplIMlrnAMgPQsxaq8ajSrHdHN7tvBg_aem_NDJSc5IznkcQW7KoFCk9wQ">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>R$ 4.900,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/187448" target="_blank" rel="noopener" title="Abrir deal 187448 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">187740</td>
+          <td class="deal-title">[INDICAÇÃO Interna] Blank School - Mariana Alves</td>
+          <td>15/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>18/05/2026</td>
+          <td>18/05/2026</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 5.150,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/187740" target="_blank" rel="noopener" title="Abrir deal 187740 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">186495</td>
+          <td class="deal-title">[RMKT] Priscila Cristina Oliveira - Isf</td>
+          <td>23/04/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>15/05/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 13 - Trend Será</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+13+-+Trend+Ser%C3%A1&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6944716058316&amp;adid=6944716058116&amp;utm_id=6944716058316_v2_s11_e7590&amp;utm_term=6944716058316&amp;fbclid=PAaWdyZARWQ4dleHRuA2FlbQEwAGFkaWQAAAZQ8WWc_HNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp_hbR1Q-9X7je8Fw-K5rYyxBXsQ7EYEfw1umoIARRK027aUCqgpNbt2qgnQ6_aem_0265loHSWf7dke0CJ_1PSQ" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+13+-+Trend+Ser%C3%A1&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6944716058316&amp;adid=6944716058116&amp;utm_id=6944716058316_v2_s11_e7590&amp;utm_term=6944716058316&amp;fbclid=PAaWdyZARWQ4dleHRuA2FlbQEwAGFkaWQAAAZQ8WWc_HNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp_hbR1Q-9X7je8Fw-K5rYyxBXsQ7EYEfw1umoIARRK027aUCqgpNbt2qgnQ6_aem_0265loHSWf7dke0CJ_1PSQ">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/186495" target="_blank" rel="noopener" title="Abrir deal 186495 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">187636</td>
+          <td class="deal-title">[] Ikesaki Cosméticos - Daniela Dias</td>
+          <td>13/05/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>15/05/2026</td>
+          <td>15/05/2026</td>
+          <td class="mono">chatgpt.com</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 3.850,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/187636" target="_blank" rel="noopener" title="Abrir deal 187636 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">187029</td>
+          <td class="deal-title">[] TIRIVA - JOAO F ANDRADE</td>
+          <td>30/04/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>04/05/2026</td>
+          <td>11/05/2026</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 35.000,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/187029" target="_blank" rel="noopener" title="Abrir deal 187029 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">185875</td>
+          <td class="deal-title">[] Wepink - Izabella Palumbo</td>
+          <td>14/04/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>16/04/2026</td>
+          <td>23/04/2026</td>
+          <td class="mono">chatgpt.com</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 12.000,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/185875" target="_blank" rel="noopener" title="Abrir deal 185875 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">185297</td>
+          <td class="deal-title">[Comp.] MBS CONTENT FILMES LTDA - Boa sorte Viajante - Matheus Boa Sorte</td>
+          <td>07/04/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>13/04/2026</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono">cta-vaga-gratuita</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-vaga-gratuita" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-vaga-gratuita">https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/185297" target="_blank" rel="noopener" title="Abrir deal 185297 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">184031</td>
+          <td class="deal-title">[] Criar Marketing Digital - Michael Leandro</td>
+          <td>19/03/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>26/03/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 10 - Marielle Ei gestor de marketing</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 2.900,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/184031" target="_blank" rel="noopener" title="Abrir deal 184031 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">176973</td>
+          <td class="deal-title">[RMKT] Amanda - Visualiza Mais</td>
+          <td>21/01/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>26/03/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 4 - UGC Dog (vídeo)</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>US$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/176973" target="_blank" rel="noopener" title="Abrir deal 176973 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">182468</td>
+          <td class="deal-title">[] Beatriz Correa - Beatriz Correa</td>
+          <td>04/03/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>26/03/2026</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono">cta-repique2</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-repique2" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-repique2">https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/182468" target="_blank" rel="noopener" title="Abrir deal 182468 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">183220</td>
+          <td class="deal-title">[RMKT] Cleide sales  - Agência sallva</td>
+          <td>08/03/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>26/03/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 10 - Marielle Ei gestor de marketing</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+10+-+Marielle+Ei+gestor+de+marketing&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+10&amp;campaignid=6888094081516&amp;adsetid=6916105997716&amp;adid=6916106364516&amp;utm_id=6888094081516_v2_s00&amp;utm_term=6916105997716&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSkgfdrRzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacRb1yE0f7tCMmPOxdL2mukEY4Exhkai2HksUZVaaJ7xziKoTX9fuXqp7i0iQ_aem_6NXnR2l-jLccz6dY0IWMag" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+10+-+Marielle+Ei+gestor+de+marketing&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+10&amp;campaignid=6888094081516&amp;adsetid=6916105997716&amp;adid=6916106364516&amp;utm_id=6888094081516_v2_s00&amp;utm_term=6916105997716&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSkgfdrRzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacRb1yE0f7tCMmPOxdL2mukEY4Exhkai2HksUZVaaJ7xziKoTX9fuXqp7i0iQ_aem_6NXnR2l-jLccz6dY0IWMag">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/183220" target="_blank" rel="noopener" title="Abrir deal 183220 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">184036</td>
+          <td class="deal-title">[RMKT] Michael Leandro  - Criar Marketing Digital</td>
+          <td>19/03/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>26/03/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 10 - Marielle Ei gestor de marketing</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+10+-+Marielle+Ei+gestor+de+marketing&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+10&amp;campaignid=6888094081516&amp;adsetid=6916105997716&amp;adid=6916106364516&amp;utm_id=6888094081516_v2_s11_e7496&amp;utm_term=6916105997716&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSkgfdrRzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaf4NTtGhYVCs00MVz8c9nXbgHwJS90V0AEetwrvuO3J6iuNqwXE4goTeC1Gug_aem_cGxEH0uQt_L4qg3M4c0Oyg" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+10+-+Marielle+Ei+gestor+de+marketing&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D+10&amp;campaignid=6888094081516&amp;adsetid=6916105997716&amp;adid=6916106364516&amp;utm_id=6888094081516_v2_s11_e7496&amp;utm_term=6916105997716&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSkgfdrRzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaf4NTtGhYVCs00MVz8c9nXbgHwJS90V0AEetwrvuO3J6iuNqwXE4goTeC1Gug_aem_cGxEH0uQt_L4qg3M4c0Oyg">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/184036" target="_blank" rel="noopener" title="Abrir deal 184036 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">183369</td>
+          <td class="deal-title">[RMKT] Árthur Alvite  - Máximo Alcance Marketing Digital</td>
+          <td>10/03/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>12/03/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 7 - UGC computador</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Reels&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+7+-+UGC+computador&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6906859235316&amp;adid=6906859235516&amp;utm_id=6888094081516_v2_s04&amp;utm_term=6906859235316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSCDw4cRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacvl9lnLUnDtShuR-SUya8pLD639FHWcLsAbof2j-dxPt7tFTbPUF9IPDf_1w_aem_7BEs_IsDfkHHFVCDm_6hSA" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Reels&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+7+-+UGC+computador&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6906859235316&amp;adid=6906859235516&amp;utm_id=6888094081516_v2_s04&amp;utm_term=6906859235316&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGSCDw4cRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacvl9lnLUnDtShuR-SUya8pLD639FHWcLsAbof2j-dxPt7tFTbPUF9IPDf_1w_aem_7BEs_IsDfkHHFVCDm_6hSA">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/183369" target="_blank" rel="noopener" title="Abrir deal 183369 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">183295</td>
+          <td class="deal-title">Açai da Barra</td>
+          <td>09/03/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>10/03/2026</td>
+          <td>11/03/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 5 - UGC fofoca (vídeo)</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 5.350,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/183295" target="_blank" rel="noopener" title="Abrir deal 183295 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">181112</td>
+          <td class="deal-title">Proposta Buzzmonitor &amp; L3ft - 04032026</td>
+          <td>25/02/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>04/03/2026</td>
+          <td>04/03/2026</td>
+          <td class="mono">comercial</td>
+          <td class="mono">athaide-martins</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 1.590,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/181112" target="_blank" rel="noopener" title="Abrir deal 181112 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">181132</td>
+          <td class="deal-title">[Web.Atend] Larissa Ezequiel - Luz e Influência Marketing Digital</td>
+          <td>25/02/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>02/03/2026</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono">disparo-3</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/181132" target="_blank" rel="noopener" title="Abrir deal 181132 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">181504</td>
+          <td class="deal-title">[WEB.RELAT] Rise Media - Cintia Macêdo</td>
+          <td>26/02/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>26/02/2026</td>
+          <td>27/02/2026</td>
+          <td class="mono">email</td>
+          <td class="mono">disparo3</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/oferta-webinar-relatorios-estrategicos?utm_source=email&amp;utm_content=disparo3" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/oferta-webinar-relatorios-estrategicos?utm_source=email&amp;utm_content=disparo3">https://conteudo.buzzmonitor.com.br/oferta-webinar-relatorios-estrate…</a></td>
+          <td>R$ 2.100,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/181504" target="_blank" rel="noopener" title="Abrir deal 181504 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">178749</td>
+          <td class="deal-title">[Monit.] elainne ourives - Leticia Atanazio</td>
+          <td>11/02/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>25/02/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">PLAY - Líder</td>
+          <td class="url-cell"><a href="https://app.buzzmonitor.com.br/user/signup/new" target="_blank" rel="noopener" title="https://app.buzzmonitor.com.br/user/signup/new">https://app.buzzmonitor.com.br/user/signup/new</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/178749" target="_blank" rel="noopener" title="Abrir deal 178749 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">179701</td>
+          <td class="deal-title">Proposta BM - PensePlay - 19022026</td>
+          <td>19/02/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>19/02/2026</td>
+          <td>—</td>
+          <td class="mono">linkedin</td>
+          <td class="mono">marcos-santos</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/179701" target="_blank" rel="noopener" title="Abrir deal 179701 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">177867</td>
+          <td class="deal-title">[] Trendz - Rafael</td>
+          <td>02/02/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>10/02/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT LIST 2 - Descubra quem fala</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais-2?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+LIST+2+-+Descubra+quem+fala&amp;adset=Teste+-+Listening+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6895945249116&amp;adid=6895945315116&amp;utm_id=6888094081516_v2_s03&amp;utm_term=6895945249116&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGRZZmzhxzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacunHTDkRgrHwUlF_7RP4GVva3QFIk9JhCS3MSS89R9n99Or7g7210dU0ARAQ_aem_Tk3-UvBUcaCJMYeRJT5oKw" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais-2?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+LIST+2+-+Descubra+quem+fala&amp;adset=Teste+-+Listening+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6895945249116&amp;adid=6895945315116&amp;utm_id=6888094081516_v2_s03&amp;utm_term=6895945249116&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGRZZmzhxzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacunHTDkRgrHwUlF_7RP4GVva3QFIk9JhCS3MSS89R9n99Or7g7210dU0ARAQ_aem_Tk3-UvBUcaCJMYeRJT5oKw">https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais-2?…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/177867" target="_blank" rel="noopener" title="Abrir deal 177867 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">177781</td>
+          <td class="deal-title">Proposta OAZ &amp; Fixaderme (Eurofarma) 030226</td>
+          <td>30/01/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>03/02/2026</td>
+          <td>05/02/2026</td>
+          <td class="mono">email</td>
+          <td class="mono">disparo-1</td>
+          <td class="url-cell"><a href="https://www.buzzcreators.com.br/evento-presencial-o-panorama-do-creators-marketing-no-brasil?utm_source=email&amp;utm_campaign=panorama-creators&amp;utm_content=disparo-1" target="_blank" rel="noopener" title="https://www.buzzcreators.com.br/evento-presencial-o-panorama-do-creators-marketing-no-brasil?utm_source=email&amp;utm_campaign=panorama-creators&amp;utm_content=disparo-1">https://www.buzzcreators.com.br/evento-presencial-o-panorama-do-creat…</a></td>
+          <td>R$ 2.000,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/177781" target="_blank" rel="noopener" title="Abrir deal 177781 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">177747</td>
+          <td class="deal-title">[] Político São Bernardo do Campo - Luiza Valença</td>
+          <td>29/01/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>04/02/2026</td>
+          <td>05/02/2026</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://buzzmonitor.com/blog/melhores-ferramentas-de-social-listening/" target="_blank" rel="noopener" title="https://buzzmonitor.com/blog/melhores-ferramentas-de-social-listening/">https://buzzmonitor.com/blog/melhores-ferramentas-de-social-listening/</a></td>
+          <td>R$ 3.500,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/177747" target="_blank" rel="noopener" title="Abrir deal 177747 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">172493</td>
+          <td class="deal-title">[] Agência VISIA - PERY BARBOSA PEREIRA</td>
+          <td>27/11/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>04/02/2026</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/172493" target="_blank" rel="noopener" title="Abrir deal 172493 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">177599</td>
+          <td class="deal-title">[] Pizza Cesar- Rita de Cássia Antunes</td>
+          <td>28/01/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>29/01/2026</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono">cta-repique2</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-repique2" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=email&amp;utm_medium=email&amp;utm_campaign=webinar-conteudo-que-converte&amp;utm_content=cta-repique2">https://conteudo.buzzmonitor.com.br/conteudo-que-converte?utm_source=…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/177599" target="_blank" rel="noopener" title="Abrir deal 177599 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">177299</td>
+          <td class="deal-title">[RMKT] Fabrício milani - La Lunna</td>
+          <td>25/01/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>29/01/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 4 - UGC Dog (vídeo)</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+4+-+UGC+Dog+%28v%C3%ADdeo%29&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6895946041516&amp;adid=6895946047516&amp;utm_id=6888094081516_v2_s00&amp;utm_term=6895946041516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGRZZtw1xzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafnP6jqo2mvzH6dq_G9kd09Bf1VRfdRuzA5g6bnW0DCCbVRH0MBjvj5p035PA_aem_OJKlVXAE0o5sS8bwPiUSQw" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=%5BBR%5DCONVERS%C3%83O%5D%5BRemarketing-IA%5DV2&amp;utm_content=RMKT+4+-+UGC+Dog+%28v%C3%ADdeo%29&amp;adset=Teste+-+%5BRemarketing+-+Visitas+ao+site+%2B+Engajamento%5D&amp;campaignid=6888094081516&amp;adsetid=6895946041516&amp;adid=6895946047516&amp;utm_id=6888094081516_v2_s00&amp;utm_term=6895946041516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGRZZtw1xzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafnP6jqo2mvzH6dq_G9kd09Bf1VRfdRuzA5g6bnW0DCCbVRH0MBjvj5p035PA_aem_OJKlVXAE0o5sS8bwPiUSQw">https://conteudo.buzzmonitor.com.br/plataforma-completa?utm_source=me…</a></td>
+          <td>US$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/177299" target="_blank" rel="noopener" title="Abrir deal 177299 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">176964</td>
+          <td class="deal-title">[] Hub 360 - Mayra</td>
+          <td>21/01/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>21/01/2026</td>
+          <td>26/01/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 2 - Vozes da minha cabeça (vídeo)</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 2.500,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/176964" target="_blank" rel="noopener" title="Abrir deal 176964 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">176864</td>
+          <td class="deal-title">[] Vínculo mkt - Fernanda</td>
+          <td>20/01/2026</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>22/01/2026</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT 2 - Vozes da minha cabeça (vídeo)</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/176864" target="_blank" rel="noopener" title="Abrir deal 176864 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">176372</td>
+          <td class="deal-title">[10] LCM GROUP - Leondinis Maia</td>
+          <td>14/01/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>21/01/2026</td>
+          <td class="mono">meta</td>
+          <td class="mono">RMKT LIST 2 - Descubra quem fala</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Monitoramento][Brasil]&amp;utm_content=monitoramento_midia_sociais&amp;utm_adid=775312470643&amp;utm_term=monitoramento%20social&amp;utm_matchtype=p&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=Cj0KCQiAsY3LBhCwARIsAF6O6XipT7H8LfOeDMdA9SkDPtCgxZRD2Sx_yLi1BjKPOKe92eR8vtn06zYaAm26EALw_wcB&amp;gad_source=1" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Monitoramento][Brasil]&amp;utm_content=monitoramento_midia_sociais&amp;utm_adid=775312470643&amp;utm_term=monitoramento%20social&amp;utm_matchtype=p&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=Cj0KCQiAsY3LBhCwARIsAF6O6XipT7H8LfOeDMdA9SkDPtCgxZRD2Sx_yLi1BjKPOKe92eR8vtn06zYaAm26EALw_wcB&amp;gad_source=1">https://conteudo.buzzmonitor.com.br/monitoramento-de-redes-sociais?ut…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/176372" target="_blank" rel="noopener" title="Abrir deal 176372 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">175616</td>
+          <td class="deal-title">[Inst.] CROP - ronaldo gabriel zottolo de lima</td>
+          <td>07/01/2026</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>12/01/2026</td>
+          <td class="mono">google</td>
+          <td class="mono">Institucional_Buzzmonitor</td>
+          <td class="url-cell"><a href="conteudo.buzzmonitor.com.br" target="_blank" rel="noopener" title="conteudo.buzzmonitor.com.br">conteudo.buzzmonitor.com.br</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/175616" target="_blank" rel="noopener" title="Abrir deal 175616 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">173452</td>
+          <td class="deal-title">[MASTER.TRENDS]Marina Mazzuco  - getup</td>
+          <td>09/12/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>26/12/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/173452" target="_blank" rel="noopener" title="Abrir deal 173452 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">174172</td>
+          <td class="deal-title">[MASTER.TRENDS]jonas paiva - GOMBO</td>
+          <td>16/12/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>22/12/2025</td>
+          <td>—</td>
+          <td class="mono">pos-webinar</td>
+          <td class="mono">Maysa-Pinto</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_source=pos-webinar&amp;utm_medium=lp-inscricao&amp;utm_id=masterclass-oferta" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_source=pos-webinar&amp;utm_medium=lp-inscricao&amp;utm_id=masterclass-oferta">https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_sou…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/174172" target="_blank" rel="noopener" title="Abrir deal 174172 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">173443</td>
+          <td class="deal-title">[MASTER.TRENDS]ligia brito - Agência RMP</td>
+          <td>09/12/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>22/12/2025</td>
+          <td>—</td>
+          <td class="mono">apresentacao-webinar</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/173443" target="_blank" rel="noopener" title="Abrir deal 173443 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">174244</td>
+          <td class="deal-title">Proposta Buzzmonitor &amp; MB Consultoria - 19122025</td>
+          <td>16/12/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>19/12/2025</td>
+          <td>19/12/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 2.000,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/174244" target="_blank" rel="noopener" title="Abrir deal 174244 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">173445</td>
+          <td class="deal-title">[MASTER.TRENDS]Heloisa Miranda - EPTV</td>
+          <td>09/12/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>10/12/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzz-pills-reality-2026?utm_source=email&amp;utm_campaign=convite-1" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzz-pills-reality-2026?utm_source=email&amp;utm_campaign=convite-1">https://conteudo.buzzmonitor.com.br/buzz-pills-reality-2026?utm_sourc…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/173445" target="_blank" rel="noopener" title="Abrir deal 173445 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">173331</td>
+          <td class="deal-title">[10] SPRIM PRO - Carla Oliveira</td>
+          <td>08/12/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>09/12/2025</td>
+          <td>09/12/2025</td>
+          <td class="mono">meta</td>
+          <td class="mono">AD 1 - Vídeo Bruno</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BReport-Trends-2026%5D&amp;utm_content=AD+1+-+V%C3%ADdeo+Bruno&amp;adset=Teste+-+%5BP%C3%BAblico+Frio+-+Interesses+Mkt%5D&amp;campaignid=6882320326716&amp;adsetid=6883446103516&amp;adid=6883446103116&amp;utm_id=6882320326716_v2_s12_e7425&amp;utm_term=6883446103516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGQq16LrxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafzRCy4KmC3hdjMkUYD0O9NHIM0y8n-br0PnXtvnat12ibG2DqKIuikgFmw5A_aem_IbkDKQo88NxXw4WbOqFRJQ" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BReport-Trends-2026%5D&amp;utm_content=AD+1+-+V%C3%ADdeo+Bruno&amp;adset=Teste+-+%5BP%C3%BAblico+Frio+-+Interesses+Mkt%5D&amp;campaignid=6882320326716&amp;adsetid=6883446103516&amp;adid=6883446103116&amp;utm_id=6882320326716_v2_s12_e7425&amp;utm_term=6883446103516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGQq16LrxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafzRCy4KmC3hdjMkUYD0O9NHIM0y8n-br0PnXtvnat12ibG2DqKIuikgFmw5A_aem_IbkDKQo88NxXw4WbOqFRJQ">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=met…</a></td>
+          <td>R$ 1.900,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/173331" target="_blank" rel="noopener" title="Abrir deal 173331 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">172176</td>
+          <td class="deal-title">[Atend.] Grace kelly Novais Botelho - Grace</td>
+          <td>24/11/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>25/11/2025</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzzmonitor-connect-relacionamento-com-o-cliente" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzzmonitor-connect-relacionamento-com-o-cliente">https://conteudo.buzzmonitor.com.br/buzzmonitor-connect-relacionament…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/172176" target="_blank" rel="noopener" title="Abrir deal 172176 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">171932</td>
+          <td class="deal-title">[] Grace kelly Novais Botelho - Grace kelly Novais Botelho</td>
+          <td>19/11/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>25/11/2025</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 4.600,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/171932" target="_blank" rel="noopener" title="Abrir deal 171932 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169509</td>
+          <td class="deal-title">[] CBR - Renan Heider</td>
+          <td>23/10/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>07/11/2025</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">AD 1 - Cave Man</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169509" target="_blank" rel="noopener" title="Abrir deal 169509 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">170466</td>
+          <td class="deal-title">[Inst.] Medcof - Alisson Jimenez</td>
+          <td>04/11/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>07/11/2025</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">AD04</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=[BR][CONVERS%C3%83O][Masterclass-Tend%C3%AAncias]&amp;utm_content=AD04&amp;adset=01%20-%20Interesses%20SaaS%20%20%20MKT&amp;campaignid=6867001395316&amp;adsetid=6867001396116&amp;adid=6867003117916&amp;utm_id=6867001395316_v2_s01&amp;utm_term=6867001396116&amp;fbclid=PAZnRzaAOVrUJleHRuA2FlbQEwAGFkaWQAAAY-2WNgxHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp5muCurcg_UKMz5PByDRfgNb5RHJhfrdSlbRRdluTyObk2Rt-kH00BWhiKkr_aem_4gBMEUIE4QwO-Oxm7pNQ8g" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=meta&amp;utm_medium=Instagram_Stories&amp;utm_campaign=[BR][CONVERS%C3%83O][Masterclass-Tend%C3%AAncias]&amp;utm_content=AD04&amp;adset=01%20-%20Interesses%20SaaS%20%20%20MKT&amp;campaignid=6867001395316&amp;adsetid=6867001396116&amp;adid=6867003117916&amp;utm_id=6867001395316_v2_s01&amp;utm_term=6867001396116&amp;fbclid=PAZnRzaAOVrUJleHRuA2FlbQEwAGFkaWQAAAY-2WNgxHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp5muCurcg_UKMz5PByDRfgNb5RHJhfrdSlbRRdluTyObk2Rt-kH00BWhiKkr_aem_4gBMEUIE4QwO-Oxm7pNQ8g">https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_sourc…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/170466" target="_blank" rel="noopener" title="Abrir deal 170466 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169937</td>
+          <td class="deal-title">Escola Alemã Corcovado</td>
+          <td>28/10/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>07/11/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169937" target="_blank" rel="noopener" title="Abrir deal 169937 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169600</td>
+          <td class="deal-title">[Monit.] Abicab - Gabriela</td>
+          <td>24/10/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>27/10/2025</td>
+          <td>06/11/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 6.110,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169600" target="_blank" rel="noopener" title="Abrir deal 169600 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169855</td>
+          <td class="deal-title">[Inst.] LFi Propaganda - HENRIQUE MELO RIBEIRO</td>
+          <td>28/10/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>31/10/2025</td>
+          <td>03/11/2025</td>
+          <td class="mono">google</td>
+          <td class="mono">Institucional_Buzzmonitor</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=search_Institucional_Brasil&amp;utm_content=Institucional_Buzzmonitor&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Institucional][Brasil]&amp;utm_content=Institucional_Buzzmonitor&amp;utm_adid=756881725136&amp;utm_term=buzzmonitor&amp;utm_matchtype=e&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=CjwKCAjw04HIBhB8EiwA8jGNbVIQH9wDdm99ynayAQe3JlZOE4rQEY6ChQPYywKhsvpJdMMJXPDW9BoCo10QAvD_BwE&amp;gad_source=1" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=search_Institucional_Brasil&amp;utm_content=Institucional_Buzzmonitor&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Institucional][Brasil]&amp;utm_content=Institucional_Buzzmonitor&amp;utm_adid=756881725136&amp;utm_term=buzzmonitor&amp;utm_matchtype=e&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=CjwKCAjw04HIBhB8EiwA8jGNbVIQH9wDdm99ynayAQe3JlZOE4rQEY6ChQPYywKhsvpJdMMJXPDW9BoCo10QAvD_BwE&amp;gad_source=1">https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=searc…</a></td>
+          <td>R$ 2.500,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169855" target="_blank" rel="noopener" title="Abrir deal 169855 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169523</td>
+          <td class="deal-title">[Analy.] Instituto Nosso Olhar - karol</td>
+          <td>23/10/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>31/10/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169523" target="_blank" rel="noopener" title="Abrir deal 169523 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">169452</td>
+          <td class="deal-title">Funcional Corp - Kely Fusteros</td>
+          <td>22/10/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>27/10/2025</td>
+          <td>27/10/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=email&amp;utm_medium=convite-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=email&amp;utm_medium=convite-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_sourc…</a></td>
+          <td>R$ 2.990,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/169452" target="_blank" rel="noopener" title="Abrir deal 169452 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">168636</td>
+          <td class="deal-title">[Inst.] X Conexões Consultoria - José Trabulo Jr</td>
+          <td>15/10/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>15/10/2025</td>
+          <td>—</td>
+          <td class="mono">google</td>
+          <td class="mono">competidor</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=search_Institucional_Brasil&amp;utm_content=Institucional_Buzzmonitor&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Institucional][Brasil]&amp;utm_content=Institucional_Buzzmonitor&amp;utm_adid=756881725136&amp;utm_term=buzzmonitor&amp;utm_matchtype=e&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=Cj0KCQjwjL3HBhCgARIsAPUg7a76DbRmaLaPWCG_fiYkEuJkMWaxX_c7AAK6ioMrzhIDYucv4DzAsq4aAh8bEALw_wcB&amp;gad_source=1" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=search_Institucional_Brasil&amp;utm_content=Institucional_Buzzmonitor&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=[Search][Institucional][Brasil]&amp;utm_content=Institucional_Buzzmonitor&amp;utm_adid=756881725136&amp;utm_term=buzzmonitor&amp;utm_matchtype=e&amp;utm_device=c&amp;utm_network=g&amp;utm_adname=&amp;gclid=Cj0KCQjwjL3HBhCgARIsAPUg7a76DbRmaLaPWCG_fiYkEuJkMWaxX_c7AAK6ioMrzhIDYucv4DzAsq4aAh8bEALw_wcB&amp;gad_source=1">https://conteudo.buzzmonitor.com.br/buzzmonitor-ia?utm_campaign=searc…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/168636" target="_blank" rel="noopener" title="Abrir deal 168636 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">167867</td>
+          <td class="deal-title">[8] BRP Midia agencia  - Bartira Pontes</td>
+          <td>08/10/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>31/10/2025</td>
+          <td>09/10/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=email&amp;utm_medium=convite-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_source=email&amp;utm_medium=convite-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/masterclass-trends-2026?utm_sourc…</a></td>
+          <td>R$ 1.600,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/167867" target="_blank" rel="noopener" title="Abrir deal 167867 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">166108</td>
+          <td class="deal-title">[Monit.] Fluencypass - Giulianna Martins Trivellato</td>
+          <td>18/09/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>22/09/2025</td>
+          <td>23/09/2025</td>
+          <td class="mono">email</td>
+          <td class="mono">repique2</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/webinar-relatorios-estrategicos?utm_source=email&amp;utm_content=repique2" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/webinar-relatorios-estrategicos?utm_source=email&amp;utm_content=repique2">https://conteudo.buzzmonitor.com.br/webinar-relatorios-estrategicos?u…</a></td>
+          <td>R$ 4.500,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/166108" target="_blank" rel="noopener" title="Abrir deal 166108 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">160972</td>
+          <td class="deal-title">[FEcom25 Evento] Maria  - L3ft</td>
+          <td>30/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>22/09/2025</td>
+          <td class="mono">apresentacao-webinar</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_source=apresentacao-webinar&amp;utm_medium=qr-code" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_source=apresentacao-webinar&amp;utm_medium=qr-code">https://conteudo.buzzmonitor.com.br/oferta-masterclass-trends?utm_sou…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/160972" target="_blank" rel="noopener" title="Abrir deal 160972 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">161009</td>
+          <td class="deal-title">[FEcom25 Evento] Victor Pereira - Hubify</td>
+          <td>30/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>11/09/2025</td>
+          <td class="mono">email</td>
+          <td class="mono">convite-2</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/gestao-de-crises-na-era-digital/?utm_source=email&amp;utm_medium=base-crises&amp;utm_content=convite-2" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/gestao-de-crises-na-era-digital/?utm_source=email&amp;utm_medium=base-crises&amp;utm_content=convite-2">https://conteudo.buzzmonitor.com.br/gestao-de-crises-na-era-digital/?…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/161009" target="_blank" rel="noopener" title="Abrir deal 161009 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">164463</td>
+          <td class="deal-title">Pitzi</td>
+          <td>02/09/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>09/09/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/164463" target="_blank" rel="noopener" title="Abrir deal 164463 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">164685</td>
+          <td class="deal-title">iGoal Media Group</td>
+          <td>04/09/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>09/09/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/webinar-black-friday?utm_source=email+&amp;utm_medium=convite1" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/webinar-black-friday?utm_source=email+&amp;utm_medium=convite1">https://conteudo.buzzmonitor.com.br/webinar-black-friday?utm_source=e…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/164685" target="_blank" rel="noopener" title="Abrir deal 164685 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">158802</td>
+          <td class="deal-title">[10] Grupo Salta - Cynthia</td>
+          <td>10/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>04/09/2025</td>
+          <td class="mono">meta</td>
+          <td class="mono">AD 11 - Bruno</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/checklist-anticrise?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BChecklist-Anticrise%5D&amp;utm_content=AD+11+-+Bruno&amp;adset=Teste+-+%5BP%C3%BAblico+Frio+-+Interesses+An%C3%A1lise%5D&amp;campaignid=6855078524916&amp;adsetid=6859808009516&amp;adid=6859808009316&amp;utm_id=6855078524916_v2_s04&amp;utm_term=6859808009516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGPSx34XQBp0DZdOcD_eHzt5TNn3Dhcb9JCTLRbdd50Lc8h0jphhFniALRfFu-D3WEMwHc_aem_etEX9SbaKTYnAdC9ok73bA" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/checklist-anticrise?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BChecklist-Anticrise%5D&amp;utm_content=AD+11+-+Bruno&amp;adset=Teste+-+%5BP%C3%BAblico+Frio+-+Interesses+An%C3%A1lise%5D&amp;campaignid=6855078524916&amp;adsetid=6859808009516&amp;adid=6859808009316&amp;utm_id=6855078524916_v2_s04&amp;utm_term=6859808009516&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGPSx34XQBp0DZdOcD_eHzt5TNn3Dhcb9JCTLRbdd50Lc8h0jphhFniALRfFu-D3WEMwHc_aem_etEX9SbaKTYnAdC9ok73bA">https://conteudo.buzzmonitor.com.br/checklist-anticrise?utm_source=me…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/158802" target="_blank" rel="noopener" title="Abrir deal 158802 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">163159</td>
+          <td class="deal-title">[] Aché Laboratórios - Ana Paula Sales</td>
+          <td>19/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>20/08/2025</td>
+          <td>02/09/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 12.900,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/163159" target="_blank" rel="noopener" title="Abrir deal 163159 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">162803</td>
+          <td class="deal-title">[] Esporte Clube Pinheiros - Stefani Pitanga</td>
+          <td>14/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>20/08/2025</td>
+          <td>02/09/2025</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://buzzmonitor.com.br/blog/categoria/atendimento/" target="_blank" rel="noopener" title="https://buzzmonitor.com.br/blog/categoria/atendimento/">https://buzzmonitor.com.br/blog/categoria/atendimento/</a></td>
+          <td>R$ 4.000,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/162803" target="_blank" rel="noopener" title="Abrir deal 162803 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">160821</td>
+          <td class="deal-title">[FEcom25 Evento] Marielena - CRP Mango</td>
+          <td>29/07/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>01/09/2025</td>
+          <td>—</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/160821" target="_blank" rel="noopener" title="Abrir deal 160821 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">161836</td>
+          <td class="deal-title">[Monit.] Grupo Zanellato - Fortunato de Mello Araujo</td>
+          <td>05/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>—</td>
+          <td>28/08/2025</td>
+          <td class="mono">linkedin</td>
+          <td class="mono">karol-oliveira</td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil/?utm_source=linkedin&amp;utm_medium=cpc&amp;utm_campaign=webinar_ago25_marca-anti-fragil&amp;utm_content=karol-oliveira" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil/?utm_source=linkedin&amp;utm_medium=cpc&amp;utm_campaign=webinar_ago25_marca-anti-fragil&amp;utm_content=karol-oliveira">https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil/?utm_sou…</a></td>
+          <td>R$ 2.500,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/161836" target="_blank" rel="noopener" title="Abrir deal 161836 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">163097</td>
+          <td class="deal-title">[] Rank - Luana Gonçalves</td>
+          <td>18/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>20/08/2025</td>
+          <td>20/08/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 3.600,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/163097" target="_blank" rel="noopener" title="Abrir deal 163097 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">160969</td>
+          <td class="deal-title">[FEcom25 Evento] Maria  - L3ft</td>
+          <td>30/07/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>19/08/2025</td>
+          <td>—</td>
+          <td class="mono">comercial</td>
+          <td class="mono">athaide-martins</td>
+          <td class="url-cell"><span class="muted">—</span></td>
+          <td>R$ 1.790,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/160969" target="_blank" rel="noopener" title="Abrir deal 160969 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">162266</td>
+          <td class="deal-title">Inxell Tecnologia Criativa Ltda- Marcelo Vieira</td>
+          <td>10/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>12/08/2025</td>
+          <td>13/08/2025</td>
+          <td class="mono">bd_buzzmonitor</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzz-talks-preparacao-para-a-black-friday?utm_source=bd_buzzmonitor&amp;utm_medium=convite_individual&amp;utm_campaign=brunofilho" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzz-talks-preparacao-para-a-black-friday?utm_source=bd_buzzmonitor&amp;utm_medium=convite_individual&amp;utm_campaign=brunofilho">https://conteudo.buzzmonitor.com.br/buzz-talks-preparacao-para-a-blac…</a></td>
+          <td>R$ 1.800,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/162266" target="_blank" rel="noopener" title="Abrir deal 162266 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">162349</td>
+          <td class="deal-title">[Analy.] Japauto - MARCO AURELIO</td>
+          <td>11/08/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>—</td>
+          <td>12/08/2025</td>
+          <td class="mono">google</td>
+          <td class="mono">relatorios_social_media</td>
+          <td class="url-cell"><a href="https://buzzmonitor.com.br/blog/4-metricas-para-descobrir-o-crescimento-de-seus-fas-e-seguidores-nas-redes-sociais/" target="_blank" rel="noopener" title="https://buzzmonitor.com.br/blog/4-metricas-para-descobrir-o-crescimento-de-seus-fas-e-seguidores-nas-redes-sociais/">https://buzzmonitor.com.br/blog/4-metricas-para-descobrir-o-crescimen…</a></td>
+          <td>R$ 2.200,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/162349" target="_blank" rel="noopener" title="Abrir deal 162349 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">160471</td>
+          <td class="deal-title">[Monit.] Toro Investimentos - Luiz Gustavo Santos</td>
+          <td>25/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>05/08/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-2&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/160471" target="_blank" rel="noopener" title="Abrir deal 160471 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">158085</td>
+          <td class="deal-title">[10] Moinho Globo - Francyelli</td>
+          <td>01/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>—</td>
+          <td>26/07/2025</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil">https://conteudo.buzzmonitor.com.br/webinar-marca-antifragil</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/158085" target="_blank" rel="noopener" title="Abrir deal 158085 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">158755</td>
+          <td class="deal-title">[Monit.] CNP Seguros Holding Brasil - Eugênio Neto</td>
+          <td>09/07/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>24/07/2025</td>
+          <td>—</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=email&amp;utm_medium=disparo-1&amp;utm_campaign=botao">https://conteudo.buzzmonitor.com.br/report-trends-2026?utm_source=ema…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/158755" target="_blank" rel="noopener" title="Abrir deal 158755 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">158346</td>
+          <td class="deal-title">[] Driven CX - MILENA FUJISHITA</td>
+          <td>03/07/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-aberto">Aberto</span></td>
+          <td>10/07/2025</td>
+          <td>10/07/2025</td>
+          <td class="mono">email</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises">https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-…</a></td>
+          <td>R$ 4.800,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/158346" target="_blank" rel="noopener" title="Abrir deal 158346 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">156568</td>
+          <td class="deal-title">[Inst.] Bauny cosméticos - Dayara Encenha</td>
+          <td>12/06/2025</td>
+          <td><span class="badge badge-stage">Proposta</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>04/07/2025</td>
+          <td>04/07/2025</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises">https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-…</a></td>
+          <td>R$ 2.640,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/156568" target="_blank" rel="noopener" title="Abrir deal 156568 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">157701</td>
+          <td class="deal-title">[Monit.] MARCIA MARTINS SOCIEDADE INDIVIDUAL DE ADVOCACIA - MARCIA ELIZABETE MARTINS</td>
+          <td>26/06/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>27/06/2025</td>
+          <td>—</td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="mono"><span class="muted">—</span></td>
+          <td class="url-cell"><a href="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises" target="_blank" rel="noopener" title="https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-de-crises">https://conteudo.buzzmonitor.com.br/buzz-talks-ia-no-controle-gestao-…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/157701" target="_blank" rel="noopener" title="Abrir deal 157701 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+        <tr>
+          <td class="deal-id">154634</td>
+          <td class="deal-title">[9] Fundação FEAC - Camila</td>
+          <td>30/05/2025</td>
+          <td><span class="badge badge-stage">Reuniao Realizada</span></td>
+          <td><span class="badge badge-perdido">Perdido</span></td>
+          <td>25/06/2025</td>
+          <td>—</td>
+          <td class="mono">meta</td>
+          <td class="mono">WEB MCP - Ad04 - Cafezinho</td>
+          <td class="url-cell"><a href="https://webinar.buzzmonitor.com/mcp-para-social-listening?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BWebinar-MCP-para-social-listening%5D&amp;utm_content=WEB%20MCP%20-%20Ad04%20-%20Cafezinho&amp;adset=%5BInteresses%20Intelig%C3%AAncia%20Artificial%20%2B%20MKT%20Adv%2B%5D&amp;campaignid=6980046387116&amp;adsetid=6988694421916&amp;adid=6988694421716&amp;utm_id=6988694421916_v2_s10_e7636&amp;utm_term=6988694421916&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWy7ATaRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAad6gjCZ30l0eug9jvCQsECyxQYAEWiI0Z83L-3kawAwCAh3pmsz6GBNeK8Gng_aem_5mFg1nQIA6ttsqiX3o8_Dw#inscricao" target="_blank" rel="noopener" title="https://webinar.buzzmonitor.com/mcp-para-social-listening?utm_source=meta&amp;utm_medium=Instagram_Feed&amp;utm_campaign=%5BBR%5D%5BCONVERS%C3%83O%5D%5BWebinar-MCP-para-social-listening%5D&amp;utm_content=WEB%20MCP%20-%20Ad04%20-%20Cafezinho&amp;adset=%5BInteresses%20Intelig%C3%AAncia%20Artificial%20%2B%20MKT%20Adv%2B%5D&amp;campaignid=6980046387116&amp;adsetid=6988694421916&amp;adid=6988694421716&amp;utm_id=6988694421916_v2_s10_e7636&amp;utm_term=6988694421916&amp;fbclid=PAZXh0bgNhZW0BMABhZGlkAAAGWy7ATaRzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAad6gjCZ30l0eug9jvCQsECyxQYAEWiI0Z83L-3kawAwCAh3pmsz6GBNeK8Gng_aem_5mFg1nQIA6ttsqiX3o8_Dw#inscricao">https://webinar.buzzmonitor.com/mcp-para-social-listening?utm_source=…</a></td>
+          <td>R$ 0,00</td>
+          <td><a class="btn-ac" href="https://buzzmonitor.activehosted.com/app/deals/154634" target="_blank" rel="noopener" title="Abrir deal 154634 no ActiveCampaign">Abrir no AC ↗</a></td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div>
+        <h2>Ranking — UTM Source</h2>
+        <div class="panel"><div class="table-scroll">
+          <table>
+            <thead><tr>
+              <th>#</th><th>UTM Source</th>
+              <th>Total</th><th>RR</th><th>Prop.</th>
+              <th>Aberto</th><th>Perd.</th>
+              <th>% Prop.</th>
+            </tr></thead>
+            <tbody>
+        <tr>
+          <td class="rank">#1</td>
+          <td class="mono">email</td>
+          <td>24</td>
+          <td>22</td>
+          <td><b>12</b></td>
+          <td>12</td>
+          <td>12</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#2</td>
+          <td class="mono">meta</td>
+          <td>24</td>
+          <td>20</td>
+          <td><b>9</b></td>
+          <td>16</td>
+          <td>8</td>
+          <td><b>37.5%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#3</td>
+          <td class="mono">(vazio)</td>
+          <td>10</td>
+          <td>6</td>
+          <td><b>7</b></td>
+          <td>3</td>
+          <td>7</td>
+          <td><b>70.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#4</td>
+          <td class="mono">google</td>
+          <td>4</td>
+          <td>2</td>
+          <td><b>2</b></td>
+          <td>3</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#5</td>
+          <td class="mono">chatgpt.com</td>
+          <td>3</td>
+          <td>3</td>
+          <td><b>2</b></td>
+          <td>1</td>
+          <td>2</td>
+          <td><b>66.7%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#6</td>
+          <td class="mono">linkedin</td>
+          <td>2</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>2</td>
+          <td>0</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#7</td>
+          <td class="mono">comercial</td>
+          <td>2</td>
+          <td>2</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#8</td>
+          <td class="mono">apresentacao-webinar</td>
+          <td>2</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#9</td>
+          <td class="mono">ig</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#10</td>
+          <td class="mono">bd_buzzmonitor</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#11</td>
+          <td class="mono">pos-webinar</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr></tbody>
+          </table>
+        </div></div>
+      </div>
+      <div>
+        <h2>Ranking — UTM Content</h2>
+        <div class="panel"><div class="table-scroll">
+          <table>
+            <thead><tr>
+              <th>#</th><th>UTM Content</th>
+              <th>Total</th><th>RR</th><th>Prop.</th>
+              <th>Aberto</th><th>Perd.</th>
+              <th>% Prop.</th>
+            </tr></thead>
+            <tbody>
+        <tr>
+          <td class="rank">#1</td>
+          <td class="mono">(vazio)</td>
+          <td>33</td>
+          <td>27</td>
+          <td><b>20</b></td>
+          <td>13</td>
+          <td>20</td>
+          <td><b>60.6%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#2</td>
+          <td class="mono">POLÍTICA 3 - Muito antes da urna</td>
+          <td>4</td>
+          <td>4</td>
+          <td><b>1</b></td>
+          <td>3</td>
+          <td>1</td>
+          <td><b>25.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#3</td>
+          <td class="mono">RMKT 10 - Marielle Ei gestor de marketing</td>
+          <td>3</td>
+          <td>2</td>
+          <td><b>1</b></td>
+          <td>2</td>
+          <td>1</td>
+          <td><b>33.3%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#4</td>
+          <td class="mono">RMKT 2 - Vozes da minha cabeça (vídeo)</td>
+          <td>2</td>
+          <td>2</td>
+          <td><b>1</b></td>
+          <td>2</td>
+          <td>0</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#5</td>
+          <td class="mono">athaide-martins</td>
+          <td>2</td>
+          <td>2</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#6</td>
+          <td class="mono">RMKT LIST 2 - Descubra quem fala</td>
+          <td>2</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#7</td>
+          <td class="mono">Institucional_Buzzmonitor</td>
+          <td>2</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>50.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#8</td>
+          <td class="mono">WEB APP - Ad06 - Loira</td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#9</td>
+          <td class="mono">RMKT 14 - Falando mal da marca</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#10</td>
+          <td class="mono">RMKT 5 - UGC fofoca (vídeo)</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#11</td>
+          <td class="mono">disparo3</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#12</td>
+          <td class="mono">disparo-1</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#13</td>
+          <td class="mono">AD 1 - Vídeo Bruno</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#14</td>
+          <td class="mono">karol-oliveira</td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#15</td>
+          <td class="mono">relatorios_social_media</td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#16</td>
+          <td class="mono">repique2</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>1</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#17</td>
+          <td class="mono">convite-2</td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>1</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#18</td>
+          <td class="mono">AD 11 - Bruno</td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>1</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>100.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#19</td>
+          <td class="mono">RMKT 4 - UGC Dog (vídeo)</td>
+          <td>2</td>
+          <td>2</td>
+          <td><b>0</b></td>
+          <td>2</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#20</td>
+          <td class="mono">cta-repique2</td>
+          <td>2</td>
+          <td>2</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#21</td>
+          <td class="mono">RMKT 13 - Trend Será</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#22</td>
+          <td class="mono">cta-vaga-gratuita</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#23</td>
+          <td class="mono">RMKT 7 - UGC computador</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#24</td>
+          <td class="mono">disparo-3</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#25</td>
+          <td class="mono">marcos-santos</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#26</td>
+          <td class="mono">Maysa-Pinto</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#27</td>
+          <td class="mono">competidor</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td>0</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#28</td>
+          <td class="mono">PLAY - Líder</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#29</td>
+          <td class="mono">AD 1 - Cave Man</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#30</td>
+          <td class="mono">AD04</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>0.0%</b></td>
+        </tr>
+
+        <tr>
+          <td class="rank">#31</td>
+          <td class="mono">WEB MCP - Ad04 - Cafezinho</td>
+          <td>1</td>
+          <td>1</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td>1</td>
+          <td><b>0.0%</b></td>
+        </tr></tbody>
+          </table>
+        </div></div>
+      </div>
+    </section>
+  </div>
+
+<script>
+(function(){
+  const q = document.getElementById('q');
+  const fStage = document.getElementById('fStage');
+  const fStatus = document.getElementById('fStatus');
+  const tbody = document.querySelector('#tbl tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const countLabel = document.getElementById('countLabel');
+  function apply(){
+    const term = (q.value || '').toLowerCase().trim();
+    const stg = fStage.value;
+    const sta = fStatus.value;
+    let n = 0;
+    rows.forEach(tr => {
+      const txt = tr.textContent.toLowerCase();
+      const stageTd = tr.children[3].textContent.trim();
+      const statusTd = tr.children[4].textContent.trim();
+      const matchTerm = !term || txt.includes(term);
+      const matchStg = !stg || stageTd === stg;
+      const matchSta = !sta || statusTd === sta;
+      const show = matchTerm && matchStg && matchSta;
+      tr.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    countLabel.textContent = n + ' deals';
+  }
+  q.addEventListener('input', apply);
+  fStage.addEventListener('change', apply);
+  fStatus.addEventListener('change', apply);
+})();
+</script>
+</body>
+</html>
