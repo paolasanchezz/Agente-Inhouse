@@ -2,8 +2,8 @@
 name: social-plan
 description: Gera planejamento editorial mensal para as redes sociais da Buzzmonitor (LinkedIn, Instagram, Facebook) com pesquisa de perfis de referência, tendências virais do nicho e calendário detalhado organizado por rede. Publicado no Notion em "Redes Sociais".
 argument-hint: "[mes] — ex: junho | junho 2026 | 2026-06 (default: mês atual)"
-allowed-tools: WebFetch, WebSearch, Read, Write, Edit, Agent, Bash, Glob, Grep, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-database, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-view
-version: 1.0.0
+allowed-tools: WebFetch, WebSearch, Read, Write, Edit, Agent, Bash, Glob, Grep, AskUserQuestion, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-database, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-view
+version: 2.0.0
 ---
 
 # Skill: Planejamento Editorial de Redes Sociais — Buzzmonitor
@@ -20,6 +20,27 @@ Faça o parsing de `$ARGUMENTS`:
   - Calcular `{YYYYMM}` = formato compacto (ex: "2026-06")
   - Calcular as datas do mês: primeiro dia, último dia, dias da semana
 
+## Passo 0.5: Carregar relatório de performance do mês anterior
+
+Antes da pesquisa, **tente ler** o relatório de performance do mês anterior pra alimentar o planejamento com aprendizado real:
+
+- Caminho: `social-media/buzzmonitor/{YYYYMM_ANTERIOR}/analytics/relatorio.md`
+- Se existir: lê e extrai (a) top 3 posts, (b) bottom 3 posts, (c) formato vencedor/perdedor, (d) padrões temáticos identificados, (e) recomendações pro próximo mês.
+- Se não existir: registra essa lacuna e segue (o planejamento fica mais especulativo, vale citar isso no resumo estratégico).
+
+Esse aprendizado **prevalece** sobre tendências externas quando conflitarem — dado próprio da marca > opinião de mercado.
+
+## Passo 0.7: Perguntar temas específicos do mês
+
+**Obrigatório antes de gerar calendário**. Use `AskUserQuestion` com chips clicáveis pra coletar 4 entradas:
+
+1. **Tem novidade do mês?** (lançamento, feature, integração, evento, parceria)
+2. **Tem case de sucesso recente?** (cliente, número, resultado de campanha)
+3. **Tem dashboard / análise quente pra usar?** (Buzz Pill candidato)
+4. **Datas sazonais relevantes pro mês?** (sazonal, comemorativa, regional)
+
+Cada entrada confirmada **vira pelo menos 1 post** no calendário gerado. Se ela responder "nenhum" em alguma, segue, mas registra no relatório que aquela alavanca estava vazia (transparência de decisão).
+
 ## Passo 1: Carregar Contexto de Marca
 
 Leia os seguintes arquivos:
@@ -27,6 +48,7 @@ Leia os seguintes arquivos:
 1. `brand/buzzmonitor/brand-manifest.json` — tom de voz, pilares de messaging, público-alvo
 2. `conhecimento/produto/buzzmonitor/buzzmonitor.md` — produto, features, diferenciais, casos de uso
 3. `conhecimento/produto/buzzmonitor/concorrentes.md` — mapa competitivo
+4. `conhecimento/editorial/regras-anti-ia.md` — hooks e temas do calendário são texto publicável; valem todas as regras (tolerância zero a em-dash `—`, veto a antítese-por-negação em série)
 
 Extraia e guarde:
 - **PilaresDeMessaging**: lista de `voice.messagingPillars`
@@ -125,13 +147,13 @@ Identifique temas específicos para {MES_NOME} {ANO}:
 
 ### 3.3 Formato por Rede
 
-Com base na pesquisa, defina os formatos prioritários:
+**REGRA**: o calendário inclui **apenas formatos estáticos** — carrossel, imagem, texto longo (LinkedIn), infográfico. **Vídeos (Reels, vídeo nativo, vídeo curto) NÃO entram no calendário** — eles viram seção separada "Sugestões de vídeos pra produzir" no fim do planejamento. Por quê: produção de vídeo demanda logística (gravar, editar, aprovar) que não cabe no ciclo semanal — se entrar no calendário e não ficar pronto, o dia fica desfalcado.
 
-| Rede | Formatos Prioritários | Melhor Horário (estimado) | Cadência |
+| Rede | Formatos no calendário | Melhor Horário (estimado) | Cadência |
 |------|----------------------|--------------------------|----------|
-| LinkedIn | Carrossel, texto longo, infográfico, vídeo nativo | Ter-Qui 8h-10h | 3x/semana |
-| Instagram | Carrossel, Reels, Stories, post estático | Ter-Sex 11h-13h | 3x/semana |
-| Facebook | Post com imagem, vídeo curto, link com preview | Ter-Qui 12h-14h | 3x/semana |
+| LinkedIn | Carrossel, texto longo, infográfico | Ter-Qui 8h-10h | 3x/semana |
+| Instagram | Carrossel, post estático | Ter-Sex 11h-13h | 3x/semana |
+| Facebook | Post com imagem, link com preview | Ter-Qui 12h-14h | 3x/semana |
 
 ## Passo 4: Gerar Calendário Editorial Completo
 
@@ -150,8 +172,9 @@ Para cada post, preencha todos os campos abaixo:
 ### Post [N] — [Rede] — [Data sugerida]
 - **Pilar**: [nome do pilar]
 - **Tema**: [tema específico e descritivo]
-- **Formato**: Carrossel | Reels | Estático | Vídeo curto | Texto longo | Infográfico | Stories | Poll
+- **Formato**: Carrossel | Estático | Texto longo (LinkedIn) | Infográfico — **NÃO usar vídeo aqui** (ver seção "Sugestões de vídeos pra produzir")
 - **Hook / Primeira linha**: [frase que para o scroll — máx 15 palavras]
+- **Justificativa**: [1-2 frases ligando este post ao contexto: aprendizado do mês anterior (do relatorio.md), alavanca disponível (novidade/case/dashboard/sazonal coletado no Passo 0.7), hipótese a testar, sazonalidade. Exemplo: "Carrossel domina em maio (avg 1.089 views vs 469 imagem) — replicar formato vencedor."]
 - **Briefing**: [3-5 bullets descrevendo o conteúdo, ângulo, pontos principais e referências do blog quando aplicável]
 - **Por que engaja**: [1 frase — qual gatilho: curiosidade, utilidade, dado surpreendente, polêmica, identificação, humor]
 - **Tipo**: Fixo | Oportunidade
@@ -248,7 +271,20 @@ Estrutura da página no Notion:
 
 ---
 
-*Planejamento gerado pelo Agente Inhouse (social-plan v1.1.0)*
+## 🎬 Sugestões de vídeos pra produzir (NÃO entram no calendário)
+
+> Vídeos demandam logística pesada (gravar, editar, aprovar). Por isso ficam fora do calendário programado — não desfalcar dia se não ficar pronto. Estas são ideias pra a Catharina produzir no ritmo dela e encaixar em planejamentos futuros quando estiver pronto.
+
+[3-5 ideias de vídeo dialogando com o mês. Cada item segue o formato:]
+
+**[N]. [Título da ideia]** — [Reel curto / Reel médio / Stories série]
+- **Resumo**: 1-2 frases descrevendo o vídeo
+- **Por quê**: justificativa baseada em aprendizado de performance ou oportunidade do mês
+- **Logística**: o que precisa pra gravar (quem, onde, duração estimada)
+
+---
+
+*Planejamento gerado pelo Agente Inhouse (social-plan)*
 *Para criar a copy de qualquer post, use: `/copy-criar buzzmonitor brasil [tipo] [estagio] "[tema do post]"`*
 ```
 
@@ -267,9 +303,10 @@ Crie uma database como subpágina da página do planejamento (usando o `page_id`
 | `Tema` | title | — |
 | `Data` | date | — |
 | `Rede` | select | LinkedIn, Instagram, Facebook |
-| `Formato` | select | Carrossel, Reels, Estático, Vídeo curto, Texto longo, Infográfico, Stories, Poll |
+| `Formato` | select | Carrossel, Estático, Texto longo, Infográfico — **sem vídeo** (vídeos viram seção separada) |
 | `Pilar` | select | Educação & Insights, Produto & Cases, Comunidade & Debate, Bastidores & Equipe |
 | `Hook` | rich_text | — |
+| `Justificativa` | rich_text | — (regra obrigatória: 1-2 frases ligando o post ao aprendizado de mês anterior / alavanca disponível / sazonalidade) |
 | `Tipo` | select | Fixo, Oportunidade |
 
 Use `notion-create-database` com o `page_id` da página principal como parent.
@@ -284,7 +321,8 @@ Campos a preencher por entrada:
 - **Tema** (title): tema principal do post — curto e descritivo (ex: "Social listening proativo: 5 casos reais")
 - **Data** (date): data exata sugerida para publicação no formato `YYYY-MM-DD`
 - **Rede** (select): LinkedIn | Instagram | Facebook
-- **Formato** (select): formato do post
+- **Formato** (select): formato do post (carrossel | estático | texto longo | infográfico — **nunca vídeo**, esses vão em seção textual à parte)
+- **Justificativa** (rich_text — adicionar à database se ainda não tiver): 1-2 frases ligando o post ao contexto (regra obrigatória do calendário)
 - **Pilar** (select): pilar de conteúdo correspondente
 - **Hook** (rich_text): o hook / primeira linha do post (máx 100 chars)
 - **Tipo** (select): Fixo | Oportunidade

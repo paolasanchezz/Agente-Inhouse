@@ -1,0 +1,28 @@
+{
+  "_comment": "Arquitetura: 2 templates únicos do Canva como repositórios eternos de layouts (Estáticos + Carrosséis). Cada papel suporta múltiplas variantes (array de números de página) pra skill /social-canva alternar entre eles e evitar slides idênticos seguidos.",
+  "_status": "Brand kit criado · Template carrossel encontrado · Páginas + dataset fields pendentes",
+  "brand_kit_id": "kAHMXCYNo9Y",
+  "brand_kit_name": "Buzzmonitor",
+
+  "carrossel_template": {
+    "id": "EAHMXaCZdd4",
+    "name": "Carrosséis Buzzmonitor (renomear no Canva se quiser)",
+    "_status_dataset": "VAZIO — configurar dataset fields em cada página",
+    "pages": {
+      "cover": [],
+      "narrativa": [],
+      "cta": []
+    },
+    "_pages_comment": "Cada papel aceita array de números de página. Ex: cover: [1, 4] significa que páginas 1 e 4 são variantes de capa, e a skill alterna entre elas pra evitar repetição visual entre carrosséis."
+  },
+
+  "estaticos_template": {
+    "id": null,
+    "name": "Estáticos Buzzmonitor",
+    "_status": "Catharina vai criar este template separado",
+    "pages": {
+      "default": []
+    },
+    "_pages_comment": "Cada página = 1 layout completo de estático (carta de citação, save-the-date, anúncio simples, etc.). Skill escolhe por contexto ou pergunta."
+  }
+}

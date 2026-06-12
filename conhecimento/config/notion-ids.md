@@ -13,6 +13,7 @@
 | `entregas` | `33b3934026fd80ceb414dd22cb7dbe1f` | Pasta **Entregas** — copy, traducao, landing page, relatorios meta-ads |
 | `newsletter` | `33c3934026fd80778073f1868c5bf11c` | Pagina raiz **Newsletter** — publicacoes semanais por marca |
 | `redes-sociais` | `3603934026fd8158876dd38d432aceef` | Pagina raiz **Redes Sociais** — planejamentos editoriais mensais (skill social-plan) |
+| `redes-sociais-relatorios` | `37d3934026fd81048ee1d3749aa21851` | Subpagina **Relatórios de Performance** dentro de Redes Sociais — outputs da skill social-analytics |
 
 ---
 
@@ -37,6 +38,7 @@ Sempre que uma skill precisar de um `parent` id para `mcp__*__notion-create-page
 | `bunzzai` | `entregas` |
 | `news-gerar`, `news-pesquisar`, `news-pipeline` | `newsletter` |
 | `social-plan` | `redes-sociais` |
+| `social-analytics` | `redes-sociais-relatorios` |
 
 ---
 

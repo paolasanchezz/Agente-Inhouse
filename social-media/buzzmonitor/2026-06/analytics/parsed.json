@@ -1,0 +1,925 @@
+{
+  "source_dir": "social-media\\buzzmonitor\\2026-06\\analytics\\raw",
+  "posts": [
+    {
+      "post_id": "18224802853317642",
+      "account_id": "17841407271729905",
+      "username": "buzzmonitorbr",
+      "account_name": "Buzzmonitor Brasil",
+      "description": "Uma ação planejada por meses. Uma crise criada em segundos.\n\nNo amistoso Brasil x Panamá, uma ativação para a Copa de 2026 acabou sendo interpretada de outra forma pela torcida, e virou um case sobre percepção de marca.\n\nPorque, no marketing, a mensagem é da marca. Mas o significado é do público.\n\n💊 Este é mais um insight das Buzz Pills da Buzzmonitor: análises inteligentes que transformam conversas e tendências das redes sociais em decisões mais estratégicas.",
+      "duration_s": 0.0,
+      "published_at": "06/09/2026 13:27",
+      "permalink": "https://www.instagram.com/p/DZYOenuFDkd/",
+      "type": "Carrossel do Instagram",
+      "views": 525,
+      "reach": 236,
+      "likes": 14,
+      "shares": 6,
+      "follows_from_post": 0,
+      "comments": 1,
+      "saves": 2,
+      "engagement": 23
+    },
+    {
+      "post_id": "18375171658204968",
+      "account_id": "17841407271729905",
+      "username": "buzzmonitorbr",
+      "account_name": "Buzzmonitor Brasil",
+      "description": "No webinar “MCP para Social Listening na prática”, vamos mostrar como conectar Buzzmonitor, Claude e MCP para transformar dados em análises, insights e prevenção de crises de forma muito mais inteligente.\n\n💡 Descubra como a integração com agentes de IA está mudando a forma de monitorar conversas, identificar riscos e acelerar decisões estratégicas.\n\n📅 16 de junho\n⏰ 11h (Brasília)\n🎟️ Gratuito e ao vivo\n\n🔗 Link na bio",
+      "duration_s": 0.0,
+      "published_at": "06/01/2026 14:43",
+      "permalink": "https://www.instagram.com/p/DZDwlr6pAQ_/",
+      "type": "Imagem do Instagram",
+      "views": 645,
+      "reach": 342,
+      "likes": 34,
+      "shares": 1,
+      "follows_from_post": 2,
+      "comments": 1,
+      "saves": 3,
+      "engagement": 39
+    },
+    {
+      "post_id": "18076498427285977",
+      "account_id": "17841407271729905",
+      "username": "buzzmonitorbr",
+      "account_name": "Buzzmonitor Brasil",
+      "description": "📈 Como transformar uma campanha em inteligência de marca?\n\nA Bionatural conquistou 2 milhões de seguidores em apenas 2 dias e, com a Buzzmonitor, acompanhou milhares de reações em tempo real para transformar conversas em decisões estratégicas.\n\nQuer resultados como esses na sua empresa? Conheça a Buzzmonitor! 😉",
+      "duration_s": 0.0,
+      "published_at": "06/11/2026 14:05",
+      "permalink": "https://www.instagram.com/p/DZdcbMzlJMQ/",
+      "type": "Carrossel do Instagram",
+      "views": 505,
+      "reach": 256,
+      "likes": 14,
+      "shares": 4,
+      "follows_from_post": 1,
+      "comments": 0,
+      "saves": 1,
+      "engagement": 19
+    }
+  ],
+  "aggregates": {
+    "alcance": {
+      "metric": "Alcance",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 14411.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 12584.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 11227.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 14275.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 13749.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 15206.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 15401.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 12985.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 12636.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 17792.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 21422.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 20043.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 16865.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 12740.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 12354.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 12143.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 9394.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 10263.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 12387.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 15707.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 13730.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 14277.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 10941.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 11459.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 12379.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 15066.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 18243.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 25410.0
+        }
+      ]
+    },
+    "cliques_link": {
+      "metric": "Cliques no link do Instagram",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 174.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 165.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 145.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 181.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 165.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 171.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 176.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 193.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 141.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 197.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 287.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 261.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 194.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 166.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 128.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 166.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 136.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 174.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 196.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 189.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 202.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 178.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 139.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 169.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 180.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 219.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 235.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 258.0
+        }
+      ]
+    },
+    "interacoes": {
+      "metric": "Interações com o conteúdo",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 148.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 166.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 80.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 127.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 148.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 137.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 360.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 156.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 146.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 186.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 203.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 257.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 154.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 151.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 182.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 94.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 82.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 123.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 136.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 157.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 152.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 128.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 95.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 133.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 133.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 139.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 180.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 166.0
+        }
+      ]
+    },
+    "seguidores_novos": {
+      "metric": "Seguidores no Instagram",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 22.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 22.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 20.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 27.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 29.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 14.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 49.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 21.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 17.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 34.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 38.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 36.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 28.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 34.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 19.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 27.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 24.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 34.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 28.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 44.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 33.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 29.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 22.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 33.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 31.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 32.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 32.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 20.0
+        }
+      ]
+    },
+    "visitas_perfil": {
+      "metric": "Visitas ao perfil do Instagram",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 90.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 84.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 35.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 67.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 67.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 80.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 208.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 101.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 73.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 72.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 92.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 100.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 83.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 63.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 65.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 66.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 59.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 80.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 72.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 85.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 74.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 81.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 70.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 64.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 74.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 77.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 103.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 85.0
+        }
+      ]
+    },
+    "visualizacoes": {
+      "metric": "Visualizações",
+      "data": [
+        {
+          "date": "2026-05-14",
+          "value": 20112.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 18542.0
+        },
+        {
+          "date": "2026-05-16",
+          "value": 14422.0
+        },
+        {
+          "date": "2026-05-17",
+          "value": 18956.0
+        },
+        {
+          "date": "2026-05-18",
+          "value": 19853.0
+        },
+        {
+          "date": "2026-05-19",
+          "value": 23242.0
+        },
+        {
+          "date": "2026-05-20",
+          "value": 27351.0
+        },
+        {
+          "date": "2026-05-21",
+          "value": 20831.0
+        },
+        {
+          "date": "2026-05-22",
+          "value": 18233.0
+        },
+        {
+          "date": "2026-05-23",
+          "value": 28144.0
+        },
+        {
+          "date": "2026-05-24",
+          "value": 30631.0
+        },
+        {
+          "date": "2026-05-25",
+          "value": 30547.0
+        },
+        {
+          "date": "2026-05-26",
+          "value": 29937.0
+        },
+        {
+          "date": "2026-05-27",
+          "value": 22822.0
+        },
+        {
+          "date": "2026-05-28",
+          "value": 21129.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 21374.0
+        },
+        {
+          "date": "2026-05-30",
+          "value": 15875.0
+        },
+        {
+          "date": "2026-05-31",
+          "value": 17299.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 21754.0
+        },
+        {
+          "date": "2026-06-02",
+          "value": 28308.0
+        },
+        {
+          "date": "2026-06-03",
+          "value": 23495.0
+        },
+        {
+          "date": "2026-06-04",
+          "value": 23275.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 16847.0
+        },
+        {
+          "date": "2026-06-06",
+          "value": 17351.0
+        },
+        {
+          "date": "2026-06-07",
+          "value": 19311.0
+        },
+        {
+          "date": "2026-06-08",
+          "value": 23492.0
+        },
+        {
+          "date": "2026-06-09",
+          "value": 28441.0
+        },
+        {
+          "date": "2026-06-10",
+          "value": 36046.0
+        }
+      ]
+    }
+  },
+  "audience": {
+    "Principais cidades": [
+      {
+        "key": "São Paulo, SP",
+        "value": 19.3
+      },
+      {
+        "key": "Rio de Janeiro, RJ",
+        "value": 6.2
+      },
+      {
+        "key": "Belo Horizonte, MG",
+        "value": 2.3
+      },
+      {
+        "key": "Recife, PE",
+        "value": 2.0
+      },
+      {
+        "key": "Fortaleza, CE",
+        "value": 2.0
+      },
+      {
+        "key": "Curitiba, PR",
+        "value": 2.0
+      },
+      {
+        "key": "Salvador, BA",
+        "value": 1.8
+      },
+      {
+        "key": "Porto Alegre, RS",
+        "value": 1.6
+      },
+      {
+        "key": "Goiânia, GO",
+        "value": 1.2
+      },
+      {
+        "key": "Campinas, SP",
+        "value": 1.0
+      }
+    ],
+    "Principais países": [
+      {
+        "key": "Brasil",
+        "value": 97.4
+      },
+      {
+        "key": "Portugal",
+        "value": 0.4
+      },
+      {
+        "key": "Estados Unidos",
+        "value": 0.2
+      },
+      {
+        "key": "Espanha",
+        "value": 0.1
+      },
+      {
+        "key": "Argentina",
+        "value": 0.1
+      },
+      {
+        "key": "Colômbia",
+        "value": 0.1
+      },
+      {
+        "key": "Angola",
+        "value": 0.1
+      },
+      {
+        "key": "Taiwan",
+        "value": 0.1
+      },
+      {
+        "key": "México",
+        "value": 0.1
+      },
+      {
+        "key": "França",
+        "value": 0.1
+      }
+    ],
+    "Faixa etária e gênero": [
+      {
+        "key": "18-24",
+        "subkey": "Mulheres",
+        "value": 2.4
+      },
+      {
+        "key": "18-24",
+        "subkey": "Homens",
+        "value": 1.7
+      },
+      {
+        "key": "25-34",
+        "subkey": "Mulheres",
+        "value": 18.0
+      },
+      {
+        "key": "25-34",
+        "subkey": "Homens",
+        "value": 11.7
+      },
+      {
+        "key": "35-44",
+        "subkey": "Mulheres",
+        "value": 21.6
+      },
+      {
+        "key": "35-44",
+        "subkey": "Homens",
+        "value": 16.9
+      },
+      {
+        "key": "45-54",
+        "subkey": "Mulheres",
+        "value": 10.6
+      },
+      {
+        "key": "45-54",
+        "subkey": "Homens",
+        "value": 10.1
+      },
+      {
+        "key": "55-64",
+        "subkey": "Mulheres",
+        "value": 2.7
+      },
+      {
+        "key": "55-64",
+        "subkey": "Homens",
+        "value": 3.2
+      },
+      {
+        "key": "65+",
+        "subkey": "Mulheres",
+        "value": 0.4
+      },
+      {
+        "key": "65+",
+        "subkey": "Homens",
+        "value": 0.7
+      }
+    ]
+  },
+  "files_found": [
+    "alcance.csv",
+    "cliques.csv",
+    "interacoes.csv",
+    "posts.csv",
+    "publico.csv",
+    "seguidores.csv",
+    "visitas.csv",
+    "visualizacoes.csv"
+  ],
+  "files_skipped": []
+}

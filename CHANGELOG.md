@@ -12,6 +12,27 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## social-* (família: pipeline, analytics, canva + social-plan v2)
+### 2026-06-12 — Sistema de automação de redes sociais Buzzmonitor (PR #14)
+
+Três skills novas + upgrade do social-plan fecham o ciclo mensal de redes sociais da Buzzmonitor (Instagram, por enquanto): analytics do mês anterior → planejamento → copies em lote → designs no Canva.
+
+- **`social-pipeline` v0.1.0 (nova)** — orquestrador do ciclo mensal. Diagnóstico de estado pelo filesystem (idempotente, retoma de onde parou), pausas com chips entre etapas, zero auto-post. Etapa C (copies em lote) carrega **obrigatoriamente** `conhecimento/editorial/regras-anti-ia.md` + `fundamentos-copy.md` e roda auto-checagem (zero em-dash, sem antítese-por-negação em série) antes de salvar.
+- **`social-analytics` v0.1.0 (nova)** — relatório mensal de performance orgânica a partir dos CSVs do Meta Business Suite (enviados via chat; a skill organiza e normaliza). Helper `parse_csvs.py` lida com UTF-16/BOM e multi-line cells; `_gen_report.py` gera esqueleto mecânico opcional (estrutura canônica é a do SKILL.md). Publica no Notion (chave `redes-sociais-relatorios`).
+- **`social-canva` v0.1.0 (nova)** — preenche brand templates do Canva slide a slide a partir das copies aprovadas (create + editing transaction; rollback em falha). Regra inegociável de layout: texto novo dentro de ±20% do original. Config em `brand/buzzmonitor/canva-template-ids.json` (aguardando dataset fields — a skill para e orienta enquanto incompleto).
+- **`social-plan` v2.0.0** — MAJOR: calendário muda de formato. Passo 0.5 consome `relatorio.md` do mês anterior (dado próprio > tendência externa); Passo 0.7 obrigatório pergunta 4 alavancas do mês (novidade/case/dashboard/sazonal) com chips; **vídeos saem do calendário** (viram seção "Sugestões de vídeos pra produzir"); campo **Justificativa** obrigatório por post; Passo 1 passa a carregar `regras-anti-ia.md` (hooks são texto publicável).
+
+Nota de versionamento: as 3 skills novas nascem em **0.1.0** (exceção consciente à convenção 1.0.0) — sinalizam beta; `social-canva` em particular não roda até os dataset fields do Canva serem configurados.
+
+Ajustes de review (mesmo PR): UUID do MCP Notion padronizado com o restante do repo (`d23bd62b-…`), `AskUserQuestion` adicionada aos `allowed-tools` das skills que pausam com chips, referências a memórias pessoais (`[[feedback-social-*]]` e path absoluto de máquina) substituídas por regras inline, rodapé do social-plan sem versão hardcoded.
+
+Arquivos:
+- `.claude/skills/social-pipeline/SKILL.md` · `.claude/skills/social-analytics/{SKILL.md,parse_csvs.py,_gen_report.py}` · `.claude/skills/social-canva/SKILL.md` · `.claude/skills/social-plan/SKILL.md`
+- `brand/buzzmonitor/{canva-brand-kit.md,canva-brand-templates.md,canva-template-ids.json}`
+- `conhecimento/config/notion-ids.md` (chave `redes-sociais-relatorios`) · `CLAUDE.md` (seção Redes Sociais) · entregas em `social-media/buzzmonitor/2026-0{5,6}/`
+
+---
+
 ## dashboard/queries_latam.py (Dashboard CM LATAM)
 ### 2026-06-06 — Fechamento (cierre) ampliado + valor pela coluna `value`
 

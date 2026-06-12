@@ -17,7 +17,7 @@ Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
 Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
-Redes Sociais: /social-plan (standalone — planejamento editorial mensal Buzzmonitor)
+Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copies em lote → (pausa) → /social-canva
 ```
 
 ### Diretorios
@@ -201,12 +201,18 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 
 ### Redes Sociais — Buzzmonitor
 
+Fluxo mensal ponta-a-ponta: analytics do mes anterior alimenta planejamento do mes novo, que alimenta copies, que alimentam designs no Canva. Cada etapa publica no Notion em "Redes Sociais". Aceita so Instagram Buzzmonitor por enquanto.
+
 | Comando | O que faz |
 |---|---|
-| `/social-plan [mes]` | Pesquisa referencias + gera calendario mensal (3 posts/semana por rede) + publica no Notion em "Redes Sociais" |
+| `/social-pipeline [marca] [mes]` | Orquestrador completo. Costura todas as etapas com pausas pra aprovacao. Default: buzzmonitor + mes atual |
+| `/social-analytics [YYYY-MM]` | Standalone — gera relatorio de performance. CSVs do Meta sao enviados via chat pela Catharina (regra) |
+| `/social-plan [mes]` | Standalone — gera planejamento editorial mensal. Le relatorio.md do mes anterior se existir |
+| `/social-canva [copies-file] [post-num]` | Standalone — gera designs no Canva pra um post (ou todos). Requer brand templates configurados em `brand/buzzmonitor/canva-template-ids.json` |
 
-- `[mes]`: `junho`, `junho 2026`, `2026-06` (default: mes atual)
-- Para a copy de cada post: `/copy-criar buzzmonitor brasil [tipo] [estagio] "[tema]"`
+- `[mes]`: `julho`, `julho 2026`, `2026-07` (default: mes atual)
+- Estrutura local: `social-media/buzzmonitor/{YYYY-MM}/` com subpastas `analytics/`, `copies/`, `designs/`
+- Brand templates do Canva: ver `brand/buzzmonitor/canva-brand-templates.md` (especificacao) e `canva-template-ids.json` (config)
 
 ### Dashboard CM (Buzzmonitor Brasil)
 
