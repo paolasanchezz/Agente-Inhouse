@@ -82,11 +82,17 @@ CM_URL_PATTERNS: list[str] = [
     'https://conteudo.elife.com.br/%',                       # conteudo Elife historico (compartilhado)
 ]
 
-# Inscricao de webinar NAO vira lead CM (precedente Buzz BR 2026-05-26: pagina de inscricao e
-# topo de funil — so a OFERTA conta). Exclui por URL; as demais paginas content.cxpress.io seguem CM.
-# Sem isto, o lote de 123 inscricoes do webinar-tecnologia (01/jun, todas Outbound) inunda o funil.
+# URLs hard-excluidas do CM (NUNCA contam, mesmo com utm_source valido). Match ILIKE com %.
+# 1. Inscricao de webinar — topo de funil (precedente Buzz BR 2026-05-26: so a OFERTA conta).
+#    Sem isto, o lote de 123 inscricoes do webinar-tecnologia (01/jun, todas Outbound) inunda o funil.
+# 2. Cadastro interno (home.cxpress.io/cadastro-interno[-bdr]) — funil de registro MANUAL/indicacao,
+#    nao e conteudo. Confirmado Victor 2026-06-15 via deal 81723 'Destinando Viagens': utm_source='email'
+#    generico (sem utm_medium/campaign/content) convertido nessa pagina interna => era contado como
+#    fechamento CM por engano. A pagina e entrada interna (43 deals via whatsapp + variantes -bdr/google);
+#    nenhum desses e CM. So o 81723 passava no filtro (pelo 'email'); a exclusao tira so ele.
 CM_URLS_EXCLUIDAS: list[str] = [
     'https://content.cxpress.io/webinar-tecnologia-maio2026%',
+    'https://home.cxpress.io/cadastro-interno%',  # cobre /cadastro-interno e /cadastro-interno-bdr
 ]
 
 
@@ -101,7 +107,8 @@ def filtro_cm(alias: str = '') -> str:
        (instagram_feed, facebook_mobile_feed, newsletter+cxpress, linktree+cxpress, ...).
     4. Inclui URLs de conteudo CM (CM_URL_PATTERNS) mesmo sem utm_source.
 
-    5. Exclui inscricoes de webinar (CM_URLS_EXCLUIDAS) — topo de funil, nao e lead CM.
+    5. Exclui URLs hard-excluidas (CM_URLS_EXCLUIDAS): inscricao de webinar (topo de funil) e
+       cadastro interno / indicacao (registro manual) — nunca sao lead CM, mesmo com utm_source valido.
 
     COALESCE na exclusao de URL: sem ele, `NOT (NULL ILIKE x)` = NULL derruba do filtro
     qualquer lead com url_conversao vazia mesmo com utm_source valido (mesma classe do bug

@@ -78,6 +78,7 @@ quando `filtro_inbound` virou no-op — §2.1):
 | `google` sem `cpc` | fora | orgânico/direto, ambíguo |
 | sem utm e sem URL | **fora** | Victor validou amostra de 4 fechamentos: todos eram venda direta mal-classificada (Cacau Show, Claro Brasil, Lojas Marisa, Duben Seguros) |
 | Inscrição de webinar (`content.cxpress.io/webinar-tecnologia-maio2026`) | **fora** | precedente Buzz BR 2026-05-26: inscrição é topo de funil, não vira lead CM; só a OFERTA conta. 124 inscrições (lote 01/jun) ficariam de fora |
+| Cadastro interno (`home.cxpress.io/cadastro-interno[-bdr]`) | **fora** | registro manual/indicação, não é conteúdo. Decisão Victor 2026-06-15 (deal 81723 'Destinando Viagens': `utm_source=email` genérico, sem medium/campaign/content, convertido nessa página interna → contava como fechamento CM por engano). Página é entrada interna (43 deals via whatsapp + variantes -bdr/google); só o 81723 passava no filtro (via `email`), então a exclusão tira só ele |
 | Whitelist social/owned | **dentro** | Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/Linktree — qualquer funil_auto |
 | LP `atendimento-para-clinicas` | **dentro** | CM mesmo sem UTM — exceção explícita do Victor |
 | Demais URLs `content.cxpress.io` + `conteudo.elife.com.br` | dentro | domínios de conteúdo (ofertas futuras) |
@@ -85,12 +86,16 @@ quando `filtro_inbound` virou no-op — §2.1):
 **Implementação:** `CM_UTM_SOURCES` (whitelist exata) + 4 padrões LIKE (`instagram%`, `facebook%`,
 `newsletter%`, `linktree%`) cobrindo variações como `Instagram_Feed`, `Facebook_Mobile_Reels`,
 `newsletter+cxpress`, `Linktree Cxpress`. Mais `CM_URL_PATTERNS` (includes por URL) e
-`CM_URLS_EXCLUIDAS` (inscrições de webinar — exclusão com `COALESCE(url,'')` pra não derrubar
-leads com URL NULL).
+`CM_URLS_EXCLUIDAS` (inscrições de webinar + cadastro interno/indicação — exclusão com `COALESCE(url,'')`
+pra não derrubar leads com URL NULL).
 
 **Funil CM 2026 final (YtD até 09/jun):** 490 leads · 35 triagem · 21 agend · 18 demo ·
 12 propostas · 5 fechamentos · 419 perdidos (coorte). Janela 15d (26/05–09/06): 9 leads — **bate
 com o Meta Ads** (era exatamente o gap que motivou o no-op do funil).
+
+**Revisão 2026-06-15:** adicionado `home.cxpress.io/cadastro-interno%` a `CM_URLS_EXCLUIDAS` (linha
+"Cadastro interno" na tabela acima). Removeu o deal 81723 ('Destinando Viagens', fechamento 03/02 via
+`email` genérico numa página de registro interno). **YtD 2026 passa a 493 leads · 4 fechamentos** (era 494 · 5).
 
 ### 2.2.1. Perdidos = definição COORTE (igual Buzzmonitor BR)
 
