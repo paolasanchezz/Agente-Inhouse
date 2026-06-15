@@ -218,3 +218,48 @@ Este archivo cubre solo patrones **específicos de ES-LATAM** que no existen en 
 - **"Pipeline" sin traducir** — En copy formal LATAM, preferir "flujo de ventas" o "proceso de ventas". "Pipeline" es aceptado en contextos técnicos entre especialistas.
 - **CTAs impersonales con solo imperativo** — "Descarga ahora" sin contexto soa distante. El copy LATAM de mayor conversión usa "Descárgalo ahora" (con pronombre) o "Quiero descargarlo" (primera persona).
 - **Excesiva formalidad en copy digital** — El español europeo B2B tiende a ser más formal. En LATAM, mesmo em B2B, um tono conversacional e accesible funciona melhor. Evitar construcciones burocráticas como "Le informamos que" o "En virtud de lo anterior".
+
+---
+
+## Actualización — 2026-06-12 (foco México)
+*Fuente: pesquisa focada em espanhol do México para LP de webinar Buzzmonitor (social listening + atención al cliente)*
+*Fontes: atribus.com/social-listening-en-mexico, social-listening.mx, vidiv (microcopy webinar), pesquisa de CTAs de webinar MX. Referência de marca: LP `social-listening-mayo-2026-latam` (tuteo).*
+
+### Decisão de tratamento para México: "tú" (tuteo)
+As duas LPs LATAM existentes da Buzzmonitor divergem: `social-listening-mayo-2026-latam` usa **"tú"** ("Reserva tu lugar", "aprenderás", "para ti que"), enquanto `agentes-automatizacion-junio-2026-latam` usa **"vos"** (voseo argentino: "Dejá", "Poné", "para vos que"). **Para copy dirigida ao México, usar sempre "tú"** — voseo é Argentina/Uruguai e soa estrangeiro no MX. "usted" só em B2B institucional muito formal (não em LP de webinar).
+
+### Exemplos Autênticos Coletados (México)
+
+#### Atribus México — Social Listening
+- **URL**: https://atribus.com/social-listening-en-mexico/
+- **Headline**: "Herramienta de monitoreo y SOCIAL LISTENING en MÉXICO"
+- **Subheads**: "¿Conoce lo que dicen de su marca y competidores?" / "Mejora tu reputación online"
+- **CTAs**: "Agenda una demo" / "Demo Gratuita" / "Call gratuita"
+- **O que revela**: "monitoreo" (substantivo, não "monitorización"); "social listening" mantido em inglês convive com "escucha social"; "sentimiento", "reputación online", "insights del consumidor", "crisis de comunicación" são vocabulário-padrão MX do nicho. (Atribus usa "usted"; para webinar B2B moderno preferimos "tú".)
+
+#### Microcopy de webinar MX (vidiv / agências MX)
+- **Achado**: CTAs de webinar evoluíram além de "Regístrate ahora" — usar "Reserva tu lugar", "Reserva tu plaza (es gratis)", "Aparta tu lugar".
+- **Microcopy de redução de ansiedade**: "Sin spam. Cancelas cuando quieras." junto ao form aumenta conversão.
+
+### Novos Termos e Expresiones Identificados (México)
+
+| Expresión / Construcción | Contexto de uso | Fuente |
+|---|---|---|
+| "monitoreo" / "monitorear" | Monitorar marca/redes (substantivo + verbo) — padrão MX (≠ "monitorización" de Espanha) | Atribus MX |
+| "Reserva tu lugar" / "Aparta tu lugar" | CTA de inscrição em webinar — mais quente que "Regístrate" | vidiv / marca |
+| "Cupos limitados" / "Lugares limitados" | Equivalente a "vagas limitadas" (PT-BR) | uso MX de eventos |
+| "en tiempo real" | "em tempo real" — universal LATAM | Atribus MX |
+| "reporte" | Relatório (≠ "informe" de Espanha; "reporte" mais comum no MX) | Zoho/RD (atualização anterior) |
+| "atención al cliente" / "atención en redes" | Atendimento ao cliente / atendimento social | Atribus MX |
+| "reputación online" | Reputação de marca online | Atribus MX |
+| "en línea" | "online" — aceito; "online" também ok em copy MX | geral MX |
+
+### Padrones de Estilo Observados (México)
+1. **Tuteo conversacional, não voseo** — México tuteia ("tú", "tu marca", "verás", "actúa"). Nunca "vos/poné/dejá".
+2. **"monitoreo" é o substantivo certo** — não "monitorización" (Espanha). Verbo: "monitorear".
+3. **Termos técnicos de produto em inglês convivem com tradução** — "social listening" e "escucha social" ambos aceitos; nomes de feature (AI Insights, Smart Replies) mantidos em inglês.
+4. **CTA de webinar quente** — "Reserva tu lugar" > "Regístrate"; microcopy de confiança ("Sin spam") junto ao form.
+
+### Anti-Patterns (México, reforço)
+- **Voseo** ("Dejá", "Poné", "para vos") — é Argentina; em copy MX usar tuteo.
+- **"monitorización", "móvil", "ordenador", "informe"** — formas de Espanha; usar "monitoreo", "celular", "computadora", "reporte".
