@@ -12,6 +12,26 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Protocolo de Copy (cross-skill: copy-*, trad-*, lp-preparar, criativo + CLAUDE.md)
+### 2026-06-15 — 3 pilares obrigatórios em toda skill que gera ou altera copy
+
+Resposta a um incidente: copy PT-PT criada por colaboradora brasileira saiu cheia de brasileirismo porque a skill usada não carregava o padrão linguístico. Auditoria das portas de entrada de copy mostrou que o rigor existe (`padrao-linguistico.md`, `regras-anti-ia.md`) mas não era carregado de forma consistente — e que, sem skill, nada carregava. Correção: contrato global no `CLAUDE.md` + fechamento das lacunas skill a skill, replicando o padrão que `news-gerar` / `pauta-quente` / `social-*` já faziam certo.
+
+**Os 3 pilares** (carregados ANTES de escrever): (1) linguístico — `padrao-linguistico.md` do idioma quando regiao != brasil; (2) boas práticas — `fundamentos-copy.md`; (3) anti-IA — `regras-anti-ia.md` + anexo do idioma (fonte única; `estilo-newsletter.md` é só estrutura de newsletter).
+
+- **`CLAUDE.md`** — nova seção "Protocolo de Copy (OBRIGATORIO)" no topo: os 3 pilares + regra "sem skill = pare e use a skill certa". Cobre o caso de chat sem skill (efetivo apenas dentro do Claude Code neste repo; chat fora do repo depende de processo/treino).
+- **`copy-criar` v1.1.0 → v1.2.0** — anti-IA passa a apontar para `regras-anti-ia.md` (+ anexo do idioma), não mais `estilo-newsletter.md` (Passo 1 #9 e Passo 4 regra 3).
+- **`copy-revisar` v1.1.0 → v1.2.0** — novo arg opcional `regiao` + detecção de idioma; carrega `padrao-linguistico.md` quando regiao != brasil; nova **Dimensão 4 (fidelidade nativa)** que flagra brasileirismo em copy PT-PT/ES; fonte anti-IA corrigida (Passo 1 #6); check de deriva de dialeto no loop pós-correção (Passo 4.5 #5). Era o caminho mais provável do incidente — revisar copy estrangeira sem nunca checar o idioma.
+- **`lp-preparar` v1.2.1 → v1.3.0** — detecção de idioma da fonte (Passo 2); se != PT-BR carrega `padrao-linguistico.md` + anexo (Passo 1 #6) e roda marcação de fidelidade nativa conservadora (Passo 4.3).
+- **`criativo` v1.0.0 → v1.1.0** — carrega `padrao-linguistico.md` antes de adaptar/enxugar copy quando regiao != brasil; anexo do idioma no anti-IA; confere a copy final contra o padrão (Passo 1).
+- **`trad-traduzir` v1.0.0 → v1.1.0** — carrega `regras-anti-ia.md` + anexo do idioma no Passo 1 (antes só havia ~2 padrões de memória inline); Passo 5 roda contagens reais (em-dash = 0, antítese ≤ 2, filler, anexo).
+- **`trad-revisar` v1.0.0 → v1.1.0** — anexo do idioma explícito na Passada 1; nova **Passada 4 (re-contagem anti-IA pós-correção + deriva de dialeto)** — corrigir não pode reintroduzir IA nem voltar pro PT-BR.
+- **CONTEXT.md (copy + trad)** — callout dos 3 pilares no topo; tabela anti-IA do copy de-ambiguada (`regras-anti-ia.md` = fonte única SEMPRE; `estilo-newsletter.md` = só newsletter).
+
+Pendente (P2, fora deste PR): hook `UserPromptSubmit` (único backstop determinístico pro chat sem skill), linter de brasileirismo, rollout do hard-stop universal nas demais skills. `copy-pesquisar` não foi alterada (gera relatório PT-BR, não publica copy).
+
+---
+
 ## social-* (família: pipeline, analytics, canva + social-plan v2)
 ### 2026-06-12 — Sistema de automação de redes sociais Buzzmonitor (PR #14)
 

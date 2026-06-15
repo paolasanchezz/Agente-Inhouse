@@ -3,7 +3,7 @@ name: trad-traduzir
 description: Traduz copy de marketing em português brasileiro para Português Europeu (PT-PT) ou Espanhol Latino-Americano (ES-LATAM), soando como texto nativo — não como tradução.
 argument-hint: "[caminho-da-copy] [pt-pt|es-latam]  — ex: meu-texto.md pt-pt"
 allowed-tools: Read, Write, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Traduzir Copy de Marketing
@@ -37,6 +37,8 @@ Carregue o padrão linguístico correspondente ao target:
 > "Padrão linguístico para [target] não encontrado. Execute primeiro:\n  /trad-calibrar [target]"
 
 Leia o arquivo **completo** antes de continuar. Todas as decisões de tradução serão guiadas exclusivamente pelo que estiver neste arquivo.
+
+**Carregue também as regras anti-IA.** Leia `conhecimento/editorial/regras-anti-ia.md` — secção principal **+ o anexo do idioma-alvo** (PT-PT ou ES-LATAM). É a fonte única de anti-IA (em-dash tolerância zero, antítese-por-negação, filler words, frases típicas de IA já traduzidas por idioma). Aplica-se no Passo 5.
 
 ---
 
@@ -96,7 +98,7 @@ Após traduzir, releia o texto completo respondendo mentalmente a cada pergunta:
 2. Alguma palavra ou expressão do PT-BR ainda está presente? → Substituir conforme o padrão
 3. O tom é consistente do início ao fim (informal/formal)? → Ajustar inconsistências
 4. Os CTAs soam naturais e motivadores na língua alvo? → Verificar cada um
-5. Alguma construção típica de IA aparece? (lista de 3 itens, abertura genérica, etc.) → Reescrever
+5. Alguma construção típica de IA aparece? Rode as contagens de `regras-anti-ia.md` (carregado no Passo 1) no texto traduzido: **em-dash (—) = 0** (Ctrl+F/grep; trocar por vírgula, ponto ou parênteses), antítese-por-negação ≤ 2, filler words e frases-tipo do **anexo do idioma-alvo**. → Reescrever o que falhar. As próprias correções podem reintroduzir IA: re-conte depois de corrigir.
 6. O texto tem o mesmo impacto persuasivo do original? → Ajustar se necessário
 7. O tratamento é consistente do início ao fim? Nenhum verbo está conjugado para "tu" quando o tratamento escolhido é "você", ou vice-versa? → Corrigir qualquer inconsistência
 

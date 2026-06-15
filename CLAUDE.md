@@ -4,6 +4,18 @@ Este agente automatiza a criacao de newsletters, traducoes de copy, criacao de c
 
 ---
 
+## Protocolo de Copy (OBRIGATORIO em qualquer idioma e formato)
+
+Toda tarefa que **cria ou altera texto que vai pro publico** (anuncio, e-mail, legenda, roteiro, landing page, newsletter, criativo, traducao) carrega os **3 pilares ANTES de escrever a primeira palavra**:
+
+1. **Linguistico** - se a regiao/idioma nao for `brasil`/PT-BR, leia `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`. Se nao carregar, **PARE**. Nunca escreva PT-PT ou ES "de cabeca" (e assim que brasileirismo vaza: "esta crescendo" no lugar de "esta a crescer", "usuario", "aplicativo", "faturamento", "fale conosco").
+2. **Boas praticas** - `conhecimento/copywriting/fundamentos-copy.md` (+ o doc do tipo: video-curto, estatico ou email).
+3. **Anti-IA** - `conhecimento/editorial/regras-anti-ia.md` **+ o anexo do idioma** (PT-PT / ES-LATAM). Fonte unica de anti-IA. O `estilo-newsletter.md` e so estrutura de newsletter, nao e a lista anti-IA.
+
+**Sem skill = sem rede de protecao.** Se o pedido vier solto no chat ("escreve uma copy em PT-PT pra..."), **PARE e use a skill certa** (`/escrever`, `/traduzir`, `/landing-page`, `/criativo`, `/pauta-quente`) ou, se for inevitavel escrever a mao, carregue os 3 arquivos acima primeiro. Contrato operacional detalhado em cada `CONTEXT.md`.
+
+---
+
 ## Arquitetura
 
 ### Fluxo das Skills

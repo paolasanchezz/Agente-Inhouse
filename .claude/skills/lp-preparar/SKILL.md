@@ -3,7 +3,7 @@ name: lp-preparar
 description: Estrutura copy crua em blocos rotulados (OVERLINE, H1, H2, BODY, CTA, etc.) e passa revisao anti-IA conservadora, sem alterar o tom. Publica no Notion e salva arquivo local para o lp-gerar consumir.
 argument-hint: "[marca] [slug] [fonte] — ex: buzzmonitor monitoramento-maio https://notion.so/... ou buzzmonitor monitoramento-maio ./copy-bruta.txt"
 allowed-tools: Read, Write, Glob, Grep, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.2.1
+version: 1.3.0
 ---
 
 # Skill: Preparar Copy de Landing Page
@@ -37,6 +37,7 @@ Leia, na ordem:
 3. `conhecimento/editorial/regras-anti-ia.md` — frases bloqueadas, filler words, anti-patterns estruturais.
 4. `brand/{marca}/brand-manifest.json` — tom de voz e messaging (para reconhecer termos proprios da marca antes de revisar).
 5. `brand/{marca}/BRANDBOOK.md` — grafias corretas (ex: "Buzzmonitor" nao "BuzzMonitor") e nomes oficiais de features.
+6. **Linguistico (condicional).** Copy de LP pode vir em PT-PT ou ES (marcas/dominios fora do Brasil). Apos obter a copy (Passo 2), se ela **nao** for PT-BR, leia `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md` + o **anexo do idioma** em `regras-anti-ia.md`, e rode a verificacao de fidelidade nativa (Passo 4.3). Se a copy e PT-PT/ES e o padrao nao carregar, **PARE** e avise: sem ele nao da pra flagrar brasileirismo.
 
 ## Passo 2: Obter Copy Bruta
 
@@ -47,6 +48,8 @@ Detectar tipo da fonte nesta ordem:
 3. Tudo o mais → **Texto colado inline.** Usar como esta.
 
 Se houver ambiguidade (ex: string sem extensao nem URL mas com espacos — parece texto): tratar como texto colado.
+
+**Deteccao de idioma (apos obter o texto):** identifique se a copy esta em PT-BR, PT-PT ou ES. Sinais PT-PT: "esta a + infinitivo", "telemovel", "utilizador", "equipa", "faturacao", "o seu/a sua". Sinais ES: texto em espanhol. Registre `idioma`; se != PT-BR, volte ao Passo 1 item 6 e carregue o padrao linguistico antes de estruturar. **Caso de risco:** copy que se diz PT-PT mas vem cheia de brasileirismo, trate como PT-PT-alvo e marque os brasileirismos no Passo 4.3 (nao os normalize como corretos).
 
 Normalize: remover emojis decorativos, remover markdown visual (===, ---, **negritos faceis**), preservar quebras logicas.
 
@@ -152,6 +155,14 @@ BODY: No cenario atual, monitorar concorrentes e essencial.
 
 Se nao encontrar nada (depois do 4.1 e 4.2): escreva ao final `# Revisao anti-IA: sem achados (em-dash: 0).`
 
+### 4.3: Fidelidade nativa (so se a copy nao for PT-BR)
+
+Marque (nao reescreva, mesma filosofia conservadora do 4.2) cada brasileirismo contra o `padrao-linguistico.md` do idioma carregado no Passo 1 item 6:
+- **PT-PT:** gerundio BR ("esta crescendo"=>"esta a crescer"), "precisa fazer"=>"precisa de fazer", usuario=>utilizador, aplicativo=>aplicacao, time=>equipa, celular=>telemovel, faturamento=>faturacao, "fale conosco"=>"fale connosco", girias BR.
+- **ES-LATAM:** "vosotros"=>"ustedes", residuo de portugues, vocabulario fora do padrao LATAM.
+
+Formato igual ao 4.2 (`# [SUGESTAO idioma]` inline logo apos a linha). Estes desvios sao **criticos** numa LP que vai ao ar em PT/LATAM: destaque-os no topo do relatorio (Passo 7) e no toggle do Notion.
+
 ## Passo 5: Salvar Arquivo Local
 
 Caminho: `landing-pages/{marca}/{slug}/copy.txt`
@@ -189,6 +200,7 @@ Estrutura identificada:
 - {N} blocos totais
 - {N} CTAs
 
+Idioma detectado: {PT-BR | PT-PT | ES}{, N brasileirismos marcados se != PT-BR}
 Revisao anti-IA: {N} sugestoes marcadas / sem achados
 
 Proximos passos:

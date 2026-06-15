@@ -3,7 +3,7 @@ name: trad-revisar
 description: Revisa traduções como especialista nativo em copywriting, corrigindo naturalidade, precisão e comprimento, e publica o resultado final no Notion (pasta Entregas).
 argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducao/entregas/2026-04/newsletter-pt-pt.md pt-pt"
 allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Revisar Tradução
@@ -57,7 +57,7 @@ Antes de qualquer outra verificação, confirmar:
 - Verbos de suporte (ter, fazer, dar) usados como em PT-BR mas desnaturais na língua alvo
 
 ### Construções de IA a Eliminar
-Carregue e aplique TODAS as regras de `conhecimento/editorial/regras-anti-ia.md`. Adicionalmente, para traduções, eliminar as versões em espanhol: "En el escenario actual...", "Es innegable que...", "Vale la pena destacar que...", "En resumen...", "Además" a abrir mais de 1 parágrafo.
+Carregue e aplique TODAS as regras de `conhecimento/editorial/regras-anti-ia.md`, **incluindo explicitamente o anexo do idioma-alvo** (PT-PT ou ES-LATAM) — é onde estão as frases típicas de IA já traduzidas ("No cenário atual...", "É inegável que..." em PT-PT; "En el escenario actual...", "Es innegable que...", "Vale la pena destacar que...", "En resumen...", "Además" a abrir mais de 1 parágrafo em ES). Em-dash (—): tolerância zero também na tradução.
 
 ### Checklist PT-PT (se target = pt-pt)
 Verifique cada item. Para cada falha, corrija diretamente com Edit:
@@ -108,12 +108,25 @@ Para cada problema: reescreva o trecho afetado.
 
 ---
 
+## Passada 4: Re-contagem Anti-IA Pós-Correção (OBRIGATÓRIA)
+
+As Passadas 1–3 reescrevem trechos — e reescrever reintroduz IA (trocar um filler por outro, abusar de antítese, encher de em-dash) e pode até **deslizar de volta para o PT-BR**. Reabra `regras-anti-ia.md` e releia o texto **já corrigido**, contando de verdade:
+
+1. **Em-dash (—):** grep no texto final → esperado **0**. Trocar por vírgula, ponto ou parênteses.
+2. **Antítese-por-negação** (`X, não Y` / `Não é X, é Y` / etc.): máximo **2** em peça de até 500 palavras.
+3. **Filler 2.0:** cada palavra que você adicionou ao corrigir responde "o quê/como"? Se só dá ritmo, remova.
+4. **Deriva de dialeto:** zero brasileirismo reintroduzido (PT-PT: zero gerúndio BR, zero "usuário/aplicativo/faturamento", tratamento intacto; ES: zero "vosotros", zero resíduo de português).
+
+Se qualquer contagem falhar, corrija e re-conte antes do Passo 2. (É a regra "Re-checagem pós-correção" de `regras-anti-ia.md` aplicada à tradução.)
+
+---
+
 ## Passo 2: Salvar Arquivo Revisado
 
 Sobrescreva o arquivo de tradução com a versão revisada. Adicione no **topo** do arquivo, antes do título:
 
 ```
-<!-- Revisado em [DATA] | Passadas: naturalidade, precisão, comprimento -->
+<!-- Revisado em [DATA] | Passadas: naturalidade, precisão, comprimento, anti-IA pós-correção -->
 ```
 
 ---

@@ -3,7 +3,7 @@ name: copy-criar
 description: Cria 3 variacoes originais de copy com hooks, angulos e premissas diferentes, escritas nativamente no idioma da regiao.
 argument-hint: "[marca] [regiao] [tipo] [estagio] [\"briefing\"] — ex: buzzmonitor brasil video-curto bofu \"remarketing social listening\""
 allowed-tools: Read, Write, Glob, Grep, Agent, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Criar Copy Original
@@ -59,7 +59,7 @@ Leia todos os seguintes arquivos na ordem. **Nao confie na memoria — leia os a
 8. Se `regiao` = `latam`: `conhecimento/linguistico/es-latam/padrao-linguistico.md`
 
 ### Anti-padroes
-9. `conhecimento/editorial/estilo-newsletter.md` — construcoes proibidas, frases tipicas de IA, filler words, anti-patterns estruturais.
+9. `conhecimento/editorial/regras-anti-ia.md` - **fonte unica anti-IA**: frases tipicas de IA, filler words, em-dash (tolerancia zero), antitese-por-negacao, anti-patterns estruturais. Se `regiao` != `brasil`, leia tambem o **anexo do idioma** (PT-PT / ES-LATAM) no fim do mesmo arquivo. (O `estilo-newsletter.md` e so para newsletters; ele proprio delega o anti-IA para este arquivo.)
 
 ### Enriquecimento opcional
 10. Verifique se existe `conhecimento/copywriting/pesquisa/{marca}/RESUMO-COPY.md`. Se sim, leia — contem insights frescos de pesquisa. Registre se usou ou nao.
@@ -159,7 +159,7 @@ Para cada variacao (1 a 3), sequencialmente:
 2. Se `regiao` != `brasil`: siga RIGOROSAMENTE o padrao linguistico carregado (vocabulario, tratamento, construcoes gramaticais, CTAs nativos).
    - Portugal: usar "voce" (3a pessoa), "esta a + infinitivo", vocabulario PT-PT (telemovel, equipa, utilizador). Zero brasileirismos.
    - Latam: verificar tratamento ("tu"/"usted") conforme padrao. Zero "vosotros". Vocabulario LATAM (celular, no "movil").
-3. **Zero linguagem de IA.** Aplique todas as regras de `estilo-newsletter.md`:
+3. **Zero linguagem de IA.** Aplique todas as regras de `conhecimento/editorial/regras-anti-ia.md` (+ anexo do idioma se `regiao` != `brasil`):
    - Nenhuma frase tipica de IA ("No cenario atual", "E inegavel que", "Vale ressaltar", etc.)
    - Nenhum filler word (realmente, simplesmente, basicamente, incrivelmente, etc.)
    - Variar listas (nunca exatamente 3 itens sempre)

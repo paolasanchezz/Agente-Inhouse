@@ -4,6 +4,17 @@
 
 ---
 
+## Protocolo (os 3 pilares)
+
+Toda skill trad-* carrega antes de traduzir/revisar:
+1. **Linguistico** — o `padrao-linguistico.md` do target (tabela abaixo). Se nao carregar, PARAR e rodar `/trad-calibrar [target]`.
+2. **Anti-IA** — `conhecimento/editorial/regras-anti-ia.md` **+ o anexo do idioma** (PT-PT / ES-LATAM). Aplicar inclusive DEPOIS de corrigir (re-contagem pos-correcao).
+3. **Boas praticas** — `conhecimento/copywriting/fundamentos-copy.md` quando a peca for criada/reescrita, nao so transposta.
+
+Referencia global: `CLAUDE.md` (secao "Protocolo de Copy").
+
+---
+
 ## Targets Validos
 
 | Target | Idioma alvo | Padrao linguistico |

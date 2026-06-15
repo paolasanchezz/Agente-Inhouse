@@ -4,6 +4,17 @@
 
 ---
 
+## Protocolo de Copy (os 3 pilares — OBRIGATORIO)
+
+Toda skill copy-* carrega, antes de criar ou revisar:
+1. **Linguistico** — se `regiao` != `brasil`: `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`. Se nao carregar, PARAR (rodar `/trad-calibrar [target]`).
+2. **Boas praticas** — `conhecimento/copywriting/fundamentos-copy.md` (+ doc do tipo) + `funil-copy.md`.
+3. **Anti-IA** — `conhecimento/editorial/regras-anti-ia.md` **+ o anexo do idioma** (PT-PT / ES-LATAM). Fonte unica.
+
+Referencia global em `CLAUDE.md` (secao "Protocolo de Copy").
+
+---
+
 ## Marcas Validas
 
 | Marca | Arquivo de produto |
@@ -43,8 +54,8 @@ Ao criar copy, carregar `brand/{marca}/brand-manifest.json` para tom de voz e me
 | `conhecimento/copywriting/video-curto-ads.md` + `video-curto-organico.md` + `video-curto-talking-head.md` | tipo = video-curto |
 | `conhecimento/copywriting/estatico-ads.md` + `estatico-organico.md` | tipo = estatico |
 | `conhecimento/copywriting/email-copy.md` | tipo = email |
-| `conhecimento/editorial/regras-anti-ia.md` | Em revisoes |
-| `conhecimento/editorial/estilo-newsletter.md` | Em revisoes |
+| `conhecimento/editorial/regras-anti-ia.md` | **SEMPRE** (criacao e revisao) — fonte unica anti-IA. Se `regiao` != `brasil`, ler tambem o anexo do idioma. |
+| `conhecimento/editorial/estilo-newsletter.md` | Apenas newsletters (estrutura/anatomia). NAO e a lista anti-IA: ele delega pra `regras-anti-ia.md`. |
 
 ## Convencoes de Output
 

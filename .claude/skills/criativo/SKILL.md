@@ -3,7 +3,7 @@ name: criativo
 description: Gera imagens de criativo (estatico/carrossel) ponta a ponta — adapta a copy, carrega brandbook + GUIDELINES, gera (HTML/Playwright por padrao ou Bloom sob pedido), revisa as imagens e entrega numa pasta local. Aplica margem de seguranca por uso (organico|anuncio) e formato (1x1|4x5|9x16). Texto pixel-perfect no caminho HTML.
 argument-hint: "[marca] [regiao] [tipo] [uso] [formato] [slug] + copy (colada/arquivo/Notion). Sem args, pergunta com chips. Ex: cxpress brasil carrossel anuncio 4x5 case-10-para-4"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_check_credits, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_list_brands, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_onboard_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_create_logo_upload_url, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_generate_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_edit_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_image
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: /criativo — gerar criativo ponta a ponta
@@ -46,12 +46,15 @@ MCP do Bloom esta disponivel (tente `bloom_check_credits` ou `ToolSearch "bloom"
 
 ## Passo 1 — Copy (adaptativo · GUIDELINES §9)
 
+**Se `regiao` != `brasil`, carregue ANTES o padrao linguistico** (`conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`): qualquer enxugue/reescrita/diagramacao tem que sair em PT-PT/ES **nativo**. Se o arquivo nao carregar, PARE e avise. Sem ele, "enxugar" copy estrangeira reintroduz brasileirismo ("esta a fazer" vira "esta fazendo", "utilizador" vira "usuario").
+
 Avalie a qualidade da copy recebida:
 - **Ja bem estruturada e encaixa no layout → LITERAL** (so diagrama, nao mexe nas palavras).
 - **Crua/desestruturada → adapta** estrutura (quebra em cards/blocos) + enxuga leve + passa anti-IA
-  (`conhecimento/editorial/regras-anti-ia.md`).
+  (`conhecimento/editorial/regras-anti-ia.md` + anexo do idioma se `regiao` != `brasil`).
 - **Sempre** preserva numeros/dados/claims exatos; nunca inventa frase/hook/CTA. Rotulos neutros de
   organizacao ("Antes"/"Depois") sao OK.
+- **Se `regiao` != `brasil`:** confira a copy final contra o padrao linguistico (vocabulario, "estar a + infinitivo", tratamento, CTAs nativos). Zero brasileirismo no criativo.
 
 Salve a copy final em `criativos/{marca}/{regiao}/{slug}/copy.txt` (blocos rotulados por card).
 A estrutura SAI DA COPY — sem template fixo (GUIDELINES §4).

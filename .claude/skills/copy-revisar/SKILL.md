@@ -3,7 +3,7 @@ name: copy-revisar
 description: Revisa uma copy verificando qualidade tecnica, precisao sobre o produto e linguagem de IA — e corrige automaticamente o que encontrar.
 argument-hint: "[arquivo-ou-texto] [marca] — ex: copy-meta-abril.md buzzmonitor"
 allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebSearch
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Revisar e Corrigir Copy
@@ -17,6 +17,11 @@ Leia `.claude/skills/copy-criar/CONTEXT.md` para marcas, regioes e caminhos vali
 Faca o parsing de `$ARGUMENTS`:
 - **Argumento 1** (`fonte`): caminho de arquivo .md/.txt contendo a copy, OU texto inline entre aspas
 - **Argumento 2** (`marca`): `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` — default: `buzzmonitor`
+- **Argumento 3** (`regiao`, opcional): `brasil` | `portugal` | `latam` — default: `brasil`
+
+**Deteccao de idioma (CRITICO, faca antes de tudo):** se `regiao` nao foi passada, infira do texto. Sinais de PT-PT ("esta a fazer", "telemovel", "utilizador", "equipa", "faturacao", "o seu/a sua") => `portugal`. Texto em espanhol => `latam`. Caso contrario => `brasil`. **Caso de risco** (o que motivou a Dimensao 4): copy que se diz PT-PT/ES mas vem cheia de brasileirismo. Nesse caso assuma o idioma-**alvo** pretendido e trate os brasileirismos como erro a corrigir, nao como o idioma real. Na duvida, pergunte ao usuario qual a regiao-alvo.
+
+Mapeamento de `regiao` (igual ao copy-criar): `brasil` => PT-BR, sem padrao linguistico | `portugal` => PT-PT, `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` | `latam` => ES-LATAM, `conhecimento/linguistico/es-latam/padrao-linguistico.md`.
 
 Se o usuario passar apenas texto inline sem arquivo, crie um arquivo temporario em `conhecimento/copywriting/revisoes/rascunho-YYYY-MM-DD.md` com o conteudo.
 
@@ -40,7 +45,10 @@ Leia todos os seguintes arquivos:
 5. Se existir, leia tambem `conhecimento/produto/{marca}/concorrentes.md`
 
 ### Linguagem e estilo
-6. `conhecimento/editorial/estilo-newsletter.md` — construcoes proibidas, frases tipicas de IA, anti-patterns de escrita IA, filler words
+6. `conhecimento/editorial/regras-anti-ia.md` - **fonte unica anti-IA** (frases tipicas de IA, filler words, em-dash tolerancia zero, antitese-por-negacao, anti-patterns estruturais). Se `regiao` != `brasil`, leia tambem o **anexo do idioma** (PT-PT / ES-LATAM) no fim do mesmo arquivo. (O `estilo-newsletter.md` e so estrutura de newsletter; nao e a lista anti-IA.)
+
+### Linguistico (so se `regiao` != `brasil`)
+7. `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md` - **padrao de escrita nativa (CRITICO).** Vocabulario, tratamento, construcoes gramaticais, CTAs nativos. Se o arquivo nao existir/carregar, **PARE** e avise (rode `/trad-calibrar [target]`). Sem ele nao ha como auditar a Dimensao 4.
 
 ## Passo 2: Analise em 3 Dimensoes
 
@@ -137,6 +145,26 @@ Ladeira: "as pessoas gostam da realidade da pessoa normal e real"
 
 ---
 
+### Dimensao 4: Fidelidade nativa ao idioma-alvo (so se `regiao` != `brasil`)
+
+**Pule esta dimensao apenas se `regiao` = `brasil`.** Caso contrario e a dimensao mais importante: e exatamente aqui que copy "PT-PT"/"ES" escrita por brasileiro vaza. Verifique contra o `padrao-linguistico.md` carregado no Passo 1 (item 7).
+
+**PT-PT (portugal):**
+- Gerundio brasileiro: "esta fazendo/crescendo/mudando" tem que virar "esta a fazer/crescer/mudar" (perifrase obrigatoria PT-PT).
+- "precisa fazer" => "precisa de fazer" (preposicao obrigatoria).
+- Vocabulario: usuario=>utilizador, aplicativo=>aplicacao, time=>equipa, celular=>telemovel, faturamento=>faturacao, varejo=>retalho, bilhao=>mil milhoes.
+- Tratamento conforme o padrao (em geral "voce" 3.a pessoa; NUNCA "tu" salvo pedido explicito). Zero brasileirismos ("ne", "que nem", "valeu", "a gente", "fale conosco"=>"fale connosco").
+- CTAs no registo PT-PT (formas nominais aceitas: "Saber mais", "Pedir Orcamento").
+
+**ES-LATAM (latam):**
+- Zero "vosotros"/"vuestro" (usar "ustedes").
+- Tratamento "tu"/"usted" conforme padrao, sem misturar.
+- Vocabulario e CTAs LATAM conforme as tabelas do padrao. Zero residuo de portugues.
+
+Liste cada desvio como problema (trecho + correcao), igual as outras dimensoes. **Todo desvio aqui e erro a corrigir, nao e "estilo".**
+
+---
+
 ## Passo 3: Gerar Diagnostico
 
 Antes de corrigir, apresente ao usuario um diagnostico estruturado:
@@ -155,6 +183,7 @@ Antes de corrigir, apresente ao usuario um diagnostico estruturado:
 | Qualidade tecnica | X problemas | 🔴 critico / 🟡 moderado / 🟢 ok |
 | Precisao de produto | X problemas | 🔴 critico / 🟡 moderado / 🟢 ok |
 | Linguagem de IA | X problemas | 🔴 critico / 🟡 moderado / 🟢 ok |
+| Fidelidade nativa (so se regiao != brasil) | X problemas | 🔴 critico / 🟡 moderado / 🟢 ok |
 
 ## Problemas Encontrados
 
@@ -168,6 +197,10 @@ Antes de corrigir, apresente ao usuario um diagnostico estruturado:
 
 ### Dimensao 3: Linguagem de IA
 1. **[trecho]** — [problema] → [como corrigir]
+2. ...
+
+### Dimensao 4: Fidelidade nativa (so se regiao != brasil)
+1. **[trecho]** — [brasileirismo / desvio do padrao] → [forma nativa]
 2. ...
 ```
 
@@ -219,7 +252,11 @@ Releia o texto corrigido e rode as 4 contagens abaixo de verdade — busque cada
 - 2+ frases consecutivas com mesma estrutura (ex: tres frases seguidas terminadas em "X, nao Y") viram cantilena.
 - Varie comprimento e forma — quebre uma das frases ou inverta.
 
-**Regra de saida:** se qualquer das 4 contagens falhar, refaca antes de seguir. So vai pro Passo 5 quando o texto corrigido passa nas 4.
+**5. Deriva de dialeto pos-correcao** (so se `regiao` != `brasil`)
+- Ao reescrever trechos no Passo 4 e facil "consertar" voltando pro PT-BR (ex: trocar "esta a crescer" por "esta crescendo", ou "utilizador" por "usuario"). Releia o texto corrigido contra o `padrao-linguistico.md` (Passo 1, item 7) e confirme: zero gerundio brasileiro, zero "usuario/aplicativo/faturamento", tratamento intacto.
+- Qualquer brasileirismo reintroduzido pela propria correcao => corrigir antes de seguir.
+
+**Regra de saida:** se qualquer das contagens falhar (as 4, ou 5 quando `regiao` != `brasil`), refaca antes de seguir. So vai pro Passo 5 quando o texto corrigido passa em todas.
 
 **Referencia canonica:** secao "Estruturas Viciadas" + "Teste Final de Naturalidade" em `conhecimento/editorial/regras-anti-ia.md`. Quando esta skill diverge desse arquivo, **vence o arquivo** — atualize a skill no mesmo PR.
 
@@ -241,4 +278,4 @@ Apos aplicar as correcoes, apresente:
 - **Seja preciso mas nao restritivo na dimensao 2 (produto).** Corrija apenas o que contradiz a base. Se a copy traz info que nao consta na base mas nao a contradiz, aceite — a copy pode ter dados legitimos que a base nao cobre. Nomes e grafias errados, sim, corrija sempre.
 - **Seja construtivo na dimensao 1 (tecnica).** Nem toda copy precisa de todos os elementos Ladeira — mas deve ter pelo menos hook forte + CTA claro + tom natural.
 - **Preserve a voz do autor.** Correcao ≠ reescrita. Se a copy tem personalidade, mantenha. Se nao tem, adicione levemente.
-- **Idioma do output:** Sempre PT-BR, a menos que a copy original esteja em outro idioma (nesse caso, mantenha o idioma original e aplique as mesmas regras).
+- **Idioma do output:** mantenha o idioma-alvo (`regiao`) da copy. Se `regiao` != `brasil`, o output e PT-PT ou ES-LATAM **nativo**, auditado pela Dimensao 4 contra o `padrao-linguistico.md`. Nunca "corrija" PT-PT/ES de volta pro PT-BR.
