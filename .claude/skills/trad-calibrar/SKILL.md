@@ -3,7 +3,7 @@ name: trad-calibrar
 description: Pesquisa sites de empresas e media em Portugal ou LATAM para coletar vocabulário, expressões idiomáticas e padrões de estilo autênticos de escrita nativa.
 argument-hint: "[pt-pt | es-latam]"
 allowed-tools: WebSearch, WebFetch, Read, Write, Edit
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Pesquisar Padrão Linguístico
@@ -20,9 +20,11 @@ Verifique se `$ARGUMENTS` é `pt-pt` ou `es-latam`. Se não for nenhum dos dois,
 
 ## Antes de Começar
 
-Leia o arquivo de padrão linguístico existente para entender o que já está documentado e evitar duplicações:
-- Se `$ARGUMENTS` = `pt-pt`: leia `conhecimento/linguistico/pt-portugal/padrao-linguistico.md`
-- Se `$ARGUMENTS` = `es-latam`: leia `conhecimento/linguistico/es-latam/padrao-linguistico.md`
+Leia os DOIS arquivos do idioma para entender o que já está documentado e evitar duplicações:
+- **Núcleo** (regras curadas): `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`
+- **Pesquisa** (proveniência/log): `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-pesquisa.md`
+
+O núcleo é lido por todas as skills de copy — mantenha-o enxuto (só regra acionável). A pesquisa é o log de proveniência, lido só por esta skill.
 
 ---
 
@@ -80,7 +82,7 @@ Para cada amostra coletada, identifique e anote:
 
 ## Fase 3: Atualização do Padrão Linguístico
 
-Leia novamente o arquivo de padrão existente. Em seguida, **adicione** (não sobrescreva) uma nova seção ao final do arquivo com o seguinte formato:
+Leia novamente o arquivo de **pesquisa** (`padrao-pesquisa.md`). Em seguida, **adicione** (não sobrescreva) uma nova seção ao final dele com o seguinte formato:
 
 ```markdown
 ---
@@ -112,21 +114,25 @@ Leia novamente o arquivo de padrão existente. Em seguida, **adicione** (não so
 [Construções encontradas que parecem locais mas devem ser evitadas em copy geral — com justificativa]
 ```
 
-Use **Write** (append ao arquivo existente) para adicionar esta seção, preservando todo o conteúdo anterior.
+Acrescente esta seção ao final de `padrao-pesquisa.md` (Edit/Write), preservando todo o conteúdo anterior. **Nunca** grave proveniência ou exemplos verbatim no núcleo (`padrao-linguistico.md`) — o núcleo recebe só regra destilada, na Fase 4.
 
 ---
 
-## Fase 4: Reconciliação com Regras Principais
+## Fase 4: Promoção para o Núcleo (OBRIGATÓRIA)
 
-Após adicionar os novos dados, releia o arquivo **completo** — incluindo as secções de topo (Tom e Registo, Vocabulário, CTAs, Anti-Patterns) — e verifique se as regras principais ainda são consistentes com a evidência acumulada:
+Este é o passo que mantém o núcleo enxuto **e** atual. Depois de registrar a proveniência na pesquisa, **promova as regras duráveis** para o núcleo (`padrao-linguistico.md`) com Edit. Releia o núcleo completo (Regras de Ouro, Tom e Registo, Vocabulário, Anti-Patterns) e verifique contra a evidência acumulada:
 
-1. **Tratamento**: Os exemplos reais coletados (CTAs, copy comercial) usam maioritariamente "tu" ou "você"? A recomendação na secção "Tom e Registo" está alinhada com a evidência? Se não, **atualize a secção de topo** usando Edit.
+1. **Tratamento**: Os exemplos reais coletados (CTAs, copy comercial) usam maioritariamente "tu"/"você" (ou "tú"/"usted")? A recomendação no núcleo está alinhada com a evidência? Se não, **atualize o núcleo** com Edit.
 
-2. **Vocabulário**: Foram encontrados termos novos que deveriam estar nas tabelas de vocabulário do topo (Tecnologia e Produto, CTAs, Geral e Negócios)? Se sim, adicione-os às tabelas existentes com Edit — não apenas à secção de atualização.
+2. **Vocabulário**: Foram encontrados termos novos que deveriam estar nas tabelas do núcleo (Tecnologia e Produto, CTAs, Geral e Negócios)? Se sim, adicione-os às tabelas com Edit.
 
-3. **Anti-Patterns**: Foram encontradas construções que devem ser evitadas? Estão listadas na secção principal de Anti-Patterns? Se não, adicione-as com Edit.
+3. **Anti-Patterns**: Foram encontradas construções a evitar? Estão listadas no núcleo? Se não, adicione-as com Edit.
 
-Informe ao utilizador quais secções de topo foram atualizadas e porquê.
+4. **Regra que mais denuncia o idioma?** Se a pesquisa revelou uma diferença sistemática de alto impacto (ex.: "está a + infinitivo" em PT-PT, tuteo no México), ela pertence à seção **Regras de Ouro** do núcleo — promova-a para lá.
+
+5. **Anti-bloat**: o núcleo é só regra acionável (alvo < ~250 linhas). Exemplos verbatim, headlines, leads e logs datados ficam SÓ na pesquisa, nunca no núcleo.
+
+Informe ao utilizador quais secções do núcleo foram atualizadas e porquê.
 
 ---
 
@@ -136,4 +142,5 @@ Ao finalizar, informe:
 - Quantos sites foram pesquisados com sucesso
 - Quantas amostras de texto coletadas
 - Os 3-5 achados mais relevantes da pesquisa (novos termos, padrões confirmados ou surpreendentes)
+- Onde gravou: proveniência em `padrao-pesquisa.md`; regras promovidas para `padrao-linguistico.md` (núcleo)
 - Instrução: "Padrão atualizado. Você já pode usar `/trad-traduzir [arquivo] [pt-pt|es-latam]`"

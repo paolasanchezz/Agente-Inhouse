@@ -39,6 +39,8 @@ Ao traduzir, consultar `brand/{marca}/brand-manifest.json` secao `voice.samplePh
 |---|---|
 | Entregas de traducao | `traducao/entregas/YYYY-MM/` |
 | Regras anti-IA | `conhecimento/editorial/regras-anti-ia.md` |
+| Padrao linguistico (nucleo) | `conhecimento/linguistico/{target}/padrao-linguistico.md` — lido por todas as skills; so regra acionavel |
+| Pesquisa do padrao (proveniencia) | `conhecimento/linguistico/{target}/padrao-pesquisa.md` — log escrito SO pelo `/trad-calibrar`; consumidoras nao leem |
 
 ## Convencoes de Nomes
 

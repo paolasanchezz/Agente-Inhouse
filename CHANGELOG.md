@@ -13,6 +13,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## Protocolo de Copy (cross-skill: copy-*, trad-*, lp-preparar, criativo + CLAUDE.md)
+### 2026-06-15 — Split núcleo/pesquisa dos padrões linguísticos (corte de custo + curadoria)
+
+Otimização do custo de token e da qualidade do padrão linguístico, depois de medir que o `padrao-linguistico.md` PT-PT custava ~5k tokens por leitura — e que as regras que mais definem o idioma ("está a + infinitivo", "utilizador") estavam enterradas no log de pesquisa, não nas tabelas do topo.
+
+- **Split em 2 arquivos por idioma:** `padrao-linguistico.md` vira o **núcleo** (só regra acionável, ~2–2,5k tokens) e `padrao-pesquisa.md` (novo) recebe a proveniência (sites, headlines, leads coletados pelo `/trad-calibrar`). Corte de ~50% no custo de leitura em trabalho PT-PT/ES; o caso PT-BR continua em zero.
+- **Curadoria (Regras de Ouro):** regras de alto impacto que viviam só no log foram promovidas pro núcleo — PT-PT: "está a + infinitivo", "precisa de + infinitivo", "utilizador", faturação/retalho/mil milhões; ES-LATAM: México = tuteo (nunca voseo), monitoreo, "Ingresa" (login), CTAs em 1ª pessoa, traduzir pipeline/leads/deals. O núcleo ficou menor **e** mais completo.
+- **Blast radius zero nas consumidoras:** as 11 skills que leem o padrão (`copy-*`, `trad-traduzir`, `trad-revisar`, `lp-preparar`, `criativo`, `pauta-quente`, `news-*`) **não mudam** — mesmo path (`padrao-linguistico.md`), arquivo mais leve.
+- **`trad-calibrar` v1.0.0 → v1.1.0** — único skill alterado: lê os 2 arquivos; Fase 3 grava proveniência no `padrao-pesquisa.md`; Fase 4 (agora "Promoção para o Núcleo", obrigatória) promove regras duráveis pro núcleo via Edit + guardrail anti-bloat (núcleo < ~250 linhas, nunca proveniência nele).
+- Arquivos de padrão (PT-PT e ES-LATAM) bumped para **Versão 1.0** (núcleo).
+
 ### 2026-06-15 — 3 pilares obrigatórios em toda skill que gera ou altera copy
 
 Resposta a um incidente: copy PT-PT criada por colaboradora brasileira saiu cheia de brasileirismo porque a skill usada não carregava o padrão linguístico. Auditoria das portas de entrada de copy mostrou que o rigor existe (`padrao-linguistico.md`, `regras-anti-ia.md`) mas não era carregado de forma consistente — e que, sem skill, nada carregava. Correção: contrato global no `CLAUDE.md` + fechamento das lacunas skill a skill, replicando o padrão que `news-gerar` / `pauta-quente` / `social-*` já faziam certo.
