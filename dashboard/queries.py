@@ -53,6 +53,7 @@ EMAIL_WHITELIST: list[str] = [
     'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
     'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
     'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
+    'contato@dermoclub.com',              # Dermoclub — UTM editada manualmente no AC mas sync AC->Supabase travada (mdate parado em 12/jun); CM confirmado pelo Victor 2026-06-15. TEMP: remover quando a UTM real descer.
 ]
 
 EMAIL_BLACKLIST: list[str] = [
