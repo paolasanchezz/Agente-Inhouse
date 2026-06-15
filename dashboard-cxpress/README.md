@@ -1,6 +1,6 @@
-# Dashboard Funil Inbound Cxpress Brasil — dinâmica (LOCAL)
+# Dashboard Content Marketing Cxpress Brasil — dinâmica (LOCAL)
 
-Versão **interativa** do dashboard de Funil Inbound da Cxpress, com **seletor de data**
+Versão **interativa** do dashboard de Content Marketing da Cxpress, com **seletor de data**
 (presets 7d/15d/30d/90d/MtD/YtD + intervalo livre) e consulta ao Supabase **ao vivo**.
 
 > **Por que local?** O Vercel não consegue conectar no Supabase com o user `looker_readonly`
@@ -31,13 +31,20 @@ uv run --python 3.12 --with "psycopg[binary]" python dashboard-cxpress/server.py
 ## Funil (mesma estrutura do BR/LATAM, etapas da Cxpress)
 
 Lead → **Triagem → Agendamento → Demo realizada** → Proposta → Fechamento (+ Perdido).
-Fonte: `cxpress_deals_funil_principal_prod`, escopo `funil_auto = 'Inbound'`. Critério completo em
-`dashboard/MAPEAMENTO-CAMPOS-cxpress.md`.
+Fonte: `cxpress_deals_funil_principal_prod`. Escopo = **só o filtro de canal CM** (funil_auto NÃO
+filtra — AC marca leads de mídia como Outbound; mesma decisão do Buzz BR): exclui Google Ads,
+whatsapp, youtube e inscrições de webinar; inclui Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/
+Linktree + LP `atendimento-para-clinicas` + `content.cxpress.io`. Critério completo em
+`dashboard/MAPEAMENTO-CAMPOS-cxpress.md` §2.
+
+**Baseline YtD 2026 (2026-06-09):** 490 leads · 35 triagem · 21 agend · 18 demo · 12 propostas ·
+5 fechamentos · 419 perdidos (coorte: criados no período e perdidos, igual Buzz BR). 15d = 9 leads,
+batendo com o Meta Ads. Nome do deal linka pro AC (`elife.activehosted.com/app/deals/{id}`).
 
 ## Limitações / pendências (ver `dashboard/MAPEAMENTO-CAMPOS-cxpress.md`)
 
 - **Datas das etapas** vêm como texto ISO do ActiveCampaign (lidas via `_d()`); confirmadas em 2026-06-06.
-- **Escopo:** inbound (`funil_auto = 'Inbound'`); os 865 deals com funil vazio ficam de fora.
+- **Escopo:** Inbound + Content Marketing calibrado (decisão Victor 2026-06-09).
 - **Sem dedup por pessoa** (a tabela não tem e-mail) — conta por deal.
 
 Nada aqui depende de deploy — é uso interno local.

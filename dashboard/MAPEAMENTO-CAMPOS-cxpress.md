@@ -1,12 +1,13 @@
-# Mapeamento de campos — Dashboard Funil Inbound **Cxpress Brasil** → Supabase
+# Mapeamento de campos — Dashboard **Content Marketing Cxpress Brasil** → Supabase
 
 > **Propósito:** define o funil e mapeia os campos da dashboard `relatorio-semanal-cxpress-brasil.html`
 > contra a tabela do Supabase. É o equivalente Cxpress do `dashboard/MAPEAMENTO-CAMPOS.md` (Buzzmonitor BR).
 >
-> **Status (2026-06-01):** a tabela `cxpress_deals_funil_principal_prod` **existe mas está vazia (0 linhas)**.
-> O gerador roda e produz a dashboard zerada; os números reais aparecem assim que a tabela for sincronizada.
-> Os critérios abaixo (parsing de datas, escopo inbound/CM) são **provisórios** e devem ser confirmados
-> contra os dados reais na 1ª carga — exatamente como o filtro do Buzzmonitor foi construído auditando o banco.
+> **Status (2026-06-09):** tabela `cxpress_deals_funil_principal_prod` populada (~7.326 linhas, jan/2021→jun/2026).
+> Filtros **calibrados** contra dados reais + validação manual do Victor: funil_auto NÃO filtra (no-op,
+> §2.1 — o AC marca leads de mídia como Outbound), corte é só por canal (whitelist CM, §2.2), inscrição
+> de webinar fora, whatsapp/youtube/sem-tracking fora. Funil CM 2026: 490 leads · 35 triagem · 21 agend ·
+> 18 demo · 12 propostas · 5 fechamentos · 419 perdidos-coorte. Ver §2 e §7.
 >
 > **Conexão:** mesmo banco do Brasil (`looker_readonly`), `SUPABASE_PG_URL` em `dashboard/.env`.
 
@@ -49,23 +50,77 @@ regra de 90 dias, nem UNION** — as queries (`queries_cxpress.py`) são mais si
 
 ---
 
-## 2. Escopo (inbound + Content Marketing) — **NO-OP por padrão**
+## 2. Escopo: Inbound + Content Marketing (calibrado 2026-06-09)
 
-Em `queries_cxpress.py`, `filtro_inbound()` e `filtro_cm()` retornam `"TRUE"` por padrão — ou seja, a
-dashboard conta **todas as linhas da tabela**. Isso é proposital: com 0 linhas não dá para calibrar
-nenhum filtro sem chutar (e um whitelist errado esconde dados silenciosamente).
+Dashboard é **Content Marketing Cxpress Brasil**. Dois filtros aplicados em `queries_cxpress.py`,
+ambos no WHERE de toda query (via helper `_escopo()`):
 
-**Ao ter dados, calibrar nesta ordem:**
+### 2.1. `filtro_inbound()` — **NO-OP** (não filtra por funil)
 
-1. **Inbound** — inspecionar `SELECT funil_auto, origem_do_lead, count(*) ... GROUP BY 1,2`. Se a tabela
-   misturar inbound/outbound, ligar `filtro_inbound()` para `funil_auto ILIKE '%inbound%'` (ou o valor real).
-2. **Content Marketing** (opcional) — se a Victor quiser estreitar só a CM (como no Buzzmonitor), auditar
-   `utm_source` / `url_conversao` reais e preencher `CM_UTM_SOURCES` + domínio de conteúdo Cxpress, depois
-   trocar `filtro_cm()` para `return _filtro_cm_provisorio(alias)`. **Decisão pendente** se a dashboard é
-   "todo o inbound" ou "só CM" — o chip/título atual diz **"Funil Inbound"** (não "Content Marketing"),
-   condizente com o escopo no-op. Se virar CM, ajustar o rótulo em `gerar_relatorio_cxpress.py`.
+Originalmente `funil_auto = 'Inbound'`; virou no-op em 2026-06-09 ao auditar o gap "dashboard
+mostra 5, Meta Ads mostra 9 leads em 15d": o AC classifica sistematicamente leads de mídia
+paga/conteúdo como `Outbound` — **393 deals com UTM CM em 2026**, incluindo os [RMKT] meta da
+LP clínicas — porque `funil_auto` reflete o processo de vendas (SDR move lead pra cadência
+outbound), não o canal de origem. Mesma decisão já tomada no Buzz BR (2026-05-19). O gate de
+canal da dashboard é exclusivamente o `filtro_cm()`.
 
-Ambas as funções são pontos de extensão isolados — mudar só elas, sem tocar nas queries.
+### 2.2. `filtro_cm()` — Content Marketing (tudo − Google Ads − ruído − inscrição de webinar)
+
+**Decisões Victor (2026-06-09)** após auditoria de utm_source/medium/url_conversao + checagem
+manual de amostras no ActiveCampaign (1ª rodada sobre o recorte Inbound; estendido à tabela toda
+quando `filtro_inbound` virou no-op — §2.1):
+
+| Bucket | Decisão | Razão |
+|---|---|---|
+| `google + cpc` (Google Ads) | **fora** | tráfego pago Google, não-CM por definição |
+| `whatsapp` (qualquer medium) | **fora** | misto outbound/CM, vendedor abre conversa em muitos casos |
+| `youtube` | **fora** | volume baixo + tracking ruidoso (Victor pediu corte) |
+| `google` sem `cpc` | fora | orgânico/direto, ambíguo |
+| sem utm e sem URL | **fora** | Victor validou amostra de 4 fechamentos: todos eram venda direta mal-classificada (Cacau Show, Claro Brasil, Lojas Marisa, Duben Seguros) |
+| Inscrição de webinar (`content.cxpress.io/webinar-tecnologia-maio2026`) | **fora** | precedente Buzz BR 2026-05-26: inscrição é topo de funil, não vira lead CM; só a OFERTA conta. 124 inscrições (lote 01/jun) ficariam de fora |
+| Whitelist social/owned | **dentro** | Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/Linktree — qualquer funil_auto |
+| LP `atendimento-para-clinicas` | **dentro** | CM mesmo sem UTM — exceção explícita do Victor |
+| Demais URLs `content.cxpress.io` + `conteudo.elife.com.br` | dentro | domínios de conteúdo (ofertas futuras) |
+
+**Implementação:** `CM_UTM_SOURCES` (whitelist exata) + 4 padrões LIKE (`instagram%`, `facebook%`,
+`newsletter%`, `linktree%`) cobrindo variações como `Instagram_Feed`, `Facebook_Mobile_Reels`,
+`newsletter+cxpress`, `Linktree Cxpress`. Mais `CM_URL_PATTERNS` (includes por URL) e
+`CM_URLS_EXCLUIDAS` (inscrições de webinar — exclusão com `COALESCE(url,'')` pra não derrubar
+leads com URL NULL).
+
+**Funil CM 2026 final (YtD até 09/jun):** 490 leads · 35 triagem · 21 agend · 18 demo ·
+12 propostas · 5 fechamentos · 419 perdidos (coorte). Janela 15d (26/05–09/06): 9 leads — **bate
+com o Meta Ads** (era exatamente o gap que motivou o no-op do funil).
+
+### 2.2.1. Perdidos = definição COORTE (igual Buzzmonitor BR)
+
+Perdidos conta **leads criados no período** que terminaram como Perdido (`data_do_lost_auto` válida +
+`motivo_de_perda_closer_sdr` preenchido + **`status = 'Perdido'`**) — **não** "perdidos datados no
+período". Datar pelo lost misturava coortes (deal de 2024 perdido hoje contava no período atual) e
+gerava % Perdidos > 100% no painel da seção 2 (98 perdidos vs 97 leads). Corrigido em 2026-06-09
+espelhando `q_count_perdidos`/`q_lista_perdidos` do Buzz BR. A lista de detalhe acompanha o **período
+selecionado** (não MtD fixo — decisão Victor 2026-06-09: no server dinâmico a lista deve mostrar
+os mesmos perdidos que o KPI do período conta) e ordena pela data da perda.
+
+**Por que exigir `status = 'Perdido'` (estado final):** o AC mantém `data_do_lost_auto` e motivo na
+linha quando um deal perdido é **reaberto** — caso Medprime (83763): lost 01/06 "Fora do timing",
+reativado 03/06 com triagem + agendamento + demo marcada, status `Aberta` — contava como perdido E
+ativo ao mesmo tempo. Na base há 25 `Aberta` + 4 `Ganho` com lost+motivo órfãos. Sem o status, um
+deal recuperado/ganho ainda apareceria nos perdidos da coorte.
+
+### 2.3. Diferenças vs Buzzmonitor BR
+
+| Aspecto | Buzzmonitor BR | Cxpress BR |
+|---|---|---|
+| Dedup | por e-mail (`email_contato_principal_bd_sdr`) | por deal (sem coluna de e-mail) |
+| Reconversão | override manual `RECONVERSOES_MANUAIS` | n/a |
+| Whitelist/blacklist nominal | `EMAIL_WHITELIST` + `EMAIL_BLACKLIST` | n/a (sem e-mail) |
+| `whatsapp` | dentro (decisão Victor jan/2026) | fora (decisão Victor jun/2026) |
+| `youtube` | n/a (volume zero) | fora |
+| Blog/conteúdo próprio | `buzzmonitor.com.br/blog/%`, `content.elife`, slugs CM | `home.cxpress.io/atendimento-para-clinicas`, `content.cxpress.io` |
+
+**Ponto de extensão:** `CM_UTM_SOURCES` e `CM_URL_PATTERNS` no topo de `queries_cxpress.py` —
+adicionar novas LPs/sources lá, sem tocar nas queries.
 
 ---
 
@@ -87,9 +142,14 @@ própria linha. Logo cada etapa é contada diretamente pela sua data, sem cross-
 | 4 | **Demo realizada** | `data_de_demo_realizada_auto` | — |
 | 5 | **Proposta** | `data_do_envio_da_proposta_auto` | valor em `cxpress_fee_mensal` |
 | 6 | **Fechamento** | `data_do_fechamento_auto` | valor em `valor_atualizado_do_fee` (fallback `cxpress_fee_mensal`) |
-| — | **Perdido** | `data_do_lost_auto` | + `motivo_de_perda_closer_sdr`, `etapa_do_lost` |
+| — | **Perdido** | coorte: `cdate` no período + `data_do_lost_auto` + motivo | + `motivo_de_perda_closer_sdr`, `etapa_do_lost` — ver §2.2.1 |
 
 Cada KPI conta pela data da **sua** etapa (não pela criação) — igual à regra inegociável do Brasil.
+Exceção: **Perdidos** usa coorte (§2.2.1), também igual ao Brasil.
+
+**Links pro ActiveCampaign:** o nome do deal em toda lista é um link pra
+`https://elife.activehosted.com/app/deals/{id}` (instância AC da Cxpress = `elife`;
+Buzzmonitor usa `buzzmonitor.activehosted.com`). Implementado em `render_helpers_cxpress._deal_cell`.
 
 ---
 
@@ -115,10 +175,20 @@ WHERE data_triagem_realizada_auto <> '' LIMIT 20`. Se vier em `DD/MM/YYYY` ou `M
 
 ## 7. Validação / pendências
 
-1. **Tabela vazia (2026-06-01):** fixar números-âncora YtD após a 1ª sincronização (igual à conferência 6/6
-   do Brasil) e considerar um smoke test em `gerar_relatorio_cxpress.py` (hoje não há, porque não há baseline).
-2. **Formato das datas** (§5) — confirmar ISO.
-3. **Escopo** (§2) — decidir inbound-completo vs só-CM e calibrar os filtros.
-4. **Dedup** — sem e-mail; se aparecerem deals duplicados por empresa, avaliar dedup por `contact`/`cnpj`.
+1. **Baseline 2026-06-09 (filtro final: funil no-op + CM + webinar excluído + perdido só status final):**
+   Funil CM YtD = 490 leads · 35 triagem · 21 agend · 18 demo · 12 propostas · 5 fech · 415 perdidos
+   (coorte, status='Perdido'). Janela 15d (26/05–09/06): 9 leads · 3 perdidos — 9 bate com o Meta Ads.
+   Verificado servidor 8020 vs SQL independente — match exato. Usar como número-âncora pra detectar
+   regressão.
+2. **Sync AC→Supabase é diário (madrugada ~02:30 UTC):** eventos do dia (ex.: demo realizada hoje)
+   só aparecem na dashboard no dia seguinte. Caso Medprime 2026-06-09: demo marcada pra 09/06 12:00,
+   card movido no AC no mesmo dia — a linha local (mdate 03/06) só atualiza na carga noturna.
+2. **Formato das datas** (§5) — confirmado ISO `YYYY-MM-DDT...` (jun/2026).
+3. **Escopo** (§2) — calibrado e validado pelo Victor em 2026-06-09. ✅
+4. **Dedup** — sem e-mail; conta por deal (igual LATAM). Se aparecerem duplicatas claras por empresa,
+   avaliar dedup por `contact` (bigint).
 5. **`stage`/`status`** — mapear os valores reais (ex.: `status='Ganho'` confirma fechamento? há `Perdido`?)
    e, se útil, cruzar com as datas de etapa.
+6. **Deploy Vercel** — pendente (dashboard só roda LOCAL hoje, porta 8020). Mesmo motivo do BR/LATAM:
+   Vercel não conecta no Supabase com `looker_readonly` (IPv4). Quando deployar, usar pasta sibling
+   fora do repo (ver `reference_dashboard_sibling` e padrão `dashboard-buzzmonitor-brasil`).

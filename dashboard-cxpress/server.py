@@ -1,4 +1,4 @@
-"""server.py — dashboard Funil Inbound **Cxpress Brasil** dinâmica (LOCAL).
+"""server.py — dashboard **Content Marketing Cxpress Brasil** dinâmica (LOCAL).
 
 Date-picker livre + presets (7d/15d/30d/90d/MtD/YtD), consulta o Supabase ao vivo.
 Roda só localmente (o Vercel não conecta no Supabase com o user looker_readonly — mesmo
@@ -107,7 +107,7 @@ def render_periodo(ini: date, fim: date, nome: str, refresh: bool = False) -> tu
 
 SHELL = """<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funil Inbound Cxpress · dinâmico</title>
+<title>Content Marketing Cxpress · dinâmico</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--blue:#0B63FF;--blue-d:#073FA3;--ink:#1F2937;--dim:#6B7280;--line:#E5E7EB;--bg:#F8FAFC}
@@ -134,7 +134,7 @@ SHELL = """<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
   .loading.on{display:flex}
 </style></head><body>
   <div class="bar">
-    <div class="brand">Cxpress Brasil<small>Funil Inbound · dinâmico</small></div>
+    <div class="brand">Cxpress Brasil<small>Content Marketing · dinâmico</small></div>
     <div class="pgroup" id="presets">
       <button class="pbtn" data-preset="7d">7d</button>
       <button class="pbtn" data-preset="15d">15d</button>
@@ -236,11 +236,23 @@ class Handler(BaseHTTPRequestHandler):
             self._send(500, f'{type(e).__name__}: {e}', 'text/plain; charset=utf-8')
 
 
+class _Server(ThreadingHTTPServer):
+    # Windows + SO_REUSEADDR deixa DOIS servidores bindarem a mesma porta, com o trafego
+    # indo pro processo antigo (incidente 2026-06-09: edicoes "nao apareciam" porque o server
+    # velho do atalho seguia respondendo). False => segunda instancia falha com erro claro.
+    allow_reuse_address = False
+
+
 def main():
     port = int(os.environ.get('PORT', 8020))
-    srv = ThreadingHTTPServer(('127.0.0.1', port), Handler)
+    try:
+        srv = _Server(('127.0.0.1', port), Handler)
+    except OSError:
+        print(f"\n  ERRO: a porta {port} ja esta em uso — ha outra janela do servidor aberta.")
+        print("  Feche a janela antiga ('Dashboard CXPRESS LOCAL - feche para parar') e tente de novo.\n")
+        raise SystemExit(1)
     srv.daemon_threads = True
-    print(f"\n  Dashboard Funil Inbound Cxpress (dinâmico, local) → http://127.0.0.1:{port}")
+    print(f"\n  Dashboard Content Marketing Cxpress (dinâmico, local) → http://127.0.0.1:{port}")
     print("  Presets + date-picker · consulta o Supabase ao vivo · Ctrl+C pra parar.\n", flush=True)
     try:
         srv.serve_forever()

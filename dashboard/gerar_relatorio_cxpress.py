@@ -1,9 +1,11 @@
-"""gerar_relatorio_cxpress.py — gera o dashboard de Funil Inbound **Cxpress Brasil**.
+"""gerar_relatorio_cxpress.py — gera o dashboard de **Content Marketing Cxpress Brasil**.
 
 Clone fiel do dashboard do Brasil (mesmo CSS/toggles/rankings/charts/sortable), adaptado para:
 - funil de 6 fases + Perdido: Lead -> Triagem -> Agendamento -> Demo realizada -> Proposta
   -> Fechamento (+ Perdido). Mesma contagem de KPIs do Brasil (7), entao a grade fica repeat(7,1fr).
 - fonte: tabela unica cxpress_deals_funil_principal_prod (sem regra de 90d, sem contratos separados).
+- escopo: Content Marketing (Inbound + filtro_cm calibrado em queries_cxpress.py — exclui Google Ads,
+  whatsapp, youtube; inclui sociais/owned + LP clinicas + content.cxpress.io).
 - idioma PT-BR, moeda BRL.
 
 O CSS e EXTRAIDO em runtime do template do Brasil (relatorio-semanal-buzzmonitor-brasil.html)
@@ -120,7 +122,9 @@ def colher(cur, per) -> dict:
     d['demo_semana'] = fetch_all(cur, q_lista_demo(a, fa))
     d['prop_semana'] = fetch_all(cur, q_lista_propostas(a, fa))
     d['fech_semana'] = fetch_all(cur, q_lista_fechamentos(a, fa))
-    d['perdidos_mtd'] = fetch_all(cur, q_lista_perdidos(mi, mf))
+    # Lista de perdidos acompanha o PERIODO SELECIONADO (nao MtD fixo): no server dinamico
+    # o usuario espera ver na lista os mesmos perdidos que o KPI do periodo conta.
+    d['perdidos_periodo'] = fetch_all(cur, q_lista_perdidos(a, fa))
     print("[colher] Rankings source/content (4 periodos)...")
     for key, (i, fm) in {'semana': (a, fa), 'sem_ant': (pa, fpa), 'mtd': (mi, mf), 'ytd': (yi, yf)}.items():
         d[f'rk_src_{key}'] = fetch_all(cur, q_ranking('utm_source', i, fm))
@@ -205,8 +209,8 @@ def render_html(d):
 
     # ---- header ----
     header = (
-        '<div class="top"><div class="chip">Funil Inbound · Cxpress Brasil</div>'
-        '<h1>Resultados — Funil Inbound</h1><div class="sub">Relatório Semanal · Cxpress Brasil</div>'
+        '<div class="top"><div class="chip">Content Marketing · Cxpress Brasil</div>'
+        '<h1>Resultados — Content Marketing</h1><div class="sub">Relatório Semanal · Cxpress Brasil</div>'
         '<div class="meta">'
         f'<div class="item"><span class="lbl">Período</span><span class="val">{fmt_data_longa(p["ini_atual"])} → {fmt_data_longa(fa)} · {fa.year}</span></div>'
         f'<div class="item"><span class="lbl">vs. Semana anterior</span><span class="val">{fmt_data_curta(p["ini_ant"])} → {fmt_data_curta(p["fim_ant"])}</span></div>'
@@ -214,15 +218,16 @@ def render_html(d):
         f'<div class="item"><span class="lbl"><span class="no-upper">YtD</span> · Acumulado do ano</span><span class="val">Jan → {_MES_C[fa.month-1]} {fa.year} ({sem_div} semanas)</span></div>'
         f'<div class="item"><span class="lbl">Gerado em</span><span class="val">{hoje.day:02d} {_MES_C[hoje.month-1]} {hoje.year}</span></div>'
         '</div>'
-        '<div class="sources"><b>Fonte:</b> Supabase (cxpress_deals_funil_principal_prod) · funil inbound Cxpress · '
-        'escopo/filtro de canal em MAPEAMENTO-CAMPOS-cxpress.md. Moeda: BRL.</div></div>'
+        '<div class="sources"><b>Fonte:</b> Supabase (cxpress_deals_funil_principal_prod) · '
+        'funil Inbound + filtro Content Marketing calibrado · escopo em MAPEAMENTO-CAMPOS-cxpress.md. '
+        'Moeda: BRL.</div></div>'
     )
 
     # ---- bloco 1 ----
     tag_sem = f'{p["ini_atual"].day:02d}–{fa.day:02d} {_MES_C[fa.month-1]} {fa.year}'
     bloco1 = (
         '<section><div class="section-head"><div class="icon">1</div>'
-        f'<h2>Visão Geral · {pn}</h2>'
+        f'<h2>Content Marketing · Visão Geral · {pn}</h2>'
         f'<span class="tag">{tag_sem}</span></div>'
         + _kpi_row(d['semana'], comp=d['sem_ant'], ky=d['ytd'], sem_div=sem_div)
         + '<div class="sub-head">Acumulado <span class="no-upper">MtD</span></div>'
@@ -240,17 +245,17 @@ def render_html(d):
                 f'<div class="pct">{pct}%</div>'
                 f'<div class="abs">{perd} perdidos · {leads} leads · {periodo}</div>'
                 f'<div class="bar"><span style="width:{min(pct,100)}%"></span></div></div>')
-    perd_rows = ''.join(R.row_perda(x) for x in d['perdidos_mtd']) or R.empty_row(6)
+    perd_rows = ''.join(R.row_perda(x) for x in d['perdidos_periodo']) or R.empty_row(6)
     bloco2 = (
         '<section><div class="section-head"><div class="icon">2</div>'
-        '<h2>Perdas · Semana / MtD / YtD</h2><span class="tag">data do lost</span></div>'
+        '<h2>Perdas · Semana / MtD / YtD</h2><span class="tag">coorte · leads criados no período</span></div>'
         '<div class="loss-panel">'
         + loss_item(pn, d['semana'], f'{p["ini_atual"].day:02d}–{fa.day:02d} {_MES_C[fa.month-1]}')
         + loss_item('<span class="no-upper">MtD</span>', d['mtd'], f'{p["mtd_ini"].day:02d}–{p["mtd_fim"].day:02d} {_MES_C[p["mtd_fim"].month-1]}')
         + loss_item('<span class="no-upper">YtD</span>', d['ytd'], f'Jan–{_MES_C[fa.month-1]}')
         + '</div>'
-        + _toggle('Leads perdidos no MtD · detalhe', f'{len(d["perdidos_mtd"])} deals',
-                  '<tr><th>Deal</th><th>Fonte</th><th>Conteúdo</th><th>Etapa do lost</th><th>Data</th><th>Motivo</th></tr>', perd_rows)
+        + _toggle('Leads perdidos no período · detalhe', f'{len(d["perdidos_periodo"])} deals',
+                  '<tr><th>Deal</th><th>Fonte</th><th>Conteúdo</th><th>Etapa do lost</th><th>Perdido em</th><th>Motivo</th></tr>', perd_rows)
         + '</section>'
     )
 
@@ -321,14 +326,15 @@ def render_html(d):
         '</section>'
     )
 
-    nota = ('<div class="sources" style="margin-top:18px">⚠️ <b>Dashboard sobre dados reais da tabela '
-            'cxpress_deals_funil_principal_prod.</b> Escopo atual: todo o funil da tabela (filtros de inbound '
-            'e Content Marketing estão como no-op até calibração com dados — ver MAPEAMENTO-CAMPOS-cxpress.md §Escopo). '
-            'As datas de etapa vêm do ActiveCampaign como texto e são lidas como ISO (YYYY-MM-DD); confirmar o formato '
-            'na 1ª carga. Sem dedup por pessoa (a tabela não tem e-mail).</div>')
+    nota = ('<div class="sources" style="margin-top:18px"><b>Dashboard de Content Marketing</b> sobre dados reais '
+            'da tabela <code>cxpress_deals_funil_principal_prod</code>. Escopo: funil Inbound + filtro CM calibrado '
+            '(exclui Google Ads e tráfego whatsapp/youtube; inclui Meta/IG/FB/LinkedIn/Email/Blog/TikTok + LP '
+            '<code>atendimento-para-clinicas</code> + <code>content.cxpress.io</code>) — detalhes em '
+            'MAPEAMENTO-CAMPOS-cxpress.md §2. As datas de etapa vêm do ActiveCampaign como texto e são lidas como '
+            'ISO (YYYY-MM-DD). Sem dedup por pessoa (a tabela não tem e-mail).</div>')
 
     footer = (
-        '<footer><b>Dashboard de Funil Inbound · dados reais do Supabase</b><br>'
+        '<footer><b>Dashboard de Content Marketing · dados reais do Supabase</b><br>'
         f'{pn} {fmt_data_curta(p["ini_atual"])}-{fmt_data_curta(fa)} {fa.year} · '
         f'MtD {fmt_data_curta(p["mtd_ini"])}-{fmt_data_curta(p["mtd_fim"])} · YtD Jan-{_MES_C[fa.month-1]} {fa.year}<br>'
         'Cada etapa contabilizada pela data do evento · Cxpress Brasil · uso interno</footer>'
@@ -338,7 +344,7 @@ def render_html(d):
     return (
         '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
-        f'<title>Resultados — Funil Inbound · Cxpress Brasil · {tag_sem}</title>'
+        f'<title>Resultados — Content Marketing · Cxpress Brasil · {tag_sem}</title>'
         '<link rel="preconnect" href="https://fonts.googleapis.com">'
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
         f'<style>{css}</style></head><body><div class="container">'
@@ -425,14 +431,14 @@ def _build_js(d):
 # ============ MAIN ============
 
 def main():
-    ap = argparse.ArgumentParser(description='Gera o dashboard de Funil Inbound Cxpress Brasil.')
+    ap = argparse.ArgumentParser(description='Gera o dashboard de Content Marketing Cxpress Brasil.')
     ap.add_argument('--ate', type=str, default=None)
     ap.add_argument('--output', type=str, default=None)
     args = ap.parse_args()
 
     per = calcular_periodos(date.fromisoformat(args.ate) if args.ate else None)
     print("=" * 64)
-    print("Dashboard Funil Inbound — Cxpress Brasil")
+    print("Dashboard Content Marketing — Cxpress Brasil")
     print(f"Hoje: {per['hoje']} · Semana: {per['ini_atual']} -> {per['fim_atual']} · YtD -> {per['ytd_fim']}")
     print("=" * 64)
 

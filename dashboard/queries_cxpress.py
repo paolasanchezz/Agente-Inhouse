@@ -1,4 +1,4 @@
-"""queries_cxpress.py — queries SQL para a dashboard de Funil Inbound **Cxpress Brasil**.
+"""queries_cxpress.py — queries SQL para a dashboard de **Content Marketing Cxpress Brasil**.
 
 Fonte: tabela UNICA `cxpress_deals_funil_principal_prod` (Supabase, read-only).
 Espelha dashboard/MAPEAMENTO-CAMPOS-cxpress.md.
@@ -13,9 +13,9 @@ Diferencas vs Buzzmonitor (queries.py):
 - Valor em texto (cxpress_fee_mensal / valor_atualizado_do_fee) => parse em Python.
 - Moeda BRL, idioma PT-BR.
 
-ESCOPO (filtro_inbound / filtro_cm): NO-OP por padrao (conta TODAS as linhas da tabela).
-Ative/calibre quando houver dados — ver MAPEAMENTO §Escopo. A tabela ainda esta vazia (0 linhas);
-todo filtro de canal/funil precisa ser conferido contra os valores reais antes de ligar.
+ESCOPO calibrado 2026-06-09 (auditoria utm_source/medium/url_conversao + validacao manual Victor):
+- filtro_inbound: funil_auto = 'Inbound'
+- filtro_cm: exclui Google Ads (google+cpc); inclui whitelist social/owned + URL clinicas/content.
 """
 from __future__ import annotations
 
@@ -48,48 +48,83 @@ def _d(col: str) -> str:
     return f"(CASE WHEN {col} ~ '^[0-9]{{4}}-[0-9]{{2}}-[0-9]{{2}}' THEN left({col}, 10)::date END)"
 
 
-# ============ ESCOPO (no-op por padrao — calibrar com dados) ============
+# ============ ESCOPO ============
 
 def filtro_inbound(alias: str = '') -> str:
-    """Restringe ao funil INBOUND (funil_auto = 'Inbound').
+    """No-op — NAO filtra por funil_auto (espelha decisao Buzz BR 2026-05-19, aplicada a
+    Cxpress em 2026-06-09 ao auditar o gap dashboard 5 vs Meta Ads 9 leads em 15d).
 
-    Calibrado 2026-06-06 contra os dados reais: funil_auto = 'Inbound' (3004),
-    'Outbound' (3457), vazio (865). A dashboard e do funil de inbound, entao filtra 'Inbound'.
-    Os 865 sem classificacao ficam de fora — trocar por
-    `{a}funil_auto IS DISTINCT FROM 'Outbound'` se quiser incluir os vazios.
-    """
-    a = (alias + '.') if alias else ''
-    return f"{a}funil_auto = 'Inbound'"
-
-
-# Whitelist PROVISORIA de utm_source CM (NAO calibrada — tabela vazia). Ver MAPEAMENTO §Escopo.
-CM_UTM_SOURCES: list[str] = [
-    'meta', 'ig', 'instagram', 'facebook', 'fb', 'linkedin',
-    'email', 'blog', 'tiktok', 'youtube', 'notion', 'chatgpt.com',
-]
-
-
-def filtro_cm(alias: str = '') -> str:
-    """Filtro Content Marketing. NO-OP por padrao (mostra TODO o funil inbound).
-
-    Para estreitar a dashboard so a leads de CM, trocar o corpo por
-    `return _filtro_cm_provisorio(alias)` — DEPOIS de calibrar a whitelist/dominio
-    contra os utm_source/url_conversao reais (hoje a tabela tem 0 linhas).
+    O AC classifica sistematicamente leads de midia paga/conteudo como 'Outbound' — 393 deals
+    com UTM CM em 2026, incluindo [RMKT] meta da LP clinicas — porque funil_auto reflete o
+    PROCESSO de vendas (SDR move lead pra cadencia outbound), nao o canal de origem. O gate
+    de canal da dashboard e o filtro_cm(). Para restringir por funil de novo, trocar o corpo
+    por: a = (alias + '.') if alias else ''; return f"{a}funil_auto = 'Inbound'".
     """
     return "TRUE"
 
 
-def _filtro_cm_provisorio(alias: str = '') -> str:
-    """Rascunho do filtro CM (exclui Google Ads; aceita social/owned + dominio Cxpress).
-    NAO usar sem calibrar contra dados reais. Mantido como ponto de partida.
+# Whitelist de utm_source CM (calibrada 2026-06-09 contra dados reais + validacao Victor).
+# Inclui sources exatos. Prefixos compostos (instagram_feed, facebook_mobile_feed, newsletter+cxpress,
+# linktree+cxpress, etc.) sao cobertos via LIKE no filtro_cm() abaixo.
+# Excluidos explicitamente (decisao Victor): whatsapp, youtube — comportamento misto outbound/CM,
+# tracking ruidoso. google+cpc tambem fora (Google Ads, nao CM).
+CM_UTM_SOURCES: list[str] = [
+    'meta', 'ig', 'instagram', 'fb', 'facebook',
+    'linkedin', 'email', 'blog', 'tiktok',
+    'chatgpt.com', 'gemini', 'lp-agradecimento',
+]
+
+# URLs de conteudo CM que entram independente de utm_source (caso o tracking nao tenha sido preservado).
+# Atualizar conforme novas LPs/dominios de CM forem lancados.
+CM_URL_PATTERNS: list[str] = [
+    'https://home.cxpress.io/atendimento-para-clinicas%',  # LP CM (sem UTM) — confirmada Victor 2026-06-09
+    'https://content.cxpress.io/%',                         # dominio de conteudo
+    'https://conteudo.elife.com.br/%',                       # conteudo Elife historico (compartilhado)
+]
+
+# Inscricao de webinar NAO vira lead CM (precedente Buzz BR 2026-05-26: pagina de inscricao e
+# topo de funil — so a OFERTA conta). Exclui por URL; as demais paginas content.cxpress.io seguem CM.
+# Sem isto, o lote de 123 inscricoes do webinar-tecnologia (01/jun, todas Outbound) inunda o funil.
+CM_URLS_EXCLUIDAS: list[str] = [
+    'https://content.cxpress.io/webinar-tecnologia-maio2026%',
+]
+
+
+def filtro_cm(alias: str = '') -> str:
+    """Filtro Content Marketing — calibrado contra dados reais + validacao manual Victor 2026-06-09.
+
+    Regras:
+    1. Exclui Google Ads (google + cpc).
+    2. Exclui sources nao-CM (whatsapp, youtube, vtexday2026, Indicação, Ramal, ActiveCampaign, etc.)
+       — implicitamente, por nao casar a whitelist nem os padroes LIKE.
+    3. Inclui sources sociais/owned (CM_UTM_SOURCES) + variacoes case-insensitive com prefixos
+       (instagram_feed, facebook_mobile_feed, newsletter+cxpress, linktree+cxpress, ...).
+    4. Inclui URLs de conteudo CM (CM_URL_PATTERNS) mesmo sem utm_source.
+
+    5. Exclui inscricoes de webinar (CM_URLS_EXCLUIDAS) — topo de funil, nao e lead CM.
+
+    COALESCE na exclusao de URL: sem ele, `NOT (NULL ILIKE x)` = NULL derruba do filtro
+    qualquer lead com url_conversao vazia mesmo com utm_source valido (mesma classe do bug
+    google/cpc do Buzz BR corrigido em 2026-05-26).
     """
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES)
+    url_clauses = "\n        OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in CM_URL_PATTERNS)
+    excl_clauses = "\n        OR ".join(
+        f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in CM_URLS_EXCLUIDAS
+    )
     return f"""(
-      NOT (lower(coalesce({a}utm_source, '')) LIKE 'google%' AND lower(coalesce({a}utm_medium, '')) = 'cpc')
+      NOT (LOWER(COALESCE({a}utm_source, '')) = 'google' AND LOWER(COALESCE({a}utm_medium, '')) = 'cpc')
+      AND NOT (
+        {excl_clauses}
+      )
       AND (
-        lower({a}utm_source) IN ({sources})
-        OR {a}url_conversao ILIKE '%cxpress%'
+        LOWER({a}utm_source) IN ({sources})
+        OR LOWER({a}utm_source) LIKE 'instagram%'
+        OR LOWER({a}utm_source) LIKE 'facebook%'
+        OR LOWER({a}utm_source) LIKE 'newsletter%'
+        OR LOWER({a}utm_source) LIKE 'linktree%'
+        OR {url_clauses}
       )
     )"""
 
@@ -102,7 +137,18 @@ def _escopo(alias: str = 'd') -> str:
 # ============ KPIs (7 do funil, contados pela data do evento) ============
 
 def q_count_kpis(ini: date, fim: date) -> str:
-    """Counts das 7 etapas no periodo. Cada metrica conta pela data do SEU evento."""
+    """Counts das 7 etapas no periodo. Cada metrica conta pela data do SEU evento.
+
+    EXCECAO — Perdidos (definicao COORTE, igual Buzzmonitor BR q_count_perdidos):
+    leads CRIADOS no periodo que terminaram como Perdido (lost + motivo preenchido
+    + status = 'Perdido'). Datar pelo lost misturava coortes (deal de 2024 perdido hoje
+    contava) e gerava % Perdidos > 100% no painel da secao 2. Coorte garante perd <= leads.
+
+    status = 'Perdido' (estado FINAL) filtra deals reativados: o AC mantem data_do_lost_auto
+    e motivo na linha quando um deal perdido e reaberto (caso Medprime 2026-06-09: lost 01/06,
+    reativado 03/06 com demo marcada, status 'Aberta' — contava perdido e ativo ao mesmo tempo).
+    Na base ha 25 'Aberta' + 4 'Ganho' com lost+motivo orfaos.
+    """
     i, f = ini.isoformat(), fim.isoformat()
     return f"""
 SELECT
@@ -112,7 +158,10 @@ SELECT
   count(*) FILTER (WHERE {_d('d.' + COL_DEMO)} BETWEEN '{i}' AND '{f}') AS demo,
   count(*) FILTER (WHERE {_d('d.' + COL_PROPOSTA)} BETWEEN '{i}' AND '{f}') AS proposta,
   count(*) FILTER (WHERE {_d('d.' + COL_FECHAMENTO)} BETWEEN '{i}' AND '{f}') AS fechamento,
-  count(*) FILTER (WHERE {_d('d.' + COL_LOST)} BETWEEN '{i}' AND '{f}') AS perd
+  count(*) FILTER (WHERE d.{COL_LEAD}::date BETWEEN '{i}' AND '{f}'
+                     AND {_d('d.' + COL_LOST)} IS NOT NULL
+                     AND NULLIF(TRIM(d.motivo_de_perda_closer_sdr), '') IS NOT NULL
+                     AND d.status = 'Perdido') AS perd
 FROM {TABELA} d
 WHERE {_escopo('d')}
 """
@@ -187,7 +236,10 @@ ORDER BY {_d('d.' + COL_FECHAMENTO)}
 
 
 def q_lista_perdidos(ini: date, fim: date) -> str:
-    """Perdidos no periodo (datado por data_do_lost_auto), com motivo e ultima etapa atingida."""
+    """Perdidos (definicao COORTE, igual Buzzmonitor BR q_lista_perdidos):
+    leads CRIADOS no periodo que terminaram como Perdido, com motivo preenchido e
+    status = 'Perdido' (estado final — deals reativados/ganhos com lost orfao ficam fora).
+    Ordenado pela data da perda (mais recente primeiro)."""
     return f"""
 SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
        d.motivo_de_perda_closer_sdr AS motivo,
@@ -196,7 +248,10 @@ SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
        COALESCE({_d('d.' + COL_DEMO)}, {_d('d.' + COL_AGENDAMENTO)},
                 {_d('d.' + COL_TRIAGEM)}, d.{COL_LEAD}::date) AS ultima_conversao
 FROM {TABELA} d
-WHERE {_d('d.' + COL_LOST)} BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+WHERE d.{COL_LEAD}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
+  AND {_d('d.' + COL_LOST)} IS NOT NULL
+  AND NULLIF(TRIM(d.motivo_de_perda_closer_sdr), '') IS NOT NULL
+  AND d.status = 'Perdido'
   AND {_escopo('d')}
 ORDER BY {_d('d.' + COL_LOST)} DESC
 """

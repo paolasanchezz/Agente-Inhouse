@@ -1,4 +1,4 @@
-"""render_helpers_cxpress.py — renderers HTML (PT-BR / BRL) para a dashboard de Funil Inbound Cxpress.
+"""render_helpers_cxpress.py — renderers HTML (PT-BR / BRL) para a dashboard de Content Marketing Cxpress.
 
 Reaproveita os genericos de render_helpers.py (escape, rank_cell, badges, formatadores BR,
 format_delta, parse_valor_text, render_proporcao_sources) — Cxpress e PT-BR/BRL igual ao Brasil,
@@ -11,10 +11,35 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from render_helpers import (  # genericos reaproveitados (PT-BR)
-    escape, rank_cell, badge_source,
+    escape, rank_cell,
     fmt_int, fmt_pct_safe, fmt_data_br, fmt_moeda_br, parse_valor_text,
     format_delta, render_proporcao_sources,
 )
+from render_helpers import badge_source as _badge_source_base
+
+
+def badge_source(name) -> str:
+    """badge_source com aliases Cxpress: trafego Meta (ig/fb/instagram*/facebook*) usa o badge b-meta."""
+    n = (name or '').strip().lower()
+    if n in ('ig', 'fb') or n.startswith('instagram') or n.startswith('facebook'):
+        return f'<span class="b b-meta">{escape(name)}</span>'
+    return _badge_source_base(name)
+
+
+# Instancia ActiveCampaign da Cxpress = elife (Buzzmonitor usa buzzmonitor.activehosted.com).
+AC_DEALS_BASE = 'https://elife.activehosted.com/app/deals/'
+
+
+def _deal_cell(d: dict) -> str:
+    """Nome do deal envolto num link pro ActiveCampaign (igual _deal_cell do Buzz BR)."""
+    name = escape(d.get('deal'))
+    did = d.get('id')
+    if not did:
+        return f'<span class="deal-name">{name}</span>'
+    return (
+        f'<a class="deal-name" href="{AC_DEALS_BASE}{did}" '
+        f'target="_blank" rel="noopener noreferrer" title="Abrir deal no ActiveCampaign">{name}</a>'
+    )
 
 
 def empty_row(cols: int) -> str:
@@ -30,7 +55,7 @@ def _resp(d: dict) -> str:
 def row_lead(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
@@ -46,7 +71,7 @@ def row_agendamento(d: dict) -> str:
                  if demo else '<span class="b b-status-pending">Pendente</span>')
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -63,7 +88,7 @@ def row_demo(d: dict) -> str:
                  else '<span class="b b-status-no">Não</span>')
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -76,7 +101,7 @@ def row_demo(d: dict) -> str:
 def row_prop(d: dict) -> str:
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -91,7 +116,7 @@ def row_fech(d: dict) -> str:
     valor_html = f'<b>{valor_html}</b>' if valor_html != '—' else '—'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
@@ -108,7 +133,7 @@ def row_perda(d: dict) -> str:
     motivo_html = f'<span class="b {motivo_class}">{escape(motivo)}</span>' if motivo else '<span class="dim">—</span>'
     return (
         '<tr>'
-        f'<td><span class="deal-name">{escape(d.get("deal"))}</span></td>'
+        f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
         f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
         f'<td class="dim">{escape(d.get("etapa") or "—")}</td>'
