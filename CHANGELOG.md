@@ -33,6 +33,26 @@ Arquivos:
 
 ---
 
+## dashboard/queries.py (Dashboard CM Buzzmonitor Brasil)
+### 2026-06-15 — Atribuição CM 90d: granularidade ::date + auto-atribuição p/ account_id NULL
+
+Correção de **subcontagem** em eventos pós-conversão (Contato Efetivo, Reunião Agendada, Reunião Realizada, Proposta). Disparada por investigação do Victor: a dashboard reportava **0 reuniões** na semana 06–12/jun, mas havia deals legítimos de CM com reunião agendada/realizada na janela. Duas causas-raiz na regra dos 90 dias (`EXISTS` contra `conversoes_cm`), ambas centralizadas agora no novo helper `_atrib_cm_90d(col, alias)`:
+
+1. **Granularidade `::date`.** As colunas de evento são gravadas à meia-noite (`data_agendamento_auto = 'YYYY-MM-DD 00:00:00'`) enquanto `cdate` carrega hora real (`timestamptz`). A comparação em timestamp cru (`cdate 07:39 <= agendamento 00:00` = falso) derrubava silenciosamente o evento que cai **no mesmo dia** da conversão. Passa a comparar em `::date` nos dois lados — alinhado ao §6 do MAPEAMENTO. Sozinha, recupera ~26 reuniões agendadas YtD 2026 (RA tem hora 00:00; RR já gravava hora real, então não era afetada).
+2. **Auto-atribuição para `account_id IS NULL`.** Deals sem empresa no CRM (leads individuais — ex.: campanha Monitoramento Político: pré-candidatos, jornalistas) têm `account_id` nulo. A CTE `conversoes_cm` exige `account_id NOT NULL` e o `EXISTS` casa por conta, então esses deals **nunca** contavam CE/RA/RR/Proposta — só Leads (que não usa conta). Quando o próprio row é CM, o deal passa a se auto-atribuir dentro da janela 90d.
+
+`filtro_cm()` e `_sql_exclusao_deals()` ganharam parâmetro `alias` opcional (default `''` gera SQL byte-idêntico ao anterior) para o branch de auto-atribuição prefixar colunas (`d.`/`ct.`). Os 16 blocos `EXISTS` inline (count/lista de evento, propostas, fechamentos, rankings, série 12m, proporção 12m) foram trocados pelo helper.
+
+**Impacto medido (YtD 2026), só pelas 2 correções de critério:** RA ~41→69, RR ~55→58, CE ~82→92, Proposta ~45→50. **Fechamentos permanecem 7 · R$ 19.270 (gate §7 intacto)** — verificado: o fix não recupera nenhum fechamento novo (`account_id` nulo CM em contratos = 0; nenhum fechamento same-day muda de lado). Perdidos também não mudam (já usavam filtro CM no próprio row, sem join por conta).
+
+**Override nominal `CM_DEALS_FORCADOS` (mesmo PR):** lista de `deal_id` que o Victor confirma como CM mas que nenhuma regra automática pega — ex.: *Assembleia Legislativa do MA* (189715), lead que converteu na **página de oferta webinar** mas teve deal novo criado sem UTM, em conta diferente, 108d depois. Força os **eventos** do deal (CE/RA/RR/Proposta) a contarem, ignorando account-join e janela 90d; **não** toca Leads (lead original já conta) nem Fechamentos (só `deals_comercial_prod`; fechamento via `EMAIL_WHITELIST`). Mesma filosofia da `EMAIL_WHITELIST`/`RECONVERSOES_MANUAIS`. Com 189715 incluído: semana 06–12/jun RA=3 / CE=8; YtD RA=70 / CE=93. Gate de fechamentos segue 7 · R$ 19.270.
+
+**Pendente (não tocado neste PR):** `queries_latam.py` e `queries_cxpress.py` compartilham o mesmo padrão de `EXISTS` 90d e provavelmente o mesmo viés — avaliar replicar o helper (LATAM tem peculiaridades de schema: sem `account_id` na base).
+
+Arquivos: `dashboard/queries.py`, `dashboard/MAPEAMENTO-CAMPOS.md` (§3).
+
+---
+
 ## dashboard/queries_latam.py (Dashboard CM LATAM)
 ### 2026-06-06 — Fechamento (cierre) ampliado + valor pela coluna `value`
 

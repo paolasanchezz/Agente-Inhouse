@@ -222,19 +222,38 @@ WITH conversoes_cm AS (
 
 ### Padrão de query para eventos pós-conversão
 
+> **Implementação:** centralizada no helper `_atrib_cm_90d(col, alias)` em `queries.py` (revisão 2026-06-15). Não reescrever o `EXISTS` inline — usar o helper.
+
 ```sql
 SELECT d.*
 FROM deals_comercial_prod d
-WHERE d.<coluna_data_evento> BETWEEN :ini AND :fim
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.<coluna_data_evento>
-      AND d.<coluna_data_evento> - cm.data_conv <= INTERVAL '90 days'
+WHERE d.<coluna_data_evento>::date BETWEEN :ini AND :fim
+  AND (
+    -- atribuição normal: conversão CM na mesma conta ≤ 90d antes
+    EXISTS (
+      SELECT 1 FROM conversoes_cm cm
+      WHERE cm.account_id = d.account_id
+        AND cm.data_conv::date <= d.<coluna_data_evento>::date
+        AND d.<coluna_data_evento>::date - cm.data_conv::date <= 90
+    )
+    -- auto-atribuição: deal sem empresa no CRM (account_id NULL) cujo próprio row é CM
+    OR (
+      d.account_id IS NULL
+      AND <filtro_cm_universal aplicado em d>
+      AND d.cdate::date <= d.<coluna_data_evento>::date
+      AND d.<coluna_data_evento>::date - d.cdate::date <= 90
+    )
   )
 ```
 
 Para Fechamento, trocar `deals_comercial_prod` por `deals_contratos_prod` e `<coluna_data_evento>` por `data_fechamento_auto`.
+
+**Duas correções (2026-06-15) sobre a versão ingênua — ambas causavam subcontagem:**
+
+1. **Comparar em `::date`, não timestamp cru.** As colunas de evento são gravadas à meia-noite (`data_agendamento_auto = 'YYYY-MM-DD 00:00:00'`) enquanto `cdate` é `timestamptz` com hora real. Em timestamp cru, um evento no **mesmo dia** da conversão falha (`cdate 07:39 <= agendamento 00:00` = falso) e some da contagem. `::date` normaliza (ver §6). Recupera ~26 reuniões agendadas YtD 2026.
+2. **Auto-atribuição quando `account_id IS NULL`.** A CTE `conversoes_cm` exige `account_id NOT NULL` e o `EXISTS` casa por conta — então deals de leads **sem empresa** no CRM (ex.: campanha Monitoramento Político: pré-candidatos, jornalistas) nunca contavam CE/RA/RR/Proposta, só Leads. Quando o próprio row é CM, o deal se atribui a si mesmo dentro dos 90d.
+
+**Fora da janela por padrão, mas overridável (`CM_DEALS_FORCADOS`):** um evento cuja conversão CM foi há >90d ou veio de `account_id` diferente **não** entra pela regra automática. Quando o Victor confirma que o deal é CM mesmo assim — ex.: deal 189715 *Assembleia Legislativa do MA*, lead que converteu na **página de oferta webinar** (CM legítimo) mas teve um deal novo criado pelo CRM **sem UTM, em conta diferente e 108 dias depois** — adiciona-se o `id` do deal a `CM_DEALS_FORCADOS` em `queries.py`. Isso força os **eventos** daquele deal (CE/RA/RR/Proposta) a contarem como CM, **sem** afetar Leads (o lead original já conta pela conversão real) nem Fechamentos (gate §7 — override de fechamento continua via `EMAIL_WHITELIST`). Override nominal, não heurístico — só `deals_comercial_prod`. Para casos sistemáticos de UTM perdida, ver `/auditar-deals-cm`.
 
 ---
 
@@ -503,7 +522,7 @@ Pegar top 6 em Python, agregar resto como "outros".
 
 - **Email do contato:** sempre `email_contato_principal_bd_sdr`. O campo `quick_email` é legado e baixa cobertura.
 - **Status de fechamento em `deals_contratos_prod`:** ignorar `status`, usar `data_fechamento_auto IS NOT NULL`. O status do contrato é estado do contrato, não confirmação de venda.
-- **Tipos de data:** mistos (`timestamp with time zone` vs `timestamp without time zone`). Use `::date` em comparações com períodos.
+- **Tipos de data:** mistos (`cdate` = `timestamptz` com hora real; colunas de evento `_auto` = `timestamp without time zone`; `data_negocio_perdido_auto` = `date`). **`data_agendamento_auto` é gravada à meia-noite** (`00:00:00`), enquanto `data_inicio_reuniao_realizada` carrega hora real. Por isso comparar evento × `cdate`/`data_conv` em timestamp cru perde casos do mesmo dia. **Use `::date` em todas as comparações de data** — períodos E janela de atribuição 90d (ver §3).
 - **Normalização:** sempre `lower(trim(email))` em comparações.
 - **`gclid` sticky:** o `gclid` pode persistir entre sessões — um usuário que clicou em Google Ads há semanas e hoje converteu via Meta pode ter `gclid` preenchido com `utm_source=meta`. Por isso a regra de exclusão é `NOT (utm_source='google' AND utm_medium='cpc')`, **não** `gclid IS NULL`.
 

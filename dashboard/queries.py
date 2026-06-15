@@ -112,6 +112,19 @@ RECONVERSOES_MANUAIS: dict[int, str] = {
     183266: '2026-05-26',  # Karol/Cely — reconverteu na oferta webinar; CRM so editou o deal de 09/mar. Mover (Victor 2026-05-27).
 }
 
+# Deals confirmados como CM pelo Victor que o criterio automatico NAO captura.
+# Caso tipico: o lead converteu numa pagina de oferta CM, mas o CRM criou um DEAL
+# NOVO sem UTM/URL, em account_id diferente e/ou fora da janela de 90d — entao nem
+# o EXISTS por conta nem a auto-atribuicao por account NULL o pegam.
+# Este override force-inclui os EVENTOS do deal (CE/RA/RR/Proposta) como CM,
+# ignorando account-join e janela 90d. NAO afeta Leads (o lead original ja conta
+# pela conversao CM real) NEM Fechamentos (gate §7 — override de fechamento e via
+# EMAIL_WHITELIST). Override nominal, nao heuristico — mesma filosofia da
+# EMAIL_WHITELIST / RECONVERSOES_MANUAIS. So aplica a deals_comercial_prod.
+CM_DEALS_FORCADOS: dict[int, str] = {
+    189715: 'Assembleia Legislativa do MA — contato converteu na oferta webinar relatorios-estrategicos (deal 180841); CRM criou deal novo sem UTM, conta diferente, +108d. CM confirmado (Victor 2026-06-15).',
+}
+
 
 def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
     """SQL do cdate efetivo aplicando RECONVERSOES_MANUAIS.
@@ -173,17 +186,19 @@ def _sql_email_list(emails: list[str]) -> str:
     return f"SELECT lower(trim(email)) AS email FROM (VALUES {rows}) AS t(email)"
 
 
-def _sql_exclusao_deals() -> str:
+def _sql_exclusao_deals(alias: str = '') -> str:
     """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA.
 
-    Retorna 'TRUE' (no-op) se a lista estiver vazia. Usa colunas sem alias
-    (url_conversao, cdate) — mesmo contrato do filtro_cm().
+    Retorna 'TRUE' (no-op) se a lista estiver vazia. Aceita `alias` opcional para
+    prefixar as colunas (url_conversao, cdate) quando aplicada em query com JOIN —
+    mesmo contrato do filtro_cm(). Sem alias, gera SQL byte-identico ao anterior.
 
     COALESCE(url_conversao, '') protege contra url_conversao NULL: sem ele,
     `NULL ILIKE '...'` retorna NULL e o `NOT (...)` propaga NULL no WHERE,
     derrubando do filtro CM QUALQUER lead com URL vazia — mesmo com utm_source
     valido (ex: 'meta'). Mesma classe do bug google/cpc corrigido em 2026-05-26.
     """
+    p = f"{alias}." if alias else ""
     if not DEALS_EXCLUIDOS_URL_DATA:
         return "TRUE"
     clauses = []
@@ -191,46 +206,109 @@ def _sql_exclusao_deals() -> str:
         datas = d.get('datas')
         if datas:
             datas_sql = ", ".join(f"'{dt}'" for dt in datas)
-            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+            clauses.append(f"(COALESCE({p}url_conversao, '') ILIKE '{d['url_like']}' AND {p}cdate::date IN ({datas_sql}))")
         else:
             # Sem datas => exclui qualquer data que case a URL.
-            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}')")
+            clauses.append(f"(COALESCE({p}url_conversao, '') ILIKE '{d['url_like']}')")
     return "NOT (" + " OR ".join(clauses) + ")"
 
 
 # ============ FILTRO CM UNIVERSAL ============
 
-def filtro_cm() -> str:
+def filtro_cm(alias: str = '') -> str:
     """
     Retorna a string SQL do filtro Content Marketing universal.
 
-    Usa nomes de colunas sem prefixo de alias — aplicar em WHERE de queries onde
-    `utm_source`, `utm_medium`, `url_conversao` e `cdate` nao sao ambiguos.
+    `alias` opcional prefixa as colunas (utm_source, utm_medium, url_conversao)
+    para uso em queries com JOIN — ex: filtro_cm('d') gera `d.utm_source IN (...)`.
+    Sem alias, aplica em WHERE onde as colunas nao sao ambiguas e gera SQL
+    byte-identico ao anterior.
 
     Espelha §2 do MAPEAMENTO-CAMPOS.md.
     """
+    p = f"{alias}." if alias else ""
     sources = _sql_list(CM_UTM_SOURCES)
     internos = _sql_list(INTERNOS_EXCLUIR)
-    exclusao = _sql_exclusao_deals()
+    exclusao = _sql_exclusao_deals(alias)
     slugs_clauses = "\n          OR ".join(
-        f"url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
+        f"{p}url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
         for slug in CM_SLUGS_PREFIXES
     )
     return f"""(
     {exclusao}
-    AND NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
+    AND NOT (COALESCE({p}utm_source, '') = 'google' AND COALESCE({p}utm_medium, '') = 'cpc')
     AND (
-      utm_source IN ({sources})
-      OR url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
-      OR url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
-      OR url_conversao ILIKE 'https://material.buzzmonitor.com/%'
-      OR url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
+      {p}utm_source IN ({sources})
+      OR {p}url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
+      OR {p}url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
+      OR {p}url_conversao ILIKE 'https://material.buzzmonitor.com/%'
+      OR {p}url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
       OR (
-        (utm_source IS NULL OR utm_source NOT IN ({internos}))
+        ({p}utm_source IS NULL OR {p}utm_source NOT IN ({internos}))
         AND (
           {slugs_clauses}
         )
       )
+    )
+  )"""
+
+
+def _sql_cm_deals_forcados(alias: str = 'd') -> str:
+    """Clausula SQL TRUE quando o deal esta em CM_DEALS_FORCADOS (override de
+    evento, so comercial). Retorna 'FALSE' (no-op em OR) se a lista estiver vazia."""
+    if not CM_DEALS_FORCADOS:
+        return "FALSE"
+    p = f"{alias}." if alias else ""
+    ids = ", ".join(str(i) for i in CM_DEALS_FORCADOS)
+    return f"{p}id IN ({ids})"
+
+
+def _atrib_cm_90d(col: str, alias: str = 'd') -> str:
+    """Predicado SQL de atribuicao CM com janela de 90 dias pos-conversao.
+
+    Centraliza a regra dos 90d (MAPEAMENTO §3) com DUAS correcoes + 1 override
+    nominal, feitas em 2026-06-15 (Victor) sobre a versao ingenua que subcontava:
+
+    1. GRANULARIDADE ::date — as colunas de evento sao gravadas a meia-noite
+       (ex: data_agendamento_auto = 'YYYY-MM-DD 00:00:00') enquanto cdate carrega
+       hora real (timestamptz). Comparar em timestamp cru fazia o evento do MESMO
+       dia da conversao falhar silenciosamente (`cdate 07:39 <= agendamento 00:00`
+       = falso), derrubando ~28 reunioes agendadas YtD 2026. Comparar em ::date
+       normaliza — alinhado a §6 ("use ::date em comparacoes").
+
+    2. AUTO-ATRIBUICAO p/ account_id NULL — deals sem empresa no CRM (leads
+       individuais, ex: campanha Monitoramento Politico — pre-candidatos,
+       jornalistas) tem account_id NULL. A CTE conversoes_cm exige account_id
+       NOT NULL e o EXISTS casa por account, entao esses deals NUNCA contavam
+       CE/RA/RR/Proposta — apenas Leads (que nao usa account). Quando o proprio
+       row e CM, o deal se auto-atribui dentro da janela 90d (comparada em ::date).
+
+    3. OVERRIDE NOMINAL (CM_DEALS_FORCADOS) — deals que o Victor confirmou como CM
+       mas que nenhuma regra acima pega (ex: lead converteu em pagina de oferta CM,
+       mas o CRM criou deal novo sem UTM, em conta diferente e fora dos 90d). Entram
+       so como EVENTO, so na tabela comercial; nao tocam Fechamentos nem Leads.
+
+    `col` = coluna-data do evento; `alias` = alias da tabela na query externa.
+    Fechamentos (deals_contratos_prod) usam alias 'ct'. Requer a CTE
+    `conversoes_cm` no WITH da query (cte_conversoes_cm).
+    """
+    a = alias
+    fcm = filtro_cm(a)
+    # Override nominal so p/ comercial (ct = fechamentos nao muda — gate §7 intacto).
+    forcado = "FALSE" if a == "ct" else _sql_cm_deals_forcados(a)
+    return f"""(
+    {forcado}
+    OR EXISTS (
+      SELECT 1 FROM conversoes_cm cm
+      WHERE cm.account_id = {a}.account_id
+        AND cm.data_conv::date <= {a}.{col}::date
+        AND {a}.{col}::date - cm.data_conv::date <= 90
+    )
+    OR (
+      {a}.account_id IS NULL
+      AND {fcm}
+      AND {a}.cdate::date <= {a}.{col}::date
+      AND {a}.{col}::date - {a}.cdate::date <= 90
     )
   )"""
 
@@ -296,12 +374,7 @@ SELECT COUNT(*) AS n
 FROM deals_comercial_prod d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.{col}
-      AND d.{col} - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d(col, "d")}
 """
 
 
@@ -354,12 +427,7 @@ WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isofor
     lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR (
       {filtro_inbound("ct")}
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = ct.account_id
-          AND cm.data_conv <= ct.data_fechamento_auto
-          AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
     )
   )
 """
@@ -418,12 +486,7 @@ SELECT
 FROM deals_comercial_prod d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.{col}
-      AND d.{col} - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d(col, "d")}
 ORDER BY d.{col}
 """
 
@@ -443,12 +506,7 @@ SELECT
 FROM deals_comercial_prod d
 WHERE d.data_envio_proposta_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.data_envio_proposta_auto
-      AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
 ORDER BY d.data_envio_proposta_auto
 """
 
@@ -477,12 +535,7 @@ WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isofor
     lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR (
       {filtro_inbound("ct")}
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = ct.account_id
-          AND cm.data_conv <= ct.data_fechamento_auto
-          AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
     )
   )
 ORDER BY ct.data_fechamento_auto
@@ -568,12 +621,7 @@ ce_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_efetividade_contato_auto
-        AND d.data_efetividade_contato_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
   GROUP BY d.{dim}
 ),
 ra_p AS (
@@ -581,12 +629,7 @@ ra_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_agendamento_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   GROUP BY d.{dim}
 ),
 rr_p AS (
@@ -594,12 +637,7 @@ rr_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_inicio_reuniao_realizada
-        AND d.data_inicio_reuniao_realizada - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
   GROUP BY d.{dim}
 ),
 prop_p AS (
@@ -607,12 +645,7 @@ prop_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_envio_proposta_auto
-        AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
   GROUP BY d.{dim}
 ),
 fech_p AS (
@@ -624,12 +657,7 @@ fech_p AS (
       lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR (
         {filtro_inbound("ct")}
-        AND EXISTS (
-          SELECT 1 FROM conversoes_cm cm
-          WHERE cm.account_id = ct.account_id
-            AND cm.data_conv <= ct.data_fechamento_auto
-            AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-        )
+        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
       )
     )
   GROUP BY ct.{dim}
@@ -735,34 +763,19 @@ eventos AS (
   FROM deals_comercial_prod d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_efetividade_contato_auto
-        AND d.data_efetividade_contato_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_agendamento_auto)::date, 'agendadas'
   FROM deals_comercial_prod d
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_envio_proposta_auto)::date, 'propostas'
   FROM deals_comercial_prod d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_envio_proposta_auto
-        AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', ct.data_fechamento_auto)::date, 'fechamentos'
   FROM deals_contratos_prod ct
@@ -772,12 +785,7 @@ eventos AS (
       lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR (
         {filtro_inbound("ct")}
-        AND EXISTS (
-          SELECT 1 FROM conversoes_cm cm
-          WHERE cm.account_id = ct.account_id
-            AND cm.data_conv <= ct.data_fechamento_auto
-            AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-        )
+        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
       )
     )
 )
@@ -803,21 +811,11 @@ SELECT
   COALESCE(d.utm_source, '(vazio)') AS source,
   COUNT(*) FILTER (
     WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = d.account_id
-          AND cm.data_conv <= d.data_agendamento_auto
-          AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   ) AS ra_12m,
   COUNT(*) FILTER (
     WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = d.account_id
-          AND cm.data_conv <= d.data_inicio_reuniao_realizada
-          AND d.data_inicio_reuniao_realizada - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
   ) AS rr_12m
 FROM deals_comercial_prod d
 WHERE {filtro_inbound("d")}
@@ -828,12 +826,7 @@ WHERE {filtro_inbound("d")}
 GROUP BY d.utm_source
 HAVING COUNT(*) FILTER (
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
 ) > 0
 ORDER BY ra_12m DESC
 """
