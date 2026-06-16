@@ -1,6 +1,10 @@
 const CLICKMEETING_API_BASE = 'https://api.clickmeeting.com/v1';
 const FALLBACK_THANK_YOU = 'https://home.cxpress.io/webinar-inscricao-realizada';
 
+// Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
+// Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
+const SERIES_LANG = { atencion: 'es' };
+
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -98,7 +102,7 @@ module.exports = async (req, res) => {
   params.append('registration[3]', email);
   if (company) params.append('registration[10]', company);
   params.append('confirmation_email[enabled]', '1');
-  params.append('confirmation_email[lang]', 'br');
+  params.append('confirmation_email[lang]', SERIES_LANG[series] || 'br');
 
   let apiResponse;
   try {
