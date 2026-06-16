@@ -1,0 +1,25 @@
+{
+  "$comment": "Configuracao COMMITADA do projeto (vale para todos os colaboradores). Preferencias por-maquina (token, permissions locais) ficam em .claude/settings.local.json (gitignored). TRAVA DE DEPLOY VERCEL: o hook PreToolUse abaixo pede confirmacao antes de qualquer deploy Vercel (vercel CLI deploy/promote/rollback/redeploy via Bash ou PowerShell + tool MCP deploy_to_vercel). Motivo e limites em .claude/hooks/guard_vercel_deploy.py. Deploy de LP/dashboard deve sempre comecar pela skill (/lp-publicar, /dashboard-atualizar); read-only via /lp-sync.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_vercel_deploy.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*__deploy_to_vercel",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_vercel_deploy.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
