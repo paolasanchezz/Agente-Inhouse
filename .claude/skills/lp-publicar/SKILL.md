@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.8.0
+version: 3.9.0
 ---
 
 # Skill: Publicar Landing Page
@@ -834,17 +834,34 @@ No modo guarda-chuva, capturar hash MD5 do `index.html` de **cada outra LP** do 
 
 **Pos-Passo 0.5.d (v3.1.0):** a sibling agora sempre reflete o live antes deste passo (sync via Vercel API). Antes da v3.1.0, primeira execucao numa maquina nova podia capturar baseline vazio (sibling sem vizinhas), o que ocultava regressoes. Se mesmo assim o baseline ficar vazio aqui, e porque: (a) projeto guarda-chuva nunca teve deploy anterior — caso legitimo, OK seguir; (b) sync do 0.5.d falhou silenciosamente — investigar antes de prosseguir.
 
+**Vizinha que e SOURCE de redirect (v3.9.0):** se um slug vizinho aparece como `source` em `redirects` no `{sibling}/vercel.json`, o live serve **3xx** (nao o `index.html` que existe na pasta). Comparar hash de conteudo daria **falso "REGRESSAO"** em todo deploy — o smoke test do 3.4.b usa `curl` sem `-L`, entao captura o corpo do 308, que nunca bate com o hash do arquivo. Essas vizinhas vao para uma lista separada (`REDIRECT_OTHERS`, formato `slug:destino`) e sao validadas por `Location` no 3.4.b, nao por hash. Incidente motivador 2026-06-16 (§7.2).
+
 ```bash
+# Mapa de redirects do vercel.json: "source-sem-barra<TAB>destino-com-barra"
+REDIRECT_MAP=$(python -c "
+import json
+d = json.load(open(r'{sibling}/vercel.json', encoding='utf-8'))
+for r in d.get('redirects', []):
+    s = (r.get('source') or '').strip('/'); dest = r.get('destination') or ''
+    if s: print(s + '\t' + dest)
+" 2>/dev/null)
+
 for OTHER_DIR in "{sibling}"/*/; do
   OTHER_SLUG=$(basename "$OTHER_DIR")
-  if [ "$OTHER_SLUG" != "{slug}" ] && [ -f "$OTHER_DIR/index.html" ]; then
+  # Em batch, trocar este teste por: "pular se OTHER_SLUG esta em $SLUGS"
+  [ "$OTHER_SLUG" = "{slug}" ] && continue
+  # E source de redirect? Guarda o destino (validado por Location no 3.4.b), nao o hash.
+  DEST=$(printf '%s\n' "$REDIRECT_MAP" | awk -F'\t' -v s="$OTHER_SLUG" '$1==s{print $2; exit}')
+  if [ -n "$DEST" ]; then
+    echo "baseline-redirect /$OTHER_SLUG -> $DEST"   # -> REDIRECT_OTHERS  (slug:destino)
+  elif [ -f "$OTHER_DIR/index.html" ]; then
     OTHER_HASH=$(md5sum "$OTHER_DIR/index.html" | awk '{print $1}')
-    echo "baseline /$OTHER_SLUG: $OTHER_HASH"
+    echo "baseline /$OTHER_SLUG: $OTHER_HASH"         # -> BASELINES_OTHERS (slug:hash)
   fi
 done
 ```
 
-Guardar como `BASELINES_OTHERS` (lista `(slug, hash)`) para usar em 3.4.
+Guardar `BASELINES_OTHERS` (lista `(slug, hash)`) **e** `REDIRECT_OTHERS` (lista `(slug, destino)`) para usar em 3.4.
 
 Excecoes legitimas: nada. Se voce **intencionalmente** mudou outra LP do sibling neste deploy (ex: refatorou asset compartilhado), abortar e usar `/lp-publicar` separado para cada LP afetada — nao misturar entregas no mesmo deploy.
 
@@ -935,7 +952,7 @@ echo "live:  $LIVE_HASH"
 
 Pular em modo solo.
 
-Para cada `(slug, hash)` em `BASELINES_OTHERS` (capturado em 2.4), refazer smoke test:
+**Vizinhas de conteudo** — para cada `(slug, hash)` em `BASELINES_OTHERS` (capturado em 2.4), comparar hash:
 
 ```bash
 for OTHER_SLUG_HASH in "${BASELINES_OTHERS[@]}"; do
@@ -947,6 +964,28 @@ for OTHER_SLUG_HASH in "${BASELINES_OTHERS[@]}"; do
   else
     echo "REGRESSAO /$SLUG_OTHER: baseline=$HASH_BASELINE live=$HASH_LIVE"
   fi
+done
+```
+
+**Vizinhas que sao SOURCE de redirect (v3.9.0)** — para cada `(slug, destino)` em `REDIRECT_OTHERS`, validar o **redirect**, nao o conteudo (servem 3xx; comparar hash daria falso "REGRESSAO" — incidente 2026-06-16). `curl -sI` (HEAD, sem `-L`) e conferir status 3xx + `Location` == destino:
+
+```bash
+for SLUG_DEST in "${REDIRECT_OTHERS[@]}"; do
+  SLUG_R=${SLUG_DEST%%:*}
+  DEST_R=${SLUG_DEST#*:}
+  HDRS=$(curl -sI "https://{dominio}/$SLUG_R")
+  STATUS=$(printf '%s' "$HDRS" | head -1 | tr -d '\r')
+  LOC=$(printf '%s' "$HDRS" | grep -i '^location:' | head -1 | tr -d '\r' | awk '{print $2}')
+  case "$STATUS" in
+    *" 30"[1278]*)
+      if [ "$LOC" = "$DEST_R" ]; then
+        echo "OK /$SLUG_R redireciona -> $LOC"
+      else
+        echo "REGRESSAO /$SLUG_R: Location=$LOC (esperado $DEST_R)"
+      fi ;;
+    *)
+      echo "REGRESSAO /$SLUG_R: esperava 3xx -> $DEST_R, veio: $STATUS" ;;
+  esac
 done
 ```
 

@@ -299,6 +299,14 @@ Cada achado vai pro bucket de críticos com formato `SEO-MISSING:`, `I18N-HREFLA
 ---
 
 ## lp-publicar
+### 2026-06-16 — v3.9.0: smoke test 3.4.b reconhece vizinha que é SOURCE de redirect (corta falso "REGRESSAO")
+
+Durante o recovery de `webinar.buzzmonitor.com` (incidente CONTEXT §7.2 2026-06-16: colaborador deployou fora da skill e derrubou 6 LPs), o smoke test 3.4.b acusou **falso "REGRESSAO"** na vizinha `agentes-automacao-junho-2026` — slug que é `source` de um redirect `308 → /mcp-para-social-listening` no `vercel.json`. O live serve 3xx, mas o smoke test comparava hash de conteúdo via `curl` sem `-L`, pegando o corpo do 308 — que nunca bate com o hash do `index.html` da pasta. Esse guarda-chuva tem 3 redirects, então o falso-alarme dispararia em todo deploy — risco de habituar o operador a ignorar o alerta e mascarar uma regressão real.
+
+- **Passo 2.4** lê o array `redirects` do `vercel.json` e separa as vizinhas que são `source` de redirect numa lista própria (`REDIRECT_OTHERS`, formato `slug:destino`), em vez de capturar hash de conteúdo delas.
+- **Passo 3.4.b** valida essas vizinhas por `curl -sI` (status 3xx + `Location` == destino esperado), não por hash. Vizinhas normais seguem no smoke test de hash, inalterado.
+- **CONTEXT.md §6** ganha linha de troubleshooting; **§7.2** registra o incidente. Mudança aditiva — `BASELINES_OTHERS` continua igual, `REDIRECT_OTHERS` é novo. Sem mudança de interface.
+
 ### 2026-06-09 — v3.8.0: cobertura do padrão bare `assets/X` (sem `./`) em descoberta, rewrite e drift-check
 
 Durante a publicação batch `conheca-a-cxpress,conheca-a-cxpress-confirmado` (bridge page de confirmação do webinar ClickMeeting), o drift-check 1.0 acusou divergência falsa: o HTML da LP referencia o speaker como `src="assets/enrico-chiari.jpg"` (bare, sem `./`), padrão que a simulação de rewrite e as tabelas dos Passos 1.3/1.5 não cobriam — o live estava idêntico ao HEAD, e a única diferença era exatamente esse rewrite não simulado. Mudanças: (a) nota nova no 1.3 documenta o padrão bare como equivalente a `./assets/X`, com a regra de ordem do sed (brand antes de bare, ancorado em `src="assets/`) e o namespace por slug do precedente (`/assets/cxpress/conheca-a-cxpress/...` — evita colisão entre LPs irmãs da mesma marca; ao re-publicar, manter o namespace vigente no live); (b) lista de rewrite do 1.5 (modo guarda-chuva) ganha a substituição correspondente. Sem mudança de interface.
