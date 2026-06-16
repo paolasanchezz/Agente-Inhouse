@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<BaseLayout
+  title={`Página não encontrada | ${SITE_TITLE}`}
+  description="A página que você procura não existe ou foi movida."
+  showCta={false}
+>
+  <section class="notfound">
+    <div class="container">
+      <p class="overline">Erro 404</p>
+      <h1>Essa página saiu de campanha.</h1>
+      <p class="nf-sub">Não encontramos o que você procurava. Que tal voltar para os artigos?</p>
+      <a class="btn btn-primary" href="/">Voltar para o blog</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding-block: var(--space-4xl);
+    text-align: center;
+  }
+  .nf-sub {
+    margin: var(--space-md) auto var(--space-xl);
+    max-width: 44ch;
+    color: var(--c-ink-soft);
+    font-size: 1.1rem;
+  }
+</style>

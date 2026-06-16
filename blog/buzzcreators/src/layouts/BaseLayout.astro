@@ -1,0 +1,45 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaForm from '../components/CtaForm.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { website } from '../lib/schema';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  publishDate?: Date;
+  modifiedDate?: Date;
+  author?: string;
+  canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  showCta?: boolean;
+}
+
+const { showCta = true, jsonLd, ...head } = Astro.props;
+const site = Astro.site ?? new URL('https://buzzcreators-blog.vercel.app');
+const schemas = jsonLd ?? website(site);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <BaseHead {...head} />
+    <JsonLd schema={schemas} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    {/* Formulário único: aparece idêntico em todas as páginas */}
+    {showCta && <CtaForm />}
+    <Footer />
+  </body>
+</html>

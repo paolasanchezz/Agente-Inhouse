@@ -1,0 +1,15 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# astro cache + generated types
+.astro/
+
+# vercel
+.vercel/
+
+# os / editor
+.DS_Store
+*.log

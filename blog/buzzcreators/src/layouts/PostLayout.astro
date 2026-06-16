@@ -1,0 +1,156 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Tldr from '../components/Tldr.astro';
+import Faq from '../components/Faq.astro';
+import { blogPosting, breadcrumb, faqPage } from '../lib/schema';
+import { slugify } from '../lib/slug';
+import { OG_DEFAULT, SITE_TITLE } from '../consts';
+import '../styles/prose.css';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+const d = post.data;
+
+const site = Astro.site ?? new URL('https://buzzcreators-blog.vercel.app');
+const url = new URL(`/blog/${post.id}`, site);
+const image = new URL(d.cover ?? OG_DEFAULT, site);
+const metaTitle = d.metaTitle ?? `${d.title} | ${SITE_TITLE}`;
+const topTag = d.category ?? d.tags[0];
+
+const schemas: Record<string, unknown>[] = [
+  blogPosting({
+    title: d.title,
+    description: d.description,
+    url,
+    image,
+    datePublished: d.pubDate,
+    dateModified: d.updatedDate,
+    authorName: d.author,
+    tags: d.tags,
+    site,
+  }),
+  breadcrumb([
+    { name: 'Blog', url: site.toString() },
+    { name: d.title, url: url.toString() },
+  ]),
+];
+if (d.faq.length) schemas.push(faqPage(d.faq));
+---
+
+<BaseLayout
+  title={metaTitle}
+  description={d.description}
+  image={d.cover ?? OG_DEFAULT}
+  imageAlt={d.coverAlt ?? d.title}
+  type="article"
+  publishDate={d.pubDate}
+  modifiedDate={d.updatedDate}
+  author={d.author}
+  canonical={d.canonical}
+  jsonLd={schemas}
+>
+  <article class="post">
+    <header class="post-hero">
+      <div class="container prose-width">
+        <nav class="crumbs" aria-label="Trilha de navegação">
+          <a href="/">Blog</a>
+          <span aria-hidden="true">/</span>
+          <a href={`/tag/${slugify(topTag)}`}>{topTag}</a>
+        </nav>
+        <p class="overline">{topTag}</p>
+        <h1>{d.title}</h1>
+        <p class="post-meta">
+          Por {d.author} · <FormattedDate date={d.pubDate} />
+          {d.updatedDate && (<> · atualizado em <FormattedDate date={d.updatedDate} /></>)}
+        </p>
+      </div>
+    </header>
+
+    {
+      d.cover && (
+        <div class="container prose-width">
+          <img class="post-cover" src={d.cover} alt={d.coverAlt} width="1200" height="630" />
+        </div>
+      )
+    }
+
+    <div class="container">
+      <div class="prose-width">
+        <Tldr points={d.tldr} />
+        <div class="prose">
+          <slot />
+        </div>
+
+        <Faq faq={d.faq} />
+
+        <ul class="post-tags" aria-label="Tags">
+          {d.tags.map((t) => (
+            <li><a href={`/tag/${slugify(t)}`}>#{t}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-hero {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-lg);
+  }
+  .crumbs {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--c-ink-soft);
+    margin-bottom: var(--space-md);
+  }
+  .crumbs a {
+    color: var(--c-ink-soft);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--c-purple);
+  }
+  .post-hero h1 {
+    margin-top: var(--space-sm);
+  }
+  .post-meta {
+    margin-top: var(--space-md);
+    color: var(--c-ink-soft);
+    font-size: 0.95rem;
+  }
+  .post-cover {
+    margin-top: var(--space-lg);
+    border-radius: var(--radius-lg);
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    min-height: 0;
+  }
+  .post-tags {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-2xl);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .post-tags a {
+    display: inline-block;
+    background: var(--c-gray-100);
+    color: var(--c-purple-dark);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .post-tags a:hover {
+    background: var(--c-purple);
+    color: var(--c-white);
+  }
+</style>

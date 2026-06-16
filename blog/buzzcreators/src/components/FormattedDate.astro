@@ -1,0 +1,15 @@
+---
+interface Props {
+  date: Date;
+  prefix?: string;
+}
+const { date, prefix } = Astro.props;
+const fmt = new Intl.DateTimeFormat('pt-BR', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC', // datas no frontmatter são só data; formatar em UTC evita "voltar" 1 dia
+});
+---
+
+<time datetime={date.toISOString()}>{prefix}{fmt.format(date)}</time>

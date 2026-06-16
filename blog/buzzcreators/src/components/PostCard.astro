@@ -1,0 +1,125 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+const { post, featured = false } = Astro.props;
+const { title, description, pubDate, tags, category, cover, coverAlt } = post.data;
+const href = `/blog/${post.id}`;
+const topTag = category ?? tags[0];
+---
+
+<article class:list={['card', { featured }]}>
+  <a href={href} class="card-link">
+    <div class="card-media">
+      {
+        cover ? (
+          <img src={cover} alt={coverAlt ?? ''} width="720" height="405" loading="lazy" />
+        ) : (
+          <span class="card-media-label">{topTag}</span>
+        )
+      }
+    </div>
+    <div class="card-body">
+      <p class="overline card-tag">{topTag}</p>
+      <h3 class="card-title">{title}</h3>
+      <p class="card-desc">{description}</p>
+      <p class="card-date"><FormattedDate date={pubDate} /></p>
+    </div>
+  </a>
+</article>
+
+<style>
+  .card {
+    background: var(--c-white);
+    border: 1px solid var(--c-gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    height: 100%;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card-media {
+    aspect-ratio: 16 / 9;
+    background: var(--gradient-brand);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    min-height: 0; /* fix Safari iOS <img> em grid/flex (GUIDELINES §14) */
+  }
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 0;
+  }
+  .card-media-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.1rem;
+    padding: var(--space-md);
+    text-align: center;
+  }
+  .card-body {
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+  .card-tag {
+    color: var(--c-orange-dark);
+  }
+  .card-title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  .card-desc {
+    color: var(--c-ink-soft);
+    font-size: 0.98rem;
+    flex: 1;
+  }
+  .card-date {
+    color: var(--c-ink-soft);
+    font-size: 0.85rem;
+  }
+  .featured {
+    grid-column: 1 / -1;
+  }
+  .featured .card-link {
+    flex-direction: row;
+  }
+  .featured .card-media {
+    flex: 1 1 50%;
+    aspect-ratio: auto;
+  }
+  .featured .card-body {
+    flex: 1 1 50%;
+    justify-content: center;
+    padding: var(--space-2xl);
+  }
+  .featured .card-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  @media (max-width: 760px) {
+    .featured .card-link {
+      flex-direction: column;
+    }
+  }
+</style>

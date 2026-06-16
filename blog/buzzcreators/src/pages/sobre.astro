@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE, BRAND_HOME } from '../consts';
+import '../styles/prose.css';
+---
+
+<BaseLayout
+  title={`Sobre o blog | ${SITE_TITLE}`}
+  description="Conteúdo prático sobre marketing de influência, creator economy e ROI de campanhas com criadores, feito pelo time da Buzzcreators."
+>
+  <section class="page-hero">
+    <div class="container prose-width">
+      <p class="overline">Sobre</p>
+      <h1>Por que este blog existe</h1>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="prose-width prose">
+      <p>
+        A gente acredita que marketing de influência só vira resultado quando para de ser
+        achismo. Curtida não paga boleto; o que importa é o que a campanha devolve em vendas,
+        alcance qualificado e relacionamento real com criadores.
+      </p>
+      <p>
+        Este é o espaço onde o time da Buzzcreators divide o que aprende operando campanhas de
+        ponta a ponta: como escolher criadores, como medir ROI de verdade, como escalar a
+        operação sem inchar a equipe e o que está mudando na creator economy.
+      </p>
+      <h2>Para quem é</h2>
+      <p>
+        Times de marketing e agências que rodam campanhas com vários influenciadores e querem
+        trocar planilha, print e e-mail solto por processo, dado e controle. Se você vive esse
+        dia a dia, vai se sentir em casa por aqui.
+      </p>
+      <h2>Quem faz</h2>
+      <p>
+        O blog é mantido pela Buzzcreators, plataforma de gestão de marketing de influência
+        integrada nativamente ao Buzzmonitor. Conheça a plataforma em
+        <a href={BRAND_HOME} target="_blank" rel="noopener">buzzcreators.com.br</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { slugify } from '../../lib/slug';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tagMap = new Map<string, { label: string; posts: CollectionEntry<'blog'>[] }>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = slugify(tag);
+      if (!tagMap.has(slug)) tagMap.set(slug, { label: tag, posts: [] });
+      tagMap.get(slug)!.posts.push(post);
+    }
+  }
+
+  return [...tagMap.entries()].map(([slug, { label, posts }]) => ({
+    params: { tag: slug },
+    props: {
+      label,
+      posts: posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+interface Props {
+  label: string;
+  posts: CollectionEntry<'blog'>[];
+}
+const { label, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`${label} | ${SITE_TITLE}`}
+  description={`Artigos sobre ${label} no blog da Buzzcreators, sobre marketing de influência e creator economy.`}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="overline">Tag</p>
+      <h1>{label}</h1>
+      <p class="hero-sub">{posts.length} {posts.length === 1 ? 'artigo' : 'artigos'} nesta tag.</p>
+    </div>
+  </section>
+
+  <section class="container posts">
+    <div class="post-grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .posts {
+    padding-bottom: var(--space-2xl);
+  }
+</style>

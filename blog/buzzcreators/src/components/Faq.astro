@@ -1,0 +1,50 @@
+---
+// Seção de FAQ. As perguntas viram <h2>/<h3> com resposta direta logo abaixo
+// (formato answer-first, ótimo para GEO). O FAQPage schema é injetado no layout.
+interface Props {
+  faq: { q: string; a: string }[];
+}
+const { faq } = Astro.props;
+---
+
+{
+  faq.length > 0 && (
+    <section class="faq prose-width" aria-labelledby="faq-title">
+      <h2 id="faq-title">Perguntas frequentes</h2>
+      <dl>
+        {faq.map((item) => (
+          <div class="faq-item">
+            <dt>{item.q}</dt>
+            <dd>{item.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+<style>
+  .faq {
+    margin-top: var(--space-3xl);
+  }
+  .faq dl {
+    margin-top: var(--space-lg);
+    display: grid;
+    gap: var(--space-lg);
+  }
+  .faq-item {
+    border-top: 1px solid var(--c-gray-100);
+    padding-top: var(--space-lg);
+  }
+  .faq dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--c-purple-dark);
+    margin-bottom: var(--space-xs);
+  }
+  .faq dd {
+    margin: 0;
+    color: var(--c-ink-soft);
+  }
+</style>

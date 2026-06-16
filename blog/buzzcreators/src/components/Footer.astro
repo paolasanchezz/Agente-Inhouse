@@ -1,0 +1,82 @@
+---
+import { ORG_NAME, BRAND_HOME, CONTACT_EMAIL, SITE_TAGLINE, SITE_DESCRIPTION } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="footer-name">{ORG_NAME}</p>
+      <p class="overline footer-overline">{SITE_TAGLINE}</p>
+      <p class="footer-desc">{SITE_DESCRIPTION}</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Rodapé">
+      <a href="/">Início</a>
+      <a href="/sobre">Sobre o blog</a>
+      <a href="/rss.xml">RSS</a>
+      <a href={BRAND_HOME} target="_blank" rel="noopener">buzzcreators.com.br</a>
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    </nav>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} {ORG_NAME}. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-4xl);
+    background: var(--c-purple-dark);
+    color: rgba(255, 255, 255, 0.78);
+    padding-top: var(--space-3xl);
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--c-white);
+  }
+  .footer-overline {
+    color: var(--c-orange);
+    margin-top: 4px;
+  }
+  .footer-desc {
+    margin-top: var(--space-md);
+    max-width: 42ch;
+    font-size: 0.95rem;
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+  .footer-nav a {
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .footer-nav a:hover {
+    color: var(--c-white);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-block: var(--space-lg);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  @media (max-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

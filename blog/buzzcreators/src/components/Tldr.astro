@@ -1,0 +1,40 @@
+---
+// "Principais pontos" — resumo extraível no topo do post.
+// Crítico para GEO: dá à IA um sumário direto e citável logo de cara.
+interface Props {
+  points: string[];
+}
+const { points } = Astro.props;
+---
+
+<aside class="tldr" aria-label="Principais pontos do artigo">
+  <p class="tldr-title overline">Principais pontos</p>
+  <ul>
+    {points.map((p) => <li>{p}</li>)}
+  </ul>
+</aside>
+
+<style>
+  .tldr {
+    background: var(--c-gray-50);
+    border: 1px solid var(--c-gray-100);
+    border-left: 4px solid var(--c-orange);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg) var(--space-xl);
+    margin-block: var(--space-xl);
+  }
+  .tldr-title {
+    color: var(--c-orange-dark);
+    margin-bottom: var(--space-sm);
+  }
+  .tldr ul {
+    margin: 0;
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-sm);
+  }
+  .tldr li {
+    color: var(--c-ink);
+    line-height: 1.5;
+  }
+</style>

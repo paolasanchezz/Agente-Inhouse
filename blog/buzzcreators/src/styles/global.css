@@ -1,0 +1,246 @@
+/* =========================================================================
+   Buzzcreators — Design System (tokens + base)
+   Fonte da verdade: brand/buzzcreators/tokens.json
+   ========================================================================= */
+
+:root {
+  /* Cores de marca */
+  --c-purple-dark: #3a1652;
+  --c-purple: #6a3895;
+  --c-orange: #ff8119;
+  --c-orange-dark: #ff7300;
+
+  /* Neutros */
+  --c-ink: #1a1a1a;
+  --c-ink-soft: #4a4a4a;
+  --c-border: #d1d1d1;
+  --c-gray-100: #eaeef1;
+  --c-gray-50: #f7f9fb;
+  --c-white: #ffffff;
+
+  /* Semânticos */
+  --c-danger: #ef4444;
+  --c-success: #22c55e;
+
+  /* Gradiente assinatura (usar com parcimônia: 1–2 momentos por página) */
+  --gradient-brand: linear-gradient(
+    100deg,
+    #3a1652 0%,
+    #6a3895 38%,
+    #ff8119 80%,
+    #ff7300 100%
+  );
+
+  /* Tipografia */
+  --font-display: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Espaçamento */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Ritmo vertical das seções (respiro generoso — GUIDELINES §2) */
+  --section-y: clamp(80px, 11vw, 140px);
+  --max-w: 1180px;
+  --max-w-prose: 720px;
+  --pad-x: clamp(20px, 5vw, 48px);
+
+  /* Raios e sombras */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(58, 22, 82, 0.06);
+  --shadow-md: 0 4px 16px rgba(58, 22, 82, 0.08);
+  --shadow-lg: 0 10px 30px rgba(58, 22, 82, 0.12);
+}
+
+/* ----------------------------- Reset enxuto ----------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  background: var(--c-white);
+  line-height: 1.65;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--c-purple);
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--c-purple-dark);
+}
+
+/* --------------------------- Tipografia base ---------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--c-purple-dark);
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Overline no estilo do logo: HK Grotesk Light → fallback DM Sans, caixa alta */
+.overline {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  color: var(--c-purple);
+}
+
+/* ------------------------------ Layout ---------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+.prose-width {
+  max-width: var(--max-w-prose);
+  margin-inline: auto;
+}
+
+/* ------------------------------ Botões ---------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 16px 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.btn-primary {
+  background: var(--c-orange);
+  color: var(--c-white);
+}
+.btn-primary:hover {
+  background: var(--c-orange-dark);
+  color: var(--c-white);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--c-purple-dark);
+  border-color: var(--c-border);
+}
+.btn-ghost:hover {
+  border-color: var(--c-purple);
+  color: var(--c-purple-dark);
+}
+
+/* ------------------------ Acessibilidade (GUIDELINES §7) ---------------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--c-purple-dark);
+  color: var(--c-white);
+  padding: 12px 18px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 0;
+}
+:focus-visible {
+  outline: 3px solid var(--c-orange);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------- Utilitários de página ------------------------ */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+.page-hero {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+}
+.page-hero h1 {
+  margin-top: var(--space-sm);
+  max-width: 18ch;
+}
+.page-hero .hero-sub {
+  margin-top: var(--space-md);
+  font-size: 1.2rem;
+  color: var(--c-ink-soft);
+  max-width: 56ch;
+}
+.section-y {
+  padding-block: var(--section-y);
+}

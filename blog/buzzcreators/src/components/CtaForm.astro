@@ -1,0 +1,121 @@
+---
+/*
+ * CtaForm — FORMULÁRIO ÚNICO do blog.
+ * É renderizado UMA vez no BaseLayout → aparece idêntico em TODAS as páginas.
+ * Para mudar texto/campos ou trocar pelo CRM, edite SÓ este arquivo.
+ *
+ * >>> PONTO ÚNICO DE INTEGRAÇÃO COM O CRM <<<
+ * Hoje é um placeholder (mock, não envia). Quando o CRM for definido
+ * (ActiveCampaign / RD Station / HubSpot), substitua o <form> abaixo pelo
+ * embed/endpoint real. Nenhuma página precisa ser tocada — só este componente.
+ * (Mesma filosofia da skill lp-integrar-form.)
+ */
+interface Props {
+  heading?: string;
+  subheading?: string;
+}
+const {
+  heading = 'Receba ideias de influência que viram resultado',
+  subheading = 'Conteúdo prático sobre creator economy e ROI de campanhas, direto no seu e-mail. Sem spam.',
+} = Astro.props;
+---
+
+<section class="cta-band" aria-labelledby="cta-heading">
+  <div class="container cta-inner">
+    <div class="cta-copy">
+      <p class="overline">Newsletter Buzzcreators</p>
+      <h2 id="cta-heading">{heading}</h2>
+      <p class="cta-sub">{subheading}</p>
+    </div>
+
+    <!-- PLACEHOLDER: trocar por embed real do CRM (ver comentário no topo). -->
+    <form
+      id="cta-form"
+      class="cta-form"
+      action="#"
+      data-crm="placeholder"
+      onsubmit="event.preventDefault(); document.getElementById('cta-form').hidden=true; document.getElementById('cta-ok').hidden=false;"
+    >
+      <label class="visually-hidden" for="cta-email">Seu melhor e-mail</label>
+      <input
+        id="cta-email"
+        name="email"
+        type="email"
+        required
+        placeholder="seu@email.com"
+        autocomplete="email"
+      />
+      <button type="submit" class="btn btn-primary">Quero receber</button>
+      <p class="cta-micro">Você pode cancelar quando quiser.</p>
+    </form>
+
+    <p id="cta-ok" class="cta-ok" role="status" aria-live="polite" hidden>
+      Tudo certo! Em breve a integração com o e-mail estará ativa. 💜
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background: var(--c-gray-50);
+    border-top: 1px solid var(--c-gray-100);
+    padding-block: var(--section-y);
+  }
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  .cta-copy h2 {
+    margin-top: var(--space-sm);
+    max-width: 16ch;
+  }
+  .cta-sub {
+    margin-top: var(--space-md);
+    color: var(--c-ink-soft);
+    max-width: 46ch;
+  }
+  .cta-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+  .cta-form input {
+    grid-column: 1 / -1;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 16px 18px;
+    border: 2px solid var(--c-border);
+    border-radius: var(--radius-md);
+    background: var(--c-white);
+  }
+  .cta-form input:focus-visible {
+    border-color: var(--c-purple);
+    outline-offset: 0;
+  }
+  .cta-form .btn {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .cta-micro {
+    grid-column: 1 / -1;
+    font-size: 0.82rem;
+    color: var(--c-ink-soft);
+    margin-top: 2px;
+  }
+  .cta-ok {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--c-purple-dark);
+  }
+  @media (max-width: 760px) {
+    .cta-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>
