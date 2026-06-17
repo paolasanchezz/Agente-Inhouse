@@ -961,7 +961,7 @@
       font-size: 14px;
       color: var(--neutral-700);
       font-weight: 500;
-      margin-bottom: 36px;
+      margin-bottom: 52px;
     }
     .cta-final-meta-dot {
       width: 4px;
@@ -969,6 +969,46 @@
       background: var(--neutral-300);
       border-radius: 50%;
     }
+
+    /* ============ CTAs de secao + mascote + linkedin ============ */
+    .section-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .outcome-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .outcome-mascot {
+      width: 200px;
+      height: auto;
+      flex-shrink: 0;
+    }
+    .speaker-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 26px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--primary);
+      padding: 10px 18px;
+      border: 1.5px solid var(--primary-light);
+      border-radius: var(--radius-md);
+      transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+    }
+    .speaker-linkedin:hover {
+      background: var(--primary);
+      color: var(--neutral-0);
+      border-color: var(--primary);
+    }
+    .speaker-linkedin svg { width: 17px; height: 17px; }
     .form {
       background: var(--neutral-0);
       border: 1px solid rgba(35, 41, 96, 0.08);
@@ -1113,7 +1153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="hero-meta">
                 <span>Online</span>
                 <span class="hero-meta-dot" aria-hidden="true"></span>
-                <span>Duração ~ 1h</span>
+                <span>Duração ~ 15min</span>
                 <span class="hero-meta-dot" aria-hidden="true"></span>
                 <span>Vagas limitadas</span>
               </span>
@@ -1233,6 +1273,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="program-body">Respostas sugeridas, classificação automática e visão clara de tempo de resposta, volume e gargalos. Mais conversas resolvidas com o mesmo time.</p>
           </article>
         </div>
+        <div class="section-cta">
+          <a href="#form" class="btn btn-accent">Quero me inscrever <span class="arrow" aria-hidden="true">↑</span></a>
+        </div>
       </div>
     </section>
 
@@ -1240,7 +1283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="outcome reveal">
       <div class="container">
         <div class="outcome-header">
-          <span class="section-label">Onde isso chega</span>
+          <span class="section-label">Suba o nível</span>
           <h2 class="section-h2">Como a operação fica quando tudo está no mesmo lugar.</h2>
           <p class="section-intro">É assim que fica o dia a dia de quem já centralizou o atendimento com a Cxpress.</p>
         </div>
@@ -1278,6 +1321,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="outcome-text"><strong>Gestão com painel.</strong> Tempo de resposta, volume e gargalo na tela. A decisão para de depender da memória de quem atendeu.</p>
           </div>
         </div>
+        <div class="outcome-cta">
+          <img src="assets/samir-joinha.png" alt="Samir, o mascote da Cxpress, fazendo joinha" class="outcome-mascot" width="200" height="133" loading="lazy">
+          <a href="#form" class="btn btn-accent">Quero me inscrever <span class="arrow" aria-hidden="true">↑</span></a>
+        </div>
       </div>
     </section>
 
@@ -1309,6 +1356,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="speaker-tag">Automação</span>
               <span class="speaker-tag">IA aplicada</span>
             </div>
+            <a href="https://www.linkedin.com/in/enrico-chiari-citrinite/" target="_blank" rel="noopener noreferrer" class="speaker-linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8h4.5v13H.25V8zm7.5 0h4.31v1.78h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V21h-4.5v-6.06c0-1.45-.03-3.3-2.01-3.3-2.01 0-2.32 1.57-2.32 3.2V21h-4.5V8z"/></svg>
+              Ver perfil no LinkedIn
+            </a>
           </div>
         </div>
       </div>
@@ -1319,13 +1370,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="container">
         <div class="cta-final-inner">
           <h2>Pronto pra sair da bagunça?</h2>
-          <p class="cta-final-sub">Online, gratuito e direto ao ponto. Em cerca de 1h você sai com os três movimentos pra tirar o atendimento da bagunça e colocar tudo num painel só, automatizado e medido.</p>
+          <p class="cta-final-sub">Online, gratuito e direto ao ponto. Em cerca de 15min você sai com os três movimentos pra tirar o atendimento da bagunça e colocar tudo num painel só, automatizado e medido.</p>
           <div class="cta-final-meta">
             <span>Online</span>
             <span class="cta-final-meta-dot" aria-hidden="true"></span>
             <span>Gratuito</span>
             <span class="cta-final-meta-dot" aria-hidden="true"></span>
-            <span>Duração aproximada: 1h</span>
+            <span>Duração aproximada: 15min</span>
           </div>
           <a href="#form" class="btn btn-primary">
             Garantir minha vaga
@@ -1388,7 +1439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
           })
           .catch(() => {
-            infoText.textContent = 'Online · Duração ~ 1h · Vagas limitadas';
+            infoText.textContent = 'Online · Duração ~ 15min · Vagas limitadas';
             info.dataset.state = 'error';
           });
       }
