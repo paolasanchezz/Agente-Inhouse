@@ -1199,7 +1199,7 @@
       const info = document.querySelector('.webinar-info');
       const infoText = info ? info.querySelector('.webinar-info-text') : null;
       if (info && infoText) {
-        fetch('/api/next-webinar', { headers: { 'Accept': 'application/json' } })
+        fetch('/api/next-webinar?series=buzzcreators', { headers: { 'Accept': 'application/json' } })
           .then(r => r.json())
           .then(data => {
             if (data && data.ok && data.formatted_full_pt) {
@@ -1240,6 +1240,7 @@
           email: (fd.get('email') || '').toString().trim(),
           company: (fd.get('company') || '').toString().trim(),
           _hp: (fd.get('_hp') || '').toString(),
+          series: 'buzzcreators',
         };
 
         if (!payload.first_name || !payload.last_name || !payload.email) {

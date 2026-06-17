@@ -26,6 +26,7 @@ compartilhada — hoje `17529`, Cxpress). Com `?series=<chave>`, usa o mapa `SER
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
 | `atencion` | `17544` | Buzzmonitor Atención al Cliente | `/atencion-al-cliente-es` |
+| `buzzcreators` | `17560` | Conheça o Buzzcreators (room_pin 286-555-426) | `/conheca-o-buzzcreators` (+ `-confirmado`) |
 
 Chave desconhecida → fallback no env padrão (nunca quebra as LPs vizinhas).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.

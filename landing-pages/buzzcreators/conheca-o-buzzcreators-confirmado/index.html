@@ -770,7 +770,7 @@
       }
 
       function fetchNextWebinar(cb) {
-        fetch('/api/next-webinar', { headers: { 'Accept': 'application/json' } })
+        fetch('/api/next-webinar?series=buzzcreators', { headers: { 'Accept': 'application/json' } })
           .then(function (r) { return r.json(); })
           .then(function (d) { cb(d || null); })
           .catch(function () { cb(null); });

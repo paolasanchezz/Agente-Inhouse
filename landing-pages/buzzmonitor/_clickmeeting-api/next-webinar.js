@@ -33,6 +33,7 @@ function formatFullPt(d) {
 // Chave desconhecida -> tambem cai no padrao (fallback seguro, nunca quebra as LPs vizinhas).
 const SERIES = {
   atencion: '17544', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es)
+  buzzcreators: '17560', // Buzzcreators (LP /conheca-o-buzzcreators) — room_pin 286-555-426
 };
 
 module.exports = async (req, res) => {
