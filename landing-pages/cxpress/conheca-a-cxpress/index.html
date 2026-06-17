@@ -13,10 +13,61 @@
   <!-- End Google Tag Manager -->
 
   <title>Conheça a Cxpress · Organize e Automatize seus Canais de Atendimento</title>
-  <meta name="description" content="Webinar gratuito Cxpress: como pequenas e médias empresas centralizam canais, automatizam distribuição e usam IA para melhorar as métricas de atendimento.">
-  <meta property="og:title" content="Conheça a Cxpress · Organize e Automatize seus Canais de Atendimento">
-  <meta property="og:description" content="Como PMEs estão profissionalizando a gestão de canais de atendimento: centralizar, automatizar distribuição e usar IA para melhorar métricas. Online e gratuito.">
+  <meta name="description" content="Webinar gratuito da Cxpress: como pequenas e médias empresas centralizam todos os canais de atendimento, automatizam a distribuição entre atendentes e usam IA para melhorar as métricas. Online e gratuito.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Cxpress">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="canonical" href="https://content.cxpress.io/conheca-a-cxpress">
+
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cxpress">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://content.cxpress.io/conheca-a-cxpress">
+  <meta property="og:title" content="Conheça a Cxpress · Organize e automatize seus canais de atendimento">
+  <meta property="og:description" content="Webinar gratuito: centralize os canais, automatize a distribuição entre os atendentes e use IA para melhorar as métricas de atendimento. Online e gratuito.">
+  <meta property="og:image" content="https://content.cxpress.io/assets/cxpress/og-conheca-a-cxpress.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webinar Conheça a Cxpress: organize e automatize seus canais de atendimento">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Conheça a Cxpress · Organize e automatize seus canais de atendimento">
+  <meta name="twitter:description" content="Webinar gratuito: centralize os canais, automatize a distribuição entre os atendentes e use IA para melhorar as métricas de atendimento.">
+  <meta name="twitter:image" content="https://content.cxpress.io/assets/cxpress/og-conheca-a-cxpress.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://home.cxpress.io#organization",
+        "name": "Cxpress",
+        "url": "https://home.cxpress.io",
+        "logo": "https://content.cxpress.io/assets/cxpress/logos/logo-primary.png"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://content.cxpress.io/conheca-a-cxpress#webpage",
+        "name": "Conheça a Cxpress · Organize e Automatize seus Canais de Atendimento",
+        "url": "https://content.cxpress.io/conheca-a-cxpress",
+        "inLanguage": "pt-BR",
+        "isPartOf": { "@id": "https://home.cxpress.io#organization" },
+        "description": "Webinar gratuito da Cxpress sobre como centralizar canais, automatizar a distribuição e usar IA no atendimento ao cliente."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Cxpress",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://content.cxpress.io/conheca-a-cxpress",
+        "description": "Plataforma omnicanal de atendimento ao cliente: WhatsApp, e-mail, redes, voz e chat num painel só, com automação por IA e histórico unificado.",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://home.cxpress.io#organization" }
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,7 +371,7 @@
       border-radius: 50%;
     }
 
-    /* Hero visual — form ClickMeeting + decorações */
+    /* Hero visual - form ClickMeeting + decoracoes */
     .hero-visual {
       position: relative;
       display: flex;
@@ -653,7 +704,7 @@
     }
 
     /* ============ SPEAKER ============ */
-    .speaker { background: var(--neutral-0); }
+    .speaker { background: var(--neutral-100); }
     .speaker-inner {
       display: grid;
       grid-template-columns: 0.85fr 1fr;
@@ -760,66 +811,100 @@
       border-radius: var(--radius-pill);
     }
 
-    /* ============ AUDIENCE (Para quem) ============ */
-    .audience {
-      background: var(--neutral-100);
-      position: relative;
-      overflow: hidden;
-    }
-    .audience::after {
-      content: '';
-      position: absolute;
-      top: -120px; right: -120px;
-      width: 380px; height: 380px;
-      border-radius: 50%;
-      background: rgba(74,105,189,.07);
-      pointer-events: none;
-    }
-    .audience-header {
+    /* ============ DOR (problema - lista vertical, X vermelho) ============ */
+    .pain { background: var(--neutral-100); }
+    .pain-header {
       max-width: 820px;
-      margin-bottom: 56px;
-      position: relative;
+      margin-bottom: 48px;
     }
-    .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      position: relative;
+    .pain-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 880px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .audience-card {
+    .pain-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
       background: var(--neutral-0);
       border-radius: var(--radius-lg);
-      padding: 28px 30px;
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease);
+      padding: 22px 26px;
       border: 1px solid transparent;
+      transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
     }
-    .audience-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(74,105,189,.18);
+    .pain-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(220,38,38,.18);
     }
-    .audience-check {
+    .pain-x {
       flex-shrink: 0;
-      width: 42px;
-      height: 42px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: var(--primary-lighter);
-      color: var(--primary-dark);
+      background: var(--error-bg);
+      color: var(--error);
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 1px;
     }
-    .audience-check svg { width: 18px; height: 18px; }
-    .audience-text {
+    .pain-x svg { width: 16px; height: 16px; }
+    .pain-text {
       font-size: 17px;
       line-height: 1.5;
       color: var(--primary-dark);
       font-weight: 500;
-      padding-top: 8px;
     }
+
+    /* ============ RESULTADO ============ */
+    .outcome { background: var(--neutral-0); }
+    .outcome-header {
+      max-width: 820px;
+      margin-bottom: 56px;
+    }
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .outcome-card {
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease);
+    }
+    .outcome-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(74,105,189,.22);
+    }
+    .outcome-check {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--success-bg);
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .outcome-check svg { width: 18px; height: 18px; }
+    .outcome-text {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--neutral-700);
+    }
+    .outcome-text strong { color: var(--primary-dark); font-weight: 700; }
 
     /* ============ CTA FINAL ============ */
     .cta-final {
@@ -975,7 +1060,7 @@
       .program-grid { grid-template-columns: 1fr; gap: 16px; }
       .speaker-inner { grid-template-columns: 1fr; gap: 48px; max-width: 520px; margin: 0 auto; }
       .speaker-photo-wrap { max-width: 360px; margin: 0 auto; width: 100%; }
-      .audience-grid { grid-template-columns: 1fr; gap: 14px; }
+      .outcome-grid { grid-template-columns: 1fr; gap: 14px; }
       .form { padding: 28px 22px; }
       .header-inner { height: 64px; }
       .header-logo { height: 28px; }
@@ -984,7 +1069,7 @@
       .program-card { padding: 30px 24px 26px; }
       .program-number { font-size: 36px; margin-bottom: 14px; }
       .program-title { font-size: 20px; }
-      .audience-card { padding: 22px 22px; }
+      .outcome-card, .pain-item { padding: 22px 20px; }
     }
     @media (max-width: 520px) {
       .hero-actions { width: 100%; flex-direction: column; align-items: flex-start; }
@@ -1023,7 +1108,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h1>
               Organize e <span class="mark">automatize</span> seus canais de atendimento.
             </h1>
-            <p class="hero-body">Descubra como pequenas e médias empresas estão profissionalizando a gestão de canais de atendimento. Você vai saber como centralizar todos os canais, automatizar a distribuição entre seus atendentes e usar IA para melhorar as principais métricas.</p>
+            <p class="hero-body">Começou simples: um WhatsApp aqui, um e-mail ali, o chat do site. Aí o volume cresceu e o atendimento virou caça ao histórico. Neste webinar gratuito, você vê como pequenas e médias empresas juntam todos os canais num painel só, automatizam a distribuição entre os atendentes e colocam a IA pra resolver o primeiro nível.</p>
             <div class="hero-actions">
               <span class="hero-meta">
                 <span>Online</span>
@@ -1061,7 +1146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <label class="cm-field">
                   <span class="cm-label">E-mail corporativo</span>
-                  <input type="email" name="email" required autocomplete="email" maxlength="200" placeholder=" ">
+                  <input type="email" name="email" required autocomplete="email" maxlength="200" spellcheck="false" autocapitalize="off" placeholder=" ">
                 </label>
                 <label class="cm-field">
                   <span class="cm-label">Empresa <span class="cm-optional">(opcional)</span></span>
@@ -1069,12 +1154,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </label>
                 <input class="cm-honeypot" name="_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="cm-submit">Garantir minha vaga</button>
-                <p class="cm-feedback" role="status" aria-live="polite"></p>
+                <p class="cm-feedback" role="alert" aria-live="assertive"></p>
               </form>
               <p class="hero-form-note">Ao se inscrever, você aceita receber comunicações da Cxpress sobre o webinar. Cancelável a qualquer momento.</p>
             </aside>
           </div>
         </div>
+      </div>
+    </section>
+
+<!-- DOR -->
+    <section class="pain reveal">
+      <div class="container">
+        <div class="pain-header">
+          <span class="section-label">Soa familiar?</span>
+          <h2 class="section-h2">Não é falta de esforço. É falta de sistema.</h2>
+          <p class="section-intro">O time se desdobra. Mas quando os canais vivem separados, o mesmo roteiro se repete:</p>
+        </div>
+        <ul class="pain-list">
+          <li class="pain-item">
+            <span class="pain-x" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+              </svg>
+            </span>
+            <p class="pain-text">WhatsApp no celular de um atendente, e-mail em outro, redes num terceiro. Ninguém vê a conversa inteira.</p>
+          </li>
+          <li class="pain-item">
+            <span class="pain-x" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+              </svg>
+            </span>
+            <p class="pain-text">O cliente explica o mesmo problema pra três pessoas e, na quarta, desiste.</p>
+          </li>
+          <li class="pain-item">
+            <span class="pain-x" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+              </svg>
+            </span>
+            <p class="pain-text">A mensagem das 21h só foi vista às 9h. O cliente não reclamou, foi resolver com o concorrente.</p>
+          </li>
+          <li class="pain-item">
+            <span class="pain-x" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+              </svg>
+            </span>
+            <p class="pain-text">Ninguém sabe quantas conversas entraram ontem nem o tempo até a primeira resposta.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -1084,6 +1214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="program-header">
           <span class="section-label">O que vamos cobrir</span>
           <h2 class="section-h2">Três movimentos para profissionalizar o atendimento da sua operação.</h2>
+          <p class="section-intro">Durante muito tempo, dava pra tocar o atendimento no improviso. Com o volume de hoje, não dá mais. No webinar, a gente mostra a virada em três movimentos, e dá pra começar com o time que você já tem.</p>
         </div>
         <div class="program-grid">
           <article class="program-card">
@@ -1101,6 +1232,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 class="program-title">Use IA para melhorar as principais métricas</h3>
             <p class="program-body">Respostas sugeridas, classificação automática e visão clara de tempo de resposta, volume e gargalos. Mais conversas resolvidas com o mesmo time.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+<!-- RESULTADO -->
+    <section class="outcome reveal">
+      <div class="container">
+        <div class="outcome-header">
+          <span class="section-label">Onde isso chega</span>
+          <h2 class="section-h2">Como a operação fica quando tudo está no mesmo lugar.</h2>
+          <p class="section-intro">É assim que fica o dia a dia de quem já centralizou o atendimento com a Cxpress.</p>
+        </div>
+        <div class="outcome-grid">
+          <div class="outcome-card">
+            <span class="outcome-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 10 18 20 6"/>
+              </svg>
+            </span>
+            <p class="outcome-text"><strong>Histórico num lugar só.</strong> Quem assume a conversa já sabe o que rolou antes, em qualquer canal.</p>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 10 18 20 6"/>
+              </svg>
+            </span>
+            <p class="outcome-text"><strong>Distribuição automática.</strong> Cada conversa cai com a pessoa certa e nenhuma fica parada esperando dono.</p>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 10 18 20 6"/>
+              </svg>
+            </span>
+            <p class="outcome-text"><strong>Primeiro nível com IA.</strong> O bot resolve o básico e passa pro humano com o contexto pronto, sem o cliente repetir tudo.</p>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 10 18 20 6"/>
+              </svg>
+            </span>
+            <p class="outcome-text"><strong>Gestão com painel.</strong> Tempo de resposta, volume e gargalo na tela. A decisão para de depender da memória de quem atendeu.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1138,56 +1314,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- PARA QUEM -->
-    <section class="audience reveal">
-      <div class="container">
-        <div class="audience-header">
-          <span class="section-label">Para quem é</span>
-          <h2 class="section-h2">Este webinar é pra você se...</h2>
-        </div>
-        <div class="audience-grid">
-          <div class="audience-card">
-            <span class="audience-check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6"/>
-              </svg>
-            </span>
-            <p class="audience-text">Você gerencia o atendimento de uma pequena ou média empresa e quer profissionalizar a operação.</p>
-          </div>
-          <div class="audience-card">
-            <span class="audience-check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6"/>
-              </svg>
-            </span>
-            <p class="audience-text">O time ainda responde clientes em canais separados: WhatsApp pessoal, e-mail avulso, redes sociais.</p>
-          </div>
-          <div class="audience-card">
-            <span class="audience-check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6"/>
-              </svg>
-            </span>
-            <p class="audience-text">Você quer entender, na prática, onde a IA já entrega resultado no atendimento.</p>
-          </div>
-          <div class="audience-card">
-            <span class="audience-check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6"/>
-              </svg>
-            </span>
-            <p class="audience-text">Precisa organizar o atendimento sem aumentar time nem embarcar num projeto de meses.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA FINAL -->
     <section class="cta-final">
       <div class="container">
         <div class="cta-final-inner">
           <h2>Pronto pra sair da bagunça?</h2>
-          <p class="cta-final-sub">Online, gratuito e direto ao ponto: três movimentos práticos para sair de uma operação espalhada para um atendimento centralizado, automatizado e medido.</p>
+          <p class="cta-final-sub">Online, gratuito e direto ao ponto. Em cerca de 1h você sai com os três movimentos pra tirar o atendimento da bagunça e colocar tudo num painel só, automatizado e medido.</p>
           <div class="cta-final-meta">
             <span>Online</span>
             <span class="cta-final-meta-dot" aria-hidden="true"></span>
@@ -1288,6 +1420,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         if (!payload.first_name || !payload.last_name || !payload.email) {
           setFeedback('Preencha nome, sobrenome e email.', null);
+          const firstEmpty = !payload.first_name ? 'first_name' : (!payload.last_name ? 'last_name' : 'email');
+          const target = form.querySelector('input[name="' + firstEmpty + '"]');
+          if (target) target.focus();
           return;
         }
 
