@@ -32,6 +32,12 @@
       "port": 5184
     },
     {
+      "name": "lp-elife-consumidores-sinteticos",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5186", "--bind", "127.0.0.1"],
+      "port": 5186
+    },
+    {
       "name": "dashboard-pessoal",
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--python", "3.12", "--with", "psycopg[binary]", "python", "dashboard-pessoal/run_local.py"],

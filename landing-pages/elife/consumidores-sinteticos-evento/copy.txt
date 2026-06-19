@@ -1,0 +1,116 @@
+=== HERO ===
+OVERLINE: Evento Presencial e Gratuito
+H1: Tomar decisões importantes ainda depende de pesquisas demoradas, caras ou da intuição?
+SUB: Conheça como empresas estão utilizando Consumidores Sintéticos para validar campanhas, produtos, mensagens e estratégias antes de investir dinheiro no mercado real.
+LIST ITEM: Teste hipóteses em horas, não semanas
+LIST ITEM: Reduza riscos antes do lançamento
+LIST ITEM: Descubra barreiras, objeções e oportunidades ocultas
+LIST ITEM: Veja um caso real apresentado ao vivo
+LABEL: 📍 Local: [LOCAL]
+LABEL: 📅 Data: [DATA]
+LABEL: 🕐 Horário: [HORÁRIO]
+CTA: Quero me inscrever
+
+=== INSCRICAO ===
+H2: Garanta sua vaga
+SUB: O evento é gratuito. As vagas são limitadas.
+CTA: Quero garantir minha vaga
+
+=== PROBLEMA ===
+H2: O mercado está ficando rápido demais para decisões lentas.
+BODY: Todos os dias empresas precisam decidir:
+LIST ITEM: Qual campanha aprovar
+LIST ITEM: Qual conceito levar para produção
+LIST ITEM: Qual embalagem lançar
+LIST ITEM: Qual mensagem comunicar
+LIST ITEM: Quanto o consumidor estaria disposto a pagar
+LIST ITEM: Como melhorar a experiência do cliente
+BODY: Mas a maioria dessas decisões ainda depende de:
+LIST ITEM: Pesquisas caras e demoradas
+LIST ITEM: Dados fragmentados
+LIST ITEM: Pouco acesso ao consumidor real
+LIST ITEM: Intuição e opiniões internas
+H3: O resultado?
+BODY: Projetos chegam ao mercado carregando riscos que poderiam ter sido identificados antes.
+
+=== SOLUCAO ===
+H2: E se você pudesse conversar com milhares de consumidores antes de tomar uma decisão?
+BODY: Consumidores Sintéticos são painéis inteligentes construídos com IA, dados demográficos e modelos comportamentais que simulam a população brasileira de forma extremamente próxima da realidade.
+H3: Na prática, é possível testar:
+LIST ITEM: Campanhas
+LIST ITEM: Conceitos
+LIST ITEM: Produtos
+LIST ITEM: Embalagens
+LIST ITEM: Posicionamentos
+LIST ITEM: Jornadas
+LIST ITEM: Mensagens
+LIST ITEM: Hipóteses de negócio
+H3: A solução gera análises quantitativas e qualitativas, revelando:
+LIST ITEM: Motivações de compra
+LIST ITEM: Barreiras de adoção
+LIST ITEM: Percepções da marca
+LIST ITEM: Argumentos mais persuasivos
+LIST ITEM: Oportunidades de melhoria
+
+=== EVENTO ===
+H2: Um caso real apresentado ao vivo
+BODY: Durante o evento vamos mostrar:
+LIST ITEM: Como os Consumidores Sintéticos são construídos
+LIST ITEM: Quais dados alimentam os modelos
+LIST ITEM: Como empresas estão utilizando a tecnologia
+LIST ITEM: Demonstração prática de uso
+LIST ITEM: Caso real de aplicação e resultados obtidos
+LIST ITEM: Perguntas e respostas com especialistas
+
+=== TRANSFORMACAO EMPRESA ===
+H2: O que muda quando a pesquisa deixa de ser um projeto e passa a ser uma capacidade permanente?
+BODY: Sua empresa passa a:
+LIST ITEM: Obter respostas sob demanda
+LIST ITEM: Validar hipóteses rapidamente
+LIST ITEM: Reduzir riscos antes de investir
+LIST ITEM: Complementar dados de SAC, listening e pesquisas tradicionais
+LIST ITEM: Transformar pesquisa em um processo contínuo de inteligência
+BODY: Em vez de reagir ao mercado, sua empresa passa a explorar cenários antes que eles aconteçam.
+
+=== TRANSFORMACAO PROFISSIONAL ===
+H2: O que você leva para sua carreira?
+BODY: Ao participar deste evento você entenderá como utilizar IA para:
+LIST ITEM: Defender decisões com mais evidências
+LIST ITEM: Reduzir incertezas em projetos estratégicos
+LIST ITEM: Ganhar velocidade em validações
+LIST ITEM: Ampliar sua capacidade analítica
+LIST ITEM: Levar inovação prática para sua área
+BODY: Seja em Marketing, Insights, CX, Branding, Produto, Trade Marketing ou Inovação, você sairá com aplicações concretas para utilizar imediatamente.
+
+=== PARA QUEM ===
+H2: Este evento foi pensado para profissionais de:
+LIST ITEM: Marketing
+LIST ITEM: Insights
+LIST ITEM: Consumer Intelligence
+LIST ITEM: CX
+LIST ITEM: Produto
+LIST ITEM: Branding
+LIST ITEM: Trade Marketing
+LIST ITEM: Inovação
+LIST ITEM: Pesquisa de Mercado
+LIST ITEM: Agências
+BODY: Além de empresas que precisam validar campanhas, conceitos, produtos e estratégias antes de expor essas iniciativas ao consumidor real.
+
+=== CTA FINAL ===
+LABEL: VAGAS LIMITADAS
+H2: As vagas são limitadas.
+BODY: Participe deste encontro presencial e descubra como transformar pesquisa de mercado em uma capacidade contínua de inteligência estratégica.
+LABEL: 📍 [LOCAL]
+LABEL: 📅 [DATA]
+LABEL: 🕐 [HORÁRIO]
+CTA: Quero garantir minha vaga
+
+=== FOOTER ===
+FOOTER: © 2026 Elife. Todos os direitos reservados.
+
+# Revisão anti-IA: sem achados de filler words ou frases típicas de IA.
+# Em-dashes: 0 ocorrências na copy original.
+# Observações:
+# - Os placeholders [LOCAL], [DATA], [HORÁRIO] devem ser preenchidos pelo cliente antes da publicação.
+# - A estrutura "não X" aparece 1 vez ("horas, não semanas") — dentro do limite de 2.
+# - Copy original bem redigida, sem padrões problemáticos detectados.
