@@ -1,27 +1,24 @@
 ---
 name: bunzzai
-description: Analise de tendencias de Meta Ads via MCP do Bunzzai (snapshots cumulativos). Drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado. Aceita apenas contas Buzzmonitor e Cxpress.
+description: Analise de tendencias de Meta Ads via MCP do Bunzzai (snapshots cumulativos). Drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado. Aceita apenas contas Buzzmonitor e Cxpress. Fonte unica para analise de Meta Ads desde 2026-06-22 (pipeline meta-ads-* foi desativado — ver .claude/skills-desativadas/).
 argument-hint: "[conta] — ex: buzzmonitor_brl | cxpress_eur"
 allowed-tools: Bash, Read, mcp__claude_ai_Notion__notion-create-pages
-version: 1.0.0
+version: 1.1.0
 ---
 
-# Skill: /bunzzai — Analise via MCP Bunzzai
+# Skill: /bunzzai — Analise de Meta Ads via MCP Bunzzai
 
-> Leia `.claude/skills/bunzzai/CONTEXT.md` antes de prosseguir.
-> Leia `.claude/skills/meta-ads/CONTEXT.md` para benchmarks compartilhados.
+> Leia `.claude/skills/bunzzai/CONTEXT.md` antes de prosseguir — contas validas, benchmarks, matriz de cenarios e diferencas metricas Bunzzai vs Meta.
 
 ## Quando usar
 
-- O usuario quer analisar performance de uma conta Buzzmonitor ou Cxpress usando dados do **Bunzzai** (CRM proprio com snapshots acumulados), nao da Meta API.
-- Quer cross-check rapido contra o que `/meta-ads-trends` mostra.
-- Quer rastrear cron travado do Bunzzai por ad (snapshots congelados).
+- Usuario quer analisar performance de uma conta Buzzmonitor ou Cxpress (Meta Ads). Fonte unica de analise desde 2026-06-22 — pipeline `meta-ads-*` foi desativado.
+- Para visao consolidada das 6 contas com publicacao no Notion, use `/bunzzai-geral`.
 
 ## Nao usar quando
 
 - A conta nao for Buzzmonitor ou Cxpress (recusar — Bunzzai cobre outros clientes do CRM, mas estao fora do escopo desta skill).
-- O usuario quer dados crus diarios da Meta -> use `/meta-ads-fetch` + `/meta-ads-trends`.
-- O usuario quer comparativo entre Bunzzai e Meta API -> rodar `/meta-ads-trends` em paralelo e comparar manualmente (ou pedir orquestracao explicita).
+- O usuario quer auditar discrepancia entre Bunzzai e Meta API direta -> rodar manualmente `meta-ads-legacy/scripts/audit_vs_bunzzai.py` (requer token Meta fresh — `meta-ads-legacy/SETUP.md`).
 
 ## Restricao Absoluta
 
@@ -87,10 +84,9 @@ Resposta tem `monitoring_history`: lista de snapshots com `(timestamp, spend, im
 
 ### Passo 5 — Calcular janelas 7d / 15d / 30d via diff de snapshots
 
-Para cada ad, rodar Python embed:
+Para cada ad, rodar Python embed (do raiz do repo — sem dependencia da antiga pasta `meta-ads/scripts/`):
 
 ```bash
-cd meta-ads
 python - <<'EOF'
 import json, sys, datetime as dt
 from pathlib import Path
@@ -235,7 +231,7 @@ Estrutura:
 - <Janelas com dados insuficientes>
 
 ## Cross-check sugerido
-Quando o CpL Bunzzai estiver perto do limite ([OK] mas dentro de ~20% do threshold) ou quando a decisao for >R$ 1.000 movimentados, rodar `/meta-ads-trends <conta>` e comparar — Bunzzai conta cliques totais e conversoes amplas, enquanto a skill meta-ads usa link_clicks + leads custom.
+Quando o CpL Bunzzai estiver perto do limite ([OK] mas dentro de ~20% do threshold) ou quando a decisao envolver budget grande (>R$ 1.000 movimentados), rodar manualmente `meta-ads-legacy/scripts/audit_vs_bunzzai.py` pra comparar com a Meta API direta (requer token Meta fresh, ver `meta-ads-legacy/SETUP.md`). Bunzzai conta cliques totais e conversoes amplas, enquanto a Meta API usa `link_clicks` + leads custom — o gap pode mover o diagnostico de `[OK]` pra `[RUIM]`.
 ```
 
 ### Passo 9 — Publicar no Notion (opcional)
@@ -260,7 +256,7 @@ Se sim:
 - Se um ad tem conversoes < 3 na janela 30d: marcar `[ ] Sem dados — aguardar acumular`. Nunca diagnosticar.
 - Cron travado: badge `[CRON TRAVADO: N dias congelados desde YYYY-MM-DD]` aparece DIRETO ao lado do nome do ad afetado, no cabecalho da subsecao.
 - Nunca inventar dados — sempre citar a fonte (MCP Bunzzai, `tool_get_ad_performance` para metricas, `tool_find_company`/`list_campaigns` para estrutura).
-- Quando reportar "Ouro" para um ad: ressaltar que a metrica e do Bunzzai (cliques totais e conversoes amplas) e sugerir confirmar com `/meta-ads-trends` antes de escalar budget.
+- Quando reportar "Ouro" para um ad: ressaltar que a metrica e do Bunzzai (cliques totais e conversoes amplas). Se o budget envolvido for grande, sugerir confirmacao manual via `meta-ads-legacy/scripts/audit_vs_bunzzai.py` antes de escalar.
 - Adsets com `spend_30d = 0` ou ads com `(spend_30d = 0 OR conversions_30d < 1)` podem ser omitidos do relatorio detalhado — incluir no contador do rodape "<N> adsets/ads omitidos por baixo volume".
 
 ---
@@ -274,19 +270,19 @@ Se sim:
 
 ---
 
-## Diferencas vs `/meta-ads-trends`
+## Bunzzai vs Meta API direta (referencia)
 
-| Aspecto | `/meta-ads-trends` | `/bunzzai` |
+A skill `meta-ads-trends` (e todo o pipeline `meta-ads-*`) foi desativada em 2026-06-22 — Bunzzai e a fonte unica de analise. Esta comparacao fica como referencia tecnica caso alguem precise auditar manualmente via `meta-ads-legacy/scripts/`.
+
+| Aspecto | Bunzzai (atual) | Meta API direta (legacy) |
 |---|---|---|
-| Fonte | Meta API + cache SQLite local | MCP Bunzzai (snapshots cumulativos) |
-| Granularidade temporal | Diaria | Diaria (reconstituida via diff) |
-| Cliques | `link_clicks` (so link) | `clicks` totais |
-| Conversoes | `leads` (pixel custom) | `conversions` (todas do pixel) |
-| Reach / Frequencia | Disponivel | Pode faltar |
-| Video metrics | hook_rate + completion_rate | Nao expostas |
-| Cron-travado | Nao aplicavel | Detecta e alerta |
-| Cobre quais marcas | Buzzmonitor + Cxpress (todos paises) | Buzzmonitor + Cxpress (todos paises) — mesma cobertura, fonte alternativa |
+| Fonte | MCP Bunzzai (snapshots cumulativos) | Meta API + cache SQLite local |
+| Granularidade temporal | Diaria (reconstituida via diff) | Diaria nativa |
+| Cliques | `clicks` totais | `link_clicks` (so link) |
+| Conversoes | `conversions` (todas do pixel) | `leads` (pixel custom) |
+| Reach / Frequencia | Pode faltar | Disponivel |
+| Video metrics | Nao expostas | hook_rate + completion_rate |
+| Cron-travado | Detecta e alerta | Nao aplicavel |
+| Dependencia operacional | MCP conectado | Token Meta fresh (expira em ~60 dias) |
 
-**Quando preferir Bunzzai:** o usuario quer dado vivo sem rodar fetch da Meta (token Meta expirou, contornar rate limit, validacao cruzada).
-
-**Quando preferir meta-ads-trends:** decisao final de budget, comparacao com benchmarks calibrados, video metrics.
+**Por que Bunzzai como fonte unica:** elimina dependencia de token Meta que precisa ser renovado a cada ciclo, alem de oferecer snapshots historicos que o pipeline Meta nao guardava localmente. O custo e a diferenca de definicao (cliques totais vs link, conversoes amplas vs custom) — daí a regra de auditar manualmente quando o gap importar.

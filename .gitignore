@@ -1,6 +1,5 @@
 # Credenciais — NUNCA commitar (cada colaborador cria o seu)
 meta-ads/.env
-meta-ads/credentials-snapshot.md
 dashboard/.env
 dashboard/data.json
 
@@ -20,17 +19,16 @@ dashboard/.csv-b64*.tmp
 # (inclui inscricoes de webinar = PII). Regeneravel/descartavel — nunca versionar.
 tmp/
 
-# Banco de dados local (cada colaborador popula rodando o fetch)
-meta-ads/data/meta_ads.db
-
-# Cache de estrutura bruta da API (preserva pasta via .gitkeep)
-meta-ads/data/cache/*
-!meta-ads/data/cache/.gitkeep
-
-# Relatorios gerados (regeneraveis via /meta-ads-report)
-meta-ads/data/reports/*.md
-meta-ads/data/reports/*.txt
-!meta-ads/data/reports/.gitkeep
+# meta-ads-legacy/ — arquivos do pipeline antigo (substituido por /bunzzai em 2026-06-22).
+# Bancos, caches e relatorios continuam gitignored caso o pipeline seja reativado.
+meta-ads-legacy/meta_ads.db
+meta-ads-legacy/cache/*
+!meta-ads-legacy/cache/.gitkeep
+meta-ads-legacy/reports/*.md
+meta-ads-legacy/reports/*.txt
+!meta-ads-legacy/reports/.gitkeep
+meta-ads-legacy/url_search_results.json
+meta-ads-legacy/credentials-snapshot.md
 
 # Python
 __pycache__/

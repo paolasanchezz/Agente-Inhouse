@@ -48,18 +48,18 @@ Exemplo real: ads 445 e 446 da campanha Webinar-Analise-Preditiva ficaram com sn
 | (nao tem) | `video_p25/50/100` | Bunzzai nao expoe metricas de video; **hook_rate/completion_rate ficam de fora da skill bunzzai** |
 
 ### Impacto nos benchmarks
-Os benchmarks de `meta-ads/data/benchmarks.json` foram calibrados sobre **link_clicks + leads custom**. Aplicados sobre `clicks + conversions` do Bunzzai, vao ficar:
-- **CTR Bunzzai > CTR meta-ads** (denominador igual, numerador maior) — leitura mais otimista que a realidade do Meta
-- **CpL Bunzzai < CpL meta-ads** (numerador igual, denominador maior) — leitura mais otimista
+Os benchmarks de `meta-ads/data/benchmarks.json` foram calibrados originalmente sobre **link_clicks + leads custom** (Meta API). Aplicados sobre `clicks + conversions` do Bunzzai, vao ficar:
+- **CTR Bunzzai > CTR Meta** (denominador igual, numerador maior) — leitura mais otimista que a realidade do pixel
+- **CpL Bunzzai < CpL Meta** (numerador igual, denominador maior) — leitura mais otimista
 - **Conv. LP Bunzzai pode ir em qualquer direcao** (numerador e denominador mudam)
 
-**Conclusao:** trate os benchmarks como referencia aproximada. Quando o Bunzzai mostra metrica `[OK]` mas pertinho do threshold, sinalize como "limite — confirmar com `/meta-ads-trends`". So conclua `[RUIM]` definitivo quando o gap for grande.
+**Conclusao:** trate os benchmarks como referencia aproximada. Quando o Bunzzai mostra metrica `[OK]` mas pertinho do threshold, sinalize "limite — provavelmente real, mas inflado pela definicao mais ampla do Bunzzai". So conclua `[RUIM]` definitivo quando o gap for grande. Pra auditoria definitiva (caso a decisao envolva budget grande), rodar manualmente `meta-ads-legacy/scripts/audit_vs_bunzzai.py` (requer token Meta fresh — ver `meta-ads-legacy/SETUP.md`).
 
 ---
 
 ## Contas Validas
 
-Apenas marcas do Grupo Elife mapeadas na Meta API. Bunzzai pode cobrir outras empresas (CRM externo) — **estao fora do escopo desta skill**. Se o usuario pedir analise de empresa que nao seja Buzzmonitor ou Cxpress, recusar gentilmente e sugerir `/meta-ads` (que da grupo proprio) ou expansao futura da skill.
+Apenas marcas do Grupo Elife mapeadas na Meta. Bunzzai pode cobrir outras empresas (CRM externo) — **estao fora do escopo desta skill**. Se o usuario pedir analise de empresa que nao seja Buzzmonitor ou Cxpress, recusar gentilmente e propor abrir uma issue pra expandir a skill no futuro.
 
 | Chave de input | Marca Bunzzai (`company_name` no MCP) | Moeda | Simbolo | Heuristica de filtro de campanha |
 |---|---|---|---|---|
@@ -78,11 +78,12 @@ Apenas marcas do Grupo Elife mapeadas na Meta API. Bunzzai pode cobrir outras em
 
 | O que | Onde |
 |---|---|
-| Benchmarks (reaproveitados do meta-ads) | `meta-ads/data/benchmarks.json` |
+| Benchmarks (thresholds CpL/CTR/Conv.LP por moeda × tipo) | `meta-ads/data/benchmarks.json` |
 | Notion ID destino | `conhecimento/config/notion-ids.md` (chave `entregas`) |
-| Stress test de referencia | `meta-ads/scripts/stress_test_bunzzai.py` (prova que diff de snapshots funciona) |
+| Stress test de referencia (arquivado) | `meta-ads-legacy/scripts/stress_test_bunzzai.py` (prova que diff de snapshots funciona) |
+| Pipeline meta-ads-* original (desativado em 2026-06-22) | `.claude/skills-desativadas/meta-ads*/` |
 
-Nao ha banco SQLite local para Bunzzai (diferente do meta-ads). Tudo via MCP em tempo real.
+Bunzzai e tempo real via MCP — sem banco SQLite local. A pasta `meta-ads/` no raiz foi enxugada e mantem apenas `benchmarks.json` (referencia desta skill). Scripts/reports historicos foram pra `meta-ads-legacy/`.
 
 ---
 
@@ -100,19 +101,39 @@ Mesma logica do meta-ads — aplicada ao **nome da campanha** retornado pelo MCP
 
 ---
 
-## Benchmarks (reaproveitados)
+## Benchmarks
 
-Carregar `meta-ads/data/benchmarks.json` e indexar por `benchmark_group` (`brl`/`usd`/`eur`) × `campaign_type` (`webinar`/`material_rico`/`remarketing`). Aplicar conforme `CONTEXT.md` do meta-ads. Status: `[OK]` (dentro do minimo aceitavel) / `[RUIM]` (fora) / `[ ] N/A` (campanha nao classificada).
+Carregar `meta-ads/data/benchmarks.json` e indexar por `benchmark_group` (`brl`/`usd`/`eur`) × `campaign_type` (`webinar`/`material_rico`/`remarketing`). Status: `[OK]` (dentro do minimo aceitavel) / `[RUIM]` (fora) / `[ ] N/A` (campanha nao classificada).
 
-**Frequencia** ≤ 7,0 global — mas o Bunzzai pode nao expor frequencia em todas as tools. Se faltar dado, marcar `[ ] Sem dados`.
+### Padroes atuais (minimo aceitavel)
 
-**Atencao especial CpL:** as conversoes do Bunzzai sao mais amplas que os leads custom. Um CpL ate ~30% melhor que o threshold pode ser inflado — confirmar com `/meta-ads-trends` quando a decisao de budget for grande (>R$ 1.000 movimentados).
+**CTR link** (cliques no link ÷ impressoes)
+- Topo (webinar / material rico / evento presencial): **≥ 1,0%**
+- Fundo (remarketing): **≥ 0,6%**
+
+**Taxa de conversao da LP** (leads ÷ cliques no link)
+- Topo: **≥ 15%**
+- Fundo (remarketing): **≥ 5%**
+
+**CpL** (gasto ÷ leads) — varia por moeda
+
+| Moeda | Webinar | Material rico | Remarketing |
+|---|---|---|---|
+| BRL (Brasil) | ≤ R$ 18 | ≤ R$ 12 | ≤ R$ 220 |
+| USD (Latam) | ≤ US$ 5 | ≤ US$ 3 | ≤ US$ 60 |
+| EUR (Portugal) | ≤ € 6 | ≤ € 6 | ≤ € 60 |
+
+**Frequencia** (global, todas etapas e moedas): **≤ 7,0** — mas o Bunzzai pode nao expor frequencia em todas as tools. Se faltar dado, marcar `[ ] Sem dados`.
+
+> Editar valores diretamente em `meta-ads/data/benchmarks.json` conforme realidade historica de cada conta.
+
+**Atencao especial CpL Bunzzai:** as conversoes do Bunzzai sao mais amplas que os `leads custom` da Meta API. Um CpL ate ~30% melhor que o threshold pode ser inflado pela definicao mais larga. Sinalize "limite — provavelmente real, mas inflado pela definicao Bunzzai" em vez de cravar `[OK]` quando o gap for pequeno. Para auditoria definitiva, ver `meta-ads-legacy/scripts/audit_vs_bunzzai.py`.
 
 ---
 
 ## Matriz de Diagnostico Cruzado
 
-Identica a `meta-ads-trends`. Aplicada **no nivel da entidade** (campanha, adset ou ad) que tem `dados_suficientes` (snapshots cobrindo 7d sem cron travado).
+Aplicada **no nivel da entidade** (campanha, adset ou ad) que tem `dados_suficientes` (snapshots cobrindo 7d sem cron travado).
 
 | Cenario | CpL | CTR | Conv. LP | Diagnostico | Acao recomendada |
 | --- | --- | --- | --- | --- | --- |
@@ -124,7 +145,7 @@ Identica a `meta-ads-trends`. Aplicada **no nivel da entidade** (campanha, adset
 | 💀 **Substituir** | Ruim | Ruim | Ruim/— | Criativo nao atrai, LP nao converte. Nada funciona. | Pausar. Nao investir mais sem criativo novo. |
 | ❓ **Sem dados** | — | — | — | Conversoes insuficientes (0 ou 1) para diagnostico confiavel. CpL pontual nao e estatisticamente valido. | Aguardar mais dados antes de agir. |
 
-### Regras de aplicacao (igual meta-ads-trends, com ajuste Bunzzai)
+### Regras de aplicacao
 
 1. **Conversoes insuficientes**: se conversoes 7d ≤ 2, o CpL e ruido estatistico — informar ao usuario e usar 30d como base.
 2. **CTR em contexto**: remarketing tem CTR esperado maior (audiencia quente). CTR baixo em remarketing e mais grave que em prospeccao.

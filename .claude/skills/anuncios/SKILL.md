@@ -1,44 +1,43 @@
 ---
 name: anuncios
-description: Guia interativo de análise de Meta Ads. Faz perguntas com chips clicáveis e dispara a skill correta do pipeline meta-ads-*. Usar quando o usuário digitar /anuncios sem saber qual comando rodar.
-argument-hint: "(opcional) Ex: /anuncios | /anuncios performance buzzmonitor_brl mes_atual | /anuncios tendencias cxpress_usd"
+description: Guia interativo de análise de Meta Ads. Faz perguntas com chips clicáveis e dispara /bunzzai (1 conta) ou /bunzzai-geral (consolidado das 6 contas). Usar quando o usuário digitar /anuncios sem saber qual comando rodar.
+argument-hint: "(opcional) Ex: /anuncios | /anuncios buzzmonitor_brl | /anuncios geral"
 allowed-tools: AskUserQuestion, Read, Glob
 ---
 
-# /anuncios — Router determinístico
+# /anuncios — Router determinístico (Bunzzai)
 
 Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` já responde. Dispare direto após última pergunta — sem pedir confirmação. Meta Ads é **SOMENTE LEITURA**.
 
+> Desde 2026-06-22, todas análises de Meta Ads passam pelo **Bunzzai** (MCP do CRM próprio). O pipeline antigo `meta-ads-*` foi desativado — ver `.claude/skills-desativadas/`.
+
 ## Normalização de inputs
 
-Antes de validar, **converta `conta` e `periodo` para lowercase**. Ex: `Buzzmonitor_BRL` → `buzzmonitor_brl`, `Mes_Atual` → `mes_atual`. Se o valor não estiver na lista permitida após normalizar, trate como ausente e pergunte via AskUserQuestion.
+Antes de validar, **converta `conta` para lowercase**. Ex: `Buzzmonitor_BRL` → `buzzmonitor_brl`. Se o valor não estiver na lista permitida após normalizar, trate como ausente e pergunte via AskUserQuestion.
 
 ## Fast-path
 
-Se `$ARGUMENTS` contém tarefa + conta (+ período quando aplicável, já normalizados), pule todas as perguntas e vá direto ao Disparo.
+Se `$ARGUMENTS` já indica claramente a intenção, pule todas as perguntas e dispare direto.
 
 | Atalho | Disparo |
 |---|---|
-| `performance {conta} {periodo}` | `/meta-ads {conta} {periodo}` |
-| `tendencias {conta}` | `/meta-ads-trends {conta}` |
-| `fetch {conta} {periodo}` | `/meta-ads-fetch {conta} {periodo}` |
-| `report {conta} {periodo}` | `/meta-ads-report {conta} {periodo}` |
+| `geral` ou `consolidado` ou `todas` | `/bunzzai-geral` |
+| `{conta}` (uma das 6 válidas) | `/bunzzai {conta}` |
 
 Contas válidas: `buzzmonitor_brl` `buzzmonitor_usd` `buzzmonitor_eur` `cxpress_brl` `cxpress_usd` `cxpress_eur`
-Períodos válidos: `mes_atual` `mes_anterior` `ultimos_30`
 
-Se parcial, use o que tem e pergunte só o que falta.
+Se parcial (ex: só "buzzmonitor" sem moeda), use o que tem e pergunte só o que falta.
 
 ---
 
-## Q1 — Tarefa
+## Q1 — Escopo
 
-AskUserQuestion — question: "O que quer saber dos anúncios?" header: "Tarefa" multiSelect: false
+Pular se `$ARGUMENTS` já indica `geral` ou conta específica.
 
-1. "Performance geral (Recomendado)" → skill=meta-ads, precisa_periodo=sim
-2. "Tendências (CpL/CTR caindo?)" → skill=meta-ads-trends, precisa_periodo=não
-3. "Só atualizar dados locais" → skill=meta-ads-fetch, precisa_periodo=sim
-4. "Re-gerar relatório" → skill=meta-ads-report, precisa_periodo=sim
+AskUserQuestion — question: "O que quer analisar?" header: "Escopo" multiSelect: false
+
+1. "Uma conta específica (Recomendado)" → fluxo Q2/Q3 abaixo
+2. "Consolidado das 6 contas" → dispara `/bunzzai-geral` direto (publica no Notion)
 
 ## Q2 — Marca
 
@@ -61,16 +60,7 @@ AskUserQuestion — question: "Qual moeda?" header: "Moeda" multiSelect: false
 
 → conta = `{marca}_{moeda}` (tudo lowercase)
 
-## Q4 — Período
-
-Pular se precisa_periodo=não OU período já conhecido.
-
-AskUserQuestion — question: "Qual período?" header: "Período" multiSelect: false
-
-1. "Mês atual (Recomendado)" → mes_atual
-2. "Mês anterior" → mes_anterior
-3. "Últimos 30 dias" → ultimos_30
-
 ## Disparo
 
-Invoke Skill({skill}, args: "{conta} {periodo}")
+- Se escopo = "consolidado das 6 contas": `Invoke Skill(bunzzai-geral)`.
+- Senão: `Invoke Skill(bunzzai, args: "{conta}")`.

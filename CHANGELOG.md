@@ -12,6 +12,27 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Pipeline de Meta Ads (cross-skill: anuncios, bunzzai, setup-agencia + CLAUDE.md)
+### 2026-06-22 — Substituicao do pipeline `meta-ads-*` por `/bunzzai` + `/bunzzai-geral`
+
+Decisao do Victor: analises de Meta Ads passam a rodar **somente via MCP Bunzzai**, eliminando dependencia de token Meta que expirava a cada ~60 dias (e que precisava ser renovado por cada colaborador, com risco de quebrar fluxo). Bunzzai e MCP em tempo real, sem setup local.
+
+- **5 skills desativadas** → movidas pra `.claude/skills-desativadas/`: `meta-ads`, `meta-ads-fetch`, `meta-ads-report`, `meta-ads-trends`, `meta-ads-geral`. Claude Code nao carrega skills fora de `.claude/skills/`, entao saem do registry automaticamente. Pra reativar: `git mv` de volta (ver `.claude/skills-desativadas/README.md`).
+- **Scripts arquivados** → `meta-ads-legacy/` (raiz do repo): pipeline Python original (`fetch_*.py`, `full_analysis.py`, `trend_analyzer.py`, `report_generator.py`, `audit_vs_bunzzai.py`, etc.), `SETUP.md` do token Meta, requirements.txt, relatorios historicos e cache. Continua rodavel pra auditoria pontual (especialmente `audit_vs_bunzzai.py` quando precisar cross-checar Bunzzai vs Meta API direta).
+- **Pasta `meta-ads/` enxuta** → ficou so com `data/benchmarks.json` (thresholds CpL/CTR/Conv.LP por moeda × tipo de campanha — reaproveitados pelo bunzzai) + README explicando o estado novo. `.env` e `.env.example` preservados pra auditoria pontual.
+- **`/bunzzai` v1.0.0 → v1.1.0** — autossuficiente: removeu refs a `/meta-ads-trends` como cross-check, embutiu Python embed sem `cd meta-ads/scripts`, consolidou benchmarks + matriz de cenarios + classificacao de campanhas dentro do proprio `CONTEXT.md` (em vez de referenciar o CONTEXT.md do meta-ads). Cross-check passa a ser manual via `meta-ads-legacy/scripts/audit_vs_bunzzai.py`.
+- **`/bunzzai-geral` v1.0.0 (NOVA)** — substituto direto do `/meta-ads-geral`: consolidado das 6 contas (Buzzmonitor BRL/USD/EUR + Cxpress BRL/USD/EUR), drill-down Conta→Funil→Adset→Ad, publica no Notion. Itera as 6 contas via MCP Bunzzai em ~2-4min, sem rate limit de token Meta.
+- **`/anuncios` (advisor)** — simplificado: pergunta so 1-3 questoes (escopo: conta especifica vs consolidado; depois marca + moeda se conta) e dispara `/bunzzai` ou `/bunzzai-geral`. Fast-path `geral`/`consolidado`/`todas` vai direto pro `/bunzzai-geral`.
+- **`/setup-agencia` v0.5.0 → v0.6.0** — passo 3 reescrito: removeu fluxo de geracao de token Meta no Business Manager, geracao de `.env`, instalacao de `requirements.txt` e execucao de `check_setup.py`. Substituido por: (1) verificar se MCP Bunzzai esta conectado via `claude mcp list | grep bunzzai`; (2) se nao estiver, fallback `bunzzai-mcp-falhou` direciona pro Victor. Fallbacks `token-falhou`/`token-rejeitado`/`conta-sem-acesso` foram removidos.
+- **`CLAUDE.md`** — Tabela de fluxos: `Meta Ads:` agora lista so `/bunzzai` + `/bunzzai-geral`. Diretorios: `meta-ads/` documentado como enxuto, `.claude/skills-desativadas/` adicionado. Secao "Setup" perdeu o sub-passo de Meta Ads. Secao "Meta Ads (SOMENTE LEITURA)" reescrita como "Meta Ads — via Bunzzai".
+- **`.gitignore`** — entradas de `meta-ads/data/meta_ads.db`, `meta-ads/data/cache/`, `meta-ads/data/reports/*.md`, `meta-ads/credentials-snapshot.md` movidas para `meta-ads-legacy/...` correspondente.
+
+**Por que manter `meta-ads-legacy/` em vez de apagar:** os scripts ainda compilam e ficam disponiveis pra auditoria de discrepancia entre Bunzzai e Meta API direta. Particularmente util pra decisoes de budget grande (>R$ 1.000) — `audit_vs_bunzzai.py` casa entidades por `meta_id` e compara metricas.
+
+**Migracao de jobs/loops agendados:** se voce tinha `/loop` ou `/schedule` rodando `/meta-ads*`, troque por `/bunzzai [conta]` ou `/bunzzai-geral`. Nao ha equivalente para `/meta-ads-fetch` (Bunzzai e tempo real) nem `/meta-ads-report` (Bunzzai nao tem banco local separado).
+
+---
+
 ## Protocolo de Copy (cross-skill: copy-*, trad-*, lp-preparar, criativo + CLAUDE.md)
 ### 2026-06-15 — Split núcleo/pesquisa dos padrões linguísticos (corte de custo + curadoria)
 

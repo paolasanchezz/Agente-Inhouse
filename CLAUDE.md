@@ -27,7 +27,7 @@ Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
-Meta Ads:     /meta-ads → fetch + report | /meta-ads-trends (standalone)
+Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consolidado 6 contas · publica Notion)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copies em lote → (pausa) → /social-canva
 ```
@@ -44,8 +44,9 @@ Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copie
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `social-media/` | Planejamentos editoriais de redes sociais por marca (`social-media/{marca}/YYYY-MM/`) |
 | `criativos/` | Criativos gerados por marca/regiao (`criativos/{marca}/{regiao}/{slug}/`) + `GUIDELINES.md` universal. Outputs **gitignored** (PNGs pesados, upload manual); só o GUIDELINES versiona |
-| `meta-ads/` | Modulo Python de analise de campanhas (read-only) |
+| `meta-ads/` | Enxuto — so `benchmarks.json` (usado pelo /bunzzai). Pipeline antigo arquivado em `meta-ads-legacy/` |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
+| `.claude/skills-desativadas/` | Skills tiradas de circulacao (ex: pipeline `meta-ads-*` substituido por /bunzzai em 2026-06-22) |
 
 ### Contextos Compartilhados
 
@@ -54,7 +55,7 @@ Cada familia de skills tem um `CONTEXT.md` com marcas, regioes, caminhos e IDs d
 - `.claude/skills/news-pesquisar/CONTEXT.md` — para skills news-*
 - `.claude/skills/trad-traduzir/CONTEXT.md` — para skills trad-*
 - `.claude/skills/lp-preparar/CONTEXT.md` — para skills lp-*
-- `.claude/skills/meta-ads/CONTEXT.md` — para skills meta-ads-*
+- `.claude/skills/bunzzai/CONTEXT.md` — para `/bunzzai` e `/bunzzai-geral` (analise de Meta Ads via MCP Bunzzai)
 
 A skill `/criativo` nao usa CONTEXT.md — suas regras universais ficam em `criativos/GUIDELINES.md`.
 
@@ -76,11 +77,12 @@ Cada skill tem `version` no frontmatter (semver simplificado). Mudanças vão em
 
 ## Setup
 
-**Primeira vez? Rode `/setup-agencia`** — guia interativo que conduz instalacao de Python, MCP do Notion e token Meta. Recomendado para todos os colaboradores no primeiro uso.
+**Primeira vez? Rode `/setup-agencia`** — guia interativo que conduz instalacao de Python e MCP do Notion. Recomendado para todos os colaboradores no primeiro uso.
 
-### Meta Ads (unico que requer instalacao)
-Use `/setup-agencia` ou veja `meta-ads/SETUP.md` para passo-a-passo escrito.
-Resumo: `python -m pip install -r meta-ads/requirements.txt`, copiar `.env.example` para `.env`, preencher token + data, validar com `python meta-ads/scripts/check_setup.py`. IDs das contas ja vem hardcoded.
+### Meta Ads — sem setup local
+Desde 2026-06-22, todas analises rodam via MCP Bunzzai (`/bunzzai` ou `/bunzzai-geral`). Nao precisa de token Meta nem instalacao Python — basta o MCP Bunzzai conectado.
+
+O pipeline antigo (`/meta-ads-*` + scripts Python locais) foi desativado mas mantido em `meta-ads-legacy/` pra auditoria pontual e em `.claude/skills-desativadas/` pra eventual reativacao.
 
 ### Notion
 Requer MCP Notion conectado. IDs das pastas ja estao hardcoded nas skills e nos CONTEXT.md.
@@ -96,7 +98,7 @@ Funcionam sem setup adicional.
 
 | Comando | Quando usar |
 |---|---|
-| `/setup-agencia` | Setup interativo do zero — token Meta, Notion MCP, Python. Use na primeira vez ou ao trocar de maquina. |
+| `/setup-agencia` | Setup interativo do zero — Python, Notion MCP, Bunzzai MCP. Use na primeira vez ou ao trocar de maquina. |
 
 ### Nao sabe qual comando rodar? Use um destes (advisors):
 
@@ -245,27 +247,17 @@ Dashboard interna semanal de Content Marketing — KPIs do funil de leads + fech
 
 Fonte: `dashboard/` (gerador Python + queries Supabase). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (fora do repo — evita PII no git). Runbook manual: `dashboard/DEPLOY.md`. Auditoria de UTM: `dashboard/AUDITORIA-DEALS-CM.md`.
 
-### Meta Ads (SOMENTE LEITURA)
+### Meta Ads — via Bunzzai (SOMENTE LEITURA)
 
-Requer Python 3.10+ e `meta-ads/.env` configurado. **Primeira vez?** Rode `/setup-agencia` ou veja `meta-ads/SETUP.md`.
+Desde 2026-06-22, todas analises de Meta Ads rodam pelo **MCP Bunzzai** (CRM proprio com snapshots cumulativos). Sem dependencia de token Meta — basta o MCP conectado. Cobre Buzzmonitor + Cxpress (todas as moedas).
+
+O pipeline antigo (`meta-ads-*` + scripts Python locais) foi desativado: skills em `.claude/skills-desativadas/`, scripts em `meta-ads-legacy/`. Reaproveita-se apenas `meta-ads/data/benchmarks.json` (thresholds de CpL/CTR/Conv.LP) e a matriz de cenarios (consolidada em `.claude/skills/bunzzai/CONTEXT.md`).
 
 | Comando | O que faz |
 |---|---|
-| `/meta-ads [conta] [periodo]` | Pipeline completo: coleta + relatorio |
-| `/meta-ads-fetch [conta] [periodo]` | So atualiza dados locais |
-| `/meta-ads-report [conta] [periodo]` | So gera relatorio (sem nova coleta) |
-| `/meta-ads-trends [conta]` | Tendencias temporais (3d/7d/15d/30d) |
-| `/meta-ads-geral` | Relatorio consolidado das 6 contas — drill-down Conta->Funil->Adset->Ad, publica no Notion |
+| `/bunzzai [conta]` | Uma conta — drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado |
+| `/bunzzai-geral` | Consolidado das 6 contas — drill-down Conta -> Funil -> Adset -> Ad, publica no Notion |
 
 - `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
-- `[periodo]`: `mes_atual` | `mes_anterior` | `ultimos_30`
 
-### Bunzzai (fonte alternativa via MCP — SOMENTE LEITURA)
-
-Mesma cobertura do `/meta-ads-trends` (Buzzmonitor + Cxpress, todas as moedas), mas via MCP do Bunzzai (snapshots cumulativos no CRM proprio) em vez da Meta API direta. Zero setup local — tudo via MCP em tempo real. Util para cross-check, quando o token Meta expirou ou para auditar `cron travado` (snapshots congelados do Bunzzai). Diferencas importantes — cliques **totais** vs `link_clicks`, conversoes **amplas** vs `leads custom` — estao detalhadas em `.claude/skills/bunzzai/CONTEXT.md` §Diferencas metricas. Sugere cross-check com `/meta-ads-trends` antes de decisao de budget grande.
-
-| Comando | O que faz |
-|---|---|
-| `/bunzzai [conta]` | Drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado. Reaproveita benchmarks do meta-ads. |
-
-- `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur` (mesma lista do `/meta-ads`)
+**Diferencas metricas vs Meta API direta** (cliques totais vs `link_clicks`, conversoes amplas vs `leads custom`): documentadas em `.claude/skills/bunzzai/CONTEXT.md`. Quando a decisao envolver budget grande (>R$ 1.000) ou CpL pertinho do threshold, rodar manualmente `meta-ads-legacy/scripts/audit_vs_bunzzai.py` pra cross-check (requer token Meta fresh — `meta-ads-legacy/SETUP.md`).
