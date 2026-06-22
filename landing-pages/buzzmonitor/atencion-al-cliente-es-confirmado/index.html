@@ -274,6 +274,17 @@
       font-size: clamp(17px, 2.6vw, 21px);
       color: var(--primary-dark);
     }
+    .session-when .session-tz {
+      display: block;
+      margin-top: 6px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--primary);
+      opacity: 0.78;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
     .session-skeleton {
       display: inline-block;
       width: 240px;
@@ -708,15 +719,28 @@
       function pad(n) { return n < 10 ? '0' + n : String(n); }
       function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
-      // Data formatada em espanhol do Mexico, fuso de Ciudad de Mexico (a partir do ISO).
+      // Data formatada em espanhol, com o horario nas principais capitais LATAM (a partir do ISO).
+      function fmtTime(d, tz) {
+        return new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(d);
+      }
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (ch) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+        });
+      }
       function formatFullEs(iso) {
         var d = new Date(iso);
         if (isNaN(d.getTime())) return null;
         var tz = 'America/Mexico_City';
         var wd = new Intl.DateTimeFormat('es-MX', { weekday: 'long', timeZone: tz }).format(d);
         var date = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', timeZone: tz }).format(d);
-        var time = new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(d);
-        return cap(wd) + ', ' + date + ' · ' + time + ' h (hora de Ciudad de México)';
+        var main = cap(wd) + ', ' + date;
+        var tzLine = 'MX ' + fmtTime(d, 'America/Mexico_City')
+          + ' · CO ' + fmtTime(d, 'America/Bogota')
+          + ' · PE ' + fmtTime(d, 'America/Lima')
+          + ' · CL ' + fmtTime(d, 'America/Santiago')
+          + ' · AR ' + fmtTime(d, 'America/Argentina/Buenos_Aires');
+        return escapeHtml(main) + '<span class="session-tz">' + escapeHtml(tzLine) + '</span>';
       }
 
       function gcalUrl(startsAtIso, details) {
@@ -810,7 +834,7 @@
         var whenEl = document.getElementById('sessionWhenA');
         if (data.starts_at) {
           var f = formatFullEs(data.starts_at);
-          if (f) whenEl.textContent = f;
+          if (f) whenEl.innerHTML = f;
         }
 
         var enterBtn = document.getElementById('enterBtn');
@@ -838,7 +862,7 @@
           fetchNextWebinar(function (d) {
             if (d && d.ok && d.starts_at) {
               var f = formatFullEs(d.starts_at);
-              if (f) whenEl.textContent = f;
+              if (f) whenEl.innerHTML = f;
             }
           });
         }
@@ -892,7 +916,7 @@
             if (d && d.ok && d.starts_at) {
               label.textContent = 'Próxima sesión';
               var f = formatFullEs(d.starts_at);
-              if (f) whenEl.textContent = f;
+              if (f) whenEl.innerHTML = f;
             }
           });
         }
@@ -910,7 +934,11 @@
 
           if (d && d.ok && d.starts_at) {
             var f = formatFullEs(d.starts_at);
-            whenEl.textContent = f || 'Revisa la fecha y el enlace en tu correo de confirmación.';
+            if (f) {
+              whenEl.innerHTML = f;
+            } else {
+              whenEl.textContent = 'Revisa la fecha y el enlace en tu correo de confirmación.';
+            }
 
             var gcal = gcalUrl(d.starts_at, 'El enlace de acceso está en el correo de confirmación (remitente ClickMeeting).');
             var gcalB = document.getElementById('gcalB');

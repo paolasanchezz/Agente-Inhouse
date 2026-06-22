@@ -49,7 +49,17 @@ BAK_PATH = HTML_PATH.with_suffix('.html.bak')
 # Decisao 2026-05-18: whitelist override o filtro Inbound (Victor confirmou que
 # CROP e NEIVA, marcados como Outbound no CRM, sao fechamentos CM legitimos).
 # Revisao 2026-05-25: +1 fechamento (Lide Comunicacao, meta/RMKT 13, R$ 2.690).
-# Total YtD 2026: 7 deals · R$ 19.270.
+# Revisao 2026-06-22: alteracoes de filtro sem impacto no total de fechamentos.
+# (a) +5 variantes em CM_UTM_SOURCES (apresentacao, webinar, newsletter, Instagram_Feed,
+#     Instagram_Stories) — descobertas na auditoria da lista da colab. Nao trouxeram
+#     fechamentos novos. 'redes-sociais' tambem foi adicionada mas REMOVIDA no mesmo
+#     dia: era 100% deals de CS tagueados (utm_content=cs).
+# (b) +catherine.nobrega@fabrikadecriacao.com.br em EMAIL_WHITELIST como GARANTIA
+#     nominal (Victor confirmou CM). Hoje o deal 183535 ja passa pela regra 90d via
+#     account_id casado, mas a whitelist evita perde-lo se o lead pai mudar.
+# (c) +muniquebuzz@monitor.com em EMAIL_BLACKLIST (deal 189845 era "teste crm").
+#     Saiu da contagem de leads/CE/RA/etc., mas nao afeta fechamentos (nao era fech).
+# Total YtD 2026: 7 deals · R$ 19.270 (inalterado).
 EXPECTED_FECH_YTD_2026 = 7
 EXPECTED_FECH_VALOR_YTD_2026 = 19270.0
 

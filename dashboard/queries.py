@@ -30,6 +30,16 @@ CM_UTM_SOURCES: list[str] = [
     'checklist', 'whatsapp', 'pos-webinar', 'sms', 'webinar-ao-vivo',
     'apresentacao-webinar', 'lp-agradecimento-oferta-trends',
     'lp-agradecimento-evento', 'tiktok', 'chatgpt.com', 'gemini', 'blog',
+    # Variantes adicionadas 2026-06-22 (auditoria lista colab 13-19/jun):
+    # typos/variantes de utm que sao CM legitimos mas escapavam do filtro.
+    # Origem provavel: lancamento de campanha sem padronizar o utm na origem.
+    # NOTA: 'redes-sociais' foi tentado mas REMOVIDO no mesmo dia — Victor
+    # confirmou que esse source NAO eh usado em CM (era CS tagueando expansoes
+    # de cliente como utm_source=redes-sociais&utm_content=cs). 5 fechamentos
+    # YtD apareceram falsamente como CM via essa variante; um deles (Fabrika,
+    # deal 183535) eh CM legitimo confirmado e entrou na EMAIL_WHITELIST.
+    'apresentacao', 'webinar', 'newsletter',
+    'Instagram_Feed', 'Instagram_Stories',
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
@@ -53,6 +63,7 @@ EMAIL_WHITELIST: list[str] = [
     'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
     'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
     'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
+    'catherine.nobrega@fabrikadecriacao.com.br',  # Fabrika (deal 183535) — fech 19/03 utm=google/monitoramento_social_media; CM confirmado pelo Victor (2026-06-22)
 ]
 
 EMAIL_BLACKLIST: list[str] = [
@@ -82,6 +93,8 @@ EMAIL_BLACKLIST: list[str] = [
     'teste@leadblogurldiferente.com',
     'teste@utmgenertor.com',
     'teste@webhooklsksks.com',
+    # Adicionado 2026-06-22 (auditoria lista colab): deal de teste vazando.
+    'muniquebuzz@monitor.com',                # deal 189845 — title "teste crm"
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
@@ -123,6 +136,7 @@ RECONVERSOES_MANUAIS: dict[int, str] = {
 # EMAIL_WHITELIST / RECONVERSOES_MANUAIS. So aplica a deals_comercial_prod.
 CM_DEALS_FORCADOS: dict[int, str] = {
     189715: 'Assembleia Legislativa do MA — contato converteu na oferta webinar relatorios-estrategicos (deal 180841); CRM criou deal novo sem UTM, conta diferente, +108d. CM confirmado (Victor 2026-06-15).',
+    175702: 'PiU Comunica (robertapuri@piucomunica.com.br) — convertido em 07/jan via utm=apresentacao/qr-code-apresentacao, mas CE/RA/RR aconteceram em 17-18/jun (+163d, fora da janela 90d). CM confirmado (Victor 2026-06-22).',
 }
 
 

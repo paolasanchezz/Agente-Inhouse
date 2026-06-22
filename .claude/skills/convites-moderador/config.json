@@ -1,0 +1,23 @@
+{
+  "series": {
+    "17529": {
+      "label": "Cxpress",
+      "moderator_email": "maira.cavenaghi@gocxpress.com.br",
+      "lang": "br"
+    },
+    "17544": {
+      "label": "Buzzmonitor Atención al Cliente (LATAM)",
+      "moderator_email": "milagro.pantoja@buzzmonitor.com",
+      "lang": "es"
+    },
+    "17560": {
+      "label": "Buzzcreators",
+      "moderator_email": "lucas.campos@buzzmonitor.com.br",
+      "lang": "br"
+    }
+  },
+  "_comentarios": {
+    "lang": "Idioma do email de convite enviado pelo ClickMeeting. Códigos válidos: pl, en, de, ru, es, fr, it, br. Alinhar ao idioma de quem recebe, não do webinar.",
+    "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email + lang. Para remover: apague o bloco. Para trocar moderador: mude moderator_email."
+  }
+}

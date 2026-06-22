@@ -211,6 +211,14 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 - `[fonte]`: URL Notion, caminho de arquivo ou texto colado
 - `[dominio]`: FQDN do guarda-chuva (ex: `content.cxpress.io`, `webinar.buzzmonitor.com`)
 
+### ClickMeeting — Convites de Moderador
+
+Rotina diaria que envia convite (role=presenter — a API nao aceita `moderator` em invitation/email) para a proxima sessao agendada de cada serie recorrente. Config em `.claude/skills/convites-moderador/config.json` (mapping `recurring_config_id` -> email do moderador). Roda 08:00 BRT via tarefa agendada `convites-moderador-clickmeeting`.
+
+| Comando | O que faz |
+|---|---|
+| `/convites-moderador [--dry-run] [--series RID]` | Manual on-demand. Dry-run lista o plano sem enviar; `--series` filtra 1 recurring_config_id. |
+
 ### Redes Sociais — Buzzmonitor
 
 Fluxo mensal ponta-a-ponta: analytics do mes anterior alimenta planejamento do mes novo, que alimenta copies, que alimentam designs no Canva. Cada etapa publica no Notion em "Redes Sociais". Aceita so Instagram Buzzmonitor por enquanto.

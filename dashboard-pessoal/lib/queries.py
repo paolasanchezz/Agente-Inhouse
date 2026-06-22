@@ -1,9 +1,14 @@
-"""queries.py — copia de dashboard/queries.py para o dashboard pessoal.
+"""queries.py — copia espelhada de dashboard/queries.py para o dashboard pessoal.
 
 Mantem regras CM identicas ao dashboard oficial. Quando o filtro CM oficial
-mudar, replicar aqui (ou criar import compartilhado depois).
+mudar, replicar aqui (ver README, secao Manutencao).
 
 Espelha dashboard/MAPEAMENTO-CAMPOS.md (Brasil-only por enquanto).
+
+Ultima sincronizacao: 2026-06-22 — alinhado com fix das reunioes CM (commit 5ce87ba,
+PR #15 de 2026-06-15): _atrib_cm_90d com granularidade ::date, auto-atribuicao p/
+account_id NULL, override nominal CM_DEALS_FORCADOS (deal 189715 Assembleia MA), e
+parametro `alias` em filtro_cm()/_sql_exclusao_deals().
 """
 from __future__ import annotations
 
@@ -17,16 +22,32 @@ CM_UTM_SOURCES: list[str] = [
     'checklist', 'whatsapp', 'pos-webinar', 'sms', 'webinar-ao-vivo',
     'apresentacao-webinar', 'lp-agradecimento-oferta-trends',
     'lp-agradecimento-evento', 'tiktok', 'chatgpt.com', 'gemini', 'blog',
+    # Variantes adicionadas 2026-06-22 (auditoria lista colab 13-19/jun):
+    # typos/variantes de utm que sao CM legitimos mas escapavam do filtro.
+    # Origem provavel: lancamento de campanha sem padronizar o utm na origem.
+    # NOTA: 'redes-sociais' foi tentado mas REMOVIDO no mesmo dia — Victor
+    # confirmou que esse source NAO eh usado em CM (era CS tagueando expansoes
+    # de cliente como utm_source=redes-sociais&utm_content=cs). 5 fechamentos
+    # YtD apareceram falsamente como CM via essa variante; um deles (Fabrika,
+    # deal 183535) eh CM legitimo confirmado e entrou na EMAIL_WHITELIST.
+    'apresentacao', 'webinar', 'newsletter',
+    'Instagram_Feed', 'Instagram_Stories',
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
 
-
+# Filtro de funil:
+# Originalmente restrito a 'Inbound', mas decisao de 2026-05-19 (Victor) foi
+# capturar TODOS os leads CM independente do funil_inicial_lead_auto, porque:
+#   - ~4220 leads em 2026 tem funil vazio (nao classificado) mas tem UTM CM legitimo
+#   - 262 Outbound + UTM CM ainda foram impactados por content
+# Pra preservar o ponto de extensao sem reescrever as queries, a funcao virou no-op
+# (retorna "TRUE"). Quando quiser reativar restricao por funil, mudar o corpo.
 def filtro_inbound(alias: str = '') -> str:
-    """No-op (espelha dashboard oficial). Retorna 'TRUE'."""
+    """No-op. Retorna 'TRUE' pra nao filtrar por funil_inicial_lead_auto."""
     return "TRUE"
 
-
+# Override manual (overrides §2 do mapeamento)
 EMAIL_WHITELIST: list[str] = [
     'jessica.rua@wealthmoney.com.br',     # Wealth — converteu via blog, tracking nao preservou
     'ronaldozottolo@gmail.com',           # Agencia CROP — Outbound no CRM, mas CM confirmado pelo Victor
@@ -34,6 +55,7 @@ EMAIL_WHITELIST: list[str] = [
     'm.lima@blankschool.com.br',          # BlankSchool — funil Inbound mas sem UTM/URL (tracking falhou)
     'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
     'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
+    'catherine.nobrega@fabrikadecriacao.com.br',  # Fabrika (deal 183535) — fech 19/03 utm=google/monitoramento_social_media; CM confirmado pelo Victor (2026-06-22)
 ]
 
 EMAIL_BLACKLIST: list[str] = [
@@ -63,19 +85,69 @@ EMAIL_BLACKLIST: list[str] = [
     'teste@leadblogurldiferente.com',
     'teste@utmgenertor.com',
     'teste@webhooklsksks.com',
+    # Adicionado 2026-06-22 (auditoria lista colab): deal de teste vazando.
+    'muniquebuzz@monitor.com',                # deal 189845 — title "teste crm"
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
-# Espelha dashboard/queries.py. Remove deals que casam URL + data sem banir o email.
+# Diferente da EMAIL_BLACKLIST (que bane o email pra sempre, em qualquer campanha),
+# isto remove apenas deals que casam URL + intervalo de datas — o mesmo email volta
+# a contar normalmente em conversoes futuras.
 DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
     {
         # Webinar Analise Preditiva: inscricao NUNCA vira lead CM (decisao Victor 2026-05-26).
-        # So a OFERTA (oferta-webinar-analise-preditiva-na-pratica) conta como CM.
-        # Sem 'datas' => exclui qualquer data. Espelha dashboard/queries.py.
+        # A pagina de inscricao (webinar.buzzmonitor.com/analise-preditiva-maio-2026) e topo
+        # de funil — nao deveria gerar deal. So a OFERTA
+        # (conteudo.buzzmonitor.com.br/oferta-webinar-analise-preditiva-na-pratica) conta como CM.
+        # Sem chave 'datas' => exclui qualquer data. (Originou de falha de lote em 25/05 e 06/03,
+        # mas a decisao final foi excluir todas as inscricoes, nao so os lotes.)
         'url_like': 'https://webinar.buzzmonitor.com/analise-preditiva-maio-2026%',
     },
 ]
 
+# Reconversoes manuais (deal_id -> data efetiva da nova conversao).
+# Quando um lead CM reconverte de verdade mas o CRM so EDITA o deal antigo (nao gera
+# deal novo), o cdate fica preso na data original. Este override recoloca o LEAD na
+# data real da reconversao. Afeta SO a metrica de Leads (q_count_leads / q_lista_leads);
+# os eventos de funil (CE/RA/proposta) permanecem nas datas reais, e a serie temporal
+# 12m nao reflete o override (1 lead nao muda a forma do grafico — limitacao aceita).
+# MANUTENCAO: REMOVER a entrada quando o pipeline AC->Supabase passar a gerar deal novo
+# em reconversao, senao conta duplicado (deal novo + override).
+RECONVERSOES_MANUAIS: dict[int, str] = {
+    183266: '2026-05-26',  # Karol/Cely — reconverteu na oferta webinar; CRM so editou o deal de 09/mar. Mover (Victor 2026-05-27).
+}
+
+# Deals confirmados como CM pelo Victor que o criterio automatico NAO captura.
+# Caso tipico: o lead converteu numa pagina de oferta CM, mas o CRM criou um DEAL
+# NOVO sem UTM/URL, em account_id diferente e/ou fora da janela de 90d — entao nem
+# o EXISTS por conta nem a auto-atribuicao por account NULL o pegam.
+# Este override force-inclui os EVENTOS do deal (CE/RA/RR/Proposta) como CM,
+# ignorando account-join e janela 90d. NAO afeta Leads (o lead original ja conta
+# pela conversao CM real) NEM Fechamentos (gate §7 — override de fechamento e via
+# EMAIL_WHITELIST). Override nominal, nao heuristico — mesma filosofia da
+# EMAIL_WHITELIST / RECONVERSOES_MANUAIS. So aplica a deals_comercial_prod.
+CM_DEALS_FORCADOS: dict[int, str] = {
+    189715: 'Assembleia Legislativa do MA — contato converteu na oferta webinar relatorios-estrategicos (deal 180841); CRM criou deal novo sem UTM, conta diferente, +108d. CM confirmado (Victor 2026-06-15).',
+    175702: 'PiU Comunica (robertapuri@piucomunica.com.br) — convertido em 07/jan via utm=apresentacao/qr-code-apresentacao, mas CE/RA/RR aconteceram em 17-18/jun (+163d, fora da janela 90d). CM confirmado (Victor 2026-06-22).',
+}
+
+
+def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
+    """SQL do cdate efetivo aplicando RECONVERSOES_MANUAIS.
+
+    Retorna cdate_col puro se nao ha overrides; senao um CASE que troca a data
+    dos deals listados pela data manual da reconversao.
+    """
+    if not RECONVERSOES_MANUAIS:
+        return cdate_col
+    cases = ' '.join(
+        f"WHEN {id_col} = {did} THEN '{data}'::timestamptz"
+        for did, data in RECONVERSOES_MANUAIS.items()
+    )
+    return f"(CASE {cases} ELSE {cdate_col} END)"
+
+
+# Slugs CM na URL conteudo.buzzmonitor.com.br (whitelist)
 CM_SLUGS_PREFIXES: list[str] = [
     'plataforma-completa',
     'monitoramento-de-redes-sociais-2',
@@ -91,6 +163,7 @@ CM_SLUGS_PREFIXES: list[str] = [
     'buzzmonitor-connect-',
 ]
 
+# Colunas-data dos eventos no funil
 COLUNA_EVENTO = {
     'leads': 'cdate',
     'ce':    'data_efetividade_contato_auto',
@@ -98,29 +171,40 @@ COLUNA_EVENTO = {
     'rr':    'data_inicio_reuniao_realizada',
     'prop':  'data_envio_proposta_auto',
     'perd':  'data_negocio_perdido_auto',
+    # fech vive em deals_contratos_prod
     'fech':  'data_fechamento_auto',
 }
 
 
+# ============ HELPERS DE FORMATACAO SQL ============
+
 def _sql_list(items: list[str]) -> str:
+    """['a','b','c'] -> "'a', 'b', 'c'"""
     return ", ".join(f"'{s}'" for s in items)
 
 
 def _sql_email_list(emails: list[str]) -> str:
+    """Lista de emails em VALUES inline pra SELECT email FROM (VALUES (...))."""
     if not emails:
+        # truque pra retornar zero linhas sem quebrar sintaxe
         return "SELECT ''::text WHERE FALSE"
     rows = ", ".join(f"('{e.lower().strip()}')" for e in emails)
     return f"SELECT lower(trim(email)) AS email FROM (VALUES {rows}) AS t(email)"
 
 
-def _sql_exclusao_deals() -> str:
+def _sql_exclusao_deals(alias: str = '') -> str:
     """Clausula SQL que exclui deals casando URL + data de DEALS_EXCLUIDOS_URL_DATA.
 
-    COALESCE(url_conversao, '') protege contra url_conversao NULL: senao `NULL ILIKE`
-    propaga NULL no `NOT (...)` e derruba do filtro CM leads validos sem URL (ex:
-    utm_source='meta'). Sync do fix de dashboard/queries.py (2026-06-02) — manter as
-    duas copias iguais (ver README, secao Manutencao).
+    Retorna 'TRUE' (no-op) se a lista estiver vazia. Aceita `alias` opcional para
+    prefixar as colunas (url_conversao, cdate) quando aplicada em query com JOIN —
+    mesmo contrato do filtro_cm(). Sem alias, gera SQL byte-identico ao anterior.
+
+    COALESCE(url_conversao, '') protege contra url_conversao NULL: sem ele,
+    `NULL ILIKE '...'` retorna NULL e o `NOT (...)` propaga NULL no WHERE,
+    derrubando do filtro CM QUALQUER lead com URL vazia — mesmo com utm_source
+    valido (ex: 'meta'). Mesma classe do bug google/cpc corrigido em 2026-05-26.
     """
+    p = f"{alias}." if alias else ""
     if not DEALS_EXCLUIDOS_URL_DATA:
         return "TRUE"
     clauses = []
@@ -128,31 +212,45 @@ def _sql_exclusao_deals() -> str:
         datas = d.get('datas')
         if datas:
             datas_sql = ", ".join(f"'{dt}'" for dt in datas)
-            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}' AND cdate::date IN ({datas_sql}))")
+            clauses.append(f"(COALESCE({p}url_conversao, '') ILIKE '{d['url_like']}' AND {p}cdate::date IN ({datas_sql}))")
         else:
-            clauses.append(f"(COALESCE(url_conversao, '') ILIKE '{d['url_like']}')")
+            # Sem datas => exclui qualquer data que case a URL.
+            clauses.append(f"(COALESCE({p}url_conversao, '') ILIKE '{d['url_like']}')")
     return "NOT (" + " OR ".join(clauses) + ")"
 
 
-def filtro_cm() -> str:
+# ============ FILTRO CM UNIVERSAL ============
+
+def filtro_cm(alias: str = '') -> str:
+    """
+    Retorna a string SQL do filtro Content Marketing universal.
+
+    `alias` opcional prefixa as colunas (utm_source, utm_medium, url_conversao)
+    para uso em queries com JOIN — ex: filtro_cm('d') gera `d.utm_source IN (...)`.
+    Sem alias, aplica em WHERE onde as colunas nao sao ambiguas e gera SQL
+    byte-identico ao anterior.
+
+    Espelha §2 do MAPEAMENTO-CAMPOS.md.
+    """
+    p = f"{alias}." if alias else ""
     sources = _sql_list(CM_UTM_SOURCES)
     internos = _sql_list(INTERNOS_EXCLUIR)
-    exclusao = _sql_exclusao_deals()
+    exclusao = _sql_exclusao_deals(alias)
     slugs_clauses = "\n          OR ".join(
-        f"url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
+        f"{p}url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
         for slug in CM_SLUGS_PREFIXES
     )
     return f"""(
     {exclusao}
-    AND NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
+    AND NOT (COALESCE({p}utm_source, '') = 'google' AND COALESCE({p}utm_medium, '') = 'cpc')
     AND (
-      utm_source IN ({sources})
-      OR url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
-      OR url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
-      OR url_conversao ILIKE 'https://material.buzzmonitor.com/%'
-      OR url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
+      {p}utm_source IN ({sources})
+      OR {p}url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
+      OR {p}url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
+      OR {p}url_conversao ILIKE 'https://material.buzzmonitor.com/%'
+      OR {p}url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
       OR (
-        (utm_source IS NULL OR utm_source NOT IN ({internos}))
+        ({p}utm_source IS NULL OR {p}utm_source NOT IN ({internos}))
         AND (
           {slugs_clauses}
         )
@@ -161,7 +259,75 @@ def filtro_cm() -> str:
   )"""
 
 
+def _sql_cm_deals_forcados(alias: str = 'd') -> str:
+    """Clausula SQL TRUE quando o deal esta em CM_DEALS_FORCADOS (override de
+    evento, so comercial). Retorna 'FALSE' (no-op em OR) se a lista estiver vazia."""
+    if not CM_DEALS_FORCADOS:
+        return "FALSE"
+    p = f"{alias}." if alias else ""
+    ids = ", ".join(str(i) for i in CM_DEALS_FORCADOS)
+    return f"{p}id IN ({ids})"
+
+
+def _atrib_cm_90d(col: str, alias: str = 'd') -> str:
+    """Predicado SQL de atribuicao CM com janela de 90 dias pos-conversao.
+
+    Centraliza a regra dos 90d (MAPEAMENTO §3) com DUAS correcoes + 1 override
+    nominal, feitas em 2026-06-15 (Victor) sobre a versao ingenua que subcontava:
+
+    1. GRANULARIDADE ::date — as colunas de evento sao gravadas a meia-noite
+       (ex: data_agendamento_auto = 'YYYY-MM-DD 00:00:00') enquanto cdate carrega
+       hora real (timestamptz). Comparar em timestamp cru fazia o evento do MESMO
+       dia da conversao falhar silenciosamente (`cdate 07:39 <= agendamento 00:00`
+       = falso), derrubando ~28 reunioes agendadas YtD 2026. Comparar em ::date
+       normaliza — alinhado a §6 ("use ::date em comparacoes").
+
+    2. AUTO-ATRIBUICAO p/ account_id NULL — deals sem empresa no CRM (leads
+       individuais, ex: campanha Monitoramento Politico — pre-candidatos,
+       jornalistas) tem account_id NULL. A CTE conversoes_cm exige account_id
+       NOT NULL e o EXISTS casa por account, entao esses deals NUNCA contavam
+       CE/RA/RR/Proposta — apenas Leads (que nao usa account). Quando o proprio
+       row e CM, o deal se auto-atribui dentro da janela 90d (comparada em ::date).
+
+    3. OVERRIDE NOMINAL (CM_DEALS_FORCADOS) — deals que o Victor confirmou como CM
+       mas que nenhuma regra acima pega (ex: lead converteu em pagina de oferta CM,
+       mas o CRM criou deal novo sem UTM, em conta diferente e fora dos 90d). Entram
+       so como EVENTO, so na tabela comercial; nao tocam Fechamentos nem Leads.
+
+    `col` = coluna-data do evento; `alias` = alias da tabela na query externa.
+    Fechamentos (deals_contratos_prod) usam alias 'ct'. Requer a CTE
+    `conversoes_cm` no WITH da query (cte_conversoes_cm).
+    """
+    a = alias
+    fcm = filtro_cm(a)
+    # Override nominal so p/ comercial (ct = fechamentos nao muda — gate §7 intacto).
+    forcado = "FALSE" if a == "ct" else _sql_cm_deals_forcados(a)
+    return f"""(
+    {forcado}
+    OR EXISTS (
+      SELECT 1 FROM conversoes_cm cm
+      WHERE cm.account_id = {a}.account_id
+        AND cm.data_conv::date <= {a}.{col}::date
+        AND {a}.{col}::date - cm.data_conv::date <= 90
+    )
+    OR (
+      {a}.account_id IS NULL
+      AND {fcm}
+      AND {a}.cdate::date <= {a}.{col}::date
+      AND {a}.{col}::date - {a}.cdate::date <= 90
+    )
+  )"""
+
+
+# ============ CTE conversoes_cm ============
+
 def cte_conversoes_cm(janela_inicio: date) -> str:
+    """
+    Gera a CTE `conversoes_cm` que une conversoes CM de comercial + contratos,
+    com janela alargada 90d antes de `janela_inicio`.
+
+    Use no WITH ... pra qualquer query que aplica regra 90d pos-conversao.
+    """
     janela = (janela_inicio - timedelta(days=90)).isoformat()
     f = filtro_cm()
     return f"""WITH conversoes_cm AS (
@@ -179,25 +345,13 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 )"""
 
 
-# Reconversoes manuais (deal_id -> data efetiva). Espelha dashboard/queries.py.
-# Move o LEAD pra data real da reconversao quando o CRM so editou o deal antigo.
-# Afeta SO q_count_leads / q_lista_leads. REMOVER quando o pipeline gerar deal novo.
-RECONVERSOES_MANUAIS: dict[int, str] = {
-    183266: '2026-05-26',  # Karol/Cely — reconverteu na oferta; CRM so editou o deal de 09/mar.
-}
-
-
-def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
-    if not RECONVERSOES_MANUAIS:
-        return cdate_col
-    cases = ' '.join(
-        f"WHEN {id_col} = {did} THEN '{data}'::timestamptz"
-        for did, data in RECONVERSOES_MANUAIS.items()
-    )
-    return f"(CASE {cases} ELSE {cdate_col} END)"
-
+# ============ CONTAGENS POR KPI ============
 
 def q_count_leads(ini: date, fim: date) -> str:
+    """Count de Leads CM unicos por email no periodo.
+
+    Dedupe por email: mesmo email criado em 2 deals no mesmo periodo conta 1 vez.
+    """
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -217,6 +371,7 @@ WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
 
 
 def q_count_evento(kpi: str, ini: date, fim: date) -> str:
+    """Count de evento pos-conversao Inbound (ce, ra, rr, prop) — aplica regra 90d."""
     col = COLUNA_EVENTO[kpi]
     cte = cte_conversoes_cm(ini)
     return f"""
@@ -225,16 +380,19 @@ SELECT COUNT(*) AS n
 FROM deals_comercial_prod d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.{col}
-      AND d.{col} - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d(col, "d")}
 """
 
 
 def q_count_perdidos(ini: date, fim: date) -> str:
+    """
+    Count de Perdidos (DEFINICAO COORTE): leads CM Inbound criados no periodo
+    que terminaram como Perdido (data_negocio_perdido_auto IS NOT NULL).
+
+    Antes a definicao era 'perdidos no periodo' (qualquer cdate), o que misturava
+    coortes e gerava % > 100% — ex: leads de 2025 perdidos em 2026 contavam no
+    denominador errado. Agora % = Perdidos / Leads do mesmo periodo, <= 100%.
+    """
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -255,6 +413,11 @@ WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
 
 
 def q_count_fechamentos(ini: date, fim: date) -> str:
+    """Count de Fechamentos: whitelist override OU (Inbound + regra 90d); menos blacklist.
+
+    Whitelist tem precedencia sobre o filtro Inbound — deals que o Victor confirmou
+    como CM-fechamento mas estao marcados como Outbound no CRM continuam contando.
+    """
     cte = cte_conversoes_cm(ini)
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -270,18 +433,16 @@ WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isofor
     lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR (
       {filtro_inbound("ct")}
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = ct.account_id
-          AND cm.data_conv <= ct.data_fechamento_auto
-          AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
     )
   )
 """
 
 
+# ============ LISTAS DE DEALS (DETALHADO) ============
+
 def q_lista_leads(ini: date, fim: date) -> str:
+    """Lista de Leads dedupada por email (pega o deal mais recente quando ha duplicata)."""
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -313,6 +474,7 @@ ORDER BY cdate
 
 
 def q_lista_evento(kpi: str, ini: date, fim: date) -> str:
+    """Lista deals com evento de funil Inbound (ra, rr, prop) no periodo. Regra 90d."""
     col = COLUNA_EVENTO[kpi]
     cte = cte_conversoes_cm(ini)
     extras = ""
@@ -330,17 +492,13 @@ SELECT
 FROM deals_comercial_prod d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.{col}
-      AND d.{col} - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d(col, "d")}
 ORDER BY d.{col}
 """
 
 
 def q_lista_propostas(ini: date, fim: date) -> str:
+    """Lista de Propostas Inbound com valor estimado (parsed do campo text)."""
     cte = cte_conversoes_cm(ini)
     return f"""
 {cte}
@@ -354,17 +512,13 @@ SELECT
 FROM deals_comercial_prod d
 WHERE d.data_envio_proposta_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
-  AND EXISTS (
-    SELECT 1 FROM conversoes_cm cm
-    WHERE cm.account_id = d.account_id
-      AND cm.data_conv <= d.data_envio_proposta_auto
-      AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-  )
+  AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
 ORDER BY d.data_envio_proposta_auto
 """
 
 
 def q_lista_fechamentos(ini: date, fim: date) -> str:
+    """Lista de Fechamentos: whitelist override OU (Inbound + 90d); menos blacklist."""
     cte = cte_conversoes_cm(ini)
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -387,12 +541,7 @@ WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isofor
     lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR (
       {filtro_inbound("ct")}
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = ct.account_id
-          AND cm.data_conv <= ct.data_fechamento_auto
-          AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
     )
   )
 ORDER BY ct.data_fechamento_auto
@@ -400,6 +549,11 @@ ORDER BY ct.data_fechamento_auto
 
 
 def q_lista_perdidos(ini: date, fim: date) -> str:
+    """
+    Lista detalhada de leads CM criados no periodo E perdidos (definicao coorte),
+    dedupada por email (pega o deal perdido mais recente quando ha duplicata).
+    Ordenada pela data de perda (mais recente primeiro).
+    """
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -434,7 +588,15 @@ ORDER BY data_perda DESC
 """
 
 
+# ============ RANKINGS (SOURCES + CONTENT) ============
+
 def q_ranking(dim: str, ini: date, fim: date) -> str:
+    """
+    Ranking por dimensao (`utm_source` ou `utm_content`) no periodo.
+
+    Junta CTEs separadas por estagio do funil e faz LEFT JOIN no final,
+    coalescendo zeros pra dimensoes que aparecem em alguns estagios mas nao outros.
+    """
     if dim not in ('utm_source', 'utm_content'):
         raise ValueError(f"dim invalido: {dim}")
 
@@ -465,12 +627,7 @@ ce_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_efetividade_contato_auto
-        AND d.data_efetividade_contato_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
   GROUP BY d.{dim}
 ),
 ra_p AS (
@@ -478,12 +635,7 @@ ra_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_agendamento_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   GROUP BY d.{dim}
 ),
 rr_p AS (
@@ -491,12 +643,7 @@ rr_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_inicio_reuniao_realizada
-        AND d.data_inicio_reuniao_realizada - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
   GROUP BY d.{dim}
 ),
 prop_p AS (
@@ -504,12 +651,7 @@ prop_p AS (
   FROM deals_comercial_prod d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_envio_proposta_auto
-        AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
   GROUP BY d.{dim}
 ),
 fech_p AS (
@@ -521,12 +663,7 @@ fech_p AS (
       lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR (
         {filtro_inbound("ct")}
-        AND EXISTS (
-          SELECT 1 FROM conversoes_cm cm
-          WHERE cm.account_id = ct.account_id
-            AND cm.data_conv <= ct.data_fechamento_auto
-            AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-        )
+        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
       )
     )
   GROUP BY ct.{dim}
@@ -558,7 +695,13 @@ ORDER BY leads DESC, ra DESC
 """
 
 
+# ============ SOURCE DOMINANTE POR CONTENT (auxiliar) ============
+
 def q_source_por_content(ini: date, fim: date) -> str:
+    """
+    Pra cada utm_content, retorna o utm_source mais frequente no periodo.
+    Usado em render_ranking_content pra colorir o badge da source ao lado do content.
+    """
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -587,7 +730,18 @@ WHERE rn = 1
 """
 
 
+# ============ SERIE TEMPORAL 52 SEMANAS ============
+
 def q_serie_temporal_12m(hoje: date) -> str:
+    """
+    Serie temporal semanal dos ultimos 12 meses (52 semanas) com 6 metricas:
+    leads, ce, agendadas, propostas, fechamentos, e tx_ce (calculado em Python).
+
+    Returna 1 linha por (semana_inicio, metrica) — Python pivota.
+    Semana = date_trunc('week', evento) — Postgres conta segunda como inicio.
+    O eixo X do grafico tambem usa essa convencao (mesma semana ISO).
+    """
+    # Janela alargada pra CTE: 12m + 90d = 15 meses antes de hoje
     janela_inicio = (hoje - timedelta(days=365 + 90))
     cte = cte_conversoes_cm(janela_inicio)
     f = filtro_cm()
@@ -615,34 +769,19 @@ eventos AS (
   FROM deals_comercial_prod d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_efetividade_contato_auto
-        AND d.data_efetividade_contato_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_agendamento_auto)::date, 'agendadas'
   FROM deals_comercial_prod d
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_envio_proposta_auto)::date, 'propostas'
   FROM deals_comercial_prod d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_envio_proposta_auto
-        AND d.data_envio_proposta_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', ct.data_fechamento_auto)::date, 'fechamentos'
   FROM deals_contratos_prod ct
@@ -652,12 +791,7 @@ eventos AS (
       lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR (
         {filtro_inbound("ct")}
-        AND EXISTS (
-          SELECT 1 FROM conversoes_cm cm
-          WHERE cm.account_id = ct.account_id
-            AND cm.data_conv <= ct.data_fechamento_auto
-            AND ct.data_fechamento_auto - cm.data_conv <= INTERVAL '90 days'
-        )
+        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
       )
     )
 )
@@ -668,7 +802,10 @@ ORDER BY semana, metrica
 """
 
 
+# ============ PROPORCAO REUNIOES POR SOURCE 12M ============
+
 def q_proporcao_sources_12m(hoje: date) -> str:
+    """RA e RR por utm_source nos ultimos 12m. Regra 90d."""
     janela_inicio = hoje - timedelta(days=365 + 90)
     cte = cte_conversoes_cm(janela_inicio)
     janela_12m_inicio = (hoje - timedelta(weeks=52)).isoformat()
@@ -680,21 +817,11 @@ SELECT
   COALESCE(d.utm_source, '(vazio)') AS source,
   COUNT(*) FILTER (
     WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = d.account_id
-          AND cm.data_conv <= d.data_agendamento_auto
-          AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   ) AS ra_12m,
   COUNT(*) FILTER (
     WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND EXISTS (
-        SELECT 1 FROM conversoes_cm cm
-        WHERE cm.account_id = d.account_id
-          AND cm.data_conv <= d.data_inicio_reuniao_realizada
-          AND d.data_inicio_reuniao_realizada - cm.data_conv <= INTERVAL '90 days'
-      )
+      AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
   ) AS rr_12m
 FROM deals_comercial_prod d
 WHERE {filtro_inbound("d")}
@@ -705,12 +832,7 @@ WHERE {filtro_inbound("d")}
 GROUP BY d.utm_source
 HAVING COUNT(*) FILTER (
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv <= d.data_agendamento_auto
-        AND d.data_agendamento_auto - cm.data_conv <= INTERVAL '90 days'
-    )
+    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
 ) > 0
 ORDER BY ra_12m DESC
 """
