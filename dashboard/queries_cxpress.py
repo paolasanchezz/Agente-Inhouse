@@ -48,6 +48,23 @@ def _d(col: str) -> str:
     return f"(CASE WHEN {col} ~ '^[0-9]{{4}}-[0-9]{{2}}-[0-9]{{2}}' THEN left({col}, 10)::date END)"
 
 
+def _content(alias: str = 'd') -> str:
+    """utm_content EFETIVO — coluna primeiro, fallback pro utm_content do querystring de url_conversao.
+
+    A coluna utm_content chega NULL para a maior parte do trafego CM (Meta/IG): auditoria 2026-06-23
+    achou 284 de 640 deals CM de 2026 com content SO na URL (renderizavam '—' na lista e caiam em
+    '(vazio)' no ranking). Quando a coluna ESTA preenchida ela traz o rotulo curto do CRM (ex 'ad_03'),
+    entao tem precedencia; so cai pro valor da URL (verboso, ex 'ad_01_estatico - Use o mesmo WhatsApp')
+    quando a coluna esta vazia. O valor sai URL-encoded ('+' e %XX, inclusive em alguns valores da
+    propria coluna) — a decodificacao acontece no render (render_helpers_cxpress._decode_content)."""
+    a = (alias + '.') if alias else ''
+    return (
+        f"COALESCE("
+        f"NULLIF(TRIM({a}utm_content), ''), "
+        f"NULLIF(substring({a}url_conversao FROM 'utm_content=([^&]*)'), ''))"
+    )
+
+
 # ============ ESCOPO ============
 
 def filtro_inbound(alias: str = '') -> str:
@@ -178,7 +195,7 @@ WHERE {_escopo('d')}
 
 def q_lista_leads(ini: date, fim: date) -> str:
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        {COL_RESP} AS responsavel,
        d.{COL_LEAD}::date AS data_evento
 FROM {TABELA} d
@@ -191,7 +208,7 @@ ORDER BY d.{COL_LEAD}
 def q_lista_agendamento(ini: date, fim: date) -> str:
     """Agendamentos da semana (+ flag se a demo ja foi realizada)."""
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        {COL_RESP} AS responsavel,
        {_d('d.' + COL_AGENDAMENTO)} AS data_evento,
        {_d('d.' + COL_DEMO)} AS data_demo
@@ -205,7 +222,7 @@ ORDER BY {_d('d.' + COL_AGENDAMENTO)}
 def q_lista_demo(ini: date, fim: date) -> str:
     """Demos realizadas na semana (+ flag se ja saiu proposta)."""
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        {COL_RESP} AS responsavel,
        {_d('d.' + COL_DEMO)} AS data_evento,
        {_d('d.' + COL_PROPOSTA)} AS data_proposta
@@ -218,7 +235,7 @@ ORDER BY {_d('d.' + COL_DEMO)}
 
 def q_lista_propostas(ini: date, fim: date) -> str:
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        {COL_RESP} AS responsavel,
        {_d('d.' + COL_PROPOSTA)} AS data_evento,
        {COL_VALOR} AS valor_text, d.currency
@@ -231,7 +248,7 @@ ORDER BY {_d('d.' + COL_PROPOSTA)}
 
 def q_lista_fechamentos(ini: date, fim: date) -> str:
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        {COL_RESP} AS responsavel,
        {_d('d.' + COL_FECHAMENTO)} AS data_evento,
        {COL_VALOR} AS valor_text, d.currency
@@ -248,7 +265,7 @@ def q_lista_perdidos(ini: date, fim: date) -> str:
     status = 'Perdido' (estado final — deals reativados/ganhos com lost orfao ficam fora).
     Ordenado pela data da perda (mais recente primeiro)."""
     return f"""
-SELECT d.id, d.title AS deal, d.utm_source, d.utm_content,
+SELECT d.id, d.title AS deal, d.utm_source, {_content('d')} AS utm_content,
        d.motivo_de_perda_closer_sdr AS motivo,
        d.etapa_do_lost AS etapa,
        {_d('d.' + COL_LOST)} AS data_evento,
@@ -276,6 +293,8 @@ def q_ranking(dim: str, ini: date, fim: date) -> str:
     assert dim in ('utm_source', 'utm_content'), dim
     i, f = ini.isoformat(), fim.isoformat()
     esc = _escopo('d')
+    # utm_content usa o valor EFETIVO (coluna + fallback URL); utm_source agrupa direto.
+    dim_expr = _content('') if dim == 'utm_content' else dim
     fl = [
         f"count(*) FILTER (WHERE {COL_LEAD}::date BETWEEN '{i}' AND '{f}')",
         f"count(*) FILTER (WHERE {_d(COL_TRIAGEM)} BETWEEN '{i}' AND '{f}')",
@@ -287,7 +306,7 @@ def q_ranking(dim: str, ini: date, fim: date) -> str:
     return f"""
 WITH base AS (SELECT * FROM {TABELA} d WHERE {esc})
 SELECT
-  COALESCE({dim}, '(vazio)') AS dim,
+  COALESCE({dim_expr}, '(vazio)') AS dim,
   {fl[0]} AS leads,
   {fl[1]} AS triagem,
   {fl[2]} AS agendamento,
@@ -295,7 +314,7 @@ SELECT
   {fl[4]} AS proposta,
   {fl[5]} AS fechamento
 FROM base
-GROUP BY {dim}
+GROUP BY {dim_expr}
 HAVING {fl[0]} > 0 OR {fl[1]} > 0 OR {fl[2]} > 0 OR {fl[3]} > 0 OR {fl[4]} > 0 OR {fl[5]} > 0
 ORDER BY leads DESC, fechamento DESC, demo DESC
 """
@@ -305,7 +324,7 @@ def q_source_por_content(ini: date, fim: date) -> str:
     """Mapa utm_content -> utm_source dominante no periodo (colorir o badge no ranking de content)."""
     esc = _escopo('d')
     return f"""
-SELECT COALESCE(utm_content, '(vazio)') AS utm_content,
+SELECT COALESCE({_content('')}, '(vazio)') AS utm_content,
        (array_agg(utm_source ORDER BY cdate DESC))[1] AS utm_source
 FROM {TABELA} d
 WHERE {esc} AND {COL_LEAD}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'

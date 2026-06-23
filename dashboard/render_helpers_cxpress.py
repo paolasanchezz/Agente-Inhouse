@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from urllib.parse import unquote_plus
 
 sys.path.insert(0, str(Path(__file__).parent))
 from render_helpers import (  # genericos reaproveitados (PT-BR)
@@ -50,6 +51,19 @@ def _resp(d: dict) -> str:
     return escape(d.get('responsavel') or '—')
 
 
+def _decode_content(v):
+    """Decodifica o utm_content efetivo, que chega URL-encoded da query (queries_cxpress._content):
+    '+' -> espaco e %XX -> caractere. Vale tanto pro valor extraido de url_conversao quanto pra
+    coluna utm_content (alguns valores da coluna tambem chegam com '+', ex 'ad_04_estatico+-+...').
+    Devolve None pra vazio/None (o chamador resolve o fallback '—' / '(sem conteúdo)')."""
+    if not v:
+        return None
+    try:
+        return unquote_plus(v)
+    except Exception:
+        return v
+
+
 # ============ ROWS — LISTAS ============
 
 def row_lead(d: dict) -> str:
@@ -57,7 +71,7 @@ def row_lead(d: dict) -> str:
         '<tr>'
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td>{_resp(d)}</td>'
         '</tr>'
@@ -74,7 +88,7 @@ def row_agendamento(d: dict) -> str:
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td>{demo_html}</td>'
         '</tr>'
@@ -91,7 +105,7 @@ def row_demo(d: dict) -> str:
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td>{prop_html}</td>'
         '</tr>'
@@ -104,7 +118,7 @@ def row_prop(d: dict) -> str:
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td class="num">{parse_valor_text(d.get("valor_text"))}</td>'
         '</tr>'
@@ -119,7 +133,7 @@ def row_fech(d: dict) -> str:
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{_resp(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td class="num">{valor_html}</td>'
         '</tr>'
@@ -135,7 +149,7 @@ def row_perda(d: dict) -> str:
         '<tr>'
         f'<td>{_deal_cell(d)}</td>'
         f'<td>{badge_source(d.get("utm_source"))}</td>'
-        f'<td class="dim">{escape(d.get("utm_content") or "—")}</td>'
+        f'<td class="dim">{escape(_decode_content(d.get("utm_content")) or "—")}</td>'
         f'<td class="dim">{escape(d.get("etapa") or "—")}</td>'
         f'<td class="dim">{fmt_data_br(d.get("data_evento"))}</td>'
         f'<td>{motivo_html}</td>'
@@ -215,8 +229,8 @@ def _row_rk_ct(idx: int, r: dict, src_map: dict) -> str:
     fech = r.get('fechamento', 0)
     leads_html = f'<b>{fmt_int(leads)}</b>' if idx < 3 else fmt_int(leads)
     fech_html = f'<b>{fmt_int(fech)}</b>' if fech > 0 else fmt_int(fech)
-    content = r.get('dim') or '(sem conteúdo)'
-    src = src_map.get(r.get('dim'))
+    content = _decode_content(r.get('dim')) or '(sem conteúdo)'
+    src = src_map.get(r.get('dim'))  # chave crua (URL-encoded) — bate com a do q_source_por_content
     return (
         '<tr>'
         f'<td>{rank_cell(idx)}</td>'
