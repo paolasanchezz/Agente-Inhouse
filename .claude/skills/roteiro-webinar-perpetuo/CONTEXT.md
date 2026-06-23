@@ -8,32 +8,39 @@
 
 Webinar e copy publica (audio + slides). Carregar antes de escrever:
 
-1. **Linguistico** — se `regiao` != `brasil`: `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`. Se nao carregar, PARAR (rodar `/trad-calibrar [target]`).
-2. **Boas praticas** — `conhecimento/copywriting/fundamentos-copy.md` + `funil-copy.md` + `video-curto-talking-head.md` (o speaker fala a camera).
+1. **Linguistico** — se `idioma` != `pt-br`: `conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md` (pasta pelo idioma resolvido). Se nao carregar, PARAR (rodar `/trad-calibrar [pt-pt|es-latam]`).
+2. **Boas praticas** — `conhecimento/copywriting/fundamentos-copy.md` + `funil-copy.md` + `video-curto-talking-head.md` + `video-curto-organico.md` (retencao/lo-fi) + `email-copy.md` (CTA + gancho de titulo). O speaker fala a camera; as tecnicas sao aplicadas **por nome de secao** nos Passos 2-3 (lidas do doc em runtime, nunca decoradas — melhorou o doc, melhorou o roteiro).
 3. **Anti-IA** — `conhecimento/editorial/regras-anti-ia.md` + anexo do idioma (PT-PT / ES-LATAM).
 
 Referencia global em `CLAUDE.md` (secao "Protocolo de Copy").
 
 ---
 
-## Marcas Validas
+## Marcas Validas + Inferencia
 
-| Marca | Arquivo de produto |
-|---|---|
-| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` |
-| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` |
-| `cxpress` | `brand/cxpress/BRANDBOOK.md` |
-| `elife` | `brand/elife/BRANDBOOK.md` |
+A `marca` e **opcional** nos argumentos. Se omitida, infira a partir do `tema` pelos sinais abaixo (1 marca dominante → use e declare no plano; empate ou nenhum sinal → PARE e pergunte, nao chute). Sempre **carregue o `BRANDBOOK.md` INTEIRO** da marca resolvida — nao so as secoes extraidas.
 
-## Regioes e Mapeamento de Idioma
+| Marca | BRANDBOOK | Sinais no tema (para inferencia) |
+|---|---|---|
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | social listening, monitoramento, escuta de redes, mencoes, sentimento, reputacao, crise, trending, analytics de redes |
+| `cxpress` | `brand/cxpress/BRANDBOOK.md` | atendimento, SAC, WhatsApp, omnicanal, chatbot, ticket, suporte, customer experience, central de atendimento |
+| `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | influenciador, creator, criador de conteudo, marketing de influencia, ROI de influencia, campanha com creators |
+| `elife` | `brand/elife/BRANDBOOK.md` | consultoria, social intelligence, consumidores sinteticos, pesquisa de consumo, social CRM, inteligencia de consumo |
 
-| Regiao | Idioma | Pasta linguistico | Pasta produto lang |
+## Regiao ⟺ Idioma (eixo unico, 1:1)
+
+`regiao` e `idioma` sao o mesmo eixo. O usuario pode passar **um, o outro, os dois ou nenhum**:
+
+| Regiao | Idioma (codigos aceitos) | Pasta linguistico | Pasta produto lang |
 |---|---|---|---|
-| `brasil` | PT-BR | nenhuma | nenhuma |
-| `portugal` | PT-PT | `pt-portugal` | `pt-pt` |
-| `latam` | ES-LATAM | `es-latam` | `es` |
+| `brasil` | `pt-br` / `br` (PT-BR) | nenhuma | nenhuma |
+| `portugal` | `pt-pt` / `pt` (PT-PT) | `pt-portugal` | `pt-pt` |
+| `latam` | `es-latam` / `es` (ES-LATAM) | `es-latam` | `es` |
 
-Se `regiao` != `brasil`: carregar tambem `conhecimento/produto/{marca}/{pasta-lang}/{marca}.md` e `conhecimento/linguistico/{pasta-linguistico}/padrao-linguistico.md`.
+- Deu so um → derive o outro pela tabela. Deu nenhum → `brasil` / `pt-br`.
+- Deu os dois e inconsistentes → **`idioma` manda** na copy e no pilar linguistico; avise no plano.
+- Se `idioma` != `pt-br`: carregar `conhecimento/produto/{marca}/{pasta-lang}/{marca}.md` + `conhecimento/linguistico/{pasta-linguistico}/padrao-linguistico.md` (**gate**: se faltar, PARAR e rodar `/trad-calibrar [pt-pt|es-latam]`).
+- O `idioma` resolvido vai no campo `idioma:` do frontmatter de TODAS as entregas e rege a subsecao "Adaptacao por Regiao" do BRANDBOOK (artigo gramatical incluso).
 
 ## Identidade de Marca
 

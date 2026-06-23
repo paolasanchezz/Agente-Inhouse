@@ -13,6 +13,39 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## roteiro-webinar-perpetuo
+### 2026-06-23 — v1.4.0 — Acoplar a skill a base de conhecimento (persuasao + anti-IA), sem hardcodar
+
+Auditoria da skill contra toda a base de conhecimento + skills irmas (copy-criar, copy-revisar, pauta-quente, trad-revisar). A skill citava tecnicas de copy sem operacionaliza-las, e o passo anti-IA era o mais fraco de todos os revisores irmaos. Principio do PR: a skill **referencia e aplica** tecnicas por nome de secao (lidas do doc em runtime), nunca transcreve conteudo — melhorar um doc de copy melhora o roteiro sem tocar na skill.
+
+**Persuasao (faz o roteiro converter) — tudo via ponteiro pra `conhecimento/copywriting/`:**
+- **Cadeia de premissas (Ladeira)** virou campo obrigatorio do plano (Passo 2): monta a escada de 3-4 premissas usando "Premissas para {TOFU|MOFU|BOFU}" + "Temperatura de publico" do `funil-copy.md`. E o esqueleto logico do Bloco A.
+- **Hook com barra de qualidade + 2-3 candidatos** (Passo 2): rascunha multiplos, aplica o "teste do comeco forte" de `fundamentos-copy.md`, escolhe 1 com justificativa. Antes era "escolhe 1 do menu".
+- **Open-loops + callback** (regra 8): planta no hook, paga na demo/recap — "Gere expectativa" + "Expectativa e misterio" (`fundamentos-copy.md` / `video-curto-organico.md`). Retencao num formato sem Q&A.
+- **Postura de fala** (regra 9): "3 erros invisiveis" + lo-fi/conversacional — antidoto pra "locucao corporativa".
+- **Demo = prova, nao tour** (regra 10): "Mostrar vale 10x" (antes/depois ou numero na tela) + "De comandos a sua audiencia" (1 comando/bloco = micro-compromisso). Novos campos no template de cada demo.
+- **Dor pelo storytelling** (regra 11): 5 passos de `fundamentos-copy.md` com objeto tangivel recorrente.
+- **Quebra de objecao antes do CTA** (Bloco C, novo beat): "Tratamento de objecoes" do `funil-copy.md`. Antes ia recap→CTA frio.
+- **CTA com beneficio + reducao de risco** (regra 12): secao "CTA em e-mail" do `email-copy.md`.
+- **Titulo/Slide 1 com gancho de curiosidade**: "Subject line" do `email-copy.md`.
+
+**Anti-IA + fidelidade (Passo 5 reescrito — fecha a lacuna vs copy-revisar):**
+- **Contagens obrigatorias + re-check em loop (5.4):** apos corrigir, roda as contagens do `regras-anti-ia.md` (em-dash via Grep = 0; antitese; filler 2.0; ritmo) e refaz ate 2 rodadas — porque a propria correcao reintroduz IA. Limites ficam no `regras-anti-ia.md` (fonte unica), nao recopiados na skill.
+- **Guarda de deriva de dialeto (5.5):** se `idioma` != `pt-br`, rele o texto corrigido vs `padrao-linguistico.md` (brasileirismo volta na reescrita).
+- **Varredura de fato (5.6):** numero/case/feature rastreia pro BRANDBOOK ou leva `[VERIFICAR]`; Slide 4 sem Fonte vazia; case Cxpress sempre `[VERIFICAR com Victor]`.
+- **`samplePhrases.do/dont` virou check (5.2):** era carregado e nunca usado.
+- **REVISAO-LOG com tabela de contagens + severidade + nota de naturalidade (5.8)**, alimentando o gate `requer-atencao-humana`.
+
+**Carga:** Passo 1 agora tambem le `video-curto-organico.md` + `email-copy.md`. **NAO** foram wirados `RESUMO-COPY.md` (arquivos inexistentes no repo) nem swipe-file (1 entrada, so newsletter) — seriam galhos mortos. Atualizados: SKILL.md (Passos 1-5 + regras universais + templates), CONTEXT.md (pilar boas-praticas), frontmatter 1.3.0 → 1.4.0.
+
+### 2026-06-23 — v1.3.0 — Idioma opcional, inferencia de marca e brandbook completo
+
+Tres aprimoramentos pedidos pelo Victor, todos retrocompativeis (chamadas antigas `[marca] [regiao] [duracao] [tema]` seguem funcionando).
+
+- **`idioma` como input opcional, no mesmo eixo que `regiao` (1:1).** Aceita `pt-br`/`pt-pt`/`es-latam` (e os atalhos `br`/`pt`/`es`). O usuario pode passar so a regiao, so o idioma, os dois ou nenhum — a skill deriva o que faltar (Passo 0.1). Se passar os dois e forem inconsistentes, o idioma manda na copy e avisa no plano. O `idioma` resolvido (nao mais a regiao) passa a dirigir TODO o pilar linguistico: pasta `conhecimento/linguistico/`, terminologia de produto localizada, anexo anti-IA por idioma e o campo `idioma:` no frontmatter de roteiro, slides e INDICE. Gate reforcado: idioma != pt-br sem `padrao-linguistico.md` carregado → PARA.
+- **Inferencia de marca.** `marca` virou opcional. Se omitida, a skill infere do tema por uma tabela de sinais (buzzmonitor=social listening, cxpress=atendimento/WhatsApp, buzzcreators=influencia, elife=consultoria/social intelligence), declara a inferencia no plano e no resumo final pro Victor corrigir, e PARA em caso de empate. Unico argumento obrigatorio agora e o `tema`. Parsing por vocabulario disjunto (marca/regiao/idioma/duracao reconhecidos pelo valor, em qualquer ordem).
+- **BRANDBOOK completo.** Passo 1 agora le o `brand/{marca}/BRANDBOOK.md` INTEIRO (nao so secoes extraidas), com atencao a secao "Adaptacao por Regiao" (artigo gramatical + subsecao do idioma) — alinhado com a geracao idioma-aware.
+- Atualizados: SKILL.md (Passo 0 reescrito + 0.1/0.2, Passo 1, plano, regras universais, frontmatter de slides, resumo final, Regras Criticas), CONTEXT.md (marcas+inferencia, eixo regiao⟺idioma, pilar linguistico) e CLAUDE.md (secao Webinar). Frontmatter bump 1.2.0 → 1.3.0.
+
 ### 2026-06-23 — v1.2.0 — Remover etapa de notas de producao
 
 Decisao do Victor: a skill nao gera mais o `notas-producao.md`. A v1.1.0 ja tinha enxugado o arquivo so pra tabela "Telas a capturar/preparar"; agora a etapa sai por completo.

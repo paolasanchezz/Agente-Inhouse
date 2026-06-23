@@ -194,14 +194,15 @@ Skill unica **ponta a ponta**: adapta a copy → carrega brandbook + GUIDELINES 
 
 ### Webinar Perpetuo
 
-Skill standalone que gera roteiro completo de webinar perpetuo (talking head + demo da plataforma) com timestamps, falas sugeridas, indicacoes do que mostrar na tela, mais deck PPT de abertura. Aceita todas as marcas e regioes. Estrutura padrao: Hook → Contexto + Dor → Promessa → Demo da plataforma (40-50% do tempo, 3 momentos) → CTA. Demo usa grafias exatas de features do `BRANDBOOK.md` da marca.
+Skill standalone que gera roteiro completo de webinar perpetuo (talking head + demo da plataforma) com timestamps, falas sugeridas, indicacoes do que mostrar na tela, mais deck PPT de abertura. So o tema e obrigatorio: **infere a marca** a partir do tema (se nao informada) e escreve **todas as entregas nativamente no idioma resolvido** (PT-BR/PT-PT/ES-LATAM), aplicando o banco de conhecimento linguistico. Carrega o BRANDBOOK completo da marca. Estrutura padrao: Hook → Contexto + Dor → Promessa → Demo da plataforma (40-50% do tempo, 3 momentos) → CTA. Demo usa grafias exatas de features do `BRANDBOOK.md` da marca.
 
 | Comando | O que faz |
 |---|---|
-| `/roteiro-webinar-perpetuo [marca] [regiao] [duracao] ["tema/dor"]` | Gera roteiro + slides de abertura. Ex: `/roteiro-webinar-perpetuo buzzmonitor brasil 10min "Seu primeiro listening em 5 passos. Dor: 40% dos times monitora marca na mao."` |
+| `/roteiro-webinar-perpetuo [marca] [regiao\|idioma] [duracao] ["tema/dor"]` | Gera roteiro + slides de abertura. So o tema e obrigatorio — marca inferida do tema, idioma do idioma/regiao. Ex: `/roteiro-webinar-perpetuo es-latam "Primer monitoreo de marca en 5 pasos"` |
 
-- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` (opcional — inferida do tema se omitida)
 - `[regiao]`: `brasil` (default) | `portugal` | `latam`
+- `[idioma]`: `pt-br` (default) | `pt-pt` | `es-latam` (aceita `br`/`pt`/`es`; define o pilar linguistico de TODAS as entregas)
 - `[duracao]`: `5min` | `10min` (default) | `15min` | `20min` | `30min`
 - `[tema]`: texto livre entre aspas — tema + dor central + (se houver) objetivo
 
