@@ -12,6 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## seo-report
+### 2026-06-23 — v1.0.0 — Skill inicial: dashboard SEO Buzzmonitor BR (GSC + GA4 + Semrush), sem chave de API no repo
+
+Skill nova (base no PR #24 da Bárbara) que gera um dashboard HTML de SEO cruzando Google Search Console, Google Analytics 4 e Semrush. Reescrita para ser **universal e segura** antes de entrar:
+
+- **Semrush via MCP, sem chave hardcoded.** A versão original trazia `SEMRUSH_API_KEY` em texto puro no script (secret commitado). Agora a parte Semrush é buscada pela skill via MCP do Semrush (`domain_rank` para overview + `domain_organic` para top keywords, `database=br`). Zero chave de API no repositório.
+- **Script Python só Google (GSC + GA4), credenciais locais.** OAuth2 com `client_secret.json`/`token.json` por usuário, num diretório de trabalho fora do repo (`~/.seo-report-buzzmonitor/` ou `SEO_REPORT_DIR`). Nada de caminho de máquina hardcoded (a versão original apontava para `D:\Meus documentos\...`). `.gitignore` da pasta protege credenciais e saída.
+- **Entrega real.** O passo final salva o HTML no diretório de trabalho e abre no navegador (`Start-Process`), no lugar da tool inexistente `Artifact` da versão original.
+- **Frontmatter no padrão do repo:** `allowed-tools` (incl. tools do MCP Semrush) + `argument-hint` (no lugar de `trigger:`/`args:`).
+
 ## roteiro-webinar-perpetuo
 ### 2026-06-23 — v1.4.0 — Acoplar a skill a base de conhecimento (persuasao + anti-IA), sem hardcodar
 

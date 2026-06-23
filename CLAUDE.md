@@ -264,6 +264,16 @@ Dashboard interna semanal de Content Marketing — KPIs do funil de leads + fech
 
 Fonte: `dashboard/` (gerador Python + queries Supabase). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/dashboard-buzzmonitor-brasil/` (fora do repo — evita PII no git). Runbook manual: `dashboard/DEPLOY.md`. Auditoria de UTM: `dashboard/AUDITORIA-DEALS-CM.md`.
 
+### Dashboard SEO (Buzzmonitor Brasil)
+
+Dashboard de SEO on-demand — KPIs de GSC + GA4 + Semrush num HTML visual. Single-purpose (Buzzmonitor BR). **Sem chave de API no repo:** Semrush via MCP; Google via OAuth com credenciais locais por usuario (`~/.seo-report-buzzmonitor/`, gitignored).
+
+| Comando | O que faz |
+|---|---|
+| `/seo-report [data?]` | Coleta GSC+GA4 (script Python OAuth) + Semrush (MCP), gera dashboard HTML e abre no navegador. Sem args, coleta na hora; aceita caminho de um `seo_data.json` ja gerado. Manual-trigger. |
+
+Fonte: `.claude/skills/seo-report/` (SKILL.md + `seo_report_buzzmonitor.py`). Requer Python + libs Google (`/setup-agencia` cobre Python) e o MCP Semrush conectado.
+
 ### Meta Ads — via Bunzzai (SOMENTE LEITURA)
 
 Desde 2026-06-22, todas analises de Meta Ads rodam pelo **MCP Bunzzai** (CRM proprio com snapshots cumulativos). Sem dependencia de token Meta — basta o MCP conectado. Cobre Buzzmonitor + Cxpress (todas as moedas).

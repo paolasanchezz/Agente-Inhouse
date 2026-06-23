@@ -1,0 +1,7 @@
+# Credenciais e saída do coletor SEO — NUNCA commitar.
+# O diretório de trabalho padrão fica fora do repo (~/.seo-report-buzzmonitor/),
+# mas isto protege caso algum arquivo apareça aqui.
+client_secret.json
+token.json
+seo_data.json
+seo-report-*.html
