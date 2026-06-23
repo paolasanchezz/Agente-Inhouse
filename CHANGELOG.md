@@ -12,6 +12,39 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## roteiro-webinar-perpetuo
+### 2026-06-23 — v1.2.0 — Remover etapa de notas de producao
+
+Decisao do Victor: a skill nao gera mais o `notas-producao.md`. A v1.1.0 ja tinha enxugado o arquivo so pra tabela "Telas a capturar/preparar"; agora a etapa sai por completo.
+
+- **Passo 5 (Notas de Producao) removido** e os passos seguintes renumerados: Revisao Anti-IA 6→5, Salvar Arquivos 7→6, Publicar no Notion 8→7, Resumo Final 9→8 (subsecoes e referencias cruzadas ajustadas junto).
+- **Tirado de todos os pontos que citavam o arquivo:** intro (lista de entregaveis agora e 2 — roteiro + deck), arvore de arquivos do Passo 6, template do INDICE, toggle "Notas de producao" da pagina Notion (Passo 7) e o resumo final (Passo 8).
+- **Nenhuma informacao perdida:** o que ia pra tabela de telas ja vive dentro do `roteiro.md` — cada momento de demo tem "O que mostrar" + "Recursos necessarios". Preparar telas/contas continua sendo decisao de quem grava, fora do escopo do roteirista.
+- **Entregaveis agora (4 arquivos):** `roteiro.md`, `slides-abertura.md`, `INDICE.md`, `REVISAO-LOG.md`.
+- **Entrega de exemplo atualizada** (Buzzmonitor BR · "Seu primeiro listening em 5 passos"): `notas-producao.md` apagado, referencias removidas do INDICE e do REVISAO-LOG.
+
+### 2026-06-22 — v1.1.0 — Notas de producao enxutas + features em ingles parafraseadas
+
+Dois ajustes pedidos pela Catharina no primeiro uso da skill (Buzzmonitor BR · "Seu primeiro listening em 5 passos").
+
+- **`notas-producao.md` para apos "Telas a capturar/preparar".** Cortadas as secoes Dados sensiveis, Dependencias de feature, Equipamento, Vestuario, Pos-producao e Checklist pre-gravacao. Motivo: essas decisoes ficam com o time de producao, nao com o roteirista — entregar so isso evita atravessar a sua zona de decisao. Template do Passo 5 simplificado, regra explicita ("REGRA — `notas-producao.md` para aqui").
+- **Features em ingles parafraseadas na 1a mencao.** Adicionada regra 7 nas "Regras universais" do Passo 3: a grafia oficial (Theme Monitoring, Sentiment Classification, Buzz Pills, Auto Tag Suggestions etc — tabela `### Features de IA` do BRANDBOOK) continua obrigatoria, mas na 1a mencao o speaker explica em PT-BR/PT-PT/ES-LATAM em 5-10 palavras, integrado a fala (ex: "Aqui dentro do Theme Monitoring — que e onde voce cria os temas que vai monitorar"). Sem isso, o lead leigo trava no nome em ingles. Vale tambem pra deck: preferir descricao em PT-BR no slide e citar o nome oficial entre parenteses se necessario.
+
+### 2026-06-22 — v1.0.0 — Nova skill: roteiro de webinar perpetuo + slides de abertura
+
+Criada a partir de pedido para roteirizar um webinar perpetuo de 10 min ("Seu primeiro listening em 5 passos") da Buzzmonitor. O `/copy-criar` so cobre `video-curto | estatico | email` — roteiro de webinar (talking head longo + demo da plataforma + deck de abertura) nao cabia em nenhum molde existente.
+
+- **Estrutura padrao:** Hook → Quem fala → Promessa → Contexto + Dor → Ponte → Demo (3 momentos, 40-50% do tempo) → Resumo + Prova → CTA repetido 2x. Distribuicao de tempo dimensionada para 5/10/15/20/30 min.
+- **Talking head com demo:** roteiro entrega timestamps, falas-modelo (70% do tempo) + bullets de fallback (30% mais livre), indicacoes cenicas entre colchetes e mudancas de tela (slide ↔ compartilhamento da plataforma). Aplica esqueleto T·MAES·A/N dentro de cada bloco.
+- **Demo lastreada no BRANDBOOK:** as 3 telas/features da demo usam grafias exatas do `brand/{marca}/BRANDBOOK.md` (ex: `Buzzmonitor Social Listening`). Se a marca nao tem mockup para uma feature, marca `[VERIFICAR COM PRODUTO]` em vez de inventar.
+- **Deck de abertura:** 5-7 slides PPT/Keynote (capa, quem fala, promessa, dado, dor, ponte, CTA final), 1 ideia por slide, com notas visuais — sem clipart generico.
+- **Notas de producao:** terceiro arquivo da entrega lista telas a capturar, dados a anonimizar, dependencias de feature, equipamento sugerido e checklist de pos-producao.
+- **3 pilares carregados:** padrao linguistico (se regiao != brasil), fundamentos-copy + funil + video-curto-talking-head, regras-anti-ia + anexo do idioma. Revisao anti-IA dedicada pos-geracao (Passo 6) com lista especifica de anti-patterns de webinar ("Bem-vindos ao nosso webinar", "Voces estao prontos?", "saiba mais" como CTA).
+- **Publicacao Notion:** subpasta `Webinars — {NomeDaMarca}` dentro de Entregas (cria se nao existir, icone 🎤). Gate automatico: arquivos marcados `requer-atencao-humana` apos 2 rodadas de revisao nao sao publicados.
+- Arquivos: `.claude/skills/roteiro-webinar-perpetuo/SKILL.md` + `.claude/skills/roteiro-webinar-perpetuo/CONTEXT.md`. Registro em `CLAUDE.md` (fluxo + nova secao "Webinar Perpetuo" na lista de comandos).
+
+---
+
 ## Pipeline de Meta Ads (cross-skill: anuncios, bunzzai, setup-agencia + CLAUDE.md)
 ### 2026-06-22 — Substituicao do pipeline `meta-ads-*` por `/bunzzai` + `/bunzzai-geral`
 

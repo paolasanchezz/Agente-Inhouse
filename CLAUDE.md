@@ -27,6 +27,7 @@ Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
+Webinar:      /roteiro-webinar-perpetuo (standalone — roteiro com timestamps + falas + demo da plataforma + slides de abertura)
 Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consolidado 6 contas · publica Notion)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copies em lote → (pausa) → /social-canva
@@ -190,6 +191,21 @@ Skill unica **ponta a ponta**: adapta a copy → carrega brandbook + GUIDELINES 
 - `[uso]`: `organico` (borda livre, mascote sangra) | `anuncio` (safe-zone Meta; 9:16 reserva topo 250 / base 340)
 - `[formato]`: `1x1` (1080²) | `4x5` (1080×1350, default feed) | `9x16` (1080×1920) — aceita CSV
 - Copy vem de `/copy-criar` ou `/pauta-quente` ou colada (a skill adapta se vier crua, ou diagrama literal se ja vier boa).
+
+### Webinar Perpetuo
+
+Skill standalone que gera roteiro completo de webinar perpetuo (talking head + demo da plataforma) com timestamps, falas sugeridas, indicacoes do que mostrar na tela, mais deck PPT de abertura. Aceita todas as marcas e regioes. Estrutura padrao: Hook → Contexto + Dor → Promessa → Demo da plataforma (40-50% do tempo, 3 momentos) → CTA. Demo usa grafias exatas de features do `BRANDBOOK.md` da marca.
+
+| Comando | O que faz |
+|---|---|
+| `/roteiro-webinar-perpetuo [marca] [regiao] [duracao] ["tema/dor"]` | Gera roteiro + slides de abertura. Ex: `/roteiro-webinar-perpetuo buzzmonitor brasil 10min "Seu primeiro listening em 5 passos. Dor: 40% dos times monitora marca na mao."` |
+
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
+- `[regiao]`: `brasil` (default) | `portugal` | `latam`
+- `[duracao]`: `5min` | `10min` (default) | `15min` | `20min` | `30min`
+- `[tema]`: texto livre entre aspas — tema + dor central + (se houver) objetivo
+
+Saida em `conhecimento/copywriting/criacao/{marca}/YYYY-MM-DD/webinar-{slug}/` (`roteiro.md`, `slides-abertura.md`, `INDICE.md`, `REVISAO-LOG.md`) e Notion em `Entregas > Webinars — {NomeDaMarca}`.
 
 ### Landing Pages
 
