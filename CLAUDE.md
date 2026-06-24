@@ -28,7 +28,8 @@ Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-i
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
 Webinar:      /roteiro-webinar-perpetuo (standalone — roteiro com timestamps + falas + demo da plataforma + slides de abertura)
-Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consolidado 6 contas · publica Notion)
+Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consolidado 6 contas · publica Notion) — ANALISE/leitura
+Meta criar:   /meta-campanha [acao] [marca] (cria·edita campanha/adset/ad via MCP oficial Meta — ESCRITA; tudo PAUSADO; ativar/orcamento via hook)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copies em lote → (pausa) → /social-canva
 ```
@@ -110,7 +111,7 @@ Funcionam sem setup adicional.
 | `/newsletter` | Gerar newsletters semanais |
 | `/landing-page` | Criar, revisar, integrar form ou publicar LP |
 | `/criativo` | Criar imagem de criativo (estatico/carrossel), organico ou anuncio |
-| `/anuncios` | Analisar performance de Meta Ads |
+| `/anuncios` | Analisar performance (Bunzzai) ou criar/editar campanha (`/meta-campanha`) de Meta Ads |
 
 Cada um faz perguntas com opcoes clicaveis. Os comandos diretos abaixo continuam funcionando para quem ja tem pratica.
 
@@ -288,3 +289,13 @@ O pipeline antigo (`meta-ads-*` + scripts Python locais) foi desativado: skills 
 - `[conta]`: `buzzmonitor_brl` | `buzzmonitor_usd` | `buzzmonitor_eur` | `cxpress_brl` | `cxpress_usd` | `cxpress_eur`
 
 **Diferencas metricas vs Meta API direta** (cliques totais vs `link_clicks`, conversoes amplas vs `leads custom`): documentadas em `.claude/skills/bunzzai/CONTEXT.md`. Quando a decisao envolver budget grande (>R$ 1.000) ou CpL pertinho do threshold, rodar manualmente `meta-ads-legacy/scripts/audit_vs_bunzzai.py` pra cross-check (requer token Meta fresh — `meta-ads-legacy/SETUP.md`).
+
+### Meta Ads — criacao/gestao via MCP oficial (ESCRITA)
+
+Para **criar ou mexer** em campanha (nao analisar), use `/meta-campanha` — primeira skill de escrita no Meta, via o **MCP oficial da Meta** (OAuth, tools `ads_*`). Atua como gestor de trafego: forca briefing completo, classifica funil, questiona publico incoerente, mostra o plano e cria **tudo PAUSADO**. Regras, contas e convencoes em `.claude/skills/meta-campanha/CONTEXT.md`.
+
+| Comando | O que faz |
+|---|---|
+| `/meta-campanha [acao] [marca] [briefing]` | Cria campanha/adset/ad, edita (publico/orcamento/posicionamento/link), pausa/religa, renomeia. Tudo pausado; **ativar e orcamento alto exigem aprovacao**. |
+
+**Trava tecnica (hook commitado, vale pra todos):** `guard_meta_activate.py` pede confirmacao antes de **ativar/religar** ou de criar/editar com **orcamento acima do teto** (`meta-ads/data/budget-guardrails.json` — conservador R$50/$12/EUR12 por adset/dia). Mesma filosofia do guard do Vercel; cobre o MCP oficial da Meta e, por defesa, as tools de escrita do BunzzAI. Logica em `.claude/hooks/guard_meta_activate.py`.

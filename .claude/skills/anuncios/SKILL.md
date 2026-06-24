@@ -1,13 +1,13 @@
 ---
 name: anuncios
-description: Guia interativo de análise de Meta Ads. Faz perguntas com chips clicáveis e dispara /bunzzai (1 conta) ou /bunzzai-geral (consolidado das 6 contas). Usar quando o usuário digitar /anuncios sem saber qual comando rodar.
+description: Guia interativo de Meta Ads. Faz perguntas com chips clicáveis e dispara /bunzzai (1 conta) ou /bunzzai-geral (consolidado das 6 contas) para ANÁLISE, ou /meta-campanha para CRIAR/EDITAR campanha. Usar quando o usuário digitar /anuncios sem saber qual comando rodar.
 argument-hint: "(opcional) Ex: /anuncios | /anuncios buzzmonitor_brl | /anuncios geral"
 allowed-tools: AskUserQuestion, Read, Glob
 ---
 
 # /anuncios — Router determinístico (Bunzzai)
 
-Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` já responde. Dispare direto após última pergunta — sem pedir confirmação. Meta Ads é **SOMENTE LEITURA**.
+Script fixo. Uma pergunta por vez. Pule se `$ARGUMENTS` já responde. Dispare direto após última pergunta — sem pedir confirmação. **Análise** de Meta Ads é SOMENTE LEITURA (via Bunzzai); **criar/editar** campanha é escrita, via `/meta-campanha` (que cria tudo pausado e exige aprovação pra ativar).
 
 > Desde 2026-06-22, todas análises de Meta Ads passam pelo **Bunzzai** (MCP do CRM próprio). O pipeline antigo `meta-ads-*` foi desativado — ver `.claude/skills-desativadas/`.
 
@@ -23,6 +23,7 @@ Se `$ARGUMENTS` já indica claramente a intenção, pule todas as perguntas e di
 |---|---|
 | `geral` ou `consolidado` ou `todas` | `/bunzzai-geral` |
 | `{conta}` (uma das 6 válidas) | `/bunzzai {conta}` |
+| `criar`/`nova`/`subir`/`editar`/`pausar`/`religar`/`renomear` (intenção de escrita) | `/meta-campanha` |
 
 Contas válidas: `buzzmonitor_brl` `buzzmonitor_usd` `buzzmonitor_eur` `cxpress_brl` `cxpress_usd` `cxpress_eur`
 
@@ -34,10 +35,11 @@ Se parcial (ex: só "buzzmonitor" sem moeda), use o que tem e pergunte só o que
 
 Pular se `$ARGUMENTS` já indica `geral` ou conta específica.
 
-AskUserQuestion — question: "O que quer analisar?" header: "Escopo" multiSelect: false
+AskUserQuestion — question: "O que quer fazer?" header: "Escopo" multiSelect: false
 
-1. "Uma conta específica (Recomendado)" → fluxo Q2/Q3 abaixo
-2. "Consolidado das 6 contas" → dispara `/bunzzai-geral` direto (publica no Notion)
+1. "Analisar uma conta específica (Recomendado)" → fluxo Q2/Q3 abaixo
+2. "Analisar consolidado das 6 contas" → dispara `/bunzzai-geral` direto (publica no Notion)
+3. "Criar ou editar campanha" → dispara `/meta-campanha` (escrita; cria pausado, ativar exige aprovação)
 
 ## Q2 — Marca
 
@@ -62,5 +64,6 @@ AskUserQuestion — question: "Qual moeda?" header: "Moeda" multiSelect: false
 
 ## Disparo
 
+- Se intenção = criar/editar campanha: `Invoke Skill(meta-campanha)` (encaminhar marca/ação já conhecidas via args).
 - Se escopo = "consolidado das 6 contas": `Invoke Skill(bunzzai-geral)`.
 - Senão: `Invoke Skill(bunzzai, args: "{conta}")`.

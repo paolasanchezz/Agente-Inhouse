@@ -1,0 +1,36 @@
+{
+  "_doc": "Tetos de orcamento para a trava do hook .claude/hooks/guard_meta_activate.py. Valores em CENTAVOS da moeda da conta (a API da Meta usa minor units). Se uma criacao/edicao passar um orcamento ACIMA do teto, o hook pede confirmacao (permissionDecision=ask) — nao bloqueia, so obriga revisao consciente. Edite os valores conforme a realidade de cada moeda. Decisao do Victor (2026-06-24): perfil conservador.",
+  "ceilings_by_currency": {
+    "BRL": { "adset_daily_cents": 5000, "campaign_daily_cents": 20000, "lifetime_cents": 150000 },
+    "USD": { "adset_daily_cents": 1200, "campaign_daily_cents": 4800, "lifetime_cents": 36000 },
+    "EUR": { "adset_daily_cents": 1200, "campaign_daily_cents": 4800, "lifetime_cents": 36000 }
+  },
+  "_ceilings_doc": "adset_daily = teto por adset/dia (R$50 / $12 / EUR12). campaign_daily = teto do orcamento diario de campanha em CBO (4x adset). lifetime = teto de orcamento total (lifetime) de adset/campanha (~30x adset/dia). Conta sem moeda mapeada cai em default_currency.",
+  "default_currency": "BRL",
+  "account_currency": {
+    "733381876770151": "BRL",
+    "300991508612624": "USD",
+    "1510240806113985": "EUR",
+    "1266529690796936": "BRL",
+    "1999993677432010": "USD",
+    "1246835670520012": "EUR",
+    "666041480822419": "BRL",
+    "625334181331558": "EUR",
+    "519673258626470": "EUR",
+    "499341683195343": "BRL",
+    "2608073376104001": "BRL"
+  },
+  "_accounts_doc": {
+    "733381876770151": "Buzzmonitor (BR)",
+    "300991508612624": "Buzzmonitor Latam (USD)",
+    "1510240806113985": "Buzzmonitor Portugal (EUR)",
+    "1266529690796936": "Cxpress Brasil (BRL)",
+    "1999993677432010": "Cxpress Latam (USD)",
+    "1246835670520012": "Cxpress Portugal (EUR) — INDISPONIVEL (conta UNSETTLED)",
+    "666041480822419": "Elife Brasil (BRL)",
+    "625334181331558": "Elife Portugal (EUR)",
+    "519673258626470": "Elife Espana (EUR)",
+    "499341683195343": "Buzzcreators 01 (BRL) — sem metodo de pagamento",
+    "2608073376104001": "VozXpress (BRL)"
+  }
+}

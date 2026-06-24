@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## meta-campanha
+### 2026-06-24 — v1.1.0 — Calibrar defaults pela auditoria de uma campanha REMKT real da conta
+
+Comparei o 1o teste (MOFU-VRJ-0626) com campanhas de remarketing reais da Buzzmonitor BR (`[BR][CONVERSAO][Remarketing-IA]` etc.) e ajustei os defaults da skill pra espelhar a casa:
+
+- **Conversao por padrao, nao trafego.** A conta roda `OFFSITE_CONVERSIONS` (com pixel) em quase tudo — inclusive MoFu e remarketing. Tabela funil->objetivo revista + nova linha MoFu. So usar `OUTCOME_TRAFFIC`/`LANDING_PAGE_VIEWS` quando NAO ha pixel/evento.
+- **Pixel obrigatorio em conversao:** `promoted_object={"pixel_id","custom_event_type"}` via `ads_get_datasets`.
+- **UTM padrao de TODAS marcas/regioes** (decisao do Victor) embutido no `link_url`, com macros dinamicos da Meta: `utm_source=meta&utm_medium={{placement}}&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&adset={{adset.name}}&campaignid={{campaign.id}}&adsetid={{adset.id}}&adid={{ad.id}}`. A casa cruza UTM com deals; sem isso a atribuicao cega.
+- **Esclarecido:** pixel (`promoted_object`) e targeting (geo/idade/custom audiences) sao setaveis na criacao E edicao (write); a limitacao do MCP e so de LEITURA (nao clona de campanha existente). Furo unico: interesse-por-ID (sem tool de busca).
+- **Orcamento default ABO** (a casa usa adset R$20-70/dia), nao CBO.
+- **Idade default 28-50**; **nao excluir idade desconhecida** por padrao (esp. WhatsApp) — decisao do Victor.
+- **CTA por funil** (SEE_DETAILS/SIGN_UP/BOOK_NOW/GET_QUOTE no fundo), nao `LEARN_MORE` cego.
+- **Nome de campanha na convencao da casa** `[BR][CONVERSAO][Tema]`; nota que a Meta acrescenta ` YYYY-MM-DD-<hash>` ao nome do criativo.
+- **Limitacao de leitura do MCP documentada:** nao expoe pixel/destination/targeting/url_tags -> nao da pra clonar de campanha existente; perguntar ao Victor.
+
+### 2026-06-24 — v1.0.0 — Skill inicial: criar e gerir campanhas Meta Ads via MCP oficial (escrita real)
+
+Primeira skill de **escrita** no Meta Ads (ate entao so leitura via /bunzzai). Usa o MCP oficial da Meta (`mcp__<id>__ads_*`, OAuth) e atua como gestor de trafego senior.
+
+- **6 acoes:** criar campanha/adset/ad · editar (publico/posicionamento/orcamento/link) · pausar/religar · renomear.
+- **Seguranca em 2 camadas:** a skill forca briefing completo e mostra o plano pra confirmar; o hook novo `guard_meta_activate.py` (molde do guard do Vercel) trava **ativacao/religacao** e **orcamento acima do teto** (`meta-ads/data/budget-guardrails.json` — conservador R$50/$12/EUR12 por adset/dia). Tudo nasce PAUSADO; nada gasta sem aprovacao. Por defesa, o hook cobre tambem as tools de escrita do BunzzAI.
+- **Gestor expert:** classifica funil (tabela do /bunzzai) -> objetivo ODAX + optimization_goal coerentes; sanity-check de publico vs ICP da marca (questiona incoerencia); benchmarks de CpL/CTR de `meta-ads/data/benchmarks.json`.
+- **Criativo (3 fontes):** post/acervo existente (`object_story_id`/`image_hash`) ou arquivo novo (PC/Drive/repo `/criativo`) auto-hospedado via Vercel -> `image_url` (o MCP da Meta nao sobe arquivo local).
+- **Anti-ban:** so MCP da Meta, requisicoes minimizadas (1 leitura de contas/sessao + cache + log local pra edicoes). Hook **uuid-agnostico** (casa por sufixo `ads_*`, nao depende do id do server).
+
+Arquivos: `.claude/skills/meta-campanha/{SKILL,CONTEXT}.md`, `.claude/hooks/guard_meta_activate.py`, `meta-ads/data/budget-guardrails.json`, matcher novo em `.claude/settings.json`, ponteiro em `.claude/skills/anuncios/SKILL.md`.
+
 ## seo-report
 ### 2026-06-23 — v1.0.0 — Skill inicial: dashboard SEO Buzzmonitor BR (GSC + GA4 + Semrush), sem chave de API no repo
 
