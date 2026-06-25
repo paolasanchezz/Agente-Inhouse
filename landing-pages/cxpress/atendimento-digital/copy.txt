@@ -1,0 +1,83 @@
+=== HERO ===
+OVERLINE: Gestão do Atendimento Digital · Cxpress
+H1: Sua empresa mede tudo. Menos o atendimento.
+SUB: Quando chega um cliente no WhatsApp e quem responde é "quem pegar primeiro", a operação está rodando sem gestão. A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.
+CTA: Agendar demonstração gratuita
+
+=== CLIENTES (prova social, 2a dobra) ===
+H2: Clientes que confiam na Cxpress para otimizar seu atendimento
+BODY: [grade de logos — ../../brand/cxpress/assets/plataforma/clientes-cxpress.png]
+
+=== FORM (CTA) ===
+H2: Agende sua demonstração gratuita
+H3: Veja as métricas e a fila funcionando na sua operação
+BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: os canais que você já atende, o volume que chega e os indicadores que passam a ficar visíveis.
+PRICE: Planos a partir de R$ 1.290
+REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+CTA: Agendar demonstração gratuita
+CAMPOS (Jotform 261045149477663): Nome · E-mail de trabalho · Telefone · Nome da empresa · Cargo
+
+=== BENEFICIOS ===
+H2: O que muda na sua operação com gestão de verdade
+H3: Distribuição automática de tickets
+BODY: Cada atendimento chega com dono definido: por setor, por agente ou por fila. Acabou o "quem pegar primeiro".
+H3: Métricas que o gestor acompanha
+BODY: Tempo de resposta, volume por canal, tickets em andamento e gargalos visíveis num painel, sem planilha manual.
+H3: Integração oficial do WhatsApp
+BODY: A operação roda na API oficial da Meta, com vários atendentes no mesmo número e sem depender de ferramenta que viola os termos de uso.
+
+=== PROVA ===
+H2: Resultados de quem estruturou o atendimento com a Cxpress
+LIST ITEM: +220% de interações realizadas sem aumentar a equipe.*
+LIST ITEM: 15x mais produtividade da IA frente ao atendimento 100% humano.*
+LIST ITEM: -60% no tamanho da equipe atendendo mais (de 10 para 4 pessoas).*
+LIST ITEM: 98% de qualidade avaliada da IA (referência humana: 80%).*
+BODY: *Resultados de clientes Cxpress em atendimento a redes sociais (relatório interno Sentinela, 2025). Os números variam conforme a operação.
+CTA: Agendar demonstração gratuita
+
+=== PLATAFORMA ===
+H2: A estrutura que o seu atendimento ganha na plataforma
+H3: Todos os canais no mesmo painel
+BODY: WhatsApp, e-mail, redes sociais, telefone e chat do site, com histórico unificado por cliente, independente do canal usado.
+H3: Atendimento 24/7 com apoio de IA
+BODY: Amplie o atendimento para 24/7 com apoio de IA no primeiro nível. O time humano entra nas questões que pedem gente.
+H3: Gestão de tickets com fila e distribuição
+BODY: Distribua atendimentos automaticamente ou manualmente para setores e agentes específicos, com visão completa da fila.
+H3: Dashboards no lugar das planilhas
+BODY: Transforme as estatísticas do atendimento em painéis intuitivos, com os indicadores que o gestor acompanha de verdade.
+
+=== FAQ ===
+H2: Dúvidas frequentes
+H3: Quais indicadores a Cxpress mostra?
+BODY: O painel acompanha indicadores como tempo médio de atendimento, tempo de espera, tickets novos e em andamento, mensagens trocadas e taxa de desistência.
+H3: A Cxpress usa a API oficial do WhatsApp?
+BODY: Sim. A integração é feita pela API oficial, o caminho que a Meta autoriza para o atendimento de empresas.
+H3: Vou perder meu número ao usar a Cxpress?
+BODY: Não. Com o WhatsApp CoEx, o mesmo número continua funcionando no aplicativo e passa a operar também na plataforma.
+H3: Posso conectar mais de um número à Cxpress?
+BODY: Sim, é possível conectar mais de um número na mesma operação.
+H3: Quais canais podem ser integrados?
+BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+SELOS: Api Oficial do WhatsApp · Api Oficial do ChatGPT · Um produto Elife
+
+=== FECHO ===
+H2: Seus clientes vão continuar chamando todos os dias. Seu atendimento não precisa continuar no improviso.
+CTA: Agendar demonstração gratuita
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: em-dash 0; antitese-por-negacao 2 (H1 e fecho, estruturais da peca).
+# Message match: Roteiros 7 e 8 (gestao com metricas + WhatsApp organizado). Indicadores do FAQ
+#  verificados contra a UI real do produto (GIF do dashboard).
+# ATUALIZACAO 2026-06-25 (reconciliacao pos-redesign — copy.txt alinhado ao index.html publicado):
+#  - CLIENTES promovida para a 2a dobra; FORM em card com PRICE + REQ; bloco CONTEXTO removido.
+#  - Secao QUEM SOMOS adicionada; stats trocadas para o relatorio Sentinela (2025).
+#  - Form Jotform atualizado: 261033482583658 -> 261045149477663. Assets em brand/cxpress/assets/plataforma/.
+# PENDENTE (decisoes do Victor — ver review PR #28): validar numeros do relatorio Sentinela; redacao/claim
+#  do selo "Api Oficial do ChatGPT" (incl. capitalizacao Api->API).
