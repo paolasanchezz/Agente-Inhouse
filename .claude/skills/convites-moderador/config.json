@@ -7,7 +7,7 @@
     },
     "17544": {
       "label": "Buzzmonitor Atención al Cliente (LATAM)",
-      "moderator_email": "milagro.pantoja@buzzmonitor.com",
+      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
       "lang": "es"
     },
     "17560": {
@@ -18,6 +18,7 @@
   },
   "_comentarios": {
     "lang": "Idioma do email de convite enviado pelo ClickMeeting. Códigos válidos: pl, en, de, ru, es, fr, it, br. Alinhar ao idioma de quem recebe, não do webinar.",
-    "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email + lang. Para remover: apague o bloco. Para trocar moderador: mude moderator_email."
+    "moderadores": "Cada série aceita 'moderator_email' (um) OU 'moderator_emails' (lista, para vários moderadores na mesma sessão). Todos recebem role=presenter. Pode usar os dois — são somados e deduplicados.",
+    "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails."
   }
 }

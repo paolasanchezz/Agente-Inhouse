@@ -131,10 +131,16 @@ def main() -> int:
     overall_ok = True
     for rid, cfg in series_cfg.items():
         label = cfg.get("label", rid)
-        email = cfg.get("moderator_email")
         lang = cfg.get("lang", "br")
-        if not email:
-            print(f"  [SKIP] {label} ({rid}) — sem moderator_email em config")
+
+        # Aceita moderator_email (str) e/ou moderator_emails (lista). Soma e deduplica preservando ordem.
+        emails: list[str] = []
+        if cfg.get("moderator_email"):
+            emails.append(cfg["moderator_email"])
+        emails.extend(cfg.get("moderator_emails") or [])
+        emails = list(dict.fromkeys(e for e in emails if e))
+        if not emails:
+            print(f"  [SKIP] {label} ({rid}) — sem moderator_email/moderator_emails em config")
             overall_ok = False
             continue
 
@@ -145,11 +151,12 @@ def main() -> int:
 
         room_id = session["id"]
         starts_at = session["starts_at"]
-        ok, msg = send_invite(api_key, room_id, lang, email, args.dry_run)
-        flag = "OK " if ok else "ERR"
-        print(f"  [{flag}] {label} ({rid}) → {email} · sessão #{room_id} ({starts_at}) · {msg}")
-        if not ok:
-            overall_ok = False
+        for email in emails:
+            ok, msg = send_invite(api_key, room_id, lang, email, args.dry_run)
+            flag = "OK " if ok else "ERR"
+            print(f"  [{flag}] {label} ({rid}) → {email} · sessão #{room_id} ({starts_at}) · {msg}")
+            if not ok:
+                overall_ok = False
 
     print(f"\n{'✅ Todos os convites processados' if overall_ok else '⚠️  Houve falhas — ver acima'}")
     return 0 if overall_ok else 1
