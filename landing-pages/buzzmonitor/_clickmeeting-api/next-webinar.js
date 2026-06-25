@@ -34,6 +34,7 @@ function formatFullPt(d) {
 const SERIES = {
   atencion: '17544', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es)
   buzzcreators: '17560', // Buzzcreators (LP /conheca-o-buzzcreators) — room_pin 286-555-426
+  mcp: '17601', // Buzzmonitor MCP (LP /mcp-na-pratica-p + -confirmado) — room_pin 988-444-441, PT-BR
 };
 
 module.exports = async (req, res) => {

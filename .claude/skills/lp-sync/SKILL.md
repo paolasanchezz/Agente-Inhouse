@@ -3,7 +3,7 @@ name: lp-sync
 description: Popula a sibling local de um guarda-chuva com o estado do ultimo deploy production READY no Vercel. Read-only — nao modifica nada no live nem deploya. Use antes de qualquer fluxo manual (debug, inspecao, recovery, edicao direta) para garantir que a sibling reflete o que esta no ar. Fluxo regular de alteracao/deploy continua sendo `lp-publicar`, que ja faz este sync internamente no Passo 0.5.d.
 argument-hint: "[dominio] — ex: content.cxpress.io | webinar.buzzmonitor.com"
 allowed-tools: Read, Bash, Skill
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Skill: Sincronizar Sibling com Live
@@ -70,14 +70,26 @@ Mesma logica do `lp-publicar` Passo 0.5.b — `vercel alias ls` + extrair nome d
 ```bash
 DOMAIN="$dominio"
 
-PROJECT=$(npx --yes vercel alias ls --scope "$TEAM" 2>&1 | awk -v d="$DOMAIN" '
-  $0 ~ d {
-    src=$1
-    sub(/-[a-z0-9]+-elife-group\.vercel\.app$/, "", src)
-    print src
-    exit
-  }
-')
+# PAGINACAO (obrigatorio): `vercel alias ls` pagina (~20/pagina, mais recentes primeiro) e
+# imprime `... --next <token>` no rodape. Guarda-chuvas antigos caem em paginas posteriores —
+# sem paginar, dominio nao e encontrado e a skill aborta por engano. Match na coluna 2
+# (alias-url == $DOMAIN), nao `$0 ~ d`, pra nao casar substring na source URL.
+# Bug encontrado 2026-06-25: webinar.buzzmonitor.com estava na pagina 2.
+PROJECT=""; NEXT=""; PAGE=0
+while [ "$PAGE" -lt 50 ]; do
+  PAGE=$((PAGE+1))
+  if [ -z "$NEXT" ]; then
+    ALIAS_OUT=$(npx --yes vercel alias ls --scope "$TEAM" 2>&1)
+  else
+    ALIAS_OUT=$(npx --yes vercel alias ls --next "$NEXT" --scope "$TEAM" 2>&1)
+  fi
+  PROJECT=$(printf '%s\n' "$ALIAS_OUT" | awk -v d="$DOMAIN" '
+    $2 == d { src = $1; sub(/-[a-z0-9]+-elife-group\.vercel\.app$/, "", src); print src; exit }
+  ')
+  [ -n "$PROJECT" ] && break
+  NEXT=$(printf '%s\n' "$ALIAS_OUT" | sed -n 's/.*--next \([0-9]\{10,\}\).*/\1/p' | head -1)
+  [ -z "$NEXT" ] && break
+done
 ```
 
 Se `$PROJECT` vazio: dominio nao esta atribuido a nenhum projeto da org `elife-group` → abortar com mensagem "Dominio $DOMAIN nao encontrado como alias de nenhum projeto Vercel. Verifique se voce esta autenticado na conta certa (`vercel whoami --scope $TEAM`) e se o dominio realmente esta atribuido a um projeto da org elife-group."

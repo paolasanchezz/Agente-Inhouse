@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.9.0
+version: 3.9.1
 ---
 
 # Skill: Publicar Landing Page
@@ -149,17 +149,30 @@ Se `$dominio` foi fornecido, descobrir se algum projeto Vercel da org ja serve e
 ```bash
 DOMAIN="$dominio"  # vem do parsing do Passo 0
 
-# Lista TODOS os aliases da org. Cada linha tem: source-deployment-url | alias-url
-# Quando $DOMAIN aparece como alias, extrair o nome do projeto do prefixo da source URL
-# (formato: {projeto}-{hash7-12}-elife-group.vercel.app).
-PROJECT=$(npx --yes vercel alias ls --scope "$TEAM" 2>&1 | awk -v d="$DOMAIN" '
-  $2 == d {
-    src = $1
-    sub(/-[a-z0-9]+-elife-group\.vercel\.app$/, "", src)
-    print src
-    exit
-  }
-')
+# Lista os aliases da org. Cada linha tem colunas: source-deployment-url | alias-url | age.
+# Quando $DOMAIN aparece como alias (coluna 2), extrair o nome do projeto do prefixo da
+# source URL (formato: {projeto}-{hash7-12}-elife-group.vercel.app).
+#
+# PAGINACAO (obrigatorio): `vercel alias ls` retorna ~20 aliases por pagina (mais recentes
+# primeiro) e imprime no rodape `... --next <token>` quando ha mais. Guarda-chuvas ANTIGOS
+# (criados ha semanas) caem em paginas posteriores — sem paginar, a deteccao retorna vazio,
+# a skill cai erroneamente em modo solo e cria projeto duplicado que NAO serve o dominio.
+# Bug encontrado 2026-06-25: webinar.buzzmonitor.com estava na pagina 2.
+PROJECT=""; NEXT=""; PAGE=0
+while [ "$PAGE" -lt 50 ]; do   # teto ~1000 aliases por seguranca
+  PAGE=$((PAGE+1))
+  if [ -z "$NEXT" ]; then
+    ALIAS_OUT=$(npx --yes vercel alias ls --scope "$TEAM" 2>&1)
+  else
+    ALIAS_OUT=$(npx --yes vercel alias ls --next "$NEXT" --scope "$TEAM" 2>&1)
+  fi
+  PROJECT=$(printf '%s\n' "$ALIAS_OUT" | awk -v d="$DOMAIN" '
+    $2 == d { src = $1; sub(/-[a-z0-9]+-elife-group\.vercel\.app$/, "", src); print src; exit }
+  ')
+  [ -n "$PROJECT" ] && break
+  NEXT=$(printf '%s\n' "$ALIAS_OUT" | sed -n 's/.*--next \([0-9]\{10,\}\).*/\1/p' | head -1)
+  [ -z "$NEXT" ] && break   # sem mais paginas
+done
 ```
 
 Possiveis saidas:

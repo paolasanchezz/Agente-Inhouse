@@ -12,6 +12,14 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar, lp-sync
+### 2026-06-25 — lp-publicar v3.9.1 + lp-sync v1.0.1: detecção de guarda-chuva pagina `vercel alias ls`
+
+Ao restaurar a LP `mcp-na-pratica-p` (`webinar.buzzmonitor.com`), a detecção de modo do `lp-publicar` Passo 0.5.b retornou vazio e cairia em **modo solo por engano** — criaria projeto Vercel duplicado que não serve o domínio. Causa: `vercel alias ls` pagina (~20 aliases/página, mais recentes primeiro) e imprime `... --next <token>` no rodapé; o domínio guarda-chuva, antigo, estava na **página 2**, e o `awk` só lia a primeira página.
+
+- **lp-publicar Passo 0.5.b** e **lp-sync Passo 1** agora iteram as páginas via token `--next` (teto de 50 páginas) até achar o domínio ou esgotar. Match na coluna 2 (`$2 == d`); de quebra, o lp-sync deixou de usar `$0 ~ d` (que casava substring na source URL) e passou a `$2 == d`. Sem mudança de interface.
+- Bug latente desde que cada guarda-chuva passou de ~20 aliases — afetaria **qualquer** domínio antigo da org, não só este. Os 4 incidentes históricos de regressão em `webinar.buzzmonitor.com` (CONTEXT §7.2) reforçam o peso de a detecção de guarda-chuva ser confiável.
+
 ## meta-campanha
 ### 2026-06-24 — v1.1.0 — Calibrar defaults pela auditoria de uma campanha REMKT real da conta
 
