@@ -1,0 +1,201 @@
+{
+  "name": "ClickMeeting → Google Sheets (inscritos de webinars)",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "11111111-1111-1111-1111-111111111111",
+      "name": "Disparo manual (teste)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-460, 60]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "A cada 6 horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-460, 280]
+    },
+    {
+      "parameters": {
+        "url": "https://api.clickmeeting.com/v1/conferences/active",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "33333333-3333-3333-3333-333333333333",
+      "name": "CM: conferências ativas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-200, 60],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_CM_CRED",
+          "name": "ClickMeeting API (X-Api-Key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.clickmeeting.com/v1/conferences/inactive",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "44444444-4444-4444-4444-444444444444",
+      "name": "CM: conferências inativas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-200, 280],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_CM_CRED",
+          "name": "ClickMeeting API (X-Api-Key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mapa série (recurring_config_id) -> rótulo de marca/sala.\n// Edite aqui se criar novas séries no ClickMeeting.\nconst SERIES = {\n  '17529': 'CX BR | Conheça Cxpress',\n  '17497': 'CX (legado)',\n  '17544': 'BUZZ LATAM | Atención',\n  '17560': 'CREATORS case',\n  '17601': 'BUZZ BR | MCP'\n};\n\n// Junta as conferências das duas chamadas (ativas + inativas).\n// Tolera tanto resposta já dividida em itens quanto array bruto num item.\nconst confs = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  if (Array.isArray(j)) confs.push(...j);\n  else if (j && Array.isArray(j.data)) confs.push(...j.data);\n  else if (j && (j.id || j.recurring_config_id)) confs.push(j);\n}\n\nconst out = [];\nfor (const c of confs) {\n  const rid = String(c.recurring_config_id == null ? '' : c.recurring_config_id);\n  if (!SERIES[rid]) continue; // ignora séries que não nos interessam\n  out.push({ json: { sessionId: c.id, recurringConfigId: rid, marca: SERIES[rid] } });\n}\nreturn out;",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "55555555-5555-5555-5555-555555555555",
+      "name": "Montar lista de sessões",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [60, 170]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clickmeeting.com/v1/conferences/{{ $json.sessionId }}/registrations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "66666666-6666-6666-6666-666666666666",
+      "name": "CM: inscritos da sessão",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [300, 170],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_CM_CRED",
+          "name": "ClickMeeting API (X-Api-Key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Deriva a série/marca de cada inscrito pelo room_pin do PRÓPRIO link de acesso,\n// cruzando com o room_pin das conferências. Robusto — NÃO depende de pairedItem\n// (o pairedItem após o split do array do HTTP é instável e jogava todos na 1ª sessão).\nconst SERIES = {\n  '17529': 'CX BR | Conheça Cxpress',\n  '17497': 'CX (legado)',\n  '17544': 'BUZZ LATAM | Atención',\n  '17560': 'CREATORS case',\n  '17601': 'BUZZ BR | MCP'\n};\n\n// Mapa room_pin -> recurring_config_id, montado a partir das conferências.\nconst pinToSerie = {};\nfor (const nodeName of ['CM: conferências ativas', 'CM: conferências inativas']) {\n  let items = [];\n  try { items = $(nodeName).all(); } catch (e) { items = []; }\n  for (const it of items) {\n    const arr = Array.isArray(it.json) ? it.json : [it.json];\n    for (const c of arr) {\n      if (c && c.room_pin != null) {\n        pinToSerie[String(c.room_pin)] = String(c.recurring_config_id == null ? '' : c.recurring_config_id);\n      }\n    }\n  }\n}\n\nfunction serieFromUrl(url) {\n  const m = String(url || '').match(/clickmeeting\\.com\\/(\\d+)/);\n  return m ? (pinToSerie[m[1]] || '') : '';\n}\n\nconst rows = [];\nfor (const item of $input.all()) {\n  const j = item.json || {};\n  let recs = [];\n  if (Array.isArray(j)) recs = j;\n  else if (Array.isArray(j.body)) recs = j.body;\n  else if (j.email || j.visitor_nickname || j.id) recs = [j];\n\n  for (const r of recs) {\n    const f = (r && r.fields) || {};\n    const geo = (r && r.geo) || {};\n    const email = (r.email || f['Email Address'] || '').toString().toLowerCase();\n    if (!email) continue;\n    const rid = serieFromUrl(r.url);\n    rows.push({ json: {\n      'Data inscrição': r.registration_date || r.registration_confirmed || '',\n      'Nome': r.visitor_nickname || f['Name'] || '',\n      'Email': email,\n      'Empresa': f['Company'] || '',\n      'País': geo.country || '',\n      'Cidade': geo.city || '',\n      'Marca/Sala': SERIES[rid] || '(desconhecida)',\n      'Série': rid,\n      'Sessão': r.session_id || '',\n      'Origem': r.http_referer || '',\n      'Link de acesso': r.url || ''\n    }});\n  }\n}\nreturn rows;",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "77777777-7777-7777-7777-777777777777",
+      "name": "Montar linhas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [540, 170]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1CTmui4aWRDoj3rgBEXVa1B0SKDcsznZdLmR2uA_2s8E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Inscritos",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": ["Email", "Série"],
+          "schema": [],
+          "value": {}
+        },
+        "options": {}
+      },
+      "id": "88888888-8888-8888-8888-888888888888",
+      "name": "Google Sheets: gravar inscritos",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [800, 170],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_GS_CRED",
+          "name": "Google Sheets (Victor)"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Disparo manual (teste)": {
+      "main": [
+        [
+          { "node": "CM: conferências ativas", "type": "main", "index": 0 },
+          { "node": "CM: conferências inativas", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "A cada 6 horas": {
+      "main": [
+        [
+          { "node": "CM: conferências ativas", "type": "main", "index": 0 },
+          { "node": "CM: conferências inativas", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "CM: conferências ativas": {
+      "main": [
+        [
+          { "node": "Montar lista de sessões", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "CM: conferências inativas": {
+      "main": [
+        [
+          { "node": "Montar lista de sessões", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Montar lista de sessões": {
+      "main": [
+        [
+          { "node": "CM: inscritos da sessão", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "CM: inscritos da sessão": {
+      "main": [
+        [
+          { "node": "Montar linhas", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Montar linhas": {
+      "main": [
+        [
+          { "node": "Google Sheets: gravar inscritos", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}
