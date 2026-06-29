@@ -3,7 +3,7 @@ const FALLBACK_THANK_YOU = 'https://home.cxpress.io/webinar-inscricao-realizada'
 
 // Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
 // Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
-const SERIES_LANG = { atencion: 'es' };
+const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es' };
 
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);

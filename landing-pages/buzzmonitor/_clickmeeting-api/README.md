@@ -25,11 +25,14 @@ compartilhada — hoje `17529`, Cxpress). Com `?series=<chave>`, usa o mapa `SER
 
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
-| `atencion` | `17544` | Buzzmonitor Atención al Cliente | `/atencion-al-cliente-es` |
+| `atencion` | `17544` | Buzzmonitor Atención al Cliente (ES-LATAM) | `/atencion-al-cliente-es` (+ `-confirmado`) |
 | `buzzcreators` | `17560` | Conheça o Buzzcreators (room_pin 286-555-426) | `/conheca-o-buzzcreators` (+ `-confirmado`) |
+| `mcp` | `17601` | Buzzmonitor MCP (PT-BR, room_pin 988-444-441) | `/mcp-na-pratica-p` (+ `-confirmado`) |
+| `mcp-es` | `17646` | Buzzmonitor Que es MCP (ES-LATAM, room_pin 224-255-882, tz America/Mexico_City) | `/que-es-mcp` (+ `-confirmado`) |
 
 Chave desconhecida → fallback no env padrão (nunca quebra as LPs vizinhas).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.
+**E-mail de confirmação ES:** `SERIES_LANG` em `clickmeeting-register.js` mapeia `atencion` e `mcp-es` → `es` (as séries LATAM). As demais séries usam o default `br`.
 
 ## Como deployar uma mudança nas functions (fluxo manual controlado)
 

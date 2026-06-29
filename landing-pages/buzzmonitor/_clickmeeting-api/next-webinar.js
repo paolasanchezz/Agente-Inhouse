@@ -35,6 +35,7 @@ const SERIES = {
   atencion: '17544', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es)
   buzzcreators: '17560', // Buzzcreators (LP /conheca-o-buzzcreators) — room_pin 286-555-426
   mcp: '17601', // Buzzmonitor MCP (LP /mcp-na-pratica-p + -confirmado) — room_pin 988-444-441, PT-BR
+  'mcp-es': '17646', // Buzzmonitor Que es MCP (LP /que-es-mcp + -confirmado), room_pin 224-255-882, ES-LATAM, tz America/Mexico_City
 };
 
 module.exports = async (req, res) => {
