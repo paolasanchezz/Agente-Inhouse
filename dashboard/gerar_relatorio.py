@@ -60,8 +60,10 @@ BAK_PATH = HTML_PATH.with_suffix('.html.bak')
 # (c) +muniquebuzz@monitor.com em EMAIL_BLACKLIST (deal 189845 era "teste crm").
 #     Saiu da contagem de leads/CE/RA/etc., mas nao afeta fechamentos (nao era fech).
 # Total YtD 2026: 7 deals · R$ 19.270 (inalterado).
-EXPECTED_FECH_YTD_2026 = 7
-EXPECTED_FECH_VALOR_YTD_2026 = 19270.0
+# Revisao 2026-06-30: +2 fechamentos won com cierre retroagido a 07/mai (DR. Consulta, webinar/athaide-martins, R$ 8.340; Echef Robot, Instagram_Feed, R$ 1.590). Total YtD 2026: 9 deals · R$ 29.200.
+# Revisao 2026-06-30 (b): -1 fechamento — ECHEF ROBOT (deal 186199, R$ 1.590) p/ EMAIL_BLACKLIST: falso CM, lead de evento (bug de tracking Instagram_Feed/cpc). Total YtD 2026: 8 deals · R$ 27.610.
+EXPECTED_FECH_YTD_2026 = 8
+EXPECTED_FECH_VALOR_YTD_2026 = 27610.0
 
 _MESES_CURTOS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 
