@@ -18,6 +18,7 @@ tudo, da pra testar isolado, e o erro fica claro se algo quebrar.
 import base64
 import json
 import os
+import re
 import urllib.request
 
 
@@ -31,6 +32,11 @@ def main():
     team_param = f"slug={team_slug}" if team_slug else f"teamId={team_id}"
     token = os.environ["VERCEL_TOKEN"]
     sibling = os.environ["SIBLING"].replace("\\", "/")
+    # Defesa em profundidade: normaliza path estilo MSYS (/c/Users/...) -> Windows (C:/Users/...).
+    # O caller (lp-publicar Passo 0.5.d.iii) ja normaliza via `cygpath -m`, mas se este script
+    # for chamado standalone com a forma MSYS, o Python do Windows escreveria em C:\c\Users\...
+    # silenciosamente. Idempotente para paths ja Windows-style e no-op em Unix.
+    sibling = re.sub(r"^/([a-zA-Z])/", r"\1:/", sibling)
 
     def api_get(url):
         req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})

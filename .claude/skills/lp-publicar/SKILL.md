@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.9.1
+version: 3.9.2
 ---
 
 # Skill: Publicar Landing Page
@@ -117,6 +117,28 @@ Paths default (modo solo):
 - Dentro da sibling: `{slug}/index.html` + `assets/` + `vercel.json` + `.gitignore` + `README.md`
 
 Se fonte nao existe, PARE.
+
+### 0.3 Convencao OBRIGATORIA: path Windows-style ao passar pro Python
+
+**No Windows, o `python`/`python3` no PATH e o Python do Windows** (tipicamente o da Microsoft Store em `AppData/Local/Microsoft/WindowsApps/`). Ele **nao entende paths estilo MSYS** (`/c/Users/...`) que o Git Bash usa internamente. As ferramentas bash (`find`, `grep`, `cp`, `md5sum`) entendem as duas formas — entao o desencontro acontece **so na fronteira com o Python**:
+
+- `python -c "...open('/c/Users/.../vercel.json')..."` → **`FileNotFoundError`** (leitura).
+- `SIBLING=/c/Users/... python sync_sibling.py` → escreve em `C:\c\Users\...` **em silencio** (escrita — pior, nao falha).
+
+**Regra:** todo path passado ao Python — seja `python -c` inline, seja env var consumida por um helper `.py` (`sync_sibling.py`, `csp_drift_check.py`) — DEVE ser normalizado para formato Windows (`C:/...`, com barra normal) **antes** de chegar ao Python. Snippet canonico (no-op em macOS/Linux e em path que ja e Windows-style):
+
+```bash
+# cygpath -m devolve a forma "mixed" (C:/Users/..., barra normal) — funciona em open()
+# do Python no Windows e nao tem backslash pra escapar no bash nem no raw-string Python.
+# Fallback sem cygpath: /c/Users/... -> C:/Users/...  (em Unix nao casa nada -> no-op).
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+```
+
+Como cada bloco bash roda em shell proprio (a funcao acima nao persiste entre execucoes), **cada snippet abaixo que toca o Python ja inlina essa normalizacao** — nao remover.
+
+**Corolario (igualmente obrigatorio):** **nunca** suprimir o stderr (`2>/dev/null`) de um `python -c` que le um path. Um `FileNotFoundError` silenciado vira saida vazia, e a logica seguinte le esse vazio como "nao ha nada" em vez de "a leitura falhou" — foi exatamente isso que gerou o falso positivo de "REGRESSAO" do smoke test em 2026-06-30 (REDIRECT_MAP vazio; ver `landing-pages/CONTEXT.md` §7.2). Se um valor derivado de path Python sair vazio quando nao deveria, **abortar**, nao seguir.
+
+> Mesma pegadinha do `/tmp` Python-vs-bash no Windows (Python grava `/tmp` em `C:\tmp`, bash usa o `/tmp` do MSYS): formas de path MSYS e Windows apontam pro mesmo lugar pras ferramentas bash, mas o Python do Windows so entende a forma Windows.
 
 ## Passo 0.5: Detectar modo (solo vs guarda-chuva)
 
@@ -293,8 +315,20 @@ Se ainda vazio apos 4 tentativas: invocar `setup-agencia` com argumento `"so lp"
 Ler IDs do projeto a partir do `.vercel/project.json` que o 0.5.c garantiu existir:
 
 ```bash
-PROJECT_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['projectId'])")
-ORG_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['orgId'])")
+# Path Windows-style pro Python (ver convencao Passo 0.3). Sem isso, no Windows o
+# Python recebe /c/Users/... e da FileNotFoundError -> PROJECT_ID/ORG_ID vazios.
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+PROJECT_JSON_WIN="$(to_win_path "$SIBLING")/.vercel/project.json"
+
+PROJECT_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
+ORG_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
+
+# Leitura falhou (path errado, json quebrado)? Abortar — sem IDs nao da pra sincronizar.
+if [ -z "$PROJECT_ID" ] || [ -z "$ORG_ID" ]; then
+  echo "ERRO: nao consegui ler projectId/orgId de $PROJECT_JSON_WIN."
+  echo "  No Windows, confira que o path chegou Windows-style (C:/...), nao MSYS (/c/...)."
+  exit 1
+fi
 
 RESPONSE=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
   "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1")
@@ -351,6 +385,10 @@ A logica vive em `.claude/skills/lp-publicar/sync_sibling.py` (script Python hel
 
 ```bash
 [ -n "$DEPLOY_ID" ] && {
+  # sync_sibling.py ESCREVE arquivos em $SIBLING. No Windows, um path MSYS (/c/Users/...)
+  # faz o Python escrever em C:\c\Users\... em silencio. Passar Windows-style (ver Passo 0.3).
+  to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+  SIBLING="$(to_win_path "$SIBLING")"
   export DEPLOY_ID ORG_ID VERCEL_TOKEN SIBLING
   python "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" || {
     echo "ERRO: sync_sibling.py falhou. Aborte e investigue."
@@ -703,8 +741,10 @@ Remover também do `<title>` qualquer sufixo de trabalho: `[REVISADO]`, `[TESTE]
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-SIBLING_VERCEL_JSON="{sibling}/vercel.json" \
-  TEMPLATE_VERCEL_JSON="$REPO_ROOT/.claude/skills/lp-publicar/vercel.template.json" \
+# Paths Windows-style pro Python (ver Passo 0.3): csp_drift_check.py abre os dois arquivos.
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+SIBLING_VERCEL_JSON="$(to_win_path "{sibling}/vercel.json")" \
+  TEMPLATE_VERCEL_JSON="$(to_win_path "$REPO_ROOT/.claude/skills/lp-publicar/vercel.template.json")" \
   python "$REPO_ROOT/.claude/skills/lp-publicar/csp_drift_check.py"
 ```
 
@@ -850,14 +890,38 @@ No modo guarda-chuva, capturar hash MD5 do `index.html` de **cada outra LP** do 
 **Vizinha que e SOURCE de redirect (v3.9.0):** se um slug vizinho aparece como `source` em `redirects` no `{sibling}/vercel.json`, o live serve **3xx** (nao o `index.html` que existe na pasta). Comparar hash de conteudo daria **falso "REGRESSAO"** em todo deploy — o smoke test do 3.4.b usa `curl` sem `-L`, entao captura o corpo do 308, que nunca bate com o hash do arquivo. Essas vizinhas vao para uma lista separada (`REDIRECT_OTHERS`, formato `slug:destino`) e sao validadas por `Location` no 3.4.b, nao por hash. Incidente motivador 2026-06-16 (§7.2).
 
 ```bash
-# Mapa de redirects do vercel.json: "source-sem-barra<TAB>destino-com-barra"
+# Path Windows-style pro Python (ver Passo 0.3) — sem isso, no Windows o Python recebe
+# /c/Users/... e da FileNotFoundError; REDIRECT_MAP ficaria vazio e as vizinhas-source-de-
+# redirect cairiam no baseline-por-hash -> FALSO POSITIVO de "REGRESSAO" no smoke test 3.4.b.
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+VERCEL_JSON_WIN="$(to_win_path "{sibling}/vercel.json")"
+
+# Sonda de leitura: quantos redirects o vercel.json declara? NAO suprimir stderr — um erro
+# de leitura precisa aparecer (era o 2>/dev/null que mascarava a falha em 2026-06-30).
+REDIRECT_COUNT=$(python -c "import json; print(len(json.load(open(r'$VERCEL_JSON_WIN', encoding='utf-8')).get('redirects', [])))")
+if ! printf '%s' "$REDIRECT_COUNT" | grep -qE '^[0-9]+$'; then
+  echo "ERRO: nao consegui ler 'redirects' de $VERCEL_JSON_WIN (saida: '$REDIRECT_COUNT')."
+  echo "  Causa provavel no Windows: path MSYS (/c/...) passado ao Python do Windows (ver Passo 0.3)."
+  echo "  Abortar — seguir geraria falso positivo de regressao no smoke test 3.4.b."
+  exit 1
+fi
+
+# Mapa de redirects: "source-sem-barra<TAB>destino-com-barra" (sem 2>/dev/null, de proposito).
 REDIRECT_MAP=$(python -c "
 import json
-d = json.load(open(r'{sibling}/vercel.json', encoding='utf-8'))
+d = json.load(open(r'$VERCEL_JSON_WIN', encoding='utf-8'))
 for r in d.get('redirects', []):
     s = (r.get('source') or '').strip('/'); dest = r.get('destination') or ''
     if s: print(s + '\t' + dest)
-" 2>/dev/null)
+")
+
+# Sanity: declara redirects mas o mapa saiu vazio? Leitura inconsistente -> abortar (sem isso,
+# vizinhas-source-de-redirect cairiam no baseline-por-hash e o 3.4.b daria falso "REGRESSAO").
+if [ "$REDIRECT_COUNT" -gt 0 ] && [ -z "$REDIRECT_MAP" ]; then
+  echo "ERRO: vercel.json declara $REDIRECT_COUNT redirect(s) mas REDIRECT_MAP ficou vazio."
+  echo "  Investigar a leitura do vercel.json antes de prosseguir."
+  exit 1
+fi
 
 for OTHER_DIR in "{sibling}"/*/; do
   OTHER_SLUG=$(basename "$OTHER_DIR")

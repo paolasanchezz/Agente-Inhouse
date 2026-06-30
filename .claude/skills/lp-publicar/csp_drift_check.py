@@ -33,6 +33,7 @@ Testar isolado:
 """
 import json
 import os
+import re
 import sys
 
 
@@ -64,6 +65,13 @@ def parse_csp(csp):
 def main():
     sibling_path = os.environ.get('SIBLING_VERCEL_JSON', '')
     template_path = os.environ.get('TEMPLATE_VERCEL_JSON', '')
+
+    # Defesa em profundidade: normaliza path estilo MSYS (/c/Users/...) -> Windows (C:/Users/...).
+    # O caller (lp-publicar Passo 1.6) ja normaliza via `cygpath -m`, mas se este script for
+    # chamado standalone com a forma MSYS, o Python do Windows daria FileNotFoundError (exit 2,
+    # abortando o deploy). Idempotente para paths ja Windows-style e no-op em Unix/relativos.
+    sibling_path = re.sub(r'^/([a-zA-Z])/', r'\1:/', sibling_path)
+    template_path = re.sub(r'^/([a-zA-Z])/', r'\1:/', template_path)
 
     if not sibling_path or not template_path:
         print(json.dumps({

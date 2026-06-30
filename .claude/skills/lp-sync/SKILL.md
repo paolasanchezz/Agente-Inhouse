@@ -3,7 +3,7 @@ name: lp-sync
 description: Popula a sibling local de um guarda-chuva com o estado do ultimo deploy production READY no Vercel. Read-only — nao modifica nada no live nem deploya. Use antes de qualquer fluxo manual (debug, inspecao, recovery, edicao direta) para garantir que a sibling reflete o que esta no ar. Fluxo regular de alteracao/deploy continua sendo `lp-publicar`, que ja faz este sync internamente no Passo 0.5.d.
 argument-hint: "[dominio] — ex: content.cxpress.io | webinar.buzzmonitor.com"
 allowed-tools: Read, Bash, Skill
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Skill: Sincronizar Sibling com Live
@@ -121,8 +121,20 @@ Se nao resolver: invocar `setup-agencia "so lp"` e re-resolver. Se ainda vazio, 
 Mesma logica do `lp-publicar` Passo 0.5.d.ii. Distinguir 3 casos:
 
 ```bash
-PROJECT_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['projectId'])")
-ORG_ID=$(python -c "import json; print(json.load(open(r'$SIBLING/.vercel/project.json'))['orgId'])")
+# Path Windows-style pro Python (mesma convencao do lp-publicar Passo 0.3): no Windows o
+# Python recebe /c/Users/... e da FileNotFoundError -> PROJECT_ID/ORG_ID vazios em silencio.
+# As ferramentas bash entendem as duas formas; o Python do Windows so entende a Windows.
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+PROJECT_JSON_WIN="$(to_win_path "$SIBLING")/.vercel/project.json"
+
+PROJECT_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
+ORG_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
+
+if [ -z "$PROJECT_ID" ] || [ -z "$ORG_ID" ]; then
+  echo "ERRO: nao consegui ler projectId/orgId de $PROJECT_JSON_WIN."
+  echo "  No Windows, confira que o path chegou Windows-style (C:/...), nao MSYS (/c/...)."
+  exit 1
+fi
 
 RESPONSE=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
   "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1")
@@ -156,6 +168,10 @@ Tratamento:
 Reusa o helper canonico `sync_sibling.py` da skill `lp-publicar` — nao duplicar logica. Invocar via env vars:
 
 ```bash
+# sync_sibling.py ESCREVE em $SIBLING. No Windows, path MSYS (/c/Users/...) gravaria em
+# C:\c\Users\... em silencio — normalizar pra Windows-style (mesma convencao do Passo 4).
+to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+SIBLING="$(to_win_path "$SIBLING")"
 export DEPLOY_ID ORG_ID VERCEL_TOKEN SIBLING
 
 python "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" 2>&1 | tee /tmp/lp-sync-output.log

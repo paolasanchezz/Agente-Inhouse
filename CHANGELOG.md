@@ -13,6 +13,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## lp-publicar, lp-sync
+### 2026-06-30 — lp-publicar v3.9.2 + lp-sync v1.0.2: normalizar path Windows pro Python + não silenciar a leitura do REDIRECT_MAP
+
+Ao republicar `que-es-mcp` em `webinar.buzzmonitor.com`, o smoke test 3.4.b deu **2 falsos positivos de "REGRESSAO"** (`agentes-automacao-junho-2026` e `webinar-territorios-marca-mundial-junho-2026`) — ambos slugs que são `source` de redirect 308 no `vercel.json`. Causa-raiz (Windows/Git Bash): o `python -c` do Passo 2.4 recebeu o path do `vercel.json` em forma **MSYS** (`/c/Users/...`), que o **Python do Windows não entende** → `FileNotFoundError`. O `2>/dev/null` no comando **mascarou** o erro, `REDIRECT_MAP` ficou **vazio em silêncio**, e a lógica de redirect da v3.9.0 (que validaria essas vizinhas por `Location` em vez de hash) nunca carregou — então elas caíram no baseline-por-hash e o `curl` sem `-L` do 308 nunca bateu. Risco maior do que o ruído: um falso positivo recorrente pode mascarar uma regressão **real** numa vizinha.
+
+- **Convenção nova e obrigatória (Passo 0.3):** todo path passado ao Python — `python -c` inline **ou** env var consumida por helper `.py` — é normalizado para formato Windows (`C:/...`, via `cygpath -m` com fallback `sed`) antes de chegar ao Python. As ferramentas bash entendem as duas formas; o Python do Windows só entende a Windows. No-op em macOS/Linux. Helper `to_win_path()` inlinado em cada snippet que toca o Python (não persiste entre execuções de shell).
+- **Aplicado em todas as fronteiras com o Python:** Passo 0.5.d.ii (`projectId`/`orgId` + guarda de leitura vazia), 0.5.d.iii (`SIBLING` exportado pro `sync_sibling.py` — que **escreve** arquivos; path MSYS gravaria em `C:\c\Users\...` em silêncio), 1.6 (env vars do `csp_drift_check.py`) e 2.4 (REDIRECT_MAP).
+- **REDIRECT_MAP deixou de silenciar a leitura:** removido o `2>/dev/null`; sonda de `REDIRECT_COUNT` antes do mapa — se a leitura falhar (saída não-numérica) **aborta** com a causa provável; e se o `vercel.json` declara `redirects` mas o mapa sai vazio, **aborta** em vez de seguir e gerar falso positivo no 3.4.b.
+- **Defesa em profundidade nos helpers:** `sync_sibling.py` e `csp_drift_check.py` normalizam o path internamente (MSYS → Windows) também — protege invocação standalone, idempotente para path já Windows e no-op em Unix/relativo.
+- **`lp-sync` v1.0.2 (mesma correção):** o Passo 4 do `lp-sync` tem o `python -c` idêntico (lê `projectId`/`orgId` do `.vercel/project.json`) e o Passo 5 exporta `SIBLING` pro mesmo `sync_sibling.py` — ambos ganharam normalização Windows-style + guarda de leitura vazia. Era o mesmo bug latente; corrigido junto pra não deixar a skill irmã quebrando no Windows.
+- Mesma família de pegadinha já documentada na memória do agente (Python lê/grava `/tmp` em `C:\tmp`, bash usa o `/tmp` do MSYS). Incidente em `landing-pages/CONTEXT.md` §7.2 (2026-06-30) + linha de troubleshooting no §6. Sem mudança de interface.
+
 ### 2026-06-25 — lp-publicar v3.9.1 + lp-sync v1.0.1: detecção de guarda-chuva pagina `vercel alias ls`
 
 Ao restaurar a LP `mcp-na-pratica-p` (`webinar.buzzmonitor.com`), a detecção de modo do `lp-publicar` Passo 0.5.b retornou vazio e cairia em **modo solo por engano** — criaria projeto Vercel duplicado que não serve o domínio. Causa: `vercel alias ls` pagina (~20 aliases/página, mais recentes primeiro) e imprime `... --next <token>` no rodapé; o domínio guarda-chuva, antigo, estava na **página 2**, e o `awk` só lia a primeira página.
