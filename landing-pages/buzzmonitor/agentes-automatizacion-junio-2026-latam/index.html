@@ -12,11 +12,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MKQBX2MG');</script>
 <!-- End Google Tag Manager -->
 
-<title>MCP para Social Listening en la práctica · Webinar Buzzmonitor · 17 de Junio</title>
-<meta name="description" content="Webinar gratuito de Buzzmonitor el 17 de junio. Cómo la integración con IAs está revolucionando el Social Listening y la prevención de crisis." />
+<title>MCP para Social Listening en la práctica · Webinar Buzzmonitor · 25 de Junio</title>
+<meta name="description" content="Webinar gratuito de Buzzmonitor el 25 de junio. Cómo la integración con IAs está revolucionando el Social Listening y la prevención de crisis." />
 <link rel="canonical" href="https://webinar.buzzmonitor.com/agentes-automatizacion-junio-2026-latam" />
 <meta property="og:title" content="MCP para Social Listening en la práctica · Webinar Buzzmonitor" />
-<meta property="og:description" content="17 de junio · Online y En Vivo. Social Listening automatizado con agentes de IA en la práctica." />
+<meta property="og:description" content="25 de junio · Online y En Vivo. Social Listening automatizado con agentes de IA en la práctica." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://webinar.buzzmonitor.com/agentes-automatizacion-junio-2026-latam" />
 <meta property="og:locale" content="es_LA" />
@@ -429,6 +429,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .ticket-rows > div { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
   .ticket-rows dt { color: var(--c-n500); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; margin: 0; }
   .ticket-rows dd { margin: 0; font-weight: 500; color: var(--c-n900); text-align: right; }
+
+  /* Chips de horario por pais (bandeiras) */
+  .tz-list {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .tz-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 10px 6px 8px;
+    background: var(--c-n100);
+    border: 1px solid var(--c-n300);
+    border-radius: var(--r-pill);
+    font-family: var(--ff-sub);
+    font-size: 12.5px;
+    line-height: 1;
+    color: var(--c-n900);
+    white-space: nowrap;
+  }
+  .tz-chip .flag {
+    display: inline-block;
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(20,17,26,.08);
+    flex-shrink: 0;
+  }
+  .tz-chip .time { font-weight: 700; letter-spacing: 0; }
+  .tz-chip .country {
+    color: var(--c-n500);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  /* Variante para a secao final (off-white) — chip branco */
+  .final .tz-list { margin-top: 16px; }
+  .final .tz-chip { background: #fff; }
 
   /* Enfeites clean ao redor do ticket, so formas abstratas em linhas, sem color blocks */
   .hero-visual::before,
@@ -1166,7 +1206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Nav -->
 <header class="nav" aria-label="Encabezado">
   <div class="wrap nav-inner">
-    <a href="#" class="brand-mark" aria-label="Buzzmonitor, página de inicio">
+    <a href="https://getbuzzmonitor.com/es/" class="brand-mark" aria-label="Buzzmonitor, página de inicio" target="_blank" rel="noopener">
       <img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" width="220" height="44" fetchpriority="high" />
     </a>
     <div class="nav-meta">
@@ -1210,8 +1250,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <aside class="ticket" aria-label="Información del webinar">
           <div class="ticket-label">Save the date</div>
           <div class="ticket-date">
-            17<span class="slash">/</span>06
-            <small>Miércoles &middot; 11:00 h (Brasil)</small>
+            25<span class="slash">/</span>06
+            <small>Jueves</small>
+            <ul class="tz-list" aria-label="Horarios por país">
+              <li class="tz-chip"><img class="flag" src="https://flagcdn.com/mx.svg" alt="" loading="lazy" /><span class="time">16:00</span><span class="country">MX</span></li>
+              <li class="tz-chip"><img class="flag" src="https://flagcdn.com/co.svg" alt="" loading="lazy" /><span class="time">17:00</span><span class="country">COL</span></li>
+              <li class="tz-chip"><img class="flag" src="https://flagcdn.com/pe.svg" alt="" loading="lazy" /><span class="time">17:00</span><span class="country">PER</span></li>
+              <li class="tz-chip"><img class="flag" src="https://flagcdn.com/cl.svg" alt="" loading="lazy" /><span class="time">18:00</span><span class="country">CL</span></li>
+              <li class="tz-chip"><img class="flag" src="https://flagcdn.com/ar.svg" alt="" loading="lazy" /><span class="time">19:00</span><span class="country">ARG</span></li>
+            </ul>
           </div>
           <dl class="ticket-rows">
             <div><dt>Formato</dt><dd>Online &middot; En vivo</dd></div>
@@ -1241,26 +1288,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap final-grid">
       <div class="reveal">
         <span class="eyebrow" style="color: var(--c-accent-2);">Cupo gratuito</span>
-        <h2 id="final-title" style="margin-top: 14px;">Dejá de monitorear a mano. Poné agentes a trabajar.</h2>
-        <p class="when"><b>17 de Junio</b> &middot; 11:00 h (Brasil) &middot; Online y En Vivo</p>
+        <h2 id="final-title" style="margin-top: 14px;">Deja de monitorear a mano. Pon agentes a trabajar.</h2>
+        <p class="when"><b>25 de Junio</b> &middot; Jueves &middot; Online y En Vivo</p>
+        <ul class="tz-list" aria-label="Horarios por país">
+          <li class="tz-chip"><img class="flag" src="https://flagcdn.com/mx.svg" alt="" loading="lazy" /><span class="time">16:00</span><span class="country">MX</span></li>
+          <li class="tz-chip"><img class="flag" src="https://flagcdn.com/co.svg" alt="" loading="lazy" /><span class="time">17:00</span><span class="country">COL</span></li>
+          <li class="tz-chip"><img class="flag" src="https://flagcdn.com/pe.svg" alt="" loading="lazy" /><span class="time">17:00</span><span class="country">PER</span></li>
+          <li class="tz-chip"><img class="flag" src="https://flagcdn.com/cl.svg" alt="" loading="lazy" /><span class="time">18:00</span><span class="country">CL</span></li>
+          <li class="tz-chip"><img class="flag" src="https://flagcdn.com/ar.svg" alt="" loading="lazy" /><span class="time">19:00</span><span class="country">ARG</span></li>
+        </ul>
         <p style="margin-top: 28px; color: var(--c-n700); max-width: 40ch;">
           Tu inscripción te garantiza el acceso en vivo. Sin spam, sin vueltas.
         </p>
       </div>
 
       <div class="jotform-embed reveal" style="--d: 140ms">
-        <iframe
-          id="JotFormIFrame-261188302248052"
-          title="Formulario de inscripción"
-          allowtransparency="true"
-          allow="geolocation; microphone; camera; fullscreen"
-          src="https://form.jotform.com/261188302248052"
-          frameborder="0"
-          style="width:100%;height:560px;border:none;display:block;"
-          scrolling="no"
-        ></iframe>
-        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-        <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261188302248052']", "https://form.jotform.com")</script>
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261188302248052"></script>
       </div>
     </div>
   </section>
@@ -1328,7 +1371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
           </span>
           <div>
-            <h3>Los insights llegan tarde, cuando llegan</h3>
+            <h3>Los insights llegan demasiado tarde</h3>
             <p>El Social Listening manual depende de que alguien tenga tiempo de mirar. Una tendencia que identificás hoy puede haber surgido hace tres días, y la ventana de acción ya se cerró.</p>
           </div>
         </article>
@@ -1360,7 +1403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="different" aria-labelledby="offer-title">
     <div class="wrap diff-grid">
       <div class="diff-art reveal" aria-hidden="true">
-        <span class="diff-art-tag">Webinar · 17/06</span>
+        <span class="diff-art-tag">Webinar · 25/06</span>
         <p class="diff-quote">
           Social Listening<br />
           <em>en automático.</em>
@@ -1381,14 +1424,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap">
       <header class="sec-head reveal">
         <span class="eyebrow">Para quién es</span>
-        <h2 id="for-title">Este encuentro es para vos que&hellip;</h2>
+        <h2 id="for-title">Este encuentro es para ti que&hellip;</h2>
       </header>
       <div class="for-grid">
         <div>
           <ul class="for-list" role="list">
-            <li class="reveal" style="--d: 0ms"><span class="check-emoji" aria-hidden="true">✅</span>Hacés Social Listening hoy y querés dejar de depender de la revisión manual para no perder nada</li>
-            <li class="reveal" style="--d: 100ms"><span class="check-emoji" aria-hidden="true">✅</span>Gestionás reputación o comunicación de marca y necesitás inteligencia en tiempo real</li>
-            <li class="reveal" style="--d: 200ms"><span class="check-emoji" aria-hidden="true">✅</span>Liderás marketing o atención y querés transformar datos de escucha en decisiones más rápidas</li>
+            <li class="reveal" style="--d: 0ms"><span class="check-emoji" aria-hidden="true">✅</span>Haces Social Listening hoy y quieres dejar de depender de la revisión manual para no perder nada</li>
+            <li class="reveal" style="--d: 100ms"><span class="check-emoji" aria-hidden="true">✅</span>Gestionas reputación o comunicación de marca y necesitas inteligencia en tiempo real</li>
+            <li class="reveal" style="--d: 200ms"><span class="check-emoji" aria-hidden="true">✅</span>Lideras marketing o atención al cliente y quieres transformar datos de escucha en decisiones más rápidas</li>
           </ul>
           <div class="for-cta reveal" style="--d: 320ms">
             <a href="#inscripcion" class="btn-primary">
@@ -1422,15 +1465,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="sp-grid reveal">
         <article class="sp-card">
-          <div class="sp-photo"><img src="/assets/buzzmonitor/bruno.jpg" alt="Foto de Bruno Braga" loading="lazy" /></div>
-          <h3 class="sp-name">Bruno Braga</h3>
-          <p class="sp-role">Dir. de Nuevos Negocios y Marketing</p>
+          <div class="sp-photo"><img src="/assets/buzzmonitor/nadia.jpg" alt="Foto de Nadia Lezcano" loading="lazy" /></div>
+          <h3 class="sp-name">Nadia Lezcano</h3>
+          <p class="sp-role">Business Development</p>
           <div class="sp-company"><img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
         </article>
         <article class="sp-card">
-          <div class="sp-photo"><img src="/assets/buzzmonitor/breno.jpg" alt="Foto de Breno Soutto" loading="lazy" /></div>
-          <h3 class="sp-name">Breno Soutto</h3>
-          <p class="sp-role">Head of Insights</p>
+          <div class="sp-photo"><img src="/assets/buzzmonitor/maria.jpg" alt="Foto de María José Ramírez" loading="lazy" /></div>
+          <h3 class="sp-name">María José Ramírez</h3>
+          <p class="sp-role">Business Development</p>
           <div class="sp-company"><img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
         </article>
       </div>
@@ -1501,9 +1544,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="f-grid">
       <img src="/assets/buzzmonitor/logos/logo-reversed.svg" alt="Buzzmonitor" width="110" height="22" loading="lazy" />
-      <a class="powered ig-link" href="https://www.instagram.com/buzzmonitorbr/" target="_blank" rel="noopener noreferrer" aria-label="Buzzmonitor no Instagram">
+      <a class="powered ig-link" href="https://www.instagram.com/getbuzzmonitor.es/" target="_blank" rel="noopener noreferrer" aria-label="Buzzmonitor en Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <span translate="no">@buzzmonitorbr</span>
+        <span translate="no">@getbuzzmonitor.es</span>
       </a>
     </div>
     <p class="legal">
@@ -1536,7 +1579,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // Countdown D/H/M/S até o webinar
   (function () {
-    var target = new Date('2026-06-17T11:00:00-03:00').getTime();
+    var target = new Date('2026-06-25T19:00:00-03:00').getTime();
     var elD = document.getElementById('cd-d');
     var elH = document.getElementById('cd-h');
     var elM = document.getElementById('cd-m');
