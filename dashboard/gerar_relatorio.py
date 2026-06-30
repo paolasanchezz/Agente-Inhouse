@@ -62,8 +62,9 @@ BAK_PATH = HTML_PATH.with_suffix('.html.bak')
 # Total YtD 2026: 7 deals · R$ 19.270 (inalterado).
 # Revisao 2026-06-30: +2 fechamentos won com cierre retroagido a 07/mai (DR. Consulta, webinar/athaide-martins, R$ 8.340; Echef Robot, Instagram_Feed, R$ 1.590). Total YtD 2026: 9 deals · R$ 29.200.
 # Revisao 2026-06-30 (b): -1 fechamento — ECHEF ROBOT (deal 186199, R$ 1.590) p/ EMAIL_BLACKLIST: falso CM, lead de evento (bug de tracking Instagram_Feed/cpc). Total YtD 2026: 8 deals · R$ 27.610.
-EXPECTED_FECH_YTD_2026 = 8
-EXPECTED_FECH_VALOR_YTD_2026 = 27610.0
+# Revisao 2026-06-30 (c): +1 fechamento — Solano Donato Carnot Damacena (deal 186979, blog/blog-monit-politico, R$ 8.500, cierre 23/jun, BD Leticia Mello). Total YtD 2026: 9 deals · R$ 36.110.
+EXPECTED_FECH_YTD_2026 = 9
+EXPECTED_FECH_VALOR_YTD_2026 = 36110.0
 
 _MESES_CURTOS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 
