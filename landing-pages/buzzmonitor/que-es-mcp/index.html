@@ -718,6 +718,13 @@
       box-shadow: var(--shadow-lg);
       isolation: isolate;
     }
+    .speaker-photo-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .speaker-photo-frame .placeholder {
       position: absolute;
       inset: 0;
@@ -1111,20 +1118,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="speaker-photo-decor alt" aria-hidden="true"></span>
             <span class="speaker-photo-decor" aria-hidden="true"></span>
             <div class="speaker-photo-frame">
-              <div class="placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4"/>
-                  <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
-                </svg>
-                <span>Presentador por confirmar</span>
-              </div>
+              <img src="./assets/nadia.jpg" alt="Foto de Nadia Lezcano" width="400" height="400" loading="lazy">
             </div>
           </div>
           <div class="speaker-content">
             <span class="section-label">Quién presenta</span>
-            <h2 class="speaker-name">Presentador por confirmar</h2>
-            <p class="speaker-role">Equipo Buzzmonitor</p>
-            <p class="speaker-bio">El webinar lo presenta alguien que trabaja con la Buzzmonitor MCP por dentro y usa Claude con datos reales de listening todos los días. El nombre de quien presenta tu sesión aparece aquí y en el correo de registro.</p>
+            <h2 class="speaker-name">Nadia Lezcano</h2>
+            <p class="speaker-role">Business Development · Buzzmonitor</p>
+            <p class="speaker-bio">Nadia trabaja de cerca con las marcas que usan Buzzmonitor y conoce de primera mano cómo convierten el monitoreo en decisiones del día a día. En esta sesión te muestra la Buzzmonitor MCP en vivo: cómo conectar tu cuenta a Claude para resolver menciones, comparar competidores y armar dashboards sin salir del chat.</p>
             <div class="speaker-tags">
               <span class="speaker-tag">Social listening</span>
               <span class="speaker-tag">Buzzmonitor MCP</span>
