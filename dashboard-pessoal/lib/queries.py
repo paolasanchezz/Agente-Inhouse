@@ -32,6 +32,7 @@ CM_UTM_SOURCES: list[str] = [
     # deal 183535) eh CM legitimo confirmado e entrou na EMAIL_WHITELIST.
     'apresentacao', 'webinar', 'newsletter',
     'Instagram_Feed', 'Instagram_Stories',
+    'insta-bio',  # link da bio do Instagram (Victor confirmou CM, 2026-07-01)
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
@@ -350,6 +351,32 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 )"""
 
 
+# ============ FONTE UNIFICADA DO FUNIL (comercial + contratos) ============
+
+# Colunas usadas pelas queries de funil — presentes nas DUAS tabelas (verificado 2026-07-01).
+_COLS_FUNIL = (
+    "id, account_id, cdate, utm_source, utm_medium, utm_content, url_conversao, "
+    "email_contato_principal_bd_sdr, sdr_responsavel, sdr_sdr, bd_auto, "
+    "data_efetividade_contato_auto, data_agendamento_auto, data_inicio_reuniao_realizada, "
+    "data_envio_proposta_auto, data_negocio_perdido_auto, motivo_perda_bd_sdr, "
+    "title, value, currency"
+)
+
+
+def fonte_deals_funil() -> str:
+    """Subquery com deals de comercial + contratos (dedup por id, prioriza comercial).
+
+    Quando um deal FECHA, ele migra de deals_comercial_prod pra deals_contratos_prod levando
+    todo o funil (lead/CE/RA/RR/Prop). As queries de funil que so olhavam comercial subcontavam
+    os fechados. Usar esta fonte no FROM (no lugar de deals_comercial_prod) inclui os fechados.
+    NAO afeta: perdidos (fechado nao e perdido), fechamentos (ja sao contratos) nem a CTE
+    conversoes_cm (ja une as duas). Espelhar em dashboard/queries.py + exportar_dados.py.
+    """
+    return (f"(SELECT {_COLS_FUNIL} FROM deals_comercial_prod "
+            f"UNION ALL SELECT {_COLS_FUNIL} FROM deals_contratos_prod ct "
+            f"WHERE NOT EXISTS (SELECT 1 FROM deals_comercial_prod c WHERE c.id = ct.id))")
+
+
 # ============ CONTAGENS POR KPI ============
 
 def q_count_leads(ini: date, fim: date) -> str:
@@ -364,7 +391,7 @@ def q_count_leads(ini: date, fim: date) -> str:
     return f"""
 WITH wl AS ({wl}), bl AS ({bl})
 SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
-FROM deals_comercial_prod
+FROM {fonte_deals_funil()} dcp
 WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND email_contato_principal_bd_sdr IS NOT NULL
   AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -382,7 +409,7 @@ def q_count_evento(kpi: str, ini: date, fim: date) -> str:
     return f"""
 {cte}
 SELECT COUNT(*) AS n
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
   AND {_atrib_cm_90d(col, "d")}
@@ -462,7 +489,7 @@ filtrados AS (
     {cde}::date AS data_conversao,
     COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
     {cde} AS cdate
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     AND d.email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -494,7 +521,7 @@ SELECT
   COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
   d.utm_source, d.utm_content,
   d.{col}::date AS data_evento{extras}
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
   AND {_atrib_cm_90d(col, "d")}
@@ -514,7 +541,7 @@ SELECT
   d.data_envio_proposta_auto::date AS data_evento,
   d.value AS valor_text,
   d.currency
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE d.data_envio_proposta_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
   AND {filtro_inbound("d")}
   AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
@@ -617,7 +644,7 @@ wl AS ({wl}),
 bl AS ({bl}),
 leads_p AS (
   SELECT {dim} AS dim, COUNT(*) AS leads
-  FROM deals_comercial_prod
+  FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{d1}' AND '{d2}'
     AND email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -629,7 +656,7 @@ leads_p AS (
 ),
 ce_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS ce
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
@@ -637,7 +664,7 @@ ce_p AS (
 ),
 ra_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS ra
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_agendamento_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_agendamento_auto", "d")}
@@ -645,7 +672,7 @@ ra_p AS (
 ),
 rr_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS rr
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
@@ -653,7 +680,7 @@ rr_p AS (
 ),
 prop_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS prop
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{d1}' AND '{d2}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
@@ -718,7 +745,7 @@ ranked AS (
     utm_source,
     COUNT(*) AS n,
     ROW_NUMBER() OVER (PARTITION BY utm_content ORDER BY COUNT(*) DESC) AS rn
-  FROM deals_comercial_prod
+  FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     AND email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -761,7 +788,7 @@ wl AS ({wl}),
 bl AS ({bl}),
 eventos AS (
   SELECT date_trunc('week', cdate)::date AS semana, 'leads' AS metrica
-  FROM deals_comercial_prod
+  FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND email_contato_principal_bd_sdr IS NOT NULL
     AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -771,19 +798,19 @@ eventos AS (
     )
   UNION ALL
   SELECT date_trunc('week', d.data_efetividade_contato_auto)::date, 'ce'
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_agendamento_auto)::date, 'agendadas'
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_agendamento_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_envio_proposta_auto)::date, 'propostas'
-  FROM deals_comercial_prod d
+  FROM {fonte_deals_funil()} d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     AND {filtro_inbound("d")}
     AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
@@ -828,7 +855,7 @@ SELECT
     WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
       AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
   ) AS rr_12m
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE {filtro_inbound("d")}
   AND (
     d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'

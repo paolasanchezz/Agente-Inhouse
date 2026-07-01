@@ -30,7 +30,7 @@ import psycopg  # noqa: E402
 from lib.queries import (  # noqa: E402
     EMAIL_BLACKLIST, EMAIL_WHITELIST, COLUNA_EVENTO,
     filtro_cm, filtro_inbound, _atrib_cm_90d, cte_conversoes_cm,
-    _sql_email_list, _cdate_efetivo,
+    _sql_email_list, _cdate_efetivo, fonte_deals_funil,
     q_serie_temporal_12m, q_proporcao_sources_12m,
 )
 from lib.render import serie_temporal_12m, proporcao_sources, jsonify  # noqa: E402
@@ -78,7 +78,7 @@ SELECT d.id, d.title AS deal, d.email_contato_principal_bd_sdr AS email,
        COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
        {cde}::date AS data, {cde} AS ts,
        d.cdate::date AS cdate_cru
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE {cde}::date BETWEEN '{ini}' AND '{fim}'
   AND d.email_contato_principal_bd_sdr IS NOT NULL
   AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
@@ -103,7 +103,7 @@ SELECT d.id, d.title AS deal,
        COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
        d.utm_source, d.utm_content,
        d.{col}::date AS data{extra}
-FROM deals_comercial_prod d
+FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini}' AND '{fim}'
   AND {filtro_inbound("d")}
   AND {_atrib_cm_90d(col, "d")}

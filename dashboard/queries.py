@@ -40,6 +40,7 @@ CM_UTM_SOURCES: list[str] = [
     # deal 183535) eh CM legitimo confirmado e entrou na EMAIL_WHITELIST.
     'apresentacao', 'webinar', 'newsletter',
     'Instagram_Feed', 'Instagram_Stories',
+    'insta-bio',  # link da bio do Instagram (Victor confirmou CM, 2026-07-01)
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
