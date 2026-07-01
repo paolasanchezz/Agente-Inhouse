@@ -74,6 +74,17 @@ Condições (todas obrigatórias):
 
 > **Pré-requisito técnico:** exige um MCP do Webflow conectado à sessão. Se não houver tool de publicação do Webflow disponível, a publicação direta não roda — avise o usuário e pare, em vez de cair no pipeline Vercel sem ele pedir.
 
+### 2.5 Webflow — armadilhas do build headless (MCP)
+
+Ao **montar** uma LP no Webflow via MCP (superfície headless `data_*`), há armadilhas técnicas que não aparecem no editor visual:
+
+- **`<img>` vira `imgraw` e não renderiza.** O `data_whtml_builder` converte `<img>` do HTML numa tag inválida (`imgraw`). Para imagem no build headless, crie um elemento `Image` de verdade (`data_element_builder`, `type: Image`) ou use a estratégia de placeholders nomeados.
+- **CSS só aceita seletor de classe única.** Sem seletor descendente, sem elemento puro, sem `!important`. Cada elemento precisa da própria classe completa.
+
+O playbook completo de placeholders provisórios (montar a LP inteira sem depender das imagens finais + fluxo de substituição por nome) está em [`GUIA-placeholders-webflow.md`](GUIA-placeholders-webflow.md).
+
+> Outras armadilhas do MCP do Webflow (custom code, fontes, ícones, keyframes) devem ser anotadas aqui conforme reaparecerem — este é o lar versionado dessa lista.
+
 ---
 
 ## 3. Convenção de assets / imagens (UNIFICADA)
