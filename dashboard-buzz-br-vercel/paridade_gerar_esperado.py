@@ -89,14 +89,14 @@ def main() -> None:
             ini, fim = date.fromisoformat(ini_s), date.fromisoformat(fim_s)
             rec = {"ini": ini_s, "fim": fim_s, "kpis_atual": _kpis(cur, ini, fim)}
             if extras:
-                mtd_ini = date(fim.year, fim.month, 1)  # perdidos_mtd e sempre do mes corrente (como no render)
                 rec["listas_len"] = {
                     'leads': len(_fd(cur, q_lista_leads(ini, fim))),
                     'ra':    len(_fd(cur, q_lista_evento('ra', ini, fim))),
                     'rr':    len(_fd(cur, q_lista_evento('rr', ini, fim))),
                     'prop':  len(_fd(cur, q_lista_propostas(ini, fim))),
                     'fech':  len(_fd(cur, q_lista_fechamentos(ini, fim))),
-                    'perdidos_mtd': len(_fd(cur, q_lista_perdidos(mtd_ini, fim))),
+                    # perdidos agora segue o periodo do filtro (era MtD) — bate com o motor
+                    'perdidos_mtd': len(_fd(cur, q_lista_perdidos(ini, fim))),
                 }
                 src_map = {r['utm_content']: r['utm_source'] for r in _fd(cur, q_source_por_content(ini, fim))}
                 rec["rank_source"] = _rank(_fd(cur, q_ranking('utm_source', ini, fim)))

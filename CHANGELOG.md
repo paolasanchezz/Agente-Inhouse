@@ -22,6 +22,7 @@ A dashboard no link do Vercel deixou de ser o snapshot semanal fixo e passou a s
 - **Skill reescrita:** fluxo = exportar → copiar 3 arquivos (index.html + motor.js + dados-2026.json) pra sibling → deploy → validar (401 sem senha, 200 nos 3 arquivos, noindex, index referencia MotorCM). Sem o gate de EXPECTED do snapshot (dados vêm do export; sanity check no lugar). Bump MAJOR (muda o que a skill faz).
 - **Segurança reaproveitada:** mesma sibling protegida (senha forte + noindex + SSO Standard). Troca de filtro ~150ms (vs ~14s da local).
 - **Guarda de sincronia (Passo 0.2b):** a skill agora audita, no pré-flight, se o filtro CM do espelho (`dashboard-pessoal/lib/queries.py`, que o exportador usa) bate com o oficial (`dashboard/queries.py`) — o ECHEF ROBOT (deal 186199) reapareceu na 1ª subida porque a blacklist estava só no oficial; sincronizado em `dashboard-pessoal/lib/queries.py` e a guarda evita repetição.
+- **Tabela "Leads Perdidos"** passou a seguir o período do filtro (era fixa no mês corrente — ficava vazia no início do mês e não acompanhava o date-picker); título ajustado pra "no período". Consistente com as demais listas. Motor + validador de paridade atualizados juntos.
 - Snapshot antigo (`dashboard/gerar_relatorio.py`) aposentado; mantido no repo para auditoria.
 
 ### 2026-06-30 — v1.1.0 — Credencial Basic Auth sai do código versionado; SSO Standard + senha forte + noindex

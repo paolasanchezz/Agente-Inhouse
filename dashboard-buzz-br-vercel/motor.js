@@ -156,7 +156,7 @@
         rr: listaEvento(D.rr, p.ini_atual, p.fim_atual),
         prop: listaEvento(D.prop, p.ini_atual, p.fim_atual),
         fech: listaEvento(D.fech, p.ini_atual, p.fim_atual),
-        perdidos_mtd: listaPerdidos(D, p.mtd_ini, p.mtd_fim),
+        perdidos_mtd: listaPerdidos(D, p.ini_atual, p.fim_atual), // segue o periodo do filtro (nao so o MtD) — Victor 2026-07-01
       },
       rankings: { source: rSource, content: rContent },
       serie_12m: D.serie_12m,
