@@ -87,6 +87,11 @@ EMAIL_BLACKLIST: list[str] = [
     'teste@webhooklsksks.com',
     # Adicionado 2026-06-22 (auditoria lista colab): deal de teste vazando.
     'muniquebuzz@monitor.com',                # deal 189845 — title "teste crm"
+    # Adicionado 2026-06-30 (Victor): deal 186199 ECHEF ROBOT entrou como CM por bug de
+    # tracking (URL de conversao trouxe utm Instagram_Feed/cpc), mas e lead de EVENTO
+    # (origem_lead_bd e origem_negocio_inbound = "Evento"). Reclassificado: sai do CM.
+    # Sincronizado do dashboard/queries.py em 2026-07-01 (estava so no snapshot oficial).
+    'roni@saldaodainformatica.com.br',        # deal 186199 — falso CM, lead de evento
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).

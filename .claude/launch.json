@@ -78,6 +78,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5188", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/que-es-mcp"],
       "port": 5188
+    },
+    {
+      "name": "dash-buzz-br-vercel",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5189", "--bind", "127.0.0.1", "--directory", "dashboard-buzz-br-vercel"],
+      "port": 5189
     }
   ]
 }

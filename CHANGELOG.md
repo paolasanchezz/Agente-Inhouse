@@ -12,6 +12,43 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## dashboard-atualizar
+### 2026-07-01 — v2.0.0 — Dash dinâmica-estática no Vercel (date-picker + dados 2026), substitui o snapshot
+
+A dashboard no link do Vercel deixou de ser o snapshot semanal fixo e passou a ser a **dash dinâmica** (date-picker de intervalo livre + todos os dados de 2026), servida **estática** — sem o Vercel tocar no Supabase (o pooler IPv4 não aceita `looker_readonly`). Contexto e arquitetura em `dashboard-buzz-br-vercel/PLANO-VERCEL.md`.
+
+- **Arquitetura:** exportador Python (`dashboard-buzz-br-vercel/exportar_dados.py`) reusa `dashboard-pessoal/lib/queries.py` (lógica CM = fonte única) → `dados-2026.json` (~290KB). O navegador (`motor.js`) deriva os 4 períodos + agrega por intervalo, entregando ao `render()` o mesmo formato de antes. `index.html` adaptado da dash local (fetch à API → motor local); visual/gráficos inalterados.
+- **Paridade validada:** `paridade_gerar_esperado.py` (dash local, fonte da verdade) × `paridade_check.mjs` (motor) → **916 checagens, 0 divergências** em intervalos variados (1 dia, cross-month, mês, ano). Cobre KPIs, listas (dedup por e-mail no range), rankings (inclusive o quirk do `JOIN USING` que zera dimensão NULL).
+- **Skill reescrita:** fluxo = exportar → copiar 3 arquivos (index.html + motor.js + dados-2026.json) pra sibling → deploy → validar (401 sem senha, 200 nos 3 arquivos, noindex, index referencia MotorCM). Sem o gate de EXPECTED do snapshot (dados vêm do export; sanity check no lugar). Bump MAJOR (muda o que a skill faz).
+- **Segurança reaproveitada:** mesma sibling protegida (senha forte + noindex + SSO Standard). Troca de filtro ~150ms (vs ~14s da local).
+- **Guarda de sincronia (Passo 0.2b):** a skill agora audita, no pré-flight, se o filtro CM do espelho (`dashboard-pessoal/lib/queries.py`, que o exportador usa) bate com o oficial (`dashboard/queries.py`) — o ECHEF ROBOT (deal 186199) reapareceu na 1ª subida porque a blacklist estava só no oficial; sincronizado em `dashboard-pessoal/lib/queries.py` e a guarda evita repetição.
+- Snapshot antigo (`dashboard/gerar_relatorio.py`) aposentado; mantido no repo para auditoria.
+
+### 2026-06-30 — v1.1.0 — Credencial Basic Auth sai do código versionado; SSO Standard + senha forte + noindex
+
+Reforço de segurança da dashboard CM Buzzmonitor BR no Vercel (pedido do Victor — blindar contra acesso de terceiros).
+
+- **Credencial Basic Auth deixou de ser hardcoded** na skill (era `inhouse:inhouse@77`, exposta no git). A skill agora resolve `DASHBOARD_BASIC_AUTH_USER`/`_PASS` de `.env.local` (gitignored — novo Passo 0.6) e usa nos curls de validação (§4.1, §4.4). A senha **forte** real vive só no `.env.local` + no `middleware.js` da sibling (fora do repo), sincronizados. Senha antiga `inhouse@77` aposentada.
+- **Contexto da decisão (medido, não suposto):** o Vercel Authentication (Standard Protection, ligado no painel) cobre só as URLs internas de deploy (`*-elife-group.vercel.app` → `302 vercel.com/sso-api`), **NÃO** o domínio principal `dashboard-buzzmonitor-brasil.vercel.app` (responde direto com o Basic Auth do middleware). Proteger o domínio via SSO exigiria o add-on pago "All Deployments" (vetado pelo custo). Logo, a tranca real do domínio público é a senha forte do middleware; o SSO Standard fica como camada extra grátis.
+- **Anti-descoberta** (na sibling, não-versionada): `vercel.json` ganhou `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; criado `robots.txt` com `Disallow: /`.
+- Sem mudança de args nem de fluxo. Bump MINOR pela nova dependência de env (`.env.local`).
+
+## blog-diario
+### 2026-06-30 — v1.0.0 — Skill inicial: blogpost SEO/GEO diário autônomo, multi-marca
+
+Skill standalone que gera **1 blogpost otimizado para SEO + GEO** por execução, a partir dos clusters de tema da marca, e publica rascunho no Notion (`SEO > {Marca} > Conteúdos complementares`). Pensada pra rodar diariamente via `/schedule` ou `/loop 1d`.
+
+- **Autônoma** (decisão do Victor): sem pausa de aprovação — escolhe o tema pelo score e segue. Arg opcional `[tema]` força um tema e pula a seleção.
+- **Seleção = bake-off de volume multi-fonte:** monta 3–4 candidatos dos clusters × 2–3 variações de keyword, mede volume no **Semrush** (`execute_report`/`keyword_research`) cruzado com **fontes grátis** (Google autocomplete/PAA via WebSearch, Trends, GSC) que **corroboram ou refutam** o Semrush, e escolhe o melhor match: `0.30·volume_validado + 0.25·gap + 0.20·prioridade_cluster + 0.15·relação_produto + 0.10·equilíbrio_funil`.
+- **Anti-duplicação:** Passo 1 carrega e atualiza o inventário de posts existentes (blog-cache.md + crawl do sitemap vivo + rascunhos Notion + state) antes de selecionar; dedupe por **intenção**, não só keyword.
+- **Saída SEO/GEO:** bloco METADADOS completo (slug, title, meta description, keywords, cluster, categoria, links internos) + artigo resposta-primeiro com TOC, H2 em pergunta, FAQ (FAQPage), `tldr` e links internos só reais.
+- **CTA por funil:** ToFu sem CTA duro; MoFu/BoFu com CTA inline + final pra 1 módulo (grafia exata do BRANDBOOK) + LP do catálogo + UTM `utm_source=blog-{marca}&utm_campaign={campaign}&utm_content={slug}`.
+- **Anti-IA MÍNIMO** (decisão do Victor): só precisão factual (zero stat/case inventado, stat com fonte) + grafia exata + correção linguística regional; **não** roda a varredura de `regras-anti-ia.md`.
+- **Multi-marca/região:** corpo neutro; tudo específico vem de arquivo chaveado por marca/região. **v1 pronto: Cxpress BR** (Buzzmonitor BR e demais acendem quando o Victor enviar os clusters).
+- **Entrega:** rascunho Notion hoje; artefato local Astro-ready (`blog-seo/{marca}/{regiao}/{DATA}-{slug}.md`) pra posting via API no futuro.
+
+Arquivos: `.claude/skills/blog-diario/{SKILL,CONTEXT}.md`; conhecimento `conhecimento/copywriting/blog-seo-copy.md`, `conhecimento/editorial/geo-checklist.md`, `conhecimento/editorial/metadados-seo-spec.md`; dados `conhecimento/produto/cxpress/seo/clusters-brasil.md`, `landing-pages/catalogo/lps-{cxpress,buzzmonitor,buzzcreators,elife}.md`; nova chave `seo` em `conhecimento/config/notion-ids.md`.
+
 ## lp-publicar, lp-sync
 ### 2026-06-30 — lp-publicar v3.9.2 + lp-sync v1.0.2: normalizar path Windows pro Python + não silenciar a leitura do REDIRECT_MAP
 

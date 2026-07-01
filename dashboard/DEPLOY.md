@@ -1,5 +1,7 @@
 # Deploy do Dashboard CM Buzzmonitor
 
+> ⚠️ **DESATUALIZADO desde 2026-07-01 (v2.0.0).** A dash no Vercel virou **dinâmica-estática** (date-picker de intervalo livre + dados de 2026 embutidos) — fonte em `dashboard-buzz-br-vercel/`, arquitetura em `dashboard-buzz-br-vercel/PLANO-VERCEL.md`, fluxo na skill `/dashboard-atualizar` (v2.0.0). Este runbook descreve o **snapshot semanal antigo** (aposentado) — mantido só para auditoria/recovery histórico.
+
 > **Skill preferida:** `/dashboard-atualizar` orquestra todo o fluxo abaixo (gera, lida com gate de regressao, deploya, valida). Use o fluxo manual abaixo apenas para debug isolado ou recovery quando a skill estiver fora de alcance.
 
 > **Inegociavel:** deploy NUNCA sai de `dashboard/` no repo. Roda sempre da **pasta sibling fora do repo**.
@@ -9,7 +11,7 @@
 ```
 C:/Users/titof/Downloads/Claude/dashboard-buzzmonitor-brasil/
 ├── index.html        ← cópia do dashboard/relatorio-semanal-buzzmonitor-brasil.html
-├── middleware.js     ← Basic Auth (user: inhouse, pass: inhouse@77)
+├── middleware.js     ← Basic Auth (user: inhouse; senha forte sincronizada com .env.local — NAO versionada)
 ├── vercel.json       ← headers de seguranca
 ├── package.json
 └── .vercel/          ← link Vercel (projectId: prj_ck2DquIyOTmxz5Q823q0bgYVvDKe)
@@ -43,8 +45,9 @@ vercel deploy --prod --yes --cwd "C:/Users/titof/Downloads/Claude/dashboard-buzz
 # 4. Se aliasing nao apontar pro alias principal (acontece se houve rollback recente):
 vercel promote <dpl_id> --cwd "C:/Users/titof/Downloads/Claude/dashboard-buzzmonitor-brasil"
 
-# 5. Verificar
-curl -u "inhouse:inhouse@77" "https://dashboard-buzzmonitor-brasil.vercel.app/" -o tmp/check.html -w "%{http_code}\n"
+# 5. Verificar (credencial vem do .env.local — DASHBOARD_BASIC_AUTH_USER/_PASS; deve bater com middleware.js)
+U=$(grep '^DASHBOARD_BASIC_AUTH_USER=' .env.local | sed 's/^[^=]*=//'); P=$(grep '^DASHBOARD_BASIC_AUTH_PASS=' .env.local | sed 's/^[^=]*=//')
+curl -u "$U:$P" "https://dashboard-buzzmonitor-brasil.vercel.app/" -o tmp/check.html -w "%{http_code}\n"
 # 200 + bytes batem com index.html da sibling = OK
 ```
 

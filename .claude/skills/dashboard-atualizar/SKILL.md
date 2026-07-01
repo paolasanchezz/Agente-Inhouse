@@ -1,468 +1,173 @@
 ---
 name: dashboard-atualizar
-description: Atualiza a dashboard CM Buzzmonitor Brasil — roda gerador Python contra Supabase, lida com gate de regressao (fechamentos novos via chips), copia HTML pra pasta sibling fora do repo, deploya na Vercel via CLI, e valida via HTTP + Basic Auth. Manual-trigger semanal. Single-purpose (so este dashboard).
+description: Atualiza a dashboard CM Buzzmonitor Brasil (dinamica-estatica no Vercel) — roda o exportador Python (Supabase -> dados-2026.json), copia index.html + motor.js + dados pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger semanal. Single-purpose (so este dashboard).
 argument-hint: "(sem args — totalmente automatico)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.0.2
+version: 2.0.0
 ---
 
-# Skill: Atualizar Dashboard CM Buzzmonitor Brasil
+# Skill: Atualizar Dashboard CM Buzzmonitor Brasil (dinamica-estatica)
 
-Voce orquestra o fluxo semanal de atualizacao de https://dashboard-buzzmonitor-brasil.vercel.app: roda o gerador Python (consome Supabase), lida com o gate de regressao (que quase sempre falha quando entra fechamento novo), copia o HTML pra pasta sibling FORA do repo, deploya via Vercel CLI e valida.
+Voce atualiza https://dashboard-buzzmonitor-brasil.vercel.app — a dash **dinamica** (date-picker de intervalo livre + todos os dados de 2026), servida **estatica** no Vercel: os dados sao exportados aqui (onde o Supabase conecta) e embutidos num JSON; o navegador filtra/agrega em memoria (sem tocar no banco).
 
-**Regra inegociavel:** deploy NUNCA sai de `dashboard/` no repo. Sempre da pasta sibling (com `middleware.js` de Basic Auth + `vercel.json`). Padrao identico ao `lp-publicar`. Incidente 2026-05-25 documentado em `dashboard/DEPLOY.md`.
+**Modelo (desde v2.0.0, 2026-07-01):** substituiu o snapshot semanal (`dashboard/gerar_relatorio.py`). A fonte agora e `dashboard-buzz-br-vercel/` (index.html + motor.js + exportador). O motivo, a arquitetura e a garantia de paridade estao em `dashboard-buzz-br-vercel/PLANO-VERCEL.md`.
 
-**Single-purpose:** so cobre o dashboard Buzzmonitor Brasil. Sem multi-marca, sem multi-regiao. Hardcoda nome do projeto Vercel (`dashboard-buzzmonitor-brasil`) e da sibling (`dashboard-buzzmonitor-brasil`).
+**Regra inegociavel:** deploy NUNCA sai de `dashboard-buzz-br-vercel/` no repo. Sempre da pasta **sibling** fora do repo (com `middleware.js` de Basic Auth + `vercel.json` + `robots.txt`). Mesmo padrao do `lp-publicar`. Incidente 2026-05-25 (404 publico por deploy sem middleware) documentado em `dashboard/DEPLOY.md`.
+
+**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre as URLs internas de deploy, nao o dominio principal (ver [[reference_vercel_deployment_protection]] na memoria). A credencial vem de `.env.local` e DEVE bater com `const PASS` no `middleware.js` da sibling.
 
 ---
 
 ## Passo 0: Pre-flight
 
 ### 0.1 Resolver `DASHBOARD_SIBLING_BASE`
-
-Ordem: env var em runtime > linha em `.env.local` na raiz do repo.
-
 ```bash
 SIBLING_BASE="${DASHBOARD_SIBLING_BASE}"
 if [ -z "$SIBLING_BASE" ] && [ -f .env.local ]; then
   SIBLING_BASE=$(grep -E '^DASHBOARD_SIBLING_BASE=' .env.local | head -1 | sed 's/^[^=]*=//')
 fi
-if [ -z "$SIBLING_BASE" ]; then
-  echo "ERRO: DASHBOARD_SIBLING_BASE nao configurado. Adicione em .env.local: DASHBOARD_SIBLING_BASE=/path/onde/fica/a/sibling"
-  exit 1
-fi
+if [ -z "$SIBLING_BASE" ]; then echo "ERRO: DASHBOARD_SIBLING_BASE nao configurado em .env.local"; exit 1; fi
 SIBLING="$SIBLING_BASE/dashboard-buzzmonitor-brasil"
 ```
 
-### 0.2 Verificar repo e env do Supabase
+### 0.2 Verificar repo + fonte + env do Supabase
+- `git rev-parse --show-toplevel` deve resolver (rode da raiz do repo).
+- `dashboard-buzz-br-vercel/{exportar_dados.py,index.html,motor.js}` devem existir.
+- `dashboard-pessoal/.env` (ou `dashboard/.env`) deve ter `SUPABASE_PG_URL=` — o exportador reusa a `queries.py`/conexao da dash local.
 
-- `git rev-parse --show-toplevel` deve resolver. Se nao, abortar (rode da raiz do repo).
-- `dashboard/.env` deve existir com `SUPABASE_PG_URL=`. Se nao, instruir: copiar de `dashboard/.env.example` e preencher.
+### 0.2b Auditar sincronia do filtro CM (espelho × oficial)
+
+O filtro CM vive em DOIS lugares sincronizados **a mao**: `dashboard/queries.py` (oficial) e `dashboard-pessoal/lib/queries.py` (espelho, que o exportador usa). Se divergirem, a dash de producao mostra deals errados — foi o que trouxe o **ECHEF ROBOT** de volta em 2026-07-01 (blacklist estava so no oficial). Checar ANTES de exportar:
+
+```bash
+uv run --python 3.12 python -c "
+import importlib.util
+def L(p,n):
+    s=importlib.util.spec_from_file_location(n,p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+o=L('dashboard/queries.py','o'); e=L('dashboard-pessoal/lib/queries.py','e'); d=False
+for a in ['CM_UTM_SOURCES','EMAIL_WHITELIST','EMAIL_BLACKLIST','INTERNOS_EXCLUIR','CM_SLUGS_PREFIXES']:
+    A,B=set(getattr(o,a)),set(getattr(e,a))
+    if A^B: d=True; print(f'{a}: so_oficial={sorted(A-B)} so_espelho={sorted(B-A)}')
+for a in ['CM_DEALS_FORCADOS','RECONVERSOES_MANUAIS','DEALS_EXCLUIDOS_URL_DATA']:
+    if getattr(o,a)!=getattr(e,a): d=True; print(f'{a}: DIFERENTE')
+print('FILTRO SINCRONIZADO' if not d else 'DESSINCRONIZADO — replicar a mudanca no espelho ANTES de exportar')
+"
+```
+Se **DESSINCRONIZADO**: replicar a diferenca em `dashboard-pessoal/lib/queries.py` e so entao seguir (senao a dash sobe com deals errados).
 
 ### 0.3 Verificar sibling
-
-A sibling deve ter:
-- `$SIBLING/.vercel/project.json` (link Vercel) com `projectId: prj_ck2DquIyOTmxz5Q823q0bgYVvDKe`
-- `$SIBLING/middleware.js` (Basic Auth)
-- `$SIBLING/vercel.json` (headers)
-- `$SIBLING/package.json`
-
-Se faltar `.vercel/`: abortar com:
-```
-Sibling nao linkada ao Vercel. Rode:
-  cd "$SIBLING" && npx vercel link --yes --project=dashboard-buzzmonitor-brasil --scope=team_nC991VqUuSU2jXZN152xqqEg
-```
-
-Se faltar `middleware.js` ou `vercel.json` ou `package.json`: abortar com `Sibling corrompida em $SIBLING. Restaurar middleware.js + vercel.json + package.json antes de continuar (estao na sibling, nao no repo).`
+Deve ter: `$SIBLING/.vercel/project.json` (projectId `prj_ck2DquIyOTmxz5Q823q0bgYVvDKe`), `middleware.js`, `vercel.json`, `robots.txt`, `package.json`.
+- Faltando `.vercel/`: `cd "$SIBLING" && npx vercel link --yes --project=dashboard-buzzmonitor-brasil --scope=team_nC991VqUuSU2jXZN152xqqEg`
+- Faltando middleware/vercel.json/robots.txt/package.json: abortar (`Sibling corrompida — restaurar arquivos de seguranca antes de continuar`).
 
 ### 0.4 Verificar Vercel CLI auth
-
 ```bash
 npx --yes vercel whoami --scope=team_nC991VqUuSU2jXZN152xqqEg
 ```
+Exit != 0: abortar (`Rode 'npx vercel login' e re-execute`).
 
-Se exit != 0: abortar com `Rode 'npx vercel login' e re-execute /dashboard-atualizar.`
-
-### 0.5 Capturar contexto
-
+### 0.5 Resolver credencial Basic Auth (de .env.local; deve bater com o middleware)
 ```bash
-TODAY=$(date +%Y-%m-%d)
-mkdir -p tmp
-```
-
-Ler `dashboard/gerar_relatorio.py` linhas 48-58 (Read). Extrair:
-- `EXPECTED_OLD_N` = valor de `EXPECTED_FECH_YTD_2026`
-- `EXPECTED_OLD_VALOR` = valor de `EXPECTED_FECH_VALOR_YTD_2026`
-- `LAST_REVISAO` = data mais recente em `# Revisao YYYY-MM-DD:` no comentario (fallback: `2026-05-18` se nunca houve revisao)
-
----
-
-## Passo 1: Gerar HTML + gate de regressao
-
-### 1.1 Primeira tentativa
-
-```bash
-uv run --python 3.12 --with "psycopg[binary]" python dashboard/gerar_relatorio.py 2>&1 | tee "tmp/dashboard-run-$TODAY.log"
-EXIT_CODE=${PIPESTATUS[0]}
-```
-
-### 1.2 Smoke test passou (exit 0)
-
-Pular pro Passo 2. Log resumido: `[OK] gerar_relatorio.py exit 0 — nenhum fech novo desde $LAST_REVISAO. Seguindo pra Passo 2.`
-
-### 1.3 Erro real (exit != 0 mas log NAO contem `[smoke test] FALHA`)
-
-Algo quebrou alem do gate (Supabase fora do ar, import error, etc.). Abortar e propagar as ultimas 15 linhas do log pro Victor. Nao tentar gate.
-
-### 1.4 Listar fechamentos YtD atuais (sem criar arquivo)
-
-```bash
-uv run --python 3.12 --with "psycopg[binary]" python -c "
-import sys, json
-from datetime import date
-sys.path.insert(0, 'dashboard')
-from datas import calcular_periodos
-from queries import q_lista_fechamentos
-from gerar_relatorio import load_url, fetch_dict
-import psycopg
-p = calcular_periodos()
-with psycopg.connect(load_url()) as conn, conn.cursor() as cur:
-    rows = fetch_dict(cur, q_lista_fechamentos(p['ytd_ini'], p['ytd_fim']))
-soma = sum(float(r.get('valor') or 0) for r in rows)
-out = {
-    'n': len(rows),
-    'soma': soma,
-    'rows': [{
-        'id': r['id'],
-        'deal': str(r['deal'])[:70],
-        'utm_source': r.get('utm_source') or '',
-        'utm_content': str(r.get('utm_content') or '')[:40],
-        'valor': float(r.get('valor') or 0),
-        'data_evento': str(r['data_evento']),
-        'email': r.get('email') or '',
-        'bd': r.get('bd') or '',
-    } for r in rows],
-}
-print(json.dumps(out, ensure_ascii=False, default=str))
-" > "tmp/dashboard-fech-$TODAY.json" 2>&1
-```
-
-Parsear o JSON com `python -c "import json; print(json.load(open('tmp/dashboard-fech-$TODAY.json')))"` ou ler direto com Read.
-
-### 1.5 Identificar fechamentos NOVOS
-
-Filtrar `rows` por `data_evento > LAST_REVISAO`. Se LAST_REVISAO desconhecida, listar todos os fechamentos com `data_evento >= 2026-05-01` como suspeitos (heuristica).
-
-Computar:
-- `N_ATUAL` = numero total de fechamentos
-- `SOMA_ATUAL` = soma total
-- `NOVOS` = lista filtrada
-- `DELTA_N` = `N_ATUAL - EXPECTED_OLD_N`
-- `DELTA_SOMA` = `SOMA_ATUAL - EXPECTED_OLD_VALOR`
-
-### 1.6 Divergencia NEGATIVA (n < EXPECTED) — abortar SEM perguntar
-
-```
-ERRO: divergencia NEGATIVA — fechamentos sumiram do banco.
-
-  Esperado: $EXPECTED_OLD_N deals · R$ $EXPECTED_OLD_VALOR
-  Atual:    $N_ATUAL deals · R$ $SOMA_ATUAL
-
-Atualizar EXPECTED_* nesse caso esconderia regressao real.
-
-Possiveis causas:
-  - Filtro CM em dashboard/queries.py foi alterado
-  - EMAIL_BLACKLIST cresceu / EMAIL_WHITELIST encolheu
-  - Deal foi removido do CRM (raro — investigar)
-
-Acao: leia tmp/dashboard-fech-$TODAY.json, compare com a lista esperada e
-investigue queries.py antes de rodar /dashboard-atualizar de novo.
-```
-
-Aborta. Skill nao toca em EXPECTED_*.
-
-### 1.7 Auditoria: queries.py mudou nos ultimos 7 dias?
-
-```bash
-QUERIES_CHANGES=$(git log --oneline --since="7 days ago" -- dashboard/queries.py 2>/dev/null)
-```
-
-Se nao-vazio, armazenar pra anexar ao bloco do gate (§1.8).
-
-### 1.8 Bloco textual + AskUserQuestion (gate)
-
-Imprimir antes da pergunta (texto plain, sem markdown, pra renderizar bem):
-
-```
-============================================================
-GATE DE REGRESSAO — Fechamentos YtD 2026
-============================================================
-
-Esperado (EXPECTED_FECH_YTD_2026):  $EXPECTED_OLD_N deals · R$ $EXPECTED_OLD_VALOR
-Atual no banco:                     $N_ATUAL deals · R$ $SOMA_ATUAL
-Delta:                              +$DELTA_N deals · +R$ $DELTA_SOMA
-
-Fechamentos NOVOS (data_evento > $LAST_REVISAO):
-
-  YYYY-MM-DD · Cliente                · utm_source       · R$ valor · email
-  ... (1 linha por novo fech)
-
-(Demais $EXPECTED_OLD_N fechamentos ja contemplados — nao listados.)
-```
-
-Se `QUERIES_CHANGES` nao-vazio, anexar:
-
-```
-ATENCAO: dashboard/queries.py mudou nos ultimos 7 dias:
-  <git log oneline output>
-
-Fechamentos "novos" podem refletir mudanca de filtro CM, nao apenas fech genuinos.
-Confirme que os novos batem com o que voce esperava antes de aprovar.
-```
-
-Entao chamar `AskUserQuestion`:
-
-```
-question: "Aprovar atualizacao de EXPECTED_FECH_YTD_2026 ($EXPECTED_OLD_N -> $N_ATUAL) e re-rodar o gerador?"
-header: "Gate fechamentos"
-multiSelect: false
-
-Opcoes:
-  1. "Sim — atualizar e deployar (Recomendado)"
-     description: "Edita gerar_relatorio.py (EXPECTED_* + linha de comentario historico),
-     re-roda gerador, se exit 0 segue pra Passo 2 (copia + deploy)."
-
-  2. "Atualizar mas pular deploy"
-     description: "Edita gerar_relatorio.py + re-roda gerador, ate HTML novo em disco,
-     mas para antes do Passo 2. Util pra abrir o HTML local no browser antes de subir."
-
-  3. "Investigar antes — abortar"
-     description: "Para a skill sem editar nada. Voce inspeciona tmp/dashboard-fech-$TODAY.json
-     e roda /dashboard-atualizar de novo quando estiver confiante."
-```
-
-**NAO PROSSEGUIR sem resposta explicita.**
-
-### 1.9 Se aprovado (opcao 1 ou 2): patch automatico
-
-a. **Backup:**
-   ```bash
-   cp dashboard/gerar_relatorio.py "tmp/gerar_relatorio.py.bak-$TODAY"
-   ```
-
-b. **Edit do `EXPECTED_FECH_YTD_2026`:**
-   - `old_string`: `EXPECTED_FECH_YTD_2026 = $EXPECTED_OLD_N`
-   - `new_string`: `EXPECTED_FECH_YTD_2026 = $N_ATUAL`
-
-c. **Edit do `EXPECTED_FECH_VALOR_YTD_2026`:**
-   - `old_string`: `EXPECTED_FECH_VALOR_YTD_2026 = $EXPECTED_OLD_VALOR`
-   - `new_string`: `EXPECTED_FECH_VALOR_YTD_2026 = $SOMA_ATUAL`
-   - Atencao: o valor no codigo tem decimal (ex: `16580.0`). Match exato.
-
-d. **Edit pra inserir linha de comentario historico** (acima da linha `EXPECTED_FECH_YTD_2026`):
-
-   Linha nova:
-   ```
-   # Revisao $TODAY: +$DELTA_N fechamento(s) ($lista enxuta — ate 3 — "Cliente, utm_source, R$ valor"). Total YtD 2026: $N_ATUAL deals · R$ $SOMA_ATUAL.
-   ```
-
-   Match pra Edit: a linha imediatamente acima (`# Total YtD 2026: ...` ou ultima linha `# Revisao ...:`). Inserir a nova linha apos.
-
-e. **Mostrar diff no log:**
-   ```bash
-   git diff dashboard/gerar_relatorio.py >> "tmp/dashboard-run-$TODAY.log"
-   git diff --stat dashboard/gerar_relatorio.py
-   ```
-
-f. **Re-rodar gerador:**
-   ```bash
-   uv run --python 3.12 --with "psycopg[binary]" python dashboard/gerar_relatorio.py 2>&1 | tee -a "tmp/dashboard-run-$TODAY.log"
-   ```
-   Exit != 0 aqui = algo alem do gate (raro). Restaurar backup (`cp tmp/gerar_relatorio.py.bak-$TODAY dashboard/gerar_relatorio.py`) e abortar com as ultimas linhas do log.
-
-### 1.10 Se "Atualizar mas pular deploy" (opcao 2)
-
-Parar apos §1.9.f com:
-
-```
-HTML pronto em dashboard/relatorio-semanal-buzzmonitor-brasil.html
-EXPECTED_* atualizado em dashboard/gerar_relatorio.py
-Sibling nao foi tocada.
-
-Pra deployar quando estiver confiante: rode /dashboard-atualizar de novo.
+BASIC_AUTH_USER=$(grep -E '^DASHBOARD_BASIC_AUTH_USER=' .env.local | head -1 | sed 's/^[^=]*=//')
+BASIC_AUTH_PASS=$(grep -E '^DASHBOARD_BASIC_AUTH_PASS=' .env.local | head -1 | sed 's/^[^=]*=//')
+[ -z "$BASIC_AUTH_PASS" ] && { echo "ERRO: DASHBOARD_BASIC_AUTH_PASS ausente em .env.local"; exit 1; }
+MW_PASS=$(grep -oE "const PASS = '[^']*';" "$SIBLING/middleware.js" | sed "s/const PASS = '//;s/';//")
+[ "$MW_PASS" = "$BASIC_AUTH_PASS" ] || echo "WARN: senha do .env.local != middleware.js — vai dar 401 na validacao. Sincronizar antes."
+TODAY=$(date +%Y-%m-%d); mkdir -p tmp
 ```
 
 ---
 
-## Passo 2: Copiar HTML pra sibling
-
-### 2.1 Validar source
-
-- `dashboard/relatorio-semanal-buzzmonitor-brasil.html` existe? `stat` ou `Get-Item`.
-- Tamanho > 50KB (defesa contra HTML zerado por erro silencioso). HTML real fica em torno de 72KB. Se < 50KB, abortar.
-
-### 2.2 Sanity: data "gerado em" presente
-
-Extrair a data ja renderizada na tag `gerado_em`:
+## Passo 1: Exportar dados frescos + sanity
 
 ```bash
-LOCAL_DATA=$(grep -oE 'gerado_em">[^<]+' dashboard/relatorio-semanal-buzzmonitor-brasil.html | head -1 | sed 's/gerado_em">//')
+uv run --python 3.12 --with "psycopg[binary]" python dashboard-buzz-br-vercel/exportar_dados.py 2>&1 | tee "tmp/dash-export-$TODAY.log"
+EXIT=${PIPESTATUS[0]}
 ```
+- Exit != 0: abortar e propagar as ultimas 15 linhas do log (Supabase fora, statement_timeout, import). O exportador seta `statement_timeout=120s`; as queries com CTE de 90d sao lentas (~8s) — normal levar 1-3min.
 
-`LOCAL_DATA` deve ficar com algo no formato PT-BR `DD Mmm YYYY` (ex: `25 Mai 2026`).
-
-Verificar:
-- Nao-vazia. Se vazia, abortar com `Tag gerado_em nao encontrada no HTML — gerador pode ter falhado silenciosamente. Logs: tmp/dashboard-run-$TODAY.log`.
-- Bate com o dia de hoje no formato `DD Mmm YYYY`. Computar a string esperada:
-
+**Sanity do JSON** (defesa contra dados corrompidos/vazios):
 ```bash
-MESES_PT=("Jan" "Fev" "Mar" "Abr" "Mai" "Jun" "Jul" "Ago" "Set" "Out" "Nov" "Dez")
-EXPECTED_DATA="$(date +%d) ${MESES_PT[$((10#$(date +%m) - 1))]} $(date +%Y)"
-[ "$LOCAL_DATA" = "$EXPECTED_DATA" ] || echo "WARN: HTML diz '$LOCAL_DATA', hoje seria '$EXPECTED_DATA'. Pode ser regenerator stale; investigar gerar_relatorio.py."
+uv run --python 3.12 python -c "
+import json,sys
+d=json.load(open('dashboard-buzz-br-vercel/dados-2026.json',encoding='utf-8'))
+import os; sz=os.path.getsize('dashboard-buzz-br-vercel/dados-2026.json')
+assert d.get('leads') and len(d['leads'])>0, 'leads vazio'
+for k in ('leads','ce','ra','rr','prop','fech','perdidos','serie_12m','proporcao_sources','gerado_em'): assert k in d, f'falta {k}'
+assert sz < 3_000_000, f'JSON grande demais: {sz}b (rever campos/compressao)'
+print(f'sanity OK — leads={len(d[\"leads\"])} fech={len(d[\"fech\"])} gerado_em={d[\"gerado_em\"]} tamanho={sz//1024}KB')
+"
 ```
+Falhou o sanity: abortar (nao copiar/deployar dados suspeitos).
 
-Divergencia eh **warning**, nao abort — guardar `LOCAL_DATA` pra usar no §4.3.
+---
 
-### 2.3 Copiar
+## Passo 2: Copiar os 3 arquivos do site pra sibling
 
+**So estes 3** (preservar middleware.js/vercel.json/robots.txt/package.json da sibling):
 ```bash
-cp dashboard/relatorio-semanal-buzzmonitor-brasil.html "$SIBLING/index.html"
+cp dashboard-buzz-br-vercel/index.html      "$SIBLING/index.html"
+cp dashboard-buzz-br-vercel/motor.js        "$SIBLING/motor.js"
+cp dashboard-buzz-br-vercel/dados-2026.json "$SIBLING/dados-2026.json"
+# conferir tamanhos identicos
+for f in index.html motor.js dados-2026.json; do
+  a=$(stat -c%s "dashboard-buzz-br-vercel/$f"); b=$(stat -c%s "$SIBLING/$f")
+  [ "$a" = "$b" ] || { echo "ERRO copia $f: $a != $b"; exit 1; }
+done
+echo "copia OK"
 ```
-
-### 2.4 Validar tamanho
-
-`stat -c "%s" "$SIBLING/index.html"` deve bater com o source (mesmo bytes). Se diverge, abortar.
 
 ---
 
 ## Passo 3: Deploy
-
-### 3.1 `vercel deploy`
-
 ```bash
-npx --yes vercel deploy --prod --yes --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg 2>&1 | tee "tmp/dashboard-deploy-$TODAY.log"
+npx --yes vercel deploy --prod --yes --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg 2>&1 | tee "tmp/dash-deploy-$TODAY.log"
+NEW_DPL_ID=$(grep -oE 'dpl_[a-zA-Z0-9]+' tmp/dash-deploy-$TODAY.log | head -1)
 ```
-
-Em caso de `FetchError: Unexpected end of JSON input` ou similar (bug intermitente da CLI): NAO retry cego. Rodar `npx vercel ls dashboard-buzzmonitor-brasil --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg | head -5` e ver se o deploy ficou READY server-side. Se sim, prosseguir com o deploy id retornado.
-
-### 3.2 Extrair deploy ID e URL do novo deploy
-
-Do log do deploy:
-- `NEW_DPL_ID`: padrao `dpl_[a-zA-Z0-9]+` no JSON final (`"id": "dpl_..."`)
-- `NEW_DPL_URL`: padrao `https://dashboard-buzzmonitor-brasil-[a-z0-9]+-elife-group.vercel.app` (URL provisoria do deploy)
-
-```bash
-NEW_DPL_ID=$(grep -oE 'dpl_[a-zA-Z0-9]+' tmp/dashboard-deploy-$TODAY.log | head -1)
-NEW_DPL_URL=$(grep -oE 'https://dashboard-buzzmonitor-brasil-[a-z0-9]+-elife-group\.vercel\.app' tmp/dashboard-deploy-$TODAY.log | head -1)
-```
-
-### 3.3 Conferir alias e promover se necessario
-
-`vercel ls` lista URLs (subdomain), nao `dpl_id`. Comparar URL do top com `NEW_DPL_URL`:
-
-```bash
-LATEST_URL=$(npx vercel ls dashboard-buzzmonitor-brasil --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg 2>&1 \
-  | grep -oE 'https://dashboard-buzzmonitor-brasil-[a-z0-9]+-elife-group\.vercel\.app' \
-  | head -1)
-```
-
-Se `$LATEST_URL` != `$NEW_DPL_URL` (acontece pos-rollback recente — alias trava no antigo ate promote explicito):
-
-```bash
-npx vercel promote "$NEW_DPL_ID" --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg
-```
-
-**Atalho:** o output do `vercel deploy` no §3.1 ja indica se aliasing rodou automatico (linha `▲ Aliased https://dashboard-buzzmonitor-brasil.vercel.app`). Quando essa linha aparece, alias bateu — pular o `vercel ls` desse passo e ir direto pro Passo 4. Quando NAO aparece (raro — geralmente pos-rollback), entao rodar a checagem acima.
+- Linha `▲ Aliased https://dashboard-buzzmonitor-brasil.vercel.app` = alias bateu, seguir. Se nao aparecer (raro, pos-rollback): `npx vercel promote "$NEW_DPL_ID" --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg`.
+- `FetchError` intermitente da CLI: nao retry cego — `npx vercel ls dashboard-buzzmonitor-brasil --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg | head -5` e ver se ficou READY.
 
 ---
 
-## Passo 4: Verificacao
-
-### 4.1 HTTP check com Basic Auth
-
+## Passo 4: Validacao (as 3 garantias)
 ```bash
-curl -s -u "inhouse:inhouse@77" "https://dashboard-buzzmonitor-brasil.vercel.app/" \
-  -o "tmp/verify-$TODAY.html" \
-  -w "%{http_code} %{size_download}\n"
+B="https://dashboard-buzzmonitor-brasil.vercel.app"
+echo "sem auth (espera 401):  $(curl -s -o /dev/null -w '%{http_code}' "$B/")"
+echo "index   (espera 200):   $(curl -s -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" -o tmp/v.html -w '%{http_code} %{size_download}b' "$B/")"
+echo "motor.js:               $(curl -s -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" -o /dev/null -w '%{http_code}' "$B/motor.js")"
+echo "dados-2026.json:        $(curl -s -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" -o /dev/null -w '%{http_code} %{size_download}b' "$B/dados-2026.json")"
+grep -oq 'MotorCM' tmp/v.html && echo "index e a dash nova: OK" || echo "ERRO: index servido nao referencia MotorCM"
+curl -s -D - -o /dev/null -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" "$B/" | grep -i 'x-robots-tag'
 ```
+Esperado: 401 sem auth · 200 no index (~65KB) · 200 motor.js · 200 dados-2026.json (bate com o local) · index referencia MotorCM · X-Robots-Tag noindex.
 
-Esperado: `200 NNNNN` com NNNNN > 50000 (mesmo piso do Passo 2.1; HTML real fica em ~72-76KB). A validacao firme e o Passo 4.2 (remote == local +/-100 bytes), nao um numero absoluto.
-
-### 4.2 Comparar tamanho com sibling
-
-```bash
-LOCAL_SIZE=$(stat -c "%s" "$SIBLING/index.html")
-REMOTE_SIZE=$(stat -c "%s" "tmp/verify-$TODAY.html")
-DIFF=$((LOCAL_SIZE - REMOTE_SIZE))
-DIFF=${DIFF#-}  # absolute value
-```
-
-Toleranca: ±100 bytes (edge pode reescrever metadata). Se `$DIFF > 100`, esperar 30s e re-testar 1x. Se persistir: warning no relatorio final (nao bloqueia — pode ser cache de edge).
-
-### 4.3 Conteudo bate
-
-Extrair a data renderizada do HTML servido pelo Vercel e comparar com a `LOCAL_DATA` capturada no §2.2:
-
-```bash
-REMOTE_DATA=$(grep -oE 'gerado_em">[^<]+' "tmp/verify-$TODAY.html" | head -1 | sed 's/gerado_em">//')
-[ "$LOCAL_DATA" = "$REMOTE_DATA" ] && echo "OK: data '$REMOTE_DATA' bate com local"
-```
-
-Se nao bate (`LOCAL_DATA="25 Mai 2026"`, `REMOTE_DATA="18 Mai 2026"`): warning — provavel cache de edge servindo versao antiga. Esperar 30s, re-testar 1x. Se persistir, registrar no relatorio final mas nao bloquear (o deploy em si esta READY — edge se ajusta em minutos).
-
-### 4.4 Erros
-
-- **HTTP 401:** middleware quebrou ou credencial mudou. Abortar com `middleware.js da sibling esta diferente. Inspecione $SIBLING/middleware.js. Pra rollback: vercel rollback <dpl_anterior> --cwd "$SIBLING"`. Listar dpls anteriores com `vercel ls`.
-- **HTTP 404:** REPETIU O INCIDENTE 2026-05-25 (sibling sem index.html ou deploy fora). Abortar com:
-  ```
-  ERRO: HTTP 404 no root. Deploy provavelmente saiu sem index.html.
-  Rollback imediato:
-    npx vercel rollback <dpl_anterior_READY> --yes --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg
-
-  Dpls recentes:
-    <output de vercel ls | head -5>
-  ```
-- **Qualquer outro status:** parar e reportar.
+**Erros:**
+- **401 com a credencial certa:** `.env.local` != `const PASS` do `$SIBLING/middleware.js`. Sincronizar e re-deployar.
+- **404 no root:** deploy saiu sem index.html (incidente 2026-05-25). Rollback: `npx vercel rollback <dpl_anterior_READY> --yes --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg`.
+- **index no ar sem `MotorCM`:** subiu versao velha/errada — reconferir Passo 2 e re-deployar.
 
 ---
 
-## Passo 5: Relatorio no console
-
-Imprimir resumo limpo:
-
+## Passo 5: Relatorio
 ```
 ============================================================
-Dashboard CM Buzzmonitor — atualizada
+Dashboard CM Buzzmonitor (dinamica) — atualizada
 ============================================================
+URL:        https://dashboard-buzzmonitor-brasil.vercel.app/  (login: inhouse + senha do .env.local)
+Deploy ID:  $NEW_DPL_ID · READY
+Dados:      leads=$N_LEADS · fech=$N_FECH · gerado_em=$GERADO_EM
+Intervalo:  date-picker livre no navegador (dados de 2026); troca de filtro instantanea.
 
-URL:           https://dashboard-buzzmonitor-brasil.vercel.app/
-Deploy ID:     $NEW_DPL_ID
-Status:        HTTP 200 · ${REMOTE_SIZE} bytes
-Periodo:       $PERIODO_SEMANA · MtD $PERIODO_MTD · YtD $PERIODO_YTD
-Fechamentos:   $N_ATUAL YtD · R$ $SOMA_ATUAL ($DELTA_TXT desde ultima revisao)
-
-(Se gate foi disparado:)
-EXPECTED_FECH_YTD_2026 atualizado: $EXPECTED_OLD_N -> $N_ATUAL
-Novos fech contemplados:
-  - cliente1 · utm_source1 · R$ valor1
-  - cliente2 · utm_source2 · R$ valor2
-Diff: dashboard/gerar_relatorio.py (rode 'git diff dashboard/gerar_relatorio.py' pra ver)
-
-Pra commitar (opcional): /commit
-
-Ultimos 3 deploys (rollback rapido):
-  $NEW_DPL_ID  (atual)
-  dpl_anterior_1
-  dpl_anterior_2
+Rollback rapido: npx vercel rollback <dpl_anterior> --cwd "$SIBLING" --scope=team_nC991VqUuSU2jXZN152xqqEg
+Pra commitar mudancas de codigo (se houve): /commit
 ```
-
-(Sem Notion — dashboard eh interna, sem stakeholder esperando log publicado.)
-
----
-
-## Anexo: Troubleshooting
-
-| Sintoma | Causa provavel | Acao |
-|---|---|---|
-| `gerar_relatorio.py` falha com `[smoke test] FALHA` e divergencia positiva | Fech CM legitimo entrou na semana | Skill auto-trata via §1.8 |
-| Divergencia NEGATIVA (n menor) | Filtro CM mudou, deal removido, whitelist diminuiu | §1.6 — aborta sem perguntar. Investigar `queries.py` |
-| Smoke test passa mas valor R$ diverge em centavos | Reajuste de valor no CRM | Tratar como divergencia positiva (gate normal) |
-| `vercel deploy` FetchError CLI | Bug intermitente | §3.1 — checar `vercel ls` antes de retry |
-| HTTP 404 pos-deploy | Sibling sem index.html OU deploy saiu de dashboard/ | §4.4 — rollback comando exato |
-| HTTP 401 pos-deploy | middleware.js da sibling mudou | §4.4 — verificar `$SIBLING/middleware.js` |
-| Sibling sem `.vercel/project.json` | Nova maquina | §0.3 — `vercel link` comando exato |
-| Alias nao atualiza pos-deploy | Promote travado por rollback recente | §3.3 — auto-promove |
-| Erro de import `psycopg` no python -c | `uv run` esqueceu o `--with` | Confirmar pip install local OU usar comando completo do §1.4 |
-| `dashboard/.env` sem `SUPABASE_PG_URL` | Setup incompleto | Copiar `dashboard/.env.example` e preencher |
 
 ---
 
 ## Notas de seguranca e manutencao
-
-- **Nunca** rodar `vercel deploy` em `dashboard/` (anti-padrao do incidente 2026-05-25 — sem middleware = 404 publico).
-- **Nunca** copiar outros arquivos do repo pra sibling alem do `index.html`. Sibling tem `middleware.js`, `vercel.json`, `package.json` proprios — preservar.
-- **Nunca** commitar `dashboard/relatorio-*.html` (ja gitignored).
-- **Nunca** atualizar `EXPECTED_FECH_YTD_2026` se a divergencia for NEGATIVA (sempre indica regressao real, nao fech novo legitimo).
-- **Quando virar 2027:** o gate em `dashboard/gerar_relatorio.py:93` tem `if ytd_ini.year == 2026` hardcoded. Skill nao cobre essa migracao — criar `EXPECTED_FECH_YTD_2027` e ajustar a comparacao manualmente.
-- **Comentario historico** em `gerar_relatorio.py:48-58` cresce 1 linha por execucao. Aceitavel por ~1 ano; refatorar pra arquivo separado se passar disso.
-- **Concorrencia:** se rodar 2x em paralelo, o segundo run pode ler EXPECTED_* ja editado pelo primeiro. Manual-trigger via chat dificulta isso. Nao implementado lock.
+- **Credencial Basic Auth** vive em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored) e no `middleware.js` da sibling (fora do repo). Trocar a senha = editar os DOIS lugares. Nunca hardcodar nesta skill.
+- **Nunca** rodar `vercel deploy` de `dashboard-buzz-br-vercel/` (sem middleware = 404/exposto). So da sibling.
+- **Nunca** copiar pra sibling alem de index.html + motor.js + dados-2026.json (o `.py`/`.mjs`/PLANO ficam so no repo).
+- **Paridade dos numeros:** garantida por a logica CM viver no Python (`exportar_dados.py` reusa `dashboard-pessoal/lib/queries.py`); o `motor.js` so agrega. Se mudar a regra CM, re-exportar reflete automatico. Pra re-validar apos mudar motor/queries: `python dashboard-buzz-br-vercel/paridade_gerar_esperado.py` + `node dashboard-buzz-br-vercel/paridade_check.mjs` (deve dar 0 divergencias).
+- **Escopo 2026:** o exportador cobre 2026 + cauda p/ as series 12m. Intervalos inteiramente em 2025 nao entram (virar 2027: ajustar `ANO_INI` em `exportar_dados.py`).
+- **Snapshot antigo** (`dashboard/gerar_relatorio.py` + gate de EXPECTED) foi aposentado nesta v2.0.0 — mantido no repo so para auditoria historica.
