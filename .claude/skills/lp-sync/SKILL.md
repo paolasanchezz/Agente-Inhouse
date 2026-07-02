@@ -3,7 +3,7 @@ name: lp-sync
 description: Popula a sibling local de um guarda-chuva com o estado do ultimo deploy production READY no Vercel. Read-only — nao modifica nada no live nem deploya. Use antes de qualquer fluxo manual (debug, inspecao, recovery, edicao direta) para garantir que a sibling reflete o que esta no ar. Fluxo regular de alteracao/deploy continua sendo `lp-publicar`, que ja faz este sync internamente no Passo 0.5.d.
 argument-hint: "[dominio] — ex: content.cxpress.io | webinar.buzzmonitor.com"
 allowed-tools: Read, Bash, Skill
-version: 1.0.2
+version: 1.0.3
 ---
 
 # Skill: Sincronizar Sibling com Live
@@ -126,9 +126,11 @@ Mesma logica do `lp-publicar` Passo 0.5.d.ii. Distinguir 3 casos:
 # As ferramentas bash entendem as duas formas; o Python do Windows so entende a Windows.
 to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
 PROJECT_JSON_WIN="$(to_win_path "$SIBLING")/.vercel/project.json"
+# Interpretador Python resiliente ao shim da Store no Windows (ver lp-publicar Passo 0.4). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 
-PROJECT_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
-ORG_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
+PROJECT_ID=$("$PYBIN" -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
+ORG_ID=$("$PYBIN" -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
 
 if [ -z "$PROJECT_ID" ] || [ -z "$ORG_ID" ]; then
   echo "ERRO: nao consegui ler projectId/orgId de $PROJECT_JSON_WIN."
@@ -139,7 +141,7 @@ fi
 RESPONSE=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
   "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1")
 
-PARSED=$(echo "$RESPONSE" | python -c "
+PARSED=$(echo "$RESPONSE" | "$PYBIN" -c "
 import json, sys
 try:
     d = json.load(sys.stdin)
@@ -172,9 +174,11 @@ Reusa o helper canonico `sync_sibling.py` da skill `lp-publicar` — nao duplica
 # C:\c\Users\... em silencio — normalizar pra Windows-style (mesma convencao do Passo 4).
 to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
 SIBLING="$(to_win_path "$SIBLING")"
+# Interpretador Python resiliente ao shim da Store no Windows (ver lp-publicar Passo 0.4). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 export DEPLOY_ID ORG_ID VERCEL_TOKEN SIBLING
 
-python "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" 2>&1 | tee /tmp/lp-sync-output.log
+"$PYBIN" "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" 2>&1 | tee /tmp/lp-sync-output.log
 SYNC_EXIT=${PIPESTATUS[0]}
 
 if [ "$SYNC_EXIT" != "0" ]; then

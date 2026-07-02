@@ -13,6 +13,10 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## dashboard-atualizar
+### 2026-07-02 — v2.0.1 — Nota de re-validação de paridade roda via `uv` (evita o shim Python do Windows)
+
+Ajuste pontual: a nota de manutenção "re-validar após mudar motor/queries" chamava `python paridade_gerar_esperado.py` direto. No Windows, esse `python` é o shim da Microsoft Store (exit 49), e o script importa `psycopg` (C-extension) — então precisa mesmo de `uv`. Alinhado ao padrão do resto da skill: `uv run --python 3.12 --with "psycopg[binary]" python …`, que provisiona o próprio 3.12 com wheels. O **fluxo principal já rodava em `uv`** (Passos 0.2b/1) e não muda. PATCH. Contexto do shim: entrada `lp-publicar, lp-sync` de 2026-07-02 + `landing-pages/CONTEXT.md` §6.
+
 ### 2026-07-01 — v2.0.0 — Dash dinâmica-estática no Vercel (date-picker + dados 2026), substitui o snapshot
 
 A dashboard no link do Vercel deixou de ser o snapshot semanal fixo e passou a ser a **dash dinâmica** (date-picker de intervalo livre + todos os dados de 2026), servida **estática** — sem o Vercel tocar no Supabase (o pooler IPv4 não aceita `looker_readonly`). Contexto e arquitetura em `dashboard-buzz-br-vercel/PLANO-VERCEL.md`.
@@ -52,6 +56,15 @@ Skill standalone que gera **1 blogpost otimizado para SEO + GEO** por execução
 Arquivos: `.claude/skills/blog-diario/{SKILL,CONTEXT}.md`; conhecimento `conhecimento/copywriting/blog-seo-copy.md`, `conhecimento/editorial/geo-checklist.md`, `conhecimento/editorial/metadados-seo-spec.md`; dados `conhecimento/produto/cxpress/seo/clusters-brasil.md`, `landing-pages/catalogo/lps-{cxpress,buzzmonitor,buzzcreators,elife}.md`; nova chave `seo` em `conhecimento/config/notion-ids.md`.
 
 ## lp-publicar, lp-sync
+### 2026-07-02 — lp-publicar v3.9.3 + lp-sync v1.0.3: resolver de interpretador Python (`$PYBIN`), resiliente ao shim da Microsoft Store no Windows
+
+Num recovery de LP em 2026-07-02, `python sync_sibling.py` (e os demais `python -c` das skills) falharam com **exit 49** (`Python was not found; run without arguments to install from the Microsoft Store`). Causa: no Windows, o `python`/`python3` no PATH do Git Bash é o **shim da Microsoft Store** — o arquivo existe (`command -v` acha), mas quebra ao rodar de verdade. O launcher `py` aponta pro Python real. Foi preciso trocar `python`→`py` à mão pra concluir o sync; esta mudança automatiza isso.
+
+- **Convenção nova (lp-publicar Passo 0.4):** cada snippet bash resolve o interpretador testando **execução** (não só existência — o shim passa no `command -v` e só falha ao rodar) e usa `$PYBIN`: `PYBIN=""; for _c in py python3 python; do command -v "$_c" … && "$_c" -c '' … && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"`. Windows → `py`; macOS/Linux (sem `py`) → `python3`/`python`. Single-token de propósito: os scripts (`sync_sibling.py`, `csp_drift_check.py`) são stdlib-only e rodam em qualquer versão.
+- **Aplicado em todas as fronteiras com o Python:** lp-publicar 0.5.d.ii (`projectId`/`orgId` + parse do RESPONSE), 0.5.d.iii (`sync_sibling.py`), 1.6 (`csp_drift_check.py`) e 2.4 (REDIRECT_COUNT/MAP); lp-sync Passos 4 e 5. Inlinado por bloco (o `PYBIN` não persiste entre execuções de shell), junto do `to_win_path` — as duas convenções são ortogonais e complementares (`$PYBIN` = **qual** interpretador; `to_win_path` = normalização do **path** que chega nele).
+- **Não confundir com as skills de C-extension:** `dashboard-*` e `auditar-deals-cm` usam pandas/psycopg e continuam em `uv run --python 3.12` (que provisiona o próprio Python 3.12 com wheels; o `py -3.12` nem sempre está instalado) — não adotam `$PYBIN`.
+- Doc de troubleshooting em `landing-pages/CONTEXT.md` §6. No-op em máquinas onde `python` já é o Python real. PATCH (correção de portabilidade; sem mudança de interface ou comportamento esperado).
+
 ### 2026-06-30 — lp-publicar v3.9.2 + lp-sync v1.0.2: normalizar path Windows pro Python + não silenciar a leitura do REDIRECT_MAP
 
 Ao republicar `que-es-mcp` em `webinar.buzzmonitor.com`, o smoke test 3.4.b deu **2 falsos positivos de "REGRESSAO"** (`agentes-automacao-junho-2026` e `webinar-territorios-marca-mundial-junho-2026`) — ambos slugs que são `source` de redirect 308 no `vercel.json`. Causa-raiz (Windows/Git Bash): o `python -c` do Passo 2.4 recebeu o path do `vercel.json` em forma **MSYS** (`/c/Users/...`), que o **Python do Windows não entende** → `FileNotFoundError`. O `2>/dev/null` no comando **mascarou** o erro, `REDIRECT_MAP` ficou **vazio em silêncio**, e a lógica de redirect da v3.9.0 (que validaria essas vizinhas por `Location` em vez de hash) nunca carregou — então elas caíram no baseline-por-hash e o `curl` sem `-L` do 308 nunca bateu. Risco maior do que o ruído: um falso positivo recorrente pode mascarar uma regressão **real** numa vizinha.
@@ -98,6 +111,10 @@ Primeira skill de **escrita** no Meta Ads (ate entao so leitura via /bunzzai). U
 Arquivos: `.claude/skills/meta-campanha/{SKILL,CONTEXT}.md`, `.claude/hooks/guard_meta_activate.py`, `meta-ads/data/budget-guardrails.json`, matcher novo em `.claude/settings.json`, ponteiro em `.claude/skills/anuncios/SKILL.md`.
 
 ## seo-report
+### 2026-07-02 — v1.0.1 — Resolver de interpretador Python (`$PYBIN`) nos blocos PowerShell + nota anti-shim
+
+Os pré-checks e a execução do coletor Google chamavam `python` direto (PowerShell, Windows). No Windows, esse `python`/`python3` é o shim da Microsoft Store (exit 49) — o mesmo problema das skills lp-*. Adicionado um resolver PowerShell (`$PYBIN`) em cada bloco Python do Passo 2 (pré-condições, `pip install`, execução do script), que testa execução e prefere `py` (Python real), caindo em `python3`/`python` fora do Windows. A nota de troubleshooting "Python não instalado" deixou de recomendar a Microsoft Store (é justamente o alias que falha) e passou a apontar python.org (registra o launcher `py`); adicionada linha explícita pro erro exit 49. PATCH (portabilidade; sem mudança de fluxo). Nota: o probe usa `-c 'import sys'` (não-vazio) porque o PowerShell descarta o argumento `''` do operador de chamada.
+
 ### 2026-06-23 — v1.0.0 — Skill inicial: dashboard SEO Buzzmonitor BR (GSC + GA4 + Semrush), sem chave de API no repo
 
 Skill nova (base no PR #24 da Bárbara) que gera um dashboard HTML de SEO cruzando Google Search Console, Google Analytics 4 e Semrush. Reescrita para ser **universal e segura** antes de entrar:

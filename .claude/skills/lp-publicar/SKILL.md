@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.9.2
+version: 3.9.3
 ---
 
 # Skill: Publicar Landing Page
@@ -139,6 +139,23 @@ Como cada bloco bash roda em shell proprio (a funcao acima nao persiste entre ex
 **Corolario (igualmente obrigatorio):** **nunca** suprimir o stderr (`2>/dev/null`) de um `python -c` que le um path. Um `FileNotFoundError` silenciado vira saida vazia, e a logica seguinte le esse vazio como "nao ha nada" em vez de "a leitura falhou" — foi exatamente isso que gerou o falso positivo de "REGRESSAO" do smoke test em 2026-06-30 (REDIRECT_MAP vazio; ver `landing-pages/CONTEXT.md` §7.2). Se um valor derivado de path Python sair vazio quando nao deveria, **abortar**, nao seguir.
 
 > Mesma pegadinha do `/tmp` Python-vs-bash no Windows (Python grava `/tmp` em `C:\tmp`, bash usa o `/tmp` do MSYS): formas de path MSYS e Windows apontam pro mesmo lugar pras ferramentas bash, mas o Python do Windows so entende a forma Windows.
+
+### 0.4 Convencao OBRIGATORIA: interpretador Python resiliente ao shim do Windows
+
+**No Windows, `python`/`python3` no PATH costumam ser o shim da Microsoft Store** (`AppData/Local/Microsoft/WindowsApps/python.exe`). O arquivo **existe** (`command -v python` acha), mas ao rodar ele **falha com exit 49** imprimindo `Python was not found; run without arguments to install from the Microsoft Store`. O launcher **`py`** aponta pro Python real. Em macOS/Linux nao ha `py` e `python3`/`python` sao os corretos. Um recovery de LP em 2026-07-02 travou exatamente aqui: `python sync_sibling.py` deu exit 49 e o sync nao rodou.
+
+Por isso **nunca** chame `python` literal num snippet bash. Resolva o interpretador testando **execucao** (nao so existencia — o shim passa no `command -v` e so quebra ao rodar de fato) e use `$PYBIN`:
+
+```bash
+# Fica com o 1o interpretador que RODA de verdade. Windows: pula o shim da Store (exit 49) e
+# acha `py`. macOS/Linux: `py` nao existe -> cai em `python3`/`python`. Single-token de proposito:
+# os scripts desta skill (sync_sibling.py, csp_drift_check.py) sao stdlib-only e rodam em qualquer
+# versao. Skills com C-extension (pandas/psycopg) NAO usam este resolver — usam `uv run --python 3.12`,
+# que provisiona o proprio Python 3.12 (o `py -3.12` nem sempre esta instalado nesta maquina).
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+```
+
+Como cada bloco bash roda em shell proprio (o `PYBIN` nao persiste entre execucoes), **cada snippet abaixo que toca o Python ja inlina esse resolver** junto do `to_win_path` — nao remover. As duas convencoes sao ortogonais e complementares: `$PYBIN` escolhe **qual** interpretador roda, `to_win_path` normaliza **o path** que chega nele.
 
 ## Passo 0.5: Detectar modo (solo vs guarda-chuva)
 
@@ -319,9 +336,11 @@ Ler IDs do projeto a partir do `.vercel/project.json` que o 0.5.c garantiu exist
 # Python recebe /c/Users/... e da FileNotFoundError -> PROJECT_ID/ORG_ID vazios.
 to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
 PROJECT_JSON_WIN="$(to_win_path "$SIBLING")/.vercel/project.json"
+# Interpretador Python resiliente ao shim da Store no Windows (ver Passo 0.4). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 
-PROJECT_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
-ORG_ID=$(python -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
+PROJECT_ID=$("$PYBIN" -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['projectId'])")
+ORG_ID=$("$PYBIN" -c "import json; print(json.load(open(r'$PROJECT_JSON_WIN'))['orgId'])")
 
 # Leitura falhou (path errado, json quebrado)? Abortar — sem IDs nao da pra sincronizar.
 if [ -z "$PROJECT_ID" ] || [ -z "$ORG_ID" ]; then
@@ -334,7 +353,7 @@ RESPONSE=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
   "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$ORG_ID&target=production&state=READY&limit=1")
 
 # Distinguir 3 casos: erro de API (token sem read), sem deploys ainda, deploy encontrado
-PARSED=$(echo "$RESPONSE" | python -c "
+PARSED=$(echo "$RESPONSE" | "$PYBIN" -c "
 import json, sys
 try:
     d = json.load(sys.stdin)
@@ -389,8 +408,10 @@ A logica vive em `.claude/skills/lp-publicar/sync_sibling.py` (script Python hel
   # faz o Python escrever em C:\c\Users\... em silencio. Passar Windows-style (ver Passo 0.3).
   to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
   SIBLING="$(to_win_path "$SIBLING")"
+  # Interpretador Python resiliente ao shim da Store no Windows (ver Passo 0.4). Single-token.
+  PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
   export DEPLOY_ID ORG_ID VERCEL_TOKEN SIBLING
-  python "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" || {
+  "$PYBIN" "$(git rev-parse --show-toplevel)/.claude/skills/lp-publicar/sync_sibling.py" || {
     echo "ERRO: sync_sibling.py falhou. Aborte e investigue."
     exit 1
   }
@@ -743,9 +764,11 @@ Remover também do `<title>` qualquer sufixo de trabalho: `[REVISADO]`, `[TESTE]
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 # Paths Windows-style pro Python (ver Passo 0.3): csp_drift_check.py abre os dois arquivos.
 to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
+# Interpretador Python resiliente ao shim da Store no Windows (ver Passo 0.4). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 SIBLING_VERCEL_JSON="$(to_win_path "{sibling}/vercel.json")" \
   TEMPLATE_VERCEL_JSON="$(to_win_path "$REPO_ROOT/.claude/skills/lp-publicar/vercel.template.json")" \
-  python "$REPO_ROOT/.claude/skills/lp-publicar/csp_drift_check.py"
+  "$PYBIN" "$REPO_ROOT/.claude/skills/lp-publicar/csp_drift_check.py"
 ```
 
 Saidas possiveis:
@@ -895,10 +918,12 @@ No modo guarda-chuva, capturar hash MD5 do `index.html` de **cada outra LP** do 
 # redirect cairiam no baseline-por-hash -> FALSO POSITIVO de "REGRESSAO" no smoke test 3.4.b.
 to_win_path() { cygpath -m "$1" 2>/dev/null || printf '%s' "$1" | sed -E 's#^/([a-zA-Z])/#\1:/#'; }
 VERCEL_JSON_WIN="$(to_win_path "{sibling}/vercel.json")"
+# Interpretador Python resiliente ao shim da Store no Windows (ver Passo 0.4). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 
 # Sonda de leitura: quantos redirects o vercel.json declara? NAO suprimir stderr — um erro
 # de leitura precisa aparecer (era o 2>/dev/null que mascarava a falha em 2026-06-30).
-REDIRECT_COUNT=$(python -c "import json; print(len(json.load(open(r'$VERCEL_JSON_WIN', encoding='utf-8')).get('redirects', [])))")
+REDIRECT_COUNT=$("$PYBIN" -c "import json; print(len(json.load(open(r'$VERCEL_JSON_WIN', encoding='utf-8')).get('redirects', [])))")
 if ! printf '%s' "$REDIRECT_COUNT" | grep -qE '^[0-9]+$'; then
   echo "ERRO: nao consegui ler 'redirects' de $VERCEL_JSON_WIN (saida: '$REDIRECT_COUNT')."
   echo "  Causa provavel no Windows: path MSYS (/c/...) passado ao Python do Windows (ver Passo 0.3)."
@@ -907,7 +932,7 @@ if ! printf '%s' "$REDIRECT_COUNT" | grep -qE '^[0-9]+$'; then
 fi
 
 # Mapa de redirects: "source-sem-barra<TAB>destino-com-barra" (sem 2>/dev/null, de proposito).
-REDIRECT_MAP=$(python -c "
+REDIRECT_MAP=$("$PYBIN" -c "
 import json
 d = json.load(open(r'$VERCEL_JSON_WIN', encoding='utf-8'))
 for r in d.get('redirects', []):

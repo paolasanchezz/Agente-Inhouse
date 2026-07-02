@@ -3,7 +3,7 @@ name: seo-report
 description: Gera dashboard visual de SEO do Buzzmonitor BR cruzando Google Search Console, Google Analytics 4 e Semrush. GSC/GA4 vêm de um script Python (OAuth da conta Google, credenciais locais); Semrush vem do MCP do Semrush — sem nenhuma chave de API no repositório. Produz um HTML interativo com KPIs, canais de tráfego e tabelas de top páginas e keywords.
 argument-hint: "[data?] — caminho opcional p/ um seo_data.json já gerado; sem args, coleta na hora"
 allowed-tools: Bash, Read, Write, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__execute_report, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__get_report_schema, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__overview_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__organic_research
-version: 1.0.0
+version: 1.0.1
 ---
 
 # /seo-report — Dashboard SEO Buzzmonitor BR
@@ -51,16 +51,24 @@ Se não há argumento:
 Verificar pré-condições (PowerShell no Windows):
 
 ```powershell
+# 0. Resolver o interpretador. No Windows, `python`/`python3` no PATH costumam ser o shim da
+#    Microsoft Store: existem (Get-Command acha), mas falham com exit 49. O launcher `py` aponta
+#    pro Python real. Testamos EXECUCAO (nao so existencia) e ficamos com o 1o que roda de verdade.
+#    (macOS/Linux: nao ha `py`; cai em `python3`.)
+$PYBIN='python'; foreach($c in 'py','python3','python'){ if(Get-Command $c -ErrorAction SilentlyContinue){ & $c -c 'import sys' 2>$null | Out-Null; if($LASTEXITCODE -eq 0){ $PYBIN=$c; break } } }
+
 # 1. Python disponível?
-python --version
+& $PYBIN --version
 
 # 2. Dependências instaladas?
-python -c "import google.oauth2; from google.analytics.data_v1beta import BetaAnalyticsDataClient"
+& $PYBIN -c "import google.oauth2; from google.analytics.data_v1beta import BetaAnalyticsDataClient"
 ```
 
-Se faltarem dependências, instalar:
+Se faltarem dependências, instalar (usando o mesmo interpretador resolvido acima):
 ```powershell
-python -m pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client google-analytics-data
+# $PYBIN: resolver de interpretador (ver bloco de pré-condições acima; cada bloco PowerShell é shell próprio).
+$PYBIN='python'; foreach($c in 'py','python3','python'){ if(Get-Command $c -ErrorAction SilentlyContinue){ & $c -c 'import sys' 2>$null | Out-Null; if($LASTEXITCODE -eq 0){ $PYBIN=$c; break } } }
+& $PYBIN -m pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client google-analytics-data
 ```
 
 O script resolve o diretório de trabalho sozinho (`~/.seo-report-buzzmonitor/`, ou `SEO_REPORT_DIR`). Se `client_secret.json` não estiver lá, ele para com instrução clara. Para autenticar no Google, oriente o usuário:
@@ -68,7 +76,9 @@ O script resolve o diretório de trabalho sozinho (`~/.seo-report-buzzmonitor/`,
 
 Rodar (não precisa de `cd` — os caminhos são absolutos, resolvidos pelo script):
 ```powershell
-python .claude/skills/seo-report/seo_report_buzzmonitor.py
+# $PYBIN: resolver de interpretador (ver bloco de pré-condições acima; cada bloco PowerShell é shell próprio).
+$PYBIN='python'; foreach($c in 'py','python3','python'){ if(Get-Command $c -ErrorAction SilentlyContinue){ & $c -c 'import sys' 2>$null | Out-Null; if($LASTEXITCODE -eq 0){ $PYBIN=$c; break } } }
+& $PYBIN .claude/skills/seo-report/seo_report_buzzmonitor.py
 ```
 
 Se falhar com erro de autenticação, orientar: deletar `token.json` no `WORK_DIR` e rodar de novo.
@@ -203,7 +213,8 @@ Informar ao usuário o caminho do arquivo gerado. Depois, resumir no chat em at�
 | MCP Semrush sem unidades / erro | Card de aviso na seção Semrush; seguir com GSC + GA4 |
 | Linha do Semrush vazia / malformada | Tratar silenciosamente, exibir `—` nas células |
 | Script Python não encontrado | Confirmar o caminho `.claude/skills/seo-report/seo_report_buzzmonitor.py` |
-| Python não instalado | Indicar instalação via python.org ou Microsoft Store |
+| Python não instalado | Instalar via **python.org** (registra o launcher `py`). Evitar depender do alias "python" da Microsoft Store — ele é um shim que falha com exit 49 ("Python was not found"), e é justamente o que o resolver `$PYBIN` contorna. |
+| `python`/`python3` retorna exit 49 ("Python was not found…") | Alias da Microsoft Store no PATH (não é Python de verdade). O resolver `$PYBIN` já pula pro `py`. Se aparecer, confirme que o bloco `$PYBIN=…` rodou e que `py --version` funciona. |
 
 ---
 

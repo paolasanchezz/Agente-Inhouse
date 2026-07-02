@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza a dashboard CM Buzzmonitor Brasil (dinamica-estatica no Vercel) — roda o exportador Python (Supabase -> dados-2026.json), copia index.html + motor.js + dados pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger semanal. Single-purpose (so este dashboard).
 argument-hint: "(sem args — totalmente automatico)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 2.0.0
+version: 2.0.1
 ---
 
 # Skill: Atualizar Dashboard CM Buzzmonitor Brasil (dinamica-estatica)
@@ -168,6 +168,6 @@ Pra commitar mudancas de codigo (se houve): /commit
 - **Credencial Basic Auth** vive em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored) e no `middleware.js` da sibling (fora do repo). Trocar a senha = editar os DOIS lugares. Nunca hardcodar nesta skill.
 - **Nunca** rodar `vercel deploy` de `dashboard-buzz-br-vercel/` (sem middleware = 404/exposto). So da sibling.
 - **Nunca** copiar pra sibling alem de index.html + motor.js + dados-2026.json (o `.py`/`.mjs`/PLANO ficam so no repo).
-- **Paridade dos numeros:** garantida por a logica CM viver no Python (`exportar_dados.py` reusa `dashboard-pessoal/lib/queries.py`); o `motor.js` so agrega. Se mudar a regra CM, re-exportar reflete automatico. Pra re-validar apos mudar motor/queries: `python dashboard-buzz-br-vercel/paridade_gerar_esperado.py` + `node dashboard-buzz-br-vercel/paridade_check.mjs` (deve dar 0 divergencias).
+- **Paridade dos numeros:** garantida por a logica CM viver no Python (`exportar_dados.py` reusa `dashboard-pessoal/lib/queries.py`); o `motor.js` so agrega. Se mudar a regra CM, re-exportar reflete automatico. Pra re-validar apos mudar motor/queries: `uv run --python 3.12 --with "psycopg[binary]" python dashboard-buzz-br-vercel/paridade_gerar_esperado.py` + `node dashboard-buzz-br-vercel/paridade_check.mjs` (deve dar 0 divergencias). (Rodar via `uv`, nao `python` direto — no Windows o `python` do PATH costuma ser o shim da Store, que falha com exit 49; o `uv` provisiona o proprio Python 3.12 com wheels de C-extension.)
 - **Escopo 2026:** o exportador cobre 2026 + cauda p/ as series 12m. Intervalos inteiramente em 2025 nao entram (virar 2027: ajustar `ANO_INI` em `exportar_dados.py`).
 - **Snapshot antigo** (`dashboard/gerar_relatorio.py` + gate de EXPECTED) foi aposentado nesta v2.0.0 — mantido no repo so para auditoria historica.
