@@ -39,6 +39,6 @@ Operações que fazem essa troca relatam queda de até 80% no trabalho manual. E
 
 Antes de pensar em ferramenta, vale mapear onde a campanha emperra hoje. Liste cada etapa, de encontrar o criador ao pagamento, e marque qual delas mora em planilha, qual depende de print e qual ninguém sabe responder de cabeça. Esse desenho mostra o tamanho real do caos, e quase sempre o gargalo está no pagamento e na aprovação.
 
-## Como a Buzzcreators ajuda nesse cenário
+## Como o Buzzcreators ajuda nesse cenário
 
-A Buzzcreators reúne o ciclo inteiro em um lugar só: do convite ao briefing, da aprovação à entrega, até o pagamento automatizado depois do aceite. Sem limite de influenciadores por campanha e com trilha de auditoria para cada etapa. Na prática, a equipe troca a planilha por um fluxo e fica livre para fazer o que importa, que é decidir com quem vale a pena trabalhar.
+O Buzzcreators reúne o ciclo inteiro em um lugar só: do convite ao briefing, da aprovação à entrega, até o pagamento automatizado depois do aceite. Sem limite de influenciadores por campanha e com trilha de auditoria para cada etapa. Na prática, a equipe troca a planilha por um fluxo e fica livre para fazer o que importa, que é decidir com quem vale a pena trabalhar.

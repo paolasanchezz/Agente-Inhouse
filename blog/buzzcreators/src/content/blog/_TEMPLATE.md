@@ -48,6 +48,6 @@ Responda direto na primeira frase. Depois desenvolva.
 Texto do corpo em Markdown normal: **negrito**, [links](https://exemplo.com),
 listas, citações.
 
-## Como a Buzzcreators ajuda nesse cenário
+## Como o Buzzcreators ajuda nesse cenário
 
 Conecte o tema ao produto de forma natural, sem soar como anúncio.

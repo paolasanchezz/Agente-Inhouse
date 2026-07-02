@@ -39,6 +39,6 @@ A vantagem dos perfis menores só aparece em escala. Uma campanha com um macro v
 - **Pense em volume.** O resultado vem da soma de vários nichos, não de um nome só.
 - **Acompanhe por criador.** Sem dado individual, fica impossível saber quem realmente performou.
 
-## Como a Buzzcreators ajuda nesse cenário
+## Como o Buzzcreators ajuda nesse cenário
 
-Operar dezenas de microinfluenciadores ao mesmo tempo só funciona com processo. A Buzzcreators não impõe limite de criadores por campanha e centraliza convite, briefing, entrega e pagamento, com métricas por influenciador atualizadas de forma automática. Assim dá para escalar a estratégia de micros sem transformar a operação em um problema.
+Operar dezenas de microinfluenciadores ao mesmo tempo só funciona com processo. O Buzzcreators não impõe limite de criadores por campanha e centraliza convite, briefing, entrega e pagamento, com métricas por influenciador atualizadas de forma automática. Assim dá para escalar a estratégia de micros sem transformar a operação em um problema.
