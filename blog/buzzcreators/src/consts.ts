@@ -10,6 +10,18 @@ export const ORG_NAME = 'Buzzcreators';
 export const BRAND_HOME = 'https://buzzcreators.com.br';
 export const CONTACT_EMAIL = 'comercial@buzzcreators.com.br';
 
+// --- Links de saída para o site: SEMPRE com UTM (atribuição no CRM/GA) --------
+// Fonte fixa `blog-buzzcreators`; convenção alinhada a landing-pages/catalogo/lps-buzzcreators.md.
+// Editar aqui num lugar só — Header/Footer/Sobre importam destas constantes.
+// CTA principal ("Conhecer a plataforma") vai direto à página de Marcas (conversão), nunca à Home.
+export const PLATFORM_CTA_URL =
+  `${BRAND_HOME}/marcas?utm_source=blog-buzzcreators&utm_medium=blog&utm_campaign=marcas&utm_content=header-cta`;
+// Links institucionais (rodapé e página Sobre) — exibem o domínio, então apontam à raiz, também com UTM.
+export const SITE_URL_FOOTER =
+  `${BRAND_HOME}/?utm_source=blog-buzzcreators&utm_medium=blog&utm_campaign=institucional&utm_content=footer`;
+export const SITE_URL_SOBRE =
+  `${BRAND_HOME}/?utm_source=blog-buzzcreators&utm_medium=blog&utm_campaign=institucional&utm_content=sobre`;
+
 // Assets (servidos de /public)
 export const ORG_LOGO = '/assets/logo-color.png';
 export const FAVICON = '/assets/logo-icon.png';

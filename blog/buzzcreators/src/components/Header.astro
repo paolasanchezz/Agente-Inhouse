@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS, BRAND_HOME, ORG_LOGO } from '../consts';
+import { NAV_LINKS, PLATFORM_CTA_URL, ORG_LOGO } from '../consts';
 const path = Astro.url.pathname;
 ---
 
@@ -22,7 +22,7 @@ const path = Astro.url.pathname;
           </a>
         ))
       }
-      <a class="btn btn-primary nav-cta" href={BRAND_HOME} target="_blank" rel="noopener">
+      <a class="btn btn-primary nav-cta" href={PLATFORM_CTA_URL} target="_blank" rel="noopener">
         Conhecer a plataforma
       </a>
     </nav>
