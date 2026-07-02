@@ -5,10 +5,13 @@ mudar, replicar aqui (ver README, secao Manutencao).
 
 Espelha dashboard/MAPEAMENTO-CAMPOS.md (Brasil-only por enquanto).
 
-Ultima sincronizacao: 2026-06-22 — alinhado com fix das reunioes CM (commit 5ce87ba,
-PR #15 de 2026-06-15): _atrib_cm_90d com granularidade ::date, auto-atribuicao p/
-account_id NULL, override nominal CM_DEALS_FORCADOS (deal 189715 Assembleia MA), e
-parametro `alias` em filtro_cm()/_sql_exclusao_deals().
+Ultima sincronizacao: 2026-07-02 — filtro de funil por funil_bd_sdr (campo curado = "Funil
+[BD e SDR]" no AC): filtro_inbound() + _sem_outbound() EXCLUEM 'Outbound' (mantendo Inbound
++ nao-classificados + EMAIL_WHITELIST), + funil_bd_sdr em _COLS_FUNIL. Em 2026-07-01 o filtro
+usava funil_inicial_lead_auto, trocado em 2026-07-02 (auto era vazio/dessincronizado do CRM).
+Replicado em dashboard/queries.py (oficial) e dashboard-buzz-br-vercel/exportar_dados.py.
+Sync anterior 2026-06-22: _atrib_cm_90d ::date, auto-atribuicao account_id NULL,
+CM_DEALS_FORCADOS (deal 189715), parametro `alias` em filtro_cm()/_sql_exclusao_deals().
 """
 from __future__ import annotations
 
@@ -37,16 +40,50 @@ CM_UTM_SOURCES: list[str] = [
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
 
-# Filtro de funil:
-# Originalmente restrito a 'Inbound', mas decisao de 2026-05-19 (Victor) foi
-# capturar TODOS os leads CM independente do funil_inicial_lead_auto, porque:
-#   - ~4220 leads em 2026 tem funil vazio (nao classificado) mas tem UTM CM legitimo
-#   - 262 Outbound + UTM CM ainda foram impactados por content
-# Pra preservar o ponto de extensao sem reescrever as queries, a funcao virou no-op
-# (retorna "TRUE"). Quando quiser reativar restricao por funil, mudar o corpo.
+# Filtro de funil (REATIVADO 2026-07-01; CAMPO corrigido 2026-07-02, Victor) — ESPELHO de dashboard/queries.py:
+# Historico: no-op "TRUE" de 2026-05-19 ate 2026-07-01. Em 2026-07-01 passou a REMOVER
+# o funil 'Outbound'. Em 2026-07-02 o CAMPO mudou de funil_inicial_lead_auto (classif.
+# inicial AUTO — vazia em ~metade dos deals e fora de sincronia com o CRM) para
+# funil_bd_sdr = "Funil [BD e SDR]" no ActiveCampaign. Mantem na dashboard:
+#   - Inbound
+#   - nao-classificados (funil_bd_sdr vazio/NULL)
+#   - os emails da EMAIL_WHITELIST (Victor confirmou CROP e NEIVA como CM apesar de
+#     Outbound no CRM; a whitelist tem PRECEDENCIA e sobrevive a este filtro).
+#
+# COBERTURA: esta funcao entra nas queries de EVENTO (CE/RA/RR/Proposta), Fechamentos
+# (ramo nao-whitelist), rankings e serie temporal. As queries leads-style (Leads,
+# Perdidos, leads_p do ranking, serie-leads, source_por_content) NAO chamam esta
+# funcao — usam o helper _sem_outbound(), de mesma semantica.
+# COALESCE(TRIM(...),'') trata funil NULL/vazio como != 'Outbound' (mantido).
+# NB: funil_bd_sdr foi adicionado a _COLS_FUNIL pra ficar disponivel na subquery
+# fonte_deals_funil() — sem isso este filtro quebraria ("column does not exist").
 def filtro_inbound(alias: str = '') -> str:
-    """No-op. Retorna 'TRUE' pra nao filtrar por funil_inicial_lead_auto."""
-    return "TRUE"
+    """Exclui funil 'Outbound', preservando Inbound, nao-classificados e whitelist.
+
+    `alias` prefixa as colunas pra uso em queries com JOIN (ex: filtro_inbound('d')).
+    A clausula de whitelist usa VALUES inline (self-contained) porque nem toda query
+    de evento define a CTE `wl` (ex: q_count_evento, q_proporcao_sources_12m).
+    """
+    p = f"{alias}." if alias else ""
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    return f"""(
+    COALESCE(TRIM({p}funil_bd_sdr), '') <> 'Outbound'
+    OR lower(trim({p}email_contato_principal_bd_sdr)) IN ({wl})
+  )"""
+
+
+def _sem_outbound(alias: str = '') -> str:
+    """Predicado leads-style: exclui funil 'Outbound' preservando emails whitelisted.
+
+    Mesma semantica de filtro_inbound(), mas para as queries que NAO passam por ela
+    (Leads, Perdidos, leads_p, serie-leads, source_por_content). Referencia a CTE `wl`
+    ja presente nessas queries (evita reinjetar a lista inteira de emails inline).
+    """
+    p = f"{alias}." if alias else ""
+    return (
+        f"(COALESCE(TRIM({p}funil_bd_sdr), '') <> 'Outbound' "
+        f"OR lower(trim({p}email_contato_principal_bd_sdr)) IN (SELECT email FROM wl))"
+    )
 
 # Override manual (overrides §2 do mapeamento)
 EMAIL_WHITELIST: list[str] = [
@@ -134,7 +171,10 @@ RECONVERSOES_MANUAIS: dict[int, str] = {
 # EMAIL_WHITELIST / RECONVERSOES_MANUAIS. So aplica a deals_comercial_prod.
 CM_DEALS_FORCADOS: dict[int, str] = {
     189715: 'Assembleia Legislativa do MA — contato converteu na oferta webinar relatorios-estrategicos (deal 180841); CRM criou deal novo sem UTM, conta diferente, +108d. CM confirmado (Victor 2026-06-15).',
-    175702: 'PiU Comunica (robertapuri@piucomunica.com.br) — convertido em 07/jan via utm=apresentacao/qr-code-apresentacao, mas CE/RA/RR aconteceram em 17-18/jun (+163d, fora da janela 90d). CM confirmado (Victor 2026-06-22).',
+    # 175702 (PiU Comunica) REMOVIDO de CM_DEALS_FORCADOS 2026-07-02 — Victor confirmou
+    # Outbound. Com o filtro por funil_bd_sdr (=Outbound neste deal) ele ja sai sozinho;
+    # manter o override forcaria os eventos indevidamente. NAO esta na EMAIL_BLACKLIST: o
+    # mesmo contato (robertapuri@piucomunica.com.br) tem o deal 190191, bd_sdr=Inbound, que DEVE contar como CM.
 }
 
 
@@ -356,7 +396,7 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 # Colunas usadas pelas queries de funil — presentes nas DUAS tabelas (verificado 2026-07-01).
 _COLS_FUNIL = (
     "id, account_id, cdate, utm_source, utm_medium, utm_content, url_conversao, "
-    "email_contato_principal_bd_sdr, sdr_responsavel, sdr_sdr, bd_auto, "
+    "email_contato_principal_bd_sdr, funil_bd_sdr, sdr_responsavel, sdr_sdr, bd_auto, "
     "data_efetividade_contato_auto, data_agendamento_auto, data_inicio_reuniao_realizada, "
     "data_envio_proposta_auto, data_negocio_perdido_auto, motivo_perda_bd_sdr, "
     "title, value, currency"
@@ -399,6 +439,7 @@ WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR {f}
   )
+  AND {_sem_outbound()}
 """
 
 
@@ -441,6 +482,7 @@ WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
     lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR {f}
   )
+  AND {_sem_outbound()}
 """
 
 
@@ -497,6 +539,7 @@ filtrados AS (
       lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
+    AND {_sem_outbound('d')}
   ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.cdate DESC
 )
 SELECT id, deal, email, utm_source, utm_content, data_conversao, bd
@@ -612,6 +655,7 @@ filtrados AS (
       lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
+    AND {_sem_outbound('d')}
   ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.data_negocio_perdido_auto DESC
 )
 SELECT id, deal, email, utm_source, utm_content, ultima_conversao, motivo, data_perda
@@ -652,6 +696,7 @@ leads_p AS (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
+    AND {_sem_outbound()}
   GROUP BY {dim}
 ),
 ce_p AS (
@@ -753,6 +798,7 @@ ranked AS (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
+    AND {_sem_outbound()}
     AND utm_content IS NOT NULL
   GROUP BY utm_content, utm_source
 )
@@ -796,6 +842,7 @@ eventos AS (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
+    AND {_sem_outbound()}
   UNION ALL
   SELECT date_trunc('week', d.data_efetividade_contato_auto)::date, 'ce'
   FROM {fonte_deals_funil()} d

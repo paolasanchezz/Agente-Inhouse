@@ -7,7 +7,8 @@ Aplica o MESMO filtro CM da dashboard semanal:
   - EMAIL_WHITELIST override (deals confirmados como CM pelo Victor)
   - EMAIL_BLACKLIST exclusao (testes/internos/outbound reclassificados)
   - Regra 90d pos-conversao (account_id com conversao CM <= 90d antes do evento)
-  - filtro_inbound() = TRUE (no-op, decisao 2026-05-19)
+  - filtro_inbound() exclui funil 'Outbound' (mantem Inbound + nao-classificados + whitelist;
+    reativado 2026-07-01 — antes era no-op TRUE de 2026-05-19)
 
 Saida: dashboard/deals-rr-proposta-cm-12m.html (auto-contido).
 
