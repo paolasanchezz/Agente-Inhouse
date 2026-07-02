@@ -23,6 +23,15 @@ Extensão da convenção `$PYBIN` (criada hoje em `lp-publicar` Passo 0.4 — ve
 - **Heredocs e here-strings** (`bunzzai` `- <<EOF`, `pull-request-review` `<< PYEOF`, `commit` `-c … <<< $VAR`) validados sob o resolver — todos OK.
 - PATCH em todas (portabilidade; sem mudança de interface). **Não tocados de propósito:** docstrings internas dos `.py` (usage genérico), a doc legada `bunzzai/AUDITORIA-vs-meta-ads.md` (scripts `meta-ads/` arquivados) e o probe de detecção do `setup-agencia` (`python --version` — precisa de tratamento próprio: preferir `py` no Windows; fica pra passe separado).
 
+## blog-publicar
+### 2026-07-02 — v1.1.0 — Capas OG automáticas (Passo 0.6)
+
+Antes do build, a skill agora gera a **capa/OG de qualquer post sem `cover:`** via `gen_cover.py` (Playwright, template HTML→PNG 1200×630) e preenche `cover`/`coverAlt` no frontmatter. Assets 100% da marca (off-white + gradiente assinatura + mascote + logo raster) — zero risco de copyright. **Idempotente** (pula quem já tem capa). A imagem serve como capa no topo do post, card da home e `og:image` de compartilhamento. MINOR (nova capacidade; publicar seguia funcionando sem). As 20 primeiras capas do blog foram geradas com o mesmo template.
+
+### 2026-07-02 — v1.0.0 — Deploy governado do blog Astro no Vercel
+
+Primeira versão. Publica o blog estático (`blog/{marca}`, hoje Buzzcreators) no projeto Vercel: pré-flight (auth + resolve URL de produção com fallback `.vercel.app`), build local como **gate de meta tags** (o `content.config.ts` falha o build se um post violar os limites), deploy `--prod` com `PUBLIC_NOINDEX=false`, validação da versão no ar (posts/sitemap/rss/llms + sem noindex) e relatório. Sem sibling (blog é estático, sem middleware/PII/vizinhas). Contexto sancionado da trava de deploy Vercel (`guard_vercel_deploy.py`).
+
 ## dashboard-atualizar
 ### 2026-07-02 — v2.0.1 — Nota de re-validação de paridade roda via `uv` (evita o shim Python do Windows)
 

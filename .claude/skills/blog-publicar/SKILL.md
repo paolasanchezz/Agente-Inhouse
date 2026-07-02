@@ -3,7 +3,7 @@ name: blog-publicar
 description: Publica o blog Astro estatico da marca (hoje Buzzcreators) no Vercel — valida o build (schema de meta tags), builda com env de producao (indexavel), deploya no projeto Vercel correto, valida a versao no ar (posts, noindex OFF, sitemap/rss/llms) e reporta. Manual-trigger. Contexto sancionado para a trava de deploy Vercel (guard_vercel_deploy.py).
 argument-hint: "[marca]  — default buzzcreators (unica com blog hoje)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: Publicar blog (Astro estatico) no Vercel
@@ -59,6 +59,20 @@ fi
 echo "URL de producao desta publicacao: $PROD_URL"
 ```
 > Se quiser **forçar** o domínio custom (porque acabou de atrelar), rode a skill e responda quando ela perguntar, ou edite `PROD_URL` no passo. Nunca indexe dois domínios com o mesmo conteúdo — mantenha um canonical só.
+
+---
+
+## Passo 0.6 — Capas automáticas (gera as que faltam)
+
+Toda capa/OG é gerada **da marca** (off-white + gradiente assinatura + mascote + logo raster) — **material 100% próprio, zero risco de copyright**. O gerador varre `src/content/blog/*.md` e, para cada post **sem `cover:`**, renderiza `public/assets/covers/{slug}.png` (a partir do `title` + `category` do post) e preenche `cover`/`coverAlt`. É **idempotente**: post que já tem capa é pulado — não regenera.
+
+```bash
+py .claude/skills/blog-publicar/gen_cover.py 2>&1 | tee "tmp/blog-covers-$TODAY.log"
+```
+- Requer Playwright + um browser (tenta Chrome → Edge → chromium do Playwright). Sem browser: `/setup-agencia` ou `py -m playwright install chromium`.
+- Capas novas são **assets versionados**. Se este passo gerou capa (ou há post novo), ao final entregar via `/commit` — esta skill publica, não commita.
+- Refazer a capa de um post (mudou o título): apague `public/assets/covers/{slug}.png` + as linhas `cover:`/`coverAlt:` do post e rode de novo.
+- O texto da capa é determinístico (HTML→PNG) — sem erro de acento que IA de imagem costuma cometer em PT-BR.
 
 ---
 
