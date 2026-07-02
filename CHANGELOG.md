@@ -12,6 +12,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Resiliência ao shim Python do Windows — resolver `$PYBIN` estendido (cross-skill)
+### 2026-07-02 — convites-moderador v1.0.1, lp-health-check v1.1.1, social-analytics v0.1.1, lp-revisar v1.6.1, lp-gerar v1.7.1, pull-request-review v1.0.2, bunzzai v1.1.1, criativo v1.1.1, commit v2.0.1
+
+Extensão da convenção `$PYBIN` (criada hoje em `lp-publicar` Passo 0.4 — ver entrada `lp-publicar, lp-sync`) para **todas as demais skills que chamavam `python` literal** em snippets bash. No Windows, o `python`/`python3` do PATH costuma ser o shim da Microsoft Store: o arquivo existe, mas falha com exit 49. O resolver testa **execução** e fica com o 1º interpretador que roda de verdade (Windows → `py`; macOS/Linux → `python3`/`python`), inlinado por bloco (não persiste entre execuções de shell).
+
+- **Por que agora — e por que NÃO era urgente:** a investigação da `convites-moderador` (que roda agendada e funciona) mostrou que **execuções em background alcançam o Python real por trás do shim** (`AppData\Local\Python\bin\python.exe`); só sessões **interativas** batem no shim. Logo isto é **blindagem/determinismo**, não conserto de quebra ativa nas agendadas — mas fecha o buraco em qualquer uso interativo (foi o que travou a recuperação de LP em 2026-07-02) e remove a dependência do quirk interativo-vs-background.
+- **Deps já cobertas:** o `py` (3.14) desta máquina tem **Pillow 12.2.0 + Playwright**, então os checks de OG image (`lp-gerar`, `lp-revisar`) e o `render.py` (`criativo`) rodam sob `$PYBIN` sem `uv`. Skills com pandas/psycopg (`dashboard-*`, `auditar-deals-cm`) seguem em `uv run --python 3.12` (não adotam `$PYBIN`).
+- **`commit`** era o pior caso: só trocava pra `python3` no Mac/Linux (via `uname`) — **no Windows continuava chamando o shim**. Agora resolve `$PYBIN` nos blocos 5.4/5.5 (foi preciso fazer isso à mão nesta própria sessão pra abrir o PR).
+- **Heredocs e here-strings** (`bunzzai` `- <<EOF`, `pull-request-review` `<< PYEOF`, `commit` `-c … <<< $VAR`) validados sob o resolver — todos OK.
+- PATCH em todas (portabilidade; sem mudança de interface). **Não tocados de propósito:** docstrings internas dos `.py` (usage genérico), a doc legada `bunzzai/AUDITORIA-vs-meta-ads.md` (scripts `meta-ads/` arquivados) e o probe de detecção do `setup-agencia` (`python --version` — precisa de tratamento próprio: preferir `py` no Windows; fica pra passe separado).
+
 ## dashboard-atualizar
 ### 2026-07-02 — v2.0.1 — Nota de re-validação de paridade roda via `uv` (evita o shim Python do Windows)
 

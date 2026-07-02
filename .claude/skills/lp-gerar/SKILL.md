@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.7.0
+version: 1.7.1
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -279,7 +279,7 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 - [ ] >= 4 tags `<meta name="twitter:` (card, title, description, image)
 - [ ] `og:image` e `twitter:image` apontam para `https://{{DOMAIN}}/{{OG_IMAGE_PATH}}` (URLs absolutas com placeholder)
 - [ ] `og:locale` = `{regions.{regiao}.ogLocale}`
-- [ ] JSON-LD presente em `<script type="application/ld+json">` e parseia (`python -c "import json; json.load(open(...))"` valido)
+- [ ] JSON-LD presente em `<script type="application/ld+json">` e parseia como JSON valido
 - [ ] JSON-LD `Organization.url` = `{regions.{regiao}.home}` do manifest
 - [ ] JSON-LD `Organization.sameAs[]` inclui LinkedIn + Instagram regional
 - [ ] **Se houver LPs irmas (multi-idioma):** todas as variantes listadas em `<link rel="alternate" hreflang="...">` + `x-default`
@@ -299,7 +299,9 @@ A OG image (1200x630 PNG) **nao e gerada pela lp-gerar** — e binary, e a front
 
 Se a sessao atual ja produziu OG image (raro nesta fase), confirmar dimensoes:
 ```bash
-python -c "from PIL import Image; print(Image.open('landing-pages/{marca}/{slug}/assets/og-image.png').size)"
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" -c "from PIL import Image; print(Image.open('landing-pages/{marca}/{slug}/assets/og-image.png').size)"
 # espera (1200, 630)
 ```
 

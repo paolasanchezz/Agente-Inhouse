@@ -3,7 +3,7 @@ name: lp-health-check
 description: Rotina de health check que descobre dinamicamente todas as LPs em producao via Vercel API, faz HTTP check em cada uma, e envia email para victor.lopes@buzzmonitor.com.br quando ha falha. Silenciosa quando tudo OK. Pode rodar manualmente ou via /schedule diario.
 argument-hint: "[--dry-run] [--no-drift]"
 allowed-tools: Read, Glob, Bash, Skill
-version: 1.1.0
+version: 1.1.1
 ---
 
 # Skill: Health Check Diario das LPs
@@ -20,7 +20,7 @@ Voce descobre dinamicamente todas as LPs em producao na org `elife-group` da Ver
 
 - **Apos deploy unitario:** `lp-publicar` ja faz smoke test pos-deploy nas vizinhas (Passo 3.4.b). Health check diario e complemento, nao substitui.
 - **Validacao de design / a11y / performance:** isso e `lp-revisar` no momento do deploy ou PageSpeed manual.
-- **Pra descobrir qual LP esta deployada onde:** essa skill imprime no console como parte do fluxo, mas se voce so quer a lista, rode `python .claude/skills/lp-health-check/discover.py` direto (mais rapido).
+- **Pra descobrir qual LP esta deployada onde:** essa skill imprime no console como parte do fluxo, mas se voce so quer a lista, rode `.claude/skills/lp-health-check/discover.py` direto com `py` (Windows) ou `python3` (Mac/Linux) — evite `python`, que no Windows costuma ser o shim da Store (mais rapido).
 
 ## Argumentos opcionais
 
@@ -113,9 +113,11 @@ Roda `discover.py` (este diretorio) que faz 3 chamadas Vercel API:
 3. Para cada projeto com FQDN custom, `GET /v6/deployments?...&state=READY&limit=1` + `GET /v6/deployments/{uid}/files` — walk no file tree, identifica modo solo (`index.html` na raiz) vs guarda-chuva (subpastas com `index.html`).
 
 ```bash
-DISCOVERED=$(python .claude/skills/lp-health-check/discover.py)
-echo "$DISCOVERED" | python -m json.tool > /dev/null || { echo "ERRO: discover.py retornou JSON invalido" >&2; exit 1; }
-N_URLS=$(echo "$DISCOVERED" | python -c "import json,sys; print(len(json.load(sys.stdin)['urls']))")
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+DISCOVERED=$("$PYBIN" .claude/skills/lp-health-check/discover.py)
+echo "$DISCOVERED" | "$PYBIN" -m json.tool > /dev/null || { echo "ERRO: discover.py retornou JSON invalido" >&2; exit 1; }
+N_URLS=$(echo "$DISCOVERED" | "$PYBIN" -c "import json,sys; print(len(json.load(sys.stdin)['urls']))")
 echo "Descobertas $N_URLS URLs em producao."
 ```
 
@@ -126,8 +128,10 @@ Se `errors` tiver itens no JSON, **abortar e mostrar pro usuario** — descobert
 Pulado se `--no-drift`. Caso contrario, `drift.py` (este diretorio) faz o cross-check **deterministico**: le o output do `discover.py` via stdin e escaneia `landing-pages/{marca}/{slug}/index.html` no disco.
 
 ```bash
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 if [ "$INCLUDE_DRIFT" = "1" ]; then
-  DRIFT_JSON=$(echo "$DISCOVERED" | python .claude/skills/lp-health-check/drift.py)
+  DRIFT_JSON=$(echo "$DISCOVERED" | "$PYBIN" .claude/skills/lp-health-check/drift.py)
 else
   DRIFT_JSON="[]"
 fi
@@ -148,18 +152,22 @@ Anexar `DRIFT_JSON` ao payload que vai pro Passo 4. So os kinds acionaveis (`fon
 Pipe do output do `discover.py` direto pro `check.py`:
 
 ```bash
-RESULTS=$(echo "$DISCOVERED" | python .claude/skills/lp-health-check/check.py)
-SUMMARY=$(echo "$RESULTS" | python -c "import json,sys; s=json.load(sys.stdin)['summary']; print(f\"{s['ok']}/{s['total']} OK, {s['warning']} warning, {s['fail']} fail\")")
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+RESULTS=$(echo "$DISCOVERED" | "$PYBIN" .claude/skills/lp-health-check/check.py)
+SUMMARY=$(echo "$RESULTS" | "$PYBIN" -c "import json,sys; s=json.load(sys.stdin)['summary']; print(f\"{s['ok']}/{s['total']} OK, {s['warning']} warning, {s['fail']} fail\")")
 echo "Resultado: $SUMMARY"
 ```
 
 ## Passo 4: Decidir notificacao + relatorio
 
 ```bash
-FAIL=$(echo "$RESULTS" | python -c "import json,sys; print(json.load(sys.stdin)['summary']['fail'])")
-WARN=$(echo "$RESULTS" | python -c "import json,sys; print(json.load(sys.stdin)['summary']['warning'])")
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+FAIL=$(echo "$RESULTS" | "$PYBIN" -c "import json,sys; print(json.load(sys.stdin)['summary']['fail'])")
+WARN=$(echo "$RESULTS" | "$PYBIN" -c "import json,sys; print(json.load(sys.stdin)['summary']['warning'])")
 # So drift ACIONAVEL (fonte_sem_deploy/deploy_orfao) conta — vercel_app_only e informativo.
-DRIFT_N=$(echo "$DRIFT_JSON" | python -c "import json,sys; sys.path.insert(0,'.claude/skills/lp-health-check'); from drift import ACTIONABLE_KINDS; d=json.load(sys.stdin); print(sum(1 for x in d if x.get('kind') in ACTIONABLE_KINDS))" 2>/dev/null || echo 0)
+DRIFT_N=$(echo "$DRIFT_JSON" | "$PYBIN" -c "import json,sys; sys.path.insert(0,'.claude/skills/lp-health-check'); from drift import ACTIONABLE_KINDS; d=json.load(sys.stdin); print(sum(1 for x in d if x.get('kind') in ACTIONABLE_KINDS))" 2>/dev/null || echo 0)
 
 if [ "$FAIL" = "0" ] && [ "$WARN" = "0" ] && [ "$DRIFT_N" = "0" ]; then
   echo "Tudo verde. Sem relatorio, sem email."
@@ -212,7 +220,9 @@ Se `--dry-run`, NAO criar o arquivo — so imprimir o conteudo no console.
 
 ```bash
 if [ "$DRY_RUN" != "1" ] && [ -n "$RESEND_API_KEY" ]; then
-  PAYLOAD=$(python -c "
+  # Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+  PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+  PAYLOAD=$("$PYBIN" -c "
 import json
 results = json.loads('''$RESULTS''')
 drift = json.loads('''$DRIFT_JSON''') if '''$DRIFT_JSON''' else []
@@ -223,7 +233,7 @@ print(json.dumps({
   'report_path': '$REPORT',
 }))
   ")
-  echo "$PAYLOAD" | python .claude/skills/lp-health-check/notify.py
+  echo "$PAYLOAD" | "$PYBIN" .claude/skills/lp-health-check/notify.py
 fi
 ```
 

@@ -3,7 +3,7 @@ name: pull-request-review
 description: Revisa um pull request do GitHub localmente — gera relatório em 3 níveis de severidade (CRÍTICO/IMPORTANTE/NICE-TO-HAVE). Analisa bugs genéricos, segurança, aderência a padrões específicos do repo (skills, brand tokens, GUIDELINES de LPs, CHANGELOG). Relatório local apenas — não comenta no PR.
 argument-hint: "[url-ou-numero-do-pr] — ex: https://github.com/victorfmlopes/Agente-Inhouse/pull/1 ou 1"
 allowed-tools: Bash, Read, Write, Glob, Grep, WebFetch
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Skill: Revisar Pull Request
@@ -91,7 +91,9 @@ curl -sS -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+js
   "https://api.github.com/repos/$OWNER/$REPO/pulls/$NUMBER/commits" > reviews/.tmp/pr-$NUMBER-commits.json
 
 # Passo 2.1 (check-runs) NO MESMO bash call pra garantir que $TOKEN e $SHA estão setados
-SHA=$(python -c "import json; print(json.load(open('reviews/.tmp/pr-$NUMBER-meta.json', encoding='utf-8'))['head']['sha'])" 2>/dev/null)
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+SHA=$("$PYBIN" -c "import json; print(json.load(open('reviews/.tmp/pr-$NUMBER-meta.json', encoding='utf-8'))['head']['sha'])" 2>/dev/null)
 if [ -n "$SHA" ]; then
   curl -sS -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" \
     "https://api.github.com/repos/$OWNER/$REPO/commits/$SHA/check-runs" > reviews/.tmp/pr-$NUMBER-checks.json
@@ -106,7 +108,9 @@ Tratamento:
 Extraia metadata lendo o arquivo salvo (use heredoc `<< 'PYEOF'` pra evitar escape de aspas):
 
 ```bash
-python << 'PYEOF'
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" << 'PYEOF'
 import json
 m = json.load(open('reviews/.tmp/pr-{N}-meta.json', encoding='utf-8'))
 print(f"TITLE: {m.get('title','')}")
@@ -164,7 +168,9 @@ Construa uma lista `[{path, status, additions, deletions, patch, domain}]`.
 Patches vêm inline em `files.json` mas podem conter unicode (→, ≤, emojis) que quebra `print()` no Windows cp1252. Salve cada patch em arquivo separado e leia via `Read` tool depois:
 
 ```bash
-python << 'PYEOF'
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" << 'PYEOF'
 import json, os
 files = json.load(open('reviews/.tmp/pr-{N}-files.json', encoding='utf-8'))
 os.makedirs('reviews/.tmp/patches', exist_ok=True)
@@ -307,7 +313,7 @@ Memory context aplicável:
 #### B.4 — Meta Ads (`meta-ads/`)
 
 **🔴 CRÍTICO:**
-- Scripts Python com erro de sintaxe (tentar `python -m py_compile {file}` se possível)
+- Scripts Python com erro de sintaxe (tentar `py -m py_compile {file}`, ou `python3` no Mac/Linux, se possível)
 - Credenciais/token commitado em arquivo rastreado (`.env` deve estar em `.gitignore`)
 - Operação de escrita na API Meta (skill é SOMENTE LEITURA — qualquer `POST`/`PUT`/`DELETE` pra Graph API é crítico)
 

@@ -3,7 +3,7 @@ name: social-analytics
 description: Gera relatório mensal de performance orgânica do Instagram da Buzzmonitor a partir dos CSVs exportados do Meta Business Suite. Identifica top/bottom posts, padrões por formato e tema, cadência, perfil de audiência e recomendações para o próximo mês. Pensado pra alimentar a /social-plan.
 argument-hint: "[YYYY-MM] — ex: 2026-05 (default: mês passado)"
 allowed-tools: Read, Write, Edit, Bash, Glob, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
-version: 0.1.0
+version: 0.1.1
 ---
 
 # Skill: Análise de Performance Orgânica — Instagram Buzzmonitor
@@ -40,7 +40,9 @@ Se o usuário passar formato livre ("maio 2026", "maio", "junho"), normalize pra
 Rode o helper Python:
 
 ```bash
-python .claude/skills/social-analytics/parse_csvs.py {PASTA}/raw
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" .claude/skills/social-analytics/parse_csvs.py {PASTA}/raw
 ```
 
 Isso gera `{PASTA}/parsed.json` com:
@@ -119,7 +121,7 @@ Resumo de 3-4 linhas — não é o foco, mas vale registrar performance comparad
 
 ## Passo 5 — Escrever relatório
 
-**Atalho opcional**: `python .claude/skills/social-analytics/_gen_report.py {PASTA}` gera um esqueleto mecânico do relatório (rankings, tabelas e agregados prontos). Se usar, **enriqueça o resultado** com o que o script não faz — padrões temáticos (4.5), recomendações pro próximo mês e ajustes de TL;DR — e garanta que o arquivo final siga a estrutura abaixo, que é a fonte de verdade. Se o script e esta estrutura divergirem, vale a estrutura do SKILL.md.
+**Atalho opcional**: rode `_gen_report.py {PASTA}` com o interpretador resolvido (`$PYBIN`, como no Passo 2 — no Windows o `python` do PATH pode ser o shim da Store) — gera um esqueleto mecânico do relatório (rankings, tabelas e agregados prontos). Se usar, **enriqueça o resultado** com o que o script não faz — padrões temáticos (4.5), recomendações pro próximo mês e ajustes de TL;DR — e garanta que o arquivo final siga a estrutura abaixo, que é a fonte de verdade. Se o script e esta estrutura divergirem, vale a estrutura do SKILL.md.
 
 Salve em `{PASTA}/relatorio.md` com esta estrutura:
 

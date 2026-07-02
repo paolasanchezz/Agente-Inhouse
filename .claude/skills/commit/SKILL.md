@@ -3,7 +3,7 @@ name: commit
 description: Cria branch, commita, faz push e abre pull request para a main automaticamente via API do GitHub. NUNCA commita em main, nunca faz merge, nunca usa --force. Use ao final das alterações para entregar ao Victor revisar.
 argument-hint: "(sem args — totalmente automático)"
 allowed-tools: Bash, Read, Grep
-version: 2.0.0
+version: 2.0.1
 ---
 
 # Skill: Commit + Pull Request para revisão
@@ -283,17 +283,21 @@ EXISTING=$(curl -sS \
   -H "Accept: application/vnd.github+json" \
   "https://api.github.com/repos/$REPO_PATH/pulls?head=${OWNER}:{branch}&state=open")
 
-EXISTING_URL=$(python -c "import json,sys; p=json.loads(sys.stdin.read()); print(p[0]['html_url'] if isinstance(p, list) and p else '')" <<< "$EXISTING")
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+EXISTING_URL=$("$PYBIN" -c "import json,sys; p=json.loads(sys.stdin.read()); print(p[0]['html_url'] if isinstance(p, list) and p else '')" <<< "$EXISTING")
 ```
 
-Use `python3` em vez de `python` no Mac/Linux (detecte via `uname`).
+Os blocos resolvem `$PYBIN` (testa execução; prefere `py` no Windows — onde `python`/`python3` no PATH costumam ser o shim da Store, exit 49 — e cai em `python3` no Mac/Linux). Nunca chame `python` literal.
 
 Se `EXISTING_URL` não estiver vazio: **pule para o Passo 6** com essa URL e mostre como "PR já aberto: {url} — adicionei seu novo commit nele."
 
 ### 5.5 Criar o PR
 
 ```bash
-PAYLOAD=$(python -c "
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+PAYLOAD=$("$PYBIN" -c "
 import json,sys
 print(json.dumps({
   'title': sys.argv[1],
@@ -312,7 +316,7 @@ RESPONSE=$(curl -sS -X POST \
 
 rm "$BODY_FILE"
 
-PR_URL=$(python -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('html_url', ''))" <<< "$RESPONSE")
+PR_URL=$("$PYBIN" -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('html_url', ''))" <<< "$RESPONSE")
 ```
 
 **Tratamento da resposta:**

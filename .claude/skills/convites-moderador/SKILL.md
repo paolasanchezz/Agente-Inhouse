@@ -3,7 +3,7 @@ name: convites-moderador
 description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
 argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID]"
 allowed-tools: Read, Bash, Skill
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
@@ -25,10 +25,11 @@ Voce envia, todo dia, 1 convite de moderador para a proxima sessao agendada de c
 ## Como rodar
 
 ```bash
-# do CWD do repo
-python .claude/skills/convites-moderador/send_invites.py            # envio normal
-python .claude/skills/convites-moderador/send_invites.py --dry-run   # so imprime o plano
-python .claude/skills/convites-moderador/send_invites.py --series 17560   # so Buzzcreators
+# do CWD do repo. Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3).
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" .claude/skills/convites-moderador/send_invites.py            # envio normal
+"$PYBIN" .claude/skills/convites-moderador/send_invites.py --dry-run   # so imprime o plano
+"$PYBIN" .claude/skills/convites-moderador/send_invites.py --series 17560   # so Buzzcreators
 ```
 
 Exit code: `0` = tudo enviado. `1` = alguma falha (ver stdout pra detalhe).
@@ -57,7 +58,7 @@ A skill em si e basicamente "rode o script e cole o stdout no chat". Sem args, d
 ## Pre-requisitos
 
 - `CLICKMEETING_API_KEY` em `.env.local` na raiz do repo (gitignored). Mesma chave usada por `clickmeeting-register.js` no Vercel — ver memoria `clickmeeting-api-access`.
-- Python 3.10+ (usa typing moderno tipo `dict | None`).
+- Python 3.10+ (usa typing moderno tipo `dict | None`). No Windows, `python` no PATH pode ser o shim da Store (exit 49) — o bloco "Como rodar" resolve `$PYBIN` (prefere `py`) automaticamente; o script é stdlib puro, roda em qualquer 3.10+.
 - Acesso de rede a `api.clickmeeting.com`.
 
 ## Como o script funciona (passo a passo)

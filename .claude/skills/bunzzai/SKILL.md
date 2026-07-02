@@ -3,7 +3,7 @@ name: bunzzai
 description: Analise de tendencias de Meta Ads via MCP do Bunzzai (snapshots cumulativos). Drill-down Conta -> Campanha -> Adset -> Ad com diff de janelas 7d/15d/30d, diagnostico cruzado (CpL × CTR × Conv. LP) e detecao de cron travado. Aceita apenas contas Buzzmonitor e Cxpress. Fonte unica para analise de Meta Ads desde 2026-06-22 (pipeline meta-ads-* foi desativado — ver .claude/skills-desativadas/).
 argument-hint: "[conta] — ex: buzzmonitor_brl | cxpress_eur"
 allowed-tools: Bash, Read, mcp__claude_ai_Notion__notion-create-pages
-version: 1.1.0
+version: 1.1.1
 ---
 
 # Skill: /bunzzai — Analise de Meta Ads via MCP Bunzzai
@@ -87,7 +87,9 @@ Resposta tem `monitoring_history`: lista de snapshots com `(timestamp, spend, im
 Para cada ad, rodar Python embed (do raiz do repo — sem dependencia da antiga pasta `meta-ads/scripts/`):
 
 ```bash
-python - <<'EOF'
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" - <<'EOF'
 import json, sys, datetime as dt
 from pathlib import Path
 

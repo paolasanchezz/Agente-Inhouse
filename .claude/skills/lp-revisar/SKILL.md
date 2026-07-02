@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.6.0
+version: 1.6.1
 ---
 
 # Skill: Revisar Landing Page
@@ -219,7 +219,9 @@ CANONICAL=$(grep -c '<link rel="canonical"' "$HTML")        # esperado: 1
 ### 3.7.b JSON-LD parseia + referencia regions corretas
 
 ```bash
-python -c "
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" -c "
 import re, json, sys
 html = open('$HTML', encoding='utf-8').read()
 m = re.search(r'<script type=\"application/ld\+json\">(.*?)</script>', html, re.S)
@@ -304,8 +306,10 @@ echo "$OG_IMAGE_URL" | grep -qE '^https://' || echo "CRITICO: og:image nao e URL
 # Check 2: arquivo existe no source
 test -f "$OG_IMAGE_FILE_SOURCE" || echo "CRITICO: og-image.png ausente em $OG_IMAGE_FILE_SOURCE"
 
-# Check 3: dimensoes 1200x630
-python -c "
+# Check 3: dimensoes 1200x630 (Pillow ja vem no py 3.14 desta maquina)
+# Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+"$PYBIN" -c "
 from PIL import Image
 im = Image.open('$OG_IMAGE_FILE_SOURCE')
 if im.size != (1200, 630):
