@@ -2,6 +2,8 @@
 title: 'Creator economy no Brasil: o que é e por que importa'
 metaTitle: 'Creator economy no Brasil: o que é e por que importa'
 description: 'O Brasil é o maior mercado de criadores do mundo. Entenda o que é a creator economy, seu tamanho e o que isso muda para as marcas em 2026.'
+cover: '/assets/covers/creator-economy-no-brasil.png'
+coverAlt: "Creator economy no Brasil: o que é e por que importa — Blog Buzzcreators"
 pubDate: 2026-06-29
 author: 'Equipe Buzzcreators'
 category: 'Creator Economy'

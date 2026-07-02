@@ -2,6 +2,8 @@
 title: 'O que é UGC (conteúdo gerado pelo usuário) e como as marcas usam'
 metaTitle: 'O que é UGC e como as marcas usam a favor'
 description: 'UGC é o conteúdo gerado por usuários e criadores, não pela marca. Entenda o que é, como difere do marketing de influência e por que as marcas investem nele.'
+cover: '/assets/covers/o-que-e-ugc-conteudo-gerado-usuario.png'
+coverAlt: "O que é UGC (conteúdo gerado pelo usuário) — Blog Buzzcreators"
 pubDate: 2026-06-20
 author: 'Equipe Buzzcreators'
 category: 'Creator Economy'

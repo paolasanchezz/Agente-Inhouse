@@ -2,6 +2,8 @@
 title: 'Plataforma de marketing de influência: o que é e como escolher'
 metaTitle: 'Plataforma de marketing de influência: como escolher'
 description: 'O que faz uma plataforma de marketing de influência e quais critérios usar para escolher a sua: gestão ponta a ponta, pagamento, dados e integração.'
+cover: '/assets/covers/plataforma-marketing-de-influencia.png'
+coverAlt: "Plataforma de marketing de influência: como escolher — Blog Buzzcreators"
 pubDate: 2026-06-24
 author: 'Equipe Buzzcreators'
 category: 'Ferramentas'

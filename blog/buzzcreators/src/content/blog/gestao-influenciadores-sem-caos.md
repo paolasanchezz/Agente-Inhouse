@@ -2,6 +2,8 @@
 title: 'Gestão de influenciadores sem caos: como sair da planilha'
 metaTitle: 'Gestão de influenciadores: como sair do caos das planilhas'
 description: 'Planilha, print e e-mail solto travam campanhas de influência. Veja como centralizar briefing, aprovação e pagamento e reduzir o trabalho manual.'
+cover: '/assets/covers/gestao-influenciadores-sem-caos.png'
+coverAlt: "Gestão de influenciadores sem caos: como sair da planilha — Blog Buzzcreators"
 pubDate: 2026-06-10
 author: 'Equipe Buzzcreators'
 category: 'Operação'

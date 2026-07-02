@@ -2,6 +2,8 @@
 title: 'Employee advocacy: como transformar colaboradores em vozes da marca'
 metaTitle: 'Employee advocacy: colaboradores como voz da marca'
 description: 'Employee advocacy transforma colaboradores em divulgadores da marca. Veja o que é, por que funciona e como estruturar um programa que gera alcance e confiança.'
+cover: '/assets/covers/employee-advocacy-colaboradores-vozes-marca.png'
+coverAlt: "Employee advocacy: colaboradores como vozes da marca — Blog Buzzcreators"
 pubDate: 2026-07-01
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'

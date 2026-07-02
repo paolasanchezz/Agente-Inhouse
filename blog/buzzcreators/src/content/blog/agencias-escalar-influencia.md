@@ -2,6 +2,8 @@
 title: 'Como agências escalam campanhas de influência sem inchar a equipe'
 metaTitle: 'Agências: escalar influência sem aumentar a equipe'
 description: 'Crescer a carteira sem crescer o time exige processo. Veja como agências escalam campanhas de influência com mais clientes e a mesma equipe.'
+cover: '/assets/covers/agencias-escalar-influencia.png'
+coverAlt: "Como agências escalam influência sem inchar a equipe — Blog Buzzcreators"
 pubDate: 2026-06-15
 author: 'Equipe Buzzcreators'
 category: 'Agências'

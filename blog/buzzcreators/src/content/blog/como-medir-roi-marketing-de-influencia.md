@@ -2,6 +2,8 @@
 title: 'Como medir o ROI do marketing de influência: as métricas certas'
 metaTitle: 'Como medir o ROI do marketing de influência'
 description: 'Aprenda a medir o ROI do marketing de influência: a fórmula, os KPIs por objetivo, como atribuir resultados e quais métricas de vaidade ignorar.'
+cover: '/assets/covers/como-medir-roi-marketing-de-influencia.png'
+coverAlt: "Como medir o ROI do marketing de influência — Blog Buzzcreators"
 pubDate: 2026-06-19
 author: 'Equipe Buzzcreators'
 category: 'Métricas'

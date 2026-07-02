@@ -2,6 +2,8 @@
 title: 'Como identificar influenciadores falsos e engajamento inflado'
 metaTitle: 'Como identificar influenciadores falsos'
 description: 'Seguidores comprados e engajamento inflado queimam verba. Veja os sinais de influenciadores falsos e como auditar um perfil antes de fechar a parceria.'
+cover: '/assets/covers/como-identificar-influenciadores-falsos.png'
+coverAlt: "Como identificar influenciadores falsos — Blog Buzzcreators"
 pubDate: 2026-07-02
 author: 'Equipe Buzzcreators'
 category: 'Seleção'

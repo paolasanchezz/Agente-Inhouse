@@ -2,6 +2,8 @@
 title: 'O que é marketing de influência: o guia para marcas em 2026'
 metaTitle: 'O que é marketing de influência: guia 2026'
 description: 'Entenda o que é marketing de influência, como funciona uma campanha, os tipos de influenciador e por onde a sua marca deve começar em 2026.'
+cover: '/assets/covers/o-que-e-marketing-de-influencia.png'
+coverAlt: "O que é marketing de influência: o guia para marcas — Blog Buzzcreators"
 pubDate: 2026-06-16
 author: 'Equipe Buzzcreators'
 category: 'Fundamentos'

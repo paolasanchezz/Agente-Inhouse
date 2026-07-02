@@ -2,6 +2,8 @@
 title: 'Por que microinfluenciadores entregam ROI maior que os macros'
 metaTitle: 'Microinfluenciadores: ROI 3x maior que macroinfluenciadores'
 description: 'Seguidor não é resultado. Entenda por que micro e nanoinfluenciadores entregam até 3x mais ROI e 60% mais engajamento que grandes perfis.'
+cover: '/assets/covers/microinfluenciadores-roi-3x.png'
+coverAlt: "Por que microinfluenciadores entregam mais ROI — Blog Buzzcreators"
 pubDate: 2026-06-12
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'
