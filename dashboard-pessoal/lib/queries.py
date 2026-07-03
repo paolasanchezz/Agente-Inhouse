@@ -176,6 +176,7 @@ EMAIL_BLACKLIST: list[str] = [
     'teste@webinaranalise09090.com',          # deal 189641
     'silvio.santos@245545.com',               # deal 190348 — dominio numerico fake
     'munique.cardoso@buzzbr.com',             # deal 190349
+    'muniquebarboza1@gmail.com',              # deals 183505 (title "TESTE CRM") e 188374 — gmail pessoal usado em testes
     # Adicionados 2026-07-03 (Victor): internos do grupo Elife inscritos em webinars.
     'yan.xavier@elife.com.br',                # deal 183081
     'thaina.rino@elife.com.br',               # deal 183077
