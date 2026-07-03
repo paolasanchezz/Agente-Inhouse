@@ -192,27 +192,31 @@ SELECT email FROM (VALUES
 
 ## 3. Regra dos 90 dias (universal — eventos pós-conversão)
 
-> **Um evento (Contato Efetivo, Reunião Agendada, Realizada, Proposta, Fechamento, Perdido) só conta como CM se houver uma conversão CM no mesmo `account_id` ≤ 90 dias antes do evento.**
+> **Um evento (Contato Efetivo, Reunião Agendada, Realizada, Proposta, Fechamento, Perdido) só conta como CM se o MESMO CONTATO (e-mail) teve uma conversão CM ≤ 90 dias antes do evento — ou se o próprio deal é CM e o evento está a ≤ 90 dias da conversão dele.**
 
 **Motivação:** se um lead converteu via CM há 100+ dias e só hoje agendou uma reunião, o esforço de CM já foi "diluído" — outros canais (outbound, SDR, relacionamento) provavelmente impulsionaram o avanço. Não é mais resultado CM.
+
+**Por CONTATO, não por conta (mudança 2026-07-02, Victor).** Até 02/07 a atribuição casava por `account_id`: qualquer deal da mesma **empresa** herdava a janela de 90d. Auditoria contra a lista de leads do time mostrou que essa herança por conta só capturava ruído — deal de 2021 ressuscitado pela conversão de um colega, e-mail interno, google/cpc pegando carona, cadastros duplicados — e **nenhum** caso que o time reconhece como CM (13 eventos, 6 contatos, 0 na régua do time). A unidade de atribuição passou a ser o **e-mail do contato**: um deal sem tracking só herda se a mesma pessoa converteu em CM nos 90 dias anteriores (inclui o registro-irmão do próprio deal em `deals_contratos_prod`, que carrega a UTM quando o tracking do comercial falha). O conceito "influência de conteúdo na conta inteira" fica de fora do funil principal — se um dia for medido, será em visão separada.
 
 **Exceção: Leads.** O "evento" de Leads é o próprio `cdate` (nascimento) — não há "última conversão antes" para olhar. Para Leads, aplica-se apenas o filtro CM normal.
 
 ### CTE de conversões CM (UNION das duas tabelas)
 
-A conversão CM pode ter sido registrada em `deals_comercial_prod` ou em `deals_contratos_prod` (caso o lead foi criado já como contrato). Precisamos olhar as duas:
+A conversão CM pode ter sido registrada em `deals_comercial_prod` ou em `deals_contratos_prod` (caso o lead foi criado já como contrato). Precisamos olhar as duas. Deals **sem e-mail** não geram gatilho (não há a quem atribuir) e e-mails da `EMAIL_BLACKLIST` também não (caso NUPIXEL: contrato banido com URL `report-trends` abria janela de atribuição para a conta inteira):
 
 ```sql
 WITH conversoes_cm AS (
-  SELECT account_id, cdate AS data_conv, email_contato_principal_bd_sdr AS email
+  SELECT lower(trim(email_contato_principal_bd_sdr)) AS email_conv, cdate AS data_conv
   FROM deals_comercial_prod
-  WHERE account_id IS NOT NULL
+  WHERE email_contato_principal_bd_sdr IS NOT NULL
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (<EMAIL_BLACKLIST>)
     AND cdate >= :periodo_inicio - INTERVAL '90 days'  -- janela alargada
     AND <filtro_cm_universal>  -- mesmas regras da seção 2
   UNION ALL
-  SELECT account_id, cdate, email_contato_principal_bd_sdr
+  SELECT lower(trim(email_contato_principal_bd_sdr)), cdate
   FROM deals_contratos_prod
-  WHERE account_id IS NOT NULL
+  WHERE email_contato_principal_bd_sdr IS NOT NULL
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (<EMAIL_BLACKLIST>)
     AND cdate >= :periodo_inicio - INTERVAL '90 days'
     AND <filtro_cm_universal>
 )
@@ -222,38 +226,56 @@ WITH conversoes_cm AS (
 
 ### Padrão de query para eventos pós-conversão
 
-> **Implementação:** centralizada no helper `_atrib_cm_90d(col, alias)` em `queries.py` (revisão 2026-06-15). Não reescrever o `EXISTS` inline — usar o helper.
+> **Implementação:** centralizada em DOIS helpers de `queries.py` — `_atrib_cm_90d(col, alias)` (atribuição) e `predicado_evento(col, alias)` (predicado completo: blacklist + whitelist + funil Inbound + atribuição). **As queries de evento devem usar `predicado_evento`** — não reescrever o `EXISTS` inline nem montar `filtro_inbound + _atrib_cm_90d` à mão (foi essa montagem manual que deixou eventos sem blacklist/whitelist até 2026-07-02).
 
 ```sql
 SELECT d.*
 FROM deals_comercial_prod d
 WHERE d.<coluna_data_evento>::date BETWEEN :ini AND :fim
   AND (
-    -- atribuição normal: conversão CM na mesma conta ≤ 90d antes
-    EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = d.account_id
-        AND cm.data_conv::date <= d.<coluna_data_evento>::date
-        AND d.<coluna_data_evento>::date - cm.data_conv::date <= 90
-    )
-    -- auto-atribuição: deal sem empresa no CRM (account_id NULL) cujo próprio row é CM
-    OR (
-      d.account_id IS NULL
-      AND <filtro_cm_universal aplicado em d>
-      AND d.cdate::date <= d.<coluna_data_evento>::date
-      AND d.<coluna_data_evento>::date - d.cdate::date <= 90
+    -- blacklist: e-mail banido não soma evento (deals sem e-mail passam)
+    (d.email IS NULL OR d.email NOT IN (<EMAIL_BLACKLIST>))
+    AND (
+      -- whitelist: precedência total, como Fechamentos (§7)
+      d.email IN (<EMAIL_WHITELIST>)
+      OR (
+        <filtro_inbound>  -- funil_bd_sdr <> 'Outbound' (§2)
+        AND (
+          -- herança por CONTATO: conversão CM do mesmo e-mail ≤ 90d antes.
+          -- GUARDA DE ORIGEM: deal com utm_source próprio de mídia não-CM
+          -- (ex.: google/cpc) NÃO herda; sources internas
+          -- (HERANCA_SOURCES_INTERNAS: cs/comercial/sdr/crm) não bloqueiam.
+          (
+            (d.utm_source vazio OU interno OU <filtro_cm em d>)
+            AND EXISTS (
+              SELECT 1 FROM conversoes_cm cm
+              WHERE cm.email_conv = lower(trim(d.email))
+                AND cm.data_conv::date <= d.<coluna_data_evento>::date
+                AND d.<coluna_data_evento>::date - cm.data_conv::date <= 90
+            )
+          )
+          -- auto-atribuição: o próprio deal é CM e o evento está na janela dele
+          -- (cobre deal CM sem e-mail e leads individuais sem empresa)
+          OR (
+            <filtro_cm_universal aplicado em d>
+            AND d.cdate::date <= d.<coluna_data_evento>::date
+            AND d.<coluna_data_evento>::date - d.cdate::date <= 90
+          )
+        )
+      )
     )
   )
 ```
 
-Para Fechamento, trocar `deals_comercial_prod` por `deals_contratos_prod` e `<coluna_data_evento>` por `data_fechamento_auto`.
+Para Fechamento, trocar `deals_comercial_prod` por `deals_contratos_prod` e `<coluna_data_evento>` por `data_fechamento_auto` (Fechamentos já tinham gate próprio de blacklist/whitelist — §7 — e continuam com ele; a mudança por contato vale lá também via `_atrib_cm_90d`).
 
-**Duas correções (2026-06-15) sobre a versão ingênua — ambas causavam subcontagem:**
+**Correções acumuladas sobre a versão ingênua:**
 
-1. **Comparar em `::date`, não timestamp cru.** As colunas de evento são gravadas à meia-noite (`data_agendamento_auto = 'YYYY-MM-DD 00:00:00'`) enquanto `cdate` é `timestamptz` com hora real. Em timestamp cru, um evento no **mesmo dia** da conversão falha (`cdate 07:39 <= agendamento 00:00` = falso) e some da contagem. `::date` normaliza (ver §6). Recupera ~26 reuniões agendadas YtD 2026.
-2. **Auto-atribuição quando `account_id IS NULL`.** A CTE `conversoes_cm` exige `account_id NOT NULL` e o `EXISTS` casa por conta — então deals de leads **sem empresa** no CRM (ex.: campanha Monitoramento Político: pré-candidatos, jornalistas) nunca contavam CE/RA/RR/Proposta, só Leads. Quando o próprio row é CM, o deal se atribui a si mesmo dentro dos 90d.
+1. **Comparar em `::date`, não timestamp cru** (2026-06-15). As colunas de evento são gravadas à meia-noite (`data_agendamento_auto = 'YYYY-MM-DD 00:00:00'`) enquanto `cdate` é `timestamptz` com hora real. Em timestamp cru, um evento no **mesmo dia** da conversão falha (`cdate 07:39 <= agendamento 00:00` = falso) e some da contagem. `::date` normaliza (ver §6). Recupera ~26 reuniões agendadas YtD 2026.
+2. **Auto-atribuição** (2026-06-15, generalizada 2026-07-02). Antes restrita a `account_id IS NULL` (leads individuais sem empresa, ex.: campanha Monitoramento Político); com a atribuição por contato virou o ramo geral "o próprio deal é CM" — cobre também deal CM sem e-mail, que a CTE por contato não contém.
+3. **Blacklist/whitelist nos eventos + guarda de origem + gatilho banido** (2026-07-02). Três lacunas achadas na auditoria da lista de 51: (a) e-mail banido somava eventos (raissa/Buzzcreators; contrato NUPIXEL na fonte unificada) e e-mail whitelistado não somava (CROP sem a proposta de 12/01) — resolvido por `predicado_evento`; (b) deal google/cpc herdava evento da conversão CM do próprio contato (agencialcm 176001) — resolvido pela guarda de origem; (c) conversão de e-mail banido abria janela de atribuição — resolvido na CTE.
 
-**Fora da janela por padrão, mas overridável (`CM_DEALS_FORCADOS`):** um evento cuja conversão CM foi há >90d ou veio de `account_id` diferente **não** entra pela regra automática. Quando o Victor confirma que o deal é CM mesmo assim — ex.: deal 189715 *Assembleia Legislativa do MA*, lead que converteu na **página de oferta webinar** (CM legítimo) mas teve um deal novo criado pelo CRM **sem UTM, em conta diferente e 108 dias depois** — adiciona-se o `id` do deal a `CM_DEALS_FORCADOS` em `queries.py`. Isso força os **eventos** daquele deal (CE/RA/RR/Proposta) a contarem como CM, **sem** afetar Leads (o lead original já conta pela conversão real) nem Fechamentos (gate §7 — override de fechamento continua via `EMAIL_WHITELIST`). Override nominal, não heurístico — só `deals_comercial_prod`. Para casos sistemáticos de UTM perdida, ver `/auditar-deals-cm`.
+**Fora da janela por padrão, mas overridável (`CM_DEALS_FORCADOS`):** um evento cuja conversão CM foi há >90d ou veio de contato diferente **não** entra pela regra automática. Quando o Victor confirma que o deal é CM mesmo assim — ex.: deal 189715 *Assembleia Legislativa do MA*, lead que converteu na **página de oferta webinar** (CM legítimo) mas teve um deal novo criado pelo CRM **sem UTM, em conta diferente e 108 dias depois** — adiciona-se o `id` do deal a `CM_DEALS_FORCADOS` em `queries.py`. Isso força os **eventos** daquele deal (CE/RA/RR/Proposta) a contarem como CM, **sem** afetar Leads (o lead original já conta pela conversão real) nem Fechamentos (gate §7 — override de fechamento continua via `EMAIL_WHITELIST`). Override nominal, não heurístico — só `deals_comercial_prod`. Para casos sistemáticos de UTM perdida, ver `/auditar-deals-cm`.
 
 ---
 

@@ -5,7 +5,14 @@ mudar, replicar aqui (ver README, secao Manutencao).
 
 Espelha dashboard/MAPEAMENTO-CAMPOS.md (Brasil-only por enquanto).
 
-Ultima sincronizacao: 2026-07-02 — filtro de funil por funil_bd_sdr (campo curado = "Funil
+Ultima sincronizacao: 2026-07-02 (2a do dia) — atribuicao 90d por CONTATO (email), nao mais
+por conta: cte_conversoes_cm expoe email_conv (com EMAIL_BLACKLIST barrada no gatilho),
+_atrib_cm_90d herda so do mesmo email + guarda de origem (google/cpc nao herda;
+HERANCA_SOURCES_INTERNAS nao bloqueia), e novo predicado_evento() aplica blacklist +
+whitelist nos eventos (CE/RA/RR/Prop) como Fechamentos ja faziam. Replicado do oficial
+junto com exportar_dados.py (q_evento_raw).
+
+Sync anterior 2026-07-02: filtro de funil por funil_bd_sdr (campo curado = "Funil
 [BD e SDR]" no AC): filtro_inbound() + _sem_outbound() EXCLUEM 'Outbound' (mantendo Inbound
 + nao-classificados + EMAIL_WHITELIST), + funil_bd_sdr em _COLS_FUNIL. Em 2026-07-01 o filtro
 usava funil_inicial_lead_auto, trocado em 2026-07-02 (auto era vazio/dessincronizado do CRM).
@@ -39,6 +46,14 @@ CM_UTM_SOURCES: list[str] = [
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
+
+# Sources que NAO bloqueiam a heranca de atribuicao 90d (touchpoint interno do
+# time, nao origem de aquisicao — ex: re-conversao via link mandado pelo SDR,
+# caso mariacristina/l3ft deal 181112). 'google' fica de fora DE PROPOSITO:
+# deal google/cpc tem origem propria de midia alternativa e nao deve herdar
+# atribuicao CM (decisao Victor 2026-07-02; casos agencialcm 176001,
+# xconexoes 168636 e mind.digital 172460 na auditoria da lista de 51).
+HERANCA_SOURCES_INTERNAS: list[str] = ['cs', 'comercial', 'sdr', 'crm']
 
 # Filtro de funil (REATIVADO 2026-07-01; CAMPO corrigido 2026-07-02, Victor) — ESPELHO de dashboard/queries.py:
 # Historico: no-op "TRUE" de 2026-05-19 ate 2026-07-01. Em 2026-07-01 passou a REMOVER
@@ -94,6 +109,10 @@ EMAIL_WHITELIST: list[str] = [
     'para.fabianogomes@gmail.com',        # Fabiano Gomes — re-conversao apos lead CM original (meta+blog em jan/2026)
     'desenvolvimento@marvitubos.com.br',  # Marvi Tubos — converteu na oferta webinar Analise Preditiva 26/05, tracking veio NULL (sem URL/UTM)
     'catherine.nobrega@fabrikadecriacao.com.br',  # Fabrika (deal 183535) — fech 19/03 utm=google/monitoramento_social_media; CM confirmado pelo Victor (2026-06-22)
+    # Adicionados 2026-07-02 (auditoria lista 51): lead comercial veio com tracking
+    # vazio, mas a conversao real e CM (o registro de contratos guarda a UTM boa).
+    'mariangela.vale@drconsulta.com',     # deal 186090 — comercial sem UTM (url=home); contrato = webinar conteudo-que-converte
+    'aline.ranielle@gmail.com',           # deal 186979 — comercial sem UTM/URL; contrato = blog monitoramento-politico
 ]
 
 EMAIL_BLACKLIST: list[str] = [
@@ -130,6 +149,10 @@ EMAIL_BLACKLIST: list[str] = [
     # (origem_lead_bd e origem_negocio_inbound = "Evento"). Reclassificado: sai do CM.
     # Sincronizado do dashboard/queries.py em 2026-07-01 (estava so no snapshot oficial).
     'roni@saldaodainformatica.com.br',        # deal 186199 — falso CM, lead de evento
+    # Adicionado 2026-07-02 (auditoria lista 51): email interno Buzzmonitor num deal
+    # de 2023 somava Reuniao Realizada via heranca de atribuicao por conta.
+    'ana.costa@buzzmonitor.com.br',           # deal 73393 — interno Buzzmonitor
+    'leandra.lira@buzzmonitor.com.br',        # deal 187029 (TIRIVA) — deal de cliente cadastrado com email interno como contato principal; herdava eventos de conversao da propria funcionaria
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
@@ -318,27 +341,31 @@ def _sql_cm_deals_forcados(alias: str = 'd') -> str:
 def _atrib_cm_90d(col: str, alias: str = 'd') -> str:
     """Predicado SQL de atribuicao CM com janela de 90 dias pos-conversao.
 
-    Centraliza a regra dos 90d (MAPEAMENTO §3) com DUAS correcoes + 1 override
-    nominal, feitas em 2026-06-15 (Victor) sobre a versao ingenua que subcontava:
+    Desde 2026-07-02 (Victor) a atribuicao e por CONTATO (email), nao mais por
+    CONTA. Auditoria da lista de 51 leads mostrou que a heranca por conta so
+    capturava ruido (deal de 2021 ressuscitado via conversao de colega, email
+    interno, google/cpc de carona, cadastros duplicados) e NENHUM caso que o
+    time reconhece como CM. Ramos, em ordem:
 
-    1. GRANULARIDADE ::date — as colunas de evento sao gravadas a meia-noite
-       (ex: data_agendamento_auto = 'YYYY-MM-DD 00:00:00') enquanto cdate carrega
-       hora real (timestamptz). Comparar em timestamp cru fazia o evento do MESMO
-       dia da conversao falhar silenciosamente (`cdate 07:39 <= agendamento 00:00`
-       = falso), derrubando ~28 reunioes agendadas YtD 2026. Comparar em ::date
-       normaliza — alinhado a §6 ("use ::date em comparacoes").
+    1. OVERRIDE NOMINAL (CM_DEALS_FORCADOS) — mantido; so tabela comercial.
 
-    2. AUTO-ATRIBUICAO p/ account_id NULL — deals sem empresa no CRM (leads
-       individuais, ex: campanha Monitoramento Politico — pre-candidatos,
-       jornalistas) tem account_id NULL. A CTE conversoes_cm exige account_id
-       NOT NULL e o EXISTS casa por account, entao esses deals NUNCA contavam
-       CE/RA/RR/Proposta — apenas Leads (que nao usa account). Quando o proprio
-       row e CM, o deal se auto-atribui dentro da janela 90d (comparada em ::date).
+    2. HERANCA POR CONTATO — o evento conta se o MESMO email teve conversao CM
+       ate 90d antes (inclui o registro-irmao do proprio deal em contratos, que
+       carrega a UTM quando o tracking do comercial falha). GUARDA DE ORIGEM:
+       deal com utm_source proprio de midia nao-CM (ex: google/cpc) NAO herda —
+       a origem dele e conhecida e nao e CM (casos agencialcm/xconexoes/mind).
+       Sources internas (HERANCA_SOURCES_INTERNAS) nao bloqueiam: re-conversao
+       via link do time e touchpoint do MESMO lead CM (caso mariacristina/l3ft).
+       Deals sem email nao herdam (nao ha de quem).
 
-    3. OVERRIDE NOMINAL (CM_DEALS_FORCADOS) — deals que o Victor confirmou como CM
-       mas que nenhuma regra acima pega (ex: lead converteu em pagina de oferta CM,
-       mas o CRM criou deal novo sem UTM, em conta diferente e fora dos 90d). Entram
-       so como EVENTO, so na tabela comercial; nao tocam Fechamentos nem Leads.
+    3. AUTO-ATRIBUICAO — o proprio deal e CM (filtro_cm) e o evento esta a ate
+       90d da propria conversao. Generaliza o antigo ramo account_id NULL
+       (2026-06-15): continua cobrindo leads individuais sem empresa e passa a
+       cobrir tambem deal CM sem email (que a CTE por contato nao contem).
+
+    GRANULARIDADE ::date mantida (fix 2026-06-15): colunas de evento sao gravadas
+    a meia-noite enquanto cdate tem hora real; comparar em timestamp cru derrubava
+    eventos do mesmo dia da conversao (~28 RAs YtD 2026). Alinhado a §6.
 
     `col` = coluna-data do evento; `alias` = alias da tabela na query externa.
     Fechamentos (deals_contratos_prod) usam alias 'ct'. Requer a CTE
@@ -348,19 +375,49 @@ def _atrib_cm_90d(col: str, alias: str = 'd') -> str:
     fcm = filtro_cm(a)
     # Override nominal so p/ comercial (ct = fechamentos nao muda — gate §7 intacto).
     forcado = "FALSE" if a == "ct" else _sql_cm_deals_forcados(a)
+    internas = _sql_list(HERANCA_SOURCES_INTERNAS)
     return f"""(
     {forcado}
-    OR EXISTS (
-      SELECT 1 FROM conversoes_cm cm
-      WHERE cm.account_id = {a}.account_id
-        AND cm.data_conv::date <= {a}.{col}::date
-        AND {a}.{col}::date - cm.data_conv::date <= 90
+    OR (
+      (COALESCE({a}.utm_source, '') IN ('', {internas}) OR {fcm})
+      AND {a}.email_contato_principal_bd_sdr IS NOT NULL
+      AND EXISTS (
+        SELECT 1 FROM conversoes_cm cm
+        WHERE cm.email_conv = lower(trim({a}.email_contato_principal_bd_sdr))
+          AND cm.data_conv::date <= {a}.{col}::date
+          AND {a}.{col}::date - cm.data_conv::date <= 90
+      )
     )
     OR (
-      {a}.account_id IS NULL
-      AND {fcm}
+      {fcm}
       AND {a}.cdate::date <= {a}.{col}::date
       AND {a}.{col}::date - {a}.cdate::date <= 90
+    )
+  )"""
+
+
+def predicado_evento(col: str, alias: str = 'd') -> str:
+    """Predicado COMPLETO de um evento de funil CM (CE/RA/RR/Proposta):
+    blacklist excluida, whitelist com precedencia total (mesmo gate dos
+    Fechamentos, §7), funil Inbound e atribuicao 90d por contato.
+
+    Criado 2026-07-02: ate entao as queries de evento aplicavam apenas
+    filtro_inbound + _atrib_cm_90d — sem EMAIL_BLACKLIST nem EMAIL_WHITELIST.
+    Efeito real da lacuna: email banido somava eventos (raissa/Buzzcreators,
+    4 eventos; contrato NUPIXEL na fonte unificada) e email whitelistado nao
+    somava (CROP ficou sem a proposta de 12/01). Centralizado aqui pra nenhuma
+    query de evento esquecer camada. Deals sem email nao caem na blacklist
+    (IS NULL passa) — seguem para o ramo de atribuicao normal.
+    """
+    p = f"{alias}." if alias else ""
+    bl = _sql_email_list(EMAIL_BLACKLIST)
+    wl = _sql_email_list(EMAIL_WHITELIST)
+    return f"""(
+    ({p}email_contato_principal_bd_sdr IS NULL
+      OR lower(trim({p}email_contato_principal_bd_sdr)) NOT IN ({bl}))
+    AND (
+      lower(trim({p}email_contato_principal_bd_sdr)) IN ({wl})
+      OR ({filtro_inbound(alias)} AND {_atrib_cm_90d(col, alias)})
     )
   )"""
 
@@ -372,20 +429,29 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
     Gera a CTE `conversoes_cm` que une conversoes CM de comercial + contratos,
     com janela alargada 90d antes de `janela_inicio`.
 
+    Desde 2026-07-02 (Victor) a CTE expoe o EMAIL do contato convertido (nao mais
+    account_id) — atribuicao por contato. Duas guardas:
+    - deals sem email nao geram gatilho (nao ha a quem atribuir);
+    - emails da EMAIL_BLACKLIST nao geram gatilho (caso NUPIXEL: contrato banido
+      com URL report-trends abria janela de atribuicao pra conta inteira).
+
     Use no WITH ... pra qualquer query que aplica regra 90d pos-conversao.
     """
     janela = (janela_inicio - timedelta(days=90)).isoformat()
     f = filtro_cm()
+    bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""WITH conversoes_cm AS (
-  SELECT account_id, cdate AS data_conv
+  SELECT lower(trim(email_contato_principal_bd_sdr)) AS email_conv, cdate AS data_conv
   FROM deals_comercial_prod
-  WHERE account_id IS NOT NULL
+  WHERE email_contato_principal_bd_sdr IS NOT NULL
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN ({bl})
     AND cdate >= '{janela}'
     AND {f}
   UNION ALL
-  SELECT account_id, cdate
+  SELECT lower(trim(email_contato_principal_bd_sdr)), cdate
   FROM deals_contratos_prod
-  WHERE account_id IS NOT NULL
+  WHERE email_contato_principal_bd_sdr IS NOT NULL
+    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN ({bl})
     AND cdate >= '{janela}'
     AND {f}
 )"""
@@ -452,8 +518,7 @@ def q_count_evento(kpi: str, ini: date, fim: date) -> str:
 SELECT COUNT(*) AS n
 FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND {filtro_inbound("d")}
-  AND {_atrib_cm_90d(col, "d")}
+  AND {predicado_evento(col, "d")}
 """
 
 
@@ -566,8 +631,7 @@ SELECT
   d.{col}::date AS data_evento{extras}
 FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND {filtro_inbound("d")}
-  AND {_atrib_cm_90d(col, "d")}
+  AND {predicado_evento(col, "d")}
 ORDER BY d.{col}
 """
 
@@ -586,8 +650,7 @@ SELECT
   d.currency
 FROM {fonte_deals_funil()} d
 WHERE d.data_envio_proposta_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND {filtro_inbound("d")}
-  AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
+  AND {predicado_evento("data_envio_proposta_auto", "d")}
 ORDER BY d.data_envio_proposta_auto
 """
 
@@ -703,32 +766,28 @@ ce_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS ce
   FROM {fonte_deals_funil()} d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{d1}' AND '{d2}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
+    AND {predicado_evento("data_efetividade_contato_auto", "d")}
   GROUP BY d.{dim}
 ),
 ra_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS ra
   FROM {fonte_deals_funil()} d
   WHERE d.data_agendamento_auto::date BETWEEN '{d1}' AND '{d2}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
+    AND {predicado_evento("data_agendamento_auto", "d")}
   GROUP BY d.{dim}
 ),
 rr_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS rr
   FROM {fonte_deals_funil()} d
   WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{d1}' AND '{d2}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
+    AND {predicado_evento("data_inicio_reuniao_realizada", "d")}
   GROUP BY d.{dim}
 ),
 prop_p AS (
   SELECT d.{dim} AS dim, COUNT(*) AS prop
   FROM {fonte_deals_funil()} d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{d1}' AND '{d2}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
+    AND {predicado_evento("data_envio_proposta_auto", "d")}
   GROUP BY d.{dim}
 ),
 fech_p AS (
@@ -847,20 +906,17 @@ eventos AS (
   SELECT date_trunc('week', d.data_efetividade_contato_auto)::date, 'ce'
   FROM {fonte_deals_funil()} d
   WHERE d.data_efetividade_contato_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_efetividade_contato_auto", "d")}
+    AND {predicado_evento("data_efetividade_contato_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_agendamento_auto)::date, 'agendadas'
   FROM {fonte_deals_funil()} d
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
+    AND {predicado_evento("data_agendamento_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', d.data_envio_proposta_auto)::date, 'propostas'
   FROM {fonte_deals_funil()} d
   WHERE d.data_envio_proposta_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND {filtro_inbound("d")}
-    AND {_atrib_cm_90d("data_envio_proposta_auto", "d")}
+    AND {predicado_evento("data_envio_proposta_auto", "d")}
   UNION ALL
   SELECT date_trunc('week', ct.data_fechamento_auto)::date, 'fechamentos'
   FROM deals_contratos_prod ct
@@ -896,22 +952,21 @@ SELECT
   COALESCE(d.utm_source, '(vazio)') AS source,
   COUNT(*) FILTER (
     WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND {_atrib_cm_90d("data_agendamento_auto", "d")}
+      AND {predicado_evento("data_agendamento_auto", "d")}
   ) AS ra_12m,
   COUNT(*) FILTER (
     WHERE d.data_inicio_reuniao_realizada::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-      AND {_atrib_cm_90d("data_inicio_reuniao_realizada", "d")}
+      AND {predicado_evento("data_inicio_reuniao_realizada", "d")}
   ) AS rr_12m
 FROM {fonte_deals_funil()} d
-WHERE {filtro_inbound("d")}
-  AND (
+WHERE (
     d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
     OR d.data_inicio_reuniao_realizada::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
   )
 GROUP BY d.utm_source
 HAVING COUNT(*) FILTER (
   WHERE d.data_agendamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND {_atrib_cm_90d("data_agendamento_auto", "d")}
+    AND {predicado_evento("data_agendamento_auto", "d")}
 ) > 0
 ORDER BY ra_12m DESC
 """

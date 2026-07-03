@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza a dashboard CM Buzzmonitor Brasil (dinamica-estatica no Vercel) — roda o exportador Python (Supabase -> dados-2026.json), copia index.html + motor.js + dados pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger semanal. Single-purpose (so este dashboard).
 argument-hint: "(sem args — totalmente automatico)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 2.0.1
+version: 2.0.2
 ---
 
 # Skill: Atualizar Dashboard CM Buzzmonitor Brasil (dinamica-estatica)
@@ -45,7 +45,7 @@ import importlib.util
 def L(p,n):
     s=importlib.util.spec_from_file_location(n,p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 o=L('dashboard/queries.py','o'); e=L('dashboard-pessoal/lib/queries.py','e'); d=False
-for a in ['CM_UTM_SOURCES','EMAIL_WHITELIST','EMAIL_BLACKLIST','INTERNOS_EXCLUIR','CM_SLUGS_PREFIXES']:
+for a in ['CM_UTM_SOURCES','EMAIL_WHITELIST','EMAIL_BLACKLIST','INTERNOS_EXCLUIR','HERANCA_SOURCES_INTERNAS','CM_SLUGS_PREFIXES']:
     A,B=set(getattr(o,a)),set(getattr(e,a))
     if A^B: d=True; print(f'{a}: so_oficial={sorted(A-B)} so_espelho={sorted(B-A)}')
 for a in ['CM_DEALS_FORCADOS','RECONVERSOES_MANUAIS','DEALS_EXCLUIDOS_URL_DATA']:

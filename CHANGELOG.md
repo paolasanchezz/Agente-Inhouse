@@ -33,6 +33,12 @@ Antes do build, a skill agora gera a **capa/OG de qualquer post sem `cover:`** v
 Primeira versão. Publica o blog estático (`blog/{marca}`, hoje Buzzcreators) no projeto Vercel: pré-flight (auth + resolve URL de produção com fallback `.vercel.app`), build local como **gate de meta tags** (o `content.config.ts` falha o build se um post violar os limites), deploy `--prod` com `PUBLIC_NOINDEX=false`, validação da versão no ar (posts/sitemap/rss/llms + sem noindex) e relatório. Sem sibling (blog é estático, sem middleware/PII/vizinhas). Contexto sancionado da trava de deploy Vercel (`guard_vercel_deploy.py`).
 
 ## dashboard-atualizar
+### 2026-07-02 — v2.0.2 — `HERANCA_SOURCES_INTERNAS` no check de sincronia (Passo 0.2b)
+
+A constante nova de `queries.py` (sources internas que não bloqueiam a herança de atribuição — criada na mudança de atribuição por contato de 2026-07-02) entrou na lista de constantes auditadas entre oficial × espelho. Sem isso, uma divergência futura nela passaria batida (o check só compara o que está na lista — foi assim que o ECHEF ROBOT voltou em 2026-07-01). PATCH.
+
+A mudança de regra em si (atribuição 90d por **contato** em vez de conta + guarda de origem + blacklist/whitelist nos eventos via `predicado_evento()`) vive em `dashboard/queries.py` + `dashboard-pessoal/lib/queries.py` + `dashboard-buzz-br-vercel/exportar_dados.py` e está documentada em `dashboard/MAPEAMENTO-CAMPOS.md` §3 — não é versionada por esta skill.
+
 ### 2026-07-02 — v2.0.1 — Nota de re-validação de paridade roda via `uv` (evita o shim Python do Windows)
 
 Ajuste pontual: a nota de manutenção "re-validar após mudar motor/queries" chamava `python paridade_gerar_esperado.py` direto. No Windows, esse `python` é o shim da Microsoft Store (exit 49), e o script importa `psycopg` (C-extension) — então precisa mesmo de `uv`. Alinhado ao padrão do resto da skill: `uv run --python 3.12 --with "psycopg[binary]" python …`, que provisiona o próprio 3.12 com wheels. O **fluxo principal já rodava em `uv`** (Passos 0.2b/1) e não muda. PATCH. Contexto do shim: entrada `lp-publicar, lp-sync` de 2026-07-02 + `landing-pages/CONTEXT.md` §6.

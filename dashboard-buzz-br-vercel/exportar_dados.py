@@ -30,7 +30,7 @@ import psycopg  # noqa: E402
 from lib.queries import (  # noqa: E402
     EMAIL_BLACKLIST, EMAIL_WHITELIST, COLUNA_EVENTO,
     filtro_cm, filtro_inbound, _sem_outbound, _atrib_cm_90d, cte_conversoes_cm,
-    _sql_email_list, _cdate_efetivo, fonte_deals_funil,
+    predicado_evento, _sql_email_list, _cdate_efetivo, fonte_deals_funil,
     q_serie_temporal_12m, q_proporcao_sources_12m,
 )
 from lib.render import serie_temporal_12m, proporcao_sources, jsonify  # noqa: E402
@@ -106,8 +106,7 @@ SELECT d.id, d.title AS deal,
        d.{col}::date AS data{extra}
 FROM {fonte_deals_funil()} d
 WHERE d.{col}::date BETWEEN '{ini}' AND '{fim}'
-  AND {filtro_inbound("d")}
-  AND {_atrib_cm_90d(col, "d")}
+  AND {predicado_evento(col, "d")}
 """
 
 
