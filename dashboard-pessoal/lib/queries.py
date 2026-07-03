@@ -5,7 +5,11 @@ mudar, replicar aqui (ver README, secao Manutencao).
 
 Espelha dashboard/MAPEAMENTO-CAMPOS.md (Brasil-only por enquanto).
 
-Ultima sincronizacao: 2026-07-02 (2a do dia) — atribuicao 90d por CONTATO (email), nao mais
+Ultima sincronizacao: 2026-07-03 — EMAIL_BLACKLIST +19 (16 emails de teste do CRM + 3 internos
+Elife; auditoria leads x lista do time) e DEALS_EXCLUIDOS_URL_DATA + '%buzzsummit.com.br/patrocine%'
+(patrocinio de evento nao e lead CM). Replicado do oficial.
+
+Sync anterior 2026-07-02 (2a do dia) — atribuicao 90d por CONTATO (email), nao mais
 por conta: cte_conversoes_cm expoe email_conv (com EMAIL_BLACKLIST barrada no gatilho),
 _atrib_cm_90d herda so do mesmo email + guarda de origem (google/cpc nao herda;
 HERANCA_SOURCES_INTERNAS nao bloqueia), e novo predicado_evento() aplica blacklist +
@@ -153,6 +157,29 @@ EMAIL_BLACKLIST: list[str] = [
     # de 2023 somava Reuniao Realizada via heranca de atribuicao por conta.
     'ana.costa@buzzmonitor.com.br',           # deal 73393 — interno Buzzmonitor
     'leandra.lira@buzzmonitor.com.br',        # deal 187029 (TIRIVA) — deal de cliente cadastrado com email interno como contato principal; herdava eventos de conversao da propria funcionaria
+    # Adicionados 2026-07-03 (Victor, auditoria leads x lista do time): emails de TESTE
+    # do CRM — a equipe valida automacoes com email novo a cada teste e a blacklist e
+    # nominal, entao vazam. Retirados nominalmente (politica de 2026-06-06).
+    'testecrmthamires@gmail.com',             # deal 177607
+    'testecrmmunique@gmail.com',              # deal 180257
+    'testemunique@gmail.com',                 # deal 181399
+    'muniquetestecrm@rmkt.com.br',            # deal 181450
+    'muniquetestecrm01@rmkt.com.br',          # deal 181488
+    'testecrm@gmail.com',                     # deal 183935
+    'munique.cardoso@testecrm1803.com',       # deal 183936
+    'munique.cardoso@muniquecrm.com',         # deal 183944
+    'thamiresteste@gmail.com',                # deal 185015
+    'teste@metads.com',                       # deal 185332
+    'thamiresdeoliveira6@gmail.com',          # deal 187788 — teste confirmado pelo Victor 2026-07-03
+    'testecrmsummit2026@gmail.com',           # deal 189002
+    'teste@webhoojiojoik.com',                # deal 189511
+    'teste@webinaranalise09090.com',          # deal 189641
+    'silvio.santos@245545.com',               # deal 190348 — dominio numerico fake
+    'munique.cardoso@buzzbr.com',             # deal 190349
+    # Adicionados 2026-07-03 (Victor): internos do grupo Elife inscritos em webinars.
+    'yan.xavier@elife.com.br',                # deal 183081
+    'thaina.rino@elife.com.br',               # deal 183077
+    'rute.nascimento@elifeportugal.com',      # deal 188896
 ]
 
 # Exclusao cirurgica de deals por URL + data (incidentes pontuais de tracking).
@@ -168,6 +195,12 @@ DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
         # Sem chave 'datas' => exclui qualquer data. (Originou de falha de lote em 25/05 e 06/03,
         # mas a decisao final foi excluir todas as inscricoes, nao so os lotes.)
         'url_like': 'https://webinar.buzzmonitor.com/analise-preditiva-maio-2026%',
+    },
+    {
+        # Buzz Summit — formulario de PATROCINIO do evento nao e lead CM de produto
+        # ("nao e deal", Victor 2026-07-03; 8 leads Instagram_Feed/Stories mai-jun/26
+        # na auditoria leads x lista do time). Sem 'datas' => exclui qualquer data.
+        'url_like': '%buzzsummit.com.br/patrocine%',
     },
 ]
 
