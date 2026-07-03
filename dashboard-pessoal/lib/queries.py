@@ -229,7 +229,10 @@ CM_SLUGS_PREFIXES: list[str] = [
     'relatorios-estrategicos',
     'buzz-talks-',
     'buzztalk-',
-    'buzzmonitor-connect-',
+    # 'buzzmonitor-connect-' REMOVIDO 2026-07-02 (Victor, auditoria lista 51):
+    # paginas Connect (atendimento/relacionamento) sao produto, nao conteudo CM.
+    # Derrubou grace/fatecie (deals 171932/172176) e o gatilho do contrato
+    # luis.ferreira/BS2 (deal 178072).
 ]
 
 # Colunas-data dos eventos no funil

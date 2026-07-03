@@ -95,7 +95,9 @@ lp-agradecimento-oferta-trends, lp-agradecimento-evento, tiktok, chatgpt.com, ge
 
 O subdomínio recebe tráfego misto (CM + Google Ads + formulários internos). Só estes slugs contam como CM:
 
-`plataforma-completa`, `plataforma-completa-atendimento`, `plataforma-completa-listening`, `monitoramento-de-redes-sociais-2`, `oferta-*` (todos), `conteudo-que-converte`, `webinar-*` (todos), `report-trends-*`, `masterclass-trends-*`, `gestao-de-crises-*`, `relatorios-estrategicos`, `buzz-talks-*`, `buzztalk-*`, `buzzmonitor-connect-*`
+`plataforma-completa`, `plataforma-completa-atendimento`, `plataforma-completa-listening`, `monitoramento-de-redes-sociais-2`, `oferta-*` (todos), `conteudo-que-converte`, `webinar-*` (todos), `report-trends-*`, `masterclass-trends-*`, `gestao-de-crises-*`, `relatorios-estrategicos`, `buzz-talks-*`, `buzztalk-*`
+
+> `buzzmonitor-connect-*` foi **removido** em 2026-07-02 (Victor): páginas Connect (atendimento/relacionamento com o cliente) são produto, não conteúdo CM.
 
 **Excluídos:** `indicacoes-internas` (form interno), `buzz-pills` (newsletter CRM), `monitoramento-com-ia`, `buzzmonitor-ia`, `escolha-a-buzzmonitor`, `social-listening-com-ia`, `ia-para-social-listening` (Google Ads).
 
@@ -149,7 +151,6 @@ deals_cm AS (
               OR url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/relatorios-estrategicos%'
               OR url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/buzz-talks-%'
               OR url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/buzztalk-%'
-              OR url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/buzzmonitor-connect-%'
             )
           )
         )
