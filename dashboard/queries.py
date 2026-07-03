@@ -196,6 +196,14 @@ DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
         # na auditoria leads x lista do time). Sem 'datas' => exclui qualquer data.
         'url_like': '%buzzsummit.com.br/patrocine%',
     },
+    {
+        # Buzzcreators (marca distinta do grupo) — pagina de produto de gestao de
+        # influenciadores, nao e conteudo CM da Buzzmonitor (Victor 2026-07-03; ~10
+        # leads utm_source=meta AD 07 Bruno Buzzcreators na auditoria leads x lista).
+        # Esses leads entram por utm_source, nao por slug — por isso vao aqui, na
+        # exclusao por URL (que vale p/ Leads E eventos). Sem 'datas' => qualquer data.
+        'url_like': '%buzzcreators.com.br/gestao-de-influenciadores%',
+    },
 ]
 
 # Reconversoes manuais (deal_id -> data efetiva da nova conversao).

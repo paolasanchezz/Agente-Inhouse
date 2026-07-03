@@ -5,8 +5,11 @@ mudar, replicar aqui (ver README, secao Manutencao).
 
 Espelha dashboard/MAPEAMENTO-CAMPOS.md (Brasil-only por enquanto).
 
-Ultima sincronizacao: 2026-07-03 — EMAIL_BLACKLIST +19 (16 emails de teste do CRM + 3 internos
-Elife; auditoria leads x lista do time) e DEALS_EXCLUIDOS_URL_DATA + '%buzzsummit.com.br/patrocine%'
+Ultima sincronizacao: 2026-07-03 (3a) — DEALS_EXCLUIDOS_URL_DATA + '%buzzcreators.com.br/gestao-de-influenciadores%'
+(pagina de produto Buzzcreators, nao conteudo CM Buzzmonitor). Replicado do oficial.
+
+Sync 2026-07-03 (anterior) — EMAIL_BLACKLIST +20 (16 emails de teste do CRM + 3 internos Elife +
+muniquebarboza1; auditoria leads x lista do time) e DEALS_EXCLUIDOS_URL_DATA + '%buzzsummit.com.br/patrocine%'
 (patrocinio de evento nao e lead CM). Replicado do oficial.
 
 Sync anterior 2026-07-02 (2a do dia) — atribuicao 90d por CONTATO (email), nao mais
@@ -202,6 +205,14 @@ DEALS_EXCLUIDOS_URL_DATA: list[dict] = [
         # ("nao e deal", Victor 2026-07-03; 8 leads Instagram_Feed/Stories mai-jun/26
         # na auditoria leads x lista do time). Sem 'datas' => exclui qualquer data.
         'url_like': '%buzzsummit.com.br/patrocine%',
+    },
+    {
+        # Buzzcreators (marca distinta do grupo) — pagina de produto de gestao de
+        # influenciadores, nao e conteudo CM da Buzzmonitor (Victor 2026-07-03; ~10
+        # leads utm_source=meta AD 07 Bruno Buzzcreators na auditoria leads x lista).
+        # Esses leads entram por utm_source, nao por slug — por isso vao aqui, na
+        # exclusao por URL (que vale p/ Leads E eventos). Sem 'datas' => qualquer data.
+        'url_like': '%buzzcreators.com.br/gestao-de-influenciadores%',
     },
 ]
 
