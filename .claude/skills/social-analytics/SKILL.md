@@ -2,8 +2,8 @@
 name: social-analytics
 description: Gera relatório mensal de performance orgânica do Instagram da Buzzmonitor a partir dos CSVs exportados do Meta Business Suite. Identifica top/bottom posts, padrões por formato e tema, cadência, perfil de audiência e recomendações para o próximo mês. Pensado pra alimentar a /social-plan.
 argument-hint: "[YYYY-MM] — ex: 2026-05 (default: mês passado)"
-allowed-tools: Read, Write, Edit, Bash, Glob, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
-version: 0.1.1
+allowed-tools: Read, Write, Edit, Bash, Glob, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
+version: 0.2.0
 ---
 
 # Skill: Análise de Performance Orgânica — Instagram Buzzmonitor
@@ -198,14 +198,15 @@ Estes vão alimentar a `/social-plan` quando ela rodar pro próximo mês.
 
 ## Passo 6 — Publicar no Notion
 
-1. Leia `conhecimento/config/notion-ids.md` e pegue o ID da chave `redes-sociais-relatorios`.
-2. Crie uma página filha sob esse parent (`type: page_id`) com:
-   - **Title**: `Relatório Performance · Buzzmonitor · {MES_NOME} {ANO}` (ex: "Relatório Performance · Buzzmonitor · Maio 2026")
-   - **Icon**: `📊`
-   - **Content**: o conteúdo integral do `relatorio.md` em Markdown
-3. Anote o URL retornado.
-4. Adicione o URL no topo do `relatorio.md` local como linha extra:
-   `> **Notion**: <url-da-pagina>`
+Siga o "Padrão de página por mês" documentado em `conhecimento/config/notion-ids.md` (chave `redes-sociais`) — regra fixa desde 2026-07 pra nunca duplicar página do mesmo mês:
+
+1. `notion-fetch` na página `redes-sociais` → ache o child com título exato `{MES_NOME} {ANO}` (ex: `Julho 2026`).
+2. **Hub existe**: entre nele. Se já tem um child `Relatório de Performance`, **atualize esse** (`notion-update-page` com `replace_content`) em vez de criar um novo. Se não tem, crie o child ali dentro.
+3. **Hub não existe** (raro — normalmente o `/social-plan` do mês já criou): crie o hub `{MES_NOME} {ANO}` (ícone 🗓️) como child de `redes-sociais`, depois crie `Relatório de Performance` como child dele.
+4. **Título da página**: `Relatório de Performance` (o hub já carrega marca e mês, não repita no título do filho). **Icon**: `📊`. **Content**: conteúdo integral do `relatorio.md` em Markdown.
+5. Anote o URL retornado e adicione no topo do `relatorio.md` local: `> **Notion**: <url-da-pagina>`
+
+**Exceção histórica**: meses anteriores a junho/2026 (ex: Maio) continuam arquivados na chave antiga `redes-sociais-relatorios` — não mexer nesses, só consultar se precisar.
 
 ## Passo 7 — Output ao usuário
 

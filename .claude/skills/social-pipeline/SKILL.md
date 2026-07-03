@@ -2,8 +2,8 @@
 name: social-pipeline
 description: Orquestrador completo de redes sociais da Buzzmonitor — costura analytics + planejamento + copies + designs com pausas pra aprovação. Roda mês a mês pra fechar o ciclo. Aceita só Instagram da Buzzmonitor por enquanto.
 argument-hint: "[marca] [mes] — ex: buzzmonitor julho | buzzmonitor 2026-07 (default: buzzmonitor mes-atual)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Skill, AskUserQuestion, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
-version: 0.1.0
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Skill, AskUserQuestion, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
+version: 0.2.0
 ---
 
 # Skill: Pipeline Social Buzzmonitor
@@ -159,7 +159,7 @@ Pra cada post do calendário aprovado, gerar 1 copy escolhida com:
 
 Salva tudo num artefato único:
 - Local: `{PASTA_ATUAL}/copies/copies-{mes}.md`
-- Notion: nova página em `redes-sociais` (parent) chamada `Copies · Buzzmonitor · {MES_NOME} {ANO}`
+- Notion: siga o "Padrão de página por mês" em `conhecimento/config/notion-ids.md` — ache (ou crie, se não existir) a página-hub `{MES_NOME} {ANO}` dentro de `redes-sociais`, e crie/atualize o child `Copies` **dentro dela** (nunca solto direto em `redes-sociais`, e nunca uma segunda página `Copies` se já existir uma pro mês)
 
 ### C.3 — Pausa pra aprovar
 

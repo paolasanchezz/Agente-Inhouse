@@ -611,6 +611,32 @@ Arquivos:
 ---
 
 ## social-plan
+### 2026-07-03 — v3.2.0: relatório do mês anterior vira pré-requisito bloqueante, não mais best-effort
+
+Passo 0.5 mudou de "tente ler o relatório, se não existir segue especulativo" para **bloqueante**: sem `relatorio.md` do mês anterior, a skill para antes de pesquisar ou montar calendário, avisa a Catharina que precisa do relatório primeiro, roda `social-analytics` pra gerá-lo (pedindo os CSVs do Meta Business Suite) e só then retoma o planejamento. Decisão da Catharina: planejamento sem aprendizado real do mês anterior é a raiz de calendários especulativos (o mesmo padrão que gerou os 5 planejamentos de junho divergentes entre si, cada um "inventando" contexto diferente sem dado real).
+
+Também explicitado: usar o relatório **ativamente** na síntese e no calendário — descartar formato/tema que não funcionou (citando por quê) e insistir no que funcionou — em vez de só mencionar o relatório de passagem no resumo estratégico.
+
+Arquivos: `.claude/skills/social-plan/SKILL.md` (v3.2.0, Passo 0.5)
+
+---
+
+## social-plan
+### 2026-07-03 — v3.1.0 + social-pipeline v0.2.0 + social-analytics v0.2.0: Facebook fora, LinkedIn réplica-first, 1 página por mês no Notion
+
+Revisão pedida pela Catharina depois do primeiro planejamento de julho. Dois incidentes motivaram mudança de regra permanente (não só ajuste pontual deste mês):
+
+- **Facebook sai do calendário.** Só Instagram + LinkedIn de agora em diante. Instagram é a rede primária (todo post nasce ali, 3x/semana); LinkedIn replica a maioria dos temas com tom mais executivo e só ganha post **exclusivo** quando o ângulo é puramente textual e não converte pra carrossel (ex: reação a evento do dia, retrospectiva de mês). Tabela de formato por rede e template do calendário atualizados (Passo 3.3, Passo 4).
+- **Regra "posts prontos, não categorias vazias".** Todo item do calendário precisa vir com tema e ângulo fechados — nunca um placeholder tipo "post de case" sem dizer qual case. Slots de oportunidade (antes 2-3 por padrão) caem pra 0-2, reservados só pra temas genuinamente reativos (ex: "novidade de plataforma — avaliar toda segunda"), sempre com instrução de ativação escrita, nunca `(a definir)` vazio.
+- **Incidente de duplicação no Notion:** rodadas anteriores de `/social-plan` (algumas de testes exploratórios, nunca comunicadas como tal) tinham criado **5 páginas de planejamento diferentes pra junho** e **2 pra julho**, soltas como irmãs dentro de `redes-sociais`, nenhuma marcada como "a válida" — a Catharina não conseguia saber qual conteúdo estava em vigor. Correção: `conhecimento/config/notion-ids.md` ganha a seção "Padrão de página por mês", regra fixa pras 3 skills da família — **1 página-hub por mês** (`{Mês} {Ano}`, ex: `Julho 2026`) dentro de `redes-sociais`, com `Planejamento`, `Copies`, `📅 Calendário` (database) e `Relatório de Performance` como children dela. Antes de criar qualquer coisa, `notion-fetch` no hub pra checar se já existe; se existe, **atualiza em vez de criar**. `social-plan` (Passo 5), `social-pipeline` (Etapa C.2) e `social-analytics` (Passo 6) apontam pro mesmo padrão. Chave antiga `redes-sociais-relatorios` fica só como arquivo histórico pré-junho/2026 (Maio pra trás).
+- **`allowed-tools` completado pras 3 skills:** como o padrão acima exige *atualizar* páginas existentes (não só criar), `social-plan`, `social-pipeline` e `social-analytics` passaram a declarar `notion-update-page` no `allowed-tools` (e `social-plan` também `notion-update-view`, pro rename da view do calendário no Passo 5.4). Sem isso, ao reencontrar o hub do mês a skill não conseguiria atualizar e cairia de volta no `create` — recriando a duplicata que a regra existe justamente pra evitar.
+- Limpeza feita manualmente nesta sessão: as 5+2 páginas soltas de junho/julho foram arquivadas; as páginas reais (a que efetivamente virou copy e foi publicada) foram movidas pra dentro dos novos hubs `Junho 2026` e `Julho 2026`.
+
+Arquivos: `.claude/skills/social-plan/SKILL.md` (v3.1.0) · `.claude/skills/social-pipeline/SKILL.md` (v0.2.0) · `.claude/skills/social-analytics/SKILL.md` (v0.2.0) · `conhecimento/config/notion-ids.md` (seção "Padrão de página por mês") · `social-media/buzzmonitor/2026-07/{planejamento.md,copies/copies-julho.md}`
+
+---
+
+## social-plan
 ### 2026-05-19 — v1.0.0 nova: planejamento editorial mensal de redes sociais Buzzmonitor
 
 Skill nova `/social-plan` que gera planejamento editorial mensal para LinkedIn, Instagram e Facebook da Buzzmonitor. Fluxo: parsing do mês → leitura do brand-manifest + produto + concorrentes → 4 agentes de pesquisa em paralelo (concorrentes nas redes, perfis de referência B2B SaaS, tendências do nicho, blog Buzzmonitor reutilizável) → síntese (pilares, temas de oportunidade, formato por rede) → calendário com 3 posts/semana por rede + 2-3 slots de oportunidade em aberto → publicação no Notion (página principal + database com calendar view).
