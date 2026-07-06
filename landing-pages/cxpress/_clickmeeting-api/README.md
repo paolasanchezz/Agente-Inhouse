@@ -21,17 +21,25 @@ de webinar perpétuo Cxpress no guarda-chuva `content.cxpress.io`
 
 `next-webinar.js` resolve a sala filtrando `/conferences/active` por `recurring_config_id`.
 Sem parâmetro, usa `process.env.CLICKMEETING_RECURRING_CONFIG_ID` (série placeholder do
-domínio — hoje `17529`, `conheca-a-cxpress`). Com `?series=<chave>`, usa o mapa `SERIES`:
+domínio — hoje `17689`, `conheca-a-cxpress`). Com `?series=<chave>`, usa o mapa `SERIES`:
 
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
-| _(sem série)_ | `17529` (env) | Conheça a Cxpress (placeholder do domínio) | `/conheca-a-cxpress` (+ `-confirmado`) |
+| _(sem série)_ | `17689` (env) | Conheça a Cxpress (placeholder do domínio) | `/conheca-a-cxpress` (+ `-confirmado`) |
 | `ia-voz` | `17671` | Cxpress Vozxpress — estudo de caso IA de Voz (conf id 10070428, room_pin 754-174-641, PT-BR) | `/case-ia-de-voz` |
 
 Chave desconhecida → fallback no env padrão (nunca quebra as LPs vizinhas).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.
 **E-mail de confirmação:** `SERIES_LANG` mapeia série → idioma; `ia-voz` é PT-BR e cai no
 default `br`. Adicionar `'chave':'es'` quando existir série LATAM neste domínio.
+
+**Histórico do env default (`CLICKMEETING_RECURRING_CONFIG_ID`):** `17497` (encerrada 11/jun) →
+`17529` (12/jun) → **`17689`** (06/jul — sala `10074506` "Conheça Cxpress", room_pin
+786-934-264, tz America/Sao_Paulo, `automated`/`type:2`). Toda troca dessas = PATCH da env var
+no Vercel (instâncias production + development) + redeploy via `/lp-publicar` — **sem** mudança
+de HTML (a LP é fixa e resolve a série pelo env em runtime). Ao trocar, atualizar também o
+mapping da skill `/convites-moderador` (`config.json`) para a série nova, senão o convite diário
+de moderador para de sair para o webinar Cxpress.
 
 ## Como deployar uma mudança nas functions (fluxo manual controlado)
 
@@ -40,7 +48,7 @@ default `br`. Adicionar `'chave':'es'` quando existir série LATAM neste domíni
 1. `/lp-sync content.cxpress.io` — popula a sibling com o último deploy READY (todas as LPs vizinhas + functions vivas).
 2. Copiar estes 2 arquivos por cima de `{sibling}/api/`.
 3. Conferir vizinhas intactas (hash) e fazer deploy: `cd {sibling} && npx vercel deploy --prod --yes --force --scope team_nC991VqUuSU2jXZN152xqqEg`.
-4. Smoke test: `/api/next-webinar` (padrão → série 17529) e `/api/next-webinar?series=ia-voz` (→ série 17671) devem responder `ok:true` com salas **diferentes**; registro com honeypot (`_hp` preenchido) não cria lead.
+4. Smoke test: `/api/next-webinar` (padrão → série 17689) e `/api/next-webinar?series=ia-voz` (→ série 17671) devem responder `ok:true` com salas **diferentes**; registro com honeypot (`_hp` preenchido) não cria lead.
 
 **Ordem inegociável:** a function precisa conhecer a chave ANTES de a LP mandar `?series=`,
 senão `?series=ia-voz` cai no fallback `17529` (webinar errado). Como a LP `case-ia-de-voz`
