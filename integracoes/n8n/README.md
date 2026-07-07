@@ -10,10 +10,12 @@ planilha do Google Sheets, e mantém atualizado sozinho (roda a cada 6h).
 ## O que ele faz
 
 1. Lê todas as conferências da conta (`/conferences/active` + `/conferences/inactive`).
-2. Filtra só as séries que interessam (mapa `SERIES` no nó **Montar lista de sessões**).
+2. Descobre sozinho as séries de webinar perpétuo — **qualquer** conferência
+   recorrente do tipo webinar (nó **Montar lista de sessões**), sem lista fixa.
+   Séries de teste são ignoradas (nome começa com "test"/"teste" ou id em `BLOQUEIO_RID`).
 3. Para cada sessão, busca os inscritos (`/conferences/{id}/registrations`).
 4. Monta 1 linha por pessoa e grava na planilha em modo **Append or Update**
-   (chave = Email + Série), então rodar de novo não duplica — só atualiza/insere.
+   (chave = **Email**), então rodar de novo atualiza a pessoa em vez de duplicar.
 
 ### Colunas
 `Data inscrição · Nome · Email · Empresa · País · Cidade · Marca/Sala · Série · Sessão · Origem · Link de acesso`
@@ -23,20 +25,34 @@ planilha do Google Sheets, e mantém atualizado sozinho (roda a cada 6h).
 > vêm do geo (IP) que o ClickMeeting captura. Recorte fino por marca×região exigiria
 > criar salas dedicadas por LP ou capturar a origem na inscrição (projeto à parte).
 
-### Mapa de séries (estado em 2026-06-25)
-| Série (recurring_config_id) | Marca/Sala |
-|---|---|
-| 17529 | CX BR \| Conheça Cxpress — sala default da Cxpress |
-| 17497 | CX (legado) |
-| 17544 | BUZZ LATAM \| Atención |
-| 17560 | CREATORS case |
-| 17601 | BUZZ BR \| MCP |
+### Auto-descoberta de séries (desde 2026-07-07)
+Não há mais lista fixa de `recurring_config_id`. O nó **Montar lista de sessões**
+processa **toda** conferência recorrente de webinar que a API retornar, e a coluna
+**Marca/Sala** recebe o próprio nome do webinar no ClickMeeting. Quando o marketing
+troca ou cria webinars, a planilha acompanha sozinha — foi justamente o mapa fixo
+que causou a desatualização anterior (apontava para o Conheça Cxpress antigo `17529`
+e não conhecia os webinars novos: Vozxpress, Que es MCP e o Conheça atual).
 
-> **Atenção à chave de deduplicação:** o nó Google Sheets deve casar por
-> **Email + Série** (não só Email). Um mesmo e-mail pode estar inscrito em mais
-> de uma sala (ex: webinar de Cxpress + de Atención) — casar só por Email
-> colapsa os dois numa linha e mostra a marca errada (a última que escreveu).
-> Email + Série mantém uma linha por (pessoa, sala). Incidente 2026-06-25.
+Séries de webinar ativas hoje (só referência — **não** é config):
+
+| Série (recurring_config_id) | Nome no ClickMeeting |
+|---|---|
+| 17689 | Conheça Cxpress |
+| 17671 | Cxpress Vozxpress |
+| 17601 | Buzzmonitor MCP |
+| 17646 | Buzzmonitor Que es MCP |
+| 17544 | Buzzmonitor Atención al Cliente |
+| 17560 | buzzcreators-case |
+
+> Excluídas automaticamente: séries de teste (ex.: `17643` "teste1"). Para tirar
+> outra série da planilha, adicione o id em `BLOQUEIO_RID` ou faça o nome bater em
+> `BLOQUEIO_NOME`, no nó *Montar lista de sessões*.
+
+> **Chave de deduplicação: apenas `Email`** (decisão do Victor, 2026-07-07). Rodar
+> de novo atualiza a pessoa em vez de duplicar. Tradeoff assumido: se a mesma pessoa
+> se inscrever em duas séries diferentes, as linhas colapsam numa só (fica a última
+> série gravada). Se um dia quiser uma linha por (pessoa, série), troque a matching
+> column do nó Google Sheets pra `Email + Série` (contexto: incidente 2026-06-25).
 
 ## Setup no n8n (uma vez)
 
@@ -55,8 +71,9 @@ planilha do Google Sheets, e mantém atualizado sozinho (roda a cada 6h).
 
 ## Manutenção
 
-- **Nova série/sala no ClickMeeting?** Edite o objeto `SERIES` no nó
-  *Montar lista de sessões* (chave = recurring_config_id, valor = rótulo).
+- **Nova série/sala no ClickMeeting?** Nada a fazer — entra sozinha na próxima
+  execução, com a **Marca/Sala** = nome do webinar. Só mexa se quiser **excluir**
+  uma série (ex.: teste): `BLOQUEIO_RID`/`BLOQUEIO_NOME` no nó *Montar lista de sessões*.
 - **Mudar cadência:** ajuste o nó *A cada 6 horas*.
 - **Volume:** baixo (dezenas). A varredura de todas as sessões por execução é
   proposital — backfilla o histórico e se autocorrige. Se um dia o volume de
