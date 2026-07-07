@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Content Marketing · Cxpress Brasil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<div class="status-bar" id="statusBar">Carregando...</div>
+
+<div class="container" id="container">
+
+  <!-- ============ PERIOD PICKER ============ -->
+  <div class="picker">
+    <div class="pgroup" id="presetGroup">
+      <button class="pbtn" data-preset="7d">7d</button>
+      <button class="pbtn" data-preset="15d">15d</button>
+      <button class="pbtn" data-preset="30d">30d</button>
+      <button class="pbtn" data-preset="90d">90d</button>
+      <button class="pbtn" data-preset="mtd">MtD</button>
+      <button class="pbtn active" data-preset="ytd">YtD</button>
+    </div>
+    <div class="dgroup">
+      <label for="iniInput">De</label>
+      <input type="date" id="iniInput">
+      <label for="fimInput">até</label>
+      <input type="date" id="fimInput">
+      <button class="apply" id="applyBtn">Aplicar</button>
+    </div>
+    <div class="range-label" id="rangeLabel">
+      <span id="rangeText">—</span>
+      <span class="cache-pill" id="cachePill" title="">—</span>
+      <button class="refresh-btn" id="refreshBtn" title="Recarregar o arquivo de dados">↻</button>
+    </div>
+  </div>
+
+  <div id="content"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="motor.js"></script>
+<script src="render.js"></script>
+<script>
+/* ---------- wiring (espelha dashboard-buzz-br-vercel/index.html) ---------- */
+const PRESET_LABEL = { '7d': '7 dias', '15d': '15 dias', '30d': '30 dias', '90d': '90 dias', mtd: 'MtD', ytd: 'YtD' };
+const MESES_C = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+let DADOS = null, firstLoad = true;
+
+const statusBar = document.getElementById('statusBar');
+const container = document.getElementById('container');
+const content = document.getElementById('content');
+
+function showStatus(msg, isError = false) { statusBar.textContent = msg; statusBar.classList.toggle('error', isError); statusBar.classList.add('show'); }
+function hideStatus() { statusBar.classList.remove('show'); }
+function toISO(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+
+async function ensureDados() {
+  if (DADOS) return DADOS;
+  const res = await fetch('dados-cxpress.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`Falha ao carregar dados-cxpress.json (HTTP ${res.status})`);
+  DADOS = await res.json();
+  return DADOS;
+}
+function hojeExport() { return (DADOS && DADOS.gerado_em) ? DADOS.gerado_em : toISO(new Date()); }
+
+function updateRangeLabel(d) {
+  const p = d.periodos;
+  const a = new Date(p.ini_atual + 'T00:00:00'), b = new Date(p.fim_atual + 'T00:00:00');
+  const rng = `${String(a.getDate()).padStart(2, '0')} ${MESES_C[a.getMonth()]} – ${String(b.getDate()).padStart(2, '0')} ${MESES_C[b.getMonth()]} ${b.getFullYear()}`;
+  document.getElementById('rangeText').innerHTML = `<b>${rng}</b> · ${p.dias_periodo} ${p.dias_periodo === 1 ? 'dia' : 'dias'}`;
+  const pill = document.getElementById('cachePill');
+  const g = new Date(p.hoje + 'T00:00:00');
+  pill.textContent = `dados de ${String(g.getDate()).padStart(2, '0')} ${MESES_C[g.getMonth()]} ${g.getFullYear()}`;
+  pill.title = `Snapshot gerado em ${p.hoje} — atualizado sob demanda`;
+}
+
+// Monta os charts so quando o Chart.js carregou E o container ja tem largura (o estilo.css
+// externo aplica o layout depois do DOMContentLoaded; sem isso o canvas nasce com width 0/300).
+function agendarCharts(d, tent) {
+  tent = tent || 0;
+  const el = document.getElementById('chartTimeseries');
+  const pronto = (typeof Chart !== 'undefined') && el && el.parentElement && el.parentElement.clientWidth > 0;
+  if (pronto) { RenderCxpress.montarCharts(d); return; }
+  if (tent < 90) requestAnimationFrame(() => agendarCharts(d, tent + 1));
+}
+
+async function load(ini, fim, nome) {
+  container.classList.add('loading');
+  if (firstLoad) showStatus('Carregando dados…');
+  try {
+    const D = await ensureDados();
+    // Agregacao 100% no navegador — sem ida ao banco (troca de filtro instantanea)
+    const d = MotorCxpress.montar(D, ini, fim, hojeExport(), nome);
+    content.innerHTML = RenderCxpress.render(d);
+    content.querySelectorAll('table').forEach(RenderCxpress.makeSortable);
+    updateRangeLabel(d);
+    agendarCharts(d);
+    hideStatus();
+    firstLoad = false;
+  } catch (e) {
+    showStatus(`Erro: ${e.message}`, true);
+    console.error(e);
+  } finally {
+    container.classList.remove('loading');
+  }
+}
+
+function presetRange(name) {
+  // ancora = data do export (nao o relogio do PC), pra bater com o snapshot
+  const fim = new Date(hojeExport() + 'T00:00:00');
+  let ini = new Date(fim);
+  if (name === '7d') ini.setDate(fim.getDate() - 6);
+  else if (name === '15d') ini.setDate(fim.getDate() - 14);
+  else if (name === '30d') ini.setDate(fim.getDate() - 29);
+  else if (name === '90d') ini.setDate(fim.getDate() - 89);
+  else if (name === 'mtd') ini = new Date(fim.getFullYear(), fim.getMonth(), 1);
+  else if (name === 'ytd') ini = new Date(fim.getFullYear(), 0, 1);
+  return { ini: toISO(ini), fim: toISO(fim) };
+}
+function setPickerInputs(ini, fim) {
+  document.getElementById('iniInput').value = ini;
+  document.getElementById('fimInput').value = fim;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  document.querySelectorAll('#presetGroup .pbtn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#presetGroup .pbtn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const pr = btn.dataset.preset;
+      const { ini, fim } = presetRange(pr);
+      setPickerInputs(ini, fim);
+      load(ini, fim, PRESET_LABEL[pr]);
+    });
+  });
+
+  document.getElementById('applyBtn').addEventListener('click', () => {
+    const ini = document.getElementById('iniInput').value;
+    const fim = document.getElementById('fimInput').value;
+    if (!ini || !fim) { showStatus('Preencha as duas datas', true); return; }
+    if (new Date(ini) > new Date(fim)) { showStatus('«De» precisa ser anterior a «até»', true); return; }
+    document.querySelectorAll('#presetGroup .pbtn').forEach((b) => b.classList.remove('active'));
+    load(ini, fim, 'Período');
+  });
+
+  ['iniInput', 'fimInput'].forEach((id) => {
+    document.getElementById(id).addEventListener('keyup', (e) => { if (e.key === 'Enter') document.getElementById('applyBtn').click(); });
+  });
+
+  document.getElementById('refreshBtn').addEventListener('click', () => {
+    const ini = document.getElementById('iniInput').value, fim = document.getElementById('fimInput').value;
+    if (!ini || !fim) return;
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    DADOS = null;
+    const active = document.querySelector('#presetGroup .pbtn.active');
+    const nome = active ? PRESET_LABEL[active.dataset.preset] : 'Período';
+    load(ini, fim, nome).finally(() => setTimeout(() => btn.classList.remove('spinning'), 400));
+  });
+
+  try {
+    await ensureDados();
+  } catch (e) {
+    showStatus(`Erro ao carregar dados: ${e.message}`, true);
+    return;
+  }
+  // abre em YtD (visao do ano)
+  const { ini, fim } = presetRange('ytd');
+  setPickerInputs(ini, fim);
+  load(ini, fim, 'YtD');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+"""exportar_dados.py — Cxpress: gera dados-cxpress.json para a dashboard dinamica-estatica no Vercel.
+
+Espelha dashboard-buzz-br-vercel/exportar_dados.py, adaptado ao modelo de dados Cxpress:
+- Fonte UNICA (cxpress_deals_funil_principal_prod), SEM email/dedup, SEM regra 90d.
+- Cada deal traz TODAS as datas do funil na propria linha => exportamos UMA linha por deal
+  (no escopo CM) com as 7 datas de etapa ja normalizadas (YYYY-MM-DD ou null). O navegador
+  (motor.js) conta cada KPI filtrando pela data da etapa no intervalo escolhido.
+
+A logica CM (filtro_cm calibrado, escopo) continua sendo fonte unica em dashboard/queries_cxpress.py
+— aqui so mudamos a PROJECAO: em vez de contar por periodo, listamos as linhas cruas.
+Series de 12m e proporcao de sources sao FIXAS (nao dependem do range) => pre-computadas aqui.
+
+Uso:
+    uv run --python 3.12 --with "psycopg[binary]" python dashboard-cxpress-vercel/exportar_dados.py
+"""
+from __future__ import annotations
+
+import json
+import sys
+from datetime import date
+from pathlib import Path
+
+# Reusa a lib da dash Cxpress (fonte unica da logica CM).
+ROOT = Path(__file__).resolve().parent
+DASH = ROOT.parent / "dashboard"
+sys.path.insert(0, str(DASH))
+
+import psycopg  # noqa: E402
+
+import queries_cxpress as Q  # noqa: E402
+from gerar_relatorio_cxpress import load_url, colher_serie, fetch_all  # noqa: E402
+from render_helpers_cxpress import render_proporcao_sources  # noqa: E402
+
+HOJE = date.today()
+OUT_PATH = ROOT / "dados-cxpress.json"
+
+
+def q_deals_raw() -> str:
+    """Uma linha por deal no escopo CM, com as 7 datas de etapa normalizadas.
+
+    Reusa o MESMO escopo (_escopo = filtro_inbound AND filtro_cm) das queries da dash local.
+    Sem filtro de data na base: o motor.js filtra por data de etapa no intervalo (identico ao
+    count(*) FILTER (WHERE data BETWEEN ...) das q_count_kpis/q_ranking, que tambem partem da
+    base inteira do escopo). utm_content sai cru (URL-encoded) — o render decodifica (igual a dash).
+    """
+    esc = Q._escopo("d")
+    return f"""
+SELECT d.id, d.title AS deal, d.utm_source, {Q._content('d')} AS utm_content,
+       {Q.COL_RESP} AS responsavel,
+       {Q.COL_VALOR} AS valor_text, d.currency,
+       d.status, d.motivo_de_perda_closer_sdr AS motivo, d.etapa_do_lost AS etapa,
+       d.{Q.COL_LEAD}::date AS d_lead,
+       {Q._d('d.' + Q.COL_TRIAGEM)} AS d_triagem,
+       {Q._d('d.' + Q.COL_AGENDAMENTO)} AS d_agendamento,
+       {Q._d('d.' + Q.COL_DEMO)} AS d_demo,
+       {Q._d('d.' + Q.COL_PROPOSTA)} AS d_proposta,
+       {Q._d('d.' + Q.COL_FECHAMENTO)} AS d_fechamento,
+       {Q._d('d.' + Q.COL_LOST)} AS d_lost
+FROM {Q.TABELA} d
+WHERE {esc}
+"""
+
+
+def _jsonify(r: dict) -> dict:
+    """dates -> ISO 'YYYY-MM-DD'; o resto passa (o json.dumps default=str cobre Decimal)."""
+    return {k: (v.isoformat() if isinstance(v, date) else v) for k, v in r.items()}
+
+
+def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+    print(f"Exportando dados CM Cxpress {date(2026, 1, 1)} -> {HOJE} ...", flush=True)
+    url = load_url()
+
+    with psycopg.connect(url, autocommit=True) as conn, conn.cursor() as cur:
+        cur.execute("SET statement_timeout = '300s'")
+        print("  [1/3] deals (escopo CM, todas as datas)...", flush=True)
+        deals = fetch_all(cur, q_deals_raw())
+        print("  [2/3] serie 12m...", flush=True)
+        serie = colher_serie(cur, HOJE)
+        print("  [3/3] proporcao sources 12m...", flush=True)
+        prop = render_proporcao_sources(fetch_all(cur, Q.q_proporcao_12m(HOJE)))
+
+    out = {
+        "gerado_em": HOJE.isoformat(),
+        "escopo": {"ini": date(2026, 1, 1).isoformat(), "fim": HOJE.isoformat()},
+        "deals": [_jsonify(r) for r in deals],
+        "serie": serie,
+        "proporcao": prop,
+    }
+
+    OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, default=str), encoding="utf-8")
+
+    size = OUT_PATH.stat().st_size
+    print("\n" + "=" * 56)
+    print("EXPORT OK ->", OUT_PATH.name)
+    print("=" * 56)
+    print(f"  deals   : {len(deals):>6d} linhas")
+    print(f"  serie   : {len(serie.get('labels', []))} semanas")
+    print(f"  tamanho : {size / 1024:.1f} KB  ({size / 1024 / 1024:.2f} MB)")
+    print("=" * 56)
+
+
+if __name__ == "__main__":
+    main()

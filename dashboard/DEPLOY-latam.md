@@ -1,5 +1,33 @@
 # Deploy do Dashboard CM Buzzmonitor **LATAM**
 
+> ## ⚡ v2 — Dashboard dinâmica-estática (desde 2026-07-07) — **ESTE é o fluxo atual**
+>
+> A dashboard no Vercel virou **dinâmica-estática** (date-picker de intervalo livre + presets, igual à
+> Buzzmonitor BR). Fonte em **`dashboard-latam-vercel/`**: `exportar_dados.py` reusa `queries_latam.py`
+> (leads de inbound∪outbound + fechamentos de `contratos_staging`) e gera `dados-latam.json`; o navegador
+> agrega com `motor.js` e desenha com `render.js` (port de `gerar_relatorio_latam.render_html`, ES/USD,
+> funil de 5 fases). **Senha forte** (idêntica à do Buzzmonitor BR — não mais `inhouse@77`) + `noindex`.
+> URL: https://dashboard-buzzmonitor-latam.vercel.app · projeto `dashboard-buzzmonitor-latam`.
+>
+> **Redeploy (fluxo atual):**
+> ```bash
+> # 1. Exportar dados frescos (Supabase -> dados-latam.json)
+> uv run --python 3.12 --with "psycopg[binary]" python dashboard-latam-vercel/exportar_dados.py
+> # 2. (gate) paridade número-a-número vs a dash local (queries_latam) — 0 divergências pra seguir
+> uv run --python 3.12 --with "psycopg[binary]" python dashboard-latam-vercel/paridade_gerar_esperado.py && node dashboard-latam-vercel/paridade_check.mjs
+> # 3. Sincronizar a sibling (copia estáticos + gera middleware/vercel/robots com a senha do Buzz BR)
+> uv run --python 3.12 python dashboard-latam-vercel/sync_sibling.py
+> # 4. Deploy (dispara a trava guard_vercel_deploy — confirmar)
+> vercel deploy --prod --yes --scope team_nC991VqUuSU2jXZN152xqqEg --cwd "C:/Users/titof/Downloads/Claude/dashboard-buzzmonitor-latam"
+> # 5. Validar: sem auth = 401 · com a senha forte = 200 · dados-latam.json = 200
+> ```
+>
+> O CÓDIGO em `dashboard-latam-vercel/` versiona; **`dados-latam.json`/`paridade_esperado.json` são
+> gitignored** (PII + valores). O restante deste doc descreve o **snapshot semanal estático (v1,
+> aposentado)** — mantido só para histórico/recovery.
+
+---
+
 > Paralelo do `DEPLOY.md` (Brasil). Mesmo padrão **sibling fora do repo** + Basic Auth na Vercel.
 > Critério de CM e mapeamento de campos: `dashboard/MAPEAMENTO-CAMPOS-latam.md`.
 

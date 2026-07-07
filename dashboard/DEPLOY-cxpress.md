@@ -1,5 +1,33 @@
 # Deploy do Dashboard Funil Inbound **Cxpress Brasil**
 
+> ## ⚡ v2 — Dashboard dinâmica-estática (desde 2026-07-07) — **ESTE é o fluxo atual**
+>
+> A dashboard no Vercel virou **dinâmica-estática** (date-picker de intervalo livre + presets, igual à
+> Buzzmonitor BR). Fonte em **`dashboard-cxpress-vercel/`**: `exportar_dados.py` reusa `queries_cxpress.py`
+> e gera `dados-cxpress.json`; o navegador agrega por período com `motor.js` e desenha com `render.js`
+> (port fiel de `gerar_relatorio_cxpress.render_html`), CSS em `estilo.css`. **Senha forte** (idêntica à do
+> Buzzmonitor BR — não mais `inhouse@77`) + `X-Robots-Tag: noindex` + `robots.txt`.
+> URL: https://dashboard-cxpress-brasil.vercel.app · projeto `dashboard-cxpress-brasil` (scope elife-group).
+>
+> **Redeploy (fluxo atual):**
+> ```bash
+> # 1. Exportar dados frescos (Supabase -> dados-cxpress.json)
+> uv run --python 3.12 --with "psycopg[binary]" python dashboard-cxpress-vercel/exportar_dados.py
+> # 2. (gate) paridade número-a-número vs a dash local (queries_cxpress) — 0 divergências pra seguir
+> uv run --python 3.12 --with "psycopg[binary]" python dashboard-cxpress-vercel/paridade_gerar_esperado.py && node dashboard-cxpress-vercel/paridade_check.mjs
+> # 3. Sincronizar a sibling (copia estáticos + gera middleware/vercel/robots com a senha do Buzz BR)
+> uv run --python 3.12 python dashboard-cxpress-vercel/sync_sibling.py
+> # 4. Deploy (dispara a trava guard_vercel_deploy — confirmar)
+> vercel deploy --prod --yes --scope team_nC991VqUuSU2jXZN152xqqEg --cwd "C:/Users/titof/Downloads/Claude/dashboard-cxpress-brasil"
+> # 5. Validar: sem auth = 401 · com a senha forte = 200 · dados-cxpress.json = 200
+> ```
+>
+> O CÓDIGO em `dashboard-cxpress-vercel/` versiona; **`dados-cxpress.json`/`paridade_esperado.json` são
+> gitignored** (PII de leads + valores). O restante deste doc descreve o **snapshot semanal estático
+> (v1, aposentado)** — mantido só para histórico/recovery.
+
+---
+
 > Paralelo do `DEPLOY.md` (Buzzmonitor BR) e `DEPLOY-latam.md`. Mesmo padrão **sibling fora do repo**
 > + Basic Auth na Vercel. Funil e mapeamento de campos: `dashboard/MAPEAMENTO-CAMPOS-cxpress.md`.
 

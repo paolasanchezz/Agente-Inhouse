@@ -8,10 +8,14 @@ dashboard/relatorio-*.html
 dashboard/relatorio-*.html.bak
 
 # Dashboard CM dinâmica-estática (Vercel) — dados com PII de leads + valores comerciais.
-# Regeneráveis via dashboard-buzz-br-vercel/exportar_dados.py. O CÓDIGO (index.html, motor.js,
-# *.py, *.mjs, PLANO) versiona normalmente; só os dados gerados NÃO.
+# Regeneráveis via dashboard-*-vercel/exportar_dados.py. O CÓDIGO (index.html, motor.js,
+# render.js, estilo.css, *.py, *.mjs, README) versiona normalmente; só os dados gerados NÃO.
 dashboard-buzz-br-vercel/dados-2026.json
 dashboard-buzz-br-vercel/paridade_esperado.json
+dashboard-cxpress-vercel/dados-cxpress.json
+dashboard-cxpress-vercel/paridade_esperado.json
+dashboard-latam-vercel/dados-latam.json
+dashboard-latam-vercel/paridade_esperado.json
 
 # Auditoria de deals CM (PII: emails + ids de deals). Outputs regeneraveis via /auditar-deals-cm.
 # Preserva a pasta via .gitkeep; ignora os relatorios/CSVs.
