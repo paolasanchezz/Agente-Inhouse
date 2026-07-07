@@ -2,12 +2,14 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import { getCategories } from '../lib/taxonomy';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_TAGLINE } from '../consts';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const [featured, ...rest] = posts;
+const categories = await getCategories();
 ---
 
 <BaseLayout title={`${SITE_TITLE} · ${SITE_TAGLINE}`} description={SITE_DESCRIPTION}>
@@ -19,6 +21,14 @@ const [featured, ...rest] = posts;
     </div>
   </section>
 
+  <nav class="container cat-nav" aria-label="Categorias">
+    <ul class="cat-chips">
+      {categories.map((c) => (
+        <li><a href={`/categoria/${c.slug}`}>{c.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+
   <section class="container posts">
     <div class="post-grid">
       {featured && <PostCard post={featured} featured />}
@@ -28,6 +38,31 @@ const [featured, ...rest] = posts;
 </BaseLayout>
 
 <style>
+  .cat-nav {
+    padding-top: var(--space-lg);
+  }
+  .cat-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .cat-chips a {
+    display: inline-block;
+    background: var(--c-gray-100);
+    color: var(--c-purple-dark);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .cat-chips a:hover {
+    background: var(--c-purple);
+    color: var(--c-white);
+  }
   .posts {
     padding-bottom: var(--space-2xl);
   }

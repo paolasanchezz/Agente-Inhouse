@@ -19,7 +19,10 @@ const site = Astro.site ?? new URL('https://buzzcreators-blog.vercel.app');
 const url = new URL(`/blog/${post.id}`, site);
 const image = new URL(d.cover ?? OG_DEFAULT, site);
 const metaTitle = d.metaTitle ?? `${d.title} | ${SITE_TITLE}`;
-const topTag = d.category ?? d.tags[0];
+const primaryLabel = d.category ?? d.tags[0];
+const primaryHref = d.category
+  ? `/categoria/${slugify(d.category)}`
+  : `/tag/${slugify(d.tags[0])}`;
 
 const schemas: Record<string, unknown>[] = [
   blogPosting({
@@ -35,6 +38,9 @@ const schemas: Record<string, unknown>[] = [
   }),
   breadcrumb([
     { name: 'Blog', url: site.toString() },
+    ...(d.category
+      ? [{ name: d.category, url: new URL(`/categoria/${slugify(d.category)}`, site).toString() }]
+      : []),
     { name: d.title, url: url.toString() },
   ]),
 ];
@@ -59,9 +65,9 @@ if (d.faq.length) schemas.push(faqPage(d.faq));
         <nav class="crumbs" aria-label="Trilha de navegação">
           <a href="/">Blog</a>
           <span aria-hidden="true">/</span>
-          <a href={`/tag/${slugify(topTag)}`}>{topTag}</a>
+          <a href={primaryHref}>{primaryLabel}</a>
         </nav>
-        <p class="overline">{topTag}</p>
+        <p class="overline">{primaryLabel}</p>
         <h1>{d.title}</h1>
         <p class="post-meta">
           Por {d.author} · <FormattedDate date={d.pubDate} />

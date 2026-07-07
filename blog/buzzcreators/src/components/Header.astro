@@ -1,6 +1,9 @@
 ---
-import { NAV_LINKS, PLATFORM_CTA_URL, ORG_LOGO } from '../consts';
+import { NAV_LINKS, ORG_LOGO } from '../consts';
+import { conversionUrl, utmContentFromPath } from '../lib/utm';
 const path = Astro.url.pathname;
+// CTA de conversão: utm_source=blog + utm_content = artigo/página atual (lib/utm.ts)
+const ctaUrl = conversionUrl('/marcas', utmContentFromPath(path), 'marcas');
 ---
 
 <header class="site-header">
@@ -22,7 +25,7 @@ const path = Astro.url.pathname;
           </a>
         ))
       }
-      <a class="btn btn-primary nav-cta" href={PLATFORM_CTA_URL} target="_blank" rel="noopener">
+      <a class="btn btn-primary nav-cta" href={ctaUrl} target="_blank" rel="noopener">
         Conhecer a plataforma
       </a>
     </nav>

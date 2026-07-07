@@ -1,6 +1,11 @@
 ---
-import { ORG_NAME, SITE_URL_FOOTER, CONTACT_EMAIL, SITE_TAGLINE, SITE_DESCRIPTION } from '../consts';
+import { ORG_NAME, CONTACT_EMAIL, SITE_TAGLINE, SITE_DESCRIPTION } from '../consts';
+import { getCategories } from '../lib/taxonomy';
+import { conversionUrl, utmContentFromPath } from '../lib/utm';
 const year = new Date().getFullYear();
+const categories = await getCategories();
+// Link de conversão para o site: utm_source=blog + utm_content = artigo/página (lib/utm.ts)
+const siteUrl = conversionUrl('/', utmContentFromPath(Astro.url.pathname), 'institucional');
 ---
 
 <footer class="site-footer">
@@ -11,12 +16,20 @@ const year = new Date().getFullYear();
       <p class="footer-desc">{SITE_DESCRIPTION}</p>
     </div>
 
-    <nav class="footer-nav" aria-label="Rodapé">
+    <nav class="footer-col" aria-label="Navegação do rodapé">
+      <p class="overline footer-col-title">Navegação</p>
       <a href="/">Início</a>
       <a href="/sobre">Sobre o blog</a>
       <a href="/rss.xml">RSS</a>
-      <a href={SITE_URL_FOOTER} target="_blank" rel="noopener">buzzcreators.com.br</a>
+      <a href={siteUrl} target="_blank" rel="noopener">buzzcreators.com.br</a>
       <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Categorias">
+      <p class="overline footer-col-title">Categorias</p>
+      {categories.map((c) => (
+        <a href={`/categoria/${c.slug}`}>{c.label}</a>
+      ))}
     </nav>
   </div>
 
@@ -34,7 +47,7 @@ const year = new Date().getFullYear();
   }
   .footer-inner {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.6fr 1fr 1fr;
     gap: var(--space-2xl);
     padding-bottom: var(--space-2xl);
   }
@@ -53,18 +66,22 @@ const year = new Date().getFullYear();
     max-width: 42ch;
     font-size: 0.95rem;
   }
-  .footer-nav {
+  .footer-col {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
     align-items: flex-start;
   }
-  .footer-nav a {
+  .footer-col-title {
+    color: var(--c-orange);
+    margin-bottom: 4px;
+  }
+  .footer-col a {
     color: rgba(255, 255, 255, 0.78);
     text-decoration: none;
     font-size: 0.95rem;
   }
-  .footer-nav a:hover {
+  .footer-col a:hover {
     color: var(--c-white);
   }
   .footer-bottom {

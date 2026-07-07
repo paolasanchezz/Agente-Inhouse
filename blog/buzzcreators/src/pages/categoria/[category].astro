@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { slugify } from '../../lib/slug';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const catMap = new Map<string, { label: string; posts: CollectionEntry<'blog'>[] }>();
+
+  for (const post of posts) {
+    const cat = post.data.category;
+    if (!cat) continue;
+    const slug = slugify(cat);
+    if (!catMap.has(slug)) catMap.set(slug, { label: cat, posts: [] });
+    catMap.get(slug)!.posts.push(post);
+  }
+
+  return [...catMap.entries()].map(([slug, { label, posts }]) => ({
+    params: { category: slug },
+    props: {
+      label,
+      posts: posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+interface Props {
+  label: string;
+  posts: CollectionEntry<'blog'>[];
+}
+const { label, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`${label} | ${SITE_TITLE}`}
+  description={`Artigos da categoria ${label} no blog da Buzzcreators, sobre marketing de influência e creator economy.`}
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Trilha de navegação">
+        <a href="/">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>Categoria</span>
+      </nav>
+      <p class="overline">Categoria</p>
+      <h1>{label}</h1>
+      <p class="hero-sub">{posts.length} {posts.length === 1 ? 'artigo' : 'artigos'} nesta categoria.</p>
+    </div>
+  </section>
+
+  <section class="container posts">
+    <div class="post-grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--c-ink-soft);
+    margin-bottom: var(--space-md);
+  }
+  .crumbs a {
+    color: var(--c-ink-soft);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--c-purple);
+  }
+  .posts {
+    padding-bottom: var(--space-2xl);
+  }
+</style>

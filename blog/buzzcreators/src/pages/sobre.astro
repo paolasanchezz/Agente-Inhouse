@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_TITLE, SITE_URL_SOBRE } from '../consts';
+import { SITE_TITLE } from '../consts';
+import { conversionUrl, utmContentFromPath } from '../lib/utm';
 import '../styles/prose.css';
+// Link de conversão ("Conheça a plataforma"): utm_source=blog + utm_content=sobre (lib/utm.ts)
+const siteUrl = conversionUrl('/', utmContentFromPath(Astro.url.pathname), 'institucional');
 ---
 
 <BaseLayout
@@ -37,7 +40,7 @@ import '../styles/prose.css';
       <p>
         O blog é mantido pela Buzzcreators, plataforma de gestão de marketing de influência
         integrada nativamente ao Buzzmonitor. Conheça a plataforma em
-        <a href={SITE_URL_SOBRE} target="_blank" rel="noopener">buzzcreators.com.br</a>.
+        <a href={siteUrl} target="_blank" rel="noopener">buzzcreators.com.br</a>.
       </p>
     </div>
   </section>
