@@ -2,8 +2,8 @@
 title: 'Como escolher os influenciadores certos para a sua campanha'
 metaTitle: 'Como escolher influenciadores para sua campanha'
 description: 'Engajamento, nicho e autenticidade importam mais que número de seguidores. Veja os critérios para escolher os influenciadores certos para a sua marca.'
-cover: '/assets/covers/como-escolher-influenciadores.png'
-coverAlt: "Como escolher os influenciadores certos para a campanha — Blog Buzzcreators"
+cover: '/assets/covers/como-escolher-influenciadores.jpg'
+coverAlt: "Profissionais avaliando perfis em reunião de trabalho com laptop"
 pubDate: 2026-06-18
 author: 'Equipe Buzzcreators'
 category: 'Seleção'

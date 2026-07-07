@@ -2,8 +2,8 @@
 title: 'Como encontrar microinfluenciadores para a sua marca'
 metaTitle: 'Como encontrar microinfluenciadores para a marca'
 description: 'Busca por hashtag, análise de audiência ou plataforma? Veja os caminhos para encontrar microinfluenciadores alinhados à sua marca e como escalar a busca.'
-cover: '/assets/covers/como-encontrar-microinfluenciadores.png'
-coverAlt: "Como encontrar microinfluenciadores para a sua marca — Blog Buzzcreators"
+cover: '/assets/covers/como-encontrar-microinfluenciadores.jpg'
+coverAlt: "Criadora de conteúdo gravando vídeo com smartphone montado em tripé"
 pubDate: 2026-06-23
 author: 'Equipe Buzzcreators'
 category: 'Descoberta'

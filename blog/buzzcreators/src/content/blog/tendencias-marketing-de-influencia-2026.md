@@ -2,8 +2,8 @@
 title: 'Tendências de marketing de influência para 2026'
 metaTitle: 'Tendências de marketing de influência em 2026'
 description: 'IA, micro e nano, autenticidade e social commerce: as principais tendências que vão moldar o marketing de influência e a creator economy em 2026.'
-cover: '/assets/covers/tendencias-marketing-de-influencia-2026.png'
-coverAlt: "Tendências de marketing de influência para 2026 — Blog Buzzcreators"
+cover: '/assets/covers/tendencias-marketing-de-influencia-2026.jpg'
+coverAlt: "Duas pessoas interagindo com tela translúcida em ambiente futurista"
 pubDate: 2026-06-25
 author: 'Equipe Buzzcreators'
 category: 'Creator Economy'

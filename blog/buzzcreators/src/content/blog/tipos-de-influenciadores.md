@@ -2,8 +2,8 @@
 title: 'Tipos de influenciadores: mega, macro, micro e nano'
 metaTitle: 'Tipos de influenciadores: mega, macro, micro, nano'
 description: 'Mega, macro, micro e nano: entenda os tipos de influenciador por tamanho de audiência, os prós e contras de cada um e quando usar cada porte na campanha.'
-cover: '/assets/covers/tipos-de-influenciadores.png'
-coverAlt: "Tipos de influenciadores: mega, macro, micro e nano — Blog Buzzcreators"
+cover: '/assets/covers/tipos-de-influenciadores.jpg'
+coverAlt: "Grupo diverso de pessoas usando smartphones lado a lado"
 pubDate: 2026-06-22
 author: 'Equipe Buzzcreators'
 category: 'Fundamentos'

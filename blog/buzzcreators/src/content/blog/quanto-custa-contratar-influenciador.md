@@ -2,8 +2,8 @@
 title: 'Quanto custa contratar um influenciador no Brasil em 2026'
 metaTitle: 'Quanto custa contratar um influenciador em 2026'
 description: 'Do nano ao mega: veja as faixas de preço para contratar influenciadores no Brasil em 2026, os modelos de cobrança e o que faz o valor subir ou cair.'
-cover: '/assets/covers/quanto-custa-contratar-influenciador.png'
-coverAlt: "Quanto custa contratar um influenciador no Brasil em 2026 — Blog Buzzcreators"
+cover: '/assets/covers/quanto-custa-contratar-influenciador.jpg'
+coverAlt: "Mãos calculando orçamento com calculadora, dinheiro e agenda"
 pubDate: 2026-06-17
 author: 'Equipe Buzzcreators'
 category: 'Investimento'

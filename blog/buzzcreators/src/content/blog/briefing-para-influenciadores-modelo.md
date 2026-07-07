@@ -2,8 +2,8 @@
 title: 'Como escrever um briefing para influenciadores (com modelo)'
 metaTitle: 'Briefing para influenciadores: como fazer + modelo'
 description: 'Um bom briefing evita retrabalho e conteúdo fora do tom. Veja o que não pode faltar em um briefing para influenciadores e um modelo pronto para usar.'
-cover: '/assets/covers/briefing-para-influenciadores-modelo.png'
-coverAlt: "Como escrever um briefing para influenciadores (com modelo) — Blog Buzzcreators"
+cover: '/assets/covers/briefing-para-influenciadores-modelo.jpg'
+coverAlt: "Mãos escrevendo notas em post-its ao lado de laptop"
 pubDate: 2026-06-28
 author: 'Equipe Buzzcreators'
 category: 'Operação'

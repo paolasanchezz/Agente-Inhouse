@@ -2,8 +2,8 @@
 title: 'O que são nanoinfluenciadores e como usá-los na estratégia'
 metaTitle: 'O que são nanoinfluenciadores e como usar'
 description: 'Nanoinfluenciadores têm até cerca de 10 mil seguidores e engajamento altíssimo. Veja o que são, por que convertem tanto e como usá-los em escala.'
-cover: '/assets/covers/o-que-sao-nanoinfluenciadores.png'
-coverAlt: "O que são nanoinfluenciadores e como usá-los — Blog Buzzcreators"
+cover: '/assets/covers/o-que-sao-nanoinfluenciadores.jpg'
+coverAlt: "Duas amigas gravando selfie casual com smartphone"
 pubDate: 2026-06-26
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'

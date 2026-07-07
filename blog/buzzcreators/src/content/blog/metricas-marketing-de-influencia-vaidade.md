@@ -2,8 +2,8 @@
 title: 'Métricas de influência que importam (e as de vaidade a evitar)'
 metaTitle: 'Métricas de influência: as que importam de verdade'
 description: 'Seguidores e curtidas enganam. Veja quais métricas de marketing de influência realmente indicam resultado e quais são métricas de vaidade a evitar.'
-cover: '/assets/covers/metricas-marketing-de-influencia-vaidade.png'
-coverAlt: "Métricas que importam (e as de vaidade a evitar) — Blog Buzzcreators"
+cover: '/assets/covers/metricas-marketing-de-influencia-vaidade.jpg'
+coverAlt: "Ícones de curtidas e reações de redes sociais flutuando sobre um smartphone"
 pubDate: 2026-06-30
 author: 'Equipe Buzzcreators'
 category: 'Métricas'

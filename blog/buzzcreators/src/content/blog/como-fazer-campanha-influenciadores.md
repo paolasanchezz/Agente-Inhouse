@@ -2,8 +2,8 @@
 title: 'Como fazer uma campanha de influência: do briefing ao relatório'
 metaTitle: 'Como fazer uma campanha de influência: passo a passo'
 description: 'Um passo a passo da campanha de marketing de influência: objetivo, seleção, briefing, aprovação, publicação e mensuração — e onde cada etapa costuma travar.'
-cover: '/assets/covers/como-fazer-campanha-influenciadores.png'
-coverAlt: "Uma campanha de influência do briefing ao relatório — Blog Buzzcreators"
+cover: '/assets/covers/como-fazer-campanha-influenciadores.jpg'
+coverAlt: "Equipe de marketing planejando campanha com post-its em flipchart"
 pubDate: 2026-06-21
 author: 'Equipe Buzzcreators'
 category: 'Operação'

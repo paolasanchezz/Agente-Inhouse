@@ -2,8 +2,8 @@
 title: 'Micro vs. macro influenciadores: qual escolher por objetivo'
 metaTitle: 'Micro vs. macro influenciadores: qual escolher'
 description: 'Micro ou macro influenciador? Compare alcance, engajamento, custo e confiança e veja qual porte escolher conforme o objetivo da sua campanha.'
-cover: '/assets/covers/micro-vs-macro-influenciadores.png'
-coverAlt: "Micro vs. macro influenciadores: qual escolher por objetivo — Blog Buzzcreators"
+cover: '/assets/covers/micro-vs-macro-influenciadores.jpg'
+coverAlt: "Plateia numerosa levantando celulares durante um evento"
 pubDate: 2026-06-27
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'
