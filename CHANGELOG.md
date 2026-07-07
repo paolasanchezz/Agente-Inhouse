@@ -12,6 +12,11 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## convites-moderador
+### 2026-07-07 — v1.1.0 — Gatilho diario migrado pro GitHub Actions
+
+O disparo diario dos convites de moderador saiu do remote-trigger da claude.ai e passou a rodar em **GitHub Actions** (`.github/workflows/convites-moderador.yml`, cron `17 11 * * *` UTC = 08:17 America/Sao_Paulo). Motivo: a ClickMeeting **bloqueou o IP** do harness da nuvem, entao o cron agendado falhava todo dia — mesma classe de problema que ja tinha levado o `lp-health-check` pro Actions. O workflow le `CLICKMEETING_API_KEY` de um secret do repo (setado nesta mudanca) e faz `checkout`, entao **editar `config.json` continua exigindo commit + push** pra valer no proximo run. Tem `workflow_dispatch` com opcao **Dry-run** pra teste manual sem enviar email. O `send_invites.py` nao mudou (ja lia `os.environ` antes do `.env.local`). MINOR — nova forma de acionar preservando a interface (script + `/convites-moderador` local seguem iguais). Config tambem ganhou a serie **17671** (Cxpress Vozxpress, moderadora Lilian) no mesmo passe.
+
 ## Resiliência ao shim Python do Windows — resolver `$PYBIN` estendido (cross-skill)
 ### 2026-07-02 — convites-moderador v1.0.1, lp-health-check v1.1.1, social-analytics v0.1.1, lp-revisar v1.6.1, lp-gerar v1.7.1, pull-request-review v1.0.2, bunzzai v1.1.1, criativo v1.1.1, commit v2.0.1
 

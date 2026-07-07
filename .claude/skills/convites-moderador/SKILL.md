@@ -3,7 +3,7 @@ name: convites-moderador
 description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
 argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID]"
 allowed-tools: Read, Bash, Skill
-version: 1.0.1
+version: 1.1.0
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
@@ -12,8 +12,8 @@ Voce envia, todo dia, 1 convite de moderador para a proxima sessao agendada de c
 
 ## Quando usar
 
-- **Rotina diaria** via `/schedule` (cron sugerido: `0 8 * * *` em `America/Sao_Paulo`, mesmo horario da `/pauta-ia`) — uso primario.
-- **Manual on-demand** apos editar o `config.json` (mudou o email do moderador, adicionou nova serie) e quiser disparar logo o convite do dia em vez de esperar o cron.
+- **Rotina diaria em producao: GitHub Actions** — `.github/workflows/convites-moderador.yml` roda o script todo dia 08:17 America/Sao_Paulo (= 11:17 UTC). Migramos pro Actions em 2026-07-07 porque o IP do remote-trigger da claude.ai foi bloqueado pela ClickMeeting (mesmo motivo do `lp-health-check.yml`). O workflow le `CLICKMEETING_API_KEY` do secret do repo e faz `checkout` do repo — entao **editar `config.json` exige commit + push** pra valer no proximo run. Teste manual pela aba Actions > Run workflow (opcao "Dry-run" nao envia nada).
+- **Manual on-demand (local)** apos editar o `config.json` (mudou o email do moderador, adicionou nova serie) e quiser disparar logo o convite do dia em vez de esperar o cron — rode o script como na secao "Como rodar".
 - **Dry-run para auditoria:** `/convites-moderador --dry-run` lista a proxima sessao de cada serie + email do moderador sem enviar nada.
 
 ## Quando NAO usar

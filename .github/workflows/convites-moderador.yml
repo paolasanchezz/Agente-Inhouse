@@ -1,0 +1,48 @@
+name: Convites Moderador ClickMeeting
+
+# Dispara 1 convite de moderador (role=presenter) para a proxima sessao de cada
+# serie recorrente do ClickMeeting configurada em
+# .claude/skills/convites-moderador/config.json (1 email por moderador por serie).
+#
+# Migrado do remote-trigger da claude.ai para o cloud do GitHub Actions porque o
+# IP do harness foi bloqueado pela ClickMeeting — mesmo motivo do lp-health-check.yml
+# (harness bloqueado por anti-abuse). O IP dos runners do GitHub nao sofre esse bloqueio.
+#
+# Roda 08:17 America/Sao_Paulo (= 11:17 UTC, sem DST desde 2019). Minuto :17 (nao :00)
+# evita o pico do cron do GitHub Actions, que atrasa runs no comeco de cada hora.
+# Ainda ha folga larga antes do primeiro webinar do dia (~10h BRT).
+#
+# Teste manual: aba Actions > Convites Moderador ClickMeeting > Run workflow
+# (marque "Dry-run" para so listar o plano, sem enviar email a ninguem).
+
+on:
+  schedule:
+    - cron: "17 11 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry-run (nao envia, so lista o plano)"
+        type: boolean
+        default: false
+
+jobs:
+  enviar-convites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Enviar convites de moderador
+        env:
+          CLICKMEETING_API_KEY: ${{ secrets.CLICKMEETING_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python .claude/skills/convites-moderador/send_invites.py --dry-run
+          else
+            python .claude/skills/convites-moderador/send_invites.py
+          fi
