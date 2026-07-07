@@ -7,7 +7,10 @@ export const SITE_TAGLINE = 'Media & Influencer Marketing';
 
 // Marca
 export const ORG_NAME = 'Buzzcreators';
-export const BRAND_HOME = 'https://buzzcreators.com.br';
+// WWW obrigatório: buzzcreators.com.br (sem www) dá 301 de qualquer path para a
+// home pelada, descartando path + query (a UTM se perde). O www serve /marcas
+// direto (200) preservando a UTM. Todos os links de conversão derivam daqui.
+export const BRAND_HOME = 'https://www.buzzcreators.com.br';
 export const CONTACT_EMAIL = 'comercial@buzzcreators.com.br';
 
 // --- Links de saída para o site (CONVERSÃO COMERCIAL) -------------------------
