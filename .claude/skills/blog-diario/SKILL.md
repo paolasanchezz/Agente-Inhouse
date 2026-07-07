@@ -3,7 +3,7 @@ name: blog-diario
 description: Gera 1 blogpost SEO/GEO por execucao, de forma autonoma, a partir dos clusters de tema da marca. Faz bake-off de volume de busca multi-fonte (Semrush + fontes gratis), evita duplicar posts existentes, escreve no idioma nativo da regiao, monta bloco METADADOS completo (slug, title, meta description, keywords) e CTA pra modulo+LP em conteudo de meio/fundo de funil, e publica rascunho no Notion. Multi-marca. Pensada pra rodar diariamente via /schedule.
 argument-hint: "[marca] [regiao] [tema?]  — ex: cxpress brasil | cxpress brasil \"chatbot whatsapp pequenas empresas\""
 allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-fetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-search, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-create-pages, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-update-page, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__get_report_schema, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__execute_report, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__keyword_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__organic_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__trends_research
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Skill: Blogpost SEO/GEO diário (autônomo, multi-marca)
@@ -123,6 +123,7 @@ Obrigatório:
 
 Salve em `blog-seo/{marca}/{regiao}/{DATA}-{slug}.md`. Se a pasta não existir, crie via Bash (`mkdir -p`). Estrutura:
 - **Frontmatter YAML válido pro Astro** (ver `metadados-seo-spec.md`): `title, metaTitle?, description, pubDate: {DATA}, author: "Equipe {NomeDaMarca}", tags, category, tldr, faq, draft: true`.
+- **Sem `cover`/`coverAlt`**: a capa (foto Pexels) é gerada na publicação pelo Passo 0.6 da `blog-publicar` (`pexels_cover.py`), que só atua em post sem `cover:` — deixar de fora aqui é o que aciona o fluxo certo lá.
 - Em seguida, o **bloco METADADOS** (face humana) como comentário/HTML comment + `---` + o artigo completo em markdown.
 
 ## Passo 9 — Publica rascunho no Notion

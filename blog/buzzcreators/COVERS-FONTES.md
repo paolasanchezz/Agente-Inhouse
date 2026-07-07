@@ -29,4 +29,4 @@ Cada capa foi baixada já recortada em 1200×630 via CDN do Pexels (`?w=1200&h=6
 
 ## Posts novos
 
-O `gen_cover.py` (skill `blog-publicar`, Passo 0.6) continua existindo e gera capa HTML→PNG **apenas para post sem `cover:`**. Para manter o padrão fotográfico, ao criar post novo escolher uma foto no Pexels, salvar como `public/assets/covers/{slug}.jpg` (1200×630) e preencher `cover`/`coverAlt` à mão — e registrar a fonte nesta tabela. Alternativa por IA (Bloom) documentada no PR desta troca; requer créditos no workspace.
+Post novo sem `cover:` ganha foto Pexels **automaticamente** no Passo 0.6 da skill `blog-publicar`, via `pexels_cover.py` (busca por query em inglês, baixa 1200×630 pelo CDN, preenche `cover`/`coverAlt` e acrescenta a linha desta tabela). O `gen_cover.py` (HTML→PNG, estilo rejeitado pelos sócios) segue **só como fallback** quando a busca falha — capa gerada por ele deve ser trocada por foto depois. Alternativa por IA (Bloom) documentada no PR da troca original (#46); requer créditos no workspace.

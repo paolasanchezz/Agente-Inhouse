@@ -3,7 +3,7 @@ name: blog-publicar
 description: Publica o blog Astro estatico da marca (hoje Buzzcreators) no Vercel — valida o build (schema de meta tags), builda com env de producao (indexavel), deploya no projeto Vercel correto, valida a versao no ar (posts, noindex OFF, sitemap/rss/llms) e reporta. Manual-trigger. Contexto sancionado para a trava de deploy Vercel (guard_vercel_deploy.py).
 argument-hint: "[marca]  — default buzzcreators (unica com blog hoje)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Publicar blog (Astro estatico) no Vercel
@@ -62,17 +62,34 @@ echo "URL de producao desta publicacao: $PROD_URL"
 
 ---
 
-## Passo 0.6 — Capas automáticas (gera as que faltam)
+## Passo 0.6 — Capas automáticas (foto Pexels; gera as que faltam)
 
-Toda capa/OG é gerada **da marca** (off-white + gradiente assinatura + mascote + logo raster) — **material 100% próprio, zero risco de copyright**. O gerador varre `src/content/blog/*.md` e, para cada post **sem `cover:`**, renderiza `public/assets/covers/{slug}.png` (a partir do `title` + `category` do post) e preenche `cover`/`coverAlt`. É **idempotente**: post que já tem capa é pulado — não regenera.
+Desde 2026-07-07 a capa padrão é **fotografia do Pexels** (licença livre: uso comercial, sem atribuição, modificação permitida) — decisão dos sócios, que rejeitaram o estilo HTML→PNG do `gen_cover.py` (as 20 primeiras capas foram substituídas por foto). Proveniência de cada capa fica em `blog/{marca}/COVERS-FONTES.md`. O fluxo é **idempotente**: post que já tem `cover:` é pulado.
 
+**1. Liste os posts sem capa:**
+```bash
+py .claude/skills/blog-publicar/pexels_cover.py --list
+```
+Se "Nenhuma capa faltando" → siga pro Passo 1.
+
+**2. Para CADA post listado**, escolha e rode:
+- **query de busca em inglês** (2–4 palavras, cena visual **concreta** ligada ao tema — ex: `influencer recording video`, `team analyzing dashboard`; evite abstratos tipo `strategy`, `success`);
+- **coverAlt em PT-BR** descrevendo a cena da foto (não repetir o título do post).
+```bash
+py .claude/skills/blog-publicar/pexels_cover.py {slug} "query em ingles" "alt em pt-br"
+```
+O script busca no Pexels (scrape keyless com User-Agent de browser), pula fotos já usadas em outras capas (lê o COVERS-FONTES.md), baixa recortada 1200×630 via CDN (`?w=1200&h=630&fit=crop`) em `public/assets/covers/{slug}.jpg`, preenche `cover`/`coverAlt` no frontmatter e **acrescenta a linha de proveniência** no COVERS-FONTES.md.
+
+**3. Confira a foto** (Read no `.jpg` gerado): se a cena bater com o tema, ajuste o `coverAlt` no post caso descreva outra coisa (a busca é cega — o alt escolhido antes pode não corresponder à foto que veio). Foto ruim/fora do tema → apague o `.jpg` + linhas `cover:`/`coverAlt:` e re-rode com outra query, ou force uma foto específica com `--id {photo_id}`.
+
+**4. Fallback explícito — só se a busca falhar** (rede/bloqueio/zero resultados após 2–3 queries): rode o gerador antigo pra não travar a publicação, e **sinalize no relatório final** que a capa saiu no estilo HTML (rejeitado pelos sócios) e precisa ser trocada por foto depois.
 ```bash
 py .claude/skills/blog-publicar/gen_cover.py 2>&1 | tee "tmp/blog-covers-$TODAY.log"
 ```
-- Requer Playwright + um browser (tenta Chrome → Edge → chromium do Playwright). Sem browser: `/setup-agencia` ou `py -m playwright install chromium`.
-- Capas novas são **assets versionados**. Se este passo gerou capa (ou há post novo), ao final entregar via `/commit` — esta skill publica, não commita.
-- Refazer a capa de um post (mudou o título): apague `public/assets/covers/{slug}.png` + as linhas `cover:`/`coverAlt:` do post e rode de novo.
-- O texto da capa é determinístico (HTML→PNG) — sem erro de acento que IA de imagem costuma cometer em PT-BR.
+(O `gen_cover.py` requer Playwright + browser; o caminho Pexels não — só curl, nativo no Windows 10+/macOS/Linux.)
+
+- Capas novas + COVERS-FONTES.md são **assets versionados**. Se este passo gerou capa (ou há post novo), ao final entregar via `/commit` — esta skill publica, não commita.
+- Refazer a capa de um post (mudou o título/tema): apague `public/assets/covers/{slug}.jpg` + as linhas `cover:`/`coverAlt:` do post e rode de novo (a linha do COVERS-FONTES.md é atualizada, não duplicada).
 
 ---
 

@@ -38,6 +38,15 @@ Extensão da convenção `$PYBIN` (criada hoje em `lp-publicar` Passo 0.4 — ve
 - PATCH em todas (portabilidade; sem mudança de interface). **Não tocados de propósito:** docstrings internas dos `.py` (usage genérico), a doc legada `bunzzai/AUDITORIA-vs-meta-ads.md` (scripts `meta-ads/` arquivados) e o probe de detecção do `setup-agencia` (`python --version` — precisa de tratamento próprio: preferir `py` no Windows; fica pra passe separado).
 
 ## blog-publicar
+### 2026-07-07 — v1.2.0 — Capa padrão vira foto Pexels (Passo 0.6); gen_cover.py rebaixado a fallback
+
+Os sócios rejeitaram o estilo HTML→PNG do `gen_cover.py` (as 20 capas existentes foram trocadas por fotos do Pexels em 2026-07-07). O Passo 0.6 agora usa o novo `pexels_cover.py`: para cada post sem `cover:`, o agente escolhe uma query de busca em inglês (cena concreta do tema) + `coverAlt` em PT-BR, e o script busca no Pexels (scrape keyless da página de busca com User-Agent de browser — sem API key), pula fotos já usadas em outras capas, baixa recortada 1200×630 direto pelo CDN (`?w=1200&h=630&fit=crop`) em `public/assets/covers/{slug}.jpg`, preenche `cover`/`coverAlt` no frontmatter e registra a proveniência na tabela de `COVERS-FONTES.md` (criando o arquivo se não existir). Depois o agente confere a foto (Read no .jpg) e ajusta o alt se a cena vier diferente. Segue **idempotente** (post com `cover:` é pulado; re-rodar um slug atualiza a linha da tabela em vez de duplicar).
+
+- **`gen_cover.py` vira fallback explícito**: só quando a busca falha (rede/bloqueio/zero resultados após 2–3 queries), pra não travar a publicação — e a skill manda sinalizar no relatório que a capa saiu no estilo rejeitado e precisa ser trocada por foto.
+- **Sem Playwright no caminho feliz**: o fluxo Pexels só usa curl (nativo) + urllib; browser só é necessário no fallback.
+- **Pegadinha Windows documentada no script**: `subprocess.run(["curl", ...])` resolve pelo CreateProcess, que olha System32 **antes** do PATH — e a curl do Windows leva 403/1010 do Cloudflare do pexels.com (fingerprint TLS banido), enquanto a curl do Git (mingw64) passa. O script resolve o caminho absoluto via `shutil.which` e ainda tenta a curl do Git como candidato seguinte. O CDN de imagens não tem o bloqueio (urllib direto).
+- MINOR — interface da skill inalterada; muda o estilo/fonte da capa gerada. No mesmo passe: `blog-diario` v1.0.1 (nota no Passo 8: artefato Astro-ready fica **sem** `cover`/`coverAlt` de propósito — é o que aciona o fluxo de foto na publicação) e seção "Posts novos" do `COVERS-FONTES.md` atualizada (fluxo automatizado em vez de manual).
+
 ### 2026-07-02 — v1.1.0 — Capas OG automáticas (Passo 0.6)
 
 Antes do build, a skill agora gera a **capa/OG de qualquer post sem `cover:`** via `gen_cover.py` (Playwright, template HTML→PNG 1200×630) e preenche `cover`/`coverAlt` no frontmatter. Assets 100% da marca (off-white + gradiente assinatura + mascote + logo raster) — zero risco de copyright. **Idempotente** (pula quem já tem capa). A imagem serve como capa no topo do post, card da home e `og:image` de compartilhamento. MINOR (nova capacidade; publicar seguia funcionando sem). As 20 primeiras capas do blog foram geradas com o mesmo template.
@@ -80,6 +89,10 @@ Reforço de segurança da dashboard CM Buzzmonitor BR no Vercel (pedido do Victo
 - Sem mudança de args nem de fluxo. Bump MINOR pela nova dependência de env (`.env.local`).
 
 ## blog-diario
+### 2026-07-07 — v1.0.1 — Nota no Passo 8: artefato sem `cover`/`coverAlt` (capa entra na publicação)
+
+O frontmatter Astro-ready do artefato local fica **sem** `cover`/`coverAlt` de propósito: a capa (foto Pexels) é gerada na publicação pelo Passo 0.6 da `blog-publicar` (`pexels_cover.py`), que só atua em post sem `cover:`. Detalhes na entrada blog-publicar v1.2.0 desta mesma data. PATCH — só documentação do contrato entre as duas skills.
+
 ### 2026-06-30 — v1.0.0 — Skill inicial: blogpost SEO/GEO diário autônomo, multi-marca
 
 Skill standalone que gera **1 blogpost otimizado para SEO + GEO** por execução, a partir dos clusters de tema da marca, e publica rascunho no Notion (`SEO > {Marca} > Conteúdos complementares`). Pensada pra rodar diariamente via `/schedule` ou `/loop 1d`.
