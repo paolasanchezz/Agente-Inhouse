@@ -9,6 +9,10 @@
  * (ActiveCampaign / RD Station / HubSpot), substitua o <form> abaixo pelo
  * embed/endpoint real. Nenhuma página precisa ser tocada — só este componente.
  * (Mesma filosofia da skill lp-integrar-form.)
+ *
+ * ATENÇÃO CSP: ao integrar o CRM, libere o domínio dele na Content-Security-Policy
+ * em `blog/buzzcreators/vercel.json` (form-action e/ou connect-src). Hoje a CSP é
+ * estrita (script-src 'self'); um embed externo que não passe por ali será bloqueado.
  */
 interface Props {
   heading?: string;
@@ -34,7 +38,6 @@ const {
       class="cta-form"
       action="#"
       data-crm="placeholder"
-      onsubmit="event.preventDefault(); document.getElementById('cta-form').hidden=true; document.getElementById('cta-ok').hidden=false;"
     >
       <label class="visually-hidden" for="cta-email">Seu melhor e-mail</label>
       <input
@@ -119,3 +122,12 @@ const {
     }
   }
 </style>
+
+<!--
+  Handler do formulário mock: /public/js/cta-form.js (asset externo do próprio
+  domínio). Fora do componente de propósito — script processado pelo Astro é
+  inlinado quando pequeno, e JS inline seria bloqueado pela CSP estrita
+  (script-src 'self', sem 'unsafe-inline'). `is:inline` faz o Astro só emitir a
+  tag apontando pro arquivo, sem processar. Ao integrar o CRM, remova ambos.
+-->
+<script is:inline defer src="/js/cta-form.js"></script>
