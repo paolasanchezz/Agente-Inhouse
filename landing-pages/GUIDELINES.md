@@ -30,6 +30,7 @@
 
 ## 3. Hero
 
+- **H1 carrega a dor, não a solução.** A primeira linha do hero nomeia o problema mais latente do público; a promessa e o método vão para o H2 / sub-headline. É a regra que vem antes de todas — ver `conhecimento/copywriting/fundamentos-copy.md` §0. Ex.: H1 "Monitorar as redes sociais virou uma confusão" + H2 "Veja como marcas unificam o social listening em 5 passos" — **não** H1 "Monte o seu monitoramento em 5 passos". Exceção: lead quente/BoFu já consciente da dor pode abrir pelo ganho (calibrar pelo funil).
 - Padrão de referência: **fundo branco (ou neutral-100)**, texto à esquerda, elemento visual clean à direita. Gradientes full-bleed coloridos só quando o briefing pedir impacto máximo — senão, preferir limpeza.
 - Título principal no peso mais pesado da display font. Subtítulo em peso leve para contraste tipográfico.
 - Elemento da direita: **um** elemento forte (card de data, ilustração minimalista, foto com crop editorial). Não encher de formas.
@@ -46,6 +47,7 @@
 ## 5. Copy
 
 - Respeitar copy do briefing/Notion — ajustes cosméticos ok, mas não reescrever tom.
+- **Hero lidera com a dor** (ver §3 e `conhecimento/copywriting/fundamentos-copy.md` §0). Se o H1 do briefing abre pela solução/método/oferta em vez do problema do público, **sinalizar como sugestão** (mesma postura conservadora do anti-IA — não reescrever o tom silenciosamente). O ajuste do H1 é decisão de quem aprova a copy.
 - Usar aspas curvas (`&ldquo; &rdquo;`) e ellipsis (`&hellip;`) corretos.
 - **Em-dash (`—` / `&mdash;`) PROIBIDO** — tolerância zero, ver `conhecimento/editorial/regras-anti-ia.md`. Substituir por vírgula, ponto ou parênteses conforme a função. Vale para copy bruta, copy estruturada e HTML renderizado. Validação: `grep -c "—" index.html` deve retornar 0; `grep -c "&mdash;" index.html` deve retornar 0.
 - Números em algarismos (23 de Abril, não "vinte e três").

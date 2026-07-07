@@ -6,6 +6,53 @@ Este documento ensina copywriting do zero ao avançado. É a referência central
 
 ---
 
+## 0. Regra de ouro: a primeira linha carrega a dor
+
+**Antes de qualquer outra técnica deste documento, aplique esta.** A primeira linha que o público lê — o **H1** de uma landing page, a **headline** de um criativo, o **assunto** e a primeira frase de um e-mail, o **hook** de um vídeo ou webinar, o **título** de um post — deve nomear a **dor ou o problema** do público. Não a solução, não o método, não a oferta.
+
+Por quê: ninguém para o scroll por uma solução que ainda não sabe que quer. As pessoas param quando se **reconhecem**. A primeira linha é um espelho ("isso sou eu, esse é o meu problema"), não um panfleto ("olha o que eu vendo"). O reconhecimento gera identificação, e a identificação compra o segundo seguinte de atenção — é nesse segundo que você apresenta a solução.
+
+É a aplicação nº 1 de "3.1 O começo tem que ser forte" e o mesmo movimento do framework **PAS** (Problema → Agitação → Solução, ver §7 e `funil-copy.md`): a dor abre, a solução responde.
+
+### O método (faça sempre, antes de escrever a headline)
+
+Duas perguntas, nesta ordem:
+
+1. **Qual é a dor ou o problema mais latente que esta peça resolve?** Não o que o produto faz — o que dói na rotina de quem lê.
+2. **Como eu uso essa dor para gerar identificação já na primeira linha?**
+
+Só depois de responder as duas você escreve o H1. Se a headline não passa pela cabeça do leitor como "isso é comigo", volte à pergunta 1.
+
+### O padrão: H1 = dor · H2 = solução + método
+
+A dor abre; a promessa e o mecanismo entram na linha seguinte (H2, sub-headline, ou segunda frase do hook).
+
+**Exemplo — webinar de social listening (Buzzmonitor):**
+
+| | ❌ Lidera com a solução | ✅ Lidera com a dor |
+|---|---|---|
+| **H1** | Monte o seu primeiro monitoramento de marca em 5 passos | Monitorar as redes sociais virou uma confusão |
+| **H2** | (não há — abre já vendendo) | Veja como marcas unificam e simplificam o social listening em 5 passos |
+
+**Exemplo — atendimento (Cxpress):**
+- ❌ H1: "Conheça a plataforma de atendimento com IA da Cxpress"
+- ✅ H1: "Seu cliente repete a mesma história para três atendentes diferentes" · H2: "Unifique o histórico e responda em minutos, com IA e time humano na mesma tela"
+
+### Onde a dor pode ficar implícita (calibre pelo funil)
+
+Regra é o **default forte** para público frio e morno (TOFU/MOFU), onde a pessoa ainda precisa se reconhecer no problema (ver `funil-copy.md`).
+
+No **BOFU / público quente / remarketing** — que já conhece a dor e o produto — a headline pode ir direto ao ganho ou à oferta. Mesmo aí, ancorar na dor costuma converter melhor: na dúvida, teste a versão com dor explícita contra a versão com ganho.
+
+### Anti-padrões (headline que lidera com a solução)
+
+- **"Conheça a [ferramenta/plataforma]…"** — fala de você, não do leitor.
+- **"Monte / Faça / Tenha [resultado] em N passos"** como H1 sozinho — é a solução sem a dor que a justifica. Mova para o H2 e abra com a dor.
+- **"A plataforma que [feature]…"** — feature-first; o produto não é o gancho, a dor do leitor é.
+- **Abrir e-mail/vídeo se apresentando** ("Oi, aqui é a [marca]…") antes de tocar na dor.
+
+---
+
 ## 1. O que é copy
 
 Copy é qualquer comunicação — escrita, falada ou visual — com o objetivo de fazer a pessoa do outro lado **tomar uma ação e vencer a inércia**. Pode ser uma venda, um clique, um like, um voto, uma inscrição.

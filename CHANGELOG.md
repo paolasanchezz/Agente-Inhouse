@@ -12,6 +12,15 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Regra de copy — a primeira linha carrega a dor (cross-skill)
+### 2026-07-07 — copy-criar v1.3.0; fundamentos-copy §0; GUIDELINES de LP e de criativos
+
+Nova boa prática de copy, **prioritária sobre as demais**: a primeira linha de qualquer peça (H1 de LP, headline de criativo, subject + abertura de e-mail, hook de vídeo/webinar, título de post) lidera com a **dor/problema** do público, não com a solução/método/oferta. Padrão **H1 = dor · H2 = solução + método**, com o método das 2 perguntas antes de escrever a headline. Calibrada por funil: default forte em ToFu/MoFu; BoFu/público quente pode abrir pelo ganho.
+
+- **Fonte de verdade:** `conhecimento/copywriting/fundamentos-copy.md` **§0** — nova seção no topo, numerada 0 para sinalizar "vem antes de todas" sem renumerar as seções existentes nem quebrar as referências a "seção 3.1/4.2". Cobre automaticamente toda skill que lê o arquivo (família copy-*, `roteiro-webinar-perpetuo`, `pauta-quente`, `news-criar-post`, e os docs de tipo email/estático/vídeo/blog/linkedin/funil).
+- **Ponteiros onde a fonte não é lida:** `landing-pages/GUIDELINES.md` §3 (Hero) e §5 (Copy) — a família LP não lê fundamentos; postura conservadora (sinaliza H1 que abre pela solução, não reescreve tom). `criativos/GUIDELINES.md` §4 — capa/hook lidera com a dor sem inventar hook novo (respeita a §9).
+- **Reforço na geração:** `copy-criar` ganhou a "Regra 0" nas regras universais do Passo 4 (cobre os 3 formatos de uma vez) + nota no campo Headline do estático. MINOR — nova diretriz preservando a interface da skill.
+
 ## convites-moderador
 ### 2026-07-07 — v1.1.0 — Gatilho diario migrado pro GitHub Actions
 

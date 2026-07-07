@@ -3,7 +3,7 @@ name: copy-criar
 description: Cria 3 variacoes originais de copy com hooks, angulos e premissas diferentes, escritas nativamente no idioma da regiao.
 argument-hint: "[marca] [regiao] [tipo] [estagio] [\"briefing\"] — ex: buzzmonitor brasil video-curto bofu \"remarketing social listening\""
 allowed-tools: Read, Write, Glob, Grep, Agent, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.2.0
+version: 1.3.0
 ---
 
 # Skill: Criar Copy Original
@@ -155,6 +155,8 @@ Para cada variacao (1 a 3), sequencialmente:
 
 ### Regras universais
 
+**Regra 0 (vem antes das demais) — a primeira linha carrega a dor.** A headline do estatico, o hook do video e o subject + abertura do e-mail abrem pela DOR/problema do publico, nao pela solucao/metodo/oferta. Aplique `fundamentos-copy.md` §0: pergunte "qual a dor mais latente que esta peca resolve?" e leve a solucao para a linha seguinte (sub-headline, 2a frase do hook, corpo). Calibrar pelo funil — BOFU/publico quente pode abrir pelo ganho.
+
 1. **Escreva NO IDIOMA da regiao** (PT-BR para brasil, PT-PT para portugal, ES-LATAM para latam). O texto deve parecer escrito originalmente naquele idioma, nao uma traducao.
 2. Se `regiao` != `brasil`: siga RIGOROSAMENTE o padrao linguistico carregado (vocabulario, tratamento, construcoes gramaticais, CTAs nativos).
    - Portugal: usar "voce" (3a pessoa), "esta a + infinitivo", vocabulario PT-PT (telemovel, equipa, utilizador). Zero brasileirismos.
@@ -251,7 +253,7 @@ data: YYYY-MM-DD
 ## Copy do Criativo
 
 ### Headline (no criativo)
-{5-10 palavras — deve parar o scroll sozinha}
+{5-10 palavras que param o scroll sozinhas — lidera com a DOR/problema (Regra 0), nao com a solucao}
 
 ### Sub-headline (se imagem unica)
 {1 frase curta de suporte}

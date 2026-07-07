@@ -55,6 +55,7 @@ Duas engines independentes — cada uma monta a peca inteira:
   Se a copy tem 3 cards, saem 3; se tem 7, saem 7.
 - **Arco de referencia** (carrossel, so sugestao): cover → contexto → insight → conector → CTA.
 - **Estatico de referencia**: hook (+ sub) + CTA.
+- **Cover/hook lidera com a dor** (ver `conhecimento/copywriting/fundamentos-copy.md` §0). A capa do carrossel e a headline do estatico abrem pelo problema do publico; solucao/metodo/oferta vem no card ou na linha seguinte. Ao adaptar copy crua (§9), so **priorizar qual frase JA EXISTENTE** abre a peca — nunca inventar hook novo. Excecao: peca BoFu/publico quente pode abrir pelo ganho.
 
 ## 5. Tipografia & hierarquia
 
