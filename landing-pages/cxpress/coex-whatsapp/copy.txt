@@ -4,18 +4,25 @@ H1: Profissionalize o atendimento no WhatsApp sem trocar de número
 SUB: Com o WhatsApp CoEx, o mesmo número da sua empresa funciona no aplicativo e na API oficial ao mesmo tempo. Sua equipe mantém a rotina que já conhece e ganha estrutura de plataforma profissional em paralelo. Na Cxpress, isso já pode ser ativado.
 CTA: Agendar demonstração gratuita
 
-=== CLIENTES (prova social, 2a dobra) ===
-H2: Clientes que confiam na Cxpress para otimizar seu atendimento
-BODY: [grade de logos — ../../brand/cxpress/assets/plataforma/clientes-cxpress.png]
-
-=== FORM (CTA) ===
+=== FORM (segunda dobra) ===
 H2: Agende sua demonstração gratuita
 H3: Veja o CoEx funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com o CoEx ativo.
-PRICE: Planos a partir de R$ 1.290
-REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Nome
+LABEL: E-mail de trabalho
+LABEL: Telefone
+LABEL: Nome da empresa
+LABEL: Cargo
 CTA: Agendar demonstração gratuita
-CAMPOS (Jotform 261045149477663): Nome · E-mail de trabalho · Telefone · Nome da empresa · Cargo
+
+=== CLIENTES (prova social) ===
+H2: Clientes que confiam na Cxpress
+BODY: [grade de logos de clientes — imagem ./assets/clientes-cxpress.png, extraida da LP institucional home.cxpress.io/app-whatsapp]
+
+=== COEX ===
+H2: A Meta mudou a regra. A Cxpress já entrega.
+BODY: Toda operação que cresce no WhatsApp conhece a cena: uma pessoa por conversa, mensagem que se perde, gestor sem visibilidade do que foi respondido. E, por muito tempo, resolver isso parecia exigir uma escolha: ou você mantinha o número que o cliente conhece, ou ganhava estrutura para atender melhor.
+BODY: O WhatsApp CoEx (coexistência) encerrou esse dilema. O mesmo número opera, ao mesmo tempo, no aplicativo do celular e na API oficial conectada à plataforma Cxpress. Ou seja: mantém o número, preserva a rotina da equipe e estrutura o atendimento digital sem migração nem ruptura.
 
 === BENEFICIOS ===
 H2: O que muda na sua operação com o CoEx ativo
@@ -27,12 +34,13 @@ H3: API oficial do WhatsApp
 BODY: Recursos da plataforma oficial da Meta: automações personalizadas, apoio de IA no primeiro nível e visibilidade completa para o gestor.
 
 === PROVA ===
-H2: Resultados de quem estruturou o atendimento com a Cxpress
-LIST ITEM: +220% de interações realizadas sem aumentar a equipe.*
-LIST ITEM: 15x mais produtividade da IA frente ao atendimento 100% humano.*
-LIST ITEM: -60% no tamanho da equipe atendendo mais (de 10 para 4 pessoas).*
-LIST ITEM: 98% de qualidade avaliada da IA (referência humana: 80%).*
-BODY: *Resultados de clientes Cxpress em atendimento a redes sociais (relatório interno Sentinela, 2025). Os números variam conforme a operação.
+H2: Estrutura profissional muda o resultado do atendimento
+LIST ITEM: 14% de aumento de demandas resolvidas por hora.*
+LIST ITEM: 9% de redução do tempo médio de resolução via chat.*
+LIST ITEM: 25% de redução do desgaste dos atendentes com alto volume de solicitações.
+LIST ITEM: 45% de aumento da produtividade com IA generativa.**
+BODY: *Pesquisa do National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente.
+BODY: **Estimativas da McKinsey, consultoria empresarial norte-americana.
 CTA: Agendar demonstração gratuita
 
 === PLATAFORMA ===
@@ -59,11 +67,6 @@ BODY: Sim, é possível conectar mais de um número na mesma operação.
 H3: Quais canais podem ser integrados?
 BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
 
-=== QUEM SOMOS ===
-H2: Quem somos
-BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
-SELOS: Api Oficial do WhatsApp · Api Oficial do ChatGPT · Um produto Elife
-
 === FECHO ===
 H2: Seu número pode continuar o mesmo. Sua operação não precisa continuar igual.
 CTA: Agendar demonstração gratuita
@@ -72,12 +75,7 @@ CTA: Agendar demonstração gratuita
 FOOTER: Cxpress é um produto Elife. © 2026
 FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 
-# Revisao anti-IA: sem achados (em-dash: 0). Texto institucional de QUEM SOMOS sem padroes de IA.
-# ATUALIZACAO 2026-06-25 (reconciliacao pos-redesign — copy.txt alinhado ao index.html publicado):
-#  - CLIENTES promovida para a 2a dobra (logo apos o hero); FORM reembalado em card com PRICE + REQ.
-#  - Bloco COEX (contexto) removido da pagina; secao QUEM SOMOS adicionada apos o FAQ.
-#  - Stats trocadas para o relatorio interno Sentinela (2025), substituindo NBER/McKinsey.
-#  - Form Jotform atualizado: 261033482583658 -> 261045149477663.
-#  - Assets de plataforma migrados para brand/cxpress/assets/plataforma/.
-# PENDENTE (decisoes do Victor — ver review PR #28): validar os numeros do relatorio Sentinela e a
-#  redacao/claim do selo "Api Oficial do ChatGPT" (incl. capitalizacao Api->API).
+# Revisao anti-IA: sem achados (em-dash: 0).
+# ATUALIZACAO 2026-06-11: form movido para a 2a dobra (logo apos hero) a pedido do cliente;
+# adicionada secao CLIENTES (prova social) com grade de logos extraida de home.cxpress.io/app-whatsapp.
+# Form (Jotform 261033482583658) ja integrado. Assets: ./assets/clientes-cxpress.png + mockup + 3 GIFs + og-image.

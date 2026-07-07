@@ -243,6 +243,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ===== PALESTRANTES ===== */
   .speakers{background:var(--white)}
   .spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:880px;margin:0 auto}
+  @media (min-width:761px){
+    .spk-card:last-child:nth-child(odd){grid-column:1 / -1;justify-self:center;width:calc(50% - 14px)}
+  }
   .spk-card{
     background:var(--n100);border:1px solid var(--n300);border-radius:var(--r-lg);
     padding:38px 28px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;overflow:hidden;
@@ -327,6 +330,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .reveal{opacity:1!important;transform:none!important;transition:none}
     .nav-dot{animation:none}
   }
+
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: o provedor ja vem com card proprio. */
+  .jotform-embed{max-width:640px;margin:0 auto}
+  .jotform-embed iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 </style>
 </head>
 <body>
@@ -384,34 +392,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap signup-inner">
       <h2 id="signup-title" class="ribbon reveal"><span class="ribbon-txt">Garanta sua vaga</span></h2>
       <p class="signup-sub reveal">Inscrição gratuita. Vagas limitadas pela capacidade do espaço.</p>
-      <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
-        <div class="field">
-          <label for="f-nome">Nome completo</label>
-          <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-email">E-mail corporativo</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" spellcheck="false" autocapitalize="none" required>
-          </div>
-          <div class="field">
-            <label for="f-whats">WhatsApp</label>
-            <input id="f-whats" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-empresa">Empresa</label>
-            <input id="f-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome da empresa" required>
-          </div>
-          <div class="field">
-            <label for="f-cargo">Cargo</label>
-            <input id="f-cargo" name="cargo" type="text" autocomplete="organization-title" placeholder="Seu cargo" required>
-          </div>
-        </div>
-        <button class="btn btn-orange btn-block" type="submit">Quero participar</button>
-        <p class="form-note">Inscrição gratuita · Vagas limitadas pela capacidade do espaço.</p>
-      </form>
+      <div class="jotform-embed reveal">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261666450207658"></script>
+      </div>
     </div>
   </section>
 
@@ -494,24 +477,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="timeline">
         <div class="tl-item reveal">
-          <div class="tl-time">9h00</div>
-          <div class="tl-body"><p class="tl-text">Recepção e café da manhã</p></div>
+          <div class="tl-time">09h00</div>
+          <div class="tl-body"><p class="tl-text">Recepção e coffee</p></div>
         </div>
         <div class="tl-item reveal">
-          <div class="tl-time">9h30</div>
-          <div class="tl-body"><p class="tl-text">Abertura: o estado da gestão de canais com IA em 2026</p></div>
+          <div class="tl-time">09h30</div>
+          <div class="tl-body"><p class="tl-text">Boas-vindas e abertura</p></div>
         </div>
         <div class="tl-item reveal">
-          <div class="tl-time">10h15</div>
-          <div class="tl-body"><p class="tl-text">Painel com cliente: operação, ganhos e experiência do cliente na prática</p></div>
+          <div class="tl-time">09h40</div>
+          <div class="tl-body"><p class="tl-text">Cenário da gestão de canais com IA em 2026 (dados de mercado e tendências)</p></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-time">10h05</div>
+          <div class="tl-body"><p class="tl-text">Centralização de canais e IA na prática</p></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-time">10h45</div>
+          <div class="tl-body"><p class="tl-text">Perguntas</p></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-time">11h00</div>
+          <div class="tl-body"><p class="tl-text">Coffee break e networking</p></div>
         </div>
         <div class="tl-item reveal">
           <div class="tl-time">11h15</div>
-          <div class="tl-body"><p class="tl-text">Discussão aberta e perguntas da plateia</p></div>
+          <div class="tl-body"><p class="tl-text">Case Lumma Despachante</p></div>
         </div>
         <div class="tl-item reveal">
-          <div class="tl-time">12h00</div>
-          <div class="tl-body"><p class="tl-text">Encerramento e networking</p></div>
+          <div class="tl-time">11h30</div>
+          <div class="tl-body"><p class="tl-text">Case Super Sim</p></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-time">11h45</div>
+          <div class="tl-body"><p class="tl-text">Perguntas aos convidados</p></div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-time">11h55</div>
+          <div class="tl-body"><p class="tl-text">Convite especial</p></div>
         </div>
       </div>
     </div>
@@ -529,21 +532,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="spk-photo">
             <img src="./assets/enrico-chiari.jpg" alt="Enrico Chiari" width="800" height="800">
           </div>
-          <span class="spk-badge">Palestrante</span>
           <h3>Enrico Chiari</h3>
-          <div class="spk-role">Especialista em atendimento ao cliente</div>
-          <p class="spk-bio">Acompanha de perto a operação de dezenas de empresas que unificaram seus canais com a Cxpress. Vai trazer os padrões que se repetem, as boas práticas e os erros mais comuns na centralização do atendimento.</p>
+          <div class="spk-role">New Business &amp; Sales Coordinator</div>
           <div class="spk-logo"><img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress"></div>
         </div>
         <div class="spk-card reveal">
-          <div class="spk-photo placeholder" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-3.6 3.6-6 8-6s8 2.4 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="spk-photo">
+            <img src="./assets/karen-marcelino.jpg" alt="Karen Marcelino" width="800" height="800">
           </div>
-          <span class="spk-badge">Convidado</span>
-          <h3>Convidado especial</h3>
-          <div class="spk-role">Cliente Cxpress</div>
-          <p class="spk-bio">Em breve. Líder de uma operação de atendimento que vai dividir no painel os bastidores da própria mudança: o antes, o depois e os números.</p>
-          <div class="spk-logo"><span class="tbd">Em breve</span></div>
+          <h3>Karen Marcelino</h3>
+          <div class="spk-role">Sucesso do Cliente</div>
+          <div class="spk-logo"><img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress"></div>
+        </div>
+        <div class="spk-card reveal">
+          <div class="spk-photo">
+            <img src="./assets/marcio-aguilar.jpg" alt="Marcio Aguilar" width="600" height="600">
+          </div>
+          <h3>Marcio Aguilar</h3>
+          <div class="spk-role">Gerente de Projetos e TI</div>
+          <div class="spk-logo"><img src="./assets/logo-lumma.jpg" alt="Lumma Despachante"></div>
+        </div>
+        <div class="spk-card reveal">
+          <div class="spk-photo">
+            <img src="./assets/meire-machado.jpg" alt="Meire Machado" width="600" height="600">
+          </div>
+          <h3>Meire Machado</h3>
+          <div class="spk-role">Superintendente</div>
+          <div class="spk-logo"><img src="./assets/logo-lumma.jpg" alt="Lumma Despachante"></div>
+        </div>
+        <div class="spk-card reveal">
+          <div class="spk-photo">
+            <img src="./assets/guilherme-frossard.jpg" alt="Guilherme Frossard" width="400" height="400">
+          </div>
+          <h3>Guilherme Frossard</h3>
+          <div class="spk-role">Líder de operações</div>
+          <div class="spk-logo"><img src="./assets/logo-supersim.jpg" alt="SuperSim"></div>
         </div>
       </div>
     </div>
