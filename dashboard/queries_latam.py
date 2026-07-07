@@ -39,6 +39,10 @@ CONTENT_DOMAIN_LIKE = '%getbuzzmonitor.com%'
 URL_FORTE_CM: list[str] = [
     '%contenido.getbuzzmonitor.com/plataforma-completa%',
     '%oferta%',
+    # LP MCP-ES vive em material.buzzmonitor.com (NAO cai no dominio de conteudo
+    # getbuzzmonitor.com) => incluida por URL exata p/ contar tb leads sem UTM ou
+    # com UTM custom. So a mcp-es (nao o dominio inteiro). Decisao Victor 2026-07-06.
+    '%material.buzzmonitor.com/mcp-es%',
 ]
 
 # URLs comerciais (pricing/trial) que NAO contam como CM quando vem SEM UTM (null/vazia/

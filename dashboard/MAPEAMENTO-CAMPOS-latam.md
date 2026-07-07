@@ -51,6 +51,7 @@ Mesma filosofia do Brasil (decisão "igual ao Brasil" no tráfego Google):
   -- (1) SINAL FORTE DE URL — conta como CM independente da UTM (sobrepõe até google+cpc)
   url_conversao ILIKE '%contenido.getbuzzmonitor.com/plataforma-completa%'
   OR url_conversao ILIKE '%oferta%'
+  OR url_conversao ILIKE '%material.buzzmonitor.com/mcp-es%'   -- LP MCP-ES (domínio material.*, fora de getbuzzmonitor.com)
   -- (2) REGRA GERAL
   OR (
     -- exclui Google Ads (google e google_es com cpc) — 730/732 dos 'google' são cpc
@@ -74,6 +75,10 @@ Mesma filosofia do Brasil (decisão "igual ao Brasil" no tráfego Google):
 > **Sinal forte de URL (1):** `contenido.getbuzzmonitor.com/plataforma-completa*` e qualquer URL com
 > `oferta` são páginas de produto/oferta — contam como CM **mesmo sem UTM ou com UTM de Ads**. Hoje:
 > 36 casos de `plataforma-completa` (todos já no domínio), 0 de `oferta` (à prova de futuro).
+> A LP **MCP-ES** (`material.buzzmonitor.com/mcp-es`) foi adicionada aqui (decisão Victor 2026-07-06):
+> vive no domínio `material.buzzmonitor.com`, que **não** cai no domínio de conteúdo `getbuzzmonitor.com`,
+> então sem esta regra só os leads com `utm_source` na whitelist (ex.: `meta`) contavam. Escopo restrito
+> à `mcp-es` (não o domínio inteiro — as irmãs mcp/mcp-pt/que-es-mcp seguem a regra geral).
 
 **Excluídos** (não entram na whitelist, logo não contam): `google`/`google_es` + cpc (Ads),
 `Pamela_Sanchez`, `equipo_comercial`, `comercial`, `ActiveCampaign`, `Customer_Success_Team`

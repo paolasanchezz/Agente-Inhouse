@@ -4,20 +4,21 @@ name: Convites Moderador ClickMeeting
 # serie recorrente do ClickMeeting configurada em
 # .claude/skills/convites-moderador/config.json (1 email por moderador por serie).
 #
-# Migrado do remote-trigger da claude.ai para o cloud do GitHub Actions porque o
-# IP do harness foi bloqueado pela ClickMeeting — mesmo motivo do lp-health-check.yml
-# (harness bloqueado por anti-abuse). O IP dos runners do GitHub nao sofre esse bloqueio.
+# STATUS (2026-07-07): o agendamento diario foi MIGRADO pro n8n — workflow
+# "Convites Moderador ClickMeeting - diario 07h BRT" (id 1TFA4xHvFEZQ5lns) na instancia
+# n8n-marketing-u54305.vm.elestio.app, roda 07:00 America/Sao_Paulo. Fonte versionada em
+# integracoes/n8n/convites-moderador-clickmeeting.json.
 #
-# Roda 08:17 America/Sao_Paulo (= 11:17 UTC, sem DST desde 2019). Minuto :17 (nao :00)
-# evita o pico do cron do GitHub Actions, que atrasa runs no comeco de cada hora.
-# Ainda ha folga larga antes do primeiro webinar do dia (~10h BRT).
+# Este workflow do GitHub Actions virou FALLBACK MANUAL: esta desabilitado no GitHub
+# (gh workflow disable convites-moderador.yml) e sem cron proprio (so workflow_dispatch).
+# Se o n8n falhar: `gh workflow enable convites-moderador.yml` + aba Actions > Run workflow.
+# NAO religar cron aqui enquanto o n8n estiver ativo — a API do ClickMeeting nao deduplica,
+# entao os dois agendados juntos = convite em dobro.
 #
-# Teste manual: aba Actions > Convites Moderador ClickMeeting > Run workflow
-# (marque "Dry-run" para so listar o plano, sem enviar email a ninguem).
+# Historico: migramos remote-trigger claude.ai -> GitHub Actions em 2026-07-07 (IP do harness
+# bloqueado pela ClickMeeting, mesmo motivo do lp-health-check.yml) e no mesmo dia -> n8n.
 
 on:
-  schedule:
-    - cron: "17 11 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

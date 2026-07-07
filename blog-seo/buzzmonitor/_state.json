@@ -1,0 +1,47 @@
+{
+  "ultima_atualizacao": "2026-06-30",
+  "posts_criados": [
+    {
+      "data": "2026-06-30",
+      "slug": "ia-para-atendimento-ao-cliente",
+      "h1": "IA para atendimento ao cliente: o guia completo para 2026",
+      "cluster": "Cluster 4 — IA",
+      "funil": "MoFu",
+      "primary_kw": "ia para atendimento ao cliente",
+      "volume": 260,
+      "url_notion": "https://app.notion.com/p/38f3934026fd818c9458ec1ff47e97cf",
+      "lp": "plataforma-completa",
+      "utm_content": "ia-para-atendimento-ao-cliente",
+      "status": "draft-notion"
+    },
+    {
+      "data": "2026-06-30",
+      "slug": "social-listening-para-e-commerce",
+      "h1": "Social listening para e-commerce: como usar para vender mais",
+      "cluster": "Cluster 1 — Social Listening",
+      "funil": "MoFu",
+      "primary_kw": "social listening para e-commerce",
+      "volume": null,
+      "volume_nota": "sem volume Semrush; demanda confirmada por SERP + GSC (triangulação)",
+      "url_notion": "https://app.notion.com/p/3903934026fd8191bfe3d22362e82a02",
+      "lp": "plataforma-completa-listening",
+      "utm_content": "social-listening-para-e-commerce",
+      "status": "draft-notion"
+    }
+  ],
+  "temas_rejeitados": [
+    { "data": "2026-06-30", "tema": "ferramentas de social listening", "motivo": "quase sinônimo de post existente (plataformas-social-listening-2026)" }
+  ],
+  "clusters_cobertura": {
+    "Cluster 4 — IA": { "posts": 1, "ultimo": "2026-06-30" },
+    "Cluster 1 — Social Listening": { "posts": 1, "ultimo": "2026-06-30" }
+  },
+  "funnel_balance": { "ToFu": 0, "MoFu": 2, "BoFu": 0 },
+  "volume_cache": {
+    "social listening": { "volume": 1300, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "ia para atendimento ao cliente": { "volume": 260, "fontes": ["semrush", "websearch-serp"], "ts": "2026-06-30" },
+    "monitoramento de marca": { "volume": 50, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "ferramentas de social listening": { "volume": 110, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "social listening para e-commerce": { "volume": null, "fontes": ["websearch-serp", "gsc-slide"], "ts": "2026-06-30" }
+  }
+}

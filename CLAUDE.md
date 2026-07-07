@@ -25,6 +25,7 @@ Newsletters:  /news-pipeline → /news-pesquisar → (pausa: aprovar pauta?) →
 Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
+Blog SEO/GEO: /blog-diario [marca] [regiao] [tema?] (standalone autonomo — cluster → bake-off de volume multi-fonte → post SEO/GEO + METADADOS + CTA→LP → rascunho Notion; diario via /schedule)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar | /lp-sync (standalone — snapshot sibling) | /lp-health-check (standalone — monitora prod)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
 Webinar:      /roteiro-webinar-perpetuo (standalone — roteiro com timestamps + falas + demo da plataforma + slides de abertura)
@@ -180,6 +181,19 @@ Transforma uma noticia recente em conteudo multi-formato e multi-idioma. Rastrei
 - `[tipos-csv]`: combinacao de `carrossel` | `video-curto` | `blog` | `linkedin` | `email`
 - `[idiomas-csv]`: combinacao de `br` (PT-BR) | `pt` (PT-PT) | `es` (ES-LATAM)
 
+### Blog SEO/GEO (Diario)
+
+Skill standalone **autonoma** que gera 1 blogpost otimizado para SEO + GEO por execucao, a partir dos **clusters de tema** da marca (fonte local em `conhecimento/produto/{marca}/seo/clusters-{regiao}.md` — Victor envia, o agente transcreve). Escolhe o tema por **bake-off de volume multi-fonte** (Semrush + autocomplete/Trends/GSC, que corroboram ou refutam o Semrush), evita duplicar posts existentes (inventario = blog-cache + sitemap vivo + rascunhos Notion), escreve no idioma nativo, monta bloco **METADADOS** completo (slug, title, meta description, keywords, cluster) e CTA pra 1 modulo + LP (catalogo `landing-pages/catalogo/lps-{marca}.md`) em MoFu/BoFu. **Anti-IA minimo** (so precisao factual + grafia + idioma — nao roda regras-anti-ia.md). Publica rascunho no Notion (`SEO > {Marca} > Conteúdos complementares`); artefato local Astro-ready pra posting via API futuro. **v1: Cxpress BR.** Regras em `.claude/skills/blog-diario/CONTEXT.md`.
+
+| Comando | O que faz |
+|---|---|
+| `/blog-diario [marca] [regiao] [tema?]` | Gera 1 post SEO/GEO autonomo e publica rascunho no Notion. Sem `tema`, escolhe a melhor lacuna do cluster pelo score. Diario via `/schedule` ou `/loop 1d`. |
+
+- `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife` (default: `cxpress`)
+- `[regiao]`: `brasil` (default) | `latam` | `portugal`
+- `[tema]`: opcional, entre aspas — forca um tema/keyword e pula a selecao
+- Requer MCP Notion + Semrush conectados. Clusters da marca/regiao precisam existir (senao a skill para e pede ao Victor).
+
 ### Criativos (imagens estaticas / carrossel)
 
 Skill unica **ponta a ponta**: adapta a copy → carrega brandbook + GUIDELINES → gera → revisa as imagens → entrega numa pasta local. Duas engines independentes: **HTML/CSS + Playwright** (padrao, texto pixel-perfect) e **Bloom** (IA, opt-in e desligavel — sem assinatura, a opcao some). Regras universais co-desenhadas em `criativos/GUIDELINES.md`. Saida em `criativos/{marca}/{regiao}/{slug}/` (outputs gitignored — upload manual). Engine HTML requer Playwright+Chromium (`/setup-agencia`).
@@ -235,7 +249,7 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 
 ### ClickMeeting — Convites de Moderador
 
-Rotina diaria que envia convite (role=presenter — a API nao aceita `moderator` em invitation/email) para a proxima sessao agendada de cada serie recorrente. Config em `.claude/skills/convites-moderador/config.json` (mapping `recurring_config_id` -> email do moderador). Roda 08:00 BRT via tarefa agendada `convites-moderador-clickmeeting`.
+Rotina diaria que envia convite (role=presenter — a API nao aceita `moderator` em invitation/email) para a proxima sessao agendada de cada serie recorrente. Config em `.claude/skills/convites-moderador/config.json` (mapping `recurring_config_id` -> email do moderador). Roda 07:00 BRT via workflow no n8n (`Convites Moderador ClickMeeting - diario 07h BRT`, id `1TFA4xHvFEZQ5lns`; fonte versionada em `integracoes/n8n/convites-moderador-clickmeeting.json`). Migrado do GitHub Actions em 2026-07-07 — o `.github/workflows/convites-moderador.yml` fica como fallback manual desabilitado.
 
 | Comando | O que faz |
 |---|---|

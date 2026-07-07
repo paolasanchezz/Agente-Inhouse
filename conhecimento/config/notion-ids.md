@@ -14,6 +14,7 @@
 | `newsletter` | `33c3934026fd80778073f1868c5bf11c` | Pagina raiz **Newsletter** — publicacoes semanais por marca |
 | `redes-sociais` | `3603934026fd8158876dd38d432aceef` | Pagina raiz **Redes Sociais** — planejamentos editoriais mensais (skill social-plan) |
 | `redes-sociais-relatorios` | `37d3934026fd81048ee1d3749aa21851` | Subpagina **Relatórios de Performance** — arquivo historico pre-2026-07 (Maio e anteriores). A partir de junho/2026 o relatorio do mes mora dentro da propria pagina-hub do mes, nao mais aqui |
+| `seo` | `2b53934026fd8154afeecdc8b68bb0df` | Pagina raiz **SEO** — por marca: clusters, rastreio de paginas e rascunhos de blog (skill blog-diario). Rascunhos vao em `SEO > {Marca} > Conteúdos complementares`. IDs por marca/regiao em `.claude/skills/blog-diario/CONTEXT.md`. |
 
 ---
 
@@ -51,6 +52,7 @@ Sempre que uma skill precisar de um `parent` id para `mcp__*__notion-create-page
 | `news-gerar`, `news-pesquisar`, `news-pipeline` | `newsletter` |
 | `social-plan` | `redes-sociais` (via padrao de pagina-hub por mes, ver secao acima) |
 | `social-analytics` | `redes-sociais` (relatorio vai dentro do hub do mes; `redes-sociais-relatorios` so pra consulta historica pre-2026-07) |
+| `blog-diario` | `seo` |
 
 ---
 

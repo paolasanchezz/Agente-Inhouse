@@ -170,3 +170,21 @@
 - **URL**: https://buzzmonitor.com/blog/como-implementar-um-atendimento-multicanal-eficiente/
 - **Tags**: atendimento, omnichannel
 - **Última verificação**: 2026-05-04
+
+## IA para atendimento ao cliente: o guia completo para 2026 (RASCUNHO)
+- **URL**: https://app.notion.com/p/38f3934026fd818c9458ec1ff47e97cf
+- **Data publicação**: 2026-06-30 (rascunho Notion — trocar pela URL do blog ao publicar)
+- **Snippet**: guia comercial de IA no atendimento (como funciona, vantagens, como escolher; case Youse SLA 36h→3h)
+- **Dores cobertas**: ia-atendimento, sac-sla
+- **Tags**: IA, atendimento, SAC 2.0
+- **Status**: draft-notion (gerado por /blog-diario)
+- **Última verificação**: 2026-06-30
+
+## Social listening para e-commerce: como usar para vender mais (RASCUNHO)
+- **URL**: https://app.notion.com/p/3903934026fd8191bfe3d22362e82a02
+- **Data publicação**: 2026-06-30 (rascunho Notion — trocar pela URL do blog ao publicar)
+- **Snippet**: guia de social listening aplicado ao e-commerce (tendências, crise, VoC→produto; cases Caffeine Army e Prime Energy)
+- **Dores cobertas**: benchmarking competitivo, VoC → produto, detecção precoce de crise
+- **Tags**: social listening, e-commerce, varejo
+- **Status**: draft-notion (gerado por /blog-diario)
+- **Última verificação**: 2026-06-30

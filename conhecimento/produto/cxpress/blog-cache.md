@@ -262,3 +262,21 @@
 - **Dores cobertas**: dor-4-tickets, dor-2-canais-fragmentados
 - **Tags**: Tickets, Histórico
 - **Última verificação**: 2026-05-04
+
+## Melhor chatbot para WhatsApp: como escolher em 2026 (RASCUNHO)
+- **URL**: https://app.notion.com/p/38f3934026fd8116bd57ed2487813204
+- **Data publicação**: 2026-06-30 (rascunho Notion — trocar pela URL do blog ao publicar)
+- **Snippet**: guia comercial de como escolher chatbot para WhatsApp (6 critérios; API oficial; IA com handoff)
+- **Dores cobertas**: dor-3-handoff-ia, dor-5-whatsapp-profissional
+- **Tags**: Chatbot, IA, WhatsApp
+- **Status**: draft-notion (gerado por /blog-diario)
+- **Última verificação**: 2026-06-30
+
+## CRM para WhatsApp: como integrar atendimento e vendas em 2026 (RASCUNHO)
+- **URL**: https://app.notion.com/p/3903934026fd81fdba5aedf663e60568
+- **Data publicação**: 2026-06-30 (rascunho Notion — trocar pela URL do blog ao publicar)
+- **Snippet**: guia comercial de CRM para WhatsApp (o que é, 3 formas de integração, API oficial, omnichannel)
+- **Dores cobertas**: dor-2-canais-fragmentados, dor-5-whatsapp-profissional, dor-4-tickets
+- **Tags**: CRM, WhatsApp, Centralização
+- **Status**: draft-notion (gerado por /blog-diario)
+- **Última verificação**: 2026-06-30

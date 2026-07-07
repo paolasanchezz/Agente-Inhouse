@@ -1,0 +1,49 @@
+{
+  "ultima_atualizacao": "2026-06-30",
+  "posts_criados": [
+    {
+      "data": "2026-06-30",
+      "slug": "melhor-chatbot-para-whatsapp",
+      "h1": "Melhor chatbot para WhatsApp: como escolher em 2026",
+      "cluster": "Cluster 3 — Chatbot e automação no WhatsApp",
+      "funil": "BoFu",
+      "primary_kw": "melhor chatbot para whatsapp",
+      "volume": 170,
+      "url_notion": "https://app.notion.com/p/38f3934026fd8116bd57ed2487813204",
+      "lp": "atendimento-digital",
+      "utm_content": "melhor-chatbot-para-whatsapp",
+      "status": "draft-notion"
+    },
+    {
+      "data": "2026-06-30",
+      "slug": "crm-para-whatsapp",
+      "h1": "CRM para WhatsApp: como integrar atendimento e vendas em 2026",
+      "cluster": "Cluster 4 — CRM e gestão da experiência do cliente",
+      "funil": "BoFu",
+      "primary_kw": "crm para whatsapp",
+      "volume": 1300,
+      "url_notion": "https://app.notion.com/p/3903934026fd81fdba5aedf663e60568",
+      "lp": "atendimento-digital",
+      "utm_content": "crm-para-whatsapp",
+      "status": "draft-notion"
+    }
+  ],
+  "temas_rejeitados": [
+    { "data": "2026-06-30", "tema": "multiatendimento whatsapp", "motivo": "JÁ_COBERTO (post existente no blog)" }
+  ],
+  "clusters_cobertura": {
+    "Cluster 3 — Chatbot e automação no WhatsApp": { "posts": 1, "ultimo": "2026-06-30" },
+    "Cluster 4 — CRM e gestão da experiência do cliente": { "posts": 1, "ultimo": "2026-06-30" }
+  },
+  "funnel_balance": { "ToFu": 0, "MoFu": 0, "BoFu": 2 },
+  "volume_cache": {
+    "preço whatsapp business api": { "volume": 90, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "como ativar api oficial do whatsapp": { "volume": 20, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "melhor chatbot para whatsapp": { "volume": 170, "fontes": ["semrush", "websearch-serp"], "ts": "2026-06-30" },
+    "automatizar vendas pelo whatsapp": { "volume": 30, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "crm com whatsapp integrado": { "volume": 140, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "crm para whatsapp": { "volume": 1300, "fontes": ["semrush", "websearch-serp"], "ts": "2026-06-30" },
+    "crm para pequenas empresas": { "volume": 210, "fontes": ["semrush"], "ts": "2026-06-30" },
+    "multiatendimento whatsapp": { "volume": 210, "fontes": ["semrush"], "ts": "2026-06-30" }
+  }
+}
