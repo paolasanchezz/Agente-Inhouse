@@ -1,0 +1,116 @@
+=== HERO ===
+OVERLINE: Social Listening com IA
+H1: Descubra o que o mercado está dizendo antes que vire tendência, crise ou oportunidade.
+SUB: Monitore conversas públicas em tempo real, acompanhe menções sobre sua marca, analise concorrentes e transforme dados de redes sociais em insights estratégicos com a IA da Buzzmonitor.
+CTA: Comece grátis
+CTA: Agendar demonstração
+LIST ITEM: Monitore redes sociais em tempo real
+LIST ITEM: Identifique crises antes que elas explodam
+LIST ITEM: Gere insights automáticos com IA
+LIST ITEM: Entenda sentimentos, tendências e oportunidades
+
+=== BENEFICIOS ===
+H2: Monitore, analise e tome decisões mais rápidas
+SUB: A Buzzmonitor combina Social Listening, inteligência artificial e análise de dados para ajudar sua marca a agir com mais velocidade e precisão.
+H3: Identifique crises antes que elas cresçam
+BODY: Detecte picos de menções, termos sensíveis e conversas negativas em tempo real para agir antes que a situação ganhe escala.
+H3: Acompanhe tendências em tempo real
+BODY: Entenda quais temas, comportamentos e conversas estão ganhando força entre consumidores, comunidades e concorrentes.
+H3: Economize horas de análise manual
+BODY: Use IA para resumir relatórios, encontrar padrões e transformar grandes volumes de dados em insights acionáveis.
+H3: Entenda o que o público realmente pensa
+BODY: Analise sentimento, contexto, menções espontâneas e percepções sobre sua marca, produtos, campanhas e concorrentes.
+
+=== PROVA-SOCIAL ===
+H2: Empresas líderes já acompanham sua marca em tempo real com a Buzzmonitor
+SUB: Mais do que monitorar redes sociais, a Buzzmonitor ajuda times de marketing, atendimento e inteligência a transformar conversas em decisões de negócio.
+LABEL: 1.000+ clientes enterprise
+LABEL: 300+ clientes em todo o mundo
+LABEL: 10k usuários
+LABEL: 500+ agências
+BODY: De marcas globais a agências especializadas, a Buzzmonitor é a plataforma escolhida por equipes que precisam monitorar conversas, proteger reputações e gerar inteligência a partir dos dados sociais.
+
+=== AI-INSIGHTS ===
+OVERLINE: IA para geração de insights
+H2: A IA faz o trabalho pesado. Sua equipe ganha velocidade, contexto e inteligência.
+SUB: Com o AI Insights da Buzzmonitor, relatórios de monitoramento deixam de ser apenas dados acumulados e se transformam em análises rápidas, resumidas e fáceis de usar.
+BODY: Imagine acessar análises qualitativas sobre publicações, interações, campanhas e conversas com apenas um clique. A IA da Buzzmonitor identifica padrões, resume relatórios e destaca os principais pontos para sua equipe tomar decisões mais rápidas.
+LIST ITEM: Resumos automáticos de relatórios de Social Listening
+LIST ITEM: Identificação de temas, sentimentos e padrões relevantes
+LIST ITEM: Apoio para relatórios executivos e análises estratégicas
+LIST ITEM: Mais produtividade para times de marketing, atendimento e BI
+CTA: Ver na prática
+
+=== IA-MUDA-TUDO ===
+H2: A Inteligência Artificial muda tudo
+SUB: Menos tempo procurando dados. Mais tempo tomando decisões estratégicas.
+H3: Antes
+BODY: Análises demoradas
+BODY: Equipes gastam horas lendo menções, separando sentimentos e buscando padrões manualmente.
+H3: Com Buzzmonitor
+BODY: Insights rápidos com IA
+BODY: A plataforma identifica conversas relevantes, resume relatórios e destaca o que realmente importa.
+H3: Resultado
+BODY: Decisões mais estratégicas
+BODY: Sua marca age com mais velocidade em campanhas, crises, tendências e oportunidades de mercado.
+CTA: Comece grátis
+
+=== MONITORAMENTO-AUDIOVISUAL ===
+H2: Monitoramento de vídeos, áudios e imagens
+SUB: Sua marca pode ser mencionada mesmo quando ninguém escreve o seu nome. A IA da Buzzmonitor ajuda a capturar esses sinais.
+BODY: Na era dos conteúdos audiovisuais, conversas importantes acontecem em vídeos, stories, áudios e imagens. Com a Buzzmonitor, menções à sua marca podem ser detectadas, transcritas e analisadas para que nada relevante passe despercebido.
+BODY: A plataforma permite receber alertas automáticos sobre menções negativas ou termos sensíveis em conteúdos audiovisuais, sem que sua equipe precise assistir tudo manualmente.
+LIST ITEM: Detecção de menções em conteúdos audiovisuais
+LIST ITEM: Transcrição e análise com IA
+LIST ITEM: Alertas automáticos sobre temas sensíveis
+LIST ITEM: Mais controle sobre o que falam da sua marca
+CTA: Agendar demonstração grátis
+
+=== GESTAO-DE-CRISES ===
+H2: Gestão de crises em tempo real
+SUB: Antecipe ameaças, monitore sinais de risco e mantenha o controle da narrativa antes que a crise ganhe escala.
+BODY: Uma crise pode começar com um comentário, um vídeo, um post viral ou uma menção negativa que cresce rápido demais. Com a Buzzmonitor, sua equipe identifica picos de menções, sentimentos negativos, perfis verificados, termos sensíveis e temas críticos em tempo real.
+BODY: A IA ajuda a analisar o contexto das conversas para que sua marca entenda o risco, priorize respostas e aja com mais segurança.
+LIST ITEM: Aumento repentino de menções negativas
+LIST ITEM: Termos sensíveis como Procon, racismo, denúncia ou boicote
+LIST ITEM: Menções feitas por perfis verificados
+LIST ITEM: Críticas recorrentes sobre produto, atendimento ou campanha
+LIST ITEM: Picos de conversa fora do padrão
+CTA: Agendar demonstração grátis
+
+=== WHATSAPP ===
+H2: Fale com um consultor da Buzzmonitor agora mesmo
+SUB: Tire dúvidas, entenda qual plano faz sentido para sua empresa e descubra como aplicar Social Listening com IA na sua estratégia.
+CTA: Falar agora
+
+=== OFERTA ===
+H2: Experimente grátis por 14 dias
+LABEL: Planos a partir de R$ 1.790,00/mês
+SUB: Tenha várias soluções digitais em uma única plataforma para monitorar sua marca, otimizar processos e transformar dados em decisões com apoio da IA.
+LIST ITEM: Monitoramento de redes sociais e análises geradas por IA
+LIST ITEM: Atendimento multicanal otimizado por IA
+LIST ITEM: Relatórios de performance da marca e concorrentes
+LIST ITEM: Otimização de processos e mais produtividade
+LIST ITEM: Alertas inteligentes para crises e oportunidades
+LIST ITEM: Inteligência de dados para marketing, atendimento e estratégia
+CTA: Agendar demonstração grátis
+
+=== DEPOIMENTO ===
+H2: Ainda não está convencido?
+SUB: Leia o feedback de quem já utiliza a Buzzmonitor.
+QUOTE: "Trabalhar com a Buzzmonitor tem sido uma experiência que recomendo a todas as marcas. São muito completos tanto na área de análise, estratégia e relatórios, como no atendimento aos nossos clientes. Recebi todo o apoio necessário durante o tempo em que colaboramos, o que aumentou nosso nível de satisfação."
+LABEL: Leticia Saori Morita
+LABEL: TotalPass
+
+=== CTA-FINAL ===
+H2: Sua marca já está sendo comentada. A pergunta é: você está acompanhando?
+SUB: Com a Buzzmonitor, sua equipe monitora conversas, entende sentimentos, detecta riscos e transforma dados sociais em decisões estratégicas com IA.
+CTA: Comece grátis
+CTA: Agendar demonstração
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Nota operacional: seção WHATSAPP não inclui número de telefone/link WhatsApp na copy — implementador deve inserir URL real do WhatsApp antes de publicar.
+# Nota operacional: esta LP é do tipo MoFu/BoFu (produto SaaS, preço exposto, demo solicitada) → formulário posicionado na 4ª seção ou última, conforme GUIDELINES §10.
