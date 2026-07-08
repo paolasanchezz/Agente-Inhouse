@@ -1,0 +1,41 @@
+{
+  "_comment": "Config de redes sociais organicas da marca — fonte unica das decisoes que as skills social-* consomem. Campos null = pendente: a skill pergunta ao usuario na primeira execucao e oferece salvar a resposta aqui. ATENCAO: o brand-manifest da Elife esta praticamente vazio (sem tagline, missao, pilares) — este arquivo e um esqueleto; validar TUDO com o time antes do primeiro ciclo.",
+  "marca": "elife",
+  "status": "esqueleto",
+  "idioma": "pt-br",
+  "redes": {
+    "primaria": "instagram",
+    "replica": "linkedin",
+    "modeloNota": "Modelo default herdado da Buzzmonitor (Instagram primario, LinkedIn replica adaptada). Elife e a marca-mae/agencia — o LinkedIn pode pesar mais que o Instagram aqui; validar antes do primeiro ciclo."
+  },
+  "contas": {
+    "instagram": { "handle": null, "url": null },
+    "linkedin": { "url": null }
+  },
+  "contasSecundarias": [],
+  "cadencia": {
+    "instagram": { "postsPorSemana": 3, "dias": "seg/qua/sex", "horario": "11h-13h" },
+    "linkedin": { "postsPorSemana": 2, "dias": "ter-qui", "horario": "8h-10h", "nota": "Replicas + exclusivos raros. Evitar sexta a tarde." }
+  },
+  "formatosCalendario": ["Carrossel", "Estatico", "Texto longo (LinkedIn)", "Infografico"],
+  "formatosForaDoCalendario": { "video": "Reels/video nao entram no calendario — viram secao 'Sugestoes de videos pra produzir'." },
+  "pilaresBase": [
+    { "nome": "Educacao & Insights", "descricao": "Inteligencia de mercado, pesquisas proprias, tendencias digitais e de consumo" },
+    { "nome": "Servicos & Cases", "descricao": "Projetos e resultados da agencia, metodologia, ecossistema Grupo Elife" },
+    { "nome": "Comunidade & Debate", "descricao": "Perguntas ao publico, opinioes sobre o mercado digital" },
+    { "nome": "Bastidores & Equipe", "descricao": "Lado humano da empresa, processo, cultura" }
+  ],
+  "nicho": "inteligencia de mercado / marketing digital / social intelligence",
+  "referencias": [
+    { "nome": "Rock Content", "redes": "LinkedIn, Instagram", "porQue": "Referencia brasileira em conteudo de marketing" },
+    { "nome": "RD Station", "redes": "LinkedIn, Instagram", "porQue": "Referencia brasileira em MarTech" },
+    { "nome": "Think with Google", "redes": "LinkedIn", "porQue": "Insights de mercado e consumo com autoridade de dados" }
+  ],
+  "queriesTendencias": [
+    "marketing digital tendencias 2026",
+    "social intelligence trends 2026",
+    "pesquisa de mercado redes sociais conteudo",
+    "B2B social media trends 2026"
+  ],
+  "canvaTemplates": "brand/elife/canva-template-ids.json"
+}

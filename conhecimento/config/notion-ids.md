@@ -20,11 +20,12 @@
 
 ## Padrao de pagina por mes (redes-sociais) — obrigatorio desde 2026-07
 
-**Regra fixa: 1 pagina-hub por mes, nunca mais de uma.** Incidente de 2026-07: rodadas repetidas de `/social-plan` criaram 5 paginas de planejamento diferentes pra junho e 2 pra julho, nenhuma marcada como "a valida" — a Catharina teve que pedir limpeza manual. Pra nao repetir:
+**Regra fixa: 1 pagina-hub por mes POR MARCA, nunca mais de uma.** Incidente de 2026-07: rodadas repetidas de `/social-plan` criaram 5 paginas de planejamento diferentes pra junho e 2 pra julho, nenhuma marcada como "a valida" — a Catharina teve que pedir limpeza manual. Pra nao repetir:
 
-1. **Antes de criar qualquer coisa**, rode `notion-fetch` na pagina `redes-sociais` (ID acima) e procure um child page cujo titulo seja **exatamente** o mes/ano (ex: `Julho 2026`).
+0. **Titulo do hub por marca** (multi-marca desde 2026-07-08): a **Buzzmonitor** usa `{Mes} {Ano}` sem sufixo (ex: `Julho 2026`) — compatibilidade com o historico que ja existe na pagina. As **demais marcas** usam `{Mes} {Ano} — {Marca}` (ex: `Julho 2026 — Cxpress`, `Agosto 2026 — Buzzcreators`). Um hub sem sufixo e SEMPRE da Buzzmonitor — nunca reaproveitar o hub de uma marca pra outra.
+1. **Antes de criar qualquer coisa**, rode `notion-fetch` na pagina `redes-sociais` (ID acima) e procure um child page cujo titulo seja **exatamente** o titulo do hub da marca/mes (regra 0).
 2. **Se a pagina-hub do mes ja existe**: NAO criar uma nova. Entre nela, ache os children `Planejamento`, `Copies`, `Calendário` (database) e `Relatório de Performance` (quando aplicavel) e **atualize esses em vez de criar novos** (`notion-update-page` com `replace_content`/`update_content`, ou recriar so a database do calendario se o schema mudou — nesse caso mova a nova pra dentro do hub e arquive a antiga movendo pra fora do `redes-sociais` antes, nunca deixando duas soltas no mesmo hub).
-3. **Se a pagina-hub nao existe**: crie com `notion-create-pages` (title = `{Mes} {Ano}`, ex: `Julho 2026`, icone 🗓️, parent = `redes-sociais`), depois crie `Planejamento`, `Copies` e a database `📅 Calendário` como children dela (parent = o ID recem-criado do hub, nao mais `redes-sociais` diretamente).
+3. **Se a pagina-hub nao existe**: crie com `notion-create-pages` (title = titulo da regra 0, icone 🗓️, parent = `redes-sociais`), depois crie `Planejamento`, `Copies` e a database `📅 Calendário` como children dela (parent = o ID recem-criado do hub, nao mais `redes-sociais` diretamente).
 4. **Relatorio de performance** (`social-analytics`): mesma logica — o relatorio do mes vai como child `Relatório de Performance` dentro da pagina-hub daquele mes (nao mais em `redes-sociais-relatorios`). Essa chave antiga so serve pra consultar relatorios de Maio/2026 pra tras.
 5. **Mes fechado nao precisa de update automatico** — so mexer se a Catharina pedir explicitamente (ex: reanalise historica).
 
