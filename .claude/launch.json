@@ -96,6 +96,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5191", "--bind", "127.0.0.1", "--directory", "dashboard-latam-vercel"],
       "port": 5191
+    },
+    {
+      "name": "lp-social-listening-ia",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5192", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/social-listening-ia"],
+      "port": 5192
     }
   ]
 }
