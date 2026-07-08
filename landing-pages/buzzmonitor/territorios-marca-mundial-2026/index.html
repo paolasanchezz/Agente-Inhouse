@@ -295,11 +295,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1px solid var(--c-n300);
     box-shadow: 0 30px 60px -30px rgba(57,1,85,.18), 0 8px 20px -12px rgba(20,17,26,.1);
     overflow: hidden;
-    transform: rotate(-1.8deg);
     transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
   }
   .hero-visual:hover .ticket {
-    transform: rotate(0deg) translateY(-6px);
+    transform: translateY(-6px);
     box-shadow: 0 44px 80px -28px rgba(57,1,85,.32), 0 16px 32px -16px rgba(20,17,26,.18);
   }
 
@@ -365,7 +364,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1px solid var(--c-n300);
     background: var(--c-n100);
     box-shadow: 0 30px 60px -30px rgba(57,1,85,.28), 0 10px 24px -14px rgba(20,17,26,.16);
-    transform: rotate(-1.5deg);
     transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
   }
   .hero-visual:hover .hero-figure { transform: rotate(0deg) translateY(-5px); box-shadow: 0 44px 80px -28px rgba(57,1,85,.34), 0 16px 32px -16px rgba(20,17,26,.18); }
@@ -384,7 +382,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hf-tag.fest::before  { background: var(--c-accent); }
   @media (prefers-reduced-motion: reduce) {
     .hero-figure { transition: none; }
-    .hero-visual:hover .hero-figure { transform: rotate(-1.5deg); }
   }
 
   /* HERO -faixa save-the-date (sob o CTA) */
@@ -1066,12 +1063,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="hero-visual">
-        <span class="deco deco-pill-1" aria-hidden="true"></span>
-        <span class="deco deco-pill-2" aria-hidden="true"></span>
-        <span class="deco deco-pill-3" aria-hidden="true"></span>
-        <span class="deco-dot deco-dot-1" aria-hidden="true"></span>
-        <span class="deco-dot deco-dot-2" aria-hidden="true"></span>
-        <span class="deco-ring" aria-hidden="true"></span>
 
         <figure class="hero-figure">
           <img src="./assets/hero-territorios.jpg"
@@ -1086,6 +1077,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+
+  <!-- Contagem regressiva -->
+  <div class="countdown-wrap">
+    <div class="countdown-inner">
+      <p class="countdown-eyebrow">O webinar come&ccedil;a em</p>
+      <div class="countdown" id="countdown" aria-live="polite" aria-label="Contagem regressiva para o evento">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Dias</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
+      </div>
+    </div>
+  </div>
   <!-- ===== TAKEAWAYS (O que vai levar) ===== -->
   <section class="learn" id="takeaways" aria-labelledby="learn-title">
     <div class="wrap">

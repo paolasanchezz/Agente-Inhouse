@@ -1,0 +1,69 @@
+=== HERO ===
+EYEBROW: Webinar gratuito
+H1: Diversidade na Comunicação
+SUB: A Buzzmonitor apresenta ao vivo os resultados do Estudo de Diversidade na Comunicação de Marcas.
+CTA: Quero me inscrever
+TICKET-DATE: 23/07
+TICKET-SMALL: Quinta-feira · 11h (Brasília)
+TICKET-FORMATO: Online · Ao vivo
+TICKET-DURACAO: 60 min
+TICKET-INVESTIMENTO: Gratuito
+
+=== TICKER ===
+Representatividade se mede
+
+=== INSCRICAO === (form, 2a dobra)
+EYEBROW: Vaga gratuita
+H2: Garanta sua vaga no webinar
+WHEN: 23 de julho · 11h · Online e ao vivo
+BODY: Sua inscrição garante o acesso ao vivo e o link no seu e-mail.
+LABEL: Nome
+LABEL: E-mail
+LABEL: Empresa
+LABEL: Área de atuação
+CTA: Garantir minha vaga
+
+=== PROBLEMA ===
+EYEBROW: A real
+H2: Sua marca comunica diversidade ou só marca presença?
+X-CARD 1: Incluir na imagem, esquecer na estratégia — representar sem repertório vira tokenismo.
+X-CARD 2: Sem dado, sobra achismo — decisões de representatividade tomadas na intuição.
+X-CARD 3: Estereótipo com roupa nova — presença que reforça o mesmo lugar de sempre.
+PUNCHLINE: Representar não é o mesmo que representar bem.
+
+=== OFERTA === (apresentação do estudo — com fotos)
+EYEBROW: O estudo
+H2: Estudo de Diversidade na Comunicação de Marcas
+BODY: Analisamos mais de 6 mil publicações dos maiores anunciantes do Brasil para mapear como diferentes grupos aparecem na publicidade digital.
+BODY: No webinar, a gente abre os números e mostra o que fazer com eles.
+
+=== PROGRAMA ===
+EYEBROW: Programa
+H2: O que você vai levar deste webinar
+LEARN 1: Os achados do estudo, grupo por grupo — o retrato da representatividade em 2026.
+LEARN 2: Onde a diversidade avançou e onde ainda há lacunas nas campanhas.
+LEARN 3: Como medir representatividade na sua marca com social listening.
+
+=== PARA QUEM === (com fotos)
+EYEBROW: Para quem é
+H2: Este encontro é pra você que…
+LIST ITEM: Lidera marketing, mídia ou comunicação
+LIST ITEM: Trabalha com marca, diversidade ou ESG
+LIST ITEM: Cria conteúdo e quer decisão baseada em dado
+CTA: Quero minha vaga gratuita
+
+=== PALESTRANTES ===
+EYEBROW: Quem apresenta
+H2: Especialistas da Buzzmonitor
+BODY: O time de social listening que conduziu o estudo apresenta os resultados e mostra como transformar os números em ação na sua marca.
+
+=== URGENCIA ===
+EYEBROW: Não perca
+H2: Diversidade não é pauta de um mês só.
+QUESTION: A sua marca vai comunicar com dado ou com achismo?
+CTA: Quero minha vaga
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos os direitos reservados. Evento gratuito, sujeito a alterações de horário.
+
+# Revisao anti-IA: em-dash usados como separador tipografico no estilo da LP-mae de webinar (analise-preditiva). Trocar por travessao? NAO — a regra anti-ia proibe em-dash no CORPO; aqui uso hifen/reticencias. Confirmar no lp-revisar. "…" curvo. Sem "sem spam/sem enrolacao" (removi punchline de marketing).
