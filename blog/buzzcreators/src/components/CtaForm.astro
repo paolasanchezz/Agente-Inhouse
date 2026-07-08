@@ -2,17 +2,17 @@
 /*
  * CtaForm — FORMULÁRIO ÚNICO do blog.
  * É renderizado UMA vez no BaseLayout → aparece idêntico em TODAS as páginas.
- * Para mudar texto/campos ou trocar pelo CRM, edite SÓ este arquivo.
+ * Para mudar texto/campos ou trocar o CRM, edite SÓ este arquivo.
  *
- * >>> PONTO ÚNICO DE INTEGRAÇÃO COM O CRM <<<
- * Hoje é um placeholder (mock, não envia). Quando o CRM for definido
- * (ActiveCampaign / RD Station / HubSpot), substitua o <form> abaixo pelo
- * embed/endpoint real. Nenhuma página precisa ser tocada — só este componente.
- * (Mesma filosofia da skill lp-integrar-form.)
+ * >>> INTEGRADO AO MAILCHIMP (2026-07-08) <<<
+ * POST nativo pro endpoint do embed oficial (audiência us14 do grupo), com os
+ * mesmos campos: FNAME, LNAME, EMAIL, grupo de interesse 46266, tag 10371138 e
+ * o honeypot anti-bot. NÃO carregamos o mc-validate.js do embed (jQuery externo
+ * bloqueado pela CSP estrita; a validação nativa do HTML5 cobre o required/email).
+ * A confirmação abre na página hospedada do Mailchimp (target _blank).
  *
- * ATENÇÃO CSP: ao integrar o CRM, libere o domínio dele na Content-Security-Policy
- * em `blog/buzzcreators/vercel.json` (form-action e/ou connect-src). Hoje a CSP é
- * estrita (script-src 'self'); um embed externo que não passe por ali será bloqueado.
+ * CSP: o endpoint está liberado APENAS em form-action no vercel.json.
+ * Se trocar de audiência/CRM, atualize lá também.
  */
 interface Props {
   heading?: string;
@@ -22,6 +22,11 @@ const {
   heading = 'Receba ideias de influência que viram resultado',
   subheading = 'Conteúdo prático sobre creator economy e ROI de campanhas, direto no seu e-mail. Sem spam.',
 } = Astro.props;
+
+const MC_ACTION =
+  'https://buzzmonitor.us14.list-manage.com/subscribe/post?u=3606af452c914bd248903164a&id=a42eafb76c&f_id=00d5bae5f0';
+const MC_HONEYPOT = 'b_3606af452c914bd248903164a_a42eafb76c';
+const MC_TAG = '10371138';
 ---
 
 <section class="cta-band" aria-labelledby="cta-heading">
@@ -32,29 +37,56 @@ const {
       <p class="cta-sub">{subheading}</p>
     </div>
 
-    <!-- PLACEHOLDER: trocar por embed real do CRM (ver comentário no topo). -->
     <form
       id="cta-form"
       class="cta-form"
-      action="#"
-      data-crm="placeholder"
+      action={MC_ACTION}
+      method="post"
+      target="_blank"
+      data-crm="mailchimp"
     >
+      <div class="cta-field">
+        <label class="visually-hidden" for="cta-fname">Nome</label>
+        <input
+          id="cta-fname"
+          name="FNAME"
+          type="text"
+          placeholder="Nome"
+          autocomplete="given-name"
+        />
+      </div>
+      <div class="cta-field">
+        <label class="visually-hidden" for="cta-lname">Sobrenome</label>
+        <input
+          id="cta-lname"
+          name="LNAME"
+          type="text"
+          placeholder="Sobrenome"
+          autocomplete="family-name"
+        />
+      </div>
       <label class="visually-hidden" for="cta-email">Seu melhor e-mail</label>
       <input
         id="cta-email"
-        name="email"
+        class="cta-email"
+        name="EMAIL"
         type="email"
         required
         placeholder="seu@email.com"
         autocomplete="email"
       />
+      <label class="cta-consent">
+        <input type="checkbox" name="group[46266][1]" value="1" checked />
+        <span>Quero receber as novidades de Social Media e CRM e comunicados da Buzzmonitor</span>
+      </label>
+      <input type="hidden" name="tags" value={MC_TAG} />
+      <!-- Honeypot anti-bot do Mailchimp: fica fora da tela e deve seguir vazio -->
+      <div class="cta-hp" aria-hidden="true">
+        <input type="text" name={MC_HONEYPOT} tabindex="-1" autocomplete="off" value="" />
+      </div>
       <button type="submit" class="btn btn-primary">Quero receber</button>
       <p class="cta-micro">Você pode cancelar quando quiser.</p>
     </form>
-
-    <p id="cta-ok" class="cta-ok" role="status" aria-live="polite" hidden>
-      Tudo certo! Em breve a integração com o e-mail estará ativa. 💜
-    </p>
   </div>
 </section>
 
@@ -81,12 +113,12 @@ const {
   }
   .cta-form {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-sm);
     align-items: center;
   }
-  .cta-form input {
-    grid-column: 1 / -1;
+  .cta-form input[type='text'],
+  .cta-form input[type='email'] {
     width: 100%;
     font-family: var(--font-body);
     font-size: 1rem;
@@ -99,6 +131,28 @@ const {
     border-color: var(--c-purple);
     outline-offset: 0;
   }
+  .cta-email {
+    grid-column: 1 / -1;
+  }
+  .cta-consent {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--c-ink-soft);
+    cursor: pointer;
+  }
+  .cta-consent input {
+    margin-top: 4px;
+    accent-color: var(--c-purple);
+    flex-shrink: 0;
+  }
+  /* Honeypot: fora da tela (padrão do embed Mailchimp), invisível pra gente */
+  .cta-hp {
+    position: absolute;
+    left: -5000px;
+  }
   .cta-form .btn {
     grid-column: 1 / -1;
     justify-content: center;
@@ -109,25 +163,19 @@ const {
     color: var(--c-ink-soft);
     margin-top: 2px;
   }
-  .cta-ok {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--c-purple-dark);
-  }
   @media (max-width: 760px) {
     .cta-inner {
       grid-template-columns: 1fr;
       gap: var(--space-xl);
     }
   }
+  @media (max-width: 480px) {
+    .cta-form {
+      grid-template-columns: 1fr; /* Nome e Sobrenome empilham em tela estreita */
+    }
+    .cta-field {
+      grid-column: 1 / -1;
+    }
+  }
 </style>
 
-<!--
-  Handler do formulário mock: /public/js/cta-form.js (asset externo do próprio
-  domínio). Fora do componente de propósito — script processado pelo Astro é
-  inlinado quando pequeno, e JS inline seria bloqueado pela CSP estrita
-  (script-src 'self', sem 'unsafe-inline'). `is:inline` faz o Astro só emitir a
-  tag apontando pro arquivo, sem processar. Ao integrar o CRM, remova ambos.
--->
-<script is:inline defer src="/js/cta-form.js"></script>
