@@ -1,15 +1,16 @@
-"""Gera relatorio.md a partir de parsed.json — temporário pra testar formato.
+"""Gera relatorio.md a partir de parsed.json — esqueleto mecânico do relatório.
 
-Será substituído por instruções de relatório no SKILL.md (passo 4-5) numa próxima
-iteração. Por ora dá output consistente pra validar a estrutura com o usuário.
+Uso: python _gen_report.py <pasta-mes> [--marca Nome] [--handle conta] [--secundarias a,b]
+Ex:  python _gen_report.py social-media/buzzmonitor/2026-05/analytics --marca Buzzmonitor --handle buzzmonitorbr --secundarias buzzcreatorsbr
 
-Uso: python _gen_report.py <pasta-mes>
-Ex:  python _gen_report.py social-media/buzzmonitor/2026-05/analytics
+Defaults (compatibilidade com uso antigo, pré multi-marca): marca Buzzmonitor,
+handle buzzmonitorbr, secundárias buzzcreatorsbr. Handles/marca vêm de
+brand/{marca}/social-media.json — a skill resolve e passa via CLI.
 """
 from __future__ import annotations
 
+import argparse
 import json
-import sys
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean
@@ -39,21 +40,30 @@ def short(desc, n=70):
 
 
 def main():
-    if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
-    base = Path(sys.argv[1])
+    ap = argparse.ArgumentParser(description="Gera relatorio.md a partir de parsed.json")
+    ap.add_argument("pasta", help="pasta do mes (ex: social-media/buzzmonitor/2026-05/analytics)")
+    ap.add_argument("--marca", default="Buzzmonitor", help="displayName da marca (pro titulo do relatorio)")
+    ap.add_argument("--handle", default="buzzmonitorbr", help="username da conta propria no Instagram")
+    ap.add_argument("--secundarias", default="buzzcreatorsbr",
+                    help="CSV de handles de contas secundarias (cross-check); vazio pra nenhuma")
+    args = ap.parse_args()
+
+    base = Path(args.pasta)
+    marca = args.marca
+    handle = args.handle
+    secundarias = [h.strip() for h in args.secundarias.split(",") if h.strip()]
+
     parsed = json.loads((base / "parsed.json").read_text(encoding="utf-8"))
     posts = parsed["posts"]
     aggregates = parsed.get("aggregates", {})
     audience = parsed.get("audience", {})
 
-    buzz = [p for p in posts if p["username"] == "buzzmonitorbr"]
-    creators = [p for p in posts if p["username"] == "buzzcreatorsbr"]
-    ugc = [p for p in posts if p["username"] not in ("buzzmonitorbr", "buzzcreatorsbr")]
+    buzz = [p for p in posts if p["username"] == handle]
+    creators = [p for p in posts if p["username"] in secundarias]
+    ugc = [p for p in posts if p["username"] != handle and p["username"] not in secundarias]
 
     if not buzz:
-        print("Nenhum post da Buzzmonitor encontrado.")
+        print(f"Nenhum post de @{handle} encontrado.")
         return
 
     from datetime import datetime as _dt
@@ -185,10 +195,11 @@ def main():
             lines.append("")
         audience_section = "\n".join(lines) + "\n"
 
-    # Buzzcreators cross-check
+    # contas secundárias (cross-check)
     creators_section = ""
     if creators:
-        lines = ["## Buzzcreators (cross-check)", ""]
+        nomes_sec = ", ".join(f"@{h}" for h in secundarias)
+        lines = [f"## Contas secundárias — {nomes_sec} (cross-check)", ""]
         lines.append(f"- {len(creators)} posts no período")
         lines.append(f"- Média de views: {mean(p['views'] for p in creators):.0f}")
         lines.append(f"- Média de reach: {mean(p['reach'] for p in creators):.0f}")
@@ -232,10 +243,10 @@ def main():
             )
         return "\n".join(lines)
 
-    md = f"""# Relatório de Performance — Instagram Buzzmonitor
+    md = f"""# Relatório de Performance — Instagram {marca}
 
-> **Período coberto**: {first_date} a {last_date} ({n_posts} posts da @buzzmonitorbr)
-> **Gerado por**: `/social-analytics` v0.1
+> **Período coberto**: {first_date} a {last_date} ({n_posts} posts da @{handle})
+> **Gerado por**: `/social-analytics`
 > **Fonte**: `{rel_display(base)}/raw/`
 
 ## TL;DR

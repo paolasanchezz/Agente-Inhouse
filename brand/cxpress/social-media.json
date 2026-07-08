@@ -1,0 +1,44 @@
+{
+  "_comment": "Config de redes sociais organicas da marca — fonte unica das decisoes que as skills social-* consomem. Campos null = pendente: a skill pergunta ao usuario na primeira execucao e oferece salvar a resposta aqui. Pilares/referencias/queries abaixo sao RASCUNHO derivado do brand-manifest — validar com o time no primeiro ciclo.",
+  "marca": "cxpress",
+  "status": "rascunho",
+  "idioma": "pt-br",
+  "redes": {
+    "primaria": "instagram",
+    "replica": "linkedin",
+    "modeloNota": "Mesmo modelo da Buzzmonitor por default (Instagram primario, LinkedIn replica adaptada). Se a Cxpress adotar outro modelo, atualizar aqui."
+  },
+  "contas": {
+    "instagram": { "handle": null, "url": null },
+    "linkedin": { "url": null }
+  },
+  "contasSecundarias": [],
+  "cadencia": {
+    "instagram": { "postsPorSemana": 3, "dias": "seg/qua/sex", "horario": "11h-13h" },
+    "linkedin": { "postsPorSemana": 2, "dias": "ter-qui", "horario": "8h-10h", "nota": "Replicas + exclusivos raros. Evitar sexta a tarde." }
+  },
+  "formatosCalendario": ["Carrossel", "Estatico", "Texto longo (LinkedIn)", "Infografico"],
+  "formatosForaDoCalendario": { "video": "Reels/video nao entram no calendario — viram secao 'Sugestoes de videos pra produzir'." },
+  "pilaresBase": [
+    { "nome": "Educacao & CX", "descricao": "Boas praticas de atendimento, dados de CX, omnicanalidade, IA no primeiro nivel de atendimento" },
+    { "nome": "Produto & Cases", "descricao": "WhatsApp API oficial, automacao com IA + handoff humano, historico unificado por cliente, resultados de clientes" },
+    { "nome": "Comunidade & Debate", "descricao": "Dores de gestores de atendimento em PMEs, perguntas ao publico, temas quentes de CX" },
+    { "nome": "Bastidores & Equipe", "descricao": "Lado humano da empresa, processo, cultura" }
+  ],
+  "nicho": "atendimento ao cliente / CX omnicanal com IA",
+  "referencias": [
+    { "nome": "HubSpot", "redes": "LinkedIn, Instagram", "porQue": "Educational content B2B, incluindo Service Hub / CX" },
+    { "nome": "Zendesk", "redes": "LinkedIn", "porQue": "Lider global em conteudo de CX e atendimento" },
+    { "nome": "RD Station", "redes": "LinkedIn, Instagram", "porQue": "Referencia brasileira em MarTech e conteudo B2B pra PMEs" },
+    { "nome": "Reclame AQUI", "redes": "LinkedIn, Instagram", "porQue": "Autoridade brasileira no ecossistema de reputacao e atendimento" }
+  ],
+  "queriesTendencias": [
+    "customer experience tendencias 2026",
+    "IA atendimento ao cliente conteudo",
+    "atendimento omnichannel PME Brasil",
+    "WhatsApp Business atendimento tendencias",
+    "CX B2B social media content 2026",
+    "customer service trends 2026"
+  ],
+  "canvaTemplates": "brand/cxpress/canva-template-ids.json"
+}

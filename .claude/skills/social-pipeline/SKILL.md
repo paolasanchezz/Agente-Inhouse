@@ -1,36 +1,46 @@
 ---
 name: social-pipeline
-description: Orquestrador completo de redes sociais da Buzzmonitor — costura analytics + planejamento + copies + designs com pausas pra aprovação. Roda mês a mês pra fechar o ciclo. Aceita só Instagram da Buzzmonitor por enquanto.
-argument-hint: "[marca] [mes] — ex: buzzmonitor julho | buzzmonitor 2026-07 (default: buzzmonitor mes-atual)"
+description: Orquestrador completo de redes sociais das marcas do Grupo Elife (Buzzmonitor, Cxpress, Buzzcreators, Elife) — costura analytics + planejamento + copies + designs com pausas pra aprovação. Roda mês a mês pra fechar o ciclo. Instagram + LinkedIn.
+argument-hint: "[marca] [mes] — ex: buzzmonitor julho | cxpress 2026-07 (default: buzzmonitor mes-atual)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Skill, AskUserQuestion, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-search, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 0.2.0
+version: 1.0.0
 ---
 
-# Skill: Pipeline Social Buzzmonitor
+# Skill: Pipeline Social — Grupo Elife
 
-Orquestrador que executa o ciclo mensal completo de redes sociais — do aprendizado do mês passado até os designs prontos no Canva. **Você é o maestro**: chama as skills certas na ordem certa, **pausa nos pontos de decisão**, e mantém contexto entre etapas.
+Orquestrador que executa o ciclo mensal completo de redes sociais — do aprendizado do mês passado até os designs prontos no Canva. **Você é o maestro**: chama as skills certas na ordem certa, **pausa nos pontos de decisão**, e mantém contexto entre etapas. Funciona pra qualquer marca do grupo; as decisões específicas de cada marca (contas, modelo de rede, pilares, cadência) vivem em `brand/{marca}/social-media.json`.
 
 ## Princípios
 
 - **Dados sempre manuais** — analytics vem via chat, não puxa API
 - **Você é uma maestrina, não a banda** — invoque as skills `/social-analytics`, `/social-plan`, `/social-canva` ao invés de reimplementar a lógica delas
 - **Pausas explícitas** — entre cada etapa, pergunte com chips antes de seguir
-- **Estado salvo em arquivo** — entre execuções (se a Catharina sair e voltar), você lê o que já foi feito no `social-media/{marca}/{YYYYMM}/` e retoma do ponto certo
+- **Estado salvo em arquivo** — entre execuções (se o usuário sair e voltar), você lê o que já foi feito no `social-media/{marca}/{YYYYMM}/` e retoma do ponto certo
 - **Idempotente** — rodar de novo no meio do mês não quebra; identifica o que já existe
+- **Config de marca é fonte de verdade** — nada de decisão hardcoded por marca dentro da skill; o que for específico da marca mora em `brand/{marca}/social-media.json`
 
 ## Passo 0 — Parsing de argumentos
 
 `$ARGUMENTS` tem 2 partes opcionais:
-- `marca` (default: `buzzmonitor`) — **única aceita por enquanto**. Outras marcas → recusar com mensagem clara.
+- `marca` (default: `buzzmonitor`) — aceita `buzzmonitor` | `cxpress` | `buzzcreators` | `elife`. Qualquer outro valor → recusar com mensagem clara.
 - `mes` (default: mês atual) — aceitar `julho`, `julho 2026`, `2026-07`, `07/2026`. Normalizar pra `YYYY-MM`.
 
 Definir:
 - `{MARCA}` (ex: `buzzmonitor`)
+- `{NOME_MARCA}` = displayName do `brand/{MARCA}/brand-manifest.json` (ex: `Buzzmonitor`)
 - `{YYYYMM_ATUAL}` (ex: `2026-07`)
 - `{MES_NOME}` em PT-BR (ex: `Julho`)
 - `{YYYYMM_ANTERIOR}` (ex: `2026-06`)
 - `{PASTA_ATUAL}` = `social-media/{MARCA}/{YYYYMM_ATUAL}/`
 - `{PASTA_ANTERIOR}` = `social-media/{MARCA}/{YYYYMM_ANTERIOR}/`
+
+## Passo 0.5 — Carregar e validar config da marca
+
+Leia `brand/{MARCA}/social-media.json`. Ela alimenta todas as etapas (handles, modelo de rede, pilares, cadência, referências).
+
+1. **Arquivo não existe** → PARE. Oriente a criar copiando o formato de `brand/buzzmonitor/social-media.json` (a config da Buzzmonitor é o modelo de referência).
+2. **`contas.instagram.handle` é null** → pergunte ao usuário o @ da conta de Instagram da marca (com chip "Não sei agora"). Se responder, **salve de volta no JSON** (Edit) antes de seguir — a config se completa com o uso. Se não souber, dá pra seguir com as etapas B e C (planejamento e copies), mas a Etapa A (analytics) fica bloqueada — avise.
+3. **`status` é `rascunho` ou `esqueleto`** → avise em 1 linha que pilares/referências da marca ainda são rascunho derivado do brand-manifest, e que o planejamento vai usá-los como base editável. Não bloqueia.
 
 ## Passo 1 — Diagnóstico inicial
 
@@ -41,13 +51,13 @@ Cheque o que **já existe** no estado atual antes de fazer qualquer pergunta:
 - {PASTA_ATUAL}/planejamento-restante.md OU planejamento.md existe?
 - {PASTA_ATUAL}/copies/copies-{mes}.md existe?
 - {PASTA_ATUAL}/designs/ tem arquivos?
-- brand/buzzmonitor/canva-template-ids.json tem cover/narrativa/cta preenchidos?
+- brand/{MARCA}/canva-template-ids.json existe e tem cover/narrativa/cta preenchidos?
 ```
 
 Apresente um quadro de estado **antes de mais nada**:
 
 ```
-## Pipeline social · Buzzmonitor · {MES_NOME} {ANO}
+## Pipeline social · {NOME_MARCA} · {MES_NOME} {ANO}
 
 Status do ciclo:
 [✅ ou ⏳ ou ❌] Etapa A — Analytics de {MES_ANTERIOR}: <existe? não? pronto?>
@@ -73,7 +83,7 @@ Se NÃO existe:
 ### A.2 — Pede os CSVs no chat
 
 ```
-Pra fechar o aprendizado de {MES_ANTERIOR}, preciso dos exports do Meta Business Suite — manda direto aqui no chat (anexa, cola conteúdo, ou aponta caminho do Downloads). Eu organizo na pasta certa.
+Pra fechar o aprendizado de {MES_ANTERIOR}, preciso dos exports do Meta Business Suite da conta @{handle da config} — manda direto aqui no chat (anexa, cola conteúdo, ou aponta caminho do Downloads). Eu organizo na pasta certa.
 
 Exports esperados:
 - Posts do mês: Meta Business Suite → Insights → Conteúdo → Exportar
@@ -82,9 +92,9 @@ Exports esperados:
 Se faltar algum, sigo com o que chegar e aviso o que ficou de fora.
 ```
 
-Quando ela enviar:
+Quando o usuário enviar:
 - Salva cada CSV em `{PASTA_ANTERIOR}/analytics/raw/` com nome padronizado (regra: dados chegam via chat, a skill organiza na pasta certa)
-- Invoca `Skill: social-analytics` com argumento `{YYYYMM_ANTERIOR}`
+- Invoca `Skill: social-analytics` com argumentos `{MARCA} {YYYYMM_ANTERIOR}`
 
 ### A.3 — Apresenta TL;DR e pausa
 
@@ -110,16 +120,17 @@ Se NÃO existe:
 
 ```
 Skill: social-plan
-args: {YYYYMM_ATUAL}
+args: {MARCA} {YYYYMM_ATUAL}
 ```
 
-A `/social-plan` v2.0+ vai automaticamente:
+A `/social-plan` v4.0+ vai automaticamente:
+- Ler a config da marca (`brand/{MARCA}/social-media.json`) — modelo de rede, pilares, cadência, referências
 - Ler o relatorio.md de {MES_ANTERIOR} (regra)
-- Fazer as 4 perguntas obrigatórias com chips (novidade, case, dashboard, sazonal — regra)
-- Gerar calendário só com carrossel/imagem (regra)
+- Fazer as 4 perguntas obrigatórias com chips (novidade, case, dashboard/análise, sazonal — regra)
+- Gerar calendário só com formatos estáticos (regra)
 - Incluir justificativa por post (regra)
 - Incluir seção "Sugestões de vídeos pra produzir" (regra)
-- Publicar no Notion
+- Publicar no Notion (hub do mês da marca)
 
 ### B.3 — Pausa pra aprovar
 
@@ -148,6 +159,8 @@ Se NÃO existe:
 **Antes de escrever qualquer copy, leia (obrigatório):**
 1. `conhecimento/editorial/regras-anti-ia.md` — caption e slides são texto publicável; valem TODAS as regras, incluindo tolerância zero a em-dash (`—`) e veto a antítese-por-negação em série
 2. `conhecimento/copywriting/fundamentos-copy.md` — hooks, estrutura, CTA
+3. `brand/{MARCA}/brand-manifest.json` — tom de voz e artigo gramatical da marca (`nameUsage` — ex: "a Buzzmonitor" mas "o Buzzcreators")
+4. `conhecimento/produto/{MARCA}/{MARCA}.md` — produto, features e grafias exatas (não inventar feature)
 
 Pra cada post do calendário aprovado, gerar 1 copy escolhida com:
 - **Caption do feed** (regra: todo post tem legenda + slides)
@@ -159,7 +172,7 @@ Pra cada post do calendário aprovado, gerar 1 copy escolhida com:
 
 Salva tudo num artefato único:
 - Local: `{PASTA_ATUAL}/copies/copies-{mes}.md`
-- Notion: siga o "Padrão de página por mês" em `conhecimento/config/notion-ids.md` — ache (ou crie, se não existir) a página-hub `{MES_NOME} {ANO}` dentro de `redes-sociais`, e crie/atualize o child `Copies` **dentro dela** (nunca solto direto em `redes-sociais`, e nunca uma segunda página `Copies` se já existir uma pro mês)
+- Notion: siga o "Padrão de página por mês" em `conhecimento/config/notion-ids.md` — ache (ou crie, se não existir) a página-hub do mês **da marca** dentro de `redes-sociais`, e crie/atualize o child `Copies` **dentro dela** (nunca solto direto em `redes-sociais`, e nunca uma segunda página `Copies` se já existir uma pro mês)
 
 ### C.3 — Pausa pra aprovar
 
@@ -177,14 +190,14 @@ Chips: "Aprovado, gera designs" / "Ajustar antes (qual post?)" / "Parar aqui —
 
 ### D.1 — Verifica pré-requisitos
 
-Lê `brand/buzzmonitor/canva-template-ids.json`. Se `cover`, `narrativa` ou `cta` estiverem null:
+Lê `brand/{MARCA}/canva-template-ids.json`. Se o arquivo **não existe**, ou se `cover`, `narrativa` ou `cta` estiverem null/vazios:
 
 ```
-⚠️ Brand templates do Canva ainda não foram criados ou os IDs não foram registrados.
+⚠️ Brand templates do Canva da {NOME_MARCA} ainda não foram criados ou os IDs não foram registrados.
 
 Pra a /social-canva rodar, você precisa:
-1. Criar os 3 brand templates seguindo [brand/buzzmonitor/canva-brand-templates.md](brand/buzzmonitor/canva-brand-templates.md)
-2. Me passar os 3 IDs (formato BTM_xxx)
+1. Criar os templates no Canva seguindo a especificação em [brand/buzzmonitor/canva-brand-templates.md](brand/buzzmonitor/canva-brand-templates.md) (vale como modelo pra qualquer marca — use o brand kit da {NOME_MARCA})
+2. Registrar os IDs em brand/{MARCA}/canva-template-ids.json (copie o formato do arquivo da Buzzmonitor)
 
 Enquanto isso não acontece, as copies do {MES} já estão prontas. Você pode:
 A) Pausar o pipeline aqui — design fica manual no Canva
@@ -194,7 +207,7 @@ C) Pular permanentemente a etapa de design — só copies basta
 
 Chips: "Vou criar templates agora" / "Design segue manual neste mês" / "Pular design sempre"
 
-Se ela escolher seguir manual: pipeline termina com sucesso, registra no relatório final.
+Se o usuário escolher seguir manual: pipeline termina com sucesso, registra no relatório final.
 
 ### D.2 — Roda /social-canva em lote
 
@@ -204,7 +217,7 @@ Skill: social-canva
 args: {PASTA_ATUAL}/copies/copies-{mes}.md
 ```
 
-A skill itera por todos os posts, gera designs, devolve URLs.
+A skill deriva a marca do caminho do arquivo, itera por todos os posts, gera designs, devolve URLs.
 
 ### D.3 — Apresenta links
 
@@ -215,7 +228,7 @@ Apresenta a lista de designs com URLs do Canva, salva também em `{PASTA_ATUAL}/
 Apresenta resumo final:
 
 ```
-## Pipeline de {MES_NOME} {ANO} — Concluído ✅
+## Pipeline de {MES_NOME} {ANO} · {NOME_MARCA} — Concluído ✅
 
 Entregas:
 - Relatório de {MES_ANTERIOR}: <link>
@@ -227,17 +240,18 @@ Próximos passos pra você:
 1. Revisa os designs no Canva
 2. Exporta como PNG/JPG
 3. Programa no Meta Business Suite (caption tá nas copies, slides tá nos designs)
-4. No início de {MES_SEGUINTE}, roda /social-pipeline buzzmonitor {MES_SEGUINTE} pra fechar o próximo ciclo
+4. No início de {MES_SEGUINTE}, roda /social-pipeline {MARCA} {MES_SEGUINTE} pra fechar o próximo ciclo
 ```
 
 ## Casos de erro e exceções
 
-- **Marca diferente de buzzmonitor**: parar com mensagem "v0.1 só cobre Buzzmonitor. Outras marcas em backlog."
+- **Marca fora da lista** (não é buzzmonitor/cxpress/buzzcreators/elife): parar com mensagem clara listando as 4 aceitas.
+- **Config da marca ausente** (`brand/{MARCA}/social-media.json` não existe): parar e orientar a criar a partir do modelo da Buzzmonitor (Passo 0.5).
 - **Mês futuro distante** (>2 meses à frente): perguntar se é planejamento antecipado mesmo.
 - **Mês muito antigo** (>3 meses atrás): perguntar pra que — pode ser reanálise histórica, ok seguir.
 - **Posts marcados como "Pendente aprovação"** no calendário: ficam fora do lote de copies. Aparecem em seção "Bloqueados" no relatório final.
 - **CSV faltando** na Etapa A: continuar com o que tem, alertar no relatório o que ficou de fora.
-- **Skill subjacente falha**: NÃO tentar recuperar — propagar o erro pra a Catharina com o que aconteceu e onde parou.
+- **Skill subjacente falha**: NÃO tentar recuperar — propagar o erro pro usuário com o que aconteceu e onde parou.
 
 ## Notas de design
 
@@ -245,3 +259,4 @@ Próximos passos pra você:
 - **Não substitui as skills individuais** — `/social-analytics`, `/social-plan`, `/social-canva` podem ser invocadas standalone quando precisar (ex: replanejar mid-month, gerar 1 design avulso).
 - **Memória entre execuções** — se a pipeline parar no meio, rodar de novo retoma do diagnóstico (Passo 1). Estado mora nos arquivos do filesystem, não em variáveis.
 - **Não publica nada automaticamente** — pipeline gera, você revisa e programa. Zero auto-post.
+- **Cada marca tem seu ciclo independente** — rodar Cxpress não toca em nada da Buzzmonitor: pastas (`social-media/{marca}/`), hub do Notion e config são namespaced por marca.

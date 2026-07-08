@@ -1,0 +1,46 @@
+{
+  "_comment": "Config de redes sociais organicas da marca — fonte unica das decisoes que as skills social-* consomem. Campos null = pendente: a skill pergunta ao usuario na primeira execucao e oferece salvar a resposta aqui. Pilares/referencias/queries abaixo sao RASCUNHO derivado do brand-manifest — validar com o time no primeiro ciclo.",
+  "marca": "buzzcreators",
+  "status": "rascunho",
+  "idioma": "pt-br",
+  "redes": {
+    "primaria": "instagram",
+    "replica": "linkedin",
+    "modeloNota": "Mesmo modelo da Buzzmonitor por default (Instagram primario, LinkedIn replica adaptada). Se o Buzzcreators adotar outro modelo, atualizar aqui."
+  },
+  "contas": {
+    "instagram": { "handle": "buzzcreatorsbr", "url": "https://www.instagram.com/buzzcreatorsbr/" },
+    "linkedin": { "url": null }
+  },
+  "contasSecundarias": [
+    { "handle": "buzzmonitorbr", "papel": "cross-check", "nota": "Contas irmas aparecem nos exports do mesmo Meta Business Suite." }
+  ],
+  "cadencia": {
+    "instagram": { "postsPorSemana": 3, "dias": "seg/qua/sex", "horario": "11h-13h" },
+    "linkedin": { "postsPorSemana": 2, "dias": "ter-qui", "horario": "8h-10h", "nota": "Replicas + exclusivos raros. Evitar sexta a tarde." }
+  },
+  "formatosCalendario": ["Carrossel", "Estatico", "Texto longo (LinkedIn)", "Infografico"],
+  "formatosForaDoCalendario": { "video": "Reels/video nao entram no calendario — viram secao 'Sugestoes de videos pra produzir'. Nota: no nicho creator economy, video pesa mais — reavaliar essa regra no primeiro ciclo da marca." },
+  "pilaresBase": [
+    { "nome": "Educacao & Creator Economy", "descricao": "Tendencias de influencer marketing, dados de ROI, boas praticas de campanhas com criadores" },
+    { "nome": "Produto & Cases", "descricao": "Controle de ROI ponta a ponta, campanhas reais, integracao nativa com Buzzmonitor" },
+    { "nome": "Comunidade & Creators", "descricao": "Bastidores de campanhas, perguntas a marcas e criadores, debates do setor" },
+    { "nome": "Bastidores & Equipe", "descricao": "Lado humano da empresa, processo, cultura" }
+  ],
+  "nicho": "influencer marketing / creator economy",
+  "referencias": [
+    { "nome": "CreatorIQ", "redes": "LinkedIn", "porQue": "Lider global em conteudo de influencer marketing enterprise" },
+    { "nome": "Upfluence", "redes": "LinkedIn, Instagram", "porQue": "Conteudo educativo de creator marketing" },
+    { "nome": "Squid (by Bornlogic)", "redes": "LinkedIn, Instagram", "porQue": "Referencia brasileira em marketing de influencia" },
+    { "nome": "Influency.me", "redes": "LinkedIn, Instagram", "porQue": "Player brasileiro com conteudo ativo do nicho" }
+  ],
+  "queriesTendencias": [
+    "influencer marketing tendencias 2026",
+    "creator economy trends 2026",
+    "ROI influenciadores mensuracao conteudo",
+    "micro influenciadores B2B tendencias",
+    "marketing de influencia Brasil 2026",
+    "creator marketing B2B content"
+  ],
+  "canvaTemplates": "brand/buzzcreators/canva-template-ids.json"
+}

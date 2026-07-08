@@ -12,6 +12,19 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Família social-* multi-marca (cross-skill)
+### 2026-07-08 — social-pipeline v1.0.0, social-plan v4.0.0, social-analytics v1.0.0, social-canva v1.0.0
+
+As 4 skills de redes sociais deixaram de ser single-purpose Buzzmonitor e passaram a aceitar **as 4 marcas do grupo** (`buzzmonitor` | `cxpress` | `buzzcreators` | `elife`). Toda decisão específica de marca que vivia hardcoded nas skills foi extraída pra um arquivo novo de identidade de marca, **`brand/{marca}/social-media.json`** — handles das contas (Instagram/LinkedIn), contas secundárias de cross-check, modelo de rede (primária + réplica), cadência/dias/horários, pilares base de conteúdo, nicho, perfis de referência e queries de tendência. As skills leem de lá; concorrentes continuam vindo de `conhecimento/produto/{marca}/concorrentes.md` e o blog do `brand-manifest.json` (campo `blog`).
+
+- **Configs criadas nas 4 marcas**: Buzzmonitor = migração 1:1 do que estava nas skills (modelo de referência, `status: ativo`); Cxpress e Buzzcreators = `rascunho` (pilares/referências derivados do brand-manifest, validar no 1º ciclo); Elife = `esqueleto` (brand-manifest da marca está vazio). Campos `null` (ex: handle do IG da Cxpress) não travam: a skill pergunta na primeira execução e **salva a resposta de volta no JSON**.
+- **Notion multi-marca**: `conhecimento/config/notion-ids.md` ganhou a regra de título de hub por marca — Buzzmonitor mantém `{Mês Ano}` (compat com histórico); demais marcas usam `{Mês Ano} — {Marca}`. Hub sem sufixo é sempre da Buzzmonitor; nunca reaproveitar hub de outra marca.
+- **`social-analytics`**: agora aceita `[marca] [YYYY-MM]` (ordem livre); separação próprios × secundárias × UGC vem da config, não mais de `buzzmonitorbr`/`buzzcreatorsbr` fixos. `_gen_report.py` ganhou `--marca`/`--handle`/`--secundarias` (defaults = valores antigos, retrocompatível).
+- **`social-plan`**: agora aceita `[marca] [mes]`; pilares/referências/nicho/queries/cadência vêm da config; lista de concorrentes vem do `concorrentes.md` da marca (antes hardcoded Sprinklr/Brandwatch/etc); blog do manifest. Nova exceção ao gate do relatório anterior: **primeiro ciclo da marca** pode seguir sem baseline (com registro explícito). MAJOR pela mudança de assinatura (`[mes]` → `[marca] [mes]`), mas chamadas antigas só com mês continuam funcionando (marca default buzzmonitor).
+- **`social-canva`**: deriva a marca do caminho do arquivo de copies (`social-media/{marca}/...`); lê `brand/{marca}/canva-template-ids.json`. A especificação `brand/buzzmonitor/canva-brand-templates.md` vale como modelo pra qualquer marca (usar o brand kit da marca).
+- **`social-pipeline`**: valida a config da marca no Passo 0.5 (arquivo ausente = para com orientação; campos null = pergunta e persiste; status rascunho = avisa sem bloquear); Etapa C carrega também `brand-manifest.json` (nameUsage/tom) e `conhecimento/produto/{marca}/{marca}.md` antes das copies.
+- MAJOR/versões 1.0.0 marcam a promoção da família de "v0.x Buzzmonitor-only" pra interface multi-marca estável. Interfaces antigas (sem marca) seguem aceitas com default buzzmonitor.
+
 ## Regra de copy — a primeira linha carrega a dor (cross-skill)
 ### 2026-07-07 — copy-criar v1.3.0; fundamentos-copy §0; GUIDELINES de LP e de criativos
 

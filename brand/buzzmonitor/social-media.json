@@ -1,0 +1,48 @@
+{
+  "_comment": "Config de redes sociais organicas da marca — fonte unica das decisoes que as skills social-* consomem (handles, modelo de rede, cadencia, pilares, referencias, nicho de pesquisa). Antes de 2026-07-08 essas decisoes viviam hardcoded nas skills; agora as skills leem daqui. Campos null = pendente: a skill pergunta ao usuario na primeira execucao e oferece salvar a resposta aqui.",
+  "marca": "buzzmonitor",
+  "status": "ativo",
+  "idioma": "pt-br",
+  "redes": {
+    "primaria": "instagram",
+    "replica": "linkedin",
+    "modeloNota": "Instagram e a rede primaria — todo post nasce ali. LinkedIn e majoritariamente replica adaptada (mesmo tema, tom ajustado pro publico tecnico/executivo), publicada no mesmo dia ou ate 1-2 dias depois. Exclusivo de LinkedIn so quando o angulo e fundamentalmente textual (thought-leadership, retrospectiva, bastidor de founder). Facebook removido do escopo em 2026-07 por decisao da Catharina."
+  },
+  "contas": {
+    "instagram": { "handle": "buzzmonitorbr", "url": "https://www.instagram.com/buzzmonitorbr/" },
+    "linkedin": { "url": "https://www.linkedin.com/company/buzzmonitor/" }
+  },
+  "contasSecundarias": [
+    { "handle": "buzzcreatorsbr", "papel": "cross-check", "nota": "Aparece nos exports do mesmo Meta Business Suite; entra no relatorio como analise secundaria, fora das medias da marca." }
+  ],
+  "cadencia": {
+    "instagram": { "postsPorSemana": 3, "dias": "seg/qua/sex", "horario": "11h-13h" },
+    "linkedin": { "postsPorSemana": 2, "dias": "ter-qui", "horario": "8h-10h", "nota": "Replicas da maioria dos posts de Instagram + 1-2 exclusivos/mes quando justificado. Evitar sexta a tarde." }
+  },
+  "formatosCalendario": ["Carrossel", "Estatico", "Texto longo (LinkedIn)", "Infografico"],
+  "formatosForaDoCalendario": { "video": "Reels/video nao entram no calendario — viram secao 'Sugestoes de videos pra produzir' (logistica de producao nao cabe no ciclo semanal)." },
+  "pilaresBase": [
+    { "nome": "Educacao & Insights", "descricao": "Tendencias de mercado, dados, benchmarks, dicas praticas de social listening/analytics" },
+    { "nome": "Produto & Cases", "descricao": "Use cases reais, demonstracoes de funcionalidades, resultados de clientes" },
+    { "nome": "Comunidade & Debate", "descricao": "Perguntas ao publico, opinioes sobre o setor, polls, temas controversos de marketing/CX" },
+    { "nome": "Bastidores & Equipe", "descricao": "Lado humano da empresa, processo, cultura, transparencia" }
+  ],
+  "nicho": "social listening / social analytics / gestao de redes sociais com IA",
+  "referencias": [
+    { "nome": "HubSpot", "redes": "LinkedIn, Instagram", "porQue": "Referencia mundial em educational content B2B" },
+    { "nome": "Sprout Social", "redes": "LinkedIn", "porQue": "Dados sobre comportamento em redes sociais" },
+    { "nome": "Buffer", "redes": "LinkedIn, Instagram", "porQue": "Transparencia, conteudo educativo e bastidores" },
+    { "nome": "RD Station", "redes": "LinkedIn, Instagram", "porQue": "Referencia brasileira em MarTech" }
+  ],
+  "queriesTendencias": [
+    "LinkedIn B2B tendencias 2026",
+    "formatos virais LinkedIn marketing",
+    "social listening trends 2026",
+    "IA marketing redes sociais conteudo",
+    "Instagram B2B SaaS conteudo 2026",
+    "carrossel LinkedIn viral marketing analytics",
+    "B2B social media trends 2026",
+    "viral LinkedIn posts marketing technology"
+  ],
+  "canvaTemplates": "brand/buzzmonitor/canva-template-ids.json"
+}

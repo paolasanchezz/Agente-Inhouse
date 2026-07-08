@@ -255,20 +255,22 @@ Rotina diaria que envia convite (role=presenter — a API nao aceita `moderator`
 |---|---|
 | `/convites-moderador [--dry-run] [--series RID]` | Manual on-demand. Dry-run lista o plano sem enviar; `--series` filtra 1 recurring_config_id. |
 
-### Redes Sociais — Buzzmonitor
+### Redes Sociais — multi-marca
 
-Fluxo mensal ponta-a-ponta: analytics do mes anterior alimenta planejamento do mes novo, que alimenta copies, que alimentam designs no Canva. Cada etapa publica no Notion em "Redes Sociais". Aceita so Instagram Buzzmonitor por enquanto.
+Fluxo mensal ponta-a-ponta: analytics do mes anterior alimenta planejamento do mes novo, que alimenta copies, que alimentam designs no Canva. Cada etapa publica no Notion em "Redes Sociais" (hub por mes e por marca). Aceita as 4 marcas (Instagram + LinkedIn); as decisoes especificas de cada marca (handles, modelo de rede, pilares, cadencia, referencias, nicho) vivem em `brand/{marca}/social-media.json` — nada de decisao de marca hardcoded nas skills.
 
 | Comando | O que faz |
 |---|---|
 | `/social-pipeline [marca] [mes]` | Orquestrador completo. Costura todas as etapas com pausas pra aprovacao. Default: buzzmonitor + mes atual |
-| `/social-analytics [YYYY-MM]` | Standalone — gera relatorio de performance. CSVs do Meta sao enviados via chat pela Catharina (regra) |
-| `/social-plan [mes]` | Standalone — gera planejamento editorial mensal. Le relatorio.md do mes anterior se existir |
-| `/social-canva [copies-file] [post-num]` | Standalone — gera designs no Canva pra um post (ou todos). Requer brand templates configurados em `brand/buzzmonitor/canva-template-ids.json` |
+| `/social-analytics [marca] [YYYY-MM]` | Standalone — gera relatorio de performance. CSVs do Meta sao enviados via chat (regra); separa conta propria × secundarias × UGC pela config da marca |
+| `/social-plan [marca] [mes]` | Standalone — gera planejamento editorial mensal. Exige relatorio.md do mes anterior (excecao: primeiro ciclo da marca) |
+| `/social-canva [copies-file] [post-num]` | Standalone — gera designs no Canva pra um post (ou todos). Deriva a marca do caminho; requer brand templates em `brand/{marca}/canva-template-ids.json` |
 
+- `[marca]`: `buzzmonitor` | `cxpress` | `buzzcreators` | `elife` (default: buzzmonitor)
 - `[mes]`: `julho`, `julho 2026`, `2026-07` (default: mes atual)
-- Estrutura local: `social-media/buzzmonitor/{YYYY-MM}/` com subpastas `analytics/`, `copies/`, `designs/`
-- Brand templates do Canva: ver `brand/buzzmonitor/canva-brand-templates.md` (especificacao) e `canva-template-ids.json` (config)
+- Estrutura local: `social-media/{marca}/{YYYY-MM}/` com subpastas `analytics/`, `copies/`, `designs/`
+- Config social por marca: `brand/{marca}/social-media.json` (Buzzmonitor = modelo de referencia; Cxpress/Buzzcreators = rascunho; Elife = esqueleto — campos null a skill pergunta e preenche no uso)
+- Brand templates do Canva: especificacao em `brand/buzzmonitor/canva-brand-templates.md` (vale como modelo pra todas as marcas); IDs por marca em `brand/{marca}/canva-template-ids.json`
 
 ### Dashboard CM (Buzzmonitor Brasil)
 
