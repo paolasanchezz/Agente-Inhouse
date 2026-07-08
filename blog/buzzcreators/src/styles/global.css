@@ -74,6 +74,11 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
+/* Header sticky de 72px: âncoras (#heading do Markdown, FAQ) param abaixo
+   dele em vez de esconder o título atrás do header. */
+[id] {
+  scroll-margin-top: 96px;
+}
 body {
   font-family: var(--font-body);
   color: var(--c-ink);

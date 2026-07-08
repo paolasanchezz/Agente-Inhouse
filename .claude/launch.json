@@ -98,6 +98,12 @@
       "port": 5191
     },
     {
+      "name": "blog-buzzcreators-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "blog/buzzcreators", "run", "dev", "--", "--port", "4321", "--host", "127.0.0.1"],
+      "port": 4321
+    },
+    {
       "name": "lp-social-listening-ia",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5192", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/social-listening-ia"],

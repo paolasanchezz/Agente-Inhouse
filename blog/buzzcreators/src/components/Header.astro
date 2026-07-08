@@ -49,15 +49,20 @@ const ctaUrl = conversionUrl('/marcas', utmContentFromPath(path), 'marcas');
     height: 72px;
   }
   .brand {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: var(--space-sm);
     text-decoration: none;
+    flex: 0 1 auto;
     min-width: 0; /* deixa o flex encolher a logo em tela estreita */
   }
   .brand-logo {
     /* max-height (nao height fixa): quando o mobile espreme a largura via
-       max-width global, a altura acompanha e a logo nao deforma */
+       max-width global, a altura acompanha e a logo nao deforma.
+       flex-shrink + min-width 0: a IMAGEM encolhe (mantendo proporcao via
+       height auto) em vez de vazar por baixo do CTA em tela estreita. */
+    flex: 0 1 auto;
+    min-width: 0;
     width: auto;
     height: auto;
     max-height: 30px;
@@ -65,11 +70,13 @@ const ctaUrl = conversionUrl('/marcas', utmContentFromPath(path), 'marcas');
   .brand-tag {
     color: var(--c-orange-dark);
     padding-top: 2px;
+    flex-shrink: 0; /* o "Blog" nao esmaga; quem encolhe e a logo */
   }
   .nav {
     display: flex;
     align-items: center;
     gap: var(--space-lg);
+    flex-shrink: 0; /* o CTA nunca invade a area da logo */
   }
   .nav-link {
     font-family: var(--font-display);
@@ -85,14 +92,34 @@ const ctaUrl = conversionUrl('/marcas', utmContentFromPath(path), 'marcas');
   .nav-cta {
     padding: 11px 20px;
     font-size: 0.95rem;
+    white-space: nowrap; /* botao de 2 linhas quebrava a altura do header */
   }
   @media (max-width: 640px) {
+    .header-inner {
+      gap: var(--space-md);
+    }
     .nav-link {
       display: none;
     }
+    .nav {
+      gap: var(--space-md);
+    }
     .nav-cta {
-      padding: 10px 16px;
+      padding: 10px 14px;
       font-size: 0.85rem;
+    }
+  }
+  /* Tela bem estreita: some a tag "Blog" pra logo respirar ao lado do CTA */
+  @media (max-width: 520px) {
+    .brand-tag {
+      display: none;
+    }
+  }
+  /* Telas mínimas (320-400px): CTA mais compacto pra logo não virar migalha */
+  @media (max-width: 400px) {
+    .nav-cta {
+      padding: 9px 12px;
+      font-size: 0.8rem;
     }
   }
 </style>

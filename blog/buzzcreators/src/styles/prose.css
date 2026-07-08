@@ -68,3 +68,31 @@
   border-top: 1px solid var(--c-border);
   margin-block: var(--space-2xl);
 }
+
+/* Tabelas do Markdown: display block + overflow para tabela larga rolar
+   horizontalmente dentro do próprio elemento em vez de estourar o mobile. */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.prose th,
+.prose td {
+  padding: 10px 14px;
+  border: 1px solid var(--c-gray-100);
+  text-align: left;
+  vertical-align: top;
+  min-width: 110px; /* célula não colapsa em coluna ilegível no mobile */
+}
+.prose th {
+  background: var(--c-gray-50);
+  color: var(--c-purple-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.prose tbody tr:nth-child(even) {
+  background: var(--c-gray-50);
+}

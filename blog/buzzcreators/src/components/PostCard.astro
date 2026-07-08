@@ -121,5 +121,11 @@ const topTag = category ?? tags[0];
     .featured .card-link {
       flex-direction: column;
     }
+    .featured .card-media {
+      aspect-ratio: 16 / 9; /* empilhado, a media volta a ter altura própria */
+    }
+    .featured .card-body {
+      padding: var(--space-lg) var(--space-lg) var(--space-xl); /* 48px espremia o texto no mobile */
+    }
   }
 </style>
