@@ -53,10 +53,14 @@ const ctaUrl = conversionUrl('/marcas', utmContentFromPath(path), 'marcas');
     align-items: center;
     gap: var(--space-sm);
     text-decoration: none;
+    min-width: 0; /* deixa o flex encolher a logo em tela estreita */
   }
   .brand-logo {
-    height: 30px;
+    /* max-height (nao height fixa): quando o mobile espreme a largura via
+       max-width global, a altura acompanha e a logo nao deforma */
     width: auto;
+    height: auto;
+    max-height: 30px;
   }
   .brand-tag {
     color: var(--c-orange-dark);

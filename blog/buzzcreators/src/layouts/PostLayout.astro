@@ -133,6 +133,11 @@ if (d.faq.length) schemas.push(faqPage(d.faq));
   .post-cover {
     margin-top: var(--space-lg);
     border-radius: var(--radius-lg);
+    /* width 100% + height auto: sem eles o atributo height="630" trava a
+       altura enquanto max-width encolhe a largura -> caixa quase vertical.
+       Com height auto o aspect-ratio volta a mandar (paisagem 1200/630). */
+    width: 100%;
+    height: auto;
     aspect-ratio: 1200 / 630;
     object-fit: cover;
     min-height: 0;
