@@ -54,7 +54,7 @@ A ligação entre as tabelas é via **`account_id`** (a mesma conta pode ter mú
 - `motivo_perda_bd_sdr` · `justificativa_perda_bd_sdr`
 
 **Responsáveis**
-- `sdr_responsavel` · `bd_auto` · `sdr_sdr` · `owner` (bigint)
+- `bd_auto` · `sdr_sdr` · `owner` (bigint) · ~~`sdr_responsavel`~~ (removida do schema em 2026-07-09 — estava 100% NULL em 2026; o SDR curado vive em `sdr_sdr`)
 
 ### Valores reais relevantes (validados no banco)
 
@@ -408,7 +408,7 @@ SELECT
   d.title AS deal, d.email_contato_principal_bd_sdr AS email,
   d.utm_source, d.utm_content,
   d.cdate::date AS data_conversao,
-  COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd
+  d.sdr_sdr AS bd
 FROM deals_comercial_prod d
 WHERE d.cdate::date BETWEEN :ini AND :fim
   AND <filtro_cm_universal>
@@ -418,7 +418,7 @@ ORDER BY d.cdate;
 #### 3.2–3.5 (Reuniões Agendadas, Realizadas, Propostas) — usar regra 90d
 ```sql
 WITH conversoes_cm AS (...)
-SELECT d.title, COALESCE(d.bd_auto, d.sdr_responsavel) AS bd, d.utm_source, d.utm_content,
+SELECT d.title, COALESCE(d.bd_auto, d.sdr_sdr) AS bd, d.utm_source, d.utm_content,
        d.<coluna_evento>::date AS data_evento, ...
 FROM deals_comercial_prod d
 WHERE d.<coluna_evento>::date BETWEEN :ini AND :fim
@@ -433,7 +433,7 @@ ORDER BY d.<coluna_evento>;
 ```sql
 WITH conversoes_cm AS (...), cm_whitelist AS (...), cm_blacklist AS (...)
 SELECT
-  ct.title, COALESCE(ct.bd_auto, ct.sdr_responsavel) AS bd,
+  ct.title, COALESCE(ct.bd_auto, ct.sdr_sdr) AS bd,
   ct.utm_source, ct.utm_content,
   ct.data_fechamento_auto::date AS data_fechamento,
   ct.value, ct.currency

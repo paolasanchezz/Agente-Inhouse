@@ -55,7 +55,7 @@ SELECT
     utm_source,
     utm_content,
     bd_auto AS bd,
-    sdr_responsavel AS sdr,
+    sdr_sdr AS sdr,
     -- DOR
     NULLIF(dores_atuais_bd, '')      AS dor_dores_atuais,
     NULLIF(spin_problema_bd, '')     AS dor_spin_problema,
