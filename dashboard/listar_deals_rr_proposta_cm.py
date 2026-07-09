@@ -143,7 +143,7 @@ SELECT
   d.email_contato_principal_bd_sdr AS email,
   d.value AS valor,
   d.currency,
-  COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
+  COALESCE(d.bd_auto, d.sdr_sdr) AS bd,
   TRIM(COALESCE(du.first_name,'') || ' ' || COALESCE(du.last_name,'')) AS proprietario,
   d.sdr_sdr,
   d.plataformas_concorrentes_sdr AS plataforma_atual_sdr,

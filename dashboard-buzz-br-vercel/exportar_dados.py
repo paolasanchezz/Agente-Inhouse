@@ -75,7 +75,7 @@ def q_leads_raw(ini: date, fim: date) -> str:
 WITH wl AS ({wl}), bl AS ({bl})
 SELECT d.id, d.title AS deal, d.email_contato_principal_bd_sdr AS email,
        d.utm_source, d.utm_content,
-       COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
+       d.sdr_sdr AS bd,
        {cde}::date AS data, {cde} AS ts,
        d.cdate::date AS cdate_cru
 FROM {fonte_deals_funil()} d
@@ -101,7 +101,7 @@ def q_evento_raw(kpi: str, ini: date, fim: date) -> str:
     return f"""
 {cte}
 SELECT d.id, d.title AS deal,
-       COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
+       COALESCE(d.bd_auto, d.sdr_sdr) AS bd,
        d.utm_source, d.utm_content,
        d.{col}::date AS data{extra}
 FROM {fonte_deals_funil()} d
@@ -118,7 +118,7 @@ def q_fech_raw(ini: date, fim: date) -> str:
 {cte},
 wl AS ({wl}), bl AS ({bl})
 SELECT ct.id, ct.title AS deal,
-       COALESCE(ct.bd_auto, ct.sdr_responsavel, ct.sdr_sdr) AS bd,
+       COALESCE(ct.bd_auto, ct.sdr_sdr) AS bd,
        ct.utm_source, ct.utm_content,
        ct.data_fechamento_auto::date AS data,
        ct.value AS valor, ct.currency,

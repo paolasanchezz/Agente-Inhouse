@@ -508,9 +508,11 @@ def cte_conversoes_cm(janela_inicio: date) -> str:
 # ============ FONTE UNIFICADA DO FUNIL (comercial + contratos) ============
 
 # Colunas usadas pelas queries de funil — presentes nas DUAS tabelas (verificado 2026-07-01).
+# sdr_responsavel removida em 2026-07-09: sumiu de deals_comercial_prod/deals_contratos_prod
+# (drift do schema Supabase). Estava sempre NULL em 2026; campo `bd` cai pra bd_auto/sdr_sdr.
 _COLS_FUNIL = (
     "id, account_id, cdate, utm_source, utm_medium, utm_content, url_conversao, "
-    "email_contato_principal_bd_sdr, funil_bd_sdr, sdr_responsavel, sdr_sdr, bd_auto, "
+    "email_contato_principal_bd_sdr, funil_bd_sdr, sdr_sdr, bd_auto, "
     "data_efetividade_contato_auto, data_agendamento_auto, data_inicio_reuniao_realizada, "
     "data_envio_proposta_auto, data_negocio_perdido_auto, motivo_perda_bd_sdr, "
     "title, value, currency"
@@ -642,7 +644,7 @@ filtrados AS (
     d.email_contato_principal_bd_sdr AS email,
     d.utm_source, d.utm_content,
     {cde}::date AS data_conversao,
-    COALESCE(d.sdr_responsavel, d.sdr_sdr) AS bd,
+    d.sdr_sdr AS bd,
     {cde} AS cdate
   FROM {fonte_deals_funil()} d
   WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
@@ -674,7 +676,7 @@ def q_lista_evento(kpi: str, ini: date, fim: date) -> str:
 {cte}
 SELECT
   d.id, d.title AS deal,
-  COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
+  COALESCE(d.bd_auto, d.sdr_sdr) AS bd,
   d.utm_source, d.utm_content,
   d.{col}::date AS data_evento{extras}
 FROM {fonte_deals_funil()} d
@@ -691,7 +693,7 @@ def q_lista_propostas(ini: date, fim: date) -> str:
 {cte}
 SELECT
   d.id, d.title AS deal,
-  COALESCE(d.bd_auto, d.sdr_responsavel, d.sdr_sdr) AS bd,
+  COALESCE(d.bd_auto, d.sdr_sdr) AS bd,
   d.utm_source, d.utm_content,
   d.data_envio_proposta_auto::date AS data_evento,
   d.value AS valor_text,
@@ -714,7 +716,7 @@ wl AS ({wl}),
 bl AS ({bl})
 SELECT
   ct.id, ct.title AS deal,
-  COALESCE(ct.bd_auto, ct.sdr_responsavel, ct.sdr_sdr) AS bd,
+  COALESCE(ct.bd_auto, ct.sdr_sdr) AS bd,
   ct.utm_source, ct.utm_content,
   ct.data_fechamento_auto::date AS data_evento,
   ct.value AS valor,
