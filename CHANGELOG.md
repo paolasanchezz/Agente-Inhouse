@@ -12,6 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## dashboard-atualizar — multi-dashboard
+### 2026-07-08 — v3.0.0
+
+A skill deixou de ser single-purpose (Buzzmonitor Brasil) e passou a atualizar **qualquer uma das 3 dashboards CM dinâmica-estáticas** no Vercel — `buzz-br` | `cxpress` | `latam` — escolhida por argumento (`/dashboard-atualizar cxpress`) ou, sem arg, por chip (AskUserQuestion). Toda decisão específica de dashboard (pasta-fonte, sibling, URL, JSON de dados, arquivos a copiar, marcador do index, se roda a auditoria de 3 superfícies) virou um bloco de config `case "$DASH"` no topo; os passos (pre-flight, export, sanity, cópia, deploy, validação) são genéricos.
+
+- **Contexto:** as dashboards Cxpress BR e Buzzmonitor LATAM foram convertidas de snapshot estático pra dinâmica-estática (mesmo modelo do Buzz BR), com fonte em `dashboard-cxpress-vercel/` e `dashboard-latam-vercel/`. Faltava um comando único pra atualizá-las — antes só o Buzz BR tinha.
+- **Novo:** Passo A (resolver dashboard) + Passo 1.5 (paridade número-a-número opcional, obrigatória se mexeu no motor/render/queries). Sanity do JSON parametrizado (`$MAIN` = `leads`/`deals`). Validação confirma o marcador certo do index (`MotorCM`/`MotorCxpress`/`MotorLatam`) e que a senha fraca antiga (`inhouse@77`) dá 401.
+- **Específico do buzz-br preservado:** a auditoria de sincronia do filtro CM em 3 superfícies (Passo 0.2b) só roda pra ele (`AUDIT3=1`); cxpress/latam têm superfície única de queries.
+- MAJOR pela mudança de interface (novo argumento `[dashboard]`). Chamada antiga `/dashboard-atualizar` sem arg continua válida (agora pergunta qual).
+
 ## Família social-* multi-marca (cross-skill)
 ### 2026-07-08 — social-pipeline v1.0.0, social-plan v4.0.0, social-analytics v1.0.0, social-canva v1.0.0
 
