@@ -64,6 +64,20 @@ URLS_FORA_CM: list[str] = [
     '%contenido.getbuzzmonitor.com/buzzmonitor-institucional%',
 ]
 
+# Deals de TESTE excluidos por ID (match exato). Decisao Victor 2026-07-10.
+# Lote de QA de LP->deal criado em 08/07/2026 (todos utm_source='organic' + status
+# 'Aberta', sem pais/closer/reunion, com URL de conteudo getbuzzmonitor.com — e por
+# isso passavam no filtro CM). Exclusao POR ID (nao por UTM nem por titulo) pra nao
+# derrubar organic-CM legitimo (ex.: deal 43572, [Lead Evento] Cafe con Buzzmonitor,
+# organic + contenido.getbuzzmonitor.com). Aplicada no _leads_subquery() => remove
+# esses ids de leads/primer contacto/reunion/perdidos/rankings/serie. Nao afeta
+# fechamentos (nenhum e 'Ganho'/cierre). Se aparecer novo lote de teste, somar aqui.
+DEALS_TESTE_EXCLUIR_LATAM: set[int] = {
+    43661, 46385, 46427, 46700, 47739, 48641, 49473, 49540, 51056, 51129,
+    51261, 53571, 53760, 54152, 54998, 55017, 55193, 55977, 56696, 56768,
+    57195, 58247, 58824,
+}
+
 # Colunas necessarias para o funil (identicas em inbound e outbound)
 _LEAD_COLS = (
     "id, title, cdate, mdate, status, pais, utm_source, utm_medium, utm_content, url_conversao, "
@@ -154,6 +168,8 @@ def _leads_subquery() -> str:
     mais COMPLETO (url/utm preenchidos) e, em empate, o mais recente. A chave de dedup
     e o id; completude e so criterio de desempate.
     """
+    _excl = ", ".join(str(i) for i in sorted(DEALS_TESTE_EXCLUIR_LATAM))
+    where_excl = f"WHERE id NOT IN ({_excl})" if _excl else ""
     return f"""(
       SELECT DISTINCT ON (id) {_LEAD_COLS}
       FROM (
@@ -161,6 +177,7 @@ def _leads_subquery() -> str:
         UNION ALL
         SELECT {_LEAD_COLS} FROM deals_latam_outbound_staging
       ) u
+      {where_excl}
       ORDER BY id,
         (url_conversao IS NOT NULL AND url_conversao <> '') DESC,
         (utm_source IS NOT NULL) DESC,
