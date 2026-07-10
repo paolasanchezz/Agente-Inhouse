@@ -1,10 +1,82 @@
 # Mapa Competitivo — Elife
 
+> Este ficheiro cobre Brasil/LATAM e Portugal. Secção Portugal adicionada em 2026-07-09.
+
 ## Regras para Mencao de Concorrentes em Newsletters
 - **Nunca** falar negativamente de concorrentes de forma direta
 - **Nunca** citar concorrentes pelo nome nas newsletters
 - Posicionar Elife pelos proprios meritos e resultados
 - Quando necessario contrastar, usar termos genericos: "agencias generalistas", "ferramentas de monitoramento puras", "plataformas de pesquisa tradicional", "solucoes sem consultoria especializada"
+
+---
+
+## Concorrentes Portugal / Europa (por segmento)
+
+### Social Listening, Social Intelligence e Monitorização de Marca
+
+| Concorrente | Foco Principal | Diferencial da Elife |
+|---|---|---|
+| **Brandwatch** | Social intelligence global, análise de sentimento, consumer research | Brandwatch vende plataforma; Elife entrega consultoria + plataforma + curadoria humana — a diferença entre "ter dados" e "ter inteligência" |
+| **Sprinklr** | Suite unificada de gestão de social media, atendimento e publicidade | Sprinklr é plataforma generalista; Elife é especialista em inteligência de mercado com IA supervisionada |
+| **Talkwalker** | Social listening e consumer intelligence, forte em análise visual | Talkwalker é ferramenta de software; Elife combina tecnologia com análise humana especializada |
+| **Meltwater** | Media intelligence, social listening, PR analytics | Meltwater foca em cobertura mediática; Elife vai além — conecta dados a recomendações estratégicas de negócio |
+| **Onclusive / Digimind** | PR intelligence, media monitoring, competitive intelligence | Foco em PR e media; Elife tem espectro mais amplo: social, CX, atendimento, IA |
+| **Sprout Social** | Social media management + listening, forte em engagement | Mais operacional (gestão de conteúdo); Elife é mais estratégica (inteligência de mercado) |
+| **YouScan** | Visual insights, UGC analysis | Especializado em análise visual; Elife cobre todo o espectro de inteligência do consumidor |
+
+### Pesquisa, Consumer Insights e Inteligência de Mercado
+
+| Concorrente | Foco Principal | Diferencial da Elife |
+|---|---|---|
+| **Marktest** | Pesquisa de mercado Portugal, audiências, meios | Dado declarado e audiências tradicionais; Elife captura conversas espontâneas e sentimento real |
+| **Netsonda** | Painéis online, inquéritos, consumer insights Portugal | Pesquisa pontual por questionário; Elife é análise contínua de dados reais e conversações |
+| **Kantar** | Consumer insights global, brand equity, pesquisa | Profundidade analítica, mas metodologia mais tradicional; Elife combina dados digitais com IA e curadoria humana |
+| **Ipsos** | Pesquisa de mercado, brand tracking, CX | Metodologia de pesquisa clássica; Elife diferencia-se pela escuta contínua e Consumidores Sintéticos |
+| **YouGov** | Painéis online, brand intelligence, dados de opinião | Dado declarado via painel; Elife capta o que o consumidor diz espontaneamente |
+| **Toluna** | Painéis de consumidores, insights rápidos | Focado em surveys rápidos; Elife vai além com análise qualitativa, sentimento e tendências |
+
+### Agências e Consultorias de Comunicação, Dados e CX
+
+| Concorrente | Foco Principal | Diferencial da Elife |
+|---|---|---|
+| **VML** | Mega-agência criativa global (ex Wunderman + VMLY&R) | Agência generalista (criatividade, campanha, media); Elife é especialista em escuta do consumidor + IA |
+| **Accenture Song** | Transformação digital, CX, marketing + tecnologia | Consultora de grande escala; Elife é mais especializada e ágil em inteligência de mercado e social listening |
+| **Deloitte Digital** | Transformação digital, analytics, CX | Foco em transformação e ERP; Elife foca em inteligência de consumidor e IA aplicada ao negócio |
+| **Publicis Sapient** | Transformação digital e dados | Escala global, generalista; Elife é especialista em consumer intelligence |
+| **LLYC** | Comunicação, relações públicas, reputação | Foco em PR e reputação; Elife adiciona social intelligence, IA e CX |
+| **Edelman DxI** | Dados e inteligência para comunicação e PR | Sobreposição em reputação e monitorização; diferencial da Elife é a profundidade analítica e os Consumidores Sintéticos |
+
+### Atendimento, Vendas e Automação com IA
+
+| Concorrente | Foco Principal | Diferencial da Elife |
+|---|---|---|
+| **Zendesk** | CRM de atendimento ao cliente, helpdesk | Plataforma de tickets; Elife combina atendimento com inteligência de mercado e supervisão humana |
+| **Salesforce Service Cloud** | CRM e atendimento enterprise | Suite completa mas generalista; Elife é especialista e consultiva |
+| **Intercom** | Messaging e atendimento ao cliente com IA | Focado em chat e onboarding; Elife tem espectro mais estratégico |
+| **HubSpot Service Hub** | CRM, marketing e atendimento integrados | Focado em inbound e SMB; Elife serve empresas maiores com maior complexidade analítica |
+| **Freshworks** | CRM e atendimento | Generalista e acessível; Elife é consultora especializada |
+| **Talkdesk** | Contact center com IA, forte em Portugal | Plataforma de call center; Elife combina atendimento digital com inteligência de mercado |
+| **Genesys** | Plataforma de contact center enterprise | Foco operacional em contact center; Elife é mais estratégica e analítica |
+
+### Concorrentes Mais Diretos (Portugal)
+
+Os concorrentes que mais se sobrepõem à proposta central da Elife Portugal:
+
+1. **Brandwatch** — social intelligence e consumer research
+2. **Meltwater** — media + social intelligence
+3. **Talkwalker** — social listening + análise de sentimento
+4. **Marktest** — pesquisa e consumer insights Portugal
+5. **Kantar / Ipsos** — consumer insights e brand tracking
+6. **LLYC** — comunicação, reputação e dados
+7. **Zendesk / Talkdesk** — atendimento com IA (quando o briefing envolve CX)
+
+### Leitura Competitiva Portugal
+
+O mercado português combina duas dinâmicas distintas:
+- **Ferramentas globais** (Brandwatch, Meltwater, Talkwalker) que vendem licença sem serviço consultivo — a Elife diferencia-se pela curadoria humana, contexto cultural e recomendações estratégicas.
+- **Institutos de pesquisa locais** (Marktest, Netsonda) com metodologia tradicional — a Elife diferencia-se pela escuta contínua, dados espontâneos e Consumidores Sintéticos que permitem testar hipóteses em minutos.
+
+O discurso competitivo deve sempre evitar nomear concorrentes diretamente — usar termos genéricos como "ferramentas de monitorização puras", "plataformas de pesquisa tradicionais", "agências de comunicação generalistas".
 
 ---
 

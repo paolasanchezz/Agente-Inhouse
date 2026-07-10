@@ -12,6 +12,10 @@
     "instagram": { "handle": null, "url": null },
     "linkedin": { "url": null }
   },
+  "contasPortugal": {
+    "instagram": { "handle": "elife_portugal", "url": "https://www.instagram.com/elife_portugal/" },
+    "linkedin": { "url": "https://www.linkedin.com/company/elifeportugal" }
+  },
   "contasSecundarias": [],
   "cadencia": {
     "instagram": { "postsPorSemana": 3, "dias": "seg/qua/sex", "horario": "11h-13h" },

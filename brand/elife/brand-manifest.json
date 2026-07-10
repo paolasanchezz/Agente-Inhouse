@@ -2,44 +2,120 @@
   "$schema": "brand-manifest/v1",
   "brand": {
     "name": "Elife",
-    "displayName": "Elife",
+    "displayName": "Elife Portugal",
     "parentBrand": "Grupo Elife",
-    "tagline": "",
-    "mission": "",
+    "tagline": "20 anos a ouvir o consumidor.",
+    "taglineAlternate": "A IA que coloca a sua empresa à frente.",
+    "mission": "Transformar dados em inteligência que move negócios.",
     "websites": {
       "brasil": "https://elife.com.br",
-      "latam": "",
-      "portugal": ""
+      "latam": "https://elife.com",
+      "portugal": "https://novowebsiteelife.netlify.app/"
     },
-    "blog": ""
+    "socialMedia": {
+      "instagram": "https://www.instagram.com/elife_portugal/",
+      "linkedin": "https://www.linkedin.com/company/elifeportugal"
+    },
+    "contact": {
+      "email": "negocios@elifeportugal.com",
+      "address": "Rua da Restauração 83, 3.º andar, 4050-503 Porto"
+    }
   },
   "voice": {
-    "personality": [],
+    "personality": ["Estratégica", "Inteligente", "Confiável", "Próxima", "Inovadora"],
     "toneAttributes": {
-      "formality": 0.7,
-      "enthusiasm": 0.4,
-      "technicalDepth": 0.5,
-      "warmth": 0.5
+      "formality": 0.75,
+      "enthusiasm": 0.45,
+      "technicalDepth": 0.55,
+      "warmth": 0.6
     },
-    "messagingPillars": [],
+    "messagingPillars": [
+      "Voz do consumidor em tempo real",
+      "Inteligência competitiva e reputação",
+      "IA aplicada ao negócio com supervisão humana",
+      "Experiência do consumidor, atendimento e vendas",
+      "Dados que geram decisões",
+      "Inovação, tendências e futuro da pesquisa"
+    ],
     "samplePhrases": {
-      "do": [],
-      "dont": []
+      "do": [
+        "A sua marca está a tomar decisões com base em sinais reais ou apenas no barulho das redes sociais?",
+        "Na Elife, a Inteligência Artificial só vale quando gera resultados de negócio.",
+        "Dados mostram o que aconteceu. Inteligência mostra o que fazer a seguir.",
+        "Combinamos Social Listening, IA e Consumidores Sintéticos para validar hipóteses antes de investir tempo, orçamento e reputação.",
+        "Seguimos comprometidos com a inovação, a transformação digital e a aplicação estratégica da IA para gerar valor real para marcas e pessoas."
+      ],
+      "dont": [
+        "A nossa IA é revolucionária e vai transformar o vosso negócio",
+        "Somos a melhor plataforma de social listening do mercado",
+        "Disruptive AI-powered insights for your brand",
+        "Está crescendo muito",
+        "Fale conosco para saber mais"
+      ]
     }
   },
   "audience": {
-    "primary": "",
-    "segments": []
+    "primary": "Gestores de Marketing, Comunicação, Customer Experience, Atendimento, Vendas, Inteligência de Mercado, Inovação e Direcção em marcas de médio e grande porte",
+    "segments": [
+      "Retalho e e-commerce",
+      "Grande consumo",
+      "Telecomunicações",
+      "Banca e seguros",
+      "Saúde e farmácia",
+      "Imobiliário",
+      "Alimentação e bebidas",
+      "Automóvel",
+      "Turismo e hotelaria",
+      "Moda e beleza",
+      "Energia e utilities",
+      "Educação"
+    ],
+    "clients": [
+      "IKEA", "McDonald's", "Delta", "Continente", "NOS", "Prio", "Sonae Sierra",
+      "Hertz", "El Corte Inglés", "Cofidis", "Wells", "Luz Saúde", "LeYa", "CUF",
+      "LeasePlan", "Leroy Merlin", "CGD", "Volkswagen"
+    ]
   },
   "positioning": {
-    "category": "",
-    "differentiators": [],
-    "competitiveFrame": ""
+    "statement": "A Elife entrega inteligência de mercado e experiência do consumidor com IA supervisionada por especialistas, transformando conversas, dados e sinais do mercado em decisões estratégicas para marcas.",
+    "category": "Consultora de inteligência de mercado, CX e automação com IA",
+    "differentiators": [
+      "Mais de 20 anos de experiência (fundada em 2004) — pioneira em social intelligence",
+      "Combinação única: tecnologia (Buzzmonitor) + curadoria humana especializada — entrega inteligência, não apenas dados",
+      "IA supervisionada por analistas — garantia de contexto, precisão e qualidade",
+      "Consumidores Sintéticos: testar hipóteses antes de lançar campanhas",
+      "Cobertura de plataformas sem API disponível via metodologia de coolhunting",
+      "Ecossistema próprio: Elife (serviços) + Buzzmonitor (plataforma) + Cxpress (CRM) + Buzzcreators (influência)"
+    ],
+    "competitiveFrame": "Não é uma ferramenta de monitorização pura nem uma agência criativa generalista — é uma consultora especializada que une inteligência de mercado, CX e IA supervisionada"
+  },
+  "services": {
+    "portugal": [
+      "Social Listening",
+      "Consumidores Sintéticos",
+      "Atendimento Inteligente",
+      "Inteligência de Mercado",
+      "Gestão de Relacionamento"
+    ],
+    "brasil_latam": [
+      "Social Intelligence",
+      "Social CRM",
+      "Monitoramento e Gerenciamento de Crise",
+      "Estratégia e Consultoria de Conteúdo"
+    ]
+  },
+  "stats": {
+    "socialCommentsMonitored": "150 milhões",
+    "mediaSources": "2.000+",
+    "countries": 8,
+    "founded": 2004
   },
   "crossReferences": {
     "productKnowledge": "conhecimento/produto/elife/elife.md",
     "competitors": "conhecimento/produto/elife/concorrentes.md",
+    "contentPillarsPortugal": "conhecimento/produto/elife/pt-pt/pilares-conteudo.md",
     "editorialStyle": "conhecimento/editorial/estilo-newsletter.md",
-    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md"
+    "antiAiRules": "conhecimento/editorial/regras-anti-ia.md",
+    "linguisticRulesPtPt": "conhecimento/linguistico/pt-portugal/padrao-linguistico.md"
   }
 }

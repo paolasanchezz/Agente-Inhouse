@@ -121,6 +121,45 @@ auto-corrigir contraste da §6). Peca Bloom com texto corrompido → regenerar o
 
 ---
 
+## 12. Boas práticas de composição — aprendizados de produção
+
+### 12.1 Mockup de produto + cards flutuantes (padrão validado: `gestor-remoto-v2`)
+
+- **Laptop ou phone mockup** centralizado como âncora visual. Tela com cor escura (navy da marca) +
+  grid de canais ou interface de mensagens com ícones SVG oficiais das plataformas.
+- **Cards flutuantes** nos dois lados (esquerdo e direito) como se saíssem da tela — 2 a 3 por lado,
+  com avatar + nome + mensagem curta + ícone do canal. Evita a necessidade de figura humana e
+  comunica contexto omnichannel imediatamente.
+- **SVGs oficiais** para ícones de plataforma: sempre inline, nunca emoji. Referências:
+  WhatsApp `#25D366`, Instagram radial gradient (`#fdf497 → #fd5949 → #d6249f → #285AEB`),
+  Facebook `#1877F2`, TikTok `#010101`.
+- **Textos dos cards** devem refletir situações reais do segmento-alvo (varejo → entrega/troca/defeito;
+  RH → solicitações internas; etc.). Nunca texto genérico ("Quero informações").
+- **Hierarquia de texto**: logo → headline → sub, empilhados abaixo do mockup.
+  - Logo: pequeno, centralizado, ~160×40px.
+  - Headline: Open Sans 800, 50–54px. Sub: Source Sans 3 400, 26–30px.
+  - Bloco de texto começa ~46px abaixo da base do mockup.
+- **Safe-zone math (4x5 anuncio):** topo=250px, base=1010px (= 1350−340). O bloco de texto deve
+  terminar em ≤1010px. Calcular: `top_texto + linhas_headline×tamanho×line-height + margin + linhas_sub×tamanho×line-height ≤ 1010`.
+- **Elementos decorativos**: máx. 4 pills/blobs — apenas nos cantos, fora do foco central.
+  Não competir com o mockup.
+- **Fundo**: gradiente suave de branco → azul muito claro (`#F4F7FF`), com blobs de cor ainda mais
+  claros para profundidade sem distração.
+
+### 12.2 Mockup de celular com chat (padrão validado: `mensagens-sem-resposta`)
+
+- **Phone mockup** proeminente e centralizado, ocupando ~60% da altura da área visual (acima do texto).
+- **Interface de chat** na tela: fundo branco/cinza claro, bolhas de mensagem alinhadas à esquerda
+  (mensagens recebidas do cliente), sem bolhas de resposta — mostra a dor do cliente sem retorno.
+- **Indicadores visuais de urgência**: badge de mensagens não lidas (círculo laranja da marca),
+  timestamps visíveis, última mensagem destacada ou "digitando…" ausente.
+- **Headline conecta à dor**: frase que nomeia a situação ("X mensagens. Nenhuma resposta.") —
+  mais impactante do que descrever a solução.
+- **Menos é mais**: sem cards laterais, sem grid de canais — o foco é o telefone + texto. Decorativos
+  reduzidos a 2–3 elementos máximo.
+
+---
+
 ## Lembretes de marca
 
 - **Cxpress — cases pendentes:** BRANDBOOK marca "Cases de Sucesso Verificados" como vazio. Se a copy

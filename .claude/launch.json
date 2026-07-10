@@ -108,6 +108,24 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5192", "--bind", "127.0.0.1", "--directory", "landing-pages/buzzmonitor/social-listening-ia"],
       "port": 5192
+    },
+    {
+      "name": "criativo-cxpress",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5194", "--bind", "127.0.0.1", "--directory", "criativos/cxpress/brasil/coex-historico-celular"],
+      "port": 5194
+    },
+    {
+      "name": "criativo-paciente-perdido",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5195", "--bind", "127.0.0.1", "--directory", "criativos/cxpress/brasil/paciente-perdido-clinica"],
+      "port": 5195
+    },
+    {
+      "name": "criativo-telefonia-analytics",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5193", "--bind", "127.0.0.1", "--directory", "criativos/cxpress/brasil/telefonia-analytics-ia"],
+      "port": 5193
     }
   ]
 }
