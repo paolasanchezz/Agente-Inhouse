@@ -60,6 +60,11 @@ Toda LP tem: **Hero → Problema/contexto → Oferta/Programa → Diferencial �
 
 Seguir [Vercel Web Interface Guidelines](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md) — ver skill `web-design-guidelines`. Em especial: skip-link, focus-visible, labels em todos os inputs, `alt`/`aria-hidden` em imagens, `prefers-reduced-motion`.
 
+Dois pontos que já reprovaram AA em LPs reais — checar sempre:
+
+- **Contraste de texto em fundo tingido: ≥4.5:1.** Texto sobre pílula/badge/tag/chip com cor de fundo (eyebrow, selo) usa a cor **escura** da marca (ex.: navy), nunca o tom médio de destaque (ex.: royal). Royal `#4A69BD` sobre lilás claro `#D7E2FF` dá ≈4.0:1 e **reprova**; navy `#232960` sobre o mesmo lilás dá ≈10:1. Regra: quanto mais claro o tint de fundo, mais escuro o texto. Atenção especial ao eyebrow do hero, que costuma herdar a cor de destaque do `.eyebrow` base e só trocar o fundo.
+- **Sem `aria-live` em contador/timer que atualiza sozinho.** Countdown de evento leva `aria-hidden="true"` — a data já vive na copy do hero e no JSON-LD. `aria-live` (mesmo `polite`) num contador que muda a cada segundo inunda leitores de tela (WCAG 2.2.2).
+
 ## 8. Seções-tipo com linguagem visual consistente
 
 Cada tipo de seção tem gramática visual fixa. Não misturar.
