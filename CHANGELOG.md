@@ -13,6 +13,12 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 ---
 
 ## convites-moderador — só dias úteis
+### 2026-07-13 — v1.2.1 — Help do `--force` honesto
+
+O help do `--force` prometia "envia mesmo em sáb/dom", mas o flag só destrava o dia do run — o filtro de dia útil dentro de `next_session_for_series()` continua ativo (por design: sessão de fim de semana roda sem vendedor de propósito, decisão da v1.2.0). Num sábado, `--force` termina em SKIP geral porque a única sessão futura materializada pelo ClickMeeting é a do próprio fim de semana. Achado Importante #1 do review do PR #58.
+
+- Corrigido o texto (docstring, help do argparse, mensagem de `SKIP TOTAL` e SKILL.md) para dizer o que o flag realmente faz: roda em sáb/dom, mas nunca convida pra sessão de fim de semana. Comportamento intacto — PATCH, só texto.
+
 ### 2026-07-13 — v1.2.0
 
 Convites de moderador (vendedores) passam a sair **apenas em dias úteis** — decisão do Victor: o ClickMeeting não permite pular fim de semana na recorrência, e bloquear a inscrição na LP seria pior que a sessão rodar sem vendedor. As LPs seguem intactas (inscrição livre sáb/dom); a gestão é toda no lado dos convites.

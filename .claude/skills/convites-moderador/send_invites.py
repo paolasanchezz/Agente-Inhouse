@@ -11,7 +11,7 @@ Uso:
     python send_invites.py                # envia tudo (dia útil)
     python send_invites.py --dry-run      # só imprime o que enviaria
     python send_invites.py --series 17529 # filtra 1 série específica
-    python send_invites.py --force        # ignora a trava de fim de semana
+    python send_invites.py --force        # roda mesmo em sáb/dom (sessão de fim de semana nunca é convidada)
 
 Saída: log compacto no stdout + exit code 0 (tudo ok) / 1 (alguma falha).
 """
@@ -122,12 +122,12 @@ def main() -> int:
     p = argparse.ArgumentParser(description="Envia convite de moderador para próxima sessão de cada série ClickMeeting.")
     p.add_argument("--dry-run", action="store_true", help="Não envia — só imprime o plano.")
     p.add_argument("--series", help="Filtra 1 série específica (ex: 17529).")
-    p.add_argument("--force", action="store_true", help="Ignora a trava de fim de semana (envia mesmo em sáb/dom).")
+    p.add_argument("--force", action="store_true", help="Roda mesmo em sáb/dom, mas sessão de fim de semana nunca é convidada — se a única sessão futura for sáb/dom, o run termina em SKIP.")
     args = p.parse_args()
 
     today_sp = datetime.now(TZ_SAO_PAULO)
     if is_weekend(today_sp) and not args.force:
-        print(f"[SKIP TOTAL] {today_sp.strftime('%Y-%m-%d')} é fim de semana (America/Sao_Paulo) — convites só em dias úteis. Use --force pra enviar mesmo assim.")
+        print(f"[SKIP TOTAL] {today_sp.strftime('%Y-%m-%d')} é fim de semana (America/Sao_Paulo) — convites só em dias úteis. Use --force pra rodar mesmo assim (convida só sessão de dia útil).")
         return 0
 
     if not CONFIG_PATH.exists():

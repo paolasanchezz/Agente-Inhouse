@@ -3,14 +3,14 @@ name: convites-moderador
 description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. So roda em dias uteis — sab/dom nao envia nada e sessao de fim de semana nunca e escolhida. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
 argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID] [--force]"
 allowed-tools: Read, Bash, Skill
-version: 1.2.0
+version: 1.2.1
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
 
 Voce envia, todo dia util, 1 convite de moderador para a proxima sessao agendada de cada serie recorrente do ClickMeeting. O ClickMeeting nao tem feature nativa de "fixar moderador na serie", entao a gente automatiza o disparo diario externamente.
 
-**Dias uteis somente (decisao Victor 2026-07-13):** a recorrencia do ClickMeeting nao permite pular fins de semana, e as LPs continuam aceitando inscricao normalmente sab/dom (bloquear inscricao seria pior que sessao sem vendedor). A gestao e feita aqui: sabado/domingo o run nao envia convite nenhum (`SKIP TOTAL`), e a escolha da proxima sessao nunca cai em sessao de fim de semana (dia local da sessao, pelo offset do `starts_at`). `--force` no script manual ignora a trava se um dia precisar convidar no fim de semana.
+**Dias uteis somente (decisao Victor 2026-07-13):** a recorrencia do ClickMeeting nao permite pular fins de semana, e as LPs continuam aceitando inscricao normalmente sab/dom (bloquear inscricao seria pior que sessao sem vendedor). A gestao e feita aqui: sabado/domingo o run nao envia convite nenhum (`SKIP TOTAL`), e a escolha da proxima sessao nunca cai em sessao de fim de semana (dia local da sessao, pelo offset do `starts_at`). `--force` no script manual destrava so o **dia do run** (roda sab/dom); a sessao convidada continua sendo sempre a proxima de dia util — se a unica sessao futura for de fim de semana, o run termina em SKIP por design.
 
 ## Quando usar
 
