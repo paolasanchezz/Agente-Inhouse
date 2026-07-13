@@ -12,6 +12,15 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## convites-moderador — só dias úteis
+### 2026-07-13 — v1.2.0
+
+Convites de moderador (vendedores) passam a sair **apenas em dias úteis** — decisão do Victor: o ClickMeeting não permite pular fim de semana na recorrência, e bloquear a inscrição na LP seria pior que a sessão rodar sem vendedor. As LPs seguem intactas (inscrição livre sáb/dom); a gestão é toda no lado dos convites.
+
+- **n8n (produção)**: Code node "Montar plano de convites" ganhou trava dupla — (a) sáb/dom em America/Sao_Paulo o run retorna vazio (`SKIP TOTAL`, nada enviado); (b) a escolha da próxima sessão nunca cai em sessão de fim de semana (dia local da sessão via `Intl` no timezone da própria conferência). Aplicado no workflow vivo (`1TFA4xHvFEZQ5lns`) via API em 2026-07-13 e espelhado em `integracoes/n8n/convites-moderador-clickmeeting.json`.
+- **`send_invites.py` (fallback manual)**: mesma trava dupla + flag `--force` pra ignorar a trava de fim de semana quando for intencional. America/Sao_Paulo como offset fixo -3 (sem DST desde 2019 — evita depender de tzdata no Windows); o dia da sessão usa o offset do próprio `starts_at`.
+- Sem convite duplicado: sexta convida a sessão de sexta (futura no run das 07:00), sáb/dom não envia, segunda convida a de segunda. MINOR — comportamento novo compatível (interface só ganha `--force`).
+
 ## dashboard-atualizar — multi-dashboard
 ### 2026-07-08 — v3.0.0
 

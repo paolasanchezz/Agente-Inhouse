@@ -1,18 +1,20 @@
 ---
 name: convites-moderador
-description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
-argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID]"
+description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. So roda em dias uteis — sab/dom nao envia nada e sessao de fim de semana nunca e escolhida. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
+argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID] [--force]"
 allowed-tools: Read, Bash, Skill
-version: 1.1.1
+version: 1.2.0
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
 
-Voce envia, todo dia, 1 convite de moderador para a proxima sessao agendada de cada serie recorrente do ClickMeeting. O ClickMeeting nao tem feature nativa de "fixar moderador na serie", entao a gente automatiza o disparo diario externamente.
+Voce envia, todo dia util, 1 convite de moderador para a proxima sessao agendada de cada serie recorrente do ClickMeeting. O ClickMeeting nao tem feature nativa de "fixar moderador na serie", entao a gente automatiza o disparo diario externamente.
+
+**Dias uteis somente (decisao Victor 2026-07-13):** a recorrencia do ClickMeeting nao permite pular fins de semana, e as LPs continuam aceitando inscricao normalmente sab/dom (bloquear inscricao seria pior que sessao sem vendedor). A gestao e feita aqui: sabado/domingo o run nao envia convite nenhum (`SKIP TOTAL`), e a escolha da proxima sessao nunca cai em sessao de fim de semana (dia local da sessao, pelo offset do `starts_at`). `--force` no script manual ignora a trava se um dia precisar convidar no fim de semana.
 
 ## Quando usar
 
-- **Rotina diaria em producao: n8n** (desde 2026-07-07) — workflow `Convites Moderador ClickMeeting - diario 07h BRT` (id `1TFA4xHvFEZQ5lns`) na instancia `n8n-marketing-u54305.vm.elestio.app`, roda **07:00 America/Sao_Paulo** todo dia. Replica exatamente a logica deste script (GET /conferences/active -> proxima sessao futura por serie -> POST invitation/email role=presenter). Fonte versionada: `integracoes/n8n/convites-moderador-clickmeeting.json`. Para editar as series, altere o node **Montar plano de convites** no editor (ou re-gere o JSON e de PUT via API). A credencial ClickMeeting (`X-Api-Key`) ja esta bindada nos dois nos HTTP. O gatilho usa `settings.timezone=America/Sao_Paulo` (a instancia roda em UTC-4, entao SEM esse override "7h" viraria 08:00 BRT).
+- **Rotina diaria em producao: n8n** (desde 2026-07-07) — workflow `Convites Moderador ClickMeeting - diario 07h BRT` (id `1TFA4xHvFEZQ5lns`) na instancia `n8n-marketing-u54305.vm.elestio.app`, roda **07:00 America/Sao_Paulo** todo dia (mas sab/dom o Code node retorna vazio — trava de fim de semana, desde 2026-07-13). Replica exatamente a logica deste script (GET /conferences/active -> proxima sessao futura em dia util por serie -> POST invitation/email role=presenter). Fonte versionada: `integracoes/n8n/convites-moderador-clickmeeting.json`. Para editar as series, altere o node **Montar plano de convites** no editor (ou re-gere o JSON e de PUT via API). A credencial ClickMeeting (`X-Api-Key`) ja esta bindada nos dois nos HTTP. O gatilho usa `settings.timezone=America/Sao_Paulo` (a instancia roda em UTC-4, entao SEM esse override "7h" viraria 08:00 BRT).
 - **Fallback manual: GitHub Actions** — `.github/workflows/convites-moderador.yml` continua no repo, mas **desabilitado** (`gh workflow disable`) e **sem cron** (so `workflow_dispatch`). Se o n8n falhar: `gh workflow enable convites-moderador.yml` + aba Actions > Run workflow (opcao "Dry-run" so lista, nao envia). Nunca deixar os dois agendados juntos — convite duplica.
 - **Manual on-demand (local)** apos editar o `config.json` (mudou o email do moderador, adicionou nova serie) e quiser disparar logo o convite do dia em vez de esperar o cron — rode o script como na secao "Como rodar".
 - **Dry-run para auditoria:** `/convites-moderador --dry-run` lista a proxima sessao de cada serie + email do moderador sem enviar nada.
@@ -64,9 +66,10 @@ A skill em si e basicamente "rode o script e cole o stdout no chat". Sem args, d
 
 ## Como o script funciona (passo a passo)
 
+0. Trava de fim de semana: se hoje e sabado/domingo em America/Sao_Paulo, imprime `SKIP TOTAL` e sai com exit 0 sem enviar nada (a menos que `--force`).
 1. Carrega `config.json` e `CLICKMEETING_API_KEY`.
 2. `GET /conferences/active` — retorna todas as sessoes ativas/agendadas da conta.
-3. Para cada serie configurada: filtra `recurring_config_id` igual + `registration_enabled=1` + `starts_at` futuro, ordena por data e pega a **primeira**.
+3. Para cada serie configurada: filtra `recurring_config_id` igual + `registration_enabled=1` + `starts_at` futuro + **dia util** (dia local da sessao), ordena por data e pega a **primeira**.
 4. Para essa sessao: `POST /conferences/{room_id}/invitation/email/{lang}` com `attendees[0][email]=<moderador>`, `template=advanced`, `role=presenter`.
 5. Imprime resultado linha-a-linha + resumo final.
 

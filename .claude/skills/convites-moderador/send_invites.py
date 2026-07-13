@@ -3,10 +3,15 @@
 Envia convite de moderador (role=presenter) para a próxima sessão de cada
 série recorrente configurada em config.json, via API ClickMeeting v1.
 
+Convites só rodam em dias úteis (decisão Victor 2026-07-13): a plataforma não
+permite pular fins de semana na recorrência, então sábado/domingo a sessão roda
+sem vendedor de propósito — as LPs continuam aceitando inscrição normalmente.
+
 Uso:
-    python send_invites.py                # envia tudo
+    python send_invites.py                # envia tudo (dia útil)
     python send_invites.py --dry-run      # só imprime o que enviaria
     python send_invites.py --series 17529 # filtra 1 série específica
+    python send_invites.py --force        # ignora a trava de fim de semana
 
 Saída: log compacto no stdout + exit code 0 (tudo ok) / 1 (alguma falha).
 """
@@ -17,7 +22,7 @@ import os
 import sys
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 try:
@@ -29,6 +34,13 @@ except (AttributeError, OSError):
 CLICKMEETING_API_BASE = "https://api.clickmeeting.com/v1"
 SCRIPT_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = SCRIPT_DIR / "config.json"
+
+# America/Sao_Paulo sem DST desde 2019 — offset fixo evita depender de tzdata no Windows.
+TZ_SAO_PAULO = timezone(timedelta(hours=-3))
+
+
+def is_weekend(dt: datetime) -> bool:
+    return dt.weekday() >= 5  # 5=sábado, 6=domingo
 
 
 def load_env_var(name: str) -> str:
@@ -82,6 +94,9 @@ def next_session_for_series(active: list, recurring_config_id: str) -> dict | No
             continue
         if starts <= now:
             continue
+        # starts_at vem com offset local da sessão → weekday() já é o dia local.
+        if is_weekend(starts):
+            continue
         eligible.append((starts, c))
     eligible.sort(key=lambda t: t[0])
     return eligible[0][1] if eligible else None
@@ -107,7 +122,13 @@ def main() -> int:
     p = argparse.ArgumentParser(description="Envia convite de moderador para próxima sessão de cada série ClickMeeting.")
     p.add_argument("--dry-run", action="store_true", help="Não envia — só imprime o plano.")
     p.add_argument("--series", help="Filtra 1 série específica (ex: 17529).")
+    p.add_argument("--force", action="store_true", help="Ignora a trava de fim de semana (envia mesmo em sáb/dom).")
     args = p.parse_args()
+
+    today_sp = datetime.now(TZ_SAO_PAULO)
+    if is_weekend(today_sp) and not args.force:
+        print(f"[SKIP TOTAL] {today_sp.strftime('%Y-%m-%d')} é fim de semana (America/Sao_Paulo) — convites só em dias úteis. Use --force pra enviar mesmo assim.")
+        return 0
 
     if not CONFIG_PATH.exists():
         raise SystemExit(f"[FATAL] config.json não encontrado em {CONFIG_PATH}")
