@@ -3,7 +3,7 @@ name: convites-moderador
 description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
 argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID]"
 allowed-tools: Read, Bash, Skill
-version: 1.1.0
+version: 1.1.1
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
@@ -45,7 +45,7 @@ A skill em si e basicamente "rode o script e cole o stdout no chat". Sem args, d
 {
   "series": {
     "17529": { "label": "Cxpress", "moderator_email": "...", "lang": "br" },
-    "17544": { "label": "Buzzmonitor Atencion (LATAM)", "moderator_email": "...", "lang": "es" },
+    "17701": { "label": "Buzzmonitor Atencion (LATAM)", "moderator_email": "...", "lang": "es" },
     "17560": { "label": "Buzzcreators", "moderator_email": "...", "lang": "br" }
   }
 }

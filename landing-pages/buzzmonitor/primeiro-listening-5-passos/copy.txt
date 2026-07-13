@@ -1,0 +1,65 @@
+# Copy LP · Buzzmonitor · primeiro-listening-5-passos · Webinar perpétuo (MoFu) · PT-BR
+# Fonte: Notion "Copy LP · Buzzmonitor · primeiro-listening-5-passos · 2026-07-07"
+# Estrutura clonada da LP de referência webinar.buzzmonitor.com/mcp-na-pratica-p (mesmos moldes da case-youse)
+
+=== META ===
+LABEL: title: Webinar Buzzmonitor · Seu primeiro social listening em 5 passos
+LABEL: description: Webinar gratuito: monte o primeiro monitoramento de marca em 5 passos, ao vivo. Sem planilha e sem esperar a crise virar print no grupo do WhatsApp.
+LABEL: og:title: Seu primeiro social listening em 5 passos
+LABEL: og:description: Em 10 minutos, a gente monta do zero o primeiro listening de uma marca na sua frente. Cinco passos, direto na Buzzmonitor.
+
+=== HEADER ===
+CTA: Garantir vaga
+
+=== HERO ===
+OVERLINE: Webinar gratuito · Social listening
+H1: Monte o seu primeiro monitoramento de marca em 5 passos.
+BODY: Em 10 minutos, a gente monta do zero o primeiro listening de uma marca na sua frente. Sem planilha, sem esperar a reclamação virar print no grupo do WhatsApp pra você descobrir.
+LABEL: Online · Ao vivo · Gratuito
+# [SUGESTAO copy] GUIDELINES §3: H1 abre pelo método/ganho, não pela dor (padrão ToFu/MoFu pede dor primeiro). A estrutura foi clonada da referência (que também abre pelo método) e a decisão é de quem aprova a copy — não alterado.
+
+=== FORMULARIO ===
+H2: Garanta sua vaga
+LABEL: Gratuito
+CTA: Garantir minha vaga
+BODY: Ao se inscrever, você aceita receber comunicações da Buzzmonitor sobre o webinar. Cancelável a qualquer momento.
+
+=== O-QUE-VOCE-VAI-VER ===
+LABEL: O que você vai ver
+H2: Os 5 passos, montados na tela em tempo real.
+H3: 01 · Escolha o que escutar (e as variantes)
+BODY: Você cria o tema com o nome da marca e adiciona as grafias erradas, o nome junto, separado, o apelido e as hashtags. É aí que entra metade da conversa real: cliente irritado raramente escreve o nome certo.
+LABEL: Passos 1 e 2 · Theme Monitoring
+H3: 02 · Deixe a IA classificar e agrupar
+BODY: Cada menção já chega classificada por sentimento, em tempo real. O Auto Tag Suggestions olha o conteúdo e agrupa por tema: “atraso de entrega”, “atendimento”, “qualidade”. Você aceita ou descarta com um clique.
+LABEL: Passos 3 e 4 · Sentiment Classification + Auto Tag Suggestions
+H3: 03 · Seja avisado antes de virar crise
+BODY: Você configura um alerta pra quando o volume negativo passar do limite. Ele chega no e-mail e no Slack. E o Buzz Pills resume as últimas 24 horas em quatro bullets, todo dia de manhã.
+LABEL: Passo 5 · Alerta + Buzz Pills
+
+=== QUEM-APRESENTA ===
+LABEL: Quem apresenta
+H3: Leandra Lira
+LABEL: Executiva de Novos Negócios
+BODY: Quem conduz já ajudou equipes de marketing a saírem da planilha e montarem o monitoramento pra valer. O nome de quem apresenta aparece aqui e no e-mail de inscrição.
+# [SUGESTAO copy] Mesma observação da case-youse: a frase "O nome de quem apresenta aparece aqui e no e-mail de inscrição." parece sobra do placeholder da referência (speaker já nomeada). Decisão de quem aprova a copy.
+LABEL: Social listening · Monitoramento de marca · IA aplicada
+
+=== PARA-QUEM ===
+H2: Este webinar é pra você se…
+LIST ITEM: Você ainda descobre o que falam da sua marca pelo print que alguém manda no grupo.
+LIST ITEM: Monitora na planilha e sabe que metade da conversa fica de fora.
+LIST ITEM: Quer começar a monitorar, mas não sabe por onde nem o que escutar primeiro.
+LIST ITEM: Cansou de classificar sentimento na mão toda manhã.
+
+=== CTA-FINAL ===
+H2: Pronto pra montar o seu listening?
+SUB: Assista e saia com os 5 passos prontos pra rodar na sua conta. Online, gratuito, em 10 minutos.
+LABEL: Online · Gratuito · 5 passos
+CTA: Garantir minha vaga
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA: 3 em-dashes da copy bruta substituídos — H3 do pilar 01 (parênteses), pilar 02 (dois-pontos antes da enumeração), pilar 03 (ponto). Contagem final de em-dash: 0. Antítese-por-negação: 0 instâncias da família. Aspas curvas preservadas. 2 sugestões de copy marcadas.
+# Pendências (do Notion): (1) confirmar nome/cargo de quem gravou (copy traz Leandra Lira, Executiva de Novos Negócios); foto é link de edição do Canva — placeholder até exportarem o PNG. (2) Se posicionar como gravação sob demanda (não "ao vivo"), trocar badges e verbos do CTA.

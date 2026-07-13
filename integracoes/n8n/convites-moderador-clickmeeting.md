@@ -28,7 +28,7 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 |---|---|---|---|
 | 17689 | Cxpress (Conheça a Cxpress) | lilian.longo@gocxpress.com.br | br |
 | 17671 | Cxpress Vozxpress (Case IA de Voz) | lilian.longo@gocxpress.com.br | br |
-| 17544 | Buzzmonitor Atención (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
+| 17701 | Buzzmonitor Atención (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
 | 17646 | Buzzmonitor ¿Qué es MCP? (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
 | 17560 | Buzzcreators | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
 

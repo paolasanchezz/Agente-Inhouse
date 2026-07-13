@@ -45,6 +45,10 @@ Nova boa prática de copy, **prioritária sobre as demais**: a primeira linha de
 - **Reforço na geração:** `copy-criar` ganhou a "Regra 0" nas regras universais do Passo 4 (cobre os 3 formatos de uma vez) + nota no campo Headline do estático. MINOR — nova diretriz preservando a interface da skill.
 
 ## convites-moderador
+### 2026-07-08 — v1.1.1 — Série Atención LATAM: 17544 → 17701
+
+A série `17544` (Buzzmonitor Atención al Cliente, ES-LATAM) esgotou as sessões e foi recriada como `17701` em 2026-07-08. Atualiza o `recurring_config_id` no `config.json` e na tabela SERIES espelhada no `SKILL.md`, além dos espelhos fora da skill (workflow n8n `convites-moderador-clickmeeting.{json,md}` e o `next-webinar.js` + `README.md` da `_clickmeeting-api` das LPs). Sem isso, o convite diário apontava pra série morta e o webinar Atención ficava sem moderador. PATCH — só troca de dado (ID da série), sem mudança de comportamento nem interface.
+
 ### 2026-07-07 — v1.1.0 — Gatilho diario migrado pro GitHub Actions
 
 O disparo diario dos convites de moderador saiu do remote-trigger da claude.ai e passou a rodar em **GitHub Actions** (`.github/workflows/convites-moderador.yml`, cron `17 11 * * *` UTC = 08:17 America/Sao_Paulo). Motivo: a ClickMeeting **bloqueou o IP** do harness da nuvem, entao o cron agendado falhava todo dia — mesma classe de problema que ja tinha levado o `lp-health-check` pro Actions. O workflow le `CLICKMEETING_API_KEY` de um secret do repo (setado nesta mudanca) e faz `checkout`, entao **editar `config.json` continua exigindo commit + push** pra valer no proximo run. Tem `workflow_dispatch` com opcao **Dry-run** pra teste manual sem enviar email. O `send_invites.py` nao mudou (ja lia `os.environ` antes do `.env.local`). MINOR — nova forma de acionar preservando a interface (script + `/convites-moderador` local seguem iguais). Config tambem ganhou a serie **17671** (Cxpress Vozxpress, moderadora Lilian) no mesmo passe.

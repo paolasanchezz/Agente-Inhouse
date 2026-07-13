@@ -1,0 +1,64 @@
+# Copy LP · Buzzmonitor · case-youse · Webinar perpétuo (BoFu) · PT-BR
+# Fonte: Notion "Copy LP · Buzzmonitor · case-youse-sla · 2026-07-07" (slug final: case-youse, definido pelo Victor)
+# Estrutura clonada da LP de referência webinar.buzzmonitor.com/mcp-na-pratica-p
+
+=== META ===
+LABEL: title: Webinar Buzzmonitor · Case Youse: de 36h para 3h de SLA no atendimento
+LABEL: description: Webinar gratuito: como a Youse cortou o SLA de 36 horas para 3, com uma equipe 75% menor. SAC 2.0, IA na resposta e relatório em tempo real, funcionando na tela.
+LABEL: og:title: Case Youse · De 36h para 3h de SLA, com 75% menos gente
+LABEL: og:description: Um webinar de 10 minutos sobre o que a Youse mudou no atendimento quando trouxe o SAC pra dentro de casa. Veja as três ferramentas funcionando.
+
+=== HEADER ===
+CTA: Garantir vaga
+
+=== HERO ===
+OVERLINE: Webinar gratuito · Case de sucesso
+H1: 36 horas de SLA viraram 3 horas. E a equipe ficou 75% menor.
+BODY: Um webinar de 10 minutos sobre o que a Youse mudou no atendimento quando trouxe o SAC pra dentro de casa. E o que dá pra replicar no seu time: sem projeto de dois anos, sem migração gigante.
+LABEL: Online · Ao vivo · Gratuito
+
+=== FORMULARIO ===
+H2: Garanta sua vaga
+LABEL: Gratuito
+CTA: Garantir minha vaga
+BODY: Ao se inscrever, você aceita receber comunicações da Buzzmonitor sobre o webinar. Cancelável a qualquer momento.
+
+=== O-QUE-VOCE-VAI-VER ===
+LABEL: O que você vai ver
+H2: Os 3 pilares para aumento de eficiência.
+H3: 01 · Uma caixa só pra todos os canais
+BODY: Instagram, WhatsApp, Facebook, e-mail e formulário caem na mesma fila, já ordenada por SLA. O atendente abre a manhã numa tela só e enxerga a conversa inteira do cliente, pública e privada.
+LABEL: Na tela: a fila do SAC 2.0, com o que está perto de estourar subindo pro topo.
+H3: 02 · A IA responde junto com o time
+BODY: A Buzzmonitor lê o que o cliente escreveu e sugere a resposta no tom da marca. O atendente revisa, ajusta uma palavra e envia. As tags certas já vêm sugeridas. Ninguém para pra categorizar na mão.
+LABEL: Na tela: Smart Replies e Auto Tag Suggestions. Uma resposta de 4 minutos saindo em 30 segundos.
+H3: 03 · O relatório em tempo real, sem esperar o fornecedor
+BODY: Volume por canal, tema dominante, SLA médio e as palavras que mais aparecem nas reclamações, lidos pela IA e atualizados na hora. O Buzz Pills resume as últimas 24 horas em quatro bullets.
+LABEL: Na tela: AI Insights e Buzz Pills. O gestor abre o dashboard em vez de pedir relatório.
+
+=== QUEM-APRESENTA ===
+LABEL: Quem apresenta
+H3: Nathalia Crivellaro
+LABEL: Executiva de Contas
+BODY: Quem conduz acompanhou de perto times de SAC que internalizaram o atendimento e sabe o que separa quem cortou SLA de quem só trocou de fornecedor. O nome de quem apresenta aparece aqui e no e-mail de inscrição.
+# [SUGESTAO copy] A frase "O nome de quem apresenta aparece aqui e no e-mail de inscrição." parece sobra do placeholder da LP de referência (aqui a speaker já está nomeada). Sugestão: remover a frase ou trocar por algo sobre a Nathalia. Decisão de quem aprova a copy.
+LABEL: Atendimento · SAC 2.0 · IA aplicada
+
+=== PARA-QUEM ===
+H2: Este webinar é pra você se…
+LIST ITEM: Seu SAC é terceirizado e você não tem acesso aos dados em tempo real.
+LIST ITEM: O atendimento está espalhado em cinco, seis canais e o cliente espera dias por uma resposta.
+LIST ITEM: Você depende de um relatório que chega tarde, uma vez por semana, no formato do fornecedor.
+LIST ITEM: Quer internalizar o atendimento sem montar uma equipe de 200 pessoas.
+
+=== CTA-FINAL ===
+H2: Quanto SLA o seu time consegue recuperar?
+SUB: Assista ao case completo e veja as três ferramentas funcionando com dados de verdade. Online, gratuito, em 10 minutos.
+LABEL: Online · Gratuito · Case real
+CTA: Garantir minha vaga
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA: 3 em-dashes da copy bruta substituídos por ponto (seção O-QUE-VOCE-VAI-VER, pilares 02 e 03). Contagem final de em-dash: 0. Antítese-por-negação: 0 instâncias da família. 1 sugestão de copy marcada (bio da speaker).
+# Pendências (do Notion): (1) confirmar nome/cargo de quem gravou (copy traz Nathalia Crivellaro, Executiva de Contas); foto está como link de edição do Canva, não é imagem direta — usar placeholder até exportarem o PNG. (2) Se posicionar como gravação sob demanda (não "ao vivo"), trocar badges e verbos do CTA.
