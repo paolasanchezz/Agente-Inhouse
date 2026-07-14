@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@graph": [
     { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://content.cxpress.io/assets/cxpress/logos/logo-primary.png" },
     { "@type": "WebPage", "@id": "https://content.cxpress.io/cafe-bogota-jul26#webpage", "name": "Café con Cxpress · Diseña agentes de IA que realmente resuelven", "url": "https://content.cxpress.io/cafe-bogota-jul26", "inLanguage": "es-CO", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "Workshop presencial gratuito en Bogotá, 28/07/2026. Diseña agentes de IA que resuelven de verdad, con un caso práctico de e-commerce en vivo." },
-    { "@type": "Event", "name": "Café con Cxpress · Diseña agentes de IA que realmente resuelven", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "startDate": "2026-07-28T10:00:00-05:00", "inLanguage": "es-CO", "url": "https://content.cxpress.io/cafe-bogota-jul26", "description": "Un workshop presencial para diseñar agentes de IA que resuelven, escalan solo cuando hace falta y funcionan en todos tus canales, con un caso práctico de e-commerce en vivo.", "location": { "@type": "Place", "name": "Lugar por confirmar", "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressCountry": "CO" } }, "organizer": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": "https://content.cxpress.io/cafe-bogota-jul26" } }
+    { "@type": "Event", "name": "Café con Cxpress · Diseña agentes de IA que realmente resuelven", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "startDate": "2026-07-28T10:00:00-05:00", "inLanguage": "es-CO", "url": "https://content.cxpress.io/cafe-bogota-jul26", "description": "Un workshop presencial para diseñar agentes de IA que resuelven, escalan solo cuando hace falta y funcionan en todos tus canales, con un caso práctico de e-commerce en vivo.", "location": { "@type": "Place", "name": "Edificio Ecotek", "address": { "@type": "PostalAddress", "streetAddress": "Cl. 99 #10-57", "addressLocality": "Bogotá", "addressCountry": "CO" } }, "organizer": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": "https://content.cxpress.io/cafe-bogota-jul26" } }
   ]
 }
 </script>
@@ -333,6 +333,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .reveal{opacity:1!important;transform:none!important;transition:none}
     .nav-dot{animation:none}
   }
+
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: el proveedor ya trae su propio card.
+     La regla del iframe garantiza que ocupe 100% del ancho sin borde. */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -391,38 +396,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap signup-inner">
       <h2 id="signup-title" class="ribbon reveal"><span class="ribbon-txt">Reserva tu lugar</span></h2>
       <p class="signup-sub reveal">Evento presencial. Cupos limitados por la capacidad del espacio.</p>
-      <form class="form reveal" aria-label="Formulario de reserva" onsubmit="return false">
-        <div class="form-row">
-          <div class="field">
-            <label for="f-nombre">Nombre</label>
-            <input id="f-nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="given-name">
-          </div>
-          <div class="field">
-            <label for="f-apellido">Apellido</label>
-            <input id="f-apellido" name="apellido" type="text" placeholder="Tu apellido" autocomplete="family-name">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-correo">Correo corporativo</label>
-          <input id="f-correo" name="correo" type="email" placeholder="nombre@empresa.com" autocomplete="email" spellcheck="false" autocapitalize="none">
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-telefono">Teléfono</label>
-            <input id="f-telefono" name="telefono" type="tel" placeholder="+57 300 000 0000" autocomplete="tel" inputmode="tel">
-          </div>
-          <div class="field">
-            <label for="f-empresa">Empresa</label>
-            <input id="f-empresa" name="empresa" type="text" placeholder="Nombre de tu empresa" autocomplete="organization">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-pais">País</label>
-          <input id="f-pais" name="pais" type="text" placeholder="Colombia" autocomplete="country-name">
-        </div>
-        <button type="button" class="btn btn-orange btn-block">Reservar mi lugar</button>
-        <p class="form-note">Cupos limitados. Te confirmaremos tu lugar por correo.</p>
-      </form>
+      <div class="jotform-embed reveal">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261303944881662"></script>
+      </div>
     </div>
   </section>
 
@@ -440,17 +416,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap reach-grid">
       <div class="reach-map reveal">
         <iframe
-          src="https://www.google.com/maps?q=Bogot%C3%A1,+Colombia&output=embed"
+          src="https://www.google.com/maps?q=Calle+99+%2310-57,+Bogot%C3%A1,+Colombia&output=embed"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa: Bogotá, Colombia (lugar exacto por confirmar)"></iframe>
+          title="Mapa: Edificio Ecotek, Cl. 99 #10-57, Bogotá, Colombia"></iframe>
       </div>
       <div class="reach-info reveal">
         <h2 id="reach-title">¿Cómo llegar?</h2>
         <div class="reach-addr">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
           <div>
-            <div class="a1">Lugar por confirmar</div>
-            <div class="a2">Bogotá, Colombia · Te enviaremos la dirección exacta por correo al confirmar tu cupo.</div>
+            <div class="a1">Edificio Ecotek</div>
+            <div class="a2">Cl. 99 #10-57, cerca del Parque de la 93 · Bogotá, Colombia</div>
           </div>
         </div>
         <div class="countdown-bar" id="countdown" aria-hidden="true">
@@ -528,7 +504,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- PONENTES (fotos placeholder) -->
+  <!-- PONENTES -->
   <section class="speakers pad" aria-labelledby="speakers-title">
     <div class="wrap">
       <div class="section-head reveal">
@@ -537,19 +513,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="spk-grid">
         <div class="spk-card reveal">
-          <div class="spk-photo placeholder" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="spk-photo">
+            <img src="./assets/laura-rodriguez.jpg" alt="Laura Rodríguez" width="152" height="152">
           </div>
-          <h3>Ponente por confirmar</h3>
-          <div class="spk-role">Especialista en IA · Cxpress</div>
-          <div class="spk-logo"><img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress"></div>
-        </div>
-        <div class="spk-card reveal">
-          <div class="spk-photo placeholder" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Ponente por confirmar</h3>
-          <div class="spk-role">Atención al cliente · Cxpress</div>
+          <h3>Laura Rodríguez</h3>
           <div class="spk-logo"><img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress"></div>
         </div>
       </div>

@@ -39,12 +39,14 @@ Validação pós-edição: em-dash **0**, GTM `GTM-WRQ47B9R` (head+noscript) cor
 - [ ] Hero H1 "Atención digital desorganizada" é curto e o hero fica levemente esparso. **Mantido de propósito** — é o título que o Victor escolheu. `text-wrap:balance` já ajuda o equilíbrio.
 - [ ] JSON-LD `Event` sem `endDate` — adicionar quando o horário de término for definido (hoje local/horário ainda placeholder).
 
-## Pendências do usuário antes de publicar (placeholders intencionais)
+## Placeholders resolvidos (2026-07-14)
 
-1. **Formulário real** — hoje é mock (o botão não envia). Rodar `/lp-integrar-form cxpress/cafe-bogota-jul26 "<snippet>"`.
-2. **Ponentes** — 2 cards "Ponente por confirmar" (foto placeholder).
-3. **Local (venue)** — "Lugar por confirmar" + mapa a nível de cidade (Bogotá).
-4. **OG image** — `og-cafe-bogota-jul26.png` (1200×630) ainda não gerada.
+Os 4 placeholders intencionais foram preenchidos com as informações do Victor:
+
+1. **Formulário real** — ✅ Jotform `261303944881662` (jsform) integrado via `/lp-integrar-form`. Título interno do form: "Webinar - Cxpress LATAM". Wrapper `.jotform-embed` sem herança de `.form`.
+2. **Ponentes** — ✅ 1 card: **Laura Rodríguez · Cxpress** (foto `assets/laura-rodriguez.jpg`, sem cargo). 2º card removido.
+3. **Local (venue)** — ✅ **Edificio Ecotek**, Cl. 99 #10-57, cerca del Parque de la 93 · Bogotá. Atualizado em `.reach-addr`, iframe do mapa e JSON-LD.
+4. **OG image** — ✅ `og-cafe-bogota-jul26.png` (1200×630) gerada com o design system Cxpress.
 
 ## Back-port recomendado
 

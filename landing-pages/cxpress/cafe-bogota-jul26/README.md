@@ -11,13 +11,15 @@ O bloco `<style>` é idêntico — mesma paleta, tipografia (Open Sans / Source 
 - **Seção "programação/timeline"** (que na ref. tinha horários) foi substituída por **"Caso en vivo"** — a copy não traz agenda com timestamps, e sim a narrativa do workshop (Conteúdo II + IV: Liana & Cora + perguntas reflexivas). Reusa os tokens/estilo do design.
 - **CTA final** ("Los cupos son limitados") adicionado antes do footer, porque a copy tem uma "Chamada final" explícita. É só um botão que rola para o formulário (não um 2º form).
 
-## Placeholders (a resolver antes de publicar)
-| Item | Estado | O que fazer |
+## Placeholders — status (resolvidos em 2026-07-14)
+| Item | Estado | Resolução |
 |---|---|---|
-| **Formulário** | MOCK (campos reais: Nombre, Apellido, Correo corporativo, Teléfono, Empresa, País) | Trocar pelo embed real via `/lp-integrar-form cxpress/cafe-bogota-jul26 "<snippet>"`. Comentário `FORM MOCK` marca o ponto no HTML. |
-| **Fotos dos speakers** | 2 cards com ícone-placeholder | Definir os ponentes, adicionar `assets/{nome}.jpg` e trocar nome/cargo. |
-| **Local (venue)** | "Lugar por confirmar" + mapa centrado em Bogotá (cidade) | Definir o endereço, atualizar `.reach-addr` + `src` do iframe do mapa + `location` no JSON-LD. |
-| **OG image** | Caminho referenciado (`og-cafe-bogota-jul26.png`) ainda não gerado | Gerar 1200×630 e colocar no namespace de assets Cxpress do guarda-chuva. |
+| **Formulário** | ✅ Integrado | Jotform `261303944881662` (jsform) via `/lp-integrar-form`. Wrapper `.jotform-embed` (sem herança de `.form`). Substituiu o mock de 6 campos. |
+| **Ponentes** | ✅ Resolvido | 1 card: **Laura Rodríguez · Cxpress** (sem linha de cargo, por decisão do Victor). Foto `assets/laura-rodriguez.jpg` (400×400, otimizada). 2º card removido → card único centralizado. |
+| **Local (venue)** | ✅ Resolvido | **Edificio Ecotek** · Cl. 99 #10-57, cerca del Parque de la 93 · Bogotá. Atualizado em `.reach-addr` + `src` do iframe (`Calle 99 #10-57, Bogotá`) + `location`/`streetAddress` no JSON-LD. |
+| **OG image** | ✅ Gerada | `og-cafe-bogota-jul26.png` (1200×630), namespace de assets Cxpress do guarda-chuva. |
+
+**Form provider:** Jotform (jsform `261303944881662`) — integrado 2026-07-14.
 
 ## Config técnica
 - `<html lang="es-419">` · `og:locale=es_CO`
