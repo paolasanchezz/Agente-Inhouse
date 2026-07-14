@@ -33,7 +33,7 @@ function formatFullPt(d) {
 // Chave desconhecida -> tambem cai no padrao (fallback seguro, nunca quebra as LPs vizinhas).
 const SERIES = {
   atencion: '17701', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es) — série recriada 2026-07-08 (antiga 17544 esgotou as sessões)
-  buzzcreators: '17560', // Buzzcreators (LP /conheca-o-buzzcreators) — room_pin 286-555-426
+  buzzcreators: '17727', // Buzzcreators (LP /conheca-o-buzzcreators) — série recriada 2026-07-14 (antiga 17560 esgotou as sessões), room_pin 276-382-621
   mcp: '17601', // Buzzmonitor MCP (LP /mcp-na-pratica-p + -confirmado) — room_pin 988-444-441, PT-BR
   'mcp-es': '17646', // Buzzmonitor Que es MCP (LP /que-es-mcp + -confirmado), room_pin 224-255-882, ES-LATAM, tz America/Mexico_City
 };

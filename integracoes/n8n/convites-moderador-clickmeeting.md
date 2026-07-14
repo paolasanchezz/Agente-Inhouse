@@ -22,7 +22,7 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 2. **Code** — para cada série do mapa `SERIES`: filtra `recurring_config_id` + `registration_enabled` + `starts_at` futuro, pega a **mais próxima**, e emite 1 item por (sessão, e-mail de moderador).
 3. **POST** `…/conferences/{roomId}/invitation/email/{lang}` com `attendees[0][email]`, `template=advanced`, `role=presenter`. `onError: continueRegularOutput` (uma falha não derruba o lote). **Sem retry** — a API não deduplica, retry = e-mail em dobro.
 
-## Séries (estado 2026-07-07 — igual ao config.json da skill)
+## Séries (estado 2026-07-14 — igual ao config.json da skill)
 
 | recurring_config_id | Rótulo | Moderador(es) | lang |
 |---|---|---|---|
@@ -30,7 +30,7 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 | 17671 | Cxpress Vozxpress (Case IA de Voz) | lilian.longo@gocxpress.com.br | br |
 | 17701 | Buzzmonitor Atención (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
 | 17646 | Buzzmonitor ¿Qué es MCP? (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
-| 17560 | Buzzcreators | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
+| 17727 | Buzzcreators | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
 
 ## Detalhes que importam
 

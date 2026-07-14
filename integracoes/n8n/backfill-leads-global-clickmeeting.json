@@ -1,0 +1,549 @@
+{
+  "name": "BACKFILL 1x — ClickMeeting → Leads-global (remover após uso)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b2c00003-0000-4000-8000-000000000001",
+      "name": "Disparo manual (teste)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "backfill-leads-global-2026-07-14",
+        "options": {}
+      },
+      "id": "b2c00003-0000-4000-8000-000000000002",
+      "name": "Webhook disparo único",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.clickmeeting.com/v1/conferences/active",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "c4177abb-a421-49e0-9c06-6f8f00f304ec",
+      "name": "CM: conferências ativas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        272,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cn3XXNfzZXoS9DS8",
+          "name": "ClickMeeting API"
+        }
+      },
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "url": "https://api.clickmeeting.com/v1/conferences/inactive",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "b5cd2850-0f65-4d5b-b5fc-723c615a1dd0",
+      "name": "CM: conferências inativas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        272,
+        224
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cn3XXNfzZXoS9DS8",
+          "name": "ClickMeeting API"
+        }
+      },
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Seleciona TODA conferencia com pagina de inscricao (registration_enabled), sem lista\n// fixa de series ou nomes: webinar novo do marketing entra sozinho, recorrente OU avulso.\n// - Ativas (agendadas/futuras): entram sempre.\n// - Inativas (ja aconteceram): so as dos ultimos LOOKBACK_DIAS. Inscricao nao nasce depois\n//   da sessao — o rescan curto cobre quem se inscreveu entre o ultimo run e o inicio da\n//   sessao, e atualiza a presenca (Participou?). Historico antigo ja esta na planilha.\n// - BLOQUEIO_RID: valvula de EXCLUSAO pontual (fail-open — na duvida a sala ENTRA;\n//   linha indesejada na planilha e reversivel, lead perdido nao).\nconst LOOKBACK_DIAS = 36500;\nconst BLOQUEIO_RID = new Set(['17643']); // \"teste1\" (serie de teste conhecida)\n\nfunction coletar(nomeNode) {\n  const confs = [];\n  let items = [];\n  try { items = $(nomeNode).all(); } catch (e) { return confs; }\n  for (const it of items) {\n    const j = it.json;\n    if (Array.isArray(j)) confs.push(...j);\n    else if (j && Array.isArray(j.data)) confs.push(...j.data);\n    else if (j && (j.id || j.recurring_config_id)) confs.push(j);\n  }\n  return confs;\n}\n\nconst ativas = coletar('CM: conferências ativas');\nconst inativas = coletar('CM: conferências inativas');\nconst corte = Date.now() - LOOKBACK_DIAS * 24 * 60 * 60 * 1000;\n\nconst vistos = new Set();\nconst salas = [];\nfunction considerar(c, origem) {\n  if (!c || c.id == null) return;\n  const idStr = String(c.id);\n  if (vistos.has(idStr)) return;\n  vistos.add(idStr);\n  const temInscricao = c.registration_enabled === 1 || c.registration_enabled === true;\n  if (!temInscricao) return;\n  const rid = c.recurring_config_id == null ? '' : String(c.recurring_config_id);\n  if (rid && BLOQUEIO_RID.has(rid)) return;\n  if (origem === 'inativa') {\n    const t = c.starts_at ? new Date(c.starts_at).getTime() : NaN;\n    if (!Number.isFinite(t) || t < corte) return;\n  }\n  salas.push({ json: {\n    salaId: c.id,\n    salaNome: String(c.name || '').trim() || ('Sala ' + idStr),\n    rid: rid,\n    startsAt: c.starts_at || '',\n    timezone: c.timezone || '',\n  }});\n}\nfor (const c of ativas) considerar(c, 'ativa');\nfor (const c of inativas) considerar(c, 'inativa');\n\nsalas.sort((a, b) => String(a.json.startsAt).localeCompare(String(b.json.startsAt)));\nconsole.log('Salas a varrer: ' + salas.length + ' (de ' + (ativas.length + inativas.length) + ' conferencias vistas)');\nreturn salas;\n"
+      },
+      "id": "e1200fed-3e2d-4010-8646-2f796da64b51",
+      "name": "Selecionar salas com inscrição",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        528,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "b2c00002-0000-4000-8000-000000000001",
+      "name": "Loop A (inscritos por sala)",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        768,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clickmeeting.com/v1/conferences/{{ $json.salaId }}/registrations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "ea355fdd-3b59-49bf-8fe3-7348cfcf3fd1",
+      "name": "CM: inscritos da sala",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1008,
+        288
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cn3XXNfzZXoS9DS8",
+          "name": "ClickMeeting API"
+        }
+      },
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// O done do Loop A devolve os itens que voltaram do loop (inscritos), nao as salas.\n// Recarrega a lista de salas do Selecionar para o Loop B varrer na MESMA ordem\n// (a ordem identica e o que permite o join deterministico por iteracao no Montar linhas).\nreturn $('Selecionar salas com inscrição').all().map((it) => ({ json: it.json }));\n"
+      },
+      "id": "b2c00002-0000-4000-8000-000000000002",
+      "name": "Repor salas p/ presença",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "b2c00002-0000-4000-8000-000000000003",
+      "name": "Loop B (presença por sala)",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1248,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clickmeeting.com/v1/conferences/{{ $json.salaId }}/sessions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "b2c00002-0000-4000-8000-000000000004",
+      "name": "CM: sessões da sala",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1488,
+        288
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cn3XXNfzZXoS9DS8",
+          "name": "ClickMeeting API"
+        }
+      },
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recebe a resposta de /sessions da sala atual do Loop B e emite 1 item por sessao\n// realizada, carimbando o salaId (o payload de /sessions nao traz o id da sala).\n// Sala futura ou sem sessao realizada -> retorna [] (o alwaysOutputData emite um item\n// vazio, o GET de attendees da 404 e o Montar linhas trata como presenca indisponivel).\nlet sala = null;\ntry { const x = $('Loop B (presença por sala)').item; sala = x && x.json; } catch (e) {}\nif (!sala || sala.salaId == null) {\n  try { sala = $('Loop B (presença por sala)').all(1)[0].json; } catch (e) {}\n}\nif (!sala || sala.salaId == null) return [];\n\nconst out = [];\nfor (const it of $input.all()) {\n  const j = it.json;\n  if (!j || j.error) continue;\n  const sess = Array.isArray(j) ? j : (Array.isArray(j.body) ? j.body : (j.id != null ? [j] : []));\n  for (const s of sess) {\n    if (s && s.id != null) out.push({ json: { salaId: sala.salaId, sessionId: s.id } });\n  }\n}\nreturn out;\n"
+      },
+      "id": "b2c00002-0000-4000-8000-000000000005",
+      "name": "Preparar consulta de presença",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1728,
+        288
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "url": "=https://api.clickmeeting.com/v1/conferences/{{ $json.salaId }}/sessions/{{ $json.sessionId }}/attendees",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "b2c00002-0000-4000-8000-000000000006",
+      "name": "CM: presentes da sessão",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1968,
+        288
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cn3XXNfzZXoS9DS8",
+          "name": "ClickMeeting API"
+        }
+      },
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Junta cada sala (ordem emitida pelo Selecionar) com os resultados das iteracoes dos\n// dois loops. Join DETERMINISTICO por indice de execucao (runIndex): os loops processam\n// 1 sala por vez, na MESMA ordem — a execucao i de cada no e exatamente a sala i.\n// Nao depende de parsing de room_pin do link do inscrito.\nconst salas = $('Selecionar salas com inscrição').all().map((it) => it.json);\nconst linhas = [];\nlet httpErros = 0;\n\nfunction flatten(items) {\n  const regs = [];\n  for (const it of items) {\n    const j = it.json;\n    if (!j) continue;\n    if (j.error) { httpErros++; continue; }   // onError: continueRegularOutput\n    if (Array.isArray(j)) regs.push(...j);\n    else if (Array.isArray(j.body)) regs.push(...j.body);\n    else if (j.email || j.visitor_nickname || j.id) regs.push(j);\n    // item {} do alwaysOutputData (resposta vazia) nao entra em nenhum caso acima\n  }\n  return regs;\n}\n\nfor (let i = 0; i < salas.length; i++) {\n  const sala = salas[i];\n\n  let regsItems = [];\n  try { regsItems = $('CM: inscritos da sala').all(0, i); } catch (e) { regsItems = []; }\n  const regs = flatten(regsItems);\n  if (!regs.length) continue;\n\n  // Presenca da iteracao i (Loop B varre as MESMAS salas na MESMA ordem do Loop A)\n  let prepItems = [];\n  try { prepItems = $('Preparar consulta de presença').all(0, i); } catch (e) { prepItems = []; }\n  const houveSessao = prepItems.some((it) => it.json && it.json.sessionId != null);\n\n  let attItems = [];\n  try { attItems = $('CM: presentes da sessão').all(0, i); } catch (e) { attItems = []; }\n  const attErro = attItems.some((it) => it.json && it.json.error);\n  const presentes = new Set();\n  for (const a of flatten(attItems)) {\n    const em = (a.email || '').toString().toLowerCase().trim();\n    if (em) presentes.add(em);\n  }\n\n  for (const r of regs) {\n    const f = (r && r.fields) || {};\n    const geo = (r && r.geo) || {};\n    const email = (r.email || f['Email Address'] || '').toString().toLowerCase().trim();\n    if (!email) continue;\n\n    // Sim = email esta nos attendees da sessao realizada.\n    // Nao = sessao realizada, consulta de presenca OK e email fora da lista.\n    // ''  = sessao ainda nao aconteceu, ou presenca indisponivel (erro de consulta).\n    let participou = '';\n    if (houveSessao) {\n      if (presentes.has(email)) participou = 'Sim';\n      else if (!attErro) participou = 'Não';\n    }\n\n    linhas.push({ json: {\n      'Data inscrição': r.registration_date || r.registration_confirmed || '',\n      'Nome': r.visitor_nickname || f['Name'] || '',\n      'Email': email,\n      'Empresa': f['Company'] || '',\n      'País': geo.country || '',\n      'Cidade': geo.city || '',\n      'Marca/Sala': sala.salaNome,\n      'Série': sala.rid,\n      'Sessão': sala.startsAt,\n      'Origem': r.http_referer || '',\n      'Link de acesso': r.url || '',\n      'Participou?': participou,\n      'Chave': email + '|' + sala.salaId,\n    }});\n  }\n}\nif (httpErros) console.log('Respostas HTTP com erro (puladas/presenca indisponivel): ' + httpErros);\nconsole.log('Linhas montadas: ' + linhas.length);\nreturn linhas;\n"
+      },
+      "id": "ec334854-aa85-4545-8e2b-feb6c95d1a27",
+      "name": "Montar linhas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1CTmui4aWRDoj3rgBEXVa1B0SKDcsznZdLmR2uA_2s8E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2014321175,
+          "mode": "list",
+          "cachedResultName": "Leads-global",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CTmui4aWRDoj3rgBEXVa1B0SKDcsznZdLmR2uA_2s8E/edit#gid=2014321175"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "schema": [
+            {
+              "id": "Data inscrição",
+              "displayName": "Data inscrição",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "País",
+              "displayName": "País",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cidade",
+              "displayName": "Cidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Marca/Sala",
+              "displayName": "Marca/Sala",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Série",
+              "displayName": "Série",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sessão",
+              "displayName": "Sessão",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Origem",
+              "displayName": "Origem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link de acesso",
+              "displayName": "Link de acesso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Participou?",
+              "displayName": "Participou?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chave",
+              "displayName": "Chave",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "66124ba0-5093-4e87-85bb-005e5f996490",
+      "name": "Google Sheets: gravar inscritos",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1728,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0TSrsC6Hbg1eJW2K",
+          "name": "Google Sheets account Rezende 2 Gchat Training"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Disparo manual (teste)": {
+      "main": [
+        [
+          {
+            "node": "CM: conferências ativas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook disparo único": {
+      "main": [
+        [
+          {
+            "node": "CM: conferências ativas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CM: conferências ativas": {
+      "main": [
+        [
+          {
+            "node": "CM: conferências inativas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CM: conferências inativas": {
+      "main": [
+        [
+          {
+            "node": "Selecionar salas com inscrição",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selecionar salas com inscrição": {
+      "main": [
+        [
+          {
+            "node": "Loop A (inscritos por sala)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop A (inscritos por sala)": {
+      "main": [
+        [
+          {
+            "node": "Repor salas p/ presença",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CM: inscritos da sala",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CM: inscritos da sala": {
+      "main": [
+        [
+          {
+            "node": "Loop A (inscritos por sala)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repor salas p/ presença": {
+      "main": [
+        [
+          {
+            "node": "Loop B (presença por sala)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop B (presença por sala)": {
+      "main": [
+        [
+          {
+            "node": "Montar linhas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CM: sessões da sala",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CM: sessões da sala": {
+      "main": [
+        [
+          {
+            "node": "Preparar consulta de presença",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar consulta de presença": {
+      "main": [
+        [
+          {
+            "node": "CM: presentes da sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CM: presentes da sessão": {
+      "main": [
+        [
+          {
+            "node": "Loop B (presença por sala)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar linhas": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets: gravar inscritos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

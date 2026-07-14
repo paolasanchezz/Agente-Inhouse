@@ -32,7 +32,7 @@ Voce envia, todo dia util, 1 convite de moderador para a proxima sessao agendada
 PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 "$PYBIN" .claude/skills/convites-moderador/send_invites.py            # envio normal
 "$PYBIN" .claude/skills/convites-moderador/send_invites.py --dry-run   # so imprime o plano
-"$PYBIN" .claude/skills/convites-moderador/send_invites.py --series 17560   # so Buzzcreators
+"$PYBIN" .claude/skills/convites-moderador/send_invites.py --series 17727   # so Buzzcreators
 ```
 
 Exit code: `0` = tudo enviado. `1` = alguma falha (ver stdout pra detalhe).
@@ -48,7 +48,7 @@ A skill em si e basicamente "rode o script e cole o stdout no chat". Sem args, d
   "series": {
     "17529": { "label": "Cxpress", "moderator_email": "...", "lang": "br" },
     "17701": { "label": "Buzzmonitor Atencion (LATAM)", "moderator_email": "...", "lang": "es" },
-    "17560": { "label": "Buzzcreators", "moderator_email": "...", "lang": "br" }
+    "17727": { "label": "Buzzcreators", "moderator_email": "...", "lang": "br" }
   }
 }
 ```

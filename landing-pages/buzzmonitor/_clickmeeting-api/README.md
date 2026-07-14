@@ -26,7 +26,7 @@ compartilhada — hoje `17529`, Cxpress). Com `?series=<chave>`, usa o mapa `SER
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
 | `atencion` | `17701` | Buzzmonitor Atención al Cliente (ES-LATAM) — série recriada 2026-07-08 (antiga `17544` esgotou as sessões) | `/atencion-al-cliente-es` (+ `-confirmado`) |
-| `buzzcreators` | `17560` | Conheça o Buzzcreators (room_pin 286-555-426) | `/conheca-o-buzzcreators` (+ `-confirmado`) |
+| `buzzcreators` | `17727` | Conheça o Buzzcreators — série recriada 2026-07-14 (antiga `17560` esgotou as sessões), room_pin 276-382-621 | `/conheca-o-buzzcreators` (+ `-confirmado`) |
 | `mcp` | `17601` | Buzzmonitor MCP (PT-BR, room_pin 988-444-441) | `/mcp-na-pratica-p` (+ `-confirmado`) |
 | `mcp-es` | `17646` | Buzzmonitor Que es MCP (ES-LATAM, room_pin 224-255-882, tz America/Mexico_City) | `/que-es-mcp` (+ `-confirmado`) |
 
