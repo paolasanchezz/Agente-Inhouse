@@ -121,7 +121,7 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 - [x] 3.4 Conflito: instrução de rebase/reaplicação no Passo 0.0 das skills (a pessoa de marketing não vê Git — a skill resolve e segue).
 - [x] 3.5 CONTEXT.md §2.6 (fluxo CI) + regra geral com gate; CLAUDE.md seção LP; CHANGELOG (v4.0.0 + 4 skills de edição).
 
-**Critério de aceite:** publicação ponta-a-ponta sem nenhum toque do Victor num PR só-LP; PR misto (LP + skill) trava esperando revisão.
+**Critério de aceite — VALIDADO 2026-07-15:** PR #66 (só conteúdo) mergeou e publicou sozinho, marcador confirmado no live com SMOKE OK; PR #67 (misto conteúdo+mecânica) travou com label `precisa-revisao-victor` e sem merge. ✓
 
 ### Fase 4 — Rollout + revogação de credenciais (1 sessão + observação)
 
