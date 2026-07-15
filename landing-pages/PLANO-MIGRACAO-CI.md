@@ -125,7 +125,7 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 
 ### Fase 4 — Rollout + revogação de credenciais (1 sessão + observação)
 
-- [ ] 4.1 Migrar `webinar.buzzmonitor.com` (15 LPs — o maior; paridade já provada na Fase 1, re-validar fresh antes do cutover), depois `evento.*` e `material.*`. Um por vez, com 2–3 dias entre eles.
+- [x] 4.1 Migração completa em 2026-07-15 (Victor autorizou acelerar — a bateria de testes sintéticos do item 2.5 substituiu a observação): webinar (27 LPs, SMOKE OK + função serverless `api/clickmeeting-register` validada contra baseline 405/JSON — o `vercel deploy` não-prebuilt builda `api/` normalmente), evento (4 LPs) e material (6 LPs) deployados via dispatch supervisionado e adicionados ao MIGRADOS.json. **Os 4 guarda-chuvas agora deployam exclusivamente via CI.**
 - [ ] 4.2 Com os 4 migrados: **remover `VERCEL_TOKEN` dos `.env.local` de todas as máquinas e revogar os tokens antigos na Vercel UI**. A partir daqui o incidente clássico é fisicamente impossível — nenhuma máquina tem credencial de deploy.
 - [ ] 4.3 `lp-health-check` v2: além do HTTP check, comparar live × manifesto (fica trivial: o manifesto É o estado esperado). Mantém como vigia diário.
 - [ ] 4.4 `content.elife.com` (1ª LP Elife) já nasce no modelo novo — criar manifesto, sem sibling nunca.
