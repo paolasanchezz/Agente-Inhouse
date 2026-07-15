@@ -109,7 +109,7 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 - [x] 2.2 Rollback automático implementado E ENSAIADO DE VERDADE (input `force_fail`): deploy real no piloto → falha simulada → promote do deploy anterior → 30/30 URLs ok, run vermelho. O ensaio achou e corrigiu bug real: alvo de rollback agora é o deploy que o ALIAS serve (não o "último READY" — errado após rollback anterior). Alerta por email/issue fica de melhoria (o run vermelho já notifica pelo GitHub).
 - [x] 2.3 Cutover do piloto (2026-07-15): `content.cxpress.io` em MIGRADOS.json; `lp-publicar` v3.10.0 recusa domínios migrados (Passo 0.0). Pendência menor: mensagem específica no hook `guard_vercel_deploy.py` (o gate da skill já cobre o fluxo normal).
 - [ ] 2.4 Criar `lp-pr.yml` (validações + preview em PR) — junto do merge-bot na Fase 3.
-- [ ] 2.5 Rodar 2–3 publicações reais do time no piloto. Medir: tempo edição→ar, falhas, dúvidas do time.
+- [x] 2.5 **Substituído por bateria de testes sintéticos** (decisão do Victor 2026-07-15 — sem tempo pra observação passiva): (1) build quebrado em PR → reprovou sem merge (PR #68 ✓); (2) concorrência real — 2 PRs quase simultâneos em LPs distintas → ambos mergearam, deploys enfileiraram, os 2 marcadores no ar (PRs #69/#70 ✓); (3) LP nova via manifesto + guarda de despublicação (PRs #71/#72); (4) rollback — já ensaiado na 2.2 ✓. Dúvidas reais do time serão tratadas conforme aparecerem.
 
 **Critério de aceite:** ≥3 publicações reais sem incidente; rollback testado de verdade (simular deploy quebrado num sábado de manhã, não descobrir em produção); nenhuma vizinha afetada (por construção + smoke test).
 
