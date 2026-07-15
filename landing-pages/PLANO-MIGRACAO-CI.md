@@ -115,11 +115,11 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 
 ### Fase 3 — Merge-bot + skills v4 (1–2 sessões)
 
-- [ ] 3.1 Adicionar auto-merge ao `lp-pr.yml`: diff ∈ paths livres + checks verdes → `gh pr merge --squash --admin`; senão → label `precisa-revisao-victor` + request review.
-- [ ] 3.2 `lp-publicar` v4.0 (MAJOR — quebra interface): para domínios migrados, o fluxo vira: `git pull --rebase` → atualizar manifesto → commit/PR → aguardar Action → validar resultado no ar → relatório Notion (mantido). Sem sibling, sem sync, sem drift-check, sem token Vercel local.
-- [ ] 3.3 `lp-gerar`, `lp-revisar`, `lp-integrar-form`: novo Passo 0 = `git pull --rebase` + `git branch --show-current` (proteção contra working tree compartilhada entre sessões).
-- [ ] 3.4 Conflito de PR (mesma LP editada por 2 pessoas): a skill detecta, puxa a versão da main, reaplica a mudança e atualiza o PR — pessoa de marketing não vê Git nenhum.
-- [ ] 3.5 Atualizar CONTEXT.md (novo fluxo, aposentar §4.3/troubleshooting de sibling para domínios migrados), CLAUDE.md, CHANGELOG.
+- [x] 3.1 `lp-pr.yml` criado (2026-07-15): valida (build dos 4 domínios + `pr_check.py` — classificação de paths + guarda de despublicação), auto-mergeia diff 100%-conteúdo via GITHUB_TOKEN e dispara `lp-deploy` por `workflow_dispatch` (push do GITHUB_TOKEN não dispara workflow — regra anti-recursão). Diff com mecânica → label `precisa-revisao-victor` + comentário com motivos. **Preview deploy adiado:** URLs de preview do Vercel são SSO-protected (memória 2026-07-09) — inúteis pro time sem bypass token; fica como melhoria.
+- [x] 3.2 `lp-publicar` v4.0.0: Passo 0.0 conduz o fluxo CI completo (pull → manifesto → validação local via build → entrega → acompanhar run → Notion). Fluxo clássico intacto pros não migrados.
+- [x] 3.3 `lp-preparar` v1.4.0, `lp-gerar` v1.8.0, `lp-revisar` v1.7.0, `lp-integrar-form` v1.4.0: Passo 0.0 `git pull --rebase` + branch check.
+- [x] 3.4 Conflito: instrução de rebase/reaplicação no Passo 0.0 das skills (a pessoa de marketing não vê Git — a skill resolve e segue).
+- [x] 3.5 CONTEXT.md §2.6 (fluxo CI) + regra geral com gate; CLAUDE.md seção LP; CHANGELOG (v4.0.0 + 4 skills de edição).
 
 **Critério de aceite:** publicação ponta-a-ponta sem nenhum toque do Victor num PR só-LP; PR misto (LP + skill) trava esperando revisão.
 

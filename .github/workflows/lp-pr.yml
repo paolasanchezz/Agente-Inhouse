@@ -1,0 +1,83 @@
+# Merge-bot de LPs (PLANO-MIGRACAO-CI.md Fase 3).
+#
+# Em todo PR pra main: valida (build dos 4 guarda-chuvas + classificação de paths
+# + guarda de despublicação via pr_check.py). Se o diff só toca PATHS LIVRES
+# (conteúdo: landing-pages/{marca}/**, manifestos, brand/*/assets/**) e tudo passa,
+# MERGEIA SOZINHO (squash) e dispara o lp-deploy dos domínios migrados afetados.
+# Qualquer path de mecânica (skills, build/, .github/, vercel.json, ...) → rotula
+# "precisa-revisao-victor" e espera aprovação humana.
+#
+# Nota: o merge usa GITHUB_TOKEN, cujo push NÃO dispara o lp-deploy por push-event
+# (regra anti-recursão do GitHub) — por isso o dispatch explícito via workflow_dispatch.
+name: Valida PR de LP
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: lp-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Build dos 4 guarda-chuvas (validação)
+        env:
+          REPO_ROOT: ${{ github.workspace }}
+        run: |
+          for m in landing-pages/dominios/*/manifest.json; do
+            echo "== build $m"
+            python3 landing-pages/build/build_umbrella.py "$m" "/tmp/dist-$(basename "$(dirname "$m")")"
+          done
+
+      - name: Classificar diff (pr_check)
+        id: check
+        env:
+          REPO_ROOT: ${{ github.workspace }}
+        run: |
+          git fetch origin main
+          python3 landing-pages/build/pr_check.py origin/main | tee /tmp/pr_check.json
+          echo "livre=$(jq -r '.livre' /tmp/pr_check.json)" >> "$GITHUB_OUTPUT"
+          echo "dominios=$(jq -c '.dominios_afetados' /tmp/pr_check.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Auto-merge (diff 100% conteúdo)
+        if: steps.check.outputs.livre == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash
+          for d in $(jq -r '.[]' <<< '${{ steps.check.outputs.dominios }}'); do
+            echo "disparando deploy de $d"
+            gh workflow run lp-deploy.yml --repo "$GITHUB_REPOSITORY" -f dominio="$d"
+          done
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body \
+            "🤖 Merge automático (diff só de conteúdo). Deploy disparado para: ${{ steps.check.outputs.dominios }}. Acompanhe em Actions → Deploy LPs."
+
+      - name: Rotular pra revisão humana (diff toca mecânica ou despublica)
+        if: steps.check.outputs.livre != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/labels" -f name="precisa-revisao-victor" -f color="d93f0b" 2>/dev/null || true
+          gh pr edit "$PR" --repo "$GITHUB_REPOSITORY" --add-label "precisa-revisao-victor"
+          MOTIVOS=$(jq -r '(.motivos + .remocoes_slug)[]' /tmp/pr_check.json | sed 's/^/- /')
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body \
+            "🔒 Este PR precisa da revisão do Victor antes do merge:
+
+          ${MOTIVOS}
+
+          (Paths de conteúdo mergeiam sozinhos; mecânica e despublicação passam por revisão — ver landing-pages/PLANO-MIGRACAO-CI.md §1.2.)"

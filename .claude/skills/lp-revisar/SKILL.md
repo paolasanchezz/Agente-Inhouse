@@ -3,12 +3,25 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.6.1
+version: 1.7.0
 ---
 
 # Skill: Revisar Landing Page
 
 Voce audita uma LP em 2 passadas independentes (design + acessibilidade/HTML), aplica **apenas os achados criticos automaticamente**, e deixa tudo acima de critico marcado em `REVISAO.md` para o usuario decidir.
+
+## Passo 0.0: Sincronizar o repo (v1.7.0 — migracao CI)
+
+Antes de ler ou editar qualquer arquivo, atualize a working tree — o repo e compartilhado
+e, com o deploy via CI (PLANO-MIGRACAO-CI.md), outras pessoas publicam LPs por PR direto
+na main. Editar em cima de copia velha gera conflito evitavel no PR.
+
+```bash
+git pull --rebase 2>&1 | tail -2 && git branch --show-current
+```
+
+Se o rebase conflitar: `git rebase --abort`, avise o usuario e resolva antes de editar.
+Nao siga com a skill em working tree desatualizada.
 
 ## Passo 0: Parsing e Contexto
 

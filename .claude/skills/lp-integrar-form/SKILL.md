@@ -3,12 +3,25 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §11).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Skill: Integrar Formulario em Landing Page
 
 Substitui o form mock (`<form action="#">`) por um embed externo. Aplica o CSS wrapper canonico para manter layout. **Nao roda dentro do pipeline** — usuario invoca manualmente quando o design esta aprovado.
+
+## Passo 0.0: Sincronizar o repo (v1.4.0 — migracao CI)
+
+Antes de ler ou editar qualquer arquivo, atualize a working tree — o repo e compartilhado
+e, com o deploy via CI (PLANO-MIGRACAO-CI.md), outras pessoas publicam LPs por PR direto
+na main. Editar em cima de copia velha gera conflito evitavel no PR.
+
+```bash
+git pull --rebase 2>&1 | tail -2 && git branch --show-current
+```
+
+Se o rebase conflitar: `git rebase --abort`, avise o usuario e resolva antes de editar.
+Nao siga com a skill em working tree desatualizada.
 
 ## Passo 0: Parsing e Contexto
 

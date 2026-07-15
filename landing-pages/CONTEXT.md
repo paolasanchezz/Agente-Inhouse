@@ -49,7 +49,7 @@ Matriz **"o que mudou → o que rodar"**. Sempre editar a fonte (`landing-pages/
 | Sibling divergente (alguém editou direto na sibling) | reaplicar mudança em `landing-pages/{marca}/{slug}/` (recuperar via `git diff` na sibling se preciso) | `/lp-publicar` sobrescreve sibling com source | sim |
 | Inspeção / debug local sem deploy (sibling precisa estar fresh) | — | `/lp-sync [dominio]` (read-only — popula sibling com último deploy READY via Vercel API) | — (não deploya) |
 
-**Regra geral (pipeline Vercel):** toda alteração ou deploy de LP roda pela skill `lp-publicar`. Fluxo manual (`cd sibling && vercel deploy ...`) é anti-padrão — mata as 4 camadas de defesa da skill (§4.3) e historicamente causa regressão silenciosa em vizinhas (§7.2, 2026-05-13). Se você precisa apenas inspecionar a sibling sem deployar, use `/lp-sync` para garantir snapshot fresh; nunca invente fluxo manual com lista hardcoded de vizinhas. **Exceção:** publicação direta no **Webflow**, a pedido explícito do usuário, não passa por `lp-publicar` — ver §2.4.
+**Regra geral (pipeline Vercel):** primeiro cheque `landing-pages/dominios/MIGRADOS.json` — domínio listado lá deploya **exclusivamente via CI** (§2.6), e a `lp-publicar` v4 aplica esse gate sozinha no Passo 0.0. Para os demais domínios, toda alteração ou deploy de LP roda pela skill `lp-publicar`. Fluxo manual (`cd sibling && vercel deploy ...`) é anti-padrão — mata as 4 camadas de defesa da skill (§4.3) e historicamente causa regressão silenciosa em vizinhas (§7.2, 2026-05-13). Se você precisa apenas inspecionar a sibling sem deployar, use `/lp-sync` para garantir snapshot fresh; nunca invente fluxo manual com lista hardcoded de vizinhas. **Exceção:** publicação direta no **Webflow**, a pedido explícito do usuário, não passa por `lp-publicar` — ver §2.4.
 
 ### 2.3 Anti-padrões de fluxo
 
@@ -81,6 +81,20 @@ Ao **montar** uma LP no Webflow via MCP (superfície headless `data_*`), leia an
 Exemplo de checklist de entrega ao cliente (imagens por seção, nome exato de cada placeholder): `landing-pages/buzzmonitor/webflow-teste-claude-imagens-checklist.md`.
 
 > **Lar versionado das armadilhas = §7 do guia.** Armadilha nova do MCP do Webflow vai lá, não aqui — esta seção é só o ponteiro.
+
+### 2.6 Domínios migrados pro CI (deploy via GitHub Actions)
+
+Desde 2026-07-15, guarda-chuvas listados em `landing-pages/dominios/MIGRADOS.json` **não usam sibling nem deploy local** — o deploy é exclusivo do workflow `.github/workflows/lp-deploy.yml`. Racional, plano completo e histórico: [`PLANO-MIGRACAO-CI.md`](PLANO-MIGRACAO-CI.md).
+
+Como funciona:
+
+1. **Fonte de verdade = manifesto por domínio** (`landing-pages/dominios/{dominio-com-hifens}/manifest.json`): lista de slugs ativos + marca + source. Publicar = entrar no manifesto; despublicar = sair (só com revisão do Victor). O `vercel.json` do domínio vive versionado na mesma pasta.
+2. **Todo merge na main tocando `landing-pages/**` ou `brand/**` deploya os domínios migrados**: `deploy_ci.py` builda a main inteira (`build_umbrella.py`), deploya no Vercel, roda smoke em TODAS as URLs do manifesto e, em falha, faz **rollback automático** pro deploy que o alias servia.
+3. **Merge-bot** (`lp-pr.yml`): PR cujo diff só toca conteúdo (LPs, manifestos, `brand/*/assets/`) mergeia sozinho após validações e dispara o deploy — autonomia do time preservada. Diff tocando mecânica (skills, build/, .github/, `vercel.json`, MIGRADOS.json) → label `precisa-revisao-victor`.
+4. **Fluxo operacional completo** (sync → manifesto → validação local → entrega → acompanhamento): Passo 0.0 da skill `lp-publicar` v4.
+5. Deploy manual de emergência: `gh workflow run lp-deploy.yml -f dominio={dominio}` (dispatch builda a main atual; `force_fail=true` só pra ensaio de rollback supervisionado).
+
+O que este modelo elimina: sibling local, `lp-sync` pré-deploy, drift-check, corrida entre colaboradores (deploy soma a main inteira — LP de X nunca some no deploy de Y) e token Vercel nas máquinas (revogação na Fase 4 do plano).
 
 ---
 

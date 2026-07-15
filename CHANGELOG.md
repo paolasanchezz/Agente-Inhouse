@@ -12,6 +12,24 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar — fluxo CI completo pra domínios migrados
+### 2026-07-15 — v4.0.0 — Passo 0.0 vira o fluxo novo (MAJOR)
+
+Fase 3 da migração LP→CI. Para domínio em `MIGRADOS.json`, a skill não usa mais NADA do
+fluxo sibling — o Passo 0.0 agora conduz o fluxo completo: `git pull --rebase` → source +
+manifesto (`landing-pages/dominios/{dom}/manifest.json`) → validação local com
+`build_umbrella.py` → entrega (colaborador via `/commit` + merge-bot; admin direto na main)
+→ acompanhar o run do `lp-deploy.yml` (smoke + rollback automático) → relatório Notion.
+Domínios não migrados seguem no fluxo clássico v3.9.x intacto. MAJOR porque muda o
+comportamento da interface pro piloto content.cxpress.io.
+
+## lp-preparar v1.4.0 · lp-gerar v1.8.0 · lp-revisar v1.7.0 · lp-integrar-form v1.4.0 — sync do repo
+### 2026-07-15 — Passo 0.0: `git pull --rebase` antes de editar
+
+Com o deploy via CI, colaboradores publicam por PR direto na main — editar em cima de
+working tree velha vira conflito evitável. As 4 skills de edição ganham Passo 0.0 que
+sincroniza o repo (e aborta com aviso se o rebase conflitar) antes de tocar em arquivo.
+
 ## lp-publicar — gate de domínio migrado pro CI
 ### 2026-07-15 — v3.10.0 — Passo 0.0: recusa domínio listado em MIGRADOS.json
 

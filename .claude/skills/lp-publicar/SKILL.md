@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.10.0
+version: 4.0.0
 ---
 
 # Skill: Publicar Landing Page
@@ -21,21 +21,68 @@ A skill opera em dois modos:
 
 A diferenca pratica: no modo guarda-chuva voce **nao cria projeto Vercel novo**, **anexa a LP** como subpasta ao sibling existente, **namespaceia assets por marca** (`/assets/{marca}/X`) para evitar colisao com vizinhas, e o relatorio inclui smoke test de **todas** as LPs do projeto.
 
-## Passo 0.0: Dominio migrado pro CI? (GATE — v3.10.0)
+## Passo 0.0: Dominio migrado pro CI? (v4.0.0 — fluxo novo completo)
 
 Antes de qualquer coisa, leia `landing-pages/dominios/MIGRADOS.json`. Se o dominio-alvo
-(3o argumento) estiver na lista, **PARE — esta skill nao deploya mais esse dominio.**
-O deploy dele agora e exclusivo do GitHub Actions (workflow `lp-deploy.yml`), que builda
-a main inteira a partir dos manifestos em `landing-pages/dominios/{dominio}/manifest.json`.
+(3o argumento) estiver na lista, **NAO use o fluxo sibling deste documento** (Passos 0.1
+em diante) — o deploy desse dominio e exclusivo do GitHub Actions. Siga o **FLUXO CI**
+abaixo e ignore o resto da skill. Se o dominio nao esta na lista (ou modo solo), siga o
+fluxo classico normalmente — mas se o Passo 0.5 detectar guarda-chuva cujo dominio esta
+em MIGRADOS.json, volte pra ca. Racional: `landing-pages/PLANO-MIGRACAO-CI.md`.
 
-Fluxo novo para dominio migrado: editar o source em `landing-pages/{marca}/{slug}/`
-(+ adicionar a LP ao `manifest.json` do dominio, se nova) → commitar na main (via
-`/commit` ou fluxo do admin) → o push deploya sozinho, com smoke test e rollback
-automatico. Acompanhe em `gh run list --workflow=lp-deploy.yml`.
+### FLUXO CI (dominios migrados)
 
-Se o dominio nao foi informado (modo solo), siga normalmente — mas se o Passo 0.5
-detectar guarda-chuva cujo dominio esta em MIGRADOS.json, aplique este gate ali.
-Detalhes e racional: `landing-pages/PLANO-MIGRACAO-CI.md`.
+**a. Sincronizar o repo** (working tree pode estar atras da main — outras pessoas publicam por PR):
+
+```bash
+git pull --rebase 2>&1 | tail -2 && git branch --show-current
+```
+
+Se houver conflito no rebase: NAO force. Rode `git rebase --abort`, avise o usuario que
+outra pessoa mexeu nos mesmos arquivos, mostre `git log --oneline -3 -- {path}` e reaplique
+a mudanca por cima da versao atual antes de seguir.
+
+**b. Garantir source + manifesto.** O source vive em `landing-pages/{marca}/{slug}/`
+(como sempre). Abra `landing-pages/dominios/{dominio-com-hifens}/manifest.json`:
+- LP nova → adicionar `{"slug", "marca", "source": "landing-pages/{marca}/{slug}"}` em `lps` (ordem alfabetica de slug).
+- LP existente (re-publicacao) → manifesto ja a lista; nada a fazer nele.
+- **Despublicar** (remover slug) NUNCA e auto-mergeado pelo bot — so com aprovacao do Victor no PR.
+
+**c. Validar o build localmente** (pega path relativo vazando, placeholder, isolamento — antes de commitar):
+
+```bash
+REPO_ROOT="$(cygpath -m "$(git rev-parse --show-toplevel)" 2>/dev/null || git rev-parse --show-toplevel)"
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+REPO_ROOT="$REPO_ROOT" "$PYBIN" landing-pages/build/build_umbrella.py \
+  "landing-pages/dominios/{dominio-com-hifens}/manifest.json" "$TMPDIR/lp-dist-check"
+```
+
+Exit != 0 → corrigir o erro apontado antes de seguir. NUNCA commitar build quebrado.
+
+**d. Entregar:**
+- Colaborador: rode a skill `/commit` (branch + PR). O merge-bot (`lp-pr.yml`) valida e,
+  se o diff so toca conteudo (LPs, manifestos, brand assets), **mergeia sozinho e dispara
+  o deploy** — sem esperar humano. Se tocou mecanica, o PR fica rotulado pra revisao do Victor.
+- Victor (admin, quando pedir explicitamente): commit direto na main; o push dispara o deploy.
+
+**e. Acompanhar o deploy** (build da main inteira + smoke de TODAS as URLs + rollback automatico):
+
+```bash
+gh run list --workflow=lp-deploy.yml --limit 1   # pegar o run disparado
+gh run watch {run-id} --exit-status
+curl -s -o /dev/null -w '%{http_code}' "https://{dominio}/{slug}"   # 200 esperado
+```
+
+Run vermelho = smoke falhou e o **rollback automatico ja devolveu o live pro estado
+anterior** — leia o log (`gh run view {id} --log | grep deploy_ci`), corrija o source e
+repita a partir de (c). O live nunca fica quebrado esperando voce.
+
+**f. Relatorio Notion:** mesmo formato do Passo 6 do fluxo classico, com duas diferencas:
+o campo "deploy" aponta o run do Actions (URL) e nao ha sibling/PageSpeed obrigatorio
+(rodar PageSpeed segue recomendado pra LP nova).
+
+O que este fluxo elimina em relacao ao classico: sibling local, sync 0.5.d, drift-check 1.0,
+baseline 2.4, smoke local 3.4.b (virou smoke do CI), token Vercel na maquina.
 
 ## Passo 0: Parsing e Contexto
 
