@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vendendo com Creators: Webinar Gratuito | Buzzcreators</title>
-  <meta name="description" content="Aprenda a transformar influenciadores em canal de receita previsível. Webinar ao vivo e gratuito com o Buzzcreators. Garanta sua vaga." />
-  <meta property="og:title" content="Vendendo com Creators: Webinar Gratuito | Buzzcreators" />
-  <meta property="og:description" content="Aprenda a transformar influenciadores em canal de receita previsível. Webinar ao vivo e gratuito com o Buzzcreators. Garanta sua vaga." />
-  <meta property="og:image:alt" content="Webinar Vendendo com Creators | Buzzcreators" />
+  <title>Vendendo com Creators · Webinar gravado · Buzzcreators</title>
+  <meta name="description" content="Assista à gravação completa do webinar Buzzcreators. Como transformar influenciadores em canal de receita previsível: dados, processo e recorrência." />
+  <meta property="og:title" content="Vendendo com Creators · Webinar gravado · Buzzcreators" />
+  <meta property="og:description" content="Gravação disponível agora. Como transformar influenciadores em canal de receita previsível, com dados, processo e recorrência." />
+  <meta property="og:image:alt" content="Webinar Vendendo com Creators · gravação Buzzcreators" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="/assets/buzzcreators/logos/favicon.png" />
+  <link rel="icon" type="image/png" href="../../brand/buzzcreators/assets/logos/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
@@ -295,6 +295,36 @@
     .abertura p {
       font-size: 1.0625rem; color: rgba(255,255,255,.88);
       max-width: 500px; margin: 0 auto;
+    }
+
+    /* ── GRAVAÇÃO ──────────────────────────────────────────────── */
+    .gravacao { background: var(--white); padding: 100px 0; }
+    .gravacao-grid {
+      display: grid; grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem; align-items: center;
+    }
+    .gravacao-h2 {
+      font-weight: 700; font-size: clamp(1.625rem, 3vw, 2.25rem);
+      line-height: 1.2; letter-spacing: -.015em;
+      color: var(--purple); margin: .75rem 0 1rem;
+    }
+    .gravacao-lead {
+      font-size: 1.0625rem; line-height: 1.65;
+      color: var(--n700); margin-bottom: 2rem; max-width: 44ch;
+    }
+    .gravacao-embed {
+      position: relative; width: 100%;
+      padding-bottom: 56.25%; height: 0;
+      border-radius: var(--r24); overflow: hidden;
+      box-shadow: var(--sh-lg); background: #000;
+    }
+    .gravacao-embed iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; border: 0;
+    }
+    @media (max-width: 880px) {
+      .gravacao-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .gravacao { padding: 80px 0; }
     }
 
     /* ── PROBLEMA ──────────────────────────────────────────────── */
@@ -619,9 +649,9 @@
 <header class="hdr" role="banner">
   <div class="hdr-i">
     <a href="https://buzzcreators.com.br" aria-label="Buzzcreators, página inicial">
-      <img class="hdr-logo" src="/assets/buzzcreators/logos/logo-color.png" alt="Buzzcreators" width="148" height="34" />
+      <img class="hdr-logo" src="../../brand/buzzcreators/assets/logos/logo-color.png" alt="Buzzcreators" width="148" height="34" />
     </a>
-    <a class="btn btn-ghost" href="#inscricao">Quero garantir minha vaga</a>
+    <a class="btn btn-ghost" href="#gravacao">Assistir gravação</a>
   </div>
 </header>
 
@@ -633,30 +663,20 @@
       <div class="hero-g">
 
         <div>
-          <p class="hero-over rv">WEBINAR GRATUITO · AO VIVO</p>
+          <p class="hero-over rv">GRAVAÇÃO DISPONÍVEL</p>
           <span class="hero-titulo rv d1">O método para vender com creators</span>
           <h1 class="hero-h1 rv d2">Transforme influenciadores em canal de receita previsível</h1>
           <p class="hero-sub rv d2">Para times de marketing que querem parar de tratar creators como aposta e começar a operar como canal.</p>
-          <a class="btn btn-orange rv d3" href="#inscricao">Quero garantir minha vaga</a>
+          <a class="btn btn-orange rv d3" href="#gravacao">Assistir gravação</a>
         </div>
 
-        <div class="rv d2" aria-label="Detalhes do evento">
+        <div class="rv d2" aria-label="Detalhes da gravação">
           <div class="ticket">
-            <span class="ticket-badge">Inscrição aberta</span>
+            <span class="ticket-badge">Webinar realizado</span>
             <div class="ticket-rows">
-              <div class="ticket-row ticket-row-date">
-                <span class="ticket-lbl">Data &amp; Horário</span>
-                <div class="ticket-date-wrap">
-                  <span class="ticket-date-day">18</span>
-                  <div class="ticket-date-info">
-                    <span class="ticket-val">de junho, quinta-feira</span>
-                    <span class="ticket-hora">11h (Brasília)</span>
-                  </div>
-                </div>
-              </div>
               <div class="ticket-row">
                 <span class="ticket-lbl">Formato</span>
-                <span class="ticket-val">Online · Ao vivo</span>
+                <span class="ticket-val">Gravação on demand</span>
               </div>
               <div class="ticket-row">
                 <span class="ticket-lbl">Duração</span>
@@ -666,12 +686,10 @@
                 <span class="ticket-lbl">Acesso</span>
                 <span class="ticket-val-free">Gratuito</span>
               </div>
-            </div>
-            <div class="countdown" id="countdown" aria-live="polite" aria-label="Contagem regressiva para o evento">
-              <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Dias</span></div>
-              <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
-              <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
-              <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
+              <div class="ticket-row">
+                <span class="ticket-lbl">Onde</span>
+                <span class="ticket-val">Aqui mesmo</span>
+              </div>
             </div>
           </div>
         </div>
@@ -684,6 +702,23 @@
   <section class="abertura" aria-label="Abertura">
     <div class="wrap">
       <h2 class="rv">Chega de post patrocinado sem retorno mensurável.</h2>
+    </div>
+  </section>
+
+  <!-- ── GRAVAÇÃO ──────────────────────────────────────────────── -->
+  <section class="gravacao" id="gravacao" aria-labelledby="grav-h">
+    <div class="wrap">
+      <div class="gravacao-grid">
+        <div class="rv">
+          <p class="hero-over" style="color: var(--orange);">Gravação gratuita</p>
+          <h2 id="grav-h" class="gravacao-h2">Assista ao webinar completo, sem cadastro e sem espera.</h2>
+          <p class="gravacao-lead">Uma hora de conteúdo concentrada na gravação ao lado: como sair de campanha pontual com creators e montar um canal de receita previsível, com dados, processo e recorrência.</p>
+          <a class="btn btn-orange" href="https://pages.buzzcreators.com.br/oferta-webinar-vendendo-com-creators?utm_source=lp&amp;utm_campaign=webinar-vendendo-com-creators&amp;utm_content=lp-pos-evento" target="_blank" rel="noopener">Acessar oferta</a>
+        </div>
+        <div class="gravacao-embed rv d1">
+          <iframe src="https://www.youtube.com/embed/C4EV89Ac8YA" title="Vendendo com Creators — gravação do webinar Buzzcreators" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -779,7 +814,7 @@
 
       <p class="rv d1">Quando você conecta as métricas certas ao processo certo, marketing de influência para de ser linha de custo e vira linha de receita previsível.</p>
       <div class="rv d2" style="margin-top:2rem;">
-        <a class="btn btn-orange" href="#inscricao">Quero aprender a montar esse processo</a>
+        <a class="btn btn-orange" href="https://pages.buzzcreators.com.br/oferta-webinar-vendendo-com-creators?utm_source=lp&amp;utm_campaign=webinar-vendendo-com-creators&amp;utm_content=lp-pos-evento" target="_blank" rel="noopener">Acessar oferta</a>
       </div>
     </div>
   </section>
@@ -788,7 +823,7 @@
   <section class="programa" aria-labelledby="prog-h">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2 id="prog-h">O que você vai levar deste webinar</h2>
+        <h2 id="prog-h">O que você leva desta gravação</h2>
       </div>
       <div class="grid22">
 
@@ -848,7 +883,7 @@
   <section class="paraquem" aria-labelledby="pq-h">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2 id="pq-h">Este webinar foi feito para você se...</h2>
+        <h2 id="pq-h">Esta gravação é pra você se...</h2>
       </div>
       <ul class="check-list" role="list">
 
@@ -890,7 +925,7 @@
 
       </ul>
       <div class="paraquem-cta rv d4">
-        <a class="btn btn-orange" href="#inscricao">Quero minha vaga gratuita</a>
+        <a class="btn btn-orange" href="https://pages.buzzcreators.com.br/oferta-webinar-vendendo-com-creators?utm_source=lp&amp;utm_campaign=webinar-vendendo-com-creators&amp;utm_content=lp-pos-evento" target="_blank" rel="noopener">Acessar oferta</a>
       </div>
     </div>
   </section>
@@ -914,45 +949,12 @@
   <section class="urgencia" aria-labelledby="urg-h">
     <div class="wrap">
       <div class="rv">
-        <span class="urg-tag" aria-label="Ao vivo e gratuito">Ao vivo · Gratuito</span>
+        <span class="urg-tag" aria-label="Gravação disponível">Próximo passo</span>
       </div>
-      <h2 class="rv d1" id="urg-h">Enquanto você planeja, seus concorrentes estão operando.</h2>
-      <p class="rv d2">Os times que já tratam creators como canal têm vantagem de processo, não de orçamento. Esse webinar está aqui para fechar essa distância.</p>
+      <h2 class="rv d1" id="urg-h">Assistir é o começo. Aplicar é o que separa quem testa de quem opera.</h2>
+      <p class="rv d2">Os times que já tratam creators como canal têm vantagem de processo, não de orçamento. A gravação mostra o caminho — a oferta abre a porta pra montar o seu.</p>
       <div class="rv d3">
-        <a class="btn btn-ghost-w" href="#inscricao">Quero sair na frente</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FORM ───────────────────────────────────────────────────── -->
-  <section class="form-sec" id="inscricao" aria-labelledby="form-h">
-    <div class="wrap">
-      <div class="form-wrap">
-        <h2 class="rv" id="form-h">Quero garantir minha vaga</h2>
-        <div class="rv d1">
-          <div class="form-box">
-            <form action="#" method="post" onsubmit="event.preventDefault()" aria-label="Formulário de inscrição">
-              <div class="fgrp">
-                <label class="flbl" for="f-nome">Nome</label>
-                <input class="finp" type="text" id="f-nome" name="nome" placeholder="Seu nome" autocomplete="name" required />
-              </div>
-              <div class="fgrp">
-                <label class="flbl" for="f-email">E-mail</label>
-                <input class="finp" type="email" id="f-email" name="email" placeholder="seu@email.com" autocomplete="email" required />
-              </div>
-              <div class="fgrp">
-                <label class="flbl" for="f-empresa">Empresa</label>
-                <input class="finp" type="text" id="f-empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" />
-              </div>
-              <div class="fgrp">
-                <label class="flbl" for="f-cargo">Cargo</label>
-                <input class="finp" type="text" id="f-cargo" name="cargo" placeholder="Seu cargo" autocomplete="organization-title" />
-              </div>
-              <button class="btn btn-orange fsub" type="submit">Quero garantir minha vaga</button>
-              <p class="fdisclaimer">Ao se inscrever, você concorda em receber comunicações do Buzzcreators.</p>
-            </form>
-          </div>
-        </div>
+        <a class="btn btn-ghost-w" href="https://pages.buzzcreators.com.br/oferta-webinar-vendendo-com-creators?utm_source=lp&amp;utm_campaign=webinar-vendendo-com-creators&amp;utm_content=lp-pos-evento" target="_blank" rel="noopener">Acessar oferta</a>
       </div>
     </div>
   </section>
@@ -964,58 +966,19 @@
   <div class="wrap">
     <div class="ftr-i">
       <a href="https://buzzcreators.com.br" aria-label="Buzzcreators, página inicial">
-        <img class="ftr-logo" src="/assets/buzzcreators/logos/logo-branca-2.svg" alt="Buzzcreators" width="180" height="23" />
+        <img class="ftr-logo" src="../../brand/buzzcreators/assets/logos/logo-branca-2.svg" alt="Buzzcreators" width="180" height="23" />
       </a>
       <div class="ftr-links">
         <a class="ftr-link" href="mailto:comercial@buzzcreators.com.br">comercial@buzzcreators.com.br</a>
         <span class="ftr-link">@buzzcreatorsbr</span>
         <p class="ftr-copy">© 2026 Buzzcreators</p>
-        <p class="ftr-aviso">O horário pode ser alterado. Inscritos serão notificados por e-mail.</p>
+        <p class="ftr-aviso">Gravação disponível sob demanda. Dúvidas? <a class="ftr-link" href="mailto:comercial@buzzcreators.com.br" style="text-decoration:underline;">comercial@buzzcreators.com.br</a></p>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-/* ── Countdown ── */
-(function(){
-  var target = new Date('2026-06-18T11:00:00-03:00').getTime();
-  var elD = document.getElementById('cd-d');
-  var elH = document.getElementById('cd-h');
-  var elM = document.getElementById('cd-m');
-  var elS = document.getElementById('cd-s');
-  if (!elD) return;
-
-  function pad(n){ return String(n).padStart(2,'0'); }
-  function flip(el, val){
-    var cur = el.textContent;
-    if (cur !== val){
-      el.classList.add('flip');
-      el.textContent = val;
-      setTimeout(function(){ el.classList.remove('flip'); }, 150);
-    }
-  }
-  function tick(){
-    var now  = Date.now();
-    var diff = target - now;
-    if (diff <= 0){
-      document.getElementById('countdown').innerHTML =
-        '<p class="cd-ended">O evento já começou!</p>';
-      return;
-    }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000)  / 60000);
-    var s = Math.floor((diff % 60000)    / 1000);
-    flip(elD, pad(d));
-    flip(elH, pad(h));
-    flip(elM, pad(m));
-    flip(elS, pad(s));
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
-
 /* ── Reveals ── */
 (function(){
   var els = document.querySelectorAll('.rv');

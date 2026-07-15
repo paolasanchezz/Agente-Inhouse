@@ -86,3 +86,6 @@ landing-pages/brand
 criativos/*
 # Excecao: o GUIDELINES universal de criativos e versionado (igual landing-pages/GUIDELINES.md).
 !criativos/GUIDELINES.md
+
+# landing-pages/build/ e o pipeline de deploy das LPs (PLANO-MIGRACAO-CI) - nao e artefato de build
+!landing-pages/build/

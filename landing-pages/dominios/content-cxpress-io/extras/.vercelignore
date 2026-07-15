@@ -1,0 +1,6 @@
+.env
+.env.*
+*.log
+vercel-dev.log
+.git
+.gitignore

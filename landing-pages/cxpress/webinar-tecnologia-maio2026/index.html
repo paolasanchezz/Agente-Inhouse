@@ -12,12 +12,12 @@
   })(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Webinar · WhatsApp em SaaS e Tecnologia · Cxpress</title>
-  <meta name="description" content="Atendimento centralizado para SaaS e Tecnologia. Webinar gratuito da Cxpress em 29 de maio, 11h.">
-  <meta property="og:title" content="Webinar · WhatsApp em SaaS e Tecnologia · Cxpress">
-  <meta property="og:description" content="Atendimento centralizado para SaaS e Tecnologia: da bagunça de chats para uma operação com métricas. Online e gratuito, 29 de maio, 11h.">
+  <title>Webinar · WhatsApp em empresas de Tecnologia · Cxpress</title>
+  <meta name="description" content="Atendimento centralizado para empresas de Tecnologia. Webinar gratuito da Cxpress.">
+  <meta property="og:title" content="Webinar · WhatsApp em empresas de Tecnologia · Cxpress">
+  <meta property="og:description" content="Atendimento centralizado para empresas de Tecnologia: da bagunça de chats para uma operação com métricas. Online e gratuito.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png">
+  <link rel="icon" type="image/png" href="/assets/logos/logo-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=Bitter:wght@400;600&display=swap">
@@ -236,9 +236,20 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 72px;
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-grid .hero-kicker,
+    .hero-grid .hero-actions {
+      justify-content: center;
+    }
+    .hero-grid .hero-body {
+      margin-left: auto;
+      margin-right: auto;
     }
     .hero-kicker {
       display: inline-flex;
@@ -318,147 +329,6 @@
       height: 4px;
       background: var(--neutral-300);
       border-radius: 50%;
-    }
-
-    /* Hero visual — event ticket card */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 540px;
-    }
-    .decor {
-      position: absolute;
-      border-radius: var(--radius-pill);
-      z-index: 0;
-    }
-    .decor-1 {
-      width: 120px; height: 300px;
-      background: var(--primary-lighter);
-      top: 30px; left: 0;
-      transform: rotate(-14deg);
-    }
-    .decor-2 {
-      width: 64px; height: 200px;
-      background: var(--accent);
-      top: -40px; right: 40px;
-      transform: rotate(20deg);
-    }
-    .decor-3 {
-      width: 36px; height: 110px;
-      background: var(--primary);
-      bottom: 70px; right: 0;
-      transform: rotate(-8deg);
-    }
-
-    .ticket {
-      position: relative;
-      z-index: 2;
-      width: min(360px, 86%);
-      background:
-        radial-gradient(ellipse at 20% 10%, rgba(239,134,60,.16) 0%, transparent 55%),
-        linear-gradient(155deg, #2a3170 0%, #1a1f4a 100%);
-      border-radius: 18px;
-      padding: 36px 32px 32px;
-      color: var(--neutral-0);
-      box-shadow:
-        0 2px 4px rgba(35,41,96,.1),
-        0 30px 60px -10px rgba(35,41,96,.35),
-        0 50px 100px -20px rgba(35,41,96,.28),
-        inset 0 1px 0 rgba(255,255,255,.1);
-      transform: rotate(-3deg);
-      transition: transform 500ms var(--ease);
-      overflow: hidden;
-    }
-    .ticket::after {
-      content: '';
-      position: absolute;
-      right: -110px; bottom: -110px;
-      width: 280px; height: 280px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.1);
-      pointer-events: none;
-    }
-    .ticket:hover {
-      transform: rotate(-1deg) translateY(-8px);
-    }
-    .ticket-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 22px;
-      border-bottom: 1px dashed rgba(255,255,255,.18);
-    }
-    .ticket-tag {
-      font-family: var(--font-accent);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .ticket-format {
-      font-family: var(--font-body);
-      font-size: 12px;
-      color: rgba(255,255,255,.58);
-      letter-spacing: 0.04em;
-    }
-    .ticket-date {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      margin: 24px 0 4px;
-    }
-    .ticket-day {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 96px;
-      letter-spacing: -0.05em;
-      line-height: .9;
-    }
-    .ticket-month {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 28px;
-      letter-spacing: -0.01em;
-      color: var(--accent);
-    }
-    .ticket-time {
-      font-family: var(--font-accent);
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,.78);
-      margin-bottom: 24px;
-    }
-    .ticket-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 1.25;
-      letter-spacing: -0.018em;
-      margin-bottom: 22px;
-    }
-    .ticket-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
-      border-top: 1px dashed rgba(255,255,255,.18);
-    }
-    .ticket-brand {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.04em;
-    }
-    .ticket-duration {
-      font-family: var(--font-accent);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
     }
 
     /* ============ SECTIONS ============ */
@@ -817,23 +687,6 @@
       color: var(--neutral-700);
       margin-bottom: 36px;
     }
-    .cta-final-meta {
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 8px 14px;
-      font-size: 14px;
-      color: var(--neutral-700);
-      font-weight: 500;
-      margin-bottom: 36px;
-    }
-    .cta-final-meta-dot {
-      width: 4px;
-      height: 4px;
-      background: var(--neutral-300);
-      border-radius: 50%;
-    }
     .form {
       background: var(--neutral-0);
       border: 1px solid rgba(35, 41, 96, 0.08);
@@ -881,13 +734,6 @@
       margin-top: 12px;
       padding: 18px 30px;
     }
-    .form-note {
-      font-size: 13px;
-      color: var(--neutral-700);
-      text-align: center;
-      margin-top: 20px;
-    }
-
     /* ============ FOOTER ============ */
     .footer {
       background: #171c45;
@@ -911,11 +757,32 @@
     .footer a { color: rgba(255,255,255,.82); }
     .footer a:hover { color: var(--accent); }
 
-    /* ----- Jotform embed wrapper (canonico) -----
-       Sem padding/background/border: o provedor ja vem com card proprio.
-       A regra do iframe garante que, se o provedor renderizar via iframe, ele
-       ocupa 100% da largura sem borda. */
-    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    /* ----- YouTube embed responsive (16:9) ----- */
+    .video-embed {
+      position: relative;
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      background: var(--primary-dark);
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .video-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
 
     /* ============ MOBILE ============ */
     @media (max-width: 920px) {
@@ -926,20 +793,6 @@
       .hero {
         padding: 48px 0 88px;
       }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-      .hero-visual {
-        min-height: 460px;
-        order: -1;
-      }
-      .ticket {
-        width: min(310px, 84%);
-      }
-      .ticket-day { font-size: 78px; }
-      .ticket-month { font-size: 24px; }
-      .ticket-title { font-size: 18px; }
       .benefits-grid,
       .program-grid {
         grid-template-columns: 1fr;
@@ -987,9 +840,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <header class="header">
     <div class="container header-inner">
       <a href="#top" aria-label="Cxpress — topo">
-        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
+        <img src="/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
       </a>
-      <a href="#form" class="header-cta">Garantir vaga</a>
+      <a href="#transmissao" class="header-cta">Ver transmissão</a>
     </div>
   </header>
 
@@ -1004,44 +857,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               Webinar gratuito
             </span>
             <h1>
-              Atendimento <span class="mark">centralizado</span> para SaaS e Tecnologia.
+              Como organizar atendimento para empresas de <span class="mark">Tecnologia.</span>
             </h1>
-            <p class="hero-body">Empresas de SaaS que centralizam canais, acompanham tempo de resposta e enxergam onde a fila trava respondem mais rápido, perdem menos clientes e não precisam contratar mais gente pra isso.</p>
+            <p class="hero-body">Descubra como empresas de tecnologia estão otimizando o atendimento sem aumentar a folha de pagamento.</p>
             <div class="hero-actions">
-              <a href="#form" class="btn btn-primary">
-                Quero garantir minha vaga
+              <a href="#transmissao" class="btn btn-primary">
+                Quero assistir
                 <span class="arrow" aria-hidden="true">→</span>
               </a>
               <span class="hero-meta">
                 <span>Gratuito</span>
                 <span class="hero-meta-dot" aria-hidden="true"></span>
                 <span>Online</span>
-                <span class="hero-meta-dot" aria-hidden="true"></span>
-                <span>29 de maio · 11h</span>
               </span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="hero-visual" aria-hidden="true">
-            <span class="decor decor-1"></span>
-            <span class="decor decor-2"></span>
-            <span class="decor decor-3"></span>
-            <div class="ticket">
-              <div class="ticket-top">
-                <span class="ticket-tag">Webinar Cxpress</span>
-                <span class="ticket-format">Online · Gratuito</span>
-              </div>
-              <div class="ticket-date">
-                <span class="ticket-day">29</span>
-                <span class="ticket-month">Maio</span>
-              </div>
-              <div class="ticket-time">11h</div>
-              <div class="ticket-title">WhatsApp em SaaS e Tecnologia: da bagunça de chats para uma operação com métricas.</div>
-              <div class="ticket-bottom">
-                <span class="ticket-brand">Cxpress</span>
-                <span class="ticket-duration">~ 60 min</span>
-              </div>
-            </div>
+    <!-- TRANSMISSÃO -->
+    <section class="cta-final" id="transmissao">
+      <div class="container">
+        <div class="cta-final-inner">
+          <h2>Você já sabe o CAC. Sabe o churn. Sabe o NPS.</h2>
+          <p class="cta-final-sub">Veja como medir também o tempo de resposta do seu suporte e transformar isso em uma operação mais organizada, visível e previsível.</p>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/eNmxeOHmXzQ?rel=0&modestbranding=1"
+                    title="Webinar Cxpress — WhatsApp em empresas de Tecnologia"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
+          <div class="video-cta">
+            <a href="https://content.cxpress.io/webinar-tecnologia-maio2026-oferta" class="btn btn-accent">
+              Quero conhecer a oferta
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1053,7 +905,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="problem-header">
           <span class="section-label">O problema</span>
           <h2 class="section-h2">O CAC está monitorado. O churn também. O tempo de resposta do suporte, ninguém sabe.</h2>
-          <p class="section-intro">Muita empresa de SaaS tem dashboard de produto, acompanhamento de churn e relatório de NPS. Mas, no atendimento, a operação ainda acontece em WhatsApp pessoal, e-mail avulso e canais que não se falam.</p>
+          <p class="section-intro">Muita empresa de tecnologia tem dashboard de produto, acompanhamento de churn e relatório de NPS. Mas, no atendimento, a operação ainda acontece em WhatsApp pessoal, e-mail avulso e canais que não se falam.</p>
         </div>
         <ul class="problem-list">
           <li class="problem-item">
@@ -1159,12 +1011,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <article class="program-card">
             <span class="program-number">02</span>
             <h3 class="program-title">Como centralizar sem virar um projeto de TI</h3>
-            <p class="program-body">O que empresas de SaaS estão fazendo para unificar canais de forma rápida e sem complexidade técnica.</p>
+            <p class="program-body">O que empresas de tecnologia estão fazendo para unificar canais de forma rápida e sem complexidade técnica.</p>
           </article>
           <article class="program-card">
             <span class="program-number">03</span>
             <h3 class="program-title">Quais métricas olhar no suporte</h3>
-            <p class="program-body">Tempo de resposta, volume por canal, chamados abertos e gargalos &mdash; o mínimo que toda operação precisa enxergar.</p>
+            <p class="program-body">Tempo de resposta, volume por canal, chamados abertos e gargalos: o mínimo que toda operação precisa enxergar.</p>
           </article>
           <article class="program-card">
             <span class="program-number">04</span>
@@ -1182,7 +1034,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="audience-header">
             <span class="section-label">Para quem é</span>
             <h2 class="section-h2" style="font-size: clamp(26px, 3vw, 36px);">Este webinar é pra você se...</h2>
-            <img src="../../brand/cxpress/assets/mascot/samir-dashboard.png" alt="Samir, mascote da Cxpress, apontando para um dashboard de métricas" class="audience-mascot" width="320" height="320" loading="lazy">
+            <img src="/assets/mascot/samir-dashboard.png" alt="Samir, mascote da Cxpress, apontando para um dashboard de métricas" class="audience-mascot" width="320" height="320" loading="lazy">
           </div>
           <ul class="audience-list">
             <li class="audience-item">
@@ -1191,7 +1043,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <polyline points="4 12 10 18 20 6"/>
                 </svg>
               </span>
-              <p class="audience-text">Você gerencia ou supervisiona o atendimento numa empresa de SaaS ou tecnologia.</p>
+              <p class="audience-text">Você gerencia ou supervisiona o atendimento numa empresa de tecnologia.</p>
             </li>
             <li class="audience-item">
               <span class="audience-check" aria-hidden="true">
@@ -1207,7 +1059,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <polyline points="4 12 10 18 20 6"/>
                 </svg>
               </span>
-              <p class="audience-text">Você sente que não tem visibilidade do que acontece na operação &mdash; e quando aparece um problema, já está atrasado.</p>
+              <p class="audience-text">Você sente que não tem visibilidade do que acontece na operação. Quando aparece um problema, já está atrasado.</p>
             </li>
             <li class="audience-item">
               <span class="audience-check" aria-hidden="true">
@@ -1222,33 +1074,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="cta-final" id="form">
-      <div class="container">
-        <div class="cta-final-inner">
-          <h2>Você já sabe o CAC. Sabe o churn. Sabe o NPS.</h2>
-          <p class="cta-final-sub">Depois do dia 29, você vai saber também o tempo de resposta do seu suporte &mdash; e como transformar isso em uma operação mais organizada, visível e previsível.</p>
-          <div class="cta-final-meta">
-            <span>Online</span>
-            <span class="cta-final-meta-dot" aria-hidden="true"></span>
-            <span>29 de maio · 11h</span>
-            <span class="cta-final-meta-dot" aria-hidden="true"></span>
-            <span>Gratuito</span>
-            <span class="cta-final-meta-dot" aria-hidden="true"></span>
-            <span>Duração aproximada: 1h</span>
-          </div>
-          <div class="jotform-embed">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
-          </div>
-          <p class="form-note">Ao se inscrever, você aceita receber comunicações da Cxpress sobre o webinar. Cancelável a qualquer momento.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" class="footer-logo" width="130" height="30">
+      <img src="/assets/logos/logo-reversed.svg" alt="Cxpress" class="footer-logo" width="130" height="30">
       <div class="footer-meta">
         <span>&copy; 2026 Cxpress. Todos os direitos reservados.</span>
         <a href="https://home.cxpress.io" target="_blank" rel="noopener noreferrer">home.cxpress.io</a>

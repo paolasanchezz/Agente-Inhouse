@@ -17,7 +17,7 @@
   <meta property="og:title" content="Oferta exclusiva · Agente de IA personalizado · Cxpress">
   <meta property="og:description" content="Crie seu primeiro agente de IA com a Cxpress. Economia de R$ 4 mil + sem multa de cancelamento. Oferta válida por 7 dias.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="/assets/cxpress/logos/logo-icon.png">
+  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=Bitter:wght@400;600&display=swap">
@@ -1017,7 +1017,8 @@
       animation: pulse 2.4s cubic-bezier(.4,0,.6,1) infinite;
     }
 
-    .form {
+    .form,
+    .form-card {
       background: var(--neutral-0);
       border: 1px solid rgba(35, 41, 96, 0.08);
       padding: 36px;
@@ -1025,6 +1026,14 @@
       text-align: left;
       box-shadow: var(--shadow-md);
     }
+    /* Jotform embed wrapper (canonico).
+       Sem padding/background/border: o provedor injeta inputs no DOM via jsform e herda o card .form-card pai.
+       A regra do iframe e fallback caso provider renderize via iframe em vez de jsform. */
+    .jotform-embed { margin: 0; }
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    /* Garantir que inputs injetados pelo Jotform jsform respeitem o tom da pagina */
+    .jotform-embed .form-all,
+    .jotform-embed form { width: 100% !important; max-width: 100% !important; background: transparent !important; padding: 0 !important; margin: 0 !important; }
     .form-heading {
       font-family: var(--font-heading);
       font-weight: 700;
@@ -1166,7 +1175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <header class="header">
     <div class="container header-inner">
       <a href="#top" aria-label="Cxpress, voltar ao topo">
-        <img src="/assets/cxpress/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
+        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
       </a>
       <a href="#form" class="header-cta">Garantir oferta</a>
     </div>
@@ -1190,7 +1199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <div class="hero-form-wrap" id="form">
-            <form class="form hero-form" action="#" method="post" onsubmit="event.preventDefault()" novalidate>
+            <div class="form-card hero-form">
               <p class="form-heading">Garanta sua oferta</p>
               <ul class="form-bullets">
                 <li>
@@ -1218,28 +1227,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <span>contrato sem multa de cancelamento</span>
                 </li>
               </ul>
-              <div class="form-field">
-                <label for="nome">Nome<span class="required" aria-hidden="true">*</span></label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+              <div class="jotform-embed">
+                <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
               </div>
-              <div class="form-field">
-                <label for="email">E-mail corporativo<span class="required" aria-hidden="true">*</span></label>
-                <input type="email" id="email" name="email" placeholder="voce@empresa.com" required autocomplete="email" spellcheck="false">
-              </div>
-              <div class="form-field">
-                <label for="empresa">Empresa<span class="required" aria-hidden="true">*</span></label>
-                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" required autocomplete="organization">
-              </div>
-              <div class="form-field">
-                <label for="telefone">Telefone (opcional)</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel">
-              </div>
-              <button type="submit" class="btn btn-accent form-submit">
-                Garantir oferta agora
-                <span class="arrow" aria-hidden="true">→</span>
-              </button>
               <p class="form-note">Condição válida por apenas 7 dias. Ao se inscrever, você aceita receber comunicações da Cxpress sobre a oferta.</p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -1255,7 +1247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="offer-h3" style="margin-top:18px; margin-bottom:18px;">Crie seu primeiro agente de IA com apoio dos especialistas da Cxpress</p>
             <p class="offer-intro">Com esta oferta, sua empresa recebe a criação de um agente de IA personalizado, pensado para as necessidades da sua operação.</p>
             <div class="offer-mascot-wrap">
-              <img src="/assets/cxpress/mascot/samir-laptop.png" alt="Samir, mascote da Cxpress, sentado com um laptop" class="offer-mascot" width="420" height="420" loading="lazy">
+              <img src="../../brand/cxpress/assets/mascot/samir-laptop.png" alt="Samir, mascote da Cxpress, sentado com um laptop" class="offer-mascot" width="420" height="420" loading="lazy">
             </div>
           </div>
           <div>
@@ -1473,7 +1465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <img src="/assets/cxpress/logos/logo-reversed.svg" alt="Cxpress" class="footer-logo" width="130" height="30">
+      <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" class="footer-logo" width="130" height="30">
       <div class="footer-meta">
         <span>&copy; 2026 Cxpress. Todos os direitos reservados.</span>
         <a href="https://home.cxpress.io" target="_blank" rel="noopener noreferrer">home.cxpress.io</a>

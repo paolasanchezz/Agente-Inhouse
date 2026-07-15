@@ -1,0 +1,166 @@
+{
+  "dominio": "webinar.buzzmonitor.com",
+  "projeto_vercel": "buzzmonitor-lp-monitoramento-concorrentes",
+  "vercel_json": "landing-pages/dominios/webinar-buzzmonitor-com/vercel.json",
+  "lps": [
+    {
+      "slug": "agentes-automacao-junho-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/agentes-automacao-junho-2026"
+    },
+    {
+      "slug": "agentes-automatizacion-junio-2026-latam",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/agentes-automatizacion-junio-2026-latam"
+    },
+    {
+      "slug": "analise-preditiva-maio-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/analise-preditiva-maio-2026"
+    },
+    {
+      "slug": "atencion-al-cliente-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/atencion-al-cliente-es"
+    },
+    {
+      "slug": "atencion-al-cliente-es-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/atencion-al-cliente-es-confirmado"
+    },
+    {
+      "slug": "buzzcreators-webinar-junho",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/buzzcreators-webinar-junho"
+    },
+    {
+      "slug": "case-youse",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/case-youse"
+    },
+    {
+      "slug": "conheca-a-buzzmonitor",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/conheca-a-buzzmonitor"
+    },
+    {
+      "slug": "conheca-a-buzzmonitor-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/conheca-a-buzzmonitor-confirmado"
+    },
+    {
+      "slug": "conheca-o-buzzcreators",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/conheca-o-buzzcreators"
+    },
+    {
+      "slug": "conheca-o-buzzcreators-confirmado",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/conheca-o-buzzcreators-confirmado"
+    },
+    {
+      "slug": "ia-no-sac-agosto-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/ia-no-sac-agosto-2026"
+    },
+    {
+      "slug": "mcp-na-pratica-p",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/mcp-na-pratica-p"
+    },
+    {
+      "slug": "mcp-na-pratica-p-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/mcp-na-pratica-p-confirmado"
+    },
+    {
+      "slug": "mcp-para-social-listening",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/mcp-para-social-listening"
+    },
+    {
+      "slug": "monitoramento-concorrentes-maio-2026-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/monitoramento-concorrentes-maio-2026-pt"
+    },
+    {
+      "slug": "monitoreo-competidores-ia-latam",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/monitoreo-competidores-ia-latam"
+    },
+    {
+      "slug": "oferta-webinar-mcp",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/oferta-webinar-mcp"
+    },
+    {
+      "slug": "primeiro-listening-5-passos",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/primeiro-listening-5-passos"
+    },
+    {
+      "slug": "que-es-mcp",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/que-es-mcp"
+    },
+    {
+      "slug": "que-es-mcp-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/que-es-mcp-confirmado"
+    },
+    {
+      "slug": "social-listening-julho-2026-brasil",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/social-listening-julho-2026-brasil"
+    },
+    {
+      "slug": "social-listening-julho-2026-brasil-oferta",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/social-listening-julho-2026-brasil-oferta"
+    },
+    {
+      "slug": "social-listening-mayo-2026-latam",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/social-listening-mayo-2026-latam"
+    },
+    {
+      "slug": "territorios-marca-mundial-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/territorios-marca-mundial-2026"
+    },
+    {
+      "slug": "webinar-diversidade-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/webinar-diversidade-2026"
+    },
+    {
+      "slug": "webinar-territorios-marca-mundial-junho-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/webinar-territorios-marca-mundial-junho-2026"
+    }
+  ],
+  "extra_files": {
+    ".baselines.json": "landing-pages/dominios/webinar-buzzmonitor-com/extras/.baselines.json",
+    "README.md": "landing-pages/dominios/webinar-buzzmonitor-com/extras/README.md",
+    "api/clickmeeting-register.js": "landing-pages/dominios/webinar-buzzmonitor-com/extras/api/clickmeeting-register.js",
+    "api/next-webinar.js": "landing-pages/dominios/webinar-buzzmonitor-com/extras/api/next-webinar.js",
+    "assets/ana-flavia.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/ana-flavia.jpg",
+    "assets/buzzcreators/flavio-guimaraes.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/buzzcreators/flavio-guimaraes.jpg",
+    "assets/buzzcreators/logos/logo-color.svg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/buzzcreators/logos/logo-color.svg",
+    "assets/buzzcreators/logos/logo-white.svg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/buzzcreators/logos/logo-white.svg",
+    "assets/buzzmonitor/og-conheca-a-buzzmonitor-es.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/buzzmonitor/og-conheca-a-buzzmonitor-es.png",
+    "assets/isabella-aki-matsunami.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/isabella-aki-matsunami.jpg",
+    "assets/logo-buzzmonitor-vertical.avif": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logo-buzzmonitor-vertical.avif",
+    "assets/logo-casasbahia.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logo-casasbahia.png",
+    "assets/logo-elife.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logo-elife.png",
+    "assets/logo-turbi.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logo-turbi.jpg",
+    "assets/logos/logo-icon.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logos/logo-icon.png",
+    "assets/logos/logo-primary.svg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logos/logo-primary.svg",
+    "assets/logos/logo-reversed.svg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/logos/logo-reversed.svg",
+    "assets/mascot.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/mascot.png",
+    "assets/mascot.webp": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/mascot.webp",
+    "assets/michelle-carmo.png": "landing-pages/dominios/webinar-buzzmonitor-com/extras/assets/michelle-carmo.png",
+    "monitoreo-competidores-ia-latam/juan-diego-forero.jpg.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/monitoreo-competidores-ia-latam/juan-diego-forero.jpg.jpg",
+    "monitoreo-competidores-ia-latam/milagros-pantoja.jpg.jpg": "landing-pages/dominios/webinar-buzzmonitor-com/extras/monitoreo-competidores-ia-latam/milagros-pantoja.jpg.jpg"
+  }
+}

@@ -843,6 +843,14 @@
       color: rgba(255, 255, 255, 0.55);
     }
 
+    /* ============ JOTFORM EMBED (canonico) ============
+       Sem padding/background/border: o provedor ja vem com card proprio.
+       A regra do iframe garante que, se o provedor renderizar via iframe,
+       ele ocupa 100% da largura sem borda. */
+    .jotform-embed { width: 100%; }
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    .jotform-embed form { width: 100% !important; max-width: 100% !important; }
+
     /* ============ RESPONSIVO ============ */
     @media (max-width: 980px) {
       :root { --section-y: 80px; }
@@ -983,27 +991,8 @@
     <section class="form-section" id="formulario-section" aria-label="Formulario de descarga">
       <div class="container">
         <div class="form-wrap">
-          <div class="form-card reveal">
-            <form class="form" id="formulario" action="#" method="post" onsubmit="event.preventDefault()" novalidate>
-              <div class="field">
-                <label for="nombre">Nombre completo</label>
-                <input id="nombre" name="nombre" type="text" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="email">Email corporativo</label>
-                <input id="email" name="email" type="email" autocomplete="email" required>
-              </div>
-              <div class="field">
-                <label for="empresa">Empresa</label>
-                <input id="empresa" name="empresa" type="text" autocomplete="organization" required>
-              </div>
-              <div class="field">
-                <label for="telefono">Tel&eacute;fono (opcional)</label>
-                <input id="telefono" name="telefono" type="tel" autocomplete="tel">
-              </div>
-              <button type="submit" class="btn btn-primary form-submit">Descargar ebook ahora <span class="arrow" aria-hidden="true">&rarr;</span></button>
-              <p class="form-disclaimer">Al registrarte aceptas recibir comunicaciones de Cxpress sobre productos y contenidos relacionados. Puedes cancelar la suscripci&oacute;n en cualquier momento.</p>
-            </form>
+          <div class="jotform-embed reveal" id="formulario">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261524662634862"></script>
           </div>
         </div>
       </div>
@@ -1049,13 +1038,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
-        <a href="https://home.cxpress.io" class="footer-logo" aria-label="Cxpress" rel="noopener">
+        <a href="https://www.cxpress.ai/" class="footer-logo" aria-label="Cxpress" rel="noopener">
           <img src="/assets/logos/logo-reversed.png" alt="Cxpress" />
         </a>
         <nav class="footer-links" aria-label="Enlaces institucionales">
-          <a href="mailto:contacto@cxpress.io">contacto@cxpress.io</a>
-          <a href="https://home.cxpress.io" rel="noopener">home.cxpress.io</a>
-          <a href="https://home.cxpress.io/aviso-de-privacidad" rel="noopener">Aviso de privacidad</a>
+          <a href="https://www.cxpress.ai/" rel="noopener">www.cxpress.ai</a>
+          <a href="mailto:cs@cxpress.ai">Soporte Cxpress &middot; cs@cxpress.ai</a>
+          <a href="https://www.cxpress.ai/aviso-de-privacidad" rel="noopener">Aviso de privacidad</a>
         </nav>
       </div>
       <div class="footer-copyright">&copy; 2026 Cxpress. Todos los derechos reservados.</div>

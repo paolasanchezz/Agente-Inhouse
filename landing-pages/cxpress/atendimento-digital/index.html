@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
   <!-- End Google Tag Manager -->
   <title>Gestão do atendimento digital com métricas | Cxpress</title>
-  <link rel="canonical" href="https://{{DOMAIN}}/atendimento-digital">
+  <link rel="canonical" href="https://content.cxpress.io/atendimento-digital">
   <meta name="description" content="Distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp. Pare de atender no improviso. Agende uma demonstração.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Cxpress">
@@ -19,10 +19,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cxpress">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:url" content="https://{{DOMAIN}}/atendimento-digital">
+  <meta property="og:url" content="https://content.cxpress.io/atendimento-digital">
   <meta property="og:title" content="Gestão do atendimento digital com métricas | Cxpress">
   <meta property="og:description" content="Distribuição de tickets, métricas e integração oficial do WhatsApp num painel só. Agende uma demonstração gratuita da Cxpress.">
-  <meta property="og:image" content="https://{{DOMAIN}}/assets/cxpress/og-atendimento-digital.png">
+  <meta property="og:image" content="https://content.cxpress.io/assets/cxpress/og-atendimento-digital.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Cxpress: gestão do atendimento digital com métricas e fila de tickets">
@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gestão do atendimento digital com métricas | Cxpress">
   <meta name="twitter:description" content="Distribuição de tickets, métricas e integração oficial do WhatsApp num painel só. Agende uma demonstração gratuita da Cxpress.">
-  <meta name="twitter:image" content="https://{{DOMAIN}}/assets/cxpress/og-atendimento-digital.png">
+  <meta name="twitter:image" content="https://content.cxpress.io/assets/cxpress/og-atendimento-digital.png">
 
   <script type="application/ld+json">
   {
@@ -41,13 +41,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "@id": "https://home.cxpress.io#organization",
         "name": "Cxpress",
         "url": "https://home.cxpress.io",
-        "logo": "https://{{DOMAIN}}/assets/cxpress/logos/logo-primary.png"
+        "logo": "https://content.cxpress.io/assets/cxpress/logos/logo-primary.png"
       },
       {
         "@type": "WebPage",
-        "@id": "https://{{DOMAIN}}/atendimento-digital#webpage",
+        "@id": "https://content.cxpress.io/atendimento-digital#webpage",
         "name": "Gestão do atendimento digital com métricas | Cxpress",
-        "url": "https://{{DOMAIN}}/atendimento-digital",
+        "url": "https://content.cxpress.io/atendimento-digital",
         "inLanguage": "pt-BR",
         "isPartOf": { "@id": "https://home.cxpress.io#organization" },
         "description": "Distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp. Pare de atender no improviso. Agende uma demonstração."
@@ -56,7 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "@type": "SoftwareApplication",
         "name": "Cxpress",
         "applicationCategory": "BusinessApplication",
-        "url": "https://{{DOMAIN}}/atendimento-digital",
+        "url": "https://content.cxpress.io/atendimento-digital",
         "description": "Plataforma de atendimento ao cliente com distribuição automática de tickets, métricas e integração oficial do WhatsApp.",
         "inLanguage": "pt-BR",
         "publisher": { "@id": "https://home.cxpress.io#organization" }
@@ -149,9 +149,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 
     /* ===== Hero ===== */
-    .hero{background:var(--white);overflow:hidden;position:relative}
+    .hero{background:var(--white);overflow:hidden;position:relative;padding:0}
     .hero__inner{
-      max-width:var(--maxw);margin:0 auto;padding:110px 32px 130px;
+      max-width:var(--maxw);margin:0 auto;padding:56px 32px 130px;
       display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
       gap:64px;align-items:center;
     }
@@ -223,13 +223,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ===== Secoes base ===== */
     section{padding:130px 0}
-    @media (max-width:980px){section{padding:88px 0}}
+    @media (max-width:980px){section{padding:64px 0}}
 
     .section-title{
       font-family:var(--font-display);font-weight:700;
       font-size:clamp(28px,3.4vw,42px);line-height:1.2;
       letter-spacing:-.01em;color:var(--primary-dark);
     }
+    /* Anti-orfao: equilibra titulos e evita palavra sozinha na ultima linha dos paragrafos */
+    h1,h2,h3,.section-title,.hero__overline{text-wrap:balance}
+    p{text-wrap:pretty}
 
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
     .reveal.is-visible{opacity:1;transform:none}
@@ -392,26 +395,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .fecho .btn{margin-top:40px}
 
     /* ===== Form (CTA final) ===== */
-    .agendar{background:var(--neutral-100);padding:104px 0}
+    .agendar{background:var(--neutral-100);padding:104px 0;scroll-margin-top:88px}
     .agendar__card{
       max-width:var(--maxw);margin:0 auto;
       background:var(--white);border-radius:24px;
       box-shadow:0 24px 60px rgba(35,41,96,.12);
       padding:60px;
       display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
-      gap:56px;align-items:center;
+      gap:56px;align-items:start;
     }
     .agendar .section-title{margin-bottom:14px}
     .agendar h3{
       font-family:var(--font-display);font-weight:700;font-size:21px;
-      color:var(--primary);margin-bottom:18px;line-height:1.35;
+      color:var(--primary-dark);margin-bottom:18px;line-height:1.35;
     }
+    .agendar__card > .section-title{grid-column:1 / -1;text-align:center;margin-bottom:28px}
     .agendar__body{font-size:18px;line-height:1.7;color:var(--neutral-700);max-width:46ch;margin-bottom:24px}
     .agendar__price{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--primary-dark);margin-bottom:8px}
     .agendar__req{font-size:14px;line-height:1.5;color:var(--neutral-700);margin-bottom:24px}
     .agendar__samir{display:flex;align-items:center;min-height:0;overflow:hidden}
     .agendar__samir img{width:104px;height:auto;min-height:0;max-width:100%}
-    .agendar__formcol{border-left:1px solid var(--neutral-300);padding-left:48px}
+    .agendar__formcol{
+      background:var(--primary-lighter);
+      border:1px solid rgba(74,105,189,.28);
+      border-top:4px solid var(--accent);
+      border-radius:var(--radius-card);
+      padding:32px;
+      box-shadow:0 8px 24px rgba(35,41,96,.10);
+      transition:box-shadow .3s ease,transform .3s ease;
+      animation:formPulse 3.4s ease-in-out infinite;
+    }
+    .agendar__formcol:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(35,41,96,.18);animation:none}
+    @keyframes formPulse{
+      0%,100%{box-shadow:0 8px 24px rgba(35,41,96,.10)}
+      50%{box-shadow:0 10px 30px rgba(239,134,60,.26)}
+    }
 
     /* ===== Footer ===== */
     .footer{background:var(--primary-dark);padding:56px 0}
@@ -426,7 +444,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:980px){
       .hero__inner{
         grid-template-columns:1fr;
-        padding:64px 24px 88px;gap:48px;
+        padding:32px 24px 40px;gap:28px;
       }
       .hero__sub{font-size:18px}
       .hero__pills .p1{display:none}
@@ -437,8 +455,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .feature:nth-of-type(even) .feature__media{order:0}
       .feature--textonly{padding:36px 28px}
       .agendar{padding:64px 0}
-      .agendar__card{grid-template-columns:1fr;gap:36px;padding:36px 24px}
-      .agendar__formcol{border-left:0;padding-left:0;border-top:1px solid var(--neutral-300);padding-top:36px}
+      .agendar__card{grid-template-columns:1fr;gap:28px;padding:32px 22px}
+      .agendar__formcol{order:1;padding:24px}
+      .agendar__content{order:2;border-top:1px solid var(--neutral-300);padding-top:28px}
       .clientes{padding:64px 0}
       .clientes__inner{grid-template-columns:1fr;gap:32px}
       .clientes .section-title{text-align:center}
@@ -449,6 +468,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .quem-somos__badges{gap:24px}
       .navbar__cta{font-size:13px;padding:9px 14px}
       .navbar__logo img{height:30px}
+    }
+    @media (max-width:600px){
+      /* CTAs padronizados no mobile: bloco full-width, 1 linha, mesma altura/raio */
+      .btn{display:block;width:100%;text-align:center;white-space:nowrap;font-size:16px;padding:15px 18px}
     }
     @media (max-width:520px){
       .prova__grid{grid-template-columns:1fr}
@@ -514,8 +537,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- FORM (CTA) -->
     <section class="agendar" id="agendar" aria-labelledby="agendar-title">
       <div class="agendar__card">
+        <h2 id="agendar-title" class="section-title reveal">Agende sua demonstração gratuita</h2>
         <div class="agendar__content reveal">
-          <h2 id="agendar-title" class="section-title">Agende sua demonstração gratuita</h2>
           <h3>Veja as métricas e a fila funcionando na sua operação</h3>
           <p class="agendar__body">Em 30 minutos, um especialista mostra a plataforma com o seu cenário: os canais que você já atende, o volume que chega e os indicadores que passam a ficar visíveis.</p>
           <p class="agendar__price">Planos a partir de R$ 1.290</p>
@@ -528,9 +551,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </section>
-
-
-
 
     <!-- BENEFICIOS -->
     <section class="beneficios" aria-labelledby="beneficios-title">
@@ -646,7 +666,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </details>
       </div>
     </section>
-
 
     <!-- QUEM SOMOS -->
     <section class="quem-somos" aria-labelledby="qs-title">

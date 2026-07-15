@@ -1,0 +1,185 @@
+{
+  "dominio": "content.cxpress.io",
+  "projeto_vercel": "cxpress-lp-playbook-whatsapp2026",
+  "vercel_json": "landing-pages/dominios/content-cxpress-io/vercel.json",
+  "lps": [
+    {
+      "slug": "atencion-digital-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atencion-digital-latam"
+    },
+    {
+      "slug": "atendimento-clinicas",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atendimento-clinicas"
+    },
+    {
+      "slug": "atendimento-digital",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atendimento-digital"
+    },
+    {
+      "slug": "banimento-whatsapp",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/banimento-whatsapp"
+    },
+    {
+      "slug": "banimento-whatsapp-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/banimento-whatsapp-latam"
+    },
+    {
+      "slug": "banimento-whatsapp-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/banimento-whatsapp-pt"
+    },
+    {
+      "slug": "cafe-bogota-jul26",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/cafe-bogota-jul26"
+    },
+    {
+      "slug": "case-ia-de-voz",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/case-ia-de-voz"
+    },
+    {
+      "slug": "coex-whatsapp",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/coex-whatsapp"
+    },
+    {
+      "slug": "coex-whatsapp-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/coex-whatsapp-latam"
+    },
+    {
+      "slug": "conheca-a-cxpress",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/conheca-a-cxpress"
+    },
+    {
+      "slug": "conheca-a-cxpress-confirmado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/conheca-a-cxpress-confirmado"
+    },
+    {
+      "slug": "consumidores-sinteticos-evento",
+      "marca": "elife",
+      "source": "landing-pages/elife/consumidores-sinteticos-evento"
+    },
+    {
+      "slug": "ebook-marketing-conversacao-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/ebook-marketing-conversacao-pt"
+    },
+    {
+      "slug": "ebook-marketing-conversacion-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/ebook-marketing-conversacion-latam"
+    },
+    {
+      "slug": "gestao-canais-ia-2026",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/gestao-canais-ia-2026"
+    },
+    {
+      "slug": "latam-webinar-atencionalcliente",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/latam-webinar-atencionalcliente"
+    },
+    {
+      "slug": "livraria",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/livraria"
+    },
+    {
+      "slug": "oferta-whatsapp-comercial-bloqueado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/oferta-whatsapp-comercial-bloqueado"
+    },
+    {
+      "slug": "playbook-whatsapp2026",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/playbook-whatsapp2026"
+    },
+    {
+      "slug": "pos-evento",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/pos-evento"
+    },
+    {
+      "slug": "sector-it-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sector-it-latam"
+    },
+    {
+      "slug": "sector-marketing-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sector-marketing-latam"
+    },
+    {
+      "slug": "webinar-tecnologia-maio2026",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-tecnologia-maio2026"
+    },
+    {
+      "slug": "webinar-tecnologia-maio2026-oferta",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-tecnologia-maio2026-oferta"
+    },
+    {
+      "slug": "webinar-tecnologia-maio2026-oferta-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-tecnologia-maio2026-oferta-latam"
+    },
+    {
+      "slug": "webinar-tecnologia-oferta-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-tecnologia-oferta-pt"
+    },
+    {
+      "slug": "webinar-tecnologia-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-tecnologia-pt"
+    },
+    {
+      "slug": "whatsapp-agencias-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/whatsapp-agencias-pt"
+    },
+    {
+      "slug": "whatsapp-comercial-bloqueado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/whatsapp-comercial-bloqueado"
+    }
+  ],
+  "extra_files": {
+    ".baselines_before.json": "landing-pages/dominios/content-cxpress-io/extras/.baselines_before.json",
+    ".vercelignore": "landing-pages/dominios/content-cxpress-io/extras/.vercelignore",
+    "README.md": "landing-pages/dominios/content-cxpress-io/extras/README.md",
+    "api/clickmeeting-register.js": "landing-pages/dominios/content-cxpress-io/extras/api/clickmeeting-register.js",
+    "api/next-webinar.js": "landing-pages/dominios/content-cxpress-io/extras/api/next-webinar.js",
+    "assets/cxpress/mockup-plataforma-laptop.png": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/mockup-plataforma-laptop.png",
+    "assets/cxpress/og-banimento-whatsapp-latam.png": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/og-banimento-whatsapp-latam.png",
+    "assets/cxpress/plataforma-canais.gif": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/plataforma-canais.gif",
+    "assets/cxpress/plataforma-chatbot-ia.gif": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/plataforma-chatbot-ia.gif",
+    "assets/cxpress/plataforma-dashboard.gif": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/plataforma-dashboard.gif",
+    "assets/cxpress/plataforma/clientes-cxpress.svg": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/plataforma/clientes-cxpress.svg",
+    "assets/elife/logos/logo-primary.png": "landing-pages/dominios/content-cxpress-io/extras/assets/elife/logos/logo-primary.png",
+    "assets/elife/logos/logo-reversed.svg": "landing-pages/dominios/content-cxpress-io/extras/assets/elife/logos/logo-reversed.svg",
+    "assets/logos/logo-icon.png": "landing-pages/dominios/content-cxpress-io/extras/assets/logos/logo-icon.png",
+    "assets/logos/logo-primary.png": "landing-pages/dominios/content-cxpress-io/extras/assets/logos/logo-primary.png",
+    "assets/logos/logo-primary.svg": "landing-pages/dominios/content-cxpress-io/extras/assets/logos/logo-primary.svg",
+    "assets/logos/logo-reversed.png": "landing-pages/dominios/content-cxpress-io/extras/assets/logos/logo-reversed.png",
+    "assets/logos/logo-reversed.svg": "landing-pages/dominios/content-cxpress-io/extras/assets/logos/logo-reversed.svg",
+    "assets/mascot/samir-dashboard.png": "landing-pages/dominios/content-cxpress-io/extras/assets/mascot/samir-dashboard.png",
+    "assets/mascot/samir-joinha.png": "landing-pages/dominios/content-cxpress-io/extras/assets/mascot/samir-joinha.png",
+    "assets/mascot/samir-laptop.png": "landing-pages/dominios/content-cxpress-io/extras/assets/mascot/samir-laptop.png",
+    "assets/mascot/samir-sticker.png": "landing-pages/dominios/content-cxpress-io/extras/assets/mascot/samir-sticker.png",
+    "assets/mascot/samir-trabalhando.png": "landing-pages/dominios/content-cxpress-io/extras/assets/mascot/samir-trabalhando.png",
+    "assets/speakers/laura-rodriguez.jpg": "landing-pages/dominios/content-cxpress-io/extras/assets/speakers/laura-rodriguez.jpg",
+    "assets/speakers/luis-chaparro.jpg": "landing-pages/dominios/content-cxpress-io/extras/assets/speakers/luis-chaparro.jpg",
+    "assets/speakers/milagros-pantoja.jpg": "landing-pages/dominios/content-cxpress-io/extras/assets/speakers/milagros-pantoja.jpg"
+  }
+}

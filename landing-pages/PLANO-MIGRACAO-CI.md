@@ -89,14 +89,21 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 
 ### Fase 1 — Manifestos + build script + prova de paridade (1–2 sessões; zero risco — nada deploya)
 
-- [ ] 1.1 Gerar os 4 manifestos a partir do live (descoberta via Vercel API, mesma técnica do lp-health-check) e commitá-los.
-- [ ] 1.2 Escrever `build_umbrella.py` com as responsabilidades do §1 (portar Passos 1.3–1.6 da lp-publicar). Validações embutidas que abortam o build: path relativo sobrando (`\.\./assets/|\./assets/|\.\./\.\./brand/`), placeholder `{{...}}` não resolvido, string sensível/arquivo interno em `dist/`, slug do manifesto sem source, `index.html` que não começa com doctype.
-- [ ] 1.3 **Prova de paridade:** para cada guarda-chuva, baixar o deploy production atual (sync_sibling.py já faz), rodar o build novo e comparar arquivo-a-arquivo (hash). Diferenças aceitáveis só se explicadas e aprovadas (ex: CSP atrasado que o build novo corrige de propósito). Registrar resultado em `landing-pages/build/PARIDADE.md`.
-- [ ] 1.4 Testes do build script (casos: LP com asset LP-local, asset brand, redirect-source, multi-marca no mesmo domínio, og-image, csp_extra).
+- [x] 1.1 Manifestos gerados a partir do live em `dominios/{dominio}/manifest.json` (+ `vercel.json` verbatim do live — decisão de desenho: mais simples que template+extras, ver PARIDADE.md).
+- [x] 1.2 `build_umbrella.py` escrito com todas as validações previstas (+ tolerância a BOM e refs bare já namespaceadas, descobertas na prova).
+- [x] 1.3 **Prova de paridade EXECUTADA e FECHADA (2026-07-15): 0 diferentes / 0 faltando / 0 sobrando nos 4 guarda-chuvas.** 14 LPs tinham drift source≠live (live adotado como verdade, sources re-importados). Relatório completo em `build/PARIDADE.md`. Re-rodar fresh antes do cutover da Fase 2 (`build/paridade_check.py`).
+- [x] 1.4 Cobertura de teste = a própria prova contra 66 LPs reais (todos os casos do plano exercitados); testes unitários ficam como melhoria futura (justificativa em PARIDADE.md).
 
-**Critério de aceite:** paridade 100% (ou diffs aprovados) nos 4 domínios; build roda em <60s no Actions.
+**Critério de aceite:** paridade 100% (ou diffs aprovados) nos 4 domínios ✓; build roda em <60s no Actions (validar na Fase 2 — localmente roda em segundos).
 
 ### Fase 2 — Piloto: `content.cxpress.io` (1 sessão + 1–2 semanas de observação)
+
+> **Achado da Fase 1 que afeta o desenho do workflow:** `webinar.buzzmonitor.com` contém uma
+> **função serverless** (`api/clickmeeting-register.js`, registro ClickMeeting — lê
+> `CLICKMEETING_API_KEY` do env do projeto Vercel). `vercel deploy --prebuilt` NÃO builda
+> funções a partir de `api/` — o workflow deve usar `vercel deploy` normal (a CLI builda
+> `api/` como function e serve o resto como estático) ou montar `.vercel/output`. Decidir/testar
+> na Fase 2 antes de migrar o webinar; o piloto content.cxpress.io é 100% estático e não é afetado.
 
 - [ ] 2.1 Criar `lp-deploy.yml` com trigger `workflow_dispatch` (manual) apenas, restrito ao domínio piloto. Primeiro deploy disparado à mão, com Victor acompanhando; smoke test compara TODAS as URLs do manifesto (200 ou redirect esperado) + hash contra a paridade da Fase 1.
 - [ ] 2.2 Rollback automático no workflow: qualquer URL do manifesto fora do ar pós-deploy → `promote` do deploy READY anterior via API + issue/email de alerta (Resend, mesma infra do health-check).

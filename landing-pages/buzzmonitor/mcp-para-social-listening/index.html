@@ -12,14 +12,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WFJVK858');</script>
 <!-- End Google Tag Manager -->
 
-<title>MCP para Social Listening na prática · Webinar Buzzmonitor · 16 de Junho</title>
-<meta name="description" content="Webinar gratuito da Buzzmonitor em 16 de Junho, 11h. Como a integração com IAs está revolucionando o Social Listening e a Prevenção de Crises." />
-<meta property="og:title" content="MCP para Social Listening na prática · Webinar Buzzmonitor" />
-<meta property="og:description" content="16 de Junho · 11h · Online e Ao Vivo. Social Listening automatizado com agentes de IA na prática." />
+<title>MCP para Social Listening na prática · Webinar gravado · Buzzmonitor</title>
+<meta name="description" content="Assista à gravação completa do webinar da Buzzmonitor. Como a integração com IAs está revolucionando o Social Listening e a Prevenção de Crises." />
+<meta property="og:title" content="MCP para Social Listening na prática · Webinar gravado · Buzzmonitor" />
+<meta property="og:description" content="Gravação disponível agora. Social Listening automatizado com agentes de IA, na prática." />
 <meta property="og:type" content="website" />
 <meta name="theme-color" content="#ffffff" />
 
-<link rel="icon" type="image/png" href="/assets/buzzmonitor/logos/logo-icon.png" />
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -977,6 +977,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ----- Jotform embed wrapper (canonico) -----
      Sem padding/background/border: o provedor ja vem com card proprio. */
   .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+  /* ----- Video embed (gravação YouTube) ----- */
+  .video-embed { width: 100%; }
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: #000;
+    box-shadow: var(--sh-md);
+    border: 1px solid var(--c-n300);
+  }
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
   .form h3 { font-family: var(--ff-display); font-size: 24px; color: var(--c-n900); margin-bottom: 22px; }
   .form .field { display: grid; gap: 6px; margin-bottom: 18px; }
   .form label { font-family: var(--ff-sub); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-n700); font-weight: 500; }
@@ -1164,11 +1185,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="nav" aria-label="Cabeçalho">
   <div class="wrap nav-inner">
     <a href="#" class="brand-mark" aria-label="Buzzmonitor, página inicial">
-      <img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" width="220" height="44" fetchpriority="high" />
+      <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="220" height="44" fetchpriority="high" />
     </a>
     <div class="nav-meta">
       <span class="dot" aria-hidden="true"></span>
-      <span>Webinar gratuito</span>
+      <span>Gravação disponível</span>
     </div>
   </div>
 </header>
@@ -1189,8 +1210,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Como a integração com IAs está revolucionando o Social Listening e a Prevenção de Crises.
         </p>
         <div class="hero-cta-row">
-          <a href="#inscricao" class="btn-primary">
-            <span>Quero me inscrever</span>
+          <a href="#gravacao" class="btn-primary">
+            <span>Assistir gravação</span>
             <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1205,59 +1226,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="deco-ring" aria-hidden="true"></span>
 
         <aside class="ticket" aria-label="Informações do webinar">
-          <div class="ticket-label">Save the date</div>
+          <div class="ticket-label">Webinar realizado</div>
           <div class="ticket-date">
             16 <span class="slash">JUN</span>
-            <small>Terça-feira &middot; 11h (Brasília)</small>
+            <small>2026 &middot; Gravação disponível</small>
           </div>
           <dl class="ticket-rows">
-            <div><dt>Formato</dt><dd>Online &middot; Ao vivo</dd></div>
+            <div><dt>Formato</dt><dd>Gravação on demand</dd></div>
             <div><dt>Duração</dt><dd>60 min</dd></div>
-            <div><dt>Investimento</dt><dd>Gratuito</dd></div>
+            <div><dt>Acesso</dt><dd>Gratuito</dd></div>
           </dl>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Countdown regressivo -->
-  <div class="countdown-wrap">
-    <div class="countdown-inner">
-      <p class="countdown-eyebrow">O webinar começa em</p>
-      <div class="countdown" id="countdown" aria-live="polite" aria-label="Contagem regressiva para o evento">
-        <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Dias</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== CTA + FORM (segunda dobra) ===== -->
-  <section class="final" id="inscricao" aria-labelledby="final-title">
+  <!-- ===== GRAVAÇÃO (segunda dobra) ===== -->
+  <section class="final" id="gravacao" aria-labelledby="final-title">
     <div class="wrap final-grid">
       <div class="reveal">
-        <span class="eyebrow" style="color: var(--c-accent-2);">Vaga gratuita</span>
+        <span class="eyebrow" style="color: var(--c-accent-2);">Gravação gratuita</span>
         <h2 id="final-title" style="margin-top: 14px;">Pare de monitorar na mão. Coloque agentes pra trabalhar.</h2>
-        <p class="when"><b>16 de Junho</b> &middot; 11h &middot; Online e Ao Vivo</p>
+        <p class="when">Realizado em <b>16 de Junho de 2026</b> &middot; 60 minutos</p>
         <p style="margin-top: 28px; color: var(--c-n700); max-width: 40ch;">
-          Sua inscrição garante o acesso ao vivo. Sem spam, sem enrolação.
+          Assista à gravação completa abaixo. Sem cadastro, sem espera.
         </p>
+        <div style="margin-top: 32px;">
+          <a href="https://conteudo.buzzmonitor.com.br/oferta-webinar-mcp-para-social-listening-na-pratica?utm_source=email&amp;utm_campaign=mcp-na-pratica&amp;utm_content=oferta-2" class="btn-primary" target="_blank" rel="noopener">
+            <span>Acessar oferta</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
 
-      <div class="jotform-embed reveal" style="--d: 140ms">
-        <iframe
-          id="JotFormIFrame-252154974852667"
-          title="Formulário de inscrição"
-          allowtransparency="true"
-          allow="geolocation; microphone; camera; fullscreen"
-          src="https://form.jotform.com/252154974852667"
-          frameborder="0"
-          style="width:100%;height:560px;border:none;display:block;"
-          scrolling="no"
-        ></iframe>
-        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-        <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-252154974852667']", "https://form.jotform.com")</script>
+      <div class="video-embed reveal" style="--d: 140ms">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/39gM-POQ2pY"
+            title="MCP para Social Listening na prática — gravação do webinar Buzzmonitor"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -1267,7 +1280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap">
       <header class="sec-head reveal">
         <span class="eyebrow">Programa</span>
-        <h2 id="learn-title">O que você vai levar deste webinar</h2>
+        <h2 id="learn-title">O que você leva desta gravação</h2>
       </header>
 
       <div class="l-grid">
@@ -1344,8 +1357,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="line">Na prática,</span>
         <span class="big">Detectar tarde é tão ruim quanto não detectar.</span>
         <div class="punchline-cta">
-          <a href="#inscricao" class="btn-primary">
-            <span>Quero proteger minha marca</span>
+          <a href="https://conteudo.buzzmonitor.com.br/oferta-webinar-mcp-para-social-listening-na-pratica?utm_source=email&amp;utm_campaign=mcp-na-pratica&amp;utm_content=oferta-2" class="btn-primary" target="_blank" rel="noopener">
+            <span>Acessar oferta</span>
             <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1357,7 +1370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="different" aria-labelledby="offer-title">
     <div class="wrap diff-grid">
       <div class="diff-art reveal" aria-hidden="true">
-        <span class="diff-art-tag">Webinar · 16 JUN</span>
+        <span class="diff-art-tag">Gravação · 16 JUN</span>
         <p class="diff-quote">
           Social Listening<br />
           <em>no automático.</em>
@@ -1365,9 +1378,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
       <div class="diff-copy reveal" style="--d: 160ms">
-        <span class="eyebrow" style="color: var(--c-accent-2);">Inscreva-se gratuitamente</span>
+        <span class="eyebrow" style="color: var(--c-accent-2);">Assista à gravação</span>
         <h2 id="offer-title">Agentes que monitoram, classificam e alertam sem depender do seu time olhando a tela.</h2>
-        <p>Vamos mostrar como configurar <strong>agentes de IA</strong> para acompanhar menções em escala, identificar tendências em tempo real e entregar só o que precisa de ação, sem ruído, sem perda de sinal.</p>
+        <p>Na gravação, mostramos como configurar <strong>agentes de IA</strong> para acompanhar menções em escala, identificar tendências em tempo real e entregar só o que precisa de ação, sem ruído, sem perda de sinal.</p>
         <p>Menos tempo varrendo feed, mais inteligência aplicada. Menos relatório manual, mais decisão baseada em dado fresco.</p>
       </div>
     </div>
@@ -1388,8 +1401,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li class="reveal" style="--d: 200ms"><span class="check-emoji" aria-hidden="true">✅</span>Lidera marketing ou atendimento e quer transformar dados de escuta em decisão mais rápida</li>
           </ul>
           <div class="for-cta reveal" style="--d: 320ms">
-            <a href="#inscricao" class="btn-primary">
-              <span>Quero minha vaga gratuita</span>
+            <a href="#gravacao" class="btn-primary">
+              <span>Assistir gravação</span>
               <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -1413,22 +1426,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="speakers" aria-labelledby="sp-title">
     <div class="wrap">
       <header class="sec-head reveal">
-        <span class="eyebrow">Com quem você vai aprender</span>
+        <span class="eyebrow">Quem apresentou</span>
         <h2 id="sp-title">Especialistas em <em style="font-style: italic; font-weight: 500; background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent;">Social Listening&nbsp;&amp;&nbsp;IA</em></h2>
       </header>
 
       <div class="sp-grid reveal">
         <article class="sp-card">
-          <div class="sp-photo"><img src="/assets/buzzmonitor/bruno.jpg" alt="Foto de Bruno Braga" loading="lazy" /></div>
+          <div class="sp-photo"><img src="./assets/bruno.jpg" alt="Foto de Bruno Braga" loading="lazy" /></div>
           <h3 class="sp-name">Bruno Braga</h3>
           <p class="sp-role">Dir. de Novos Negócios e Marketing</p>
-          <div class="sp-company"><img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
+          <div class="sp-company"><img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
         </article>
         <article class="sp-card">
-          <div class="sp-photo"><img src="/assets/buzzmonitor/breno.jpg" alt="Foto de Breno Soutto" loading="lazy" /></div>
+          <div class="sp-photo"><img src="./assets/breno.jpg" alt="Foto de Breno Soutto" loading="lazy" /></div>
           <h3 class="sp-name">Breno Soutto</h3>
           <p class="sp-role">Head of Insights</p>
-          <div class="sp-company"><img src="/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
+          <div class="sp-company"><img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" /></div>
         </article>
       </div>
     </div>
@@ -1446,8 +1459,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         &ldquo;Você vai esperar a próxima crise acontecer ou vai configurar os agentes antes?&rdquo;
       </p>
       <div class="urgency-cta" style="margin-top: 40px;">
-        <a href="#inscricao" class="btn-primary">
-          <span>Quero me preparar agora</span>
+        <a href="https://conteudo.buzzmonitor.com.br/oferta-webinar-mcp-para-social-listening-na-pratica?utm_source=email&amp;utm_campaign=mcp-na-pratica&amp;utm_content=oferta-2" class="btn-primary" target="_blank" rel="noopener">
+          <span>Acessar oferta</span>
           <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1463,8 +1476,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mural-stage">
         <div class="mural-frame" role="region" aria-label="Mural de marcas clientes da Buzzmonitor">
           <div class="mural-track">
-            <img src="/assets/buzzmonitor/logos/mural-1.jpeg" alt="Mural de marcas clientes da Buzzmonitor: varejo, alimentos, financeiro, automotivo, entretenimento" loading="lazy" class="logos-img" />
-            <img src="/assets/buzzmonitor/logos/mural-2.jpeg" alt="Mural de marcas clientes da Buzzmonitor: telecom, saúde, educação, agências, indústria" loading="lazy" class="logos-img" />
+            <img src="./assets/logos/mural-1.jpeg" alt="Mural de marcas clientes da Buzzmonitor: varejo, alimentos, financeiro, automotivo, entretenimento" loading="lazy" class="logos-img" />
+            <img src="./assets/logos/mural-2.jpeg" alt="Mural de marcas clientes da Buzzmonitor: telecom, saúde, educação, agências, indústria" loading="lazy" class="logos-img" />
           </div>
         </div>
         <div class="kpi-overlay kpi-overlay-tl">
@@ -1497,14 +1510,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="wrap">
     <div class="f-grid">
-      <img src="/assets/buzzmonitor/logos/logo-reversed.svg" alt="Buzzmonitor" width="110" height="22" loading="lazy" />
+      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="110" height="22" loading="lazy" />
       <a class="powered ig-link" href="https://www.instagram.com/buzzmonitorbr/" target="_blank" rel="noopener noreferrer" aria-label="Buzzmonitor no Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         <span translate="no">@buzzmonitorbr</span>
       </a>
     </div>
     <p class="legal">
-      &copy; 2026 <span translate="no">Buzzmonitor</span> &middot; Todos os direitos reservados. Evento gratuito, sujeito a alterações de horário.
+      &copy; 2026 <span translate="no">Buzzmonitor</span> &middot; Todos os direitos reservados. Gravação disponível sob demanda.
       Dúvidas? <a href="mailto:eventos@buzzmonitor.com.br" style="color:var(--c-accent);">eventos@buzzmonitor.com.br</a>
     </p>
   </div>
@@ -1531,36 +1544,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     els.forEach(function (el) { io.observe(el); });
   })();
 
-  // Countdown D/H/M/S até o webinar
-  (function () {
-    var target = new Date('2026-06-16T11:00:00-03:00').getTime();
-    var elD = document.getElementById('cd-d');
-    var elH = document.getElementById('cd-h');
-    var elM = document.getElementById('cd-m');
-    var elS = document.getElementById('cd-s');
-    if (!elD) return;
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function flip(el, val) {
-      if (el.textContent !== val) {
-        el.classList.add('flip');
-        el.textContent = val;
-        setTimeout(function () { el.classList.remove('flip'); }, 150);
-      }
-    }
-    function tick() {
-      var diff = target - Date.now();
-      if (diff <= 0) {
-        document.getElementById('countdown').innerHTML = '<p class="cd-ended">O evento já começou!</p>';
-        return;
-      }
-      flip(elD, pad(Math.floor(diff / 86400000)));
-      flip(elH, pad(Math.floor((diff % 86400000) / 3600000)));
-      flip(elM, pad(Math.floor((diff % 3600000) / 60000)));
-      flip(elS, pad(Math.floor((diff % 60000) / 1000)));
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
 </script>
 
 </body>
