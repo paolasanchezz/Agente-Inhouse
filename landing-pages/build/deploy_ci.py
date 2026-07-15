@@ -129,10 +129,21 @@ def main():
         log("dry-run " + ("FALHOU" if falhas else "OK"))
         sys.exit(1 if falhas else 0)
 
-    # estado anterior (pro rollback)
-    prev = api(f"/v6/deployments?projectId={manifest['projeto_vercel_id']}"
-               f"&target=production&state=READY&limit=1", token, team)["deployments"][0]
-    log(f"deploy production atual (rollback target): {prev['uid']} ({prev['url']})")
+    # estado anterior (pro rollback) — o deploy que o ALIAS do domínio serve agora.
+    # Não usar "último deploy READY": após um rollback anterior, o último deploy
+    # criado não é o que está no ar, e seria um alvo de rollback errado.
+    prev = None
+    try:
+        alias = api(f"/v4/aliases/{dominio}", token, team)
+        dep = alias.get("deployment") or {}
+        if dep.get("id"):
+            prev = {"uid": dep["id"], "url": dep.get("url", "")}
+    except Exception as e:
+        log(f"aviso: leitura do alias falhou ({e}); caindo pro último deploy READY")
+    if prev is None:
+        prev = api(f"/v6/deployments?projectId={manifest['projeto_vercel_id']}"
+                   f"&target=production&state=READY&limit=1", token, team)["deployments"][0]
+    log(f"servindo {dominio} agora (rollback target): {prev['uid']} ({prev['url']})")
 
     # link do projeto + deploy
     os.makedirs(os.path.join(dist, ".vercel"), exist_ok=True)

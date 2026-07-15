@@ -105,10 +105,10 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 > `api/` como function e serve o resto como estático) ou montar `.vercel/output`. Decidir/testar
 > na Fase 2 antes de migrar o webinar; o piloto content.cxpress.io é 100% estático e não é afetado.
 
-- [ ] 2.1 Criar `lp-deploy.yml` com trigger `workflow_dispatch` (manual) apenas, restrito ao domínio piloto. Primeiro deploy disparado à mão, com Victor acompanhando; smoke test compara TODAS as URLs do manifesto (200 ou redirect esperado) + hash contra a paridade da Fase 1.
-- [ ] 2.2 Rollback automático no workflow: qualquer URL do manifesto fora do ar pós-deploy → `promote` do deploy READY anterior via API + issue/email de alerta (Resend, mesma infra do health-check).
-- [ ] 2.3 Ativar trigger automático (push na main) para o piloto. Marcar o domínio como migrado em `landing-pages/dominios/MIGRADOS.json`; `lp-publicar` v3.10 ganha checagem no Passo 0: domínio ∈ MIGRADOS → recusa com instrução do fluxo novo. Hook `guard_vercel_deploy.py` ganha a mesma mensagem.
-- [ ] 2.4 Criar `lp-pr.yml` (validações + preview em PR) — ainda SEM auto-merge; nesta fase Victor mergeia (validando o fluxo com humano no loop).
+- [x] 2.1 `lp-deploy.yml` criado (2026-07-15): `workflow_dispatch` (qualquer domínio, validação supervisionada) + push na main gated por MIGRADOS.json. Smoke testa TODAS as URLs do manifesto (200/redirect + hash newline-normalizado vs build). `deploy_ci.py` validado em dry-run nos 4 domínios antes do 1º run.
+- [x] 2.2 Rollback automático implementado E ENSAIADO DE VERDADE (input `force_fail`): deploy real no piloto → falha simulada → promote do deploy anterior → 30/30 URLs ok, run vermelho. O ensaio achou e corrigiu bug real: alvo de rollback agora é o deploy que o ALIAS serve (não o "último READY" — errado após rollback anterior). Alerta por email/issue fica de melhoria (o run vermelho já notifica pelo GitHub).
+- [x] 2.3 Cutover do piloto (2026-07-15): `content.cxpress.io` em MIGRADOS.json; `lp-publicar` v3.10.0 recusa domínios migrados (Passo 0.0). Pendência menor: mensagem específica no hook `guard_vercel_deploy.py` (o gate da skill já cobre o fluxo normal).
+- [ ] 2.4 Criar `lp-pr.yml` (validações + preview em PR) — junto do merge-bot na Fase 3.
 - [ ] 2.5 Rodar 2–3 publicações reais do time no piloto. Medir: tempo edição→ar, falhas, dúvidas do time.
 
 **Critério de aceite:** ≥3 publicações reais sem incidente; rollback testado de verdade (simular deploy quebrado num sábado de manhã, não descobrir em produção); nenhuma vizinha afetada (por construção + smoke test).
