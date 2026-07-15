@@ -1,0 +1,75 @@
+# Deploy de LPs guarda-chuva via CI (PLANO-MIGRACAO-CI.md Fase 2).
+#
+# Caminho ÚNICO de deploy pros domínios listados em landing-pages/dominios/MIGRADOS.json.
+# - push na main tocando landing-pages/** ou brand/**: deploya todos os domínios migrados
+#   (build parte da main inteira — deploy nunca remove LP de ninguém).
+# - workflow_dispatch: deploya 1 domínio escolhido (migrado ou não) — usado na validação
+#   supervisionada antes do cutover e como fallback manual.
+# Cada deploy roda build determinístico + smoke test de todas as URLs do manifesto;
+# falha => rollback automático pro deploy anterior (deploy_ci.py).
+name: Deploy LPs
+
+on:
+  workflow_dispatch:
+    inputs:
+      dominio:
+        description: "Guarda-chuva a deployar"
+        required: true
+        type: choice
+        options:
+          - content.cxpress.io
+          - webinar.buzzmonitor.com
+          - evento.buzzmonitor.com
+          - material.buzzmonitor.com
+      force_fail:
+        description: "Simular falha de smoke pra ensaiar o rollback (teste supervisionado)"
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "landing-pages/**"
+      - "brand/**"
+
+jobs:
+  planejar:
+    runs-on: ubuntu-latest
+    outputs:
+      dominios: ${{ steps.plan.outputs.dominios }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo 'dominios=["${{ inputs.dominio }}"]' >> "$GITHUB_OUTPUT"
+          else
+            echo "dominios=$(jq -c . landing-pages/dominios/MIGRADOS.json)" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: planejar
+    if: needs.planejar.outputs.dominios != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dominio: ${{ fromJson(needs.planejar.outputs.dominios) }}
+    # serializa deploys por domínio — corrida entre dois pushes vira fila
+    concurrency:
+      group: lp-deploy-${{ matrix.dominio }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy + smoke + rollback
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          REPO_ROOT: ${{ github.workspace }}
+        run: |
+          DOM_KEY="$(echo "${{ matrix.dominio }}" | tr '.' '-')"
+          FLAGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_fail }}" = "true" ]; then
+            FLAGS="--force-fail"
+          fi
+          python3 landing-pages/build/deploy_ci.py \
+            "landing-pages/dominios/${DOM_KEY}/manifest.json" $FLAGS

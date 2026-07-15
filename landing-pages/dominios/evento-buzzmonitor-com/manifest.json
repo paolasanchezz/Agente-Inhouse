@@ -1,6 +1,8 @@
 {
   "dominio": "evento.buzzmonitor.com",
   "projeto_vercel": "buzzmonitor-evento",
+  "projeto_vercel_id": "prj_gKpQNVANpVmS380PIQNbOHD6EOJf",
+  "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
   "vercel_json": "landing-pages/dominios/evento-buzzmonitor-com/vercel.json",
   "lps": [
     {

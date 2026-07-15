@@ -3,7 +3,7 @@ name: lp-publicar
 description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 3.9.3
+version: 3.10.0
 ---
 
 # Skill: Publicar Landing Page
@@ -20,6 +20,22 @@ A skill opera em dois modos:
 `{SIBLING_BASE}` e resolvido em runtime pelo Passo 0.1 (env var `LP_SIBLING_BASE` > linha em `.env.local` na raiz). Configurado uma vez via `/setup-agencia`. Nunca hardcodar path absoluto da maquina aqui.
 
 A diferenca pratica: no modo guarda-chuva voce **nao cria projeto Vercel novo**, **anexa a LP** como subpasta ao sibling existente, **namespaceia assets por marca** (`/assets/{marca}/X`) para evitar colisao com vizinhas, e o relatorio inclui smoke test de **todas** as LPs do projeto.
+
+## Passo 0.0: Dominio migrado pro CI? (GATE — v3.10.0)
+
+Antes de qualquer coisa, leia `landing-pages/dominios/MIGRADOS.json`. Se o dominio-alvo
+(3o argumento) estiver na lista, **PARE — esta skill nao deploya mais esse dominio.**
+O deploy dele agora e exclusivo do GitHub Actions (workflow `lp-deploy.yml`), que builda
+a main inteira a partir dos manifestos em `landing-pages/dominios/{dominio}/manifest.json`.
+
+Fluxo novo para dominio migrado: editar o source em `landing-pages/{marca}/{slug}/`
+(+ adicionar a LP ao `manifest.json` do dominio, se nova) → commitar na main (via
+`/commit` ou fluxo do admin) → o push deploya sozinho, com smoke test e rollback
+automatico. Acompanhe em `gh run list --workflow=lp-deploy.yml`.
+
+Se o dominio nao foi informado (modo solo), siga normalmente — mas se o Passo 0.5
+detectar guarda-chuva cujo dominio esta em MIGRADOS.json, aplique este gate ali.
+Detalhes e racional: `landing-pages/PLANO-MIGRACAO-CI.md`.
 
 ## Passo 0: Parsing e Contexto
 

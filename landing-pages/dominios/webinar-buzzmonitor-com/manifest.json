@@ -1,6 +1,8 @@
 {
   "dominio": "webinar.buzzmonitor.com",
   "projeto_vercel": "buzzmonitor-lp-monitoramento-concorrentes",
+  "projeto_vercel_id": "prj_bqOBy4RXCnPFu8Fn7csQ6wzyjwb6",
+  "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
   "vercel_json": "landing-pages/dominios/webinar-buzzmonitor-com/vercel.json",
   "lps": [
     {

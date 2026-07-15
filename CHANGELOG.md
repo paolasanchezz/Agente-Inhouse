@@ -12,6 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar — gate de domínio migrado pro CI
+### 2026-07-15 — v3.10.0 — Passo 0.0: recusa domínio listado em MIGRADOS.json
+
+Fase 2 da migração LP→CI (`landing-pages/PLANO-MIGRACAO-CI.md`). Domínios guarda-chuva
+migrados pro deploy via GitHub Actions (`.github/workflows/lp-deploy.yml` + manifestos em
+`landing-pages/dominios/`) não podem mais ser deployados pela skill — o caminho local
+sibling é exatamente a corrida que a migração elimina. Novo Passo 0.0 lê
+`landing-pages/dominios/MIGRADOS.json` e aborta com instrução do fluxo novo quando o
+domínio-alvo está na lista. Domínios não migrados seguem no fluxo v3.9.x sem mudança.
+
 ## convites-moderador — só dias úteis
 ### 2026-07-13 — v1.2.1 — Help do `--force` honesto
 
