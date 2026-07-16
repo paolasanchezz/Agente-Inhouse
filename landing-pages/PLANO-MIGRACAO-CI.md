@@ -134,9 +134,11 @@ Nota: `landing-pages/build/**` e `.github/**` ficam do lado "exige revisão" de 
 
 ### Fase 5 — Aposentadoria do legado (quando estiver confortável; sem pressa)
 
-- [ ] 5.1 Mover `lp-sync` e o corpo v3.x da `lp-publicar` pra `.claude/skills-desativadas/` (mesmo tratamento do meta-ads-*). Manter `sync_sibling.py` acessível pra recovery/auditoria.
-- [ ] 5.2 Simplificar `guard_vercel_deploy.py`: qualquer `vercel deploy` manual em domínio de LP → bloquear (não só confirmar), exceto contextos sancionados restantes (dashboards, blog-publicar).
-- [ ] 5.3 Limpar seções obsoletas do CONTEXT.md (sibling, drift, JSON wrapper) movendo para um `LEGADO.md` de referência histórica.
+- [x] 5.1 (2026-07-15) `lp-sync` movida pra `.claude/skills-desativadas/`. O corpo clássico da `lp-publicar` NÃO foi movido: continua sendo a implementação do **modo solo** (válido — sem vizinhas, sem corrida); o Passo 0.0 v5.0.0 roteia guarda-chuva→CI e manda guarda-chuva NOVO nascer no CI (nunca sibling). `sync_sibling.py` segue no lugar pra recovery/auditoria.
+- [x] 5.2 Decisão revisada: o hook `guard_vercel_deploy.py` fica como está (confirmação genérica). Hard-block por domínio exigiria o hook resolver o projeto-alvo do comando — frágil; o gate real é a skill (v5 roteia) + o fim do modelo sibling. Contextos sancionados de deploy manual continuam: `/lp-publicar` solo, `/dashboard-atualizar`, `/blog-publicar`.
+- [x] 5.3 Feito como banners históricos em vez de LEGADO.md separado (menos risco de link quebrado): CONTEXT §1 (sibling = só solo), §2.2 (linha lp-sync da matriz), §4.3 marcado [HISTÓRICO]. §6/§7 ficam como estão — troubleshooting/incidentes são o registro histórico por natureza.
+
+**Faxinas pós-migração (2026-07-15):** 9 OG images 404 pré-existentes geradas (screenshot 1200×630 do hero live via Chrome headless) e colocadas nos sources; slug duplicado `consumidores-sinteticos-evento` resolvido (cópias idênticas — removida a de `cxpress/`, manifesto aponta `elife/`); `case-ia-de-voz/beatriz.jpg` NÃO é bug visual (o `<img>` tem `onerror` que o esconde — placeholder aguardando foto real, fica). **Preview deploy em PR: cancelado de vez** — com auto-merge imediato não existe janela de aprovação pra um preview servir; a aprovação visual acontece no `lp-revisar`, antes do commit.
 
 ---
 

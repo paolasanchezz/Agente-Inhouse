@@ -1,9 +1,9 @@
 ---
 name: lp-publicar
-description: Sincroniza LP para pasta sibling — solo (1 projeto = 1 LP) ou guarda-chuva (N LPs num mesmo projeto Vercel quando o dominio ja esta atribuido). Deploya via Vercel CLI, valida PageSpeed + headers, publica relatorio Notion. Garante zero vazamento do repo interno e zero regressao em LPs vizinhas.
+description: Publica landing page. Guarda-chuvas (todos migrados pro CI) — conduz o fluxo Git+GitHub Actions (manifesto + commit + acompanhar deploy com smoke e rollback automaticos). Modo solo (1 projeto = 1 LP) — fluxo classico via sibling. Valida, publica relatorio Notion, zero vazamento do repo interno.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 4.0.0
+version: 5.0.0
 ---
 
 # Skill: Publicar Landing Page
@@ -21,14 +21,24 @@ A skill opera em dois modos:
 
 A diferenca pratica: no modo guarda-chuva voce **nao cria projeto Vercel novo**, **anexa a LP** como subpasta ao sibling existente, **namespaceia assets por marca** (`/assets/{marca}/X`) para evitar colisao com vizinhas, e o relatorio inclui smoke test de **todas** as LPs do projeto.
 
-## Passo 0.0: Dominio migrado pro CI? (v4.0.0 — fluxo novo completo)
+## Passo 0.0: Qual fluxo? (v5.0.0 — CI e o padrao; classico so pra modo SOLO)
 
-Antes de qualquer coisa, leia `landing-pages/dominios/MIGRADOS.json`. Se o dominio-alvo
-(3o argumento) estiver na lista, **NAO use o fluxo sibling deste documento** (Passos 0.1
-em diante) — o deploy desse dominio e exclusivo do GitHub Actions. Siga o **FLUXO CI**
-abaixo e ignore o resto da skill. Se o dominio nao esta na lista (ou modo solo), siga o
-fluxo classico normalmente — mas se o Passo 0.5 detectar guarda-chuva cujo dominio esta
-em MIGRADOS.json, volte pra ca. Racional: `landing-pages/PLANO-MIGRACAO-CI.md`.
+Desde 2026-07-15 **TODOS os guarda-chuvas estao migrados pro CI** (`landing-pages/dominios/MIGRADOS.json`).
+A regra de roteamento e:
+
+- **Dominio-alvo em MIGRADOS.json** → siga o **FLUXO CI** abaixo e ignore o resto da skill.
+- **Sem dominio (deploy `.vercel.app`) ou dominio solo novo** (1 LP = 1 projeto) → fluxo
+  classico (Passos 0.1+), que segue valido porque solo nao tem vizinhas nem corrida.
+- **Guarda-chuva novo que ainda nao existe** (ex: 1a LP Elife em `content.elife.com`) →
+  **NAO crie sibling.** Guarda-chuva novo ja nasce no CI: crie `landing-pages/dominios/{dom}/`
+  (manifest.json com a 1a LP + vercel.json copiado de `.claude/skills/lp-publicar/vercel.template.json`),
+  adicione o dominio ao MIGRADOS.json (path protegido — o PR espera o Victor), crie o projeto
+  Vercel + atribua o dominio via API, e o push deploya. Em duvida, pergunte ao Victor.
+- Se o Passo 0.5 do fluxo classico detectar guarda-chuva existente → volte pra ca (gate).
+
+Racional e historico: `landing-pages/PLANO-MIGRACAO-CI.md`. O fluxo classico de guarda-chuva
+(sibling + sync + drift-check + baseline) esta APOSENTADO — referencia historica no CONTEXT.md
+§4.3/§7 e na skill desativada `.claude/skills-desativadas/lp-sync/`.
 
 ### FLUXO CI (dominios migrados)
 

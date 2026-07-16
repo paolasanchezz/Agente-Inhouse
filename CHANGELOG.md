@@ -12,6 +12,21 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## lp-publicar — CI vira o fluxo padrão; clássico rebaixado a modo solo
+### 2026-07-15 — v5.0.0 — Fase 5 da migração (MAJOR)
+
+Com os 4 guarda-chuvas migrados (MIGRADOS.json completo), o Passo 0.0 passa a rotear:
+guarda-chuva → fluxo CI; solo → fluxo clássico (segue válido — sem vizinhas, sem corrida);
+guarda-chuva NOVO nasce direto no CI (manifesto + MIGRADOS, nunca sibling). Descrição do
+frontmatter atualizada. Documentação: CONTEXT.md §1/§2.2/§4.3 (seção histórica) e CLAUDE.md.
+
+## lp-sync — DESATIVADA
+### 2026-07-15 — movida para `.claude/skills-desativadas/lp-sync/`
+
+Era a ferramenta de "sibling fresh" do modelo aposentado. Pra inspecionar o ar de um
+guarda-chuva hoje: `dominios/{dom}/manifest.json` + `build_umbrella.py` (o build É o deploy);
+auditoria contra o live: `paridade_check.py`.
+
 ## lp-publicar — fluxo CI completo pra domínios migrados
 ### 2026-07-15 — v4.0.0 — Passo 0.0 vira o fluxo novo (MAJOR)
 

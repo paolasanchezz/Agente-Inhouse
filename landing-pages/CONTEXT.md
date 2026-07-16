@@ -10,7 +10,8 @@
 ## 1. Mapa mental
 
 - **Fonte-verdade:** `landing-pages/{marca}/{slug}/` (no repo). É o que o pipeline edita.
-- **Sibling (artefato de deploy):** `${SIBLING_BASE}/{nome}/` — fora do repo, isolada. NUNCA editar lá direto: o próximo `lp-publicar` sobrescreve.
+- **Guarda-chuvas = CI (desde 2026-07-15):** os 4 domínios em `dominios/MIGRADOS.json` deployam só via GitHub Actions (§2.6). O estado do ar de cada um é o `dominios/{dom}/manifest.json`. **Sibling não existe mais pra guarda-chuva** — os itens abaixo sobre sibling valem apenas pro modo SOLO.
+- **Sibling (artefato de deploy — SÓ modo solo):** `${SIBLING_BASE}/{nome}/` — fora do repo, isolada. NUNCA editar lá direto: o próximo `lp-publicar` sobrescreve.
 - **`SIBLING_BASE` é resolvido em runtime** pela skill `lp-publicar` (Passo 0.1) em ordem de precedência: env var `LP_SIBLING_BASE` no shell → linha `LP_SIBLING_BASE=...` em `.env.local` (raiz, gitignored — escrito pelo `/setup-agencia`). Se nenhum estiver setado, `lp-publicar` invoca `/setup-agencia` automaticamente. Nunca hardcodar paths absolutos neste doc.
 - **Pipeline:** preparar → gerar → revisar → [integrar-form manual] → publicar.
 - **Dois modos de deploy:** SOLO (1 LP/projeto Vercel) e GUARDA-CHUVA (N LPs/domínio).
@@ -45,9 +46,9 @@ Matriz **"o que mudou → o que rodar"**. Sempre editar a fonte (`landing-pages/
 | Adicionar imagem LP-local (mascote pontual, hero específico) | colocar em `landing-pages/{marca}/{slug}/assets/` + referenciar no HTML como `./assets/X` | — | `/lp-publicar` |
 | Atualizar GTM ID | `brand/{marca}/tracking.json` | `/lp-revisar {marca}/{slug}` (Passo 3.5 audita+corrige) | `/lp-publicar` |
 | Mudar domínio | — | `/lp-publicar {marca} {slug} {novo-dominio}` (Passo 0.5 detecta solo vs guarda-chuva) | já é o deploy |
-| Sibling apagada por engano | — | `/lp-publicar` recria do zero | sim |
-| Sibling divergente (alguém editou direto na sibling) | reaplicar mudança em `landing-pages/{marca}/{slug}/` (recuperar via `git diff` na sibling se preciso) | `/lp-publicar` sobrescreve sibling com source | sim |
-| Inspeção / debug local sem deploy (sibling precisa estar fresh) | — | `/lp-sync [dominio]` (read-only — popula sibling com último deploy READY via Vercel API) | — (não deploya) |
+| Sibling apagada por engano (modo solo) | — | `/lp-publicar` recria do zero | sim |
+| Sibling divergente — alguém editou direto na sibling (modo solo) | reaplicar mudança em `landing-pages/{marca}/{slug}/` (recuperar via `git diff` na sibling se preciso) | `/lp-publicar` sobrescreve sibling com source | sim |
+| Inspeção do que está no ar num guarda-chuva | — | ler `dominios/{dom}/manifest.json` + rodar `landing-pages/build/build_umbrella.py` local (o build É o que vai pro ar); auditoria contra o live: `paridade_check.py`. (`/lp-sync` foi desativada 2026-07-15 — era do modelo sibling) | — (não deploya) |
 
 **Regra geral (pipeline Vercel):** primeiro cheque `landing-pages/dominios/MIGRADOS.json` — domínio listado lá deploya **exclusivamente via CI** (§2.6), e a `lp-publicar` v4 aplica esse gate sozinha no Passo 0.0. Para os demais domínios, toda alteração ou deploy de LP roda pela skill `lp-publicar`. Fluxo manual (`cd sibling && vercel deploy ...`) é anti-padrão — mata as 4 camadas de defesa da skill (§4.3) e historicamente causa regressão silenciosa em vizinhas (§7.2, 2026-05-13). Se você precisa apenas inspecionar a sibling sem deployar, use `/lp-sync` para garantir snapshot fresh; nunca invente fluxo manual com lista hardcoded de vizinhas. **Exceção:** publicação direta no **Webflow**, a pedido explícito do usuário, não passa por `lp-publicar` — ver §2.4.
 
@@ -199,7 +200,13 @@ LPs novas devem priorizar o subdomínio mais específico (ex: evento presencial 
 
 **Importante — `content.elife.com` ≠ projeto Cxpress.** Em 08/jun/2026 alguém atribuiu `content.elife.com` como alias adicional do projeto `cxpress-lp-playbook-whatsapp2026` no painel Vercel. Foi engano (provavelmente exploração de migração de marca abandonada no meio). Removido em 08/jun/2026 mesmo dia via `DELETE /v9/projects/.../domains/content.elife.com`. O domínio segue **registrado na org elife-group** (Domain Registry), pronto pra ser atribuído ao projeto Vercel **da marca Elife** quando a primeira LP Elife for publicada. Se alguém atribuir `content.elife.com` novamente ao projeto Cxpress (ou Buzzmonitor), parar e perguntar ao Victor — não é cenário esperado. Quando a 1ª LP Elife rodar `/lp-publicar elife {slug} content.elife.com`, o Passo 0.5 vai detectar que não há projeto Vercel atribuído ainda → modo solo → cria projeto novo da marca Elife.
 
-### 4.3 Promessa: ZERO regressão (vizinhas em guarda-chuva, e a própria LP em qualquer modo)
+### 4.3 Promessa: ZERO regressão — [HISTÓRICO — modelo sibling, aposentado pra guarda-chuvas em 2026-07-15]
+
+> **Esta seção descreve o modelo antigo.** Guarda-chuvas hoje têm a garantia por construção
+> (CI builda a main inteira — §2.6); as "4 camadas" abaixo só se aplicam ao modo SOLO e
+> ficam como referência histórica dos incidentes de §7.2.
+
+#### (histórico) As 4 camadas do modelo sibling
 
 `lp-publicar` aplica **quatro camadas de defesa**, dividas em dois eixos:
 
