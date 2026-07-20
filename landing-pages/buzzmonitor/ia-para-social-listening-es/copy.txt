@@ -52,14 +52,14 @@ CTA: Quiero agendar una demo
 === FEATURE-INSIGHTS ===
 OVERLINE: Generación de insights
 H2: IA para generar insights
-H3: La IA hace el trabajo pesado y tu marca gana productividad e inteligencia de datos.
+H3: La IA hace el trabajo pesado y tu marca obtiene insights accionables en segundos.
 BODY: AI Insights genera análisis resumidos de tus reportes de monitoreo: ahorras tiempo y recibes los principales hallazgos en segundos, listos para compartir con tu equipo.
 CTA: Quiero agendar una demo
 
 === FEATURE-AUDIOVISUAL ===
 OVERLINE: Monitoreo audiovisual
 H2: Monitoreo de videos, audios e imágenes
-H3: Cada mención sobre tu marca, capturada al detalle.
+H3: Cada mención sobre tu marca, capturada con detalle.
 BODY: Las menciones en videos, stories, audios e imágenes se detectan, transcriben y analizan en tiempo real, con alertas automáticas sobre menciones negativas.
 CTA: Quiero agendar una demo
 
