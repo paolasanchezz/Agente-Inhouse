@@ -9,8 +9,11 @@ LABEL: 500+ agencias
 
 === LOGOS ===
 H2: Empresas que ya confían en Buzzmonitor
+LABEL: Samsung · Sony · IKEA · Sephora · Santander · Havas · TBWA · McCann · Fundación Real Madrid · Bizum
+# [NOTA] Logos extraídos 1:1 da LP publicada contenido.getbuzzmonitor.com/ia-para-social-listening (2026-07-20). Havas recolorido (era branco). Marcas Uber/NuBank/CocaCola/Amazon/IPG NÃO estavam nessa página — não incluídas (pendente Victor).
 
 === CTA-FINAL-FORM ===
+LABEL: Planes desde 390 USD/mes
 H2: Descubre lo que podemos hacer por tu empresa
 LIST ITEM: Clientes que mejoraron su estrategia con social listening
 LIST ITEM: Clientes que lograron evitar crisis de reputación

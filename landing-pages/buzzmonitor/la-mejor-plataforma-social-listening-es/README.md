@@ -7,10 +7,10 @@
 ## Estrutura
 
 - HERO (overline + H1 + sub + 2 CTAs + 3 stats + tela da plataforma)
-- LOGOS (McDonald's, MRM // McCann, TotalPass — adicionado 2026-07-20)
-- CTA-FINAL + FORM na **segunda dobra** (movido pra cá a pedido do Victor, 2026-07-20; form réplica GreatPages)
+- LOGOS — logo wall de 10 marcas extraídas 1:1 da LP publicada (Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Fundación Real Madrid, Bizum). Assets em `assets/clientes/`.
+- COMPARATIVO na **segunda dobra** (tabela 15 features × Buzzmonitor + 10 concorrentes; dados em `comparativo.json`, transcritos 1:1 da LP publicada) — movido pra cá a pedido do Victor, 2026-07-20
+- CTA-FINAL + FORM na **terceira dobra** (form réplica GreatPages; card mostra preço "Planes desde 390 USD/mes")
 - POR-QUE-ELEGIR (texto + checklist de 6)
-- COMPARATIVO (tabela 15 features × Buzzmonitor + 10 concorrentes; dados em `comparativo.json`, transcritos 1:1 da LP publicada)
 - SOLO-BUZZMONITOR (lista de 6 + grid de 12 ícones de canais)
 - VISION-INTEGRAL (4 cards)
 - OFERTA (dark, tag rotacionada "14 días gratis"; SEM preço na versão LATAM)

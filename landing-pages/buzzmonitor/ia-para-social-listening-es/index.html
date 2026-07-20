@@ -147,10 +147,13 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 /* LOGOS */
 .logos{padding:44px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .logos h2{font-family:var(--sub);font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:center;margin-bottom:26px}
-.logos__row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:56px}
-.logos__row img{height:34px;width:auto;min-height:0;filter:grayscale(1);opacity:.75;transition:filter .2s ease,opacity .2s ease}
-.logos__row img:hover{filter:none;opacity:1}
-.logos__row img.logo--mccann{height:96px;margin:-31px 0}
+.logos__wall{display:grid;grid-template-columns:repeat(5,1fr);gap:30px 40px;align-items:center;justify-items:center;max-width:940px;margin:0 auto}
+.logos__wall img{max-height:38px;max-width:132px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.6;transition:filter .2s ease,opacity .2s ease}
+.logos__wall img:hover{filter:grayscale(0);opacity:1}
+@media (max-width:900px){.logos__wall{gap:26px 26px}.logos__wall img{max-height:32px;max-width:104px}}
+@media (max-width:560px){.logos__wall{grid-template-columns:repeat(3,1fr);gap:24px 20px}.logos__wall img{max-height:28px;max-width:86px}}
+/* Ocultar botao persistente "Consent Preferences" do Termly (injetado via GTM) — pedido do Victor 2026-07-20 */
+.termly-display-preferences{display:none!important}
 
 /* BENEFICIOS */
 .bene{padding:120px 0;background:#fff}
@@ -237,6 +240,9 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .form-card{background:#fff;border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.35);padding:38px 34px}
 .form-card h3{font-family:var(--disp);font-weight:900;font-size:24px;color:var(--purple);margin-bottom:6px}
 .form-card p{font-size:14.5px;color:var(--ink-2);margin-bottom:22px}
+.form-card__price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:12px 16px;background:var(--purple-tint);border-radius:12px;font-family:var(--sub);font-weight:600;font-size:14px;color:var(--purple)}
+.form-card__price strong{font-family:var(--disp);font-weight:900;font-size:26px;color:var(--purple);line-height:1}
+.form-card__price em{font-style:normal;font-weight:400;font-size:14px;color:var(--ink-2)}
 .form-card .field{margin-bottom:14px}
 .form-card label{display:block;font-family:var(--sub);font-weight:600;font-size:13.5px;color:var(--purple);margin-bottom:6px}
 .form-card input,.form-card select{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;transition:border-color .15s ease}
@@ -319,10 +325,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="logos" aria-label="Clientes de Buzzmonitor">
     <div class="wrap">
       <h2>Empresas que ya confían en Buzzmonitor</h2>
-      <div class="logos__row">
-        <img src="./assets/logo-mcdonalds.svg" alt="McDonald's" width="120" height="34" loading="lazy">
-        <img src="./assets/logo-mccann.svg" alt="MRM // McCann" width="96" height="96" class="logo--mccann" loading="lazy">
-        <img src="./assets/logo-totalpass.svg" alt="TotalPass" width="120" height="34" loading="lazy">
+      <div class="logos__wall">
+        <img src="./assets/clientes/logo-samsung.png" alt="Samsung" loading="lazy">
+        <img src="./assets/clientes/logo-sony.png" alt="Sony" loading="lazy">
+        <img src="./assets/clientes/logo-ikea.png" alt="IKEA" loading="lazy">
+        <img src="./assets/clientes/logo-sephora.png" alt="Sephora" loading="lazy">
+        <img src="./assets/clientes/logo-santander.png" alt="Santander" loading="lazy">
+        <img src="./assets/clientes/logo-havas.png" alt="Havas" loading="lazy">
+        <img src="./assets/clientes/logo-tbwa.png" alt="TBWA" loading="lazy">
+        <img src="./assets/clientes/logo-mccann.png" alt="McCann" loading="lazy">
+        <img src="./assets/clientes/logo-realmadrid.png" alt="Fundación Real Madrid" loading="lazy">
+        <img src="./assets/clientes/logo-bizum.png" alt="Bizum" loading="lazy">
       </div>
     </div>
   </section>
@@ -348,6 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <form class="form-card reveal" id="demoForm" novalidate>
         <h3>Agenda una demo</h3>
         <p>Completa tus datos y nuestro equipo te contactará.</p>
+        <p class="form-card__price"><span>Planes desde</span> <strong>390 USD</strong> <em>/mes</em></p>
         <div class="field">
           <label for="f-nombre">Nombre</label>
           <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
