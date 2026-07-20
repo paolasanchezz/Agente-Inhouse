@@ -194,6 +194,10 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .feat--av .feat__media::before{background:var(--peach)}
 .feat--cr .feat__media::before{background:#FFE1AD}
 .feat__media img,.feat__media video{position:relative;z-index:1;display:block;width:100%;height:auto;min-height:0;border-radius:var(--rad);border:1px solid var(--line);box-shadow:var(--shadow-lg);background:#fff}
+.feat__media--stack{position:relative;padding:8px 0 40px}
+.feat__media--stack img{position:relative;width:74%;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow-lg);background:#fff;z-index:1}
+.feat__media--stack .stack-b{position:absolute;right:0;bottom:0;width:60%;z-index:3}
+@media (max-width:520px){.feat__media--stack img{width:82%}.feat__media--stack .stack-b{width:66%}}
 @media (max-width:980px){
   .feat__grid{grid-template-columns:1fr}
   .feat__grid--flip .feat__media{order:0}
@@ -436,9 +440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn--primary" href="#form">Quiero agendar una demo</a>
       </div>
       <div class="feat__media reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="./assets/tela-monitoramento-1.png" aria-label="Demostración del módulo de social listening de Buzzmonitor">
-          <source src="./assets/img-social-listening.webm" type="video/webm">
-        </video>
+        <img src="./assets/social-listening-es.gif" alt="Demostración del módulo de social listening de Buzzmonitor en acción" width="853" height="480" loading="lazy">
       </div>
     </div>
   </section>
@@ -454,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn--primary" href="#form">Quiero agendar una demo</a>
       </div>
       <div class="feat__media reveal">
-        <img src="./assets/img-ai-insights.webp" alt="Panel de AI Insights de Buzzmonitor con análisis automático de un reporte" width="900" height="600" loading="lazy">
+        <img src="./assets/ai-insights.png" alt="Panel de AI Insights de Buzzmonitor con análisis automático de un reporte" width="430" height="284" loading="lazy">
       </div>
     </div>
   </section>
@@ -470,7 +472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn--primary" href="#form">Quiero agendar una demo</a>
       </div>
       <div class="feat__media reveal">
-        <img src="./assets/img-monitoramento-audiovisual.webp" alt="Monitoreo audiovisual de Buzzmonitor detectando menciones en videos e imágenes" width="900" height="600" loading="lazy">
+        <img src="./assets/monitoreo-de-videos.png" alt="Monitoreo de videos, audios e imágenes de la marca en Buzzmonitor" width="478" height="243" loading="lazy">
       </div>
     </div>
   </section>
@@ -485,8 +487,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>La IA detecta picos de menciones, crea alertas de términos sensibles y ayuda a tu marca a actuar antes de que la crisis explote.</p>
         <a class="btn btn--primary" href="#form">Quiero agendar una demo</a>
       </div>
-      <div class="feat__media reveal">
-        <img src="./assets/img-gestao-crises.svg" alt="Panel de gestión de crisis de Buzzmonitor con alertas y picos de menciones" width="900" height="600" loading="lazy">
+      <div class="feat__media feat__media--stack reveal">
+        <img class="stack-a" src="./assets/crises-1.png" alt="Distribución de reacciones sobre la marca en Buzzmonitor" width="427" height="222" loading="lazy">
+        <img class="stack-b" src="./assets/crises-2.jpg" alt="Panel de prioridad de tickets de atención en Buzzmonitor" width="454" height="277" loading="lazy">
       </div>
     </div>
   </section>
@@ -521,7 +524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="testi__grid">
         <article class="testi__card reveal">
           <div class="testi__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote>Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.</blockquote>
+          <blockquote>Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados e insights muy valiosos.</blockquote>
           <div class="testi__who"><strong>MRM // McCANN</strong><span>Pablo Ferrer, Head of Social Media</span></div>
         </article>
         <article class="testi__card reveal">
@@ -531,7 +534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </article>
         <article class="testi__card reveal">
           <div class="testi__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote>Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.</blockquote>
+          <blockquote>Buzzmonitor nos ayuda a organizar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.</blockquote>
           <div class="testi__who"><strong>MCDONALD'S</strong><span>Sérgio Leal, Director de Marketing y Comunicación</span></div>
         </article>
       </div>

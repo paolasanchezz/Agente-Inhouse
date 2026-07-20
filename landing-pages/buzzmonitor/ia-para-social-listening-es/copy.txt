@@ -84,13 +84,13 @@ CTA: Quiero probar gratis
 === TESTIMONIOS ===
 H2: ¿Aún no estás convencido?
 SUB: Lee lo que dicen quienes ya utilizan Buzzmonitor
-QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.
+QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados e insights muy valiosos.
 LABEL: MRM // McCANN · Pablo Ferrer, Head of Social Media
 QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes.
 LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
-QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
+QUOTE: Buzzmonitor nos ayuda a organizar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
 LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
-# [NOTA] Citas literais de clientes conforme publicadas na LP atual ("gerenciar" e mantido por ser fala do cliente).
+# [NOTA] Citas de clientes conforme LP publicada, com 2 ajustes do Victor (2026-07-20): McCann "resultados e insights muy valiosos" (ordem); McDonald's "gerenciar"->"organizar" (mais natural em ES).
 
 === VIDEO ===
 OVERLINE: Mira la plataforma en acción

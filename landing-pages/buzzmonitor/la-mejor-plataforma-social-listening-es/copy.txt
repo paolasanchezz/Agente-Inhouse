@@ -97,19 +97,19 @@ CTA: Quiero probar gratis
 === TESTIMONIOS ===
 H2: ¿Aún no estás convencido?
 SUB: Escucha a quienes ya utilizan Buzzmonitor
-QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.
+QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados e insights muy valiosos.
 LABEL: MRM // McCANN · Pablo Ferrer, Head of Social Media
 QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes.
 LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
 QUOTE: Cubre todas las necesidades de los profesionales de Social Media Marketing al permitir escuchar, analizar y actuar sobre la conversación relacionada con tus clientes.
 LABEL: PUBLICIS · José Manuel López, Social Media Coordinador
-QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
+QUOTE: Buzzmonitor nos ayuda a organizar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
 LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
 QUOTE: Optimiza el tiempo de producción de los informes que entregamos a los clientes permitiéndonos especificar cada detalle a través de etiquetas.
 LABEL: SA365 · Isabela Matias da Silva, Gerente de Comunidades
 QUOTE: Es una herramienta con excelente costo y beneficio, siempre tiene actualizaciones y recibimos mucho apoyo del equipo de atención al cliente.
 LABEL: CONTENT HOUSE · Rafaela Antunes, Directora de Medios y Datos
-# [NOTA] Citas literais de clientes conforme publicadas na LP atual (inclusive "gerenciar" e "informes" dentro de citas, fala do cliente, não normalizar).
+# [NOTA] Citas de clientes conforme LP publicada, com 2 ajustes do Victor (2026-07-20): McCann "resultados e insights muy valiosos" (ordem); McDonald's "gerenciar"->"organizar". "informes" nas outras citas mantido (fala do cliente).
 
 === FOOTER ===
 BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.

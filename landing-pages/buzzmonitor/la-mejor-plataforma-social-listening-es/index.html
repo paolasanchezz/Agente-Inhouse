@@ -172,7 +172,10 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .checklist li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--rad-sm);padding:16px 18px;font-family:var(--sub);font-weight:600;color:var(--ink)}
 .checklist .tick{flex:0 0 26px;height:26px;border-radius:50%;background:var(--teal-tint);color:var(--teal);display:grid;place-items:center;font-weight:900;font-size:14px}
 .porque .btn{margin-top:28px}
-@media (max-width:980px){.porque__grid{grid-template-columns:1fr;gap:40px}}
+.porque .checklist{margin:24px 0 4px}
+.porque__media{position:sticky;top:96px}
+.porque__media img{width:100%;height:auto;display:block;border-radius:var(--rad);border:1px solid var(--line);box-shadow:var(--shadow-lg)}
+@media (max-width:980px){.porque__grid{grid-template-columns:1fr;gap:40px}.porque__media{position:static}}
 
 /* COMPARATIVO */
 .compare{padding:120px 0;background:var(--bg)}
@@ -494,16 +497,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>¿Por qué elegir Buzzmonitor?</h2>
         <p><strong>Buzzmonitor no solo proporciona métricas: te da control absoluto sobre tu presencia digital.</strong></p>
         <p>Centraliza la gestión de tus redes sociales y la atención al cliente, con análisis de conversaciones impulsados por IA en segundos, dashboards y reportes completamente personalizables. Lo mejor: atención al cliente local y en español desde el primer día.</p>
+        <ul class="checklist">
+          <li><span class="tick" aria-hidden="true">✓</span>Seguimiento de tu marca, competidores y temas clave</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Análisis cualitativos generados con IA para decisiones más inteligentes</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Atención al cliente centralizada y hasta 3 veces más rápida gracias a la IA</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Más de 50 métricas de performance</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Dashboards ilimitados y dinámicos con datos en tiempo real</li>
+          <li><span class="tick" aria-hidden="true">✓</span>Creación y programación de publicaciones con IA</li>
+        </ul>
         <a class="btn btn--primary" href="#form">Quiero una demo</a>
       </div>
-      <ul class="checklist reveal">
-        <li><span class="tick" aria-hidden="true">✓</span>Seguimiento de tu marca, competidores y temas clave</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Análisis cualitativos generados con IA para decisiones más inteligentes</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Atención al cliente centralizada y hasta 3 veces más rápida gracias a la IA</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Más de 50 métricas de performance</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Dashboards ilimitados y dinámicos con datos en tiempo real</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Creación y programación de publicaciones con IA</li>
-      </ul>
+      <div class="porque__media reveal">
+        <img src="./assets/social-listening-es.gif" alt="Plataforma de social listening de Buzzmonitor en acción" width="853" height="480" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -602,7 +608,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="testi__grid">
         <article class="testi__card reveal">
           <div class="testi__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote>Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.</blockquote>
+          <blockquote>Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados e insights muy valiosos.</blockquote>
           <div class="testi__who"><strong>MRM // McCANN</strong><span>Pablo Ferrer, Head of Social Media</span></div>
         </article>
         <article class="testi__card reveal">
@@ -617,7 +623,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </article>
         <article class="testi__card reveal">
           <div class="testi__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote>Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.</blockquote>
+          <blockquote>Buzzmonitor nos ayuda a organizar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.</blockquote>
           <div class="testi__who"><strong>MCDONALD'S</strong><span>Sérgio Leal, Director de Marketing y Comunicación</span></div>
         </article>
         <article class="testi__card reveal">
