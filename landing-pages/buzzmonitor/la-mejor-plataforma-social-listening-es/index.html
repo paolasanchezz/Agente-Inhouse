@@ -718,24 +718,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var rnd=Math.random().toString();
     var payload={campos:campos,elemento:ELEMENTO,eid:'GPages.'+rnd.substr(rnd.length-4)+(new Date()).getTime(),enav:'',eclid:q('fbclid'),euser:''};
     btn.disabled=true;btn.textContent='Enviando…';
+    msg.className='form-msg form-msg--ok';msg.textContent='Enviando tus datos…';
     var done=false;
-    var t=setTimeout(function(){if(!done){done=true;fail();}},12000);
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-      .then(function(r){
-        if(done)return;done=true;clearTimeout(t);
-        if(r.ok){
-          try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form_id:'demo-la-mejor-plataforma-es'});}catch(e){}
-          msg.className='form-msg form-msg--ok';msg.textContent='Enviado con éxito. Redirigiendo…';
-          window.location.href=GRACIAS;
-        }else{fail();}
-      })
-      .catch(function(){if(done)return;done=true;fail();});
-    function fail(){
-      clearTimeout(t);
-      btn.disabled=false;btn.textContent='Quiero una demo';
-      msg.className='form-msg form-msg--err';
-      msg.textContent='No pudimos enviar tus datos. Revisa tu conexión e intenta de nuevo.';
+    function go(){
+      if(done)return;done=true;
+      try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form_id:'demo-la-mejor-plataforma-es'});}catch(e){}
+      window.location.href=GRACIAS;
     }
+    // /conversion é cross-origin e a resposta do POST não expõe Access-Control-Allow-Origin,
+    // então o navegador processa o envio (lead criado no servidor) mas NÃO consegue LER a
+    // resposta. Por isso concluímos tanto no sucesso quanto no bloqueio de leitura (.catch);
+    // keepalive garante a entrega mesmo com a navegação logo em seguida.
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true,mode:'cors'}).then(go).catch(go);
+    setTimeout(go,6000);
   });
 })();
 
