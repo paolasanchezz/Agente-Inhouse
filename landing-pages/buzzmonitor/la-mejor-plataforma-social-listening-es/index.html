@@ -159,8 +159,8 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .logos__wall img:hover{filter:grayscale(0);opacity:1}
 @media (max-width:900px){.logos__wall{gap:26px 26px}.logos__wall img{max-height:32px;max-width:104px}}
 @media (max-width:560px){.logos__wall{grid-template-columns:repeat(3,1fr);gap:24px 20px}.logos__wall img{max-height:28px;max-width:86px}}
-/* Ocultar botao persistente "Consent Preferences" do Termly (injetado via GTM) — pedido do Victor 2026-07-20 */
-.termly-display-preferences{display:none!important}
+/* Ocultar UI do Termly (injetado via GTM): botao persistente "Consent Preferences" + banner de consentimento — pedido do Victor 2026-07-20 */
+.termly-display-preferences,.t-consentPrompt{display:none!important}
 
 /* POR QUE */
 .porque{padding:120px 0;background:var(--bg-soft)}
