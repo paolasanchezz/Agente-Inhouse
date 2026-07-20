@@ -10,10 +10,10 @@
 - LOGOS — logo wall de 10 marcas extraídas 1:1 da LP publicada (Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Fundación Real Madrid, Bizum). Cinza uniforme; assets em `assets/clientes/`. Havas recolorido (era branco).
 - CTA-FINAL + FORM na **segunda dobra** (movido pra cá a pedido do Victor, 2026-07-20; form réplica GreatPages). Card mostra preço "Planes desde 390 USD/mes".
 - BENEFICIOS (6 itens + 3 pills)
-- VIDEO (YouTube `nBMZZZKrMpI`, vídeo oficial ES "La Inteligencia Artificial y Buzzmonitor lo cambian todo", facade lazy: só carrega o iframe no clique)
 - 4 FEATURES alternadas com telas da plataforma (social listening `.webm`, AI Insights, audiovisual, gestão de crises)
 - OFERTA (dark, tag "14 días gratis"; SEM preço na versão LATAM)
-- TESTIMONIOS (3 citas literais) + FOOTER
+- TESTIMONIOS (3 citas literais)
+- VIDEO como **última seção** antes do footer (movido pra cá a pedido do Victor, 2026-07-20; YouTube `nBMZZZKrMpI`, vídeo oficial ES, facade lazy) + FOOTER
 
 ## Form (réplica GreatPages — decisão desta LP)
 

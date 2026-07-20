@@ -42,12 +42,6 @@ LABEL: Insights rápidos con IA
 LABEL: Monitorea tu marca
 LABEL: Decisiones más estratégicas
 
-=== VIDEO ===
-OVERLINE: Mira la plataforma en acción
-H2: La plataforma de IA más avanzada para monitorear tu marca
-CTA: Quiero agendar una demo
-# [NOTA] Video oficial em espanhol do canal GetBuzzmonitor ES: youtube nBMZZZKrMpI ("La Inteligencia Artificial y Buzzmonitor lo cambian todo"), o mesmo embutido na LP "mejor plataforma" atual. Facade lazy (thumbnail + clique) pra nao penalizar performance.
-
 === FEATURE-SOCIAL-LISTENING ===
 OVERLINE: Social listening
 H2: IA para social listening
@@ -97,6 +91,12 @@ LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
 QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
 LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
 # [NOTA] Citas literais de clientes conforme publicadas na LP atual ("gerenciar" e mantido por ser fala do cliente).
+
+=== VIDEO ===
+OVERLINE: Mira la plataforma en acción
+H2: La plataforma de IA más avanzada para monitorear tu marca
+CTA: Quiero agendar una demo
+# [NOTA] Video oficial em espanhol do canal GetBuzzmonitor ES: youtube nBMZZZKrMpI ("La Inteligencia Artificial y Buzzmonitor lo cambian todo"), o mesmo embutido na LP "mejor plataforma" atual. Facade lazy (thumbnail + clique) pra nao penalizar performance.
 
 === FOOTER ===
 BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.
