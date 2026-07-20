@@ -8,6 +8,23 @@ LABEL: 1.000+ clientes en el mundo
 LABEL: 500+ agencias
 LABEL: 97 NPS (de 100)
 
+=== LOGOS ===
+H2: Empresas que ya confían en Buzzmonitor
+
+=== CTA-FINAL-FORM ===
+H2: Descubre lo que podemos hacer por tu empresa
+BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ clientes enterprise
+LABEL: 500+ agencias
+LABEL: 10k usuarios
+LABEL: Nombre
+LABEL: E-mail Profesional
+LABEL: Teléfono
+LABEL: País
+LABEL: Empresa
+CTA: Quiero una demo
+
 === POR-QUE-ELEGIR ===
 H2: ¿Por qué elegir Buzzmonitor?
 BODY: Buzzmonitor no solo proporciona métricas: te da control absoluto sobre tu presencia digital.
@@ -90,20 +107,6 @@ LABEL: SA365 · Isabela Matias da Silva, Gerente de Comunidades
 QUOTE: Es una herramienta con excelente costo y beneficio, siempre tiene actualizaciones y recibimos mucho apoyo del equipo de atención al cliente.
 LABEL: CONTENT HOUSE · Rafaela Antunes, Directora de Medios y Datos
 # [NOTA] Citas literais de clientes conforme publicadas na LP atual (inclusive "gerenciar" e "informes" dentro de citas, fala do cliente, não normalizar).
-
-=== CTA-FINAL-FORM ===
-H2: Descubre lo que podemos hacer por tu empresa
-BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
-LABEL: 1.000+ clientes en el mundo
-LABEL: 300+ clientes enterprise
-LABEL: 500+ agencias
-LABEL: 10k usuarios
-LABEL: Nombre
-LABEL: E-mail Profesional
-LABEL: Teléfono
-LABEL: País
-LABEL: Empresa
-CTA: Quiero una demo
 
 === FOOTER ===
 BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.

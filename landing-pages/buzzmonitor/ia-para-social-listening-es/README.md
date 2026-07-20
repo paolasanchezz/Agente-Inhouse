@@ -8,12 +8,12 @@
 
 - HERO (overline + H1 + sub + CTA + 2 stats + tela da plataforma)
 - LOGOS (McDonald's, MRM // McCann, TotalPass)
+- CTA-FINAL + FORM na **segunda dobra** (movido pra cá a pedido do Victor, 2026-07-20; form réplica GreatPages)
 - BENEFICIOS (6 itens + 3 pills)
 - VIDEO (YouTube `nBMZZZKrMpI`, vídeo oficial ES "La Inteligencia Artificial y Buzzmonitor lo cambian todo", facade lazy: só carrega o iframe no clique)
 - 4 FEATURES alternadas com telas da plataforma (social listening `.webm`, AI Insights, audiovisual, gestão de crises)
 - OFERTA (dark, tag "14 días gratis"; SEM preço na versão LATAM)
-- TESTIMONIOS (3 citas literais)
-- CTA-FINAL + FORM (form réplica GreatPages) + FOOTER
+- TESTIMONIOS (3 citas literais) + FOOTER
 
 ## Form (réplica GreatPages — decisão desta LP)
 

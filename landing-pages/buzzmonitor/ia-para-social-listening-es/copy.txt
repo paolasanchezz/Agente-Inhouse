@@ -10,6 +10,23 @@ LABEL: 500+ agencias
 === LOGOS ===
 H2: Empresas que ya confían en Buzzmonitor
 
+=== CTA-FINAL-FORM ===
+H2: Descubre lo que podemos hacer por tu empresa
+LIST ITEM: Clientes que mejoraron su estrategia con social listening
+LIST ITEM: Clientes que lograron evitar crisis de reputación
+LIST ITEM: Clientes que mejoraron su SLA
+BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ clientes enterprise
+LABEL: 500+ agencias
+LABEL: 10k usuarios
+LABEL: Nombre
+LABEL: E-mail Profesional
+LABEL: Teléfono
+LABEL: País
+LABEL: Empresa
+CTA: Quiero agendar una demo
+
 === BENEFICIOS ===
 H2: Monitorea, analiza y toma decisiones más rápido con IA
 LIST ITEM: Identifica crisis antes de que exploten
@@ -77,23 +94,6 @@ LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
 QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
 LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
 # [NOTA] Citas literais de clientes conforme publicadas na LP atual ("gerenciar" e mantido por ser fala do cliente).
-
-=== CTA-FINAL-FORM ===
-H2: Descubre lo que podemos hacer por tu empresa
-LIST ITEM: Clientes que mejoraron su estrategia con social listening
-LIST ITEM: Clientes que lograron evitar crisis de reputación
-LIST ITEM: Clientes que mejoraron su SLA
-BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
-LABEL: 1.000+ clientes en el mundo
-LABEL: 300+ clientes enterprise
-LABEL: 500+ agencias
-LABEL: 10k usuarios
-LABEL: Nombre
-LABEL: E-mail Profesional
-LABEL: Teléfono
-LABEL: País
-LABEL: Empresa
-CTA: Quiero agendar una demo
 
 === FOOTER ===
 BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.

@@ -7,13 +7,14 @@
 ## Estrutura
 
 - HERO (overline + H1 + sub + 2 CTAs + 3 stats + tela da plataforma)
+- LOGOS (McDonald's, MRM // McCann, TotalPass — adicionado 2026-07-20)
+- CTA-FINAL + FORM na **segunda dobra** (movido pra cá a pedido do Victor, 2026-07-20; form réplica GreatPages)
 - POR-QUE-ELEGIR (texto + checklist de 6)
 - COMPARATIVO (tabela 15 features × Buzzmonitor + 10 concorrentes; dados em `comparativo.json`, transcritos 1:1 da LP publicada)
 - SOLO-BUZZMONITOR (lista de 6 + grid de 12 ícones de canais)
 - VISION-INTEGRAL (4 cards)
 - OFERTA (dark, tag rotacionada "14 días gratis"; SEM preço na versão LATAM)
-- TESTIMONIOS (6 citas literais de clientes)
-- CTA-FINAL + FORM (form réplica GreatPages) + FOOTER
+- TESTIMONIOS (6 citas literais de clientes) + FOOTER
 
 ## Form (réplica GreatPages — decisão desta LP)
 

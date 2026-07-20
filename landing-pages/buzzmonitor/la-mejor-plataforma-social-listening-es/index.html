@@ -150,6 +150,14 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
   .hero__chip--b{left:8px}
 }
 
+/* LOGOS */
+.logos{padding:44px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.logos h2{font-family:var(--sub);font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:center;margin-bottom:26px}
+.logos__row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:56px}
+.logos__row img{height:34px;width:auto;min-height:0;filter:grayscale(1);opacity:.75;transition:filter .2s ease,opacity .2s ease}
+.logos__row img:hover{filter:none;opacity:1}
+.logos__row img.logo--mccann{height:96px;margin:-31px 0}
+
 /* POR QUE */
 .porque{padding:120px 0;background:var(--bg-soft)}
 .porque__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -338,6 +346,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- LOGOS -->
+  <section class="logos" aria-label="Clientes de Buzzmonitor">
+    <div class="wrap">
+      <h2>Empresas que ya confían en Buzzmonitor</h2>
+      <div class="logos__row">
+        <img src="./assets/logo-mcdonalds.svg" alt="McDonald's" width="120" height="34" loading="lazy">
+        <img src="./assets/logo-mccann.svg" alt="MRM // McCann" width="96" height="96" class="logo--mccann" loading="lazy">
+        <img src="./assets/logo-totalpass.svg" alt="TotalPass" width="120" height="34" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL + FORM -->
+  <section class="final" id="form">
+    <div class="wrap final__in">
+      <div class="reveal">
+        <h2>Descubre lo que podemos hacer por tu empresa</h2>
+        <p class="final__lead">Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.</p>
+        <div class="final__stats">
+          <div class="final__stat"><strong>1.000+</strong><span>clientes en el mundo</span></div>
+          <div class="final__stat"><strong>300+</strong><span>clientes enterprise</span></div>
+          <div class="final__stat"><strong>500+</strong><span>agencias</span></div>
+          <div class="final__stat"><strong>10k</strong><span>usuarios</span></div>
+        </div>
+      </div>
+      <form class="form-card reveal" id="demoForm" novalidate>
+        <h3>Agenda una demo</h3>
+        <p>Completa tus datos y nuestro equipo te contactará.</p>
+        <div class="field">
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail Profesional</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="f-telefono">Teléfono</label>
+            <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="f-pais">País</label>
+            <select id="f-pais" name="pais" required>
+              <option value="" selected disabled>Selecciona tu país</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-empresa">Empresa</label>
+          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
+        </div>
+        <button class="btn btn--primary" type="submit" id="formBtn">Quiero una demo</button>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <!-- POR QUE ELEGIR -->
   <section class="porque" id="porque">
     <div class="wrap porque__grid">
@@ -516,51 +582,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- CTA FINAL + FORM -->
-  <section class="final" id="form">
-    <div class="wrap final__in">
-      <div class="reveal">
-        <h2>Descubre lo que podemos hacer por tu empresa</h2>
-        <p class="final__lead">Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.</p>
-        <div class="final__stats">
-          <div class="final__stat"><strong>1.000+</strong><span>clientes en el mundo</span></div>
-          <div class="final__stat"><strong>300+</strong><span>clientes enterprise</span></div>
-          <div class="final__stat"><strong>500+</strong><span>agencias</span></div>
-          <div class="final__stat"><strong>10k</strong><span>usuarios</span></div>
-        </div>
-      </div>
-      <form class="form-card reveal" id="demoForm" novalidate>
-        <h3>Agenda una demo</h3>
-        <p>Completa tus datos y nuestro equipo te contactará.</p>
-        <div class="field">
-          <label for="f-nombre">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-email">E-mail Profesional</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="row">
-          <div class="field">
-            <label for="f-telefono">Teléfono</label>
-            <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required>
-          </div>
-          <div class="field">
-            <label for="f-pais">País</label>
-            <select id="f-pais" name="pais" required>
-              <option value="" selected disabled>Selecciona tu país</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-empresa">Empresa</label>
-          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
-        </div>
-        <button class="btn btn--primary" type="submit" id="formBtn">Quiero una demo</button>
-        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
 </main>
 
 <footer class="footer">
