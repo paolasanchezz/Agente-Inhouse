@@ -1,0 +1,114 @@
+=== HERO ===
+OVERLINE: Comparativo de plataformas
+H1: Todo lo que hacías con varias herramientas, ahora en una sola: Buzzmonitor
+SUB: Compara lado a lado las principales plataformas de social media y descubre por qué más de 1.000 marcas eligieron Buzzmonitor para tener datos, agilidad y soporte especializado en un solo lugar.
+CTA: Quiero una demo
+CTA: Ver comparativo completo
+LABEL: 1.000+ clientes en el mundo
+LABEL: 500+ agencias
+LABEL: 97 NPS (de 100)
+
+=== POR-QUE-ELEGIR ===
+H2: ¿Por qué elegir Buzzmonitor?
+BODY: Buzzmonitor no solo proporciona métricas: te da control absoluto sobre tu presencia digital.
+BODY: Centraliza la gestión de tus redes sociales y la atención al cliente, con análisis de conversaciones impulsados por IA en segundos, dashboards y reportes completamente personalizables. Lo mejor: atención al cliente local y en español desde el primer día.
+LIST ITEM: Seguimiento de tu marca, competidores y temas clave
+LIST ITEM: Análisis cualitativos generados con IA para decisiones más inteligentes
+LIST ITEM: Atención al cliente centralizada y hasta 3 veces más rápida gracias a la IA
+LIST ITEM: Más de 50 métricas de performance
+LIST ITEM: Dashboards ilimitados y dinámicos con datos en tiempo real
+LIST ITEM: Creación y programación de publicaciones con IA
+CTA: Quiero una demo
+
+=== COMPARATIVO ===
+H2: Compara y descubre todas las herramientas y ventajas que nos diferencian de la competencia
+LIST ITEM: Monitoreo de términos, marcas y hashtags en redes sociales en tiempo real
+LIST ITEM: Búsquedas históricas ilimitadas en una base de mil millones de publicaciones y 200 millones de usuarios
+LIST ITEM: Monitoreo de más de 10.000 fuentes de noticias y organismos de defensa del consumidor
+LIST ITEM: Visual Listening: monitoreo de marcas en videos, imágenes y audios con IA
+LIST ITEM: Análisis de sentimiento de publicaciones y reputación de marca
+LIST ITEM: ChatGPT integrado para atención: mejora respuestas y corrige errores
+LIST ITEM: Smart Replies: sugerencia de respuestas automáticas generadas por IA
+LIST ITEM: Tickets, equipos, FAQ, mensajes internos, CRM, historial de usuario e insights en tiempo real
+LIST ITEM: Automatización de procesos de monitoreo y atención con inteligencia artificial
+LIST ITEM: Más de 50 métricas de performance de las redes sociales de tu marca
+LIST ITEM: ChatGPT integrado para creación de publicaciones con imágenes, captions y hashtags
+LIST ITEM: Programación de publicaciones, con calendario, asignación de tareas y flujo de aprobación
+LIST ITEM: Dashboards en tiempo real ilimitados, personalizables y compartibles
+LIST ITEM: AI Insights: análisis resumidos e insights de reportes generados en segundos por IA
+LIST ITEM: Buzz Pills: reportes con insights y recomendaciones generadas por IA directamente en tu correo
+BODY: Si eliges otra plataforma después de ver esto, es porque no leíste bien.
+# [NOTA de dados] Matriz de checks por concorrente em comparativo.json (transcrita da LP publicada em contenido.getbuzzmonitor.com, fonte de verdade do time ES). "1 billón" da página atual corrigido para "mil millones" (billón em espanhol = 10^12).
+
+=== SOLO-BUZZMONITOR ===
+H2: Solo Buzzmonitor tiene:
+LIST ITEM: ChatGPT integrado para mejorar tu atención al cliente y crear publicaciones e imágenes
+LIST ITEM: IA para generar insights de tu marca en segundos
+LIST ITEM: IA para responder a tus clientes hasta 3 veces más rápido
+LIST ITEM: IA para clasificación de publicaciones y dudas por sentimiento y tema
+LIST ITEM: Análisis de tu marca y tus campañas en tiempo real
+LIST ITEM: Alertas automáticas para prevenir crisis
+CTA: Quiero una demo
+
+=== VISION-INTEGRAL ===
+H2: Mucho más que social listening: una visión integral de tu marca
+H3: Social listening y análisis en tiempo real
+BODY: Escucha lo que se dice sobre tu marca, competidores y tendencias con IA, identifica influencers y recibe alertas en tiempo real para proteger tu reputación.
+H3: Atención al cliente hasta 3x más rápida
+BODY: Centraliza todos tus canales digitales en una sola pantalla y mejora la atención al cliente con IA: automatiza tareas, optimiza respuestas y crea interacciones más efectivas.
+H3: Más de 50 métricas de performance
+BODY: Mide el performance de tu marca, analiza el engagement y compara tus métricas con las de tus competidores, todo en reportes y dashboards dinámicos con datos en tiempo real.
+H3: Creación y programación de publicaciones
+BODY: Crea y programa publicaciones con ChatGPT, diseña calendarios de contenido, asigna tareas, establece flujos de aprobación y consulta los mejores momentos para publicar.
+CTA: Quiero una demo
+
+=== OFERTA ===
+LABEL: 14 días gratis
+H2: Prueba Buzzmonitor gratis por 14 días
+BODY: Ten varias soluciones digitales en una única plataforma, líder en el uso de IA.
+LIST ITEM: Monitoreo de redes sociales y análisis generados por IA
+LIST ITEM: Atención multicanal optimizada por IA
+LIST ITEM: Reportes de performance de tu marca y competidores
+LIST ITEM: Optimización de procesos y más productividad
+LIST ITEM: Y mucho más
+CTA: Quiero probar gratis
+# [NOTA] Sem preço na versão LATAM (a arte "Planos a partir de R$ 1.790" da referência é BR; página LATAM atual não exibe preço).
+
+=== TESTIMONIOS ===
+H2: ¿Aún no estás convencido?
+SUB: Escucha a quienes ya utilizan Buzzmonitor
+QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.
+LABEL: MRM // McCANN · Pablo Ferrer, Head of Social Media
+QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes.
+LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
+QUOTE: Cubre todas las necesidades de los profesionales de Social Media Marketing al permitir escuchar, analizar y actuar sobre la conversación relacionada con tus clientes.
+LABEL: PUBLICIS · José Manuel López, Social Media Coordinador
+QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
+LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
+QUOTE: Optimiza el tiempo de producción de los informes que entregamos a los clientes permitiéndonos especificar cada detalle a través de etiquetas.
+LABEL: SA365 · Isabela Matias da Silva, Gerente de Comunidades
+QUOTE: Es una herramienta con excelente costo y beneficio, siempre tiene actualizaciones y recibimos mucho apoyo del equipo de atención al cliente.
+LABEL: CONTENT HOUSE · Rafaela Antunes, Directora de Medios y Datos
+# [NOTA] Citas literais de clientes conforme publicadas na LP atual (inclusive "gerenciar" e "informes" dentro de citas, fala do cliente, não normalizar).
+
+=== CTA-FINAL-FORM ===
+H2: Descubre lo que podemos hacer por tu empresa
+BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ clientes enterprise
+LABEL: 500+ agencias
+LABEL: 10k usuarios
+LABEL: Nombre
+LABEL: E-mail Profesional
+LABEL: Teléfono
+LABEL: País
+LABEL: Empresa
+CTA: Quiero una demo
+
+=== FOOTER ===
+BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.
+FOOTER: © Buzzmonitor 2026
+FOOTER: Política de Privacidad y uso de Cookies
+
+# Revisao anti-IA: sem achados (em-dash: 0; exclamacoes: 0; antitese-por-negacao: 1 "no solo proporciona métricas: te da control absoluto", dentro do limite de 2).
+# [Idioma] ES-LATAM verificado contra padrao-linguistico.md: "monitorización" da pagina atual trocado por "monitoreo" (regra de ouro 3); "informes" -> "reportes" fora de citas; tuteo consistente; zero "vosotros".

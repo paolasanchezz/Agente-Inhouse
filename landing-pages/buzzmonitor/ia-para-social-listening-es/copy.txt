@@ -1,0 +1,104 @@
+=== HERO ===
+OVERLINE: IA para social listening
+H1: Descubre lo que dicen sobre tu marca en tiempo real, con IA
+SUB: Obtén análisis detallados de tu perfil y el de tus competidores, encuentra oportunidades y recibe insights automáticos con la plataforma de IA más avanzada del mercado.
+BODY: Con la Inteligencia Artificial de Buzzmonitor tienes insights precisos en segundos, sin esfuerzo manual.
+CTA: Quiero agendar una demo
+LABEL: 1.000+ clientes en el mundo
+LABEL: 500+ agencias
+
+=== LOGOS ===
+H2: Empresas que ya confían en Buzzmonitor
+
+=== BENEFICIOS ===
+H2: Monitorea, analiza y toma decisiones más rápido con IA
+LIST ITEM: Identifica crisis antes de que exploten
+LIST ITEM: Sigue tendencias y menciones en tiempo real
+LIST ITEM: Ahorra horas de trabajo manual
+LIST ITEM: Recibe alertas inteligentes según temas y sentimiento
+LIST ITEM: Entiende lo que tus consumidores piensan de tu marca
+LIST ITEM: Monitorea competidores e influencers a profundidad
+LABEL: Insights rápidos con IA
+LABEL: Monitorea tu marca
+LABEL: Decisiones más estratégicas
+
+=== VIDEO ===
+OVERLINE: Mira la plataforma en acción
+H2: La plataforma de IA más avanzada para monitorear tu marca
+CTA: Quiero agendar una demo
+# [NOTA] Video oficial em espanhol do canal GetBuzzmonitor ES: youtube nBMZZZKrMpI ("La Inteligencia Artificial y Buzzmonitor lo cambian todo"), o mesmo embutido na LP "mejor plataforma" atual. Facade lazy (thumbnail + clique) pra nao penalizar performance.
+
+=== FEATURE-SOCIAL-LISTENING ===
+OVERLINE: Social listening
+H2: IA para social listening
+H3: La IA monitorea todo el universo de tu marca y transforma datos en insights.
+BODY: Monitorea cualquier término en redes sociales: hashtags, marcas, competidores y eventos, con dashboards ilimitados y reportes en tiempo real.
+CTA: Quiero agendar una demo
+
+=== FEATURE-INSIGHTS ===
+OVERLINE: Generación de insights
+H2: IA para generar insights
+H3: La IA hace el trabajo pesado y tu marca gana productividad e inteligencia de datos.
+BODY: AI Insights genera análisis resumidos de tus reportes de monitoreo: ahorras tiempo y recibes los principales hallazgos en segundos, listos para compartir con tu equipo.
+CTA: Quiero agendar una demo
+
+=== FEATURE-AUDIOVISUAL ===
+OVERLINE: Monitoreo audiovisual
+H2: Monitoreo de videos, audios e imágenes
+H3: Cada mención sobre tu marca, capturada al detalle.
+BODY: Las menciones en videos, stories, audios e imágenes se detectan, transcriben y analizan en tiempo real, con alertas automáticas sobre menciones negativas.
+CTA: Quiero agendar una demo
+
+=== FEATURE-CRISIS ===
+OVERLINE: Gestión de crisis
+H2: Gestión de crisis en tiempo real
+H3: Anticípate a las amenazas y mantén el control de la narrativa.
+BODY: La IA detecta picos de menciones, crea alertas de términos sensibles y ayuda a tu marca a actuar antes de que la crisis explote.
+CTA: Quiero agendar una demo
+
+=== OFERTA ===
+LABEL: 14 días gratis
+H2: Prueba Buzzmonitor gratis por 14 días
+BODY: Ten varias soluciones digitales en una única plataforma, líder en el uso de IA.
+LIST ITEM: Monitoreo de redes sociales y análisis generados por IA
+LIST ITEM: Atención multicanal optimizada por IA
+LIST ITEM: Reportes de performance de tu marca y competidores
+LIST ITEM: Optimización de procesos y más productividad
+LIST ITEM: Y mucho más
+CTA: Quiero probar gratis
+
+=== TESTIMONIOS ===
+H2: ¿Aún no estás convencido?
+SUB: Lee lo que dicen quienes ya utilizan Buzzmonitor
+QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights.
+LABEL: MRM // McCANN · Pablo Ferrer, Head of Social Media
+QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes.
+LABEL: TOTALPASS · Leticia Saori Morita, Especialista en contenido
+QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante.
+LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
+# [NOTA] Citas literais de clientes conforme publicadas na LP atual ("gerenciar" e mantido por ser fala do cliente).
+
+=== CTA-FINAL-FORM ===
+H2: Descubre lo que podemos hacer por tu empresa
+LIST ITEM: Clientes que mejoraron su estrategia con social listening
+LIST ITEM: Clientes que lograron evitar crisis de reputación
+LIST ITEM: Clientes que mejoraron su SLA
+BODY: Súmate a los más de 1.000 clientes en Brasil, España, LATAM y Portugal que ya alcanzaron resultados increíbles con Buzzmonitor.
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ clientes enterprise
+LABEL: 500+ agencias
+LABEL: 10k usuarios
+LABEL: Nombre
+LABEL: E-mail Profesional
+LABEL: Teléfono
+LABEL: País
+LABEL: Empresa
+CTA: Quiero agendar una demo
+
+=== FOOTER ===
+BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.
+FOOTER: © Buzzmonitor 2026
+FOOTER: Política de Privacidad y uso de Cookies
+
+# Revisao anti-IA: sem achados (em-dash: 0; exclamacoes: 0; perguntas retoricas: 1 "¿Aún no estás convencido?"; antitese-por-negacao: 0).
+# [Idioma] ES-LATAM verificado contra padrao-linguistico.md: "monitoreo" (nao "monitorización"), "reportes" (nao "informes") fora de citas, tuteo consistente, zero "vosotros". H1 abre pelo ganho (nao pela dor): decisao deliberada seguindo a referencia aprovada pelo Victor (buzzmonitor---teste-claude---webflow.webflow.io), trafego MoFu ja consciente; registrado conforme GUIDELINES §5.

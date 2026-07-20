@@ -1,0 +1,12 @@
+{
+  "regiao": "latam",
+  "expected_gtm": "GTM-MKQBX2MG",
+  "found_gtm": [
+    "GTM-5PNK2VZ"
+  ],
+  "fingerprint": "224aa246cf8c66ad",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-07-17",
+  "note": "estado pre-existente aceito — GTM diverge da regiao, aguardando correção; não bloqueia deploy até o fingerprint mudar"
+}
