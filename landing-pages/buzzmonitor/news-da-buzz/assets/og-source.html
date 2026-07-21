@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    --bg:#ffffff; --primary:#390155; --dark:#25003a;
+    --accent:#EB7C2E; --yellow:#FCBD4F; --lighter:#F2D8FF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;position:relative;
+    background:linear-gradient(150deg,var(--primary) 0%,var(--dark) 100%);
+    font-family:'Poppins','Open Sans',Arial,sans-serif;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 90px;color:#fff;
+  }
+  .glow1{position:absolute;width:560px;height:560px;border-radius:50%;
+    top:-200px;right:-160px;
+    background:radial-gradient(circle,rgba(235,124,46,0.45) 0%,transparent 68%)}
+  .glow2{position:absolute;width:520px;height:520px;border-radius:50%;
+    bottom:-220px;left:-160px;
+    background:radial-gradient(circle,rgba(252,189,79,0.20) 0%,transparent 70%)}
+  .overline{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:24px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;
+    color:#fff;background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:9999px;padding:13px 28px;margin-bottom:38px;
+    width:fit-content;position:relative;z-index:2;
+  }
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--yellow)}
+  .big{font-size:120px;font-weight:900;line-height:0.98;color:#fff;
+    letter-spacing:-3px;position:relative;z-index:2}
+  .big span{color:var(--accent)}
+  .sub{font-size:44px;font-weight:600;line-height:1.25;color:rgba(255,255,255,0.92);
+    letter-spacing:-.5px;margin-top:18px;position:relative;z-index:2;max-width:920px}
+  .brand{position:absolute;bottom:54px;left:90px;display:flex;align-items:center;z-index:2}
+  .brand img{height:54px;width:auto}
+</style>
+</head>
+<body>
+  <span class="glow1"></span>
+  <span class="glow2"></span>
+  <div class="overline"><span class="dot"></span>Newsletter gratuita da Buzzmonitor</div>
+  <div class="big">News da <span>Buzz</span></div>
+  <div class="sub">Cases reais de IA e social listening, direto no seu e-mail toda semana</div>
+  <div class="brand"><img src="../../../../brand/buzzmonitor/assets/logos/logo-reversed.png" alt=""></div>
+</body>
+</html>

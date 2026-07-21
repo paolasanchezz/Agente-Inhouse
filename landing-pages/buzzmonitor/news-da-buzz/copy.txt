@@ -1,0 +1,70 @@
+=== HERO ===
+IMAGE: ./assets/newsletter-preview-cropped.png (masthead real da newsletter, recortado sem o espaço em branco embaixo, pedido da Catharina em 2026-07-21)
+OVERLINE: Toda semana, na sua caixa de entrada
+H1: A News da Buzz resume em um e-mail só o que importou na semana: cases reais de social listening e atendimento com IA, direto ao ponto, sem precisar abrir 10 abas pra entender.
+CTA: Quero receber a News da Buzz
+# [NOTA] H1 anterior ("Toda semana sai uma ferramenta de IA nova...") removido a pedido da Catharina (2026-07-21). O antigo SUB virou o H1. Isso deixa o hero sem abertura pela dor (GUIDELINES §3/§5) — decisão explícita de quem aprova a copy, registrada aqui.
+
+=== ASSINATURA ===
+# [NOTA] Formulario real integrado 2026-07-21 (Mailchimp, mesmo endpoint de buzzmonitor.com). Campo "Sobrenome" adicionado pra bater com o schema FNAME/LNAME/EMAIL do Mailchimp (nao existia no mock original de 2 campos).
+H2: Um e-mail por semana. Sem spam, sem enrolação.
+LABEL: Nome
+LABEL: Sobrenome
+LABEL: E-mail
+CTA: Quero receber a News da Buzz
+LABEL: Inscrição confirmada! Você receberá novidades em breve.
+LABEL: Grátis. Cancele quando quiser.
+
+=== PROBLEMA ===
+H2: Se algum item abaixo soa familiar, a News da Buzz foi feita pra você
+LIST ITEM: Perde tempo rolando o feed do LinkedIn atrás de alguma novidade de IA que sirva pro seu trabalho
+LIST ITEM: Lê três posts diferentes sobre a mesma tendência e ainda não sabe se ela se aplica na sua operação
+LIST ITEM: Descobre um case que resolveria seu problema meses depois de ele ter sido publicado
+LIST ITEM: Salva artigo pra ler depois, e esse depois nunca chega
+
+=== COMPARATIVO ===
+# [NOTA] Seção nova, pedida pela Catharina em 2026-07-21 (tabela "vida sem x vida com", uma promessa). Convenção pontual: LIST ITEM SEM/COM formam pares na mesma ordem (1a linha SEM casa com 1a linha COM).
+# [NOTA] OVERLINE "Duas rotinas, dois resultados" removido a pedido da Catharina (2026-07-21, 2a rodada de ajustes).
+H2: A vida de quem assina é outra
+LABEL: Sem a News da Buzz
+LABEL: Com a News da Buzz
+LIST ITEM SEM: Descobre a novidade de IA semanas depois, quando todo mundo já testou
+LIST ITEM COM: Sabe da novidade relevante na mesma semana que ela aparece
+LIST ITEM SEM: Garimpa informação solta em blog, LinkedIn e grupo de WhatsApp
+LIST ITEM COM: Recebe tudo resumido em um e-mail só, uma vez por semana
+LIST ITEM SEM: Chega na reunião sem case real pra embasar a decisão
+LIST ITEM COM: Chega na reunião com case real e número na mão
+LIST ITEM SEM: Confunde hype passageiro com tendência de verdade
+LIST ITEM COM: Separa o que é moda de 2 semanas do que vale a pena acompanhar
+
+=== O QUE VOCE RECEBE ===
+H2: O que chega na sua caixa de entrada toda semana
+LIST ITEM: Um e-mail direto, com leitura de menos de 3 minutos
+LIST ITEM: Cases reais de empresas que usam IA e social listening no dia a dia, com números
+LIST ITEM: Novidades de produto e de mercado filtradas, sem economês
+LIST ITEM: Conteúdo pra aplicar no mesmo dia, não teoria de congresso
+
+=== DIFERENCIAL ===
+H2: Escrita por quem constrói social listening todos os dias
+BODY: A News da Buzz não nasce em agência terceirizada. Ela é produzida pelo time da Buzzmonitor a partir do que a própria plataforma processa todos os dias: milhões de menções, dezenas de cases de clientes reais e o que muda de fato em atendimento, marca e IA aplicada.
+
+=== PARA QUEM ===
+H2: Pra quem é a News da Buzz
+LIST ITEM: Gestores de marketing e redes sociais
+LIST ITEM: Analistas e coordenadores de social listening
+LIST ITEM: Times de atendimento e CX
+LIST ITEM: Agências de comunicação que acompanham várias marcas ao mesmo tempo
+
+# [NOTA] Seção PROVA removida a pedido da Catharina (2026-07-21) — a imagem real da newsletter foi movida pro topo do HERO (ver acima), substituindo o mockup de "prévia".
+
+=== CTA FINAL ===
+H2: A próxima edição já está sendo escrita
+BODY: Toda semana tem uma dor nova do mercado de atendimento, marca e social listening, e um jeito de resolver ela com dado real.
+CTA: Quero receber a News da Buzz
+LABEL: Grátis. Cancele quando quiser.
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Revisao anti-IA 2026-07-21 (pos rodadas 4-8, cobrindo COMPARATIVO e ajustes de hero): 1 filler word encontrada e corrigida ("realmente" em LIST ITEM COM da secao COMPARATIVO, trocado por "vale a pena acompanhar"). Demais checks OK: em-dash 0, sem frases tipicas de IA, antitese-por-negacao 1/2 (dentro do limite), exclamacao 1/2 (so no mockup de e-mail do hero, nao e copy de marketing), sem metafora aquatica, sem "alem disso".

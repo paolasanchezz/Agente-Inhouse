@@ -29,6 +29,11 @@
       "slug": "mcp-pt",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/mcp-pt"
+    },
+    {
+      "slug": "news-da-buzz",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/news-da-buzz"
     }
   ],
   "extra_files": {
