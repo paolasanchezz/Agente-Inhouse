@@ -10,7 +10,7 @@
 ## 1. Mapa mental
 
 - **Fonte-verdade:** `landing-pages/{marca}/{slug}/` (no repo). É o que o pipeline edita.
-- **Guarda-chuvas = CI (desde 2026-07-15):** os 4 domínios em `dominios/MIGRADOS.json` deployam só via GitHub Actions (§2.6). O estado do ar de cada um é o `dominios/{dom}/manifest.json`. **Sibling não existe mais pra guarda-chuva** — os itens abaixo sobre sibling valem apenas pro modo SOLO.
+- **Guarda-chuvas = CI (desde 2026-07-15):** os 5 domínios em `dominios/MIGRADOS.json` deployam só via GitHub Actions (§2.6). O estado do ar de cada um é o `dominios/{dom}/manifest.json`. **Sibling não existe mais pra guarda-chuva** — os itens abaixo sobre sibling valem apenas pro modo SOLO.
 - **Sibling (artefato de deploy — SÓ modo solo):** `${SIBLING_BASE}/{nome}/` — fora do repo, isolada. NUNCA editar lá direto: o próximo `lp-publicar` sobrescreve.
 - **`SIBLING_BASE` é resolvido em runtime** pela skill `lp-publicar` (Passo 0.1) em ordem de precedência: env var `LP_SIBLING_BASE` no shell → linha `LP_SIBLING_BASE=...` em `.env.local` (raiz, gitignored — escrito pelo `/setup-agencia`). Se nenhum estiver setado, `lp-publicar` invoca `/setup-agencia` automaticamente. Nunca hardcodar paths absolutos neste doc.
 - **Pipeline:** preparar → gerar → revisar → [integrar-form manual] → publicar.
@@ -192,6 +192,7 @@ Sibling: a do projeto existente (`${SIBLING_BASE}/{nome-detectado}/`). LP nova �
 |---|---|---|---|
 | `evento.buzzmonitor.com` | Eventos presenciais Buzzmonitor + Buzzcreators | `buzzmonitor-evento` | `vendendo-com-creators` (Buzzcreators) |
 | `material.buzzmonitor.com` | Material rico evergreen Buzzmonitor | `buzzmonitor-material` | (em popularização) |
+| `content.buzzmonitor.com` | Conteúdo Buzzmonitor ES-LATAM (social listening) | `buzzmonitor-content` | `ia-para-social-listening-es`, `la-mejor-plataforma-social-listening-es` |
 | `webinar.buzzmonitor.com` | Eventos online Buzzmonitor (legacy) | `buzzmonitor-lp-monitoramento-concorrentes` | BR + PT |
 | `content.cxpress.io` | Material rico Cxpress (subdomínio único, qualquer tipo) | `cxpress-lp-playbook-whatsapp2026` | `playbook-whatsapp2026` |
 | `content.elife.com` | **Reservado para LPs da marca Elife** (ainda sem deploy) | (a criar quando 1ª LP Elife sair) | — |

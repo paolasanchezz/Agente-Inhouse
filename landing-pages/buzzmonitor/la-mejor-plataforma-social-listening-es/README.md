@@ -2,7 +2,7 @@
 
 **Gerado em:** 2026-07-17
 **Copy-fonte:** `copy.txt` (estruturada a partir da LP publicada em contenido.getbuzzmonitor.com/la-mejor-plataforma-social-listening-marketing + referência de design escolha-a-buzzmonitor.webflow.io)
-**Região/idioma:** LATAM · ES-419 · destino `material.buzzmonitor.com/la-mejor-plataforma-social-listening-es`
+**Região/idioma:** LATAM · ES-419 · destino `content.buzzmonitor.com/la-mejor-plataforma-social-listening-es` (migrada de `material.buzzmonitor.com` em 2026-07-21; path antigo faz 301)
 
 ## Estrutura
 

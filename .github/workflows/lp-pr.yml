@@ -1,6 +1,6 @@
 # Merge-bot de LPs (PLANO-MIGRACAO-CI.md Fase 3).
 #
-# Em todo PR pra main: valida (build dos 4 guarda-chuvas + classificação de paths
+# Em todo PR pra main: valida (build de todos os guarda-chuvas + classificação de paths
 # + guarda de despublicação via pr_check.py). Se o diff só toca PATHS LIVRES
 # (conteúdo: landing-pages/{marca}/**, manifestos, brand/*/assets/**) e tudo passa,
 # MERGEIA SOZINHO (squash) e dispara o lp-deploy dos domínios migrados afetados.
@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Build dos 4 guarda-chuvas (validação)
+      - name: Build de todos os guarda-chuvas (validação)
         env:
           REPO_ROOT: ${{ github.workspace }}
         run: |

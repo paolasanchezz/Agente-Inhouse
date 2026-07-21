@@ -107,7 +107,7 @@ Parsing de `$ARGUMENTS`:
 |---|---|---|
 | `marca` | `buzzmonitor` \| `buzzcreators` \| `cxpress` \| `elife` | Sim |
 | `slug` | kebab-case unico OU multiplos slugs em CSV (`mcp,mcp-es,mcp-pt`) — ver "Modo batch" abaixo | Sim |
-| `dominio` | FQDN (ex: `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.cxpress.io`, `webinar.buzzmonitor.com`) | Nao |
+| `dominio` | FQDN (ex: `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.buzzmonitor.com`, `content.cxpress.io`, `webinar.buzzmonitor.com`) | Nao |
 
 ### Modo batch (v3.6.0)
 

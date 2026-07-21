@@ -1,0 +1,23 @@
+{
+  "dominio": "content.buzzmonitor.com",
+  "projeto_vercel": "buzzmonitor-content",
+  "projeto_vercel_id": "prj_pZdw8KaBcLgyU9aBmUZ7VAHu3nk3",
+  "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
+  "vercel_json": "landing-pages/dominios/content-buzzmonitor-com/vercel.json",
+  "lps": [
+    {
+      "slug": "ia-para-social-listening-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/ia-para-social-listening-es"
+    },
+    {
+      "slug": "la-mejor-plataforma-social-listening-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/la-mejor-plataforma-social-listening-es"
+    }
+  ],
+  "extra_files": {
+    "README.md": "landing-pages/dominios/content-buzzmonitor-com/extras/README.md",
+    "_placeholder/index.html": "landing-pages/dominios/content-buzzmonitor-com/extras/_placeholder/index.html"
+  }
+}

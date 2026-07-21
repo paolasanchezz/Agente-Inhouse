@@ -141,9 +141,17 @@ def main():
     except Exception as e:
         log(f"aviso: leitura do alias falhou ({e}); caindo pro último deploy READY")
     if prev is None:
-        prev = api(f"/v6/deployments?projectId={manifest['projeto_vercel_id']}"
-                   f"&target=production&state=READY&limit=1", token, team)["deployments"][0]
-    log(f"servindo {dominio} agora (rollback target): {prev['uid']} ({prev['url']})")
+        deps = api(f"/v6/deployments?projectId={manifest['projeto_vercel_id']}"
+                   f"&target=production&state=READY&limit=1", token, team)["deployments"]
+        prev = deps[0] if deps else None
+    if prev is None:
+        # Guarda-chuva NOVO: projeto sem nenhum deploy de producao ainda (1o deploy).
+        # Nao ha alvo de rollback — se o smoke falhar, o deploy novo fica no ar mesmo
+        # (nada estava antes; nao ha estado bom pra restaurar). Fix = re-deploy.
+        log(f"{dominio}: primeiro deploy do guarda-chuva (sem deploy de producao anterior) — "
+            f"sem alvo de rollback")
+    else:
+        log(f"servindo {dominio} agora (rollback target): {prev['uid']} ({prev['url']})")
 
     # link do projeto + deploy
     os.makedirs(os.path.join(dist, ".vercel"), exist_ok=True)
@@ -168,6 +176,10 @@ def main():
 
     for f in falhas:
         log(f"FALHA SMOKE: {f}")
+    if prev is None:
+        log("sem deploy anterior (primeiro deploy do guarda-chuva) — nao ha rollback a "
+            "fazer; o deploy novo fica no ar. Corrija o source e re-deploye.")
+        sys.exit(1)
     log(f"ROLLBACK: promote {prev['uid']} ...")
     proc = vercel(["promote", f"https://{prev['url']}", "--yes"], dist, token, team)
     if proc.returncode != 0:

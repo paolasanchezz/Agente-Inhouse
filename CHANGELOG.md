@@ -12,6 +12,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Infra LP — 5º guarda-chuva: `content.buzzmonitor.com`
+### 2026-07-21 — novo guarda-chuva CI + migração de 2 LPs ES
+
+Novo guarda-chuva `content.buzzmonitor.com` (conteúdo Buzzmonitor ES-LATAM — social listening; equivalente Buzzmonitor do `content.cxpress.io`). Nasceu direto no CI: `landing-pages/dominios/content-buzzmonitor-com/` (manifest + vercel.json espelhando o do material, com Termly/Ads/LinkedIn no CSP) + `content.buzzmonitor.com` em `MIGRADOS.json` + opção no dispatch de `lp-deploy.yml`. Projeto Vercel `buzzmonitor-content` criado via API (domínio já apontado no Route 53).
+
+As LPs `ia-para-social-listening-es` e `la-mejor-plataforma-social-listening-es` saíram de `material.buzzmonitor.com` (removidas do manifesto do material; os paths antigos fazem **301 permanente** pra `content.buzzmonitor.com/{mesmo-slug}` via `redirects` do vercel.json do material).
+
+Regras/docs atualizadas pra prever o novo guarda-chuva: `lp-preparar/CONTEXT.md` (tabelas de subdomínio e projeto Vercel), `landing-pages/CONTEXT.md` (§tabela de guarda-chuvas ativos + contagem), `lp-publicar/SKILL.md` (exemplo), `lp-pr.yml` (comentário count-agnóstico), `PLANO-MIGRACAO-CI.md` (addendum). `lp-health-check` descobre o domínio sozinho (discover.py é dinâmico — sem mudança). Merge-bot: build por glob já cobre o novo manifesto; PR entra como mecânica (revisão do Victor).
+
+**Fix `deploy_ci.py` (robô de deploy) — primeiro deploy de guarda-chuva novo:** o script assumia que sempre há um deploy de produção anterior pra usar como alvo de rollback; num projeto Vercel recém-criado (zero deploys) o fallback `["deployments"][0]` estourava `IndexError` **antes de publicar**. Agora trata `prev = None` (primeiro deploy): publica normalmente e, se o smoke falhar, sai com erro sem tentar rollback (não havia estado anterior a restaurar). Caso normal (com deploy anterior) inalterado. Pego ao subir a 1ª LP de `content.buzzmonitor.com`.
+
 ## lp-publicar — CI vira o fluxo padrão; clássico rebaixado a modo solo
 ### 2026-07-15 — v5.0.0 — Fase 5 da migração (MAJOR)
 

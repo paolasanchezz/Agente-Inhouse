@@ -7,6 +7,16 @@
       "source": "/mcp-maio-2026",
       "destination": "/mcp",
       "permanent": true
+    },
+    {
+      "source": "/ia-para-social-listening-es",
+      "destination": "https://content.buzzmonitor.com/ia-para-social-listening-es",
+      "permanent": true
+    },
+    {
+      "source": "/la-mejor-plataforma-social-listening-es",
+      "destination": "https://content.buzzmonitor.com/la-mejor-plataforma-social-listening-es",
+      "permanent": true
     }
   ],
   "headers": [

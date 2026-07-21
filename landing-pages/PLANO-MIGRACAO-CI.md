@@ -3,6 +3,7 @@
 > **Status:** proposta aprovada em conceito por Victor (2026-07-15), aguardando execução.
 > **Objetivo:** eliminar por construção a classe de incidente "deploy de uma pessoa apaga a LP de outra" (§7.2 do CONTEXT.md — 2026-05-07, 05-08, 05-11, 05-13, 06-16), trocando o modelo *sibling local → deploy da máquina* pelo modelo *Git como fonte de verdade → deploy exclusivo via GitHub Actions*.
 > **Escopo v1:** guarda-chuvas Vercel (`content.cxpress.io`, `webinar.buzzmonitor.com`, `evento.buzzmonitor.com`, `material.buzzmonitor.com`). Projetos solo e Webflow ficam fora (ver §9).
+> **Addendum 2026-07-21:** 5º guarda-chuva `content.buzzmonitor.com` (conteúdo Buzzmonitor ES-LATAM) nasceu já no CI — não foi uma migração de deploy manual, mas segue o mesmo modelo (manifesto + `lp-deploy.yml` + MIGRADOS.json). As LPs `ia-para-social-listening-es` e `la-mejor-plataforma-social-listening-es` saíram de `material.*` (que passou a 301 pra cá). Os itens históricos abaixo que dizem "4 guarda-chuvas" descrevem o cutover de 2026-07-15 e ficam como estão.
 
 ---
 

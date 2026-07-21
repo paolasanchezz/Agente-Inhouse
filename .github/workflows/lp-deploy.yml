@@ -21,6 +21,7 @@ on:
           - webinar.buzzmonitor.com
           - evento.buzzmonitor.com
           - material.buzzmonitor.com
+          - content.buzzmonitor.com
       force_fail:
         description: "Simular falha de smoke pra ensaiar o rollback (teste supervisionado)"
         required: false

@@ -8,7 +8,7 @@
 
 | Marca | Arquivo de produto | Subdominios guarda-chuva ativos |
 |---|---|---|
-| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `evento.buzzmonitor.com` (presencial), `material.buzzmonitor.com` (rico/evergreen), `webinar.buzzmonitor.com` (online — legacy) |
+| `buzzmonitor` | `brand/buzzmonitor/BRANDBOOK.md` | `evento.buzzmonitor.com` (presencial), `material.buzzmonitor.com` (rico/evergreen), `content.buzzmonitor.com` (conteudo ES-LATAM), `webinar.buzzmonitor.com` (online — legacy) |
 | `buzzcreators` | `brand/buzzcreators/BRANDBOOK.md` | sem subdominio proprio — LPs caem em algum guarda-chuva Buzzmonitor (assets em `/assets/buzzcreators/X` por namespace) |
 | `cxpress` | `brand/cxpress/BRANDBOOK.md` | `content.cxpress.io` (subdominio unificado — qualquer tipo de LP Cxpress) |
 | `elife` | `brand/elife/BRANDBOOK.md` | a definir |
@@ -17,12 +17,13 @@ Dominios sao sugeridos, nao impostos. `lp-publicar` so adiciona dominio quando o
 
 ### Convencao de subdominio Buzzmonitor
 
-Buzzmonitor tem 3 subdominios guarda-chuva especializados — escolher conforme o tipo de LP:
+Buzzmonitor tem 4 subdominios guarda-chuva especializados — escolher conforme o tipo de LP:
 
 | Subdominio | Tipo de LP | Exemplos |
 |---|---|---|
 | `evento.buzzmonitor.com` | Eventos **presenciais** | workshops, meetups, palestras fisicas, "Vendendo com Creators" |
 | `material.buzzmonitor.com` | Material rico **evergreen** | playbooks, ebooks, guias, notion-share, conteudos perenes |
+| `content.buzzmonitor.com` | Conteudo **ES-LATAM** (topo/meio de funil) | social listening, monitoramento com IA em espanhol — equivalente Buzzmonitor do `content.cxpress.io` |
 | `webinar.buzzmonitor.com` | Eventos **online** | webinars ao vivo, lives, transmissoes (legacy — LPs novas devem priorizar `evento.*` ou `material.*` quando aplicavel) |
 
 Cxpress mantem 1 subdominio so (`content.cxpress.io`) para qualquer tipo — nao tem essa subdivisao por tipo.
@@ -33,6 +34,7 @@ Cxpress mantem 1 subdominio so (`content.cxpress.io`) para qualquer tipo — nao
 |---|---|
 | `evento.buzzmonitor.com` | `buzzmonitor-evento` |
 | `material.buzzmonitor.com` | `buzzmonitor-material` |
+| `content.buzzmonitor.com` | `buzzmonitor-content` |
 | `webinar.buzzmonitor.com` | `buzzmonitor-lp-monitoramento-concorrentes` |
 | `content.cxpress.io` | `cxpress-lp-playbook-whatsapp2026` |
 

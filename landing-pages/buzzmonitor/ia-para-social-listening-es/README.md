@@ -2,7 +2,7 @@
 
 **Gerado em:** 2026-07-17
 **Copy-fonte:** `copy.txt` (estruturada a partir da LP publicada em contenido.getbuzzmonitor.com/ia-para-social-listening + referência de design buzzmonitor---teste-claude---webflow.webflow.io)
-**Região/idioma:** LATAM · ES-419 · destino `material.buzzmonitor.com/ia-para-social-listening-es`
+**Região/idioma:** LATAM · ES-419 · destino `content.buzzmonitor.com/ia-para-social-listening-es` (migrada de `material.buzzmonitor.com` em 2026-07-21; path antigo faz 301)
 
 ## Estrutura
 
