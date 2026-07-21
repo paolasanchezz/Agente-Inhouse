@@ -69,7 +69,7 @@ Quando o destino não estiver mapeado: `notion-search` por `Conteúdos complemen
 |---|---|---|---|
 | cxpress | https://blog.cxpress.io/ | https://blog.cxpress.io/ | https://blog.cxpress.pt/blog/ |
 | buzzmonitor | https://buzzmonitor.com/blog/ | https://buzzmonitor.com/blog/ | https://buzzmonitor.com/blog/ |
-| buzzcreators | https://buzzcreators.com.br/blog/ | https://buzzcreators.com/blog/ | https://buzzcreators.com/blog/ |
+| buzzcreators | https://blog.buzzcreators.com.br | https://buzzcreators.com/blog/ | https://buzzcreators.com/blog/ |
 | elife | (confirmar) | (confirmar) | (confirmar) |
 
 Fonte canônica: `## 3. URLs e Contatos Oficiais` do BRANDBOOK de cada marca. Sitemap = `{BlogURL}sitemap*.xml` (tratar sitemap-index → filhos + paginação; tolerar ausência → cair pro cache).

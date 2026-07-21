@@ -1,5 +1,7 @@
 # Plano editorial — primeiros 20 artigos · Buzzcreators Brasil (SEO/GEO)
 
+> **STATUS (2026-07-21): CONCLUÍDO E PUBLICADO.** Os 20 artigos abaixo foram produzidos e o blog está no ar em `https://blog.buzzcreators.com.br` (não é mais greenfield). Inventário vivo em `blog-cache.md`. Uma **2ª leva de 20 posts** foi criada em 2026-07-21 — série "Formatos de Campanha" (tipos de campanha com creators: seeding, gifting, embaixadores, afiliados, whitelisting, UGC pago, review/unboxing, giveaway, takeover, collab, live commerce + hub) e lacunas GEO (social listening para descobrir creators, taxa de engajamento, CPM/CPE/CPV, media kit lado-marca, always-on vs pontual, vertical food service, tempo de resultado). Detalhes no `blog-cache.md`. Este plano fica como registro histórico da 1ª leva.
+
 > Calendário de lançamento do blog (greenfield). Construído em 2026-07-02, reformulado em 2026-07-02 após remover o
 > tema de compliance/contratos/publicidade do escopo (o Buzzcreators não oferece esse recurso de forma extensa — decisão do Victor).
 > Baseado no levantamento de volume (Semrush `br` + triangulação Google) e na arquitetura de clusters (`clusters-brasil.md`, mesma pasta).

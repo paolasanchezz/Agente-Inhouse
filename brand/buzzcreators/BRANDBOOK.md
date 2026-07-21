@@ -135,7 +135,7 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 
 | Regiao | Site | Blog |
 |---|---|---|
-| Brasil | https://buzzcreators.com.br | https://buzzcreators.com.br/blog/ |
+| Brasil | https://buzzcreators.com.br | https://blog.buzzcreators.com.br |
 | LATAM | https://buzzcreators.com/ | https://buzzcreators.com/blog/ |
 | Portugal | https://buzzcreators.com/ | https://buzzcreators.com/blog/ |
 

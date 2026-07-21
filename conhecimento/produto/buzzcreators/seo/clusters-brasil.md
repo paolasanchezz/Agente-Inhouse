@@ -7,7 +7,7 @@
 > Mantido pelo time (Victor envia atualizações; o agente transcreve aqui). Ao esgotar os "subtópicos a criar",
 > reabastecer esta lista antes de continuar a produção diária.
 >
-> **Blog:** https://www.buzzcreators.com.br/blog/ · **Marca:** o Buzzcreators (masculino — ver BRANDBOOK §6) ·
+> **Blog:** https://blog.buzzcreators.com.br (PUBLICADO — não é mais greenfield; ver `blog-cache.md`) · **Marca:** o Buzzcreators (masculino — ver BRANDBOOK §6) ·
 > **Foco:** marketing de influência / creator economy · **Plano dos 20 primeiros posts:** `plano-editorial-20-artigos.md` (mesma pasta).
 > **Schema por cluster:** nome · papel no funil · prioridade · categoria de menu · pillar page · palavras-chave principais · subtópicos existentes · subtópicos a criar.
 
@@ -15,7 +15,7 @@
 
 ## Diagnóstico que originou os clusters
 
-**1. Blog greenfield — arquitetura do zero.** O blog não tem posts publicados (`/blog/` = 404; sitemap só com páginas institucionais/evento — ver `blog-cache.md`). Não há concentração de tráfego nem canibalização a corrigir: há um mapa em branco. Todo tema é LACUNA. Isso é vantagem (dá pra desenhar a topical authority certa) e risco (domínio sem histórico de conteúdo → priorizar consistência + interligação interna forte desde o post 1).
+**1. Blog EM PRODUÇÃO (atualizado 2026-07-21) — não é mais greenfield.** O blog foi publicado em `https://blog.buzzcreators.com.br`. Já no ar: os 20 posts do plano editorial (`plano-editorial-20-artigos.md`) + 1 changelog de produto + uma 2ª leva de 20 posts (série "Formatos de Campanha" — tipos de campanha com creators — + lacunas GEO), criada em 2026-07-21. **A maioria dos "subtópicos a criar" listados abaixo JÁ EXISTE** — antes de produzir qualquer tema, checar o inventário vivo em `blog-cache.md` para não duplicar. A arquitetura de topical authority já está plantada; a prioridade agora é preencher LACUNAS novas, não refazer fundamentos.
 
 **2. Nicho B2B de volume modesto — vencer por intenção e autoridade, não por head único.** No `br`, não há "cabeça" de 10k+. Os termos comerciais mais fortes são de cauda média: `plataforma de influenciadores` (210/mês, competição 0,73), `agência de influenciadores` (170/mês, comp 0,74), `micro influenciadores` (320) + `microinfluenciadores` (260) + `nano influenciadores` (260). O termo guarda-chuva `marketing de influência` (1.300) e `influenciadores digitais` (1.300) são amplos/informacionais. **Estratégia:** cobrir a jornada inteira com autoridade temática — não perseguir um único head de alto volume que não existe.
 
@@ -37,11 +37,8 @@
 - **Categoria de menu:** Marketing de Influência
 - **Pillar page (a criar):** "O que é marketing de influência: guia completo para marcas em 2026"
 - **Palavras-chave principais:** marketing de influência (1.300) · o que é marketing de influência (140) · influenciadores digitais (1.300, amplo)
-- **Subtópicos existentes no blog:** nenhum (greenfield)
-- **Subtópicos a criar:**
-  - O que é marketing de influência: guia completo para marcas (pillar, ToFu, GEO)
-  - Tendências de marketing de influência para 2026 (ToFu, campo editorial quente — IA, social commerce, regionalização, slow content)
-  - Tipos de influenciadores: mega, macro, micro, nano — quando usar cada um (ToFu→MoFu, ponte para o C2)
+- **Subtópicos existentes no blog:** o-que-e-marketing-de-influencia (pillar) · tendencias-marketing-de-influencia-2026 · tipos-de-influenciadores
+- **Subtópicos a criar:** nenhum pendente (1ª leva completou o cluster)
 
 ## Cluster 2 — Micro e nano influenciadores
 - **Papel no funil:** Meio (posicionamento central da marca)
@@ -49,11 +46,8 @@
 - **Categoria de menu:** Micro e Nano
 - **Pillar page (a criar):** "Micro e nanoinfluenciadores: por que convertem mais (e como usá-los na sua estratégia)"
 - **Palavras-chave principais:** micro influenciadores (320) · microinfluenciadores (260) · nano influenciadores (260)
-- **Subtópicos existentes no blog:** nenhum
-- **Subtópicos a criar:**
-  - Por que microinfluenciadores convertem mais: ROI 3x e engajamento (MoFu, prova de posicionamento)
-  - O que são nanoinfluenciadores e como incluí-los na estratégia (MoFu)
-  - Micro vs. macro influenciadores: qual escolher por objetivo de campanha (MoFu, comparativo)
+- **Subtópicos existentes no blog:** microinfluenciadores-roi-3x · o-que-sao-nanoinfluenciadores · micro-vs-macro-influenciadores
+- **Subtópicos a criar:** nenhum pendente (1ª leva completou o cluster)
 
 ## Cluster 3 — Gestão e operação de campanhas
 - **Papel no funil:** Meio e fundo (conversão — dor central da LP `/gestao-de-influenciadores`)
@@ -61,13 +55,8 @@
 - **Categoria de menu:** Gestão de Campanhas
 - **Pillar page (a criar):** "Gestão de influenciadores: como organizar campanhas em escala sem planilhas"
 - **Palavras-chave principais:** gestão de influenciadores (30, mas = tema da LP) · campanha de influenciadores · como fazer campanha com influenciadores · plataforma de influenciadores (210, comercial)
-- **Subtópicos existentes no blog:** nenhum
-- **Subtópicos a criar:**
-  - Gestão de influenciadores sem planilhas: como centralizar a operação (pillar, MoFu→BoFu, LP `/gestao-de-influenciadores`)
-  - Como fazer uma campanha de marketing de influência: do briefing ao relatório (MoFu, passo a passo)
-  - Como escrever um briefing para influenciadores (com modelo) (MoFu, ímã de template)
-  - Plataforma de marketing de influência: o que é e como escolher a sua (MoFu→BoFu, comercial, comp 0,73)
-  - Agência de influenciadores ou plataforma própria? Como escalar a operação (MoFu, ângulo de agência → LP `/agencias`)
+- **Subtópicos existentes no blog:** gestao-influenciadores-sem-caos (pillar) · como-fazer-campanha-influenciadores · briefing-para-influenciadores-modelo · plataforma-marketing-de-influencia · agencias-escalar-influencia · como-pagar-influenciadores (2ª leva) · always-on-ou-campanha-pontual (2ª leva)
+- **Subtópicos a criar:** nenhum pendente
 
 ## Cluster 4 — Descoberta e seleção de influenciadores
 - **Papel no funil:** Meio (comercial — dor da LP `/encontrar-influenciadores`)
@@ -75,11 +64,8 @@
 - **Categoria de menu:** Descoberta de Creators
 - **Pillar page (a criar):** "Como encontrar e escolher os influenciadores certos para a sua marca"
 - **Palavras-chave principais:** como encontrar influenciadores (20, CPC 1,45 / comp 0,92) · como escolher influenciadores (20 + campo de conteúdo lotado) · como encontrar microinfluencers (comp 1,0)
-- **Subtópicos existentes no blog:** nenhum
-- **Subtópicos a criar:**
-  - Como encontrar microinfluenciadores para a sua marca (MoFu, comercial, LP `/encontrar-influenciadores`)
-  - Como escolher os influenciadores certos para a sua campanha (MoFu — critérios: engajamento 79%, nicho 76%, qualidade 70%)
-  - Como identificar influenciadores falsos: seguidores comprados e engajamento inflado (MoFu, gancho de confiança/dados)
+- **Subtópicos existentes no blog:** como-encontrar-microinfluenciadores · como-escolher-influenciadores · como-identificar-influenciadores-falsos · social-listening-para-encontrar-influenciadores (2ª leva — diferencial Buzzmonitor) · como-avaliar-midia-kit-de-influenciador (2ª leva)
+- **Subtópicos a criar:** nenhum pendente
 
 ## Cluster 5 — ROI, métricas e precificação
 - **Papel no funil:** Fundo (decisão de compra / justificativa de investimento — LP `/marcas`)
@@ -87,12 +73,26 @@
 - **Categoria de menu:** Métricas e ROI
 - **Pillar page (a criar):** "Como medir o ROI do marketing de influência: as métricas que importam"
 - **Palavras-chave principais:** quanto custa contratar influenciador (campo de conteúdo lotado) · ROI marketing de influência · métricas / KPIs de influência · quanto cobra um influenciador
-- **Subtópicos existentes no blog:** nenhum
+- **Subtópicos existentes no blog:** quanto-custa-contratar-influenciador · como-medir-roi-marketing-de-influencia (pillar) · metricas-marketing-de-influencia-vaidade · taxa-de-engajamento-como-calcular (2ª leva) · cpm-cpe-cpv-marketing-de-influencia (2ª leva) · quanto-tempo-leva-resultado-influencia (2ª leva)
 - **Subtópicos a criar:**
-  - Quanto custa contratar um influenciador no Brasil em 2026 (MoFu→BoFu, alta demanda; faixas nano→mega, fee fixo vs CPM)
-  - Como medir o ROI do marketing de influência: métricas e KPIs (BoFu, decisão + GEO — conecta à API de dados do Buzzcreators)
-  - Métricas de influência que importam (e as métricas de vaidade a evitar) (MoFu)
-  - Como precificar campanhas com influenciadores: fee fixo vs. CPM (MoFu, prático)
+  - Como precificar campanhas com influenciadores: fee fixo vs. CPM (MoFu, prático — aprofundamento do quanto-custa; backlog)
+
+## Cluster 7 — Formatos de campanha com creators (série, 2ª leva 2026-07-21)
+- **Papel no funil:** Meio (consideração — "que tipo de campanha fazer?")
+- **Prioridade:** Alta (formato definicional = ímã de GEO; cada formato conecta a um módulo/LP)
+- **Categoria de menu:** Formatos de Campanha
+- **Pillar page (CRIADA):** "Tipos de campanha com creators: os 11 formatos que as marcas usam" (`formatos-de-campanha-com-creators`)
+- **Palavras-chave principais:** seeding · gifting (480) · embaixador de marca (110) · whitelisting (260) · ugc ads (210) · live commerce (720) · dark post (1.000, adjacente) · sorteio com influenciadores · takeover · collab
+- **Subtópicos existentes no blog (2ª leva completa):** hub + seeding + gifting + embaixadores + afiliados + whitelisting + UGC pago + review/unboxing + sorteio + takeover + collab de produto + live commerce (12 posts — ver `blog-cache.md`)
+- **Subtópicos a criar:** nenhum pendente (série completa; formatos novos do mercado entram aqui)
+
+## Cluster 8 — Setores / verticais (aberto na 2ª leva)
+- **Papel no funil:** Meio (guia estratégico brand-side por indústria)
+- **Prioridade:** Média (expandir conforme ICP; evitar verticais saturadas — beleza/moda/e-commerce só com ângulo estreito)
+- **Categoria de menu:** Setores
+- **Pillar page:** não há (cada vertical é standalone)
+- **Subtópicos existentes no blog:** Marketing de influência para restaurantes e delivery (`marketing-de-influencia-para-restaurantes`)
+- **Subtópicos a criar:** turismo/hotelaria (guia brand-side — lacuna confirmada 2026-07-21); ⚠️ farma/saúde FORA (esbarra em compliance — escopo proibido)
 
 ## Cluster 6 — Creator economy e UGC
 - **Papel no funil:** Topo (tráfego + thought leadership; porta de entrada de criadores)
@@ -100,11 +100,8 @@
 - **Categoria de menu:** Creator Economy
 - **Pillar page (a criar):** "Creator economy no Brasil: o que é, tamanho e o que muda para as marcas"
 - **Palavras-chave principais:** ugc (18.100) · o que é ugc (3.600) · ugc creator (1.300) · creator economy (1.000) · o que é creator economy (110) · employee advocacy (480)
-- **Subtópicos existentes no blog:** nenhum
-- **Subtópicos a criar:**
-  - O que é UGC (conteúdo gerado pelo usuário) e como as marcas usam (ToFu, maior ímã de volume; LP `/creators`)
-  - Creator economy no Brasil: o que é, tamanho e por que importa para as marcas (ToFu, dados de mercado + LP `/creators-research`)
-  - Employee advocacy: como transformar colaboradores em vozes da marca (MoFu, LP `/employee-advocacy`, CPC B2B alto)
+- **Subtópicos existentes no blog:** o-que-e-ugc-conteudo-gerado-usuario · creator-economy-no-brasil · employee-advocacy-colaboradores-vozes-marca · ugc-pago-creator-ads (2ª leva, no C7)
+- **Subtópicos a criar:** nenhum pendente
 
 ---
 
