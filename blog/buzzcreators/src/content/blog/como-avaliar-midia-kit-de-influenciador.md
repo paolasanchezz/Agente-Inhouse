@@ -49,4 +49,4 @@ Dois caminhos. O artesanal: pedir um print recente do gerenciador da rede (não 
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Mídia kit abre a conversa; decisão boa pede dado vivo. Com a API de dados do Buzzcreators, a marca acessa métricas reais de audiência e engajamento por criador, atualizadas de forma contínua — sem depender do retrato que o próprio perfil escolheu mostrar. [Encontre e avalie influenciadores com dados auditáveis](https://www.buzzcreators.com.br/encontrar-influenciadores?utm_source=blog&utm_medium=blog&utm_campaign=encontrar-influenciadores&utm_content=como-avaliar-midia-kit-de-influenciador).
+Mídia kit abre a conversa; decisão boa pede dado vivo. O Buzzcreators reúne métricas reais de audiência e engajamento por criador, coletadas das APIs oficiais das redes e atualizadas de forma contínua — sem depender do retrato que o próprio perfil escolheu mostrar. [Encontre e avalie influenciadores com dados auditáveis](https://www.buzzcreators.com.br/encontrar-influenciadores?utm_source=blog&utm_medium=blog&utm_campaign=encontrar-influenciadores&utm_content=como-avaliar-midia-kit-de-influenciador).

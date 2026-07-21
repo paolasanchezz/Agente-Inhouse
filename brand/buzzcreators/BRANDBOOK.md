@@ -83,7 +83,7 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 - Eliminacao de processos financeiros manuais para campanha em escala
 
 #### 5. Analytics e Relatorios
-- Monitoramento via API com dados atualizados diariamente (sem captura manual)
+- Monitoramento com dados coletados das APIs oficiais das redes sociais, atualizados diariamente (sem captura manual)
 - Metricas de performance por criador e por campanha
 - Dados de engajamento e ROI em tempo real
 
@@ -94,8 +94,10 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 | Gestao em massa | Convites, aprovacoes e pagamentos em escala com poucos cliques |
 | Trilha de auditoria | Registro completo de briefings e aprovacoes para compliance |
 | Pagamento automatizado | Liberacao de pagamento ao criador apos aprovacao sem processo manual |
-| API de dados | Metricas atualizadas diariamente sem captura manual |
+| Dados oficiais das redes | Metricas coletadas automaticamente das APIs oficiais das redes sociais (Instagram, TikTok, etc.), atualizadas diariamente sem captura manual |
 | Integracao Buzzmonitor | Combina dados de social listening com gestao de influencia (diferencial do grupo) |
+
+> **IMPORTANTE — o Buzzcreators NAO expoe uma API para clientes (esclarecido pelo Victor, 2026-07-21).** A plataforma **coleta** as metricas automaticamente pelas **APIs oficiais das redes sociais** (Instagram, TikTok, YouTube, etc.), entregando dados oficiais e atualizados sem captura manual. Em copy, blog, LP ou qualquer material: **nunca** escrever "API do Buzzcreators", "API de dados" ou "nossa API" como se fosse um produto/recurso acessivel ao cliente. Descrever sempre como "dados coletados via APIs oficiais das redes" (ou equivalente). O valor a comunicar e o **dado oficial, automatico e sem captura manual** — nao uma API exposta.
 
 ### Grafias INCORRETAS (Nunca usar)
 

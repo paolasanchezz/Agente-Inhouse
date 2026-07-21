@@ -48,4 +48,4 @@ São o que permite decidir com quem seguir. Olhar só o total da campanha escond
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Fugir da vaidade exige dado organizado e por criador. O Buzzcreators entrega métricas de performance por influenciador e por campanha via API, atualizadas de forma automática. Em vez de um print de curtidas, a marca vê engajamento e desempenho reais — e mede o que importa, não o que impressiona.
+Fugir da vaidade exige dado organizado e por criador. O Buzzcreators reúne métricas de performance por influenciador e por campanha a partir das APIs oficiais das redes, atualizadas de forma automática. Em vez de um print de curtidas, a marca vê engajamento e desempenho reais — e mede o que importa, não o que impressiona.

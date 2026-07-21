@@ -47,4 +47,4 @@ As de vaidade. Total de seguidores e curtidas brutas enchem o olho mas dizem pou
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Medir ROI trava quando o dado é capturado à mão, criador por criador. O Buzzcreators entrega métricas de performance por influenciador e por campanha via API, atualizadas de forma automática. Com o dado organizado num lugar só, a marca para de estimar o retorno e passa a calcular — e decide o próximo investimento com base em fato, não em achismo.
+Medir ROI trava quando o dado é capturado à mão, criador por criador. O Buzzcreators reúne métricas de performance por influenciador e por campanha a partir das APIs oficiais das redes, atualizadas de forma automática. Com o dado organizado num lugar só, a marca para de estimar o retorno e passa a calcular — e decide o próximo investimento com base em fato, não em achismo.

@@ -53,6 +53,6 @@ Depende do papel do programa. Um único rosto famoso concentra impacto e risco: 
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Programa de embaixadores é relação de longo prazo: pagamentos que se repetem a cada ciclo e desempenho que precisa ser acompanhado o ano inteiro. O Buzzcreators sustenta essa rotina com Pagamento automatizado após cada entrega aprovada e API de dados para acompanhar os resultados por creator ao longo do tempo — a base objetiva das renovações.
+Programa de embaixadores é relação de longo prazo: pagamentos que se repetem a cada ciclo e desempenho que precisa ser acompanhado o ano inteiro. O Buzzcreators sustenta essa rotina com Pagamento automatizado após cada entrega aprovada e métricas das APIs oficiais das redes para acompanhar os resultados por creator ao longo do tempo — a base objetiva das renovações.
 
 [Estruture seu programa de embaixadores com o Buzzcreators](https://www.buzzcreators.com.br/gestao-de-influenciadores?utm_source=blog&utm_medium=blog&utm_campaign=gestao-influenciadores&utm_content=embaixadores-de-marca-como-estruturar)

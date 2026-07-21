@@ -47,4 +47,4 @@ Conta, mas como consequência do objetivo. Para nicho e conversão, [micro e nan
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Escolher bem depende de dado. O Buzzcreators ajuda a marca a encontrar criadores alinhados ao seu público e acompanha as métricas de cada um por API, atualizadas de forma automática. Em vez de decidir por intuição ou pelo perfil mais famoso, a escolha passa a se apoiar em engajamento real e desempenho por criador.
+Escolher bem depende de dado. O Buzzcreators ajuda a marca a encontrar criadores alinhados ao seu público e acompanha as métricas de cada um com dados das APIs oficiais das redes, atualizados de forma automática. Em vez de decidir por intuição ou pelo perfil mais famoso, a escolha passa a se apoiar em engajamento real e desempenho por criador.

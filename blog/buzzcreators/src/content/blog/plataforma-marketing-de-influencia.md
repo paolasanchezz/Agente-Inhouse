@@ -43,4 +43,4 @@ Cinco pontos separam uma boa plataforma de uma incompleta:
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-O Buzzcreators foi desenhado para cobrir o ciclo inteiro: descoberta, briefing, aprovação, entrega, pagamento automatizado e dados por criador via API. Não impõe limite de influenciadores por campanha e é integrado nativamente ao Buzzmonitor, unindo social listening à gestão de influência. Na hora de comparar opções, é a diferença entre uma ferramenta que acha criador e uma que roda a campanha do começo ao fim.
+O Buzzcreators foi desenhado para cobrir o ciclo inteiro: descoberta, briefing, aprovação, entrega, pagamento automatizado e dados por criador coletados das APIs oficiais das redes. Não impõe limite de influenciadores por campanha e é integrado nativamente ao Buzzmonitor, unindo social listening à gestão de influência. Na hora de comparar opções, é a diferença entre uma ferramenta que acha criador e uma que roda a campanha do começo ao fim.

@@ -52,6 +52,6 @@ Cupom e UTM, juntos. O cupom captura a venda mesmo quando o clique se perdeu —
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Um programa de afiliados saudável cresce em número de creators, cada um com seu cupom, seu percentual e seu fechamento de ciclo. O Buzzcreators segura essa operação com API de dados, para cruzar os resultados de venda por creator, e Pagamento automatizado, para a comissão cair após a aprovação sem ninguém conferir planilha no fim do mês.
+Um programa de afiliados saudável cresce em número de creators, cada um com seu cupom, seu percentual e seu fechamento de ciclo. O Buzzcreators segura essa operação reunindo a performance de cada creator num só painel e com Pagamento automatizado, para a comissão cair após a aprovação sem ninguém conferir planilha no fim do mês.
 
 [Monte seu programa de afiliados com creators](https://www.buzzcreators.com.br/marcas?utm_source=blog&utm_medium=blog&utm_campaign=marcas&utm_content=marketing-de-afiliados-com-creators)

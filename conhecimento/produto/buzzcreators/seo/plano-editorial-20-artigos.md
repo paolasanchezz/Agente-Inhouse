@@ -88,9 +88,9 @@ Objetivo: plantar os pilares que tudo linka + capturar a maior demanda de conver
 
 **6. Como medir o ROI do marketing de influência: as métricas que importam** · C5 · BoFu · GEO ★
 - **KW:** roi marketing de influência (0 rescatado) · secundárias: kpi marketing de influência, como medir resultados de influenciadores.
-- **Intenção:** decisão — "vale o investimento?". Conecta direto à **API de dados** do Buzzcreators (métricas diárias sem captura manual).
+- **Intenção:** decisão — "vale o investimento?". Conecta direto aos **dados coletados via APIs oficiais das redes** pelo Buzzcreators (métricas diárias sem captura manual; o Buzzcreators NÃO expõe API ao cliente — ver BRANDBOOK §2).
 - **Ângulo:** fórmula de ROI → KPIs por objetivo (awareness/engajamento/conversão) → como atribuir (UTM, código, cupom) → 3–4 KPIs, não 15. Estrutura ideal para AI Overview.
-- **Produto/CTA:** módulo **Analytics e Relatórios** / **API de dados** → LP `/marcas`.
+- **Produto/CTA:** módulo **Analytics e Relatórios** (dados via APIs oficiais das redes) → LP `/marcas`.
 
 **7. O que é UGC (conteúdo gerado pelo usuário) e como as marcas usam** · C6 · ToFu · GEO ★
 - **KW:** ugc (18.100) · o que é ugc (3.600) · secundárias: ugc creator (1.300), conteúdo ugc.
@@ -178,7 +178,7 @@ Objetivo: plantar os pilares que tudo linka + capturar a maior demanda de conver
 - **KW:** long-tail (influenciador falso, seguidores comprados, engajamento falso) · liga a `como escolher influenciadores`.
 - **Intenção:** consideração/confiança — ângulo de dados que reforça a proposta "métricas reais".
 - **Ângulo:** sinais de fraude (picos súbitos, razão seguidores/engajamento, comentários genéricos) → como auditar antes de contratar → o papel dos dados.
-- **Produto/CTA:** módulo **API de dados / Analytics** → LP `/encontrar-influenciadores`.
+- **Produto/CTA:** módulo **Analytics** (dados via APIs oficiais das redes) → LP `/encontrar-influenciadores`.
 
 ---
 

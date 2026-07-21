@@ -48,4 +48,4 @@ Até certo ponto. A leitura manual pega os casos óbvios, mas em campanhas com m
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-O Buzzcreators acompanha métricas de performance por criador via API, atualizadas de forma automática. Em vez de decidir por um print de seguidores, a marca vê o engajamento real de cada perfil ao longo da campanha — e percebe rápido quando um número não se sustenta. É a diferença entre confiar na aparência e confiar no dado.
+O Buzzcreators acompanha métricas de performance por criador com dados das APIs oficiais das redes, atualizados de forma automática. Em vez de decidir por um print de seguidores, a marca vê o engajamento real de cada perfil ao longo da campanha — e percebe rápido quando um número não se sustenta. É a diferença entre confiar na aparência e confiar no dado.

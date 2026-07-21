@@ -43,4 +43,4 @@ A escala só é saudável se o cliente não sentir a diferença. Isso depende de
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-O Buzzcreators foi pensado para quem opera várias campanhas ao mesmo tempo. A plataforma centraliza briefing, aprovação, entrega e pagamento, organiza contas de clientes diferentes e entrega dados atualizados por API, sem captura manual. Na prática, a agência cresce a carteira sem precisar crescer a equipe na mesma proporção, e mantém o controle que o cliente espera.
+O Buzzcreators foi pensado para quem opera várias campanhas ao mesmo tempo. A plataforma centraliza briefing, aprovação, entrega e pagamento, organiza contas de clientes diferentes e reúne as métricas coletadas das APIs oficiais das redes, atualizadas sem captura manual. Na prática, a agência cresce a carteira sem precisar crescer a equipe na mesma proporção, e mantém o controle que o cliente espera.

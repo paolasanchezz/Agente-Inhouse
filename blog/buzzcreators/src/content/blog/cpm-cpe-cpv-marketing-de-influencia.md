@@ -55,4 +55,4 @@ O maior valor das três métricas é colocar portes diferentes na mesma régua. 
 
 ## Como o Buzzcreators ajuda nesse cenário
 
-Comparar creators pelo custo do resultado exige os números de desempenho de cada um — e, em escala, isso não cabe em planilha. O Buzzcreators entrega métricas por criador e por campanha via API de dados, base para calcular CPM, CPE e CPV reais de cada parceria e repetir o que funciona. [Compare campanhas e creators com dados de performance](https://www.buzzcreators.com.br/marcas?utm_source=blog&utm_medium=blog&utm_campaign=marcas&utm_content=cpm-cpe-cpv-marketing-de-influencia).
+Comparar creators pelo custo do resultado exige os números de desempenho de cada um — e, em escala, isso não cabe em planilha. O Buzzcreators reúne métricas por criador e por campanha a partir das APIs oficiais das redes, base para calcular CPM, CPE e CPV reais de cada parceria e repetir o que funciona. [Compare campanhas e creators com dados de performance](https://www.buzzcreators.com.br/marcas?utm_source=blog&utm_medium=blog&utm_campaign=marcas&utm_content=cpm-cpe-cpv-marketing-de-influencia).
