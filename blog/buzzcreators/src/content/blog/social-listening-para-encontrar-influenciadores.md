@@ -2,6 +2,8 @@
 title: 'Social listening para encontrar influenciadores que já amam sua marca'
 metaTitle: 'Social listening para encontrar influenciadores'
 description: 'Social listening aplicado à influência revela os creators que já falam da sua marca. Veja o que a escuta mostra e como transformar menções em shortlist.'
+cover: '/assets/covers/social-listening-para-encontrar-influenciadores.jpg'
+coverAlt: "Mulher de camisa xadrez mexendo no celular ao ar livre"
 pubDate: 2026-07-09
 author: 'Equipe Buzzcreators'
 category: 'Descoberta'

@@ -2,6 +2,8 @@
 title: 'Review e unboxing com creators: prova social que vende'
 metaTitle: 'Review e unboxing com creators: como funciona'
 description: 'Campanha de review é quando a marca envia o produto para o creator avaliar de forma honesta. Veja como funciona, a diferença para o unboxing e o seeding.'
+cover: '/assets/covers/campanha-de-review-e-unboxing.jpg'
+coverAlt: "Mulher abrindo uma caixa de papelão com tesoura na sala de casa"
 pubDate: 2026-07-15
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

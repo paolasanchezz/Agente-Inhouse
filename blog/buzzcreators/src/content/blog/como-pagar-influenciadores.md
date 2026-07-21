@@ -2,6 +2,8 @@
 title: 'Como pagar influenciadores: o guia da marca, do PIX à escala'
 metaTitle: 'Como pagar influenciadores: guia para marcas'
 description: 'Do fee fixo à permuta: veja os modelos de remuneração, por que pagar no prazo importa e como automatizar o pagamento quando são dezenas de creators.'
+cover: '/assets/covers/como-pagar-influenciadores.jpg'
+coverAlt: "Mão segurando uma maquininha de pagamento com valor na tela"
 pubDate: 2026-07-13
 author: 'Equipe Buzzcreators'
 category: 'Operação'

@@ -2,6 +2,8 @@
 title: 'Marketing de afiliados com creators: comissão por venda na influência'
 metaTitle: 'Afiliados com creators: como funciona a comissão'
 description: 'No modelo de afiliados, o creator ganha comissão por venda rastreada via cupom ou link. Veja quando faz sentido, os cuidados e como rastrear resultado.'
+cover: '/assets/covers/marketing-de-afiliados-com-creators.jpg'
+coverAlt: "Pessoa comprando online com cartão de crédito na mão"
 pubDate: 2026-07-14
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

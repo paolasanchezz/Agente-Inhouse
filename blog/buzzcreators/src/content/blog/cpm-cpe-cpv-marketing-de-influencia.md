@@ -2,6 +2,8 @@
 title: 'CPM, CPE e CPV no marketing de influência: o que cada um mede'
 metaTitle: 'CPM, CPE e CPV na influência: o que medem'
 description: 'Entenda o que medem CPM, CPE e CPV no marketing de influência, com fórmulas e exemplos, e saiba qual métrica usar para comparar creators e campanhas.'
+cover: '/assets/covers/cpm-cpe-cpv-marketing-de-influencia.jpg'
+coverAlt: "Tela de computador exibindo gráficos de desempenho"
 pubDate: 2026-07-14
 author: 'Equipe Buzzcreators'
 category: 'Métricas'

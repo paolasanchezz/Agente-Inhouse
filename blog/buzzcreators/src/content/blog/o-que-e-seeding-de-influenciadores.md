@@ -2,6 +2,8 @@
 title: 'O que é seeding de influenciadores e como fazer bem'
 metaTitle: 'Seeding de influenciadores: o que é e como fazer'
 description: 'Seeding de influenciadores é o envio de produtos a creators sem obrigação de post. Entenda por que funciona, como fazer bem e como medir o resultado.'
+cover: '/assets/covers/o-que-e-seeding-de-influenciadores.jpg'
+coverAlt: "Mãos entregando e recebendo caixas de encomenda com etiqueta de envio"
 pubDate: 2026-07-09
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

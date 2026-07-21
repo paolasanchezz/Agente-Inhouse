@@ -2,6 +2,8 @@
 title: 'Como avaliar o mídia kit de um influenciador antes de fechar'
 metaTitle: 'Como avaliar mídia kit de influenciador'
 description: 'Checklist para marcas: o que olhar no mídia kit de um influenciador, os sinais de alerta e como confirmar os números antes de fechar a parceria.'
+cover: '/assets/covers/como-avaliar-midia-kit-de-influenciador.jpg'
+coverAlt: "Mão de profissional sobre a mesa com documentos impressos e canetas"
 pubDate: 2026-07-17
 author: 'Equipe Buzzcreators'
 category: 'Seleção'

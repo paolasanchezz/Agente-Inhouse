@@ -1,6 +1,8 @@
 ---
 title: 'Novidades da plataforma Buzzcreators em julho de 2026'
 description: 'Conheça as novidades de julho de 2026 na plataforma Buzzcreators: nova busca de creators, liberação D+1 nas carteiras e gestão com múltiplos usuários.'
+cover: '/assets/covers/novidades-plataforma-julho-2026.jpg'
+coverAlt: "Notebook exibindo painel de software com métricas"
 pubDate: 2026-07-21
 author: 'Equipe Buzzcreators'
 category: 'Novidades'

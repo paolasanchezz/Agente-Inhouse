@@ -2,6 +2,8 @@
 title: 'Live commerce com influenciadores: vender ao vivo com creators'
 metaTitle: 'Live commerce com influenciadores: como fazer'
 description: 'Live commerce é a venda ao vivo com um creator apresentando produtos em tempo real. Entenda por que o formato converte, como estruturar a live e o que medir.'
+cover: '/assets/covers/live-commerce-com-influenciadores.jpg'
+coverAlt: "Mulher tocando o botão de gravar em um celular montado no tripé"
 pubDate: 2026-07-20
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

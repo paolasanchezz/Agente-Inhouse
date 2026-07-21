@@ -2,6 +2,8 @@
 title: 'Whitelisting de influenciadores: anúncios com a cara do creator'
 metaTitle: 'Whitelisting de influenciadores: o que é'
 description: 'Whitelisting é quando o creator autoriza a marca a rodar anúncios com o perfil dele. Veja como funciona na Meta e no TikTok e o que combinar.'
+cover: '/assets/covers/whitelisting-de-influenciadores.jpg'
+coverAlt: "Dedo tocando o ícone do Instagram na tela de um smartphone"
 pubDate: 2026-07-15
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

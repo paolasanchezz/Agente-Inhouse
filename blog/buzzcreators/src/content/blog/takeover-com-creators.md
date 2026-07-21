@@ -2,6 +2,8 @@
 title: 'Takeover: quando o creator assume o perfil da marca'
 metaTitle: 'Takeover com creators: o que é e como fazer'
 description: 'Takeover é quando um creator assume temporariamente o perfil da marca, com stories, posts ou lives. Veja o que o formato entrega e como organizar o seu.'
+cover: '/assets/covers/takeover-com-creators.jpg'
+coverAlt: "Criador gravando vídeo em selfie pela cidade"
 pubDate: 2026-07-17
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

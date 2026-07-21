@@ -2,6 +2,8 @@
 title: 'Quanto tempo leva para o marketing de influência dar resultado'
 metaTitle: 'Quanto tempo o marketing de influência demora'
 description: 'Conversão com cupom aparece em dias; confiança e lembrança de marca levam meses. Veja o que esperar em cada prazo e como não cancelar campanha cedo demais.'
+cover: '/assets/covers/quanto-tempo-leva-resultado-influencia.jpg'
+coverAlt: "Ampulheta de areia preta ao lado de uma taça de vidro em fundo neutro"
 pubDate: 2026-07-20
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'

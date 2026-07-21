@@ -2,6 +2,8 @@
 title: 'Tipos de campanha com creators: os 11 formatos que as marcas usam'
 metaTitle: 'Tipos de campanha com creators: 11 formatos'
 description: 'Seeding, gifting, embaixadores, afiliados, whitelisting e mais: conheça os 11 formatos de campanha com creators e saiba qual usar para cada objetivo.'
+cover: '/assets/covers/formatos-de-campanha-com-creators.jpg'
+coverAlt: "Dois jovens profissionais trabalhando juntos debruçados sobre uma mesa em ambiente claro"
 pubDate: 2026-07-09
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

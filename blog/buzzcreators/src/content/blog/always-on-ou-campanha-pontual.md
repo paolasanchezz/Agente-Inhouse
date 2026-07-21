@@ -2,6 +2,8 @@
 title: 'Influência always-on ou campanha pontual: qual estratégia usar'
 metaTitle: 'Influência always-on vs. campanha pontual'
 description: 'Always-on mantém creators ativos o ano todo; campanha pontual concentra o investimento em picos. Compare os dois modelos e veja quando cada um faz sentido.'
+cover: '/assets/covers/always-on-ou-campanha-pontual.jpg'
+coverAlt: "Agenda aberta com anotação de estratégia de marketing ao lado de um teclado"
 pubDate: 2026-07-16
 author: 'Equipe Buzzcreators'
 category: 'Estratégia'

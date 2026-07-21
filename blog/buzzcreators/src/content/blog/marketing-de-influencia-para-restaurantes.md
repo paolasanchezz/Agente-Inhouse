@@ -2,6 +2,8 @@
 title: 'Marketing de influência para restaurantes e delivery: o guia local'
 metaTitle: 'Influência para restaurantes e delivery'
 description: 'Como restaurantes, bares e delivery usam creators locais para encher mesa: que perfis escolher, formatos que funcionam e como medir o retorno.'
+cover: '/assets/covers/marketing-de-influencia-para-restaurantes.jpg'
+coverAlt: "Pessoa fotografando um prato de comida com o celular"
 pubDate: 2026-07-17
 author: 'Equipe Buzzcreators'
 category: 'Setores'

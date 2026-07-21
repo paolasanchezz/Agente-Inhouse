@@ -26,6 +26,27 @@ Cada capa foi baixada já recortada em 1200×630 via CDN do Pexels (`?w=1200&h=6
 | quanto-custa-contratar-influenciador | https://www.pexels.com/photo/5900228/ |
 | tendencias-marketing-de-influencia-2026 | https://www.pexels.com/photo/8728288/ |
 | tipos-de-influenciadores | https://www.pexels.com/photo/7550544/ |
+| formatos-de-campanha-com-creators | https://www.pexels.com/photo/9909081/ |
+| o-que-e-seeding-de-influenciadores | https://www.pexels.com/photo/4440774/ |
+| gifting-de-influenciadores | https://www.pexels.com/photo/6334621/ |
+| embaixadores-de-marca-como-estruturar | https://www.pexels.com/photo/4793177/ |
+| marketing-de-afiliados-com-creators | https://www.pexels.com/photo/10223868/ |
+| whitelisting-de-influenciadores | https://www.pexels.com/photo/238480/ |
+| ugc-pago-creator-ads | https://www.pexels.com/photo/8117901/ |
+| campanha-de-review-e-unboxing | https://www.pexels.com/photo/6612545/ |
+| sorteio-com-influenciadores | https://www.pexels.com/photo/8459420/ |
+| takeover-com-creators | https://www.pexels.com/photo/38062351/ |
+| collab-de-produto-com-creators | https://www.pexels.com/photo/9850422/ |
+| live-commerce-com-influenciadores | https://www.pexels.com/photo/7242798/ |
+| always-on-ou-campanha-pontual | https://www.pexels.com/photo/15635233/ |
+| social-listening-para-encontrar-influenciadores | https://www.pexels.com/photo/5965649/ |
+| como-pagar-influenciadores | https://www.pexels.com/photo/20051498/ |
+| taxa-de-engajamento-como-calcular | https://www.pexels.com/photo/8143737/ |
+| cpm-cpe-cpv-marketing-de-influencia | https://www.pexels.com/photo/8636589/ |
+| como-avaliar-midia-kit-de-influenciador | https://www.pexels.com/photo/9869392/ |
+| marketing-de-influencia-para-restaurantes | https://www.pexels.com/photo/3756456/ |
+| quanto-tempo-leva-resultado-influencia | https://www.pexels.com/photo/4397906/ |
+| novidades-plataforma-julho-2026 | https://www.pexels.com/photo/12969403/ |
 
 ## Posts novos
 

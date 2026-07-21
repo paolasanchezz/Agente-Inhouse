@@ -2,6 +2,8 @@
 title: 'Embaixadores de marca: como estruturar um programa com creators'
 metaTitle: 'Embaixadores de marca: como estruturar o programa'
 description: 'Embaixador de marca é o creator com relação contínua e oficial com a empresa. Veja por que o modelo funciona e como estruturar um programa que dura.'
+cover: '/assets/covers/embaixadores-de-marca-como-estruturar.jpg'
+coverAlt: "Criadora gravando vídeo com ring light em casa"
 pubDate: 2026-07-13
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

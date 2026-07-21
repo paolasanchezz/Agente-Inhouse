@@ -2,6 +2,8 @@
 title: 'Collab de produto com creators: co-criação que vira lançamento'
 metaTitle: 'Collab de produto com creators: como funciona'
 description: 'Collab de produto é a co-criação de um item ou linha assinada por um creator. Veja por que o formato vende, o que ele exige e como escolher o parceiro certo.'
+cover: '/assets/covers/collab-de-produto-com-creators.jpg'
+coverAlt: "Três mulheres trabalhando juntas em peças de roupa em um ateliê"
 pubDate: 2026-07-20
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

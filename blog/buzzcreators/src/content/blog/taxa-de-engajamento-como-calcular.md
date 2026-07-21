@@ -2,6 +2,8 @@
 title: 'Taxa de engajamento: como calcular e o que é um bom número'
 metaTitle: 'Taxa de engajamento: como calcular'
 description: 'Taxa de engajamento: veja a fórmula, um exemplo de cálculo e o que é um bom número por porte e plataforma para avaliar influenciadores.'
+cover: '/assets/covers/taxa-de-engajamento-como-calcular.jpg'
+coverAlt: "Mão segurando celular com pasta de aplicativos de redes sociais na tela"
 pubDate: 2026-07-10
 author: 'Equipe Buzzcreators'
 category: 'Métricas'

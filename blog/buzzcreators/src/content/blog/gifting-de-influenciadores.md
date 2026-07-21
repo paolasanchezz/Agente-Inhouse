@@ -2,6 +2,8 @@
 title: 'Gifting de influenciadores: o que é e quando faz sentido'
 metaTitle: 'Gifting de influenciadores: o que é e quando usar'
 description: 'Gifting é presentear creators com produto esperando conteúdo, sem cachê. Veja quando a tática faz sentido, os erros comuns e como virar relação de longo prazo.'
+cover: '/assets/covers/gifting-de-influenciadores.jpg'
+coverAlt: "Mãos segurando uma caixa de presente vermelha com fita decorativa"
 pubDate: 2026-07-10
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

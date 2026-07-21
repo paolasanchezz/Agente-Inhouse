@@ -2,6 +2,8 @@
 title: 'Sorteio com influenciadores: quando o giveaway vale a pena'
 metaTitle: 'Sorteio com influenciadores: quando vale a pena'
 description: 'Sorteio com influenciadores gera pico de alcance e seguidores, mas nem todo seguidor fica. Veja o que o giveaway entrega, quando vale a pena e como medir.'
+cover: '/assets/covers/sorteio-com-influenciadores.jpg'
+coverAlt: "Pilha de confetes coloridos de papel sobre fundo colorido"
 pubDate: 2026-07-16
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'

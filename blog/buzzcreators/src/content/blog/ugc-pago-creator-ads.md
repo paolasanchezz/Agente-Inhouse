@@ -2,6 +2,8 @@
 title: 'UGC pago: contratar creators para produzir anúncios da marca'
 metaTitle: 'UGC pago (creator ads): o que é e como funciona'
 description: 'UGC pago é quando a marca contrata um creator para produzir conteúdo para os canais dela, sem publicar no perfil dele. Entenda como funciona e como briefar.'
+cover: '/assets/covers/ugc-pago-creator-ads.jpg'
+coverAlt: "Criador gravando vídeo sobre um produto com câmera em estúdio caseiro"
 pubDate: 2026-07-13
 author: 'Equipe Buzzcreators'
 category: 'Formatos de Campanha'
