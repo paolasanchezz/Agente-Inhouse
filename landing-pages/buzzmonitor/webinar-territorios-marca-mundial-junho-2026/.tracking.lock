@@ -1,0 +1,12 @@
+{
+  "regiao": "portugal",
+  "expected_gtm": "GTM-NCFT22CW",
+  "found_gtm": [
+    "GTM-MKQBX2MG"
+  ],
+  "fingerprint": "23d621cf698eb0ba",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-07-17",
+  "note": "estado pre-existente aceito — GTM diverge da regiao, aguardando correção; não bloqueia deploy até o fingerprint mudar"
+}

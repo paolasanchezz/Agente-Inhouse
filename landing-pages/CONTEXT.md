@@ -267,6 +267,7 @@ Se null nos dois → omitir GTM (anotar em README/REVISAO).
 | `lp-gerar` Passo 1 + 3 | **Injeta** o snippet inicial (script no `<head>` + noscript após `<body>`) com o ID resolvido pela cascata | Na criação do HTML |
 | `lp-revisar` Passo 3.5 | **Audita + corrige** — se ausente, injeta; se ID divergente do `tracking.json`, substitui nos 2 blocos | Em toda revisão |
 | `lp-publicar` Passo 5.3 | **Valida no live** — `curl` + grep procurando 3 matches (`gtm.js`, `ns.html`, `GTM-XXXXXXX`) | Pós-deploy |
+| **CI** (`deploy_ci.py` + `pr_check.py`) | **Bloqueia** deploy/auto-merge se container ≠ região, via `check_gtm_region.py` (§5.4) | Todo push/PR que toca LP |
 
 Mudou o ID em `tracking.json`? Rodar `lp-revisar` (corrige no source) + `lp-publicar` (re-deploy + valida).
 LP nunca recebeu GTM mas devia? Rodar `lp-revisar` (injeta como CRITICO).
@@ -300,6 +301,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 Para corrigir ID errado, fazer `Edit` com `replace_all` no ID antigo → novo (pega os 2 blocos numa só operação).
 
 Se o snippet oficial do Google mudar, **atualizar este arquivo** — todas as skills lêem daqui.
+
+### 5.4 Gate de CI (`check_gtm_region.py`) + selo `.tracking.lock`
+
+Ponto que **não dá pra pular**: mesmo LP editada/traduzida "sem skill" e commitada direto passa por aqui antes de ir pro ar. `landing-pages/build/check_gtm_region.py` resolve a região (§5.1), lê o `expected` no `tracking.json` e compara com o(s) GTM do HTML. Determinístico, stdlib-only. Chamado em 3 lugares (mesma lógica):
+
+- **`deploy_ci.py`** — antes do `vercel deploy`; bloqueio aborta o deploy (live intacto).
+- **`pr_check.py`** — LP tocada no diff com container errado não auto-mergeia (fica pro Victor).
+- **`lp-revisar` Passo 3.5** e **`lp-publicar`** (0.0.c / 2.5) — mesmo gate, feedback antes de commitar/deployar.
+
+**Severidade:** só `wrong` (container ≠ região) **bloqueia**. `absent` e `no_expected` só avisam — não quebram deploy de LP legada sem tracking.
+
+**Selo `.tracking.lock`** (por LP, versionado): guarda o fingerprint de `região + GTM esperado + GTM encontrado`. Faz duas coisas:
+
+1. **Skip** — trocar só título/corpo não muda o fingerprint → não re-audita nem re-checa (responde à preocupação de "checar toda hora = gasto"). A verificação é um script (~zero token), então re-rodar já é barato; o selo evita até o re-trabalho.
+2. **Grandfathering** — LP já errada hoje que não dá pra corrigir agora recebe selo `grandfathered:true` (via `--grandfather`) e para de bloquear **enquanto o fingerprint não mudar**. No instante em que alguém mexe no GTM/região, ela é re-avaliada e volta a bloquear se ainda estiver errada.
+
+```bash
+py landing-pages/build/check_gtm_region.py <lp_dir|manifest.json>   # checa (exit 1 = bloqueio)
+py landing-pages/build/check_gtm_region.py --sweep                  # relatório de todas
+py landing-pages/build/check_gtm_region.py <lp_dir> --write-stamp   # grava selo OK (skills)
+py landing-pages/build/check_gtm_region.py <lp_dir> --grandfather   # aceita estado errado atual
+```
+
+Incidente que motivou (reaberto pelo caminho sem-skill): **2026-04-20** (§7.2) — a correção só na skill não bastou; por isso o gate vive no CI. Grandfathered nesta leva: `buzzmonitor/webinar-territorios-marca-mundial-junho-2026` (declara `pt-PT`, dispara o container LATAM `MKQBX2MG`) — decisão de conteúdo pendente.
 
 ---
 

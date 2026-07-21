@@ -21,6 +21,8 @@ import re
 import subprocess
 import sys
 
+import check_gtm_region  # gate GTM x regiao (modulo local, mesmo diretorio)
+
 MARCAS = ("buzzmonitor", "buzzcreators", "cxpress", "elife", "_experimentos")
 LIVRES = [
     re.compile(r"^landing-pages/(%s)/" % "|".join(MARCAS)),
@@ -63,6 +65,21 @@ def main():
                 motivos.append(f"manifesto removido: {path}")
             for slug in sorted(antes - depois):
                 remocoes.append(f"{path}: slug '{slug}' removido")
+
+    # Gate GTM x regiao: LP tocada no diff com container divergente da regiao NAO
+    # auto-mergeia (o pixel iria pra unidade errada). Grandfathered nao conta.
+    lp_touched = {}
+    for path in changed:
+        mm = re.match(r"^landing-pages/(%s)/([^/]+)/" % "|".join(check_gtm_region.MARCAS), path)
+        if mm:
+            lp_touched[(mm.group(1), mm.group(2))] = os.path.join(
+                repo, "landing-pages", mm.group(1), mm.group(2))
+    for (marca, slug), lp_dir in sorted(lp_touched.items()):
+        if not os.path.isfile(os.path.join(lp_dir, "index.html")):
+            continue  # LP removida — nao checa
+        res = check_gtm_region.evaluate(repo, lp_dir, slug, marca)
+        if check_gtm_region.is_blocking(res):
+            motivos.append("GTM x regiao: " + check_gtm_region.human(res))
 
     # domínios migrados afetados pelo diff (pro dispatch pós-merge)
     migrados_path = os.path.join(repo, "landing-pages", "dominios", "MIGRADOS.json")

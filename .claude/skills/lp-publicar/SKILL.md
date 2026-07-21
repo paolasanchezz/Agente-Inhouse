@@ -3,7 +3,7 @@ name: lp-publicar
 description: Publica landing page. Guarda-chuvas (todos migrados pro CI) — conduz o fluxo Git+GitHub Actions (manifesto + commit + acompanhar deploy com smoke e rollback automaticos). Modo solo (1 projeto = 1 LP) — fluxo classico via sibling. Valida, publica relatorio Notion, zero vazamento do repo interno.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 5.0.0
+version: 5.1.0
 ---
 
 # Skill: Publicar Landing Page
@@ -68,6 +68,18 @@ REPO_ROOT="$REPO_ROOT" "$PYBIN" landing-pages/build/build_umbrella.py \
 ```
 
 Exit != 0 → corrigir o erro apontado antes de seguir. NUNCA commitar build quebrado.
+
+**c2. Gate GTM x regiao** (mesmo do CI — pega LP que herdou o pixel da unidade de origem):
+
+```bash
+REPO_ROOT="$REPO_ROOT" "$PYBIN" landing-pages/build/check_gtm_region.py \
+  "landing-pages/dominios/{dominio-com-hifens}/manifest.json"
+```
+
+Exit != 0 = **BLOQUEIO**: alguma LP dispara um container que nao bate com a regiao
+(classico do "traduziu e esqueceu de trocar o pixel"). Corrigir no source via
+`/lp-revisar` (Passo 3.5) e re-rodar — o CI roda esse mesmo gate no deploy, nao
+adianta commitar por cima. Linha `aviso` (nao bloqueio) so registra. Detalhes: CONTEXT §5.4.
 
 **d. Entregar:**
 - Colaborador: rode a skill `/commit` (branch + PR). O merge-bot (`lp-pr.yml`) valida e,
@@ -1039,6 +1051,22 @@ done
 Guardar `BASELINES_OTHERS` (lista `(slug, hash)`) **e** `REDIRECT_OTHERS` (lista `(slug, destino)`) para usar em 3.4.
 
 Excecoes legitimas: nada. Se voce **intencionalmente** mudou outra LP do sibling neste deploy (ex: refatorou asset compartilhado), abortar e usar `/lp-publicar` separado para cada LP afetada — nao misturar entregas no mesmo deploy.
+
+### 2.5 Gate GTM x regiao (pre-deploy)
+
+O container GTM tem que bater com a regiao da LP — senao o pixel manda dados pra
+unidade errada (o classico "traduziu BR->PT e esqueceu de trocar o pixel"). No modo
+guarda-chuva o CI (`deploy_ci.py`) ja roda esse gate no deploy; no modo **solo** rode-o
+aqui, antes do `vercel deploy`:
+
+```bash
+REPO_ROOT="$(cygpath -m "$(git rev-parse --show-toplevel)" 2>/dev/null || git rev-parse --show-toplevel)"
+PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
+REPO_ROOT="$REPO_ROOT" "$PYBIN" landing-pages/build/check_gtm_region.py "landing-pages/{marca}/{slug}"
+```
+
+Exit != 0 = **BLOQUEIO** (container != regiao) → NAO deployar. Corrigir no source via
+`/lp-revisar` (Passo 3.5 troca o ID) e re-rodar. Grandfathering e detalhes em CONTEXT §5.4.
 
 ## Passo 3: Deploy
 

@@ -23,6 +23,28 @@ Regras/docs atualizadas pra prever o novo guarda-chuva: `lp-preparar/CONTEXT.md`
 
 **Fix `deploy_ci.py` (robô de deploy) — primeiro deploy de guarda-chuva novo:** o script assumia que sempre há um deploy de produção anterior pra usar como alvo de rollback; num projeto Vercel recém-criado (zero deploys) o fallback `["deployments"][0]` estourava `IndexError` **antes de publicar**. Agora trata `prev = None` (primeiro deploy): publica normalmente e, se o smoke falhar, sai com erro sem tentar rollback (não havia estado anterior a restaurar). Caso normal (com deploy anterior) inalterado. Pego ao subir a 1ª LP de `content.buzzmonitor.com`.
 
+## Gate de GTM×região no deploy (novo) + lp-revisar/lp-publicar
+### 2026-07-17 — check_gtm_region.py + lp-revisar v1.8.0 + lp-publicar v5.1.0 (MINOR)
+
+Fecha o buraco do "traduz LP sem skill e esquece de trocar o pixel" (container GTM da
+unidade de origem — incidente 2026-04-20, reaberto pelo caminho sem-skill). A correção
+saiu da skill e foi pro chokepoint que não dá pra pular (o deploy/CI).
+
+- **Novo** `landing-pages/build/check_gtm_region.py`: resolve a região (CONTEXT §5.1),
+  lê o container esperado em `brand/{marca}/tracking.json` e compara com o GTM do HTML.
+  Determinístico, stdlib-only. Só `wrong` (container ≠ região) bloqueia; `absent`/
+  `no_expected` só avisam. Selo `.tracking.lock` por LP dá skip (título trocado não
+  re-dispara — fingerprint = região+esperado+encontrado) e grandfathering de estados
+  pré-existentes.
+- **deploy_ci.py**: roda o gate antes do `vercel deploy` — bloqueio aborta com o live intacto.
+- **pr_check.py**: LP tocada no diff com container errado não auto-mergeia (fica pro Victor).
+- **lp-revisar v1.8.0**: Passo 3.5 agora delega ao script (determinístico, ~zero token) em
+  vez de auditar "no olho" e grava o selo; ganhou `Bash` no allowed-tools.
+- **lp-publicar v5.1.0**: gate no Passo 0.0.c (fluxo CI, pré-commit) e §2.5 (solo, pré-deploy).
+- **CONTEXT.md §5.4** documenta gate + selo + grandfathering; §5.2 ganhou a linha do CI.
+- Grandfathered nesta leva: `buzzmonitor/webinar-territorios-marca-mundial-junho-2026`
+  (declara pt-PT, dispara o container LATAM) — decisão de conteúdo pendente do Victor.
+
 ## lp-publicar — CI vira o fluxo padrão; clássico rebaixado a modo solo
 ### 2026-07-15 — v5.0.0 — Fase 5 da migração (MAJOR)
 

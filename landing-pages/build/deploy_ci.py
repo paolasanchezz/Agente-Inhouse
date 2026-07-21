@@ -26,6 +26,8 @@ import sys
 import tempfile
 import urllib.request
 
+import check_gtm_region  # gate GTM x regiao (modulo local, mesmo diretorio)
+
 TEXT_EXT = (".html", ".json", ".svg", ".css", ".js", ".txt", ".xml")
 
 
@@ -120,6 +122,20 @@ def main():
         sys.exit(1)
     for aviso in json.loads(proc.stdout).get("avisos", []):
         log(f"aviso build: {aviso}")
+
+    # Gate GTM x regiao (CONTEXT §5.4) — antes de QUALQUER deploy. Container errado
+    # (LP traduzida que herdou o pixel da origem) aborta aqui, com o live intacto.
+    # Selos .tracking.lock sao read-only aqui (grandfather de estados pre-existentes).
+    gres = [check_gtm_region.evaluate(repo, d, s, m)
+            for (d, s, m) in check_gtm_region.lps_from_manifest(repo, manifest_path)]
+    gbloq, gavisos, _gok = check_gtm_region.gate(gres)
+    for a in gavisos:
+        log(f"aviso GTM: {a}")
+    if gbloq:
+        log("GATE GTM BLOQUEOU (nada publicado, live intacto):")
+        for b in gbloq:
+            log(f"  {b}")
+        sys.exit(1)
 
     if dry:
         log("dry-run: smoke contra o live atual (sem deploy)")

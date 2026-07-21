@@ -2,8 +2,8 @@
 name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
-allowed-tools: Read, Write, Edit, Glob, Grep, Skill, WebFetch
-version: 1.7.0
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Skill, WebFetch
+version: 1.8.0
 ---
 
 # Skill: Revisar Landing Page
@@ -87,30 +87,31 @@ Unifique as 2 listas. Deduplicate (se os dois auditores pegaram o mesmo problema
 
 ## Passo 3.5: Auditoria de GTM (CRITICO)
 
-### Resolver regiao + GTM esperado
+A verificacao e **deterministica** — rode o script (mesma logica do gate de CI),
+nao audite GTM "no olho". E barato (~zero token) e sem erro humano:
 
-Cascata de deteccao de regiao + resolucao do GTM ID seguem `landing-pages/CONTEXT.md` §5.1 (fonte canonica). lp-revisar usa a cascata completa (3 passos — sufixo do slug → `<html lang>` → fallback `brasil`), porque o HTML ja existe.
+```bash
+py landing-pages/build/check_gtm_region.py landing-pages/{marca}/{slug} --json
+```
 
-### Auditar HTML
+(Use `python3`/`python` se `py` nao existir nesta maquina.) Aja pelo `status`:
 
-Grep em `landing-pages/{marca}/{slug}/index.html` por `GTM-` (script no `<head>` e `<noscript>` apos `<body>`). Comparar com `expected_gtm_id`:
+| status | Significado | Acao |
+|---|---|---|
+| `ok` | Container bate com a regiao | Nada. Se `stamp_match=false`, rode com `--write-stamp` pra registrar. |
+| `wrong` | Container != regiao (o classico "traduziu e herdou o pixel da origem") | **CRITICO.** `Edit` com `replace_all` do ID errado (`found`) → `expected` (pega head + noscript de uma vez). Re-rodar com `--write-stamp`. |
+| `absent` | Regiao tem GTM esperado mas a LP nao tem | **CRITICO.** Injetar o snippet CONTEXT §5.3 com o ID `expected`. Re-rodar com `--write-stamp`. |
+| `no_expected` | LP tem GTM mas `tracking.json` da marca esta null pra regiao | MELHORIA — anotar em REVISAO.md. |
+| `no_tracking` | Marca sem `tracking.json` | Nada a checar. |
 
-| Estado no HTML | expected_gtm_id | Severidade | Acao |
-|---|---|---|---|
-| Ausente | != null | CRITICO | Injetar script + noscript com ID correto |
-| Presente, ID bate | != null | OK | Nenhuma |
-| Presente, ID diferente | != null | CRITICO | Substituir ID nos 2 blocos |
-| Presente (qualquer ID) | null | MELHORIA | Anotar em REVISAO.md — `tracking.json` da marca esta null mas LP tem GTM |
-| Ausente | null | OK | Nenhuma |
+**Skip (economia real):** se `stamp_match=true` e `status=ok`, o tracking nao mudou
+desde a ultima verificacao — nao re-audite, siga. Trocar so titulo/corpo **nao** muda
+o fingerprint (regiao + GTM esperado + GTM encontrado), entao nao re-dispara.
 
-### Snippet canonico para injetar (se ausente)
-
-Snippet em `landing-pages/CONTEXT.md` §5.3 — copiar literal de la, substituindo `{GTM_ID}` pelo valor resolvido (ex: `GTM-NCFT22CW`). Para substituir ID errado em LP que ja tem GTM, usar `Edit` com `replace_all` no ID antigo → novo (pega os 2 blocos numa operacao).
-
-Registrar o achado com os demais criticos para aplicacao no Passo 4. Formato sugerido:
-
-- `GTM ausente para {marca}/{regiao} (esperado {expected_gtm_id}) — injetar script em <head> e noscript apos <body>`
-- `GTM com ID errado: encontrado {found_id}, esperado {expected_gtm_id} para {marca}/{regiao}`
+Cascata de regiao + resolucao do ID: CONTEXT §5.1 (o script ja implementa). O selo
+`.tracking.lock` gravado por `--write-stamp` vai junto no commit e alimenta o
+grandfathering do gate de CI (CONTEXT §5.4). Registrar achados de GTM com os demais
+criticos para aplicacao no Passo 4.
 
 ## Passo 3.6: Auditoria de Fidelidade da Copy (CRITICO)
 
