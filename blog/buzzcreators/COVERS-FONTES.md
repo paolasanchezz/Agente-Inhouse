@@ -46,7 +46,7 @@ Cada capa foi baixada já recortada em 1200×630 via CDN do Pexels (`?w=1200&h=6
 | como-avaliar-midia-kit-de-influenciador | https://www.pexels.com/photo/9869392/ |
 | marketing-de-influencia-para-restaurantes | https://www.pexels.com/photo/3756456/ |
 | quanto-tempo-leva-resultado-influencia | https://www.pexels.com/photo/4397906/ |
-| novidades-plataforma-julho-2026 | https://www.pexels.com/photo/12969403/ |
+| novidades-plataforma-julho-2026 | https://www.pexels.com/photo/10352379/ |
 
 ## Posts novos
 
