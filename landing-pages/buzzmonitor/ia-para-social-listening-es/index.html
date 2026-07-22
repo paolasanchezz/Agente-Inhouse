@@ -144,8 +144,8 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
   .hero__grid{grid-template-columns:1fr;gap:44px}
   .hero__chip--b{left:8px}
 }
-/* Desktop: imagem da hero +30% (pedido Victor 2026-07-22) */
-@media (min-width:981px){.hero__grid{grid-template-columns:.62fr 1fr}}
+/* Desktop: imagem da hero maior sangrando a direita (ate +30%) — largura do texto intacta (revisao 2026-07-22) */
+@media (min-width:981px){.hero__visual{margin-right:min(0px,max(-154px,calc((1180px - 100vw)/2)))}}
 
 /* LOGOS */
 .logos{padding:44px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}

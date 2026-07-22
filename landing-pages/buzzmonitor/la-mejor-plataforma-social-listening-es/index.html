@@ -150,8 +150,8 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
   .hero__grid{grid-template-columns:1fr;gap:44px}
   .hero__chip--b{left:8px}
 }
-/* Desktop: imagem da hero +30% + titulo enxuto p/ nao estourar linhas (pedido Victor 2026-07-22) */
-@media (min-width:981px){.hero__grid{grid-template-columns:.62fr 1fr}.hero h1{font-size:clamp(38px,4.0vw,52px)}}
+/* Desktop: imagem da hero maior sangrando a direita (ate +30%) sem apertar o texto + titulo enxuto p/ nao estourar linhas (revisao 2026-07-22) */
+@media (min-width:981px){.hero__visual{margin-right:min(0px,max(-154px,calc((1180px - 100vw)/2)))}.hero h1{font-size:clamp(38px,4.0vw,52px)}}
 
 /* LOGOS */
 .logos{padding:44px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
