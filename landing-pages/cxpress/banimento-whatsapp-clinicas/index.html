@@ -195,16 +195,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .btn--light{background:var(--white);color:var(--primary-dark)}
     .btn--light:hover{background:var(--primary-lighter);color:var(--primary-dark)}
-    .hero__visual{position:relative;display:grid;place-items:center;min-height:0}
-    .hero__pills{position:absolute;inset:0;pointer-events:none}
+    .hero__visual{position:relative;display:flex;align-items:center;justify-content:flex-end;min-height:0;overflow:visible}
+    .hero__pills{position:absolute;inset:0;pointer-events:none;z-index:0}
     .hero__pills span{position:absolute;border-radius:9999px;display:block}
     .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-30px;right:8%}
     .hero__pills .p2{width:46px;height:150px;border:3px solid var(--accent);bottom:-26px;left:4%;background:transparent}
     .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:18px;right:-12px;opacity:.9}
     .hero__mockup{
       position:relative;z-index:1;
-      width:100%;max-width:540px;height:auto;min-height:0;
-      filter:drop-shadow(0 24px 48px rgba(35,41,96,.18));
+      width:calc(100% + 110px);max-width:720px;height:auto;min-height:0;
+      -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 16%, #000 34%);
+      mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 16%, #000 34%);
     }
 
     /* hero load-in */
@@ -430,6 +431,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       }
       .hero__sub{font-size:18px}
       .hero__pills .p1{display:none}
+      .hero__visual{justify-content:center}
+      .hero__mockup{
+        width:100%;max-width:480px;
+        -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 6%, #000 20%);
+        mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 6%, #000 20%);
+      }
       .container{padding:0 24px}
       .beneficios__grid{grid-template-columns:1fr;gap:20px}
       .prova__grid{grid-template-columns:repeat(2,1fr);gap:16px}
@@ -503,7 +510,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <img class="hero__mockup" src="./assets/hero-clinica.jpg" alt="Médica de jaleco atendendo pelo WhatsApp no celular em uma clínica, com ícones ilustrativos de escudo de segurança e cadeado" width="1080" height="810" loading="eager">
+          <img class="hero__mockup" src="./assets/hero-clinica.jpg" alt="Recepcionista de clínica atendendo pelo telefone e usando o WhatsApp no laptop, com ícones ilustrativos de escudo de segurança e cadeado" width="1400" height="788" loading="eager">
         </div>
       </div>
     </section>
