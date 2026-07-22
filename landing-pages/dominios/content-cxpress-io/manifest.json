@@ -26,6 +26,11 @@
       "source": "landing-pages/cxpress/banimento-whatsapp"
     },
     {
+      "slug": "banimento-whatsapp-clinicas",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/banimento-whatsapp-clinicas"
+    },
+    {
       "slug": "banimento-whatsapp-latam",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/banimento-whatsapp-latam"
