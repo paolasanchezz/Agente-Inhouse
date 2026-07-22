@@ -12,7 +12,7 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
 ## Diferenças vs. a referência
 
 1. **Metadados** (title, canonical, OG, Twitter Card, JSON-LD) apontam para o slug `banimento-whatsapp-clinicas` em vez de `banimento-whatsapp`, com title/description mencionando "clínicas" para evitar conteúdo duplicado indexável.
-2. **Visual do hero**: troca do GIF genérico `plataforma-canais.gif` pelo mockup estático `mockup-plataforma-laptop.png` — mesmo asset já usado na LP `atendimento-clinicas` (outra LP Cxpress para o mesmo segmento). **Decisão tomada sem imagem gerada por IA**: o Bloom (gerador de imagem da sessão) está sem créditos (`INSUFFICIENT_CREDITS`), então não foi possível gerar uma ilustração/foto nova remetendo a ambiente de clínica. Perguntei ao usuário como prosseguir e segui com a opção mais conservadora (reaproveitar asset existente do brand) na ausência de resposta. **Ponto de revisão em aberto** — se o time preferir uma imagem de clínica de verdade (foto ou ilustração gerada), trocar depois: `bloom_generate_image` (quando houver créditos) ou upload manual de uma foto via `/lp-integrar-form`-like fluxo de asset.
+2. **Visual do hero**: imagem própria do usuário (`assets/hero-clinica.jpg`, LP-local), enviada em 2026-07-22 via link do Google Drive. Substitui o mockup estático `mockup-plataforma-laptop.png` usado provisoriamente (decisão anterior, tomada enquanto o Bloom estava sem créditos e sem imagem de clínica disponível). Foto de médica de jaleco usando o WhatsApp no celular, com elementos ilustrativos de segurança (escudo, cadeado) sobre fundo de clínica. Redimensionada para 1080×810 e recomprimida em JPEG (~80KB, de 1.6MB original) antes de entrar no repo.
 3. **Formulário**: trocado do Jotform herdado da referência (`261045149477663`) para o Jotform próprio desta LP, `261027639617663`, informado pelo usuário em 2026-07-22.
 4. Todo o restante (copy, CSS, estrutura de seções, ordem, cores, animações) é idêntico à referência.
 
@@ -42,7 +42,7 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
 - `../../brand/cxpress/assets/logos/logo-primary.svg` (header)
 - `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
-- `../../brand/cxpress/assets/plataforma/mockup-plataforma-laptop.png` (hero — **novo nesta LP**, trocado do GIF genérico)
+- `./assets/hero-clinica.jpg` (hero — foto enviada pelo usuário, LP-local)
 - `../../brand/cxpress/assets/plataforma/clientes-cxpress.png` (prova social)
 - `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`, `plataforma-chatbot-ia.gif`, `plataforma-dashboard.gif` (seção Plataforma)
 - `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg`

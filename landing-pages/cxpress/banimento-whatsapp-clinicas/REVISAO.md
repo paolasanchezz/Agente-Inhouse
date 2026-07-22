@@ -19,22 +19,20 @@ Nenhum crítico encontrado. Checks determinísticos, todos OK:
 - [x] Fidelidade de copy — H1, frase de fechamento (FECHO) e todos os headings (h1-h3) idênticos byte-a-byte à referência (diff = vazio)
 - [x] Hreflang — corretamente omitido. `banimento-whatsapp-clinicas` não é uma variante de idioma (é variante de segmento/público, PT-BR o tempo todo) — não entra na família hreflang de `banimento-whatsapp` / `banimento-whatsapp-pt`
 
-## Melhorias opcionais (2)
+## Melhorias opcionais (1)
 
-- [ ] **Hero mockup upscaled ~16%** (`mockup-plataforma-laptop.png`, nativo 465×270, exibido até 540px via CSS `.hero__mockup{max-width:540px}`) — leve perda de nitidez em telas grandes. Mesmo trade-off já aceito na LP irmã `atendimento-clinicas` (mesmo asset, mesmo uso). Não bloqueia; trocar por asset em resolução maior se disponível no futuro.
 - [ ] **`brand/cxpress/brand-manifest.json` está no formato antigo** (`websites`, não `regions`) — JSON-LD `Organization` sai sem `sameAs` (LinkedIn/Instagram regional). Pré-existente (mesmo gap na referência original), não introduzido por esta LP. Migrar o manifest da marca beneficiaria todas as LPs Cxpress, não só esta.
 
-## Nice-to-haves (1)
+## Nice-to-haves (0)
 
-- [ ] Alt text do hero (`"Laptop exibindo a plataforma Cxpress com a fila de tickets e uma conversa de atendimento no WhatsApp aberta, cenário de recepção de clínica"`) está um pouco longo — poderia ser mais enxuto sem perder a informação essencial.
+Nenhum.
 
-## Pendência crítica de publicação (não é achado de design, é bloqueio operacional)
+## Atualização 2026-07-22 (pós-publicação inicial) — hero substituído
 
-- [x] **OG image dedicada** — gerada em `assets/og-image.png` (1200×630, confirmado via Pillow), Chrome headless + `.claude/skills/lp-gerar/og-template.html` customizado (overline "API oficial do WhatsApp · Cxpress" + H1 do próprio hero + logo Cxpress). `lp-publicar` faz o rename pra `og-{slug}.png` no deploy guarda-chuva.
-- **Imagem de hero é reaproveitada, não uma foto/ilustração nova de clínica** — decisão tomada porque o Bloom (gerador de imagem) está sem créditos. Fica como decisão em aberto pro usuário revisitar se quiser um visual mais específico.
+- [x] **Imagem de hero definitiva**: o usuário enviou uma foto própria (via link do Google Drive) de uma médica de jaleco usando o WhatsApp no celular, com elementos ilustrativos de segurança (escudo, cadeado). Baixada, redimensionada pra 1080×810 e recomprimida em JPEG (~80KB, de 1.6MB original). Substitui o `mockup-plataforma-laptop.png` que era placeholder temporário. Arquivo: `assets/hero-clinica.jpg` (LP-local). Isso fecha as duas pendências anteriores (mockup reaproveitado + upscaling de 16%) — não se aplicam mais.
+- [x] OG image dedicada — `assets/og-image.png` (1200×630), gerada via Chrome headless + `.claude/skills/lp-gerar/og-template.html`.
 
 ## Próximos passos
 
-- Design aprovado. Form trocado para o Jotform próprio desta LP (`261027639617663`, via `/lp-integrar-form` em 2026-07-22).
-- Gerar OG image (1200×630) antes de publicar.
-- Publicar: `/lp-publicar cxpress banimento-whatsapp-clinicas [dominio]` (domínio sugerido: `content.cxpress.io`, mesmo guarda-chuva da referência).
+- Design aprovado, form Jotform próprio (`261027639617663`) e hero definitivo integrados.
+- Publicar atualização: `/lp-publicar cxpress banimento-whatsapp-clinicas content.cxpress.io`.
