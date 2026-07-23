@@ -12,6 +12,11 @@
       "source": "/monitoramento-concorrentes-maio-2026",
       "destination": "/analise-preditiva-maio-2026",
       "permanent": true
+    },
+    {
+      "source": "/ia-no-sac-agosto-2026",
+      "destination": "/gestao-de-crises-ia-agosto-2026",
+      "permanent": true
     }
   ],
   "headers": [
