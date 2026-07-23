@@ -17,7 +17,9 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
    - **Iteração 2 — imagem como fundo da seção inteira** (pedido do usuário): `.hero__bg` é agora um `<img>` `position:absolute;inset:0;object-fit:cover` cobrindo toda a seção hero (não mais coluna própria), com `.hero__scrim` (outro `absolute;inset:0`) aplicando `linear-gradient` branco esquerda→direita (desktop) por cima, esmaecendo a área onde o texto senta e deixando a foto visível/nítida à direita. Texto (`.hero__content`) limitado a `max-width:600px` pra não invadir a área nítida da foto. Breakpoint mobile usa gradiente **vertical** (topo→base) em vez de horizontal, porque a coluna de texto ocupa a largura toda e não há espaço pra um fade lateral funcionar. Contraste do texto sobre a foto+gradiente verificado via canvas (composição pixel a pixel): 12.4–13.4:1 em todos os pontos testados (WCAG AA exige ≥4.5:1 pra texto normal).
    - **Correção de espaçamento** (pedido do usuário — "espaço em branco grande demais entre menu e H1"): a causa raiz era a regra genérica `section{padding:130px 0}` (linha ~221) se aplicando também à `.hero` (que é um `<section>`), empilhada com o padding próprio do `.hero__inner`. Corrigido com `.hero{padding:0}`, deixando só `.hero__inner` controlar o espaçamento (64px topo desktop / 48px mobile). Gap medido entre menu e H1: 276px → 146px desktop, 154px mobile.
 3. **Formulário**: trocado do Jotform herdado da referência (`261045149477663`) para o Jotform próprio desta LP, `261027639617663`, informado pelo usuário em 2026-07-22.
-4. Todo o restante (copy, CSS, estrutura de seções, ordem, cores, animações) é idêntico à referência.
+4. **Copy ajustada pro público de clínicas** (pedido do usuário, 2026-07-22): "clientes" → "pacientes" no sub do hero; "cliente" → "paciente" no card "Histórico que não se perde" (Benefícios); "agenda do cliente" → "agenda do paciente" no Fecho. Removido o ponto final do H1 (`copy.txt` atualizado em paralelo pra não divergir do HTML).
+5. **Logo Elife corrigida** (seção Quem Somos): o asset compartilhado `brand/cxpress/assets/plataforma/elife-logo.png` tem um preenchimento cinza-claro opaco (RGB 244,244,244, não transparente) ocupando ~45% da altura do canvas abaixo do wordmark real — isso fazia a logo "encolher" visualmente ao ser centralizada no badge (`.qs-badge{align-items:center}`), porque o box do `<img>` incluía essa área morta. Gerada uma versão corrigida (`assets/elife-logo-badge.png`, LP-local, não sobrescreve o asset compartilhado pra não afetar outras 7 LPs Cxpress que o referenciam) via reconstrução de canal alfa (unmultiply contra o fundo cinza conhecido: alpha = (244-luminância)/(244-100)) + crop no bbox real do glyph (235×81, era 250×140). Badge agora com altura 28px (era 24px) preenchendo 100% do espaço visualmente, igual às duas outras (ícones SVG 30×30).
+6. Todo o restante (copy, CSS, estrutura de seções, ordem, cores, animações) é idêntico à referência.
 
 ## Estrutura
 
@@ -46,7 +48,7 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
 - `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
 - `./assets/hero-clinica.jpg` (hero — foto enviada pelo usuário, LP-local)
+- `./assets/elife-logo-badge.png` (badge Quem Somos — versão corrigida/transparente, LP-local)
 - `../../brand/cxpress/assets/plataforma/clientes-cxpress.png` (prova social)
 - `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`, `plataforma-chatbot-ia.gif`, `plataforma-dashboard.gif` (seção Plataforma)
 - `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg`
-- `../../brand/cxpress/assets/plataforma/elife-logo.png`

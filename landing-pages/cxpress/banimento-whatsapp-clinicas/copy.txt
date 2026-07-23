@@ -1,7 +1,7 @@
 === HERO ===
 OVERLINE: API oficial do WhatsApp · Cxpress
-H1: Evite banimento do WhatsApp comercial.
-SUB: Você não precisa correr risco de perder o número que seus clientes já conhecem. Com a Cxpress, você opera com a API oficial do WhatsApp, com múltiplos atendentes e histórico unificado, sem correr risco de banimento.
+H1: Evite banimento do WhatsApp comercial
+SUB: Você não precisa correr risco de perder o número que seus pacientes já conhecem. Com a Cxpress, você opera com a API oficial do WhatsApp, com múltiplos atendentes e histórico unificado, sem correr risco de banimento.
 CTA: Agendar demonstração gratuita
 # [NOTA DE DESIGN] Elemento visual do hero deve remeter a clínicas de saúde/atendimento médico (ex.: profissional de saúde atendendo pelo celular/tablet, ambiente de recepção de clínica). Substitui o GIF genérico de plataforma (plataforma-canais.gif) usado na referência original. Gerar/buscar imagem nova nesta etapa (lp-gerar).
 
@@ -29,7 +29,7 @@ BODY: A conexão é feita pela API oficial do WhatsApp, o caminho que a Meta aut
 H3: Vários atendentes, um número
 BODY: A equipe inteira atende pelo mesmo número, com fila, distribuição de tickets e visibilidade para o gestor. Sem celular compartilhado.
 H3: Histórico que não se perde
-BODY: Cada conversa fica registrada por cliente, independente de quem atendeu. Se alguém sai da equipe, o histórico fica.
+BODY: Cada conversa fica registrada por paciente, independente de quem atendeu. Se alguém sai da equipe, o histórico fica.
 
 === PROVA ===
 H2: Resultados de quem estruturou o atendimento com a Cxpress
@@ -72,7 +72,7 @@ LABEL: Api Oficial do ChatGPT
 LABEL: Um produto Elife
 
 === FECHO ===
-H2: Seu número levou anos para entrar na agenda do cliente. Não deixe um improviso tirar ele de lá.
+H2: Seu número levou anos para entrar na agenda do paciente. Não deixe um improviso tirar ele de lá.
 CTA: Agendar demonstração gratuita
 
 === FOOTER ===
