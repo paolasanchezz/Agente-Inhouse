@@ -1,0 +1,109 @@
+=== HERO ===
+LABEL: Condições especiais
+H1: Atendimento eficiente começa com organização
+BODY: A Cxpress ajuda pequenas e médias empresas a organizar o atendimento, responder clientes com mais agilidade e transformar conversas em resultados.
+BODY: Tudo em uma plataforma oficial do WhatsApp, com recursos para gestão, triagem e automação do atendimento.
+CTA: Fale com um especialista
+# [NOTA DE DESIGN] Visual do hero: GIF do dashboard da Cxpress (sidebar do produto), baixado da fonte e salvo como asset LP-local (assets/hero-dashboard.gif ou frame estático equivalente). Aplicar o mesmo tratamento de fundo+gradiente desenvolvido para banimento-whatsapp-clinicas.
+
+=== CLIENTES (prova social) ===
+H3: Mais de 800 clientes no Brasil, Latam e Portugal
+H2: Confiam na nossa solução
+BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.png)]
+
+=== COEX (destaque WhatsApp CoEx) ===
+LABEL: WhatsApp CoEx + API oficial
+H2: Continue no WhatsApp Business. Profissionalize com a Cxpress.
+SUB: Use o mesmo número no celular e na API oficial integrada à Cxpress, sem interromper o atendimento que seus clientes já conhecem.
+H3: O que sua empresa ganha?
+H3: Continua com o mesmo número
+BODY: Sem trocar o contato que seus clientes já usam.
+H3: Evita pausas no atendimento
+BODY: A operação segue funcionando durante a transição.
+H3: Organiza melhor as conversas
+BODY: Distribua atendimentos por filas, setores ou agentes.
+H3: Acompanha cada interação com o cliente
+BODY: Veja quem respondeu, consulte históricos e acompanhe a operação.
+H3 (fecho): Com a Cxpress, você mantém o WhatsApp Business e ganha estrutura para crescer!
+
+=== BENEFICIOS (o porquê) ===
+H2: Centralize e automatize o seu atendimento, simples e eficaz.
+SUB: E nós te mostramos o porquê:
+H3: Economia de tempo
+BODY: Com a Cxpress, centralize todas as conversas e elimine a troca entre plataformas, economizando tempo para sua equipe.
+H3: Respostas rápidas
+BODY: Automatize respostas com IA para dúvidas frequentes, garantindo satisfação com respostas instantâneas.
+H3: API oficial do WhatsApp
+BODY: Com a API oficial do WhatsApp, acesse recursos como mensagens em massa, automações personalizadas e relatórios detalhados.
+H2 (fecho): Seu Atendimento no WhatsApp turbinado com a automação de conversas
+CTA: Fale com um especialista
+
+=== PROVA (stats, sem headline própria na fonte) ===
+LIST ITEM: 14% de aumento de demandas resolvidas por hora.*
+LIST ITEM: 9% de redução do tempo médio de resolução via chat.*
+LIST ITEM: 25% de redução do desgaste dos atendentes com alto volume de solicitações.
+LIST ITEM: 45% de aumento da produtividade com IA generativa.**
+BODY: *Pesquisa realizada pelo National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente, sobre os resultados da aplicação de inteligência artificial generativa aos processos de suporte das empresas.
+BODY: **Estimativas da McKinsey, consultoria empresarial norte-americana.
+
+=== PLATAFORMA ===
+H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
+H3: Organize seu atendimento de forma integrada
+BODY: Centralize e organize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.
+H3: Atendimento automático ininterrupto com inteligência artificial
+BODY: Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.
+H3: Centralize os cadastros dos clientes para uma experiência unificada
+BODY: Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.
+H3: Otimize a gestão de tickets
+BODY: Distribua tickets (registros) de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.
+H3: Gerencie com eficiência por meio de dashboards
+BODY: Deixe as planilhas para trás! Transforme suas estatísticas de atendimento em painéis intuitivos.
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+LABEL: Api Oficial do WhatsApp
+LABEL: Api Oficial do ChatGPT
+LABEL: Um produto Elife
+
+=== CONDICOES ESPECIAIS / FORM ===
+LABEL: Condições especiais
+LABEL: MELHOR CUSTO BENEFÍCIO
+H2: Entre em contato conosco!
+BODY: Planos a partir de R$ 1.290/mês para até 5 acessos
+BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.
+BODY: *Preços para canais WhatsApp + E-mail.
+LABEL: comercial@gocxpress.com.br
+CTA: Fale com especialista
+LABEL: Nome
+LABEL: E-mail de trabalho
+LABEL: Telefone
+LABEL: Nome da empresa
+LABEL: Cargo
+# [NOTA] Form Jotform 261027639617663 (mesmo ID usado na LP fonte e em banimento-whatsapp-clinicas, form compartilhado, nao pode ser trocado).
+
+=== FAQ ===
+H2: Dúvidas frequentes
+H3: Quais são os pré-requisitos para usar a Cxpress?
+BODY: Para conseguir usar a ferramenta é necessário ter um site ativo e um colaborador responsável pela administração da plataforma.
+H3: Posso usar o mesmo número no WhatsApp Business e na Cxpress?
+BODY: Sim. A Cxpress já oferece suporte ao WhatsApp CoEx, também conhecido como Coexistência. Com esse recurso, sua empresa pode usar o mesmo número tanto no aplicativo WhatsApp Business, no celular, quanto na API oficial integrada à Cxpress.
+BODY: Na prática, isso permite manter a facilidade do app e, ao mesmo tempo, contar com recursos profissionais de gestão, automação e atendimento em equipe pela Cxpress.
+H3: A inteligência artificial (IA) faz o atendimento sozinha?
+BODY: Não. A IA da Cxpress realiza apenas o primeiro nível de atendimento (N1), respondendo a perguntas sobre serviços e produtos. Um colaborador humano deve estar disponível para questões mais complexas que o chatbot não saiba responder ou quando o cliente desejar falar com um atendente humano.
+H3: Posso conectar mais de um número à Cxpress?
+BODY: Sim, é possível.
+H3: Quais canais podem ser integrados?
+BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+H3: A plataforma é compatível com integração de CRM?
+BODY: Sim, é possível integrar com sistemas de CRM, porém é necessário passar por uma análise prévia da nossa equipe técnica para garantir que tudo funcione perfeitamente.
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: nao aplicavel (conteudo e transcricao literal e integral da LP ja publicada em home.cxpress.io/whatsapp-business-smb, a pedido explicito do usuario "mantenha o conteudo integral e original"). Em-dash: 0 ocorrencias na copy extraida.
+# Fonte: https://home.cxpress.io/whatsapp-business-smb (GreatPages). Extraida via leitura de pagina viva (get_page_text + read_page + inspecao de DOM) em 2026-07-24, nao via Notion.
+# Design: reaproveita o sistema visual de landing-pages/cxpress/banimento-whatsapp-clinicas/ (hero como fundo de secao + gradiente, espacamento corrigido, paleta Cxpress), adaptado para a estrutura de 9 blocos desta pagina (Hero, Clientes, CoEx, Beneficios, Prova, Plataforma, Quem Somos, Condicoes/Form, FAQ, Footer).
+# Assets: GIF do dashboard (hero) baixado de home.cxpress.io/whatsapp-business-smb e salvo LP-local; logos de clientes reaproveitados de brand/cxpress/assets/plataforma/clientes-cxpress.png; badges Api Oficial (SVG inline) e Elife (versao corrigida ja usada em banimento-whatsapp-clinicas) reaproveitados.
+# Form Jotform 261027639617663 (compartilhado, mesmo ID da fonte).
