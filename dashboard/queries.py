@@ -41,6 +41,7 @@ CM_UTM_SOURCES: list[str] = [
     'apresentacao', 'webinar', 'newsletter',
     'Instagram_Feed', 'Instagram_Stories',
     'insta-bio',  # link da bio do Instagram (Victor confirmou CM, 2026-07-01)
+    'instabio',  # Instabio (link na bio), variante sem hifen (Victor confirmou CM, 2026-07-27)
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
