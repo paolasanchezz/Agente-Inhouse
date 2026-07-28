@@ -14,6 +14,10 @@ capas (lidas do COVERS-FONTES.md) sao puladas — sem capa repetida.
 Uso:
   py pexels_cover.py --list [--marca M]
       Lista os posts sem `cover:` (titulo/categoria/tags), pra escolher query.
+  py pexels_cover.py --candidates "query em ingles" [--marca M]
+      So inspeciona a busca (nao baixa nada): lista os candidatos `id :: alt`
+      do Pexels, ON-THEME primeiro, marcando os ja usados — pra escolher um
+      `--id` com seguranca quando a query e ambigua.
   py pexels_cover.py {slug} "query em ingles" ["alt em pt-br"] [--id N] [--marca M]
       Gera a capa de 1 post. `--id N` forca uma foto especifica do Pexels
       (pula a busca). Sem alt, cai num fallback baseado no titulo (WARN).
@@ -77,31 +81,61 @@ def curl_candidates():
     return cands or ["curl"]
 
 
-def search_photo_ids(query):
-    """Raspa a pagina de busca do Pexels e devolve IDs na ordem em que aparecem.
+def _search_html(query):
+    """Raspa a pagina de busca do Pexels e devolve o HTML cru.
 
     A busca vai por curl: o Cloudflare do pexels.com aceita curl (do Git/unix)
     com UA de browser, mas rejeita urllib e a curl do System32 (403 por
     fingerprint TLS). O CDN de imagens nao tem esse bloqueio (urllib ok).
     """
     url = "https://www.pexels.com/search/?q=" + urllib.parse.quote(query)
-    html, last = None, "?"
+    last = "?"
     for curl in curl_candidates():
         r = subprocess.run([curl, "-sL", "--max-time", "45", "-A", UA, url],
                            capture_output=True, timeout=60)
         if r.returncode == 0 and len(r.stdout) > 50000:
-            html = r.stdout.decode("utf-8", errors="replace")
-            break
+            return r.stdout.decode("utf-8", errors="replace")
         last = curl + " rc=" + str(r.returncode) + " " + str(len(r.stdout)) + " bytes"
-    if html is None:
-        raise RuntimeError("busca bloqueada/falhou em todas as curl (" + last + ")")
-    ids, seen = [], set()
+    raise RuntimeError("busca bloqueada/falhou em todas as curl (" + last + ")")
+
+
+def search_photo_candidates(query):
+    """Candidatos `(id, alt)` da busca do Pexels, com os ON-THEME na frente.
+
+    A pagina injeta thumbnails decorativas (trending/relacionadas/promo) ANTES
+    da grade real de resultados, e essas costumam vir com `alt` VAZIO — enquanto
+    cada resultado real da busca traz um `<img alt="...">` descritivo. O scan
+    antigo (regex sobre o HTML inteiro) devolvia essas decorativas na frente, e a
+    1a foto baixada saia fora do tema. Aqui parseamos so as tags `<img>` com src
+    do CDN do Pexels e ordenamos as de alt nao-vazio (resultados reais) ANTES das
+    sem alt (fallback). Se nenhuma `<img>` casar (mudanca de markup), caimos no
+    scan solto do HTML inteiro pra nao travar a publicacao.
+    """
+    html = _search_html(query)
+    with_alt, without_alt, seen = [], [], set()
+    for m in re.finditer(r'<img\b[^>]*>', html):
+        tag = m.group(0)
+        src = re.search(r'images\.pexels\.com/photos/(\d+)/', tag)
+        if not src:
+            continue
+        pid = src.group(1)
+        if pid in seen:
+            continue
+        seen.add(pid)
+        alt_m = re.search(r'\balt="([^"]*)"', tag)
+        alt = (alt_m.group(1).strip() if alt_m else "")
+        (with_alt if alt else without_alt).append((pid, alt))
+    if with_alt or without_alt:
+        return with_alt + without_alt
+    # Fallback: nenhuma <img> casou (markup mudou) — scan solto do HTML inteiro,
+    # comportamento antigo, sem alt pra priorizar.
+    loose, seen = [], set()
     for m in re.finditer(r'images\.pexels\.com/photos/(\d+)/|pexels\.com/photo/[a-z0-9-]*?(\d+)/', html):
         pid = m.group(1) or m.group(2)
         if pid not in seen:
             seen.add(pid)
-            ids.append(pid)
-    return ids
+            loose.append((pid, ""))
+    return loose
 
 
 def download_cover(pid, dest):
@@ -220,6 +254,27 @@ def main():
             print("  " + slug + "\n    title: " + title + "\n    category: " + cat + " | tags: " + tags)
         return
 
+    if args and args[0] == "--candidates":
+        q = args[1] if len(args) > 1 else None
+        if not q:
+            print('ERRO: uso: pexels_cover.py --candidates "query em ingles" [--marca M]', file=sys.stderr)
+            sys.exit(2)
+        try:
+            pares = search_photo_candidates(q)
+        except Exception as e:
+            print("ERRO: busca no Pexels falhou (" + str(e)[:120] + ")", file=sys.stderr)
+            sys.exit(3)
+        usados = used_photo_ids(fontes)
+        n_alt = sum(1 for _, a in pares if a)
+        print(str(len(pares)) + " candidato(s) p/ '" + q + "'  (" + str(n_alt) +
+              " com alt = resultados reais; resto e thumb decorativa). Ordem = como o script tentaria:")
+        for pid, alt in pares:
+            mark = "[JA USADA] " if pid in usados else ""
+            rot = alt if alt else "<sem alt — decorativa, evite>"
+            print("  " + mark + pid + " :: " + rot[:95])
+        print('\nPra forcar uma on-theme: py pexels_cover.py {slug} "' + q + '" "alt em pt-br" --id {id}')
+        return
+
     if not args:
         print(__doc__)
         sys.exit(2)
@@ -245,10 +300,10 @@ def main():
 
     usados = used_photo_ids(fontes)
     if force_id:
-        candidatos = [force_id]
+        candidatos = [(force_id, None)]
     else:
         try:
-            candidatos = [pid for pid in search_photo_ids(query) if pid not in usados]
+            candidatos = [(pid, a) for pid, a in search_photo_candidates(query) if pid not in usados]
         except Exception as e:
             print("ERRO: busca no Pexels falhou (" + str(e)[:120] + ") — use o fallback gen_cover.py", file=sys.stderr)
             sys.exit(3)
@@ -259,10 +314,10 @@ def main():
 
     out_dir.mkdir(parents=True, exist_ok=True)
     dest = out_dir / (slug + ".jpg")
-    chosen = None
-    for pid in candidatos:
+    chosen, chosen_alt = None, None
+    for pid, cand_alt in candidatos:
         if download_cover(pid, dest):
-            chosen = pid
+            chosen, chosen_alt = pid, cand_alt
             break
     if not chosen:
         print("ERRO: nenhum dos " + str(len(candidatos)) + " candidatos baixou valido — use o fallback gen_cover.py", file=sys.stderr)
@@ -270,9 +325,16 @@ def main():
 
     ok = patch_frontmatter(post, slug, alt)
     register_fonte(fontes, slug, chosen)
+    if chosen_alt:
+        nota = '\n     Pexels descreve a foto: "' + chosen_alt[:120] + '" — confira se bate com o tema.'
+    elif force_id:
+        nota = ""
+    else:
+        nota = ("\n     WARN: essa foto veio SEM alt (thumbnail decorativa, nao resultado real) — "
+                "risco alto de estar fora do tema. Rode `--candidates` e troque via --id.")
     print("OK  " + slug + ".jpg  <- https://www.pexels.com/photo/" + chosen + "/  (" +
           str(dest.stat().st_size // 1024) + " KB)" +
-          ("" if ok else "  (WARN: sem 'description:' no frontmatter p/ inserir cover — inserir a mao)"))
+          ("" if ok else "  (WARN: sem 'description:' no frontmatter p/ inserir cover — inserir a mao)") + nota)
     print("Proveniencia registrada em " + str(fontes.relative_to(REPO)))
     print("Confira a foto antes de publicar; ruim/fora do tema -> apague o .jpg + cover:/coverAlt: e re-rode com outra query ou --id.")
 

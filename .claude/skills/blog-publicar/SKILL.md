@@ -3,7 +3,7 @@ name: blog-publicar
 description: Publica o blog Astro estatico da marca (hoje Buzzcreators) no Vercel — valida o build (schema de meta tags), builda com env de producao (indexavel), deploya no projeto Vercel correto, valida a versao no ar (posts, noindex OFF, sitemap/rss/llms) e reporta. Manual-trigger. Contexto sancionado para a trava de deploy Vercel (guard_vercel_deploy.py).
 argument-hint: "[marca]  — default buzzcreators (unica com blog hoje)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.2.0
+version: 1.3.0
 ---
 
 # Skill: Publicar blog (Astro estatico) no Vercel
@@ -78,9 +78,15 @@ Se "Nenhuma capa faltando" → siga pro Passo 1.
 ```bash
 py .claude/skills/blog-publicar/pexels_cover.py {slug} "query em ingles" "alt em pt-br"
 ```
-O script busca no Pexels (scrape keyless com User-Agent de browser), pula fotos já usadas em outras capas (lê o COVERS-FONTES.md), baixa recortada 1200×630 via CDN (`?w=1200&h=630&fit=crop`) em `public/assets/covers/{slug}.jpg`, preenche `cover`/`coverAlt` no frontmatter e **acrescenta a linha de proveniência** no COVERS-FONTES.md.
+O script busca no Pexels (scrape keyless com User-Agent de browser), **prioriza os resultados reais da busca** (parseia só as `<img>` com `alt` descritivo e joga as thumbnails decorativas sem `alt` — trending/relacionadas — pro fim, pra 1ª foto não sair fora do tema), pula fotos já usadas em outras capas (lê o COVERS-FONTES.md), baixa recortada 1200×630 via CDN (`?w=1200&h=630&fit=crop`) em `public/assets/covers/{slug}.jpg`, preenche `cover`/`coverAlt` no frontmatter e **acrescenta a linha de proveniência** no COVERS-FONTES.md. A linha `OK` no fim **imprime o `alt` que o Pexels dá pra foto** — dá pra checar se bate com o tema sem nem abrir o `.jpg`.
 
-**3. Confira a foto** (Read no `.jpg` gerado): se a cena bater com o tema, ajuste o `coverAlt` no post caso descreva outra coisa (a busca é cega — o alt escolhido antes pode não corresponder à foto que veio). Foto ruim/fora do tema → apague o `.jpg` + linhas `cover:`/`coverAlt:` e re-rode com outra query, ou force uma foto específica com `--id {photo_id}`.
+**Query ambígua? Espie antes de gerar** (só inspeciona, não baixa nada):
+```bash
+py .claude/skills/blog-publicar/pexels_cover.py --candidates "query em ingles"
+```
+Lista os candidatos `id :: alt` na ordem em que o script tentaria (on-theme primeiro; decorativas sem alt marcadas `<sem alt — decorativa, evite>`; já-usadas com `[JA USADA]`). Escolha um `id` on-theme e passe em `--id` na geração.
+
+**3. Confira a foto** (leia o `alt` impresso no `OK`, ou Read no `.jpg`): se a cena bater com o tema, ajuste o `coverAlt` no post caso descreva outra coisa (a busca é cega — o alt escolhido antes pode não corresponder à foto que veio). Foto ruim/fora do tema → apague o `.jpg` + linhas `cover:`/`coverAlt:` e re-rode com outra query, ou use `--candidates` + `--id {photo_id}` pra forçar uma específica.
 
 **4. Fallback explícito — só se a busca falhar** (rede/bloqueio/zero resultados após 2–3 queries): rode o gerador antigo pra não travar a publicação, e **sinalize no relatório final** que a capa saiu no estilo HTML (rejeitado pelos sócios) e precisa ser trocada por foto depois.
 ```bash
