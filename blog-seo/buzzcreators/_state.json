@@ -1,0 +1,31 @@
+{
+  "ultima_atualizacao": "2026-07-28",
+  "posts_criados": [
+    {
+      "data": "2026-07-28",
+      "slug": "como-trabalhar-com-micro-e-nano-influenciadores",
+      "h1": "Como trabalhar com micro e nano influenciadores em escala",
+      "cluster": "C2 Micro & Nano (ponte com C3 Gestão)",
+      "funil": "MoFu→BoFu",
+      "primary_kw": "como trabalhar com micro e nano influenciadores",
+      "volume": 0,
+      "url_notion": "https://app.notion.com/p/3ab3934026fd81499fc7fd1dbaf6f210",
+      "url_blog": "https://blog.buzzcreators.com.br/blog/como-trabalhar-com-micro-e-nano-influenciadores",
+      "lp": "gestao-de-influenciadores",
+      "utm_content": "como-trabalhar-com-micro-e-nano-influenciadores",
+      "cover": "/assets/covers/como-trabalhar-com-micro-e-nano-influenciadores.jpg (Pexels 8360444)",
+      "status": "publicado"
+    }
+  ],
+  "temas_rejeitados": [],
+  "clusters_cobertura": {
+    "C2 Micro & Nano": { "posts": 1, "ultimo": "2026-07-28" }
+  },
+  "funnel_balance": { "ToFu": 0, "MoFu": 1, "BoFu": 0 },
+  "volume_cache": {
+    "micro influenciadores": { "volume": 320, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
+    "microinfluenciadores": { "volume": 260, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
+    "nano influenciadores": { "volume": 260, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
+    "como trabalhar com micro e nano influenciadores": { "volume": 0, "fontes": ["intent-rescue", "google-paa", "wsj-emarketer-hook"], "ts": "2026-07-28" }
+  }
+}
