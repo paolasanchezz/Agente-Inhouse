@@ -6,6 +6,11 @@
   "vercel_json": "landing-pages/dominios/content-cxpress-io/vercel.json",
   "lps": [
     {
+      "slug": "agente-concierge-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/agente-concierge-pt"
+    },
+    {
       "slug": "atencion-digital-latam",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/atencion-digital-latam"

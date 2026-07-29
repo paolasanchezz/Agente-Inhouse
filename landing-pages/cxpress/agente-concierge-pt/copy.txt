@@ -1,0 +1,50 @@
+=== HERO ===
+OVERLINE: Novo: Agente para Engagement
+H1: Cada comentário sem resposta é uma oportunidade de proximidade perdida.
+SUB: Conheça o Agente Concierge: o Agente para Engagement que ajuda a sua marca a responder, conversar e interagir nas redes sociais, com Inteligência Artificial e linguagem natural.
+CTA: Pedir Demonstração
+
+=== PROBLEMA ===
+H2: As redes sociais nunca param.
+BODY: Todos os dias chegam comentários, perguntas, menções e mensagens novas. Sem tempo ou recursos para responder com rapidez e consistência, a marca fica a perder mais do que parece.
+LIST ITEM: Perde a oportunidade de criar proximidade com os seguidores.
+LIST ITEM: Deixa passar interações que reforçariam a identidade da marca.
+LIST ITEM: Não desenvolve relações com potenciais clientes que comentam e perguntam.
+LIST ITEM: Vê a experiência de marca esfriar a cada resposta em atraso.
+LIST ITEM: Perde presença e reputação digital para marcas mais rápidas a responder.
+
+=== CONCEITO ===
+H2: Agente para Engagement: a extensão da sua equipa de marketing nas redes sociais
+BODY: O Agente Concierge utiliza Inteligência Artificial e linguagem natural para ajudar a sua marca a responder, conversar e interagir com os seus públicos nas redes sociais.
+BODY: Permite gerir um maior volume de interações, mantendo respostas naturais, relevantes e coerentes com o posicionamento e o tom de voz da marca.
+BODY: Apoia a gestão das comunidades digitais como uma extensão da equipa de marketing, sem substituir a estratégia nem a identidade humana da marca.
+
+=== BENEFICIOS ===
+H2: O que o Agente para Engagement traz para a sua marca
+LIST ITEM: Maior capacidade de resposta nas redes sociais.
+LIST ITEM: Mais engagement com seguidores e potenciais clientes.
+LIST ITEM: Interações alinhadas com o tom de voz da marca.
+LIST ITEM: Maior consistência nas respostas.
+LIST ITEM: Presença digital mais ativa.
+LIST ITEM: Menos carga operacional para a equipa de marketing.
+
+=== PARA-QUEM ===
+H2: Pensado para quem vive de presença digital
+LIST ITEM: Diretores e responsáveis de marketing.
+LIST ITEM: Equipas de marketing.
+LIST ITEM: Agências de comunicação e publicidade.
+LIST ITEM: Agências de marketing digital.
+LIST ITEM: Gestores de redes sociais e community managers.
+LIST ITEM: Marcas com um volume elevado de comentários e interações.
+
+=== CTA-FINAL ===
+H2: Transforme cada comentário numa oportunidade de relacionamento
+BODY: Uma marca que responde é uma marca que se aproxima. Peça uma demonstração e veja como o Agente para Engagement mantém a sua marca presente em todas as conversas.
+CTA: Pedir Demonstração
+CTA: Saber Mais
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos os direitos reservados.
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# NOTA: fonte original era um briefing estrategico (objetivos, publico, pilares, mensagens-chave), nao copy pronta. Texto acima foi escrito a partir do briefing, aplicando fundamentos-copy.md (H1 lidera pela dor), padrao-linguistico PT-PT e regras-anti-ia.md. Nao ha secao de Prova/Depoimentos nem Urgencia (o briefing nao forneceu social proof nem prazo real; GUIDELINES parag. 9: vazio e valido, nao inventar urgencia falsa).
