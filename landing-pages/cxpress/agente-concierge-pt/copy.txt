@@ -1,7 +1,7 @@
 === HERO ===
-OVERLINE: Novo: Agente para Engagement
-H1: Cada comentário sem resposta é uma oportunidade de proximidade perdida.
-SUB: Conheça o Agente Concierge: o Agente para Engagement que ajuda a sua marca a responder, conversar e interagir nas redes sociais, com Inteligência Artificial e linguagem natural.
+OVERLINE: Agente para Engagement
+H1: Não deixe comentários sem resposta.
+SUB: Conheça o Agente Concierge, o Agente para Engagement que ajuda a sua marca a responder e interagir nas redes sociais com Inteligência Artificial.
 CTA: Pedir Demonstração
 
 === PROBLEMA ===
