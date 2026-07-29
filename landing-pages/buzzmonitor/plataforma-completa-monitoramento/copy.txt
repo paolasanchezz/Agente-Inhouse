@@ -1,0 +1,120 @@
+# Copy LP · Buzzmonitor · plataforma-completa-monitoramento · Anúncio Meta Ads (MoFu) · PT-BR
+# Slug renomeado de monitoramento-manual para plataforma-completa-listening, depois para plataforma-completa-monitoramento, ambos em 2026-07-23 (mesma copy da Dor 1).
+# Fonte: briefing do usuário no chat, ancorado na análise "Buzzmonitor BR + LATAM · 4 dores + 4 features dos clientes que fecharam · 2026-06-11" (Dor 1: tudo manual, sem ferramenta) e na copy já aprovada em conhecimento/copywriting/criacao/buzzmonitor/2026-07-10/dor-1-tudo-manual/ e 2026-07-20/dor-1-tudo-manual/
+# Editado pelo usuário no Notion em 2026-07-23 (H1/SUB via chat + ajustes diretos no Notion); sincronizado aqui na mesma data.
+# Reestruturação grande em 2026-07-24 a pedido do usuário: hero (H1/SUB/ilustração nova), Problema (H2/cores/sem quotes/fechamento em negrito), Solucao (remove callout, adiciona imagem, atualiza item de redes sociais), Destaque-IA (texto substituído, mantendo o gif), nova seção Insights adicionada.
+# Rodada 2026-07-29 (parte 1): domínio-alvo definido como conteudo.buzzmonitor.com (DNS ainda pendente — publicado por ora no fallback .vercel.app, ver README); botões hero/topo com .btn-glow (texto branco negrito, fundo laranja); pontos finais removidos dos CTAs; SUB da hero ajustado (conector "e" no lugar de vírgula); ícone do 1º item da Problema trocado por lupa; Solucao redesenhada (fundo .bg-gradient animado, título/subtítulo centralizados, imagem monitoramento-2.png removida, grid de 6 cards com ícone); nova seção Gestão de Crise (Gestão de crise em tempo real) após Insights, com composição em camadas de crise-1.png + crise-2.png; fundo .bg-aurora aplicado à seção Para Quem; nova seção "Empresas que já confiam" (logo wall) após CTA-FINAL. Seção de depoimentos ("Ainda não está convencido?") ainda pendente — texto exato dos 3 depoimentos (José Manuel López/Publicis Groupe, Pablo Ferrer/McCANN, David Díaz/VMLY&R) precisa ser reenviado pelo usuário antes de escrever.
+# Rodada 2026-07-29 (parte 2): todos os CTAs padronizados para "Agendar demonstração gratuita"; fundo da seção Para Quem revertido (removido o preto do .bg-aurora, mantidos só os spots de luz, agora nas cores laranja/roxo/rosa do brandbook — texto voltou a escuro); frase "a marca ouviu o cliente" (PROVA/Caffeine Army) em negrito; nova seção CASES (Oi/Betnacional/Casas Bahia/Camil) adicionada após PROVA, com dados reais fornecidos pelo usuário; seção LOGO-WALL substituída por imagem completa (assets/logo-wall.png, fornecida via Google Drive) — não recriada em HTML, a pedido do usuário.
+
+=== META ===
+LABEL: title: Buzzmonitor: monitore a marca em tempo real com IA
+LABEL: description: Monitore sua marca, concorrentes e mercado, num painel só. Agende uma demonstração gratuita da Buzzmonitor.
+LABEL: og:title: Sua marca é comentada nas redes todos os dias. Alguém está ouvindo?
+LABEL: og:description: Veja como monitorar menções em tempo real, sem caçar print em cada rede social. Demonstração gratuita da Buzzmonitor.
+
+=== HEADER ===
+CTA: Agendar demonstração gratuita
+# Botão com .btn-glow (texto branco negrito, fundo laranja, glow no hover) — 2026-07-29. Texto padronizado com os demais CTAs da página na parte 2 da rodada 2026-07-29.
+
+=== HERO ===
+OVERLINE: Buzzmonitor · Social listening com IA
+H1: Monitoramento de marca lento e ineficiente
+SUB: Quem monitora as redes sociais na mão sempre chega atrasado. É muito trabalho, falta de visibilidade e pouco resultado. Faça social listening com IA e veja todos os dados num painel só, em tempo real, com análises geradas por IA.
+CTA: Agendar demonstração gratuita
+# Visual: ilustração SVG nova (pessoa desesperada no computador cercada pelos logos de Instagram, Facebook, X, WhatsApp, LinkedIn e TikTok), substituindo o antigo mockup de dashboard + chips. Gerada em CSS/SVG (Bloom estava sem créditos no momento).
+# 2026-07-29: SUB ajustado (conector "e" no lugar de vírgula antes de "veja todos os dados"). Botão com .btn-glow, sem ponto final.
+
+=== PROBLEMA ===
+H2: A sua rotina de monitoramento se parece com essa?
+LIST ITEM: Alguém do time abre Instagram, Twitter e WhatsApp toda semana, procurando o nome da marca na mão.
+LIST ITEM: Sempre sobra menção pra trás, porque ninguém consegue ler tudo sozinho.
+LIST ITEM: Não existe um número confiável de quantas vezes a marca foi citada essa semana.
+LIST ITEM: E, quando existe volume, falta análise qualitativa: ninguém sabe o que essas conversas significam.
+LIST ITEM: Quando a crise aparece, o time fica sabendo por último, não primeiro.
+BODY (negrito, fechamento): Você não precisa de mais esforço. Precisa da ferramenta certa.
+# Quotes de clientes (Buyticket, 180 Seguros) removidas a pedido do usuário em 2026-07-24.
+# Ícones dos list items ganharam mais variedade de cor (deixaram de ser só o "x" rosa/vermelho monocromático).
+# 2026-07-29: ícone do 1º item trocado por lupa (era um "X"); alinhamento ícone-texto corrigido (center em vez de flex-start).
+
+=== SOLUCAO ===
+H2: Monitoramento e dashboards no lugar da caçada manual
+BODY: A Buzzmonitor acompanha marca, concorrentes e mercado em tempo real, num painel só, sem precisar abrir uma aba por rede social.
+LIST ITEM (título: Monitoramento em tempo real): Monitore mais de 15 redes sociais em tempo real. Acompanhe sua marca, concorrentes, tendências e o mercado.
+LIST ITEM (título: Dashboards customizáveis): Tenha dashboards customizáveis e atualizados em tempo real com todos os dados da sua operação.
+LIST ITEM (título: Gestão de crises): Conte com alertas automáticos, priorização de tickets e outras ferramentas para prevenir e gerir crises com rapidez.
+LIST ITEM (título: Plataforma centralizada): Centralize monitoramento, atendimento, dashboards, performance, insights e agendamento na mesma plataforma.
+LIST ITEM (título: Buzz Pills & AI Insights): Buzz Pills e AI Insights: conte com análises geradas por IA com os pontos mais importantes da sua marca.
+LIST ITEM (título: Economize tempo): Economize horas de trabalho manual e tenha dados concretos para tomadas de decisão rápida e assertiva.
+# 2026-07-29: seção redesenhada a pedido do usuário — fundo .bg-gradient animado (laranja/amarelo/azul da marca), título e subtítulo centralizados e mais destacados, imagem assets/monitoramento-2.png removida, os 5 itens antigos de checkmark substituídos pelos 6 itens acima (com título curto + ícone SVG cada), inspirado em referência visual enviada pelo usuário.
+
+=== DESTAQUE-IA ===
+OVERLINE: Monitoramento de mídias sociais
+H2: Inteligência artificial para monitoramento de mídias sociais
+SUB (negrito): A IA monitora todo o universo da sua marca e transforma dados em insights.
+BODY: Monitore qualquer termo nas redes sociais: hashtags, marcas, concorrentes e eventos, com painéis de controle ilimitados e relatórios em tempo real.
+CTA: Agendar demonstração gratuita
+# Texto substituído em 2026-07-24 a pedido do usuário, replicando uma seção real de referência (screenshot enviado no chat). Mantido o gif/webp atual (assets/destaque-ia.gif e .webp) como visual à direita — nenhum asset novo aqui.
+
+=== INSIGHTS ===
+OVERLINE: Geração de insights
+H2: IA para gerar insights
+SUB (negrito): A IA faz o trabalho pesado e sua marca obtém insights acionáveis em segundos.
+BODY: O AI Insights gera análises resumidas dos seus relatórios de monitoramento: você economiza tempo e recebe as principais conclusões em segundos, prontas para compartilhar com sua equipe.
+CTA: Agendar demonstração gratuita
+# Seção nova, adicionada em 2026-07-24 após DESTAQUE-IA, replicando uma segunda seção de referência (screenshot enviado no chat). Layout espelhado a pedido do usuário: imagem na coluna ESQUERDA (assets/insights.png, fornecida via Google Drive), texto na coluna direita.
+
+=== GESTAO-DE-CRISE ===
+OVERLINE: Gestão de crises
+H2: Gestão de crise em tempo real
+SUB (negrito): Antecipe as ameaças e proteja a reputação da marca.
+BODY: A nossa IA cria alertas de termos sensíveis para você agir antes que a crise exploda. Identifique rapidamente picos de menções e sentimento negativo, priorize tickets e gerencie crises com dashboards dedicados.
+CTA: Agendar demonstração gratuita
+# Seção nova, adicionada em 2026-07-29 após INSIGHTS, replicando referência visual enviada pelo usuário com as colunas invertidas (texto à esquerda, imagem à direita — oposto do layout espelhado da seção Insights). Visual: composição em camadas de assets/crise-1.png ("Distribuição de reações", gráfico de pizza) + assets/crise-2.png ("Top 5 tags mais frequentes", gráfico de barras — substituiu o card de prioridade de tickets da referência original, a pedido do usuário), ambos fornecidos via Google Drive.
+
+=== PARA-QUEM ===
+H2: Feito pra quem hoje não tem nenhuma ferramenta ou está insatisfeito
+LIST ITEM: Gestores de marketing e redes sociais sem visão confiável do que falam da marca
+LIST ITEM: Times de CX que só descobrem reclamação quando o cliente já está insatisfeito
+LIST ITEM: Agências que monitoram várias marcas ao mesmo tempo, na mão
+# 2026-07-29 (parte 1): fundo .bg-aurora aplicado (fundo escuro #06091a com radial-gradients animados nas cores da marca), a pedido do usuário. Cores de texto ajustadas para branco/quase-branco por contraste.
+# 2026-07-29 (parte 2): fundo escuro removido a pedido do usuário — mantidos só os spots de luz (radial-gradients), agora nas cores laranja/roxo/rosa do brandbook (era laranja/amarelo/azul). Texto revertido para escuro (var(--ink-soft)), já que o fundo volta a ser claro.
+
+=== PROVA ===
+OVERLINE: Quem já saiu do manual
+H3: Caffeine Army
+BODY: A marca de suplementos saiu de processos manuais para uma operação digital integrada com a Buzzmonitor.
+LIST ITEM: Mais de 3.000 comentários monitorados por mês
+LIST ITEM: 9.000+ interações automatizadas
+LIST ITEM: 8% de taxa média de engajamento
+BODY (trecho final "a marca ouviu o cliente" em negrito): A equipe descobriu um sabor novo para o produto lendo comentários de clientes, sem gastar um real com pesquisa de mercado. O lançamento foi um sucesso porque a marca ouviu o cliente.
+# [SUGESTAO produto] "O lançamento foi um sucesso" ainda não consta no case verificado do BRANDBOOK (que registra volume monitorado, interações automatizadas, engajamento e a descoberta do sabor via comentário, mas não um dado de sucesso comercial do lançamento). Não contradiz a base, mas também não é confirmado por ela. Considere remover ou trocar por algo verificável. Decisão de quem aprova a copy.
+# 2026-07-29: frase "a marca ouviu o cliente" em negrito, a pedido do usuário.
+
+=== CASES ===
+H2: O que nossos clientes já conquistam com a Buzzmonitor
+CASE (Oi): Redução de 33% no tempo de produção de relatórios — A Oi otimizou seus resultados operacionais com os AI Insights da Buzzmonitor.
+CASE (Betnacional): Marca mais citada no maior reality do Brasil — A Betnacional usou os insights em tempo real da Buzz Pills sobre o programa para criar estratégias assertivas.
+CASE (Grupo Casas Bahia): Respostas até 3x mais rápidas no atendimento — O Grupo Casas Bahia ganhou mais agilidade no relacionamento multicanal.
+CASE (Camil): Decisões mais estratégicas e baseadas em dados — A Camil Alimentos acelerou seus resultados com dashboards atualizados em tempo real.
+CTA: Agendar demonstração gratuita
+# Seção nova, adicionada em 2026-07-29 após PROVA, com dados reais de clientes confirmados pelo usuário (imagem de referência enviada no chat, replicada em HTML com 4 cards com faixa colorida — teal/rosa/laranja/roxo da marca).
+
+=== CTA-FINAL ===
+H2: Veja quanto tempo sua equipe recupera monitorando em tempo real
+SUB: Agende uma demonstração gratuita e veja a Buzzmonitor rodando com os dados reais da sua marca.
+LABEL: Gratuita · Sem compromisso
+CTA: Agendar demonstração gratuita
+
+=== DEPOIMENTOS ===
+# PENDENTE (2026-07-29): seção "Ainda não está convencido?" solicitada pelo usuário, após CTA-FINAL, replicando referência visual (depoimento principal de José Manuel López/Publicis Groupe + cards menores de Pablo Ferrer/McCANN e David Díaz/VMLY&R, confirmados pelo usuário como depoimentos reais). Só tenho o início truncado da citação de López ("A Buzzmonitor cobre todas as necessidades dos profissionais de Social Media Marketing...") e nenhum texto exato das citações de Ferrer e Díaz — não posso completar/inventar falas atribuídas a pessoas reais. Aguardando o usuário reenviar o texto completo dos 3 depoimentos (ou a imagem de referência) antes de escrever esta seção.
+
+=== LOGO-WALL ===
+# Seção nova, adicionada em 2026-07-29 (parte 1) após CTA-FINAL, inicialmente recriada em HTML (H2 + stats + 3 wordmarks — só 3 marcas confirmadas com certeza na referência visual, que tinha mais logos indicados por "etc." não identificados com precisão).
+# 2026-07-29 (parte 2): recriação em HTML substituída por imagem completa (assets/logo-wall.png, 1912×690, fornecida pelo usuário via Google Drive) — a pedido explícito do usuário ("não precisa recriar, use a imagem em anexo"). A imagem já traz o título "Empresas que já confiam na Buzzmonitor", as stats (1.000+ clientes, 300+ enterprise, 500+ agências, 10k usuários) e a grade completa de logos reais de clientes.
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA (2026-07-24): em-dash 0. Antitese-por-negacao: 0 instancias (frase de fechamento do Problema e 2 sentencas declarativas, nao formula "X, nao Y"). Exclamacoes: 0 na pagina inteira (as 2 fontes anteriores, H2 do Problema e o texto antigo de Destaque-IA, foram substituidas nesta revisao). Perguntas retoricas: 1 (novo H2 do Problema).
+# Revisao anti-IA rodada 2026-07-29: em-dash 0 nos textos novos (Solucao, Gestao-de-Crise, Logo-Wall). Antitese-por-negacao: 0 instancias novas. Exclamacoes: 0. Nao roda regras-anti-ia.md completo nesta rodada (mudancas sao majoritariamente estruturais/visuais, nao copy nova de fundo) — recomenda-se 1 passada de /copy-revisar completa quando a secao de depoimentos for finalizada.
+# Pendente (nao tecnica): claim de sucesso do lancamento (PROVA, case Caffeine Army) ainda nao verificado no BRANDBOOK. Depoimentos (ver === DEPOIMENTOS ===) aguardando texto do usuario. DNS de conteudo.buzzmonitor.com pendente (ver README).
