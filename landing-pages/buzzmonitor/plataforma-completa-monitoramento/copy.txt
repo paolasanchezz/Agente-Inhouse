@@ -7,10 +7,11 @@
 # Rodada 2026-07-29 (parte 2): todos os CTAs padronizados para "Agendar demonstração gratuita"; fundo da seção Para Quem revertido (removido o preto do .bg-aurora, mantidos só os spots de luz, agora nas cores laranja/roxo/rosa do brandbook — texto voltou a escuro); frase "a marca ouviu o cliente" (PROVA/Caffeine Army) em negrito; nova seção CASES (Oi/Betnacional/Casas Bahia/Camil) adicionada após PROVA, com dados reais fornecidos pelo usuário; seção LOGO-WALL substituída por imagem completa (assets/logo-wall.png, fornecida via Google Drive) — não recriada em HTML, a pedido do usuário.
 
 === META ===
-LABEL: title: Buzzmonitor: monitore a marca em tempo real com IA
+LABEL: title: Buzzmonitor: Monitore as redes sociais com IA em tempo real
 LABEL: description: Monitore sua marca, concorrentes e mercado, num painel só. Agende uma demonstração gratuita da Buzzmonitor.
-LABEL: og:title: Sua marca é comentada nas redes todos os dias. Alguém está ouvindo?
+LABEL: og:title: Buzzmonitor: Monitore as redes sociais com IA em tempo real
 LABEL: og:description: Veja como monitorar menções em tempo real, sem caçar print em cada rede social. Demonstração gratuita da Buzzmonitor.
+# 2026-07-29 (parte 3): title/og:title/twitter:title unificados neste texto, a pedido do usuário — preview de link (testado colando no Notion) mostrava um og:title diferente e desatualizado ("Sua marca é comentada..."), mesmo com cache-busting (?v=2). Esse texto antigo nunca existiu em nenhuma versão publicada deste arquivo (conferido via git log) — era cache do preview do Notion, não bug nosso. Unificamos os 3 campos pro mesmo texto pra eliminar qualquer inconsistência entre eles.
 
 === HEADER ===
 CTA: Agendar demonstração gratuita
