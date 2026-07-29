@@ -308,56 +308,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .problem-icon svg{width:12px;height:12px;}
 
-  /* Conceito (pausa) */
-  .concept{
-    position:relative;
-    overflow:hidden;
-  }
-  .concept__bg{
-    position:absolute;inset:0;z-index:0;
-    width:100%;height:100%;
-    object-fit:cover;object-position:75% center;
-  }
-  .concept__scrim{
-    position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:linear-gradient(to right, rgba(255,255,255,.97) 0%, rgba(255,255,255,.9) 34%, rgba(255,255,255,.5) 60%, rgba(255,255,255,0) 80%);
-  }
-  .concept .container{position:relative;z-index:2;}
-  @media (max-width:959px){
-    .concept__bg{object-position:70% center;}
-    .concept__scrim{background:linear-gradient(to right, rgba(255,255,255,.98) 0%, rgba(255,255,255,.95) 48%, rgba(255,255,255,.75) 70%, rgba(255,255,255,.55) 100%);}
-  }
-  .concept__inner{
-    max-width:600px;
-  }
-  .concept h2{
-    font-size:clamp(1.7rem,3.2vw,2.5rem);
-    font-weight:700;
-    margin-bottom:40px;
-  }
-  .concept__body{
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-  }
-  .concept__body p{
-    font-size:1.12rem;
-    color:var(--neutral-700);
-  }
-  .concept__body p:first-child{
-    font-family:var(--font-accent);
-    font-style:italic;
-    font-size:1.28rem;
-    color:var(--primary-dark);
-    font-weight:500;
-  }
-
   /* Beneficios */
   .benefits h2{
     font-size:clamp(1.7rem,3vw,2.3rem);
     font-weight:700;
     max-width:26ch;
-    margin-bottom:48px;
+    margin:0 auto 48px;
+    text-align:center;
   }
   .benefits-grid{
     display:grid;
@@ -574,31 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/></svg></span>
           <p>Não desenvolve relações com potenciais clientes que comentam e perguntam.</p>
         </li>
-        <li class="reveal">
-          <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-          <p>Vê a experiência de marca esfriar a cada resposta em atraso.</p>
-        </li>
-        <li class="reveal">
-          <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-          <p>Perde presença e reputação digital para marcas mais rápidas a responder.</p>
-        </li>
       </ul>
-    </div>
-  </section>
-
-  <!-- CONCEITO (secao de pausa, sem CTA) -->
-  <section class="concept">
-    <img class="concept__bg" src="./assets/conceito-bg.png" alt="Equipa a rever comentários e interações de redes sociais em conjunto no laptop" width="1672" height="941" loading="lazy">
-    <div class="concept__scrim" aria-hidden="true"></div>
-    <div class="container">
-      <div class="concept__inner">
-        <h2 class="reveal">Agente para Engagement: a extensão da sua equipa de marketing nas redes sociais</h2>
-        <div class="concept__body">
-          <p class="reveal">O Agente Concierge utiliza Inteligência Artificial e linguagem natural para ajudar a sua marca a responder, conversar e interagir com os seus públicos nas redes sociais.</p>
-          <p class="reveal">Permite gerir um maior volume de interações, mantendo respostas naturais, relevantes e coerentes com o posicionamento e o tom de voz da marca.</p>
-          <p class="reveal">Apoia a gestão das comunidades digitais como uma extensão da equipa de marketing, sem substituir a estratégia nem a identidade humana da marca.</p>
-        </div>
-      </div>
     </div>
   </section>
 

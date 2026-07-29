@@ -10,14 +10,6 @@ BODY: Todos os dias chegam comentários, perguntas, menções e mensagens novas.
 LIST ITEM: Perde a oportunidade de criar proximidade com os seguidores.
 LIST ITEM: Deixa passar interações que reforçariam a identidade da marca.
 LIST ITEM: Não desenvolve relações com potenciais clientes que comentam e perguntam.
-LIST ITEM: Vê a experiência de marca esfriar a cada resposta em atraso.
-LIST ITEM: Perde presença e reputação digital para marcas mais rápidas a responder.
-
-=== CONCEITO ===
-H2: Agente para Engagement: a extensão da sua equipa de marketing nas redes sociais
-BODY: O Agente Concierge utiliza Inteligência Artificial e linguagem natural para ajudar a sua marca a responder, conversar e interagir com os seus públicos nas redes sociais.
-BODY: Permite gerir um maior volume de interações, mantendo respostas naturais, relevantes e coerentes com o posicionamento e o tom de voz da marca.
-BODY: Apoia a gestão das comunidades digitais como uma extensão da equipa de marketing, sem substituir a estratégia nem a identidade humana da marca.
 
 === BENEFICIOS ===
 H2: O que o Agente para Engagement traz para a sua marca
