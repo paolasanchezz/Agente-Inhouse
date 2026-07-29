@@ -7,12 +7,12 @@
 
 ## Estrutura
 
-- HERO — eyebrow "Novo: Agente para Engagement" + H1 (dor) + sub (Agente Concierge/IA) + CTA
+- HERO — eyebrow "Novo: Agente para Engagement" + H1 (dor) + sub (Agente Concierge/IA) + CTA + foto (equipa de marketing, fornecida pelo usuário) num card arredondado à direita
 - PROBLEMA — 5 dores em lista vertical, ícone X vermelho
 - CONCEITO — seção de pausa (sem CTA/card), 3 parágrafos sobre o Agente para Engagement
 - BENEFICIOS — grid 3x2 (6 itens), ícone check verde
 - PARA-QUEM — grid 2 colunas (6 segmentos de público), sem X/check (bullet neutro)
-- CTA-FINAL — fundo primaryDark, 2 CTAs ("Pedir Demonstração", "Saber Mais")
+- CTA-FINAL — fundo primaryDark, form real embutido (Jotform) num card branco
 - FOOTER — copyright + logo linkando para home PT
 
 Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trouxe social proof nem prazo real (GUIDELINES §9: vazio é válido).
@@ -25,7 +25,7 @@ Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trou
 
 - [x] HTML gerado
 - [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar cxpress/agente-concierge-pt`
-- [ ] Formulário integrado — não aplicável (esta LP usa CTAs de botão, sem formulário na copy)
+- [x] Formulário integrado — Jotform `261904529617867` (mesmo form usado em `banimento-whatsapp-pt`/`whatsapp-business-smb-pt`), embutido no CTA-FINAL num card branco (fundo da seção é escuro; texto padrão do Jotform, ex. checkbox de consentimento, não teria contraste direto sobre navy)
 - [x] OG image (1200x630) — gerada via `.claude/skills/lp-gerar/og-template.html` + Chrome headless, salva em `assets/og-agente-concierge-pt.png` (nome já no formato `og-{slug}.png` esperado por `landing-pages/build/build_umbrella.py`)
 - [x] Publicado — via fluxo CI (`content.cxpress.io`), entrada adicionada em `landing-pages/dominios/content-cxpress-io/manifest.json`
 
@@ -33,5 +33,5 @@ Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trou
 
 - `../../brand/cxpress/assets/logos/logo-primary.svg` (header + footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
-- `../../brand/cxpress/assets/mascot/samir-laptop.png` (hero visual)
+- `./assets/hero-bg.png` (foto do hero, fornecida pelo usuário via Google Drive)
 - `./assets/og-agente-concierge-pt.png` (OG image, LP-local)
