@@ -262,15 +262,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-content{max-width:100%;}
   }
 
-  /* Problema */
-  .problem__intro{max-width:62ch;margin-bottom:48px;}
+  /* Problema: foto de fundo full-bleed (mesma receita do hero) */
+  .problem{position:relative;overflow:hidden;}
+  .problem__bg{
+    position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;
+    object-fit:cover;object-position:75% center;
+  }
+  .problem__scrim{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(to right, rgba(247,248,252,.97) 0%, rgba(247,248,252,.9) 34%, rgba(247,248,252,.5) 60%, rgba(247,248,252,0) 80%);
+  }
+  .problem .container{position:relative;z-index:2;}
+  @media (max-width:959px){
+    .problem__bg{object-position:70% center;}
+    .problem__scrim{background:linear-gradient(to right, rgba(247,248,252,.98) 0%, rgba(247,248,252,.95) 48%, rgba(247,248,252,.75) 70%, rgba(247,248,252,.55) 100%);}
+  }
+  .problem__intro{max-width:60ch;margin-bottom:48px;}
   .problem__intro h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;margin-bottom:18px;}
   .problem__intro p{font-size:1.1rem;color:var(--neutral-700);}
   .problem-list{
     display:flex;
     flex-direction:column;
     gap:0;
-    max-width:74ch;
+    max-width:60ch;
   }
   .problem-list li{
     display:flex;
@@ -514,7 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container hero__inner">
       <div class="hero-content">
         <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Agente para Engagement</span>
-        <h1 id="hero-title">Não deixe comentários sem resposta.</h1>
+        <h1 id="hero-title">Não deixe comentários sem resposta</h1>
         <p class="hero__sub">Conheça o Agente Concierge, o Agente para Engagement que ajuda a sua marca a responder e interagir nas redes sociais com Inteligência Artificial.</p>
         <a class="btn btn-primary" href="#cta-final">
           Pedir Demonstração
@@ -525,10 +540,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- PROBLEMA -->
-  <section class="section--tint">
+  <section class="problem">
+    <img class="problem__bg" src="./assets/problema-bg.png" alt="Telemóvel sobre secretária a receber várias notificações de comentários e mensagens em redes sociais" width="1672" height="941" loading="lazy">
+    <div class="problem__scrim" aria-hidden="true"></div>
     <div class="container">
       <div class="problem__intro reveal">
-        <h2>As redes sociais nunca param.</h2>
+        <h2>As redes sociais nunca param</h2>
         <p>Todos os dias chegam comentários, perguntas, menções e mensagens novas. Sem tempo ou recursos para responder com rapidez e consistência, a marca fica a perder mais do que parece.</p>
       </div>
       <ul class="problem-list">

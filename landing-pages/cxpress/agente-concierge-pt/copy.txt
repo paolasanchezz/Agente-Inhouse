@@ -1,11 +1,11 @@
 === HERO ===
 OVERLINE: Agente para Engagement
-H1: Não deixe comentários sem resposta.
+H1: Não deixe comentários sem resposta
 SUB: Conheça o Agente Concierge, o Agente para Engagement que ajuda a sua marca a responder e interagir nas redes sociais com Inteligência Artificial.
 CTA: Pedir Demonstração
 
 === PROBLEMA ===
-H2: As redes sociais nunca param.
+H2: As redes sociais nunca param
 BODY: Todos os dias chegam comentários, perguntas, menções e mensagens novas. Sem tempo ou recursos para responder com rapidez e consistência, a marca fica a perder mais do que parece.
 LIST ITEM: Perde a oportunidade de criar proximidade com os seguidores.
 LIST ITEM: Deixa passar interações que reforçariam a identidade da marca.
