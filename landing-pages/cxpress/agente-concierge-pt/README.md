@@ -9,7 +9,7 @@
 
 - HERO — eyebrow "Agente para Engagement" + H1 (dor) + sub (Agente Concierge/IA) + CTA, com a foto (equipa de marketing, fornecida pelo usuário) como background full-bleed da seção + scrim gradiente (mesmo padrão da LP `banimento-whatsapp-clinicas`)
 - PROBLEMA — 5 dores em lista vertical, ícone X vermelho, com foto (telemóvel recebendo notificações, fornecida pelo usuário) como background full-bleed + scrim (mesma receita do hero)
-- CONCEITO — seção de pausa (sem CTA/card), 3 parágrafos sobre o Agente para Engagement
+- CONCEITO — 3 parágrafos sobre o Agente para Engagement, texto alinhado à esquerda com foto (equipa a rever comentários no laptop, fornecida pelo usuário) como background full-bleed + scrim (mesma receita do hero/PROBLEMA)
 - BENEFICIOS — grid 3x2 (6 itens), ícone check verde
 - PARA-QUEM — grid 2 colunas (6 segmentos de público), sem X/check (bullet neutro)
 - CTA-FINAL — fundo primaryDark, form real embutido (Jotform) num card branco
@@ -29,7 +29,7 @@ Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trou
 - [x] OG image (1200x630) — gerada via `.claude/skills/lp-gerar/og-template.html` + Chrome headless, salva em `assets/og-agente-concierge-pt.png` (nome já no formato `og-{slug}.png` esperado por `landing-pages/build/build_umbrella.py`)
 - [x] Publicado — via fluxo CI (`content.cxpress.io`), entrada adicionada em `landing-pages/dominios/content-cxpress-io/manifest.json`
 
-**Ajustes a pedido do usuário (2026-07-29):** eyebrow sem o prefixo "Novo:"; foto do hero virou background full-bleed (`.hero__bg` + `.hero__scrim`, mesma receita de `banimento-whatsapp-clinicas`) em vez de card à parte; CTAs (nav + hero) recoloridos para o verde institucional do WhatsApp `#21CC78` (mesmo tom já usado em `banimento-whatsapp-clinicas`), hover `#1AAE63`; título e subtítulo do hero atualizados + OG image regenerada; pontos finais removidos dos títulos (H1 e H2 de PROBLEMA); foto do telemóvel com notificações adicionada como background full-bleed da seção PROBLEMA (`.problem__bg` + `.problem__scrim`).
+**Ajustes a pedido do usuário (2026-07-29):** eyebrow sem o prefixo "Novo:"; foto do hero virou background full-bleed (`.hero__bg` + `.hero__scrim`, mesma receita de `banimento-whatsapp-clinicas`) em vez de card à parte; CTAs (nav + hero) recoloridos para o verde institucional do WhatsApp `#21CC78` (mesmo tom já usado em `banimento-whatsapp-clinicas`), hover `#1AAE63`; título e subtítulo do hero atualizados + OG image regenerada; pontos finais removidos dos títulos (H1 e H2 de PROBLEMA); foto do telemóvel com notificações adicionada como background full-bleed da seção PROBLEMA (`.problem__bg` + `.problem__scrim`); seção CONCEITO deixou de ser centralizada e ganhou foto de fundo full-bleed (`.concept__bg` + `.concept__scrim`) com texto reposicionado à esquerda.
 
 ## Assets referenciados
 
@@ -37,4 +37,5 @@ Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trou
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
 - `./assets/hero-bg.png` (foto do hero, fornecida pelo usuário via Google Drive)
 - `./assets/problema-bg.png` (foto de fundo da seção PROBLEMA, fornecida pelo usuário via Google Drive)
+- `./assets/conceito-bg.png` (foto de fundo da seção CONCEITO, fornecida pelo usuário via Google Drive)
 - `./assets/og-agente-concierge-pt.png` (OG image, LP-local)
