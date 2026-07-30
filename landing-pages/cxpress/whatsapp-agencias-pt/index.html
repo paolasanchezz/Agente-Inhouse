@@ -174,6 +174,17 @@ section.tight{padding:80px 0;}
 .caso-card h3{font-size:20px;font-weight:700;margin-bottom:10px;}
 .caso-card p{font-size:16px;color:var(--ink-soft);line-height:1.5;}
 
+/* ---- resultados ---- */
+.resultados{background:var(--off);}
+.resultados .section-head{max-width:720px;}
+.resultados-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px;}
+@media (max-width:900px){.resultados-grid{grid-template-columns:repeat(2,1fr);gap:16px;}}
+@media (max-width:600px){.resultados-grid{grid-template-columns:1fr;}}
+.resultado-stat{background:var(--paper);border-radius:16px;padding:36px 26px;text-align:center;border-top:5px solid var(--accent);box-shadow:0 4px 6px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:12px;}
+.resultado-num{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,30px);line-height:1.25;color:var(--navy);}
+.resultado-label{font-size:16px;line-height:1.5;color:var(--ink-soft);}
+.resultados-nota{max-width:720px;margin:0 auto;text-align:center;font-size:14px;color:var(--ink-soft);line-height:1.6;}
+
 /* ---- como funciona ---- */
 .como-funciona .wrap{max-width:820px;}
 .como-funciona p{font-size:19px;color:var(--ink-soft);margin-bottom:20px;line-height:1.6;}
@@ -370,6 +381,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="beneficios-visual reveal">
         <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animação do dashboard da plataforma Cxpress com indicadores de desempenho" width="816" height="458" loading="lazy" style="min-height:0;">
       </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="resultados">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <h2>Resultados de empresas que potenciaram as suas equipas com a Cxpress</h2>
+      </div>
+      <ul class="resultados-grid reveal">
+        <li class="resultado-stat"><span class="resultado-num">+220%</span><span class="resultado-label">de interações realizadas com a mesma estrutura de atendimento.*</span></li>
+        <li class="resultado-stat"><span class="resultado-num">Até 15x mais produtividade</span><span class="resultado-label">nas interações automatizadas por IA, aumentando a capacidade da equipa.*</span></li>
+        <li class="resultado-stat"><span class="resultado-num">98% de qualidade</span><span class="resultado-label">nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*</span></li>
+      </ul>
+      <p class="resultados-nota reveal">*Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar consoante a operação.</p>
     </div>
   </section>
 

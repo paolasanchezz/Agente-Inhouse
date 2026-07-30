@@ -11,10 +11,11 @@
 - PROBLEMA — 3 dores em lista vertical, ícone X vermelho, com foto (telemóvel recebendo notificações, fornecida pelo usuário) como background full-bleed + scrim (mesma receita do hero)
 - BENEFICIOS — grid 3x2 (6 itens), ícone check verde, título centralizado
 - PARA-QUEM — grid 2 colunas (6 segmentos de público), sem X/check (bullet neutro)
+- RESULTADOS — 3 estatísticas em cards (topo laranja), réplica integral da seção "Resultados" da LP `whatsapp-business-smb-pt`
 - CTA-FINAL — fundo primaryDark, form real embutido (Jotform) num card branco
 - FOOTER — copyright + logo linkando para home PT
 
-Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trouxe social proof nem prazo real (GUIDELINES §9: vazio é válido).
+Sem seção de Urgência — sem prazo real (GUIDELINES §9: vazio é válido).
 
 ## Nota sobre manifest da marca
 
@@ -28,7 +29,7 @@ Sem seção de Prova/Depoimentos nem Urgência — o briefing original não trou
 - [x] OG image (1200x630) — gerada via `.claude/skills/lp-gerar/og-template.html` + Chrome headless, salva em `assets/og-agente-concierge-pt.png` (nome já no formato `og-{slug}.png` esperado por `landing-pages/build/build_umbrella.py`)
 - [x] Publicado — via fluxo CI (`content.cxpress.io`), entrada adicionada em `landing-pages/dominios/content-cxpress-io/manifest.json`
 
-**Ajustes a pedido do usuário (2026-07-29):** eyebrow sem o prefixo "Novo:"; foto do hero virou background full-bleed (`.hero__bg` + `.hero__scrim`, mesma receita de `banimento-whatsapp-clinicas`) em vez de card à parte; CTAs (nav + hero) recoloridos para o verde institucional do WhatsApp `#21CC78` (mesmo tom já usado em `banimento-whatsapp-clinicas`), hover `#1AAE63`; título e subtítulo do hero atualizados + OG image regenerada; pontos finais removidos dos títulos (H1 e H2 de PROBLEMA); foto do telemóvel com notificações adicionada como background full-bleed da seção PROBLEMA (`.problem__bg` + `.problem__scrim`); seção CONCEITO adicionada com foto de fundo + texto à esquerda e depois **removida por completo** (junto com o asset `conceito-bg.png` e o CSS `.concept*`); PROBLEMA reduzido de 5 para 3 itens (removidos "Vê a experiência de marca esfriar..." e "Perde presença e reputação digital..."); título de BENEFICIOS centralizado.
+**Ajustes a pedido do usuário (2026-07-29):** eyebrow sem o prefixo "Novo:"; foto do hero virou background full-bleed (`.hero__bg` + `.hero__scrim`, mesma receita de `banimento-whatsapp-clinicas`) em vez de card à parte; CTAs (nav + hero) recoloridos para o verde institucional do WhatsApp `#21CC78` (mesmo tom já usado em `banimento-whatsapp-clinicas`), hover `#1AAE63`; título e subtítulo do hero atualizados + OG image regenerada; pontos finais removidos dos títulos (H1 e H2 de PROBLEMA); foto do telemóvel com notificações adicionada como background full-bleed da seção PROBLEMA (`.problem__bg` + `.problem__scrim`); seção CONCEITO adicionada com foto de fundo + texto à esquerda e depois **removida por completo** (junto com o asset `conceito-bg.png` e o CSS `.concept*`); PROBLEMA reduzido de 5 para 3 itens (removidos "Vê a experiência de marca esfriar..." e "Perde presença e reputação digital..."); título de BENEFICIOS centralizado; seção RESULTADOS adicionada entre PARA-QUEM e CTA-FINAL, replicando integralmente (mesmos 3 números, mesma nota de rodapé) a seção "Resultados" de `whatsapp-business-smb-pt`, com classes/tokens próprios da LP (`.results`, `.result-stat` etc).
 
 ## Assets referenciados
 

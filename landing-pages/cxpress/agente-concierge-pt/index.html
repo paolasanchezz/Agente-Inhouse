@@ -380,6 +380,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .audience-item p{font-size:1.02rem;font-weight:600;}
 
+  /* Resultados */
+  .results h2{
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    font-weight:700;
+    max-width:32ch;
+    margin:0 auto 48px;
+    text-align:center;
+  }
+  .results-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    margin-bottom:32px;
+  }
+  @media (min-width:720px){
+    .results-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  .result-stat{
+    background:var(--neutral-0);
+    border-radius:16px;
+    padding:36px 26px;
+    text-align:center;
+    border-top:5px solid var(--accent);
+    box-shadow:var(--shadow-md);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .result-num{
+    font-family:var(--font-heading);
+    font-weight:800;
+    font-size:clamp(1.3rem,2.6vw,1.6rem);
+    line-height:1.25;
+    color:var(--primary-dark);
+  }
+  .result-label{
+    font-size:1rem;
+    line-height:1.5;
+    color:var(--neutral-700);
+  }
+  .results-note{
+    max-width:720px;
+    margin:0 auto;
+    text-align:center;
+    font-size:0.9rem;
+    color:var(--neutral-700);
+    line-height:1.6;
+  }
+
   /* CTA final */
   .cta-final{
     background:var(--primary-dark);
@@ -598,6 +647,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p>Marcas com um volume elevado de comentários e interações.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section--tint results">
+    <div class="container">
+      <h2 class="reveal">Resultados de empresas que potenciaram as suas equipas com a Cxpress</h2>
+      <ul class="results-grid">
+        <li class="result-stat reveal"><span class="result-num">+220%</span><span class="result-label">de interações realizadas com a mesma estrutura de atendimento.*</span></li>
+        <li class="result-stat reveal"><span class="result-num">Até 15x mais produtividade</span><span class="result-label">nas interações automatizadas por IA, aumentando a capacidade da equipa.*</span></li>
+        <li class="result-stat reveal"><span class="result-num">98% de qualidade</span><span class="result-label">nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*</span></li>
+      </ul>
+      <p class="results-note reveal">*Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar consoante a operação.</p>
     </div>
   </section>
 
