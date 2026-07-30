@@ -1,0 +1,90 @@
+=== HERO ===
+H1: Varias herramientas, cero eficiencia
+SUB: Con Buzzmonitor tienes social listening, reportes en tiempo real, atención al cliente y programación de publicaciones desde una sola plataforma.
+LIST ITEM: Escucha dispersa
+LIST ITEM: Publicación sin sincronía
+LIST ITEM: Reportes manuales
+CTA: Agenda una demo
+QUOTE: Más de 1000 empresas y agencias ya confían en Buzzmonitor.
+
+=== PROBLEMA-AGENCIAS ===
+H2: Más clientes, no más caos
+BODY: Cada cuenta nueva es una herramienta más, un reporte más, un margen más chico.
+BODY: Las agencias que escalan centralizan todo en Buzzmonitor: mismo equipo, más clientes, más ganancias.
+LIST ITEM: Más clientes
+LIST ITEM: Más reportes
+LIST ITEM: ¿Menos tiempo?
+LIST ITEM: ¿Menos margen?
+CTA: Agenda una demo
+
+=== PROBLEMA-ENTERPRISE ===
+H2: ¿Pagaste enterprise y te abandonaron?
+LIST ITEM: Alto costo
+LIST ITEM: Bajo retorno
+LIST ITEM: Cero acompañamiento
+LABEL: Sin acompañamiento
+LIST ITEM: Funciones complejas
+LIST ITEM: Poco uso del equipo
+LIST ITEM: Reportes subutilizados
+LIST ITEM: Datos desaprovechados
+LIST ITEM: Alto costo, bajo retorno
+LABEL: Con Buzzmonitor
+LIST ITEM: Onboarding personalizado
+LIST ITEM: Capacitación continua
+LIST ITEM: Mejores prácticas
+LIST ITEM: Acompañamiento cercano
+LIST ITEM: Máximo retorno de inversión
+QUOTE: Esto no es inversión, es un gasto.
+BODY: En Buzzmonitor te damos acompañamiento cercano para que la aproveches al máximo desde el primer mes.
+CTA: Agenda una demo
+QUOTE: Más de 1000 empresas y agencias ya eligieron una solución que las acompaña de verdad.
+
+=== PROBLEMA-CRISIS ===
+H2: Tu marca está en crisis
+SUB: (Y todavía no lo sabes)
+BODY: Buzzmonitor te alerta en tiempo real, antes de que tengas que apagar el incendio.
+LABEL: Alerta en tiempo real
+BODY: Aumento inusual de menciones negativas. Volumen +320%, alcance +250%.
+CTA: Agenda una demo
+
+=== PROBLEMA-INSIGHTS ===
+H2: Tu competencia te lleva ventaja
+SUB: El monitoreo manual te deja siempre un paso atrás.
+BODY: Con Buzz Pills y AI Insights transformas miles de datos en insights accionables al instante, para que tomes la delantera.
+LABEL: AI Insights
+BODY: Detecta oportunidades antes que tu competencia.
+LABEL: Buzz Pills
+BODY: Resumen inteligente de lo que importa.
+LABEL: Tu competencia
+LABEL: Tú
+CTA: Agenda una demo
+
+=== DIFERENCIAL ===
+H2: Todo lo que necesitas, en un solo lugar
+LIST ITEM: Escucha social. Monitorea lo que se dice en tiempo real.
+LIST ITEM: Publicación. Publica y programa en todas tus redes.
+LIST ITEM: Reportes. Mide, analiza y comparte resultados en segundos.
+LIST ITEM: Atención al cliente. Responde, gestiona y resuelve conversaciones en un solo lugar.
+
+=== PRUEBA ===
+H2: Resumen general
+LIST ITEM: Menciones: 24.5K (+28%)
+LIST ITEM: Alcance: 8.7M (+19%)
+LIST ITEM: Interacciones: 1.2M (+32%)
+LIST ITEM: Sentimiento: Positivo (+18%)
+LABEL: Evolución de menciones
+LABEL: Sentimiento
+LABEL: Principales temas
+LABEL: Share of voice: 42%
+
+=== CTA-FINAL ===
+H2: Todo tu social media, en un solo lugar
+CTA: Agenda una demo
+QUOTE: Más de 1000 empresas y agencias ya confían en Buzzmonitor.
+
+=== FOOTER ===
+FOOTER: (c) 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Fuente: transcripcion literal de 5 creativos estaticos aprobados (compartidos por el usuario en el chat), no del archivo conhecimento/copywriting/revisoes/campana-bofu-painpoints-buzzmonitor-revisado-2026-07-28.md (los creativos ya incorporan iteraciones de copy mas recientes que el archivo, ver nota al usuario).
+# Revision anti-IA: sem achados (em-dash: 0).
+# Idioma detectado: ES-LATAM (padrao-linguistico.md ja carregado nesta sessao). Sem brasileirismos encontrados na transcricao.
