@@ -1,0 +1,89 @@
+# Copy LP · Buzzmonitor · plataforma-completa-para-dados · Dor 2 (dados fragmentados) · PT-BR
+# Fonte: Notion "Copy LP da dor 2 - Dados fragmentados" (https://app.notion.com/p/3ac3934026fd80c8b4cdc2512f3146d3), página dentro de "Campanha MOFU: 4 dores dos clientes" > "Buzzmonitor 🇧🇷". Copy editada/expandida pelo usuário diretamente no Notion a partir da base gerada em conhecimento/copywriting/criacao/buzzmonitor/2026-07-23/variacao-03-marketing-ve-elogio-atendimento-reclamacao.md.
+# Transcrito para copy.txt em 2026-07-29 via /lp-gerar (pedido do usuário no chat, com direcionamento de design adicional — ver notas por seção abaixo).
+# Domínio-alvo: content.buzzmonitor.com/plataforma-completa-para-dados (guarda-chuva migrado ao CI, ver landing-pages/dominios/MIGRADOS.json).
+# Correções ortográficas silenciosas (typo, não reescrita de tom): "egrandes" -> "e grandes" (IA COMO DIFERENCIAL/AI Insights); "tpo" -> "tipo" (IA COMO DIFERENCIAL/Classificação automática).
+
+=== HERO ===
+H1: Relatórios de redes sociais manuais e fragmentados
+SUB: Centralize dados de monitoramento, atendimento, performance, concorrentes e tendências, em uma ÚNICA plataforma. Tenha dashboards em tempo real e deixe a IA transformar dado em decisão.
+CTA: Agendar Demonstração Gratuita
+# Visual: imagem/ilustração nova pedida pelo usuário — cenário confuso com planilha, relatórios de visual antigo, pilha de papéis e logomarcas de: Facebook, Instagram, LinkedIn, X, YouTube, Pinterest, Reclame Aqui, Google Meu Negócio, Bluesky, App Store (Apple), Google Play (Android) e Threads. Seguir o mesmo método da LP irmã (SVG ilustrado inline, ícones de rede social em círculos rotacionados) para consistência de manutenção e fidelidade de marca — sem depender de asset externo.
+
+=== PROBLEMA ===
+H2: Dados fragmentados escondem o que sua marca precisa enxergar
+BODY: Curtidas em uma plataforma, menções em outra, atendimentos em uma terceira e relatórios montados manualmente. Sem uma **visão consolidada**, padrões importantes passam despercebidos e as decisões acabam sendo tomadas com **informações incompletas**.
+BODY: Isso dificulta entender o público, comparar resultados, justificar estratégias e identificar rapidamente o que está funcionando, ou o que precisa mudar.
+BODY: **Quando os dados não estão conectados, cada decisão carrega mais dúvida do que estratégia.**
+# Negritos aplicados a pedido do usuário em 2026-07-29 (round 2 de ajustes).
+# Round 3 (2026-07-29): fundo `.problem-bg` (dots animados laranja sobre navy #131a2e, 40% de opacidade, via overlay ::before-like) aplicado atrás do conteúdo, texto permanece legível por cima.
+# Round 5 (2026-07-29): navy #131a2e removido do `.problem-bg` a pedido do usuário — mantido só o pontilhado laranja a 40% de opacidade sobre o fundo branco da seção.
+
+=== SOLUCAO ===
+# Seção "diferenciais" (nome do usuário no chat). Formato: bloco split único (texto completo à esquerda — H2+H3+intro+pills+BODY sobre IA — screenshot do produto à direita), seguido por grid de 6 cards de benefício.
+# Round 2 (2026-07-29): usuário pediu para consolidar em 1 única seção (antes eram 2 blocos com 2 imagens) e substituir a imagem por uma nova ("primeira imagem em anexo" do pedido).
+# Round 4 (2026-07-29): imagem recebida via link do Google Drive, salva em assets/dashboard-mockup.png (1536×1024). Substitui o placeholder dashboard-analytics.png.
+H2: Todos os dados em uma única plataforma.
+H3: Para uma visão clara e decisões mais assertivas.
+BODY: A Buzzmonitor reúne dados das redes sociais de todas as frentes da sua operação:
+LIST ITEM (categoria/pill): Monitoramento
+LIST ITEM (categoria/pill): Atendimento
+LIST ITEM (categoria/pill): Performance
+LIST ITEM (categoria/pill): Concorrentes
+LIST ITEM (categoria/pill): Tendências
+LIST ITEM (categoria/pill): Social News
+LIST ITEM (categoria/pill): Crises
+LIST ITEM (categoria/pill): Campanhas
+BODY: Assim, sua equipe deixa de cruzar planilhas e informações manualmente para acompanhar tudo em dashboards atualizados em tempo real.
+BODY: E com inteligência artificial, a plataforma centraliza e analisa grandes volumes de dados, identifica padrões, mudanças de sentimento, tendências e oportunidades. E transforma tudo em insights claros para orientar as próximas decisões.
+# Round 3 (2026-07-29): pills "Crises" e "Campanhas" adicionadas (total 8). Parágrafo quebrado em 2 (dois enters) após "atualizados em tempo real.".
+LIST ITEM (card benefício): Centralize os dados da marca, do público e dos concorrentes
+LIST ITEM (card benefício): Automatize dashboards e relatórios
+LIST ITEM (card benefício): Interprete conversas e métricas com IA
+LIST ITEM (card benefício): Identifique tendências, riscos e oportunidades
+LIST ITEM (card benefício): Tome decisões mais rápidas e assertivas
+LIST ITEM (card benefício): Economize horas de trabalho manual e foque na estratégia
+BODY (fechamento, gradiente .text-gradient laranja/amarelo animado, quebra de linha após o 1º ponto final): Menos tempo organizando dados.[quebra]Mais tempo usando os dados para gerar resultados.
+CTA: Agendar demonstração gratuita
+
+=== IA COMO DIFERENCIAL ===
+# Formato: H2 centralizado + subtexto, fundo com o gradiente abaixo, grid de cards em branco com ícone+título+descrição. Overline "IA como diferencial" removido a pedido do usuário em 2026-07-29 (round 2).
+# Background obrigatório (fornecido pelo usuário, é o mesmo .bg-gradient já usado na seção SOLUCAO da LP irmã plataforma-completa-monitoramento):
+# .bg-gradient { background: linear-gradient(135deg, #EF863C, #F1A908, #6b85d0, #EF863C); background-size: 400% 400%; animation: shift 12s ease infinite; }
+# @keyframes shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+H2: A IA transformou a criação de relatórios!
+BODY: A Buzzmonitor é pioneira em IA aplicada a social media e atendimento.
+BODY: Nossos relatórios em tempo real e IAs transformam a rotina da sua equipe com análises ágeis, insights preditivos, automações que eliminam processos manuais massivos e recomendações inteligentes que orientam decisões mais precisas.
+LIST ITEM (título: Dashboards ilimitados): Dashboards gerais sobre a marca ou específicos para campanha, concorrentes, crises e mais. Tudo atualizado em tempo real.
+LIST ITEM (título: Buzz Pills): Relatórios periódicos com análises resumidas e insights acionáveis feitos por IA enviados direto no seu e-mail.
+LIST ITEM (título: AI Insights): IA que analisa e grandes bases de dados e relatórios específicos em segundos com insights estratégicos.
+LIST ITEM (título: Classificação automática): A IA define o sentimento e classifica posts por tipo de conteúdo, aplica tags e entrega relatórios detalhados.
+LIST ITEM (título: Relatórios de produtividade): Tenha dados sobre o seu atendimento digital e a produtividade do seu time em tempo real.
+LIST ITEM (título: Buzzmonitor Trends): A ferramenta aponta os temas em alta, sentimento do público, top posts e quem está falando sobre.
+CTA: Agendar demonstração gratuita
+
+=== CASES ===
+H2: O que nossos clientes já conquistam com a Buzzmonitor
+# Réplica literal da seção CASES da LP irmã (landing-pages/buzzmonitor/plataforma-completa-monitoramento), a pedido do usuário ("Replique essa seção da última LP que você criou").
+# Round 2 (2026-07-29): seção PROVA (caixa lilás com o texto Prime Energy) removida a pedido do usuário. O conteúdo do case Grupo Casas Bahia foi substituído pelo texto de Prime Energy fornecido pelo usuário (typo "relarórios" corrigido para "relatórios").
+CASE (Oi): Redução de 33% no tempo de produção de relatórios — A Oi otimizou seus resultados operacionais com os AI Insights da Buzzmonitor.
+CASE (Betnacional): Marca mais citada no maior reality do Brasil — A Betnacional usou os insights em tempo real da Buzz Pills sobre o programa para criar estratégias assertivas.
+CASE (Prime Energy): Centralização de 3 relatórios num só painel — A Prime Energy usou o Buzz Pills para parar de cruzar planilhas manualmente, substituir 3 relatórios e economizar horas.
+# Round 3 (2026-07-29): título ajustado de "três relatórios ... real-time" para "3 relatórios num só painel" (numeral em algarismo, GUIDELINES §5).
+CASE (Camil): Decisões mais estratégicas e baseadas em dados — A Camil Alimentos acelerou seus resultados com dashboards atualizados em tempo real.
+CTA: Agendar demonstração gratuita
+
+=== CTA-FINAL ===
+H2: Marketing, atendimento e social media não precisam discordar sobre o que aconteceu com a marca.
+BODY (2 quebras de linha após "falta de painel único." — round 3, 2026-07-29 — negrito em "Dashboards em tempo real, AI Insights e Buzz Pills"): Três áreas, três leituras da mesma marca e uma decisão errada por falta de painel único.[quebra][quebra]Com **Dashboards em tempo real, AI Insights e Buzz Pills**, a Buzzmonitor junta essas leituras num retrato só.
+BODY: Agende uma demonstração gratuita e leve as três áreas para a mesma tela.
+CTA: Agendar demonstração gratuita
+# Round 2 (2026-07-29): "os dois" trocado para "as três áreas" (consistência com o H2, que já fala de 3 áreas: marketing, atendimento, social media). Form mock substituído por embed real Jotform (jsform/252995108251662), mesmo form da LP irmã.
+
+=== LOGO-WALL ===
+# Reaproveita o mesmo asset já usado na LP irmã (landing-pages/buzzmonitor/plataforma-completa-monitoramento/assets/logo-wall.png), copiado para assets/logo-wall.png desta LP. É a "2ª imagem em anexo" do pedido do usuário — não recriar em HTML, usar a imagem como seção (mesma decisão já tomada e documentada na LP irmã em 2026-07-29).
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisão anti-IA (2026-07-29): em-dash — 1 ocorrência encontrada no texto original do Notion (PROBLEMA, "funcionando — ou o que precisa mudar") e corrigida (substituída por vírgula) antes de salvar. Após correção: 0. Antítese-por-negação: 0 instâncias na formula "X, não Y". Filler words: 0. Metáforas aquáticas: 0. Exclamações: 1 (H2 de IA COMO DIFERENCIAL, "A IA transformou a criação de relatórios!") — dentro do limite de 2 por peça. Perguntas retóricas: 0. Transições mecânicas ("Além disso"/"Nesse sentido"): 0.
