@@ -126,17 +126,6 @@ section.tight{padding:80px 0;}
 .oferta-visual img{border-radius:20px;box-shadow:0 24px 50px rgba(35,41,96,.18);}
 .oferta-copy p{font-size:19px;color:var(--ink-soft);margin-bottom:20px;line-height:1.6;}
 
-/* ---- beneficios grid ---- */
-.beneficios{background:var(--off);}
-.beneficios .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
-.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-@media (max-width:760px){.check-grid{grid-template-columns:1fr;}}
-.check-item{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px;}
-.check-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;}
-.check-item p{font-size:16px;color:var(--navy);font-weight:600;line-height:1.4;}
-.beneficios-visual img{border-radius:18px;box-shadow:0 20px 44px rgba(35,41,96,.16);}
-.beneficios-intro{font-size:19px;color:var(--ink-soft);margin-bottom:26px;}
-
 /* ---- fluxo (do anuncio a conversa) ---- */
 .fluxo{background:var(--paper);}
 .fluxo .wrap{display:grid;grid-template-columns:1fr .9fr;gap:64px;align-items:center;}
@@ -174,12 +163,6 @@ section.tight{padding:80px 0;}
 .resultado-label{font-size:16px;line-height:1.5;color:var(--ink-soft);}
 .resultados-nota{max-width:720px;margin:0 auto;text-align:center;font-size:14px;color:var(--ink-soft);line-height:1.6;}
 
-/* ---- pausa / reflexao ---- */
-.pausa{background:var(--navy);color:#fff;text-align:center;}
-.pausa .wrap{max-width:760px;}
-.pausa h2{color:#fff;font-size:34px;}
-.pausa p{color:rgba(255,255,255,.82);font-size:19px;margin-top:22px;line-height:1.6;}
-
 /* ---- cta final + form ---- */
 #form{scroll-margin-top:90px;}
 .cta-final{background:var(--paper);color:var(--ink);}
@@ -204,7 +187,7 @@ footer p{font-size:14px;}
 @media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr;}
   .hero-visual{order:2;margin-top:48px;}
-  .oferta .wrap, .beneficios .wrap, .fluxo .wrap, .cta-final .wrap{grid-template-columns:1fr;}
+  .oferta .wrap, .fluxo .wrap, .cta-final .wrap{grid-template-columns:1fr;}
   .fluxo-copy{order:1;}
   .phone-mock{order:2;margin-top:40px;}
   section{padding:80px 0;}
@@ -277,66 +260,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="reveal" style="max-width:760px;display:flex;flex-direction:column;gap:20px;">
         <p style="font-size:19px;color:var(--ink-soft);line-height:1.6;">Todos os dias, clientes utilizam o WhatsApp para procurar informações, esclarecer dúvidas, pedir orçamentos e falar com marcas.</p>
-        <p style="font-size:19px;color:var(--navy);font-weight:600;line-height:1.6;">Em Portugal, <strong>9 em cada 10</strong> utilizadores de redes sociais já estão no WhatsApp (estudo &ldquo;Os Portugueses e as Redes Sociais&rdquo;, Marktest), um número que nenhuma marca devia ignorar.</p>
         <p style="font-size:19px;color:var(--ink-soft);line-height:1.6;">Para equipas de marketing e agências, isso representa uma oportunidade: transformar um canal de mensagens num ponto estratégico de relacionamento, captação e conversão.</p>
         <p style="font-size:14px;color:var(--ink-soft);">*Fonte: Marktest, estudo &ldquo;Os Portugueses e as Redes Sociais&rdquo;, edição de 2025.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- A COMUNICAÇÃO DA SUA MARCA, FINALMENTE NUM SÓ LUGAR -->
-  <section class="oferta">
-    <div class="wrap">
-      <div class="oferta-copy reveal">
-        <div class="section-head" style="margin-bottom:24px;">
-          <h2>A comunicação da sua marca, finalmente num só lugar</h2>
-        </div>
-        <p>Centralize as conversas do WhatsApp oficial numa única plataforma e dê visibilidade a toda a equipa.</p>
-        <p>Distribua contactos, organize filas, acompanhe históricos e permita que vários atendentes utilizem o mesmo número de forma organizada.</p>
-      </div>
-      <div class="oferta-visual reveal">
-        <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animação da plataforma Cxpress a mostrar os canais E-mail, WhatsApp, Facebook, Instagram, Webchat e Telefone integrados no mesmo painel" width="566" height="318" loading="lazy" style="min-height:0;">
-      </div>
-    </div>
-  </section>
-
-  <!-- MAIS CONTROLO PARA EQUIPAS DE MARKETING E AGÊNCIAS -->
-  <section class="beneficios">
-    <div class="wrap">
-      <div class="reveal">
-        <div class="section-head" style="margin-bottom:20px;">
-          <h2>Mais controlo para equipas de marketing e agências</h2>
-        </div>
-        <p class="beneficios-intro">Com uma operação centralizada, a sua equipa pode:</p>
-        <div class="check-grid">
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Transformar conversas em oportunidades comerciais.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Distribuir leads entre equipas e clientes.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Organizar contactos por campanha ou interesse.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Permitir múltiplos atendentes num único número.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Automatizar as primeiras interações com inteligência artificial.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Preservar o histórico completo de cada contacto.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Acompanhar o desempenho em dashboards.</p></div>
-          <div class="check-item"><span class="check-icon" aria-hidden="true">&check;</span><p>Identificar campanhas que geram mais conversas e oportunidades.</p></div>
-        </div>
-      </div>
-      <div class="beneficios-visual reveal">
-        <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animação do dashboard da plataforma Cxpress com indicadores de desempenho" width="816" height="458" loading="lazy" style="min-height:0;">
-      </div>
-    </div>
-  </section>
-
-  <!-- RESULTADOS -->
-  <section class="resultados">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <h2>Resultados de empresas que potenciaram as suas equipas com a Cxpress</h2>
-      </div>
-      <ul class="resultados-grid reveal">
-        <li class="resultado-stat"><span class="resultado-num">+220%</span><span class="resultado-label">de interações realizadas com a mesma estrutura de atendimento.*</span></li>
-        <li class="resultado-stat"><span class="resultado-num">Até 15x mais produtividade</span><span class="resultado-label">nas interações automatizadas por IA, aumentando a capacidade da equipa.*</span></li>
-        <li class="resultado-stat"><span class="resultado-num">98% de qualidade</span><span class="resultado-label">nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*</span></li>
-      </ul>
-      <p class="resultados-nota reveal">*Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar consoante a operação.</p>
     </div>
   </section>
 
@@ -364,6 +290,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="bubble out"><span class="line" style="width:130px;"></span><span class="line" style="width:60px;"></span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="resultados">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <h2>Resultados de empresas que potenciaram as suas equipas com a Cxpress</h2>
+      </div>
+      <ul class="resultados-grid reveal">
+        <li class="resultado-stat"><span class="resultado-num">+220%</span><span class="resultado-label">de interações realizadas com a mesma estrutura de atendimento.*</span></li>
+        <li class="resultado-stat"><span class="resultado-num">Até 15x mais produtividade</span><span class="resultado-label">nas interações automatizadas por IA, aumentando a capacidade da equipa.*</span></li>
+        <li class="resultado-stat"><span class="resultado-num">98% de qualidade</span><span class="resultado-label">nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*</span></li>
+      </ul>
+      <p class="resultados-nota reveal">*Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar consoante a operação.</p>
+    </div>
+  </section>
+
+  <!-- A COMUNICAÇÃO DA SUA MARCA, FINALMENTE NUM SÓ LUGAR -->
+  <section class="oferta">
+    <div class="wrap">
+      <div class="oferta-copy reveal">
+        <div class="section-head" style="margin-bottom:24px;">
+          <h2>A comunicação da sua marca, finalmente num só lugar</h2>
+        </div>
+        <p>Centralize as conversas do WhatsApp oficial numa única plataforma e dê visibilidade a toda a equipa.</p>
+        <p>Distribua contactos, organize filas, acompanhe históricos e permita que vários atendentes utilizem o mesmo número de forma organizada.</p>
+      </div>
+      <div class="oferta-visual reveal">
+        <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animação da plataforma Cxpress a mostrar os canais E-mail, WhatsApp, Facebook, Instagram, Webchat e Telefone integrados no mesmo painel" width="566" height="318" loading="lazy" style="min-height:0;">
       </div>
     </div>
   </section>
@@ -411,15 +368,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p>Acompanhe volume, tempo de resposta, produtividade e resultados num único painel.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- O WHATSAPP PODE SER MAIS DO QUE UMA CAIXA DE MENSAGENS (pausa) -->
-  <section class="pausa">
-    <div class="wrap reveal">
-      <h2>O WhatsApp pode ser mais do que uma caixa de mensagens</h2>
-      <p>Enquanto algumas marcas ainda utilizam o WhatsApp de forma manual e descentralizada, outras já o transformaram num canal estratégico de marketing, vendas e relacionamento.</p>
-      <p>A diferença está na capacidade de organizar, automatizar e aproveitar cada conversa.</p>
     </div>
   </section>
 
