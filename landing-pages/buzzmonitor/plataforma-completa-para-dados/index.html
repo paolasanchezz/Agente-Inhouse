@@ -229,15 +229,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ===== DIFERENCIAIS (SOLUCAO) ===== */
   .diferenciais{ background:var(--white); }
-  .dif-top{ display:grid; grid-template-columns:1fr 1.25fr; gap:56px; align-items:start; margin-bottom:64px; }
-  .dif-top h2{ font-size:clamp(26px,3.2vw,36px); margin-bottom:10px; }
-  .dif-top h3{ font-family:var(--font-sub); font-weight:500; font-size:18px; color:var(--ink-soft); margin-bottom:20px; }
-  .dif-top .intro-body{ font-size:16.5px; color:var(--ink); margin-bottom:22px; }
-  .pill-row{ display:flex; flex-wrap:wrap; gap:10px; }
-  .data-pill{
-    font-family:var(--font-sub); font-weight:600; font-size:14px; color:var(--purple);
-    background:var(--purple-light); padding:8px 18px; border-radius:999px;
+  .dif-hero{ max-width:680px; margin:0 auto 40px; text-align:center; }
+  .dif-hero h2{ font-size:clamp(26px,3.2vw,36px); margin-bottom:10px; }
+  .dif-hero h3{ font-family:var(--font-sub); font-weight:500; font-size:18px; color:var(--ink-soft); margin-bottom:16px; }
+  .dif-hero .intro-body{ font-size:16.5px; color:var(--ink); }
+  .dif-hero-visual{ max-width:920px; margin:0 auto 64px; overflow:hidden; }
+  .dif-hero-visual img{
+    border-radius:18px; box-shadow:0 20px 50px rgba(57,1,85,.15);
+    width:100%; height:auto; aspect-ratio:1672/941; object-fit:cover; min-height:0;
   }
+  .dif-top{ display:grid; grid-template-columns:1fr 1.25fr; gap:56px; align-items:start; margin-bottom:64px; }
+  .dif-top .intro-body{ font-size:16.5px; color:var(--ink); margin-bottom:22px; }
   .dif-visual{ overflow:hidden; }
   .dif-visual img{
     border-radius:18px; box-shadow:0 20px 50px rgba(57,1,85,.15);
@@ -245,18 +247,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .benefit-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; margin-bottom:56px;
+    display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; margin-bottom:56px;
   }
+  @media (max-width:980px){ .benefit-grid{ grid-template-columns:repeat(3, 1fr); } }
+  @media (max-width:600px){ .benefit-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:400px){ .benefit-grid{ grid-template-columns:1fr; } }
   .benefit-card{
-    background:var(--white); border:1px solid var(--line); border-radius:16px; padding:28px 24px;
-    display:flex; flex-direction:column; gap:12px; transition:transform .25s ease, box-shadow .25s ease;
+    background:var(--white); border:1px solid var(--line); border-radius:14px; padding:20px 14px;
+    display:flex; flex-direction:column; gap:10px; transition:transform .25s ease, box-shadow .25s ease;
     box-shadow:0 10px 26px rgba(0,0,0,.06);
   }
   .benefit-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(57,1,85,.16); }
   .benefit-icon{
-    width:44px; height:44px; border-radius:12px;
+    width:44px; height:44px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
   }
+  .benefit-icon svg{ width:20px; height:20px; }
   .benefit-icon.i-1{ background:var(--purple-light); color:var(--purple); }
   .benefit-icon.i-2{ background:var(--orange-light); color:var(--orange); }
   .benefit-icon.i-3{ background:var(--teal-light); color:var(--teal); }
@@ -264,15 +270,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .benefit-icon.i-5{ background:var(--orange-light); color:var(--orange); }
   .benefit-icon.i-6{ background:var(--teal-light); color:var(--teal); }
   .benefit-card h3{ font-family:var(--font-sub); font-size:16.5px; font-weight:700; color:var(--ink); }
-  .benefit-card p{ font-size:15px; color:var(--ink-soft); line-height:1.5; }
+  .benefit-card p{ font-size:13.5px; color:var(--ink-soft); line-height:1.45; }
 
   .dif-closing{
-    max-width:640px; margin:0 auto; text-align:center;
+    max-width:720px; margin:0 auto; text-align:center;
     padding-top:36px; border-top:1.5px solid var(--line);
   }
   .dif-closing p{
-    font-family:var(--font-display); font-weight:700; font-size:22px;
-    margin-bottom:28px;
+    font-family:var(--font-display); font-weight:700; font-size:clamp(28px, 3.4vw, 38px);
+    line-height:1.25; margin-bottom:28px;
   }
   .text-gradient{
     color:var(--orange);
@@ -487,22 +493,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="diferenciais" id="diferenciais">
     <div class="container">
+      <div class="dif-hero reveal">
+        <h2>Todos os dados em uma única plataforma.</h2>
+        <h3>Para uma visão mais clara e decisões mais assertivas.</h3>
+        <p class="intro-body">A <span translate="no">Buzzmonitor</span> reúne dados das redes sociais de todas as frentes da sua operação.</p>
+      </div>
+      <div class="dif-hero-visual reveal">
+        <img src="./assets/dashboard-categorias.png" alt="Mulher usando o celular cercada por painéis com as categorias Monitoramento, Atendimento, Performance, Concorrentes, Tendências, Social News e Crises, além de gráficos de sentimento dos tickets, top 5 tags mais frequentes e crescimento de seguidores" width="1672" height="941" loading="lazy">
+      </div>
+
       <div class="dif-top">
         <div class="dif-content reveal">
-          <h2>Todos os dados em uma única plataforma.</h2>
-          <h3>Para uma visão clara e decisões mais assertivas.</h3>
-          <p class="intro-body">A <span translate="no">Buzzmonitor</span> reúne dados das redes sociais de todas as frentes da sua operação:</p>
-          <div class="pill-row">
-            <span class="data-pill">Monitoramento</span>
-            <span class="data-pill">Atendimento</span>
-            <span class="data-pill">Performance</span>
-            <span class="data-pill">Concorrentes</span>
-            <span class="data-pill">Tendências</span>
-            <span class="data-pill">Social News</span>
-            <span class="data-pill">Crises</span>
-            <span class="data-pill">Campanhas</span>
-          </div>
-          <p class="intro-body" style="margin-top:22px;">Assim, sua equipe deixa de cruzar planilhas e informações manualmente para acompanhar tudo em dashboards atualizados em tempo real.</p>
+          <p class="intro-body">Assim, sua equipe deixa de cruzar planilhas e informações manualmente para acompanhar tudo em dashboards atualizados em tempo real.</p>
           <p class="intro-body">E com inteligência artificial, a plataforma centraliza e analisa grandes volumes de dados, identifica padrões, mudanças de sentimento, tendências e oportunidades. E transforma tudo em insights claros para orientar as próximas decisões.</p>
         </div>
         <div class="dif-visual reveal">

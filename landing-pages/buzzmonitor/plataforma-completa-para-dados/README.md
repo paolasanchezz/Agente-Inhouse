@@ -10,7 +10,7 @@
 - HEADER (logo + CTA)
 - HERO — H1/SUB/CTA + ilustração SVG customizada (cenário confuso: pilha de relatórios/planilha + 12 selos de rede social: Facebook, Instagram, YouTube, LinkedIn, X, Pinterest, Reclame Aqui, Google Meu Negócio, App Store, Google Play, Bluesky, Threads)
 - PROBLEMA — dados fragmentados (3 parágrafos, com termos-chave em negrito)
-- DIFERENCIAIS (SOLUCAO) — 1 bloco split único (texto completo+pills à esquerda / screenshot à direita), grid de 6 benefícios, fechamento em `.text-gradient` (laranja/amarelo animado) + CTA
+- DIFERENCIAIS (SOLUCAO) — bloco 1 `.dif-hero`: H2+H3+intro centralizados + `.dif-hero-visual` (imagem grande centralizada, `dashboard-categorias.png`); bloco 2 `.dif-top`: parágrafos sobre IA ao lado de `dashboard-mockup.png` (pill-row removida — round 7); grid de 6 benefícios (ícones circulares), fechamento em `.text-gradient` (laranja/amarelo animado) + CTA
 - IA COMO DIFERENCIAL — fundo `.bg-gradient` (laranja/amarelo/azul, fornecido pelo usuário), grid de 6 cards (Dashboards ilimitados, Buzz Pills, AI Insights, Classificação automática, Relatórios de produtividade, Buzzmonitor Trends). Sem overline (removido a pedido do usuário)
 - CASES — Oi / Betnacional / Prime Energy / Camil (réplica da LP irmã, case 3 trocado de Grupo Casas Bahia para Prime Energy)
 - CTA-FINAL — pill + H2 + embed real Jotform
@@ -28,14 +28,18 @@
 - [x] Formulário integrado — Jotform (2026-07-29), mesmo form da LP irmã (`jsform/252995108251662`)
 - [x] OG image (1200×630) — gerada via Chrome headless em 2026-07-29, `assets/og-image.png` (logo renderizou corretamente, ao contrário do bug conhecido na LP irmã — path corrigido para 4 níveis acima)
 - [x] Imagem da seção DIFERENCIAIS trocada — `assets/dashboard-mockup.png` (1536×1024), recebida via Google Drive em 2026-07-29
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor plataforma-completa-para-dados content.buzzmonitor.com`
+- [x] Publicado — live em https://content.buzzmonitor.com/plataforma-completa-para-dados desde 2026-07-30 (PR #123, deploy CI [run 30556599509](https://github.com/victorfmlopes/Agente-Inhouse/actions/runs/30556599509)). Relatório: ver Notion "Entrega LP · Buzzmonitor · plataforma-completa-para-dados · 2026-07-30"
+- [x] Round 6 (2026-07-31): seção Diferenciais reestruturada em 2 blocos + nova imagem `dashboard-categorias.png` (mulher com celular cercada pelas categorias reais) + ícones do benefit-grid trocados para circulares.
+- [x] Round 7 (2026-07-31): pill-row (8 categorias em lilás) removida.
+- [x] Round 8 (2026-07-31): benefit-grid em 6 colunas numa linha só (desktop); fonte do fechamento `.text-gradient` aumentada. **Pendente novo `/lp-publicar` pra levar essas mudanças ao ar.**
 
 ## Assets referenciados
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header)
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
-- `./assets/dashboard-mockup.png` (1536×1024 — ilustração de laptop com dashboard, fornecida pelo usuário via Google Drive) — usada na seção Diferenciais
+- `./assets/dashboard-categorias.png` (1672×941 — mulher com celular cercada pelas categorias/gráficos reais, fornecida via Google Drive) — usada no bloco `.dif-hero-visual` (topo da seção Diferenciais)
+- `./assets/dashboard-mockup.png` (1536×1024 — ilustração de laptop com dashboard, fornecida pelo usuário via Google Drive) — usada no bloco `.dif-top` (2º bloco da seção Diferenciais)
 - `./assets/dashboard-analytics.png` e `./assets/dashboard-laptop.png` — não mais referenciadas no HTML (substituídas), mantidas no repo caso voltem a ser úteis
 - `./assets/logo-wall.png` (1912×690 — reaproveitado de `plataforma-completa-monitoramento/assets/logo-wall.png`, mesma imagem)
 - `./assets/og-image.png` (1200×630 — OG image gerada via `assets/og-source.html` + Chrome headless)

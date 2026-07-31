@@ -20,23 +20,22 @@ BODY: **Quando os dados não estão conectados, cada decisão carrega mais dúvi
 # Round 5 (2026-07-29): navy #131a2e removido do `.problem-bg` a pedido do usuário — mantido só o pontilhado laranja a 40% de opacidade sobre o fundo branco da seção.
 
 === SOLUCAO ===
-# Seção "diferenciais" (nome do usuário no chat). Formato: bloco split único (texto completo à esquerda — H2+H3+intro+pills+BODY sobre IA — screenshot do produto à direita), seguido por grid de 6 cards de benefício.
+# Seção "diferenciais" (nome do usuário no chat).
 # Round 2 (2026-07-29): usuário pediu para consolidar em 1 única seção (antes eram 2 blocos com 2 imagens) e substituir a imagem por uma nova ("primeira imagem em anexo" do pedido).
 # Round 4 (2026-07-29): imagem recebida via link do Google Drive, salva em assets/dashboard-mockup.png (1536×1024). Substitui o placeholder dashboard-analytics.png.
+# Round 6 (2026-07-31): reestruturado em 2 blocos, inspirado na 2ª imagem em anexo (texto centralizado acima de uma imagem grande e centralizada):
+#  1) .dif-hero — H2+H3+intro centralizados, seguido por .dif-hero-visual (nova imagem, assets/dashboard-categorias.png, 1672×941, recebida via Google Drive — mulher usando celular cercada pelas 7 categorias em pills reais + gráficos de sentimento/tags/seguidores).
+#  2) .dif-top — pill-row (texto) + parágrafos sobre IA, ao lado da imagem já existente (dashboard-mockup.png), agora "descida" para este segundo bloco.
+# H3 ganhou "mais" ("Para uma visão MAIS clara...") e o BODY intro perdeu o dois-pontos final (":") — os pills não vêm mais colados nessa frase, viraram bloco separado no 2º grupo.
+# Ícones do benefit-grid trocados de quadrado arredondado (12px) para circulares (50%), inspirados na 1ª imagem em anexo do pedido de 2026-07-31.
 H2: Todos os dados em uma única plataforma.
-H3: Para uma visão clara e decisões mais assertivas.
-BODY: A Buzzmonitor reúne dados das redes sociais de todas as frentes da sua operação:
-LIST ITEM (categoria/pill): Monitoramento
-LIST ITEM (categoria/pill): Atendimento
-LIST ITEM (categoria/pill): Performance
-LIST ITEM (categoria/pill): Concorrentes
-LIST ITEM (categoria/pill): Tendências
-LIST ITEM (categoria/pill): Social News
-LIST ITEM (categoria/pill): Crises
-LIST ITEM (categoria/pill): Campanhas
+H3: Para uma visão mais clara e decisões mais assertivas.
+BODY: A Buzzmonitor reúne dados das redes sociais de todas as frentes da sua operação.
 BODY: Assim, sua equipe deixa de cruzar planilhas e informações manualmente para acompanhar tudo em dashboards atualizados em tempo real.
 BODY: E com inteligência artificial, a plataforma centraliza e analisa grandes volumes de dados, identifica padrões, mudanças de sentimento, tendências e oportunidades. E transforma tudo em insights claros para orientar as próximas decisões.
 # Round 3 (2026-07-29): pills "Crises" e "Campanhas" adicionadas (total 8). Parágrafo quebrado em 2 (dois enters) após "atualizados em tempo real.".
+# Round 7 (2026-07-31): pill-row (as 8 categorias em lilás) removida a pedido do usuário — a imagem dashboard-categorias.png do bloco .dif-hero já mostra 7 delas visualmente (faltando só "Campanhas"), então o texto redundante saiu.
+# Round 8 (2026-07-31): benefit-grid forçado a 6 colunas numa linha só no desktop (era auto-fit, quebrava em 2 linhas); breakpoints reduzem pra 3/2/1 colunas em telas menores. Fonte do fechamento (.text-gradient) aumentada de 22px fixo para clamp(28px,3.4vw,38px).
 LIST ITEM (card benefício): Centralize os dados da marca, do público e dos concorrentes
 LIST ITEM (card benefício): Automatize dashboards e relatórios
 LIST ITEM (card benefício): Interprete conversas e métricas com IA
