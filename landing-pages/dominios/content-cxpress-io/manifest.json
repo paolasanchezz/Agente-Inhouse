@@ -171,6 +171,11 @@
       "source": "landing-pages/cxpress/whatsapp-business-smb"
     },
     {
+      "slug": "whatsapp-business-smb-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/whatsapp-business-smb-latam"
+    },
+    {
       "slug": "whatsapp-business-smb-pt",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/whatsapp-business-smb-pt"
