@@ -31,11 +31,21 @@ BODY: **Quando os dados não estão conectados, cada decisão carrega mais dúvi
 H2: Todos os dados em uma única plataforma.
 H3: Para uma visão mais clara e decisões mais assertivas.
 BODY: A Buzzmonitor reúne dados das redes sociais de todas as frentes da sua operação.
+LIST ITEM (categoria/pill): Monitoramento
+LIST ITEM (categoria/pill): Atendimento
+LIST ITEM (categoria/pill): Performance
+LIST ITEM (categoria/pill): Concorrentes
+LIST ITEM (categoria/pill): Social News
+LIST ITEM (categoria/pill): Gestão de crises
+LIST ITEM (categoria/pill): Tendências
+LIST ITEM (categoria/pill): Campanhas
 BODY: Assim, sua equipe deixa de cruzar planilhas e informações manualmente para acompanhar tudo em dashboards atualizados em tempo real.
 BODY: E com inteligência artificial, a plataforma centraliza e analisa grandes volumes de dados, identifica padrões, mudanças de sentimento, tendências e oportunidades. E transforma tudo em insights claros para orientar as próximas decisões.
 # Round 3 (2026-07-29): pills "Crises" e "Campanhas" adicionadas (total 8). Parágrafo quebrado em 2 (dois enters) após "atualizados em tempo real.".
 # Round 7 (2026-07-31): pill-row (as 8 categorias em lilás) removida a pedido do usuário — a imagem dashboard-categorias.png do bloco .dif-hero já mostra 7 delas visualmente (faltando só "Campanhas"), então o texto redundante saiu.
 # Round 8 (2026-07-31): benefit-grid forçado a 6 colunas numa linha só no desktop (era auto-fit, quebrava em 2 linhas); breakpoints reduzem pra 3/2/1 colunas em telas menores. Fonte do fechamento (.text-gradient) aumentada de 22px fixo para clamp(28px,3.4vw,38px).
+# Round 9 (2026-07-31): pill-row reinserida a pedido do usuário, agora dentro do .dif-hero (logo abaixo do intro-body, acima da imagem), com 7 termos (sem "Campanhas" desta vez, ordem: Monitoramento/Atendimento/Performance/Concorrentes/Social News/Crises/Tendências). .dif-top voltou para align-items:center (texto e imagem alinhados/centralizados um com o outro). Fonte do fechamento .text-gradient reduzida de clamp(28px,3.4vw,38px) para clamp(24px,3.4vw,31px) — testado empiricamente no browser: 38px quebrava em 3 linhas no desktop (1230px de viewport), 31px é o maior valor que ainda cabe em 2 linhas (720px de container). Em mobile muito estreito (~375px) ainda quebra em 3-4 linhas, mas forçar 2 linhas ali exigiria ~13px (ilegível) — trade-off aceito.
+# Round 10 (2026-07-31): "Campanhas" adicionada de volta à pill-row (agora 8 termos) e "Crises" renomeada para "Gestão de crises".
 LIST ITEM (card benefício): Centralize os dados da marca, do público e dos concorrentes
 LIST ITEM (card benefício): Automatize dashboards e relatórios
 LIST ITEM (card benefício): Interprete conversas e métricas com IA

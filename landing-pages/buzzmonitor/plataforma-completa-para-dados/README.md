@@ -33,6 +33,8 @@
 - [x] Round 7 (2026-07-31): pill-row (8 categorias em lilás) removida.
 - [x] Round 8 (2026-07-31): benefit-grid em 6 colunas numa linha só (desktop); fonte do fechamento `.text-gradient` aumentada.
 - [x] Republicado em 2026-07-31 (PR [#141](https://github.com/victorfmlopes/Agente-Inhouse/pull/141), merge direto via API — o merge-bot/CI de PR não disparou o check-suite do GitHub Actions em nenhuma tentativa nesta rodada, causa não diagnosticada, provavelmente pontual; deploy disparou normalmente pelo push na main, [run 30651822820](https://github.com/victorfmlopes/Agente-Inhouse/actions/runs/30651822820)). Vizinhas do guarda-chuva conferidas intactas (200 nas 4).
+- [x] Round 9 (2026-07-31): pill-row reinserida dentro do `.dif-hero` (7 termos, sem "Campanhas"); `.dif-top` de volta a `align-items:center`; fonte do fechamento `.text-gradient` reduzida para `clamp(24px,3.4vw,31px)` — testado empiricamente no browser (31px é o maior valor que cabe em 2 linhas no container de 720px; 38px quebrava em 3).
+- [x] Round 10 (2026-07-31): pill "Campanhas" adicionada de volta (8 termos no total); "Crises" renomeada para "Gestão de crises". **Pendente novo `/lp-publicar` pra levar essas mudanças ao ar.**
 
 ## Assets referenciados
 
