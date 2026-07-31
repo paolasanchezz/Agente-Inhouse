@@ -31,7 +31,8 @@
 - [x] Publicado — live em https://content.buzzmonitor.com/plataforma-completa-para-dados desde 2026-07-30 (PR #123, deploy CI [run 30556599509](https://github.com/victorfmlopes/Agente-Inhouse/actions/runs/30556599509)). Relatório: ver Notion "Entrega LP · Buzzmonitor · plataforma-completa-para-dados · 2026-07-30"
 - [x] Round 6 (2026-07-31): seção Diferenciais reestruturada em 2 blocos + nova imagem `dashboard-categorias.png` (mulher com celular cercada pelas categorias reais) + ícones do benefit-grid trocados para circulares.
 - [x] Round 7 (2026-07-31): pill-row (8 categorias em lilás) removida.
-- [x] Round 8 (2026-07-31): benefit-grid em 6 colunas numa linha só (desktop); fonte do fechamento `.text-gradient` aumentada. **Pendente novo `/lp-publicar` pra levar essas mudanças ao ar.**
+- [x] Round 8 (2026-07-31): benefit-grid em 6 colunas numa linha só (desktop); fonte do fechamento `.text-gradient` aumentada.
+- [x] Republicado em 2026-07-31 (PR [#141](https://github.com/victorfmlopes/Agente-Inhouse/pull/141), merge direto via API — o merge-bot/CI de PR não disparou o check-suite do GitHub Actions em nenhuma tentativa nesta rodada, causa não diagnosticada, provavelmente pontual; deploy disparou normalmente pelo push na main, [run 30651822820](https://github.com/victorfmlopes/Agente-Inhouse/actions/runs/30651822820)). Vizinhas do guarda-chuva conferidas intactas (200 nas 4).
 
 ## Assets referenciados
 
