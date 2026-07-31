@@ -7,9 +7,9 @@ BODY: meta description sugerida: Descubra como sair do escuro na gestão do aten
 
 === HERO ===
 LABEL: Oferta exclusiva
-H1: Recupere o controle da sua gestão de atendimento.
-SUB: Sem números confiáveis, ninguém sabe se a operação está sob controle, até dar errado. Veja como organizar processo e métricas do seu time a partir das conversas que já acontecem todos os dias.
-# [ALTERADO a pedido do usuario, 2026-07-31] H1 original ("Sua equipe atende. Mas ninguém sabe se atende bem.") seguia a regra GUIDELINES §3 de abrir pela dor. O usuario pediu explicitamente algo "mais alarmista" no estilo solucao/imperativo ("Recupere o controle..."). Decisao dele como aprovador da copy, registrada aqui para auditoria futura.
+H1: Saia da desorganização antes que ela afaste seus clientes
+SUB: Agende uma avaliação gratuita com um especialista da Cxpress e descubra onde estão os principais riscos e como estruturar sua equipe para atender com mais eficiência.
+# [ALTERADO a pedido do usuario, 2026-07-31] H1/SUB trocados pela 2a vez. Historico: original "Sua equipe atende. Mas ninguém sabe se atende bem." (dor-first, GUIDELINES §3) -> "Recupere o controle da sua gestão de atendimento." (pedido: mais alarmista) -> "Saia da desorganização antes que ela afaste seus clientes" (pedido atual, sem ponto final). Decisao do usuario como aprovador da copy.
 LABEL: Condição especial para quem participou do webinar
 LIST ITEM: Nosso time de especialistas vai dedicar até 20h na criação do seu primeiro agente de IA
 LIST ITEM: Economize R$ 4 mil e comece com uma estrutura pronta para escalar seu atendimento
@@ -25,23 +25,8 @@ LABEL: 11%
 BODY: dos brasileiros dizem estar plenamente satisfeitos com o atendimento que recebem.
 QUOTE: Instituto Hibou, 2020.
 
-=== REGRA (secao escura) ===
-H2: Não é falta de esforço. É falta de processo.
-H3: Como sair do escuro e recuperar o controle da sua gestão de atendimento, com métricas e processo de atendimento.
-BODY: Para a Cxpress, atendimento sem indicador não é atendimento ruim. É atendimento que ninguém está enxergando.
-LIST ITEM: Sem indicadores, cada atendente decide sozinho o que é &ldquo;atender bem&rdquo;. E cada um decide diferente.
-LIST ITEM: Sem processo definido, a experiência do cliente muda dependendo de quem responde no dia.
-BODY: No escuro, a gestão reage depois que o cliente já reclamou.
-
-=== O QUE VOCE PERDE ===
-H2: O custo de não medir vai muito além do relatório que falta
-H3: Sem visibilidade sobre o atendimento, a gestão perde:
-LIST ITEM: O tempo real de resposta: sem dado, ninguém sabe se o cliente espera 2 minutos ou 2 horas.
-LIST ITEM: A qualidade por atendente: bons e maus atendimentos ficam misturados na mesma média invisível.
-LIST ITEM: O motivo dos cancelamentos: quando o cliente sai insatisfeito, a causa raiz nunca chega ao gestor.
-LIST ITEM: O histórico do cliente: cada atendente reconta a mesma história porque ninguém enxerga a conversa anterior.
-LIST ITEM: O momento de agir: sem indicador, o problema só aparece quando já virou reclamação pública.
-BODY: Sem métrica, o problema anda um passo à frente da gestão.
+# [REMOVIDO a pedido do usuario, 2026-07-31] Secao REGRA ("Não é falta de esforço. É falta de processo.") removida da LP.
+# [REMOVIDO a pedido do usuario, 2026-07-31] Secao O QUE VOCE PERDE ("O custo de não medir vai muito além do relatório que falta") removida da LP.
 
 === CARD DESTACADO ===
 H2: O histórico do seu cliente pertence à sua empresa
@@ -62,4 +47,4 @@ CTA: Garantir oferta
 === FOOTER ===
 FOOTER: Cxpress é um produto Elife. (c) 2026. Condições gerais de uso da Cxpress. Políticas de privacidade.
 
-# Revisao anti-IA: em-dash = 0. Antitese-por-negacao: 2 instancias ("Não é falta de esforço. É falta de processo." e "decisões de gestão apoiadas no painel, não na memória de quem atendeu"), dentro do limite de ate 2 por peca (regras-anti-ia.md). Sem filler words, sem frases-tipicas-de-IA, sem metafora aquatica. Stat com fonte real (Instituto Hibou, 2020; pesquisa mais recente e especifica sobre "empresas sem metrica de atendimento" nao encontrada, stat de satisfacao geral usada como proxy, sourced e datada com honestidade).
+# Revisao anti-IA (atualizada 2026-07-31 apos remocao das secoes Regra e O que voce perde): em-dash = 0. Antitese-por-negacao: 1 instancia restante ("decisões de gestão apoiadas no painel, não na memória de quem atendeu"), dentro do limite de ate 2 por peca (regras-anti-ia.md). Sem filler words, sem frases-tipicas-de-IA, sem metafora aquatica. Stat da secao Impacto (Instituto Hibou, 2020) mantida.

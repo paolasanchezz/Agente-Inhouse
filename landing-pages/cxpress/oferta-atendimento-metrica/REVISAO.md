@@ -19,6 +19,15 @@
 
 Nenhum achado estilistico alem do que ja e padrao herdado da LP-referencia (`oferta-whatsapp-comercial-bloqueado`), ja validada em producao.
 
+## Atualizacao 2026-07-31 (pos-publicacao, a pedido do usuario)
+
+- H1/SUB trocados novamente: "Saia da desorganização antes que ela afaste seus clientes" (sem ponto final) + novo subtitulo convidando para avaliacao gratuita com especialista.
+- Secao REGRA ("Não é falta de esforço. É falta de processo.") removida.
+- Secao O QUE VOCE PERDE ("O custo de não medir vai muito além do relatório que falta") removida.
+- CSS orfao das duas secoes removido do `<style>` (`.rule-block`, `.rule-rows`, `.rule-row`, `.problem-list`, `.x-mark`, `.problem-closer`, `.lose-header`).
+- OG image regerada com o H1 novo. `og:image:alt` atualizado.
+- Build + GTM gate revalidados limpos apos as mudancas.
+
 ## Notas de escopo
 
 - Estrutura clonada 1:1 da LP `oferta-whatsapp-comercial-bloqueado` (mesmo CSS, mesma ordem de secoes) a pedido explicito do usuario — nao passou por `/lp-gerar` (frontend-design generativo), e sim clone + adaptacao de copy, mesmo padrao ja usado em `whatsapp-business-smb-pt`.
