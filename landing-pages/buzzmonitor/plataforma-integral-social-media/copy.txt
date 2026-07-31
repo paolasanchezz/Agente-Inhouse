@@ -1,9 +1,11 @@
 === HERO ===
 H1: Varias herramientas, cero eficiencia
 SUB: Con Buzzmonitor tienes social listening, reportes en tiempo real, atención al cliente y programación de publicaciones desde una sola plataforma.
-LIST ITEM: Escucha dispersa
-LIST ITEM: Publicación sin sincronía
-LIST ITEM: Reportes manuales
+LIST ITEM: Herramientas dispersas
+LIST ITEM: Precios altos
+LIST ITEM: Crisis de marca
+LIST ITEM: Monitoreo lento
+LIST ITEM: Atención al cliente descentralizada
 CTA: Agenda una demo
 QUOTE: Más de 1000 empresas y agencias ya confían en Buzzmonitor.
 
@@ -58,6 +60,11 @@ BODY: Resumen inteligente de lo que importa.
 LABEL: Tu competencia
 LABEL: Tú
 CTA: Agenda una demo
+
+=== PAUSA-REALCE ===
+STAT: +1000
+BODY: empresas y agencias en LATAM ya escalan su social media con Buzzmonitor.
+# Nota: elemento visual de realce (degradado del brandbook), reutiliza el proof-point ya presente en HERO/CTA-FINAL. No introduce claim nuevo.
 
 === DIFERENCIAL ===
 H2: Todo lo que necesitas, en un solo lugar
