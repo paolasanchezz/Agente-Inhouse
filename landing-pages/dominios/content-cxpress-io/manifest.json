@@ -111,6 +111,11 @@
       "source": "landing-pages/cxpress/livraria"
     },
     {
+      "slug": "oferta-atendimento-sem-metrica",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/oferta-atendimento-sem-metrica"
+    },
+    {
       "slug": "oferta-whatsapp-comercial-bloqueado",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/oferta-whatsapp-comercial-bloqueado"
