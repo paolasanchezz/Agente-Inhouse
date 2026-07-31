@@ -111,6 +111,11 @@
       "source": "landing-pages/cxpress/livraria"
     },
     {
+      "slug": "oferta-atendimento-metrica",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/oferta-atendimento-metrica"
+    },
+    {
       "slug": "oferta-atendimento-sem-metrica",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/oferta-atendimento-sem-metrica"
