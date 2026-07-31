@@ -8,7 +8,7 @@ BODY: meta description sugerida: Descubra como sair do escuro na gestão do aten
 === HERO ===
 LABEL: Oferta exclusiva
 H1: Saia da desorganização antes que ela afaste seus clientes
-SUB: Agende uma avaliação gratuita com um especialista da Cxpress e descubra onde estão os principais riscos e como estruturar sua equipe para atender com mais eficiência.
+SUB: Agende uma avaliação gratuita com um especialista da Cxpress e descubra onde estão os riscos e como estruturar sua equipe para atender com mais eficiência.
 # [ALTERADO a pedido do usuario, 2026-07-31] H1/SUB trocados pela 2a vez. Historico: original "Sua equipe atende. Mas ninguém sabe se atende bem." (dor-first, GUIDELINES §3) -> "Recupere o controle da sua gestão de atendimento." (pedido: mais alarmista) -> "Saia da desorganização antes que ela afaste seus clientes" (pedido atual, sem ponto final). Decisao do usuario como aprovador da copy.
 LABEL: Condição especial para quem participou do webinar
 LIST ITEM: Nosso time de especialistas vai dedicar até 20h na criação do seu primeiro agente de IA
