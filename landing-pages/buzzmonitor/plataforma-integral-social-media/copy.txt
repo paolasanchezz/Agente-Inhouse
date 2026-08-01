@@ -1,97 +1,102 @@
+=== NAV ===
+LINK: Plataforma
+LINK: Soluciones
+LINK: Clientes
+LINK: Comparativa
+CTA: Agenda una demo
+
 === HERO ===
-H1: Varias herramientas, cero eficiencia
-SUB: Con Buzzmonitor tienes social listening, reportes en tiempo real, atención al cliente y programación de publicaciones desde una sola plataforma.
-LIST ITEM: Herramientas dispersas
-LIST ITEM: Precios altos
-LIST ITEM: Crisis de marca
-LIST ITEM: Monitoreo lento
-LIST ITEM: Atención al cliente descentralizada
+EYEBROW: Solución integral para Social Media
+H1: Toda tu operación de Social Media en una sola plataforma
+BODY: Escucha, analiza, publica, atiende y reporta desde un solo lugar con Inteligencia Artificial. Reduce costos, ahorra tiempo y toma mejores decisiones.
 CTA: Agenda una demo
-QUOTE: Más de 1000 empresas y agencias ya confían en Buzzmonitor.
+CTA SECUNDARIO: Ver cómo funciona
+QUOTE: Más de 1.000 empresas y agencias ya confían en Buzzmonitor.
+TILE: Escucha social en tiempo real
+TILE: Publica y programa
+TILE: Mide y analiza resultados
+TILE: Dashboards e informes
+TILE: Atención al cliente desde un solo lugar
+TILE: Ahorra costos y aumenta tu ROI
 
-=== PROBLEMA-AGENCIAS ===
-H2: Más clientes, no más caos
-BODY: Cada cuenta nueva es una herramienta más, un reporte más, un margen más chico.
-BODY: Las agencias que escalan centralizan todo en Buzzmonitor: mismo equipo, más clientes, más ganancias.
-LIST ITEM: Más clientes
-LIST ITEM: Más reportes
-LIST ITEM: ¿Menos tiempo?
-LIST ITEM: ¿Menos margen?
+=== LOGOS-AGENCIAS ===
+BODY: Marcas y agencias que transforman su operación con Buzzmonitor
+LOGO: Kaleidoscopio Agency
+LOGO: McCann
+LOGO: Agencia Lead
+LOGO: Sube
+LOGO: Eureka&Co
+LOGO: Havas
+LOGO: TBWA
+
+=== DESAFIOS ===
+H2: ¿Te identificas con alguno de estos desafíos?
+SUB: La fragmentación, el alto costo y los procesos manuales frenan el crecimiento.
+LIST ITEM: Demasiadas herramientas. Escuchas en una plataforma, publicas en otra y preparas reportes manualmente.
+LIST ITEM: Alto costo, bajo retorno. Pagas una solución enterprise que el equipo no aprovecha por completo.
+LIST ITEM: Crisis detectadas tarde. El monitoreo manual no permite reaccionar antes de que el problema escale.
+LIST ITEM: La operación no escala. Cada nuevo cliente suma horas, reportes y presión sobre el equipo.
+
+=== FEATURES ===
+H2: Una solución integral para toda tu estrategia
+SUB: Todos los módulos que necesitas para operar, analizar y crecer.
+LIST ITEM: Social Listening con IA. Monitorea conversaciones, tendencias, sentimiento y menciones críticas en tiempo real.
+LIST ITEM: Analytics para decidir mejor. Convierte datos de perfiles, campañas y competidores en insights accionables.
+LIST ITEM: Dashboards e informes. Genera reportes visuales y automáticos para clientes, líderes y stakeholders.
+LIST ITEM: Buzz Pills + AI Insights. Resume grandes volúmenes de datos y libera tiempo del equipo para la estrategia.
+LIST ITEM: Atención al cliente. Centraliza mensajes, clasifica conversaciones y responde con mayor rapidez.
+LIST ITEM: Publicación de contenidos. Planifica, aprueba y publica en tus redes desde una sola plataforma.
+
+=== AUDIENCIAS (tabs) ===
+H2: Diseñado para equipos que necesitan escalar
+TAB: Agencias — Suma clientes sin sumar horas de operación ni reducir tus márgenes.
+TAB: Marcas regionales — Obtén una visión consistente de múltiples marcas, campañas y países.
+TAB: Gobierno e instituciones — Monitorea percepción ciudadana, reputación y alertas críticas.
+
+=== BENEFICIOS ===
+H2: ¿Por qué las empresas cambian a Buzzmonitor?
+LIST ITEM: Reduce costos. Reemplaza varias herramientas por una sola plataforma integral.
+LIST ITEM: Acompañamiento cercano. Onboarding, capacitación y soporte durante toda la implementación.
+LIST ITEM: Automatiza procesos. Menos tareas manuales y más tiempo para análisis y estrategia.
+LIST ITEM: Escala la operación. Administra más marcas y clientes sin aumentar la complejidad.
+
+=== TESTIMONIOS ===
+H2: Lo que nuestros clientes consiguen
+QUOTE: Hemos sido capaces de configurar proyectos de gran magnitud, desde locales hasta globales, obteniendo resultados muy valiosos e insights. — Pablo Ferrer, Head of Social Media, MRM // McCann
+QUOTE: Necesitábamos un aliado como Buzzmonitor para poder no solamente prevenir potenciales crisis, sino también amplificar la voz de cada uno de los aliados de Kaleidoscopio. — Daniela Estrada, Account Manager, Kaleidoscopio Agency
+QUOTE: Cubre todas las necesidades de los profesionales de Social Media Marketing al permitir escuchar, analizar y actuar sobre la conversación relacionada con tus clientes. — José Manuel López, Social Media Coordinador, Publicis
+QUOTE: Optimiza el tiempo de producción de los informes que entregamos a los clientes permitiéndonos especificar cada detalle a través de etiquetas. — Cecilia Esquivel, Directora Digital, Eureka&Co
+QUOTE: El equipo de Customer te ayuda en todo. Están muy al pendiente de lo que necesitas, cuáles son tus pains principales, cómo puedes mejorar tu escucha y tu forma de trabajo. — Isabela Matias da Silva, Gerente de Comunidades, SA365
+QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchmark también y lo más importante es que tenemos una perspectiva mucho más amplia de la conversación. — Celina Mendoza, Copywriter Coordinator, Sube Agencia
+
+=== COMPARATIVA ===
+EYEBROW: Más valor, menos costo
+H2: ¿Por qué migrar desde Sprinklr, Meltwater u Onclusive?
+BODY: Obtén potencia enterprise, IA propietaria y acompañamiento cercano sin pagar un precio enterprise.
 CTA: Agenda una demo
-
-=== PROBLEMA-ENTERPRISE ===
-H2: ¿Pagaste enterprise y te abandonaron?
-LIST ITEM: Alto costo
-LIST ITEM: Bajo retorno
-LIST ITEM: Cero acompañamiento
-LABEL: Sin acompañamiento
-LIST ITEM: Funciones complejas
-LIST ITEM: Poco uso del equipo
-LIST ITEM: Reportes subutilizados
-LIST ITEM: Datos desaprovechados
-LIST ITEM: Alto costo, bajo retorno
-LABEL: Con Buzzmonitor
-LIST ITEM: Onboarding personalizado
-LIST ITEM: Capacitación continua
-LIST ITEM: Mejores prácticas
-LIST ITEM: Acompañamiento cercano
-LIST ITEM: Máximo retorno de inversión
-QUOTE: Esto no es inversión, es un gasto.
-BODY: En Buzzmonitor te damos acompañamiento cercano para que la aproveches al máximo desde el primer mes.
-CTA: Agenda una demo
-QUOTE: Más de 1000 empresas y agencias ya eligieron una solución que las acompaña de verdad.
-
-=== PROBLEMA-CRISIS ===
-H2: Tu marca está en crisis
-SUB: (Y todavía no lo sabes)
-BODY: Buzzmonitor te alerta en tiempo real, antes de que tengas que apagar el incendio.
-LABEL: Alerta en tiempo real
-BODY: Aumento inusual de menciones negativas. Volumen +320%, alcance +250%.
-CTA: Agenda una demo
-
-=== PROBLEMA-INSIGHTS ===
-H2: Tu competencia te lleva ventaja
-SUB: El monitoreo manual te deja siempre un paso atrás.
-BODY: Con Buzz Pills y AI Insights transformas miles de datos en insights accionables al instante, para que tomes la delantera.
-LABEL: AI Insights
-BODY: Detecta oportunidades antes que tu competencia.
-LABEL: Buzz Pills
-BODY: Resumen inteligente de lo que importa.
-LABEL: Tu competencia
-LABEL: Tú
-CTA: Agenda una demo
-
-=== PAUSA-REALCE ===
-STAT: +1000
-BODY: empresas y agencias en LATAM ya escalan su social media con Buzzmonitor.
-# Nota: elemento visual de realce (degradado del brandbook), reutiliza el proof-point ya presente en HERO/CTA-FINAL. No introduce claim nuevo.
-
-=== DIFERENCIAL ===
-H2: Todo lo que necesitas, en un solo lugar
-LIST ITEM: Escucha social. Monitorea lo que se dice en tiempo real.
-LIST ITEM: Publicación. Publica y programa en todas tus redes.
-LIST ITEM: Reportes. Mide, analiza y comparte resultados en segundos.
-LIST ITEM: Atención al cliente. Responde, gestiona y resuelve conversaciones en un solo lugar.
-
-=== PRUEBA ===
-H2: Resumen general
-LIST ITEM: Menciones: 24.5K (+28%)
-LIST ITEM: Alcance: 8.7M (+19%)
-LIST ITEM: Interacciones: 1.2M (+32%)
-LIST ITEM: Sentimiento: Positivo (+18%)
-LABEL: Evolución de menciones
-LABEL: Sentimiento
-LABEL: Principales temas
-LABEL: Share of voice: 42%
+TABLA: Costo — Enterprise tradicional: Alto / Buzzmonitor: Más eficiente
+TABLA: Acompañamiento — Enterprise tradicional: Limitado / Buzzmonitor: Cercano y dedicado
+TABLA: IA y automatización — Enterprise tradicional: Básica o adicional / Buzzmonitor: IA propietaria incluida
+TABLA: Dashboards en tiempo real — Enterprise tradicional: Limitados / Buzzmonitor: Ilimitados
+TABLA: Solución integral — Enterprise tradicional: ✕ / Buzzmonitor: ✓
 
 === CTA-FINAL ===
-H2: Todo tu social media, en un solo lugar
-CTA: Agenda una demo
-QUOTE: Más de 1000 empresas y agencias ya confían en Buzzmonitor.
+H2: Centraliza tu operación y toma mejores decisiones.
+BODY: Descubre cómo Buzzmonitor puede transformar tu estrategia de Social Media.
+FORM: Jotform embed (form id 241825239057661)
+
+=== CLIENTS-PROOF ===
+H2: Empresas que ya confían en Buzzmonitor
+STAT: 1.000+ clientes en el mundo
+STAT: 300+ clientes enterprise
+STAT: 10k usuarios
+STAT: 500+ agencias
+LOGO WALL: Coca-Cola, Eureka&Co, Islas Canarias, Sephora, Samsung, Bershka, Andalucía, Bizum, IKEA, Repsol, EVO, Havas, OMD, Caja Rural, Nu, McDonald's, Sony, Fundación Real Madrid, TBWA, Holaluz, L'Oréal, Mapfre, Sube, McCann, Burger King, Flax & Kale, Santander, Ouigo, Amazon, Uber
 
 === FOOTER ===
 FOOTER: (c) 2026 Buzzmonitor. Todos los derechos reservados.
+LINK: Política de Privacidad y uso de Cookies
 
-# Fuente: transcripcion literal de 5 creativos estaticos aprobados (compartidos por el usuario en el chat), no del archivo conhecimento/copywriting/revisoes/campana-bofu-painpoints-buzzmonitor-revisado-2026-07-28.md (los creativos ya incorporan iteraciones de copy mas recientes que el archivo, ver nota al usuario).
-# Revision anti-IA: sem achados (em-dash: 0).
-# Idioma detectado: ES-LATAM (padrao-linguistico.md ja carregado nesta sessao). Sem brasileirismos encontrados na transcricao.
+# Origem: HTML trazido pelo usuario diretamente no chat (fora do pipeline /lp-preparar -> /lp-gerar), iterado nesta mesma sessão até o estado final abaixo, e usado para SUBSTITUIR o conteúdo anterior desta LP (a pedido explícito do usuário, 2026-07-31).
+# Revisão anti-IA: não rodada formalmente nesta sessão (fluxo ad-hoc, ver README/REVISAO). Nenhum em-dash encontrado numa varredura manual do texto visível.
+# Idioma: ES-LATAM (es-419). GTM GTM-MKQBX2MG (mesmo ID já validado nesta LP) + Meta Pixel 935436740448328.
