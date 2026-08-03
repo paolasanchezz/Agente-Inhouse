@@ -1,0 +1,97 @@
+=== HERO ===
+LABEL: Atención para clínicas · Cxpress
+H1: Organiza toda la atención de tu clínica desde una sola plataforma
+SUB: Centraliza WhatsApp, redes sociales, teléfono, chat web y correo electrónico en un solo sistema, y ten el control total de la atención de tu clínica.
+CTA: Solicita una demostración
+LABEL: Canales integrados (WhatsApp, Instagram, Facebook, Webchat, Email, Teléfono)
+
+=== RESULTADOS ===
+H2: Resultados (oculto visualmente, sr-only por pedido do usuario, mantido so pra acessibilidade)
+LIST ITEM: 45% Más productividad con Inteligencia Artificial Generativa.
+LIST ITEM: 25% Menor carga operativa para los equipos que gestionan un alto volumen de consultas.
+LIST ITEM: 14% Más solicitudes resueltas por hora.
+LIST ITEM: 9% Menor tiempo promedio de resolución vía chat.
+# [NOTA] Asteriscos removidos a pedido do usuario — nao havia fonte citavel para os dados.
+
+=== FORMULARIO ===
+H2: Ponte en contacto con nosotros
+BODY: Descubre cómo funciona Cxpress y recibe una evaluación gratuita de tu operación de atención junto con nuestros especialistas.
+CTA: Solicita una demostración
+
+=== FAQ ===
+H2: Preguntas frecuentes
+LIST ITEM: ¿Qué necesito para usar Cxpress? / Solo necesitas contar con un sitio web activo y una persona responsable de administrar la plataforma.
+LIST ITEM: ¿Puedo usar el mismo número de WhatsApp Business en Cxpress? / Sí. Cxpress es compatible con la funcionalidad de WhatsApp Coex (Coexistence), que permite utilizar el mismo número tanto en la aplicación de WhatsApp Business como en la API oficial integrada a la plataforma. Así podrás mantener la comodidad de la aplicación móvil mientras aprovechas herramientas profesionales de automatización, gestión y atención colaborativa.
+LIST ITEM: ¿La Inteligencia Artificial atiende a los pacientes por sí sola? / No. La IA de Cxpress automatiza el primer nivel de atención (N1), resolviendo consultas frecuentes sobre servicios, especialidades o procesos. Cuando una consulta requiere un análisis más específico o el paciente desea hablar con una persona, la conversación se deriva automáticamente a un agente humano.
+LIST ITEM: ¿Puedo conectar más de un número de WhatsApp? / Sí. Puedes integrar varios números según las necesidades de tu operación.
+LIST ITEM: ¿Qué canales puedo integrar? / Cxpress integra de forma nativa WhatsApp, Facebook, Instagram, correo electrónico, chat del sitio web y teléfono.
+LIST ITEM: ¿Se puede integrar con un CRM? / Sí. Nuestra plataforma puede integrarse con diferentes sistemas CRM. Antes de la implementación, nuestro equipo técnico realiza una evaluación para garantizar una integración correcta.
+
+=== BLOQUE DE DOLOR ===
+H2: Sin una operación organizada, los problemas siempre son los mismos
+LIST ITEM: Canales dispersos sin una vista unificada.
+LIST ITEM: Mensajes que quedan sin responder.
+LIST ITEM: Equipos saturados por el volumen de consultas.
+LIST ITEM: Falta de historial y contexto durante la atención al paciente.
+
+=== SOLUCION ===
+H2: Centraliza toda la atención de tu clínica en un solo lugar
+BODY: Cxpress ayuda a clínicas y centros médicos a centralizar conversaciones, automatizar respuestas y organizar la atención de los pacientes desde una única plataforma.
+BODY: Integra WhatsApp, redes sociales, teléfono, chat web y correo electrónico para ofrecer una experiencia mucho más eficiente.
+
+=== BENEFICIOS ===
+H2: Beneficios (oculto visualmente, sr-only por pedido do usuario, mantido so pra acessibilidade)
+H3: Reduce los tiempos de espera
+LIST ITEM: Chatbot con Inteligencia Artificial: responde automáticamente las consultas más frecuentes, elimina filas de espera y ofrece atención las 24 horas.
+LIST ITEM: Clasificación inteligente: la IA identifica la necesidad del paciente y lo dirige automáticamente al área correcta: agenda médica, recepción o atención humana.
+H3: Gana organización y eficiencia
+LIST ITEM: Enrutamiento automático: deriva cada conversación al equipo correspondiente, ya sea agenda, recepción, convenios o administración.
+LIST ITEM: Reportes y métricas: monitorea tiempos de respuesta, volumen de conversaciones y productividad del equipo.
+H3: Accede al historial completo de cada paciente
+LIST ITEM: Historial completo: consulta todas las conversaciones de cada paciente cuando lo necesites.
+LIST ITEM: Etiquetas y tickets: organiza solicitudes por prioridad para mantener un flujo de atención más eficiente.
+# [NOTA] Beneficios + Funcionalidades fusionados em grid de 3 colunas (titulo + 2 sub-itens cada) a pedido do usuario, replicando padrao visual do exemplo (com fix de overlap: espacamento normal em vez de posicionamento absoluto).
+
+=== CLIENTES ===
+H2: Empresas que confían en Cxpress para optimizar su atención
+
+=== VIDEO ===
+H2: Agiliza la atención con Inteligencia Artificial
+EMBED: https://www.youtube.com/watch?v=K98_D5Ozt_I
+CTA: Habla con un especialista
+
+=== AGENTE IA ===
+H2: Un agente de IA que responde y orienta a tus pacientes
+BODY: Además de centralizar todos los canales de atención, Cxpress incorpora un agente inteligente que automatiza las consultas más frecuentes y optimiza el trabajo de tu equipo. Con Cxpress podrás:
+LIST ITEM: Responder consultas las 24 horas del día, incluso fuera del horario de atención.
+LIST ITEM: Recopilar información antes de transferir cada conversación.
+LIST ITEM: Derivar automáticamente al área adecuada.
+LIST ITEM: Reducir los tiempos de respuesta y mejorar la experiencia del paciente.
+
+=== COMO LO RESOLVEMOS ===
+H2: Cómo Cxpress resuelve cada desafío
+SUB: Una plataforma unificada con inteligencia artificial para modernizar la atención
+H3: Atención unificada
+BODY: Centraliza WhatsApp, sitio web y redes sociales para gestionar todas las conversaciones desde un solo lugar.
+H3: Atención disponible 24/7
+BODY: Automatiza respuestas sobre consultas médicas, especialidades, seguros, horarios y ubicación mediante IA.
+H3: Historial centralizado
+BODY: Accede a toda la información del paciente sin importar el canal por el que se haya comunicado.
+H3: Procesos más eficientes
+BODY: Distribuye automáticamente las conversaciones entre recepción y los distintos equipos para agilizar la atención.
+H3: Dashboards e indicadores
+BODY: Visualiza métricas de productividad, tiempos de respuesta y desempeño mediante paneles claros y fáciles de interpretar.
+
+=== QUIENES SOMOS ===
+# [NOTA] Bloco substituido a pedido do usuario pelo mesmo bloco "Quienes somos" de landing-pages/cxpress/coex-whatsapp-latam (foto da equipe + texto + selos), reaproveitando assets ja publicados dessa LP irma.
+LABEL: Foto: equipo de atención de Cxpress trabajando con auriculares
+H2: Quiénes somos
+BODY: Cxpress es una plataforma en la nube que unifica y automatiza los canales de atención de tu empresa. WhatsApp, redes sociales, correo electrónico y teléfono juntos ofrecen una visión única y simplificada de la interacción con el cliente, desde el primer contacto hasta la resolución del caso. El uso de la Inteligencia Artificial de Cxpress para la automatización de las primeras interacciones en lenguaje natural y la gestión de colas optimizan la productividad de los equipos de atención.
+LABEL: Selos: API oficial de WhatsApp · API oficial de ChatGPT · Un producto Elife
+
+=== FOOTER ===
+FOOTER: Cxpress es un producto Elife. © 2026 · Condiciones generales de uso de Cxpress · Políticas de privacidad
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# [NOTA] Copy fornecida diretamente pelo usuario em ES-LATAM final (nao passou por /trad-traduzir, ja veio pronta). Estrutura e ordem das secoes seguidas a risca conforme fornecido.
+# [NOTA] Os asteriscos (*) em RESULTADOS nao tem fonte/nota de rodape informada pelo usuario. Nao inventei citacao. Confirmar fonte antes de publicar ou remover os asteriscos.
