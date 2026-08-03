@@ -27,8 +27,8 @@
     },
     {
       "name": "lp-cxpress-family",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "5184", "--bind", "127.0.0.1", "--directory", "landing-pages/cxpress"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "5184", "landing-pages/cxpress"],
       "port": 5184
     },
     {
@@ -60,6 +60,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["-e", "setInterval(()=>{},1000)"],
       "port": 3000
+    },
+    {
+      "name": "lp-monitoreo-competidores",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "5187", "landing-pages/buzzmonitor/monitoreo-competidores-ia-latam"],
+      "port": 5187
     },
     {
       "name": "blog-buzzcreators",
