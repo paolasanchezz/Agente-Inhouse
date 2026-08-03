@@ -3,7 +3,7 @@ name: lp-preparar
 description: Estrutura copy crua em blocos rotulados (OVERLINE, H1, H2, BODY, CTA, etc.) e passa revisao anti-IA conservadora, sem alterar o tom. Publica no Notion e salva arquivo local para o lp-gerar consumir.
 argument-hint: "[marca] [slug] [fonte] — ex: buzzmonitor monitoramento-maio https://notion.so/... ou buzzmonitor monitoramento-maio ./copy-bruta.txt"
 allowed-tools: Read, Write, Glob, Grep, WebFetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 1.4.0
+version: 1.4.1
 ---
 
 # Skill: Preparar Copy de Landing Page
@@ -17,7 +17,7 @@ e, com o deploy via CI (PLANO-MIGRACAO-CI.md), outras pessoas publicam LPs por P
 na main. Editar em cima de copia velha gera conflito evitavel no PR.
 
 ```bash
-git pull --rebase 2>&1 | tail -2 && git branch --show-current
+git pull --rebase --autostash 2>&1 | tail -2 && git branch --show-current
 ```
 
 Se o rebase conflitar: `git rebase --abort`, avise o usuario e resolva antes de editar.

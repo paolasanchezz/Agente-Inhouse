@@ -44,6 +44,17 @@ def main():
     repo = os.environ.get("REPO_ROOT", ".")
     changed = [l for l in git("diff", "--name-only", f"{base}...HEAD").splitlines() if l]
 
+    # Referencia do "antes" = merge-base (ponto onde a branch divergiu), NAO a ponta atual
+    # de origin/main. Uma branch desatualizada nao tem os slugs que entraram na main DEPOIS
+    # que ela saiu; comparar contra a ponta acusaria esses slugs como "removidos" (despublicacao)
+    # e travaria o auto-merge por engano — mesmo que o merge 3-way real preserve tudo (PR #168,
+    # 2026-08-03). O merge-base isola so o que a branch de fato mudou. `changed` (acima) ja usa
+    # three-dot (merge-base...HEAD), entao a deteccao de remocao passa a ser consistente com ele.
+    try:
+        ref_antes = git("merge-base", base, "HEAD").strip()
+    except SystemExit:
+        ref_antes = base  # sem ancestral comum (ex: base novo) — cai no comportamento antigo
+
     motivos, remocoes = [], []
     for path in changed:
         if not any(rx.match(path) for rx in LIVRES):
@@ -54,9 +65,9 @@ def main():
         if re.match(r"^landing-pages/dominios/[^/]+/manifest\.json$", path):
             try:
                 antes = {lp["slug"] for lp in json.loads(
-                    git("show", f"{base}:{path}"))["lps"]}
+                    git("show", f"{ref_antes}:{path}"))["lps"]}
             except SystemExit:
-                antes = set()  # manifesto novo
+                antes = set()  # manifesto novo (nao existia no merge-base)
             try:
                 depois = {lp["slug"] for lp in
                           json.load(open(os.path.join(repo, path), encoding="utf-8"))["lps"]}

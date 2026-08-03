@@ -65,6 +65,11 @@ env/
 # Permissoes pessoais do Claude Code (cada colaborador tem as suas)
 .claude/settings.local.json
 
+# Dev servers locais do preview (cada colaborador gera o seu ao rodar preview_start).
+# Era versionado e vinha sendo arrastado nos PRs de LP, derrubando o auto-merge do
+# merge-bot (pr_check trata .claude/** como mecanica). Agora e per-colaborador.
+.claude/launch.json
+
 # Config local per-colaborador do agente (cross-skill: LP_SIBLING_BASE etc.)
 .env.local
 

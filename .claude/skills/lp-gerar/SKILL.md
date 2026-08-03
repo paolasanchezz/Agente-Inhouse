@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.8.0
+version: 1.8.1
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -17,7 +17,7 @@ e, com o deploy via CI (PLANO-MIGRACAO-CI.md), outras pessoas publicam LPs por P
 na main. Editar em cima de copia velha gera conflito evitavel no PR.
 
 ```bash
-git pull --rebase 2>&1 | tail -2 && git branch --show-current
+git pull --rebase --autostash 2>&1 | tail -2 && git branch --show-current
 ```
 
 Se o rebase conflitar: `git rebase --abort`, avise o usuario e resolva antes de editar.

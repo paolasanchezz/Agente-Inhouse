@@ -3,7 +3,7 @@ name: commit
 description: Cria branch, commita, faz push e abre pull request para a main automaticamente via API do GitHub. NUNCA commita em main, nunca faz merge, nunca usa --force. Use ao final das alterações para entregar ao Victor revisar.
 argument-hint: "(sem args — totalmente automático)"
 allowed-tools: Bash, Read, Grep
-version: 2.0.1
+version: 2.1.0
 ---
 
 # Skill: Commit + Pull Request para revisão
@@ -15,7 +15,7 @@ A skill reusa o token do GitHub que o Git Credential Manager já guardou (o mesm
 **Regras invioláveis** (nunca quebre, mesmo se o usuário pedir):
 - NUNCA commite em `main` — sempre em branch nova
 - NUNCA use `--force`, `--force-with-lease`, `--no-verify`, `--amend`
-- NUNCA faça merge, rebase ou `git reset --hard`
+- NUNCA faça merge manual, rebase interativo/destrutivo ou `git reset --hard` (única exceção: o `git pull --rebase --autostash` de sincronização do Passo 0.4, que preserva trabalho não-commitado e não reescreve história local)
 - NUNCA ignore arquivos sensíveis (`.env`, credenciais, tokens) — aborte e peça ação manual
 - NUNCA adicione `Co-Authored-By: Claude` ou assinatura "Generated with Claude" em commits ou PRs
 
@@ -52,6 +52,21 @@ git status --porcelain
 ```
 
 Se vazio, mostre "Nada pra commitar — working tree limpo. Suas alterações já foram salvas em um commit anterior?" e pare.
+
+### 0.4 Trazer o que há de novo no repositório (pull seguro)
+
+O repo é compartilhado e o time publica LP por PR direto na `main`. Se você criar a branch a partir de uma `main` local **desatualizada**, o PR nasce velho — isso trava o auto-merge do merge-bot com falso "slug removido" e pode dar conflito no deploy (foi o que aconteceu na PR #168, 2026-08-03). Então atualize a `main` **antes** de criar a branch.
+
+**Só quando estiver em `main`** (rode `git branch --show-current`). Se já estiver numa branch própria — Caso B do Passo 2 —, **pule este passo**: não rebaseie sua feature automaticamente.
+
+```bash
+git pull --rebase --autostash origin main
+```
+
+- **`--autostash` responde à dúvida "o pull não apaga o que eu ainda não commitei?": não.** Ele guarda o trabalho não-commitado antes de atualizar e devolve depois. Nada é perdido.
+- `--rebase` mantém o histórico linear. Como ninguém commita direto em `main`, na prática é um fast-forward.
+
+**Se aparecer conflito** (raro — só se o teu trabalho não-commitado tocar um arquivo que também mudou no remoto): o git para e **preserva teu trabalho no stash**. Resolva os arquivos apontados, `git add` neles, `git rebase --continue`. Se preferir voltar atrás, `git rebase --abort` restaura tudo como estava (nada perdido) — aí resolva com calma e rode `/commit` de novo.
 
 ---
 

@@ -12,6 +12,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Infra LP + fluxo de commit — anti-PR-stale
+### 2026-08-03 — pull seguro antes de commit, `pr_check` por merge-base, `launch.json` des-versionado
+
+Motivado pela PR #168, que caiu na revisão humana por dois falsos gatilhos do merge-bot: (1) `.claude/launch.json` (dev server local) arrastado no commit e (2) "3 slugs removidos" no manifesto — falso-positivo de branch desatualizada. O merge 3-way real preservava tudo; o alarme era só do detector.
+
+- **`pr_check.py` — detecção de remoção de slug agora compara pelo merge-base** (ponto onde a branch divergiu), não pela ponta de `origin/main`. Uma branch velha não tem os slugs que entraram na main depois que ela saiu; comparar contra a ponta acusava esses slugs como "despublicação" e travava o auto-merge por engano. `changed` já usava three-dot (merge-base) — a detecção fica consistente. Validado reproduzindo o cenário da #168 (lógica antiga: 3 falsos "removidos" → nova: 0). Despublicação real continua sendo detectada (branch que de fato remove um slug presente no merge-base).
+- **`.claude/launch.json` deixou de ser versionado** (`git rm --cached` + `.gitignore`). É registro de dev servers locais gerado por `preview_start`, variava por colaborador e vinha sendo commitado junto das LPs — gatilho nº1 que tirava PR de LP do auto-merge (`.claude/**` = mecânica). Agora é per-colaborador; `preview_start` recria sob demanda.
+- **`/commit` v2.1.0** — novo Passo 0.4: estando em `main`, roda `git pull --rebase --autostash origin main` antes de criar a branch, pra ela não nascer de base velha (a raiz do PR stale). `--autostash` guarda o trabalho não-commitado e devolve (não apaga). Regra inviolável ajustada pra abrir exceção a esse pull de sincronização.
+- **`lp-preparar` 1.4.1 · `lp-gerar` 1.8.1 · `lp-revisar` 1.8.1 · `lp-integrar-form` 1.4.1 · `lp-publicar` 5.1.1** — o `git pull --rebase` do passo de sync ganhou `--autostash`, pra não travar (nem exigir stash manual) quando há trabalho não-commitado na working tree.
+- **OG image de `cxpress/atencion-clinicas-latam`** gerada (1200×630, template Cxpress, Chrome headless) e colocada no source da LP (`assets/og-atencion-clinicas-latam.png`) — o `og:image` apontava pra arquivo inexistente (404 no preview social). Servida pelo build padrão, sem `extra_files`.
+
 ## Infra LP — 5º guarda-chuva: `content.buzzmonitor.com`
 ### 2026-07-21 — novo guarda-chuva CI + migração de 2 LPs ES
 

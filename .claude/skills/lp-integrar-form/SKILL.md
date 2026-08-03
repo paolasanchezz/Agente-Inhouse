@@ -3,7 +3,7 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §11).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.4.0
+version: 1.4.1
 ---
 
 # Skill: Integrar Formulario em Landing Page
@@ -17,7 +17,7 @@ e, com o deploy via CI (PLANO-MIGRACAO-CI.md), outras pessoas publicam LPs por P
 na main. Editar em cima de copia velha gera conflito evitavel no PR.
 
 ```bash
-git pull --rebase 2>&1 | tail -2 && git branch --show-current
+git pull --rebase --autostash 2>&1 | tail -2 && git branch --show-current
 ```
 
 Se o rebase conflitar: `git rebase --abort`, avise o usuario e resolva antes de editar.
