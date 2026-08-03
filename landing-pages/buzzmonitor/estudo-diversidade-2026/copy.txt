@@ -33,6 +33,9 @@ LIST ITEM: Presença Negra
 LIST ITEM: Presença Feminina
 LIST ITEM: Presença de Pessoas Sexualmente Diversas
 
+VENCEDORES 2025 LABEL: Vencedores da edição 2025
+VENCEDORES 2025: Calcitran (Presença de Idosos), Ariel (Presença de PCDs), Bet Nacional (Presença Negra), Magalu (Presença Feminina) e Brilhante (Presença de Pessoas Sexualmente Diversas).
+
 === POR QUE IMPORTA ===
 H2: Por que este estudo importa?
 
