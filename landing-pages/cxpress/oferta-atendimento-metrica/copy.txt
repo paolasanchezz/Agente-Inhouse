@@ -34,7 +34,7 @@ BODY: Centralizar esse histórico é o primeiro passo para transformar um atendi
 
 === DEPOIS DA VIRADA ===
 H2: Depois da virada
-H3: Descubra como empresas que valorizam a experiência do cliente estão estruturando suas operações de atendimento
+# [REMOVIDO a pedido do usuario, 2026-08-03] H3 "Descubra como empresas que valorizam a experiência do cliente estão estruturando suas operações de atendimento" removido da secao Depois da virada.
 LIST ITEM: tempo de resposta visível, por atendente e por canal
 LIST ITEM: qualidade do atendimento acompanhada com indicador real
 LIST ITEM: histórico do cliente disponível em qualquer canal que ele escolher
