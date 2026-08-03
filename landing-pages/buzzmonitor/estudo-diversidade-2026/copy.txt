@@ -1,0 +1,50 @@
+=== HERO ===
+OVERLINE: LANÇAMENTO · 2026
+H1: 8º Estudo Diversidade na Comunicação de Marcas nas Redes Sociais
+SUB: Baixe gratuitamente o estudo completo e descubra como os 20 maiores anunciantes do Brasil retratam a diversidade nas redes sociais.
+CTA: Baixe agora
+
+=== DESTAQUE ===
+H2: Você se sente representado na publicidade?
+
+BODY: A Buzzmonitor, em parceria com a SA365 e a Elife, analisou 10.229 publicações dos 20 maiores anunciantes do Brasil entre janeiro de 2025 e junho de 2026, para entender como mulheres, negros, idosos, PcDs, pessoas sexualmente diversas, povos indígenas, asiáticos e outros grupos estão sendo representados na publicidade digital.
+
+BODY: O resultado foi um retrato potente (e às vezes desconfortável) sobre a evolução (e os retrocessos) da diversidade nas campanhas que impactam milhões de consumidores todos os dias.
+
+=== ACHADOS ===
+H2: O que os dados revelam
+
+LIST ITEM: Pessoas idosas aparecem em só 5,1% das publicações, menos da metade da edição anterior e o segundo pior resultado da nossa série histórica
+LIST ITEM: Mulheres seguem maioria absoluta na comunicação das marcas: 68,2% das publicações têm presença feminina, patamar em alta há dois anos seguidos
+LIST ITEM: Presença negra recua para 32,5% das publicações, abaixo de 2024 e perto da marca histórica mais baixa
+LIST ITEM: Pessoas LGBTQIAPN+ aparecem em só 0,4% das peças, o pior índice desde o início do estudo
+LIST ITEM: PcDs (0,5%) e pessoas gordas (0,9%) seguem quase invisíveis, a pior marca já registrada para o segundo grupo
+LIST ITEM: Asiáticos seguem super-representados: 12,1% de presença no estudo contra 0,4% da população brasileira
+
+=== PREMIO ===
+OVERLINE: Buzz Summit 2026
+H2: Prêmio Diversidade na Comunicação de Marcas nas Redes Sociais
+BODY: As marcas que mais se destacaram em representatividade em anúncios foram premiadas no Buzz Summit 2026. Uma oportunidade única de celebrar quem está à frente na construção de narrativas inclusivas.
+
+LIST ITEM: Presença de Idosos
+LIST ITEM: Presença de PCDs
+LIST ITEM: Presença Negra
+LIST ITEM: Presença Feminina
+LIST ITEM: Presença de Pessoas Sexualmente Diversas
+
+=== POR QUE IMPORTA ===
+H2: Por que este estudo importa?
+
+BODY: Diversidade na comunicação não é só uma pauta social: publicações com grupos diversos têm engajamento médio de 3.455 interações por mil pessoas, contra 2.661 nas peças só com grupos hegemônicos (homens e pessoas brancas).
+
+BODY: Essa pesquisa ajuda o mercado publicitário a reconhecer onde avançou, corrigir onde recuou e valorizar quem abre espaço para diferentes vozes.
+
+=== CTA FINAL ===
+H2: Faça parte da transformação
+BODY: Baixe agora o estudo completo e contribua para a mudança que está moldando o futuro da comunicação no Brasil.
+CTA: Baixar o estudo
+
+=== FOOTER ===
+FOOTER: © Buzzmonitor 2026 · Política de Privacidade
+
+# Revisao anti-IA (2026-07-30): conteudo atualizado com dados reais da 8a edicao (10.229 posts, 261 perfis, 20 anunciantes, jan/25-jun/26). 0 em-dash. 0 filler. Estatisticas substituem generalidades ("cresceu"/"aumentou" trocado por numero real, inclusive quedas onde os dados mostram queda).
