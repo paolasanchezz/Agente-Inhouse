@@ -1,16 +1,15 @@
 === VIDEO ===
 OVERLINE: Vídeo liberado
 H1: Como tornar sua operação de atendimento mais organizada, produtiva e segura
-# Embed do video (nao e copy): https://www.youtube.com/watch?v=dfxipCR2vTo — usar embed responsivo 16:9 (https://www.youtube-nocookie.com/embed/dfxipCR2vTo), carregado imediatamente no load da pagina. Sem gate adicional.
-
-=== DUVIDAS ===
-H2: Ficou com alguma dúvida?
-BODY: Se preferir conversar sobre como aplicar essa estratégia na sua operação, fale diretamente com um especialista.
-CTA: Conversar pelo WhatsApp
-# Nota: link do WhatsApp do especialista (wa.me) nao existe no repo — placeholder ate a Marielle informar o numero. Nao publicar sem trocar.
+# Embed do video (nao e copy): https://www.youtube.com/watch?v=dfxipCR2vTo em embed responsivo 16:9 (https://www.youtube.com/embed/dfxipCR2vTo?rel=0), carregado imediatamente no load da pagina. Sem gate adicional.
+# youtube.com (nao nocookie) porque o CSP do guarda-chuva libera so esse dominio, e o vercel.json e path protegido no CI (trava o auto-merge). Decisao da Marielle, 2026-08-03.
 
 === FOOTER ===
 FOOTER: © 2026 Cxpress. Todos os direitos reservados.
 
+# Secao DUVIDAS (H2 "Ficou com alguma duvida?" + CTA "Conversar pelo WhatsApp") removida a pedido da Marielle em 2026-08-03.
+# O texto de apoio saiu junto porque existia so para levar ao botao: sem CTA, prometia um contato sem caminho.
+# Se voltar a fazer sentido, a copy original esta no historico do git e na pagina do Notion desta LP.
+
 # Revisao anti-IA: sem achados (em-dash: 0).
-# Pagina pos-acao: seguir precedente conheca-a-cxpress-confirmado — noindex/follow, sem OG image obrigatoria, sem form (excecao deliberada as GUIDELINES §6 e §15).
+# Pagina pos-acao: seguir precedente conheca-a-cxpress-confirmado, com noindex/follow, sem OG image obrigatoria e sem form (excecao deliberada as GUIDELINES §6 e §15).

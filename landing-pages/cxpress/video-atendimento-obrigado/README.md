@@ -1,6 +1,6 @@
 # LP Cxpress — video-atendimento-obrigado
 
-Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente após o envio do form (sem e-mail, sem etapas extras) + CTA de conversa com especialista via WhatsApp.
+Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente após o envio do form (sem e-mail, sem etapas extras). Página de entrega pura, sem CTA.
 
 **Gerado em:** 2026-07-29
 **Copy-fonte:** `copy.txt` (output de /lp-preparar)
@@ -9,7 +9,6 @@ Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente a
 ## Estrutura
 
 - VIDEO (eyebrow "Vídeo liberado" + H1 + embed YouTube 16:9)
-- DÚVIDAS (H2 + body + CTA "Conversar pelo WhatsApp")
 - FOOTER
 
 ## Vídeo
@@ -21,7 +20,7 @@ Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente a
 - [x] HTML gerado
 - [x] Revisão — ver `REVISAO.md`
 - [x] **Publicado** em 2026-07-31 via **CI** — https://content.cxpress.io/video-atendimento-obrigado (listada em `landing-pages/dominios/content-cxpress-io/manifest.json`)
-- [ ] **PENDÊNCIA ABERTA:** trocar o `href="#"` do botão "Conversar pelo WhatsApp" pelo link `wa.me` do especialista (número não existe no repo — pedir à Marielle). Está no ar com placeholder por decisão dela; sem o form integrado, ninguém chega aqui pelo fluxo real. Trocar junto com a integração do form.
+- [x] **Botão de WhatsApp removido** em 2026-08-03 a pedido da Marielle. A seção DÚVIDAS saiu inteira (H2 + texto de apoio + CTA): o texto existia só para levar ao botão e, sem ele, prometia um contato sem caminho. Com isso morreu também a pendência do link `wa.me`, que nunca chegou a existir no repo. Copy original no histórico do git.
 
 ## Exceções deliberadas às GUIDELINES (precedente: conheca-a-cxpress-confirmado)
 

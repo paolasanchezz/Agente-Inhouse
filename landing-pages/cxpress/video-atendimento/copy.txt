@@ -3,7 +3,7 @@ OVERLINE: Vídeo exclusivo · Cxpress
 H1: Como tornar sua operação de atendimento mais organizada, produtiva e segura
 # [ALTERNATIVA H1 - opcao 2 do briefing] Veja como empresas estão modernizando suas operações de atendimento.
 # [ALTERNATIVA H1 - opcao 3 do briefing] Uma forma mais eficiente de organizar sua operação de atendimento.
-# [SUGESTAO GUIDELINES §5] O H1 abre pela solucao, nao pela dor. Para lead frio, alternativa que nomeia o problema: "Sua operação de atendimento está desorganizada, improdutiva ou insegura?". Decisao de quem aprova a copy — as 3 opcoes do briefing sao deliberadamente amplas pra conversar com as 4 dores, entao manter como esta e valido.
+# [SUGESTAO GUIDELINES §5] O H1 abre pela solucao, nao pela dor. Para lead frio, alternativa que nomeia o problema: "Sua operação de atendimento está desorganizada, improdutiva ou insegura?". Decisao de quem aprova a copy (as 3 opcoes do briefing sao deliberadamente amplas pra conversar com as 4 dores, entao manter como esta e valido).
 SUB: Preencha seus dados e assista ao vídeo imediatamente.
 
 === FORM ===
