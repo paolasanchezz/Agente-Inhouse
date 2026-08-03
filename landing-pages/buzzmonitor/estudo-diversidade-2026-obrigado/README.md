@@ -16,7 +16,7 @@ Thanks page da LP `estudo-diversidade-2026`: entrega o PDF do estudo imediatamen
 
 ## Configuração pendente (fora do repo)
 
-- **Thank You URL do Jotform:** configurar no builder do form (jotform.com, form `262024846121045`) para redirecionar para esta página após o envio: `https://material.buzzmonitor.com/estudo-diversidade-2026-obrigado`. Isso é feito na plataforma do Jotform, não no código — não dá pra automatizar por aqui.
+- **Thank You URL do Jotform:** configurar no builder do form (jotform.com, form `262146291716660`) para redirecionar para esta página após o envio: `https://material.buzzmonitor.com/estudo-diversidade-2026-obrigado`. Isso é feito na plataforma do Jotform, não no código — não dá pra automatizar por aqui.
 
 ## Estado
 

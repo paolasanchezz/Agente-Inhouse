@@ -36,7 +36,7 @@ Estética **mosaico multicolor** (referências aprovadas pela cliente: "People f
 - [x] Revisão (frontend-design review + web-design-guidelines) — rodada 2026-08-03, 3 críticos corrigidos (em-dash x2, contraste do overline), ver `REVISAO.md`. 1 decisão pendente (seção Quiz fora da copy.txt original — flagada, não removida)
 - [x] OG image (1200×630) — já existe em `assets/og-image.png`, dimensões conferidas (1200×630)
 - [x] Publicado (2026-08-03) em `material.buzzmonitor.com/estudo-diversidade-2026` (guarda-chuva CI)
-- [x] Formulário integrado (2026-08-03) — Jotform (form `262024846121045`), form mock trocado por embed real. **Form provider:** Jotform (2026-08-03)
+- [x] Formulário integrado (2026-08-03, form trocado por novo em 2026-08-03) — Jotform (form `262146291716660`), form mock trocado por embed real. **Form provider:** Jotform (2026-08-03)
 - [ ] **Thank You URL do Jotform** — configurar no builder do form (jotform.com) para redirecionar para `https://material.buzzmonitor.com/estudo-diversidade-2026-obrigado` (thanks page já publicada, ver `../estudo-diversidade-2026-obrigado/`). Configuração feita na plataforma do Jotform, não no repo.
 - [x] Cadência de e-mail criada — `conhecimento/copywriting/criacao/buzzmonitor/2026-07-20/cadencia-email-estudo-diversidade-2026/cadencia.md` (6 e-mails: convite + 3 repiques + convite 2 + convite 3; sem oferta, termina no material)
 
