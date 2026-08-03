@@ -1,10 +1,10 @@
 === HERO ===
 EYEBROW: Webinar gratuito
 H1: Diversidade na Comunicação
-SUB: A Buzzmonitor apresenta ao vivo os resultados do Estudo de Diversidade na Comunicação de Marcas.
+SUB: A Buzzmonitor apresenta ao vivo os resultados do 8º Estudo de Diversidade na Comunicação de Marcas.
 CTA: Quero me inscrever
-TICKET-DATE: 23/07
-TICKET-SMALL: Quinta-feira · 11h (Brasília)
+TICKET-DATE: 04/08
+TICKET-SMALL: Terça-feira · 11h (Brasília)
 TICKET-FORMATO: Online · Ao vivo
 TICKET-DURACAO: 60 min
 TICKET-INVESTIMENTO: Gratuito
@@ -15,7 +15,7 @@ Representatividade se mede
 === INSCRICAO === (form, 2a dobra)
 EYEBROW: Vaga gratuita
 H2: Garanta sua vaga no webinar
-WHEN: 23 de julho · 11h · Online e ao vivo
+WHEN: 04 de agosto · 11h · Online e ao vivo
 BODY: Sua inscrição garante o acesso ao vivo e o link no seu e-mail.
 LABEL: Nome
 LABEL: E-mail
@@ -33,7 +33,7 @@ PUNCHLINE: Representar não é o mesmo que representar bem.
 
 === OFERTA === (apresentação do estudo — com fotos)
 EYEBROW: O estudo
-H2: Estudo de Diversidade na Comunicação de Marcas
+H2: 8º Estudo de Diversidade na Comunicação de Marcas
 BODY: Analisamos mais de 6 mil publicações dos maiores anunciantes do Brasil para mapear como diferentes grupos aparecem na publicidade digital.
 BODY: No webinar, a gente abre os números e mostra o que fazer com eles.
 

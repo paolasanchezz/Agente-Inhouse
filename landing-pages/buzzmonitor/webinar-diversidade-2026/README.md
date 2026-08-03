@@ -3,7 +3,7 @@
 **Gerado em:** 2026-07-01 (reconstruído 2026-07-02 no padrão real de webinar)
 **Copy-fonte:** `copy.txt`
 **Região:** brasil (pt-BR) · **GTM:** GTM-WFJVK858
-**Evento:** Webinar do 8º Estudo de Diversidade · 23/07/2026 (quinta) · 11h BRT · online e ao vivo
+**Evento:** Webinar do 8º Estudo de Diversidade · 04/08/2026 (terça) · 11h BRT · online e ao vivo
 
 ## Direção
 
@@ -13,11 +13,11 @@ LP construída **no padrão real das LPs de webinar Buzzmonitor** (base: `analis
 
 ## Estrutura
 
-Hero (ticket 23/07) → ticker → Inscrição (form mock, 2ª dobra) → Problema (3 X-cards + punchline) → O estudo (mosaico de fotos + copy) → Programa (3 cards) → Para quem (lista ✅ + fotos) → Palestrantes (genérico, Time Buzzmonitor) → Urgência (dark) → Footer.
+Hero (ticket 04/08) → ticker → Inscrição (form mock, 2ª dobra) → Problema (3 X-cards + punchline) → O estudo (mosaico de fotos + copy) → Programa (3 cards) → Para quem (lista ✅ + fotos) → Palestrantes (genérico, Time Buzzmonitor) → Urgência (dark) → Footer.
 
 ## Decisões (confirmadas pela cliente)
 
-- Data/hora: 23/07 (quinta), 11h BRT.
+- Data/hora: 04/08 (terça), 11h BRT.
 - Palestrantes: genérico "Especialistas da Buzzmonitor" (sem nomes).
 - Inscrição: form mock. Integrar embed real via `/lp-integrar-form` depois.
 - Fotos: 7 reaproveitadas do estudo, todas abaixo da 1ª dobra.
@@ -35,3 +35,11 @@ Hero (ticket 23/07) → ticker → Inscrição (form mock, 2ª dobra) → Proble
 ## Assets
 
 `assets/` — 7 retratos do estudo. Logos vêm de `../../brand/buzzmonitor/assets/logos/` (reescritos no deploy).
+
+## Cadência de e-mail pós-inscrição
+
+Criada em 2026-07-20: `conhecimento/copywriting/criacao/buzzmonitor/2026-07-20/cadencia-webinar-diversidade-2026/` — confirmação, aquecimento, faltam 3 dias, é amanhã, estamos ao vivo, e-mail com o estudo em si. Sem oferta/demo depois; a automação termina entregando o PDF do estudo (`../estudo-diversidade-2026`). Cada e-mail tem um header próprio (`assets/0N-*-header.png`, 1200×400) gerado no mesmo padrão visual desta LP (cores, fontes, fotos reais do estudo). Banner de newsletter também disponível (`assets/07-newsletter-banner.jpg`) e capa de YouTube/vídeo em `assets/08-youtube-cover.jpg` (1280×720, grid de 8 fotos do estudo, sem CTA escrito).
+
+## Descrição do evento (Título + Descrição)
+
+Texto de divulgação do webinar (plataforma de transmissão / listagem de evento), no formato Título + Descrição usado nos webinars anteriores da Buzzmonitor: `descricao-evento.md`. Publicado também no hub Notion do webinar (topo da página).
