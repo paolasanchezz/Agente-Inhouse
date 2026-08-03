@@ -35,8 +35,9 @@ Estética **mosaico multicolor** (referências aprovadas pela cliente: "People f
 - [x] Conteúdo atualizado com dados reais da 8ª edição (2026-07-30) — fonte: `Diversidade-na-Comunicação_2026 - Ano Base 2025_6.pdf` (SA365 + Elife + Buzzmonitor, 10.229 posts, 261 perfis, 20 anunciantes, jan/25-jun/26). Números antigos ("mais de 6 mil publicações", achados genéricos de "avanço") substituídos por estatísticas reais, inclusive quedas onde os dados mostram queda (idosos, negros, LGBTQIAPN+, PcDs, pessoas gordas)
 - [x] Revisão (frontend-design review + web-design-guidelines) — rodada 2026-08-03, 3 críticos corrigidos (em-dash x2, contraste do overline), ver `REVISAO.md`. 1 decisão pendente (seção Quiz fora da copy.txt original — flagada, não removida)
 - [x] OG image (1200×630) — já existe em `assets/og-image.png`, dimensões conferidas (1200×630)
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/estudo-diversidade-2026 "<snippet>"`
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor estudo-diversidade-2026 [dominio]`
+- [x] Publicado (2026-08-03) em `material.buzzmonitor.com/estudo-diversidade-2026` (guarda-chuva CI)
+- [x] Formulário integrado (2026-08-03) — Jotform (form `262024846121045`), form mock trocado por embed real. **Form provider:** Jotform (2026-08-03)
+- [ ] **Thank You URL do Jotform** — configurar no builder do form (jotform.com) para redirecionar para `https://material.buzzmonitor.com/estudo-diversidade-2026-obrigado` (thanks page já publicada, ver `../estudo-diversidade-2026-obrigado/`). Configuração feita na plataforma do Jotform, não no repo.
 - [x] Cadência de e-mail criada — `conhecimento/copywriting/criacao/buzzmonitor/2026-07-20/cadencia-email-estudo-diversidade-2026/cadencia.md` (6 e-mails: convite + 3 repiques + convite 2 + convite 3; sem oferta, termina no material)
 
 ## Assets referenciados

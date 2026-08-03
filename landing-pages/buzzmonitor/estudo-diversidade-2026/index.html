@@ -275,6 +275,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .fcard{min-height:210px}
     .footer .wrap{flex-direction:column;align-items:flex-start}
   }
+  /* ----- Jotform embed wrapper (canonico) ----- */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -451,22 +453,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="cta__lead">Baixe agora o estudo completo e contribua para a mudança que está moldando o futuro da comunicação no Brasil.</p>
         </div>
         <div class="reveal">
-          <form class="form" action="#" method="post" onsubmit="event.preventDefault()">
-            <div class="field">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome">
-            </div>
-            <div class="field">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="voce@empresa.com">
-            </div>
-            <div class="field">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="Nome da empresa">
-            </div>
-            <button type="submit" class="btn" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Baixar o estudo</button>
-            <p class="form__legal">Ao preencher, você concorda em receber comunicações da Buzzmonitor.</p>
-          </form>
+          <div class="jotform-embed">
+            <script type='text/javascript' src='https://form.jotform.com/jsform/262024846121045'></script>
+          </div>
         </div>
       </div>
     </div>
