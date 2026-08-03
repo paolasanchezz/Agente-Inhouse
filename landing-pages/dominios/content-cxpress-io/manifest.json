@@ -26,6 +26,11 @@
       "source": "landing-pages/cxpress/atendimento-digital"
     },
     {
+      "slug": "atendimento-sem-metrica",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atendimento-sem-metrica"
+    },
+    {
       "slug": "banimento-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/banimento-whatsapp"

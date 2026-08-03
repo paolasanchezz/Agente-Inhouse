@@ -268,6 +268,9 @@
        ocupa 100% da largura sem borda. */
     .jotform-embed { margin-top: 34px; text-align: left; }
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    /* ----- YouTube embed responsivo 16:9 ----- */
+    .video-embed { position: relative; width: 100%; margin-top: 34px; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); background: var(--primary-dark); }
+    .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 
     /* ============ PROBLEMA ============ */
     .problem { background: var(--neutral-0); }
@@ -378,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
         <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
       </a>
-      <a href="#inscricao" class="header-cta">Quero minha vaga</a>
+      <a href="#inscricao" class="header-cta">Assistir agora</a>
     </div>
   </header>
 
@@ -417,7 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="hero-actions">
             <a href="#inscricao" class="btn btn-primary">
-              Quero minha vaga
+              Assistir agora
               <span class="arrow" aria-hidden="true">→</span>
             </a>
           </div>
@@ -428,10 +431,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- INSCRICAO -->
     <section class="signup" id="inscricao" aria-labelledby="signup-title">
       <div class="container signup-inner">
-        <h2 id="signup-title" class="ribbon reveal"><span class="ribbon-txt">Garanta sua vaga</span></h2>
-        <p class="signup-sub reveal">Inscrição gratuita. Você recebe o link de acesso por e-mail.</p>
-        <div class="jotform-embed reveal">
-          <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+        <h2 id="signup-title" class="ribbon reveal"><span class="ribbon-txt">Assista ao webinar</span></h2>
+        <p class="signup-sub reveal">Dê o play e veja como blindar o número da sua empresa.</p>
+        <div class="video-embed reveal">
+          <iframe src="https://www.youtube.com/embed/enjD6Sn0ero" title="Webinar WhatsApp Comercial Bloqueado · Cxpress" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
     </section>
@@ -549,9 +552,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="cta-final reveal" aria-labelledby="cta-title">
       <div class="container cta-final-inner">
         <h2 id="cta-title">Seu número pode continuar o mesmo. O risco de perder ele, não.</h2>
-        <p class="cta-final-sub">Garanta sua vaga no webinar e aprenda a blindar o número comercial da sua empresa.</p>
+        <p class="cta-final-sub">Assista ao webinar e aprenda a blindar o número comercial da sua empresa.</p>
         <a href="#inscricao" class="btn btn-primary">
-          Quero minha vaga
+          Assistir agora
           <span class="arrow" aria-hidden="true">→</span>
         </a>
         <p class="cta-final-alt">Prefere conversar agora? <a href="https://home.cxpress.io" target="_blank" rel="noopener">Fale com um especialista da Cxpress</a>.</p>
