@@ -1,0 +1,22 @@
+=== HERO ===
+OVERLINE: Vídeo exclusivo · Cxpress
+H1: Como tornar sua operação de atendimento mais organizada, produtiva e segura
+# [ALTERNATIVA H1 - opcao 2 do briefing] Veja como empresas estão modernizando suas operações de atendimento.
+# [ALTERNATIVA H1 - opcao 3 do briefing] Uma forma mais eficiente de organizar sua operação de atendimento.
+# [SUGESTAO GUIDELINES §5] O H1 abre pela solucao, nao pela dor. Para lead frio, alternativa que nomeia o problema: "Sua operação de atendimento está desorganizada, improdutiva ou insegura?". Decisao de quem aprova a copy — as 3 opcoes do briefing sao deliberadamente amplas pra conversar com as 4 dores, entao manter como esta e valido.
+SUB: Preencha seus dados e assista ao vídeo imediatamente.
+
+=== FORM ===
+LABEL: Nome
+LABEL: Empresa
+LABEL: E-mail corporativo
+LABEL: Cargo
+LABEL: WhatsApp
+CTA: Assistir agora
+# [ALTERNATIVA CTA - opcao 2 do briefing] Liberar vídeo
+# Nota de fluxo: apos o envio, o lead vai pra thanks page (video-atendimento-obrigado) onde o video carrega imediatamente. Sem envio por e-mail, sem etapas extras. Form mock durante o design; integracao real via /lp-integrar-form.
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos os direitos reservados.
+
+# Revisao anti-IA: sem achados (em-dash: 0). Sugestao de posicionamento do H1 marcada acima (GUIDELINES §5, opcional).

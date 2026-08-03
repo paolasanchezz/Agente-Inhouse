@@ -146,6 +146,16 @@
       "source": "landing-pages/cxpress/sector-marketing-latam"
     },
     {
+      "slug": "video-atendimento",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/video-atendimento"
+    },
+    {
+      "slug": "video-atendimento-obrigado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/video-atendimento-obrigado"
+    },
+    {
       "slug": "webinar-tecnologia-maio2026",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-tecnologia-maio2026"

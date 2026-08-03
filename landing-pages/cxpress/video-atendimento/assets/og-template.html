@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap">
+<style>
+  :root{
+    --bg:#ffffff; --primary:#4A69BD; --dark:#232960; --lighter:#D7E2FF;
+    --accent:#EF863C; --warning:#F1A908;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;position:relative;
+    background:var(--bg);
+    font-family:'Open Sans',Arial,sans-serif;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 90px;
+  }
+  .pill{position:absolute;border-radius:9999px}
+  .overline{
+    display:inline-flex;align-items:center;gap:12px;
+    font-size:26px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--dark);background:var(--lighter);
+    border-radius:9999px;padding:14px 30px;margin-bottom:36px;
+    width:fit-content;
+  }
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--accent)}
+  h1{font-size:58px;font-weight:800;line-height:1.14;color:var(--dark);max-width:900px;letter-spacing:-1px;margin-bottom:40px}
+  h1 em{font-style:normal;color:var(--primary)}
+  .brand{position:absolute;bottom:56px;left:90px;display:flex;align-items:center}
+  .brand img{height:64px;width:auto}
+</style>
+</head>
+<body>
+  <span class="pill" style="width:80px;height:280px;background:var(--lighter);top:-60px;right:140px"></span>
+  <span class="pill" style="width:56px;height:190px;border:5px solid var(--accent);bottom:-40px;right:60px"></span>
+  <span class="pill" style="width:170px;height:60px;background:var(--warning);bottom:140px;right:-30px"></span>
+  <div class="overline"><span class="dot"></span>Vídeo exclusivo · Cxpress</div>
+  <h1>Como tornar sua operação de atendimento mais <em>organizada, produtiva e segura</em></h1>
+  <div class="brand"><img src="../../../../brand/cxpress/assets/logos/logo-primary.svg" alt=""></div>
+</body>
+</html>
