@@ -1,0 +1,82 @@
+=== HERO ===
+OVERLINE: Webinar Online · En vivo · Gratuito
+H1: Cómo gestionar tus canales de atención al cliente
+SUB: Mientras tu equipo responde ticket por ticket, tus clientes esperan cada vez más.
+CTA: Reserva tu lugar gratis
+
+=== SAVE THE DATE ===
+LABEL: 27 de agosto
+LABEL: 16:00 MX
+LABEL: 17:00 COL
+LABEL: 17:00 PER
+LABEL: 18:00 CL
+LABEL: 19:00 ARG
+LABEL: Formato: Online · En vivo
+LABEL: Duración: 60 min
+LABEL: Gratuito
+
+=== CUPO GRATUITO ===
+H2: Descubre cómo centralizar tus canales de atención y hacer seguimiento a las métricas más importantes para tu negocio.
+BODY: 27 de agosto · Online y En Vivo · 16:00 MX · 17:00 COL · 17:00 PER · 18:00 CL · 19:00 ARG
+BODY: Es gratis, es en vivo y lo que aprendas podrás aplicarlo desde el primer día.
+
+=== PROGRAMA ===
+OVERLINE: PROGRAMA
+H2: Lo que vas a aprender
+H3: 01. Cómo centralizar todos tus canales de atención en un solo lugar
+BODY: WhatsApp, redes sociales y correo quedan en un mismo panel, con el historial completo de cada cliente, sin importar por dónde te haya escrito.
+H3: 02. Cómo usar IA para responder más rápido sin perder el toque humano
+BODY: La IA te sugiere la respuesta, tu equipo la revisa y la envía, en vez de escribir cada mensaje desde cero.
+H3: 03. Cómo reducir tu SLA sin aumentar el equipo
+BODY: Organiza la fila de tickets y mide los tiempos de respuesta para identificar exactamente dónde se generan los cuellos de botella.
+
+=== PREGUNTA ===
+H2: ¿Tu equipo de atención se ahoga entre tickets y nunca llega a tiempo?
+LIST ITEM: Atiendes WhatsApp, redes sociales y correo por separado, sin que un canal sepa lo que pasó en el otro. Un cliente escribe por WhatsApp en la mañana y por Instagram en la tarde, y tu equipo lo trata como si fueran dos personas distintas.
+LIST ITEM: Responder todo de forma manual no escala: llegan más tickets, necesitas más agentes y el caos continúa.
+# [SUGESTAO anti-IA] "de forma manual" cae en el patrón "de forma X" señalado en regras-anti-ia.md. Alternativa: "Responder todo manualmente no escala" (a criterio del usuario)
+LIST ITEM: Sin datos claros, es difícil identificar dónde se está frenando tu operación hasta que el cliente se queja.
+LIST ITEM: Y cuando la queja llega a redes sociales, muchas veces ya es demasiado tarde para evitar el impacto. En la práctica, detectar un problema tarde cuesta casi lo mismo que no resolverlo.
+CTA: Quiero organizar mi atención al cliente
+
+=== CASO REAL ===
+H2: Caso real · Youse Seguros
+BODY: Youse redujo su SLA de 36 horas a 3 horas centralizando su atención con IA.
+LABEL: Fuente: caso verificado Buzzmonitor
+
+=== WEBINAR BANNER ===
+OVERLINE: Webinar · 27/08
+BODY: Centraliza tu atención y deja que la IA se encargue de las tareas repetitivas, para que tu equipo pueda enfocarse en lo que realmente importa.
+CTA: Inscríbete gratis
+# [SUGESTAO idioma] Regla de oro ES-LATAM #5 prioriza CTAs cálidos de webinar tipo "Reserva tu lugar" / "Aparta tu lugar" por sobre "Regístrate/Inscríbete". Alternativa: "Aparta tu lugar gratis" (a criterio del usuario)
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Gestionas un equipo de atención y sientes que los tickets no paran de acumularse.
+LIST ITEM: Trabajas en una agencia y reportas tiempos de respuesta a tus clientes.
+LIST ITEM: Quieres bajar tu SLA y optimizar tu operación.
+CTA: Quiero mi cupo gratuito
+
+=== IA EN ESTE WEBINAR ===
+H2: IA en este webinar
+LABEL: Atención al Cliente Multicanal
+LABEL: Smart Replies
+LABEL: Sentiment Classification
+LABEL: AI Insights
+
+=== QUIEN PRESENTA ===
+OVERLINE: Especialista en Atención al Cliente & IA
+H2: Con quién vas a aprender
+LABEL: Luis Pérez, Business Developer · Buzzmonitor
+LABEL: Lorena Rodríguez, Business Developer · Buzzmonitor
+# [NOTA] Fotos de los 2 speakers recibidas en el chat, sin path de archivo accesible desde aquí. Antes de /lp-gerar, guardar los archivos en landing-pages/buzzmonitor/webinar-atencion-multicanal-latam/assets/ (ej: speaker-luis-perez.jpg, speaker-lorena-rodriguez.jpg)
+
+=== AVISO ===
+H2: ¿Vas a organizar tu atención antes de que los clientes se quejen en redes... o vas a esperar a que ocurra?
+
+=== CTA FINAL ===
+CTA: Reserva tu lugar gratis
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
