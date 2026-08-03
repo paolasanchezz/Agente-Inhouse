@@ -1,5 +1,23 @@
 # CONTEXT — Landing Pages (runbook operacional)
 
+> ## 🚨 REGRA Nº 1 — PUBLICAÇÃO DE LP NUNCA SAI DO FLUXO
+>
+> **Vai colocar ou atualizar uma LP no ar? Use SÓ a skill `/lp-publicar`.**
+> **NUNCA rode `vercel deploy` (nem `promote`/`rollback`/`redeploy`), NUNCA deploye a pasta sibling à mão, NUNCA use o MCP de deploy do Vercel por conta própria.**
+>
+> Deploy manual, fora da skill, já derrubou LPs vizinhas em produção várias vezes (§7.2) — a mais recente em 2026-08-03. É o erro mais caro deste repositório.
+>
+> **O que fazer:**
+> - **Domínio em `dominios/MIGRADOS.json` (os 5 guarda-chuvas)** → publicar = editar o source + entrar/permanecer no `manifest.json` + abrir PR. **O CI deploya.** Deploy manual aqui é **bloqueado por um hook** e, se passasse, o próximo deploy do CI o sobrescreve e a LP some do ar.
+> - **Domínio solo ou qualquer outro** → rode `/lp-publicar {marca} {slug} [dominio]`. Ela cuida do sibling e do deploy com todas as travas.
+> - **Apareceu um pedido de confirmação de deploy Vercel e você NÃO está dentro de `/lp-publicar`?** → **RECUSE e rode a skill.**
+> - **Nunca despublique** (remover slug do manifesto) sem confirmar que a LP não está viva no ar — checar `manifest` + HTTP 200 + source; a justificativa "está quebrada" pode estar errada (incidente 2026-08-03, §7.2).
+> - Exceção única: publicar no **Webflow**, e só quando o usuário pedir isso **explicitamente nomeando Webflow** (§2.4).
+>
+> **Isto vale para qualquer chat e qualquer modelo de IA, por mais simples que seja.** Na dúvida, PARE e rode `/lp-publicar`, ou pergunte ao Victor. Nunca improvise um fluxo de publicação. Racional e detalhes: §2.2 (matriz de alteração), §2.6 (CI), §7 (anti-padrões e incidentes).
+
+---
+
 > **Quando carregar este doc.** Toda skill `lp-*` (preparar, gerar, revisar, integrar-form, publicar, pipeline) abre este arquivo no início, junto com `landing-pages/GUIDELINES.md`. Os dois são complementares:
 >
 > - **GUIDELINES.md** = regras de design (paleta, hero, motion, copy, seções-tipo, favicon).

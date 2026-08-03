@@ -225,6 +225,14 @@ Saida em `conhecimento/copywriting/criacao/{marca}/YYYY-MM-DD/webinar-{slug}/` (
 
 ### Landing Pages
 
+> ⛔ **PUBLICACAO DE LP NUNCA SAI DO FLUXO — vale pra todo chat e todo modelo.**
+>
+> **O que E uma LP (criterio por dominio — nao precisa julgar, so olhar o alvo do deploy; na duvida, trate como LP):** qualquer pagina servida nestes subdominios → **`content.cxpress.io`, `webinar.buzzmonitor.com`, `evento.buzzmonitor.com`, `material.buzzmonitor.com`, `content.buzzmonitor.com`** (os 5 de `landing-pages/dominios/MIGRADOS.json`) — ou um projeto solo de LP na Vercel (nome/URL no padrao `*-lp-*.vercel.app`). Se um `vercel deploy` (ou `promote`/`rollback`/`redeploy`, ou o MCP `deploy_to_vercel`) mira qualquer um desses, **E UMA LP** e esta regra se aplica.
+>
+> **O que NAO e LP** (tem skill propria — esta regra nao se aplica, mas o principio "sempre pela skill, nunca deploy manual" vale igual): **dashboards** (`dashboard-*.vercel.app` → `/dashboard-atualizar`), o **blog** (`blog.buzzcreators.com.br` → `/blog-publicar`), e qualquer deploy fora dos dominios/projetos acima.
+>
+> **A regra:** colocar/atualizar LP no ar = SEMPRE pela skill `/lp-publicar`. NUNCA rode `vercel deploy`/`promote`/`rollback` da LP a mao, nem deploye a sibling, nem use o MCP de deploy por conta propria. Dominio migrado (`MIGRADOS.json`) = editar source + `manifest.json` + PR (o CI deploya; deploy manual e bloqueado por hook). Solo = `/lp-publicar`. Se um prompt de confirmacao de deploy Vercel aparecer e voce NAO estiver dentro de `/lp-publicar` (ou `/dashboard-atualizar`/`/blog-publicar` pros respectivos) → **recuse**. Nunca remova slug do manifesto sem checar se a LP esta viva (200 + source). Detalhes: `landing-pages/CONTEXT.md` (Regra Nº 1, topo).
+
 Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; runbook operacional (fluxos, assets, troubleshooting, fluxo de alteracao pos-deploy) em `landing-pages/CONTEXT.md` — carregado por todas as skills lp-*. Fonte em `landing-pages/{marca}/{slug}/`, deploy em pasta sibling isolada.
 
 **Dominios migrados pro CI (desde 2026-07-15):** guarda-chuvas listados em `landing-pages/dominios/MIGRADOS.json` deployam **exclusivamente via GitHub Actions** (workflow `lp-deploy.yml` — build da main inteira + smoke + rollback automatico; merge-bot `lp-pr.yml` auto-mergeia PR que so toca conteudo). Sem sibling, sem deploy local. Fluxo operacional no Passo 0.0 da `lp-publicar` v4; racional em `landing-pages/PLANO-MIGRACAO-CI.md` e regras em `landing-pages/CONTEXT.md` §2.6. A regra abaixo vale pros dominios NAO migrados:
