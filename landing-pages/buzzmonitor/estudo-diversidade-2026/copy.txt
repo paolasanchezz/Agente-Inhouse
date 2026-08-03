@@ -23,8 +23,8 @@ LIST ITEM: Asiáticos seguem super-representados: 12,1% de presença no estudo c
 
 === PREMIO ===
 OVERLINE: Buzz Summit 2026
-H2: Prêmio Diversidade na Comunicação de Marcas nas Redes Sociais
-BODY: As marcas que mais se destacaram em representatividade nas redes sociais concorrem ao Prêmio Diversidade na Comunicação de Marcas nas Redes Sociais. Os vencedores serão anunciados no Buzz Summit 2026, em outubro.
+H2: Os vencedores serão anunciados no Buzz Summit 2026
+BODY: As marcas que mais se destacaram em representatividade nas redes sociais serão reveladas em outubro, no Buzz Summit 2026.
 CTA: Conheça o Buzz Summit
 
 LIST ITEM: Presença de Idosos
