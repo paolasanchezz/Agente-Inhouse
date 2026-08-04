@@ -65,6 +65,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --yellow-light:#FFE1AD;
     --pink:#DE2451;
     --pink-light:#FFD7E0;
+    --blue:#3E5CC7;
+    --blue-light:#E4E9F9;
     --ink:#1a1a1a;
     --ink-soft:#4a4a4a;
     --line:#d1d1d1;
@@ -139,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border:none; cursor:pointer; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
     white-space:nowrap; position:relative; overflow:hidden; touch-action:manipulation;
   }
-  .btn-primary{ background:var(--orange); color:var(--white); box-shadow:0 4px 14px rgba(235,124,46,.35); }
+  .btn-primary{ background:var(--blue); color:var(--white); box-shadow:0 4px 14px rgba(62,92,199,.35); }
   .btn-primary::after{
     content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
     background:linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
@@ -159,13 +161,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .btn-glow:hover{
     box-shadow:
-      0 0 32px rgba(239, 134, 60, 0.6),
-      0 0 12px rgba(239, 134, 60, 0.4);
+      0 0 32px rgba(62, 92, 199, 0.6),
+      0 0 12px rgba(62, 92, 199, 0.4);
     transform:translateY(-2px);
   }
-  .btn-outline{ background:transparent; color:var(--purple); border:1.5px solid var(--purple); }
-  .btn-outline:hover{ background:var(--purple); color:var(--white); }
-  .btn-white{ background:var(--white); color:var(--purple); box-shadow:0 8px 22px rgba(0,0,0,.18); }
+  .btn-outline{ background:transparent; color:var(--blue); border:1.5px solid var(--blue); }
+  .btn-outline:hover{ background:var(--blue); color:var(--white); }
+  .btn-white{ background:var(--white); color:var(--blue); box-shadow:0 8px 22px rgba(0,0,0,.18); }
   .btn-white:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.24); }
 
   /* ===== HERO ===== */
@@ -298,7 +300,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ===== IA COMO DIFERENCIAL ===== */
   .bg-gradient{
-    background:linear-gradient(135deg, #EF863C, #F1A908, #6b85d0, #EF863C);
+    background:linear-gradient(135deg, #390155, #6b85d0, #DE2451, #390155);
     background-size:400% 400%;
     animation:shift 12s ease infinite;
   }
@@ -400,7 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://buzzmonitor.com/" class="navbar__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
       <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="140" height="32">
     </a>
-    <a href="#cta-final" class="btn btn-primary btn-sm btn-glow">Agendar Demonstração Gratuita</a>
+    <a href="#cta-final" class="btn btn-primary btn-sm btn-glow">Demonstração gratuita</a>
   </div>
 </header>
 
