@@ -192,9 +192,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chip{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 20px;font-family:var(--display);font-weight:700;font-size:1.1rem}
   .chip .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto}
   .premio__sun{position:absolute;right:-90px;bottom:-90px;width:320px;height:320px;opacity:.14;pointer-events:none}
-  .premio__past{position:relative;z-index:2;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.16)}
-  .premio__past-label{font-family:var(--display);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--amarelo);margin-bottom:8px}
-  .premio__past-list{font-size:.95rem;color:#EAD9F5}
+  /* ---------- PREMIO 2025 (edição anterior) ---------- */
+  .premio25{background:var(--off);position:relative;overflow:hidden}
+  .premio25 .kicker{color:var(--laranja)}
+  .premio25__head{max-width:760px;margin:0 auto 44px;text-align:center}
+  .premio25__badge{display:inline-block;font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--roxo);background:var(--lilas);padding:6px 14px;border-radius:999px;margin-bottom:16px}
+  .premio25__head .lead{margin:14px auto 0}
+  .premio25__grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+  .win-card{width:200px;background:#fff;border:1px solid var(--borda);border-radius:18px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}
+  .win-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(57,1,85,.14)}
+  .win-card__logo{height:64px;width:100%;display:flex;align-items:center;justify-content:center}
+  .win-card__logo img{max-height:100%;max-width:100%;object-fit:contain}
+  .win-card--dark{background:var(--roxo);border-color:var(--roxo)}
+  .win-card--dark .win-card__cat{color:#fff}
+  .win-card__cat{font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--tinta2);letter-spacing:.01em;line-height:1.3}
+  .premio25__note{max-width:760px;margin:40px auto 0;display:flex;flex-direction:column;gap:12px;list-style:none}
+  .premio25__note li{position:relative;padding-left:26px;font-size:.98rem;color:var(--tinta2);line-height:1.55}
+  .premio25__note li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--laranja)}
+  @media(max-width:560px){.win-card{width:158px;padding:20px 14px}}
+
+  /* ---------- VISUAL LISTENING ---------- */
+  .vlisten{position:relative;overflow:hidden;background:linear-gradient(165deg,#F4F1FD 0%,#EAE6F9 100%)}
+  .vlisten .blob--a{width:340px;height:340px;background:var(--grad-brand);top:-120px;right:-100px;opacity:.14}
+  .vlisten__wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+  .vlisten__text .h2{color:var(--roxo);max-width:20ch;margin-bottom:22px}
+  .vlisten__text .h2 .hl{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vlisten__text .lead strong{color:var(--roxo);font-weight:800}
+  .vlisten__card{background:linear-gradient(150deg,#14134A,var(--estudo-azul));color:#fff;border-radius:24px;padding:36px 32px;box-shadow:0 24px 60px rgba(57,1,85,.24)}
+  .vlisten__card .kicker{color:var(--amarelo);margin-bottom:10px}
+  .vlisten__card h3{font-family:var(--display);font-size:1.3rem;margin-bottom:14px;line-height:1.15}
+  .vlisten__card p{color:#EAD9F5;font-size:.98rem;line-height:1.55}
+  @media(max-width:980px){.vlisten__wrap{grid-template-columns:1fr}}
 
   /* ---------- POR QUE ---------- */
   .porque{position:relative;overflow:hidden;background:var(--off)}
@@ -419,9 +447,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="chip"><span class="dot" style="background:#8B85E0"></span>Presença de Pessoas Sexualmente Diversas</div>
         </div>
       </div>
-      <div class="premio__past reveal">
-        <p class="premio__past-label">Vencedores da edição 2025</p>
-        <p class="premio__past-list">Calcitran (Presença de Idosos), Ariel (Presença de PCDs), Bet Nacional (Presença Negra), Magalu (Presença Feminina) e Brilhante (Presença de Pessoas Sexualmente Diversas).</p>
+    </div>
+  </section>
+
+  <!-- ===================== PREMIO 2025 (edição anterior) ===================== -->
+  <section class="section premio25">
+    <div class="wrap">
+      <div class="premio25__head reveal">
+        <span class="premio25__badge">Edição 2025</span>
+        <p class="kicker">1º Prêmio Diversidade na Comunicação</p>
+        <h2 class="h2">Os vencedores da edição passada</h2>
+        <p class="lead">Na 7ª edição do estudo, a Buzzmonitor analisou mais de 6 mil publicações dos maiores anunciantes do Brasil para eleger as marcas mais representativas em 5 categorias. O reconhecimento aconteceu no <strong>Buzz Summit 2025</strong>, o maior evento de Social Media e IA do Brasil.</p>
+      </div>
+      <div class="premio25__grid stagger">
+        <article class="win-card win-card--dark reveal" style="--i:0">
+          <div class="win-card__logo"><img src="./assets/vencedores-2025/calcitran.png" alt="Logo da Calcitran" loading="lazy"></div>
+          <p class="win-card__cat">Presença de Idosos</p>
+        </article>
+        <article class="win-card reveal" style="--i:1">
+          <div class="win-card__logo"><img src="./assets/vencedores-2025/ariel.png" alt="Logo da Ariel" loading="lazy"></div>
+          <p class="win-card__cat">Presença de PCDs</p>
+        </article>
+        <article class="win-card reveal" style="--i:2">
+          <div class="win-card__logo"><img src="./assets/vencedores-2025/bet-nacional.svg" alt="Logo da Bet Nacional" loading="lazy"></div>
+          <p class="win-card__cat">Presença Negra</p>
+        </article>
+        <article class="win-card reveal" style="--i:3">
+          <div class="win-card__logo"><img src="./assets/vencedores-2025/magalu.svg" alt="Logo da Magalu" loading="lazy"></div>
+          <p class="win-card__cat">Presença Feminina</p>
+        </article>
+        <article class="win-card reveal" style="--i:4">
+          <div class="win-card__logo"><img src="./assets/vencedores-2025/brilhante.jpg" alt="Logo da Brilhante" loading="lazy"></div>
+          <p class="win-card__cat">Presença de Pessoas Sexualmente Diversas</p>
+        </article>
+      </div>
+      <ul class="premio25__note reveal">
+        <li><strong>Idosos</strong> triplicaram a presença nas campanhas, ainda de forma limitada.</li>
+        <li><strong>Presença feminina</strong> cresceu, mas seguiu ligada a estereótipos de beleza e cuidado.</li>
+        <li><strong>Representatividade negra</strong> aumentou, mas continuou abaixo da realidade brasileira.</li>
+        <li><strong>População LGBTQIAPN+</strong> avançou de forma simbólica e restrita.</li>
+        <li><strong>PCDs e pessoas obesas</strong> seguiram quase invisíveis nas campanhas.</li>
+        <li><strong>Asiáticos</strong> continuaram super-representados em papéis tecnológicos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== VISUAL LISTENING ===================== -->
+  <section class="section vlisten">
+    <span class="blob blob--a" aria-hidden="true"></span>
+    <div class="wrap vlisten__wrap">
+      <div class="vlisten__text reveal">
+        <p class="kicker" style="color:var(--estudo-azul)">Metodologia</p>
+        <h2 class="h2">Como o <span class="hl">Visual Listening</span> lê a diversidade nas imagens</h2>
+        <p class="lead">Com o <strong>Visual Listening</strong> da Buzzmonitor, é possível mapear a presença da sua marca não apenas em menções, mas também em imagens. Usando a metodologia exclusiva de Brand Logo Detection, você identifica com precisão quais elementos visuais da marca aparecem com mais frequência nas fotos analisadas.</p>
+        <p class="lead">Em eventos de grande visibilidade, como o Rock in Rio, as imagens compartilhadas nas redes sociais vão além do entretenimento: elas revelam insights valiosos sobre o comportamento do público e a percepção das marcas.</p>
+        <p class="lead">Nesse cenário, o <strong>Visual Listening</strong> se torna uma ferramenta estratégica para monitorar a presença das marcas em conteúdos visuais, apoiando decisões de marketing, ações de relacionamento e novas oportunidades de atuação — a mesma tecnologia usada para identificar os grupos representados neste estudo.</p>
+      </div>
+      <div class="vlisten__card reveal">
+        <p class="kicker">Brand Logo Detection</p>
+        <h3>Presença visual, não só menções de texto</h3>
+        <p>A tecnologia identifica marcas e elementos visuais em fotos e vídeos publicados nas redes sociais, mesmo quando a marca não é citada no texto do post.</p>
       </div>
     </div>
   </section>
