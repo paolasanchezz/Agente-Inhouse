@@ -235,6 +235,8 @@
     /* ============ SECTIONS ============ */
     section { padding: var(--section-y) 0; position: relative; }
     .section-label { display: inline-block; font-family: var(--font-accent); font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 24px; }
+    /* AA: royal #4A69BD sobre lavanda #D7E2FF da ~4.0:1 (reprova WCAG AA 13px). Escurece nesses fundos. */
+    .program .section-label, .cta-final .section-label { color: var(--primary-dark); }
     .section-h2 { font-size: clamp(30px, 3.8vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.028em; max-width: 900px; }
     .section-intro { font-size: 18px; line-height: 1.6; color: var(--neutral-700); max-width: 720px; margin-top: 18px; }
 
@@ -325,14 +327,6 @@
     .cta-final h2 { color: var(--primary-dark); font-size: clamp(30px, 4.2vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
     .cta-final-sub { font-size: 19px; line-height: 1.55; color: var(--neutral-700); margin-bottom: 34px; }
     .cta-final-alt { margin-top: 22px; font-size: 15px; color: var(--neutral-700); }
-
-    /* ============ NEWSLETTER ============ */
-    .newsletter { background: var(--neutral-100); }
-    .newsletter-inner { max-width: 620px; margin: 0 auto; text-align: center; }
-    .newsletter h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; letter-spacing: -0.02em; margin-top: 12px; }
-    .news-sub { font-size: 18px; line-height: 1.55; color: var(--neutral-700); margin: 16px 0 30px; }
-    .news-form { text-align: left; }
-    .news-form .btn { margin-top: 8px; }
 
     /* ============ FOOTER ============ */
     .footer { background: #171c45; color: rgba(255,255,255,.62); padding: 52px 0 48px; }
@@ -586,37 +580,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
         <p class="cta-final-alt">Prefere conversar agora? <a href="https://home.cxpress.io" target="_blank" rel="noopener">Fale com um especialista da Cxpress</a>.</p>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter reveal" id="newsletter" aria-labelledby="news-title">
-      <div class="container newsletter-inner">
-        <span class="section-label">Newsletter</span>
-        <h2 id="news-title">Gestão de atendimento sem achismo, toda semana</h2>
-        <p class="news-sub">Receba os conteúdos e as novidades da Cxpress sobre métricas, IA e atendimento direto no seu e-mail.</p>
-        <div id="mc_embed_signup">
-          <form action="https://elife.us19.list-manage.com/subscribe/post?u=c8a29d01c3a1c1760d7e9adfc&amp;id=c3d78df3b7&amp;f_id=00b894e3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="news-form" target="_blank" rel="noopener" novalidate>
-            <div class="form-field">
-              <label for="mce-EMAIL">E-mail<span class="required" aria-hidden="true">*</span></label>
-              <input type="email" name="EMAIL" id="mce-EMAIL" class="required email" required placeholder="voce@empresa.com" autocomplete="email" spellcheck="false" autocapitalize="none">
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label for="mce-FNAME">Nome</label>
-                <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome" autocomplete="given-name">
-              </div>
-              <div class="form-field">
-                <label for="mce-LNAME">Sobrenome</label>
-                <input type="text" name="LNAME" id="mce-LNAME" placeholder="Seu sobrenome" autocomplete="family-name">
-              </div>
-            </div>
-            <div hidden><input type="hidden" name="tags" value="4031982"></div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_c8a29d01c3a1c1760d7e9adfc_c3d78df3b7" tabindex="-1" value=""></div>
-            <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-block">Quero receber</button>
-            <p class="form-note">Sem spam. Você cancela quando quiser.</p>
-          </form>
-        </div>
       </div>
     </section>
 
