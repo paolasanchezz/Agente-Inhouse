@@ -59,6 +59,22 @@ Estilístico. Ignorar é aceitável.
 - Glows radiais do hero (atmosfera, 3 matizes em fade) + 1 gradiente linear no CTA final — aderência estrita à §1 pediria 1 tipo; tratado como exceção documentada do briefing dark
 - Paths `../../brand/...` no source são a convenção §3.2 — o build do CI reescreve pra `/assets/buzzmonitor/...` no deploy
 
+## v2 — 2026-08-03 (feedback do Victor)
+
+Mudanças aplicadas por pedido explícito (identidade própria da Universidade do Buzz, fora do brandbook Buzzmonitor):
+
+- [x] Fundo **preto** (#060608/#101014) no lugar do roxo — "o roxo não ficou legal"
+- [x] Botões **azuis** (#3E9BFF, hover #6AB4FF, texto #06182E = 6.2:1 AA) no lugar do laranja — fora da paleta por decisão do Victor; focus ring, tag "Comece hoje", skip-link e ::selection acompanham
+- [x] **Formulário removido** (seção CADASTRO inteira + CSS) — todo CTA aponta direto pra plataforma: `https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto` (6 CTAs)
+- [x] **Animações fluidas** por trilha: campo de 3 blobs orgânicos (`.det__fx`, border-radius morphing + drift, blur 52px, cores da trilha + azul) dentro de cada `<details>` expandido; `* { animation: none }` no prefers-reduced-motion cobre tudo
+- [x] Gradient-text animado no "Experience" do hero (lilás→azul→teal, 10s; pior stop 9.2:1)
+- [x] **Contraste elevado** em todos os textos: script WCAG rodou 20 pares, 0 falhas (dim subiu de 7.1:1 pra 8.5:1; muted 12.6:1; pior par da página é o botão, 6.2:1)
+- [x] CTA final: preto + aurora azul (saiu o gradiente roxo→laranja e o amarelo — poda de paleta que estava sugerida nas melhorias)
+- [x] OG image regenerada na arte preta/azul
+- Nota técnica: dentro de `<details>`, conteúdo fora do `<summary>` fica oculto quando fechado — o campo de blobs vive após o summary e anima ao expandir (HTML válido; summary primeiro filho)
+
+Melhorias v1 que esta v2 resolveu de tabela: poda do amarelo (§1) e feedback de submit do form (form não existe mais).
+
 ## Próximos passos
 
 - Design aprovado? → `/lp-integrar-form buzzmonitor/buzz-academy-experience "<snippet>"` (form real, manual-trigger)

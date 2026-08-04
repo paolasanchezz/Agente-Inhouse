@@ -80,16 +80,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Identidade propria da Universidade do Buzz: base preta + azul de acao.
+     Tricolor (lilas/teal/laranja) segue como codigo funcional das 3 trilhas. */
   :root {
-    --bg: #140222;
-    --bg-2: #1D0731;
-    --bg-3: #26103F;
-    --line: rgba(242, 216, 255, 0.10);
-    --line-md: rgba(242, 216, 255, 0.20);
-    --text: #F6F0FC;
-    --muted: #CDBCDF;
-    --dim: #A793BC;
-    --roxo: #390155;
+    --bg: #060608;
+    --bg-2: #101014;
+    --bg-3: #17171D;
+    --line: rgba(240, 238, 248, 0.11);
+    --line-md: rgba(240, 238, 248, 0.22);
+    --text: #F7F5FA;
+    --muted: #CFCAD9;
+    --dim: #ABA5B8;
     --lilas: #F2D8FF;
     --lilas-hi: #E3C4FF;
     --laranja: #EB7C2E;
@@ -99,8 +100,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --teal-soft: #CDFDFC;
     --teal-hi: #6FDCD8;
     --pink-hi: #FF7396;
-    --yellow: #FCBD4F;
-    --btn-text: #2A0640;
+    --azul: #3E9BFF;
+    --azul-hi: #6AB4FF;
+    --azul-soft: #B5D9FF;
+    --btn-text: #06182E;
     --disp: 'League Spartan', 'Trebuchet MS', sans-serif;
     --sub: 'Hanken Grotesk', 'Segoe UI', sans-serif;
     --body: 'Lato', 'Segoe UI', sans-serif;
@@ -118,18 +121,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     overflow-x: hidden;
   }
 
-  ::selection { background: var(--laranja); color: var(--btn-text); }
+  ::selection { background: var(--azul); color: var(--btn-text); }
 
   /* ---------- A11Y ---------- */
   .skip-link {
     position: absolute; left: -9999px; top: 0; z-index: 300;
-    background: var(--yellow); color: var(--btn-text);
+    background: var(--azul); color: var(--btn-text);
     padding: 12px 22px; font-family: var(--sub); font-weight: 600;
     border-radius: 0 0 12px 0; text-decoration: none;
   }
   .skip-link:focus { left: 0; }
 
-  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 3px solid var(--azul-hi); outline-offset: 3px; border-radius: 4px; }
 
   /* ---------- REVEAL ---------- */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
@@ -149,7 +152,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     gap: 1rem; height: 72px; padding: 0 clamp(1.2rem, 4vw, 3rem);
-    background: rgba(20, 2, 34, 0.82);
+    background: rgba(6, 6, 8, 0.82);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--line);
@@ -169,16 +172,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
     font-family: var(--sub); font-weight: 600; text-decoration: none;
-    background: var(--laranja); color: var(--btn-text);
+    background: var(--azul); color: var(--btn-text);
     border: none; border-radius: 999px; cursor: pointer;
     padding: 17px 34px; font-size: 17px; line-height: 1; white-space: nowrap;
     transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
-    box-shadow: 0 8px 28px rgba(235, 124, 46, 0.28);
+    box-shadow: 0 8px 28px rgba(62, 155, 255, 0.30);
   }
-  .btn:hover { background: var(--laranja-hi); transform: translateY(-2px); box-shadow: 0 12px 34px rgba(235, 124, 46, 0.38); }
+  .btn:hover { background: var(--azul-hi); transform: translateY(-2px); box-shadow: 0 12px 34px rgba(62, 155, 255, 0.42); }
   .btn:active { transform: translateY(0); }
   .btn--sm { padding: 15px 24px; font-size: 15px; box-shadow: none; }
-  .btn--block { width: 100%; }
   .btn .btn__arrow { transition: transform .2s ease; }
   .btn:hover .btn__arrow { transform: translateX(3px); }
 
@@ -189,7 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .overline {
     font-family: var(--sub); font-size: 13px; font-weight: 600;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--lilas); margin-bottom: 1.2rem;
+    color: var(--azul-soft); margin-bottom: 1.2rem;
   }
   h2 {
     font-family: var(--disp); font-weight: 900;
@@ -211,9 +213,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero__glow {
     position: absolute; inset: 0; pointer-events: none;
     background:
-      radial-gradient(ellipse 62% 48% at 18% 30%, rgba(242, 216, 255, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 84% 62%, rgba(235, 124, 46, 0.14) 0%, transparent 58%),
-      radial-gradient(ellipse 48% 40% at 52% 96%, rgba(14, 157, 155, 0.13) 0%, transparent 55%);
+      radial-gradient(ellipse 62% 48% at 18% 30%, rgba(201, 156, 255, 0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 84% 62%, rgba(62, 155, 255, 0.16) 0%, transparent 58%),
+      radial-gradient(ellipse 48% 40% at 52% 96%, rgba(14, 157, 155, 0.14) 0%, transparent 55%);
   }
   .hero__noise {
     position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
@@ -231,7 +233,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 0.96; letter-spacing: -0.03em;
     margin-bottom: 1.8rem;
   }
-  .hero h1 .h1-accent { color: var(--laranja-hi); display: block; }
+  .hero h1 .h1-accent {
+    display: block; color: var(--azul-hi);
+    background: linear-gradient(100deg, var(--lilas-hi), var(--azul-hi), var(--teal-hi), var(--azul-hi), var(--lilas-hi));
+    background-size: 320% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: fluxo 10s linear infinite;
+  }
+  @keyframes fluxo { to { background-position: 320% 0; } }
   .hero__sub {
     font-family: var(--sub); font-weight: 300;
     font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.7;
@@ -246,13 +256,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .pill:hover { transform: translateY(-2px); }
   .pill__dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .pill--int { color: var(--lilas); background: rgba(242, 216, 255, 0.07); border-color: rgba(242, 216, 255, 0.28); }
+  .pill--int { color: var(--lilas); background: rgba(242, 216, 255, 0.07); border-color: rgba(242, 216, 255, 0.30); }
   .pill--int:hover { background: rgba(242, 216, 255, 0.14); }
   .pill--int .pill__dot { background: var(--lilas); }
-  .pill--gro { color: var(--teal-soft); background: rgba(14, 157, 155, 0.10); border-color: rgba(14, 157, 155, 0.40); }
+  .pill--gro { color: var(--teal-soft); background: rgba(14, 157, 155, 0.10); border-color: rgba(14, 157, 155, 0.45); }
   .pill--gro:hover { background: rgba(14, 157, 155, 0.20); }
   .pill--gro .pill__dot { background: var(--teal-hi); }
-  .pill--bra { color: var(--laranja-soft); background: rgba(235, 124, 46, 0.10); border-color: rgba(235, 124, 46, 0.40); }
+  .pill--bra { color: var(--laranja-soft); background: rgba(235, 124, 46, 0.10); border-color: rgba(235, 124, 46, 0.45); }
   .pill--bra:hover { background: rgba(235, 124, 46, 0.20); }
   .pill--bra .pill__dot { background: var(--laranja); }
 
@@ -265,46 +275,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .hero__cta-row { display: flex; justify-content: center; }
 
-  /* ---------- CADASTRO ---------- */
-  .cadastro { padding-top: 130px; }
-  .cadastro__grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: clamp(2.5rem, 6vw, 5.5rem); align-items: center;
-  }
-  .cadastro__text .overline { color: var(--laranja-soft); }
-  .cadastro__body { color: var(--muted); margin-top: 1.3rem; max-width: 460px; font-size: 1.05rem; }
-
-  .form-card {
-    background: var(--lilas);
-    border-radius: 22px; padding: clamp(1.8rem, 4vw, 2.8rem);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(242, 216, 255, 0.25);
-  }
-  .form-card .field { margin-bottom: 1.25rem; }
-  .form-card label {
-    display: block; font-family: var(--sub); font-weight: 600;
-    font-size: 14px; color: var(--roxo); margin-bottom: .45rem;
-  }
-  .form-card input, .form-card select {
-    width: 100%; font-family: var(--body); font-size: 16px;
-    color: #24063A; background: #FFFFFF;
-    border: 1.5px solid rgba(57, 1, 85, 0.22);
-    border-radius: 12px; padding: 14px 16px;
-    transition: border-color .2s ease, box-shadow .2s ease;
-    appearance: none; -webkit-appearance: none;
-  }
-  .form-card select {
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23390155' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 16px center;
-    padding-right: 42px;
-  }
-  .form-card input::placeholder { color: rgba(36, 6, 58, 0.62); }
-  .form-card input:focus, .form-card select:focus {
-    outline: none; border-color: var(--roxo);
-    box-shadow: 0 0 0 3px rgba(57, 1, 85, 0.35);
-  }
-  .form-card :focus-visible { outline: 3px solid var(--roxo); outline-offset: 3px; }
-  .form-card .btn { margin-top: .4rem; }
-
   /* ---------- PROBLEMA ---------- */
   .problema__list { list-style: none; max-width: 760px; margin-top: 3rem; display: flex; flex-direction: column; gap: 14px; }
   .problema__item {
@@ -316,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .problema__x {
     flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px;
     display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(222, 36, 81, 0.14); margin-top: 1px;
+    background: rgba(222, 36, 81, 0.16); margin-top: 1px;
   }
   .problema__x svg { display: block; }
 
@@ -361,17 +331,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---------- TRILHAS DETALHE (details/summary) ---------- */
   .dets { display: flex; flex-direction: column; gap: 16px; margin-top: 3.2rem; }
   .det {
+    position: relative;
     border: 1px solid var(--line); border-radius: 20px;
     background: var(--bg-2); overflow: hidden;
     transition: border-color .25s ease;
   }
   .det[open] { border-color: var(--line-md); }
-  .det--int[open] { border-color: rgba(242, 216, 255, 0.42); background: rgba(242, 216, 255, 0.04); }
-  .det--gro[open] { border-color: rgba(14, 157, 155, 0.50); background: rgba(14, 157, 155, 0.05); }
-  .det--bra[open] { border-color: rgba(235, 124, 46, 0.50); background: rgba(235, 124, 46, 0.05); }
+  .det--int[open] { border-color: rgba(242, 216, 255, 0.42); }
+  .det--gro[open] { border-color: rgba(14, 157, 155, 0.55); }
+  .det--bra[open] { border-color: rgba(235, 124, 46, 0.55); }
+
+  /* Campo fluido por trilha: blobs organicos em morph continuo (decorativo) */
+  .det__fx { position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: .62; animation: detIn .6s ease; }
+  .fx {
+    position: absolute; width: 340px; height: 340px;
+    filter: blur(52px); will-change: transform, border-radius;
+    border-radius: 58% 42% 55% 45% / 48% 60% 40% 52%;
+    animation: blobmorph 16s ease-in-out infinite alternate, blobdrift 26s ease-in-out infinite alternate;
+  }
+  .fx-a { right: -90px; top: -110px; }
+  .fx-b { right: 170px; bottom: -130px; width: 270px; height: 270px; animation-duration: 21s, 33s; animation-delay: -7s, -11s; }
+  .fx-c { left: -70px; top: 26%; width: 210px; height: 210px; animation-duration: 25s, 29s; animation-delay: -13s, -19s; }
+  @keyframes blobmorph {
+    0%   { border-radius: 58% 42% 55% 45% / 48% 60% 40% 52%; }
+    50%  { border-radius: 44% 56% 38% 62% / 61% 41% 59% 39%; }
+    100% { border-radius: 63% 37% 60% 40% / 41% 56% 44% 59%; }
+  }
+  @keyframes blobdrift {
+    0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+    100% { transform: translate(64px, -42px) rotate(42deg) scale(1.16); }
+  }
+  .det--int .fx-a { background: rgba(201, 156, 255, 0.55); }
+  .det--int .fx-b { background: rgba(62, 155, 255, 0.34); }
+  .det--int .fx-c { background: rgba(242, 216, 255, 0.30); }
+  .det--gro .fx-a { background: rgba(14, 157, 155, 0.60); }
+  .det--gro .fx-b { background: rgba(62, 155, 255, 0.28); }
+  .det--gro .fx-c { background: rgba(111, 220, 216, 0.34); }
+  .det--bra .fx-a { background: rgba(235, 124, 46, 0.55); }
+  .det--bra .fx-b { background: rgba(255, 158, 94, 0.32); }
+  .det--bra .fx-c { background: rgba(62, 155, 255, 0.24); }
+  @media (max-width: 960px) {
+    .fx { filter: blur(40px); }
+    .fx-b { right: 40px; }
+  }
 
   .det summary {
     list-style: none; cursor: pointer; user-select: none;
+    position: relative; z-index: 1;
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     padding: 1.5rem 1.8rem;
   }
@@ -393,12 +399,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
     border: 1px solid var(--line-md);
     display: inline-flex; align-items: center; justify-content: center;
-    color: var(--muted); transition: transform .3s ease, background .2s ease;
+    color: var(--text); background: rgba(6, 6, 8, 0.35);
+    transition: transform .3s ease, background .2s ease;
   }
-  .det[open] .det__chev { transform: rotate(180deg); background: rgba(242, 216, 255, 0.08); }
-  .det summary:hover .det__chev { background: rgba(242, 216, 255, 0.10); }
+  .det[open] .det__chev { transform: rotate(180deg); background: rgba(240, 238, 248, 0.10); }
+  .det summary:hover .det__chev { background: rgba(240, 238, 248, 0.12); }
 
-  .det__body { padding: 0 1.8rem 2rem; animation: detIn .38s ease; }
+  .det__body { position: relative; z-index: 1; padding: 0 1.8rem 2rem; animation: detIn .38s ease; }
   @keyframes detIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
   .det__sub {
     font-family: var(--sub); font-weight: 600; font-size: 1.05rem;
@@ -412,9 +419,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .det__cursos { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.8rem; }
   .det__curso {
     display: flex; align-items: flex-start; gap: 12px;
-    background: var(--bg); border: 1px solid var(--line);
+    background: rgba(6, 6, 8, 0.62); border: 1px solid var(--line);
     border-radius: 12px; padding: 13px 16px;
     font-size: .98rem; color: var(--text);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     transition: border-color .2s ease;
   }
   .det__curso:hover { border-color: var(--line-md); }
@@ -439,8 +447,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     content: counter(passo, decimal-leading-zero);
     display: inline-flex; align-items: center; justify-content: center;
     font-family: var(--disp); font-weight: 700; font-size: 15px;
-    color: var(--teal-soft); background: rgba(14, 157, 155, 0.14);
-    border: 1px solid rgba(14, 157, 155, 0.45);
+    color: var(--teal-soft); background: rgba(14, 157, 155, 0.16);
+    border: 1px solid rgba(14, 157, 155, 0.50);
     width: 42px; height: 42px; border-radius: 12px;
     margin-bottom: 1rem;
   }
@@ -456,7 +464,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .quem__check {
     flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(14, 157, 155, 0.14); border: 1px solid rgba(14, 157, 155, 0.45);
+    background: rgba(14, 157, 155, 0.16); border: 1px solid rgba(14, 157, 155, 0.50);
     margin-top: 1px;
   }
 
@@ -464,29 +472,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .final {
     position: relative; text-align: center;
     padding: 150px 1.5rem; overflow: hidden;
-    background:
-      linear-gradient(rgba(26, 3, 42, 0.52), rgba(26, 3, 42, 0.52)),
-      linear-gradient(135deg, #390155, #EB7C2E);
+    background: var(--bg);
+    border-top: 1px solid var(--line);
   }
+  .final::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 74% 92% at 50% 112%, rgba(62, 155, 255, 0.30) 0%, transparent 62%),
+      radial-gradient(ellipse 40% 36% at 12% 8%, rgba(201, 156, 255, 0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 36% at 90% 12%, rgba(14, 157, 155, 0.10) 0%, transparent 60%);
+  }
+  .final > * { position: relative; }
   .final__tag {
     display: inline-block; transform: rotate(-3deg);
-    background: var(--yellow); color: var(--btn-text);
+    background: var(--azul); color: var(--btn-text);
     font-family: var(--sub); font-weight: 600; font-size: 14px;
     letter-spacing: 0.14em; text-transform: uppercase;
     padding: 9px 20px; border-radius: 8px; margin-bottom: 2rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 24px rgba(62, 155, 255, 0.30);
   }
   .final h2 {
     color: #FFFFFF; max-width: 780px; margin: 0 auto 1.4rem;
     font-size: clamp(2.1rem, 5.4vw, 3.6rem);
   }
-  .final p { color: rgba(255, 255, 255, 0.88); max-width: 560px; margin: 0 auto 2.6rem; font-size: 1.1rem; }
-  .final .btn { background: #FFFFFF; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.30); }
-  .final .btn:hover { background: var(--lilas); }
+  .final p { color: var(--muted); max-width: 560px; margin: 0 auto 2.6rem; font-size: 1.1rem; }
 
   /* ---------- FOOTER ---------- */
   .footer {
-    background: #0E0118; border-top: 1px solid var(--line);
+    background: #030305; border-top: 1px solid var(--line);
     padding: 70px 0 50px; text-align: center;
   }
   .footer__logo { display: inline-flex; margin-bottom: 1.8rem; }
@@ -497,7 +510,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 960px) {
     .section { padding: 95px 0; }
     .ponte { padding: 100px 0; }
-    .cadastro__grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .trilhas__grid { grid-template-columns: 1fr; }
     .como__steps { grid-template-columns: 1fr 1fr; }
     .quem__grid { grid-template-columns: 1fr; }
@@ -534,7 +546,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="nav__link" href="#trilhas">Trilhas</a>
     <a class="nav__link" href="#como-funciona">Como funciona</a>
     <a class="nav__link" href="#para-quem">Para quem</a>
-    <a class="btn btn--sm" href="#cadastro">Cadastrar gratuitamente</a>
+    <a class="btn btn--sm" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente</a>
   </div>
 </nav>
 
@@ -552,46 +564,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <p class="hero__meta">3 trilhas · 15 cursos · 100% online e gratuito</p>
     <div class="hero__cta-row">
-      <a class="btn" href="#cadastro">Cadastrar gratuitamente <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente <span class="btn__arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </header>
 
 <main id="conteudo">
-
-  <!-- CADASTRO -->
-  <section class="section cadastro" id="cadastro" aria-labelledby="cadastro-titulo">
-    <div class="wrap">
-      <div class="cadastro__grid">
-        <div class="cadastro__text reveal">
-          <h2 id="cadastro-titulo">Garanta seu acesso gratuito</h2>
-          <p class="cadastro__body">Preencha o cadastro e receba no seu e-mail o acesso às 3 trilhas da Buzz Academy Experience. Acesso imediato após o cadastro.</p>
-        </div>
-        <div class="reveal d1">
-          <form class="form-card" action="#" method="post" onsubmit="event.preventDefault()">
-            <div class="field">
-              <label for="f-nome">Nome completo</label>
-              <input type="text" id="f-nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="f-email">E-mail</label>
-              <input type="email" id="f-email" name="email" placeholder="voce@email.com" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="f-momento">Em qual momento você está?</label>
-              <select id="f-momento" name="momento" required>
-                <option value="" selected disabled>Selecione</option>
-                <option value="universitario">Universitário</option>
-                <option value="recem-formado">Recém-formado</option>
-                <option value="migrando">Migrando de área</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn--block">Cadastrar gratuitamente</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- PROBLEMA -->
   <section class="section" aria-labelledby="problema-titulo">
@@ -656,6 +634,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3>Trilha Intelligence</h3>
             <span class="det__chev" aria-hidden="true"><svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
+          <div class="det__fx" aria-hidden="true"><span class="fx fx-a"></span><span class="fx fx-b"></span><span class="fx fx-c"></span></div>
           <div class="det__body">
             <p class="det__sub">Para quem quer entrar no mercado já sabendo o que fazer com os dados.</p>
             <p class="det__desc">A trilha ensina a interpretar relatórios, aplicar IA no dia a dia do marketing e entender o funil inteiro. Repertório de quem participa das decisões, não só da execução.</p>
@@ -666,7 +645,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li class="det__curso"><span class="det__num" aria-hidden="true">04</span>Growth Hacking</li>
               <li class="det__curso"><span class="det__num" aria-hidden="true">05</span>Desvende o Funil de Vendas</li>
             </ol>
-            <a class="btn btn--sm" href="#cadastro">Cadastrar gratuitamente</a>
+            <a class="btn btn--sm" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente</a>
           </div>
         </details>
 
@@ -675,6 +654,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3>Trilha Growth</h3>
             <span class="det__chev" aria-hidden="true"><svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
+          <div class="det__fx" aria-hidden="true"><span class="fx fx-a"></span><span class="fx fx-b"></span><span class="fx fx-c"></span></div>
           <div class="det__body">
             <p class="det__sub">Para quem quer fazer marca e negócio crescerem na internet.</p>
             <p class="det__desc">Redes sociais, tráfego pago e orgânico, conteúdo e copywriting num percurso único: você começa no fundamento e termina executando campanha de ponta a ponta.</p>
@@ -685,7 +665,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li class="det__curso"><span class="det__num" aria-hidden="true">04</span>Tráfego Pago vs. Tráfego Orgânico</li>
               <li class="det__curso"><span class="det__num" aria-hidden="true">05</span>O Segredo do Copywriting</li>
             </ol>
-            <a class="btn btn--sm" href="#cadastro">Cadastrar gratuitamente</a>
+            <a class="btn btn--sm" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente</a>
           </div>
         </details>
 
@@ -694,6 +674,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3>Trilha Branding</h3>
             <span class="det__chev" aria-hidden="true"><svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
+          <div class="det__fx" aria-hidden="true"><span class="fx fx-a"></span><span class="fx fx-b"></span><span class="fx fx-c"></span></div>
           <div class="det__body">
             <p class="det__sub">Para quem quer criar marcas que ficam na memória.</p>
             <p class="det__desc">Da psicologia das cores à produção de conteúdo para a internet, a trilha percorre o que dá identidade e voz a uma marca. Inclui até como criar e monetizar a sua própria newsletter.</p>
@@ -704,7 +685,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li class="det__curso"><span class="det__num" aria-hidden="true">04</span>Como Funciona a Produção de Notícias para a Internet</li>
               <li class="det__curso"><span class="det__num" aria-hidden="true">05</span>Inteligência Artificial no Marketing</li>
             </ol>
-            <a class="btn btn--sm" href="#cadastro">Cadastrar gratuitamente</a>
+            <a class="btn btn--sm" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente</a>
           </div>
         </details>
       </div>
@@ -751,7 +732,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="final__tag reveal">Comece hoje</span>
     <h2 id="final-titulo" class="reveal d1">Sua formação não precisa esperar a formatura</h2>
     <p class="reveal d2">Cadastre-se, escolha a primeira trilha e comece ainda hoje. Quando a vaga aparecer, você terá o que mostrar.</p>
-    <a class="btn reveal d3" href="#cadastro">Cadastrar gratuitamente <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <a class="btn reveal d3" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente <span class="btn__arrow" aria-hidden="true">→</span></a>
   </section>
 
 </main>

@@ -1,29 +1,31 @@
 # LP Buzzmonitor — buzz-academy-experience
 
-**Gerado em:** 2026-08-03
+**Gerado em:** 2026-08-03 (v2 no mesmo dia)
 **Copy-fonte:** `copy.txt` (output de /lp-preparar; fonte bruta: doc interno "Buzz Academy Experience — Universidade do Buzz")
-**Briefing especial:** ID visual escura (dark roxo Buzzmonitor) a pedido do cliente — override do padrão hero-branco das GUIDELINES §3. Trilhas com codificação de cor própria: Intelligence=lilás, Growth=teal, Branding=laranja.
+**Briefing especial (v2):** a Universidade do Buzz tem **identidade visual própria**, fora do brandbook Buzzmonitor — base **preta** (#060608, não o roxo da marca) + **botões azuis** (#3E9BFF, azul vibrante claro com texto escuro por AA; decisão do Victor, mesmo fora da paleta). Trilhas mantêm codificação de cor: Intelligence=lilás, Growth=teal, Branding=laranja. **Sem formulário**: todo CTA "Cadastrar gratuitamente" aponta direto pra plataforma (`https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto`). Animações CSS fluidas (blobs orgânicos em morph, `.det__fx`) dentro de cada trilha expandida + gradient-text animado no "Experience" do hero.
 
-## Estrutura
+## Estrutura (v2)
 
-- HERO (dark, H1 "Buzz Academy Experience", 3 pills de trilha, CTA)
-- CADASTRO (2ª seção, ToFu §10 — form MOCK, aguarda /lp-integrar-form)
+- HERO (preto, H1 com "Experience" em gradient-text animado, 3 pills de trilha, CTA → plataforma)
 - PROBLEMA (4 dores, lista vertical com X)
 - PONTE (seção de pausa aérea — §2)
 - TRILHAS overview (grid 3 cards)
-- TRILHAS detalhe (3 `<details>` expansíveis, 5 cursos cada, CTA por trilha)
+- TRILHAS detalhe (3 `<details>` expansíveis com campo de blobs fluidos animados por trilha, 5 cursos cada, CTA por trilha)
 - COMO-FUNCIONA (4 passos, teal)
 - PARA-QUEM (3 perfis, check teal)
-- CTA-FINAL (gradiente roxo→laranja + scrim, tag amarela rotacionada)
+- CTA-FINAL (preto + aurora azul, tag azul rotacionada)
 - FOOTER
+
+Sem seção de cadastro/form (removida na v2 — CTA vai direto pra plataforma).
 
 ## Estado
 
-- [x] HTML gerado
-- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/buzz-academy-experience`
-- [ ] OG image 1200×630 — gerar antes de publicar (template `.claude/skills/lp-gerar/og-template.html` + Chrome headless; salvar em `assets/og-image.png`; no Windows renderizar em $TEMP e copiar)
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/buzz-academy-experience [snippet]`
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor buzz-academy-experience content.buzzmonitor.com`
+- [x] HTML gerado (+ v2: ID própria preta/azul, sem form, animações fluidas)
+- [x] Revisão (frontend-design review + web-design-guidelines) — 2026-08-03; contraste v2 re-verificado por script (20 pares AA OK)
+- [x] OG image 1200×630 (`assets/og-image.png` + cópia `og-buzz-academy-experience.png`)
+- [x] Publicado em content.buzzmonitor.com via CI (PR #183; v2 em PR seguinte)
+
+OG image regenerada na v2 (preta/azul, gradient no "Experience") — consistente com a página.
 
 ## Assets referenciados
 

@@ -9,14 +9,6 @@ LABEL: Branding
 LABEL: 3 trilhas · 15 cursos · 100% online e gratuito
 CTA: Cadastrar gratuitamente
 
-=== CADASTRO ===
-H2: Garanta seu acesso gratuito
-BODY: Preencha o cadastro e receba no seu e-mail o acesso às 3 trilhas da Buzz Academy Experience. Acesso imediato após o cadastro.
-LABEL: Nome completo
-LABEL: E-mail
-LABEL: Em qual momento você está? (Universitário · Recém-formado · Migrando de área)
-CTA: Cadastrar gratuitamente
-
 === PROBLEMA ===
 H2: O mercado mudou mais rápido que a grade curricular
 LIST ITEM: A vaga de estágio pede experiência. E a experiência só viria com a vaga.
@@ -98,5 +90,6 @@ FOOTER: Buzz Academy Experience é uma iniciativa da Buzz Academy, a escola da B
 FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
 
 # Revisao anti-IA: em-dash 0 · antitese-por-negacao 1 ("não só da execução", dentro do limite de 2) · exclamacoes 0 · perguntas retoricas 0 · filler 0. Listas variadas (4, 3, 5, 4, 3 itens).
+# [v2 2026-08-03] Secao CADASTRO removida a pedido do Victor: sem formulario nesta LP — todo CTA "Cadastrar gratuitamente" aponta direto pra plataforma (https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto).
 # [OBSERVACAO] O doc-fonte lista "Inteligência Artificial no Marketing Digital" na trilha Intelligence e "Inteligência Artificial no Marketing" na Branding (nomes quase iguais em trilhas diferentes). Mantive literal como no catalogo. Confirmar se e intencional.
 # [OBSERVACAO] O doc-fonte usa "Universidade do Buzz" como nome da entidade; o briefing usa "Buzz Academy". A copy segue o briefing (Buzz Academy). Ajustar se "Universidade do Buzz" for o nome oficial.

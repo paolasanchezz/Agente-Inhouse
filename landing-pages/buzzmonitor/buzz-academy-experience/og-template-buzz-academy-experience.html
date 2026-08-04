@@ -16,8 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#140222; --lilas:#F2D8FF; --laranja:#EB7C2E; --laranja-hi:#FF9E5E;
-    --teal:#0E9D9B; --teal-soft:#CDFDFC; --text:#F6F0FC; --muted:#CDBCDF;
+    --bg:#060608; --lilas:#F2D8FF; --laranja:#EB7C2E; --laranja-hi:#FF9E5E;
+    --teal:#0E9D9B; --teal-soft:#CDFDFC; --text:#F7F5FA; --muted:#CFCAD9;
+    --azul:#3E9BFF; --azul-hi:#6AB4FF;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{
@@ -29,9 +30,9 @@
   }
   .glow{position:absolute;inset:0;
     background:
-      radial-gradient(ellipse 58% 52% at 14% 22%, rgba(242,216,255,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 52% 48% at 88% 70%, rgba(235,124,46,0.18) 0%, transparent 58%),
-      radial-gradient(ellipse 44% 40% at 55% 104%, rgba(14,157,155,0.16) 0%, transparent 55%);
+      radial-gradient(ellipse 58% 52% at 14% 22%, rgba(201,156,255,0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 52% 48% at 88% 70%, rgba(62,155,255,0.20) 0%, transparent 58%),
+      radial-gradient(ellipse 44% 40% at 55% 104%, rgba(14,157,155,0.15) 0%, transparent 55%);
   }
   .overline{
     position:relative;display:inline-flex;align-items:center;gap:14px;
@@ -41,13 +42,17 @@
     border-radius:9999px;padding:14px 32px;margin-bottom:42px;
     width:fit-content;
   }
-  .overline .dot{width:14px;height:14px;border-radius:50%;background:var(--laranja)}
+  .overline .dot{width:14px;height:14px;border-radius:50%;background:var(--azul)}
   h1{
     position:relative;font-family:'League Spartan',Arial,sans-serif;
     font-size:118px;font-weight:900;line-height:0.94;color:var(--text);
     letter-spacing:-3px;max-width:980px;
   }
-  h1 span{color:var(--laranja-hi)}
+  h1 span{
+    background:linear-gradient(100deg,#E3C4FF,#6AB4FF,#6FDCD8);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
   .trilhas{position:relative;display:flex;gap:34px;margin-top:44px}
   .trilha{display:inline-flex;align-items:center;gap:12px;font-size:27px;font-weight:600}
   .trilha .dot{width:13px;height:13px;border-radius:50%}
