@@ -1,0 +1,102 @@
+=== HERO ===
+OVERLINE: Buzz Academy · Formação gratuita da Buzzmonitor
+H1: Buzz Academy Experience
+# [SUGESTAO copy §0] H1 abre pelo nome do programa por pedido explicito do briefing ("Hero com 'Buzz Academy Experience'"). A dor foi movida pro SUB. Se quiser testar a versao H1-dor: H1 "O mercado cobra experiência de quem ainda está estudando" + OVERLINE "Buzz Academy Experience". Decisao de quem aprova.
+SUB: O mercado cobra prática de quem ainda está em formação. A Buzz Academy Experience responde com 3 trilhas profissionalizantes, feitas para universitários e profissionais em início de carreira: dados e IA, growth e branding.
+LABEL: Intelligence
+LABEL: Growth
+LABEL: Branding
+LABEL: 3 trilhas · 15 cursos · 100% online e gratuito
+CTA: Cadastrar gratuitamente
+
+=== CADASTRO ===
+H2: Garanta seu acesso gratuito
+BODY: Preencha o cadastro e receba no seu e-mail o acesso às 3 trilhas da Buzz Academy Experience. Acesso imediato após o cadastro.
+LABEL: Nome completo
+LABEL: E-mail
+LABEL: Em qual momento você está? (Universitário · Recém-formado · Migrando de área)
+CTA: Cadastrar gratuitamente
+
+=== PROBLEMA ===
+H2: O mercado mudou mais rápido que a grade curricular
+LIST ITEM: A vaga de estágio pede experiência. E a experiência só viria com a vaga.
+LIST ITEM: A teoria da sala de aula envelhece antes da formatura: ferramenta, algoritmo e IA mudam a cada semestre.
+LIST ITEM: Você cria, posta e edita todos os dias, mas não sabe transformar isso em argumento num processo seletivo.
+LIST ITEM: Todo mundo aconselha "aprende marketing digital". Quase ninguém mostra por onde começar.
+BODY: Foi para fechar essa distância que a Buzzmonitor criou a Buzz Academy, a escola que profissionaliza universitários e profissionais em formação. A Buzz Academy Experience é o passo mais recente dela: três trilhas de conhecimento nos temas que o mercado mais cobra.
+
+=== TRILHAS ===
+OVERLINE: Formação completa
+H2: 3 trilhas, 15 cursos, um caminho para cada perfil
+SUB: Escolha por onde começar ou faça as três. Cada trilha reúne 5 cursos que se completam.
+H3: Intelligence
+BODY: Dados, IA e estratégia. Transforme relatórios em decisões e domine a inteligência artificial aplicada ao marketing.
+LABEL: 5 cursos
+H3: Growth
+BODY: Do fundamento ao avançado em tráfego, redes sociais, copywriting e marketing de conteúdo.
+LABEL: 5 cursos
+H3: Branding
+BODY: Construa marcas memoráveis com psicologia das cores, gatilhos mentais e estratégia de conteúdo digital.
+LABEL: 5 cursos
+
+=== TRILHA-INTELLIGENCE ===
+H3: Trilha Intelligence
+SUB: Para quem quer entrar no mercado já sabendo o que fazer com os dados.
+BODY: A trilha ensina a interpretar relatórios, aplicar IA no dia a dia do marketing e entender o funil inteiro. Repertório de quem participa das decisões, não só da execução.
+LIST ITEM: Transforme Dados em Estratégias de Sucesso
+LIST ITEM: Especialista em Análise de Relatórios
+LIST ITEM: Inteligência Artificial no Marketing Digital
+LIST ITEM: Growth Hacking
+LIST ITEM: Desvende o Funil de Vendas
+CTA: Cadastrar gratuitamente
+
+=== TRILHA-GROWTH ===
+H3: Trilha Growth
+SUB: Para quem quer fazer marca e negócio crescerem na internet.
+BODY: Redes sociais, tráfego pago e orgânico, conteúdo e copywriting num percurso único: você começa no fundamento e termina executando campanha de ponta a ponta.
+LIST ITEM: Redes Sociais para Negócios
+LIST ITEM: Fundamentos do Marketing Digital
+LIST ITEM: Marketing de Conteúdo para Iniciantes
+LIST ITEM: Tráfego Pago vs. Tráfego Orgânico
+LIST ITEM: O Segredo do Copywriting
+CTA: Cadastrar gratuitamente
+
+=== TRILHA-BRANDING ===
+H3: Trilha Branding
+SUB: Para quem quer criar marcas que ficam na memória.
+BODY: Da psicologia das cores à produção de conteúdo para a internet, a trilha percorre o que dá identidade e voz a uma marca. Inclui até como criar e monetizar a sua própria newsletter.
+LIST ITEM: Branding na Prática: Como Criar Marcas Memoráveis
+LIST ITEM: Psicologia das Cores e Gatilhos Mentais
+LIST ITEM: Como Criar e Monetizar sua Newsletter
+LIST ITEM: Como Funciona a Produção de Notícias para a Internet
+LIST ITEM: Inteligência Artificial no Marketing
+CTA: Cadastrar gratuitamente
+
+=== COMO-FUNCIONA ===
+H2: Feita por quem monitora as conversas do mercado todos os dias
+BODY: A Buzz Academy nasceu dentro da Buzzmonitor, a plataforma de social listening do Grupo Elife que acompanha em tempo real o que consumidores e marcas conversam nas redes. As aulas traduzem essa vivência: o que você aprende aqui é o que o mercado pratica agora.
+LIST ITEM: Cadastre-se gratuitamente.
+LIST ITEM: Receba o acesso às 3 trilhas no seu e-mail.
+LIST ITEM: Estude 100% online, no seu ritmo.
+LIST ITEM: Conclua os cursos e adicione o certificado ao currículo.
+# [FACT-CHECK] "certificado" vem dos anuncios do doc-fonte ("cursos praticos com certificado", "certificado incluido"). Confirmar com o time da Buzz Academy antes de publicar; se nao houver certificado, trocar por "adicione o repertório ao currículo".
+
+=== PARA-QUEM ===
+H2: A Experience foi desenhada para três momentos de carreira
+LIST ITEM: Universitários que querem chegar à primeira entrevista com mais do que a grade curricular.
+LIST ITEM: Recém-formados construindo portfólio enquanto procuram a primeira vaga da área.
+LIST ITEM: Profissionais em formação que migraram (ou querem migrar) para o marketing e precisam de base.
+
+=== CTA-FINAL ===
+LABEL: Comece hoje
+H2: Sua formação não precisa esperar a formatura
+BODY: Cadastre-se, escolha a primeira trilha e comece ainda hoje. Quando a vaga aparecer, você terá o que mostrar.
+CTA: Cadastrar gratuitamente
+
+=== FOOTER ===
+FOOTER: Buzz Academy Experience é uma iniciativa da Buzz Academy, a escola da Buzzmonitor que profissionaliza universitários e profissionais em formação.
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisao anti-IA: em-dash 0 · antitese-por-negacao 1 ("não só da execução", dentro do limite de 2) · exclamacoes 0 · perguntas retoricas 0 · filler 0. Listas variadas (4, 3, 5, 4, 3 itens).
+# [OBSERVACAO] O doc-fonte lista "Inteligência Artificial no Marketing Digital" na trilha Intelligence e "Inteligência Artificial no Marketing" na Branding (nomes quase iguais em trilhas diferentes). Mantive literal como no catalogo. Confirmar se e intencional.
+# [OBSERVACAO] O doc-fonte usa "Universidade do Buzz" como nome da entidade; o briefing usa "Buzz Academy". A copy segue o briefing (Buzz Academy). Ajustar se "Universidade do Buzz" for o nome oficial.

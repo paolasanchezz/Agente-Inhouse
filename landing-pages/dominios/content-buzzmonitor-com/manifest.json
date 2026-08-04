@@ -6,6 +6,11 @@
   "vercel_json": "landing-pages/dominios/content-buzzmonitor-com/vercel.json",
   "lps": [
     {
+      "slug": "buzz-academy-experience",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/buzz-academy-experience"
+    },
+    {
       "slug": "ia-para-social-listening-es",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/ia-para-social-listening-es"
