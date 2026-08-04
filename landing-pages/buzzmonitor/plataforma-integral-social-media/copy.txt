@@ -47,11 +47,11 @@ LIST ITEM: Buzz Pills + AI Insights. Resume grandes volúmenes de datos y libera
 LIST ITEM: Atención al cliente. Centraliza mensajes, clasifica conversaciones y responde con mayor rapidez.
 LIST ITEM: Publicación de contenidos. Planifica, aprueba y publica en tus redes desde una sola plataforma.
 
-=== AUDIENCIAS (tabs) ===
+=== AUDIENCIAS (cards estáticas con ilustración SVG, sin tabs — reemplazado por las cards del PR152 el 2026-08-03) ===
 H2: Diseñado para equipos que necesitan escalar
-TAB: Agencias — Suma clientes sin sumar horas de operación ni reducir tus márgenes.
-TAB: Marcas regionales — Obtén una visión consistente de múltiples marcas, campañas y países.
-TAB: Gobierno e instituciones — Monitorea percepción ciudadana, reputación y alertas críticas.
+CARD: Agencias — Suma clientes sin sumar horas de operación ni reducir tus márgenes.
+CARD: Empresas — Obtén una visión consistente de múltiples marcas, campañas y países.
+CARD: Monitoreo y gestión de crisis (título ajustado 2026-08-03, antes "Percepción pública y gestión de crisis"). Detecta cambios de percepción, reputación en riesgo y alertas antes de que escalen.
 
 === BENEFICIOS ===
 H2: ¿Por qué las empresas cambian a Buzzmonitor?
@@ -71,7 +71,7 @@ QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchma
 
 === COMPARATIVA ===
 EYEBROW: Más valor, menos costo
-H2: ¿Por qué migrar desde Sprinklr, Meltwater u Onclusive?
+H2: ¿Por qué utilizar una plataforma que te cuesta caro y no te acompaña?
 BODY: Obtén potencia enterprise, IA propietaria y acompañamiento cercano sin pagar un precio enterprise.
 CTA: Agenda una demo
 TABLA: Costo — Enterprise tradicional: Alto / Buzzmonitor: Más eficiente
