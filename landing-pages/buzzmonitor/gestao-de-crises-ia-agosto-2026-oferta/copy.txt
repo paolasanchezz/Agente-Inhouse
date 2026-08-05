@@ -1,0 +1,72 @@
+=== HERO ===
+BADGE: Oferta exclusiva do webinar (box degradê roxo, sem data)
+H1: Do sinal fraco à resposta certa, em tempo real.
+SUB: Essa oferta é só para quem esteve no webinar Gestão de Crises com IA e quer levar o método pra prática.
+CTA: Quero aproveitar a oferta
+
+
+=== OFERTA ===
+EYEBROW: A oferta exclusiva
+DESTAQUE: 14 dias grátis da Buzzmonitor
+BODY: Para participantes do webinar "Gestão de Crises com IA", preparamos uma condição especial: acesso completo à plataforma, com suporte consultivo dedicado para montar o monitoramento que avisa antes da crise virar manchete.
+LIST ITEM: 14 dias grátis de Buzzmonitor
+LIST ITEM: Suporte consultivo especializado durante o período de teste
+LIST ITEM: Configuração de triggers e alertas para a sua marca
+BONUS: E não para por aí: ao fim dos 14 dias, você garante um desconto imperdível para continuar com a Buzzmonitor.
+LABEL: Válida até 8 de setembro de 2026
+CTA: Quero aproveitar a oferta
+
+
+=== BENEFICIOS ===
+H2: O que você consegue enxergar com a Buzzmonitor
+LIST ITEM: Sinal fraco de crise identificado antes do pico de menções
+LIST ITEM: Ruído separado de ameaça real em meio a milhares de menções por dia
+LIST ITEM: Virada de sentimento monitorada em tempo real, por marca e por tema
+LIST ITEM: Alertas automáticos para quem precisa agir, sem depender de alguém notar a tempo
+LIST ITEM: Resposta rápida e alinhada entre comunicação, marketing e atendimento
+
+
+=== MODULOS ===
+H2: Uma plataforma. Quatro módulos integrados.
+H3: Listening
+BODY: Monitoramento de crises, triggers automáticos e classificação de sentimento. Você sabe o que estão falando da sua marca antes de ser tarde.
+H3: Analytics
+BODY: Insights qualitativos, pesquisa ilimitada e relatórios personalizados para entender o tamanho real de uma crise.
+H3: Atendimento ao Cliente
+BODY: Gestão multicanal com KPIs consolidados e sugestões com IA para responder mais rápido e melhor.
+H3: Agendamento
+BODY: Publicações ilimitadas e criação de conteúdo com IA integrada, sem alternar entre ferramentas na hora de responder.
+
+
+=== PROVA SOCIAL ===
+H2: 1.000+ marcas já monitoram com a Buzzmonitor
+LIST ITEM: 1.000+ clientes globais
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agências parceiras
+LIST ITEM: 10.000 usuários ativos
+
+
+=== CLIENTES ===
+EYEBROW: Quem já confia
+H2: Marcas que confiam na Buzzmonitor
+NOTA: e mais de 1.000 marcas no Brasil, América Latina e Portugal
+# Mural de logos (mural-1.jpeg + mural-2.jpeg) reaproveitado da LP material.buzzmonitor.com/mcp, slideshow 16s.
+
+
+=== URGENCIA ===
+LABEL: Oferta disponível até 8 de setembro
+H2: Essa condição vale só para quem participou do webinar.
+BODY: O período de teste é gratuito. O suporte consultivo também. Mas a oferta expira em 8 de setembro de 2026.
+CTA: Aproveitar oferta exclusiva
+
+
+=== CTA FINAL ===
+H2: Comece agora. Sem compromisso.
+BODY: 14 dias para montar o monitoramento de crise da sua marca, com suporte de quem entende do seu negócio.
+CTA: Quero começar agora
+
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados. | Política de Privacidade
+
+# Revisao anti-IA: sem achados (em-dash: 0).
