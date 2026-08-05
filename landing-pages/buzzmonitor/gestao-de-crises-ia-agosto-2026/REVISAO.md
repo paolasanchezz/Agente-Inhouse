@@ -7,7 +7,7 @@
 
 - [x] 12 em-dashes (`—`) no HTML (meta description, og:description e 10 comentarios) — linhas 16, 18, 241, 358, 378, 531, 610, 668, 670, 764, 771, 778 (numeracao pre-fix) — substituidos por virgula/dois-pontos conforme a funcao (tolerancia zero, `regras-anti-ia.md`)
 - [x] SEO incompleto: faltavam `meta robots`, `canonical`, 7 tags `og:` (site_name, locale, url, image, image:width/height/alt), 4 tags `twitter:` e o bloco `JSON-LD` inteiro — pacote completo adicionado no `<head>` (Organization + WebPage + Event, seguindo o padrao de `webinar-diversidade-2026`)
-- [x] OG image ausente — gerada `assets/og-image.png` (1200x630, via `assets/og-source.html` + Playwright headless) no padrao visual das demais LPs de webinar Buzzmonitor
+- [x] OG image ausente — gerada `assets/og-gestao-de-crises-ia-agosto-2026.png` (1200x630, via `assets/og-source.html` + Playwright headless) no padrao visual das demais LPs de webinar Buzzmonitor
 - [x] Logo do header linkava para `https://getbuzzmonitor.com.br/`, divergente de `brand/buzzmonitor/brand-manifest.json#regions.brasil.home` (`https://buzzmonitor.com/`) — corrigido pra apontar pro manifest
 - [x] Logo do footer sem link (`<img>` solto) — envolvido em `<a href="https://buzzmonitor.com/" target="_blank" rel="noopener">` conforme GUIDELINES §17
 - [x] Contador regressivo (`.box-countdown`) usava `role="timer" aria-label="..."` sem `aria-hidden` — exatamente o anti-padrao documentado em GUIDELINES §7 (contador que atualiza a cada segundo expondo pra leitor de tela). Trocado por `aria-hidden="true"` — a data ja vive no hero e no JSON-LD

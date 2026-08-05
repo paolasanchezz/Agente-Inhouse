@@ -50,7 +50,7 @@
 
 - [x] HTML gerado
 - [x] Validações técnicas: em-dash 0, `&mdash;` 0, JSON-LD parseia, SEO completo (1 description, 10 og:, 4 twitter:), fidelidade literal da copy conferida
-- [x] OG image gerada (1200x630) — `assets/og-image.png`
+- [x] OG image gerada (1200x630) — `assets/og-news-da-buzz.png`
 - [x] Revisão — ver `REVISAO.md` (5 ajustes aplicados; 1 crítico de contraste do CTA sinalizado como decisão de marca, não corrigido sozinho; 2 melhorias e 1 nice-to-have opcionais)
 - [x] Formulário integrado — **Form provider: Mailchimp** (2026-07-21), mesmo endpoint usado em buzzmonitor.com
 - [ ] Publicado — rodar `/lp-publicar buzzmonitor news-da-buzz material.buzzmonitor.com`
@@ -63,7 +63,7 @@
 - `./assets/newsletter-preview.png` (LP-local — banner original, sem recorte, fornecido pela Catharina; mantido como fonte, não referenciado direto no HTML)
 - `./assets/newsletter-preview-cropped.png` (LP-local — recorte sem o espaço em branco embaixo; usado no masthead do HERO)
 - `./assets/news-da-buzz-wordmark.png` (LP-local — lettering "News da Buzz" + tracinhos, recortado do banner original, fundo transparente; usado inline em HERO H1, PROBLEMA H2 e PARA QUEM H2)
-- `./assets/og-image.png` (OG 1200×630, gerada)
+- `./assets/og-news-da-buzz.png` (OG 1200×630, gerada)
 
 ## Pendências
 

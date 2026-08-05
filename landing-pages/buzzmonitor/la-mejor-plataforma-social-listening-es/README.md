@@ -43,7 +43,7 @@ pro mesmo `/muchas-gracias`. Leads caem exatamente onde caem hoje. Endpoint tem 
 
 - `../../brand/buzzmonitor/assets/logos/{logo-icon.png, logo-primary.svg, logo-reversed.svg}`
 - `./assets/img-plataforma-hero.avif` + `./assets/tela-computador-bm2.png` (hero/oferta)
-- `./assets/icon-*.webp` (12 canais) · `./assets/og-image.png` (1200×630)
+- `./assets/icon-*.webp` (12 canais) · `./assets/og-la-mejor-plataforma-social-listening-es.png` (1200×630)
 
 ## Pendências conhecidas
 

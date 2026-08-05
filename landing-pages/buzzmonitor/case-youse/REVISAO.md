@@ -5,7 +5,7 @@
 
 ## Aplicado automaticamente (2 criticos)
 
-- [x] OG-IMAGE-MISSING — `og:image` referenciava arquivo inexistente — gerada `assets/og-image.png` (1200×630, 119 KB) via template brand + Chrome headless. No deploy guarda-chuva vira `/assets/buzzmonitor/og-case-youse.png` (lp-publicar renomeia).
+- [x] OG-IMAGE-MISSING — `og:image` referenciava arquivo inexistente — gerada `assets/og-case-youse.png` (1200×630, 119 KB) via template brand + Chrome headless. No deploy guarda-chuva vira `/assets/buzzmonitor/og-case-youse.png` (mesmo nome, sem rename).
 - [x] CTA-FINAL-LAYOUT — `.cta-final-meta` era `inline-flex` e a linha "Online · Gratuito · Case real" caía na MESMA linha do botão (container 680px comportava os dois) — trocado por `flex`; meta agora empilha acima do botão. Obs.: a referência `mcp-na-pratica-p` tem o mesmo padrão latente (container 640px), vale conferir lá também.
 
 ## Verificado sem achados

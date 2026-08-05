@@ -39,7 +39,7 @@
 
 ## Melhorias opcionais (2)
 
-- [ ] **OG image ausente** — `landing-pages/elife/consumidores-sinteticos-evento/assets/og-image.png` não existe. Gerar template 1200×630 com headline da LP antes de publicar (WhatsApp/LinkedIn ficam sem preview rico). Não é bloqueante para deploy interno.
+- [ ] **OG image ausente** — `landing-pages/elife/consumidores-sinteticos-evento/assets/og-consumidores-sinteticos-evento.png` não existe (o `og:image` do HTML ainda aponta pro path legado `/assets/og-image.png` na raiz do domínio — corrigir junto). Gerar template 1200×630 com headline da LP antes de publicar (WhatsApp/LinkedIn ficam sem preview rico). Não é bloqueante para deploy interno.
 - [ ] **Placeholders não preenchidos** — `[LOCAL]`, `[DATA]`, `[HORÁRIO]` aparecem em 3 seções (hero ticket, seção evento, CTA final). Preencher em `copy.txt` + rodar `/lp-gerar elife consumidores-sinteticos-evento` antes de publicar para o público.
 - [ ] **JSON-LD com domínio errado** — linha 45 do `index.html` declara `Organization.logo: https://content.cxpress.io/...` e `WebPage.@id/url` + `Event.url` apontam para `content.cxpress.io`. Provavelmente copy-paste de uma LP Cxpress. Trocar para o domínio definitivo da Elife (`content.elife.com` reservado por memory `reference_lp_domains.md`) antes de publicar.
 

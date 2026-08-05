@@ -38,7 +38,7 @@ CORS aberto verificado 2026-07-17. `lp-integrar-form` não se aplica.
 - `../../brand/buzzmonitor/assets/logos/{logo-icon.png, logo-primary.svg, logo-reversed.svg}`
 - `./assets/img-plataforma-hero.avif` + `./assets/tela-computador-bm2.png` (hero)
 - `./assets/img-social-listening.webm` (+poster `tela-monitoramento-1.png`), `img-ai-insights.webp`, `img-monitoramento-audiovisual.webp`, `img-gestao-crises.svg`, `img-relatorios-dashboard.png`
-- `./assets/logo-{mcdonalds,mccann,totalpass}.svg` · `./assets/og-image.png` (1200×630)
+- `./assets/logo-{mcdonalds,mccann,totalpass}.svg` · `./assets/og-ia-para-social-listening-es.png` (1200×630)
 
 ## Pendências conhecidas
 

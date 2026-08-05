@@ -42,7 +42,7 @@ Estilístico. Ignorar é aceitável.
 - **Multi-idioma:** LP não tem irmãs de outro idioma neste slug — hreflang omitido corretamente (0 ocorrências, conforme esperado).
 - **Logo regional:** header/footer apontam para `https://buzzmonitor.com/` (não `"/"`), com `target="_blank" rel="noopener"` — correto.
 - **Logo web-safe:** `logo-primary.svg` e `logo-reversed.svg` sem `<text>` vivo (raster/base64) — seguros pro browser.
-- **OG image:** `assets/og-image.png` existe, 1200×630, URL absoluta com placeholder `{{DOMAIN}}` (resolvido no `lp-publicar`).
+- **OG image:** `assets/og-plataforma-completa-para-dados.png` existe, 1200×630, URL absoluta com placeholder `{{DOMAIN}}` (resolvido no `lp-publicar`).
 
 ## Próximos passos
 

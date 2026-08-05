@@ -22,7 +22,7 @@ ID visual **escura** foi pedido explícito do cliente — override sancionado do
 - Contraste AA de todos os pares texto/fundo do tema dark (pior caso 6.2:1 no botão laranja/texto roxo; hero__meta 7.1:1; branco sobre scrim do CTA final 8.1:1)
 - Em-dash: 0 no HTML e na copy (tolerância zero ok) · fidelidade de copy 100% literal (7 CTAs, frases-âncora intactas, zero punchline inventada)
 - GTM `GTM-WFJVK858` (brasil) head+noscript · gate `check_gtm_region.py` OK · selo `.tracking.lock` gravado
-- SEO §15 completo (description, 10 og:, 4 twitter:, JSON-LD válido, canonical) · §16 n/a (LP única) · §17 logos → home regional com target=_blank · §18 og-image.png 1200×630 gerada (dark, tricolor) · §19 logo raster sem `<text>`
+- SEO §15 completo (description, 10 og:, 4 twitter:, JSON-LD válido, canonical) · §16 n/a (LP única) · §17 logos → home regional com target=_blank · §18 og-buzz-academy-experience.png 1200×630 gerada (dark, tricolor) · §19 logo raster sem `<text>`
 - Form mock §11 (`action="#"`), labels for/id, autocomplete, form na 2ª seção (ToFu §10)
 - Seções-tipo §8 (problema = lista vertical com X; CTA final full-width com gradiente oficial) · pausa aérea §2 (ponte) · reveals com noscript + prefers-reduced-motion + fallback sem IntersectionObserver
 - Mobile 390px real (Playwright): sem overflow horizontal, headline antes do visual, grids colapsam

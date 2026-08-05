@@ -35,7 +35,7 @@
 - **SEO:** `meta description` (1), `robots` (1), `og:` (10, >=8), `twitter:` (4, >=4), JSON-LD (1, parseia e bate com o brand-manifest: `Organization.url` = `https://buzzmonitor.com/`, `sameAs` inclui LinkedIn + Instagram BR), `canonical` (1). Todos OK.
 - **Multi-idioma:** LP única (sem irmãs `-es`/`-pt`) — 0 hreflang no HTML está correto, não é erro.
 - **Logo regional:** header e footer apontam pra `https://buzzmonitor.com/` (bate com o manifest), `target="_blank" rel="noopener"` presentes, `aria-label` localizado. Logos SVG confirmados sem `<text>` vivo (0 em ambos).
-- **OG image:** estava ausente (pendência herdada do `/lp-gerar`). Gerada nesta revisão: `assets/og-image.png` (1200×630, ~47 KB), a partir de `assets/og-source.html` (template com cores da marca + overline e H1 literais do `og:title`/`OVERLINE` já aprovados). Renderizada via Chrome headless.
+- **OG image:** estava ausente (pendência herdada do `/lp-gerar`). Gerada nesta revisão: `assets/og-plataforma-completa-monitoramento.png` (1200×630, ~47 KB), a partir de `assets/og-source.html` (template com cores da marca + overline e H1 literais do `og:title`/`OVERLINE` já aprovados). Renderizada via Chrome headless.
 
 ## Proximos passos
 

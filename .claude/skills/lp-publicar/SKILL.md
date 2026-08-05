@@ -3,7 +3,7 @@ name: lp-publicar
 description: Publica landing page. Guarda-chuvas (todos migrados pro CI) — conduz o fluxo Git+GitHub Actions (manifesto + commit + acompanhar deploy com smoke e rollback automaticos). Modo solo (1 projeto = 1 LP) — fluxo classico via sibling. Valida, publica relatorio Notion, zero vazamento do repo interno.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 5.1.1
+version: 5.1.2
 ---
 
 # Skill: Publicar Landing Page
@@ -739,20 +739,25 @@ Se `disco-origem` não existe, PARE com erro: `asset referenciado em linha {N} m
 
 ### 1.4.1 Caso especial: OG image (v3.6.0, GUIDELINES §18)
 
-`og-image.png` (LP-local em `landing-pages/{marca}/{slug}/assets/og-image.png`) **NAO** segue a heuristica de grep do 1.3 — ela e referenciada via URL absoluta no `<meta property="og:image" content="https://...">`, nao via `src`/`href` relativo. Tratar manualmente:
+A OG image (LP-local em `landing-pages/{marca}/{slug}/assets/og-{slug}.png`) **NAO** segue a heuristica de grep do 1.3 — ela e referenciada via URL absoluta no `<meta property="og:image" content="https://...">`, nao via `src`/`href` relativo. Tratar manualmente:
+
+**Nome canonico do source e `og-{slug}.png`** (GUIDELINES §18) — nos dois modos o arquivo mantem o nome, sem rename. Se encontrar um `og-image.png` no source, e duplicata legada: renomeie pra `og-{slug}.png` (ou apague, se o `og-{slug}.png` ja existir) antes de seguir.
 
 | Modo | Source | Destino na sibling | Renomear? |
 |---|---|---|---|
-| **solo** | `landing-pages/{marca}/{slug}/assets/og-image.png` | `{sibling}/assets/og-image.png` | nao (nome unico no projeto solo) |
-| **guarda-chuva** | `landing-pages/{marca}/{slug}/assets/og-image.png` | `{sibling}/assets/{marca}/og-{slug}.png` | **sim** — sufixo de slug evita colisao com LPs irmas |
+| **solo** | `landing-pages/{marca}/{slug}/assets/og-{slug}.png` | `{sibling}/assets/og-{slug}.png` | nao |
+| **guarda-chuva** | `landing-pages/{marca}/{slug}/assets/og-{slug}.png` | `{sibling}/assets/{marca}/og-{slug}.png` | nao — o sufixo de slug ja vem do source |
 
 ```bash
-SRC_OG="landing-pages/{marca}/{slug}/assets/og-image.png"
+SRC_OG="landing-pages/{marca}/{slug}/assets/og-{slug}.png"
+# duplicata legada: nunca copiar as duas, nunca deixar og-image.png entrar no dist
+LEGACY_OG="landing-pages/{marca}/{slug}/assets/og-image.png"
+[ -f "$LEGACY_OG" ] && echo "AVISO: $LEGACY_OG e anti-padrao (§18) — renomear para og-{slug}.png ou apagar"
 if [ -f "$SRC_OG" ]; then
   if [ "$MODE" = "guarda-chuva" ]; then
     DST_OG="{sibling}/assets/{marca}/og-{slug}.png"
   else
-    DST_OG="{sibling}/assets/og-image.png"
+    DST_OG="{sibling}/assets/og-{slug}.png"
   fi
   mkdir -p "$(dirname "$DST_OG")"
   cp "$SRC_OG" "$DST_OG"
@@ -793,7 +798,7 @@ Use `Edit` com `replace_all: true`.
 | Placeholder | Substituir por (solo) | Substituir por (guarda-chuva) |
 |---|---|---|
 | `{{DOMAIN}}` | `{dominio}` (ou `.vercel.app` se solo sem dominio) | `{dominio}` |
-| `{{OG_IMAGE_PATH}}` | `assets/og-image.png` | `assets/{marca}/og-{slug}.png` |
+| `{{OG_IMAGE_PATH}}` | `assets/og-{slug}.png` | `assets/{marca}/og-{slug}.png` |
 | `{{BRAND_LOGO_PNG_PATH}}` | `assets/logos/logo-primary.png` | `assets/{marca}/logos/logo-primary.png` |
 
 ```bash
@@ -806,7 +811,7 @@ if [ "$MODE" = "guarda-chuva" ]; then
   OG_PATH="assets/{marca}/og-{slug}.png"
   LOGO_PATH="assets/{marca}/logos/logo-primary.png"
 else
-  OG_PATH="assets/og-image.png"
+  OG_PATH="assets/og-{slug}.png"
   LOGO_PATH="assets/logos/logo-primary.png"
 fi
 

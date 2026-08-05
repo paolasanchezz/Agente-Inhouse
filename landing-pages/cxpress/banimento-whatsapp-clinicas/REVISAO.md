@@ -30,7 +30,7 @@ Nenhum.
 ## Atualização 2026-07-22 (pós-publicação inicial) — hero substituído
 
 - [x] **Imagem de hero definitiva**: o usuário enviou uma foto própria (via link do Google Drive) de uma médica de jaleco usando o WhatsApp no celular, com elementos ilustrativos de segurança (escudo, cadeado). Baixada, redimensionada pra 1080×810 e recomprimida em JPEG (~80KB, de 1.6MB original). Substitui o `mockup-plataforma-laptop.png` que era placeholder temporário. Arquivo: `assets/hero-clinica.jpg` (LP-local). Isso fecha as duas pendências anteriores (mockup reaproveitado + upscaling de 16%) — não se aplicam mais.
-- [x] OG image dedicada — `assets/og-image.png` (1200×630), gerada via Chrome headless + `.claude/skills/lp-gerar/og-template.html`.
+- [x] OG image dedicada — `assets/og-banimento-whatsapp-clinicas.png` (1200×630), gerada via Chrome headless + `.claude/skills/lp-gerar/og-template.html`.
 
 ## Atualização 2026-07-22 (2ª rodada) — hero trocado de novo + integração com gradiente
 

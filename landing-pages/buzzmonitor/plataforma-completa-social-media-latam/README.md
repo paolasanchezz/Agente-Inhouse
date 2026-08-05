@@ -7,7 +7,7 @@
 
 - [x] Logo real da marca aplicado (header + marca decorativa do hero + favicon)
 - [x] Revisao (frontend-design review + web-design-guidelines + auditoria SEO/GTM/logo) — 12 criticos aplicados. Ver `REVISAO.md`.
-- [x] OG image gerada (`assets/og-image.png`, 1200×630)
+- [x] OG image gerada (`assets/og-plataforma-completa-social-media-latam.png`, 1200×630)
 - [x] Formulario integrado — Jotform, form id `241825239057661` (mesmo form usado em `mcp-es` e `plataforma-integral-social-media`), 2026-07-31
 - [x] Ajustes visuais 2026-07-31: fundo branco no form do CTA final, cards do hero reposicionados (bug de `nth-child` contando `.connector`/`.center-mark` como irmaos), logos reais na secao "marcas y agencias" (removido "de Latinoamérica" do texto), secao nova "Empresas que ya confían en Buzzmonitor" com stats + logo wall, footer redesenhado (logo + redes sociais + política de privacidad)
 - [x] Copy ajustada 2026-07-31: tabela comparativa (removido "Aspecto" do cabecalho, "Reportes automaticos" -> "Dashboards en tiempo real"), testimonios trocados pelos 6 reais de contenido.getbuzzmonitor.com/agencias (McCann, Kaleidoscopio, Publicis, Eureka&Co, SA365, Sube Agencia), CTA unificado em "Agenda una demo" em todos os botoes primarios, botao do header reduzido
@@ -21,5 +21,5 @@
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header + footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon + marca decorativa do hero)
-- `./assets/og-image.png` (OG image, LP-local)
+- `./assets/og-plataforma-completa-social-media-latam.png` (OG image, LP-local)
 - `./assets/logos-agencias/*` (7 logos — Kaleidoscopio Agency, McCann, IPG Mediabrands, Sube, Eureka&Co, Havas, TBWA) e `./assets/logos-clientes/*` (29 logos — Coca-Cola, Sephora, Samsung, IKEA, Amazon, Uber etc.) — baixados da própria LP oficial da Buzzmonitor (`contenido.getbuzzmonitor.com/agencias`), a pedido do usuário, pra reaproveitar a prova social real da marca nesta LP

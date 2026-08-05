@@ -12,7 +12,7 @@
 
 ## Já resolvido desde a revisão anterior (não é mais crítico)
 
-- [x] **OG image 1200×630** — `assets/og-image.png` existe e tem as dimensões corretas (verificado: 1200×630). O crítico pendente de 2026-07-01 está fechado.
+- [x] **OG image 1200×630** — `assets/og-estudo-diversidade-2026.png` existe e tem as dimensões corretas (verificado: 1200×630). O crítico pendente de 2026-07-01 está fechado.
 
 ## Decisão do usuário — resolvida (2026-08-03)
 

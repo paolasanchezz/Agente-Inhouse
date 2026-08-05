@@ -44,7 +44,7 @@
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
 - `./assets/destaque-ia.webp` (LP-local, 960×540, ~1.8 MB, 93 frames — versão comprimida, servida via `<picture><source type="image/webp">`) e `./assets/destaque-ia.gif` (fallback pra navegadores sem suporte a WebP animado, 960×540, ~2.9 MB, 186 frames, original fornecido pelo usuário). Compressão: WebP quality=90 + frame-rate reduzido pela metade (duração de cada frame dobrada pra manter a mesma duração real da animação) — 38,6% menor mantendo resolução e qualidade por frame altas.
 - Hero visual é 100% SVG inline (formas geométricas + gradiente da marca + glyphs dos 6 apps), pois a Buzzmonitor não tem mascote fixo. Substituiu o mockup CSS anterior em 2026-07-24.
-- `./assets/og-image.png` (1200×630, ~47 KB, gerada via Chrome headless a partir de `./assets/og-source.html` durante a revisão de 2026-07-23).
+- `./assets/og-plataforma-completa-monitoramento.png` (1200×630, ~47 KB, gerada via Chrome headless a partir de `./assets/og-source.html` durante a revisão de 2026-07-23).
 - `./assets/insights.png` (1920×1080, ~0,45 MB; fornecida pelo usuário via Google Drive) na seção INSIGHTS.
 - `./assets/crise-1.png` (620×380, "Distribuição de reações" — gráfico de pizza) e `./assets/crise-2.png` (551×355, "Top 5 tags mais frequentes" — gráfico de barras), ambas fornecidas via Google Drive em 2026-07-29, usadas em composição de camadas na seção GESTAO-DE-CRISE.
 - `./assets/logo-wall.png` (1912×690, ~0,26 MB; fornecida pelo usuário via Google Drive em 2026-07-29) — imagem completa da seção LOGO-WALL (título + stats + grade de logos reais de clientes), substituindo a versão recriada em HTML.

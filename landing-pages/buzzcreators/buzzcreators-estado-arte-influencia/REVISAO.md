@@ -8,7 +8,7 @@
 Aplicados os importantes do review do PR #10:
 
 - **SEO completo (GUIDELINES §15):** adicionados robots, Open Graph (10 tags), Twitter Card (4), JSON-LD (Organization + WebPage) e canonical. Supersede a observação antiga "a LP não tem og:image" das seções abaixo.
-- **OG image 1200x630:** gerada em `assets/og-image.png` (118KB), apontada em og:image/twitter:image com URL absoluta do deploy.
+- **OG image 1200x630:** gerada em `assets/og-buzzcreators-estado-arte-influencia.png` (118KB), apontada em og:image/twitter:image com URL absoluta do deploy.
 - **Logo (GUIDELINES §12/§17):** `logo-full-color.svg` trocado de raster base64 (113KB) pelo vetor limpo do brand (18KB); footer passou a usar `logo-full-white.svg` (sem o filtro brightness/invert); header e footer agora linkam para a home da marca com `target="_blank"`.
 - **a11y:** `min-height: 0` no mascote (§14, Safari iOS); glifo ▶ do jogo embrulhado em `aria-hidden`.
 

@@ -37,7 +37,7 @@ Estilístico. Ignorar é aceitável.
 
 ## Pendências fora do escopo desta revisão (já sinalizadas ao usuário)
 
-- **Imagem OG** (`assets/og-image.png`, 1200×630) — ainda não gerada. `og:image` no `<head>` referencia um arquivo que não existe no source.
+- **Imagem OG** (`assets/og-atencion-clinicas-latam.png`, 1200×630) — ainda não gerada. `og:image` no `<head>` referencia um arquivo que não existe no source.
 - **Formulário mock** — troca pelo embed real via `/lp-integrar-form` fica para depois da aprovação final do design.
 
 ## Auditoria de fidelidade de copy

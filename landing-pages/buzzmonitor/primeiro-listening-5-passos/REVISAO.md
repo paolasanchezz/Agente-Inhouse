@@ -5,7 +5,7 @@
 
 ## Aplicado automaticamente (1 critico)
 
-- [x] OG-IMAGE-MISSING — gerada `assets/og-image.png` (1200×630, 117 KB) via template brand + Chrome headless. No deploy vira `/assets/buzzmonitor/og-primeiro-listening-5-passos.png`.
+- [x] OG-IMAGE-MISSING — gerada `assets/og-primeiro-listening-5-passos.png` (1200×630, 117 KB) via template brand + Chrome headless. No deploy vira `/assets/buzzmonitor/og-primeiro-listening-5-passos.png`.
 
 ## Verificado sem achados
 

@@ -34,7 +34,7 @@ Esta oferta usa o padrão "14 dias grátis + desconto ao final" **sem valor num�
 - [x] Copy preparada (`/lp-preparar`)
 - [x] HTML gerado
 - [x] Revisão (frontend-design review + checks determinísticos) — 4 críticos de contraste AA aplicados, ver `REVISAO.md`
-- [x] OG image gerada (`assets/og-image.png` + `assets/og-gestao-de-crises-ia-agosto-2026-oferta.png`, 1200×630)
+- [x] OG image gerada (`assets/og-gestao-de-crises-ia-agosto-2026-oferta.png`, 1200×630)
 - [x] Formulário integrado — Jotform `253573505200650` (2026-08-05, mesmo form da oferta anterior)
 - [ ] Publicado — via fluxo CI (manifesto `landing-pages/dominios/webinar-buzzmonitor-com/manifest.json` + PR)
 

@@ -27,7 +27,7 @@ Hero (ticket 04/08) → ticker → Inscrição (form mock, 2ª dobra) → Proble
 - [x] HTML no padrão webinar + validado (0 em-dash, SEO completo c/ JSON-LD Event, GTM 2 blocos, fotos abaixo da dobra)
 - [x] Formulário real integrado — Jotform `252154974852667` (`/jsform/` embed), 2026-07-02
 - [ ] Revisão — `/lp-revisar buzzmonitor/webinar-diversidade-2026`
-- [ ] OG image 1200×630 → `assets/og-image.png`
+- [ ] OG image 1200×630 → `assets/og-webinar-diversidade-2026.png`
 - [ ] Publicar — `/lp-publicar buzzmonitor webinar-diversidade-2026 webinar.buzzmonitor.com`
 
 **Form provider:** Jotform (jsform 252154974852667) · integrado 2026-07-02

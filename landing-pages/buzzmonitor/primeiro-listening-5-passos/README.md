@@ -26,7 +26,7 @@
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header)
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
-- `./assets/og-image.png` (OG 1200×630 — no deploy vira `/assets/buzzmonitor/og-primeiro-listening-5-passos.png`)
+- `./assets/og-primeiro-listening-5-passos.png` (OG 1200×630 — no deploy vira `/assets/buzzmonitor/og-primeiro-listening-5-passos.png`)
 
 ## Pendências
 

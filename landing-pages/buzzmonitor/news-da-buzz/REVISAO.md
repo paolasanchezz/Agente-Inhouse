@@ -32,7 +32,7 @@
 - **SEO:** 1 description, 10 `og:`, 4 `twitter:`, 1 JSON-LD (parseia, 2 nós: Organization + WebPage), 1 canonical. `Organization.url` bate com `brand-manifest.json#regions.brasil.home`. `sameAs` inclui LinkedIn + Instagram BR.
 - **Multi-idioma:** LP única (sem irmãs ainda) — hreflang omitido corretamente, canonical presente.
 - **Logo regional:** header/footer apontam pra `https://buzzmonitor.com/` (não `"/"`), `target="_blank" rel="noopener"`, `aria-label` presente. Logos `logo-primary.svg`/`logo-reversed.svg` confirmados web-safe (`grep -c '<text'` = 0 nos dois).
-- **OG image:** `assets/og-image.png` existe, 1200×630 confirmado.
+- **OG image:** `assets/og-news-da-buzz.png` existe, 1200×630 confirmado.
 
 ## Próximos passos
 

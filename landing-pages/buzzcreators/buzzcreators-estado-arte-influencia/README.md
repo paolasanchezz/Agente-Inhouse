@@ -31,7 +31,7 @@
 - **Mascote interativo** (`logo-icon-color.svg`): foge do mouse no desktop via `position: fixed`; escondido em mobile, em `hover: none` e em `prefers-reduced-motion`.
 - **Mini-game** "Vendas com creators": pesos por tier (micro aparece mais, mega aparece pouco), placar em R$, mensagens de fim variando pelo resultado. Cards são `<button>` com `aria-label`; placar com `aria-live`.
 - **Reveals scroll-triggered** via IntersectionObserver com fallback `<noscript>` e respeito a `prefers-reduced-motion`.
-- **SEO completo**: description, robots, Open Graph (8 tags), Twitter Card, JSON-LD (Organization + WebPage) e OG image 1200x630 (`assets/og-image.png`).
+- **SEO completo**: description, robots, Open Graph (8 tags), Twitter Card, JSON-LD (Organization + WebPage) e OG image 1200x630 (`assets/og-buzzcreators-estado-arte-influencia.png`).
 - **Sem em-dash** (validado: 0 ocorrências no HTML e na copy).
 - **Sem GTM** (tracking.json Buzzcreators está todo null).
 
@@ -41,7 +41,7 @@
 - `./assets/logo-full-color.svg` (header, vetor limpo do brand, 18KB)
 - `./assets/logo-full-white.svg` (footer, vetor branco do brand)
 - `./assets/logo-icon-color.svg` (mascote do hero)
-- `./assets/og-image.png` (Open Graph 1200x630)
+- `./assets/og-buzzcreators-estado-arte-influencia.png` (Open Graph 1200x630)
 
 ## Paleta usada
 

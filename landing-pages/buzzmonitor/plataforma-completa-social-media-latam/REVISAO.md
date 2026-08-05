@@ -22,7 +22,7 @@
 
 ## OG image — gerada nesta revisao (nao pendente)
 
-Diferente do padrao (`lp-gerar` normalmente deixa a OG image pendente), esta sessao ja gerou `assets/og-image.png` (1200×630, via template + Chrome headless) com headline + logo da marca. Confirmar que ainda serve depois de qualquer alteracao de copy.
+Diferente do padrao (`lp-gerar` normalmente deixa a OG image pendente), esta sessao ja gerou `assets/og-plataforma-completa-social-media-latam.png` (1200×630, via template + Chrome headless) com headline + logo da marca. Confirmar que ainda serve depois de qualquer alteracao de copy.
 
 ## Melhorias opcionais (2)
 

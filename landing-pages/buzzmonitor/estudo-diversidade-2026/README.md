@@ -34,7 +34,7 @@ Estética **mosaico multicolor** (referências aprovadas pela cliente: "People f
 - [x] Foto do hero trocada (2026-07-30) — nova `header.jpg`; antiga preservada em `assets/header-old-backup.jpg`
 - [x] Conteúdo atualizado com dados reais da 8ª edição (2026-07-30) — fonte: `Diversidade-na-Comunicação_2026 - Ano Base 2025_6.pdf` (SA365 + Elife + Buzzmonitor, 10.229 posts, 261 perfis, 20 anunciantes, jan/25-jun/26). Números antigos ("mais de 6 mil publicações", achados genéricos de "avanço") substituídos por estatísticas reais, inclusive quedas onde os dados mostram queda (idosos, negros, LGBTQIAPN+, PcDs, pessoas gordas)
 - [x] Revisão (frontend-design review + web-design-guidelines) — rodada 2026-08-03, 3 críticos corrigidos (em-dash x2, contraste do overline), ver `REVISAO.md`. 1 decisão pendente (seção Quiz fora da copy.txt original — flagada, não removida)
-- [x] OG image (1200×630) — já existe em `assets/og-image.png`, dimensões conferidas (1200×630)
+- [x] OG image (1200×630) — já existe em `assets/og-estudo-diversidade-2026.png`, dimensões conferidas (1200×630)
 - [x] Publicado (2026-08-03) em `material.buzzmonitor.com/estudo-diversidade-2026` (guarda-chuva CI)
 - [x] Formulário integrado (2026-08-03, form trocado por novo em 2026-08-03) — Jotform (form `262146291716660`), form mock trocado por embed real. **Form provider:** Jotform (2026-08-03)
 - [ ] **Thank You URL do Jotform** — configurar no builder do form (jotform.com) para redirecionar para `https://material.buzzmonitor.com/estudo-diversidade-2026-obrigado` (thanks page já publicada, ver `../estudo-diversidade-2026-obrigado/`). Configuração feita na plataforma do Jotform, não no repo.

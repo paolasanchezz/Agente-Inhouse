@@ -40,7 +40,7 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
 - [x] HTML gerado (clonado da referência + metadados/hero ajustados)
 - [x] Revisão (frontend-design review + web-design-guidelines + checks determinísticos) — 0 críticos, ver `REVISAO.md`
 - [x] Formulário integrado — Jotform `261027639617663` (2026-07-22, fornecido pelo usuário, substituiu o `261045149477663` herdado da referência)
-- [x] OG image dedicada — `assets/og-image.png` (1200×630) gerada via Chrome headless a partir de `.claude/skills/lp-gerar/og-template.html` (overline + H1 do próprio hero, logo Cxpress). `lp-publicar` renomeia para `og-{slug}.png` no deploy (guarda-chuva).
+- [x] OG image dedicada — `assets/og-banimento-whatsapp-clinicas.png` (1200×630) gerada via Chrome headless a partir de `.claude/skills/lp-gerar/og-template.html` (overline + H1 do próprio hero, logo Cxpress). No deploy guarda-chuva vira `/assets/cxpress/og-banimento-whatsapp-clinicas.png` (mesmo nome, sem rename).
 - [ ] Publicado — rodar `/lp-publicar cxpress banimento-whatsapp-clinicas [dominio]`
 
 ## Assets referenciados

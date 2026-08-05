@@ -9,7 +9,7 @@
 - [x] **GUIDELINES §8 — secao Dor estava em grid numerado** -> convertida para **lista vertical** (`<ul class="pain-list">`) com **icone X vermelho** (`--error` / `--error-bg`) em cada item. Texto encurtado para formato checklist. Era a gramatica de secao-tipo errada (problema nao pode ser grid).
 - [x] **GUIDELINES §8 — secao Resultado usava check azul** -> trocado para **verde** (`--success` / `--success-bg`). Cria o contraste deliberado vermelho (dor) ↔ verde (resultado) que a §8 pede; antes dor-neutra + resultado-azul anulava a leitura cromatica.
 - [x] **SEO §15 — pacote incompleto** (so 3 tags og, sem canonical/JSON-LD/twitter/og:image) -> adicionado pacote completo, espelhando a LP irma `atendimento-clinicas`: `canonical`, `robots`, `author`, `theme-color`, 10 tags `og:*`, 4 tags `twitter:*`, e JSON-LD (`Organization` + `WebPage` + `SoftwareApplication`). Counts validados: description 1, og 10, twitter 4, jsonld 1 (parseia OK).
-- [x] **SEO §18 — OG image ausente** -> gerada `assets/og-image.png` (1200x630, ~50 KB, brand Cxpress). No deploy vira `/assets/cxpress/og-conheca-a-cxpress.png` (namespace guarda-chuva).
+- [x] **SEO §18 — OG image ausente** -> gerada `assets/og-conheca-a-cxpress.png` (1200x630, ~50 KB, brand Cxpress). No deploy vira `/assets/cxpress/og-conheca-a-cxpress.png` (namespace guarda-chuva).
 - [x] **Anti-IA — em-dash (tolerancia zero)** -> 2 ocorrencias em comentarios CSS removidas. `grep "—"` agora retorna 0.
 - [x] **GTM (Passo 3.5)** — validado: `GTM-T4XDWHL3` no `<head>` + `<noscript>` bate com `tracking.json` regiao brasil. Sem acao.
 

@@ -5,9 +5,12 @@
   generica ainda — cada LP copia este arquivo, troca os textos/cores e renderiza:
 
   chrome - -headless=new - -disable-gpu - -hide-scrollbars - -window-size=1200,630 \
-    - -virtual-time-budget=4000 - -screenshot="og-image.png" "file:///path/og-template-{slug}.html"
+    - -virtual-time-budget=4000 - -screenshot="og-{slug}.png" "file:///path/og-template-{slug}.html"
 
   (remover espacos nos flags acima — escritos com espaco para nao quebrar parsing de comentario)
+
+  Nome do output e SEMPRE og-{slug}.png (GUIDELINES §18) — nunca og-image.png, nunca as duas
+  copias. Salvar em landing-pages/{marca}/{slug}/assets/.
 -->
 <html lang="pt-BR">
 <head>

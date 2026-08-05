@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Skill, WebFetch
-version: 1.8.1
+version: 1.8.2
 ---
 
 # Skill: Revisar Landing Page
@@ -312,22 +312,28 @@ Qualquer logo SVG com `<text>` > 0 = CRITICO. Fix: trocar a referencia pelo rast
 
 ```bash
 OG_IMAGE_URL=$(grep -oE '<meta property="og:image" content="[^"]*"' "$HTML" | head -1 | sed 's/.*content="\([^"]*\)".*/\1/')
-OG_IMAGE_FILE_SOURCE="landing-pages/{marca}/{slug}/assets/og-image.png"
+# Nome canonico do source = og-{slug}.png (GUIDELINES §18). Nunca og-image.png.
+OG_IMAGE_FILE_SOURCE="landing-pages/{marca}/{slug}/assets/og-{slug}.png"
 
 # Check 1: og:image e URL absoluta com https://
 echo "$OG_IMAGE_URL" | grep -qE '^https://' || echo "CRITICO: og:image nao e URL absoluta"
 
-# Check 2: arquivo existe no source
-test -f "$OG_IMAGE_FILE_SOURCE" || echo "CRITICO: og-image.png ausente em $OG_IMAGE_FILE_SOURCE"
+# Check 2: arquivo existe no source com o nome canonico.
+# Excecao: se o og:image aponta por path literal pra OG de uma LP-mae (variantes irmas que
+# reusam a mesma imagem de proposito), validar aquele path em vez deste.
+test -f "$OG_IMAGE_FILE_SOURCE" || echo "CRITICO: og-{slug}.png ausente em $OG_IMAGE_FILE_SOURCE"
 
-# Check 3: dimensoes 1200x630 (Pillow ja vem no py 3.14 desta maquina)
+# Check 3: nenhum og-image.png orfao sobrando (anti-padrao — duplicata que o build nunca resolve)
+test -f "landing-pages/{marca}/{slug}/assets/og-image.png" && echo "CRITICO: og-image.png presente — renomear para og-{slug}.png e remover a copia"
+
+# Check 4: dimensoes 1200x630 (Pillow ja vem no py 3.14 desta maquina)
 # Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
 PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
 "$PYBIN" -c "
 from PIL import Image
 im = Image.open('$OG_IMAGE_FILE_SOURCE')
 if im.size != (1200, 630):
-    print(f'CRITICO: og-image.png tem {im.size}, esperado (1200, 630)')
+    print(f'CRITICO: OG image tem {im.size}, esperado (1200, 630)')
 "
 ```
 
@@ -342,8 +348,9 @@ Adicionar todos os criticos de SEO/hreflang/logo/OG no bucket principal de criti
 - I18N-HREFLANG-MISSING: 3 LPs irmas detectadas (mcp, mcp-es, mcp-pt) mas 0 hreflang no HTML — adicionar bloco
 - I18N-HREFLANG-INVALID: hreflang="es-LA" nao e codigo valido — usar "es-419"
 - LOGO-BAD-HREF: navbar logo aponta para "/" (linha 977) — trocar para "{manifest.regions.{regiao}.home}" + target=_blank
-- OG-IMAGE-MISSING: og:image referenciado mas arquivo nao existe em landing-pages/{marca}/{slug}/assets/og-image.png
-- OG-IMAGE-DIMENSIONS: og-image.png tem (1024, 512), esperado (1200, 630)
+- OG-IMAGE-MISSING: og:image referenciado mas arquivo nao existe em landing-pages/{marca}/{slug}/assets/og-{slug}.png
+- OG-IMAGE-DIMENSIONS: og-{slug}.png tem (1024, 512), esperado (1200, 630)
+- OG-IMAGE-DUPLICATE: assets/og-image.png presente (anti-padrao §18) — renomear para og-{slug}.png; se og-{slug}.png ja existe, apagar a duplicata
 - LOGO-SERIF: logo-color.svg (header, linha N) tem <text> vivo — serifa no browser; trocar por logo-color.png ou raster (§19)
 ```
 

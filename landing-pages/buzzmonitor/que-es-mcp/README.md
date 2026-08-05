@@ -39,7 +39,7 @@ Form nativo → serverless functions do guarda-chuva (`_clickmeeting-api/`):
 ## Assets
 
 - Logos: brand (`logo-primary.svg`, `logo-reversed.svg`, favicon `logo-icon.png`).
-- OG: `assets/og-image.png` (versão ES — headline "Crea un reporte de social listening con un solo prompt"). No guarda-chuva resolve em `/assets/buzzmonitor/og-que-es-mcp.png`.
+- OG: `assets/og-que-es-mcp.png` (versão ES — headline "Crea un reporte de social listening con un solo prompt"). No guarda-chuva resolve em `/assets/buzzmonitor/og-que-es-mcp.png`.
 - Speaker: `assets/nadia.jpg` (400×400). Foto da Nadia Lezcano (Business Development, Buzzmonitor), seção "Quién presenta". Referenciada no HTML como `./assets/nadia.jpg`; no guarda-chuva resolve em `/assets/buzzmonitor/nadia.jpg` (mesmo asset compartilhado que a LP `agentes-automatizacion-junio-2026-latam` ja usa para a mesma pessoa; md5 idêntico, sem duplicação). Esta LP passa a ser a fonte-verdade do `nadia.jpg` no repo. Substituiu o placeholder "Presentador por confirmar" em 2026-06-30.
 
 GTM: `GTM-MKQBX2MG` (Buzzmonitor LATAM).

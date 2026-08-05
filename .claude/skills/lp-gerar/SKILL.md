@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.8.1
+version: 1.8.2
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -308,14 +308,17 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 
 ### 4.1.3 Sinalizar OG image pendente
 
-A OG image (1200x630 PNG) **nao e gerada pela lp-gerar** — e binary, e a frontend-design gera apenas HTML. Anotar no README do Passo 5: "Gerar OG image antes de publicar — template em `.claude/skills/lp-gerar/og-template.html` + Chrome headless. Path final: `landing-pages/{marca}/{slug}/assets/og-image.png`."
+A OG image (1200x630 PNG) **nao e gerada pela lp-gerar** — e binary, e a frontend-design gera apenas HTML. Anotar no README do Passo 5: "Gerar OG image antes de publicar — template em `.claude/skills/lp-gerar/og-template.html` + Chrome headless. Path final: `landing-pages/{marca}/{slug}/assets/og-{slug}.png`."
 
-Se a sessao atual ja produziu OG image (raro nesta fase), confirmar dimensoes:
+⛔ **Nome do arquivo e `og-{slug}.png` — nunca `og-image.png`, e nunca as duas copias** (GUIDELINES §18). Um arquivo por LP: o `build_umbrella.py` so resolve `og-{slug}.png`, entao qualquer `og-image.png` fica orfao no repo.
+
+Se a sessao atual ja produziu OG image (raro nesta fase), confirmar nome e dimensoes:
 ```bash
 # Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
 PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
-"$PYBIN" -c "from PIL import Image; print(Image.open('landing-pages/{marca}/{slug}/assets/og-image.png').size)"
+"$PYBIN" -c "from PIL import Image; print(Image.open('landing-pages/{marca}/{slug}/assets/og-{slug}.png').size)"
 # espera (1200, 630)
+ls landing-pages/{marca}/{slug}/assets/og-image.png 2>/dev/null && echo "ERRO: og-image.png e anti-padrao — renomeie para og-{slug}.png"
 ```
 
 ### 4.2 Auditoria de fidelidade da copy (CRITICO)
@@ -372,6 +375,7 @@ landing-pages/{marca}/{slug}/
 ## Estado
 
 - [x] HTML gerado
+- [ ] OG image 1200×630 → `assets/og-{slug}.png` (arquivo **unico** — nunca tambem `og-image.png`)
 - [ ] Revisao (frontend-design review + web-design-guidelines) — rodar `/lp-revisar {marca}/{slug}`
 - [ ] Formulario integrado — rodar `/lp-integrar-form {marca}/{slug} [snippet]`
 - [ ] Publicado — rodar `/lp-publicar {marca} {slug} [dominio]`

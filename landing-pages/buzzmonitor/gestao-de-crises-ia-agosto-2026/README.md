@@ -12,7 +12,7 @@ Publicada em `webinar.buzzmonitor.com/gestao-de-crises-ia-agosto-2026` (guarda-c
 - [x] Copy + design
 - [x] Formulário integrado
 - [x] Revisão (design + a11y + SEO + anti-IA) — `REVISAO.md`
-- [x] OG image 1200×630 → `assets/og-image.png`
+- [x] OG image 1200×630 → `assets/og-gestao-de-crises-ia-agosto-2026.png`
 - [ ] Palestrante confirmado (seção removida temporariamente)
 
 **Form provider:** JotForm (`252154974852667`)

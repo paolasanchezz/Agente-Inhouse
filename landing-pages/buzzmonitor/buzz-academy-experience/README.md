@@ -22,7 +22,7 @@ Sem seção de cadastro/form (removida na v2 — CTA vai direto pra plataforma).
 
 - [x] HTML gerado (+ v2: ID própria preta/azul, sem form, animações fluidas)
 - [x] Revisão (frontend-design review + web-design-guidelines) — 2026-08-03; contraste v2 re-verificado por script (20 pares AA OK)
-- [x] OG image 1200×630 (`assets/og-image.png` + cópia `og-buzz-academy-experience.png`)
+- [x] OG image 1200×630 (`assets/og-buzz-academy-experience.png`)
 - [x] Publicado em content.buzzmonitor.com via CI (PR #183; v2 em PR seguinte)
 
 OG image regenerada na v2 (preta/azul, gradient no "Experience") — consistente com a página.

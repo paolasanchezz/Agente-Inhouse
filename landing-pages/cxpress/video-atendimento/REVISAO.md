@@ -15,7 +15,7 @@
 
 ## Aplicado automaticamente (2 criticos)
 
-- [x] OG image ausente (§18) — gerada `assets/og-image.png` 1200×630 (56 KB) via template `assets/og-template.html` + Chrome headless; `og:image`/`twitter:image` já apontavam pro placeholder correto
+- [x] OG image ausente (§18) — gerada `assets/og-video-atendimento.png` 1200×630 (56 KB) via template `assets/og-template.html` + Chrome headless; `og:image`/`twitter:image` já apontavam pro placeholder correto
 - [x] Indicador do header duplicava o eyebrow do hero ("Vídeo exclusivo", §3 "nunca duplicar") — trocado por "Acesso imediato" (nav meta minimal, whitelist)
 
 ## Aplicado no deploy (1 crítico adicional)

@@ -1,4 +1,8 @@
-"""Renderiza og-template.html em og-image.png 1200x630 via Chrome headless (scale 2 + downscale)."""
+"""Renderiza og-template.html em og-{slug}.png 1200x630 via Chrome headless (scale 2 + downscale).
+
+Nome do output = og-{slug}.png, derivado da pasta da LP (GUIDELINES §18). Nunca og-image.png:
+o build_umbrella.py so resolve og-{slug}.png, e a segunda copia fica orfa no repo.
+"""
 import subprocess, tempfile
 from pathlib import Path
 from PIL import Image
@@ -8,7 +12,7 @@ CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 W, H, SCALE = 1200, 630, 2
 html = ROOT / "og-template.html"
 raw = ROOT / "_og_raw.png"
-out = ROOT / "og-image.png"
+out = ROOT / f"og-{ROOT.parent.name}.png"
 ud = tempfile.mkdtemp()
 
 subprocess.run([

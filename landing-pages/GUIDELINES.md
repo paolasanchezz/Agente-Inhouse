@@ -291,33 +291,42 @@ chrome --headless=new --disable-gpu --hide-scrollbars \
   "file:///path/to/og-template.html?lang={br|es|pt}"
 ```
 
-**Convenção de path no source (repo):**
+**Convenção de path no source (repo) — nome único, sufixo de slug:**
 
 ```
-landing-pages/{marca}/{slug}/assets/og-image.png
+landing-pages/{marca}/{slug}/assets/og-{slug}.png
 ```
+
+⛔ **Nunca gere `og-image.png`.** O nome do arquivo no source é `og-{slug}.png` e mais nada — um arquivo por LP, mesmo nome no source e no deploy, zero rename. Gerar as duas cópias (`og-image.png` + `og-{slug}.png`) é o anti-padrão que encheu o repo de 31 duplicatas byte-a-byte (~4,5 MB), removidas em 2026-08-05: o `build_umbrella.py` só resolve `og-{slug}.png`, então a cópia `og-image.png` nunca chegava ao deploy.
 
 **Convenção de path no deploy:**
 
-| Modo | Source HTML (`og:image content=`) | Path no sibling/deploy |
+| Modo | Source HTML (`og:image content=`) | Path no deploy |
 |---|---|---|
-| **solo** | `https://{dominio}/assets/og-image.png` | `{sibling}/assets/og-image.png` (copia direta de `landing-pages/{marca}/{slug}/assets/og-image.png`) |
-| **guarda-chuva** | `https://{dominio}/assets/{marca}/og-{slug}.png` | `{sibling}/assets/{marca}/og-{slug}.png` (copia com **rename**: source `og-image.png` → deploy `og-{slug}.png`) |
+| **solo** | `https://{dominio}/assets/og-{slug}.png` | `{sibling}/assets/og-{slug}.png` |
+| **guarda-chuva** | `https://{dominio}/assets/{marca}/og-{slug}.png` | `dist/assets/{marca}/og-{slug}.png` (resolvido pelo `build_umbrella.py`) |
 
-**Por que sufixo de slug em guarda-chuva:** sem `og-{slug}.png`, três LPs irmãs (`mcp`, `mcp-es`, `mcp-pt`) com mesmo nome de arquivo (`og-image.png`) colidem em `{sibling}/assets/{marca}/og-image.png` — o último deploy sobrescreve as duas anteriores e todas as 3 LPs ficam com a OG image errada. Histórico: 2026-05-18, sessão MCP material.buzzmonitor.com — convenção estabelecida.
+Nos dois modos o arquivo mantém o nome do source. No guarda-chuva o `build_umbrella.py` (linha 53) resolve `{{OG_IMAGE_PATH}}` para `assets/{marca}/og-{slug}.png` e copia de `landing-pages/{marca}/{slug}/assets/og-{slug}.png` — se o source tiver outro nome, o build emite `asset referenciado inexistente` e a LP vai pro ar com `og:image` 404.
+
+**Por que sufixo de slug:** sem ele, três LPs irmãs (`mcp`, `mcp-es`, `mcp-pt`) com o mesmo nome de arquivo colidem em `assets/{marca}/og-image.png` — o último deploy sobrescreve os anteriores e todas as 3 LPs ficam com a OG image errada. Histórico: 2026-05-18, sessão MCP material.buzzmonitor.com — convenção estabelecida.
+
+**Exceção legítima — OG compartilhada entre LPs irmãs:** quando variantes de uma mesma LP reusam de propósito a mesma imagem (ex.: `banimento-whatsapp`, `-pt`, `-latam`, `-comercial` apontam todas pra `og-banimento-whatsapp.png`), referencie o arquivo da LP-mãe **por path literal** no `og:image` em vez do placeholder `{{OG_IMAGE_PATH}}`, e mantenha só uma cópia física — na pasta da LP que a referencia.
 
 **Validação:**
 
 ```bash
-# 1. Existe no source
-test -f "landing-pages/{marca}/{slug}/assets/og-image.png" && echo OK
+# 1. Existe no source com o nome canônico
+test -f "landing-pages/{marca}/{slug}/assets/og-{slug}.png" && echo OK
 
-# 2. Dimensões corretas (1200×630)
-python -c "from PIL import Image; im=Image.open('landing-pages/{marca}/{slug}/assets/og-image.png'); print(im.size)"
+# 2. Nenhum og-image.png sobrando (tem que sair vazio)
+ls landing-pages/{marca}/{slug}/assets/og-image.png 2>/dev/null && echo "ERRO: og-image.png é anti-padrão — renomeie para og-{slug}.png"
+
+# 3. Dimensões corretas (1200×630)
+python -c "from PIL import Image; im=Image.open('landing-pages/{marca}/{slug}/assets/og-{slug}.png'); print(im.size)"
 # espera (1200, 630)
 
-# 3. Pós-deploy: retorna 200
-curl -I https://{dominio}/assets/{marca}/og-{slug}.png  # solo: /assets/og-image.png
+# 4. Pós-deploy: retorna 200
+curl -I https://{dominio}/assets/{marca}/og-{slug}.png  # solo: /assets/og-{slug}.png
 ```
 
 ## 19. Logo do header/footer/OG — SVG com `<text>` vivo é PROIBIDO

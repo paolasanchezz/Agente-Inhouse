@@ -17,7 +17,7 @@ LP deliberadamente curta (squeeze page): a copy do briefing tem só hero + form 
 
 - [x] HTML gerado
 - [x] Revisão (frontend-design review + web-design-guidelines) — ver `REVISAO.md`
-- [x] OG image (1200×630) — `assets/og-image.png` (template em `assets/og-template.html`)
+- [x] OG image (1200×630) — `assets/og-video-atendimento.png` (template em `assets/og-template.html`)
 - [x] **Publicado** em 2026-07-31 via **CI** — https://content.cxpress.io/video-atendimento (guarda-chuva `content.cxpress.io`, listada em `landing-pages/dominios/content-cxpress-io/manifest.json`)
 - [x] **Formulário integrado** em 2026-07-29 — Jotform, form `262104279010647` (embed `jsform`, renderiza em iframe de `form.jotform.com`)
 

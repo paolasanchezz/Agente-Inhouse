@@ -12,6 +12,20 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Infra LP — OG image: nome único `og-{slug}.png` (fim da duplicata `og-image.png`)
+### 2026-08-05 — GUIDELINES §18 + lp-gerar 1.8.2 · lp-revisar 1.8.2 · lp-publicar 5.1.2 (PATCH)
+
+31 LPs tinham em `assets/` um `og-image.png` que era **cópia byte-a-byte** (mesmo sha1) do `og-{slug}.png` irmão, sem nenhuma referência: 4,49 MB de peso morto no repo. Causa raiz: contradição dentro da própria GUIDELINES §18 — o comando de render mandava o screenshot pra `og-{slug}.png` (linha 290) enquanto a "convenção de path no source" declarava `og-image.png` (linha 297). Quem gerava OG produzia um dos dois, descobria que o `build_umbrella.py` só resolve `og-{slug}.png` (linha 53) e fazia a segunda cópia pra garantir — em vez de renomear.
+
+- **Convenção única: o nome do arquivo no source é `og-{slug}.png`, no source e no deploy, zero rename.** GUIDELINES §18 reescrita com a proibição explícita de `og-image.png`, mais a exceção legítima (variantes irmãs que reusam de propósito a OG da LP-mãe — `banimento-whatsapp{,-pt,-latam,-comercial}` — referenciam o arquivo por path literal, com uma só cópia física).
+- **`lp-gerar` 1.8.2** — path final anotado no README agora é `og-{slug}.png`; guard explícito contra as duas cópias; checklist do README template ganhou a linha da OG com o nome canônico. `og-template.html`: comando de render aponta pra `og-{slug}.png`.
+- **`lp-revisar` 1.8.2** — o check §3.7.e passa a validar `og-{slug}.png` e ganhou um check novo (`OG-IMAGE-DUPLICATE`) que acusa `og-image.png` sobrando como CRÍTICO. Impede a regressão na porta de entrada.
+- **`lp-publicar` 5.1.2** — §1.4.1 sem rename nos dois modos (o sufixo já vem do source) + aviso se achar duplicata legada; `{{OG_IMAGE_PATH}}` em modo solo resolve `assets/og-{slug}.png`.
+- **Removidas as 31 duplicatas** (`git rm`). Auditoria prévia LP-por-LP: cada arquivo só saiu depois de confirmar hash idêntico ao OG irmão de fato referenciado. Os 5 guarda-chuvas buildam com **0 avisos de OG** depois da limpeza (o único aviso remanescente, `case-ia-de-voz/beatriz.jpg`, é pré-existente e vem de uma ref dentro de comentário HTML).
+- **`buzzmonitor/plataforma-completa-social-media-latam`** — caso oposto: tinha só `og-image.png` (nenhum irmão), e o HTML usa `{{OG_IMAGE_PATH}}`, que resolveria pra um arquivo inexistente. **Renomeado** (não apagado) pra `og-plataforma-completa-social-media-latam.png` — a LP não está em nenhum manifesto, então o `og:image` quebrado nunca chegou a produção.
+- **`cxpress/atendimento-sem-metrica/assets/render_og.py`** — output derivado da pasta da LP (`og-{slug}.png`), pra rerodar o script não recriar o órfão.
+- 33 README/REVISAO de LP que citavam o path antigo atualizados pro nome canônico.
+
 ## Infra LP + fluxo de commit — anti-PR-stale
 ### 2026-08-03 — pull seguro antes de commit, `pr_check` por merge-base, `launch.json` des-versionado
 

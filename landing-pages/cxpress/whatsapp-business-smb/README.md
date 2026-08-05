@@ -53,7 +53,7 @@ Jotform `261027639617663` — **mesmo ID usado na página fonte** (confirmado vi
 - [x] HTML gerado (base: sistema visual de `banimento-whatsapp-clinicas`, adaptado pra 9 blocos de conteúdo próprios)
 - [x] SEO completo (title, description, canonical, OG, Twitter Card, JSON-LD) — slug `whatsapp-business-smb`
 - [x] GTM — `GTM-T4XDWHL3` (região `brasil`, mesmo container das demais LPs Cxpress BR), validado via `check_gtm_region.py`
-- [x] OG image dedicada — `assets/og-image.png` (1200×630), gerada via Chrome headless + `.claude/skills/lp-gerar/og-template.html`, com overline "Condições especiais" + H1 do hero + logo Cxpress
+- [x] OG image dedicada — `assets/og-whatsapp-business-smb.png` (1200×630), gerada via Chrome headless + `.claude/skills/lp-gerar/og-template.html`, com overline "Condições especiais" + H1 do hero + logo Cxpress
 - [x] Testado localmente — build do guarda-chuva (`build_umbrella.py`, 0 avisos novos) + servidor estático local; validado via `getComputedStyle`/`getBoundingClientRect` (sem screenshot disponível nesta sessão): sem overflow horizontal em mobile (375px, corrigido — ver Revisão), tablet (768px) e desktop (1265px); grids renderizam 2/3/4 colunas conforme esperado por breakpoint; todos os 10 assets referenciados respondem HTTP 200
 - [ ] Publicado — rodar `/lp-publicar cxpress whatsapp-business-smb content.cxpress.io`
 

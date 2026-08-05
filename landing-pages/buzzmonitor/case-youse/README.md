@@ -38,7 +38,7 @@
 
 ## Pendências
 
-- ~~OG image~~ **feita** — `assets/og-image.png` (1200×630) gerada em 2026-07-09. No deploy vira `/assets/buzzmonitor/og-case-youse.png`.
+- ~~OG image~~ **feita** — `assets/og-case-youse.png` (1200×630) gerada em 2026-07-09. No deploy vira `/assets/buzzmonitor/og-case-youse.png`.
 - **Foto da speaker:** copy trouxe link de edição do Canva (não exportado). Placeholder "Foto em breve" no lugar; trocar quando o PNG chegar.
 - **Form real (ClickMeeting):** mock nesta fase (GUIDELINES §11). Integração = (1) criar série recorrente no ClickMeeting pro webinar do case Youse; (2) adicionar a chave `case-youse` no mapa SERIES de `landing-pages/buzzmonitor/_clickmeeting-api/next-webinar.js` e `clickmeeting-register.js`; (3) trocar o mock pelo JS da referência (`mcp-na-pratica-p`) com `SERIES='case-youse'` e, se quiser página de confirmação, criar `case-youse-confirmado`.
 - **Copy:** frase "O nome de quem apresenta aparece aqui e no e-mail de inscrição." na bio parece sobra do placeholder da referência (speaker já nomeada) — decisão do Victor.

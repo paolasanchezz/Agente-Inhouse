@@ -39,4 +39,4 @@
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
 - `./assets/luis-perez.jpg`, `./assets/lorena-rodriguez.jpg` (fotos dos speakers)
-- `./assets/` (LP-local, pendente: og-image.png)
+- `./assets/` (LP-local, pendente: og-webinar-atencion-multicanal-latam.png)

@@ -26,7 +26,7 @@
 - [x] Fidelidade de copy conferida via extração de texto (sem pull-quotes/kickers inventados)
 - [x] Revisão visual completa (design + a11y) — `/lp-revisar` rodado em 2026-07-30, 5 críticos + 6 melhorias/nice-to-haves aplicados a pedido do usuário, ver `REVISAO.md` (resta 1 nice-to-have de baixo impacto)
 - [x] Formulário integrado — Jotform (2026-07-29), mesmo form da LP irmã (`jsform/252995108251662`)
-- [x] OG image (1200×630) — gerada via Chrome headless em 2026-07-29, `assets/og-image.png` (logo renderizou corretamente, ao contrário do bug conhecido na LP irmã — path corrigido para 4 níveis acima)
+- [x] OG image (1200×630) — gerada via Chrome headless em 2026-07-29, `assets/og-plataforma-completa-para-dados.png` (logo renderizou corretamente, ao contrário do bug conhecido na LP irmã — path corrigido para 4 níveis acima)
 - [x] Imagem da seção DIFERENCIAIS trocada — `assets/dashboard-mockup.png` (1536×1024), recebida via Google Drive em 2026-07-29
 - [x] Publicado — live em https://content.buzzmonitor.com/plataforma-completa-para-dados desde 2026-07-30 (PR #123, deploy CI [run 30556599509](https://github.com/victorfmlopes/Agente-Inhouse/actions/runs/30556599509)). Relatório: ver Notion "Entrega LP · Buzzmonitor · plataforma-completa-para-dados · 2026-07-30"
 - [x] Round 6 (2026-07-31): seção Diferenciais reestruturada em 2 blocos + nova imagem `dashboard-categorias.png` (mulher com celular cercada pelas categorias reais) + ícones do benefit-grid trocados para circulares.
@@ -46,7 +46,7 @@
 - `./assets/dashboard-mockup.png` (1536×1024 — ilustração de laptop com dashboard, fornecida pelo usuário via Google Drive) — usada no bloco `.dif-top` (2º bloco da seção Diferenciais)
 - `./assets/dashboard-analytics.png` e `./assets/dashboard-laptop.png` — não mais referenciadas no HTML (substituídas), mantidas no repo caso voltem a ser úteis
 - `./assets/logo-wall.png` (1912×690 — reaproveitado de `plataforma-completa-monitoramento/assets/logo-wall.png`, mesma imagem)
-- `./assets/og-image.png` (1200×630 — OG image gerada via `assets/og-source.html` + Chrome headless)
+- `./assets/og-plataforma-completa-para-dados.png` (1200×630 — OG image gerada via `assets/og-source.html` + Chrome headless)
 
 ## Notas
 
