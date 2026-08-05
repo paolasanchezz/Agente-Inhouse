@@ -1,0 +1,82 @@
+=== HERO ===
+H1: Indique quem precisa da Buzzmonitor e ganhe R$ 1.000
+BODY: Se você já usou a plataforma, como cliente, colaborador, aluno ou parceiro, sua experiência vale dinheiro. Indique uma empresa que se beneficiaria da Buzzmonitor e receba R$ 500 quando a reunião acontecer e mais R$ 500 se fechar contrato.
+CTA: Indicar agora
+LABEL: Entenda como funciona
+# NOTA: "Entenda como funciona" e link de texto ao lado do botao primario (nao botao).
+# NOTA: manter ao lado o video que esta na LP atual (elemento visual do hero).
+
+=== QUEM PODE INDICAR ===
+H2: O programa de recompensas para quem conhece a Buzzmonitor de perto
+# NOTA: usar caixinhas com icones para cada ponto (grid de 4 personas).
+LABEL: Cliente ativo
+BODY: Usa a plataforma e quer indicar parceiros e fornecedores
+
+LABEL: Ex-cliente ou ex-usuário
+BODY: Já usou a Buzz e conhece o valor da ferramenta
+
+LABEL: Colaborador
+BODY: Faz parte do time Buzzmonitor e tem contatos qualificados na rede
+
+LABEL: Aluno e ex-aluno
+BODY: Fez nossos cursos e sabe exatamente para quais empresas a Buzz seria valiosa
+
+=== COMO FUNCIONA ===
+H2: Você indica, a gente cuida do resto!
+LABEL: 1º passo: Indique
+BODY: Fale com a pessoa interessada e preencha o formulário de indicação com seus dados e os dados dela.
+
+LABEL: 2º passo: A gente entra em contato
+BODY: Nossa equipe avalia o fit e agenda uma reunião com o seu indicado para apresentar a plataforma.
+
+LABEL: 3º passo: Reunião acontece
+BODY: Se a reunião acontecer e este for um lead potencial, você recebe R$ 500.
+
+LABEL: 4º passo: Contrato fechado
+BODY: Mais R$ 500 para você se o indicado fechar o contrato com a Buzzmonitor. Assim que o 1º pagamento for efetuado, você recebe!
+
+=== RECOMPENSAS ===
+H2: Você ganha. Seu indicado também.
+H3: PARA VOCÊ
+LIST ITEM: R$ 500 por reunião realizada com lead potencial
+LIST ITEM: + R$ 500 quando seu indicado fechar contrato e realizar o 1º pagamento
+
+H3: PARA O SEU INDICADO
+LIST ITEM: 14 dias de acesso gratuito com acompanhamento consultivo do time Buzzmonitor. Sem compromisso de contratação.
+LIST ITEM: Se fechar contrato (6+ meses), o indicado ainda ganha: 50% de desconto nas 2 primeiras mensalidades.
+# NOTA: criar imagem ou icones que coloquem em destaque estes beneficios.
+
+=== QUEM VALE A PENA INDICAR ===
+H2: Quem vale a pena indicar?
+BODY: Pense em empresas ou agências que têm esses desafios:
+LIST ITEM: Gerenciam múltiplos canais de redes sociais e precisam de mais eficiência operacional.
+LIST ITEM: Querem entender o que o mercado fala sobre a marca, concorrentes e tendências.
+LIST ITEM: Têm grande volume de atendimento nas redes sociais e canais digitais.
+LIST ITEM: Precisam de inteligência de dados para embasar decisões de marketing e comunicação.
+# NOTA: colocar os 4 itens abaixo em caixinhas, em 1 fileira centralizada, ABAIXO dos bullets de desafios (nao mais ao lado). No lugar onde as caixinhas ficavam antes (coluna direita ao lado dos bullets), imagem enviada pelo Victor: assets/quem-vale-a-pena.png.
+LIST ITEM: Empresas de médio e grande porte
+LIST ITEM: Agências de marketing e PR
+LIST ITEM: Times de marketing in-house
+LIST ITEM: E-commerces com presença ativa nas redes
+
+=== CTA FINAL ===
+H2: Pronto para indicar?
+BODY: Quanto mais indicações, mais recompensas você ganha.
+BODY: Nossa equipe entra em contato com o seu indicado em até 2 dias úteis.
+CTA: Indique agora
+# NOTA: [formulário] — mock action="#" nesta fase (GUIDELINES §11).
+LABEL: Ao enviar, confirmo que tenho o consentimento do indicado para compartilhar seus dados e que minha participação está em conformidade com as políticas da minha empresa. Política de privacidade*
+# NOTA: "Política de privacidade*" e link — linkar a política de privacidade, como na LP atual. Texto acima e o checkbox do form.
+CTA: Enviar indicação
+
+=== REGULAMENTO ===
+H2: Conheça o regulamento para participar
+LIST ITEM: Você recebe R$ 500 quando a reunião com o indicado é realizada e o lead tem potencial.
+LIST ITEM: Fechando contrato de no mínimo 6 meses e com o 1º pagamento realizado, você recebe mais R$ 500.
+LIST ITEM: Não há limite de indicações: cada indicação válida gera sua própria recompensa.
+LIST ITEM: A indicação é válida por 120 dias. Você será avisado antes do prazo encerrar.
+LIST ITEM: Você será notificado por e-mail a cada nova etapa da negociação com o indicado.
+LIST ITEM: Indicações de empresas já clientes da Buzzmonitor ou em negociação ativa não são elegíveis.
+BODY: Dúvidas? Leia o regulamento completo ou fale com a gente em indiqueeganhe@buzzmonitor.com.br
+
+# Revisao anti-IA: sem achados (em-dash: 0). Copy ja passou por /copy-revisar em 2026-07-01 (ver conhecimento/copywriting/revisoes/lp-indique-e-ganhe-buzzmonitor-revisado-2026-07-01.md) — 3 correcoes tecnicas ja aplicadas (clareza "reuniao com lead potencial", ritmo sintatico no regulamento, exclamacao dentro do limite de 2).
