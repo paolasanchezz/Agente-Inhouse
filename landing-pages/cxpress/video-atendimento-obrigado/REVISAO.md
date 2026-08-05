@@ -23,7 +23,7 @@
 
 ## PENDÊNCIA ABERTA (LP já está no ar)
 
-- [x] **Resolvida por remoção (2026-08-03):** o CTA "Conversar pelo WhatsApp" chegou a ir ao ar com `href="#"` porque o link `wa.me` do especialista nunca existiu no repositório. A Marielle pediu para retirar o botão, e a seção DÚVIDAS saiu inteira. Não há mais pendência de link.
+- [x] **Resolvida (2026-08-03):** o CTA chegou a ir ao ar com `href="#"` porque o link `wa.me` não existia no repositório; a seção foi removida e, no mesmo dia, reposta com o link real que a Marielle informou (`wa.me/551150395028` + mensagem pré-preenchida) e o CTA "Fale com a Cxpress". Sem pendência.
 
 ## Melhorias opcionais (3)
 
@@ -37,5 +37,5 @@
 
 ## Próximos passos
 
-- Se um CTA voltar a fazer sentido aqui (e-mail, agendamento, WhatsApp com número real), a seção pode ser recriada a partir do histórico do git
+- Se o número do WhatsApp mudar, editar o `href` do `.cta-whatsapp` no `index.html` e a nota no `copy.txt`
 - Publicar em batch com a mãe: `/lp-publicar cxpress "video-atendimento,video-atendimento-obrigado" content.cxpress.io`
