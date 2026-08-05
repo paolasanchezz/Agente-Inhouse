@@ -23,13 +23,13 @@
 
 ## PENDÊNCIA ABERTA (LP já está no ar)
 
-- [x] **Resolvida (2026-08-03):** o CTA chegou a ir ao ar com `href="#"` porque o link `wa.me` não existia no repositório; a seção foi removida e, no mesmo dia, reposta com o link real que a Marielle informou (`wa.me/551150395028` + mensagem pré-preenchida) e o CTA "Fale com a Cxpress". Sem pendência.
+- [x] **Resolvida (2026-08-03):** o CTA chegou a ir ao ar com `href="#"` porque o link `wa.me` não existia no repositório; a seção foi removida e, no mesmo dia, reposta com o link real que a Marielle informou (`wa.me/551150395028` + mensagem pré-preenchida) e o CTA "Agende uma demonstração gratuita". Sem pendência.
 
 ## Melhorias opcionais (3)
 
 - [ ] `touch-action: manipulation` no `body`/CTA (WIG mobile)
 - [ ] CSS morto: regras `.header__meta`/`.dot` ficaram órfãs após remover o indicador — limpar
-- [ ] **Deploy/CSP:** garantir `https://www.youtube-nocookie.com` em `frame-src` no `vercel.json` do guarda-chuva `content.cxpress.io` (patch cirúrgico; sem isso o iframe fica vazio no live). Verificar no `/lp-publicar`
+- [ ] **Privacidade do embed (opcional):** o vídeo usa `www.youtube.com`, que o CSP já libera. Migrar para `youtube-nocookie.com` (sem cookie até o play) exige 1 linha no `frame-src` do `dominios/content-cxpress-io/vercel.json` + 1 no embed, no mesmo PR. É path protegido, então passa por revisão do Victor e não auto-mergeia.
 
 ## Nice-to-haves (1)
 

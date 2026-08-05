@@ -4,10 +4,11 @@ H1: Como tornar sua operação de atendimento mais organizada, produtiva e segur
 # Embed do video (nao e copy): https://www.youtube.com/watch?v=dfxipCR2vTo em embed responsivo 16:9 (https://www.youtube.com/embed/dfxipCR2vTo?rel=0), carregado imediatamente no load da pagina. Sem gate adicional.
 # youtube.com (nao nocookie) porque o CSP do guarda-chuva libera so esse dominio, e o vercel.json e path protegido no CI (trava o auto-merge). Decisao da Marielle, 2026-08-03.
 
-=== DUVIDAS ===
-H2: Ficou com alguma dúvida?
-BODY: Se preferir conversar sobre como aplicar essa estratégia na sua operação, fale diretamente com um especialista.
-CTA: Fale com a Cxpress
+=== CTA FINAL ===
+SUB: Organize seu time de atendimento digital e utilize IA para atender melhor
+CTA: Agende uma demonstração gratuita
+# Secao sem H2 por decisao da Marielle (2026-08-03): saiu o "Ficou com alguma duvida?" e o texto de apoio antigo.
+# A linha de cima virou a mensagem da secao, entao pesa mais que um texto de apoio comum (maior, cor de titulo, semibold).
 # Link do CTA: https://wa.me/551150395028 com mensagem pre-preenchida ("Ola! Conheci a Cxpress pelo video de atendimento multicanal e gostaria de agendar uma demonstracao gratuita"). Numero e texto informados pela Marielle em 2026-08-03.
 # Historico: a secao foi removida em 2026-08-03 (o CTA estava com href="#" por falta do numero) e reposta no mesmo dia, com o link real e o CTA novo.
 

@@ -9,7 +9,7 @@ Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente a
 ## Estrutura
 
 - VIDEO (eyebrow "Vídeo liberado" + H1 + embed YouTube 16:9)
-- DÚVIDAS (H2 + body + CTA "Fale com a Cxpress" → WhatsApp)
+- CTA FINAL (linha de apoio + CTA "Agende uma demonstração gratuita" → WhatsApp). Sem H2, por decisão da Marielle
 - FOOTER
 
 ## Vídeo
@@ -21,7 +21,7 @@ Thanks page da LP `video-atendimento`: entrega o vídeo embedado imediatamente a
 - [x] HTML gerado
 - [x] Revisão — ver `REVISAO.md`
 - [x] **Publicado** em 2026-07-31 via **CI** — https://content.cxpress.io/video-atendimento-obrigado (listada em `landing-pages/dominios/content-cxpress-io/manifest.json`)
-- [x] **CTA de WhatsApp ativo** desde 2026-08-03: `https://wa.me/551150395028` com mensagem pré-preenchida, CTA "Fale com a Cxpress", abrindo em nova aba. Número e texto informados pela Marielle. A seção chegou a ser removida no mesmo dia (o botão estava com `href="#"` por falta do número) e foi reposta com o link real.
+- [x] **CTA de WhatsApp ativo** desde 2026-08-03: `https://wa.me/551150395028` com mensagem pré-preenchida, CTA "Agende uma demonstração gratuita", abrindo em nova aba. Número e texto informados pela Marielle. A seção chegou a ser removida no mesmo dia (o botão estava com `href="#"` por falta do número) e foi reposta com o link real.
 
 ## Exceções deliberadas às GUIDELINES (precedente: conheca-a-cxpress-confirmado)
 
