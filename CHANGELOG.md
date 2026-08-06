@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## CSP dos guarda-chuvas — liberar Google Ads e Google Signals
+### 2026-08-06 — vercel.json dos 5 domínios + `vercel.template.json` (lp-publicar 5.1.3, PATCH)
+
+O `connect-src` cobria `*.google-analytics.com` mas não os outros hosts que o gtag/GTM usa,
+então o navegador bloqueava em runtime — sem sintoma na página, só no console. Achado ao
+inspecionar `content.buzzmonitor.com/buzz-academy-experience`; o mesmo buraco existia nos
+**5 guarda-chuvas e no template**, ou seja, em toda LP servida por eles.
+
+Bloqueado até aqui (`Refused to connect`):
+
+- `analytics.google.com/g/collect` e `www.google.com/g/collect` — Google Signals do GA4.
+- `www.google.com/ccm/collect`, `www.google.com/rmkt/collect` e `ad.doubleclick.net/ccm/s/collect`
+  — conversão e remarketing do Google Ads (`AW-832709839`).
+
+Adicionados ao `connect-src`: `analytics.google.com`, `*.googletagmanager.com`,
+`*.doubleclick.net`, `www.google.com`, `www.google.com.br`. Wildcard em doubleclick em vez de
+enumerar `ad.`/`stats.g.`/`td.` — Google troca de subdomínio sem aviso. Nenhuma outra directive
+mudou; `img-src` já era `https:`, então pixel-como-imagem nunca esteve bloqueado.
+
+**Limitação conhecida:** o ping de audiência do Ads bate em TLD regional (`www.google.es`,
+`www.google.com.mx`…). Cobrimos `.com` e `.com.br`; LP em outra região pode ver o mesmo bloqueio
+pro TLD dela. Enumerar todos os TLDs do Google não compensa — tratar caso a caso se aparecer.
+
+**Fora do CSP, não corrigido aqui:** o Meta Pixel `705678789565591` responde *"unavailable on
+this website due to it's traffic permission settings"*. É allowlist de domínio no Events Manager
+da Meta, não header — só resolve no painel.
+
 ## Infra LP — OG image: nome único `og-{slug}.png` (fim da duplicata `og-image.png`)
 ### 2026-08-05 — GUIDELINES §18 + lp-gerar 1.8.2 · lp-revisar 1.8.2 · lp-publicar 5.1.2 (PATCH)
 
