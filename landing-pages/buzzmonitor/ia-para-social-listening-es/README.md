@@ -23,8 +23,13 @@ CORS aberto verificado 2026-07-17. `lp-integrar-form` não se aplica.
 
 ## Tracking
 
-- **GTM `GTM-5PNK2VZ`** (mesmo container das páginas LATAM atuais, pedido do Victor). Diverge do
-  `tracking.json` latam → `.tracking.lock` com `grandfathered: true` (mesma nota da LP irmã).
+- **GTM `GTM-PC4TJ6H`** (pedido do Victor, 2026-08-06 — substitui o `GTM-5PNK2VZ` inicial).
+  É o container dominante do parque LATAM legado: `getbuzzmonitor.com/es/`, as demais LPs
+  GreatPages em `contenido.getbuzzmonitor.com` e — o que mais importa — a página de obrigado
+  `/muchas-gracias`, destino do form. Com `5PNK2VZ` a jornada quebrava no meio: pageview num
+  container e conversão em outro.
+- Diverge do `tracking.json` latam (`GTM-MKQBX2MG`) → `.tracking.lock` com `grandfathered: true`
+  (fingerprint reemitido em 2026-08-06; o selo antigo virou bloqueio ao trocar o container).
 
 ## Estado
 

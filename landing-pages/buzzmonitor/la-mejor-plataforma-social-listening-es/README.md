@@ -26,11 +26,21 @@ pro mesmo `/muchas-gracias`. Leads caem exatamente onde caem hoje. Endpoint tem 
 
 ## Tracking
 
-- **GTM `GTM-5PNK2VZ`** — o mesmo container das páginas LATAM atuais (pedido explícito do Victor,
-  2026-07-17). Diverge do `tracking.json` latam (`GTM-MKQBX2MG`) → selo `.tracking.lock`
-  com `grandfathered: true`. Decidir depois se o tracking.json muda ou se as LPs migram de container.
-- O container dispara Termly (consent), Meta Pixel, LinkedIn Insight, GA4 e Google Ads —
-  CSP do domínio atualizado em `landing-pages/dominios/material-buzzmonitor-com/vercel.json`.
+- **GTM `GTM-PC4TJ6H`** (pedido do Victor, 2026-08-06). Substitui o `GTM-5PNK2VZ` usado de
+  2026-07-17 até aqui. O racional do `5PNK2VZ` era "o mesmo container das páginas LATAM
+  atuais", mas a verificação em 2026-08-06 mostrou que isso não se sustentava: `5PNK2VZ`
+  estava só nas **duas** páginas GreatPages de onde estas LPs foram clonadas
+  (`/ia-para-social-listening` e `/la-mejor-plataforma-social-listening-marketing`).
+  O resto do parque LATAM — `getbuzzmonitor.com/es/`, as outras LPs em
+  `contenido.getbuzzmonitor.com` e a página de obrigado `/muchas-gracias` — usa `PC4TJ6H`.
+- O `/muchas-gracias` é o ponto crítico: é pra lá que o form redireciona. Com `5PNK2VZ` a
+  jornada quebrava no meio (pageview num container, conversão em outro).
+- Diverge do `tracking.json` latam (`GTM-MKQBX2MG`) → selo `.tracking.lock` com
+  `grandfathered: true`, fingerprint reemitido em 2026-08-06. Decidir depois se o
+  `tracking.json` muda ou se as LPs migram pro container canônico.
+- CSP não precisou mudar: `PC4TJ6H` carrega do mesmo `googletagmanager.com`. Quais tags
+  ele dispara (Termly, Meta Pixel, LinkedIn, GA4, Google Ads) não foi reauditado — conferir
+  o console após o deploy.
 
 ## Estado
 
