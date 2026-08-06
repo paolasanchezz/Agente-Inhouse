@@ -23,6 +23,13 @@ TITLE_SUFFIXES = re.compile(r"\s*\[(?:REVISADO|TESTE|DRAFT)\]")
 RELATIVE_LEAK = re.compile(r"\.\./assets/|\./assets/|\.\./\.\./brand/")
 PLACEHOLDER_LEAK = re.compile(r"\{\{[A-Z_]+\}\}")
 
+# Vercel Web Analytics em site estatico: o tracker NAO e injetado sozinho (isso
+# so vale pra framework com build, via @vercel/analytics). HTML puro precisa da
+# tag abaixo. Same-origin, entao o CSP dos guarda-chuvas ja cobre ('self' em
+# script-src e connect-src). Opt-in por dominio: "web_analytics": true no manifesto.
+VERCEL_ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>'
+HEAD_CLOSE = re.compile(r"</head>", re.I)
+
 
 def die(msg):
     sys.stderr.write(f"ERRO build_umbrella: {msg}\n")
@@ -40,7 +47,16 @@ def write_text(path, content):
         f.write(content)
 
 
-def transform_html(html, marca, slug, dominio):
+def inject_web_analytics(html, slug):
+    """Insere o tracker do Vercel Web Analytics antes de </head>. Idempotente."""
+    if "/_vercel/insights/script.js" in html:
+        return html
+    if not HEAD_CLOSE.search(html):
+        die(f"{slug}: web_analytics ligado mas index.html nao tem </head>")
+    return HEAD_CLOSE.sub(f"{VERCEL_ANALYTICS_TAG}\n</head>", html, count=1)
+
+
+def transform_html(html, marca, slug, dominio, web_analytics=False):
     """Regras do Passo 1.5 da lp-publicar (modo guarda-chuva)."""
     html = html.replace(f"../../brand/{marca}/assets/", f"/assets/{marca}/")
     # ./assets/{marca}/X já namespaceado: só absolutiza — antes do genérico, senão duplica
@@ -54,6 +70,8 @@ def transform_html(html, marca, slug, dominio):
     html = html.replace("{{BRAND_LOGO_PNG_PATH}}", f"assets/{marca}/logos/logo-primary.png")
     html = re.sub(r"(<title>[^<]*?)" + TITLE_SUFFIXES.pattern + r"([^<]*</title>)",
                   r"\1\2", html)
+    if web_analytics:
+        html = inject_web_analytics(html, slug)
     return html
 
 
@@ -70,6 +88,7 @@ def main():
     repo = os.environ.get("REPO_ROOT") or os.path.abspath(
         os.path.join(os.path.dirname(manifest_path), "..", "..", ".."))
     dominio = manifest["dominio"]
+    web_analytics = bool(manifest.get("web_analytics", False))
     avisos = []
 
     if os.path.isdir(dist):
@@ -87,7 +106,7 @@ def main():
         html = read_text(index)
         if not html.lstrip("﻿ \t\r\n").lower().startswith(("<!doctype html", "<html")):
             die(f"{slug}: index.html não começa com doctype/html")
-        html = transform_html(html, marca, slug, dominio)
+        html = transform_html(html, marca, slug, dominio, web_analytics)
         if RELATIVE_LEAK.search(html):
             die(f"{slug}: path relativo sobrando pós-rewrite")
         if PLACEHOLDER_LEAK.search(html):
@@ -133,7 +152,8 @@ def main():
                 die(f"isolamento: path suspeito no dist: {rel}")
 
     print(json.dumps({"dominio": dominio, "lps": len(manifest["lps"]),
-                      "avisos": avisos}, ensure_ascii=False, indent=2))
+                      "web_analytics": web_analytics, "avisos": avisos},
+                     ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

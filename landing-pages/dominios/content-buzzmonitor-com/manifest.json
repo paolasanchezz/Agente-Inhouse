@@ -4,6 +4,7 @@
   "projeto_vercel_id": "prj_pZdw8KaBcLgyU9aBmUZ7VAHu3nk3",
   "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
   "vercel_json": "landing-pages/dominios/content-buzzmonitor-com/vercel.json",
+  "web_analytics": true,
   "lps": [
     {
       "slug": "buzz-academy-experience",

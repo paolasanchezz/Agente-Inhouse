@@ -12,6 +12,28 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Vercel Web Analytics nos guarda-chuvas (opt-in por domínio)
+### 2026-08-06 — `build/build_umbrella.py` + manifesto de `content.buzzmonitor.com`
+
+Web Analytics foi habilitado no projeto Vercel `buzzmonitor-content`. Em site
+**estático** o toggle sozinho não coleta nada: o painel do Vercel instrui
+`npm i @vercel/analytics` + `<Analytics />`, que só vale pra framework com build.
+HTML puro precisa da tag `/_vercel/insights/script.js` em cada página — sem ela o
+painel fica zerado e parece que a ativação falhou.
+
+O `build_umbrella.py` passa a injetar essa tag antes de `</head>`, num ponto único
+(`transform_html`), cobrindo toda LP do guarda-chuva sem editar arquivo por arquivo.
+A injeção é **opt-in por domínio**: só roda com `"web_analytics": true` no
+`manifest.json`. Assim as LPs dos domínios em que o toggle não foi ligado não
+pedem um script que retornaria 404. Hoje só `content.buzzmonitor.com` está marcado.
+
+Não requer mudança de CSP — o tracker é same-origin e `script-src`/`connect-src`
+já têm `'self'`. A injeção é idempotente (não duplica se a tag já existir) e falha
+o build se o `index.html` não tiver `</head>`.
+
+Nota: o `paridade_check.py` passa a acusar diff de 1 linha por LP em
+`content.buzzmonitor.com` — é a tag nova, esperado, não é regressão.
+
 ## CSP dos guarda-chuvas — liberar Google Ads e Google Signals
 ### 2026-08-06 — vercel.json dos 5 domínios + `vercel.template.json` (lp-publicar 5.1.3, PATCH)
 
