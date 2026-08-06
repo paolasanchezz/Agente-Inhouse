@@ -1,0 +1,59 @@
+=== HERO ===
+OVERLINE: Buzzmonitor · Caso Smart Fit · 10 minutos
+H1: Cómo Smart Fit centralizó la atención de 40 franquicias en una sola plataforma
+SUB: Descubre qué cambió en la operación de Smart Fit al centralizar la atención al cliente y cómo puedes aplicar esas mismas estrategias en tu empresa.
+LABEL: 10 minutos
+CTA: ¡Reserva tu lugar!
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Tres cambios que transformaron la operación de Smart Fit.
+H3: 01. Una sola bandeja para todos los canales
+BODY: Instagram, Facebook, WhatsApp, TikTok, YouTube y correo electrónico, todo llega a una única bandeja organizada por prioridad. Cada asesor puede acceder al historial completo del cliente, sin importar el canal desde el que haya escrito. Antes de Buzzmonitor, Smart Fit no podía garantizar que todos los mensajes fueran respondidos. Hoy alcanza el 100 % de cobertura.
+LABEL: Qué vas a ver: la bandeja unificada con tickets de Instagram, Facebook y WhatsApp organizados por prioridad, junto con el historial completo de cada cliente.
+
+H3: 02. IA asistiendo a los asesores en tiempo real
+BODY: La IA sugiere respuestas según el contexto de la conversación y el historial de la marca. Además, Auto Tag Suggestions clasifica automáticamente cada ticket (consultas sobre membresías, reclamos de cobro y más), reduciendo el trabajo manual. Así, un equipo de solo cinco asesores gestiona la atención de 40 franquicias de forma eficiente.
+LABEL: Qué vas a ver: respuestas sugeridas por IA en segundos y etiquetas automáticas aplicadas con un solo clic.
+
+H3: 03. Dashboards en tiempo real para tomar decisiones
+BODY: Visualiza el volumen de conversaciones, tiempos de respuesta y calidad de atención por franquicia en tiempo real. Además, Buzz Pills resume las últimas 24 horas con los principales insights: la franquicia con mayor actividad, los temas más relevantes, la evolución del sentimiento y recomendaciones accionables.
+LABEL: Qué vas a ver: dashboards filtrados por franquicia y los insights diarios generados por Buzz Pills.
+# [SUGESTAO anti-IA] "Además" abre la segunda frase tanto en el BODY 02 como en el BODY 03 (2 veces en el mismo texto). No es "abrir párrafo" en sentido estricto (regras-anti-ia.md marca eso como el patrón a evitar), pero es una repetición notable de conector. Alternativa si querés variar: en BODY 03, "También Buzz Pills resume..." o cortar directo sin conector.
+
+=== RESULTADOS ===
+H2: Los resultados del caso
+LABEL: 40 franquicias en Guatemala y El Salvador
+LABEL: De 3 a 5 asesores (desde abril de 2024)
+LABEL: 100 % de los mensajes respondidos
+LABEL: Implementación en abril. Operación activa desde mayo.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Milagro Pantoja
+SUB: Business Developer · Buzzmonitor
+BODY: Milagro trabaja junto a empresas que gestionan operaciones de atención al cliente de gran escala. En esta sesión comparte cómo Smart Fit pasó de responder desde múltiples aplicaciones a gestionar la atención de 40 franquicias desde una única plataforma, con resultados medibles.
+LABEL: Atención al cliente
+LABEL: Customer Care
+LABEL: IA aplicada
+
+=== PARA QUIÉN ES ===
+OVERLINE: PARA QUIÉN ES
+H2: Este caso es para ti si...
+LIST ITEM: Eres gerente o director de Marketing y tu equipo aún responde desde las aplicaciones nativas de cada red social.
+LIST ITEM: Lideras un equipo de Atención al Cliente o CX y no tienes visibilidad sobre cuántos mensajes reciben ni si todos se responden.
+LIST ITEM: Gestionas una agencia con varios clientes y necesitas centralizar la operación sin depender de reportes manuales.
+LIST ITEM: Tu empresa ha crecido y la herramienta que utilizabas ya no es suficiente para gestionar el volumen de conversaciones.
+
+=== CTA FINAL ===
+H2: ¿Tu equipo sigue gestionando la atención desde varias aplicaciones?
+BODY: En solo 10 minutos descubrirás cómo Smart Fit logró centralizar la atención de 40 franquicias, responder el 100 % de sus mensajes y optimizar su operación con IA. Conoce qué implementaron y cómo puedes aplicar esas mismas estrategias en tu empresa.
+LABEL: 10 minutos
+LABEL: Caso real
+CTA: ¡Reserva tu lugar!
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# [NOTA 2026-08-06 v2] Copy actualizado completo a pedido del usuario. Cambios principales: (1) CTA FINAL pasó de framing "agenda una llamada de 30 min con ventas" a framing "mira el caso de 10 minutos" (LABELs cambiaron de "30 minutos"/"Sin demo enlatada" a "10 minutos"/"Caso real") — esto resuelve la tensión semántica anotada antes sobre "¡Reserva tu lugar!" (ahora sí encaja: se reserva el acceso a un contenido de 10 min, no a una llamada 1:1). (2) Reescritura de BODYs y LIST ITEMs manteniendo los mismos datos/hechos (40 franquicias, 5 asesores, 100% cobertura, abril–mayo 2024). (3) Bio de Milagro sigue sin afirmar participación directa en la implementación de Smart Fit, consistente con la decisión ya tomada.
+# Revisão anti-IA: sem achados de em-dash (0). Ver nota acima sobre repetição de "Además".
