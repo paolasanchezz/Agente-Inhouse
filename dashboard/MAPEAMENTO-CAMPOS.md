@@ -566,6 +566,22 @@ Pegar top 6 em Python, agregar resto como "outros".
 
 **Total YtD 2026: 6 fechamentos · R$ 16.580**
 
+### Override nominal de fechamento — `FECHAMENTOS_FORCADOS` (2026-08-06)
+
+Terceira e última válvula de escape do gate de Fechamentos, abaixo da whitelist. Existe porque a `EMAIL_WHITELIST` é indexada por e-mail e **não resolve fechamento cujo `email_contato_principal_bd_sdr` está NULL**. É nominal (por `deal_id`), nunca heurístico — mesma filosofia da whitelist e do `CM_DEALS_FORCADOS`.
+
+| Deal | Por que o gate barrou | Por que é CM |
+|---|---|---|
+| L3FT (id 190050) · fech. 14/07/2026 · R$ 3.750 | `funil_bd_sdr=Outbound` **e** `email_contato_principal_bd_sdr` NULL (o e-mail só existe em `decisores_projeto_email_bd`, que a dash não lê) | `utm_source=apresentacao-webinar` + `url_conversao=conteudo.buzzmonitor.com.br/oferta-atendimento-classe-a`; `filtro_cm` e atribuição 90d passam. O contato `mariacristina@l3ft.com.br` tem 4 deals comerciais anteriores, **todos Inbound**. CM confirmado pelo Victor. |
+
+O gate de fechamento passou a viver num único helper, `predicado_fechamento()`, em vez de inline nos 4 lugares que contam fechamento (`q_count_fechamentos`, `q_lista_fechamentos`, `fech_p` do `q_ranking`, ramo `fechamentos` da série 12m) — mesmo motivo do `predicado_evento()`: evitar drift entre cópias.
+
+**Ressalva conhecida (não corrigida):** o ramo normal do gate começa com `lower(trim(email)) NOT IN (SELECT email FROM bl)`. Com e-mail NULL isso avalia pra NULL e a linha cai — ou seja, **fechamento sem e-mail de contato é invisível mesmo com tracking CM perfeito**. O `predicado_evento()` tem a guarda `IS NULL OR` explícita; o de fechamento não. Corrigir exige decisão do Victor (muda números).
+
+**Auditoria dos fechamentos sem e-mail (2026-08-06) — encerrada.** Os 27 fechamentos de 2026 com `email_contato_principal_bd_sdr` NULL foram varridos um a um: 2 passavam no `filtro_cm` (190050/L3FT e 188875/INDEX), 3 tinham rastro parcial que toca ativo CM mas é excluído por decisão já registrada (175694/EVERYMUNDO via slug `buzzmonitor-connect-`; 177048/ATACADÃO com `utm_source=organic`; 162693/AGIS com slug CM válido mas `utm_source=comercial`) e 22 não tinham rastro nenhum. **Victor revisou e confirmou: só o L3FT é CM** — os demais ficam fora, inclusive o INDEX (R$ 19.800, `utm_source=meta` da campanha do Webinar Análise Preditiva, mas registrado como Prospecção Ativa). Não re-auditar sem fato novo.
+
+Achado colateral que **reduz a urgência do fix do NULL**: 26 dos 27 estão como `funil_bd_sdr='Outbound'` (exceção: 187782/Marjan, que não tem tracking CM). Ou seja, adicionar a guarda `IS NULL OR` sozinha não incluiria nenhum fechamento hoje — o filtro de Outbound barraria todos de novo. O fix continua valendo como higiene (evita que um caso futuro com funil correto suma em silêncio), mas não destrava nada retroativamente.
+
 ### Casos excluídos corretamente
 - **180 Seguros** (`utm_source=cs` — canal interno)
 - **modó, CULLIGAN** (`utm_source=comercial` — canal interno)

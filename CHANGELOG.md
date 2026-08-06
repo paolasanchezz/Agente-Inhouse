@@ -178,6 +178,21 @@ Convites de moderador (vendedores) passam a sair **apenas em dias úteis** — d
 - Sem convite duplicado: sexta convida a sessão de sexta (futura no run das 07:00), sáb/dom não envia, segunda convida a de segunda. MINOR — comportamento novo compatível (interface só ganha `--force`).
 
 ## dashboard-atualizar — multi-dashboard
+### 2026-08-06 — v3.0.1 — `FECHAMENTOS_FORCADOS` no check de sincronia (Passo 0.2b)
+
+Nova constante de override do gate de Fechamentos (buzz-br) entrou na lista de
+atributos que o Passo 0.2b compara entre o oficial e o espelho. Sem isso, um
+fechamento forçado só numa das superfícies passaria em silêncio — mesma classe
+do incidente ECHEF ROBOT (2026-07-01). PATCH: só amplia a auditoria.
+
+**Motivo da constante** (fora da skill, em `dashboard/queries.py` + espelho +
+`dashboard-buzz-br-vercel/exportar_dados.py`): a `EMAIL_WHITELIST` é indexada por
+e-mail e não resolve fechamento com `email_contato_principal_bd_sdr` NULL — caso
+L3FT (deal 190050, R$ 3.750, conversão CM legítima via `apresentacao-webinar`,
+barrado por `funil_bd_sdr=Outbound` + e-mail NULL). O gate de fechamento também
+foi centralizado num helper `predicado_fechamento()`, no lugar das 4 cópias
+inline. Detalhe em `dashboard/MAPEAMENTO-CAMPOS.md` §7.
+
 ### 2026-07-08 — v3.0.0
 
 A skill deixou de ser single-purpose (Buzzmonitor Brasil) e passou a atualizar **qualquer uma das 3 dashboards CM dinâmica-estáticas** no Vercel — `buzz-br` | `cxpress` | `latam` — escolhida por argumento (`/dashboard-atualizar cxpress`) ou, sem arg, por chip (AskUserQuestion). Toda decisão específica de dashboard (pasta-fonte, sibling, URL, JSON de dados, arquivos a copiar, marcador do index, se roda a auditoria de 3 superfícies) virou um bloco de config `case "$DASH"` no topo; os passos (pre-flight, export, sanity, cópia, deploy, validação) são genéricos.

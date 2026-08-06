@@ -30,7 +30,7 @@ import psycopg  # noqa: E402
 from lib.queries import (  # noqa: E402
     EMAIL_BLACKLIST, EMAIL_WHITELIST, COLUNA_EVENTO,
     filtro_cm, filtro_inbound, _sem_outbound, _atrib_cm_90d, cte_conversoes_cm,
-    predicado_evento, _sql_email_list, _cdate_efetivo, fonte_deals_funil,
+    predicado_evento, predicado_fechamento, _sql_email_list, _cdate_efetivo, fonte_deals_funil,
     q_serie_temporal_12m, q_proporcao_sources_12m,
 )
 from lib.render import serie_temporal_12m, proporcao_sources, jsonify  # noqa: E402
@@ -125,11 +125,7 @@ SELECT ct.id, ct.title AS deal,
        ct.email_contato_principal_bd_sdr AS email
 FROM deals_contratos_prod ct
 WHERE ct.data_fechamento_auto::date BETWEEN '{ini}' AND '{fim}'
-  AND lower(trim(ct.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
-  AND (
-    lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
-    OR ({filtro_inbound("ct")} AND {_atrib_cm_90d("data_fechamento_auto", "ct")})
-  )
+  AND {predicado_fechamento("ct")}
 """
 
 

@@ -236,6 +236,24 @@ CM_DEALS_FORCADOS: dict[int, str] = {
     # mesmo contato (robertapuri@piucomunica.com.br) tem o deal 190191, bd_sdr=Inbound, que DEVE contar como CM.
 }
 
+# Fechamentos confirmados como CM pelo Victor que o gate automatico NAO captura.
+# Contraparte do CM_DEALS_FORCADOS (que cobre so EVENTOS, em deals_comercial_prod):
+# este override force-inclui o FECHAMENTO, ignorando blacklist, funil e janela 90d.
+# So existe porque a EMAIL_WHITELIST — a valvula de escape normal — e indexada por
+# email e NAO resolve deal cujo email_contato_principal_bd_sdr esta NULL.
+# Override nominal, nao heuristico. So aplica a deals_contratos_prod.
+FECHAMENTOS_FORCADOS: dict[int, str] = {
+    190050: (
+        'L3FT (fech. 14/07/2026, R$ 3.750) — conversao CM legitima '
+        '(utm_source=apresentacao-webinar, url=conteudo.buzzmonitor.com.br/oferta-atendimento-classe-a); '
+        'filtro_cm e atribuicao 90d passam. Barrado por DOIS defeitos de cadastro no registro de '
+        'contrato: funil_bd_sdr=Outbound (o contato mariacristina@l3ft.com.br tem 4 deals comerciais '
+        'anteriores, todos Inbound) e email_contato_principal_bd_sdr NULL — o email so existe em '
+        'decisores_projeto_email_bd, que a dash nao le, o que tambem inviabiliza a EMAIL_WHITELIST. '
+        'CM confirmado pelo Victor (2026-08-06).'
+    ),
+}
+
 
 def _cdate_efetivo(id_col: str = 'id', cdate_col: str = 'cdate') -> str:
     """SQL do cdate efetivo aplicando RECONVERSOES_MANUAIS.
@@ -377,6 +395,16 @@ def _sql_cm_deals_forcados(alias: str = 'd') -> str:
     return f"{p}id IN ({ids})"
 
 
+def _sql_fechamentos_forcados(alias: str = 'ct') -> str:
+    """Clausula SQL TRUE quando o fechamento esta em FECHAMENTOS_FORCADOS.
+    Retorna 'FALSE' (no-op em OR) se a lista estiver vazia."""
+    if not FECHAMENTOS_FORCADOS:
+        return "FALSE"
+    p = f"{alias}." if alias else ""
+    ids = ", ".join(str(i) for i in FECHAMENTOS_FORCADOS)
+    return f"{p}id IN ({ids})"
+
+
 def _atrib_cm_90d(col: str, alias: str = 'd') -> str:
     """Predicado SQL de atribuicao CM com janela de 90 dias pos-conversao.
 
@@ -457,6 +485,37 @@ def predicado_evento(col: str, alias: str = 'd') -> str:
     AND (
       lower(trim({p}email_contato_principal_bd_sdr)) IN ({wl})
       OR ({filtro_inbound(alias)} AND {_atrib_cm_90d(col, alias)})
+    )
+  )"""
+
+
+def predicado_fechamento(alias: str = 'ct') -> str:
+    """Predicado COMPLETO de um Fechamento CM (deals_contratos_prod).
+
+    Criado 2026-08-06 pra centralizar o gate que ate entao estava inline e
+    DUPLICADO em 4 lugares (q_count_fechamentos, q_lista_fechamentos, fech_p do
+    q_ranking e o ramo 'fechamentos' da serie 12m) — mesma classe de risco de
+    drift que o predicado_evento() resolveu pros eventos de funil.
+
+    Ordem dos ramos:
+    1. OVERRIDE NOMINAL (FECHAMENTOS_FORCADOS) — entra por cima de tudo.
+    2. Gate normal, inalterado: blacklist exclui; whitelist tem precedencia
+       total sobre o funil; senao exige Inbound + atribuicao 90d.
+
+    Requer as CTEs `wl` e `bl` no WITH da query (as 4 chamadas ja definem).
+    """
+    p = f"{alias}." if alias else ""
+    return f"""(
+    {_sql_fechamentos_forcados(alias)}
+    OR (
+      lower(trim({p}email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+      AND (
+        lower(trim({p}email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
+        OR (
+          {filtro_inbound(alias)}
+          AND {_atrib_cm_90d("data_fechamento_auto", alias)}
+        )
+      )
     )
   )"""
 
@@ -565,7 +624,8 @@ WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
 
 
 def q_count_fechamentos(ini: date, fim: date) -> str:
-    """Count de Fechamentos: whitelist override OU (Inbound + regra 90d); menos blacklist.
+    """Count de Fechamentos: override nominal OU whitelist OU (Inbound + regra 90d);
+    menos blacklist. Gate centralizado em predicado_fechamento().
 
     Whitelist tem precedencia sobre o filtro Inbound — deals que o Victor confirmou
     como CM-fechamento mas estao marcados como Outbound no CRM continuam contando.
@@ -580,14 +640,7 @@ bl AS ({bl})
 SELECT COUNT(*) AS n
 FROM deals_contratos_prod ct
 WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND lower(trim(ct.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
-  AND (
-    lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
-    OR (
-      {filtro_inbound("ct")}
-      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
-    )
-  )
+  AND {predicado_fechamento("ct")}
 """
 
 
@@ -669,7 +722,7 @@ ORDER BY d.data_envio_proposta_auto
 
 
 def q_lista_fechamentos(ini: date, fim: date) -> str:
-    """Lista de Fechamentos: whitelist override OU (Inbound + 90d); menos blacklist."""
+    """Lista de Fechamentos: override nominal OU whitelist OU (Inbound + 90d); menos blacklist."""
     cte = cte_conversoes_cm(ini)
     wl = _sql_email_list(EMAIL_WHITELIST)
     bl = _sql_email_list(EMAIL_BLACKLIST)
@@ -687,14 +740,7 @@ SELECT
   ct.email_contato_principal_bd_sdr AS email
 FROM deals_contratos_prod ct
 WHERE ct.data_fechamento_auto::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND lower(trim(ct.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
-  AND (
-    lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
-    OR (
-      {filtro_inbound("ct")}
-      AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
-    )
-  )
+  AND {predicado_fechamento("ct")}
 ORDER BY ct.data_fechamento_auto
 """
 
@@ -807,14 +853,7 @@ fech_p AS (
   SELECT ct.{dim} AS dim, COUNT(*) AS fech
   FROM deals_contratos_prod ct
   WHERE ct.data_fechamento_auto::date BETWEEN '{d1}' AND '{d2}'
-    AND lower(trim(ct.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
-    AND (
-      lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
-      OR (
-        {filtro_inbound("ct")}
-        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
-      )
-    )
+    AND {predicado_fechamento("ct")}
   GROUP BY ct.{dim}
 ),
 all_dim AS (
@@ -934,14 +973,7 @@ eventos AS (
   SELECT date_trunc('week', ct.data_fechamento_auto)::date, 'fechamentos'
   FROM deals_contratos_prod ct
   WHERE ct.data_fechamento_auto::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND lower(trim(ct.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
-    AND (
-      lower(trim(ct.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
-      OR (
-        {filtro_inbound("ct")}
-        AND {_atrib_cm_90d("data_fechamento_auto", "ct")}
-      )
-    )
+    AND {predicado_fechamento("ct")}
 )
 SELECT semana, metrica, COUNT(*) AS n
 FROM eventos

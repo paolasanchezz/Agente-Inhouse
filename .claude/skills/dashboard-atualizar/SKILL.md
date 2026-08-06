@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza uma das dashboards CM dinamica-estaticas no Vercel — Buzzmonitor Brasil, Cxpress Brasil ou Buzzmonitor LATAM (o usuario escolhe qual, por arg ou chip). Roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger.
 argument-hint: "[buzz-br|cxpress|latam] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 3.0.0
+version: 3.0.1
 ---
 
 # Skill: Atualizar Dashboard CM (dinamica-estatica) — multi-dashboard
@@ -85,7 +85,7 @@ o=L('dashboard/queries.py','o'); e=L('dashboard-pessoal/lib/queries.py','e'); d=
 for a in ['CM_UTM_SOURCES','EMAIL_WHITELIST','EMAIL_BLACKLIST','INTERNOS_EXCLUIR','HERANCA_SOURCES_INTERNAS','CM_SLUGS_PREFIXES']:
     A,B=set(getattr(o,a)),set(getattr(e,a))
     if A^B: d=True; print(f'{a}: so_oficial={sorted(A-B)} so_espelho={sorted(B-A)}')
-for a in ['CM_DEALS_FORCADOS','RECONVERSOES_MANUAIS','DEALS_EXCLUIDOS_URL_DATA']:
+for a in ['CM_DEALS_FORCADOS','FECHAMENTOS_FORCADOS','RECONVERSOES_MANUAIS','DEALS_EXCLUIDOS_URL_DATA']:
     if getattr(o,a)!=getattr(e,a): d=True; print(f'{a}: DIFERENTE')
 print('FILTRO SINCRONIZADO' if not d else 'DESSINCRONIZADO — replicar no espelho ANTES de exportar')
 "
