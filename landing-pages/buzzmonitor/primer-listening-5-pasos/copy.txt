@@ -1,0 +1,59 @@
+=== HERO ===
+OVERLINE: Webinar Buzzmonitor · 10 minutos
+H1: Tu primer listening en 5 pasos
+SUB: Sal de este webinar con los 5 pasos necesarios para crear tu primer monitoreo de marca, sin planillas y sin esperar a que la crisis explote.
+LABEL: En línea
+LABEL: Gratis
+LABEL: 10 minutos
+CTA: Reserva tu lugar gratis
+# [NOTA 2026-08-06] Ajuste a pedido del usuario: el objetivo pasó de "agendar demo" (BoFu) a "inscripción al webinar" (ToFu) — CTA cambiado de "Agenda una demo de 30 minutos..." a "Reserva tu lugar gratis" en las 2 apariciones (HERO y CTA FINAL). Se agregó un formulario mock (Nombre/Correo/Empresa) en el hero, mismo patrón visual que el modelo que-es-mcp, sin la tarjeta de fecha/hora por país ni el badge "En vivo" (sigue siendo bajo demanda, no en vivo con fecha fija). Form mock pendiente de conectar a un backend real (ClickMeeting, Jotform, etc.) vía /lp-integrar-form.
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Tres momentos, en vivo dentro de la plataforma.
+H3: 01. Defines qué vas a monitorear y agregas las variantes de tu marca
+BODY: Creas un tema nuevo en Theme Monitoring y agregas el nombre principal más 3 o 4 variantes: errores comunes de escritura, nombre separado o junto, apodos de tu audiencia y hashtags relacionados. Sin variantes, solo escuchas al cliente que escribe correctamente.
+LABEL: QUÉ VAS A VER: el panel de Theme Monitoring capturando menciones en tiempo real, con y sin variantes.
+
+H3: 02. La IA clasifica el sentimiento y agrupa los temas por ti
+BODY: Buzzmonitor clasifica cada mención por sentimiento (rojo negativo, verde positivo, gris neutral) y Auto Tag Suggestions agrupa los temas que se repiten: retrasos en la entrega, problemas de calidad, atención al cliente. Lo que antes consumía una hora diaria ahora ocurre automáticamente.
+LABEL: QUÉ VAS A VER: el feed filtrado por menciones negativas de los últimos 7 días y las sugerencias de Auto Tag Suggestions aceptadas con un clic.
+
+H3: 03. Configuras alertas y revisas el resumen diario con Buzz Pills
+BODY: Una alerta te avisa cuando las menciones negativas superan cierto volumen, por correo electrónico o Slack. Buzz Pills resume las últimas 24 horas en 4 puntos: tema dominante, mención con mayor alcance, cambio en el sentimiento y una recomendación concreta de acción.
+LABEL: QUÉ VAS A VER: la configuración de una alerta y los 4 puntos de Buzz Pills generados por IA.
+# [SUGESTAO estrutura] Fusioné los 5 pasos del guion original en 3 tarjetas (siguiendo el patron 01/02/03 del modelo). El modelo usa un callout "PROMPT" porque su producto es un chat conversacional; aquí uso "QUÉ VAS A VER" porque el guion describe una demo de UI, no prompts de chat.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Juan Diego Forero
+SUB: Business Developer · Buzzmonitor
+BODY: Juan Diego trabaja día a día con marcas y empresas que ya usan Buzzmonitor y las ayuda a sacarle más provecho a su cuenta. En esta sesión te muestra, paso a paso, cómo montar tu primer listening en la plataforma: qué monitorear primero, cómo clasificar el sentimiento sin hacerlo a mano y cómo configurar alertas para enterarte de una crisis antes que el resto del equipo.
+LABEL: Social listening
+LABEL: Monitoreo de marca
+LABEL: IA aplicada
+# [SUGESTAO conteudo] Bio y tags escritos por Claude (no vienen del guion original), siguiendo el patron y tono del modelo de referencia que-es-mcp. Validar con Juan Diego o el equipo comercial que la descripcion es precisa.
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Monitoreas tu marca a mano: capturas de pantalla, planillas y clasificación de sentimiento que te consume la primera hora del día.
+LIST ITEM: Te enteras de una crisis cuando ya es una captura compartida en un grupo de WhatsApp, no cuando empieza.
+LIST ITEM: Eres cliente de Buzzmonitor y todavía no configuraste tus temas, variantes de nombre o alertas.
+LIST ITEM: Manejas la reputación de una marca (o de varias, si trabajas en agencia) y necesitas un proceso que funcione sin depender de que alguien vea la mención a tiempo.
+# [SUGESTAO conteudo] Sección completa escrita por Claude (no viene del guion), a pedido explícito del usuario, enfocada en el dolor de monitoreo manual descrito en el hook y bloque de contexto del guion.
+
+=== CTA FINAL ===
+H2: ¿Listo para dejar de monitorear a mano?
+BODY: Reserva tu lugar gratis en el webinar. En 10 minutos ves, paso a paso, cómo armar tu primer listening dentro de la plataforma, sin planillas y sin depender de que alguien vea la mención a tiempo.
+# [AJUSTE 2026-08-06] BODY reescrito por Claude a pedido explicito del usuario ("reajustalo como te parezca mejor") para hablar de inscribirse al webinar en vez de agendar una demo, consistente con el nuevo CTA. Texto original: "Agenda una demo de 30 minutos con nuestro equipo. Entramos contigo a la plataforma, configuramos los temas y sales de la reunión con tu listening ya funcionando."
+LABEL: En línea
+LABEL: Gratis
+CTA: Reserva tu lugar gratis
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+# [SUGESTAO estrutura] El footer no viene en la fuente; se sigue el patrón estándar de LP Buzzmonitor. Ajustar si hay copy legal específica.
+
+# [SUGESTAO conteudo] Removi las secciones "PROBLEMA" y "PRUEBA SOCIAL" como bloques separados, porque el modelo que-es-mcp no las tiene (va directo de hero a "lo que vas a ver"). El dato del 40% (fuente: Buzzmonitor) y los casos E-CLIK/Caffeine Army quedaron fuera de esta version. Avisame si los quieres de vuelta como un elemento mas chico (ej. una franja de logos/stat bajo el hero), ya que son contenido real y verificado que vale la pena no perder del todo.
+# Revisao anti-IA: sem achados (em-dash: 0). "cuando ya es X, no cuando empieza Y" conta como 1 instancia da familia antitese-por-negacao (dentro do limite de 2 por peca).
