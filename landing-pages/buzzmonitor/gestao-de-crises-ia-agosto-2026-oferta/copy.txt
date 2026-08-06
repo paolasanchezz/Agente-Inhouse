@@ -13,7 +13,7 @@ LIST ITEM: 14 dias grátis de Buzzmonitor
 LIST ITEM: Suporte consultivo especializado durante o período de teste
 LIST ITEM: Configuração de triggers e alertas para a sua marca
 BONUS: E não para por aí: ao fim dos 14 dias, você garante um desconto imperdível para continuar com a Buzzmonitor.
-LABEL: Válida até 8 de setembro de 2026
+LABEL: válida por tempo limitado
 CTA: Quero aproveitar a oferta
 
 
@@ -54,9 +54,9 @@ NOTA: e mais de 1.000 marcas no Brasil, América Latina e Portugal
 
 
 === URGENCIA ===
-LABEL: Oferta disponível até 8 de setembro
+LABEL: oferta por tempo limitado
 H2: Essa condição vale só para quem participou do webinar.
-BODY: O período de teste é gratuito. O suporte consultivo também. Mas a oferta expira em 8 de setembro de 2026.
+BODY: O período de teste é gratuito. O suporte consultivo também. Mas a oferta é por tempo limitado e encerra em breve.
 CTA: Aproveitar oferta exclusiva
 
 
