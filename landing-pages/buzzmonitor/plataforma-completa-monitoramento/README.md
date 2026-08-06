@@ -26,16 +26,16 @@
 - [x] HTML gerado
 - [x] Revisão (frontend-design review + web-design-guidelines) — ver `REVISAO.md` (6 críticos + 7 melhorias + 3 nice-to-haves, todos aplicados)
 - [x] Formulário integrado — **Form provider:** Jotform (integrado em 2026-07-23)
-- [x] Publicado — `https://buzzmonitor-lp-plataforma-completa.vercel.app/plataforma-completa-monitoramento` (republicado em 2026-07-29, 2 rodadas: (1) botões `.btn-glow`, SUB da hero, ícone da Problema, Solução redesenhada, Gestão de Crise nova, aurora na Para-Quem, Logo-Wall em HTML; (2) CTAs padronizados, aurora sem preto, negrito no Caffeine Army, seção Cases nova, Logo-Wall trocada por imagem completa)
+- [x] Publicado — **`https://content.buzzmonitor.com/plataforma-completa-monitoramento`** (guarda-chuva, deploy via CI). Migrada pro guarda-chuva em 2026-07-29 (PR #107), no mesmo dia das 2 rodadas de ajuste: (1) botões `.btn-glow`, SUB da hero, ícone da Problema, Solução redesenhada, Gestão de Crise nova, aurora na Para-Quem, Logo-Wall em HTML; (2) CTAs padronizados, aurora sem preto, negrito no Caffeine Army, seção Cases nova, Logo-Wall trocada por imagem completa
 - [ ] Seção de depoimentos ("Ainda não está convencido?") — aguardando o usuário reenviar o texto completo dos 3 depoimentos
-- [ ] Domínio `conteudo.buzzmonitor.com` — já atribuído ao projeto Vercel, mas DNS ainda não configurado (ver Pendências). Publicado por ora no domínio de fallback.
 
 ## Pendências
 
-- **DNS de `conteudo.buzzmonitor.com`:** domínio já vinculado ao projeto Vercel (`vercel domains add`), mas não resolve externamente. Falta criar o registro `A conteudo.buzzmonitor.com 76.76.21.21` no provedor de DNS da Buzzmonitor (fora do escopo da Vercel/desta skill). Até lá, a LP segue publicada em `https://buzzmonitor-lp-plataforma-completa.vercel.app/plataforma-completa-monitoramento`.
+- **Resíduo na Vercel — projeto solo `buzzmonitor-lp-plataforma-completa-monitoramento`** (`prj_u6HYWAaxc1KYpAkI61l71hbLiy78`): sobrou da fase pré-guarda-chuva. O domínio `conteudo.buzzmonitor.com` que estava atribuído a ele foi **removido em 2026-08-06** (o DNS nunca chegou a apontar; nada quebrou). Esse subdomínio **não se usa** — LP e site Buzzmonitor na Vercel moram em `content.buzzmonitor.com`. (Não confundir com `conteudo.buzzmonitor.com.br`, domínio legado ativo em GreatPages — pode ser referenciado à vontade, só não se cria LP/site na Vercel nele.)
+- **Apagar o projeto solo — BLOQUEADO por 1 verificação:** o projeto continua servindo uma cópia viva da LP em `https://buzzmonitor-lp-plataforma-completa.vercel.app/plataforma-completa-monitoramento` (HTTP 200). Antes de apagar, confirmar que **nenhum anúncio ativo aponta pra essa URL de fallback** — em 2026-08-06 havia ads ACTIVE na conta Buzzmonitor BRL (`act_733381876770151`) chamados `MOFU DOR 1 - *` e `MOFU DOR 2 - *`, que batem exatamente com o uso desta LP. Não deu pra ler o destino deles via API (creatives são dark posts, `link_url` volta vazio). Checar no Ads Manager o campo "Site" desses ads: se apontam pra `content.buzzmonitor.com`, o projeto solo pode ser apagado; se apontam pro `.vercel.app`, trocar o destino primeiro.
 - **Depoimentos:** falta o texto exato das citações de José Manuel López (Publicis Groupe — só tenho o início truncado), Pablo Ferrer (McCANN) e David Díaz (VMLY&R). Não fabricado por serem falas atribuídas a pessoas reais — aguardando o usuário reenviar.
 - Sugestão de copy ainda pendente (marcada no `copy.txt`): o claim "O lançamento foi um sucesso porque a marca ouviu o cliente" (seção PROVA) não está confirmado no case verificado do BRANDBOOK.
-- Placeholders `{{DOMAIN}}`, `{{OG_IMAGE_PATH}}` e `{{BRAND_LOGO_PNG_PATH}}` no `index.html`-fonte são resolvidos automaticamente pelo `lp-publicar` a cada republicação (atualmente resolvidos para o domínio de fallback `.vercel.app`).
+- Placeholders `{{DOMAIN}}`, `{{OG_IMAGE_PATH}}` e `{{BRAND_LOGO_PNG_PATH}}` no `index.html`-fonte são resolvidos automaticamente no build do guarda-chuva a cada deploy (hoje, para `content.buzzmonitor.com`).
 
 ## Assets referenciados
 
