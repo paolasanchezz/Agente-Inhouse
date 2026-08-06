@@ -468,6 +468,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin-top: 1px;
   }
 
+  /* ---------- DEPOIMENTOS ---------- */
+  .depo__grid { columns: 2; column-gap: 18px; margin-top: 3.2rem; }
+  .depo__card {
+    break-inside: avoid; -webkit-column-break-inside: avoid;
+    display: inline-block; width: 100%; vertical-align: top;
+    position: relative; overflow: hidden;
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 18px; padding: 1.9rem 1.7rem 1.6rem;
+    margin-bottom: 18px;
+    transition: border-color .22s ease, transform .22s ease;
+  }
+  .depo__card:hover { border-color: var(--line-md); transform: translateY(-3px); }
+  .depo__card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .depo__mark {
+    display: block; font-family: var(--disp); font-weight: 900;
+    font-size: 2.6rem; line-height: .6; margin-bottom: 1.1rem;
+  }
+  .depo__quote { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+  .depo__who {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 1.5rem; padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+  .depo__ph {
+    width: 54px; height: 54px; flex-shrink: 0; min-height: 0;
+    border-radius: 50%; object-fit: cover; display: block;
+    border: 2px solid var(--line-md);
+  }
+  .depo__name { font-family: var(--sub); font-weight: 600; font-size: 1rem; color: var(--text); }
+  .depo__role { font-family: var(--sub); font-size: 13px; color: var(--dim); }
+  .depo__curso {
+    display: block; font-family: var(--sub); font-size: 11.5px;
+    letter-spacing: 0.04em; color: rgba(171, 165, 184, 0.72); margin-top: 2px;
+  }
+  .depo--int::before { background: linear-gradient(90deg, transparent, var(--lilas)); }
+  .depo--int .depo__mark { color: var(--lilas); }
+  .depo--gro::before { background: linear-gradient(90deg, transparent, var(--teal)); }
+  .depo--gro .depo__mark { color: var(--teal-hi); }
+  .depo--bra::before { background: linear-gradient(90deg, transparent, var(--laranja)); }
+  .depo--bra .depo__mark { color: var(--laranja-hi); }
+  .depo--azu::before { background: linear-gradient(90deg, transparent, var(--azul)); }
+  .depo--azu .depo__mark { color: var(--azul-hi); }
+
   /* ---------- CTA FINAL ---------- */
   .final {
     position: relative; text-align: center;
@@ -514,6 +557,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .como__steps { grid-template-columns: 1fr 1fr; }
     .quem__grid { grid-template-columns: 1fr; }
     .det__cursos { grid-template-columns: 1fr; }
+    .depo__grid { columns: 1; }
     .final { padding: 110px 1.5rem; }
   }
   @media (max-width: 860px) {
@@ -546,6 +590,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="nav__link" href="#trilhas">Trilhas</a>
     <a class="nav__link" href="#como-funciona">Como funciona</a>
     <a class="nav__link" href="#para-quem">Para quem</a>
+    <a class="nav__link" href="#depoimentos">Depoimentos</a>
     <a class="btn btn--sm" href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto">Cadastrar gratuitamente</a>
   </div>
 </nav>
@@ -724,6 +769,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Profissionais em formação que migraram (ou querem migrar) para o marketing e precisam de base.
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section" id="depoimentos" aria-labelledby="depo-titulo">
+    <div class="wrap">
+      <p class="overline reveal">Depoimentos</p>
+      <h2 id="depo-titulo" class="reveal">Quem já estudou com a Buzz conta como foi</h2>
+      <p class="section__sub reveal d1">Alunos que passaram pelos cursos da Buzzmonitor e saíram usando a plataforma na prática.</p>
+
+      <div class="depo__grid">
+        <figure class="depo__card depo--int reveal">
+          <span class="depo__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="depo__quote">A plataforma da Buzzmonitor é excelente para monitorar as redes sociais. Consegui criar relatórios e compreender melhor o meu público através do uso da plataforma. Além de possuir fácil manuseio de recursos, criação de relatórios e apresentações por meio da Buzzmonitor, em meio a qualquer dúvida o suporte me ajudava e compreendia todas minhas dúvidas. Foi uma excelente experiência. Recomendo!</blockquote>
+          <figcaption class="depo__who">
+            <img class="depo__ph" src="assets/aluna-bruna.jpg" alt="" width="54" height="54" loading="lazy" decoding="async">
+            <span>
+              <span class="depo__name">Bruna</span><br>
+              <span class="depo__role">Aluna da Universidade do Buzz</span>
+              <span class="depo__curso">Introdução à Análise de Mídias Sociais</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="depo__card depo--gro reveal d1">
+          <span class="depo__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="depo__quote">O curso de introdução à análise de mídias sociais com a Buzzmonitor me capacitou a entender as funcionalidades do Buzz e a usar suas ferramentas de forma eficiente. Paralelo a isso, ampliaram a minha percepção sobre a importância do marketing digital em qualquer negócio e de como a plataforma Buzz pode nos auxiliar em gerir e analisar a saúde da marca nas redes sociais. Isso tudo, aprendendo com o suporte e instrução dos melhores profissionais em um ambiente interativo e dinâmico, que permite ao aluno, dentro de uma simulação, desenvolver e aplicar a extração e leitura de dados e relatórios obtidos pela própria BM. Graças ao curso hoje consigo usar a Buzzmonitor e trabalhar com marketing digital de maneira mais assertiva dentro do meu próprio empreendimento.</blockquote>
+          <figcaption class="depo__who">
+            <img class="depo__ph" src="assets/aluno-ezimar.jpg" alt="" width="54" height="54" loading="lazy" decoding="async">
+            <span>
+              <span class="depo__name">Francisco Ezimar Meneses Junior</span><br>
+              <span class="depo__role">Aluno da Universidade do Buzz</span>
+              <span class="depo__curso">Introdução à Análise de Mídias Sociais</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="depo__card depo--azu reveal d2">
+          <span class="depo__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="depo__quote">Estamos num mundo cada vez mais tecnológico e o curso da Buzz nos deixa mais atualizados, a plataforma nos dá uma possibilidade de acerto maior quando se trata de análise de dados e tomada de decisão para o marketing. Após todas as unidades nos sentimos mais confiantes em relação ao mercado de trabalho, independente da ferramenta utilizada pela empresa, com o curso temos uma base sólida. Tivemos a oportunidade de ter aulas teóricas e práticas onde pudemos mexer na plataforma, e profissionais excelentes nos ensinando.</blockquote>
+          <figcaption class="depo__who">
+            <img class="depo__ph" src="assets/aluna-kamila.jpg" alt="" width="54" height="54" loading="lazy" decoding="async">
+            <span>
+              <span class="depo__name">Kamila Rocha Pimentel</span><br>
+              <span class="depo__role">Aluna da Universidade do Buzz</span>
+              <span class="depo__curso">Introdução à Análise de Mídias Sociais</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="depo__card depo--bra reveal d3">
+          <span class="depo__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="depo__quote">A oportunidade que a Buzzmonitor me deu em conhecer a sua plataforma, ferramentas e modo de operar foi um divisor de águas em minha vida! Mesmo não tendo tanta habilidade na área da tecnologia, o curso me possibilitou um aprendizado que me abriu os olhos para uma gama de saberes. Agradeço imensamente este presente que foi o curso, os conhecimentos e a equipe que deu todo o suporte necessário durante o processo!</blockquote>
+          <figcaption class="depo__who">
+            <img class="depo__ph" src="assets/aluna-gleyce.jpg" alt="" width="54" height="54" loading="lazy" decoding="async">
+            <span>
+              <span class="depo__name">Gleyce Kelly Nascimento Lima</span><br>
+              <span class="depo__role">Aluna da Universidade do Buzz</span>
+              <span class="depo__curso">Introdução à Análise de Mídias Sociais</span>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
