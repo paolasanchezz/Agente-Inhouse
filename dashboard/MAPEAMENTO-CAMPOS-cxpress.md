@@ -80,7 +80,7 @@ quando `filtro_inbound` virou no-op — §2.1):
 | Inscrição de webinar (`content.cxpress.io/webinar-tecnologia-maio2026`) | **fora** | precedente Buzz BR 2026-05-26: inscrição é topo de funil, não vira lead CM; só a OFERTA conta. 124 inscrições (lote 01/jun) ficariam de fora |
 | Cadastro interno (`home.cxpress.io/cadastro-interno[-bdr]`) | **fora** | registro manual/indicação, não é conteúdo. Decisão Victor 2026-06-15 (deal 81723 'Destinando Viagens': `utm_source=email` genérico, sem medium/campaign/content, convertido nessa página interna → contava como fechamento CM por engano). Página é entrada interna (43 deals via whatsapp + variantes -bdr/google); só o 81723 passava no filtro (via `email`), então a exclusão tira só ele |
 | Whitelist social/owned | **dentro** | Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/Linktree — qualquer funil_auto |
-| `webinar` | **dentro** | decisão Victor 2026-08-07 — ver Revisão 2026-08-07 abaixo |
+| `webinar` e `qrcode-webinar-bloqueio-whatsapp` | **dentro** | UTM de webinar é 100% nossa; vale independente da URL. Decisão Victor 2026-08-07 — ver Revisão abaixo |
 | LP `atendimento-para-clinicas` | **dentro** | CM mesmo sem UTM — exceção explícita do Victor |
 | Demais URLs `content.cxpress.io` + `conteudo.elife.com.br` | dentro | domínios de conteúdo (ofertas futuras) |
 
@@ -113,20 +113,22 @@ Só 4 deals na base inteira têm `utm_source = 'webinar'`, todos dessa LP: 81535
 fora do escopo 2026) e 81871 'Cartão de Todos' (Aberta). Efeito na dashboard 2026: **+2 fechamentos**
 (81535 e 80903) e +2 leads.
 
-A variante `qrcode-webinar-bloqueio-whatsapp` (1 deal, mesma LP e mesma campanha) segue fora — o match
-da whitelist é exato, só os 4 padrões LIKE (`instagram%`, `facebook%`, `newsletter%`, `linktree%`) fazem
-prefixo. Foi mantida assim por conservadorismo; se a intenção passar a ser medir a campanha inteira,
-trocar por prefixo `webinar%` resolve.
+A variante `qrcode-webinar-bloqueio-whatsapp` (1 deal, mesma LP e mesma campanha) **também entrou**, pelo
+mesmo critério — o match da whitelist é exato, então variantes precisam ser listadas uma a uma (só os 4
+padrões `LIKE` — `instagram%`, `facebook%`, `newsletter%`, `linktree%` — fazem prefixo). Se aparecerem
+novas variantes `*-webinar-*`, ou se listar valor a valor virar manutenção repetitiva, vale trocar por
+um padrão `LIKE '%webinar%'`.
 
-⚠️ **Gatilho de reavaliação:** `webinar` é rótulo de evento, não canal, e a whitelist casa **só pela
-coluna**, sem olhar a URL — então qualquer deal futuro com `utm_source='webinar'` entra no CM venha de
-onde vier. Hoje isso é seguro porque os 4 existentes são todos tráfego pago pra LP de conteúdo, mas é
-propriedade dos dados, não garantia da regra. **Se aparecer deal `webinar` fora de LP de conteúdo**
-(indicação, e-mail interno, outbound), hard-excluir a URL em `CM_URLS_EXCLUIDAS` — mesma receita do
-`cadastro-interno` (2026-06-15, deal 81723). Endurecimento alternativo, se o falso positivo virar
-recorrente: exigir `webinar` **combinado** com URL de conteúdo, em vez de aceitá-lo isolado. A opção
-mais robusta discutida na época — fallback de `utm_source` da coluna pro querystring da `url_conversao`,
-simétrico ao que `_content()` já faz — foi apresentada e recusada em favor da whitelist simples.
+**Validade independente da URL (decisão Victor 2026-08-07):** as duas sources valem **venha o deal de
+onde vier**, sem amarração a LP de conteúdo. Razão: UTM de webinar é **100% nossa** — só o próprio time
+tagueia assim, não existe origem externa que produza esse valor —, então não há classe de falso positivo
+a proteger. Isso alinha a Cxpress ao **Buzzmonitor BR, que já trata `webinar` como CM desde 2026-06-22**
+(junto de `pos-webinar`, `webinar-ao-vivo` e `apresentacao-webinar` — `queries.py:28-45`); a Cxpress é
+que estava atrás.
+
+Não confundir com a exclusão de `content.cxpress.io/webinar-tecnologia-maio2026` em `CM_URLS_EXCLUIDAS`:
+aquela barra a **inscrição** como topo de funil, por URL, antes da whitelist de source. É critério de
+**etapa do funil**, não de canal — os dois convivem sem conflito.
 
 ⚠️ A exclusão de `content.cxpress.io/webinar-tecnologia-maio2026` (inscrição = topo de funil) **não muda**:
 ela é hard-exclude por URL e roda antes da whitelist de source. Os 124 deals daquele lote continuam fora.

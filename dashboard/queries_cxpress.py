@@ -90,19 +90,29 @@ def filtro_inbound(alias: str = '') -> str:
 # Excluidos explicitamente (decisao Victor): whatsapp, youtube — comportamento misto outbound/CM,
 # tracking ruidoso. google+cpc tambem fora (Google Ads, nao CM).
 #
-# 'webinar' incluido 2026-08-07 (decisao Victor) apos o deal 81535 'Grupo Calusa' (Ganho,
-# fechamento 19/05/2026) nao aparecer como fechamento CM. A coluna utm_source chegou 'webinar'
-# (nome do evento, nao canal) enquanto a url_conversao trazia a UTM real do anuncio:
+# 'webinar' e 'qrcode-webinar-bloqueio-whatsapp' incluidos 2026-08-07 (decisao Victor) apos o deal
+# 81535 'Grupo Calusa' (Ganho, fechamento 19/05/2026) nao aparecer como fechamento CM. A coluna
+# utm_source chegou 'webinar' enquanto a url_conversao trazia a UTM real do anuncio:
 # home.cxpress.io/bloqueio-whatsapp-comercial-como-evitar?utm_source=ig&utm_medium=cpc
 # &utm_campaign=[meta][conversao][webinar][janeiro]&utm_creative=ad_04 — ou seja, trafego de
 # Instagram Ads pra LP de conteudo. Que era defeito de preenchimento da COLUNA (e nao LP fora de
 # escopo) ficou claro nos vizinhos: dos 44 deals de 2026 na mesma LP, 40 ja contavam como CM
-# porque a coluna deles veio 'ig'/'meta'. Os 4 deals com 'webinar' (3 com fechamento) sao todos
-# dessa LP. Variante 'qrcode-webinar-bloqueio-whatsapp' (1 deal) segue fora — match e exato.
+# porque a coluna deles veio 'ig'/'meta'.
+#
+# Ambos valem INDEPENDENTE da URL de conversao (decisao Victor): UTM de webinar e 100% nossa —
+# so o proprio time tagueia assim, nao ha origem externa que produza esse valor. Logo nao ha
+# risco de falso positivo que justifique amarrar a source a uma LP de conteudo. Mesmo criterio ja
+# vigente no Buzzmonitor BR desde 2026-06-22, que tem 'webinar', 'pos-webinar', 'webinar-ao-vivo'
+# e 'apresentacao-webinar' na whitelist (queries.py:28-45).
+#
+# A exclusao de content.cxpress.io/webinar-tecnologia-maio2026 (CM_URLS_EXCLUIDAS) segue valendo e
+# nao conflita: ela barra a INSCRICAO como topo de funil, por URL, antes da whitelist de source —
+# criterio de etapa do funil, nao de canal.
 CM_UTM_SOURCES: list[str] = [
     'meta', 'ig', 'instagram', 'fb', 'facebook',
     'linkedin', 'email', 'blog', 'tiktok',
-    'chatgpt.com', 'gemini', 'lp-agradecimento', 'webinar',
+    'chatgpt.com', 'gemini', 'lp-agradecimento',
+    'webinar', 'qrcode-webinar-bloqueio-whatsapp',
 ]
 
 # URLs de conteudo CM que entram independente de utm_source (caso o tracking nao tenha sido preservado).

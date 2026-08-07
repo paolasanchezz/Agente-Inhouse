@@ -197,6 +197,15 @@ Sem espelho a sincronizar: o Cxpress tem superfície única (4 consumidores impo
 mesma `queries_cxpress.py`), então o Passo 0.2b não se aplica — é só o buzz-br que tem
 espelho em `dashboard-pessoal/lib/queries.py`.
 
+**Complemento no mesmo dia** (decisão Victor): `qrcode-webinar-bloqueio-whatsapp` entrou
+junto (+1 deal, sem fechamento — 82144 "[web-bloq] Jorge Cartaxo · First Media"), e as
+duas sources valem **independente da URL de conversão**. Razão: UTM de webinar é 100%
+nossa — só o próprio time tagueia assim —, então não há classe de falso positivo que
+justifique amarrá-las a LP de conteúdo. Isso alinha a Cxpress ao **buzz-br, que já trata
+`webinar` como CM desde 2026-06-22** (com `pos-webinar`, `webinar-ao-vivo` e
+`apresentacao-webinar` — `queries.py:28-45`). Nenhum impacto no buzz-br: arquivos
+separados, sem import cruzado.
+
 ### 2026-08-06 — v3.0.1 — `FECHAMENTOS_FORCADOS` no check de sincronia (Passo 0.2b)
 
 Nova constante de override do gate de Fechamentos (buzz-br) entrou na lista de
