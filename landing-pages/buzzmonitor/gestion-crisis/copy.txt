@@ -1,0 +1,63 @@
+=== HERO ===
+OVERLINE: Buzzmonitor · Gestión de Crisis · 10 minutos
+H1: Cómo evitar descubrir una crisis cuando ya es demasiado tarde
+SUB: Aprende a detectar, monitorear y actuar antes de que una crisis escale.
+LABEL: 10 minutos
+CTA: ¡Reserva tu lugar!
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Cinco componentes del sistema, con el caso real de E-CLIK.
+H3: 01. Detección temprana: escucha más allá de lo evidente
+BODY: Configura el monitoreo de tu marca en Theme Monitoring con todas sus variantes (nombre oficial, errores de escritura, apodos y hashtags de campaña). Buzzmonitor recopila las menciones en tiempo real en todas las redes sociales y las clasifica automáticamente por sentimiento. Si filtras las menciones negativas de las últimas seis horas y detectas un pico inusual, tendrás una señal clara antes de que el problema escale, sin necesidad de revisar cada publicación manualmente.
+LABEL: Qué vas a ver: Theme Monitoring configurado con variantes de la marca, el panel de sentimiento automático y el gráfico de evolución con un pico claramente identificado.
+
+H3: 02. Identificación de focos: quién impulsa la conversación y cuál es su alcance
+BODY: No todas las menciones tienen el mismo impacto. Buzzmonitor identifica qué perfiles generan mayor volumen de conversación, cuáles tienen más alcance y qué publicaciones están impulsando la propagación para que tu equipo priorice su respuesta donde realmente importa.
+LABEL: Qué vas a ver: menciones organizadas por alcance y los perfiles con mayor capacidad de difusión.
+
+H3: 03. Evolución en tiempo real: ¿la crisis está creciendo o disminuyendo?
+BODY: Visualiza el volumen de menciones y el sentimiento hora por hora para entender si la conversación ya alcanzó su punto máximo o sigue creciendo, si cambió de una red social a otra y en qué momento concentra más actividad. Así, las decisiones se toman con datos y no por intuición.
+LABEL: Qué vas a ver: el gráfico de evolución de volumen y sentimiento con línea temporal y comparativa entre redes sociales.
+
+H3: 04. Evaluación de la respuesta: ¿la estrategia está funcionando?
+BODY: Después de que la marca responde, compara el sentimiento antes y después de la intervención. Si las menciones positivas comienzan a crecer, la estrategia está funcionando. Si el sentimiento se mantiene o empeora, es momento de ajustar el mensaje.
+LABEL: Qué vas a ver: la evolución del sentimiento antes y después de la respuesta de la marca.
+
+H3: 05. Alertas automáticas y Buzz Pills: un sistema que trabaja por ti
+BODY: Configura un umbral, por ejemplo, un aumento de menciones negativas por hora, y Buzzmonitor enviará una alerta por correo electrónico o Slack en cuanto se supere, incluso cuando nadie esté monitoreando la plataforma. Además, Buzz Pills resume automáticamente las últimas 24 horas en cuatro puntos clave: tema dominante, publicación con mayor alcance, cambio de sentimiento y una recomendación de acción.
+LABEL: Qué vas a ver: la configuración de una alerta automática y el resumen diario generado por Buzz Pills.
+
+=== RESULTADOS ===
+H2: Los números del caso
+LABEL: Crisis contenida en menos de 1 hora.
+LABEL: 28 mejoras de producto identificadas a partir de los insights obtenidos en la atención al cliente.
+# [NOTA 2026-08-07] Caso E-CLIK (empresa de tecnologia especializada em solucoes para retail e fidelizacao, proprietaria da CRM Bonus) confirmado pelo usuario como valido pra referenciar em conteudo LATAM (item [VERIFICAR] do guiao original resolvido). Logo usado na secao e o de CRM Bonus (marca comercial da E-CLIK), nao um logo "E-CLIK" generico — confirmado explicitamente pelo usuario.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Lorena Rodríguez
+SUB: Business Developer · Buzzmonitor
+BODY: Lorena trabaja junto a equipos de comunicación y atención al cliente en Latinoamérica, ayudándolos a construir sistemas capaces de anticipar y gestionar crisis de reputación digital antes de que escalen. En esta sesión mostrará, a través del caso real de E-CLIK, cómo detectar, monitorear y contener una crisis antes de que llegue a convertirse en noticia.
+LABEL: Gestión de crisis
+LABEL: Social Listening
+LABEL: IA aplicada
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Eres director o gerente de Comunicación y necesitas detectar una crisis antes de que se convierta en noticia.
+LIST ITEM: Eres director de Marketing o de CX y tu equipo suele enterarse de las quejas por casualidad, en lugar de hacerlo mediante un sistema de monitoreo.
+LIST ITEM: Trabajas en una institución pública o privada donde una crisis de reputación digital puede escalar más rápido de lo que el equipo puede reaccionar.
+LIST ITEM: Tu marca aún no cuenta con alertas automáticas y depende de que alguien detecte el problema a tiempo.
+
+=== CTA FINAL ===
+H2: ¿Tu equipo sigue reaccionando cuando la crisis ya empezó?
+BODY: Reserva tu lugar y descubre cómo detectar señales tempranas, configurar alertas automáticas y actuar antes de que una crisis afecte la reputación de tu marca. En solo 10 minutos conocerás el método que utilizó E-CLIK y cómo puedes aplicarlo en tu propia operación.
+LABEL: 10 minutos
+CTA: ¡Reserva tu lugar!
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Revisao anti-IA: sem achados (em-dash: 0).

@@ -1,0 +1,68 @@
+=== HERO ===
+OVERLINE: Buzzmonitor · Gestión de Crisis · 10 minutos
+H1: Cómo evitar descubrir una crisis cuando ya es demasiado tarde
+SUB: Detecta, monitorea y actúa antes de que una crisis escale.
+LABEL: 10 minutos
+CTA: Agenda una demo de 30 minutos con el equipo de Buzzmonitor
+# [SUGESTAO estrutura] No agregue badges "Gratis" ni "En vivo": el guion dice "Formato: valido para grabacion pregrabada o sesion en vivo" (ambiguo) y no menciona precio. Mismo criterio aplicado en las 2 LPs anteriores de esta serie.
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Cinco componentes del sistema, con el caso real de E-CLIK.
+H3: 01. Detección temprana: escuchas más de lo que parece obvio
+BODY: Configuras el tema de la marca en Theme Monitoring con todas sus variantes (nombre oficial, grafías incorrectas, apodos, hashtags de campaña) y Buzzmonitor captura las menciones en tiempo real en todas las redes. Cada mención llega clasificada por sentimiento. Si filtras solo las negativas de las últimas 6 horas y ves un pico concentrado, esa es la señal, sin necesidad de leer cada mención una por una.
+LABEL: QUÉ VAS A VER: Theme Monitoring con variantes configuradas, el panel de sentimiento automático y un gráfico de evolución con un pico visible.
+
+H3: 02. Identificación de focos: quién propaga y con qué alcance
+BODY: No todas las menciones pesan igual. Buzzmonitor muestra qué perfiles generan más volumen, cuáles se replican más y qué publicaciones funcionan como foco de propagación, para que el equipo concentre la respuesta donde el impacto es mayor.
+LABEL: QUÉ VAS A VER: menciones ordenadas por alcance y los perfiles con mayor propagación identificados.
+
+H3: 03. Evolución en tiempo real: la crisis crece o cede
+BODY: Un gráfico muestra el volumen y el sentimiento hora a hora: si el pico ya pasó o sigue subiendo, si se movió de una red a otra, a qué hora concentra más actividad. Con esa curva, el equipo decide con información, no a ciegas.
+LABEL: QUÉ VAS A VER: el gráfico de volumen y sentimiento con línea temporal y comparativa entre redes.
+
+H3: 04. Evaluación de la respuesta: ¿funcionó?
+BODY: Después de que la marca responde, comparas el sentimiento antes y después de esa respuesta. Si la curva sube hacia el verde, está funcionando. Si se mantiene o empeora, hay que ajustar el mensaje.
+LABEL: QUÉ VAS A VER: la evolución de sentimiento antes y después del punto de respuesta de la marca.
+
+H3: 05. Alertas automáticas y Buzz Pills: el sistema que trabaja solo
+BODY: Configuras un umbral, por ejemplo volumen de menciones negativas por hora, y Buzzmonitor notifica por email o Slack apenas se supera, incluso cuando nadie está mirando la pantalla. Para el día a día sin crisis activa, Buzz Pills resume las últimas 24 horas en 4 puntos: tema dominante, mención con más alcance, cambio de sentimiento y una sugerencia de acción.
+LABEL: QUÉ VAS A VER: la configuración de un trigger con su canal de notificación y los 4 puntos de Buzz Pills del día.
+# [SUGESTAO estrutura] Son 5 tarjetas, no 3 como en las 2 LPs anteriores de esta serie. El guion trae 5 demos claramente diferenciadas y la GUIDELINES (§9 "copy dita estrutura") dice no forzar a 3 si la copy pide otra cantidad.
+
+=== RESULTADOS ===
+H2: Los números del caso
+LABEL: Crisis contenida en menos de 1 hora
+LABEL: 28 mejoras de producto generadas desde los insights de atención
+# [SUGESTAO estrutura] El guion marca como [VERIFICAR]: "Caso E-CLIK es de Brasil (PT-BR), confirmar con el equipo si se puede usar como referencia en webinars LATAM o si hay restriccion de mercado." Confirmar antes de publicar, ya que esta LP es en ES-LATAM y el caso es brasileno.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Lorena Rodríguez
+SUB: Business Developer · Buzzmonitor
+BODY: Lorena trabaja con equipos de comunicación y atención al cliente en LATAM, construyendo sistemas para anticipar y gestionar crisis de reputación digital antes de que escalen. En esta sesión muestra, con el caso real de E-CLIK, cómo detectar, monitorear y contener una crisis antes de que se vuelva titular.
+LABEL: Gestión de crisis
+LABEL: Social listening
+LABEL: IA aplicada
+# [SUGESTAO conteudo] Bio adaptada de la propia frase del guion (Slide 2, "He trabajado con equipos de comunicacion y atencion al cliente en LATAM construyendo sistemas para anticipar y gestionar crisis..."), pasada a tercera persona. Cargo (Business Developer) confirmado por el usuario, igual que en los 2 casos anteriores de esta serie.
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Eres director o gerente de comunicación y necesitas saber que hay una crisis antes de que se vuelva titular.
+LIST ITEM: Eres director de marketing o de CX y tu equipo se entera de las quejas por casualidad, no por un sistema.
+LIST ITEM: Trabajas en gobierno o en una institución, donde una crisis de reputación digital puede escalar más rápido de lo que tu equipo puede reaccionar.
+LIST ITEM: Tu marca no tiene alertas configuradas y depende de que alguien vea el problema a tiempo.
+# [SUGESTAO conteudo] Los 4 bullets mapean directo a las 4 personas objetivo declaradas en la fuente (Director/Gerente de Comunicacion, Director de Marketing, Director de CX, equipos de gobierno e instituciones), redactados como afirmaciones en segunda persona. No se agrego ningun bullet extra esta vez.
+
+=== CTA FINAL ===
+H2: ¿Tu equipo gestiona la reputación de forma manual, sin alertas configuradas?
+BODY: Agenda una demo de 30 minutos con nuestro equipo. Configuramos los triggers contigo, definimos los umbrales para tu marca y sales de la reunión con el sistema funcionando.
+LABEL: 30 minutos
+CTA: Agenda una demo de 30 minutos con el equipo de Buzzmonitor
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+# [SUGESTAO estrutura] El footer no viene en la fuente; se sigue el patron estandar de LP Buzzmonitor.
+
+# Revisao anti-IA: sem achados (em-dash: 0). "decide con informacion, no a ciegas" conta como 1 instancia da familia antitese-por-negacao (dentro do limite de 2 por peca).
