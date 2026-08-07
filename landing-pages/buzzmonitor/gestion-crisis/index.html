@@ -611,9 +611,10 @@
     /* ============ RESULTADOS ============ */
     .results { background: var(--neutral-100); }
     .results-header { max-width: 820px; margin-bottom: 48px; }
-    .results-logos { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
-    .results-logos img { height: 44px; width: auto; }
-    .results-logos .x { font-family: var(--font-accent); font-size: 18px; font-weight: 600; color: var(--neutral-300); }
+    .results-logos { display: flex; align-items: center; gap: 26px; margin-bottom: 24px; }
+    .results-logos img { height: 52px; width: auto; }
+    .results-logos img.client-logo { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+    .results-logos .x { font-family: var(--font-accent); font-size: 20px; font-weight: 600; color: var(--neutral-300); }
     .results-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1043,7 +1044,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="results-logos" aria-hidden="true">
             <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="">
             <span class="x">×</span>
-            <img src="./assets/crm-bonus-logo.jpg" alt="">
+            <img src="./assets/crm-bonus-logo.jpg" alt="" class="client-logo">
           </div>
           <h2 class="section-h2">Los números del caso</h2>
         </div>

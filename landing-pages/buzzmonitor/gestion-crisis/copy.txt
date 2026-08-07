@@ -60,5 +60,5 @@ CTA: ¡Reserva tu lugar!
 === FOOTER ===
 FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
 
-# [NOTA 2026-08-07] Usuario pidio pos-publicacao: (1) trocar overline/H2 de "Lo que vas a ver" por "Lo que aprenderás" / "Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK." e (2) aumentar o tamanho dos logos (Buzzmonitor x CRM Bonus) na secao Resultados, que estavam ilegiveis (26px). Logos aumentados para 40px + gap maior.
+# [NOTA 2026-08-07] Usuario pidio pos-publicacao: (1) trocar overline/H2 de "Lo que vas a ver" por "Lo que aprenderás" / "Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK." e (2) aumentar o tamanho dos logos (Buzzmonitor x CRM Bonus) na secao Resultados, que estavam ilegiveis (26px). Logos aumentados em 2 passos: primeiro para 44px, depois usuario pediu "mas bonito" -> logo CRM Bonus (JPEG com fundo preto solido, sem transparencia) recebeu cantos arredondados + sombra (class .client-logo) pra parecer um elemento desenhado em vez de um quadrado solto; tamanho final 52px.
 # Revisao anti-IA: sem achados (em-dash: 0).

@@ -39,3 +39,11 @@ Usuario reportou apos ver a LP no ar: (1) pedido de troca de overline/H2 de "Lo 
 - **Logos:** `.results-logos img` aumentado de `height: 26px` para `44px` (69% maior), gap de 18px para 24px, separador "×" de 14px para 18px. Mudanca de CSS e local a este arquivo (nao afeta `caso-smartfit`, que tem seu proprio bloco `<style>` inline).
 - Revalidado: em-dash 0, ellipsis so `&hellip;` (1 ocorrencia), GTM 2/2, `check_gtm_region.py` OK.
 - Nenhuma outra secao ou LP tocada.
+
+## Terceira passada (2026-08-07, polimento visual dos logos)
+
+Usuario pediu pra melhorar ainda mais a apresentacao dos logos ("mas grandes o mas bonitos"). Diagnostico: `crm-bonus-logo.jpg` e um quadrado JPEG com fundo preto solido (sem transparencia) — a 44px, flutuando sobre o fundo cinza claro da secao, lia como um recorte solto, nao como um elemento desenhado.
+
+- **Tamanho:** `.results-logos img` de 44px para 52px; gap de 24px para 26px; separador "×" de 18px para 20px.
+- **Tratamento visual (novo):** classe `.client-logo` adicionada so ao `<img>` do CRM Bonus (nao ao logo Buzzmonitor, que e SVG transparente e ja se integra bem) — `border-radius: var(--radius-md)` (cantos arredondados, mesmo token usado em cards) + `box-shadow: var(--shadow-md)` (mesma sombra usada em `.hero-form`), pra que o quadrado preto pareça um badge de marca intencional em vez de um screenshot colado.
+- Revalidado: em-dash 0, GTM 2/2.
