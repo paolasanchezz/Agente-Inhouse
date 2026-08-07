@@ -78,7 +78,7 @@ quando `filtro_inbound` virou no-op — §2.1):
 | `google` sem `cpc` | fora | orgânico/direto, ambíguo |
 | sem utm e sem URL | **fora** | Victor validou amostra de 4 fechamentos: todos eram venda direta mal-classificada (Cacau Show, Claro Brasil, Lojas Marisa, Duben Seguros) |
 | Inscrição de webinar (`content.cxpress.io/webinar-tecnologia-maio2026`) | **fora** | precedente Buzz BR 2026-05-26: inscrição é topo de funil, não vira lead CM; só a OFERTA conta. 124 inscrições (lote 01/jun) ficariam de fora |
-| Cadastro interno (`home.cxpress.io/cadastro-interno[-bdr]`) | **fora** | registro manual/indicação, não é conteúdo. Decisão Victor 2026-06-15 (deal 81723 'Destinando Viagens': `utm_source=email` genérico, sem medium/campaign/content, convertido nessa página interna → contava como fechamento CM por engano). Página é entrada interna (43 deals via whatsapp + variantes -bdr/google); só o 81723 passava no filtro (via `email`), então a exclusão tira só ele |
+| Cadastro interno (`home.cxpress.io/cadastro-interno[-bdr]`) | **fora, salvo e-mail próprio** | registro manual/indicação, não é conteúdo (43 dos 51 deals são whatsapp). Excluída em 2026-06-15; desde **2026-08-07** a exclusão **não vale** para `utm_source` de e-mail/newsletter próprio — ver Revisão 2026-08-07 abaixo |
 | Whitelist social/owned | **dentro** | Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/Linktree — qualquer funil_auto |
 | `webinar` e `qrcode-webinar-bloqueio-whatsapp` | **dentro** | UTM de webinar é 100% nossa; vale independente da URL. Decisão Victor 2026-08-07 — ver Revisão abaixo |
 | LP `atendimento-para-clinicas` | **dentro** | CM mesmo sem UTM — exceção explícita do Victor |
@@ -86,17 +86,20 @@ quando `filtro_inbound` virou no-op — §2.1):
 
 **Implementação:** `CM_UTM_SOURCES` (whitelist exata) + 4 padrões LIKE (`instagram%`, `facebook%`,
 `newsletter%`, `linktree%`) cobrindo variações como `Instagram_Feed`, `Facebook_Mobile_Reels`,
-`newsletter+cxpress`, `Linktree Cxpress`. Mais `CM_URL_PATTERNS` (includes por URL) e
-`CM_URLS_EXCLUIDAS` (inscrições de webinar + cadastro interno/indicação — exclusão com `COALESCE(url,'')`
-pra não derrubar leads com URL NULL).
+`newsletter+cxpress`, `Linktree Cxpress`. Mais `CM_URL_PATTERNS` (includes por URL) e **duas** listas de
+exclusão por URL — `CM_URLS_EXCLUIDAS_SEMPRE` (inscrição de webinar) e `CM_URLS_EXCLUIDAS_SALVO_EMAIL`
+(cadastro interno, furada por `CM_SOURCES_EMAIL_PROPRIO`) — detalhadas em §2.2.2. Toda exclusão usa
+`COALESCE(url,'')` pra não derrubar leads com URL NULL.
 
 **Funil CM 2026 final (YtD até 09/jun):** 490 leads · 35 triagem · 21 agend · 18 demo ·
 12 propostas · 5 fechamentos · 419 perdidos (coorte). Janela 15d (26/05–09/06): 9 leads — **bate
 com o Meta Ads** (era exatamente o gap que motivou o no-op do funil).
 
-**Revisão 2026-06-15:** adicionado `home.cxpress.io/cadastro-interno%` a `CM_URLS_EXCLUIDAS` (linha
-"Cadastro interno" na tabela acima). Removeu o deal 81723 ('Destinando Viagens', fechamento 03/02 via
-`email` genérico numa página de registro interno). **YtD 2026 passa a 493 leads · 4 fechamentos** (era 494 · 5).
+**Revisão 2026-06-15:** adicionado `home.cxpress.io/cadastro-interno%` à lista de exclusão por URL
+(linha "Cadastro interno" na tabela acima; a constante se chamava `CM_URLS_EXCLUIDAS` — foi dividida em
+duas em 2026-08-07, §2.2.2). Removeu o deal 81723 ('Destinando Viagens', fechamento 03/02 via `email`
+genérico numa página de registro interno). **YtD 2026 passa a 493 leads · 4 fechamentos** (era 494 · 5).
+↳ **Revertido em 2026-08-07** após auditoria do Victor: o 81723 é CM. Ver §2.2.2.
 
 **Revisão 2026-08-07:** `webinar` entrou em `CM_UTM_SOURCES` (decisão Victor).
 
@@ -126,9 +129,49 @@ a proteger. Isso alinha a Cxpress ao **Buzzmonitor BR, que já trata `webinar` c
 (junto de `pos-webinar`, `webinar-ao-vivo` e `apresentacao-webinar` — `queries.py:28-45`); a Cxpress é
 que estava atrás.
 
-Não confundir com a exclusão de `content.cxpress.io/webinar-tecnologia-maio2026` em `CM_URLS_EXCLUIDAS`:
-aquela barra a **inscrição** como topo de funil, por URL, antes da whitelist de source. É critério de
-**etapa do funil**, não de canal — os dois convivem sem conflito.
+Não confundir com a exclusão de `content.cxpress.io/webinar-tecnologia-maio2026`: aquela barra a
+**inscrição** como topo de funil, por URL, antes da whitelist de source. É critério de **etapa do funil**,
+não de canal — os dois convivem sem conflito.
+
+### 2.2.2. Exclusão de URL em dois níveis (2026-08-07)
+
+A lista única `CM_URLS_EXCLUIDAS` foi dividida em duas, porque as exclusões que existiam tinham
+**motivos diferentes** e por isso merecem forças diferentes:
+
+| Constante | O que exclui | Fura com e-mail próprio? |
+|---|---|---|
+| `CM_URLS_EXCLUIDAS_SEMPRE` | `content.cxpress.io/webinar-tecnologia-maio2026` — inscrição de webinar | **Não.** Critério é **etapa do funil**: inscrição é topo, não vira lead CM por canal nenhum |
+| `CM_URLS_EXCLUIDAS_SALVO_EMAIL` | `home.cxpress.io/cadastro-interno[-bdr]` — registro manual/indicação | **Sim.** Critério é **canal**, e canal próprio ganha da página |
+
+`CM_SOURCES_EMAIL_PROPRIO` = `['email']` + prefixo `newsletter%` (cobre `Newsletter`,
+`newsletter+cxpress`, `newsletter_startups`, `newsletter+elife` — 24 deals na base em 6 grafias).
+
+**Motivo (decisão Victor 2026-08-07):** e-mail e newsletter são canais **100% nossos** — o disparo sai
+do nosso ESP e nenhuma origem externa produz esses valores de UTM. Então um lead que chegou por e-mail
+nosso é CM mesmo que tenha convertido numa página de cadastro interno. O gatilho foi a auditoria do
+deal **81723 'Destinando Viagens'** (Ganho, fechamento 03/02/2026, R$ 129.000 no campo de fee,
+responsável Luiz Fantini, `funil_auto=Inbound`): em junho o `utm_source=email` sem nenhum outro
+parâmetro foi lido como e-mail comercial 1:1 e motivou a exclusão da página; em agosto o Victor
+confirmou que a origem é Content Marketing.
+
+**Por que estrutural e não override nominal por `deal_id`:** a pedido do Victor, para que **e-mails e
+newsletters futuros nessa página também contem**, sem depender de alguém notar o deal e adicioná-lo
+à mão. O custo é aceitável porque o que barra os 43 deals de whatsapp da página não é a exclusão de
+URL — é o próprio `whatsapp` não estar na whitelist de sources (fora do CM por decisão de jun/2026).
+
+**Por que duas listas e não precedência global do e-mail:** verificado nos dados que a página do
+`webinar-tecnologia-maio2026` tem **1 deal `email` e 1 `newsletter`**. Com precedência global, esses
+dois entrariam como lead CM — exatamente o que a regra de topo de funil existe para impedir. Com a
+divisão, seguem fora (validado: `passam_cm = 0` em todas as sources daquela página).
+
+**Efeito imediato:** +1 deal no escopo (1152 → 1153) e **+1 fechamento no YtD 2026** (4 → 5). Os cinco
+fechamentos CM de 2026 passam a ser: 81723 Destinando Viagens (03/02), 80903 Catavento Cross-sell
+(13/03), 83610 Led Tools (24/03), 82083 Synergy Studios (01/04) e 81535 Grupo Calusa (19/05).
+
+**Guard de NULL:** a cláusula de e-mail próprio usa `COALESCE(utm_source,'')`. Sem isso, deal de URL
+interna com `utm_source` NULL viraria `NULL` em vez de `FALSE` na negação e escaparia da exclusão —
+mesma classe do bug google/cpc do Buzz BR (2026-05-26). Validado: os 4 deals `cadastro-interno` com
+source NULL continuam fora.
 
 ⚠️ A exclusão de `content.cxpress.io/webinar-tecnologia-maio2026` (inscrição = topo de funil) **não muda**:
 ela é hard-exclude por URL e roda antes da whitelist de source. Os 124 deals daquele lote continuam fora.

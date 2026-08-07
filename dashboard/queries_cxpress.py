@@ -105,7 +105,7 @@ def filtro_inbound(alias: str = '') -> str:
 # vigente no Buzzmonitor BR desde 2026-06-22, que tem 'webinar', 'pos-webinar', 'webinar-ao-vivo'
 # e 'apresentacao-webinar' na whitelist (queries.py:28-45).
 #
-# A exclusao de content.cxpress.io/webinar-tecnologia-maio2026 (CM_URLS_EXCLUIDAS) segue valendo e
+# A exclusao de content.cxpress.io/webinar-tecnologia-maio2026 (CM_URLS_EXCLUIDAS_SEMPRE) segue valendo e
 # nao conflita: ela barra a INSCRICAO como topo de funil, por URL, antes da whitelist de source —
 # criterio de etapa do funil, nao de canal.
 CM_UTM_SOURCES: list[str] = [
@@ -123,16 +123,35 @@ CM_URL_PATTERNS: list[str] = [
     'https://conteudo.elife.com.br/%',                       # conteudo Elife historico (compartilhado)
 ]
 
-# URLs hard-excluidas do CM (NUNCA contam, mesmo com utm_source valido). Match ILIKE com %.
-# 1. Inscricao de webinar — topo de funil (precedente Buzz BR 2026-05-26: so a OFERTA conta).
-#    Sem isto, o lote de 123 inscricoes do webinar-tecnologia (01/jun, todas Outbound) inunda o funil.
-# 2. Cadastro interno (home.cxpress.io/cadastro-interno[-bdr]) — funil de registro MANUAL/indicacao,
-#    nao e conteudo. Confirmado Victor 2026-06-15 via deal 81723 'Destinando Viagens': utm_source='email'
-#    generico (sem utm_medium/campaign/content) convertido nessa pagina interna => era contado como
-#    fechamento CM por engano. A pagina e entrada interna (43 deals via whatsapp + variantes -bdr/google);
-#    nenhum desses e CM. So o 81723 passava no filtro (pelo 'email'); a exclusao tira so ele.
-CM_URLS_EXCLUIDAS: list[str] = [
+# Sources de e-mail/newsletter PROPRIOS — canais 100% nossos (o disparo sai do nosso ESP, nenhuma
+# origem externa produz esses valores). Por isso tem PRECEDENCIA sobre a exclusao de paginas internas
+# (CM_URLS_EXCLUIDAS_SALVO_EMAIL): se o lead chegou por e-mail nosso, e CM mesmo que tenha convertido
+# numa pagina de cadastro interno. Decisao Victor 2026-08-07 (ver Revisao na doc de mapeamento).
+# NAO tem precedencia sobre CM_URLS_EXCLUIDAS_SEMPRE — topo de funil e criterio de ETAPA, nao de canal.
+# 'newsletter' entra por prefixo no filtro (cobre Newsletter, newsletter+cxpress, newsletter_startups,
+# newsletter+elife — 24 deals na base em 6 grafias).
+CM_SOURCES_EMAIL_PROPRIO: list[str] = ['email']
+
+# URLs excluidas SEMPRE — nunca contam, qualquer que seja o utm_source. Match ILIKE com %.
+# Inscricao de webinar = topo de funil (precedente Buzz BR 2026-05-26: so a OFERTA conta). Sem isto,
+# o lote de 123 inscricoes do webinar-tecnologia (01/jun, todas Outbound) inunda o funil. Como o
+# critério aqui e ETAPA do funil (e nao canal), nem e-mail proprio fura esta lista.
+CM_URLS_EXCLUIDAS_SEMPRE: list[str] = [
     'https://content.cxpress.io/webinar-tecnologia-maio2026%',
+]
+
+# URLs excluidas SALVO se a source for e-mail/newsletter proprio (CM_SOURCES_EMAIL_PROPRIO).
+# Cadastro interno (home.cxpress.io/cadastro-interno[-bdr]) e funil de registro MANUAL/indicacao —
+# a pagina tem 51 deals / 10 fechamentos, 43 deles via whatsapp, nenhum CM. Excluida desde
+# 2026-06-15 por causa do deal 81723 'Destinando Viagens' (utm_source='email' sem nenhum outro
+# parametro), que na epoca foi lido como e-mail comercial 1:1.
+#
+# 2026-08-07: Victor auditou o 81723 e confirmou que a origem E Content Marketing. Em vez de
+# override nominal por deal_id, a regra virou estrutural a pedido dele — e-mail e newsletter
+# proprios passam a valer nesta pagina tambem, hoje e no futuro. Efeito imediato: volta so o 81723
+# (1 fechamento, R$ 129.000 no campo de fee, 03/02/2026); os 43 de whatsapp seguem fora, porque
+# whatsapp nao esta na whitelist de sources. Nenhum deal 'newsletter*' converteu nessa pagina ainda.
+CM_URLS_EXCLUIDAS_SALVO_EMAIL: list[str] = [
     'https://home.cxpress.io/cadastro-interno%',  # cobre /cadastro-interno e /cadastro-interno-bdr
 ]
 
@@ -148,23 +167,44 @@ def filtro_cm(alias: str = '') -> str:
        (instagram_feed, facebook_mobile_feed, newsletter+cxpress, linktree+cxpress, ...).
     4. Inclui URLs de conteudo CM (CM_URL_PATTERNS) mesmo sem utm_source.
 
-    5. Exclui URLs hard-excluidas (CM_URLS_EXCLUIDAS): inscricao de webinar (topo de funil) e
-       cadastro interno / indicacao (registro manual) — nunca sao lead CM, mesmo com utm_source valido.
+    5. Exclui URLs de topo de funil (CM_URLS_EXCLUIDAS_SEMPRE): inscricao de webinar nunca e lead
+       CM, qualquer que seja o utm_source — criterio de ETAPA do funil.
+    6. Exclui URLs de pagina interna (CM_URLS_EXCLUIDAS_SALVO_EMAIL): cadastro interno / indicacao
+       (registro manual) nao e conteudo — SALVO quando a source e e-mail/newsletter proprio
+       (CM_SOURCES_EMAIL_PROPRIO), canal 100% nosso. Decisao Victor 2026-08-07 apos auditar o deal
+       81723 'Destinando Viagens'. Aqui o criterio e CANAL, e o canal proprio ganha da pagina.
 
     COALESCE na exclusao de URL: sem ele, `NOT (NULL ILIKE x)` = NULL derruba do filtro
     qualquer lead com url_conversao vazia mesmo com utm_source valido (mesma classe do bug
-    google/cpc do Buzz BR corrigido em 2026-05-26).
+    google/cpc do Buzz BR corrigido em 2026-05-26). Mesmo motivo pro COALESCE em utm_source na
+    clausula de e-mail proprio: sem ele um deal de URL interna com source NULL viraria NULL em vez
+    de FALSE e escaparia da exclusao.
     """
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES)
+    email_sources = ", ".join(f"'{s}'" for s in CM_SOURCES_EMAIL_PROPRIO)
     url_clauses = "\n        OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in CM_URL_PATTERNS)
-    excl_clauses = "\n        OR ".join(
-        f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in CM_URLS_EXCLUIDAS
+    excl_sempre = "\n        OR ".join(
+        f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in CM_URLS_EXCLUIDAS_SEMPRE
+    )
+    excl_salvo_email = "\n          OR ".join(
+        f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in CM_URLS_EXCLUIDAS_SALVO_EMAIL
+    )
+    # TRUE quando o lead veio de e-mail/newsletter proprio — usado pra furar a exclusao de pagina interna.
+    email_proprio = (
+        f"(LOWER(COALESCE({a}utm_source, '')) IN ({email_sources})"
+        f" OR LOWER(COALESCE({a}utm_source, '')) LIKE 'newsletter%')"
     )
     return f"""(
       NOT (LOWER(COALESCE({a}utm_source, '')) = 'google' AND LOWER(COALESCE({a}utm_medium, '')) = 'cpc')
       AND NOT (
-        {excl_clauses}
+        {excl_sempre}
+      )
+      AND NOT (
+        (
+          {excl_salvo_email}
+        )
+        AND NOT {email_proprio}
       )
       AND (
         LOWER({a}utm_source) IN ({sources})

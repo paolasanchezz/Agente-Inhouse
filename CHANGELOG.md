@@ -178,6 +178,33 @@ Convites de moderador (vendedores) passam a sair **apenas em dias úteis** — d
 - Sem convite duplicado: sexta convida a sessão de sexta (futura no run das 07:00), sáb/dom não envia, segunda convida a de segunda. MINOR — comportamento novo compatível (interface só ganha `--force`).
 
 ## dashboard-atualizar — multi-dashboard
+### 2026-08-07 — exclusão de URL em dois níveis no filtro CM Cxpress (sem bump de skill)
+
+`CM_URLS_EXCLUIDAS` de `queries_cxpress.py` virou duas constantes, porque as duas
+exclusões que existiam tinham motivos diferentes e por isso merecem forças diferentes:
+
+- `CM_URLS_EXCLUIDAS_SEMPRE` — inscrição de webinar. Critério é **etapa do funil**;
+  não fura com canal nenhum.
+- `CM_URLS_EXCLUIDAS_SALVO_EMAIL` — cadastro interno. Critério é **canal**, então
+  `CM_SOURCES_EMAIL_PROPRIO` (`email` + prefixo `newsletter%`) tem precedência.
+
+**Motivo** (decisão Victor): e-mail e newsletter são canais 100% nossos — o disparo sai
+do nosso ESP, nenhuma origem externa produz esses UTMs —, então lead que chegou por e-mail
+nosso é CM mesmo convertendo em página de cadastro interno. Gatilho: auditoria do deal
+**81723 'Destinando Viagens'** (Ganho, fechamento 03/02/2026, R$ 129.000 no campo de fee),
+excluído em 2026-06-15 quando o `utm_source=email` sem outros parâmetros foi lido como
+e-mail comercial 1:1. Estrutural em vez de override nominal por `deal_id` a pedido do
+Victor, pra que e-mails e newsletters futuros nessa página contem sozinhos.
+
+**Por que duas listas e não precedência global do e-mail:** a página do
+`webinar-tecnologia-maio2026` tem 1 deal `email` e 1 `newsletter`. Com precedência global
+os dois entrariam como lead CM — o oposto do que a regra de topo de funil existe pra
+impedir. Validado: `passam_cm = 0` em todas as sources daquela página, e os 43 deals de
+whatsapp do cadastro-interno seguem fora.
+
+**Efeito:** +1 deal (1152 → 1153) e **+1 fechamento no YtD 2026** (4 → 5). Detalhe em
+`dashboard/MAPEAMENTO-CAMPOS-cxpress.md` §2.2.2.
+
 ### 2026-08-07 — `'webinar'` na whitelist CM do Cxpress (sem bump de skill)
 
 `CM_UTM_SOURCES` de `dashboard/queries_cxpress.py` passa a aceitar `utm_source='webinar'`.
