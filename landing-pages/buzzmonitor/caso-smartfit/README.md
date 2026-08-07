@@ -29,7 +29,8 @@
 - [x] HTML gerado
 - [x] Revisao (frontend-design review + web-design-guidelines) — ver `REVISAO.md` (2 criticos aplicados: hreflang desnecessario removido, lazy-loading corrigido no logo do hero)
 - [ ] CTA integrado com link/embed real de agendamento (Calendly, HubSpot Meetings, etc.) — rodar `/lp-integrar-form` quando tiver o link
-- [ ] Publicado — `webinar.buzzmonitor.com` esta migrado pro fluxo CI (manifest + PR)
+- [x] Publicado — https://webinar.buzzmonitor.com/caso-smartfit (2026-08-06, PR #218, deploy `31121182740`)
+- [x] Logos Buzzmonitor + Smart Fit adicionados na secao RESULTADOS (2026-08-06, apos publicacao — ver Passo de atualizacao abaixo)
 
 ## Pendencias
 
