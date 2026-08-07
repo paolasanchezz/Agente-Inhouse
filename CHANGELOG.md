@@ -178,6 +178,25 @@ Convites de moderador (vendedores) passam a sair **apenas em dias úteis** — d
 - Sem convite duplicado: sexta convida a sessão de sexta (futura no run das 07:00), sáb/dom não envia, segunda convida a de segunda. MINOR — comportamento novo compatível (interface só ganha `--force`).
 
 ## dashboard-atualizar — multi-dashboard
+### 2026-08-07 — `'webinar'` na whitelist CM do Cxpress (sem bump de skill)
+
+`CM_UTM_SOURCES` de `dashboard/queries_cxpress.py` passa a aceitar `utm_source='webinar'`.
+Sem bump de `version`: a skill não mudou, só a constante que ela consome.
+
+**Motivo da constante** (fora da skill, em `dashboard/queries_cxpress.py`): o deal 81535
+"Grupo Calusa" (Ganho, fechamento 19/05/2026) não contava como fechamento CM. A coluna
+`utm_source` chegou como `webinar` — rótulo do evento, não canal — enquanto a
+`url_conversao` trazia a UTM real do anúncio (`utm_source=ig&utm_medium=cpc`, campanha
+`[meta][conversão][webinar][janeiro]`, Ad_04) numa LP de conteúdo. Mesma classe do caso
+L3FT abaixo: conversão CM legítima barrada pelo gate. Era defeito de preenchimento da
+coluna, não LP fora de escopo — dos 44 deals de 2026 na mesma LP, 40 já contavam como CM.
+Efeito: **+2 fechamentos no YtD 2026** (81535 e 80903). Detalhe e gatilho de reavaliação
+em `dashboard/MAPEAMENTO-CAMPOS-cxpress.md` §Revisão 2026-08-07.
+
+Sem espelho a sincronizar: o Cxpress tem superfície única (4 consumidores importam a
+mesma `queries_cxpress.py`), então o Passo 0.2b não se aplica — é só o buzz-br que tem
+espelho em `dashboard-pessoal/lib/queries.py`.
+
 ### 2026-08-06 — v3.0.1 — `FECHAMENTOS_FORCADOS` no check de sincronia (Passo 0.2b)
 
 Nova constante de override do gate de Fechamentos (buzz-br) entrou na lista de

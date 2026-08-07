@@ -14,8 +14,12 @@ Diferencas vs Buzzmonitor (queries.py):
 - Moeda BRL, idioma PT-BR.
 
 ESCOPO calibrado 2026-06-09 (auditoria utm_source/medium/url_conversao + validacao manual Victor):
-- filtro_inbound: funil_auto = 'Inbound'
+- filtro_inbound: NO-OP (TRUE) — a dashboard conta deal CM independente de funil_auto, entao
+  fechamento de OUTBOUND entra normalmente (reconfirmado por Victor em 2026-08-07). Em 2026 o
+  escopo CM tem 557 deals Outbound contra 196 Inbound: o gate de canal e o filtro_cm(), nao o
+  funil, porque funil_auto reflete o PROCESSO de vendas e nao a origem do lead. Ver filtro_inbound().
 - filtro_cm: exclui Google Ads (google+cpc); inclui whitelist social/owned + URL clinicas/content.
+- 2026-08-07: 'webinar' entrou na whitelist de utm_source (ver CM_UTM_SOURCES).
 """
 from __future__ import annotations
 
@@ -85,10 +89,20 @@ def filtro_inbound(alias: str = '') -> str:
 # linktree+cxpress, etc.) sao cobertos via LIKE no filtro_cm() abaixo.
 # Excluidos explicitamente (decisao Victor): whatsapp, youtube — comportamento misto outbound/CM,
 # tracking ruidoso. google+cpc tambem fora (Google Ads, nao CM).
+#
+# 'webinar' incluido 2026-08-07 (decisao Victor) apos o deal 81535 'Grupo Calusa' (Ganho,
+# fechamento 19/05/2026) nao aparecer como fechamento CM. A coluna utm_source chegou 'webinar'
+# (nome do evento, nao canal) enquanto a url_conversao trazia a UTM real do anuncio:
+# home.cxpress.io/bloqueio-whatsapp-comercial-como-evitar?utm_source=ig&utm_medium=cpc
+# &utm_campaign=[meta][conversao][webinar][janeiro]&utm_creative=ad_04 — ou seja, trafego de
+# Instagram Ads pra LP de conteudo. Que era defeito de preenchimento da COLUNA (e nao LP fora de
+# escopo) ficou claro nos vizinhos: dos 44 deals de 2026 na mesma LP, 40 ja contavam como CM
+# porque a coluna deles veio 'ig'/'meta'. Os 4 deals com 'webinar' (3 com fechamento) sao todos
+# dessa LP. Variante 'qrcode-webinar-bloqueio-whatsapp' (1 deal) segue fora — match e exato.
 CM_UTM_SOURCES: list[str] = [
     'meta', 'ig', 'instagram', 'fb', 'facebook',
     'linkedin', 'email', 'blog', 'tiktok',
-    'chatgpt.com', 'gemini', 'lp-agradecimento',
+    'chatgpt.com', 'gemini', 'lp-agradecimento', 'webinar',
 ]
 
 # URLs de conteudo CM que entram independente de utm_source (caso o tracking nao tenha sido preservado).

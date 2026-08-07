@@ -80,6 +80,7 @@ quando `filtro_inbound` virou no-op — §2.1):
 | Inscrição de webinar (`content.cxpress.io/webinar-tecnologia-maio2026`) | **fora** | precedente Buzz BR 2026-05-26: inscrição é topo de funil, não vira lead CM; só a OFERTA conta. 124 inscrições (lote 01/jun) ficariam de fora |
 | Cadastro interno (`home.cxpress.io/cadastro-interno[-bdr]`) | **fora** | registro manual/indicação, não é conteúdo. Decisão Victor 2026-06-15 (deal 81723 'Destinando Viagens': `utm_source=email` genérico, sem medium/campaign/content, convertido nessa página interna → contava como fechamento CM por engano). Página é entrada interna (43 deals via whatsapp + variantes -bdr/google); só o 81723 passava no filtro (via `email`), então a exclusão tira só ele |
 | Whitelist social/owned | **dentro** | Meta/IG/FB/LinkedIn/Email/Blog/TikTok/Newsletter/Linktree — qualquer funil_auto |
+| `webinar` | **dentro** | decisão Victor 2026-08-07 — ver Revisão 2026-08-07 abaixo |
 | LP `atendimento-para-clinicas` | **dentro** | CM mesmo sem UTM — exceção explícita do Victor |
 | Demais URLs `content.cxpress.io` + `conteudo.elife.com.br` | dentro | domínios de conteúdo (ofertas futuras) |
 
@@ -96,6 +97,44 @@ com o Meta Ads** (era exatamente o gap que motivou o no-op do funil).
 **Revisão 2026-06-15:** adicionado `home.cxpress.io/cadastro-interno%` a `CM_URLS_EXCLUIDAS` (linha
 "Cadastro interno" na tabela acima). Removeu o deal 81723 ('Destinando Viagens', fechamento 03/02 via
 `email` genérico numa página de registro interno). **YtD 2026 passa a 493 leads · 4 fechamentos** (era 494 · 5).
+
+**Revisão 2026-08-07:** `webinar` entrou em `CM_UTM_SOURCES` (decisão Victor).
+
+Motivo: o deal **81535 'Grupo Calusa'** (Ganho, fechamento 19/05/2026) não aparecia como fechamento CM.
+A coluna `utm_source` chegou `webinar` — nome do evento, não canal — enquanto a `url_conversao` trazia
+a UTM real do anúncio: `home.cxpress.io/bloqueio-whatsapp-comercial-como-evitar?utm_source=ig&utm_medium=cpc`
+`&utm_campaign=[meta][conversão][webinar][janeiro]&utm_creative=ad_04&utm_tracking=Instagram_Feed`.
+Ou seja, tráfego de Instagram Ads (Lookalike de clientes, Ad_04) para LP de conteúdo.
+
+Que era **defeito de preenchimento da coluna** — e não LP fora de escopo — ficou claro nos vizinhos:
+dos 44 deals de 2026 na mesma LP, **40 já contavam como CM** porque a coluna deles veio `ig`/`meta`.
+Só 4 deals na base inteira têm `utm_source = 'webinar'`, todos dessa LP: 81535 (Ganho, fech. 19/05/2026),
+80903 'Catavento Cross-sell' (Ganho, fech. 13/03/2026), 75078 'Catavento Cultural' (Ganho, fech. 27/08/2025,
+fora do escopo 2026) e 81871 'Cartão de Todos' (Aberta). Efeito na dashboard 2026: **+2 fechamentos**
+(81535 e 80903) e +2 leads.
+
+A variante `qrcode-webinar-bloqueio-whatsapp` (1 deal, mesma LP e mesma campanha) segue fora — o match
+da whitelist é exato, só os 4 padrões LIKE (`instagram%`, `facebook%`, `newsletter%`, `linktree%`) fazem
+prefixo. Foi mantida assim por conservadorismo; se a intenção passar a ser medir a campanha inteira,
+trocar por prefixo `webinar%` resolve.
+
+⚠️ **Gatilho de reavaliação:** `webinar` é rótulo de evento, não canal, e a whitelist casa **só pela
+coluna**, sem olhar a URL — então qualquer deal futuro com `utm_source='webinar'` entra no CM venha de
+onde vier. Hoje isso é seguro porque os 4 existentes são todos tráfego pago pra LP de conteúdo, mas é
+propriedade dos dados, não garantia da regra. **Se aparecer deal `webinar` fora de LP de conteúdo**
+(indicação, e-mail interno, outbound), hard-excluir a URL em `CM_URLS_EXCLUIDAS` — mesma receita do
+`cadastro-interno` (2026-06-15, deal 81723). Endurecimento alternativo, se o falso positivo virar
+recorrente: exigir `webinar` **combinado** com URL de conteúdo, em vez de aceitá-lo isolado. A opção
+mais robusta discutida na época — fallback de `utm_source` da coluna pro querystring da `url_conversao`,
+simétrico ao que `_content()` já faz — foi apresentada e recusada em favor da whitelist simples.
+
+⚠️ A exclusão de `content.cxpress.io/webinar-tecnologia-maio2026` (inscrição = topo de funil) **não muda**:
+ela é hard-exclude por URL e roda antes da whitelist de source. Os 124 deals daquele lote continuam fora.
+
+**Nota sobre outbound (reconfirmado 2026-08-07):** a dashboard já aceita fechamento de deal `Outbound` —
+`filtro_inbound()` é no-op desde 2026-06-09 e o gate é só o canal. Em 2026 o escopo CM tem **557 deals
+Outbound contra 196 Inbound**, e um dos fechamentos que já apareciam era Outbound. O 81535 (também
+`funil_auto='Outbound'`) estava barrado apenas pelo `utm_source`, não pelo funil.
 
 ### 2.2.1. Perdidos = definição COORTE (igual Buzzmonitor BR)
 
