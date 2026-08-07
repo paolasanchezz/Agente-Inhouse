@@ -5,9 +5,9 @@ SUB: Aprende a detectar, monitorear y actuar antes de que una crisis escale.
 LABEL: 10 minutos
 CTA: ¡Reserva tu lugar!
 
-=== LO QUE VAS A VER ===
-OVERLINE: LO QUE VAS A VER
-H2: Cinco componentes del sistema, con el caso real de E-CLIK.
+=== LO QUE APRENDERÁS ===
+OVERLINE: LO QUE APRENDERÁS
+H2: Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK.
 H3: 01. Detección temprana: escucha más allá de lo evidente
 BODY: Configura el monitoreo de tu marca en Theme Monitoring con todas sus variantes (nombre oficial, errores de escritura, apodos y hashtags de campaña). Buzzmonitor recopila las menciones en tiempo real en todas las redes sociales y las clasifica automáticamente por sentimiento. Si filtras las menciones negativas de las últimas seis horas y detectas un pico inusual, tendrás una señal clara antes de que el problema escale, sin necesidad de revisar cada publicación manualmente.
 LABEL: Qué vas a ver: Theme Monitoring configurado con variantes de la marca, el panel de sentimiento automático y el gráfico de evolución con un pico claramente identificado.
@@ -60,4 +60,5 @@ CTA: ¡Reserva tu lugar!
 === FOOTER ===
 FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
 
+# [NOTA 2026-08-07] Usuario pidio pos-publicacao: (1) trocar overline/H2 de "Lo que vas a ver" por "Lo que aprenderás" / "Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK." e (2) aumentar o tamanho dos logos (Buzzmonitor x CRM Bonus) na secao Resultados, que estavam ilegiveis (26px). Logos aumentados para 40px + gap maior.
 # Revisao anti-IA: sem achados (em-dash: 0).

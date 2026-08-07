@@ -14,6 +14,7 @@
 5. **2 cards de resultado (nao 4)** — a copy trouxe apenas 2 LABELs em RESULTADOS (crise contida em <1h, 28 melhorias de produto). Grid `results-grid` (`repeat(2, 1fr)`) fica naturalmente preenchido, sem espaco vazio.
 6. **Sem logo de cliente no hero** — ao contrario de `caso-smartfit` (caso de cliente com logo no card do form), esta LP e um webinar (nao um caso isolado), entao o `hero-form` segue o padrao de `primer-listening-5-pasos`/`webinar-atencion-multicanal-latam`: sem `hero-card-logo`, so o formulario mock de inscricao.
 7. **CTA "¡Reserva tu lugar!"** em todas as 3 ocorrencias (header, hero, CTA final) — ja veio assim na copy fornecida pelo usuario, sem pivotagem necessaria nesta sessao.
+8. **Ajuste pos-publicacao (2026-08-07):** usuario pediu (a) trocar overline/H2 de "Lo que vas a ver" -> "Lo que aprenderás" / "Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK." e (b) aumentar o tamanho dos logos Buzzmonitor × CRM Bonus na secao Resultados, que estavam ilegiveis. `.results-logos img` foi de `height: 26px` para `height: 44px` (gap de 18px para 24px, separador "×" de 14px para 18px).
 
 ## Estrutura
 

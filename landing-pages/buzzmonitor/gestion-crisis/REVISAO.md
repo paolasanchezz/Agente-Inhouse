@@ -30,3 +30,12 @@ Como o HTML foi gerado diretamente a partir do template ja revisado e publicado 
 
 - CTA ainda e mock (`href="#form"`, formulario local sem backend) — quando tiver o link real de inscricao, rodar `/lp-integrar-form buzzmonitor/gestion-crisis "snippet"`.
 - Publicar: `webinar.buzzmonitor.com` esta no fluxo CI — adicionar ao manifest (ja feito) + abrir PR.
+
+## Segunda passada (2026-08-07, pos-publicacao)
+
+Usuario reportou apos ver a LP no ar: (1) pedido de troca de overline/H2 de "Lo que vas a ver" e (2) logos da secao Resultados ilegiveis por serem pequenos demais.
+
+- **Texto:** overline trocado para "Lo que aprenderás", H2 para "Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK." — aplicado identico no `copy.txt` e no `index.html`, conferido literal.
+- **Logos:** `.results-logos img` aumentado de `height: 26px` para `44px` (69% maior), gap de 18px para 24px, separador "×" de 14px para 18px. Mudanca de CSS e local a este arquivo (nao afeta `caso-smartfit`, que tem seu proprio bloco `<style>` inline).
+- Revalidado: em-dash 0, ellipsis so `&hellip;` (1 ocorrencia), GTM 2/2, `check_gtm_region.py` OK.
+- Nenhuma outra secao ou LP tocada.
