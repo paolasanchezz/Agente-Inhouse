@@ -1,0 +1,61 @@
+=== HERO ===
+OVERLINE: Cxpress · API Oficial de WhatsApp · 10 minutos
+H1: Por qué bloquean tu WhatsApp y cómo evitarlo
+SUB: Aprende cómo proteger tu cuenta y escalar tu atención con la API Oficial de WhatsApp.
+LABEL: 10 minutos
+CTA: ¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Tres funcionalidades para proteger tu cuenta desde la raíz.
+H3: 01. API Oficial + WhatsApp CoEx
+BODY: Cxpress conecta WhatsApp mediante la API Oficial certificada, en el mismo panel donde también gestionas el correo electrónico, las redes sociales y el chat de tu sitio web. Con WhatsApp CoEx, puedes utilizar el mismo número que ya tienes en la aplicación y conectarlo a la API Oficial al mismo tiempo, sin cambiar de número.
+LABEL: QUÉ VAS A VER: el panel de canales con WhatsApp conectado mediante API Oficial y el historial de un cliente que pasó de WhatsApp a correo electrónico sin perder el contexto.
+
+H3: 02. Automatización con IA
+BODY: El ChatGPT integrado responde el primer nivel de atención siguiendo las reglas oficiales de la plataforma. El cliente escribe, la IA responde en segundos y, si el caso requiere atención humana, la conversación pasa a un agente con todo el historial ya disponible.
+LABEL: QUÉ VAS A VER: una conversación entrante respondida por el ChatGPT integrado y el traspaso al agente humano con todo el contexto visible.
+
+H3: 03. Gestión de tickets y dashboards analíticos
+BODY: Cada conversación entra en una fila organizada y se distribuye entre los agentes disponibles. Los dashboards analíticos muestran diariamente el tiempo de respuesta y el volumen por canal, permitiendo detectar posibles problemas antes de que aparezcan.
+LABEL: QUÉ VAS A VER: el panel de tickets con distribución automática entre agentes y el dashboard con el tiempo de respuesta por canal.
+
+=== RESULTADOS ===
+H2: Los números detrás del riesgo (y de la solución)
+LABEL: 200 millones de empresas ya usan WhatsApp Business
+LABEL: Hasta 14% más solicitudes resueltas por hora (estudio NBER, agentes de atención con IA)
+LABEL: 9% menos tiempo promedio de resolución por chat (estudio NBER)
+# [NOTA 2026-08-10] El borrador original (v1, 2026-08-03) marco duda sin resolver: la fuente traia "175 millones de personas le escriben a una empresa por WhatsApp cada dia" (Meta, 2020), pero el bloque final usa "200 millones de empresas ya usan WhatsApp Business" (dato distinto: personas/dia vs. empresas que usan la app). Preguntado al usuario, quien confirmo explicitamente mantener "200 millones de empresas" tal como esta en la copy final. Los % de NBER se mantienen como cita de investigacion externa (no como resultado propio de Cxpress), consistente con el Brandbook ("no afirmar resultados cuantitativos sem case verificado, usar dados de mercado como gancho").
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Laura Rodríguez
+SUB: Business Developer · Cxpress
+BODY: Laura trabaja diariamente con empresas que centralizan su atención en WhatsApp y las ayuda a proteger sus cuentas mientras escalan su operación con la API Oficial. En esta sesión muestra cómo proteger tu WhatsApp Business desde la raíz, sin cambiar de número ni perder tu historial.
+LABEL: WhatsApp Business
+LABEL: API Oficial
+LABEL: Automatización con IA
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Atiendes a tus clientes desde un WhatsApp Business compartido entre varios agentes en el mismo celular.
+LIST ITEM: Usas una herramienta no oficial que promete atención múltiple a bajo costo, fuera de las reglas de Meta.
+LIST ITEM: Envías mensajes masivos de forma improvisada para responder rápido, sin una cola organizada ni control del volumen.
+LIST ITEM: No sabes exactamente cómo está conectado tu número actualmente: app normal, WhatsApp Web o API Oficial.
+
+=== CTA FINAL ===
+H2: ¿Tu WhatsApp Business está en riesgo de bloqueo?
+BODY: Inscríbete al webinar y aprende cómo proteger tu WhatsApp Business, utilizar la API Oficial y escalar tu atención sin perder tu número ni tu historial.
+LABEL: 10 minutos
+LABEL: Online y en vivo
+CTA: ¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos los derechos reservados.
+
+# [NOTA 2026-08-10] Speaker: Laura Rodriguez, Business Developer - Cxpress. Foto enviada por el usuario en el chat (guardada en assets/laura-rodriguez.jpg, encontrada en Downloads por timestamp reciente y confirmada visualmente antes de copiar).
+# [NOTA 2026-08-10] Usuario pidio "algunas imagenes referente del whatsapp bloqueado". Decision: en vez de usar una captura real de la interfaz de WhatsApp (riesgo de marca registrada/derechos de autor de Meta, y no hay forma de descargar de fuente confiable dentro de las reglas de la sesion), se construyo una ilustracion propia directamente en HTML/CSS/SVG, ubicada en el hero, sobre el formulario de inscripcion.
+# [NOTA 2026-08-10] Usuario envio despues una imagen de referencia (logo oficial de WhatsApp con circulo de prohibicion) y pidio agrandar el elemento, sin fondo/caja, bien estructurado. Se explico al usuario que no se puede reproducir el logo oficial de WhatsApp (marca registrada de Meta, imagen de origen no confirmado) en una pieza comercial de Cxpress. Se rehizo el elemento como icono grande (200x200px) sin caja/fondo: circulo rojo de prohibicion sobre un icono generico de bocadillo de chat (SVG propio, no el logo de WhatsApp), con el mismo mensaje "Cuenta suspendida / Por uso no autorizado de la aplicacion" debajo, posicionado sobre el formulario.
+# Diseno y estructura: espejados de landing-pages/buzzmonitor/primer-listening-5-pasos/index.html (referencia explicita del usuario), con branding de Cxpress LATAM (brand/cxpress/tokens.json) en vez de Buzzmonitor. Seccion RESULTADOS (stats) agregada porque la copy la trae, aunque el modelo de referencia no la tenga (misma logica de "copy dita estrutura" aplicada en gestion-crisis).
+# Revisao anti-IA: sem achados (em-dash: 0).
