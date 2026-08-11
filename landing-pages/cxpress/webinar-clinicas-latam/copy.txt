@@ -1,0 +1,59 @@
+=== HERO ===
+OVERLINE: CONTENIDO EXCLUSIVO
+H1: No hagas esperar a tus pacientes:
+SUB: Un sistema probado para organizar la atención de tu clínica
+CTA: ¡Quiero inscribirme!
+
+=== PROBLEMA-Y-FORM ===
+H2: Tu clínica debería estar atendiendo pacientes, no persiguiendo mensajes.
+LABEL: Nombre
+LABEL: E-mail profesional
+LABEL: Nombre de tu empresa
+LABEL: Newsletter — No quiero recibir correos con contenidos exclusivos de Cxpress.
+CTA: ¡Quiero inscribirme!
+BODY: A medida que aumentan los mensajes, responder a tiempo se vuelve cada vez más difícil.
+BODY: En muchas clínicas, el equipo dedica gran parte de su jornada a confirmar citas, reprogramar horarios y responder las mismas preguntas, mientras nuevos pacientes esperan atención.
+BODY: El resultado: una operación sobrecargada, pacientes insatisfechos y oportunidades que se pierden cada día.
+
+=== APRENDIZAJES ===
+H2: Lo que aprenderás:
+LIST ITEM: Cómo centralizar todos los canales de atención de tu clínica. WhatsApp, Instagram, chat y otros canales organizados en un solo lugar.
+LIST ITEM: Cómo automatizar las tareas repetitivas del equipo de atención. Preguntas frecuentes, información básica y solicitudes simples pueden responderse automáticamente.
+LIST ITEM: Confirmación automática de citas. Envía mensajes automáticos para confirmar asistencia, reducir ausencias y mantener tu agenda organizada.
+LIST ITEM: Distribución inteligente de solicitudes. Cada consulta llega directamente a la persona adecuada dentro del equipo.
+LIST ITEM: Visibilidad completa de la operación de atención. Accede a indicadores que muestran el volumen de mensajes, los tiempos de respuesta y los principales desafíos.
+LIST ITEM: Casos prácticos de clínicas que ya optimizaron su atención. Descubre cómo otras clínicas están organizando sus procesos para atender.
+
+=== PARA-QUIEN ===
+H2: Este webinar es ideal para:
+LIST ITEM: Dueños y administradores de clínicas médicas
+LIST ITEM: Responsables de recepción y atención al paciente
+LIST ITEM: Clínicas que buscan organizar WhatsApp y otros canales de comunicación
+LIST ITEM: Equipos que quieren atender más rápido y optimizar el tiempo de su equipo
+CTA: ¡Quiero inscribirme!
+
+=== PROVA-ESPECIALISTAS ===
+H2: Con la participación de especialistas
+BODY: Aprende con profesionales que ya han ayudado a diversas empresas a mantener un alto nivel de rendimiento, incluso en los periodos más intensos de ventas.
+LABEL: Speaker
+H3: Milagro Pantoja
+SUB: Business Developer, Cxpress
+LABEL: Speaker
+H3: Laura Rodríguez
+SUB: Business Developer, Cxpress
+CTA: ¡Quiero inscribirme!
+
+=== PROVA-SOCIAL ===
+H2: Empresas que ya confían en Cxpress
+SUB: +800 clientes en Brasil, Latam y Portugal
+
+=== FOOTER ===
+FOOTER: Condiciones generales de uso de Cxpress.
+FOOTER: Políticas de privacidad.
+FOOTER: ©Cxpress es un producto de Elife (2026).
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Fidelidade nativa ES-LATAM: sem desvios (sem "vosotros", sem vocabulario de Espana, tuteo/1a pessoa nos CTAs conforme padrao-linguistico.md).
+# Nota de fonte: copy extraida do texto literalmente visivel em https://www.cxpress.ai/webinar-clinicas (pagina construida em GreatPages). O DOM contem residuos ocultos em PT-BR (heading duplicado "Por que assistir ao CXcast?", CTA "QUERO ASSISTIR" e link "Agende uma demonstracao gratuita") que NAO aparecem renderizados ao visitante ES — excluidos desta copy por nao serem texto visivel real.
+# Nota speakers: nomes/cargos (Milagro Pantoja e Laura Rodriguez, ambas Business Developer da Cxpress) nao estavam no texto/DOM da pagina original (a secao e renderizada como imagem composta, sem texto real) — confirmados pelo usuario via screenshot. Fotos reaproveitadas de landing-pages/cxpress/latam-webinar-atencionalcliente/assets/speakers/ (mesmas 2 pessoas ja usadas la).
+# Formulario: campos identificados (Nombre, E-mail profesional, Nombre de tu empresa, checkbox Newsletter) + campos ocultos de tracking UTM (utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_tracking, gclid, matchtype, creative) — usar mock no lp-gerar; se quiser o form real depois, sera via /lp-integrar-form com o snippet do provedor.
