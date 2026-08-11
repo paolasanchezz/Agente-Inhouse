@@ -30,3 +30,10 @@
 
 - CTA ainda e mock (`href="#form"`, formulario local sem backend) — quando tiver o link real de inscricao, rodar `/lp-integrar-form cxpress/webinar-bloqueo-whatsapp "snippet"`.
 - Publicar: `content.cxpress.io` esta no fluxo CI — adicionar ao manifest + abrir PR.
+
+## Segunda passada (2026-08-11, pos-publicacao — Meta Pixel)
+
+Usuario perguntou se a LP tinha o Pixel LATAM correto (`1484678896147110`) depois de ja publicada. Confirmado que nao tinha nenhum Pixel (so GTM). Adicionado o snippet oficial (script `fbq('init', ...)` + `fbq('track', 'PageView')` + `<noscript>` de fallback), copiado literal de `atencion-clinicas-latam/index.html` (LP que ja usa esse mesmo ID), posicionado logo apos o bloco GTM no `<head>`.
+
+- Revalidado: em-dash 0, GTM 2/2, pixel `fbq('init'` 1x.
+- Nenhuma outra secao do HTML foi tocada.

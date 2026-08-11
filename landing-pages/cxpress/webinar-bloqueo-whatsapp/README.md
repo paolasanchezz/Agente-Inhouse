@@ -17,6 +17,7 @@
 5. **Foto de Laura Rodriguez:** enviada pelo usuario no chat, localizada em Downloads por timestamp recente (`1624464380385 (1) (1).jpg`, JPEG 400x400), confirmada visualmente antes de copiar pra `assets/laura-rodriguez.jpg`.
 6. **CTA longo ("¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!"):** mantido literal nas 3 ocorrencias (header, hero, CTA final), sem parafrasear pra encurtar. Ajustes de CSS feitos so nesta pagina pra acomodar o texto longo: `.btn` e `.header-cta` com `white-space: normal` (permite quebra de linha) e sem `text-transform: uppercase` (que deixaria uma frase inteira em caixa alta, ilegivel).
 7. **Sem hreflang:** nao ha LP-irma em outro idioma pra este slug — omitido, so `canonical` presente (GUIDELINES §16).
+8. **Meta Pixel (2026-08-11, pos-publicacao):** usuario pediu confirmacao/adicao do Meta Pixel LATAM (`1484678896147110`). O HTML gerado nao trazia Pixel (so GTM), pois o modelo de referencia `primer-listening-5-pasos` (Buzzmonitor) tambem so usa GTM. Verificado que o Pixel nao e um padrao universal nas LPs `*-latam` do Cxpress (so `atencion-clinicas-latam` e `whatsapp-business-smb-latam` tinham antes desta LP) — mesmo assim, adicionado o snippet identico (script + noscript) logo apos o bloco GTM, com o ID confirmado pelo usuario.
 
 ## Estrutura
 
