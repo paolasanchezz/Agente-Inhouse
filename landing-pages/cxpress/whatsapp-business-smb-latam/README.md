@@ -155,19 +155,18 @@ numa segunda linha no mobile.
 
 ### 2026-08-10 (4) — Logo do header e do footer: arte da campanha
 
-Victor enviou `Cxpress Small Business Painpoints.svg` pra substituir o logo no header e no footer.
-O arquivo e um **wrapper SVG em volta de dois PNGs** (2048×403: um RGB + uma mascara grayscale
-aplicada por `feColorMatrix`), ja com fundo transparente — renderiza certo tanto sobre navy quanto
-sobre branco.
+Header e footer passam a usar `Cxpress Small Business Painpoints.svg`, enviado pelo Victor,
+publicado **tal como veio** em `assets/logo-campana-smb.svg`.
 
-Publicado como `assets/logo-campana-smb.png`: mesma arte, extraida do wrapper (RGB + mascara como
-canal alpha), recortada no bbox e reamostrada pra 744×160. Isso e 4,2x o tamanho de exibicao
-(nitido em retina) e pesa **66 KB no lugar dos 192 KB** do SVG, que carrega o raster inteiro em
-2048px sem ganho visual nesse tamanho. Arte identica byte a byte a do arquivo original.
-
-- header: `./assets/logo-campana-smb.png` 177×38 (era `brand/.../logo-reversed.svg`)
-- footer: mesmo arquivo, 158×34
+- header: `./assets/logo-campana-smb.svg` 179×38 (era `brand/.../logo-reversed.svg`)
+- footer: mesmo arquivo, 160×34
 - o logo dentro do mockup animado do hero continua sendo o `logo-primary.svg` (fundo claro)
 
-Se preferirem manter o SVG original como container (192 KB), e so trocar o `src` — a arte
-renderizada e a mesma.
+**Erro cometido e corrigido no caminho:** primeiro publiquei um PNG extraido do SVG pra economizar
+peso (192 KB -> 66 KB). O arquivo e um wrapper com dois `<image>` (RGB + mascara) **e mais 12
+`<path>`**; extrai so os rasters, entao a cara do mascote saiu oca no resultado. O Victor viu na
+hora. Licao: **nao re-encodar arte de terceiro sem comparar os dois renders lado a lado em
+tamanho grande** — no tamanho do header (38px) a falha nao aparecia.
+
+O SVG pesa 192 KB porque carrega o raster inteiro em 2048px. Se algum dia sair uma versao
+vetorial de verdade dessa arte, vale trocar.
