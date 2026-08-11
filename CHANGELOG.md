@@ -12,6 +12,35 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Reverter o Passo 2.2 — a URL de conversão já funcionava
+### 2026-08-11 — `lp-integrar-form` v1.5.1
+
+Correção da entrada abaixo, no mesmo dia. O diagnóstico estava errado na consequência: o campo
+`url` do formulário Jotform realmente chega vazio, mas **ele não é a fonte do `url_conversao`
+no CRM**. Quem alimenta é o campo interno de URL de página do próprio Jotform, que resolve a URL
+da LP a partir do `parentURL` que o embed sempre transmite.
+
+Verificado no Supabase LATAM (66 leads dos últimos 10 dias, 64% com `url_conversao` preenchida):
+leads de LP **sem** shim algum chegam com a URL completa — `plataforma-integral-social-media`
+com a query string inteira do anúncio Meta, e outras com fragmento `#form` / `#demo`. Hash nunca
+é enviado ao servidor, o que prova que o valor vem do `location.href` da página-mãe, capturado
+no cliente. O contra-exemplo fecha o caso: um lead de teste submetido no formulário **standalone**
+(fora da LP) gravou `url_conversao = form.jotform.com/...` — a URL da página onde o form estava.
+
+Portanto o Passo 2.2 preenchia um campo que ninguém consome. Removido, junto com as três
+referências cruzadas (bullet do Passo 2, linha do relatório final, item 4 do checklist). No lugar
+ficou uma nota em "Notas" registrando a descoberta, para o diagnóstico errado não ser refeito.
+O retrofit das 45 LPs com embed `jsform`, que a auditoria do mesmo dia levantou, **foi cancelado**
+— não havia problema a corrigir.
+
+A `buzzmonitor/mcp-es` fica com o shim (decisão do Victor: está no ar, funcionando, sem erro de
+console — inócuo, não vale um novo deploy pra remover 10 linhas).
+
+Lição aplicável além deste caso: antes de "consertar" atribuição de LP, olhar o **destino**
+(`deals_latam_*_staging`, dashboards), não o campo vazio no formulário.
+
+---
+
 ## URL de conversão no form Jotform das LPs
 ### 2026-08-11 — `lp-integrar-form` v1.5.0 + `buzzmonitor/mcp-es`
 

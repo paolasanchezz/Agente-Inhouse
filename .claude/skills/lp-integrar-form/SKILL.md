@@ -3,7 +3,7 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §11).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.5.0
+version: 1.5.1
 ---
 
 # Skill: Integrar Formulario em Landing Page
@@ -69,49 +69,8 @@ Use `Edit` para trocar o bloco `<form ... >...</form>` por:
 
 Observacoes:
 - A classe `jotform-embed` vale para qualquer provedor (ativa o wrapper CSS canonico). Nao renomear por provedor.
-- **Jotform (`jsform`): incluir tambem o shim de `url` do Passo 2.2.** Sem ele o lead chega sem URL de conversao.
 - **NAO** herdar a classe `form` do mock. O `.form` no `lp-gerar` e um card visual (`background: #fff`, `padding: 40px`, `border`, `box-shadow`) e os provedores (Jotform/RD/HubSpot) ja vem com card proprio — manter `form` causa "card dentro de card" no live (incidente 2026-04-30).
 - Preserve animacao reveal: se o form mock tinha `class="form reveal"` com `style="--d: XXms"`, replicar **apenas o `reveal` + `style`** no `<div>` wrapper (descartar o `form`).
-
-## Passo 2.2: Shim de URL de conversao (v1.5.0 — so Jotform `jsform`)
-
-O script `jsform` monta a query do iframe com **a query string da LP** + `parentURL` + o que
-estiver em `window.qsProxy` (`FrameBuilder.get = qsProxy`). Resultado: UTM funciona (vem na URL
-do anuncio), mas o campo `url` do form **chega vazio** — e o campo interno que grava a URL da
-pagina guarda `form.jotform.com/...`, nao a LP. Lead entra no CRM sem `url_conversao`
-(diagnosticado em 2026-08-11 na `buzzmonitor/mcp-es`).
-
-Se o snippet e Jotform `jsform`, insira **antes** do `<script src=...>`, dentro do mesmo wrapper:
-
-```html
-<script type="text/javascript">
-  /* Entrega a URL da LP ao campo "url" do Jotform (vira url_conversao no CRM).
-     Sem isso o campo chega vazio e a conversao fica sem origem.
-     Accessor em vez de atribuicao simples: o proprio jsform roda
-     "var qsProxy = {}" e sobrescreveria um valor atribuido direto. */
-  Object.defineProperty(window, 'qsProxy', {
-    configurable: true,
-    get: function () { return { url: location.origin + location.pathname }; },
-    set: function () {}
-  });
-</script>
-```
-
-Regras:
-- **Nao** trocar por `var qsProxy = {...}` — o jsform sobrescreve e o shim vira no-op (testado).
-- `origin + pathname` de proposito: URL limpa, sem `fbclid`/UTM sujando o `url_conversao`. Os UTM
-  ja viajam nos campos proprios (`utm_source`, `utm_medium`, ...), preenchidos pela query da LP.
-- `qsProxy` e global: se a LP tiver dois embeds Jotform, um shim so — nao duplicar o bloco.
-- Nao se aplica a RD Station / HubSpot / embed generico. Nesses, pular este passo.
-- Isso garante o campo preenchido **no Jotform**. Se o mapeamento Jotform -> ActiveCampaign nao
-  ler esse campo, a dashboard continua sem enxergar — checar com o Victor, nao mexer na automacao
-  por conta propria.
-
-Como validar depois do deploy (console da LP no ar):
-
-```js
-document.querySelector('.jotform-embed iframe').src.includes('&url=')
-```
 
 ## Passo 2.5: Remover JS placeholder do form
 
@@ -154,7 +113,6 @@ Form integrado — {marca}/{slug}
 Provedor: {provedor}
 Form mock substituido: sim
 Wrapper CSS: aplicado ({"novo" ou "ja existia"})
-Shim de URL de conversao: {"aplicado" | "nao se aplica (provedor != Jotform jsform)"}
 
 Arquivo: landing-pages/{marca}/{slug}/index.html
 
@@ -162,7 +120,6 @@ Testar antes de publicar:
 1. Abrir index.html no browser local
 2. Conferir que iframe carrega dentro do wrapper (sem overflow)
 3. Submeter form-teste para ver resposta do provedor
-4. Jotform: conferir no console que a src do iframe traz `&url=` (Passo 2.2)
 
 Proximo: /lp-publicar {marca} {slug} [dominio]
 ```
@@ -173,3 +130,12 @@ Proximo: /lp-publicar {marca} {slug} [dominio]
 - Nao configurar CSP automaticamente — embeds externos + CSP estrito e complicado, deixar para ajuste manual caso usuario queira endurecer.
 - Se o usuario quiser reverter: `Edit` manual (trocar wrapper por `<form action="#" onsubmit="event.preventDefault()">` novamente).
 - GTM e responsabilidade de `lp-revisar` (Passo 3.5). Se a LP nao foi revisada antes, rode `/lp-revisar {marca}/{slug}` — ele injeta/corrige o snippet certo para marca+regiao.
+- **URL de conversao ja funciona sozinha — nao inventar shim pra isso.** O campo `url` do
+  formulario Jotform chega vazio, mas ele NAO e a fonte do `url_conversao` no CRM: quem alimenta
+  e o campo interno de URL de pagina do proprio Jotform, que resolve a URL da LP a partir do
+  `parentURL` que o embed sempre transmite. Verificado em 2026-08-11 no Supabase LATAM: leads de
+  LP **sem** qualquer shim (ex: `content.buzzmonitor.com/plataforma-integral-social-media`)
+  chegam com `url_conversao` completa, com query string e ate fragmento `#hash`. Um shim de
+  `window.qsProxy` pra preencher o campo `url` foi adicionado e revertido no mesmo dia — enche um
+  campo que ninguem consome. Antes de "consertar" atribuicao de LP, olhar o **destino**
+  (`deals_latam_*_staging` / dashboards), nao o campo vazio no formulario.
