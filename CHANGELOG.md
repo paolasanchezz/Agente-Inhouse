@@ -12,6 +12,31 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## URL de conversão no form Jotform das LPs
+### 2026-08-11 — `lp-integrar-form` v1.5.0 + `buzzmonitor/mcp-es`
+
+Teste do form da `mcp-es` mostrou que o campo `url` do Jotform chega **vazio** em toda
+LP que usa o embed `jsform`. O script do Jotform monta a query do iframe com a query
+string da LP + `parentURL` + `window.qsProxy` (`FrameBuilder.get = qsProxy`) — por isso
+UTM funciona (vem na URL do anúncio) e `url` não, já que ninguém passava esse par. O
+campo interno que grava a URL da página guarda `form.jotform.com/...`, não a LP. Efeito:
+lead entra no CRM sem `url_conversao`, invisível para a dashboard por LP.
+
+Correção no lado da LP, sem tocar no Jotform: um shim antes do `<script src>` que expõe
+`{ url: location.origin + location.pathname }` em `window.qsProxy`. Precisa ser
+`Object.defineProperty` com getter — o próprio `jsform` executa `var qsProxy = {}` e
+sobrescreveria uma atribuição simples (testado: a versão simples vira no-op). URL sem
+query de propósito, para não sujar o `url_conversao` com `fbclid`; os UTM continuam nos
+campos próprios.
+
+Aplicado em `buzzmonitor/mcp-es` e virou Passo 2.2 da skill, para LP nova já nascer com
+o campo. As outras LPs com embed `jsform` seguem sem o shim — retrofit pendente.
+
+Não cobre a ponta do CRM: se o mapeamento Jotform -> ActiveCampaign não ler esse campo,
+a dashboard continua sem enxergar.
+
+---
+
 ## Vercel Web Analytics nos guarda-chuvas (opt-in por domínio)
 ### 2026-08-06 — `build/build_umbrella.py` + manifesto de `content.buzzmonitor.com`
 

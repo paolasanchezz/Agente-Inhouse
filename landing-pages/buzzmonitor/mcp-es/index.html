@@ -1200,6 +1200,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="section-body">La integración está en rollout para clientes de Buzzmonitor. Déjanos tu contacto y te avisamos en cuanto esté disponible para tu workspace.</p>
       </div>
       <div class="jotform-embed reveal reveal-d1">
+        <script type="text/javascript">
+          /* Entrega a URL da LP ao campo "url" do Jotform (vira url_conversao no CRM).
+             Sem isso o campo chega vazio e a conversao fica sem origem.
+             Accessor em vez de atribuicao simples: o proprio jsform roda
+             "var qsProxy = {}" e sobrescreveria um valor atribuido direto. */
+          Object.defineProperty(window, 'qsProxy', {
+            configurable: true,
+            get: function () { return { url: location.origin + location.pathname }; },
+            set: function () {}
+          });
+        </script>
         <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
       </div>
     </div>
