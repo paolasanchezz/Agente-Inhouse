@@ -1,9 +1,9 @@
 === HERO ===
 OVERLINE: Cxpress · API Oficial de WhatsApp · 10 minutos
 H1: Por qué bloquean tu WhatsApp y cómo evitarlo
-SUB: Aprende cómo proteger tu cuenta y escalar tu atención con la API Oficial de WhatsApp.
+SUB: Aprende cómo proteger tu cuenta y escalar tu atención con la API Oficial de WhatsApp, sin cambiar de número ni perder tu historial.
 LABEL: 10 minutos
-CTA: ¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!
+CTA: ¡Inscríbete gratis!
 
 === LO QUE VAS A VER ===
 OVERLINE: LO QUE VAS A VER
@@ -49,7 +49,7 @@ H2: ¿Tu WhatsApp Business está en riesgo de bloqueo?
 BODY: Inscríbete al webinar y aprende cómo proteger tu WhatsApp Business, utilizar la API Oficial y escalar tu atención sin perder tu número ni tu historial.
 LABEL: 10 minutos
 LABEL: Online y en vivo
-CTA: ¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!
+CTA: ¡Inscríbete gratis!
 
 === FOOTER ===
 FOOTER: © 2026 Cxpress. Todos los derechos reservados.
@@ -58,4 +58,5 @@ FOOTER: © 2026 Cxpress. Todos los derechos reservados.
 # [NOTA 2026-08-10] Usuario pidio "algunas imagenes referente del whatsapp bloqueado". Decision: en vez de usar una captura real de la interfaz de WhatsApp (riesgo de marca registrada/derechos de autor de Meta, y no hay forma de descargar de fuente confiable dentro de las reglas de la sesion), se construyo una ilustracion propia directamente en HTML/CSS/SVG, ubicada en el hero, sobre el formulario de inscripcion.
 # [NOTA 2026-08-10] Usuario envio despues una imagen de referencia (logo oficial de WhatsApp con circulo de prohibicion) y pidio agrandar el elemento, sin fondo/caja, bien estructurado. Se explico al usuario que no se puede reproducir el logo oficial de WhatsApp (marca registrada de Meta, imagen de origen no confirmado) en una pieza comercial de Cxpress. Se rehizo el elemento como icono grande (200x200px) sin caja/fondo: circulo rojo de prohibicion sobre un icono generico de bocadillo de chat (SVG propio, no el logo de WhatsApp), con el mismo mensaje "Cuenta suspendida / Por uso no autorizado de la aplicacion" debajo, posicionado sobre el formulario.
 # Diseno y estructura: espejados de landing-pages/buzzmonitor/primer-listening-5-pasos/index.html (referencia explicita del usuario), con branding de Cxpress LATAM (brand/cxpress/tokens.json) en vez de Buzzmonitor. Seccion RESULTADOS (stats) agregada porque la copy la trae, aunque el modelo de referencia no la tenga (misma logica de "copy dita estrutura" aplicada en gestion-crisis).
+# [NOTA 2026-08-11] Usuario pidio (1) acortar el CTA (el original era muy largo pro el boton) a "¡Inscríbete gratis!" en las 4 ocurrencias (header, boton del hero, boton del formulario, CTA final) y (2) dar un poco mas de contexto en el SUB del hero. El SUB se amplio reutilizando una frase ya presente en el resto de la copy ("sin cambiar de número ni perder tu historial", ya usada en la bio de Laura y en el CTA final) en vez de inventar un dato nuevo.
 # Revisao anti-IA: sem achados (em-dash: 0).

@@ -37,3 +37,12 @@ Usuario perguntou se a LP tinha o Pixel LATAM correto (`1484678896147110`) depoi
 
 - Revalidado: em-dash 0, GTM 2/2, pixel `fbq('init'` 1x.
 - Nenhuma outra secao do HTML foi tocada.
+
+## Terceira passada (2026-08-11, pos-publicacao — CTA curto + SUB com contexto)
+
+Usuario achou o CTA "¡Inscríbete y aprende cómo evitar que bloqueen tu WhatsApp!" muito longo pro botao e pediu "¡Inscríbete gratis!". Tambem pediu mais contexto no SUB do hero.
+
+- **CTA:** trocado nas 4 ocorrencias (header-cta, botao do hero, botao de submit do formulario, CTA final) — conferido via `grep -c` (4 ocorrencias do texto novo, 0 do texto antigo).
+- **SUB:** ampliado com "sin cambiar de número ni perder tu historial", frase ja usada 2x no resto da copy (bio da Laura, CTA final) — reaproveitamento, nao invencao de dado novo.
+- **CSS revertido:** como o CTA curto nao precisa mais quebrar linha, os overrides feitos na segunda passada (`text-transform: none`, `white-space: normal`, tamanhos de fonte reduzidos em `.btn`, `.header-cta`, `.cm-submit`) foram revertidos pros valores originais do modelo de referencia `primer-listening-5-pasos` (uppercase, letter-spacing 0.06em, nowrap).
+- Revalidado: em-dash 0, ellipsis 0 literal, GTM 2/2, pixel 1x, `check_gtm_region.py` OK.
