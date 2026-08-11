@@ -152,3 +152,22 @@ voltar a ser usado se o time entregar a versao ES do motion original.
 
 Ajuste de passagem: a seta do CTA (`.btn__arrow`) some abaixo de 560px, senao quebrava sozinha
 numa segunda linha no mobile.
+
+### 2026-08-10 (4) — Logo do header e do footer: arte da campanha
+
+Victor enviou `Cxpress Small Business Painpoints.svg` pra substituir o logo no header e no footer.
+O arquivo e um **wrapper SVG em volta de dois PNGs** (2048×403: um RGB + uma mascara grayscale
+aplicada por `feColorMatrix`), ja com fundo transparente — renderiza certo tanto sobre navy quanto
+sobre branco.
+
+Publicado como `assets/logo-campana-smb.png`: mesma arte, extraida do wrapper (RGB + mascara como
+canal alpha), recortada no bbox e reamostrada pra 744×160. Isso e 4,2x o tamanho de exibicao
+(nitido em retina) e pesa **66 KB no lugar dos 192 KB** do SVG, que carrega o raster inteiro em
+2048px sem ganho visual nesse tamanho. Arte identica byte a byte a do arquivo original.
+
+- header: `./assets/logo-campana-smb.png` 177×38 (era `brand/.../logo-reversed.svg`)
+- footer: mesmo arquivo, 158×34
+- o logo dentro do mockup animado do hero continua sendo o `logo-primary.svg` (fundo claro)
+
+Se preferirem manter o SVG original como container (192 KB), e so trocar o `src` — a arte
+renderizada e a mesma.
