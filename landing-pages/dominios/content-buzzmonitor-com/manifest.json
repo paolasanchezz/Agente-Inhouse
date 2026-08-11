@@ -40,6 +40,16 @@
       "slug": "plataforma-integral-social-media",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/plataforma-integral-social-media"
+    },
+    {
+      "slug": "teste-de-maturidade",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade"
+    },
+    {
+      "slug": "teste-de-maturidade-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-es"
     }
   ],
   "extra_files": {
