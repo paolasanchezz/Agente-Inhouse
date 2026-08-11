@@ -1,0 +1,17 @@
+=== CONFIRMACAO ===
+H1: Cadastro realizado com sucesso.
+SUB: Em breve você receberá nosso contato.
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos os direitos reservados.
+
+# Copy-fonte: transcrição literal de https://home.cxpress.io/obrigado (site institucional GreatPages,
+# fora do pipeline de LPs), a pedido do usuário, REMOVENDO o bloco de WhatsApp a pedido explícito:
+# botão "Falar no WhatsApp" + texto "Caso prefira, clique no botão abaixo do Whatsapp e já seja
+# atendido. (Nossa equipe atende de segunda a sexta das 9h às 18h.)".
+# Precedente da remoção: video-atendimento-obrigado (2026-08-03) — quando o botão sai, o texto de
+# apoio sai também (sem ele, prometia contato sem caminho).
+# Menu/rodapé completo do site institucional (Soluções, Termos, Documentações, redes sociais) NÃO
+# foi replicado — decisão do usuário: seguir o padrão simples já usado nas thanks pages do pipeline
+# (logo + rodapé mínimo), não o site institucional completo.
+# Revisao anti-IA: nao aplicavel — copy 100% preservada da fonte (apenas remocao, sem escrita nova).

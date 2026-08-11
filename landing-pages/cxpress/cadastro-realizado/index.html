@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Cadastro realizado com sucesso · Cxpress</title>
+  <meta name="description" content="Seu cadastro foi realizado com sucesso. Em breve você receberá nosso contato.">
+  <meta name="theme-color" content="#232960">
+  <meta name="author" content="Cxpress">
+  <!-- Pagina pos-acao (thanks page): noindex deliberado, precedente video-atendimento-obrigado / conheca-a-cxpress-confirmado -->
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap">
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --primary: #4A69BD;
+      --primary-dark: #232960;
+      --primary-light: #C1C7FF;
+      --primary-lighter: #D7E2FF;
+      --accent: #EF863C;
+      --accent-light: #FFDCC3;
+      --neutral-0: #ffffff;
+      --neutral-100: #f5f5f5;
+      --neutral-700: #4a4a4a;
+
+      --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --container-max: 1200px;
+      --container-narrow: 720px;
+      --container-pad: 24px;
+
+      --radius-pill: 9999px;
+      --shadow-lg: 0 24px 60px rgba(35, 41, 96, 0.14);
+      --ease: cubic-bezier(.22,.8,.22,1);
+    }
+
+    /* ============ RESET ============ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--neutral-0);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    h1 { font-family: var(--font-heading); margin: 0; line-height: 1.2; }
+    p { margin: 0; }
+    img { max-width: 100%; display: block; }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--primary-dark); color: var(--neutral-0);
+      padding: 12px 20px; border-radius: 0 0 9px 0;
+      font-family: var(--font-heading); font-weight: 700; font-size: 15px;
+      z-index: 100;
+    }
+    .skip-link:focus { left: 0; }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+    .container--narrow { max-width: var(--container-narrow); }
+
+    /* ============ HEADER ============ */
+    .header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+    }
+    .header .container { display: flex; align-items: center; justify-content: center; }
+    .header__logo img { height: 34px; width: auto; }
+
+    /* ============ SECAO CONFIRMACAO ============ */
+    .confirmacao {
+      position: relative;
+      padding: clamp(80px, 12vw, 140px) 0 clamp(96px, 13vw, 150px);
+      background: var(--neutral-0);
+      overflow: hidden;
+    }
+    .confirmacao::before {
+      content: ""; position: absolute; pointer-events: none;
+      width: 66px; height: 210px;
+      background: var(--primary-lighter);
+      border-radius: var(--radius-pill);
+      top: -60px; right: 6%;
+    }
+    .confirmacao::after {
+      content: ""; position: absolute; pointer-events: none;
+      width: 46px; height: 150px;
+      border: 3px solid var(--accent);
+      border-radius: var(--radius-pill);
+      bottom: -40px; left: 4%;
+    }
+    .confirmacao .container--narrow { position: relative; z-index: 1; text-align: center; }
+
+    .confirmacao__icon {
+      width: 64px; height: 64px; margin: 0 auto 32px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: grid; place-items: center;
+    }
+    .confirmacao__icon svg { width: 30px; height: 30px; }
+
+    .confirmacao h1 {
+      font-size: clamp(28px, 3.6vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    .confirmacao__sub {
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--neutral-700);
+      max-width: 32em;
+      margin: 0 auto;
+    }
+
+    /* ============ REVEAL ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .12s; }
+    .reveal-delay-2 { transition-delay: .24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--primary-dark);
+      color: var(--primary-light);
+      padding: 44px 0;
+    }
+    .footer .container {
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px;
+    }
+    .footer__logo img { display: block; height: 30px; width: auto; }
+    .footer p { font-size: 15px; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4XDWHL3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="https://home.cxpress.io" class="header__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="" width="140" height="34">
+      </a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="confirmacao" aria-labelledby="titulo-confirmacao">
+      <div class="container container--narrow">
+        <div class="confirmacao__icon reveal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#EF863C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h1 id="titulo-confirmacao" class="reveal reveal-delay-1">Cadastro realizado com sucesso.</h1>
+        <p class="confirmacao__sub reveal reveal-delay-2">Em breve você receberá nosso contato.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <a href="https://home.cxpress.io" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="124" height="30">
+      </a>
+      <p>© 2026 Cxpress. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      function revealAll() {
+        for (var i = 0; i < els.length; i++) els[i].classList.add('is-visible');
+      }
+      if (!('IntersectionObserver' in window)) { revealAll(); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+      setTimeout(revealAll, 1500);
+    })();
+  </script>
+</body>
+</html>
