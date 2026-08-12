@@ -9,7 +9,7 @@ Par de páginas no modelo da CX `content.cxpress.io/video-atendimento`: uma pág
 
 **Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-social-listening-confirmado` → assiste ao vídeo → CTA de WhatsApp.
 
-**Vídeo:** `https://youtu.be/fflNMhqjr48` (embed `youtube-nocookie.com/embed/fflNMhqjr48`).
+**Vídeo:** `https://youtu.be/fflNMhqjr48` (embed `youtube.com/embed/fflNMhqjr48`).
 
 ## Fonte da copy (2026-08-12)
 

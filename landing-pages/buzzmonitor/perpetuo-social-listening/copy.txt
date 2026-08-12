@@ -65,7 +65,7 @@ robots: noindex, follow
 --- VÍDEO ---
 H1: Seu primeiro social listening em 5 passos.
 SUB: Aperte o play. A gente monta o primeiro monitoramento de marca do zero, direto na Buzzmonitor.
-EMBED: youtube-nocookie.com/embed/fflNMhqjr48
+EMBED: youtube.com/embed/fflNMhqjr48
 CTA: (removido em 2026-08-12 — era duplicado; o CTA fica só no bloco CTA FINAL abaixo)
 
 --- PROVA ---
