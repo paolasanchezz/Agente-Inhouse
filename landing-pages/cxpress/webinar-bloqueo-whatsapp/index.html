@@ -258,7 +258,7 @@
     /* ============ HERO ============ */
     .hero {
       position: relative;
-      padding: 28px 0 120px;
+      padding: 24px 0 64px;
       overflow: hidden;
       background: var(--neutral-0);
     }
@@ -266,7 +266,7 @@
       display: grid;
       grid-template-columns: 1.08fr 0.92fr;
       gap: 72px;
-      align-items: start;
+      align-items: center;
     }
     .hero-kicker {
       display: inline-flex;
@@ -296,13 +296,12 @@
       50% { opacity: .4; transform: scale(1.3); }
     }
     .hero h1 {
-      font-size: clamp(30px, 3.4vw, 44px);
+      font-size: clamp(30px, 4.2vw, 50px);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       margin-bottom: 22px;
       isolation: isolate;
-      text-wrap: balance;
     }
     .hero h1 .mark {
       position: relative;
@@ -353,27 +352,38 @@
       gap: 22px;
       min-height: auto;
     }
+    /* Conjunto de midia do hero (imagem + formas geometricas) — coluna esquerda, acima do texto */
+    .hero-media {
+      position: relative;
+      width: 300px;
+      max-width: 100%;
+      min-height: 236px;
+      margin: 0 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .decor {
       position: absolute;
       border-radius: var(--radius-pill);
       z-index: 0;
     }
     .decor-1 {
-      width: 110px; height: 260px;
+      width: 92px; height: 210px;
       background: var(--primary-lighter);
-      top: 10px; left: -10px;
+      top: 6px; left: 4px;
       transform: rotate(-14deg);
     }
     .decor-2 {
-      width: 56px; height: 170px;
+      width: 48px; height: 140px;
       background: var(--accent);
-      top: -30px; right: 30px;
+      top: -14px; right: 30px;
       transform: rotate(20deg);
     }
     .decor-3 {
-      width: 32px; height: 96px;
+      width: 28px; height: 84px;
       background: var(--primary);
-      bottom: 40px; right: -6px;
+      bottom: 20px; right: 6px;
       transform: rotate(-8deg);
     }
 
@@ -951,13 +961,20 @@
     .footer a:hover { color: var(--accent); }
 
     /* ============ MOBILE ============ */
+    /* Hero empilha antes (1080px): abaixo disso a coluna 2-col ficaria estreita demais e o H1 quebraria em 4 linhas */
+    @media (max-width: 1080px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-media { margin: 0 auto 28px; }
+      .hero-form { max-width: 100%; }
+    }
     @media (max-width: 920px) {
       :root {
         --section-y: var(--section-y-sm);
         --container-pad: 20px;
       }
-      .hero { padding: 22px 0 88px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero { padding: 20px 0 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-media { margin: 0 auto 28px; min-height: 210px; }
       .hero-form { max-width: 100%; padding: 24px 20px 20px; }
       .hero-form-title { font-size: 20px; }
       .decor-1, .decor-2, .decor-3 { display: none; }
@@ -1012,12 +1029,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
+            <div class="hero-media">
+              <span class="decor decor-1" aria-hidden="true"></span>
+              <span class="decor decor-2" aria-hidden="true"></span>
+              <span class="decor decor-3" aria-hidden="true"></span>
+
+              <div class="blocked-icon" role="img" aria-label="Ilustración de un chat de WhatsApp Business bloqueado por uso no autorizado de la aplicación">
+                <img class="blocked-icon-img" src="./assets/Icone_WhatsApp.svg" alt="" width="200" height="200" aria-hidden="true">
+                <div class="blocked-icon-caption">
+                  <p class="blocked-icon-title">Cuenta suspendida</p>
+                  <p class="blocked-icon-sub">Por uso no autorizado de la aplicación</p>
+                </div>
+              </div>
+            </div>
+
             <span class="hero-kicker">
               <span class="dot" aria-hidden="true"></span>
               Cxpress · API Oficial de WhatsApp · 10 minutos
             </span>
             <h1>
-              Por qué <span class="mark">bloquean tu</span><br>WhatsApp y cómo evitarlo
+              Por qué<br>
+              <span class="mark">bloquean tu WhatsApp</span><br>
+              y cómo evitarlo
             </h1>
             <p class="hero-body">Aprende cómo proteger tu cuenta y escalar tu atención con la API Oficial de WhatsApp, sin cambiar de número ni perder tu historial.</p>
             <div class="hero-actions">
@@ -1032,18 +1065,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <div class="hero-visual">
-            <span class="decor decor-1" aria-hidden="true"></span>
-            <span class="decor decor-2" aria-hidden="true"></span>
-            <span class="decor decor-3" aria-hidden="true"></span>
-
-            <div class="blocked-icon" role="img" aria-label="Ilustración de un chat de WhatsApp Business bloqueado por uso no autorizado de la aplicación">
-              <img class="blocked-icon-img" src="./assets/Icone_WhatsApp.svg" alt="" width="200" height="200" aria-hidden="true">
-              <div class="blocked-icon-caption">
-                <p class="blocked-icon-title">Cuenta suspendida</p>
-                <p class="blocked-icon-sub">Por uso no autorizado de la aplicación</p>
-              </div>
-            </div>
-
             <aside class="hero-form" id="form" aria-label="Registro para el webinar">
               <div class="hero-form-head">
                 <h2 class="hero-form-title">Reserva tu lugar</h2>
