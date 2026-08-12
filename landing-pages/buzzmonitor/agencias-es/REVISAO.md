@@ -1,4 +1,4 @@
-# Revisao LP — buzzmonitor/plataforma-integral-agencias
+# Revisao LP — buzzmonitor/agencias-es
 
 **Data:** 2026-08-12
 **Auditores:** frontend-design (review mode, com auditoria de fidelidade da copy) + web-design-guidelines (a11y/semantica)
@@ -22,9 +22,9 @@
 
 ## Decisoes pendentes do Victor (nao aplicadas de proposito)
 
-- [ ] **"Monitorización de Redes Sociales"** (card Modulos): grafia de Espanha; padrao ES-LATAM pede "Monitoreo". Mantido literal da LP original (que atende tambem Espanha). Trocar?
+- [x] **"Monitorización" → "Monitoreo de Redes Sociales"** — aprovado pelo Victor em 2026-08-12, aplicado no HTML e no copy.txt.
 - [ ] **Contraste do gradiente orange→pink** (btn-primary, cta-box, gradient-text): texto branco/14-16px fica ~2.6-4.4:1 na ponta laranja, abaixo de AA. **Identico a LP design base aprovada e no ar** (plataforma-integral-social-media) — corrigir aqui divergiria a familia visual. Se quiser resolver, o certo e escurecer o gradiente nas DUAS LPs (ex.: partir de #d95400) ou usar navy nos cta-boxes.
-- [ ] **Container GTM**: usei GTM-MKQBX2MG (tracking.json latam, mesmo da LP design base no mesmo dominio — e o que o gate de CI valida). Registro: o ecossistema GreatPages LATAM ES usa GTM-5PNK2VZ. Confirmar qual deve medir esta LP antes de rodar midia.
+- [x] **Container GTM**: Victor confirmou em 2026-08-12 — manter o container padrao de Buzz LATAM (GTM-MKQBX2MG, tracking.json).
 - [ ] **Exclamacoes**: 8+ "¡...!" replicadas da LP original (teto anti-IA = 2). Sugestao em copy.txt: manter so nos 3 CTAs de botao.
 - [ ] "Informes" (~9x) vs "reportes" (padrao LATAM): mantido "informes" por fidelidade (original + design base usam).
 
@@ -46,5 +46,5 @@
 
 ## Proximos passos
 
-- Design aprovado? → `/lp-integrar-form buzzmonitor/plataforma-integral-agencias "<snippet>"` (campos do form real documentados no copy.txt)
-- Publicar: `/lp-publicar buzzmonitor plataforma-integral-agencias content.buzzmonitor.com` (guarda-chuva CI: manifesto + PR)
+- Design aprovado? → `/lp-integrar-form buzzmonitor/agencias-es "<snippet>"` (campos do form real documentados no copy.txt)
+- Publicar: `/lp-publicar buzzmonitor agencias-es content.buzzmonitor.com` (guarda-chuva CI: manifesto + PR)

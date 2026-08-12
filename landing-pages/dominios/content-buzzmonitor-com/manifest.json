@@ -7,6 +7,11 @@
   "web_analytics": true,
   "lps": [
     {
+      "slug": "agencias-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/agencias-es"
+    },
+    {
       "slug": "buzz-academy-experience",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/buzz-academy-experience"

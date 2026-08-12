@@ -73,8 +73,8 @@ LIST ITEM: Alertas de términos sensibles relacionados con tu marca
 LIST ITEM: ChatGPT para mejorar respuestas
 LIST ITEM: Atención mediante tickets
 
-H3: Monitorización de Redes Sociales
-# [SUGESTAO idioma, CRITICO] "Monitorización" e grafia de Espanha (Regla de Oro 3 do padrao ES-LATAM). Alternativa LATAM: "Monitoreo de Redes Sociales". A LP original usa "Monitorización" (a marca opera tambem na Espanha); decisao com o Victor.
+H3: Monitoreo de Redes Sociales
+# RESOLVIDO 2026-08-12: Victor aprovou "Monitoreo de Redes Sociales" (padrao ES-LATAM) no lugar de "Monitorización" da LP original.
 BODY: Descubre tendencias, sentimientos y oportunidades con monitoreo avanzado de datos de redes sociales en tiempo real.
 LIST ITEM: Sentimiento sobre la marca
 LIST ITEM: Mapeo del público y de sus intereses

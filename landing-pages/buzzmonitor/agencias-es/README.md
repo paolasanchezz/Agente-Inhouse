@@ -1,9 +1,9 @@
-# LP Buzzmonitor — plataforma-integral-agencias
+# LP Buzzmonitor — agencias-es (ex-plataforma-integral-agencias, renomeada 2026-08-12 a pedido do Victor)
 
 **Gerado em:** 2026-08-12
 **Copy-fonte:** `copy.txt` (réplica literal de https://contenido.getbuzzmonitor.com/agencias, estruturada via /lp-preparar)
 **Design base:** `landing-pages/buzzmonitor/plataforma-integral-social-media` (mesmo design system: paleta orange/pink/ink, Inter, gradient-text, reveal, quote-cards, logo marquee)
-**Região/idioma:** LATAM · es-419 (resolvida manualmente — slug sem sufixo, mas LP é ES pra `content.buzzmonitor.com`; o gate de CI resolve latam pelo `<html lang="es-419">`)
+**Região/idioma:** LATAM · es-419 (slug com sufixo `-es` resolve latam na cascata; confirmado pelo gate de CI)
 **GTM:** GTM-MKQBX2MG (latam, tracking.json) + Meta Pixel 935436740448328 (mesmo par da LP design base, mesmo domínio)
 
 ## Estrutura
@@ -29,11 +29,11 @@
 ## Estado
 
 - [x] HTML gerado
-- [x] OG image 1200×630 → `assets/og-plataforma-integral-agencias.png`
+- [x] OG image 1200×630 → `assets/og-agencias-es.png`
 - [x] Validações: em-dash 0 · SEO completo (1 desc, 10 og, 4 twitter, JSON-LD parseia) · GTM gate OK (latam/MKQBX2MG)
-- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/plataforma-integral-agencias`
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/plataforma-integral-agencias [snippet]` (campos do form real documentados em copy.txt)
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor plataforma-integral-agencias content.buzzmonitor.com`
+- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/agencias-es`
+- [x] Formulário integrado — Jotform `241825239057661` (mesmo form da LP plataforma-integral-social-media; 2026-08-12)
+- [ ] Publicado — rodar `/lp-publicar buzzmonitor agencias-es content.buzzmonitor.com`
 
 ## Assets referenciados
 
@@ -42,7 +42,7 @@
 - `./assets/social-listening-es.mp4` + `social-listening-es-poster.jpg` (hero — origem: ia-para-social-listening-es)
 - `./assets/ai-insights.png`, `tela-computador-bm2.png`, `monitoreo-de-videos.png`, `crises-1.png`, `crises-2.jpg`, `img-relatorios-dashboard.png` (prints — origem: ia-para-social-listening-es)
 - `./assets/logos-agencias/*` e `./assets/logos-clientes/*` (origem: plataforma-integral-social-media)
-- `./assets/og-plataforma-integral-agencias.png`
+- `./assets/og-agencias-es.png`
 
 ## Notas
 
