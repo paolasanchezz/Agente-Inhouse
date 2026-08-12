@@ -15,7 +15,8 @@ Duplicada de [`content.cxpress.io/banimento-whatsapp-clinicas`](https://content.
 2. **PLATAFORMA**: H2 trocado de "A estrutura que o seu número ganha na plataforma" para "Descubra tudo o que é possível fazer com a plataforma Cxpress!".
 3. **FECHO removida**: a seção inteira ("Seu número levou anos para entrar na agenda do paciente. Não deixe um improviso tirar ele de lá." + CTA) foi excluída do HTML e do `copy.txt`.
 4. **Metadados** (title, canonical, description, OG, Twitter Card, JSON-LD) atualizados pro novo slug e pro novo eixo de mensagem (plataforma unificada, não mais banimento). OG image renomeada para `assets/og-plataforma-atendimento-clinicas.png`.
-5. Demais seções (CLIENTES, FORM, BENEFICIOS, PROVA, FAQ, QUEM SOMOS, FOOTER), CSS, assets e formulário (Jotform `261027639617663`) idênticos à referência — não foram pedidos pelo usuário.
+5. Demais seções (CLIENTES, FORM, BENEFICIOS, PROVA, QUEM SOMOS, FOOTER), CSS, assets e formulário (Jotform `261027639617663`) idênticos à referência — não foram pedidos pelo usuário.
+6. **FAQ trocada (pós-publicação, 2026-08-12)**: as 5 perguntas herdadas de `banimento-whatsapp-clinicas` (tema banimento/API oficial) foram substituídas pelas 6 perguntas literais da LP [`whatsapp-business-smb`](https://content.cxpress.io/whatsapp-business-smb) (pré-requisitos, WhatsApp CoEx, IA no N1, múltiplos números, canais integráveis, integração de CRM) — pedido explícito do usuário, copiado verbatim do source dessa LP.
 
 ## Estrutura
 
@@ -25,17 +26,18 @@ Duplicada de [`content.cxpress.io/banimento-whatsapp-clinicas`](https://content.
 - BENEFICIOS
 - PROVA (stats)
 - PLATAFORMA (features)
-- FAQ
+- FAQ (herdada de `whatsapp-business-smb` — ver item 6 acima)
 - QUEM SOMOS
 - FOOTER
 
 ## Estado
 
 - [x] HTML duplicado + edições de copy aplicadas
-- [ ] Revisão (`/lp-revisar cxpress/plataforma-atendimento-clinicas`)
+- [x] Revisão (`/lp-revisar` — 0 críticos aplicáveis; ver `REVISAO.md`)
+- [x] Publicado — `https://content.cxpress.io/plataforma-atendimento-clinicas` (PR #256, merge automático + deploy CI)
+- [x] FAQ trocada pela de `whatsapp-business-smb` (pós-publicação, 2026-08-12)
 - [ ] Formulário — herdado da referência (Jotform `261027639617663`); confirmar com o usuário se é o form correto pra esta LP ou se precisa trocar
 - [ ] OG image — herdada da referência (mesma foto/hero), só renomeada. Se quiser OG dedicada ao novo H1, regenerar.
-- [ ] Publicado — rodar `/lp-publicar cxpress plataforma-atendimento-clinicas [dominio]`
 
 ## Assets referenciados
 

@@ -54,16 +54,19 @@ BODY: Transforme as estatísticas do atendimento em painéis intuitivos, com os 
 
 === FAQ ===
 H2: Dúvidas frequentes
-H3: Por que empresas são banidas do WhatsApp?
-BODY: Os casos mais comuns envolvem violação dos termos de uso da Meta: várias pessoas atendendo pelo aplicativo num celular compartilhado, ferramentas não-oficiais de multiatendimento e disparos em massa fora das regras.
-H3: A Cxpress usa a API oficial do WhatsApp?
-BODY: Sim. A integração é feita pela API oficial, o caminho que a Meta autoriza para o atendimento de empresas.
-H3: Vou precisar trocar de número para usar a API oficial?
-BODY: Não. Com o WhatsApp CoEx, o mesmo número pode operar no aplicativo e na API oficial ao mesmo tempo.
+H3: Quais são os pré-requisitos para usar a Cxpress?
+BODY: Para conseguir usar a ferramenta é necessário ter um site ativo e um colaborador responsável pela administração da plataforma.
+H3: Posso usar o mesmo número no WhatsApp Business e na Cxpress?
+BODY: Sim. A Cxpress já oferece suporte ao WhatsApp CoEx, também conhecido como Coexistência. Com esse recurso, sua empresa pode usar o mesmo número tanto no aplicativo WhatsApp Business, no celular, quanto na API oficial integrada à Cxpress.
+BODY: Na prática, isso permite manter a facilidade do app e, ao mesmo tempo, contar com recursos profissionais de gestão, automação e atendimento em equipe pela Cxpress.
+H3: A inteligência artificial (IA) faz o atendimento sozinha?
+BODY: Não. A IA da Cxpress realiza apenas o primeiro nível de atendimento (N1), respondendo a perguntas sobre serviços e produtos. Um colaborador humano deve estar disponível para questões mais complexas que o chatbot não saiba responder ou quando o cliente desejar falar com um atendente humano.
 H3: Posso conectar mais de um número à Cxpress?
-BODY: Sim, é possível conectar mais de um número na mesma operação.
+BODY: Sim, é possível.
 H3: Quais canais podem ser integrados?
 BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+H3: A plataforma é compatível com integração de CRM?
+BODY: Sim, é possível integrar com sistemas de CRM, porém é necessário passar por uma análise prévia da nossa equipe técnica para garantir que tudo funcione perfeitamente.
 
 === QUEM SOMOS ===
 H2: Quem somos
@@ -77,5 +80,6 @@ FOOTER: Cxpress é um produto Elife. © 2026
 FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 
 # Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0) — checado no HERO e no H2 de PLATAFORMA, unicos textos novos desta variacao.
-# Nota (2026-08-12): LP duplicada de banimento-whatsapp-clinicas a pedido do usuario, com H1/SUB do HERO reescritos (foco em plataforma unificada de atendimento, nao em risco de banimento), H2 de PLATAFORMA reescrito e secao FECHO removida. Demais secoes (CLIENTES, FORM, BENEFICIOS, PROVA, FAQ, QUEM SOMOS, FOOTER) mantidas identicas a referencia. Segmento-alvo: "Clínicas e serviços de saúde" (ja listado em brand-manifest.json > audience.segments).
+# Nota (2026-08-12): LP duplicada de banimento-whatsapp-clinicas a pedido do usuario, com H1/SUB do HERO reescritos (foco em plataforma unificada de atendimento, nao em risco de banimento), H2 de PLATAFORMA reescrito e secao FECHO removida. Demais secoes (CLIENTES, FORM, BENEFICIOS, PROVA, QUEM SOMOS, FOOTER) mantidas identicas a referencia. Segmento-alvo: "Clínicas e serviços de saúde" (ja listado em brand-manifest.json > audience.segments).
+# Nota (2026-08-12, pos-publicacao): secao FAQ trocada a pedido do usuario pela FAQ literal da LP whatsapp-business-smb (mesmas 6 perguntas/respostas, copiadas verbatim do source dessa LP).
 # Assets compartilhados via brand/cxpress/assets/plataforma/ (mesmos da referência), exceto imagem do hero (tema clínica, em landing-pages/cxpress/plataforma-atendimento-clinicas/assets/). Form Jotform 261027639617663 na 2a dobra / secao FORM (mesmo embed herdado de banimento-whatsapp-clinicas).
