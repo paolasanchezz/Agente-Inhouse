@@ -111,6 +111,16 @@
       "source": "landing-pages/buzzmonitor/oferta-webinar-mcp"
     },
     {
+      "slug": "perpetuo-case-youse",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-case-youse"
+    },
+    {
+      "slug": "perpetuo-case-youse-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-case-youse-confirmado"
+    },
+    {
       "slug": "perpetuo-monitoramento-concorrentes",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-concorrentes"

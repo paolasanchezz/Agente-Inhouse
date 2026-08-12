@@ -1,0 +1,69 @@
+# Copy LP · Buzzmonitor · perpetuo-case-youse (+ tks) · PT-BR
+# Par captura -> tks, mesma estrutura dos pares perpetuo-social-listening / perpetuo-monitoramento-concorrentes.
+# Estética captura: dark premium; tks clara. noindex de review.
+# Vídeo embedado SÓ na tks: https://www.youtube.com/watch?v=pv9r6IKA4fg (embed www.youtube.com/embed/pv9r6IKA4fg)
+#
+# FONTE (2026-08-12): briefing da Catharina.
+# TEMA: Como a Youse cortou o SLA de 36h pra 3h (case). ESTÁGIO: BOFU. Fonte do case: blog Buzzmonitor.
+# PROMESSA: entender o que a Youse mudou no SAC quando trouxe o atendimento pra dentro de casa, e o que
+#   você pode replicar pra fazer o mesmo no seu time.
+# TOM DE CASE (regra Catharina): aposto do que a empresa faz ("a Youse, seguradora digital"); "antes"
+#   factual (SAC fora de casa, SLA 36h), sem dramatizar. Fatos grounded: SLA 36h->3h, equipe 75% menor.
+
+=== PÁGINA 1 · CAPTURA (perpetuo-case-youse) ===
+--- META ---
+title: Vídeo · Como a Youse cortou o SLA de 36h pra 3h | Buzzmonitor
+robots: noindex, follow
+
+--- HERO ---
+OVERLINE: Webinar gratuito · Case Youse
+H1: Como a Youse cortou o SLA de 36h pra 3h
+LEAD (2 blocos, com espaço entre eles):
+  1) A Youse, seguradora digital, atendia com o SAC rodando fora de casa e um SLA de 36 horas. Ao trazer o atendimento pra dentro, com a Buzzmonitor, o SLA caiu pra 3 horas, com uma equipe 75% menor.
+FOCO (laranja, grande): Dá pra replicar. Preencha e assista ->
+TRUST: Gratuito · Direto na plataforma · Sem planilha
+
+--- FORMULÁRIO (MOCK) ---
+CAMPOS: Nome · E-mail corporativo · Empresa
+CTA: Quero assistir  (submit redireciona pra /perpetuo-case-youse-confirmado)
+
+--- SEÇÃO 1 · O QUE VOCÊ VAI APRENDER (teaser) ---
+LABEL: O webinar
+H2: O que você vai aprender:
+SUB: O que a Youse mudou no atendimento quando trouxe o SAC pra dentro de casa, e o que dá pra replicar no seu time.
+CARD 1 — O que a Youse mudou no SAC: O que mudou no atendimento quando o SAC saiu de fora e veio pra dentro de casa.
+CARD 2 — De 36h para 3h, com equipe menor: Como o SLA caiu de 36 horas para 3, com uma equipe 75% menor.
+CARD 3 — O que você replica no seu time: O que dá pra tirar desse case e aplicar no atendimento da sua marca.
+
+--- SEÇÃO 2 · A BUZZMONITOR (autoridade — A CONFIRMAR com Victor) ---
+H2: Mais de 1.000 marcas já contam com a Buzzmonitor.
+STATS: 1.000+ marcas · 300+ contas enterprise · 500+ agências · 10 mil usuários ativos
+MARQUEE: Youse · Turbi · Brisanet · Hering · Bionatural · Caffeine Army · Herval · Softys
+# Confirmar números e uso das marcas com Victor.
+
+--- CTA FINAL ---
+H2: Pronto pra fazer o mesmo no seu time?
+SUB: Assista ao vídeo e entenda a melhor forma de fazer isso.
+CTA: Assistir o vídeo agora (âncora #form)
+
+=== PÁGINA 2 · TKS (perpetuo-case-youse-confirmado) ===
+# Fundo branco, noindex. Vídeo + CTA.
+--- META ---
+title: Seu vídeo está pronto · Case Youse: SLA de 36h para 3h | Buzzmonitor
+robots: noindex, follow
+
+--- VÍDEO ---
+H1: Como a Youse cortou o SLA de 36h pra 3h.
+SUB: Aperte o play. Veja o que a Youse mudou no atendimento e o que dá pra replicar no seu time.
+EMBED: www.youtube.com/embed/pv9r6IKA4fg
+
+--- CTA FINAL ---
+H2: Agora é a sua vez.
+SUB: Faça o mesmo no seu atendimento.
+CTA: Fale com um dos nossos especialistas e teste na prática -> WhatsApp (LINK PENDENTE; hoje temp -> buzzmonitor.com)
+
+# Anti-IA: 0 em-dash; "a Buzzmonitor" (feminino); tom de case (aposto + antes factual, sem dramatizar).
+# Clonado do par perpetuo-monitoramento-concorrentes (2026-08-12) e adaptado pro case Youse.
+# Embed usa youtube.com (NÃO nocookie): o CSP do guarda-chuva só libera youtube.com no frame-src.
+# A CONFIRMAR: dados do case (SLA 36h->3h, equipe 75% menor, "seguradora digital") — grounded nos cases antigos, mas conferir com o Victor.
+# PENDENTE: (1) link do WhatsApp; (2) OG dedicada (hoje reusa og-primeiro-listening-5-passos.png); (3) números/marcas (Victor); (4) form real; (5) flip index quando final.
