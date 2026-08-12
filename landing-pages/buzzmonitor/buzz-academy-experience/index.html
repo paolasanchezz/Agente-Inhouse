@@ -888,6 +888,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 })();
+
+(function () {
+  var aligned = null, alignedAt = -1;
+
+  function align(target) {
+    var root = document.documentElement;
+    var prev = root.style.scrollBehavior;
+    target.classList.add('visible');
+    root.style.scrollBehavior = 'auto';
+    target.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = prev;
+    aligned = target;
+    alignedAt = Math.round(window.pageYOffset);
+  }
+
+  function openFromHash(alignEvenIfOpen) {
+    var raw = (location.hash || '').slice(1);
+    if (!raw) { return; }
+    var id;
+    try { id = decodeURIComponent(raw); } catch (err) { id = raw; }
+    var target = document.getElementById(id);
+    if (!target || target.tagName !== 'DETAILS') { return; }
+    var opened = false;
+    if (!target.open) {
+      target.open = true;
+      opened = true;
+    }
+    if (opened || alignEvenIfOpen) { align(target); }
+  }
+
+  openFromHash(true);
+  window.addEventListener('hashchange', function () { openFromHash(false); });
+  window.addEventListener('load', function () {
+    if (aligned && Math.abs(Math.round(window.pageYOffset) - alignedAt) < 4) { align(aligned); }
+  });
+})();
 </script>
 </body>
 </html>

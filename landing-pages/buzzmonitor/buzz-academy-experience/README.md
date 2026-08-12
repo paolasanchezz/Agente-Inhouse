@@ -24,6 +24,7 @@ Sem seção de cadastro/form (removida na v2 — CTA vai direto pra plataforma).
 - [x] Revisão (frontend-design review + web-design-guidelines) — 2026-08-03; contraste v2 re-verificado por script (20 pares AA OK)
 - [x] OG image 1200×630 (`assets/og-buzz-academy-experience.png`)
 - [x] Publicado em content.buzzmonitor.com via CI (PR #183; v2 em PR seguinte)
+- [x] Deep link de trilha (`#trilha-growth`, `#trilha-branding`, `#trilha-intelligence`) abre o `<details>` e alinha o scroll no load e no `hashchange` — 2026-08-12. Antes, chegar pelo link deixava o acordeão fechado (o abrir só estava ligado ao clique interno). Clique nas pills segue com scroll suave nativo.
 
 OG image regenerada na v2 (preta/azul, gradient no "Experience") — consistente com a página.
 
