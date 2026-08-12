@@ -48,3 +48,46 @@
 
 - Design aprovado? → `/lp-integrar-form buzzmonitor/agencias-es "<snippet>"` (campos do form real documentados no copy.txt)
 - Publicar: `/lp-publicar buzzmonitor agencias-es content.buzzmonitor.com` (guarda-chuva CI: manifesto + PR)
+
+---
+
+## Enxugamento estrutural (2026-08-12, tarde)
+
+Victor: *"ficou linda, porem ficou extremamente grande, com excesso de coisas"*. Publico-alvo
+definido: **analista de agencia que nunca ouviu falar da Buzzmonitor** e quer automatizar
+relatorios, unificar atendimento e automatizar social listening.
+
+**19 blocos -> 8 secoes. ~12.700px -> ~7.840px (-38%).** Nenhum texto novo inventado: todo
+H2/H3/bullet que ficou e literal da copy original. O corte foi por redundancia.
+
+### Cortado
+
+| Secao | Por que |
+|---|---|
+| GESTIONA-CON-IA (8 cards) | duplicava IA-LO-CAMBIA-TODO; fundidas em 1 secao de IA (o card Visual Listening foi preservado) |
+| CHATGPT (secao pausa) | ja era card na secao de IA e bullet em Programacion |
+| TODO-EN-UNA-PLATAFORMA (6 bullets) | repetia os modulos; so o H2 sobreviveu como titulo da grade |
+| SIN-TAREAS-MANUALES | repetia modulos + IA sem argumento novo |
+| SUPERA-EXPECTATIVAS (3 colunas) | 2 das 3 colunas repetiam listening/atencion |
+| TRIAL duplicado | a oferta de 14 dias aparecia 2x identica; agora 1x no CTA final |
+| 21 bullets de modulo | 45 -> 24 (4 por bloco) |
+| INTRO-PLATAFORMA como secao | H2 virou titulo da secao Soluciones |
+
+### Reorganizado
+
+- **Logos de agencias subiram** pra logo depois do hero (publico nao conhece a marca: prova social antes do pitch).
+- **Os 3 jobs do publico** (listening, atendimento unificado, dashboards/relatorios) viraram os 3 splits COM PRINT da secao Soluciones, 4 bullets cada. Quem nunca viu o produto precisa ver, nao ler bullet.
+- **Form foi pro fim**, dentro do bloco de oferta: volta ao default da GUIDELINES §10 (MoFu/BoFu = ultima secao). O override "form na 3a secao" existia so por fidelidade a LP original, que deixou de ser o objetivo. Hero, meio de pagina e nav ancoram em `#demo`.
+- Assets sem secao dona removidos: `tela-computador-bm2.png`, `monitoreo-de-videos.png`.
+
+### Critico de contraste resolvido no cta-box
+
+O gradiente da familia (`#ff6b16` -> `#ec174c`) dava 2.6:1 com o checklist branco de 14px. O
+cta-box (unico bloco com texto branco pequeno sobre fill) passou a usar tons profundos
+**`#c04a00` -> `#c2103c`** (4.98:1 e 6.1:1, ambos acima de AA). Botoes e `.gradient-text`
+seguem com o gradiente claro da familia, identicos a LP irma, entao a identidade nao muda.
+
+### Segue aberto
+
+- `.gradient-text` em headings: `#ff6b16` sobre branco = 2.85:1, abaixo de 3:1 pra texto grande. Identico a LP `plataforma-integral-social-media` no ar; corrigir exigiria mexer nas duas.
+- `.btn-primary`: branco sobre o gradiente claro = 2.85:1 na ponta laranja. Mesma situacao acima.

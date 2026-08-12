@@ -6,41 +6,35 @@
 **Região/idioma:** LATAM · es-419 (slug com sufixo `-es` resolve latam na cascata; confirmado pelo gate de CI)
 **GTM:** GTM-MKQBX2MG (latam, tracking.json) + Meta Pixel 935436740448328 (mesmo par da LP design base, mesmo domínio)
 
-## Estrutura
+## Estrutura (v2 enxuta, 2026-08-12)
 
-- NAV (Plataforma · IA · Soluciones · Clientes + CTA Agenda una demo → #demo)
-- HERO (overline dor + H1 + body + CTA; **vídeo** `social-listening-es.mp4` reaproveitado da LP ia-para-social-listening-es no lugar do banner original)
-- INTRO-PLATAFORMA + FORM (3ª seção, espelhando a LP original — override consciente da GUIDELINES §10; form MOCK, §11)
-- AGENCIAS-DIFERENTE (3 parágrafos + logos de agências)
-- IA-LO-CAMBIA-TODO (print ai-insights.png + 5 cards)
-- MODULOS (6 cards com bullets ✓)
-- TRIAL (cta-box gradiente, preço $390 USD/mês)
-- SIN-TAREAS-MANUALES (bullets + print tela-computador-bm2.png)
-- SUPERA-EXPECTATIVAS (3 colunas + CTA)
-- GESTIONA-CON-IA (8 cards; print monitoreo-de-videos.png no card Visual Listening)
-- TODO-EN-UNA-PLATAFORMA (6 bullets)
-- CHATGPT (seção pausa)
-- MONITOREA-TUS-REDES / ATENCION-CENTRALIZADA / DASHBOARDS-TIEMPO-REAL (zigzag com prints crises-1.png, crises-2.jpg, img-relatorios-dashboard.png)
-- TESTIMONIOS (6 quotes de agências + CTA)
-- CLIENTS-PROOF (4 stats animados + logo marquee)
-- CTA-FINAL (trial repetido — fidelidade à LP original)
-- FOOTER
+8 secoes. Racional do corte em `REVISAO.md` e no cabecalho do `copy.txt`.
+
+1. HERO (overline dor + H1 + CTA + **video** `social-listening-es.mp4`)
+2. Prova social imediata (logos de agencias)
+3. Diferencial ("Lo que las mejores agencias hacen diferente.")
+4. Soluciones (3 splits com print: Monitoreo · Atencion Centralizada · Dashboards, 4 bullets cada) + CTA
+5. Modulos restantes (grade de 3: Metricas · Programacion · Gestion de Crisis)
+6. IA (print ai-insights + 6 cards com nomes oficiais)
+7. Depoimentos (6 agencias) + Numeros e parede de logos
+8. CTA final: oferta de 14 dias + **form Jotform**
+9. Footer
 
 ## Estado
 
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-agencias-es.png`
 - [x] Validações: em-dash 0 · SEO completo (1 desc, 10 og, 4 twitter, JSON-LD parseia) · GTM gate OK (latam/MKQBX2MG)
-- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/agencias-es`
+- [x] Revisão (frontend-design review + web-design-guidelines) — 8 críticos aplicados, ver `REVISAO.md`
 - [x] Formulário integrado — Jotform `241825239057661` (mesmo form da LP plataforma-integral-social-media; 2026-08-12)
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor agencias-es content.buzzmonitor.com`
+- [x] Publicado em https://content.buzzmonitor.com/agencias-es (guarda-chuva CI)
 
 ## Assets referenciados
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header/footer; raster base64, web-safe §19)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
 - `./assets/social-listening-es.mp4` + `social-listening-es-poster.jpg` (hero — origem: ia-para-social-listening-es)
-- `./assets/ai-insights.png`, `tela-computador-bm2.png`, `monitoreo-de-videos.png`, `crises-1.png`, `crises-2.jpg`, `img-relatorios-dashboard.png` (prints — origem: ia-para-social-listening-es)
+- `./assets/ai-insights.png`, `crises-1.png`, `crises-2.jpg`, `img-relatorios-dashboard.png` (prints — origem: ia-para-social-listening-es)
 - `./assets/logos-agencias/*` e `./assets/logos-clientes/*` (origem: plataforma-integral-social-media)
 - `./assets/og-agencias-es.png`
 

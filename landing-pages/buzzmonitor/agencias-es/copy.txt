@@ -1,211 +1,141 @@
-# Copy estruturada, LP Agencias Buzzmonitor LATAM (ES-419)
-# Fonte: https://contenido.getbuzzmonitor.com/agencias (GreatPages legado), copy literal, replica pedida pelo Victor 2026-08-12
-# Design base: landing-pages/buzzmonitor/plataforma-integral-social-media (mesma linguagem visual, dominio content.buzzmonitor.com)
-# [ASSET] Hero: video ../ia-para-social-listening-es/assets/social-listening-es.mp4 + poster social-listening-es-poster.jpg (substitui o banner original)
-# [ASSET] Prints da plataforma: reutilizar de ../ia-para-social-listening-es/assets/ conforme marcado por secao
-# [ASSET] Logos agencias/clientes: reutilizar de ../plataforma-integral-social-media/assets/logos-agencias e logos-clientes
-# [FORM] Posicao: 3a secao (apos intro), espelhando a LP original, override consciente da GUIDELINES §10 (default MoFu seria 4a/ultima); justificativa: replica fiel de LP que ja e destino de ads LATAM. CTAs do resto da pagina ancoram no form.
+# Copy estruturada, LP Agencias Buzzmonitor LATAM (ES-419) - VERSAO ENXUTA
+# Fonte original: https://contenido.getbuzzmonitor.com/agencias (GreatPages legado)
+# Design base: landing-pages/buzzmonitor/plataforma-integral-social-media
+#
+# HISTORICO DE ESTRUTURA
+# v1 (2026-08-12, manha): replica 1:1 da LP GreatPames, 19 blocos, ~12.700px de altura.
+# v2 (2026-08-12, tarde): ENXUGADA a pedido do Victor ("ficou extremamente grande, com excesso
+#   de coisas"). Publico-alvo definido: ANALISTA DE AGENCIA que nunca ouviu falar da Buzzmonitor
+#   e quer automatizar relatorios, unificar atendimento e automatizar social listening.
+#   8 secoes, ~7.840px (-38%). Nenhum texto novo foi inventado: todo H2/H3/bullet abaixo e
+#   literal da v1 (a copy da LP original). O corte foi por REDUNDANCIA, nao por reescrita.
+#
+# O QUE FOI CORTADO E POR QUE
+# - GESTIONA-CON-IA (8 cards de IA): duplicava IA-LO-CAMBIA-TODO. Fundido numa unica secao de IA.
+#   Card "Visual Listening con IA" preservado (diferencial concreto pra quem quer listening).
+# - CHATGPT (secao pausa dedicada): ja e card na secao de IA e bullet em Programacion.
+# - TODO-EN-UNA-PLATAFORMA (6 bullets): repetia os modulos. So o H2 sobreviveu, virou titulo da
+#   grade de modulos.
+# - SIN-TAREAS-MANUALES (5 bullets + print): repetia modulos + IA sem argumento novo.
+# - SUPERA-EXPECTATIVAS (3 colunas): "Mapeo de publico" = listening, "Atencion 3x mas rapida" =
+#   atencion; sobrava so "Herramienta simple" (que o depoimento da SA365 ja entrega melhor).
+# - TRIAL duplicado: a oferta de 14 dias aparecia 2x identica. Agora 1x, no CTA final.
+# - Bullets de modulo: 45 -> 24 (4 por bloco). Analista nao le 9 bullets por card.
+# - Prints tela-computador-bm2.png e monitoreo-de-videos.png: sem secao dona, arquivos removidos.
+#
+# DECISOES ESTRUTURAIS DA v2
+# - Logos de agencias SUBIRAM pra logo depois do hero: publico nao conhece a marca, prova social
+#   precisa vir antes de qualquer pitch.
+# - Os 3 jobs declarados do publico (listening, atendimento unificado, relatorios/dashboards)
+#   viraram os 3 splits COM PRINT da secao Soluciones, cada um com 4 bullets. Quem nunca viu o
+#   produto precisa VER, nao ler bullet.
+# - Modulos restantes (Metricas, Programacion, Crisis) ficaram numa grade compacta de 3.
+# - FORM foi pro FIM (CTA final), dentro do bloco de oferta. Volta ao default da GUIDELINES §10
+#   (MoFu/BoFu = form na ultima secao): o override "form na 3a secao" existia so por fidelidade a
+#   LP original, e a fidelidade deixou de ser o objetivo. Hero, meio e nav ancoram em #demo.
+# - Gradiente do cta-box escurecido (#c04a00 -> #c2103c) porque o bloco tem texto branco 14px:
+#   4.98:1 e 6.1:1, passam AA. O gradiente claro da familia reprovava (2.6:1).
+#
+# [ASSET] Hero: video ./assets/social-listening-es.mp4 + poster (origem: ia-para-social-listening-es)
+# [ASSET] Prints: crises-1.png, crises-2.jpg, img-relatorios-dashboard.png (splits), ai-insights.png (IA)
+# [ASSET] Logos: ./assets/logos-agencias/ e ./assets/logos-clientes/ (origem: plataforma-integral-social-media)
+# [FORM] Jotform 241825239057661 (o mesmo da LP plataforma-integral-social-media)
 
 === NAV ===
-LINK: Plataforma
-LINK: IA
 LINK: Soluciones
+LINK: IA
 LINK: Clientes
 CTA: Agenda una demo
 
-=== HERO ===
+=== 1. HERO ===
 OVERLINE: Tus clientes no cancelan por precio.
 H1: Cancelan cuando tu agencia deja de aportar inteligencia estratégica.
 BODY: Buzzmonitor te ayuda a detectar oportunidades, riesgos y señales de cambio antes que tus clientes para fortalecer la retención, justificar tu fee y abrir nuevas oportunidades de negocio.
 CTA: Agenda una demo
-# [ASSET] video hero: social-listening-es.mp4 (autoplay muted loop, pattern GIF->MP4; gotcha: se wrapper tiver reveal opacity:0, chamar play() no observer)
+# [ASSET] video hero (autoplay muted loop + botao de pausa; reduced-motion mostra so o poster)
 
-=== INTRO-PLATAFORMA ===
-OVERLINE: Automatiza procesos, analiza datos e impulsa tus resultados con IA
-H2: Conoce la plataforma más completa para la gestión de redes sociales de tu agencia
-BODY: Gestiona las redes sociales y la experiencia de tus clientes en una sola plataforma, líder en el uso de inteligencia artificial para social listening, insights, reportes de performance y atención digital.
-BODY: Centraliza tu estrategia, amplía oportunidades y aumenta la facturación de tu agencia.
+=== 2. PROVA SOCIAL IMEDIATA ===
+SUB: Agencias que ya confían en Buzzmonitor
+# [LOGOS] Kaleidoscopio, McCann, Lead, Sube, Eureka&Co, Havas, TBWA
 
-=== FORM ===
-H2: Agenda una demo
-LABEL: Nombre*
-LABEL: E-mail Profesional*
-LABEL: Teléfono*
-LABEL: País*
-LABEL: Empresa*
-LABEL: ¿Cuál es tu cargo?*
-LABEL: ¿Qué funcionalidad te interesa más?*
-CTA: Enviar
-# [FORM] mock nesta fase (GUIDELINES §11). Dropdowns do form real (via /lp-integrar-form): cargo = Asistente/Analista, Coordinador/Supervisor, Gerente/Head, Director, CEO/Socio, Estudiante/Becario/Servicio Social, No trabajo actualmente; funcionalidad = Escucha Social, Monitoreo de competidores, Dashboards personalizados, Atención al Cliente.
-
-=== AGENCIAS-DIFERENTE ===
+=== 3. DIFERENCIAL / POR QUE ===
 H2: Lo que las mejores agencias hacen diferente.
 BODY: Las agencias que retienen más cuentas no solo ejecutan campañas. Ayudan a sus clientes a tomar mejores decisiones.
 BODY: Buzzmonitor te permite detectar tendencias emergentes, oportunidades de negocio, riesgos reputacionales y cambios en la percepción de marca antes de que impacten los resultados.
 BODY: Cuando muestras a tus clientes lo que otros no ven, la conversación deja de ser sobre precio. Empieza a ser sobre valor.
-SUB: Agencias que ya confían en Buzzmonitor
-# [ASSET] logos: logos-agencias/ (kaleidoscopio-agency, mccann, lead, sube, eureka-co, havas, tbwa)
 
-=== IA-LO-CAMBIA-TODO ===
-H2: La Inteligencia Artificial lo cambia todo
-# [ASSET] print: ai-insights.png
-H3: Buzz Pills
-BODY: Funcionalidad que ofrece análisis generados por IA con insights directamente en tu email.
-H3: AI Insights
-BODY: Funcionalidad que realiza análisis y proporciona insights de forma automática con un solo clic.
-H3: ChatGPT
-BODY: Integración con la IA de OpenAI para atención al cliente y creación de contenidos.
-H3: Clasificación automática
-BODY: La IA define el sentimiento, el tipo de mensaje y aplica etiquetas para optimizar la atención al cliente.
-H3: Smart Replies
-BODY: Funcionalidad que sugiere opciones de respuestas automáticas.
-
-=== MODULOS ===
-H3: Atención multicanal
-BODY: Centraliza todos los canales digitales y utiliza IA para clasificar y unificar tickets y filas de atención, sugerir respuestas y optimizar toda tu operación.
-LIST ITEM: Más de 15 canales digitales en una sola pantalla
-LIST ITEM: Informes de rendimiento del equipo
-LIST ITEM: Plantillas de respuestas predefinidas
-LIST ITEM: IA para sugerir respuestas
-LIST ITEM: Sentimientos y etiquetas automáticas con IA
-LIST ITEM: KPIs de atención al cliente y del equipo
-LIST ITEM: Alertas de términos sensibles relacionados con tu marca
-LIST ITEM: ChatGPT para mejorar respuestas
-LIST ITEM: Atención mediante tickets
+=== 4. SOLUCIONES (3 splits com print) ===
+OVERLINE: Automatiza procesos, analiza datos e impulsa tus resultados con IA
+H2: Conoce la plataforma más completa para la gestión de redes sociales de tu agencia
+BODY: Gestiona las redes sociales y la experiencia de tus clientes en una sola plataforma, líder en el uso de inteligencia artificial para social listening, insights, reportes de performance y atención digital.
 
 H3: Monitoreo de Redes Sociales
-# RESOLVIDO 2026-08-12: Victor aprovou "Monitoreo de Redes Sociales" (padrao ES-LATAM) no lugar de "Monitorización" da LP original.
-BODY: Descubre tendencias, sentimientos y oportunidades con monitoreo avanzado de datos de redes sociales en tiempo real.
-LIST ITEM: Sentimiento sobre la marca
-LIST ITEM: Mapeo del público y de sus intereses
+BODY: Realiza seguimiento de la salud de la marca de tus clientes y comprende cómo es percibida por los usuarios. Monitorea términos y menciones, identifica oportunidades y problemas, y anticípate a crisis de imagen.
 LIST ITEM: Búsqueda ilimitada por palabras clave
-LIST ITEM: Informes ilimitados y personalizados
-LIST ITEM: Análisis de informes realizados por IA
 LIST ITEM: Insights cualitativos con IA
 LIST ITEM: Monitoreo de la competencia
 LIST ITEM: Alertas para la prevención de crisis de marca
+# [ASSET] print: crises-1.png
+
+H3: Atención al Cliente Centralizada
+BODY: No pierdas más tiempo respondiendo de red social en red social para cada cliente de tu agencia. ¡Centraliza toda tu atención al cliente en una única plataforma y responde en todas las redes sociales de tus clientes desde un solo lugar!
+LIST ITEM: Más de 15 canales digitales en una sola pantalla
+LIST ITEM: IA para sugerir respuestas
+LIST ITEM: Sentimientos y etiquetas automáticas con IA
+LIST ITEM: KPIs de atención al cliente y del equipo
+# [ASSET] print: crises-2.jpg
+
+H3: Dashboards en tiempo real
+BODY: Personaliza informes con diferentes métricas y KPIs de Social Analytics, Social Listening y Atención Multicanal para compartir con tu cliente en tiempo real de manera fácil y sencilla.
+LIST ITEM: Dashboards con datos de listening, atención y analytics
+LIST ITEM: Secciones con análisis resumidos realizados por IA
+LIST ITEM: Compartibles externamente con contraseña
+LIST ITEM: Uno para cada necesidad: campañas, competidores, salud de marca, etc.
+# [ASSET] print: img-relatorios-dashboard.png
+
+CTA: ¡Experimenta Buzzmonitor ahora!
+
+=== 5. MODULOS RESTANTES (grade de 3) ===
+H2: ¡Todo esto en una sola plataforma!
 
 H3: Métricas de Social Media
 BODY: Más de 50 métricas avanzadas para medir tu rendimiento frente a la competencia, revelando tendencias para tu marca.
 LIST ITEM: Performance de múltiples redes sociales
 LIST ITEM: Performance de la competencia
 LIST ITEM: Análisis de stories y reels
-LIST ITEM: Análisis de publicaciones orgánicas y patrocinadas
-LIST ITEM: Comparaciones con competidores
 LIST ITEM: Personalización de informes
-LIST ITEM: Filtros por proyecto, fecha y red social
-
-H3: Dashboards ilimitados
-BODY: Obtén informes dinámicos actualizados en tiempo real, gráficos totalmente personalizables e insights que convierten métricas en acciones estratégicas.
-LIST ITEM: Dashboards con datos de listening, atención y analytics
-LIST ITEM: Datos actualizados en tiempo real
-LIST ITEM: Secciones con análisis resumidos realizados por IA
-LIST ITEM: Compartibles externamente con contraseña
-LIST ITEM: Dashboards ilimitados, modernos y personalizables
-LIST ITEM: Uno para cada necesidad: campañas, competidores, salud de marca, etc.
 
 H3: Programación y publicación
 BODY: Planifica, programa y publica en múltiples canales de forma integrada, optimizando el tiempo y manteniendo tu presencia siempre activa.
-LIST ITEM: Publicaciones ilimitadas
 LIST ITEM: Programación en múltiples redes sociales
 LIST ITEM: ChatGPT para crear contenido
-LIST ITEM: ChatGPT para generar imágenes
-LIST ITEM: Acortamiento de enlaces
-LIST ITEM: Historial de publicaciones
 LIST ITEM: Flujo de trabajo y aprobación
 LIST ITEM: Calendario de contenidos
 
 H3: Gestión de Crisis
 BODY: Gestiona las crisis de forma integral con datos en tiempo real e IA para responder con precisión y convertir desafíos en oportunidades.
 LIST ITEM: Alertas de términos críticos
-LIST ITEM: Alertas ante señales negativas virales
 LIST ITEM: Detecta señales antes de que la crisis comience
-LIST ITEM: Atención rápida y centralizada
 LIST ITEM: Seguimiento en tiempo real
-LIST ITEM: Datos para decisiones acertadas
 LIST ITEM: Extracción de oportunidades en las crisis
 
-=== TRIAL ===
-H2: ¡Prueba Buzzmonitor gratis por 14 días!
-SUB: Planes a partir de $390 USD/Mes
-BODY: Obtén acceso a varias soluciones digitales en una sola plataforma líder en el uso de IA para Social Intelligence.
-LIST ITEM: Escucha social de tus redes sociales y análisis generados por IA
-LIST ITEM: Atención multicanal optimizada por IA
-LIST ITEM: Informes de performance de tu marca y tu competencia
-LIST ITEM: Optimización de procesos y mayor productividad con IA
-LIST ITEM: Y mucho más...
-CTA: ¡Comienza ahora!
-
-=== SIN-TAREAS-MANUALES ===
-H2: Con Buzzmonitor no perderás más tiempo con tareas manuales:
-LIST ITEM: Obtén análisis e informes de tus reportes de Social Listening en segundos con IA
-LIST ITEM: Más de 50 métricas de performance de tu marca y de tu competencia
-LIST ITEM: IA para clasificar posts automáticamente
-LIST ITEM: Recibe alertas para anticipar crisis de redes sociales
-LIST ITEM: Reduce tu SLA hasta 3 veces con sugerencias de respuestas automáticas generadas por IA
-# [ASSET] print: tela-computador-bm2.png
-
-=== SUPERA-EXPECTATIVAS ===
-H2: Supera las expectativas de tus clientes con el Social Listening y la Inteligencia Artificial de Buzzmonitor
-H3: Mapeo de tu Público
-BODY: Utiliza Social Listening para analizar el perfil de tus clientes, sus intereses, ubicaciones, géneros y más. Además, identifica qué dicen sobre tu marca y en qué canales del entorno digital.
-H3: Herramienta simple e intuitiva
-BODY: La plataforma es fácil de usar y serás capacitado por nuestro equipo de Customer Success para aprovechar al máximo todas las funciones de Buzzmonitor.
-H3: ¡Atención al Cliente hasta 3 veces más rápida!
-BODY: Centraliza todos tus canales de atención en una única plataforma y responde a tus clientes hasta 3 veces más rápido con la Inteligencia Artificial de Buzzmonitor.
-CTA: ¡Experimenta Buzzmonitor ahora!
-
-=== GESTIONA-CON-IA ===
-H2: Gestiona, responde y analiza tus redes sociales de forma rápida y sencilla con IA
-H3: IA para Social Listening
-BODY: La IA mejora el Social Listening de redes sociales, permite seguir cualquier término, identificar relaciones entre temas y analizar el sentimiento del público, generando insights en tiempo real.
+=== 6. IA (secao unica) ===
+H2: La Inteligencia Artificial lo cambia todo
+# [ASSET] print: ai-insights.png
+H3: AI Insights
+BODY: Funcionalidad que realiza análisis y proporciona insights de forma automática con un solo clic.
+H3: Buzz Pills
+BODY: Funcionalidad que ofrece análisis generados por IA con insights directamente en tu email.
 H3: Visual Listening con IA
 BODY: La IA de Buzzmonitor describe automáticamente imágenes y videos en redes sociales, facilitando el análisis de contenidos audiovisuales y permitiendo una escucha social más precisa y profunda a través de palabras clave y términos de búsqueda.
-# [ASSET] print: monitoreo-de-videos.png
-H3: Dashboards ilimitados
-BODY: Con los dashboards de Buzzmonitor tendrás una perspectiva global siempre actualizada de todo lo que está sucediendo en tus redes sociales para analizar los datos fácilmente. Listos para seguir los resultados de tus campañas en tiempo real, evaluar KPIs con tu equipo y presentar informes a tus clientes.
-H3: IA para obtener insights
-BODY: La IA ha simplificado el análisis de grandes volúmenes de datos en redes sociales, convirtiéndolo en un proceso rápido y automático. AI Insights ofrece análisis cualitativos y resúmenes de tus informes de Social Listening con solo un clic, ahorrándote tiempo y mejorando tu productividad.
-H3: IA para mapear públicos de interés
-BODY: Con nuestra IA, los informes de Social Listening permiten identificar características como género, ubicación, idioma y temas de interés, lo que facilita el análisis y la personalización de tus campañas de marketing.
-H3: IA para automatizar procesos
-BODY: En Buzzmonitor, el proceso de clasificación de publicaciones se realiza de forma automática y con aprendizaje automático a través de IA, generando informes rápidos de Social Listening y de Atención al Cliente.
-H3: IA para mejorar la atención al cliente
-BODY: Buzzmonitor reduce hasta 3 veces el tiempo de respuesta y personaliza la atención mediante sugerencias de respuesta basadas en interacciones previas y el tono de voz de la marca, además de mejorar las respuestas y evitar errores ortográficos.
-H3: IA para crear y programar posts
-BODY: Integrado con ChatGPT, el módulo de Programación de Buzzmonitor utiliza IA para crear imágenes a partir de una descripción, mejorar textos y sugerir hashtags relevantes, haciendo más ágil el proceso.
-CTA: ¡Agenda una demo!
+H3: Clasificación automática
+BODY: La IA define el sentimiento, el tipo de mensaje y aplica etiquetas para optimizar la atención al cliente.
+H3: Smart Replies
+BODY: Funcionalidad que sugiere opciones de respuestas automáticas.
+H3: ChatGPT
+BODY: Integración con la IA de OpenAI para atención al cliente y creación de contenidos.
 
-=== TODO-EN-UNA-PLATAFORMA ===
-H2: ¡Todo esto en una sola plataforma!
-LIST ITEM: Monitorea a la competencia de tus clientes, las tendencias del mercado ¡y cualquier término que quieras!
-LIST ITEM: Obtén Dashboards con datos en tiempo real de Social Listening, Analytics y Atención al Cliente
-LIST ITEM: Obtén una visión multicanal de la atención al cliente
-LIST ITEM: Acelera la atención al cliente con ayuda de Inteligencia Artificial
-LIST ITEM: Realiza seguimiento de los indicadores de productividad de tu agencia
-LIST ITEM: Analiza el historial de informes de performance en redes sociales
-
-=== CHATGPT ===
-H2: Integración con ChatGPT
-BODY: En Buzzmonitor puedes utilizar la Inteligencia Artificial para mejorar el texto de las respuestas enviadas y las publicaciones programadas desde Buzzmonitor, lo que garantiza un contenido aún más refinado y cautivador.
-# grafia normalizada: original trazia "Chat GPT"; nome oficial do produto OpenAI e "ChatGPT"
-
-=== MONITOREA-TUS-REDES ===
-H2: Monitorea tus redes sociales
-BODY: Realiza seguimiento de la salud de la marca de tus clientes y comprende cómo es percibida por los usuarios. Monitorea términos y menciones, identifica oportunidades y problemas, y anticípate a crisis de imagen.
-# [ASSET] print: crises-1.png
-
-=== ATENCION-CENTRALIZADA ===
-H2: Atención al Cliente Centralizada
-BODY: No pierdas más tiempo respondiendo de red social en red social para cada cliente de tu agencia. ¡Centraliza toda tu atención al cliente en una única plataforma y responde en todas las redes sociales de tus clientes desde un solo lugar!
-# [ASSET] print: crises-2.jpg (fila de atencion), se nao encaixar, omitir
-
-=== DASHBOARDS-TIEMPO-REAL ===
-H2: Dashboards en tiempo real
-BODY: Personaliza informes con diferentes métricas y KPIs de Social Analytics, Social Listening y Atención Multicanal para compartir con tu cliente en tiempo real de manera fácil y sencilla.
-# [ASSET] print: img-relatorios-dashboard.png
-
-=== TESTIMONIOS ===
+=== 7. DEPOIMENTOS ===
 H2: ¿Aún no estás convencido?
 SUB: Escucha a quienes ya utilizan Buzzmonitor
 QUOTE: Necesitábamos un aliado como Buzzmonitor para poder no solamente prevenir potenciales crisis, sino también amplificar la voz de cada uno de los aliados de Kaleidoscopio.
@@ -220,37 +150,39 @@ QUOTE: El equipo de Customer te ayuda en todo. Están muy al pendiente de lo que
 LABEL: Isabela Matias da Silva, Gerente de Comunidades, SA365
 QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchmark también y lo más importante es que tenemos una perspectiva mucho más amplia de la conversación.
 LABEL: Celina Mendoza, Copywriter Coordinator, Sube Agencia
-CTA: Agenda una demo
 
-=== CLIENTS-PROOF ===
+=== 8. NUMEROS + PAREDE DE LOGOS ===
 H2: Empresas que ya confían en Buzzmonitor
 LABEL: 1.000+ clientes en el mundo
 LABEL: 300+ clientes enterprise
 LABEL: 10k usuarios
 LABEL: 500+ agencias
-# [ASSET] logo wall: logos-clientes/ (mesma parede da LP design base)
+# [ASSET] logo wall: logos-clientes/
 
-=== CTA-FINAL ===
+=== 9. CTA FINAL (oferta + FORM) ===
 H2: ¡Prueba Buzzmonitor gratis durante 14 días!
+SUB: Planes a partir de $390 USD/Mes
 BODY: Obtén acceso a varias soluciones digitales en una sola plataforma líder en el uso de IA para Social Intelligence.
 LIST ITEM: Escucha social de tus redes sociales y análisis generados por IA
 LIST ITEM: Atención multicanal optimizada por IA
 LIST ITEM: Informes de performance de tu marca y tu competencia
 LIST ITEM: Optimización de procesos y mayor productividad con IA
 LIST ITEM: Y mucho más...
-CTA: ¡Comienza ahora!
-# Secao repetida na LP original (trial aparece 2x). Mantida por fidelidade; a 2a instancia vira o CTA final com fundo destaque (GUIDELINES §8).
+H3 (card do form): Agenda una demo
+# [FORM] Jotform 241825239057661
 
 === FOOTER ===
 FOOTER: © Buzzmonitor 2026
 LINK: Política de Privacidad y uso de Cookies → https://getbuzzmonitor.com/es/privacidad/
 
 # ---------------------------------------------------------------
-# Revisao anti-IA (conservadora, nada reescrito alem do marcado):
-# [SUGESTAO idioma, CRITICO] "Monitorización de Redes Sociales" (card Modulos): grafia de Espanha; padrao ES-LATAM pede "Monitoreo". Ver marca inline.
-# [SUGESTAO idioma] "Informes" aparece ~9x; padrao ES-LATAM prefere "reportes". A LP original E a LP design base (ja no ar) usam "informes", entao manter e defensavel. Decisao com o Victor; nao alterado.
-# [SUGESTAO anti-IA] Exclamacoes: 8+ ocorrencias de "¡...!" (CTAs e H2s), acima do teto de 2 das regras anti-IA. ES-LATAM tolera mais exclamacao que PT, e a copy e replica de LP viva. Sugestao: manter "¡...!" so nos 3 CTAs de botao e tirar dos H2 ("Prueba Buzzmonitor gratis por 14 días", "Todo esto en una sola plataforma"). Nao alterado.
-# [SUGESTAO anti-IA] "de forma automática" / "de forma integrada" / "de forma rápida y sencilla" (filler "de forma X"): natural em ES, mas repetido 4x. Alternativa: variar ("automáticamente", "en un solo flujo"). Nao alterado.
-# Correcoes silenciosas (typos da LP original, nao de tom): "serás capacitado nuestro equipo" -> "serás capacitado por nuestro equipo"; "datos en tiemp o real" -> "datos en tiempo real"; "Chat GPT" -> "ChatGPT".
-# Em-dash: 0 (verificado).
-# Idioma detectado: ES (alvo ES-LATAM / es-419). Brasileirismo: nenhum. Espanholismo-de-Espanha: 1 critico marcado (Monitorización).
+# Revisao linguistica / anti-IA
+# RESOLVIDO 2026-08-12: Victor aprovou "Monitoreo de Redes Sociales" (padrao ES-LATAM) no lugar
+#   de "Monitorización" da LP original.
+# [SUGESTAO idioma] "Informes" aparece 6x; padrao ES-LATAM prefere "reportes". A LP original E a
+#   LP design base (ja no ar) usam "informes", entao manter e defensavel. Nao alterado.
+# [SUGESTAO anti-IA] Exclamacoes: 4 ocorrencias de "¡...!" (era 8+ na v1; o corte de secoes
+#   resolveu metade). Teto das regras e 2. Restam nos 2 CTAs, no H2 de modulos e no H2 do trial.
+#   Nao alterado (replica de LP viva; ES tolera mais que PT).
+# [SUGESTAO anti-IA] "de forma X": 3 ocorrencias (era 4). Natural em ES. Nao alterado.
+# Em-dash: 0 (verificado). Brasileirismo: nenhum. Espanholismo-de-Espanha: nenhum.
