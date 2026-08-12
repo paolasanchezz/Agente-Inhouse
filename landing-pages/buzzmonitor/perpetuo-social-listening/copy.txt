@@ -1,0 +1,83 @@
+# Copy LP · Buzzmonitor · perpetuo-social-listening (+ tks) · PT-BR
+# Modelo: par captura -> tks (assistir na tks), estilo content.cxpress.io/video-atendimento
+# Estética captura: dark premium (roxo profundo + laranja), glows, animações de scroll, marquee.
+# Estética tks: clara (fundo branco) — sancionada pela Catharina (2026-08-12).
+# Vídeo embedado SÓ na tks: https://youtu.be/fflNMhqjr48 (id fflNMhqjr48)
+#
+# FONTE DA COPY (2026-08-12): briefing da Catharina — título, promessa e Bloco A (abertura) do vídeo.
+# REGRA: baseado SÓ no que a Catharina mandou. O roteiro de 22/06 foi DESCARTADO (não ficou idêntico ao vídeo).
+# Por isso a copy NÃO detalha feature por feature (Theme Monitoring, Sentiment Classification etc.). Só teaser (opção A).
+
+=== PÁGINA 1 · CAPTURA (perpetuo-social-listening) ===
+# Ordem: HERO -> 1) O QUE VOCÊ VAI VER (3 bullets) -> 2) A BUZZMONITOR (autoridade) -> CTA. Sem vídeo aqui.
+
+--- META ---
+title: Vídeo · Seu primeiro social listening | Buzzmonitor
+description: Preencha e assista ao vídeo: monte o primeiro monitoramento de marca do zero, em 5 passos.
+robots: index, follow
+
+--- HERO ---
+OVERLINE: Webinar gratuito · Social listening
+H1: Seu primeiro listening em 5 passos
+LEAD (3 blocos, com espaço entre eles):
+  1) O cliente reclama no story, alguém do time printa no grupo do WhatsApp e é assim que você descobre uma crise...
+  2) [EM NEGRITO] 40% dos times de marketing ainda monitoram a própria marca desse jeito: na mão, no susto, pelo print do colega.
+FOCO (laranja, grande): Isso acaba aqui. Preencha e assista ->
+TRUST: Gratuito · Direto na plataforma · Sem planilha
+
+--- FORMULÁRIO (MOCK) ---
+TITLE: Assista ao vídeo agora
+CAMPOS: Nome · E-mail corporativo · Empresa
+CTA: Quero assistir
+CONSENT: Ao enviar, você aceita receber comunicações da Buzzmonitor sobre o conteúdo. Cancelável a qualquer momento.
+COMPORTAMENTO: submit redireciona pra /perpetuo-social-listening-confirmado (integrar embed real via /lp-integrar-form)
+
+--- SEÇÃO 1 · O QUE VOCÊ VAI VER (teaser, sem feature) ---
+LABEL: O webinar
+H2: O que você vai aprender:
+SUB: Cinco passos pra sair da vigilância manual (visitar perfil, cruzar print, esperar o cliente avisar) e deixar o monitoramento rodando sozinho.
+CARD 1 — Os 5 passos, do zero: Como montar um listening que funciona desde o primeiro dia. Sem planilha e sem esperar a crise estourar.
+CARD 2 — O que monitorar primeiro: Por onde começar quando você ainda não tem ideia do que escutar sobre a sua marca.
+CARD 3 — O alerta antes da crise: Como o alerta da Buzzmonitor avisa você antes de o problema virar print no grupo.
+# Os 3 cards = os 3 bullets do "o que você sai sabendo" do briefing. Sem nomes de feature.
+
+--- SEÇÃO 2 · A BUZZMONITOR (autoridade — A CONFIRMAR com Victor) ---
+LABEL: A plataforma
+H2: Mais de 1.000 marcas já escutam com a Buzzmonitor.
+SUB: Social listening, atendimento e analytics do Grupo Elife, com IA nativa em todas as camadas.
+STATS: 1.000+ marcas · 300+ contas enterprise · 500+ agências · 10 mil usuários ativos
+MARQUEE: Youse · Turbi · Brisanet · Hering · Bionatural · Caffeine Army · Herval · Softys
+# CASES (Youse/Turbi/Brisanet com métricas de SLA) REMOVIDOS em 2026-08-12 a pedido da Catharina.
+# Marquee de nomes mantida por ora (a confirmar se ela quer tirar também). STATS/MARQUEE não vieram do briefing; confirmar com Victor.
+
+--- CTA FINAL ---
+H2: Pronto pra escutar o que seus consumidores dizem?
+SUB: Assista ao vídeo e entenda a melhor forma de fazer isso.
+CTA: Assistir o vídeo agora (âncora #form)
+
+=== PÁGINA 2 · TKS (perpetuo-social-listening-confirmado) ===
+# Fundo branco (sancionado). Vídeo + prova + CTA. SEM recap de 5 passos (removido — vinha do roteiro descartado).
+
+--- META ---
+title: Seu vídeo está pronto · Social listening em 5 passos | Buzzmonitor
+robots: noindex, follow
+
+--- VÍDEO ---
+H1: Seu primeiro social listening em 5 passos.
+SUB: Aperte o play. A gente monta o primeiro monitoramento de marca do zero, direto na Buzzmonitor.
+EMBED: youtube-nocookie.com/embed/fflNMhqjr48
+CTA: (removido em 2026-08-12 — era duplicado; o CTA fica só no bloco CTA FINAL abaixo)
+
+--- PROVA ---
+(REMOVIDA em 2026-08-12 a pedido da Catharina — tks agora é vídeo -> CTA, sem bloco de cases)
+
+--- CTA FINAL ---
+H2: Agora é a sua vez.
+SUB: Monte esse mesmo monitoramento na sua conta.
+CTA: Fale com um dos nossos especialistas e teste na prática -> WhatsApp (LINK PENDENTE)
+
+# Anti-IA: 0 em-dash. "a Buzzmonitor" (feminino). Sem detalhamento de feature (opção A).
+# Mudanças 2026-08-12 (Catharina): base só no briefing dela; roteiro 22/06 descartado; hero reescrito com gancho WhatsApp/40%;
+#   seção "o webinar" virou teaser dos 3 bullets (sem feature); tks manteve fundo branco e trocou CTA por "fale com especialista" -> WhatsApp;
+#   removidas TODAS as menções a 10 minutos (vídeo passou disso); cases Youse/Turbi/Brisanet removidos (tks sem prova; captura só stats + marquee).
+# PENDENTE: (1) link do WhatsApp; (2) números/marcas de autoridade (Victor); (3) OG dedicada; (4) /lp-revisar antes de publicar.
