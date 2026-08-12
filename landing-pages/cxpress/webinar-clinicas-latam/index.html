@@ -306,6 +306,21 @@
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
 
     .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 380px; }
+    .hero-decor { position: absolute; inset: 0; z-index: 0; }
+    .hero-decor-pill {
+      position: absolute;
+      border-radius: var(--radius-pill);
+    }
+    .hero-decor-pill--tall { width: 40px; height: 176px; background: var(--primary); top: 4%; left: -32px; }
+    .hero-decor-pill--short { width: 40px; height: 88px; background: var(--warning); top: 30%; left: -32px; }
+    .hero-decor-dot { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); top: 64%; left: -32px; }
+    .hero-decor-arc {
+      position: absolute;
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 8px solid var(--primary-light);
+      bottom: -28px; right: -24px;
+    }
     .hero-photo {
       position: relative;
       width: 100%;
@@ -316,6 +331,7 @@
       background: var(--neutral-100);
       box-shadow: var(--shadow-lg);
       min-height: 0;
+      z-index: 1;
     }
     .hero-photo img {
       width: 100%;
@@ -323,6 +339,11 @@
       object-fit: cover;
       object-position: top center;
       min-height: 0;
+    }
+
+    @media (max-width: 560px) {
+      .hero-decor-pill--tall, .hero-decor-pill--short, .hero-decor-dot { display: none; }
+      .hero-decor-arc { width: 64px; height: 64px; border-width: 6px; }
     }
 
     @media (max-width: 980px) {
@@ -577,6 +598,12 @@
           </div>
         </div>
         <div class="hero-visual">
+          <div class="hero-decor" aria-hidden="true">
+            <span class="hero-decor-pill hero-decor-pill--tall"></span>
+            <span class="hero-decor-pill hero-decor-pill--short"></span>
+            <span class="hero-decor-dot"></span>
+            <span class="hero-decor-arc"></span>
+          </div>
           <div class="hero-photo">
             <img src="./assets/doctora-hero.png" alt="Doctora sonriente con bata blanca y estetoscopio">
           </div>
