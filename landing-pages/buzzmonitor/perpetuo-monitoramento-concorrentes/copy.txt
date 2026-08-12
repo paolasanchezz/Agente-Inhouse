@@ -1,0 +1,69 @@
+# Copy LP · Buzzmonitor · perpetuo-monitoramento-concorrentes (+ tks) · PT-BR
+# Par captura -> tks (assiste na tks), mesma estrutura do par perpetuo-social-listening (webinar perpetuo).
+# Estética captura: dark premium; tks clara (fundo branco). noindex de review.
+# Vídeo embedado SÓ na tks: https://www.youtube.com/watch?v=fG4KpFnwbb4 (embed www.youtube.com/embed/fG4KpFnwbb4)
+#
+# FONTE (2026-08-12): briefing da Catharina — título, promessa e objetivo do webinar.
+# PROMESSA: montar um monitoramento de concorrente que avisa antes do cliente avisar.
+# OBJETIVO: montar na prática um monitoramento de concorrente na Buzzmonitor — criar tema dedicado ao
+#   concorrente (com variações de grafia), comparar marca x concorrente num dashboard de benchmarking
+#   competitivo, e configurar AI Insights + Buzz Pills pra avisar quando o concorrente se mexer. Central:
+#   sair da vigilância manual (visitar perfil, cruzar print, esperar o cliente comentar).
+# Cards em nível teaser (sem catálogo de feature), igual ao par social-listening. Sem stat inventada.
+
+=== PÁGINA 1 · CAPTURA (perpetuo-monitoramento-concorrentes) ===
+--- META ---
+title: Vídeo · Como construir um monitoramento de concorrentes | Buzzmonitor
+robots: noindex, follow
+
+--- HERO ---
+OVERLINE: Webinar gratuito · Monitoramento de concorrentes
+H1: Como construir um monitoramento de concorrentes
+LEAD (2 blocos, com espaço entre eles):
+  1) O concorrente lança uma promoção, muda o discurso, entra numa polêmica, e você fica sabendo pelo seu próprio cliente, que manda o print perguntando por que a sua marca não reagiu.
+FOCO (laranja, grande): Isso acaba aqui. Preencha e assista ->
+TRUST: Gratuito · Direto na plataforma · Sem planilha
+
+--- FORMULÁRIO (MOCK) ---
+CAMPOS: Nome · E-mail corporativo · Empresa
+CTA: Quero assistir  (submit redireciona pra /perpetuo-monitoramento-concorrentes-confirmado)
+
+--- SEÇÃO 1 · O QUE VOCÊ VAI APRENDER (teaser) ---
+LABEL: O webinar
+H2: O que você vai aprender:
+SUB: Como sair da vigilância manual (visitar o perfil do concorrente, cruzar print, esperar o cliente comentar) e deixar o monitoramento do concorrente rodando sozinho.
+CARD 1 — O tema do concorrente, do jeito certo: Criar um monitoramento dedicado ao concorrente, com as variações de grafia do nome, pra não perder nenhuma menção.
+CARD 2 — Marca e concorrente, lado a lado: Comparar os dois num dashboard de benchmarking competitivo, pra ver quem está ganhando a conversa e onde você está atrás.
+CARD 3 — O aviso antes do cliente: Configurar o alerta automático pra saber quando o concorrente se mexe, antes de o cliente te mandar o print.
+
+--- SEÇÃO 2 · A BUZZMONITOR (autoridade — A CONFIRMAR com Victor) ---
+H2: Mais de 1.000 marcas já monitoram com a Buzzmonitor.
+STATS: 1.000+ marcas · 300+ contas enterprise · 500+ agências · 10 mil usuários ativos
+MARQUEE: Youse · Turbi · Brisanet · Hering · Bionatural · Caffeine Army · Herval · Softys
+# Não veio do briefing; prova de marca pré-existente. Confirmar números e uso das marcas com Victor.
+
+--- CTA FINAL ---
+H2: Pronto pra saber do concorrente antes do seu cliente?
+SUB: Assista ao vídeo e entenda a melhor forma de fazer isso.
+CTA: Assistir o vídeo agora (âncora #form)
+
+=== PÁGINA 2 · TKS (perpetuo-monitoramento-concorrentes-confirmado) ===
+# Fundo branco, noindex. Vídeo + CTA (sem bloco de prova/cases).
+--- META ---
+title: Seu vídeo está pronto · Monitoramento de concorrentes | Buzzmonitor
+robots: noindex, follow
+
+--- VÍDEO ---
+H1: Como construir um monitoramento de concorrentes.
+SUB: Aperte o play. A gente monta o monitoramento de concorrente do zero, direto na Buzzmonitor.
+EMBED: www.youtube.com/embed/fG4KpFnwbb4
+
+--- CTA FINAL ---
+H2: Agora é a sua vez.
+SUB: Monte esse mesmo monitoramento na sua conta.
+CTA: Fale com um dos nossos especialistas e teste na prática -> WhatsApp (LINK PENDENTE; hoje temp -> buzzmonitor.com)
+
+# Anti-IA: 0 em-dash; "a Buzzmonitor" (feminino); cards teaser (sem catálogo de feature).
+# Clonado do par perpetuo-social-listening (2026-08-12) e adaptado pro tema de concorrente.
+# Embed usa youtube.com (NÃO nocookie): o CSP do guarda-chuva só libera youtube.com no frame-src.
+# PENDENTE: (1) link do WhatsApp; (2) OG dedicada (hoje reusa og-primeiro-listening-5-passos.png); (3) números/marcas (Victor); (4) form real; (5) flip index quando final.
