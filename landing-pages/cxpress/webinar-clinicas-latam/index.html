@@ -306,36 +306,18 @@
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
 
     .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 380px; }
-    .hero-photo-frame { position: relative; width: 100%; max-width: 360px; }
-    .hero-pill {
-      position: absolute;
-      border-radius: var(--radius-pill);
-      z-index: 0;
-    }
-    .hero-pill--a { width: 60px; height: 210px; background: var(--accent); top: -6%; left: -12%; transform: rotate(-11deg); }
-    .hero-pill--b { width: 46px; height: 150px; background: var(--primary-light); bottom: -4%; right: -10%; transform: rotate(9deg); }
-    .hero-dot {
-      position: absolute;
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      background: var(--warning);
-      top: 8%; right: -6%;
-      z-index: 2;
-      box-shadow: var(--shadow-md);
-    }
-    .hero-photo-arc {
+    .hero-photo {
       position: relative;
       width: 100%;
+      max-width: 460px;
       aspect-ratio: 4/5;
-      border-radius: 190px 190px 28px 28px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      background: linear-gradient(165deg, var(--primary-lighter), var(--neutral-0));
+      background: var(--neutral-100);
       box-shadow: var(--shadow-lg);
-      border: 6px solid var(--neutral-0);
-      z-index: 1;
       min-height: 0;
     }
-    .hero-photo-arc img {
+    .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -479,24 +461,26 @@
     }
 
     /* ============ SPEAKERS ============ */
-    .speakers-section { background: var(--neutral-0); }
-    .speakers-header { max-width: 760px; margin-bottom: 56px; }
+    .speakers-section { background: var(--neutral-0); text-align: center; }
+    .speakers-header { max-width: 700px; margin: 0 auto 56px; }
     .speakers-h2 { font-size: clamp(24px, 2.8vw, 32px); font-weight: 800; margin-bottom: 14px; }
-    .speakers-body { font-size: 16.5px; color: var(--neutral-700); line-height: 1.6; max-width: 640px; }
+    .speakers-body { font-size: 16.5px; color: var(--neutral-700); line-height: 1.6; max-width: 640px; margin: 0 auto; }
     .speakers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-bottom: 48px;
-      max-width: 640px;
+      gap: 56px;
+      margin: 0 auto 48px;
+      max-width: 720px;
+      justify-content: center;
     }
     .speaker-card { text-align: center; }
-    .speaker-avatar-wrap { position: relative; display: inline-flex; margin-bottom: 18px; }
     .speaker-avatar {
-      width: 148px; height: 148px;
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 1/1;
+      margin: 0 auto 20px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid var(--neutral-0);
       box-shadow: var(--shadow-lg);
       background: var(--primary-lighter);
       min-height: 0;
@@ -508,35 +492,32 @@
       min-height: 0;
     }
     .speaker-badge {
-      position: absolute;
-      bottom: -8px; left: 50%;
-      transform: translateX(-50%);
+      display: inline-block;
       background: var(--accent);
       color: var(--primary-dark);
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 12px;
+      font-size: 12.5px;
       letter-spacing: 0.02em;
       padding: 6px 18px;
       border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-md);
-      white-space: nowrap;
+      margin-bottom: 10px;
     }
     .speaker-name {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 19px;
+      font-size: 22px;
       margin-bottom: 5px;
     }
     .speaker-role {
       font-family: var(--font-accent);
-      font-size: 13.5px;
+      font-size: 14.5px;
       color: var(--accent-hover);
       font-weight: 600;
     }
 
     @media (max-width: 620px) {
-      .speakers-grid { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .speakers-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; gap: 40px; }
     }
 
     /* ============ PROVA SOCIAL ============ */
@@ -596,13 +577,8 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="hero-photo-frame">
-            <div class="hero-pill hero-pill--a" aria-hidden="true"></div>
-            <div class="hero-pill hero-pill--b" aria-hidden="true"></div>
-            <div class="hero-dot" aria-hidden="true"></div>
-            <div class="hero-photo-arc">
-              <img src="./assets/doctora-hero.png" alt="Doctora sonriente con bata blanca y estetoscopio">
-            </div>
+          <div class="hero-photo">
+            <img src="./assets/doctora-hero.png" alt="Doctora sonriente con bata blanca y estetoscopio">
           </div>
         </div>
       </div>
@@ -719,22 +695,18 @@
         </div>
         <div class="speakers-grid">
           <article class="speaker-card">
-            <div class="speaker-avatar-wrap">
-              <div class="speaker-avatar">
-                <img src="./assets/speakers/milagros-pantoja.jpg" alt="Milagro Pantoja" loading="lazy">
-              </div>
-              <span class="speaker-badge">Speaker</span>
+            <div class="speaker-avatar">
+              <img src="./assets/speakers/milagros-pantoja.jpg" alt="Milagro Pantoja" loading="lazy">
             </div>
+            <span class="speaker-badge">Speaker</span>
             <h3 class="speaker-name">Milagro Pantoja</h3>
             <p class="speaker-role">Business Developer, Cxpress</p>
           </article>
           <article class="speaker-card">
-            <div class="speaker-avatar-wrap">
-              <div class="speaker-avatar">
-                <img src="./assets/speakers/laura-rodriguez.jpg" alt="Laura Rodríguez" loading="lazy">
-              </div>
-              <span class="speaker-badge">Speaker</span>
+            <div class="speaker-avatar">
+              <img src="./assets/speakers/laura-rodriguez.jpg" alt="Laura Rodríguez" loading="lazy">
             </div>
+            <span class="speaker-badge">Speaker</span>
             <h3 class="speaker-name">Laura Rodríguez</h3>
             <p class="speaker-role">Business Developer, Cxpress</p>
           </article>
