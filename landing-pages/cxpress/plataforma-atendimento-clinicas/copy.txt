@@ -1,0 +1,81 @@
+=== HERO ===
+OVERLINE: API oficial do WhatsApp · Cxpress
+H1: Uma plataforma para organizar todo o seu atendimento
+SUB: Centralize WhatsApp, redes sociais, telefonia, webchat e e-mail em um único sistema e tenha controle total do atendimento da sua clínica.
+CTA: Agendar demonstração gratuita
+# [NOTA DE DESIGN] Elemento visual do hero deve remeter a clínicas de saúde/atendimento médico (ex.: profissional de saúde atendendo pelo celular/tablet, ambiente de recepção de clínica). Substitui o GIF genérico de plataforma (plataforma-canais.gif) usado na referência original. Gerar/buscar imagem nova nesta etapa (lp-gerar).
+
+=== CLIENTES (prova social) ===
+H2: Clientes que confiam na Cxpress para otimizar seu atendimento
+BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.png)]
+
+=== FORM (segunda dobra) ===
+H2: Agende sua demonstração gratuita
+H3: Veja a integração oficial funcionando na sua operação
+BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
+BODY: Planos a partir de R$ 1.290
+BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Nome
+LABEL: E-mail de trabalho
+LABEL: Telefone
+LABEL: Nome da empresa
+LABEL: Cargo
+CTA: Agendar demonstração gratuita
+
+=== BENEFICIOS ===
+H2: O que muda na sua operação com a integração oficial
+H3: Integração oficial da Meta
+BODY: A conexão é feita pela API oficial do WhatsApp, o caminho que a Meta autoriza para empresas. Sem ferramenta paralela, sem violação dos termos de uso.
+H3: Vários atendentes, um número
+BODY: A equipe inteira atende pelo mesmo número, com fila, distribuição de tickets e visibilidade para o gestor. Sem celular compartilhado.
+H3: Histórico que não se perde
+BODY: Cada conversa fica registrada por paciente, independente de quem atendeu. Se alguém sai da equipe, o histórico fica.
+
+=== PROVA ===
+H2: Resultados de quem estruturou o atendimento com a Cxpress
+# [ALTERADO a pedido do usuario, 2026-08-03] H2 original "Resultados de empresas que potenciaram as suas equipas com a Cxpress" (PT-PT, inconsistente com o resto da pagina em PT-BR).
+LIST ITEM: +220% de interações realizadas com a mesma estrutura de atendimento.*
+LIST ITEM: Até 15x mais produtividade nas interações automatizadas por IA, aumentando a capacidade da equipa.*
+LIST ITEM: 98% de qualidade nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*
+BODY: *Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar consoante a operação.
+CTA: Agendar demonstração gratuita
+# [ADICIONADO a pedido do usuario, 2026-08-03] Botao novo ao final da secao Prova.
+
+=== PLATAFORMA ===
+H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
+H3: Todos os canais no mesmo painel
+BODY: WhatsApp, e-mail, redes sociais, telefone e chat do site, com histórico unificado por cliente, independente do canal usado.
+H3: Atendimento 24/7 com apoio de IA
+BODY: Amplie o atendimento para 24/7 com apoio de IA no primeiro nível. O time humano entra nas questões que pedem gente.
+H3: Gestão de tickets com fila e distribuição
+BODY: Distribua atendimentos automaticamente ou manualmente para setores e agentes específicos, com visão completa da fila.
+H3: Dashboards no lugar das planilhas
+BODY: Transforme as estatísticas do atendimento em painéis intuitivos, com os indicadores que o gestor acompanha de verdade.
+
+=== FAQ ===
+H2: Dúvidas frequentes
+H3: Por que empresas são banidas do WhatsApp?
+BODY: Os casos mais comuns envolvem violação dos termos de uso da Meta: várias pessoas atendendo pelo aplicativo num celular compartilhado, ferramentas não-oficiais de multiatendimento e disparos em massa fora das regras.
+H3: A Cxpress usa a API oficial do WhatsApp?
+BODY: Sim. A integração é feita pela API oficial, o caminho que a Meta autoriza para o atendimento de empresas.
+H3: Vou precisar trocar de número para usar a API oficial?
+BODY: Não. Com o WhatsApp CoEx, o mesmo número pode operar no aplicativo e na API oficial ao mesmo tempo.
+H3: Posso conectar mais de um número à Cxpress?
+BODY: Sim, é possível conectar mais de um número na mesma operação.
+H3: Quais canais podem ser integrados?
+BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+LABEL: Api Oficial do WhatsApp
+LABEL: Api Oficial do ChatGPT
+LABEL: Um produto Elife
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0) — checado no HERO e no H2 de PLATAFORMA, unicos textos novos desta variacao.
+# Nota (2026-08-12): LP duplicada de banimento-whatsapp-clinicas a pedido do usuario, com H1/SUB do HERO reescritos (foco em plataforma unificada de atendimento, nao em risco de banimento), H2 de PLATAFORMA reescrito e secao FECHO removida. Demais secoes (CLIENTES, FORM, BENEFICIOS, PROVA, FAQ, QUEM SOMOS, FOOTER) mantidas identicas a referencia. Segmento-alvo: "Clínicas e serviços de saúde" (ja listado em brand-manifest.json > audience.segments).
+# Assets compartilhados via brand/cxpress/assets/plataforma/ (mesmos da referência), exceto imagem do hero (tema clínica, em landing-pages/cxpress/plataforma-atendimento-clinicas/assets/). Form Jotform 261027639617663 na 2a dobra / secao FORM (mesmo embed herdado de banimento-whatsapp-clinicas).
