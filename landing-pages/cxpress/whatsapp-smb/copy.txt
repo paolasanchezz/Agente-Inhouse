@@ -1,0 +1,188 @@
+LP: whatsapp-smb (Cxpress BR)
+Fonte: https://agentes.elife.com.br/smb (copy transcrita da página no ar, 2026-08-13)
+
+===============================================================================
+CABECALHO
+===============================================================================
+LOGO: Cxpress
+CTA: Fale com um especialista
+
+===============================================================================
+HERO
+===============================================================================
+OVERLINE: Cxpress para pequenas e médias empresas
+H1: Atendimento eficiente começa com organização
+    ("organização" em verde)
+BODY: A Cxpress ajuda pequenas e médias empresas a organizar o atendimento,
+      responder clientes com mais agilidade e transformar conversas em resultados.
+BODY: Tudo em uma plataforma oficial do WhatsApp, com recursos para gestão,
+      triagem e automação do atendimento.
+      ("plataforma oficial do WhatsApp" em negrito verde)
+CTA: Fale com um especialista
+VISUAL: GIF do painel da plataforma sobre círculo verde
+
+===============================================================================
+PROVA SOCIAL
+===============================================================================
+5 estrelas
+KICKER: Mais de 800 clientes no Brasil, Latam e Portugal
+H2: Confiam na nossa solução
+LOGOS: Sephora, Koin, Polenghi, Mondial, Oi, Diversey, Cacau Show, smartfit,
+       Eletrobras, Vitafor, Vivo, Ticket, Salonline, Pagsmile, Pés Sem Dor
+
+===============================================================================
+WHATSAPP COEX + API OFICIAL
+===============================================================================
+OVERLINE: WHATSAPP COEX + API OFICIAL
+H2: Continue no WhatsApp Business. Profissionalize com a Cxpress.
+BODY: Use o mesmo número no celular e na API oficial integrada à Cxpress, sem
+      interromper o atendimento que seus clientes já conhecem.
+H3: O que sua empresa ganha?
+
+CARD 1
+  TITULO: Continua com o mesmo número
+  BODY: Sem trocar o contato que seus clientes já usam.
+CARD 2
+  TITULO: Evita pausas no atendimento
+  BODY: A operação segue funcionando durante a transição.
+CARD 3
+  TITULO: Organiza melhor as conversas
+  BODY: Distribua atendimentos por filas, setores ou agentes.
+CARD 4
+  TITULO: Acompanha cada interação com o cliente
+  BODY: Veja quem respondeu, consulte históricos e acompanhe a operação.
+
+FECHAMENTO: Com a Cxpress, você mantém o WhatsApp Business e ganha estrutura
+            para crescer!
+VISUAL: foto de celular com WhatsApp sobre círculo verde
+
+===============================================================================
+BENEFICIOS
+===============================================================================
+H2: Centralize e automatize o seu atendimento, simples e eficaz.
+LEAD: E nós te mostramos o porquê:
+
+CARD 1
+  TITULO: Economia de tempo
+  BODY: Com a Cxpress, centralize todas as conversas e elimine a troca entre
+        plataformas, economizando tempo para sua equipe.
+CARD 2
+  TITULO: Respostas rápidas
+  BODY: Automatize respostas com IA para dúvidas frequentes, garantindo
+        satisfação com respostas instantâneas.
+CARD 3
+  TITULO: API oficial do WhatsApp
+  BODY: Com a API oficial do WhatsApp, acesse recursos como mensagens em massa,
+        automações personalizadas e relatórios detalhados.
+
+===============================================================================
+VIDEO
+===============================================================================
+H2: Seu Atendimento no WhatsApp turbinado com a automação de conversas
+VIDEO: YouTube 36sbDc02_DU
+CTA: Fale com um especialista
+
+===============================================================================
+NUMEROS
+===============================================================================
+14% - Aumento de demandas resolvidas por hora.*
+9%  - Redução do tempo médio de resolução via chat.*
+25% - Redução do desgaste dos atendentes com alto volume de solicitações.
+45% - Aumento da produtividade com IA generativa.**
+
+NOTA: *Pesquisa realizada pelo National Bureau of Economic Research (NBER), com
+mais de 5 mil agentes de atendimento ao cliente, sobre os resultados da aplicação
+de inteligência artificial generativa aos processos de suporte das empresas.
+NOTA: **Estimativas da McKinsey, consultoria empresarial norte-americana.
+
+===============================================================================
+PLATAFORMA (zigue-zague)
+===============================================================================
+H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
+
+LINHA 1 (imagem esquerda)
+  TITULO: Organize seu atendimento de forma integrada
+  BODY: Centralize e organize as interações de vários canais, otimize a triagem
+        e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.
+LINHA 2 (imagem direita)
+  TITULO: Atendimento automático ininterrupto com inteligência artificial
+  BODY: Amplie seu atendimento para 24/7 com Inteligência Artificial que responde
+        ao primeiro contato de visitantes e clientes usando linguagem natural.
+LINHA 3 (imagem esquerda)
+  TITULO: Centralize os cadastros dos clientes para uma experiência unificada
+  BODY: Tenha uma visão completa e integrada do seu cliente, centralizando
+        interações de diferentes canais em um único histórico.
+LINHA 4 (imagem direita)
+  TITULO: Otimize a gestão de tickets
+  BODY: Distribua tickets (registros) de atendimento automaticamente ou
+        manualmente para setores e agentes específicos, simplificando seus processos.
+LINHA 5 (imagem esquerda)
+  TITULO: Gerencie com eficiência por meio de dashboards
+  BODY: Deixe as planilhas para trás! Transforme suas estatísticas de atendimento
+        em painéis intuitivos.
+
+===============================================================================
+QUEM SOMOS
+===============================================================================
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de
+      atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos
+      oferecem uma visão única e simplificada da interação com o cliente, desde o
+      primeiro contato até a resolução do caso. O uso da Inteligência Artificial da
+      Cxpress para automação das primeiras interações em linguagem natural e a gestão
+      de filas otimizam a produtividade das equipes de atendimento.
+SELOS: Api Oficial do WhatsApp | Api Oficial do ChatGPT | Um produto elife
+
+===============================================================================
+CONTATO (form)
+===============================================================================
+H2: Entre em contato conosco!
+PRECO: Planos a partir de R$ 1.290/mês para até 5 acessos
+BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua
+      operação de atendimento com a orientação de nossos especialistas.
+EMAIL: comercial@gocxpress.com.br
+FORM: Jotform 262146559200655
+
+===============================================================================
+FAQ
+===============================================================================
+H2: Dúvidas frequentes
+
+P: Quais são os pré-requisitos para usar a Cxpress?
+R: Para conseguir usar a ferramenta é necessário ter um site ativo e um
+   colaborador responsável pela administração da plataforma.
+
+P: Posso usar o mesmo número no WhatsApp Business e na Cxpress?
+R: Sim. A Cxpress já oferece suporte ao WhatsApp CoEx, também conhecido como
+   Coexistência. Com esse recurso, sua empresa pode usar o mesmo número tanto no
+   aplicativo WhatsApp Business, no celular, quanto na API oficial integrada à
+   Cxpress.
+   Na prática, isso permite manter a facilidade do app e, ao mesmo tempo, contar
+   com recursos profissionais de gestão, automação e atendimento em equipe pela
+   Cxpress.
+
+P: A inteligência artificial (IA) faz o atendimento sozinha?
+R: Não. A IA da Cxpress realiza apenas o primeiro nível de atendimento (N1),
+   respondendo a perguntas sobre serviços e produtos. Um colaborador humano deve
+   estar disponível para questões mais complexas que o chatbot não saiba responder
+   ou quando o cliente desejar falar com um atendente humano.
+
+P: Posso conectar mais de um número à Cxpress?
+R: Sim, é possível.
+
+P: Quais canais podem ser integrados?
+R: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais
+   (Facebook, Instagram), telefone e chat do site.
+
+P: A plataforma é compatível com integração de CRM?
+R: Sim, é possível integrar com sistemas de CRM, porém é necessário passar por uma
+   análise prévia da nossa equipe técnica para garantir que tudo funcione
+   perfeitamente.
+
+===============================================================================
+RODAPE
+===============================================================================
+LOGO: elifegroup
+COPY: ©Cxpress é um produto Elife.(2026)
+LINKS: Condições gerais de uso da Cxpress. | Políticas de privacidade
+REDES: Facebook, Instagram, LinkedIn

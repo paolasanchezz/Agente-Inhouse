@@ -234,6 +234,11 @@
       "slug": "whatsapp-comercial-bloqueado",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/whatsapp-comercial-bloqueado"
+    },
+    {
+      "slug": "whatsapp-smb",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/whatsapp-smb"
     }
   ],
   "extra_files": {
