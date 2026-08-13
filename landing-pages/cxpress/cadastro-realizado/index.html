@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap">
+  <link rel="preload" as="image" href="./assets/mascot/samir-joinha-web.png">
 
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
   <style>
@@ -34,6 +35,8 @@
       --primary-lighter: #D7E2FF;
       --accent: #EF863C;
       --accent-light: #FFDCC3;
+      --warning: #F1A908;
+      --warning-light: #FFF3DA;
       --neutral-0: #ffffff;
       --neutral-100: #f5f5f5;
       --neutral-700: #4a4a4a;
@@ -55,6 +58,9 @@
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       font-family: var(--font-body);
       font-size: 17px;
       line-height: 1.6;
@@ -64,7 +70,8 @@
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
-    h1 { font-family: var(--font-heading); margin: 0; line-height: 1.2; }
+    @supports (min-height: 100dvh) { body { min-height: 100dvh; } }
+    h1 { font-family: var(--font-heading); margin: 0; line-height: 1.15; }
     p { margin: 0; }
     img { max-width: 100%; display: block; }
 
@@ -87,62 +94,144 @@
       max-width: var(--container-max);
       margin: 0 auto;
       padding: 0 var(--container-pad);
+      width: 100%;
     }
     .container--narrow { max-width: var(--container-narrow); }
 
     /* ============ HEADER ============ */
     .header {
       padding: 22px 0;
-      border-bottom: 1px solid var(--neutral-100);
+      border-bottom: 1px solid rgba(35, 41, 96, 0.07);
       background: var(--neutral-0);
+      position: relative;
+      z-index: 2;
     }
     .header .container { display: flex; align-items: center; justify-content: center; }
     .header__logo img { height: 34px; width: auto; }
 
     /* ============ SECAO CONFIRMACAO ============ */
+    /* Pagina de 2 linhas de copy: ocupa a altura util da janela e centraliza, em vez de
+       virar uma faixa curta com o rodape colado no topo da tela. */
+    main { flex: 1 0 auto; display: flex; }
     .confirmacao {
       position: relative;
-      padding: clamp(80px, 12vw, 140px) 0 clamp(96px, 13vw, 150px);
-      background: var(--neutral-0);
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: clamp(44px, 6vw, 76px) 0 clamp(52px, 7vw, 88px);
+      background:
+        radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 42%, #E9F1FF 100%);
       overflow: hidden;
     }
+    /* Pilulas decorativas (linguagem visual das LPs Cxpress): longe do conteudo, so textura. */
     .confirmacao::before {
       content: ""; position: absolute; pointer-events: none;
-      width: 66px; height: 210px;
+      width: 66px; height: 220px;
       background: var(--primary-lighter);
       border-radius: var(--radius-pill);
-      top: -60px; right: 6%;
+      top: -72px; right: 7%;
+      opacity: .8;
     }
     .confirmacao::after {
       content: ""; position: absolute; pointer-events: none;
-      width: 46px; height: 150px;
+      width: 46px; height: 156px;
       border: 3px solid var(--accent);
       border-radius: var(--radius-pill);
-      bottom: -40px; left: 4%;
+      bottom: -52px; left: 5%;
+      opacity: .42;
+    }
+    /* Em tela estreita as pilulas encostam no conteudo: encolhem e recuam pra borda. */
+    @media (max-width: 720px) {
+      .confirmacao::before {
+        width: 50px; height: 168px; right: -26px; top: -60px; opacity: .5;
+      }
+      .confirmacao::after {
+        width: 36px; height: 118px; left: -20px; bottom: -44px; opacity: .32;
+      }
     }
     .confirmacao .container--narrow { position: relative; z-index: 1; text-align: center; }
 
-    .confirmacao__icon {
-      width: 64px; height: 64px; margin: 0 auto 32px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      display: grid; place-items: center;
+    /* ============ MEDALHAO DO MASCOTE ============ */
+    .medalhao {
+      position: relative;
+      width: clamp(228px, 38vw, 320px);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto clamp(30px, 4vw, 44px);
     }
-    .confirmacao__icon svg { width: 30px; height: 30px; }
+    /* A arte do mascote e um busto cortado reto na base. O disco recorta esse corte
+       (overflow: hidden + bottom negativo), em vez de deixar uma linha dura sob o medalhao. */
+    .medalhao__disco {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      background:
+        radial-gradient(72% 72% at 50% 30%, #FFF4D6 0%, #FFE7AE 52%, #FFD98A 100%);
+      box-shadow:
+        0 0 0 1px rgba(241, 169, 8, 0.22),
+        0 18px 44px rgba(35, 41, 96, 0.12);
+    }
+    /* Anel externo: dá acabamento ao medalhao sem pesar. */
+    .medalhao::after {
+      content: "";
+      position: absolute; inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(241, 169, 8, 0.28);
+      pointer-events: none;
+    }
+    .medalhao__mascote {
+      position: absolute;
+      left: 50%; bottom: -4%;
+      transform: translateX(-50%);
+      width: 102%;
+      height: auto;
+      min-height: 0; /* GUIDELINES §14: Safari iOS */
+      filter: drop-shadow(0 12px 18px rgba(35, 41, 96, 0.18));
+    }
+    /* Selo de confirmacao sobre o medalhao. */
+    .medalhao__selo {
+      position: absolute;
+      left: -2%; bottom: 16%;
+      width: clamp(52px, 9vw, 64px);
+      height: clamp(52px, 9vw, 64px);
+      border-radius: 50%;
+      background: var(--neutral-0);
+      display: grid; place-items: center;
+      box-shadow: 0 10px 24px rgba(35, 41, 96, 0.16), 0 0 0 1px rgba(239, 134, 60, 0.18);
+      color: var(--accent);
+      z-index: 2;
+    }
+    .medalhao__selo svg { width: 54%; height: 54%; }
+    .medalhao__selo path {
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+    }
+    .medalhao.is-visible .medalhao__selo path {
+      animation: risca .55s var(--ease) .45s forwards;
+    }
+    @keyframes risca { to { stroke-dashoffset: 0; } }
 
+    /* Entrada do medalhao: sobe e assenta. */
+    .medalhao.reveal { transform: translateY(22px) scale(.94); }
+    .medalhao.reveal.is-visible { transform: none; }
+
+    /* ============ TEXTO ============ */
     .confirmacao h1 {
-      font-size: clamp(28px, 3.6vw, 40px);
+      font-size: clamp(29px, 4vw, 46px);
       font-weight: 800;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
       color: var(--primary-dark);
-      margin-bottom: 20px;
+      max-width: 15em;
+      margin: 0 auto 18px;
+      text-wrap: balance;
     }
     .confirmacao__sub {
-      font-size: 19px;
-      line-height: 1.65;
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.6;
       color: var(--neutral-700);
-      max-width: 32em;
+      max-width: 30em;
       margin: 0 auto;
+      text-wrap: balance;
     }
 
     /* ============ REVEAL ============ */
@@ -157,7 +246,9 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal, .medalhao.reveal { opacity: 1; transform: none; transition: none; }
+      .medalhao__selo path { stroke-dashoffset: 0; }
+      .medalhao.is-visible .medalhao__selo path { animation: none; }
       * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
 
@@ -165,14 +256,15 @@
     .footer {
       background: var(--primary-dark);
       color: var(--primary-light);
-      padding: 44px 0;
+      padding: 40px 0;
+      flex: none;
     }
     .footer .container {
       display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 16px;
     }
     .footer__logo img { display: block; height: 30px; width: auto; }
-    .footer p { font-size: 15px; }
+    .footer p { font-size: 15px; text-align: center; }
   </style>
 </head>
 <body>
@@ -194,9 +286,19 @@
   <main id="conteudo">
     <section class="confirmacao" aria-labelledby="titulo-confirmacao">
       <div class="container container--narrow">
-        <div class="confirmacao__icon reveal" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#EF863C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+
+        <div class="medalhao reveal" aria-hidden="true">
+          <div class="medalhao__disco">
+            <img class="medalhao__mascote" src="./assets/mascot/samir-joinha-web.png"
+                 alt="" width="760" height="644" decoding="async">
+          </div>
+          <div class="medalhao__selo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </div>
         </div>
+
         <h1 id="titulo-confirmacao" class="reveal reveal-delay-1">Cadastro realizado com sucesso.</h1>
         <p class="confirmacao__sub reveal reveal-delay-2">Em breve você receberá nosso contato.</p>
       </div>
@@ -214,6 +316,11 @@
 
   <script>
     (function () {
+      // Reveal on scroll. Tres camadas de fallback (GUIDELINES §4: texto essencial nunca
+      // fica invisivel esperando animacao): (1) <noscript> no <head> se JS nao roda;
+      // (2) reveal imediato se o browser nao tem IntersectionObserver;
+      // (3) failsafe por timeout se o IO existir mas nao disparar (aba em background no load,
+      //     prerender, rendering suspenso). Depois de 1.5s tudo aparece de qualquer forma.
       var els = document.querySelectorAll('.reveal');
       function revealAll() {
         for (var i = 0; i < els.length; i++) els[i].classList.add('is-visible');
