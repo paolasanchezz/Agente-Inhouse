@@ -232,11 +232,6 @@
         <input id="f-whats" type="text" placeholder="+55 (00) 00000-0000" autocomplete="tel">
         <span class="hint">Deixe em branco e a linha do telefone nem aparece na assinatura.</span>
       </div>
-      <div class="field">
-        <label for="f-codigo">Código do Indique e Ganhe</label>
-        <input id="f-codigo" type="text" value="bm0055" spellcheck="false">
-        <span class="hint">Confirme o seu com o time de marketing — é o que credita a indicação a você.</span>
-      </div>
     </div>
   </section>
 
@@ -278,14 +273,12 @@
 <script>
 (function () {
   var BASE = "https://content.buzzmonitor.com/assinatura";
-  var LINK = "https://indiqueeganhe.buzzmonitor.com.br/?utm_source=email&utm_medium=assinatura" +
-             "&utm_campaign=indique_e_ganhe&utm_content=assinatura_equipe&utm_term=";
+  var LINK = "https://indiqueeganhe.buzzmonitor.com.br/";
 
   var el = {
     nome: document.getElementById("f-nome"),
     cargo: document.getElementById("f-cargo"),
     whats: document.getElementById("f-whats"),
-    codigo: document.getElementById("f-codigo"),
     alvo: document.getElementById("assinatura"),
     btn: document.getElementById("btn"),
     status: document.getElementById("status")
@@ -303,7 +296,6 @@
     var nome = val(el.nome);
     var cargo = val(el.cargo);
     var whats = esc((el.whats.value || "").trim());   // vazio = linha nao entra
-    var codigo = encodeURIComponent((el.codigo.value || "").trim());
     var img = "display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;";
     // o respiro antes do bloco de logos fica na ultima linha de texto que existir
     var fim = whats ? 3 : 12;
@@ -328,7 +320,7 @@
                 '<img src="' + BASE + '/logo-buzzmonitor-ia.gif" width="218" height="75" alt="Buzzmonitor" style="' + img + '">' +
               '</td>' +
               '<td style="vertical-align:bottom;padding:0 20px 0 0;">' +
-                '<a href="' + LINK + codigo + '" target="_blank" style="text-decoration:none;">' +
+                '<a href="' + LINK + '" target="_blank" style="text-decoration:none;">' +
                   '<img src="' + BASE + '/indique-e-ganhe.gif" width="167" height="57" alt="Indique e Ganhe" style="' + img + '">' +
                 '</a>' +
               '</td>' +
@@ -346,7 +338,7 @@
 
   function render() { el.alvo.innerHTML = montar(); }
 
-  [el.nome, el.cargo, el.whats, el.codigo].forEach(function (i) {
+  [el.nome, el.cargo, el.whats].forEach(function (i) {
     i.addEventListener("input", render);
   });
   render();
