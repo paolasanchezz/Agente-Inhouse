@@ -158,7 +158,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-bottom: 1px solid var(--line);
   }
   .nav__logo { display: inline-flex; align-items: center; flex-shrink: 0; }
-  .nav__logo img { height: 30px; width: auto; display: block; min-height: 0; }
+  .nav__logo img { height: 42px; width: auto; display: block; min-height: 0; }
+  .nav__logo img.nav__logo--icone { display: none; }
   .nav__links { display: flex; align-items: center; gap: .4rem; }
   .nav__link {
     font-family: var(--sub); font-size: 15px; font-weight: 400;
@@ -545,8 +546,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background: #030305; border-top: 1px solid var(--line);
     padding: 70px 0 50px; text-align: center;
   }
-  .footer__logo { display: inline-flex; margin-bottom: 1.8rem; }
-  .footer__logo img { height: 28px; width: auto; display: block; min-height: 0; }
+  .footer__logos {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: clamp(1.6rem, 5vw, 2.8rem); margin-bottom: 1.8rem;
+  }
+  .footer__logo { display: inline-flex; }
+  .footer__logo img { width: auto; display: block; min-height: 0; }
+  .footer__logo--buzz img { height: 28px; }
+  .footer__logo--udb img { height: 40px; }
   .footer p { font-size: 14px; color: var(--dim); max-width: 620px; margin: 0 auto .6rem; }
 
   /* ---------- RESPONSIVO ---------- */
@@ -568,7 +575,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero { padding-top: 120px; }
     .det summary { padding: 1.2rem 1.3rem; }
     .det__body { padding: 0 1.3rem 1.6rem; }
-    .nav__logo img { height: 24px; }
+    .nav__logo img.nav__logo--completo { display: none; }
+    .nav__logo img.nav__logo--icone { display: block; height: 36px; }
     .nav .btn--sm { padding: 13px 18px; font-size: 14px; }
   }
 </style>
@@ -583,8 +591,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
 <nav class="nav" aria-label="Navegação principal">
-  <a href="https://buzzmonitor.com/" class="nav__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
-    <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="140" height="30">
+  <a href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto" class="nav__logo" aria-label="Universidade do Buzz: trilhas do Buzz Academy Experience">
+    <img class="nav__logo--completo" src="assets/logo-universidade-do-buzz-branco.png" alt="" width="236" height="42">
+    <img class="nav__logo--icone" src="assets/logo-universidade-do-buzz-icone-branco.png" alt="" width="21" height="36">
   </a>
   <div class="nav__links">
     <a class="nav__link" href="#trilhas">Trilhas</a>
@@ -847,9 +856,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer class="footer">
   <div class="wrap">
-    <a href="https://buzzmonitor.com/" class="footer__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
-      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="131" height="28">
-    </a>
+    <div class="footer__logos">
+      <a href="https://buzzmonitor.com/" class="footer__logo footer__logo--buzz" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="131" height="28">
+      </a>
+      <a href="https://universidadedobuzz.com/local/staticpage/view.php?page=BuzzAcademyExperienceProjeto" class="footer__logo footer__logo--udb" aria-label="Universidade do Buzz: trilhas do Buzz Academy Experience">
+        <img src="assets/logo-universidade-do-buzz-branco.png" alt="" width="224" height="40">
+      </a>
+    </div>
     <p>Buzz Academy Experience é uma iniciativa da Buzz Academy, a escola da Buzzmonitor que profissionaliza universitários e profissionais em formação.</p>
     <p>© 2026 Buzzmonitor. Todos os direitos reservados.</p>
   </div>
