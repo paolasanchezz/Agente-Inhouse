@@ -106,6 +106,19 @@
   .fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
   .field { display: flex; flex-direction: column; gap: 6px; }
   label { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .opcional {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 7px;
+    margin-left: 4px;
+    vertical-align: 1px;
+  }
   .hint { font-size: 12px; color: var(--muted); line-height: 1.45; }
   input {
     font-family: var(--font-body);
@@ -215,8 +228,9 @@
         <input id="f-cargo" type="text" placeholder="Seu cargo" autocomplete="organization-title">
       </div>
       <div class="field">
-        <label for="f-whats">WhatsApp</label>
+        <label for="f-whats">WhatsApp <span class="opcional">opcional</span></label>
         <input id="f-whats" type="text" placeholder="+55 (00) 00000-0000" autocomplete="tel">
+        <span class="hint">Deixe em branco e a linha do telefone nem aparece na assinatura.</span>
       </div>
       <div class="field">
         <label for="f-codigo">Código do Indique e Ganhe</label>
@@ -288,9 +302,11 @@
   function montar() {
     var nome = val(el.nome);
     var cargo = val(el.cargo);
-    var whats = val(el.whats);
+    var whats = esc((el.whats.value || "").trim());   // vazio = linha nao entra
     var codigo = encodeURIComponent((el.codigo.value || "").trim());
     var img = "display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;";
+    // o respiro antes do bloco de logos fica na ultima linha de texto que existir
+    var fim = whats ? 3 : 12;
 
     return '' +
 '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Lato,\'Helvetica Neue\',Helvetica,Arial,sans-serif;color:#000000;">' +
@@ -301,8 +317,10 @@
     '<td style="vertical-align:top;">' +
       '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
         '<tr><td style="font-family:\'League Spartan\',\'Century Gothic\',Arial,Helvetica,sans-serif;font-size:24px;line-height:28px;font-weight:bold;color:#000000;padding:0 0 2px 0;">' + nome + '</td></tr>' +
-        '<tr><td style="font-family:Lato,\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-size:12px;line-height:17px;color:#000000;padding:0 0 3px 0;">' + cargo + '</td></tr>' +
-        '<tr><td style="font-family:Lato,\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-size:13px;line-height:18px;color:#000000;padding:0 0 12px 0;"><span style="font-weight:bold;">WhatsApp:</span> ' + whats + '</td></tr>' +
+        '<tr><td style="font-family:Lato,\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-size:12px;line-height:17px;color:#000000;padding:0 0 ' + fim + 'px 0;">' + cargo + '</td></tr>' +
+        (whats
+          ? '<tr><td style="font-family:Lato,\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-size:13px;line-height:18px;color:#000000;padding:0 0 12px 0;"><span style="font-weight:bold;">WhatsApp:</span> ' + whats + '</td></tr>'
+          : '') +
         '<tr><td>' +
           '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
             '<tr>' +

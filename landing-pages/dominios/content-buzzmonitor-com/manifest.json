@@ -65,6 +65,7 @@
   "extra_files": {
     "README.md": "landing-pages/dominios/content-buzzmonitor-com/extras/README.md",
     "_placeholder/index.html": "landing-pages/dominios/content-buzzmonitor-com/extras/_placeholder/index.html",
+    "assinatura/index.html": "brand/buzzmonitor/assets/assinatura/assinatura-buzzmonitor.html",
     "assinatura/logo-buzzmonitor-ia.gif": "brand/buzzmonitor/assets/assinatura/logo-buzzmonitor-ia.gif",
     "assinatura/indique-e-ganhe.gif": "brand/buzzmonitor/assets/assinatura/indique-e-ganhe.gif",
     "assinatura/selo-fia-2026.png": "brand/buzzmonitor/assets/assinatura/selo-fia-2026.png",
