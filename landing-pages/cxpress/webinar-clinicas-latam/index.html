@@ -483,7 +483,7 @@
     .audience-section { background: var(--primary-dark); color: var(--neutral-0); }
     .audience-header { max-width: 640px; margin: 0 auto 48px; text-align: center; }
     .audience-header .section-label { background: var(--accent); color: var(--primary-dark); }
-    .audience-h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; color: var(--neutral-0); }
+    .audience-h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; color: var(--neutral-0); }
     .audience-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -502,6 +502,13 @@
       font-size: 15px;
       color: var(--primary-lighter);
       line-height: 1.5;
+      transition: transform 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+    }
+    .audience-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.26);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.18);
     }
     .audience-item svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
     .audience-cta { display: flex; justify-content: center; }
