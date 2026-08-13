@@ -24,8 +24,8 @@ Mesma ordem narrativa do original, com **1 seção removida** (pedido do usuári
 2. HERO (fundo branco com pattern de bolinhas radiais, H1 com "Redes Sociais" em laranja, CTA pill,
    card com os 15 chips de canal + popover no hover/foco, e o vídeo da plataforma)
 3. TRUSTED-BY (marquee CSS infinito com os 11 logos de cliente + máscara de fade nas laterais)
-4. FORMULÁRIO `#formulario` (grafismo decorativo à esquerda, 6 checks + card laranja com o Jotform,
-   selo de preço e os 2 badges flutuantes)
+4. FORMULÁRIO `#formulario` (grafismo decorativo à esquerda, 6 checks + card **branco com contorno preto**
+   contendo o Jotform, selo de preço e os 2 badges flutuantes)
 5. EXPERIMENTE GRÁTIS 14 DIAS (5 checks + bloco de preço + CTA)
 6. IA PARA GERAÇÃO DE INSIGHTS (colunas invertidas, botão outline laranja com seta animada)
 7. MONITORAMENTO DE VÍDEOS, ÁUDIOS E IMAGENS
@@ -43,6 +43,7 @@ O tema de IA já é coberto pela seção 6.
 |---|---|---|
 | **Formulário** | Jotform `250074757320049` | Jotform **`252995108251662`** (o mesmo de `plataforma-completa-monitoramento`) |
 | **GTM** | `GTM-WFJVK858` | `GTM-WFJVK858` (idêntico; é o container BR de `tracking.json`) |
+| **Card do formulário** | fundo laranja `#ff6900`, título branco | fundo **branco**, contorno `2px solid #252525`, título `#252525` (pedido do Victor, 2026-08-13: o botão de envio do Jotform é laranja e desaparecia dentro do card laranja) |
 | Hero animado | GIF de 5,5 MB no CDN da Cloudinary | MP4 local `hero-plataforma.mp4` (818 KB, 6,7× menor) + poster JPG, `autoplay muted loop playsinline` |
 | Ícones do footer | `tabler-icons.min.css` (1,24 MB) | 5 SVGs inline |
 | Links sociais do footer | `href="#"` | URLs reais (Facebook/Instagram/YouTube/LinkedIn BR + LinkedIn global) |
@@ -75,6 +76,11 @@ O tema de IA já é coberto pela seção 6.
   Afeta `.btn-primary`, `.formcard__title`, `.net__cta` e `.btn-outline`.
 - Dois cinzas do original **foram** corrigidos porque a mudança é imperceptível: `#718096` → `#5f6b7a` no
   label do trusted-by (4,0 → 5,4:1) e `#888` → `#6f6f6f` na atribuição dos depoimentos (3,5 → 5,0:1).
+  O card do formulário virou branco (2026-08-13), então o `.formcard__title` passou a ter 13,8:1 e o botão
+  laranja do Jotform ganhou contraste real contra o fundo.
+- **O interior do formulário não é estilizável daqui:** o Jotform renderiza num `<iframe>` cross-origin, então
+  os campos, os selects e o botão de envio seguem o tema configurado no painel do Jotform. Se quiser contorno
+  preto nos *campos* (e não só no card), a mudança é no formulário `252995108251662` lá, não neste HTML.
 
 ## Assets referenciados
 
