@@ -18,6 +18,7 @@ Duplicada de [`content.cxpress.io/banimento-whatsapp-clinicas`](https://content.
 5. Demais seções (CLIENTES, FORM, PROVA, QUEM SOMOS, FOOTER), CSS, assets e formulário (Jotform `261027639617663`) idênticos à referência — não foram pedidos pelo usuário.
 6. **FAQ trocada (pós-publicação, 2026-08-12)**: as 5 perguntas herdadas de `banimento-whatsapp-clinicas` (tema banimento/API oficial) foram substituídas pelas 6 perguntas literais da LP [`whatsapp-business-smb`](https://content.cxpress.io/whatsapp-business-smb) (pré-requisitos, WhatsApp CoEx, IA no N1, múltiplos números, canais integráveis, integração de CRM) — pedido explícito do usuário, copiado verbatim do source dessa LP.
 7. **BENEFICIOS trocada (pós-publicação, 2026-08-12)**: H2 alterado de "O que muda na sua operação com a integração oficial" para "Centralize e automatize o seu atendimento" (texto dado literalmente pelo usuário). Os 3 cards (Integração oficial da Meta / Vários atendentes, um número / Histórico que não se perde) foram substituídos pelos 3 cards literais da seção "Centralize e automatize o seu atendimento, simples e eficaz" de `whatsapp-business-smb` (Economia de tempo / Respostas rápidas / API oficial do WhatsApp).
+8. **FORM enxugada (pós-publicação, 2026-08-12)**: removidas as linhas "Planos a partir de R$ 1.290" e "Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress." (pedido explícito do usuário).
 
 ## Estrutura
 
@@ -38,6 +39,7 @@ Duplicada de [`content.cxpress.io/banimento-whatsapp-clinicas`](https://content.
 - [x] Publicado — `https://content.cxpress.io/plataforma-atendimento-clinicas` (PR #256, merge automático + deploy CI)
 - [x] FAQ trocada pela de `whatsapp-business-smb` (pós-publicação, 2026-08-12)
 - [x] BENEFICIOS trocada pela de `whatsapp-business-smb` (pós-publicação, 2026-08-12)
+- [x] FORM enxugada — removidas as linhas de preço/requisito (pós-publicação, 2026-08-12)
 - [ ] Formulário — herdado da referência (Jotform `261027639617663`); confirmar com o usuário se é o form correto pra esta LP ou se precisa trocar
 - [ ] OG image — herdada da referência (mesma foto/hero), só renomeada. Se quiser OG dedicada ao novo H1, regenerar.
 

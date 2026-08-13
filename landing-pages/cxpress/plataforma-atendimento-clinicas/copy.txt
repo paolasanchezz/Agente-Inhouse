@@ -13,8 +13,6 @@ BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.pn
 H2: Agende sua demonstração gratuita
 H3: Veja a integração oficial funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
-BODY: Planos a partir de R$ 1.290
-BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
 LABEL: Nome
 LABEL: E-mail de trabalho
 LABEL: Telefone
@@ -83,4 +81,5 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 # Nota (2026-08-12): LP duplicada de banimento-whatsapp-clinicas a pedido do usuario, com H1/SUB do HERO reescritos (foco em plataforma unificada de atendimento, nao em risco de banimento), H2 de PLATAFORMA reescrito e secao FECHO removida. Demais secoes (CLIENTES, FORM, BENEFICIOS, PROVA, QUEM SOMOS, FOOTER) mantidas identicas a referencia. Segmento-alvo: "Clínicas e serviços de saúde" (ja listado em brand-manifest.json > audience.segments).
 # Nota (2026-08-12, pos-publicacao): secao FAQ trocada a pedido do usuario pela FAQ literal da LP whatsapp-business-smb (mesmas 6 perguntas/respostas, copiadas verbatim do source dessa LP).
 # Nota (2026-08-12, pos-publicacao 2): secao BENEFICIOS trocada a pedido do usuario. H2 novo "Centralize e automatize o seu atendimento" (texto dado literalmente pelo usuario, sem o sufixo ", simples e eficaz." que a fonte tem). Os 3 cards (Economia de tempo / Respostas rapidas / API oficial do WhatsApp) sao copia verbatim da secao BENEFICIOS de whatsapp-business-smb.
+# Nota (2026-08-12, pos-publicacao 3): removidas as linhas "Planos a partir de R$ 1.290" e "Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress." da secao FORM, a pedido do usuario.
 # Assets compartilhados via brand/cxpress/assets/plataforma/ (mesmos da referência), exceto imagem do hero (tema clínica, em landing-pages/cxpress/plataforma-atendimento-clinicas/assets/). Form Jotform 261027639617663 na 2a dobra / secao FORM (mesmo embed herdado de banimento-whatsapp-clinicas).
