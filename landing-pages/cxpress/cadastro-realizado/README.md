@@ -67,7 +67,7 @@ completo.
 - [x] HTML gerado
 - [x] Revisão — ver `REVISAO.md` (1 crítico aplicado: logo faltando no footer)
 - [x] Redesign com mascote (2026-08-13)
-- [ ] Publicado
+- [x] Publicado — https://content.cxpress.io/cadastro-realizado (redesign no ar em 2026-08-13, PR #283)
 
 ## Exceções deliberadas às GUIDELINES (precedente: video-atendimento-obrigado / conheca-a-cxpress-confirmado)
 
