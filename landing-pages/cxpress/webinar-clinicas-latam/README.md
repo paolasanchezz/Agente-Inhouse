@@ -27,7 +27,7 @@
 - `../../brand/cxpress/assets/logos/logo-primary.svg` (header)
 - `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
-- `./assets/doctora-hero.png` (foto do hero, enviada pelo usuario via Downloads — `Doctora webinar clinicas.png` — enmarcada em arco + pills decorativos do brandbook)
+- `./assets/doctora-equipo-clinica.jpg` (foto de fundo do hero, enviada pelo usuario via Downloads — `landing clinicas.png`, convertida pra JPEG. Padrao foto-de-fundo + scrim, igual `banimento-whatsapp-clinicas`)
 - `./assets/speakers/milagros-pantoja.jpg`
 - `./assets/speakers/laura-rodriguez.jpg`
 - `../../brand/cxpress/assets/plataforma/clientes-cxpress.png` (banner de logos de clientes, reusado — mesmo asset usado em ~15 outras LPs Cxpress)
