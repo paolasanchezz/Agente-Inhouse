@@ -19,8 +19,10 @@
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-webinar-clinicas-latam.png` (gerada via Chrome headless + template do brandbook)
 - [x] Revisão (`/lp-revisar cxpress/webinar-clinicas-latam`) — 4 críticos de contraste corrigidos, ver `REVISAO.md`
-- [ ] Formulário integrado — mock atual tem Nombre, E-mail profesional, Nombre de tu empresa, checkbox Newsletter. Campos ocultos de tracking do form original (utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_tracking, gclid, matchtype, creative) NÃO estão no mock — entram via `/lp-integrar-form cxpress/webinar-clinicas-latam "snippet"` quando houver provedor real definido.
+- [x] Formulário integrado — mock substituído por embed real (ver Form provider abaixo)
 - [ ] Publicado — `/lp-publicar cxpress webinar-clinicas-latam content.cxpress.io`
+
+**Form provider:** Jotform (2026-08-13)
 
 ## Assets referenciados
 
