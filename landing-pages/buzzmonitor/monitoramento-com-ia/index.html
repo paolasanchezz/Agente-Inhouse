@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff6900">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WFJVK858');</script>
+<!-- End Google Tag Manager -->
+<title>Monitoramento de Redes Sociais e Concorrentes com IA</title>
+
+<link rel="canonical" href="https://{{DOMAIN}}/monitoramento-com-ia">
+<meta name="description" content="Descubra o que dizem da sua marca em tempo real. Análise de sentimento, concorrentes e atendimento num painel só, com IA. Agende uma demonstração gratuita.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Buzzmonitor">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Buzzmonitor">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://{{DOMAIN}}/monitoramento-com-ia">
+<meta property="og:title" content="Monitoramento de Redes Sociais e Concorrentes com IA">
+<meta property="og:description" content="Instagram, TikTok, YouTube, Reddit e mais numa ferramenta só. Análise de sentimento em tempo real e alertas inteligentes com IA.">
+<meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Buzzmonitor: monitoramento de redes sociais e concorrentes em tempo real">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monitoramento de Redes Sociais e Concorrentes com IA">
+<meta name="twitter:description" content="Instagram, TikTok, YouTube, Reddit e mais numa ferramenta só. Análise de sentimento em tempo real e alertas inteligentes com IA.">
+<meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://buzzmonitor.com/#organization", "name": "Buzzmonitor", "url": "https://buzzmonitor.com/", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/buzzmonitor/", "https://www.instagram.com/buzzmonitorbr/"] },
+    { "@type": "WebPage", "@id": "https://{{DOMAIN}}/monitoramento-com-ia#webpage", "url": "https://{{DOMAIN}}/monitoramento-com-ia", "name": "Monitoramento de Redes Sociais e Concorrentes com IA", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://buzzmonitor.com/#organization" }, "description": "Descubra o que dizem da sua marca em tempo real. Análise de sentimento, concorrentes e atendimento num painel só, com IA." },
+    { "@type": "SoftwareApplication", "name": "Buzzmonitor", "url": "https://{{DOMAIN}}/monitoramento-com-ia", "description": "Plataforma de social listening, atendimento e analytics com IA que monitora, analisa e protege a marca em tempo real.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "inLanguage": "pt-BR", "publisher": { "@id": "https://buzzmonitor.com/#organization" }, "offers": { "@type": "Offer", "price": "1790.00", "priceCurrency": "BRL", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1790.00", "priceCurrency": "BRL", "unitText": "MONTH" } } }
+  ]
+}
+</script>
+
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://form.jotform.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Lato:wght@400;700&display=swap">
+
+<style>
+  :root{
+    --orange:#ff6900;
+    --orange-dark:#f06000;
+    --ink:#252525;
+    --ink-strong:#1a202c;
+    --body:#5f5f5f;
+    --muted:#888888;
+    --line:#e6e6e6;
+    --white:#ffffff;
+    --paper:#f7f7f7;
+    --paper-2:#f9f9f9;
+    --dark:#1b1b1b;
+    --navy:#1a3a5c;
+    --rose:#c11e46;
+    --whatsapp:#25d366;
+
+    --display:"League Spartan", system-ui, sans-serif;
+    --text:"Lato", system-ui, sans-serif;
+
+    --shell:1180px;
+    --pad-x:24px;
+    --sec-y:clamp(56px, 7vw, 84px);
+    --radius:16px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--body);
+    font-family:var(--text);
+    font-size:16px;
+    line-height:1.6;
+    /* clip (nao hidden): nao cria scroll container, entao o header sticky continua colando */
+    overflow-x:clip;
+  }
+  img,svg,video{ max-width:100%; }
+  a{ color:inherit; }
+  h1,h2,h3{ font-family:var(--display); color:var(--ink); margin:0 0 10px; line-height:1.15; font-weight:700; }
+  p{ margin:0 0 10px; }
+
+  .container{ width:100%; max-width:var(--shell); margin-inline:auto; padding-inline:var(--pad-x); position:relative; z-index:1; }
+
+  .skip-link{
+    position:absolute; top:0; left:0; z-index:100;
+    width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+    background:var(--white); color:var(--ink); padding:0; border-radius:0 0 10px 0; font-weight:700;
+  }
+  .skip-link:focus{
+    width:auto; height:auto; overflow:visible; clip-path:none; padding:12px 18px;
+  }
+
+  :focus-visible{ outline:3px solid var(--orange); outline-offset:3px; border-radius:6px; }
+
+  /* ===== HEADER ===== */
+  .site-header{
+    position:sticky; top:0; z-index:999;
+    background:rgba(255,255,255,.8);
+    -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px);
+    border-bottom:1px solid #e2e8f0;
+  }
+  .site-header .container{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    padding-block:15px; max-width:1440px;
+  }
+  .site-header__logo{ display:inline-flex; line-height:0; }
+  .site-header__logo img{ width:clamp(120px, 16vw, 170px); height:auto; }
+
+  /* ===== SECTIONS ===== */
+  .section{ padding-block:var(--sec-y); }
+  .section--white{ background:var(--white); }
+  .section--alt{ background:var(--paper); }
+
+  /* ===== TYPE SCALE ===== */
+  .h1{
+    font-size:clamp(30px, 5.6vw, 56px);
+    max-width:800px; margin:0 auto 24px; text-align:center; color:var(--ink-strong);
+  }
+  .h2{ font-size:clamp(26px, 3.6vw, 36px); font-weight:700; margin-bottom:12px; }
+  .lead{
+    font-size:clamp(16px, 2vw, 18px); color:var(--body);
+    max-width:700px; margin:0 auto 20px; text-align:center;
+  }
+  .body{ color:var(--body); font-size:16px; line-height:1.6; }
+  .accent{ color:var(--orange); }
+
+  /* ===== BUTTONS ===== */
+  .btn{
+    display:inline-block; border:0; cursor:pointer; text-decoration:none;
+    font-family:var(--text); font-weight:700; text-align:center; border-radius:999px;
+    transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+  }
+  .btn-primary{
+    background:var(--orange); color:var(--white);
+    padding:14px 32px; font-size:16px;
+    box-shadow:0 4px 14px rgba(255,105,0,.25);
+  }
+  .btn-primary:hover{ background:var(--orange-dark); transform:scale(1.04); box-shadow:0 8px 25px rgba(255,105,0,.4); }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); color:var(--orange); border:1px solid var(--orange);
+    padding:12px 24px; font-size:14px; margin-top:24px;
+  }
+  .btn-outline:hover{ background:var(--orange); color:var(--white); }
+  .btn-outline:hover .btn-arrow{ transform:translateX(4px); }
+  .btn-arrow{ display:inline-block; transition:transform .25s ease; }
+  .btn-whatsapp{
+    background:var(--whatsapp); color:#053d1c; padding:12px 26px; font-size:15px; white-space:nowrap;
+    box-shadow:0 4px 14px rgba(37,211,102,.3);
+  }
+  .btn-whatsapp:hover{ background:#1fbd5a; transform:scale(1.04); }
+
+  /* ===== HERO ===== */
+  .hero{
+    background-color:var(--white);
+    background-image:radial-gradient(circle, rgba(57,1,85,.06) 1.5px, transparent 1.7px);
+    background-size:22px 22px;
+    padding-top:clamp(32px, 4vw, 44px);
+    padding-bottom:clamp(40px, 5vw, 56px);
+  }
+  .hero__inner{ display:flex; flex-direction:column; align-items:center; }
+
+  /* ---- network chips ---- */
+  .netcard{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 16px; margin-top:26px; width:100%;
+  }
+  .netrow{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
+  }
+  .net{
+    position:relative; flex:0 0 auto;
+    width:clamp(42px, 12vw, 56px); height:clamp(42px, 12vw, 56px);
+    display:flex; align-items:center; justify-content:center;
+    border-radius:8px; background:transparent;
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.18));
+    transition:transform .25s ease;
+  }
+  .net img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .net:hover,
+  .net:focus-visible,
+  .net:focus-within{ transform:scale(1.12); z-index:30; }
+  .net__pop{
+    position:absolute; bottom:100%; left:50%;
+    transform:translateX(-50%) translateY(6px);
+    width:min(220px, 78vw); margin-bottom:10px;
+    background:var(--white); border:1px solid #ececec; border-radius:12px;
+    padding:12px 14px; text-align:left; z-index:40;
+    box-shadow:0 10px 28px rgba(0,0,0,.14);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+  /* o chip cresce 1.12 no hover e arrastaria o popover junto (o que estoura a
+     viewport nos chips das pontas no mobile): scale(1/1.12) neutraliza isso, e
+     o popover renderiza sempre no tamanho de layout que o JS usa pra clampar */
+  .net:hover .net__pop,
+  .net:focus-visible .net__pop,
+  .net:focus-within .net__pop{
+    opacity:1; visibility:visible; pointer-events:auto;
+    transform:translateX(-50%) translateY(0) scale(.892857);
+  }
+  .net__pop::after{
+    content:""; position:absolute; top:100%; left:var(--arrow-x, 50%);
+    width:12px; height:12px; background:var(--white);
+    border-right:1px solid #ececec; border-bottom:1px solid #ececec;
+    transform:translateX(-50%) translateY(-6px) rotate(45deg);
+  }
+  .net__pop p{ font-size:13px; line-height:1.5; color:var(--body); margin:0 0 8px; }
+  .net__cta{
+    display:inline-block; background:var(--orange); color:var(--white);
+    font-size:12px; font-weight:700; text-decoration:none;
+    padding:6px 14px; border-radius:999px;
+  }
+  .net__cta:hover{ background:var(--orange-dark); }
+
+  /* ---- hero motion visual ---- */
+  .hero__visual{
+    width:100%; max-width:900px; margin:30px auto 0;
+    aspect-ratio:16/9; border-radius:var(--radius); overflow:hidden;
+    background:#efe9f2;
+    box-shadow:0 20px 40px rgba(57,1,85,.12);
+  }
+  .hero__visual video{
+    display:block; width:100%; height:100%; min-height:0; object-fit:cover;
+  }
+
+  /* ===== TRUSTED BY (marquee) ===== */
+  .trusted{ background:var(--white); padding-block:clamp(40px, 5vw, 60px); text-align:center; }
+  /* #5f6b7a no lugar do #718096 do original: mesmo cinza-azulado, mas 5,4:1 (AA) */
+  .trusted__label{ color:#5f6b7a; font-size:clamp(15px, 2vw, 18px); font-weight:600; margin:0; }
+  .trusted__viewport{
+    margin-top:22px; overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+  .trusted__track{ display:flex; width:max-content; animation:marquee 42s linear infinite; }
+  .trusted__group{ display:flex; align-items:center; gap:clamp(28px, 5vw, 56px); padding-inline:clamp(14px, 3vw, 28px); }
+  .trusted__group img{
+    opacity:.75; object-fit:contain; flex:0 0 auto;
+    width:auto; max-width:165px; height:clamp(28px, 4.4vw, 42px);
+  }
+  @keyframes marquee{ from{ transform:translate3d(0,0,0); } to{ transform:translate3d(-50%,0,0); } }
+  .trusted__viewport:hover .trusted__track{ animation-play-state:paused; }
+
+  /* ===== 2-COLUMN GRID ===== */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px, 4vw, 48px); align-items:center; }
+  .visual{ display:flex; align-items:center; justify-content:center; }
+  .visual img{ width:100%; height:auto; min-height:0; border-radius:var(--radius); }
+
+  /* ===== CHECK LIST ===== */
+  .checks{ display:flex; flex-direction:column; gap:10px; margin:0; padding:0; list-style:none; }
+  .checks li{ display:flex; align-items:flex-start; gap:12px; color:var(--body); }
+  .checks li::before{
+    content:""; flex:0 0 auto; width:20px; height:20px; margin-top:3px;
+    background-repeat:no-repeat; background-size:contain;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23ff6900'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='10'/%3E%3Cpath%20d='M8%2012.5l2.5%202.5L16%209'/%3E%3C/svg%3E");
+  }
+
+  /* ===== FORM SECTION ===== */
+  .formsec{ position:relative; overflow:hidden; }
+  .formsec__graphic{
+    position:absolute; top:0; left:-140px; height:100%; width:auto; z-index:0;
+    pointer-events:none;
+  }
+  .formcard{
+    position:relative; background:var(--orange); border-radius:var(--radius);
+    max-width:480px; margin-inline:auto; padding:32px 18px;
+    box-shadow:0 20px 40px rgba(57,1,85,.10);
+  }
+  .formcard__title{ color:var(--white); text-align:center; font-size:clamp(21px, 3vw, 25px); margin-bottom:14px; }
+  .jotform-embed iframe{ width:100% !important; max-width:100% !important; border:0; display:block; }
+  .price-sticker{
+    position:absolute; top:-30px; right:-20px; z-index:7;
+    width:clamp(84px, 13vw, 120px); height:auto;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--white); border:1px solid #eee; border-radius:14px;
+    padding:10px 14px; color:#242424; font-size:12px; font-weight:700;
+    box-shadow:0 10px 24px rgba(0,0,0,.10);
+  }
+  .badge__ic{
+    flex:0 0 auto; width:36px; height:36px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:18px;
+  }
+  .badge__ic--pink{ background:#ffc3c8; color:var(--rose); }
+  .badge__ic--peach{ background:#ffd5c3; color:#bc5a10; }
+  .badge__num{ display:block; font-family:var(--display); font-size:18px; font-weight:800; line-height:1; color:var(--rose); }
+  .badge__txt{ display:flex; flex-direction:column; line-height:1.3; }
+  .badge--tl{ position:absolute; top:-18px; left:-22px; z-index:6; }
+  .badge--br{ position:absolute; bottom:-18px; right:-22px; z-index:6; }
+  .badges-inline{ display:none; flex-wrap:wrap; gap:10px; margin-top:18px; justify-content:center; }
+
+  /* ===== PRICE BLOCK ===== */
+  .price{ margin-top:26px; }
+  .price__label{ color:var(--body); font-size:14px; font-weight:700; margin:0 0 2px; }
+  .price__row{ display:flex; flex-wrap:wrap; align-items:baseline; margin-bottom:20px; }
+  .price__value{ font-family:var(--display); font-size:clamp(32px, 4.4vw, 40px); font-weight:800; line-height:1.05; color:var(--orange); margin:0; }
+  .price__mo{ margin:0 0 0 4px; font-size:18px; font-weight:700; color:var(--body); }
+
+  /* ===== WHATSAPP ===== */
+  .wa__row{ display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:24px; }
+  .wa__card{
+    display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px;
+    background:var(--white); border-radius:var(--radius); padding:24px 32px; max-width:560px;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+  }
+  .wa__text{ flex:1 1 200px; min-width:180px; color:var(--ink); font-size:17px; font-weight:500; margin:0; }
+  .wa__icon{ flex:0 0 auto; width:88px; height:88px; }
+
+  /* ===== TESTIMONIALS ===== */
+  .testi{ background:var(--paper-2); padding-block:clamp(48px, 6vw, 72px); text-align:center; }
+  .testi__ov{ color:var(--rose); font-family:var(--display); font-size:14px; font-weight:700; margin:0; text-transform:none; }
+  .testi__heading{ font-size:clamp(24px, 3.4vw, 34px); margin:10px auto 0; max-width:640px; }
+  .testi__grid{
+    display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:clamp(20px, 3vw, 32px);
+    margin-top:44px; text-align:left; align-items:stretch;
+  }
+  .quote{
+    display:flex; flex-direction:column; height:100%;
+    background:var(--white); border:1px solid #eee; border-radius:var(--radius); padding:22px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .quote:hover{ transform:translateY(-6px); }
+  .quote--am{ box-shadow:0 -6px 22px rgba(252,189,79,.42), 0 12px 30px rgba(0,0,0,.06); }
+  .quote--rx{ box-shadow:0 -6px 22px rgba(139,74,168,.40), 0 12px 30px rgba(0,0,0,.06); }
+  .quote--lj{ box-shadow:0 -6px 22px rgba(235,124,46,.42), 0 12px 30px rgba(0,0,0,.06); }
+  .quote__top{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:14px; }
+  .quote__mark{ flex:0 0 auto; width:42px; height:30px; object-fit:contain; }
+  .quote__logo{ flex:0 0 auto; object-fit:contain; height:22px; width:auto; max-width:60%; }
+  /* mccan.svg tem viewBox quadrado (652x652) com muito respiro: sem cover a
+     wordmark encolhe e quase desaparece, igual ao original */
+  .quote__logo--mccann{ object-fit:cover; object-position:center; }
+  /* #6f6f6f no lugar do #888 do original: 5,0:1 (AA) sem mudar a leitura visual */
+  .quote__who{ color:#6f6f6f; font-size:14px; line-height:1.4; margin:0 0 6px; font-weight:700; }
+  .quote__stars{ color:#bc5a10; font-size:15px; margin:0 0 6px; letter-spacing:1px; }
+  .quote__text{ color:#2d2d2d; font-size:16px; font-weight:500; line-height:1.65; margin:4px 0 0; }
+
+  /* ===== FOOTER ===== */
+  .site-footer{ background:var(--dark); color:#cfcfcf; padding:56px 0 26px; }
+  .site-footer__logo{ display:inline-block; line-height:0; }
+  .site-footer__logo img{ width:180px; height:auto; }
+  .site-footer__desc{ color:#a6a6a6; font-size:14px; max-width:360px; margin:14px 0 0; }
+  .site-footer__social{ display:flex; flex-wrap:wrap; gap:12px; margin:22px 0; padding:0; list-style:none; }
+  .site-footer__social a{
+    display:flex; align-items:center; justify-content:center;
+    width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,.12); color:var(--white); text-decoration:none;
+    transition:background-color .2s ease;
+  }
+  .site-footer__social a:hover{ background:rgba(255,255,255,.26); }
+  .site-footer__social svg{ width:20px; height:20px; fill:currentColor; }
+  .site-footer__bottom{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
+    border-top:1px solid #333; padding-top:18px; color:#aaa; font-size:13px;
+  }
+  .site-footer__bottom a{ color:#cfcfcf; text-decoration:none; }
+  .site-footer__bottom a:hover{ text-decoration:underline; }
+
+  /* ===== REVEAL ===== */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease-out, transform .7s ease-out; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:980px){
+    .grid2{ grid-template-columns:1fr; }
+    /* texto antes do visual em todos os blocos, inclusive nos invertidos */
+    .grid2--flip .visual{ order:2; }
+    .grid2--flip .grid2__content{ order:1; }
+    .formsec__graphic{ left:-190px; opacity:.5; }
+    .testi__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width:760px){
+    :root{ --pad-x:18px; }
+    .formsec__graphic{ display:none; }
+    .testi__grid{ grid-template-columns:1fr; }
+    .badge--tl, .badge--br{ display:none; }
+    .badges-inline{ display:flex; }
+    .price-sticker{ top:-22px; right:-8px; }
+    .netcard{ padding:16px 12px; }
+    .netrow{ gap:10px; }
+    .wa__card{ padding:22px; }
+    .wa__icon{ width:64px; height:64px; }
+  }
+  @media (max-width:480px){
+    .site-footer__desc{ max-width:none; }
+    .quote__top{ flex-wrap:wrap; gap:10px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+    .reveal{ opacity:1; transform:none; }
+    .trusted__track{ animation:none; }
+  }
+</style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;transition:none !important}</style></noscript>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFJVK858"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://buzzmonitor.com/" class="site-header__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+      <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="170" height="38">
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <h1 class="h1 reveal">Monitoramento de <span class="accent">Redes Sociais</span> e Concorrentes em Tempo Real</h1>
+      <p class="lead reveal"><strong>Descubra o que as pessoas estão dizendo sobre sua marca em tempo real.</strong> Obtenha análises detalhadas do sentimento e dos seus concorrentes, descubra oportunidades e reaja com agilidade.</p>
+      <p class="reveal" style="margin:0 0 4px"><a href="#formulario" class="btn btn-primary">Agendar demonstração grátis</a></p>
+
+      <div class="netcard reveal">
+        <div class="netrow">
+          <div class="net" tabindex="0">
+            <img src="./assets/facebook.webp" alt="Facebook" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Acompanhe posts, comentários e menções da marca e responda sem trocar de aba.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/youtube.webp" alt="YouTube" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Monitore comentários e menções nos vídeos e descubra o que falam de você.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/threads.webp" alt="Threads" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Capte menções e conversas no Threads assim que aparecem.</p>
+              <a href="#formulario" class="net__cta">Começar grátis →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/bluesky.webp" alt="Bluesky" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Acompanhe o que dizem da sua marca no Bluesky em tempo real.</p>
+              <a href="#formulario" class="net__cta">Começar grátis →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/tiktok.webp" alt="TikTok" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Comentários e menções dos vídeos, com análise de sentimento automática.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/linkedin.webp" alt="LinkedIn" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Meça o alcance da página e as menções corporativas da marca.</p>
+              <a href="#formulario" class="net__cta">Ver dashboards →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/whatsapp.webp" alt="WhatsApp" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Centralize o atendimento com distribuição de tickets e Smart Replies.</p>
+              <a href="#formulario" class="net__cta">Ver atendimento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/googlemybusiness.webp" alt="Google Meu Negócio" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Responda avaliações e perguntas de todas as unidades e cuide da reputação local.</p>
+              <a href="#formulario" class="net__cta">Ver reputação →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/playstore.webp" alt="Google Play" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Leia e classifique as avaliações do app e acompanhe o humor dos usuários.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/email.webp" alt="E-mail" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Centralize os e-mails de atendimento na Buzzmonitor e resolva tudo num só lugar.</p>
+              <a href="#formulario" class="net__cta">Ver atendimento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/wordpress.webp" alt="WordPress" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Acompanhe os comentários do blog e responda direto pela plataforma.</p>
+              <a href="#formulario" class="net__cta">Começar grátis →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/reclameaqui.webp" alt="Reclame Aqui" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Acompanhe reclamações, responda rápido e proteja a reputação da marca.</p>
+              <a href="#formulario" class="net__cta">Ver reputação →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/pinterest.webp" alt="Pinterest" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Descubra menções e o que engaja o seu público no Pinterest.</p>
+              <a href="#formulario" class="net__cta">Começar grátis →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/reddit.webp" alt="Reddit" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Monitore o que as comunidades do Reddit falam sobre a sua marca.</p>
+              <a href="#formulario" class="net__cta">Começar grátis →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
+            <img src="./assets/intagram.webp" alt="Instagram" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Comentários, menções e DMs num só painel, com sentimento classificado por IA.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal">
+        <video id="hero-video" poster="./assets/hero-poster.jpg" autoplay muted loop playsinline preload="metadata"
+               aria-label="Demonstração da plataforma Buzzmonitor: painéis de monitoramento e análise de sentimento em tempo real">
+          <source src="./assets/hero-plataforma.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUSTED BY ===== -->
+  <section class="trusted" aria-label="Empresas que já confiam na Buzzmonitor">
+    <div class="container">
+      <p class="trusted__label">Empresas que já confiam na Buzzmonitor</p>
+    </div>
+    <div class="trusted__viewport">
+      <div class="trusted__track">
+        <div class="trusted__group">
+          <img src="./assets/img-cliente-01.svg" alt="Cliente Buzzmonitor" loading="lazy">
+          <img src="./assets/img-cliente-02.avif" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-03.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-04.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-05.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-06.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-07.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-08.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-09.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-10.svg" alt="" aria-hidden="true" loading="lazy">
+          <img src="./assets/img-cliente-11.svg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="trusted__group" aria-hidden="true">
+          <img src="./assets/img-cliente-01.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-02.avif" alt="" loading="lazy">
+          <img src="./assets/img-cliente-03.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-04.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-05.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-06.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-07.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-08.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-09.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-10.svg" alt="" loading="lazy">
+          <img src="./assets/img-cliente-11.svg" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMULÁRIO ===== -->
+  <section class="section section--alt formsec" id="formulario">
+    <img class="formsec__graphic" src="./assets/img-grafismos-buzzmonitor.svg" alt="" aria-hidden="true" loading="lazy">
+    <div class="container">
+      <div class="grid2">
+        <div class="reveal">
+          <h2 class="h2">Monitore, analise e tome decisões mais rápidas</h2>
+          <ul class="checks">
+            <li>Visualize qualquer conversa sobre sua empresa</li>
+            <li>Acompanhe tendências e menções em tempo real</li>
+            <li>Economize horas de trabalho manual</li>
+            <li>Receba alertas inteligentes com base em temas e sentimentos</li>
+            <li>Entenda o que seus consumidores pensam sobre sua marca</li>
+            <li>Monitore concorrentes e influenciadores com profundidade</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="formcard">
+            <h3 class="formcard__title">Experimente Agora</h3>
+            <div class="jotform-embed">
+              <script type="text/javascript" src="https://form.jotform.com/jsform/252995108251662"></script>
+            </div>
+            <img class="price-sticker" src="./assets/preco.svg" alt="Planos a partir de R$ 1.790 por mês" loading="lazy">
+            <div class="badge badge--tl">
+              <span class="badge__ic badge__ic--pink" aria-hidden="true">❤️</span>
+              <span class="badge__txt"><span class="badge__num">10k+</span>usuários ativos</span>
+            </div>
+            <div class="badge badge--br">
+              <span class="badge__ic badge__ic--peach" aria-hidden="true">💡</span>
+              <span class="badge__txt"><span class="badge__num">360+</span>agências</span>
+            </div>
+          </div>
+          <div class="badges-inline">
+            <div class="badge">
+              <span class="badge__ic badge__ic--peach" aria-hidden="true">💡</span>
+              <span class="badge__txt"><span class="badge__num">360+</span>agências</span>
+            </div>
+            <div class="badge">
+              <span class="badge__ic badge__ic--pink" aria-hidden="true">❤️</span>
+              <span class="badge__txt"><span class="badge__num">10k+</span>usuários ativos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIMENTE 14 DIAS ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid2">
+        <div class="reveal">
+          <h2 class="h2">Experimente <span class="accent">grátis</span> por <span class="accent">14 dias</span></h2>
+          <p class="body">Teste todas as soluções digitais em uma única plataforma. Liste nossas ofertas de IA, Social Listening e gestão de atendimento para entender como a Buzzmonitor pode ajudar sua equipe.</p>
+          <ul class="checks">
+            <li>Monitoramento de redes sociais em diferentes canais</li>
+            <li>Atendimento multicanal e chatbot com IA</li>
+            <li>Relatórios de performance de marcas e concorrentes</li>
+            <li>Otimização de processos e produtividade com IA</li>
+            <li>Gestão completa da jornada do consumidor</li>
+          </ul>
+          <div class="price">
+            <p class="price__label">Planos a partir de</p>
+            <div class="price__row">
+              <p class="price__value">R$ 1.790,00</p>
+              <p class="price__mo">/mês</p>
+            </div>
+            <a href="#formulario" class="btn btn-primary">Agendar demonstração grátis</a>
+          </div>
+        </div>
+        <div class="visual reveal">
+          <img src="./assets/img-experimente-14-dias.svg" alt="Painéis da Buzzmonitor com métricas de monitoramento e atendimento" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IA PARA INSIGHTS ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid2 grid2--flip">
+        <div class="visual reveal">
+          <img src="./assets/img-ai-insights.webp"
+               srcset="./assets/img-ai-insights-p-500.webp 500w, ./assets/img-ai-insights.webp 628w"
+               sizes="(max-width:980px) 92vw, 45vw"
+               alt="Análise gerada por IA resumindo conversas e sentimento das menções da marca" loading="lazy">
+        </div>
+        <div class="grid2__content reveal">
+          <h2 class="h2">IA para Geração de Insights</h2>
+          <p class="body">A IA do Buzzmonitor atua como uma grande produtividade e inteligência de dados. Ela ajuda sua equipe a analisar publicações, comentários, conversas e sinais digitais com mais velocidade e profundidade.</p>
+          <p class="body">A IA identifica padrões, resume conversas, gera análises e transforma grandes volumes de informação em insights estratégicos para orientar decisões de marketing, atendimento e comunicação.</p>
+          <a href="#formulario" class="btn btn-outline">
+            <span>Veja na prática</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MONITORAMENTO AUDIOVISUAL ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid2">
+        <div class="reveal">
+          <h2 class="h2">Monitoramento de vídeos, áudios e imagens</h2>
+          <p class="body">Monitore conteúdos em diferentes formatos, incluindo textos, imagens, vídeos e áudios publicados nas redes sociais. Acompanhe menções à sua marca, identifique oportunidades e entenda melhor o comportamento do consumidor.</p>
+          <p class="body">Além disso, receba alertas automáticos sobre menções negativas em vídeos e áudios, para agir com velocidade antes que um tema ganhe proporção.</p>
+          <p style="margin-top:24px"><a href="#formulario" class="btn btn-primary">Agendar demonstração grátis</a></p>
+        </div>
+        <div class="visual reveal">
+          <img src="./assets/img-monitoramento-audiovisual.webp"
+               srcset="./assets/img-monitoramento-audiovisual-p-500.webp 500w, ./assets/img-monitoramento-audiovisual.webp 529w"
+               sizes="(max-width:980px) 92vw, 45vw"
+               alt="Monitoramento de menções em vídeos, áudios e imagens na plataforma Buzzmonitor" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GESTÃO DE CRISES ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid2 grid2--flip">
+        <div class="visual reveal">
+          <img src="./assets/img-gestao-crises.svg" alt="Painel de gestão de crises com picos de menções e sentimento negativo" loading="lazy">
+        </div>
+        <div class="grid2__content reveal">
+          <h2 class="h2">Gestão de Crises em tempo real</h2>
+          <p class="body">Antecipe os impactos de crises e acompanhe a conversa da sua marca em tempo real. Com a Buzzmonitor, você pode detectar sinais sensíveis rapidamente e agir antes que uma situação ganhe escala.</p>
+          <p class="body">A plataforma ajuda a identificar picos de menções, sentimentos negativos, temas críticos e influenciadores envolvidos, permitindo que sua equipe acompanhe a evolução da crise com mais controle e segurança.</p>
+          <p style="margin-top:24px"><a href="#formulario" class="btn btn-primary">Agendar demonstração grátis</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHATSAPP ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="wa__row reveal">
+        <div class="wa__card">
+          <p class="wa__text">Fale com um de nossos consultores no WhatsApp agora mesmo!</p>
+          <a href="#formulario" class="btn btn-whatsapp">Fale agora!</a>
+        </div>
+        <div class="wa__icon">
+          <img src="./assets/whatsapp.svg" alt="" aria-hidden="true" width="88" height="88" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section class="testi">
+    <div class="container">
+      <p class="testi__ov reveal">Ainda não está convencido?</p>
+      <h2 class="testi__heading reveal">Leia o feedback de quem já utiliza a Buzzmonitor</h2>
+      <div class="testi__grid">
+        <figure class="quote quote--am reveal" style="margin:0">
+          <div class="quote__top">
+            <img class="quote__mark" src="./assets/aspasamarelas.svg" alt="" aria-hidden="true" loading="lazy">
+            <img class="quote__logo quote__logo--mccann" src="./assets/mccan.svg" alt="McCann" style="width:120px" loading="lazy">
+          </div>
+          <figcaption class="quote__who">Pablo Ferrer, Head of Social Media na McCann</figcaption>
+          <p class="quote__stars" aria-label="Avaliação: 5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="quote__text" style="margin:0">Conseguimos montar projetos de grande porte, do local ao global, com resultados muito valiosos e insights.</blockquote>
+        </figure>
+        <figure class="quote quote--rx reveal" style="margin:0">
+          <div class="quote__top">
+            <img class="quote__mark" src="./assets/aspasroxa-2.svg" alt="" aria-hidden="true" loading="lazy">
+            <img class="quote__logo" src="./assets/totalpass.svg" alt="TotalPass" style="width:168px;height:19px" loading="lazy">
+          </div>
+          <figcaption class="quote__who">Leticia Saori Morita, Especialista em conteúdo na TotalPass</figcaption>
+          <p class="quote__stars" aria-label="Avaliação: 5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="quote__text" style="margin:0">É muito completa, tanto para a área de análise, estratégia e reporting quanto no atendimento aos nossos clientes.</blockquote>
+        </figure>
+        <figure class="quote quote--lj reveal" style="margin:0">
+          <div class="quote__top">
+            <img class="quote__mark" src="./assets/aspasLaranja.svg" alt="" aria-hidden="true" loading="lazy">
+            <img class="quote__logo" src="./assets/mcdonalds.svg" alt="McDonald&rsquo;s" style="width:124px" loading="lazy">
+          </div>
+          <figcaption class="quote__who">Sérgio Leal, Diretor de Marketing e Comunicação na McDonald&rsquo;s</figcaption>
+          <p class="quote__stars" aria-label="Avaliação: 5 de 5 estrelas"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="quote__text" style="margin:0">A Buzzmonitor nos ajuda a gerenciar toda a informação que recebemos dos nossos consumidores e a responder com relevância.</blockquote>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a href="https://buzzmonitor.com/" class="site-footer__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="180" height="40">
+    </a>
+    <p class="site-footer__desc">A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.</p>
+    <ul class="site-footer__social">
+      <li><a href="https://www.facebook.com/buzzmonitorbr" target="_blank" rel="noopener" aria-label="Buzzmonitor no Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.3H7.5V13h2.3v8h3.7z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/buzzmonitorbr/" target="_blank" rel="noopener" aria-label="Buzzmonitor no Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.8.1-.9 0-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7-.1 1.3-.1 1.7-.1 4.8s0 3.5.1 4.8c0 .9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1.3.1 1.7.1 4.8.1s3.5 0 4.8-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7.1-1.3.1-1.7.1-4.8s0-3.5-.1-4.8c0-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1.3-.1-1.7-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.3-8.3a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg></a></li>
+      <li><a href="https://www.youtube.com/@buzzmonitorbrasil" target="_blank" rel="noopener" aria-label="Buzzmonitor no YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.1 5 12 5 12 5s-6.1 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.9 2 12 2 12s0 3.1.4 4.8c.2.9.9 1.6 1.8 1.8C5.9 19 12 19 12 19s6.1 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8zM10 15.2V8.8l5.3 3.2-5.3 3.2z"/></svg></a></li>
+      <li><a href="https://www.linkedin.com/company/buzzmonitor/" target="_blank" rel="noopener" aria-label="Buzzmonitor no LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.9 8.6H3.6V21h3.3V8.6zM5.2 3a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8zM21 13.9c0-3.3-1.8-4.9-4.1-4.9-1.9 0-2.8 1.1-3.2 1.8V8.6H9.4c0 1 0 12.4 0 12.4h4.3v-6.9c0-.4 0-.7.1-1 .3-.7.9-1.5 2-1.5 1.4 0 2 1.1 2 2.7V21H21v-7.1z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/buzzmonitorbr/" target="_blank" rel="noopener" aria-label="Buzzmonitor no TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.2v13.1a2.3 2.3 0 1 1-1.7-2.2V9.6a5.6 5.6 0 1 0 4.9 5.5V8.6c1 .8 2.3 1.3 3.7 1.3V6.7a3.7 3.7 0 0 1-3.7-3.7V2z"/></svg></a></li>
+    </ul>
+    <div class="site-footer__bottom">
+      <span>&copy; Buzzmonitor 2026</span>
+      <a href="https://buzzmonitor.com/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade e uso de Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---- scroll reveal ---- */
+  var items = document.querySelectorAll('.reveal');
+  function showAll(){ Array.prototype.forEach.call(items, function(el){ el.classList.add('is-visible'); }); }
+  if(!('IntersectionObserver' in window)){
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+    Array.prototype.forEach.call(items, function(el){ io.observe(el); });
+  }
+
+  /* ---- o video vive dentro de um wrapper que comeca em opacity:0;
+         alguns browsers pausam o autoplay nesse estado ---- */
+  var v = document.getElementById('hero-video');
+  if(v){
+    var kick = function(){ var p = v.play(); if(p && p.catch){ p.catch(function(){}); } };
+    kick();
+    window.addEventListener('load', kick, { once:true });
+  }
+
+  /* ---- popover dos chips: nunca sair da viewport ---- */
+  function place(net){
+    var pop = net.querySelector('.net__pop');
+    if(!pop) return;
+    pop.style.left = '50%';
+    pop.style.setProperty('--arrow-x', '50%');
+    var r = pop.getBoundingClientRect();
+    var pad = 10, shift = 0;
+    if(r.left < pad) shift = pad - r.left;
+    else if(r.right > window.innerWidth - pad) shift = (window.innerWidth - pad) - r.right;
+    if(shift){
+      pop.style.left = 'calc(50% + ' + Math.round(shift) + 'px)';
+      pop.style.setProperty('--arrow-x', 'calc(50% - ' + Math.round(shift) + 'px)');
+    }
+  }
+  var nets = document.querySelectorAll('.net');
+  function placeAll(){ Array.prototype.forEach.call(nets, place); }
+  Array.prototype.forEach.call(nets, function(net){
+    ['mouseenter','focusin','touchstart'].forEach(function(ev){
+      net.addEventListener(ev, function(){ place(net); }, { passive:true });
+    });
+  });
+  /* posiciona tudo de saida (e a cada resize) pra que nem o popover escondido
+     estoure a viewport e crie scroll horizontal */
+  placeAll();
+  window.addEventListener('load', placeAll, { once:true });
+  var t; window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(placeAll, 120); });
+})();
+</script>
+</body>
+</html>
