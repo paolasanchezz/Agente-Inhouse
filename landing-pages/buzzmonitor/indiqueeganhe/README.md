@@ -17,9 +17,11 @@
 ## Estado
 
 - [x] HTML gerado
-- [x] Revisão (frontend-design review + web-design-guidelines) — última rodada 2026-08-05, ver `REVISAO.md` (0 críticos novos; 7 melhorias e 4 nice-to-haves opcionais seguem abertos)
+- [x] Revisão (frontend-design review + web-design-guidelines) — última rodada 2026-08-14, ver `REVISAO.md` (3 bugs e 4 pontos de design corrigidos; 5 melhorias e 3 nice-to-haves antigos fechados)
 - [x] Formulário integrado
-- [x] Publicado — 2026-08-05, `https://buzzmonitor-lp-indiqueeganhe.vercel.app/indiqueeganhe` (modo solo, sem domínio próprio ainda). **Desatualizado**: título/subtítulo do hero, linha do stepper, imagem e cores das caixinhas de "Quem vale a pena indicar" mudaram DEPOIS desse deploy — rodar `/lp-publicar buzzmonitor indiqueeganhe` de novo para colocar as mudanças no ar.
+- [x] Publicado — `https://content.buzzmonitor.com/indiqueeganhe` (guarda-chuva `content.buzzmonitor.com`, deploy pelo CI a partir da main; entrada no manifesto desde o PR #209).
+- [ ] **Deploy solo antigo ainda no ar:** `https://buzzmonitor-lp-indiqueeganhe.vercel.app/indiqueeganhe` responde 200, indexável e com canonical próprio, competindo com a URL do guarda-chuva. Retirar do ar ou marcar `noindex` (decisão pendente do Victor).
+- [ ] **Jotform pendente de ajuste** (botão verde, label-por-placeholder, "REQUIRED" em inglês, link de privacidade com URL antiga) — ver `REVISAO.md`, seção "Aberto — depende de decisão". Nada foi alterado no form: são 188 submissões em produção.
 
 **Form provider:** Jotform (form id `242464989976077`), integrado em 2026-07-02.
 **Vídeo do hero:** YouTube Shorts embed (`https://www.youtube.com/embed/BZ2oA2FWvGU`), integrado em 2026-07-02.

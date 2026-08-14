@@ -52,6 +52,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://form.jotform.com">
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
@@ -99,7 +101,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height:1.08;
     margin:0;
     letter-spacing:-0.01em;
+    text-wrap:balance;
   }
+
+  /* Ancoras nao ficam escondidas sob o header sticky */
+  section[id]{scroll-margin-top:88px}
 
   p{margin:0}
   ul{margin:0;padding:0;list-style:none}
@@ -255,7 +261,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family:var(--font-head);font-weight:900;font-size:19px;
     margin:0 auto 20px;position:relative;z-index:1;
   }
-  .step:nth-child(4) .step__num{background:var(--secondary)}
+  /* O ultimo passo (contrato fechado) e o unico em laranja.
+     Usar :last-child, nao :nth-child(4): o primeiro filho do .stepper e a
+     linha decorativa, entao :nth-child(4) caia no 3o passo. */
+  .step:last-child .step__num{background:var(--secondary)}
   .step h3{font-size:17px;font-weight:800;color:var(--primary);margin-bottom:8px}
   .step p{color:var(--n-700);font-size:15px}
   .stepper__line{display:none}
@@ -321,11 +330,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .segment-chip{
     background:var(--primary-light);border:1.5px solid rgba(57,1,85,0.18);border-radius:var(--radius-md);
     padding:22px 20px;font-weight:700;color:var(--primary);font-size:15px;
-    position:relative;overflow:hidden;flex:0 1 260px;text-align:center;
-  }
-  .segment-chip::before{
-    content:'';position:absolute;width:14px;height:14px;background:var(--secondary);
-    top:14px;right:14px;transform:rotate(45deg);border-radius:2px;opacity:.7;
+    flex:0 1 260px;text-align:center;
+    display:flex;align-items:center;justify-content:center;
   }
 
   @media (max-width:900px){
@@ -341,16 +347,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-final__head{text-align:center;max-width:640px;margin:0 auto 48px}
   .cta-final__head h2{font-size:clamp(28px,3.6vw,42px);font-weight:900;margin-bottom:16px}
   .cta-final__head p{font-size:17px;color:rgba(255,255,255,.9);margin-bottom:6px}
-  .cta-final__cta{text-align:center;margin-bottom:56px}
-  .cta-final__cta .btn-primary{background:var(--n-0);color:var(--primary)}
-  .cta-final__cta .btn-primary:hover{background:var(--n-100)}
-
-  /* ----- Jotform embed wrapper (canonico) -----
-     Sem padding/background/border: o provedor ja vem com card proprio.
-     A regra do iframe garante que, se o provedor renderizar via iframe, ele
-     ocupa 100% da largura sem borda. */
-  .jotform-embed{max-width:600px;margin:0 auto}
+  /* ----- Jotform embed wrapper -----
+     O provedor renderiza um card cinza-frio proprio (#f0f3f5) dentro do iframe.
+     Sobre o gradiente quente da secao isso lia como widget estranho, entao o
+     embed vive dentro de um cartao branco da marca: o cinza vira painel de
+     campos, nao um bloco solto. */
+  .jotform-embed{
+    max-width:640px;margin:0 auto;
+    background:var(--n-0);border-radius:var(--radius-lg);
+    padding:12px;box-shadow:var(--shadow-lg);
+  }
   .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+  .cta-final__note{
+    max-width:640px;margin:20px auto 0;text-align:center;
+    font-size:14px;color:rgba(255,255,255,.85);
+  }
 
   /* ===== Regulamento ===== */
   .rules-list{max-width:760px;margin:0 auto 32px}
@@ -372,8 +383,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .footer .wrap{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
   .footer__logo img{height:28px;width:auto}
   .footer__links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:14px}
-  .footer__links a{text-decoration:underline}
+  .footer__links a{text-decoration:underline;transition:color .2s ease}
+  .footer__links a:hover{color:var(--secondary)}
   .footer__copy{font-size:13px;color:rgba(255,255,255,.55)}
+
+  /* ===== Mobile: respiro proporcional (piso de 80px das GUIDELINES) ===== */
+  @media (max-width:780px){
+    .hero{padding:64px 0 72px}
+    .section{padding:80px 0}
+    .section--tight{padding:64px 0}
+    .section__head{margin-bottom:40px}
+    .reward-card{padding:28px}
+    .persona-card{padding:26px}
+    .jotform-embed{padding:8px}
+  }
+
+  /* Alvo de toque confortavel e sem flash azul no tap */
+  .btn,.navbar__cta,.btn-ghost-link,.footer__links a,.rules-contact a{
+    touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  }
 </style>
 </head>
 <body>
@@ -400,8 +428,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="shape hero__shape-a" aria-hidden="true"></span>
     <div class="wrap">
       <div class="hero__content reveal">
-        <h1>Indique quem precisa da <span class="accent">Buzzmonitor</span> e ganhe R$ 1.000</h1>
-        <p class="hero__sub">Se você já usou a plataforma, como cliente, colaborador, aluno ou parceiro, sua experiência vale dinheiro. Indique uma empresa que se beneficiaria da Buzzmonitor e receba R$ 500 quando a reunião acontecer e mais R$ 500 se fechar contrato.</p>
+        <span class="hero__eyebrow">Programa de indicação</span>
+        <h1>Indique quem precisa da <span class="accent">Buzzmonitor</span> e ganhe R$&nbsp;1.000</h1>
+        <p class="hero__sub">Se você já usou a plataforma, como cliente, colaborador, aluno ou parceiro, sua experiência vale dinheiro. Indique uma empresa que se beneficiaria da Buzzmonitor e receba R$&nbsp;500 quando a reunião acontecer e mais R$&nbsp;500 se fechar contrato.</p>
         <div class="hero__ctas">
           <a href="#form" class="btn btn-primary">Indicar agora</a>
           <a href="#como-funciona" class="btn-ghost-link">Entenda como funciona</a>
@@ -476,12 +505,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="step reveal">
           <span class="step__num">3</span>
           <h3>3º passo: Reunião acontece</h3>
-          <p>Se a reunião acontecer e este for um lead potencial, você recebe R$ 500.</p>
+          <p>Se a reunião acontecer e este for um lead potencial, você recebe R$&nbsp;500.</p>
         </div>
         <div class="step reveal">
           <span class="step__num">4</span>
           <h3>4º passo: Contrato fechado</h3>
-          <p>Mais R$ 500 para você se o indicado fechar o contrato com a Buzzmonitor. Assim que o 1º pagamento for efetuado, você recebe!</p>
+          <p>Mais R$&nbsp;500 para você se o indicado fechar o contrato com a Buzzmonitor. Assim que o 1º pagamento for efetuado, você recebe!</p>
         </div>
       </div>
     </div>
@@ -497,11 +526,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="reward-card reward-card--you reveal">
           <h3>PARA VOCÊ</h3>
           <div class="reward-stat">
-            <span class="reward-stat__figure">R$ 500</span>
+            <span class="reward-stat__figure">R$&nbsp;500</span>
             <span class="reward-stat__desc">por reunião realizada com lead potencial</span>
           </div>
           <div class="reward-stat">
-            <span class="reward-stat__figure">+ R$ 500</span>
+            <span class="reward-stat__figure">+ R$&nbsp;500</span>
             <span class="reward-stat__desc">quando seu indicado fechar contrato e realizar o 1º pagamento</span>
           </div>
         </div>
@@ -564,13 +593,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Quanto mais indicações, mais recompensas você ganha.</p>
         <p>Nossa equipe entra em contato com o seu indicado em até 2 dias úteis.</p>
       </div>
-      <div class="cta-final__cta reveal">
-        <a href="#form-card" class="btn btn-primary">Indique agora</a>
-      </div>
-
       <div id="form-card" class="jotform-embed reveal">
         <script type="text/javascript" src="https://form.jotform.com/jsform/242464989976077"></script>
       </div>
+      <p class="cta-final__note reveal">Leva menos de 2 minutos. Seus dados e os do indicado ficam com o time comercial da Buzzmonitor.</p>
     </div>
   </section>
 
@@ -581,14 +607,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Conheça o regulamento para participar</h2>
       </div>
       <ul class="rules-list reveal">
-        <li><span class="n">1</span>Você recebe R$ 500 quando a reunião com o indicado é realizada e o lead tem potencial.</li>
-        <li><span class="n">2</span>Fechando contrato de no mínimo 6 meses e com o 1º pagamento realizado, você recebe mais R$ 500.</li>
+        <li><span class="n">1</span>Você recebe R$&nbsp;500 quando a reunião com o indicado é realizada e o lead tem potencial.</li>
+        <li><span class="n">2</span>Fechando contrato de no mínimo 6 meses e com o 1º pagamento realizado, você recebe mais R$&nbsp;500.</li>
         <li><span class="n">3</span>Não há limite de indicações: cada indicação válida gera sua própria recompensa.</li>
         <li><span class="n">4</span>A indicação é válida por 120 dias. Você será avisado antes do prazo encerrar.</li>
         <li><span class="n">5</span>Você será notificado por e-mail a cada nova etapa da negociação com o indicado.</li>
         <li><span class="n">6</span>Indicações de empresas já clientes da Buzzmonitor ou em negociação ativa não são elegíveis.</li>
       </ul>
-      <p class="rules-contact reveal">Dúvidas? Leia o regulamento completo ou fale com a gente em <a href="mailto:indiqueeganhe@buzzmonitor.com.br">indiqueeganhe@buzzmonitor.com.br</a></p>
+      <p class="rules-contact reveal">Dúvidas sobre alguma regra? Fale com a gente em <a href="mailto:indiqueeganhe@buzzmonitor.com.br">indiqueeganhe@buzzmonitor.com.br</a></p>
     </div>
   </section>
 
@@ -600,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="140" height="28">
     </a>
     <div class="footer__links">
-      <a href="#">Política de privacidade</a>
+      <a href="https://buzzmonitor.com/politica-de-privacidade/" target="_blank" rel="noopener">Política de privacidade</a>
       <a href="mailto:indiqueeganhe@buzzmonitor.com.br">indiqueeganhe@buzzmonitor.com.br</a>
     </div>
     <p class="footer__copy">© 2026 Buzzmonitor. Todos os direitos reservados.</p>
