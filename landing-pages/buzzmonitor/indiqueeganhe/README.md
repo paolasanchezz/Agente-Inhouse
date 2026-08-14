@@ -20,7 +20,7 @@
 - [x] Revisão (frontend-design review + web-design-guidelines) — última rodada 2026-08-14, ver `REVISAO.md` (3 bugs e 4 pontos de design corrigidos; 5 melhorias e 3 nice-to-haves antigos fechados)
 - [x] Formulário integrado
 - [x] Publicado — `https://content.buzzmonitor.com/indiqueeganhe` (guarda-chuva `content.buzzmonitor.com`, deploy pelo CI a partir da main; entrada no manifesto desde o PR #209).
-- [ ] **Deploy solo antigo ainda no ar:** `https://buzzmonitor-lp-indiqueeganhe.vercel.app/indiqueeganhe` responde 200, indexável e com canonical próprio, competindo com a URL do guarda-chuva. Retirar do ar ou marcar `noindex` (decisão pendente do Victor).
+- [x] **Deploy solo antigo aposentado** — 2026-08-14. O projeto Vercel `buzzmonitor-lp-indiqueeganhe` (`prj_i37taeLV3r8oOLSVMxb0ZxlsluTD`) não serve mais LP: passou a servir **redirect 308** de qualquer path para `https://content.buzzmonitor.com/indiqueeganhe`. Antes disso ele respondia 200, indexável e com canonical próprio, competindo com a URL do guarda-chuva. Ver "Projeto solo aposentado" abaixo.
 - [ ] **Jotform pendente de ajuste** (botão verde, label-por-placeholder, "REQUIRED" em inglês, link de privacidade com URL antiga) — ver `REVISAO.md`, seção "Aberto — depende de decisão". Nada foi alterado no form: são 188 submissões em produção.
 
 **Form provider:** Jotform (form id `242464989976077`), integrado em 2026-07-02.
@@ -40,3 +40,27 @@
 - **GTM:** injetado com `GTM-WFJVK858` (região brasil, resolvido de `brand/buzzmonitor/tracking.json`). Stamp gravado.
 - **Domínio:** ainda não definido — placeholders `{{DOMAIN}}` e `{{OG_IMAGE_PATH}}` no HTML serão substituídos pelo `/lp-publicar`.
 - **Notion:** a copy não foi publicada no Notion (sem MCP conectado na sessão em que rodou `/lp-preparar`). Um MCP Notion está disponível agora — pode publicar retroativamente se quiser.
+
+## Projeto solo aposentado (2026-08-14)
+
+A LP nasceu em modo solo e depois entrou no guarda-chuva `content.buzzmonitor.com`
+(manifesto, deploy pelo CI). Os dois ficaram no ar em paralelo — conteúdo
+duplicado, com o solo indexável e apontando canonical pra ele mesmo.
+
+O projeto solo foi convertido em **redirect 308** (não foi deletado, pra não
+quebrar link antigo que tenha circulado):
+
+- Projeto Vercel: `buzzmonitor-lp-indiqueeganhe` / `prj_i37taeLV3r8oOLSVMxb0ZxlsluTD`
+- Pasta de deploy: `{LP_SIBLING_BASE}/buzzmonitor-lp-indiqueeganhe/` (fora do repo)
+- Conteúdo: `vercel.json` com 308 catch-all + `index.html` de fallback
+  (`noindex, follow` + canonical + meta refresh)
+- Validado: `/`, `/indiqueeganhe` e path aleatório → 308 →
+  `https://content.buzzmonitor.com/indiqueeganhe` (200)
+
+**Não publicar LP nesse projeto.** A fonte vive aqui no repo e o deploy é do CI
+do guarda-chuva.
+
+Este deploy avulso foi autorizado explicitamente pelo Victor (2026-08-14), fora
+da `/lp-publicar` — a skill ainda não tem modo "aposentar LP solo com redirect".
+Como a migração pros guarda-chuvas tende a deixar mais projetos solo órfãos,
+transformar isso num passo da `/lp-publicar` ficou como pendência.
