@@ -185,6 +185,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .netrow{
     display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
   }
+  /* numa tela larga os 15 chips cabem em 1 linha: distribui de ponta a ponta
+     pra não sobrar espaço em branco nas bordas do card. Abaixo disso os chips
+     quebram linha e o centralizado (padrão) evita a última linha esparramada. */
+  @media (min-width:1100px){
+    .netrow{ justify-content:space-between; }
+  }
   .net{
     position:relative; flex:0 0 auto;
     width:clamp(42px, 12vw, 56px); height:clamp(42px, 12vw, 56px);
@@ -443,6 +449,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="netcard reveal">
         <div class="netrow">
           <div class="net" tabindex="0">
+            <img src="./assets/intagram.webp" alt="Instagram" width="56" height="56" loading="lazy">
+            <div class="net__pop">
+              <p>Comentários, menções e DMs num só painel, com sentimento classificado por IA.</p>
+              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
+            </div>
+          </div>
+          <div class="net" tabindex="0">
             <img src="./assets/facebook.webp" alt="Facebook" width="56" height="56" loading="lazy">
             <div class="net__pop">
               <p>Acompanhe posts, comentários e menções da marca e responda sem trocar de aba.</p>
@@ -538,13 +551,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="net__pop">
               <p>Monitore o que as comunidades do Reddit falam sobre a sua marca.</p>
               <a href="#formulario" class="net__cta">Começar grátis →</a>
-            </div>
-          </div>
-          <div class="net" tabindex="0">
-            <img src="./assets/intagram.webp" alt="Instagram" width="56" height="56" loading="lazy">
-            <div class="net__pop">
-              <p>Comentários, menções e DMs num só painel, com sentimento classificado por IA.</p>
-              <a href="#formulario" class="net__cta">Ver monitoramento →</a>
             </div>
           </div>
         </div>
