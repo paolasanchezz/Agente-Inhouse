@@ -9,6 +9,11 @@
       "permanent": true
     },
     {
+      "source": "/ia-para-social-listening",
+      "destination": "https://content.buzzmonitor.com/ia-para-social-listening",
+      "permanent": true
+    },
+    {
       "source": "/ia-para-social-listening-es",
       "destination": "https://content.buzzmonitor.com/ia-para-social-listening-es",
       "permanent": true
