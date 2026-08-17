@@ -91,6 +91,27 @@ lp-agradecimento-oferta-trends, lp-agradecimento-evento, tiktok, chatgpt.com, ge
 - `https://evento.buzzmonitor.com/*` — landing pages de eventos
 - `https://conteudo.buzzmonitor.com.br/<slug CM>` — whitelist de slugs (lista abaixo)
 
+### `content.buzzmonitor.com` — NÃO entra por domínio (decisão Victor 2026-08-17)
+
+O guarda-chuva `content.buzzmonitor.com` **não tem cláusula de domínio** neste filtro, e isso é **intencional** — não é lacuna a corrigir.
+
+Motivo: é um domínio de tráfego misto por natureza. As LPs convivem lá independentemente do canal que as alimenta:
+
+| LP | Canal |
+|---|---|
+| `/plataforma-completa-monitoramento` | Meta Ads |
+| `/plataforma-completa-para-dados` | Meta Ads |
+| `/monitoramento-com-ia` | Meta **ou** Google Ads |
+| `/ia-para-social-listening` | Google Ads (migrada de `material.*` em 2026-08-17) |
+
+Uma regra de domínio em bloco (como a do `material.*`) classificaria LP de mídia paga como CM. Então **quem manda é a `utm_source`**: lead de LP em `content.*` só conta como CM se a `utm_source` estiver na lista da §2 — `google/cpc` fica de fora pela exclusão geral.
+
+Diferença proposital em relação ao `conteudo.buzzmonitor.com.br`, que também é misto mas resolve por whitelist de slug: lá a whitelist existe porque o subdomínio é antigo e concentra LPs de CM que recebem tráfego orgânico/direto sem UTM. Aqui optou-se pelo caminho simples.
+
+**Consequência aceita:** LP genuinamente de CM hospedada em `content.*` que receba acesso orgânico ou direto **sem UTM** não será contada. Se isso virar volume relevante, a saída é criar uma whitelist de slugs para `content.*` nos mesmos moldes do `conteudo.*` — não uma regra de domínio em bloco.
+
+> ⚠️ Antes de "consertar" isto adicionando `content.buzzmonitor.com` à lista de domínios acima: leia esta seção. A ausência é a regra.
+
 ### Whitelist de slugs em `conteudo.buzzmonitor.com.br/`
 
 O subdomínio recebe tráfego misto (CM + Google Ads + formulários internos). Só estes slugs contam como CM:
@@ -137,6 +158,9 @@ deals_cm AS (
           OR url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
           OR url_conversao ILIKE 'https://material.buzzmonitor.com/%'
           OR url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
+          -- NAO adicionar content.buzzmonitor.com aqui: dominio de trafego misto,
+          -- classificado pela utm_source. Ver secao "content.buzzmonitor.com — NAO
+          -- entra por dominio" acima antes de mexer.
           OR (
             (utm_source IS NULL OR utm_source NOT IN ('cs','comercial','sdr','crm','google'))
             AND (

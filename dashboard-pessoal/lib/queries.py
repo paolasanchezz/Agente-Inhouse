@@ -376,6 +376,13 @@ def filtro_cm(alias: str = '') -> str:
         f"{p}url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
         for slug in CM_SLUGS_PREFIXES
     )
+    # NAO adicionar 'content.buzzmonitor.com' na lista de dominios abaixo.
+    # Dominio de trafego misto (Meta Ads, Google Ads e CM convivem nas mesmas
+    # LPs) — quem classifica ali eh a utm_source, nao o dominio. Decisao do
+    # Victor em 2026-08-17, quando a LP ia-para-social-listening saiu de
+    # material.* (dominio CM em bloco) pra content.*. Racional completo e
+    # consequencia aceita: MAPEAMENTO-CAMPOS.md, secao "content.buzzmonitor.com
+    # — NAO entra por dominio".
     return f"""(
     {exclusao}
     AND NOT (COALESCE({p}utm_source, '') = 'google' AND COALESCE({p}utm_medium, '') = 'cpc')
