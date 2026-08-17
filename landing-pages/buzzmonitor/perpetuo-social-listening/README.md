@@ -7,7 +7,9 @@ Par de páginas no modelo da CX `content.cxpress.io/video-atendimento`: uma pág
 | Captura | `perpetuo-social-listening` | hero (gancho WhatsApp/40%) + form "preencha e assista" + teaser "o que você vai ver" + autoridade | index |
 | Thank-you | `perpetuo-social-listening-confirmado` | vídeo embedado + prova + CTA "fale com especialista" | noindex |
 
-**Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-social-listening-confirmado` → assiste ao vídeo → CTA de WhatsApp.
+**Fluxo:** captura (Jotform `261904654263661`) → submit redireciona pra `/perpetuo-social-listening-confirmado` → assiste ao vídeo → CTA de WhatsApp.
+
+> ⚠️ **O redirect pra tks agora depende do Jotform, não do código.** O antigo JS (`window.location.href = '/perpetuo-social-listening-confirmado'`) foi removido junto com o form mock. Configure no painel do Jotform → **Settings → Thank You Page → Redirect to an external link** com a URL final `https://webinar.buzzmonitor.com/perpetuo-social-listening-confirmado` (ajustar ao domínio real de publicação). Sem isso, o usuário vê a tela de "obrigado" padrão do Jotform e não cai na tks com o vídeo.
 
 **Vídeo:** `https://youtu.be/fflNMhqjr48` (embed `youtube.com/embed/fflNMhqjr48`).
 
@@ -18,7 +20,7 @@ Baseada **só no briefing da Catharina** (título + promessa + Bloco A do vídeo
 ## Pendências antes de publicar
 
 - **Link do WhatsApp:** os CTAs da tks estão com placeholder `WHATSAPP_LINK_PENDENTE` (2 ocorrências: header e cta-final). Catharina envia o link; trocar as 2.
-- **Form real:** a captura ainda é MOCK (redireciona no submit). Integrar embed real via `/lp-integrar-form` (GUIDELINES §11, só após design aprovado).
+- [x] **Form integrado:** Jotform `261904654263661` (2026-08-17). **Form provider:** Jotform. Falta configurar o redirect da tks no painel do Jotform (ver aviso no topo).
 - **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas Youse/Turbi/Brisanet como clientes. Não vieram do briefing; é prova de marca pré-existente.
 - **OG image:** hoje reusa `og-primeiro-listening-5-passos.png`. Trocar por uma dedicada se quiser.
 - **Domínio:** decisão do Victor. Migrado (CI) → publicar via `/lp-publicar` (manifesto + PR; deploy manual bloqueado por hook). Candidatos: `webinar.buzzmonitor.com`, `content.buzzmonitor.com`, `material.buzzmonitor.com`.
