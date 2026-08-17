@@ -525,14 +525,24 @@
       border: 1px solid var(--line);
     }
 
+    /* O print ai-insights.png tem 430x284 px de origem. Largura maxima ~1.4x o
+       natural: acima disso o browser interpola demais e o texto do print embaca.
+       O img abaixo forca height:auto para o ratio real mandar (os atributos
+       width/height antigos, 1200x750, esticavam a imagem verticalmente). */
     .ia-print {
-      max-width: 860px;
+      max-width: 620px;
       margin: 0 auto 46px;
       border-radius: 24px;
       overflow: hidden;
       box-shadow: var(--shadow);
       border: 1px solid var(--line);
       background: #fff;
+    }
+
+    .ia-print img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 430 / 284;
     }
 
     .ia-section { background: #fffaf7; }
@@ -722,18 +732,24 @@
     .final-cta { background: #f8fafc; }
 
     .cta-box {
+      position: relative;
+      overflow: hidden;
       border-radius: 30px;
       padding: 44px 40px;
       color: #fff;
-      /* Tons profundos (nao os --orange/--pink do brand) porque aqui ha texto
-         branco de 14-16px sobre o fill: #c04a00 da 4.98:1 e #c2103c da 6.1:1,
-         ambos acima do 4.5:1 de AA. O gradiente claro da familia reprovava. */
-      background: linear-gradient(90deg, #c04a00, #c2103c);
+      /* Varredura continua de matiz: roxo primario da marca (#390155) ->
+         magenta -> framboesa. Purpura e rosa sao vizinhos no circulo cromatico,
+         entao o degrade nao "vira" cor no meio como o laranja->vermelho antigo.
+         Contraste com texto branco em todas as paradas: 17.9 / 12.6 / 10.0 /
+         6.3:1 - todas acima do 4.5:1 de AA (o fim antigo dava 4.98:1). */
+      background:
+        radial-gradient(120% 150% at 8% 0%, rgba(255,255,255,.16), transparent 58%),
+        linear-gradient(135deg, #2A0140 0%, #4A0B54 30%, #7E1152 62%, #B81E4A 100%);
       display: grid;
       grid-template-columns: 1fr minmax(300px, 380px);
       gap: 38px;
       align-items: center;
-      box-shadow: 0 22px 60px rgba(194,16,60,.22);
+      box-shadow: 0 22px 60px rgba(58, 6, 72, .30);
     }
 
     .cta-box h2 {
@@ -759,22 +775,99 @@
     .form-card {
       background: #fff;
       border-radius: 20px;
-      padding: 22px 18px 16px;
+      padding: 24px 20px 20px;
       box-shadow: 0 18px 40px rgba(8,27,58,.2);
+      color: var(--ink);
     }
 
     .form-card h3 {
-      margin: 0 0 10px;
+      margin: 0 0 4px;
       color: var(--ink);
       font-size: 22px;
       letter-spacing: -.03em;
     }
 
-    /* ----- Jotform embed wrapper (canonico) -----
-       Sem padding/background/border: o provedor ja vem com card proprio.
-       A regra do iframe garante que, se o provedor renderizar via iframe, ele
-       ocupa 100% da largura sem borda. */
-    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    .form-card__lead {
+      margin: 0 0 16px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ----- Form: replica do form GreatPages de contenido.getbuzzmonitor.com/agencias
+       (page id 293578). Mesmos campos, mesmos ids, mesmo endpoint /conversion. ----- */
+    .field { margin-bottom: 12px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 44px;
+      padding: 0 12px;
+      border: 1px solid #d7dce4;
+      border-radius: 10px;
+      background: #fff;
+      font: inherit;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .field select {
+      appearance: none;
+      padding-right: 34px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23626b7a' d='M1.4 0 6 4.6 10.6 0 12 1.4 6 7.4 0 1.4z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 11px;
+    }
+
+    .field input:focus-visible,
+    .field select:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 1px;
+      border-color: var(--pink);
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-card .btn {
+      width: 100%;
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .form-card .btn[disabled] { opacity: .7; cursor: progress; transform: none; }
+
+    .form-legal {
+      margin: 10px 0 0;
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .form-msg {
+      margin: 10px 0 0;
+      min-height: 18px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-msg--ok { color: #0b7a4b; }
+    .form-msg--err { color: #c2103c; }
 
     footer {
       padding: 44px 0 28px;
@@ -1060,7 +1153,7 @@
         </div>
 
         <div class="ia-print reveal">
-          <img src="./assets/ai-insights.png" alt="AI Insights de Buzzmonitor generando análisis automáticos" width="1200" height="750" loading="lazy">
+          <img src="./assets/ai-insights.png" alt="AI Insights de Buzzmonitor generando análisis automáticos" width="430" height="284" loading="lazy">
         </div>
 
         <div class="feature-grid">
@@ -1256,12 +1349,66 @@
               <li>Y mucho más...</li>
             </ul>
           </div>
-          <div class="form-card">
+          <form class="form-card" id="demoForm" novalidate>
             <h3>Agenda una demo</h3>
-            <div class="jotform-embed">
-              <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
+            <p class="form-card__lead">Completa tus datos y nuestro equipo te contactará.</p>
+
+            <div class="field">
+              <label for="f-nombre">Nombre</label>
+              <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
             </div>
-          </div>
+
+            <div class="field">
+              <label for="f-email">E-mail Profesional</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-telefono">Teléfono</label>
+                <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label for="f-pais">País</label>
+                <select id="f-pais" name="pais" required>
+                  <option value="" selected disabled>Selecciona</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-empresa">Empresa</label>
+              <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
+            </div>
+
+            <div class="field">
+              <label for="f-cargo">¿Cuál es tu cargo?</label>
+              <select id="f-cargo" name="cargo" required>
+                <option value="" selected disabled>Selecciona tu cargo</option>
+                <option>Asistente/Analista</option>
+                <option>Coordinador/Supervisor</option>
+                <option>Gerente/Head</option>
+                <option>Director</option>
+                <option>CEO/Socio</option>
+                <option>Estudiante/Becario/Servicio Social</option>
+                <option>No trabajo actualmente</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="f-funcionalidad">¿Qué funcionalidad te interesa más?</label>
+              <select id="f-funcionalidad" name="funcionalidad" required>
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option>Escucha Social</option>
+                <option>Monitoreo de competidores</option>
+                <option>Dashboards personalizados</option>
+                <option>Atención al Cliente</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="formBtn">Quiero una demo</button>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </section>
@@ -1464,6 +1611,106 @@
       } else {
         tryPlay();
       }
+    })();
+
+    // Lista de paises: mesma da pagina original (contenido.getbuzzmonitor.com/agencias)
+    (function () {
+      var PAISES = ["Argentina","Austria","Bangladesh","Belgium","Bolivia","Brazil","Bulgaria","Canadá","Chile","Colombia","Costa Rica","Croatia","Cuba","Czech Republic","Ecuador","El Salvador","España","France","Greece","Grenada","Guatemala","Honduras","Hungary","India","Ireland","Israel","Italy","Jamaica","Kazakhstan","Malta","México","Monaco","Nicaragua","Norway","Panamá","Paraguay","Perú","Poland","Portugal","Puerto Rico","República Dominicana","Serbia","Sri Lanka","Sweden","Switzerland","Turkey","United Kingdom","United States of America","Uruguay","Venezuela","Vietnam","Otro"];
+      var sel = document.getElementById("f-pais");
+      if (!sel) return;
+      PAISES.forEach(function (p) {
+        var o = document.createElement("option");
+        o.value = p;
+        o.textContent = p;
+        sel.appendChild(o);
+      });
+    })();
+
+    // Form: replica do envio GreatPages de contenido.getbuzzmonitor.com/agencias
+    // (page id 293578) - mesmo endpoint, mesmos ids de campo, mesmos titulos e
+    // mesma pagina de obrigado. Payload conferido contra o XHR real da pagina.
+    (function () {
+      var ENDPOINT = "https://contenido.getbuzzmonitor.com/conversion";
+      var GRACIAS = "https://contenido.getbuzzmonitor.com/muchas-gracias";
+      var ELEMENTO = "e_293578_1_178010771767293654";
+
+      var form = document.getElementById("demoForm");
+      var btn = document.getElementById("formBtn");
+      var msg = document.getElementById("formMsg");
+      if (!form) return;
+
+      var qs = new URLSearchParams(location.search);
+      function q(k) { return qs.get(k) || ""; }
+      function val(id) { var el = document.getElementById(id); return el ? el.value : ""; }
+
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        msg.className = "form-msg";
+        msg.textContent = "";
+        if (!form.reportValidity()) return;
+
+        var campos = {};
+        var i = 0;
+        function add(id, titulo, valor) { campos[i++] = { id: id, titulo: titulo, valor: valor }; }
+
+        add("input_293578_1_178010771767295723-nome", "Nombre", val("f-nombre"));
+        add("input_293578_1_178010771767285895-e-mail", "E-mail Profesional", val("f-email"));
+        add("input_293578_1_178010771767215485", "Teléfono", val("f-telefono"));
+        add("input_293578_1_178010771767208774", "País", val("f-pais"));
+        add("input_293578_1_178010771767257856", "Empresa", val("f-empresa"));
+        add("input_293578_1_178010771767272391", "¿Cuál es tu cargo?", val("f-cargo"));
+        add("input_293578_1_178010771767265727", "¿Qué funcionalidad te interesa más?", val("f-funcionalidad"));
+        add("input_293578_1_178010771767248973", "UTM_SOURCE", q("utm_source"));
+        add("input_293578_1_178010771767216734", "UTM_MEDIUM", q("utm_medium"));
+        add("input_293578_1_178010771767276074", "UTM_CAMPAIGN", q("utm_campaign"));
+        add("input_293578_1_178010771767267853", "UTM_CONTENT", q("utm_content"));
+        add("input_293578_1_178010771767243382", "UTM_TERM", q("utm_term"));
+        add("input_293578_1_178010771767218546", "GCLID", q("gclid"));
+        add("input_293578_1_178010771767206123", "adset", q("adset"));
+        add("input_referral_source", "Referral source", document.referrer === "" ? "Acesso direto" : document.referrer);
+        add("input_mobile", "Dispositivo", /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop");
+        add("input_uri", "URL", window.location.href);
+
+        var rnd = Math.random().toString();
+        var payload = {
+          campos: campos,
+          elemento: ELEMENTO,
+          eid: "GPages." + rnd.substr(rnd.length - 4) + (new Date()).getTime(),
+          enav: "",
+          eclid: q("fbclid"),
+          euser: ""
+        };
+
+        btn.disabled = true;
+        btn.textContent = "Enviando…";
+        msg.className = "form-msg form-msg--ok";
+        msg.textContent = "Enviando tus datos…";
+
+        var done = false;
+        function go() {
+          if (done) return;
+          done = true;
+          try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: "generate_lead", form_id: "demo-agencias-es" });
+          } catch (e) {}
+          window.location.href = GRACIAS;
+        }
+
+        // /conversion e cross-origin e a resposta do POST nao expoe
+        // Access-Control-Allow-Origin: o navegador entrega o envio (o lead e criado
+        // no servidor) mas nao consegue LER a resposta. Por isso concluimos tanto no
+        // sucesso quanto no bloqueio de leitura (.catch); keepalive garante a entrega
+        // mesmo com a navegacao logo em seguida.
+        fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          keepalive: true,
+          mode: "cors"
+        }).then(go).catch(go);
+        setTimeout(go, 6000);
+      });
     })();
   </script>
 </body>
