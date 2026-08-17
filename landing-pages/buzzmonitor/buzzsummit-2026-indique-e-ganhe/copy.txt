@@ -1,0 +1,153 @@
+=== HERO ===
+OVERLINE: Indique e Ganhe
+H1: Conhece uma marca que deveria estar no BuzzSummit?
+BODY: Indique uma empresa para patrocinar o BuzzSummit 2026 e transforme sua conexão em oportunidade. Ganhe 1.000 reais se o contrato for fechado.
+BODY: Você conhece marcas, agências e profissionais que têm tudo a ver com o universo de IA, Social Media, CX, Marketing e tecnologia? Então, essa indicação pode valer a pena. Indique uma empresa com potencial para patrocinar o BuzzSummit 2026 e, se a oportunidade avançar, você pode ser recompensado.
+# [REFLOW v2, pedido do usuario "menos paragrafo"] as 3 frases curtas acima foram fundidas num so paragrafo no HTML (index.html). Texto identico, so a quebra de <p> mudou. "Ganhe 1.000 reais..." tambem ganhou <span class="highlight"> (gradiente/negrito) no primeiro paragrafo.
+CTA: Quero indicar uma empresa
+LABEL: Entenda como funciona
+# NOTA: "Entenda como funciona" e link de texto ao lado do botao primario (nao botao), rolando ate a secao COMO FUNCIONA.
+# NOTA: elemento visual do hero = video placeholder do after movie BuzzSummit 2025 (pedido explicito do usuario). Usar caixa 16:9 com label "[VIDEO: After Movie BuzzSummit 2025]".
+
+=== POR QUE INDICAR ===
+H2: Por que indicar?
+SUB: Você conhece. A gente conecta. Todo mundo ganha.
+BODY: O BuzzSummit é um dos grandes encontros do mercado de IA, Social Media, CX e Marketing, reunindo profissionais, líderes e marcas que estão transformando a forma de se relacionar com consumidores. Em 2026, o evento chega à sua 4ª edição com um dia inteiro dedicado a conhecimento, networking e negócios. Se você conhece uma empresa que deveria estar entre essas marcas, faça a ponte.
+# [REFLOW v2] 3 frases fundidas num paragrafo so no HTML. Texto identico.
+H3: Você indica uma empresa
+BODY: Compartilhe o contato de uma marca, agência ou empresa que tenha potencial para patrocinar o BuzzSummit.
+H3: Nosso time entra em contato
+BODY: A equipe comercial do BuzzSummit apresenta as oportunidades de patrocínio e entende o perfil da empresa.
+H3: A oportunidade avança
+BODY: Se a indicação for qualificada e evoluir para uma negociação, você acompanha o processo.
+H3: Você ganha
+BODY: Caso a indicação resulte em patrocínio, você recebe sua recompensa de acordo com as regras do programa.
+
+=== QUEM VOCÊ PODE INDICAR ===
+H2: Quem você pode indicar?
+SUB: Pense naquela empresa que deveria estar no BuzzSummit
+BODY: Sua indicação pode ser uma:
+LABEL: Marca de grande porte
+BODY: Que quer aumentar sua presença e relevância no mercado.
+
+LABEL: Agência de Marketing ou Comunicação
+BODY: Que busca novas oportunidades de negócio e relacionamento.
+
+LABEL: Empresa de tecnologia
+BODY: Que possui soluções para Marketing, CX, IA, dados ou Social Media.
+
+LABEL: Plataforma ou solução B2B
+BODY: Que quer se conectar com decisores e profissionais do mercado.
+
+LABEL: Empresa inovadora
+BODY: Que tem um produto, serviço ou case relevante para apresentar.
+
+LABEL: Cliente, parceiro ou contato da sua rede
+BODY: Que pode se beneficiar de estar próximo de um público qualificado.
+
+=== POR QUE SUA INDICAÇÃO É VALIOSA ===
+H2: Por que sua indicação é valiosa?
+SUB: Porque bons negócios começam com boas conexões.
+BODY: O BuzzSummit conecta empresas a profissionais que estão diretamente envolvidos nas decisões de Marketing, Social Media, CX, Comunicação, Dados e Inteligência Artificial. Ao indicar uma empresa, você ajuda a colocar sua marca no centro dessas conversas. E ainda pode ser recompensado por abrir essa porta.
+# [REFLOW v2] 3 frases fundidas num paragrafo so no HTML. Texto identico.
+
+=== O BUZZSUMMIT 2026 ===
+H2: O BuzzSummit 2026
+SUB: Onde as principais conversas sobre IA, Social Media e CX ganham vida.
+LABEL: 29 de outubro de 2026
+LABEL: Centro de Convenções Rebouças, São Paulo
+LABEL: 08h às 19h
+H3: Tema 2026
+BODY: Eficiência em Gestão de Social Media e CX: Skills, Agentes e Automações com IA
+BODY: Um dia de conteúdo, relacionamento, inovação e oportunidades de negócios para quem está construindo o futuro do Marketing e da experiência do cliente.
+# [FIX anti-IA] em-dash removido: copy original trazia "Centro de Convenções Rebouças — São Paulo" (aparte/pausa curta). Substituido por virgula, conforme tabela do Passo 4.1 (tolerancia zero a em-dash).
+
+=== SUA INDICAÇÃO PODE COLOCAR UMA MARCA NO PALCO ===
+H2: Sua indicação pode colocar uma marca no palco
+BODY: O BuzzSummit reúne:
+LABEL: +700
+BODY: profissionais de Marketing, CX, Social Media e Comunicação
+
+LABEL: Líderes
+BODY: e decisores de marcas e empresas
+
+LABEL: Conteúdo
+BODY: e networking com foco em IA, tecnologia e negócios
+
+LABEL: Marcas
+BODY: patrocinadoras conectadas às principais tendências do mercado
+# [REFLOW v2, pedido do usuario, layout inspirado em print do site oficial] cada par LABEL/BODY
+# foi re-quebrado (numero/palavra grande + legenda), mas a concatenacao LABEL+" "+BODY e identica
+# a versao anterior palavra por palavra: nada foi cortado, reescrito ou adicionado.
+
+=== COMO FUNCIONA O INDIQUE E GANHE ===
+H2: Como funciona o Indique e Ganhe?
+LABEL: 1. Você indica
+BODY: Preencha o formulário com seus dados e as informações da empresa que você acredita que deveria patrocinar o BuzzSummit.
+
+LABEL: 2. Nós fazemos o contato
+BODY: Nosso time comercial entra em contato com a empresa indicada para entender o interesse e apresentar as possibilidades de patrocínio.
+
+LABEL: 3. A negociação avança
+BODY: Se houver fit, a empresa entra no processo comercial para escolher a melhor oportunidade de participação no BuzzSummit.
+
+LABEL: 4. Você recebe sua recompensa
+BODY: Se a indicação resultar em patrocínio, você recebe a recompensa prevista no regulamento do programa.
+
+CTA: Indicar agora
+# NOTA: botao-ancora ate a secao CTA FINAL (onde vive o unico form da LP, GUIDELINES §11).
+
+=== TEM UMA EMPRESA EM MENTE ===
+H2: Tem uma empresa em mente?
+BODY: Não deixe essa conexão passar.
+LIST ITEM: Pode ser aquele cliente que sempre busca novos eventos.
+LIST ITEM: A agência que quer fortalecer seu posicionamento.
+LIST ITEM: A empresa de tecnologia que precisa estar mais próxima de decisores.
+LIST ITEM: Ou aquela marca que tem tudo a ver com o universo de IA, Marketing e CX.
+BODY: Se você conhece, indique.
+CTA: Quero indicar
+# NOTA: botao-ancora ate a secao CTA FINAL.
+
+=== PERGUNTAS FREQUENTES ===
+H2: Perguntas frequentes
+LABEL: Quem pode fazer uma indicação?
+BODY: Qualquer pessoa que tenha uma conexão profissional com uma empresa que possa ter interesse em patrocinar o BuzzSummit 2026.
+
+LABEL: Preciso avisar a empresa antes de indicar?
+BODY: Recomendamos que sim. Uma indicação com contexto e abertura para contato aumenta as chances de a oportunidade avançar.
+
+LABEL: Posso indicar mais de uma empresa?
+BODY: Sim. Quanto mais indicações qualificadas, maiores as possibilidades de gerar oportunidades.
+
+LABEL: Que tipo de empresa devo indicar?
+BODY: Marcas, agências, empresas de tecnologia e soluções B2B que tenham interesse em visibilidade, relacionamento, geração de negócios e conexão com profissionais de Marketing, Social Media, CX e IA.
+
+LABEL: Quando recebo minha recompensa?
+BODY: O pagamento e os critérios da recompensa seguem as condições descritas no regulamento do programa.
+
+LABEL: Minha indicação será acompanhada?
+BODY: Sim. Nosso time acompanha a oportunidade e informa você sobre a evolução da indicação, conforme as regras do programa.
+
+=== CTA FINAL ===
+H2: Pronto para fazer uma conexão valer?
+BODY: Indique uma empresa para o BuzzSummit 2026.
+BODY: Você abre a porta. A gente apresenta a oportunidade. E sua indicação pode virar negócio.
+# [REFLOW v2] as ultimas 3 frases curtas fundidas num paragrafo so no HTML. Texto identico.
+CTA: Indicar empresa agora
+# NOTA: no HTML esse texto virou o titulo interno do form (h3), nao um botao separado, ja que o
+# form fica logo abaixo na mesma secao. O botao de envio real e o "Enviar indicacao" (proxima linha).
+# NOTA: [formulario], mock action="#" nesta fase (GUIDELINES §11). Unico form real da LP.
+LABEL: Ao enviar, confirmo que tenho o consentimento da empresa indicada para compartilhar seus dados e que a indicação está de acordo com o regulamento do programa. Política de privacidade*
+# [ADICIONADO, nao veio na copy do usuario] Disclaimer de consentimento + link de politica de privacidade, no padrao do programa irmao "indiqueeganhe" (Buzzmonitor). Boilerplate compliance generico de formulario (whitelist do lp-gerar); ajustar texto na revisao se o regulamento oficial do BuzzSummit tiver redacao propria.
+CTA: Enviar indicação
+
+=== FOOTER ===
+FOOTER: BuzzSummit 2026
+FOOTER: 29 de outubro | Centro de Convenções Rebouças | São Paulo
+FOOTER: Eficiência em Gestão de Social Media e CX: Skills, Agentes e Automações com IA
+FOOTER: © Buzzmonitor 2026. Todos os direitos reservados.
+# [ADICIONADO, nao veio na copy do usuario] Linha de copyright, boilerplate padrao de footer (whitelist do lp-gerar).
+
+# Revisao anti-IA: 1 achado (em-dash na secao O BUZZSUMMIT 2026, ja corrigido acima). Sem cliches de IA, sem filler words, 0 exclamacoes na copy original.
+# Identidade visual: NAO usar brand/buzzmonitor/tokens.json. Por pedido explicito do usuario, a identidade visual desta LP replica a de https://www.buzzsummit.com.br/ (sub-marca de evento); ver README.md para o resumo de tokens extraidos (cores, tipografia, formato de botao).
+# Imagens: todas as imagens (video after movie, fotos de speakers/marcas, ilustracoes) entram como placeholder visivel para o usuario substituir depois (pedido explicito).
