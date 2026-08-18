@@ -382,13 +382,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     0%, 100% { transform: translateY(-50%) translateY(0) rotate(0deg); }
     50% { transform: translateY(-50%) translateY(-20px) rotate(8deg); }
   }
+  /* Ancoradas na borda do .container (nao da secao cheia): so aparecem na folga real
+     que sobra entre o container (max-width 1440px) e a borda da tela. Em telas onde essa
+     folga nao existe, o overflow:hidden da secao corta o icone antes que ele toque o texto -
+     zero chance de sobrepor conteudo, sem precisar adivinhar um breakpoint magico. */
   .floating-icon {
     position: absolute;
     z-index: 2;
     pointer-events: none;
     filter: drop-shadow(0 16px 28px rgba(0,0,0,0.4));
   }
-  @media (max-width: 1100px) { .floating-icon { display: none; } }
+  @media (max-width: 768px) { .floating-icon { display: none; } }
   .hero__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -795,8 +799,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- HERO -->
   <section class="hero bg-dark" id="hero">
-    <img class="floating-icon" src="./assets/icon-buzzsummit-id-4.png" alt="" aria-hidden="true" style="right: 3%; top: 10%; width: 150px; animation: floatIcon 9s ease-in-out infinite;">
     <div class="container hero__grid">
+      <img class="floating-icon" src="./assets/icon-buzzsummit-id-4.png" alt="" aria-hidden="true" style="left: 100%; margin-left: 32px; top: 10%; width: 150px; animation: floatIcon 9s ease-in-out infinite;">
       <div class="hero__content">
         <span class="eyebrow">Indique e Ganhe</span>
         <h1>Conhece uma marca que deveria estar no BuzzSummit?</h1>
@@ -812,7 +816,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero__visual">
         <div class="video-embed">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/zdP9AHn1o1g"
+            src="https://www.youtube.com/embed/zdP9AHn1o1g"
             title="After Movie BuzzSummit 2025"
             loading="lazy"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -825,8 +829,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- POR QUE INDICAR -->
   <section class="bg-dark shade-alt" id="por-que-indicar">
-    <img class="floating-icon" src="./assets/icon-buzzsummit-id-3.png" alt="" aria-hidden="true" style="left: 2%; bottom: 6%; width: 127px; animation: floatIconSlow 11s ease-in-out infinite;">
     <div class="container">
+      <img class="floating-icon" src="./assets/icon-buzzsummit-id-3.png" alt="" aria-hidden="true" style="right: 100%; margin-right: 32px; bottom: 6%; width: 127px; animation: floatIconSlow 11s ease-in-out infinite;">
       <div class="section-head reveal">
         <h2>Por que indicar?</h2>
         <p class="sub">Você conhece. A gente conecta. Todo mundo ganha.</p>
@@ -950,8 +954,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- SUA INDICAÇÃO PODE COLOCAR UMA MARCA NO PALCO -->
   <section class="bg-dark" id="palco">
-    <img class="floating-icon" src="./assets/icon-buzzsummit-id-2.png" alt="" aria-hidden="true" style="right: 4%; top: 50%; width: 173px; animation: floatIconCentered 10s ease-in-out infinite;">
     <div class="container">
+      <img class="floating-icon" src="./assets/icon-buzzsummit-id-2.png" alt="" aria-hidden="true" style="left: 100%; margin-left: 32px; top: 50%; width: 173px; animation: floatIconCentered 10s ease-in-out infinite;">
       <div class="section-head center reveal">
         <h2>Sua indicação pode colocar uma marca no palco</h2>
         <p style="color: rgba(255,255,255,0.75); margin-top: 16px;">O BuzzSummit reúne:</p>
@@ -979,8 +983,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- COMO FUNCIONA O INDIQUE E GANHE -->
   <section class="bg-dark shade-alt" id="como-funciona">
-    <img class="floating-icon" src="./assets/icon-buzzsummit-id-4.png" alt="" aria-hidden="true" style="left: 3%; top: 12%; width: 115px; animation: floatIconSlow 12s ease-in-out infinite;">
     <div class="container">
+      <img class="floating-icon" src="./assets/icon-buzzsummit-id-4.png" alt="" aria-hidden="true" style="right: 100%; margin-right: 32px; top: 12%; width: 115px; animation: floatIconSlow 12s ease-in-out infinite;">
       <div class="section-head reveal">
         <h2>Como funciona o Indique e Ganhe?</h2>
       </div>
