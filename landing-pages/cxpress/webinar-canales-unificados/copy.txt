@@ -1,0 +1,60 @@
+=== HERO ===
+OVERLINE: Cxpress · Centralización de Canales · 10 minutos
+H1: Múltiples canales, un solo cliente
+SUB: Cómo unificar tu atención sin perder el contexto.
+LABEL: 10 minutos
+CTA: Inscríbete gratis al webinar
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Tres pasos para unificar tu atención con Cxpress.
+H3: 01. Centralización de canales
+BODY: WhatsApp, correo, redes sociales y chat del sitio llegan al mismo panel, y cada cliente tiene un único historial, sin importar por qué canal escribió. Nadie en el equipo tiene que empezar una conversación desde cero.
+LABEL: QUÉ VAS A VER: el panel con los canales conectados en una sola vista y el historial completo de un cliente que escribió por WhatsApp y luego por correo.
+
+H3: 02. Gestión de tickets
+BODY: Cada conversación entra en una cola y se distribuye, de forma automática o manual, a un agente o área específica, con visibilidad para todo el equipo. Así, nadie duplica esfuerzos respondiendo lo mismo sin saberlo.
+LABEL: QUÉ VAS A VER: la cola de tickets con conversaciones de distintos canales y la distribución automática hacia un agente disponible.
+
+H3: 03. Dashboards analíticos
+BODY: El volumen de conversaciones y el tiempo de respuesta de todos los canales se consolidan en un único panel, sin necesidad de armar planillas a mano.
+LABEL: QUÉ VAS A VER: el dashboard con el volumen por canal y el tiempo de respuesta promedio consolidado.
+
+=== RESULTADOS ===
+H2: Los números detrás de una atención unificada
+LABEL: 9 canales en promedio utiliza un mismo cliente para comunicarse con una empresa (Salesforce, State of the Connected Customer)
+LABEL: Hasta 25% menos desgaste en agentes con alto volumen de solicitudes (estudio NBER)
+LABEL: Hasta 45% más productividad con IA generativa aplicada a la atención (estimación McKinsey)
+# [NOTA 2026-08-18] El borrador v1 (2026-08-03) citaba la fuente del primer dato: "9 canales... (Salesforce, State of the Connected Customer)". La copy final del usuario trajo el mismo dato sin la cita. Se mantuvo la atribucion a Salesforce (misma fuente del guion original), siguiendo el mismo criterio ya aplicado en la LP anterior (webinar-bloqueo-whatsapp) y la regla del Brandbook de Cxpress ("no afirmar resultados cuantitativos sem case verificado, usar dados de mercado como gancho"). Los otros 2 datos (NBER, McKinsey) ya vienen atribuidos como cita de investigacion externa, no como resultado propio de Cxpress.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Laura Rodríguez
+SUB: Business Developer · Cxpress
+BODY: Laura ayuda a los equipos de atención a dejar de perseguir la misma conversación en distintas pantallas, centralizando WhatsApp, correo, redes sociales y chat en un solo panel. En esta sesión muestra cómo unificar tus canales sin interrumpir la operación ni perder lo que ya tienes.
+LABEL: Centralización de canales
+LABEL: Gestión de tickets
+LABEL: IA aplicada
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Tu equipo atiende clientes desde WhatsApp, correo y redes sociales por separado, sin un historial único.
+LIST ITEM: Dos agentes han respondido al mismo cliente sin saberlo, porque nadie tiene visibilidad de la conversación completa.
+LIST ITEM: Armas los reportes de atención a mano, canal por canal, en lugar de ver toda la información consolidada.
+LIST ITEM: Quieres unificar tus canales sin migrarlo todo de golpe ni poner en riesgo lo que ya funciona.
+
+=== CTA FINAL ===
+H2: ¿Tu equipo atiende desde canales separados, sin un historial único?
+BODY: Inscríbete al webinar y te mostraremos cómo unificar tus canales actuales sin perder el contexto de tus conversaciones y sin interrumpir tu operación.
+LABEL: Gratis
+LABEL: 10 minutos
+LABEL: Sin compromiso
+CTA: Inscríbete gratis al webinar
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos los derechos reservados.
+
+# [NOTA 2026-08-18] Speaker: Laura Rodriguez, Business Developer - Cxpress. Foto reaproveitada de landing-pages/cxpress/webinar-bloqueo-whatsapp/assets/laura-rodriguez.jpg (mesma speaker, LP anterior desta serie).
+# Diseno e estrutura: espelhados de landing-pages/cxpress/webinar-bloqueo-whatsapp/index.html (mesma serie, a pedido explicito do usuario "sigue el mismo diseño de la anterior" / "buscamos hacer un diseño similar a este"), branding Cxpress LATAM (brand/cxpress/tokens.json). O modelo de referencia (versao atual, ja com PRs #249-#259) usa imagem flutuante no hero + mockup de celular no CTA final, mas com graficos especificos do WhatsApp (Icone_WhatsApp.svg, Celular_WhatsApp.svg) — nao aplicaveis a esta LP, que e sobre centralizacao de canais em geral. Reproduzida a MESMA composicao (imagem no hero + mockup no CTA final, 2 colunas) trocando os assets especificos de WhatsApp por assets reais e ja existentes da plataforma Cxpress: `brand/cxpress/assets/plataforma/plataforma-canais.gif` (animacao mostrando os canais unificados, ja usada em outras LPs como banimento-whatsapp-latam) no hero, e `mockup-plataforma-laptop.png` no CTA final. Nenhum asset novo foi criado nem baixado; ambos ja existiam no repo.
+# Revisao anti-IA: sem achados (em-dash: 0).

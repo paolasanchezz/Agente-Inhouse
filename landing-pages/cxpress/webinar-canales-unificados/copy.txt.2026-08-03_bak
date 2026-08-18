@@ -1,0 +1,63 @@
+=== HERO ===
+OVERLINE: Cxpress · Centralización de Canales · 10 minutos
+H1: Múltiples canales, un solo cliente
+SUB: Cómo unificar tu atención sin perder el contexto.
+LABEL: 10 minutos
+CTA: Agenda tu demo gratuita de 30 minutos
+# [SUGESTAO estrutura] El "Titulo" que me diste al inicio del mensaje es "Multiples canales, un solo cliente", pero el guion completo (roteiro, slides, nombre del webinar) usa "Cinco canales, un solo cliente" en todos sus encabezados internos. Use el titulo explicito que diste arriba para el H1; confirmar cual es el titulo final antes de publicar, ya que aparece de dos formas distintas en tu propia fuente.
+
+=== LO QUE VAS A VER ===
+OVERLINE: LO QUE VAS A VER
+H2: Tres pasos para unificar tu atención, con Cxpress.
+H3: 01. Centralización de canales
+BODY: WhatsApp, correo, redes sociales y chat del sitio entran al mismo panel, y cada cliente tiene un solo historial sin importar por dónde escribió. Nadie en el equipo empieza una conversación desde cero.
+LABEL: QUÉ VAS A VER: el panel con los canales conectados en una sola vista y el historial completo de un cliente que escribió por WhatsApp y luego por correo.
+
+H3: 02. Gestión de tickets
+BODY: Cada conversación entra a una cola y se distribuye, automática o manualmente, hacia un agente o un área específica, visible para todo el equipo. Nadie duplica esfuerzo respondiendo lo mismo sin saberlo.
+LABEL: QUÉ VAS A VER: la cola de tickets con conversaciones de distintos canales mezcladas y la distribución automática hacia un agente disponible.
+
+H3: 03. Dashboards analíticos
+BODY: El volumen de conversaciones y el tiempo de respuesta de todos los canales se consolidan en un panel único, sin planillas armadas a mano.
+LABEL: QUÉ VAS A VER: el dashboard con el volumen por canal y el tiempo de respuesta promedio consolidado.
+# [SUGESTAO estrutura] No se agrego una seccion "Problema" aparte (mismo criterio de las LPs anteriores de esta serie). El bloque de dolor que me pasaste ("El mismo cliente, convertido en tres conversaciones distintas... Y ningun agente tiene el contexto completo") no se incluyo como seccion propia. Avisame si lo quieres de vuelta.
+
+=== RESULTADOS ===
+H2: Los números detrás de unificar la atención
+LABEL: 9 canales en promedio usa un mismo cliente para hablar con una empresa (Salesforce, State of the Connected Customer)
+LABEL: Hasta 25% menos desgaste en agentes con alto volumen de solicitudes (estudio NBER)
+LABEL: Hasta 45% más de productividad con IA generativa aplicada a la atención (estimación McKinsey)
+# [SUGESTAO estrutura] Los 3 datos vienen del guion tal cual, pero ninguno es un caso propio de Cxpress: el de Salesforce si trae fuente citable (reporte "State of the Connected Customer"); los de NBER (25%) y McKinsey (45%) son citas de investigacion externa sin verificar contra el reporte original (mismo caso que la LP anterior de bloqueo de WhatsApp). El BRANDBOOK de Cxpress pide no afirmar resultados cuantitativos sin case verificado, por eso quedan atribuidos a las fuentes externas, no como resultado de Cxpress. Verificar las cifras exactas antes de publicar.
+
+=== QUIEN PRESENTA ===
+H2: Quién presenta
+LABEL: Laura Rodríguez
+SUB: Business Developer · Cxpress
+BODY: Laura ayuda a equipos de atención a dejar de perseguir la misma conversación en distintas pantallas, centralizando WhatsApp, correo, redes y chat en un solo panel. En esta sesión muestra cómo unificar tus canales sin interrumpir la operación ni perder lo que ya tienes.
+LABEL: Centralización de canales
+LABEL: Gestión de tickets
+LABEL: IA aplicada
+# [SUGESTAO conteudo] Bio adaptada de la propia frase del guion (Slide 2, "ayudo a equipos de atencion a dejar de perseguir la misma conversacion en cinco pantallas distintas"), pasada a tercera persona. Nombre y cargo confirmados por el usuario (mismo speaker que la LP anterior de Cxpress).
+
+=== PARA QUIÉN ES ===
+LABEL: PARA QUIÉN ES
+H2: Este webinar es para ti si...
+LIST ITEM: Tu equipo atiende clientes desde WhatsApp, correo y redes sociales por separado, sin un historial único.
+LIST ITEM: Dos agentes han respondido al mismo cliente sin saberlo, porque nadie ve la conversación completa.
+LIST ITEM: Armas los reportes de atención a mano, canal por canal, en vez de verlos consolidados.
+LIST ITEM: Quieres unificar tus canales sin migrar todo de golpe ni arriesgar lo que ya funciona.
+# [SUGESTAO conteudo] El guion no trae personas objetivo declaradas explicitamente. Los 4 bullets se basan en el dolor descrito en el guion (canales separados, respuestas duplicadas, reportes a mano) mas la objecion tratada en el Bloque C (migrar sin arriesgar lo que ya existe).
+
+=== CTA FINAL ===
+H2: ¿Tu equipo atiende desde canales separados, sin historial único?
+BODY: Agenda una demo gratuita de 30 minutos y te mostramos cómo conectar tus canales actuales sin perder lo que ya tienes, canal por canal y sin interrumpir tu operación. Sin compromiso.
+LABEL: Gratis
+LABEL: 30 minutos
+LABEL: Sin compromiso
+CTA: Agenda tu demo gratuita de 30 minutos
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos los derechos reservados.
+# [SUGESTAO estrutura] El footer no viene en la fuente; se sigue el patron estandar de LP.
+
+# Revisao anti-IA: sem achados (em-dash: 0).
