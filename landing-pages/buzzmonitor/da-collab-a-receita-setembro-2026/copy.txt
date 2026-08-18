@@ -51,8 +51,8 @@ PUNCHLINE: removida a pedido (seção de frase de impacto isolada saiu da LP).
 
 VISUAL: mockup de player de vídeo (estilo YouTube) no lugar do box de cor sólida — título "Da collab à receita" + canal "Buzzmonitor + Buzzcreators".
 
-H3: O Buzzmonitor coleta o dado. O Buzzcreators faz a operação.
-SUB: O Buzzmonitor coleta os dois lados da collab. O Buzzcreators transforma esse dado em campanha que roda, paga por performance e gera novo dado.
+H3: A Buzzmonitor coleta o dado. O Buzzcreators faz a operação.
+SUB: A Buzzmonitor coleta os dois lados da collab. O Buzzcreators transforma esse dado em campanha que roda, paga por performance e gera novo dado.
 BODY: O novo Collab do Instagram passou de 2 para 4 colaboradores por post e liberou a Collaborative Media API, que retorna [alcance, saves, shares e performance por creator] dos dois lados da parceria. Antes de junho de 2026, essas métricas só existiam do lado do creator e não havia como acessá-las via API.
 
 ## PROGRAMA / O QUE VOCÊ VAI LEVAR (6 itens)
