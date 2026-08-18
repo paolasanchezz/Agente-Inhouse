@@ -29,3 +29,11 @@
 
 - CTA ainda e mock (`href="#form"`, formulario local sem backend) — quando tiver o link real de inscricao, rodar `/lp-integrar-form cxpress/webinar-canales-unificados "snippet"`.
 - Publicar: `content.cxpress.io` esta no fluxo CI — adicionar ao manifest + abrir PR.
+
+## Segunda passada (2026-08-18, pos-publicacao — troca de imagens)
+
+Usuario pediu trocar as duas imagens: gif dos canais (hero -> CTA final) e nova imagem de icones (CTA final não, foi pro hero). Imagem enviada (`Webinar canales.png`) localizada em Downloads pelo nome exato informado pelo usuario, verificada visualmente (fila de 6 icones: telefone, Facebook, WhatsApp, Instagram, correo, Messenger), recortada de 1920x1080 pro bounding box real (1822x272) antes de usar.
+
+- **Consideracao de marca:** a imagem contem icones oficiais de apps de terceiros (Facebook, WhatsApp, Instagram, Messenger). Diferente do caso anterior (logo do WhatsApp tachado com sinal de proibicao, contexto negativo), aqui o uso e descritivo/nominativo — mostrar quais canais a plataforma integra, sem modificar os icones nem associa-los a conotacao negativa. Pratica comum e amplamente aceita no setor de martech/atencao ao cliente (uso factual "integra com estes canais"). Nao configura o mesmo risco do caso anterior.
+- Revalidado: em-dash 0, GTM 2/2, pixel 1x, `check_gtm_region.py` OK. Nenhum texto da copy foi alterado.
+- Layout conferido via JS no preview: `.hero-media-card` (340x75px) empilhado sobre `.hero-form`, sem sobreposicao.

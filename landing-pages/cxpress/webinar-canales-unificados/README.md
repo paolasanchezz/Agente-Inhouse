@@ -15,6 +15,7 @@
    - Nenhum asset novo foi criado nem baixado — ambos ja existiam no repo, sem nenhuma questao de marca registrada (sao capturas do proprio produto Cxpress).
 3. **Speaker reaproveitada:** Laura Rodriguez, Business Developer · Cxpress — mesma speaker da LP anterior, foto copiada de `webinar-bloqueo-whatsapp/assets/laura-rodriguez.jpg`.
 4. **CTA sem exclamacao:** a copy do usuario trouxe "Inscríbete gratis al webinar" (sem "¡...!"), mantido literal nas 3 ocorrencias (header, hero, CTA final) — nenhuma pontuacao adicionada por conta propria.
+5. **Troca de imagens (2026-08-18, pos-publicacao):** usuario pediu trocar as duas imagens de lugar: (a) o gif `plataforma-canais.gif` (que estava no hero) foi movido pro CTA final, substituindo `mockup-plataforma-laptop.png`; (b) uma imagem nova enviada pelo usuario (`Webinar canales.png`, fila de icones de telefone/Facebook/WhatsApp/Instagram/correo/Messenger) foi pra o hero, no lugar onde estava o gif. A imagem original (1920x1080, com bastante espaco vazio) foi recortada pro bounding box real do conteudo (1822x272) antes de usar, e o `.hero-media-card` perdeu a moldura de "screenshot" (borda/sombra/overflow) porque agora e uma fila de icones com fundo transparente, nao uma captura de tela. Nenhum texto da copy foi alterado, so as imagens.
 
 ## Estrutura
 
