@@ -6,11 +6,6 @@
   "vercel_json": "landing-pages/dominios/material-buzzmonitor-com/vercel.json",
   "lps": [
     {
-      "slug": "plataforma-buzzmonitor",
-      "marca": "buzzmonitor",
-      "source": "landing-pages/buzzmonitor/plataforma-buzzmonitor"
-    },
-    {
       "slug": "monitoramento-redes-sociais",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/monitoramento-redes-sociais"

@@ -9,6 +9,11 @@
       "permanent": true
     },
     {
+      "source": "/plataforma-buzzmonitor",
+      "destination": "https://content.buzzmonitor.com/plataforma-buzzmonitor",
+      "permanent": true
+    },
+    {
       "source": "/ia-para-social-listening",
       "destination": "https://content.buzzmonitor.com/ia-para-social-listening",
       "permanent": true
