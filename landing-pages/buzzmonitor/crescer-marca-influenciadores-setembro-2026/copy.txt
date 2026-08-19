@@ -1,6 +1,6 @@
 # Copy estruturada — LP Webinar "Como Crescer sua Marca com Influenciadores"
 # Marca: Buzzmonitor + Buzzcreators (Grupo Elife) · Domínio: webinar.buzzmonitor.com
-# Evento: 15 de setembro de 2026 (terça) · 15h (Brasília) · Online e ao vivo · 60 min · Gratuito
+# Evento: 15 de setembro de 2026 (terça) · 11h (Brasília) · Online e ao vivo · 60 min · Gratuito
 # Fonte: Roteiro Webinar Agosto 2026 (Bruno Filho) + reposicionamento de tema (2026-08-19, alinhado com Alessandro)
 # Estágio: ToFu/MoFu (prospects Buzzmonitor + Buzzcreators) → form ao final, CTA no hero
 #
@@ -35,11 +35,11 @@ NOTA: sem H2 e sem menção a Bruno Filho no hero (fica só na seção "Quem apr
 
 CTA: Quero minha vaga gratuita
 
-TIMES: 15h (Brasília) · Online e Ao Vivo
+TIMES: 11h (Brasília) · Online e Ao Vivo
 
 TICKET:
 - LABEL: Save the date
-- DATA: 15 SET · Terça-feira · 15h (Brasília)
+- DATA: 15 SET · Terça-feira · 11h (Brasília)
 - Formato: Online · Ao vivo
 - Duração: 60 min
 - Investimento: Gratuito
@@ -145,7 +145,7 @@ CTA: Quero me inscrever grátis
 ## CTA FINAL / INSCRIÇÃO
 
 H2: Nos vemos no dia 15 de Setembro.
-WHEN: 15h · Online e Ao Vivo
+WHEN: 11h · Online e Ao Vivo
 PERKS:
 - Webinar 100% gratuito
 - 60 minutos de palestra com Q&A ao vivo
