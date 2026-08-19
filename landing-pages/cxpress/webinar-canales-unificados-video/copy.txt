@@ -19,6 +19,6 @@ CTA: Agenda tu demo gratuita de 30 minutos
 
 === FOOTER ===
 FOOTER: © 2026 Cxpress. Todos los derechos reservados.
-# [NOTA 2026-08-18] Usuario pediu icones de redes sociais + link pro site no footer. brand/cxpress/social-media.json tem instagram/linkedin com handle/url = null (nao confirmado). Em vez de perguntar/inventar, verificado diretamente no site oficial https://cxpress.ai (footer visivel, real, com offsetParent — havia um segundo set de links "cxpress.es" oculto/nao renderizado, descartado): Facebook https://www.facebook.com/cxpress.io, Instagram https://www.instagram.com/cxpress.io/, LinkedIn https://www.linkedin.com/company/cxpress/. Adicionados como icones no footer, junto do link pro site.
+# [NOTA 2026-08-18] Usuario pediu icones de redes sociais + link pro site no footer. Primeira tentativa: verificado no site oficial https://cxpress.ai, usado o set "cxpress.io" (visivel/com offsetParent no DOM). Usuario corrigiu (2026-08-19): as contas certas sao o set "cxpress.es" (Facebook https://www.facebook.com/profile.php?id=61584681389155, Instagram https://www.instagram.com/cxpress.es/), LinkedIn mantido (https://www.linkedin.com/company/cxpress/, e o mesmo pros dois sets) e adicionado YouTube (https://www.youtube.com/@Cxpress_es, nao verificado antes por nao ter sido encontrado no footer do site). URLs atualizadas conforme fornecidas pelo usuario.
 
 # Revisao anti-IA: sem achados (em-dash: 0). Pagina pos-acao (thanks/watch page): sem form de captura (o lead ja se inscreveu antes), CTA final e so botao (mock).

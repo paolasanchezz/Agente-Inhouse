@@ -29,3 +29,13 @@
 - Trocar o placeholder de video pelo embed real assim que o usuario mandar o link do YouTube.
 - CTA de agendamento ainda e mock (`href="#"`) — quando tiver o link real, rodar `/lp-integrar-form cxpress/webinar-canales-unificados-video "snippet"`.
 - Publicar: `content.cxpress.io` esta no fluxo CI — adicionar ao manifest + abrir PR.
+
+## Segunda passada (2026-08-19, pos-publicacao — correcao de links sociais)
+
+Usuario corrigiu as contas de Facebook e Instagram (set "cxpress.es" no lugar de "cxpress.io") e pediu adicionar YouTube.
+
+- Facebook: `facebook.com/profile.php?id=61584681389155` (era `facebook.com/cxpress.io`).
+- Instagram: `instagram.com/cxpress.es` (era `instagram.com/cxpress.io`).
+- LinkedIn: sem mudanca (`linkedin.com/company/cxpress`).
+- YouTube: adicionado `youtube.com/@Cxpress_es` (icone novo no footer).
+- Revalidado: em-dash 0, GTM/Pixel intactos.
