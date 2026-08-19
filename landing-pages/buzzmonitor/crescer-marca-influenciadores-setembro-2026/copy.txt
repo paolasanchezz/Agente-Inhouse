@@ -111,7 +111,7 @@ SEC-H2: O que você vai levar deste webinar
 SEC-H2/EYEBROW: Quem apresenta (agora como label pequeno roxo, ao lado da foto, não como H2 centralizado)
 
 SPEAKER:
-- FOTO: assets/speakers/bruno-filho.png (grande, à esquerda, com 2 círculos decorativos atrás — cinza claro no topo-esquerda, laranja no canto inferior-direita)
+- FOTO: assets/speakers/bruno-filho.png (grande, à esquerda, sem elementos decorativos atrás — removidos os 2 círculos a pedido da Catharina, 2026-08-19)
 - NOME: Bruno Filho (H2)
 - CARGO/EMPRESA (1 linha, laranja): Coordenador de Novos Negócios · Buzzcreators
 - BIO (2 parágrafos):
