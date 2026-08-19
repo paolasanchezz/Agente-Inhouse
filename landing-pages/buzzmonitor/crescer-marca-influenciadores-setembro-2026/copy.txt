@@ -47,13 +47,15 @@ TICKET:
 ## PROBLEMA (4 itens) — dado em destaque + lista corrida (sem caixinhas, sem eyebrow)
 
 STAT-NUM: 35,6%
-STAT-CAPTION: foi o crescimento do investimento em creators em 2025 (YOUPIX/Nielsen). A forma de medir o retorno não acompanhou esse ritmo. Hoje, funciona mais ou menos assim:
+STAT-CAPTION: foi o crescimento do mercado global de influenciadores em 2025, saindo de US$ 24 bi para US$ 32,55 bi (Influencer Marketing Hub). A forma de medir o retorno não acompanhou esse ritmo. Hoje, funciona mais ou menos assim:
+FONTE (35,6%): Influencer Marketing Hub, Benchmark Report 2025 — mercado global, https://www.statista.com/statistics/1092819/global-influencer-market-size/ (reconciliação de fonte feita em 2026-08-19: estava atribuído a YOUPIX/Nielsen por engano; é dado de mercado global, não do Brasil)
 
 1. TÍTULO: O resultado chega por print
    TEXTO: As métricas do lado do creator viravam captura de tela no WhatsApp, quando viravam. Consolidar a performance real da campanha era impossível.
 
-2. TÍTULO: 53% das marcas não medem o retorno
-   TEXTO: Segundo o YOUPIX/Nielsen (2025), mais da metade das marcas que investem em creator não mede o retorno desse investimento.
+2. TÍTULO: 53% têm dificuldade em provar o retorno
+   TEXTO: Segundo o YOUPIX/Nielsen (2025), mais da metade das marcas que investem em creator tem dificuldade em provar o retorno desse investimento.
+   FONTE: YOUPIX + Nielsen, pesquisa "ROI & Influência 2025" (6ª edição, 187 profissionais de marcas/agências) — https://members.youpix.com.br/pesquisa-roi-2025-download . Ajuste 2026-08-19: pesquisa original fala em "dificuldade em quantificar o ROI" (53%) e "problemas para comprovar a eficácia do influenciador" (48%); wording ajustado de "não medem" para "têm dificuldade em provar" pra ficar fiel ao dado.
 
 3. TÍTULO: Cada campanha começa do zero
    TEXTO: Sem continuidade entre uma campanha e a outra, o aprendizado sobre cada creator se perde. A próxima negociação começa sem histórico de performance.
@@ -174,3 +176,11 @@ Legal: © 2026 Buzzmonitor · Todos os direitos reservados. Evento gratuito, suj
   tema e o case Eskala. A pasta `2026-08-18/` (tema antigo) fica só como histórico.
 - Urgência: linha 2 é um diferencial qualitativo real (não numérico) — se a Catharina tiver um
   dado numérico específico que una as duas marcas, substituir.
+- Conciliação de fontes (2026-08-19, 2ª rodada, a pedido da Catharina — "preciso das fontes de
+  tudo que traz algum dado"): o "35,6%" estava atribuído a YOUPIX/Nielsen por engano — é dado do
+  mercado GLOBAL de influenciadores (Influencer Marketing Hub, US$ 24bi → US$ 32,55bi em 2025),
+  corrigido em toda a LP + e-mails + ads. O "53%" mudou de "não medem o retorno" para "têm
+  dificuldade em provar o retorno" (mais fiel à pesquisa YOUPIX/Nielsen real). "2 para 4
+  colaboradores por post" e "Collaborative Media API" (Collab do Instagram, jun/2026) seguem
+  sourced apenas no roteiro interno do Bruno Filho — sem confirmação pública encontrada; a
+  Catharina optou por manter como está, com validação do Bruno Filho.
