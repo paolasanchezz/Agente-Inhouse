@@ -341,6 +341,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (prefers-reduced-motion: reduce) { .problem-plain li:hover .x-mark { animation: none; } }
   .problem-plain h3 { font-size: 19px; color: var(--c-n900); line-height: 1.25; }
   .problem-plain p { margin-top: 6px; color: var(--c-n700); font-size: 15.5px; }
+  .problem-close {
+    margin: 56px auto 0; text-align: center; max-width: 640px;
+    font-family: var(--ff-display); font-weight: 700;
+    font-size: clamp(21px, 2.4vw, 30px); color: var(--c-n900); line-height: 1.3;
+  }
   @media (max-width: 560px) { .problem-plain li { grid-template-columns: 36px 1fr; gap: 16px; } .problem-plain .x-mark { width: 36px; height: 36px; } }
 
   /* ----- DIFERENCIAL ----- */
@@ -376,6 +381,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-copy .sub { margin-top: 16px; font-family: var(--ff-sub); font-weight: 300; font-size: clamp(18px, 1.5vw, 21px); color: var(--c-n700); line-height: 1.5; max-width: 46ch; }
   .diff-copy p { margin-top: 18px; color: var(--c-n700); font-size: 16.5px; max-width: 52ch; }
   .diff-copy p .hot { font-weight: 700; color: var(--c-accent-2); }
+  .diff-copy .diff-close { margin-top: 22px; font-weight: 700; color: var(--c-n900); }
+  .diff-cta { margin-top: 32px; }
 
   /* ----- LEARN: grid 3+3 ----- */
   .learn { background: var(--c-n100); }
@@ -427,46 +434,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .for-visual::before { content: ""; position: absolute; width: 78%; height: 78%; border-radius: 50%; background: var(--grad-hot); opacity: .12; filter: blur(30px); z-index: 1; }
   .for-visual::after { content: ""; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1.5px dashed var(--c-n300); z-index: 1; }
 
-  /* ----- SPEAKERS (1 palestrante, centralizado) ----- */
+  /* ----- SPEAKERS (1 palestrante, foto + info em colunas) ----- */
   .speakers { background: var(--c-n0); }
-  .speakers-grid { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 460px; margin-inline: auto; }
-  .speaker-card {
-    background: #fff; border-radius: var(--r-lg); border: 1px solid var(--c-n300);
-    padding: 36px 32px; text-align: center;
-    transition: transform var(--t-quick), box-shadow var(--t-quick);
+  .speaker-split { display: grid; grid-template-columns: .85fr 1fr; gap: 64px; align-items: center; }
+  @media (max-width: 860px) { .speaker-split { grid-template-columns: 1fr; gap: 40px; } }
+
+  .speaker-photo-wrap { position: relative; max-width: 420px; margin-inline: auto; width: 100%; }
+  .speaker-deco { position: absolute; border-radius: 50%; z-index: 0; }
+  .speaker-deco-1 { width: 34%; height: 34%; background: var(--c-n100); top: -8%; left: -8%; }
+  .speaker-deco-2 { width: 26%; height: 26%; background: var(--c-accent); bottom: -6%; right: -6%; }
+  .speaker-photo {
+    position: relative; z-index: 1;
+    width: 100%; aspect-ratio: 1/1; object-fit: cover; min-height: 0;
+    border-radius: var(--r-lg);
+    box-shadow: 0 30px 60px -30px rgba(57,1,85,.28);
   }
-  .speaker-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
-  .speaker-avatar {
-    width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 20px;
-    display: grid; place-items: center; overflow: hidden;
-    background: var(--grad-hot); color: #fff;
-    font-family: var(--ff-display); font-weight: 900; font-size: 30px; letter-spacing: -0.02em;
+
+  .speaker-eyebrow { display: block; color: var(--c-primary); margin-bottom: 14px; }
+  .speaker-info h2 { font-size: clamp(30px, 3.4vw, 44px); color: var(--c-n900); }
+  .speaker-role-inline { margin-top: 10px; font-family: var(--ff-sub); font-weight: 700; font-size: 17px; color: var(--c-accent); }
+  .speaker-bio { margin-top: 20px; font-family: var(--ff-sub); font-weight: 300; font-size: 15.5px; color: var(--c-n700); line-height: 1.6; max-width: 480px; }
+  .speaker-bio + .speaker-bio { margin-top: 12px; }
+  .speaker-tags { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .speaker-tag {
+    font-family: var(--ff-sub); font-weight: 600; font-size: 12px;
+    letter-spacing: .04em; color: var(--c-n700); background: var(--c-n100);
+    border: 1px solid var(--c-n300); padding: 7px 14px; border-radius: var(--r-pill);
   }
-  .speaker-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .speaker-badge {
-    display: inline-block; margin-bottom: 12px;
-    font-family: var(--ff-sub); font-weight: 600; font-size: 11px;
-    letter-spacing: .16em; text-transform: uppercase;
-    color: var(--c-accent-2); background: rgba(222,36,81,.09);
-    padding: 5px 14px; border-radius: var(--r-pill);
-  }
-  .speaker-card .speaker-name { font-family: var(--ff-display); font-weight: 700; font-size: 21px; color: var(--c-n900); margin-bottom: 4px; }
-  .speaker-card .speaker-role { font-family: var(--ff-sub); font-size: 14px; color: var(--c-n700); }
-  .speaker-logo { display: block; height: 18px; width: auto; margin: 16px auto 0; min-height: 0; }
 
   /* ----- URGÊNCIA ----- */
   .urgency { background: var(--c-primary); color: #fff; overflow: hidden; position: relative; padding: 144px 0; }
   .urgency::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.1); top: -260px; right: -120px; }
   .urgency::after { content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.07); top: -180px; right: 180px; }
   .urgency .wrap { text-align: center; }
-  .urgency h2 { max-width: 700px; margin-inline: auto; color: #fff; line-height: 1.2; }
+  .urgency h2 { max-width: 980px; margin-inline: auto; color: #fff; line-height: 1.3; font-size: clamp(21px, 2.2vw, 32px); }
   .urgency h2 em { font-style: italic; font-weight: 500; }
-  .urgency-sub {
-    margin: 26px auto 0; max-width: 620px;
-    font-family: var(--ff-display); font-weight: 700;
-    font-size: clamp(19px, 2.1vw, 27px);
-    color: rgba(255,255,255,.92); line-height: 1.4;
-  }
   .urgency-cta { margin-top: 40px; }
   .urgency .tag {
     display: inline-block; padding: 0 .42em .08em;
@@ -540,11 +542,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1 id="hero-title">
           Como crescer sua marca com <span class="grad">influenciadores</span>.
         </h1>
-        <h2 class="hero-h2">
-          Do novo Collab do Instagram ao pagamento por performance.
-        </h2>
-        <p class="hero-sub">
-          Investir em creator sem estratégia clara desperdiça orçamento e não gera dado. Neste webinar, o Bruno Filho (Buzzcreators) mostra como estruturar esse crescimento, incluindo o que mudou no Collab do Instagram em junho de 2026 e como isso virou <strong>dado de marca</strong>.
+        <p class="hero-sub" style="margin-top: 28px;">
+          Investir em creator sem estratégia clara desperdiça orçamento e não gera dado. Neste webinar, mostramos como estruturar esse crescimento, incluindo o que mudou no Collab do Instagram em junho de 2026 e como isso virou <strong>dado de marca</strong>.
         </p>
         <div class="hero-cta-row">
           <a href="#inscricao" class="btn-primary">
@@ -588,7 +587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap">
       <h2 class="stat-callout reveal" id="problem-title">
         <span class="stat-num">35,6%</span>
-        <span class="stat-caption">foi o crescimento do investimento em creators em 2025 (YOUPIX/Nielsen). A forma de medir o retorno não acompanhou esse ritmo.</span>
+        <span class="stat-caption">foi o crescimento do investimento em creators em 2025 (YOUPIX/Nielsen). A forma de medir o retorno não acompanhou esse ritmo. Hoje, funciona mais ou menos assim:</span>
       </h2>
 
       <ul class="problem-plain" role="list">
@@ -629,6 +628,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </li>
       </ul>
+
+      <p class="problem-close reveal" style="--d: 320ms">Reconheceu sua marca nesses pontos? A gente te mostra como sair desse cenário.</p>
     </div>
   </section>
 
@@ -658,9 +659,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="diff-copy reveal" style="--d: 160ms">
-        <h3 id="diff-title">A Buzzmonitor analisa a saúde da marca. O Buzzcreators escala o ROI dos creators.</h3>
-        <p class="sub">A Buzzmonitor mede o impacto de cada campanha de creator na marca. O Buzzcreators usa esse mesmo dado pra decidir pagamento por performance e escalar o programa.</p>
+        <h3 id="diff-title">Buzzmonitor analisa a saúde da marca.<br>Buzzcreators escala o ROI dos creators.</h3>
+        <p class="sub">Entenda como as duas plataformas podem ser úteis e trabalhar em conjunto para crescer a sua marca com influenciadores.</p>
         <p>O novo Collab do Instagram é uma peça dessa engrenagem: em junho de 2026, passou de 2 para 4 colaboradores por post e liberou a Collaborative Media API, que retorna <span class="hot">alcance, saves, shares e performance por creator</span> dos dois lados da parceria. Antes disso, essas métricas só existiam do lado do creator.</p>
+        <p class="diff-close">Entenda mais no webinar gratuito, dia 15 de Setembro.</p>
+        <div class="diff-cta">
+          <a href="#inscricao" class="btn-primary">
+            <span>Quero participar</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -679,7 +687,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>De busca fria pra programa contínuo</h3>
-            <p>Mais de 90% das marcas e operações que a Buzzcreators acompanha já migraram da busca ativa (outbound) pra recrutamento inbound de creators, com programas contínuos no lugar de campanha isolada.</p>
+            <p>Mais de 90% das marcas que o Buzzcreators acompanha já trocaram a busca ativa (outbound) por recrutamento inbound e programas contínuos.</p>
           </div>
         </article>
         <article class="l-item reveal" style="--d: 100ms">
@@ -688,7 +696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>O que mudou no Collab do Instagram</h3>
-            <p>Três mudanças da Meta em 2026: de 2 para 4 colaboradores por post, lançamento da Collaborative Media API e liberação do Partnership Ads via API.</p>
+            <p>De 2 para 4 colaboradores por post, com a Collaborative Media API e o Partnership Ads via API.</p>
           </div>
         </article>
         <article class="l-item reveal" style="--d: 200ms">
@@ -697,7 +705,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>As métricas que a API libera</h3>
-            <p>Alcance consolidado sem dupla contagem, saves e shares como sinal de intenção de compra, e performance por creator dentro do mesmo post: métricas que a Collaborative Media API retorna automaticamente dos dois lados.</p>
+            <p>Alcance, saves, shares e performance por creator, dos dois lados da parceria, direto pela API.</p>
           </div>
         </article>
         <article class="l-item reveal" style="--d: 300ms">
@@ -706,7 +714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>CPM e preço de creator, sem achismo</h3>
-            <p>No Brasil, nano parte de R$ 100 por post, micro fica entre R$ 500 e R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators, dados Shopify/Veeras). A conta muda por nicho e por porte.</p>
+            <p>No Brasil, nano parte de R$ 100/post, micro vai a R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators).</p>
           </div>
         </article>
         <article class="l-item reveal" style="--d: 400ms">
@@ -715,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>Pagamento variável por performance</h3>
-            <p>Fixo diferenciado por embaixador, bônus por views após 7 dias ou comissão por venda via UTM: três modelos que ligam o pagamento à performance de cada creator.</p>
+            <p>Fixo por embaixador, bônus por views ou comissão por venda: três modelos ligados à performance de cada creator.</p>
           </div>
         </article>
         <article class="l-item l-item--live reveal" style="--d: 500ms">
@@ -724,7 +732,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
           <div>
             <h3>Case real: Eskala, Employer Branding</h3>
-            <p>Engajamento 11 vezes maior na rede de creators ativados do que no perfil oficial da marca (6,67% vs. 0,57%), 172 publicações de creators em 30 dias contra 38 da marca, e ROI 3 vezes maior que a mídia paga tradicional.</p>
+            <p>Engajamento 11x maior que o perfil oficial (6,67% vs. 0,57%), 172 posts de creators em 30 dias e ROI 3x maior que mídia paga.</p>
           </div>
         </article>
       </div>
@@ -734,18 +742,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== SPEAKER ===== -->
   <section class="speakers" aria-labelledby="speakers-title">
     <div class="wrap">
-      <header class="sec-head reveal" style="text-align:center; margin-inline:auto; justify-items:center;">
-        <h2 id="speakers-title">Quem apresenta</h2>
-      </header>
-      <div class="speakers-grid">
-        <div class="speaker-card reveal">
-          <div class="speaker-avatar">
-            <img src="assets/speakers/bruno-filho.png" alt="Bruno Filho" width="96" height="96" loading="lazy" />
+      <div class="speaker-split">
+        <div class="speaker-photo-wrap reveal">
+          <span class="speaker-deco speaker-deco-1" aria-hidden="true"></span>
+          <span class="speaker-deco speaker-deco-2" aria-hidden="true"></span>
+          <img class="speaker-photo" src="assets/speakers/bruno-filho.png" alt="Bruno Filho" width="600" height="600" loading="lazy" />
+        </div>
+        <div class="speaker-info reveal" style="--d: 120ms">
+          <span class="eyebrow speaker-eyebrow">Quem apresenta</span>
+          <h2 id="speakers-title">Bruno Filho</h2>
+          <p class="speaker-role-inline">Coordenador de Novos Negócios &middot; Buzzcreators</p>
+          <p class="speaker-bio">Coordena novos negócios do Buzzcreators, a plataforma de gestão de campanhas com creators do Grupo Elife. Acompanhou de perto o programa de colaboradores-creators que abre o webinar, da governança aos números do primeiro mês de campanha.</p>
+          <p class="speaker-bio">Mais de 10 anos em SaaS, e-commerce e marketing digital. Fundou e vendeu sua primeira startup aos 27 anos.</p>
+          <div class="speaker-tags">
+            <span class="speaker-tag">Programa de colaboradores-creators</span>
+            <span class="speaker-tag">Atribuição de campanha</span>
+            <span class="speaker-tag">Gestão de creators</span>
           </div>
-          <span class="speaker-badge">Speaker</span>
-          <p class="speaker-name">Bruno Filho</p>
-          <p class="speaker-role">Coordenador de Novos Negócios</p>
-          <img class="speaker-logo" src="assets/buzzcreators-logo-color.png" alt="Buzzcreators" width="127" height="18" loading="lazy" />
         </div>
       </div>
     </div>
@@ -868,8 +881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== URGÊNCIA ===== -->
   <section class="urgency" aria-labelledby="urg-title">
     <div class="wrap reveal">
-      <h2 id="urg-title">Mais de 90% das marcas que a Buzzcreators acompanha já saíram da busca fria por creator.</h2>
-      <p class="urgency-sub">A diferença agora está em quem já opera com <span class="tag">dado dos dois lados</span> da campanha.</p>
+      <h2 id="urg-title">Mais de 90% das marcas do Buzzcreators já saíram da busca fria.<br>Ele é o único integrado ao <span class="tag">social listening da Buzzmonitor</span>.</h2>
       <div class="urgency-cta">
         <a href="#inscricao" class="btn-primary">
           <span>Quero me inscrever grátis</span>

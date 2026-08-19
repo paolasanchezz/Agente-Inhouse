@@ -1,5 +1,5 @@
 # Copy estruturada — LP Webinar "Como Crescer sua Marca com Influenciadores"
-# Marca: Buzzmonitor + Buzzcreators (Grupo Buzzmonitor) · Domínio: webinar.buzzmonitor.com
+# Marca: Buzzmonitor + Buzzcreators (Grupo Elife) · Domínio: webinar.buzzmonitor.com
 # Evento: 15 de setembro de 2026 (terça) · 15h (Brasília) · Online e ao vivo · 60 min · Gratuito
 # Fonte: Roteiro Webinar Agosto 2026 (Bruno Filho) + reposicionamento de tema (2026-08-19, alinhado com Alessandro)
 # Estágio: ToFu/MoFu (prospects Buzzmonitor + Buzzcreators) → form ao final, CTA no hero
@@ -18,6 +18,10 @@
 # - Números de CPM/preço de creator passaram a citar o próprio blog da Buzzcreators
 #   (quanto-custa-contratar-influenciador.md, cpm-cpe-cpv-marketing-de-influencia.md,
 #   microinfluenciadores-roi-3x.md) além da tabela do roteiro original.
+# - Ajustes finos (2026-08-19, 2ª rodada): hero sem menção a Bruno Filho e sem H2; H3 do
+#   conceito em 2 linhas sem artigo ("Buzzmonitor analisa... / Buzzcreators escala...", pedido
+#   explícito); sub do conceito reduzido a 1 frase-ponte; speaker redesenhado em 2 colunas
+#   (foto grande + bio + tags), sem badge; urgência condensada pra 2 linhas.
 
 ## HERO
 
@@ -25,9 +29,9 @@ OVERLINE: Webinar gratuito · Buzzmonitor + Buzzcreators
 
 H1: Como crescer sua marca com [influenciadores].
 
-H2: Do novo Collab do Instagram ao pagamento por performance.
+BODY: Investir em creator sem estratégia clara desperdiça orçamento e não gera dado. Neste webinar, mostramos como estruturar esse crescimento, incluindo o que mudou no Collab do Instagram em junho de 2026 e como isso virou [dado de marca].
 
-BODY: Investir em creator sem estratégia clara desperdiça orçamento e não gera dado. Neste webinar, o Bruno Filho (Buzzcreators) mostra como estruturar esse crescimento, incluindo o que mudou no Collab do Instagram em junho de 2026 e como isso virou [dado de marca].
+NOTA: sem H2 e sem menção a Bruno Filho no hero (fica só na seção "Quem apresenta").
 
 CTA: Quero minha vaga gratuita
 
@@ -43,7 +47,7 @@ TICKET:
 ## PROBLEMA (4 itens) — dado em destaque + lista corrida (sem caixinhas, sem eyebrow)
 
 STAT-NUM: 35,6%
-STAT-CAPTION: foi o crescimento do investimento em creators em 2025 (YOUPIX/Nielsen). A forma de medir o retorno não acompanhou esse ritmo.
+STAT-CAPTION: foi o crescimento do investimento em creators em 2025 (YOUPIX/Nielsen). A forma de medir o retorno não acompanhou esse ritmo. Hoje, funciona mais ou menos assim:
 
 1. TÍTULO: O resultado chega por print
    TEXTO: As métricas do lado do creator viravam captura de tela no WhatsApp, quando viravam. Consolidar a performance real da campanha era impossível.
@@ -58,49 +62,60 @@ STAT-CAPTION: foi o crescimento do investimento em creators em 2025 (YOUPIX/Niel
    TEXTO: Marcas concentram orçamento em perfis grandes, mas micro e nanoinfluenciadores entregam até 3 vezes mais ROI e 60% mais engajamento (blog Buzzcreators). Sem dado, essa troca nem entra na mesa.
    FONTE: blog.buzzcreators.com.br/blog/microinfluenciadores-roi-3x
 
+FECHAMENTO (pós-lista): Reconheceu sua marca nesses pontos? A gente te mostra como sair desse cenário.
+
 ## DIFERENCIAL / O CONCEITO
 
 VISUAL: mockup de player de vídeo (estilo YouTube) — título "Como crescer com influenciadores" + canal "Buzzmonitor + Buzzcreators".
 
-H3: A Buzzmonitor analisa a saúde da marca. O Buzzcreators escala o ROI dos creators.
-SUB: A Buzzmonitor mede o impacto de cada campanha de creator na marca. O Buzzcreators usa esse mesmo dado pra decidir pagamento por performance e escalar o programa.
+H3 (2 linhas, sem artigo — pedido explícito da Catharina):
+Buzzmonitor analisa a saúde da marca.
+Buzzcreators escala o ROI dos creators.
+
+SUB: Entenda como as duas plataformas podem ser úteis e trabalhar em conjunto para crescer a sua marca com influenciadores.
+
 BODY: O novo Collab do Instagram é uma peça dessa engrenagem: em junho de 2026, passou de 2 para 4 colaboradores por post e liberou a Collaborative Media API, que retorna [alcance, saves, shares e performance por creator] dos dois lados da parceria. Antes disso, essas métricas só existiam do lado do creator.
 
-## PROGRAMA / O QUE VOCÊ VAI LEVAR (6 itens)
+FECHAMENTO: Entenda mais no webinar gratuito, dia 15 de Setembro.
+CTA: Quero participar
+
+## PROGRAMA / O QUE VOCÊ VAI LEVAR (6 itens, textos resumidos)
 
 SEC-H2: O que você vai levar deste webinar
 
 1. TÍTULO: De busca fria pra programa contínuo
-   TEXTO: Mais de 90% das marcas e operações que a Buzzcreators acompanha já migraram da busca ativa (outbound) pra recrutamento inbound de creators, com programas contínuos no lugar de campanha isolada.
+   TEXTO: Mais de 90% das marcas que o Buzzcreators acompanha já trocaram a busca ativa (outbound) por recrutamento inbound e programas contínuos.
    FONTE: material interno Buzzcreators (case Eskala, slide "virada de chave")
 
 2. TÍTULO: O que mudou no Collab do Instagram
-   TEXTO: Três mudanças da Meta em 2026: de 2 para 4 colaboradores por post, lançamento da Collaborative Media API e liberação do Partnership Ads via API.
+   TEXTO: De 2 para 4 colaboradores por post, com a Collaborative Media API e o Partnership Ads via API.
 
 3. TÍTULO: As métricas que a API libera
-   TEXTO: Alcance consolidado sem dupla contagem, saves e shares como sinal de intenção de compra, e performance por creator dentro do mesmo post: métricas que a Collaborative Media API retorna automaticamente dos dois lados.
+   TEXTO: Alcance, saves, shares e performance por creator, dos dois lados da parceria, direto pela API.
 
 4. TÍTULO: CPM e preço de creator, sem achismo
-   TEXTO: No Brasil, nano parte de R$ 100 por post, micro fica entre R$ 500 e R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators, dados Shopify/Veeras). A conta muda por nicho e por porte.
+   TEXTO: No Brasil, nano parte de R$ 100/post, micro vai a R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators).
    FONTE: blog.buzzcreators.com.br/blog/quanto-custa-contratar-influenciador e /blog/cpm-cpe-cpv-marketing-de-influencia
 
 5. TÍTULO: Pagamento variável por performance
-   TEXTO: Fixo diferenciado por embaixador, bônus por views após 7 dias ou comissão por venda via UTM: três modelos que ligam o pagamento à performance de cada creator.
+   TEXTO: Fixo por embaixador, bônus por views ou comissão por venda: três modelos ligados à performance de cada creator.
 
 6. TÍTULO (DESTAQUE): Case real: Eskala, Employer Branding
-   TEXTO: Engajamento 11 vezes maior na rede de creators ativados do que no perfil oficial da marca (6,67% vs. 0,57%), 172 publicações de creators em 30 dias contra 38 da marca, e ROI 3 vezes maior que a mídia paga tradicional.
+   TEXTO: Engajamento 11x maior que o perfil oficial (6,67% vs. 0,57%), 172 posts de creators em 30 dias e ROI 3x maior que mídia paga.
    FONTE: case real enviado pela Catharina (deck Buzzcreators, case Eskala). Dado de apoio real (Buzzmonitor, lado de monitoramento): case Bionatural/Special Dog Company, https://buzzmonitor.com/blog/bionatural-monitoramento-campanha-tempo-real-buzzmonitor/ (+2 mil seguidores em 2 dias, 60 mil visitas de pico, 200+ menções/dia).
 
-## QUEM CONDUZ (1 speaker)
+## QUEM CONDUZ (1 speaker) — redesenhado em 2 colunas (foto + info), sem badge
 
-SEC-H2: Quem apresenta
+SEC-H2/EYEBROW: Quem apresenta (agora como label pequeno roxo, ao lado da foto, não como H2 centralizado)
 
 SPEAKER:
-- FOTO: assets/speakers/bruno-filho.png
-- NOME: Bruno Filho
-- CARGO: Coordenador de Novos Negócios
-- BADGE: Speaker
-- LOGO: Buzzcreators (assets/buzzcreators-logo-color.png) abaixo do cargo
+- FOTO: assets/speakers/bruno-filho.png (grande, à esquerda, com 2 círculos decorativos atrás — cinza claro no topo-esquerda, laranja no canto inferior-direita)
+- NOME: Bruno Filho (H2)
+- CARGO/EMPRESA (1 linha, laranja): Coordenador de Novos Negócios · Buzzcreators
+- BIO (2 parágrafos):
+  1. "Coordena novos negócios do Buzzcreators, a plataforma de gestão de campanhas com creators do Grupo Elife. Acompanhou de perto o programa de colaboradores-creators que abre o webinar, da governança aos números do primeiro mês de campanha."
+  2. "Mais de 10 anos em SaaS, e-commerce e marketing digital. Fundou e vendeu sua primeira startup aos 27 anos."
+- TAGS: Programa de colaboradores-creators · Atribuição de campanha · Gestão de creators
 
 ## PARA QUEM É (5 perfis)
 
@@ -114,10 +129,15 @@ SEC-H2: Este webinar é pra você que…
 
 FOR-CTA: Quero minha vaga grátis
 
-## URGÊNCIA
+## URGÊNCIA (condensada pra 2 linhas — pedido explícito)
 
-H2: Mais de 90% das marcas que a Buzzcreators acompanha já saíram da busca fria por creator.
-SUB: A diferença agora está em quem já opera com [dado dos dois lados] da campanha.
+H2 (2 linhas, com <br>):
+Mais de 90% das marcas do Buzzcreators já saíram da busca fria.
+Ele é o único integrado ao [social listening da Buzzmonitor].
+
+FONTE linha 1: material interno Buzzcreators (case Eskala, slide "virada de chave")
+FONTE linha 2: blog Buzzcreators (post "Social listening para encontrar influenciadores que já amam sua marca") + BRANDBOOK Buzzcreators §Diferenciais-Chave — claim qualitativo real, não é um número; procurado e não encontrado nenhum dado numérico que una as duas marcas nos materiais indexados.
+
 CTA: Quero me inscrever grátis
 
 ## CTA FINAL / INSCRIÇÃO
@@ -145,9 +165,12 @@ Legal: © 2026 Buzzmonitor · Todos os direitos reservados. Evento gratuito, suj
 - Concorrentes: nenhum citado.
 - Números em algarismos.
 - Aspas curvas e reticências corretas no HTML.
+- Artigo de gênero: "a Buzzmonitor" (feminino) / "o Buzzcreators" (masculino) — confirmado no BRANDBOOK Buzzcreators §6, checado em toda a página nesta rodada (corrigidas 2 ocorrências de "a Buzzcreators" → "o Buzzcreators").
 
 ## Pendências
 - Se/quando a Catharina liberar publicamente o case Eskala com nome completo do cliente e link,
   atualizar a atribuição (hoje citado só como "Eskala, Employer Branding", sem link público).
-- Cadência de e-mails e os 3 ads (pasta 2026-08-18) ainda referenciam o tema/case antigos
-  ("Da Collab à Receita" + case fictício 53→120+) — pendente de rework se forem usados.
+- Cadência de e-mails e os 3 ads foram reescritos em 2026-08-19 (pasta `2026-08-19/`), com o novo
+  tema e o case Eskala. A pasta `2026-08-18/` (tema antigo) fica só como histórico.
+- Urgência: linha 2 é um diferencial qualitativo real (não numérico) — se a Catharina tiver um
+  dado numérico específico que una as duas marcas, substituir.
