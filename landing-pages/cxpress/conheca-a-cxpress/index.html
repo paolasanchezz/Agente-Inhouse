@@ -485,6 +485,64 @@
     }
     @keyframes cm-fadein { to { opacity: 1; } }
 
+    .webinar-encerrado {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .webinar-encerrado .we-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16.5px;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+    .webinar-encerrado .we-text {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--neutral-700);
+      margin: 0;
+    }
+    .webinar-encerrado .we-label {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--neutral-700);
+      margin: 6px 0 0;
+    }
+    .webinar-encerrado .we-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-decoration: none;
+      background: var(--neutral-100);
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-md);
+      padding: 13px 16px;
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .webinar-encerrado .we-link:hover {
+      background: var(--neutral-0);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .webinar-encerrado .we-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .hero-form-badge--off {
+      color: var(--neutral-700);
+      background: var(--neutral-200);
+    }
+
     .cm-form {
       display: flex;
       flex-direction: column;
@@ -1131,7 +1189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#top" aria-label="Cxpress, voltar ao topo">
         <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" class="header-logo" width="140" height="32">
       </a>
-      <a href="#form" class="header-cta">Garantir vaga</a>
+      <a href="#form" class="header-cta">Ver webinars ativos</a>
     </div>
   </header>
 
@@ -1164,39 +1222,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="decor decor-1" aria-hidden="true"></span>
             <span class="decor decor-2" aria-hidden="true"></span>
             <span class="decor decor-3" aria-hidden="true"></span>
-            <aside class="hero-form" id="form" aria-label="Inscrição no webinar">
+            <aside class="hero-form" id="form" aria-label="Webinar encerrado">
               <div class="hero-form-head">
-                <h2 class="hero-form-title">Garanta sua vaga</h2>
-                <span class="hero-form-badge">Gratuito</span>
+                <h2 class="hero-form-title">Webinar encerrado</h2>
+                <span class="hero-form-badge hero-form-badge--off">Encerrado</span>
               </div>
-              <div class="webinar-info" data-state="loading" aria-live="polite">
-                <span class="webinar-info-skeleton" aria-hidden="true"></span>
-                <span class="webinar-info-text"></span>
+              <div class="webinar-encerrado">
+                <p class="we-title">Esta série de webinars foi encerrada</p>
+                <p class="we-text">As sessões ao vivo não acontecem mais. Se você já tinha se inscrito, o link de acesso que recebeu por e-mail continua sendo o seu registro.</p>
+                <p class="we-label">Continue por aqui</p>
+                <a class="we-link" href="/atendimento-sem-metrica">Atendimento sem métrica<span aria-hidden="true">→</span></a>
+                <a class="we-link" href="/banimento-whatsapp">WhatsApp sem risco de banimento<span aria-hidden="true">→</span></a>
               </div>
-              <form class="cm-form" id="cmForm" novalidate>
-                <div class="cm-form-row-2col">
-                  <label class="cm-field">
-                    <span class="cm-label">Nome</span>
-                    <input type="text" name="first_name" required autocomplete="given-name" maxlength="100" placeholder=" ">
-                  </label>
-                  <label class="cm-field">
-                    <span class="cm-label">Sobrenome</span>
-                    <input type="text" name="last_name" required autocomplete="family-name" maxlength="100" placeholder=" ">
-                  </label>
-                </div>
-                <label class="cm-field">
-                  <span class="cm-label">E-mail corporativo</span>
-                  <input type="email" name="email" required autocomplete="email" maxlength="200" spellcheck="false" autocapitalize="off" placeholder=" ">
-                </label>
-                <label class="cm-field">
-                  <span class="cm-label">Empresa <span class="cm-optional">(opcional)</span></span>
-                  <input type="text" name="company" autocomplete="organization" maxlength="200" placeholder=" ">
-                </label>
-                <input class="cm-honeypot" name="_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <button type="submit" class="cm-submit">Garantir minha vaga</button>
-                <p class="cm-feedback" role="alert" aria-live="assertive"></p>
-              </form>
-              <p class="hero-form-note">Ao se inscrever, você aceita receber comunicações da Cxpress sobre o webinar. Cancelável a qualquer momento.</p>
             </aside>
           </div>
         </div>
@@ -1379,7 +1416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span>Duração aproximada: 15min</span>
           </div>
           <a href="#form" class="btn btn-primary">
-            Garantir minha vaga
+            Ver webinars ativos
             <span class="arrow" aria-hidden="true">↑</span>
           </a>
         </div>
@@ -1418,118 +1455,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
 
       reveals.forEach(el => io.observe(el));
-    })();
-
-    (function() {
-      let nextWebinar = null;
-
-      const info = document.querySelector('.webinar-info');
-      const infoText = info ? info.querySelector('.webinar-info-text') : null;
-      if (info && infoText) {
-        fetch('/api/next-webinar', { headers: { 'Accept': 'application/json' } })
-          .then(r => r.json())
-          .then(data => {
-            if (data && data.ok && data.formatted_full_pt) {
-              nextWebinar = data;
-              infoText.textContent = data.formatted_full_pt;
-              info.dataset.state = 'ready';
-            } else {
-              infoText.textContent = (data && data.message) ? data.message : 'Próxima sessão em breve · Online · Vagas limitadas';
-              info.dataset.state = 'error';
-            }
-          })
-          .catch(() => {
-            infoText.textContent = 'Online · Duração ~ 15min · Vagas limitadas';
-            info.dataset.state = 'error';
-          });
-      }
-
-      const form = document.getElementById('cmForm');
-      if (!form) return;
-      const submitBtn = form.querySelector('.cm-submit');
-      const feedback = form.querySelector('.cm-feedback');
-      const originalBtnText = submitBtn.textContent;
-
-      function setFeedback(message, state) {
-        feedback.textContent = message || '';
-        if (state) feedback.dataset.state = state;
-        else delete feedback.dataset.state;
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        setFeedback('', null);
-
-        const fd = new FormData(form);
-        const payload = {
-          first_name: (fd.get('first_name') || '').toString().trim(),
-          last_name: (fd.get('last_name') || '').toString().trim(),
-          email: (fd.get('email') || '').toString().trim(),
-          company: (fd.get('company') || '').toString().trim(),
-          _hp: (fd.get('_hp') || '').toString(),
-        };
-
-        if (!payload.first_name || !payload.last_name || !payload.email) {
-          setFeedback('Preencha nome, sobrenome e email.', null);
-          const firstEmpty = !payload.first_name ? 'first_name' : (!payload.last_name ? 'last_name' : 'email');
-          const target = form.querySelector('input[name="' + firstEmpty + '"]');
-          if (target) target.focus();
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-
-        try {
-          const res = await fetch('/api/clickmeeting-register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-          const result = await res.json().catch(() => ({}));
-
-          if (res.ok && result && result.ok && result.redirect_url) {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'webinar_lead_submitted', form_id: 'cmForm' });
-
-            // Passa o link da sala pra página de confirmação via sessionStorage.
-            // Se o storage falhar (modo privado antigo, storage bloqueado), degrada
-            // pro comportamento anterior: redirect direto pra sala do ClickMeeting.
-            let stored = false;
-            try {
-              sessionStorage.setItem('cx_webinar_confirmation', JSON.stringify({
-                v: 1,
-                join_url: result.redirect_url,
-                email: payload.email,
-                first_name: payload.first_name,
-                starts_at: (nextWebinar && nextWebinar.starts_at) || null,
-                formatted_full_pt: (nextWebinar && nextWebinar.formatted_full_pt) || null,
-                saved_at: new Date().toISOString(),
-              }));
-              stored = sessionStorage.getItem('cx_webinar_confirmation') !== null;
-            } catch (_) { stored = false; }
-
-            const dest = stored ? '/conheca-a-cxpress-confirmado' : result.redirect_url;
-            setFeedback('Inscrição confirmada! Redirecionando...', 'success');
-            setTimeout(() => { window.location.href = dest; }, 600);
-            return;
-          }
-
-          let msg = (result && result.message)
-            ? result.message
-            : 'Não foi possível concluir sua inscrição. Tente novamente.';
-          if (result && result.error === 'already_registered') {
-            msg += ' Seu link de acesso já foi enviado por email (remetente ClickMeeting).';
-          }
-          setFeedback(msg, null);
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
-        } catch (err) {
-          setFeedback('Erro de conexão. Verifique sua internet e tente novamente.', null);
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
-        }
-      });
     })();
   </script>
 </body>
