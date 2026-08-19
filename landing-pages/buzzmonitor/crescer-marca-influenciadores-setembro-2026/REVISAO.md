@@ -1,6 +1,24 @@
-# Revisão — LP "Da Collab à Receita" (Buzzmonitor + Buzzcreators)
+# Revisão — LP "Como Crescer sua Marca com Influenciadores" (Buzzmonitor + Buzzcreators)
 
-**Data:** 18/08/2026 (v3: ajustes de design por seção) · **Status:** gerada local, aguardando aprovação (não publicada)
+**Data:** 19/08/2026 (v4: rename + reposicionamento + cases reais) · **Status:** publicada em produção
+
+## v4 — Rename, reposicionamento de tema e troca de cases fictícios por reais
+- **Motivo:** feedback do Alessandro (por e-mail, repassado pela Catharina): o tema "O novo Collab do Instagram" era muito nichado — só atingia marcas com a dor específica de "quero fazer collab e não sei o que mudou" — e o histórico da Buzzcreators mostra que temas assim atraem público de influenciador/creator em vez de marca/agência decisora, reduzindo o impacto do webinar pra vendas.
+- **Novo tema (aceito):** "Como Crescer sua Marca com Influenciadores". Tema amplo, fala direto com marca. O Collab do Instagram entra como uma peça dentro da estratégia maior (seção "conceito" + item 2 do programa), não como o assunto principal.
+- **Slug trocado:** `da-collab-a-receita-setembro-2026` → `crescer-marca-influenciadores-setembro-2026`. URL antiga removida do manifest (não há redirect — LP era do mesmo dia, sem tráfego/links externos ainda).
+- **Cases fictícios removidos.** O case "marca D2C, 53→120+ creators" era placeholder (rotulado como `premissa` na copy original, nunca um cliente real). Substituído por:
+  - **Case real, destaque do Programa:** Eskala (Employer Branding) — engajamento 11x maior (6,67% vs. 0,57%), 172 posts de creators vs. 38 da marca em 30 dias, ROI 3x maior que mídia paga. Enviado pela Catharina (deck interno Buzzcreators).
+  - **Dado de apoio real:** case Bionatural/Special Dog Company (Buzzmonitor, blog público) — citado como fonte adicional no `copy.txt`, não está na LP em destaque (a Eskala tem números mais completos pro ângulo Buzzcreators).
+- **Números de mercado agora citam o próprio blog da Buzzcreators** (preço de creator por porte, CPM de mercado R$15-R$35, ROI 3x de micro/nano) em vez de só a tabela do roteiro original.
+- **Reposicionamento da dupla de marcas:** "A Buzzmonitor analisa a saúde da marca. O Buzzcreators escala o ROI dos creators." (frase da própria Catharina, usada como H3 da seção conceito).
+- Revalidado: 0 em-dash, build do guarda-chuva e gate de GTM/região passaram.
+
+## Pendências
+- Cadência de e-mails e os 3 ads (`conhecimento/copywriting/criacao/buzzmonitor/2026-08-18/`) ainda usam o tema e o case antigos — precisam de rework antes de serem usados, se ainda vão ser usados.
+- Notion (hub da demanda + páginas de cadência/ads) também referenciam o nome/link antigos.
+- Case Eskala citado sem nome completo do cliente nem link público (deck interno) — se a Catharina liberar publicação com nome/link, atualizar atribuição.
+
+---
 
 ## v3 — Ajustes de design pedidos seção a seção
 - **Hero:** H1 agora cabe em 1 linha ("Da collab à receita.", `white-space:nowrap` acima de 560px), "collab" com c minúsculo, texto do corpo resumido (2 frases → 1), toda menção a Bruno Filho removida do hero (fica só na seção "Quem apresenta", com foto real).
