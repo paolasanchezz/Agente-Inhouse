@@ -192,6 +192,16 @@
       transform: translateY(-2px);
       box-shadow: 0 16px 32px -8px rgba(239,134,60,.5);
     }
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary-dark);
+      box-shadow: inset 0 0 0 2px var(--primary-dark);
+    }
+    .btn-ghost:hover {
+      background: var(--primary-dark);
+      color: var(--neutral-0);
+      transform: translateY(-2px);
+    }
     .btn .arrow {
       display: inline-block;
       transition: transform 200ms var(--ease);
@@ -404,7 +414,23 @@
     }
     .live-cancel:hover { background: var(--neutral-100); border-color: var(--primary-dark); }
 
-    .confirm-actions { margin-bottom: 22px; }
+    .confirm-actions {
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .session-when .session-tz {
+      display: block;
+      margin-top: 6px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--primary-dark);
+      opacity: 0.78;
+      line-height: 1.5;
+    }
     .confirm-micro {
       font-size: 14px;
       color: var(--neutral-700);
@@ -605,6 +631,10 @@
                 Ver la próxima sesión y registrarme
                 <span class="arrow" aria-hidden="true">→</span>
               </a>
+              <a class="btn btn-ghost" href="https://content.cxpress.io/whatsapp-business-smb-latam?utm_source=perpetuo&amp;utm_content=agradecimento-perpetuo-wpp-bloqueado">
+                Profesionaliza tu WhatsApp Comercial ahora
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
             </div>
 
             <p class="confirm-micro" id="roomMicro">Con el botón de arriba entras a la sala de espera de ClickMeeting. La presentación comienza puntual a la hora de la sesión.</p>
@@ -639,8 +669,8 @@
             <p class="sr-only" role="status" id="countdownA11yB"></p>
 
             <div class="confirm-actions">
-              <a class="btn btn-primary" href="/webinar-bloqueo-whatsapp">
-                ¿Aún no te registras? Reserva tu lugar
+              <a class="btn btn-primary" href="https://content.cxpress.io/whatsapp-business-smb-latam?utm_source=perpetuo&amp;utm_content=agradecimento-perpetuo-wpp-bloqueado">
+                Profesionaliza tu WhatsApp Comercial ahora
                 <span class="arrow" aria-hidden="true">→</span>
               </a>
             </div>
@@ -700,7 +730,7 @@
     (function () {
       var KEY = 'cx_bloqueo_whatsapp_confirmation';
       var SERIES = 'bloqueo-whatsapp';
-      var LIVE_WINDOW_MS = 75 * 60 * 1000; // sessão de ~1h + folga
+      var LIVE_WINDOW_MS = 75 * 60 * 1000; // sesión de ~1h + margen
       var AUTO_ENTER_SECS = 10;
 
       var data = null;
@@ -716,6 +746,31 @@
       }
 
       function pad(n) { return n < 10 ? '0' + n : String(n); }
+      function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+
+      // Fecha en español, con la hora en las principales capitales LATAM (a partir del ISO).
+      function fmtTime(d, tz) {
+        return new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(d);
+      }
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (ch) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+        });
+      }
+      function formatFullEs(iso) {
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return null;
+        var tz = 'America/Mexico_City';
+        var wd = new Intl.DateTimeFormat('es-MX', { weekday: 'long', timeZone: tz }).format(d);
+        var date = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', timeZone: tz }).format(d);
+        var main = cap(wd) + ', ' + date;
+        var tzLine = 'MX ' + fmtTime(d, 'America/Mexico_City')
+          + ' · CO ' + fmtTime(d, 'America/Bogota')
+          + ' · PE ' + fmtTime(d, 'America/Lima')
+          + ' · CL ' + fmtTime(d, 'America/Santiago')
+          + ' · AR ' + fmtTime(d, 'America/Argentina/Buenos_Aires');
+        return escapeHtml(main) + '<span class="session-tz">' + escapeHtml(tzLine) + '</span>';
+      }
 
       function gcalUrl(startsAtIso, details) {
         var start = new Date(startsAtIso);
@@ -737,9 +792,9 @@
         var d = Math.floor(totalMin / 1440);
         var h = Math.floor((totalMin % 1440) / 60);
         var m = totalMin % 60;
-        if (d > 0) return 'A sessão começa em ' + d + (d === 1 ? ' dia e ' : ' días e ') + h + (h === 1 ? ' hora.' : ' horas.');
-        if (h > 0) return 'A sessão começa em ' + h + (h === 1 ? ' hora e ' : ' horas e ') + m + ' minutos.';
-        return 'A sessão começa em ' + m + (m === 1 ? ' minuto.' : ' minutos.');
+        if (d > 0) return 'La sesión comienza en ' + d + (d === 1 ? ' día y ' : ' días y ') + h + (h === 1 ? ' hora.' : ' horas.');
+        if (h > 0) return 'La sesión comienza en ' + h + (h === 1 ? ' hora y ' : ' horas y ') + m + ' minutos.';
+        return 'La sesión comienza en ' + m + (m === 1 ? ' minuto.' : ' minutos.');
       }
 
       // Countdown genérico: atualiza tiles a cada segundo, texto acessível por minuto,
@@ -773,7 +828,7 @@
           if (t > -LIVE_WINDOW_MS) {
             if (!liveFired) {
               liveFired = true;
-              if (els.a11y) els.a11y.textContent = 'A sessão está acontecendo agora.';
+              if (els.a11y) els.a11y.textContent = 'La sesión está ocurriendo ahora.';
               if (handlers.onLive) handlers.onLive();
             }
             return;
@@ -790,7 +845,7 @@
       }
 
       function fetchNextWebinar(cb) {
-        fetch('/api/next-webinar', { headers: { 'Accept': 'application/json' } })
+        fetch('/api/next-webinar?series=' + SERIES, { headers: { 'Accept': 'application/json' } })
           .then(function (r) { return r.json(); })
           .then(function (d) { cb(d || null); })
           .catch(function () { cb(null); });
@@ -808,7 +863,10 @@
         }
 
         var whenEl = document.getElementById('sessionWhenA');
-        if (data.formatted_full_pt) whenEl.textContent = data.formatted_full_pt;
+        if (data.starts_at) {
+          var fA = formatFullEs(data.starts_at);
+          if (fA) whenEl.innerHTML = fA;
+        }
 
         var enterBtn = document.getElementById('enterBtn');
         var roomMicro = document.getElementById('roomMicro');
@@ -817,13 +875,13 @@
           enterBtn.hidden = false;
           enterBtn.addEventListener('click', function () { pushEnter('click'); });
         } else {
-          roomMicro.textContent = 'Use o link do email de confirmação para entrar na sala no horário da sessão.';
+          roomMicro.textContent = 'Usa el enlace del correo de confirmación para entrar a la sala a la hora de la sesión.';
         }
 
         if (data.starts_at) {
           var gcal = gcalUrl(data.starts_at, hasRoomUrl
-            ? 'Acesse a sala pelo seu link pessoal: ' + data.join_url
-            : 'O link de acesso está no email de confirmação (remetente ClickMeeting).');
+            ? 'Entra a la sala con tu enlace personal: ' + data.join_url
+            : 'El enlace de acceso está en el correo de confirmación (remitente ClickMeeting).');
           var gcalA = document.getElementById('gcalA');
           if (gcal) { gcalA.href = gcal; gcalA.hidden = false; }
 
@@ -832,9 +890,12 @@
             a11y: document.getElementById('countdownA11yA')
           }, { onLive: goLive, onPast: goPast });
         } else {
-          // registro feito, mas sem snapshot da sessão: melhor esforço via API
+          // registro hecho, pero sin snapshot de la sesión: mejor esfuerzo vía API
           fetchNextWebinar(function (d) {
-            if (d && d.ok && d.formatted_full_pt) whenEl.textContent = d.formatted_full_pt;
+            if (d && d.ok && d.starts_at) {
+              var fApi = formatFullEs(d.starts_at);
+              if (fApi) whenEl.innerHTML = fApi;
+            }
           });
         }
 
@@ -879,14 +940,17 @@
           enterBtn.hidden = true;
           delete enterBtn.dataset.live;
           document.getElementById('reRegisterBtn').hidden = false;
-          roomMicro.textContent = 'A inscrição vale por sessão. Para participar da próxima, faça uma nova inscrição.';
+          roomMicro.textContent = 'El registro es válido por sesión. Para participar en la próxima, haz un nuevo registro.';
 
           var label = document.querySelector('[data-block="confirmed"] .session-label');
-          whenEl.textContent = 'Esta sessão já aconteceu.';
+          whenEl.textContent = 'Esta sesión ya ocurrió.';
           fetchNextWebinar(function (d) {
-            if (d && d.ok && d.formatted_full_pt) {
-              label.textContent = 'Próxima sesión';
-              whenEl.textContent = d.formatted_full_pt;
+            if (d && d.ok && d.starts_at) {
+              var fNext = formatFullEs(d.starts_at);
+              if (fNext) {
+                label.textContent = 'Próxima sesión';
+                whenEl.innerHTML = fNext;
+              }
             }
           });
         }
@@ -902,10 +966,15 @@
           skel.hidden = true;
           whenEl.hidden = false;
 
-          if (d && d.ok && d.formatted_full_pt) {
-            whenEl.textContent = d.formatted_full_pt;
+          if (d && d.ok && d.starts_at) {
+            var fB = formatFullEs(d.starts_at);
+            if (fB) {
+              whenEl.innerHTML = fB;
+            } else {
+              whenEl.textContent = 'Revisa la fecha y el enlace en tu correo de confirmación.';
+            }
 
-            var gcal = gcalUrl(d.starts_at, 'O link de acesso está no email de confirmação (remetente ClickMeeting).');
+            var gcal = gcalUrl(d.starts_at, 'El enlace de acceso está en el correo de confirmación (remitente ClickMeeting).');
             var gcalB = document.getElementById('gcalB');
             if (gcal) { gcalB.href = gcal; gcalB.hidden = false; }
 
@@ -914,14 +983,14 @@
               a11y: a11y
             }, {
               onLive: function () {
-                whenEl.textContent = 'A sessão está começando agora. Use o link do seu email para entrar.';
+                whenEl.textContent = 'La sesión está comenzando ahora. Usa el enlace de tu correo para entrar.';
               },
               onPast: function () {
-                whenEl.textContent = 'A última sessão já aconteceu. A data da próxima aparece em breve na página do webinar.';
+                whenEl.textContent = 'La última sesión ya ocurrió. La fecha de la próxima aparece pronto en la página del webinar.';
               }
             });
           } else if (d && d.message) {
-            whenEl.textContent = d.message;
+            whenEl.textContent = 'Próxima sesión muy pronto. Revisa tu correo de confirmación.';
           } else {
             whenEl.textContent = 'Revisa la fecha y el enlace en tu correo de confirmación.';
           }
