@@ -481,6 +481,72 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+    .webinar-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(74,105,189,.08);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      min-height: 42px;
+    }
+    .webinar-info[data-state="loading"] .webinar-info-skeleton {
+      display: inline-block;
+      width: 220px;
+      height: 14px;
+      background: linear-gradient(90deg, rgba(74,105,189,.12) 0%, rgba(74,105,189,.24) 50%, rgba(74,105,189,.12) 100%);
+      background-size: 200% 100%;
+      animation: cm-skeleton 1.4s infinite;
+      border-radius: 4px;
+    }
+    .webinar-info[data-state="ready"] .webinar-info-skeleton,
+    .webinar-info[data-state="error"] .webinar-info-skeleton { display: none; }
+    .webinar-info[data-state="ready"] .webinar-info-text,
+    .webinar-info[data-state="error"] .webinar-info-text {
+      opacity: 0;
+      animation: cm-fadein .4s ease forwards;
+    }
+    .webinar-info[data-state="loading"] .webinar-info-text { display: none; }
+    .webinar-info-text .session-tz {
+      display: block;
+      margin-top: 4px;
+      font-weight: 500;
+      font-size: 11.5px;
+      opacity: 0.78;
+      line-height: 1.45;
+    }
+    @keyframes cm-skeleton {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+    @keyframes cm-fadein { to { opacity: 1; } }
+    .cm-form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .cm-honeypot {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cm-feedback {
+      margin: 8px 0 0;
+      font-size: 13.5px;
+      line-height: 1.45;
+      min-height: 18px;
+      color: var(--error);
+    }
+    .cm-feedback[data-state="success"] { color: var(--success); }
+
     .cm-form {
       display: flex;
       flex-direction: column;
@@ -1017,6 +1083,7 @@
       .cta-final-media img { max-width: 200px; }
     }
     @media (max-width: 520px) {
+      .cm-form-row-2col { grid-template-columns: 1fr; gap: 12px; }
       .hero-actions { width: 100%; }
       .header-cta { display: none; }
       .btn { font-size: 14px; padding: 15px 22px; }
@@ -1087,25 +1154,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h2 class="hero-form-title">Reserva tu lugar</h2>
                 <span class="hero-form-badge">10 minutos</span>
               </div>
-              <form class="cm-form" id="cmForm" onsubmit="event.preventDefault(); document.getElementById('form-ok').style.display='block'; this.style.display='none';">
+              <div class="webinar-info" data-state="loading" aria-live="polite">
+                <span class="webinar-info-skeleton" aria-hidden="true"></span>
+                <span class="webinar-info-text"></span>
+              </div>
+              <form class="cm-form" id="cmForm" novalidate>
+                <div class="cm-form-row-2col">
+                  <label class="cm-field">
+                    <span class="cm-label">Nombre</span>
+                    <input type="text" name="first_name" required autocomplete="given-name" maxlength="100" placeholder="Tu nombre">
+                  </label>
+                  <label class="cm-field">
+                    <span class="cm-label">Apellido</span>
+                    <input type="text" name="last_name" required autocomplete="family-name" maxlength="100" placeholder="Tu apellido">
+                  </label>
+                </div>
                 <label class="cm-field">
-                  <span class="cm-label">Nombre completo</span>
-                  <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre">
-                </label>
-                <label class="cm-field">
-                  <span class="cm-label">Correo electrónico</span>
-                  <input type="email" name="correo" required autocomplete="email" placeholder="tu@empresa.com">
+                  <span class="cm-label">Correo corporativo</span>
+                  <input type="email" name="email" required autocomplete="email" maxlength="200" placeholder="tu@empresa.com">
                 </label>
                 <label class="cm-field">
                   <span class="cm-label">Empresa <span class="cm-optional">(opcional)</span></span>
-                  <input type="text" name="empresa" autocomplete="organization" placeholder="Nombre de tu empresa">
+                  <input type="text" name="company" autocomplete="organization" maxlength="200" placeholder="Nombre de tu empresa">
                 </label>
+                <input class="cm-honeypot" name="_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="cm-submit">¡Inscríbete gratis!</button>
+                <p class="cm-feedback" role="status" aria-live="polite"></p>
               </form>
-              <div id="form-ok" style="display:none; text-align:center; padding: 20px 0;">
-                <p style="font-size:1.05rem; font-weight:700; color: var(--primary-dark);">¡Lugar reservado!</p>
-                <p style="color: var(--neutral-700); margin-top: 8px; font-size: 14px;">Te enviaremos el acceso al webinar por correo.</p>
-              </div>
               <p class="hero-form-note">Al registrarte aceptas recibir comunicaciones de Cxpress sobre el webinar. Sin spam, cancelas cuando quieras.</p>
             </aside>
             </div>
@@ -1306,6 +1381,153 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       reveals.forEach(el => io.observe(el));
     })();
+
+    (function() {
+      // Roteamento ClickMeeting por LP: ?series=bloqueo-whatsapp resolve o recurring_config_id
+      // nas serverless functions do guarda-chuva (next-webinar.js / clickmeeting-register.js).
+      const SERIES = 'bloqueo-whatsapp';
+      let nextWebinar = null;
+
+      // Data da sessao em espanhol (MX) com o horario nas principais capitais LATAM.
+      function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+      function fmtTime(d, tz) {
+        return new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(d);
+      }
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+      }
+      function formatFullEs(iso) {
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return null;
+        const tz = 'America/Mexico_City';
+        const wd = new Intl.DateTimeFormat('es-MX', { weekday: 'long', timeZone: tz }).format(d);
+        const date = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', timeZone: tz }).format(d);
+        const main = cap(wd) + ', ' + date;
+        const tzLine = 'MX ' + fmtTime(d, 'America/Mexico_City')
+          + ' \u00b7 CO ' + fmtTime(d, 'America/Bogota')
+          + ' \u00b7 PE ' + fmtTime(d, 'America/Lima')
+          + ' \u00b7 CL ' + fmtTime(d, 'America/Santiago')
+          + ' \u00b7 AR ' + fmtTime(d, 'America/Argentina/Buenos_Aires');
+        return escapeHtml(main) + '<span class="session-tz">' + escapeHtml(tzLine) + '</span>';
+      }
+
+      const info = document.querySelector('.webinar-info');
+      const infoText = info ? info.querySelector('.webinar-info-text') : null;
+      if (info && infoText) {
+        fetch('/api/next-webinar?series=' + SERIES, { headers: { 'Accept': 'application/json' } })
+          .then(r => r.json())
+          .then(data => {
+            if (data && data.ok && data.starts_at) {
+              nextWebinar = data;
+              if (data.in_progress) {
+                // Sessao rolando agora: a inscricao continua valendo e o acesso e imediato.
+                infoText.innerHTML = 'Sesi\u00f3n en curso ahora'
+                  + '<span class="session-tz">Reg\u00edstrate y entra de inmediato</span>';
+              } else {
+                const html = formatFullEs(data.starts_at);
+                if (html) {
+                  infoText.innerHTML = html;
+                } else {
+                  infoText.textContent = 'Pr\u00f3xima sesi\u00f3n \u00b7 En l\u00ednea \u00b7 Cupos limitados';
+                }
+              }
+              info.dataset.state = 'ready';
+            } else {
+              infoText.textContent = 'Pr\u00f3xima sesi\u00f3n muy pronto \u00b7 En l\u00ednea \u00b7 Cupos limitados';
+              info.dataset.state = 'error';
+            }
+          })
+          .catch(() => {
+            infoText.textContent = 'En l\u00ednea \u00b7 En vivo \u00b7 Cupos limitados';
+            info.dataset.state = 'error';
+          });
+      }
+
+      const form = document.getElementById('cmForm');
+      if (!form) return;
+      const submitBtn = form.querySelector('.cm-submit');
+      const feedback = form.querySelector('.cm-feedback');
+      const originalBtnText = submitBtn.textContent;
+
+      function setFeedback(message, state) {
+        feedback.textContent = message || '';
+        if (state) feedback.dataset.state = state;
+        else delete feedback.dataset.state;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setFeedback('', null);
+
+        const fd = new FormData(form);
+        const payload = {
+          first_name: (fd.get('first_name') || '').toString().trim(),
+          last_name: (fd.get('last_name') || '').toString().trim(),
+          email: (fd.get('email') || '').toString().trim(),
+          company: (fd.get('company') || '').toString().trim(),
+          series: SERIES,
+          _hp: (fd.get('_hp') || '').toString(),
+        };
+
+        if (!payload.first_name || !payload.last_name || !payload.email) {
+          setFeedback('Completa nombre, apellido y correo.', null);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        try {
+          const res = await fetch('/api/clickmeeting-register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const result = await res.json().catch(() => ({}));
+
+          if (res.ok && result && result.ok && result.redirect_url) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'webinar_lead_submitted', form_id: 'cmForm', webinar: SERIES });
+
+            // Passa o link da sala pra pagina de confirmacao via sessionStorage. Se o storage
+            // falhar, degrada pro redirect direto pra sala do ClickMeeting.
+            let stored = false;
+            try {
+              sessionStorage.setItem('cx_bloqueo_whatsapp_confirmation', JSON.stringify({
+                v: 1,
+                join_url: result.redirect_url,
+                email: payload.email,
+                first_name: payload.first_name,
+                starts_at: (nextWebinar && nextWebinar.starts_at) || null,
+                in_progress: !!(nextWebinar && nextWebinar.in_progress),
+                saved_at: new Date().toISOString(),
+              }));
+              stored = sessionStorage.getItem('cx_bloqueo_whatsapp_confirmation') !== null;
+            } catch (_) { stored = false; }
+
+            const dest = stored ? '/webinar-bloqueo-whatsapp-confirmado' : result.redirect_url;
+            setFeedback('\u00a1Registro confirmado! Redirigiendo...', 'success');
+            setTimeout(() => { window.location.href = dest; }, 600);
+            return;
+          }
+
+          let msg = (result && result.message)
+            ? result.message
+            : 'No pudimos completar tu registro. Int\u00e9ntalo de nuevo.';
+          if (result && result.error === 'already_registered') {
+            msg += ' Tu enlace de acceso ya fue enviado por correo (remitente ClickMeeting).';
+          }
+          setFeedback(msg, null);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        } catch (err) {
+          setFeedback('Error de conexi\u00f3n. Revisa tu internet e int\u00e9ntalo de nuevo.', null);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      });
+    })();
+
   </script>
 </body>
 </html>

@@ -46,6 +46,11 @@
       "source": "landing-pages/buzzmonitor/caso-smartfit"
     },
     {
+      "slug": "caso-smartfit-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/caso-smartfit-confirmado"
+    },
+    {
       "slug": "conheca-a-buzzmonitor",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/conheca-a-buzzmonitor"
@@ -146,16 +151,6 @@
       "source": "landing-pages/buzzmonitor/perpetuo-social-listening-confirmado"
     },
     {
-      "slug": "perpetuo-social-listening",
-      "marca": "buzzmonitor",
-      "source": "landing-pages/buzzmonitor/perpetuo-social-listening"
-    },
-    {
-      "slug": "perpetuo-social-listening-confirmado",
-      "marca": "buzzmonitor",
-      "source": "landing-pages/buzzmonitor/perpetuo-social-listening-confirmado"
-    },
-    {
       "slug": "primeiro-listening-5-passos",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/primeiro-listening-5-passos"
@@ -164,6 +159,11 @@
       "slug": "primer-listening-5-pasos",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/primer-listening-5-pasos"
+    },
+    {
+      "slug": "primer-listening-5-pasos-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/primer-listening-5-pasos-confirmado"
     },
     {
       "slug": "que-es-mcp",

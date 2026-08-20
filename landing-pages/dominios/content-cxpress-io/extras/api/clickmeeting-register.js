@@ -1,10 +1,15 @@
 const CLICKMEETING_API_BASE = 'https://api.clickmeeting.com/v1';
-const FALLBACK_THANK_YOU = 'https://home.cxpress.io/webinar-inscricao-realizada';
+// Rede de seguranca: so entra em cena quando a API nao devolve a URL da sala, ou quando o
+// honeypot dispara. Por serie, cai na propria pagina de confirmacao da LP.
+const SERIES_THANK_YOU = {
+  'bloqueo-whatsapp': 'https://content.cxpress.io/webinar-bloqueo-whatsapp-confirmado',
+};
+const FALLBACK_THANK_YOU = 'https://content.cxpress.io/webinar-bloqueo-whatsapp-confirmado';
 
 // Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
 // Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
 // ia-voz e PT-BR -> cai no default. Adicionar 'chave':'es' quando houver serie LATAM neste dominio.
-const SERIES_LANG = {};
+const SERIES_LANG = { 'bloqueo-whatsapp': 'es' };
 
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -66,7 +71,7 @@ module.exports = async (req, res) => {
 
   if (typeof body._hp === 'string' && body._hp.trim().length > 0) {
     res.statusCode = 200;
-    return res.json({ ok: true, redirect_url: FALLBACK_THANK_YOU });
+    return res.json({ ok: true, redirect_url: SERIES_THANK_YOU[series] || FALLBACK_THANK_YOU });
   }
 
   const firstName = normalize(body.first_name, 100);
@@ -145,6 +150,6 @@ module.exports = async (req, res) => {
   res.statusCode = 200;
   return res.json({
     ok: true,
-    redirect_url: (apiBody && typeof apiBody.url === 'string') ? apiBody.url : FALLBACK_THANK_YOU,
+    redirect_url: (apiBody && typeof apiBody.url === 'string') ? apiBody.url : (SERIES_THANK_YOU[series] || FALLBACK_THANK_YOU),
   });
 };

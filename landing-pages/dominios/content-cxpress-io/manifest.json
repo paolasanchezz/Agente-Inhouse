@@ -181,6 +181,11 @@
       "source": "landing-pages/cxpress/webinar-bloqueo-whatsapp"
     },
     {
+      "slug": "webinar-bloqueo-whatsapp-confirmado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-bloqueo-whatsapp-confirmado"
+    },
+    {
       "slug": "webinar-canales-unificados",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-canales-unificados"

@@ -20,18 +20,28 @@ de webinar perpétuo Cxpress no guarda-chuva `content.cxpress.io`
 ## Roteamento por LP (`?series=`)
 
 `next-webinar.js` resolve a sala filtrando `/conferences/active` por `recurring_config_id`.
-Sem parâmetro, usa `process.env.CLICKMEETING_RECURRING_CONFIG_ID` (série placeholder do
-domínio — hoje `17689`, `conheca-a-cxpress`). Com `?series=<chave>`, usa o mapa `SERIES`:
+Sem parâmetro, usa `process.env.CLICKMEETING_RECURRING_CONFIG_ID`. Hoje esse env aponta pra
+`17689`, série **apagada** em 2026-08-19 — e está certo assim: nenhuma LP do domínio depende
+mais do padrão, então chave errada falha em `no_upcoming` em vez de anunciar o webinar de outra
+LP. Com `?series=<chave>`, usa o mapa `SERIES`:
 
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
-| _(sem série)_ | `17689` (env) | Conheça a Cxpress (placeholder do domínio) | `/conheca-a-cxpress` (+ `-confirmado`) |
-| `ia-voz` | `17671` | Cxpress Vozxpress — estudo de caso IA de Voz (conf id 10070428, room_pin 754-174-641, PT-BR) | `/case-ia-de-voz` |
+| `bloqueo-whatsapp` | `17929` | Por qué bloquean tu WhatsApp (ES-LATAM, room_pin 184-935-658, tz America/Mexico_City, 14:00 MX) | `/webinar-bloqueo-whatsapp` (+ `-confirmado`) |
+
+Aposentadas em 2026-08-19 (apagadas no ClickMeeting por limite de disco, zero inscritos):
+`ia-voz` (`17671`, Cxpress Vozxpress) e `17689` (Conheça a Cxpress, a antiga série padrão do
+domínio). As LPs `/case-ia-de-voz` e `/conheca-a-cxpress` seguiram no ar com aviso de encerradas.
 
 Chave desconhecida → fallback no env padrão (nunca quebra as LPs vizinhas).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.
-**E-mail de confirmação:** `SERIES_LANG` mapeia série → idioma; `ia-voz` é PT-BR e cai no
-default `br`. Adicionar `'chave':'es'` quando existir série LATAM neste domínio.
+**E-mail de confirmação:** `SERIES_LANG` mapeia `bloqueo-whatsapp` → `es`. Novas séries LATAM
+entram do mesmo jeito; as demais usam o default `br`.
+**Thank-you de segurança:** `SERIES_THANK_YOU` dá a página `-confirmado` de cada série, usada
+só quando a API não devolve a URL da sala.
+**Janela da sessão:** o filtro usa `ends_at`, não `starts_at` — numa série diária a próxima
+sessão só nasce ~10 min depois desta terminar, e filtrar pelo início deixava o formulário fora
+do ar ~30-40 min por dia.
 
 **Histórico do env default (`CLICKMEETING_RECURRING_CONFIG_ID`):** `17497` (encerrada 11/jun) →
 `17529` (12/jun) → **`17689`** (06/jul — sala `10074506` "Conheça Cxpress", room_pin
@@ -41,19 +51,22 @@ de HTML (a LP é fixa e resolve a série pelo env em runtime). Ao trocar, atuali
 mapping da skill `/convites-moderador` (`config.json`) para a série nova, senão o convite diário
 de moderador para de sair para o webinar Cxpress.
 
-## Como deployar uma mudança nas functions (fluxo manual controlado)
+## Como deployar uma mudanca nas functions
 
-`lp-publicar` não carrega mudança de `api/` (o sync restaura a versão do live). Então:
+Desde a migracao pro CI (2026-07-15) estes arquivos sobem **junto com o guarda-chuva**: a
+copia servida vive em `landing-pages/dominios/content-cxpress-io/extras/api/` e entra no dist pelo
+`extra_files` do manifesto. O fluxo e: editar **as duas copias** (esta, canonica, e a de
+`extras/api/`), abrir PR, deixar o `lp-deploy.yml` publicar.
 
-1. `/lp-sync content.cxpress.io` — popula a sibling com o último deploy READY (todas as LPs vizinhas + functions vivas).
-2. Copiar estes 2 arquivos por cima de `{sibling}/api/`.
-3. Conferir vizinhas intactas (hash) e fazer deploy: `cd {sibling} && npx vercel deploy --prod --yes --force --scope team_nC991VqUuSU2jXZN152xqqEg`.
-4. Smoke test: `/api/next-webinar` (padrão → série 17689) e `/api/next-webinar?series=ia-voz` (→ série 17671) devem responder `ok:true` com salas **diferentes**; registro com honeypot (`_hp` preenchido) não cria lead.
+**Nao rodar `vercel deploy` a mao.** O hook `guard_vercel_deploy.py` bloqueia deploy manual em
+dominio migrado, e mesmo que passasse seria sobrescrito no push seguinte (incidente 2026-08-03).
+O fluxo antigo com `/lp-sync` + `vercel deploy --force` que estava documentado aqui morreu junto
+com o modelo sibling: a skill `/lp-sync` foi desativada.
 
-**Ordem inegociável:** a function precisa conhecer a chave ANTES de a LP mandar `?series=`,
-senão `?series=ia-voz` cai no fallback `17529` (webinar errado). Como a LP `case-ia-de-voz`
-já está no ar mandando `series=ia-voz`, deployar estas functions é o que efetivamente liga
-o webinar correto.
+Smoke test depois do deploy: `/api/next-webinar?series=<chave>` de cada serie viva responde
+`ok:true` com salas diferentes; chave inexistente responde `no_upcoming`; registro com honeypot
+(`_hp` preenchido) nao cria lead.
+
 
 A API key (`CLICKMEETING_API_KEY`) é env **Sensitive** no Vercel. Para uso local/diagnóstico
 ela está no `.env.local` da raiz do repo (gitignored). Base `https://api.clickmeeting.com/v1`,

@@ -32,8 +32,11 @@ function formatFullPt(d) {
 // Sem o parametro -> usa o env padrao (serie placeholder do dominio: hoje 17529 = conheca-a-cxpress).
 // Chave desconhecida -> tambem cai no padrao (fallback seguro, nunca quebra as LPs vizinhas).
 const SERIES = {
-  'ia-voz': '17671', // Cxpress Vozxpress — estudo de caso IA de Voz (LP /case-ia-de-voz). Conf id 10070428, room_pin 754-174-641, PT-BR, tz America/Sao_Paulo, automated type 2
+  'bloqueo-whatsapp': '17929', // Por que bloquean tu WhatsApp (LP /webinar-bloqueo-whatsapp + -confirmado), room_pin 184-935-658, ES-LATAM, tz America/Mexico_City
 };
+// Aposentadas 2026-08-19 (apagadas no ClickMeeting por limite de disco, zero inscritos):
+//   ia-voz (17671, Cxpress Vozxpress) e a serie padrao do dominio (17689, Conheca Cxpress).
+// As LPs /case-ia-de-voz e /conheca-a-cxpress seguiram no ar com aviso de encerradas.
 
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {
@@ -53,6 +56,17 @@ module.exports = async (req, res) => {
     ? SERIES[seriesKey]
     : (process.env.CLICKMEETING_RECURRING_CONFIG_ID || null);
   const bufferMinutes = parseInt(process.env.MIN_BUFFER_MINUTES || '0', 10);
+
+  // Sem serie resolvida (chave desconhecida E env padrao vazio) o filtro por
+  // recurring_config_id abaixo seria pulado e a resposta traria a proxima sessao de
+  // QUALQUER serie da conta, ou seja, a LP anunciaria o webinar errado. Falhar aqui e
+  // preferivel: a LP cai no texto de "proxima sessao em breve".
+  if (!recurringConfigId) {
+    console.warn('[next-webinar] serie nao resolvida (series=%s)', seriesKey || '(vazio)');
+    res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60, stale-while-revalidate=300');
+    res.statusCode = 200;
+    return res.json({ ok: false, error: 'no_series', message: 'Proxima sessao sendo agendada.' });
+  }
 
   let apiResponse;
   try {
@@ -87,7 +101,14 @@ module.exports = async (req, res) => {
     .filter((c) => {
       if (!c || !c.starts_at) return false;
       const starts = new Date(c.starts_at).getTime();
-      if (!Number.isFinite(starts) || starts <= now + bufferMs) return false;
+      if (!Number.isFinite(starts)) return false;
+      // Vale ate o FIM da sessao, nao ate o inicio. Numa serie diaria a proxima sessao so
+      // e materializada ~10 min depois desta terminar; enquanto a sessao corria, filtrar
+      // por starts_at devolvia no_upcoming e derrubava o formulario de todas as LPs por
+      // ~30-40 min todo dia (constatado em producao 2026-08-19).
+      const ends = new Date(c.ends_at || c.starts_at).getTime();
+      const limite = Number.isFinite(ends) ? ends : starts;
+      if (limite <= now + bufferMs) return false;
       if (recurringConfigId && String(c.recurring_config_id) !== String(recurringConfigId)) return false;
       if (c.registration_enabled !== 1 && c.registration_enabled !== true) return false;
       return true;
@@ -114,6 +135,7 @@ module.exports = async (req, res) => {
     room_id: next.id,
     room_pin: next.room_pin || null,
     starts_at: next.starts_at,
+    in_progress: startsAt.getTime() <= now,
     formatted_date_pt: formatDatePt(startsAt),
     formatted_time_pt: formatTimePt(startsAt),
     formatted_full_pt: formatFullPt(startsAt),

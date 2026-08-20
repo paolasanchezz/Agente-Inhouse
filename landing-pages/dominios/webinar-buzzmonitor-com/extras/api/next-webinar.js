@@ -34,9 +34,13 @@ function formatFullPt(d) {
 const SERIES = {
   atencion: '17701', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es) — série recriada 2026-07-08 (antiga 17544 esgotou as sessões)
   buzzcreators: '17727', // Buzzcreators (LP /conheca-o-buzzcreators) — série recriada 2026-07-14 (antiga 17560 esgotou as sessões), room_pin 276-382-621
-  mcp: '17601', // Buzzmonitor MCP (LP /mcp-na-pratica-p + -confirmado) — room_pin 988-444-441, PT-BR
   'mcp-es': '17646', // Buzzmonitor Que es MCP (LP /que-es-mcp + -confirmado), room_pin 224-255-882, ES-LATAM, tz America/Mexico_City
+  'listening-es': '17927', // Tu primer listening en 5 pasos (LP /primer-listening-5-pasos + -confirmado), room_pin 568-312-489, ES-LATAM, tz America/Mexico_City
+  'smartfit-es': '17928', // Caso Smart Fit Latam (LP /caso-smartfit + -confirmado), room_pin 854-775-474, ES-LATAM, tz America/Mexico_City
 };
+// Aposentada 2026-08-19: mcp (17601, Buzzmonitor MCP PT-BR). Serie apagada no ClickMeeting
+// por limite de disco (zero inscritos em 57 sessoes). A LP /mcp-na-pratica-p seguiu no ar
+// com aviso de encerrada e nao chama mais esta function.
 
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {
@@ -56,6 +60,17 @@ module.exports = async (req, res) => {
     ? SERIES[seriesKey]
     : (process.env.CLICKMEETING_RECURRING_CONFIG_ID || null);
   const bufferMinutes = parseInt(process.env.MIN_BUFFER_MINUTES || '0', 10);
+
+  // Sem serie resolvida (chave desconhecida E env padrao vazio) o filtro por
+  // recurring_config_id abaixo seria pulado e a resposta traria a proxima sessao de
+  // QUALQUER serie da conta, ou seja, a LP anunciaria o webinar errado. Falhar aqui e
+  // preferivel: a LP cai no texto de "proxima sessao em breve".
+  if (!recurringConfigId) {
+    console.warn('[next-webinar] serie nao resolvida (series=%s)', seriesKey || '(vazio)');
+    res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60, stale-while-revalidate=300');
+    res.statusCode = 200;
+    return res.json({ ok: false, error: 'no_series', message: 'Proxima sessao sendo agendada.' });
+  }
 
   let apiResponse;
   try {
@@ -90,7 +105,14 @@ module.exports = async (req, res) => {
     .filter((c) => {
       if (!c || !c.starts_at) return false;
       const starts = new Date(c.starts_at).getTime();
-      if (!Number.isFinite(starts) || starts <= now + bufferMs) return false;
+      if (!Number.isFinite(starts)) return false;
+      // Vale ate o FIM da sessao, nao ate o inicio. Numa serie diaria a proxima sessao so
+      // e materializada ~10 min depois desta terminar; enquanto a sessao corria, filtrar
+      // por starts_at devolvia no_upcoming e derrubava o formulario de todas as LPs por
+      // ~30-40 min todo dia (constatado em producao 2026-08-19).
+      const ends = new Date(c.ends_at || c.starts_at).getTime();
+      const limite = Number.isFinite(ends) ? ends : starts;
+      if (limite <= now + bufferMs) return false;
       if (recurringConfigId && String(c.recurring_config_id) !== String(recurringConfigId)) return false;
       if (c.registration_enabled !== 1 && c.registration_enabled !== true) return false;
       return true;
@@ -117,6 +139,7 @@ module.exports = async (req, res) => {
     room_id: next.id,
     room_pin: next.room_pin || null,
     starts_at: next.starts_at,
+    in_progress: startsAt.getTime() <= now,
     formatted_date_pt: formatDatePt(startsAt),
     formatted_time_pt: formatTimePt(startsAt),
     formatted_full_pt: formatFullPt(startsAt),

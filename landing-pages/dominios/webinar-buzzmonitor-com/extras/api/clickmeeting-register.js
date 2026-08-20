@@ -1,9 +1,19 @@
 const CLICKMEETING_API_BASE = 'https://api.clickmeeting.com/v1';
-const FALLBACK_THANK_YOU = 'https://home.cxpress.io/webinar-inscricao-realizada';
+// Rede de seguranca: so entra em cena quando a API nao devolve a URL da sala, ou quando o
+// honeypot dispara. Por serie, cai na propria pagina de confirmacao da LP.
+// Ate 2026-08-19 isto apontava para home.cxpress.io mesmo no dominio da Buzzmonitor.
+const SERIES_THANK_YOU = {
+  atencion: 'https://webinar.buzzmonitor.com/atencion-al-cliente-es-confirmado',
+  buzzcreators: 'https://webinar.buzzmonitor.com/conheca-o-buzzcreators-confirmado',
+  'mcp-es': 'https://webinar.buzzmonitor.com/que-es-mcp-confirmado',
+  'listening-es': 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado',
+  'smartfit-es': 'https://webinar.buzzmonitor.com/caso-smartfit-confirmado',
+};
+const FALLBACK_THANK_YOU = 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado';
 
 // Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
 // Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
-const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es' };
+const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es', 'listening-es': 'es', 'smartfit-es': 'es' };
 
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -65,7 +75,7 @@ module.exports = async (req, res) => {
 
   if (typeof body._hp === 'string' && body._hp.trim().length > 0) {
     res.statusCode = 200;
-    return res.json({ ok: true, redirect_url: FALLBACK_THANK_YOU });
+    return res.json({ ok: true, redirect_url: SERIES_THANK_YOU[series] || FALLBACK_THANK_YOU });
   }
 
   const firstName = normalize(body.first_name, 100);
@@ -144,6 +154,6 @@ module.exports = async (req, res) => {
   res.statusCode = 200;
   return res.json({
     ok: true,
-    redirect_url: (apiBody && typeof apiBody.url === 'string') ? apiBody.url : FALLBACK_THANK_YOU,
+    redirect_url: (apiBody && typeof apiBody.url === 'string') ? apiBody.url : (SERIES_THANK_YOU[series] || FALLBACK_THANK_YOU),
   });
 };
