@@ -12,7 +12,7 @@ Pagina **pos-inscricao** do webinar `webinar-canales-unificados`: o lead que ja 
 
 ## Decisoes tomadas nesta sessao
 
-1. **Video ainda nao esta no YouTube:** usuario esta subindo o video. Em vez de bloquear a LP, foi construido um placeholder visual (`.video-frame.is-placeholder`, com icone de play + "El video estará disponible muy pronto.") no exato lugar onde o `<iframe>` do YouTube vai entrar — o HTML ja traz, comentado, o snippet pronto pra colar o embed assim que o usuario mandar o link. Nao foi feito upload/commit de nenhum arquivo de video no repo (git nao e lugar pra hospedar video, e o CSP do guarda-chuva so libera embed do dominio youtube.com).
+1. **Video (resolvido 2026-08-19):** publicado inicialmente com placeholder visual (icone de play + "El video estará disponible muy pronto."), pois o usuario ainda estava subindo o video no YouTube. Usuario mandou o link (`https://www.youtube.com/watch?v=i6Af5pEo8aI`) e o placeholder foi trocado pelo `<iframe>` real (`youtube.com/embed/i6Af5pEo8aI?rel=0`), CSS do placeholder removido. Nao foi feito upload/commit de nenhum arquivo de video no repo (git nao e lugar pra hospedar video, e o CSP do guarda-chuva so libera embed do dominio youtube.com).
 2. **Secao "Clientes":** heading e asset (`clientes-cxpress.png`) reaproveitados literalmente de `banimento-whatsapp-latam` (mesma marca, mesma secao, ja aprovada e publicada).
 3. **CTA final:** texto 100% literal do que o usuario forneceu (H2, BODY, 3 LABELs, CTA). CTA ainda mock (`href="#"`) — aguardando link real de agendamento (Calendly, HubSpot Meetings, etc.), rodar `/lp-integrar-form` quando tiver.
 4. **Redes sociais no footer:** usuario pediu icones de redes sociais + link pro site no footer. Primeira tentativa: verificado no footer visivel de `https://cxpress.ai` (via browser), usado o set "cxpress.io". Usuario corrigiu (2026-08-19): as contas certas sao o set "cxpress.es" — Facebook `facebook.com/profile.php?id=61584681389155`, Instagram `instagram.com/cxpress.es`. LinkedIn mantido (`linkedin.com/company/cxpress`, e o mesmo nos dois sets). Adicionado tambem YouTube (`youtube.com/@Cxpress_es`), fornecido pelo usuario (nao estava visivel no footer do site institucional).
@@ -30,15 +30,14 @@ Pagina **pos-inscricao** do webinar `webinar-canales-unificados`: o lead que ja 
 
 - [x] HTML gerado
 - [x] Revisao tecnica (em-dash: 0, ellipsis 0 literal, GTM 2/2, Pixel 1x, `check_gtm_region.py` OK, fidelidade de copy conferida via texto renderizado) — ver `REVISAO.md`
-- [ ] Video real do YouTube — pendente do usuario subir e mandar o link
+- [x] Video real do YouTube integrado (2026-08-19)
 - [ ] CTA de agendamento integrado com link real — rodar `/lp-integrar-form` quando tiver
-- [ ] Publicacao — pendente PR via fluxo CI
+- [x] Publicacao — via fluxo CI
 
 ## Pendencias
 
-1. **Embed do video** — trocar o placeholder pelo `<iframe>` do YouTube assim que o usuario mandar o link (snippet ja deixado comentado no HTML, pronto pra colar).
-2. **CTA de agendamento** — mock, aguardando link real (Calendly, HubSpot Meetings, etc.).
-3. **OG image** — nao gerada; pagina e `noindex`, entao baixa prioridade.
+1. **CTA de agendamento** — mock, aguardando link real (Calendly, HubSpot Meetings, etc.).
+2. **OG image** — nao gerada; pagina e `noindex`, entao baixa prioridade.
 
 ## Assets referenciados
 

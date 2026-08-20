@@ -26,9 +26,13 @@
 
 ## Proximos passos
 
-- Trocar o placeholder de video pelo embed real assim que o usuario mandar o link do YouTube.
 - CTA de agendamento ainda e mock (`href="#"`) — quando tiver o link real, rodar `/lp-integrar-form cxpress/webinar-canales-unificados-video "snippet"`.
-- Publicar: `content.cxpress.io` esta no fluxo CI — adicionar ao manifest + abrir PR.
+
+## Terceira passada (2026-08-19 — embed real do video)
+
+Usuario mandou o link do YouTube (`https://www.youtube.com/watch?v=i6Af5pEo8aI`). Placeholder trocado pelo `<iframe>` real (`youtube.com/embed/i6Af5pEo8aI?rel=0`, mesmo padrao de atributos de `video-atendimento-obrigado`: `allow`, `allowfullscreen`, `referrerpolicy`). CSS do placeholder (`is-placeholder`, `play-icon`) removido por nao ter mais uso.
+
+- Revalidado: em-dash 0, GTM/Pixel intactos, `check_gtm_region.py` OK.
 
 ## Segunda passada (2026-08-19, pos-publicacao — correcao de links sociais)
 

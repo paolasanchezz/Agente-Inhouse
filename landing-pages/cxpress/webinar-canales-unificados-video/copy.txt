@@ -2,7 +2,8 @@
 OVERLINE: Webinar online
 H1: Múltiples canales, un solo cliente
 SUB: Cómo unificar tu atención sin perder el contexto.
-# [NOTA 2026-08-18] Pagina de "assista agora" pos-inscricao no webinar (landing-pages/cxpress/webinar-canales-unificados). H1 e SUB reaproveitados literalmente do hero da LP de inscricao, pra manter continuidade pro lead que acabou de se inscrever. Overline trocado de "Video liberado" pra "Webinar online" a pedido do usuario. Video ainda NAO esta no YouTube (usuario esta subindo) — embed fica como placeholder ate o usuario mandar o link. Sem gate adicional (o lead ja se inscreveu na LP anterior).
+# [NOTA 2026-08-18] Pagina de "assista agora" pos-inscricao no webinar (landing-pages/cxpress/webinar-canales-unificados). H1 e SUB reaproveitados literalmente do hero da LP de inscricao, pra manter continuidade pro lead que acabou de se inscrever. Overline trocado de "Video liberado" pra "Webinar online" a pedido do usuario. Sem gate adicional (o lead ja se inscreveu na LP anterior).
+# [NOTA 2026-08-19] Video publicado pelo usuario: https://www.youtube.com/watch?v=i6Af5pEo8aI (ID i6Af5pEo8aI). Placeholder trocado pelo embed real (https://www.youtube.com/embed/i6Af5pEo8aI?rel=0), CSS do placeholder removido por nao ter mais uso.
 
 === CLIENTES ===
 H2: Clientes que confían en Cxpress para optimizar su atención
