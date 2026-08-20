@@ -29,10 +29,79 @@ CM_UTM_SOURCES_LATAM: list[str] = [
     'meta', 'ig', 'instagram', 'facebook', 'fb', 'fb-ig', 'linkedin',
     'email', 'emailmkt', 'emblue', 'chatgpt.com', 'notion', 'blog',
     'tiktok', 'youtube', 'reddit', 'paid social', 'an',
+    # --- superficies proprias de conteudo/webinar ONLINE (decisao Victor 2026-08-11) ---
+    # Ultimo toque de material proprio: o deck exibido no webinar ao vivo
+    # (Slides + Stream_en_vivo), a newsletter e o banner do site. Antes so passavam
+    # quando a url_conversao carregava o dominio de conteudo — se a URL vinha vazia
+    # (caso La Firma/43258), o lead sumia.
+    # NAO inclui 'qr_code': QR e cracha de evento PRESENCIAL — ver ESCOPO abaixo.
+    'slides', 'newsletter', 'sitio_web',
+]
+
+# Campanhas proprias de conteudo/webinar: contam como CM pelo NOME da campanha,
+# independente do utm_source do ultimo toque. Decisao Victor 2026-08-11 a partir do
+# caso Oferta_Webinar_Social_Listening (leads que vieram do anuncio Meta -> LP do
+# webinar -> deck do webinar; o utm_source gravado e o do deck, nao o do anuncio).
+# Match ILIKE sobre lower(utm_campaign). Campanha de evento PRESENCIAL nao entra aqui.
+CM_CAMPANHAS_LIKE: list[str] = [
+    'oferta_%',          # Oferta_Webinar_Social_Listening, Oferta_Webinar_Monitoreo...
+    '%webinar%',         # [LATAM][Webinar-*], invite_webinar_*, webinar_monitoreo*
+    '%material+rico%',   # [LATAM]+[Material+Rico]+[IA] (URL-encoded)
+    '%material rico%',
 ]
 
 # Dominio proprio de conteudo da LATAM (contenido.getbuzzmonitor.com, getbuzzmonitor.com/es/...)
 CONTENT_DOMAIN_LIKE = '%getbuzzmonitor.com%'
+
+# Dominios das LPs proprias que aparecem em evento_conversao / contenido_conversao.
+# Cobre conteudo.* (grafia PT) e getbuzzmonitor.com pelo mesmo padrao.
+# `evento.buzzmonitor.com` NAO entra: e o dominio dos eventos PRESENCIAIS (Buzzmonitor
+# Connect Bogota etc.), que sao de outra dashboard. Ver ESCOPO abaixo.
+ORIGEM_DOMINIOS_PROPRIOS: list[str] = [
+    '%getbuzzmonitor.com%',
+    '%webinar.buzzmonitor.com%',
+    '%material.buzzmonitor.com%',
+    '%content.buzzmonitor.com%',
+]
+
+# ============ ESCOPO: conteudo + webinar ONLINE (nao evento presencial) ============
+# Decisao Victor 2026-08-11. Esta dashboard mede Content Marketing — material rico,
+# blog, estudos e **webinar online**. Evento PRESENCIAL (Cafe con Buzz, Merca2.0,
+# BuzzTalks, Buzzmonitor Connect, Spark Summit) tem dashboard propria e NAO conta aqui,
+# mesmo tendo LP no nosso dominio de conteudo.
+#
+# Auditoria que originou a regra (os 4 reprovados pelo Victor):
+#   40128 New Athletic  USD 590 — cafe-con-buzz-peru-2026   (+ era Google Search)
+#   39162 Smilehood     USD 605 — campanha BuzzTalks_Argentina
+#   43197 TLP MX        USD 390 — merca20-mayo-2026
+#   43484 News Monitor  USD 390 — cafe-con-buzz-peru-2026
+#
+# Marcadores casados contra a URL de origem **e** contra utm_campaign: a LP do BuzzTalks
+# Argentina tem slug de conteudo (`social-listening-que-guia-decisiones-no-reportes`) e
+# so se revela pelo nome da campanha. Slug sozinho nao basta.
+EVENTO_PRESENCIAL_MARCADORES: list[str] = [
+    '%buzztalk%',              # buzztalks-cdmx-2025, BuzzTalks_Argentina, Invite_BuzzTalks_Argentina
+    '%cafe-con-buzz%',         # cafe-con-buzz, cafe-con-buzz-peru-2026
+    '%cafeconbuzz%',           # CafeConBuzzmonitor_IAB_Peru (grafia da campanha)
+    '%merca20%',               # merca20-mayo-2026, merca20-noviembre-2025
+    '%merca-25%',              # merca-25-registro
+    '%buzzmonitor-connect%',   # evento.buzzmonitor.com/buzzmonitor-connect-julio-2026-latam
+    '%buzzconnect%',           # BuzzConnect_ActiveCampaign = convite do Buzzmonitor Connect Bogota
+    '%spark%',                 # Spark Summit Colombia
+    '%registro-evento%',       # registro-evento-colombia
+    '%evento.buzzmonitor.com%',
+]
+
+# O marcador presencial desqualifica quando **e a conversao**, nao quando e so um toque
+# lateral. Dois usos distintos, deliberadamente:
+#   - em sinal_origem_propria(): derruba o sinal de origem (a LP presencial nao pode ser o
+#     que faz o lead virar CM);
+#   - no wrapper (4) do filtro: derruba pelo `utm_campaign`, porque a campanha e o que
+#     gerou o lead (Invite_BuzzTalks_Argentina, CafeConBuzzmonitor_IAB_Peru, BuzzConnect_*).
+# Nao aplicamos a `evento_conversao`/`url_conversao` no wrapper de proposito: o deal 43327
+# (Preciso, campanha Oferta_Webinar_Social_Listening) converteu NO WEBINAR e so tem
+# cafe-con-buzz como toque posterior — continua sendo CM. Mesmo caso do 42834
+# ([LATAM][Remarketing] -> plataforma-completa, com buzztalk de toque lateral).
 
 # Sinais FORTES de URL: contam como CM **independente da UTM** (paginas de produto/oferta).
 # Sobrepoem ate a exclusao de Google Ads. Decisao Victor 2026-05-29.
@@ -76,12 +145,27 @@ DEALS_TESTE_EXCLUIR_LATAM: set[int] = {
     43661, 46385, 46427, 46700, 47739, 48641, 49473, 49540, 51056, 51129,
     51261, 53571, 53760, 54152, 54998, 55017, 55193, 55977, 56696, 56768,
     57195, 58247, 58824,
+    # 2026-08-11: QA que so apareceu quando a regra de origem propria (1b) passou a
+    # ler evento_conversao — os 4 tem LP nossa registrada e por isso entrariam no CM.
+    # Contatos: teste@testando.com (42789), TestN8N_SOURCE/TestN8N_CAMPAIGN (42926),
+    # test@test.com (66267), test2@test.com (66308).
+    42789, 42926, 66267, 66308,
 }
 
-# Colunas necessarias para o funil (identicas em inbound e outbound)
+# Colunas necessarias para o funil (identicas em inbound, outbound e contratos).
+# utm_campaign / evento_conversao / contenido_conversao entraram em 2026-08-11 — sao a
+# materia-prima das regras de campanha propria e de sinal de origem (ver filtro_cm_latam).
 _LEAD_COLS = (
-    "id, title, cdate, mdate, status, pais, utm_source, utm_medium, utm_content, url_conversao, "
+    "id, title, cdate, mdate, status, pais, utm_source, utm_medium, utm_campaign, utm_content, "
+    "url_conversao, evento_conversao, contenido_conversao, "
     "sdr, closer, fecha_de_primer_contacto, fecha_y_hora_de_primer_contacto, fecha_de_reunion"
+)
+
+# Colunas de atribuicao que o enriquecimento por contratos preenche quando o lead vem cego
+# (ver _leads_subquery). O resto do funil (datas, status, dono) fica SEMPRE com a linha do lead.
+_COLS_ATRIBUICAO = (
+    "utm_source", "utm_medium", "utm_campaign", "utm_content",
+    "url_conversao", "evento_conversao", "contenido_conversao",
 )
 
 # Normalizacao de pais (para agrupamentos; pais e recorte, nao filtro)
@@ -115,30 +199,87 @@ VALOR_USD = "NULLIF(regexp_replace(coalesce(value,''), '[^0-9.]', '', 'g'), ''):
 
 # ============ FILTRO CM LATAM ============
 
+def sinal_origem_propria(alias: str = '') -> str:
+    """SQL: a origem do lead esta registrada numa LP propria (evento/webinar/material).
+
+    `evento_conversao` e `contenido_conversao` guardam a URL do **primeiro toque** com a
+    UTM completa (campanha, criativo e ate o adset), enquanto `url_conversao` costuma
+    guardar so o ultimo toque — muitas vezes uma pagina comercial sem UTM nenhuma.
+    Foi assim que o cierre da Agencia La Firma (deal 43258) ficou fora do CM ate
+    2026-08-11: url_conversao = /es/freetrial/ sem UTM, com o anuncio Meta ->
+    webinar.buzzmonitor.com/social-listening-mayo-2026-latam preservado no evento_conversao.
+
+    Sinal restrito a DOMINIO proprio: essas duas colunas so aparecem preenchidas com LP
+    nossa (contenido/conteudo.getbuzzmonitor.com, webinar.*), entao dominio basta e nao ha
+    risco de arrastar trafego de terceiro.
+
+    **E restrito ao escopo da dashboard: conteudo + webinar ONLINE.** LP de evento
+    PRESENCIAL derruba o sinal, mesmo morando no dominio de conteudo — ver
+    EVENTO_PRESENCIAL_MARCADORES. O marcador e testado tambem contra `utm_campaign`
+    porque a LP do BuzzTalks Argentina tem slug de conteudo e so a campanha denuncia.
+    """
+    a = (alias + '.') if alias else ''
+    ors = []
+    for col in ('evento_conversao', 'contenido_conversao'):
+        for dom in ORIGEM_DOMINIOS_PROPRIOS:
+            ors.append(f"COALESCE({a}{col}, '') ILIKE '{dom}'")
+    proprio = "(\n            " + "\n            OR ".join(ors) + "\n          )"
+
+    presencial = []
+    for marc in EVENTO_PRESENCIAL_MARCADORES:
+        for col in ('evento_conversao', 'contenido_conversao', 'utm_campaign'):
+            presencial.append(f"COALESCE({a}{col}, '') ILIKE '{marc}'")
+    fora = "(\n            " + "\n            OR ".join(presencial) + "\n          )"
+
+    return f"""(
+          {proprio}
+          AND NOT {fora}
+        )"""
+
+
 def filtro_cm_latam(alias: str = '') -> str:
     """SQL do filtro Content Marketing LATAM. `alias` prefixa as colunas (ex: 'd').
 
     Estrutura:
       (1) URL FORTE (plataforma-completa / oferta) => CM **independente da UTM**
           (sobrepoe ate google+cpc). Ver URL_FORTE_CM.
+      (1b) SINAL DE ORIGEM PROPRIA em evento_conversao / contenido_conversao =>
+          CM independente da UTM e da url_conversao. Restrito a conteudo/webinar
+          ONLINE (evento presencial fica fora) e sem sobrepor Google Ads nem
+          URLS_FORA_CM. Ver sinal_origem_propria().
       (2) Regra geral: exclui Google Ads (google/google_es + cpc) E exige
-          dominio de conteudo OU fonte social/owned da whitelist; E exclui URLs
+          dominio de conteudo OU fonte social/owned da whitelist OU campanha
+          propria de evento/webinar/oferta (CM_CAMPANHAS_LIKE); E exclui URLs
           comerciais (planes / freetrial / personalizar-el-plan) que vem SEM UTM
           (null/vazia/'null' literal) — sem atribuicao = sem CM.
-      (3) Wrapper externo (sempre exclui): URLs fora de CM (URLS_FORA_CM, ex.:
-          /buzzmonitor-institucional) — independente de UTM. Usa COALESCE pra
-          nao derrubar deals com url_conversao IS NULL (NULL ILIKE = NULL = falsy
-          no NOT).
+      (3) Wrapper externo: URLs fora de CM (URLS_FORA_CM, ex.: /buzzmonitor-institucional)
+          — **salvo** quando ha sinal de origem propria (1b), porque nesse caso a
+          institucional foi so o ultimo toque e a origem real esta registrada.
+          Usa COALESCE pra nao derrubar deals com url_conversao IS NULL (NULL ILIKE =
+          NULL = falsy no NOT).
     """
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES_LATAM)
     url_forte = "\n      OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in URL_FORTE_CM)
     urls_excluir = ", ".join(f"'{u}'" for u in URLS_COMERCIAIS_SEM_UTM_EXCLUIR)
     url_fora = "\n        OR ".join(f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in URLS_FORA_CM)
+    campanhas = "\n            OR ".join(
+        f"lower(coalesce({a}utm_campaign,'')) LIKE '{p}'" for p in CM_CAMPANHAS_LIKE)
+    origem = sinal_origem_propria(alias)
+    campanha_presencial = "\n        OR ".join(
+        f"COALESCE({a}utm_campaign, '') ILIKE '{m}'" for m in EVENTO_PRESENCIAL_MARCADORES)
     return f"""(
       (
         -- (1) sinal forte de URL — CM independente da UTM
         {url_forte}
+        -- (1b) origem registrada em LP propria (evento/webinar/material).
+        -- Diferente de (1), NAO sobrepoe a exclusao de Google Ads: uma campanha de Search
+        -- que cai numa LP nossa continua sendo Ads, nao Content Marketing (decisao Victor
+        -- 2026-08-11). Sem esta guarda, entravam ~muitas [CA]/[CH]/[CO][Search] all-time.
+        OR (
+          NOT (lower(coalesce({a}utm_source,'')) LIKE 'google%' AND lower(coalesce({a}utm_medium,'')) = 'cpc')
+          AND {origem}
+        )
         -- (2) regra geral (exclui Google Ads + URLs comerciais sem atribuicao)
         OR (
           NOT (lower(coalesce({a}utm_source,'')) LIKE 'google%' AND lower(coalesce({a}utm_medium,'')) = 'cpc')
@@ -151,37 +292,83 @@ def filtro_cm_latam(alias: str = '') -> str:
             OR lower({a}utm_source) IN ({sources})
             OR lower({a}utm_source) LIKE 'instagram%'
             OR lower({a}utm_source) LIKE 'facebook%'
+            -- campanha propria de evento/webinar/oferta (ultimo toque pode ser o deck,
+            -- o e-mail pos-webinar ou o QR do evento — a campanha e que identifica o CM)
+            OR {campanhas}
           )
         )
       )
-      -- (3) wrapper externo: URLs fora de CM sempre (independente de UTM)
+      -- (3) wrapper externo: URLs fora de CM sempre (independente de UTM ou de origem).
+      -- O override por origem propria foi REVERTIDO em 2026-08-11: deixava entrar o deal
+      -- 40128 (New Athletic), cuja url_conversao e a institucional com
+      -- utm_source=google&utm_medium=cpc&utm_campaign=[LATAM][Search][Competencia-listening]
+      -- (busca por "synthesio") — Google Ads, nao conteudo.
       AND NOT (
         {url_fora}
+      )
+      -- (4) escopo da dashboard: conteudo + webinar ONLINE. Campanha de evento PRESENCIAL
+      -- (BuzzTalks, Cafe con Buzz, Merca2.0, Buzzmonitor Connect, Spark Summit) sai —
+      -- tem dashboard propria. Decisao Victor 2026-08-11.
+      AND NOT (
+        {campanha_presencial}
       )
     )"""
 
 
 def _leads_subquery() -> str:
-    """Subquery dos leads: inbound UNION outbound, **dedup SEMPRE por id** (nunca por UTM).
+    """Subquery dos leads: inbound UNION outbound, **dedup SEMPRE por id** (nunca por UTM),
+    depois **enriquecida** com a linha de mesmo id em `contratos`.
 
     Desempate quando o mesmo id aparece nas 2 tabelas (73 casos): fica com o registro
     mais COMPLETO (url/utm preenchidos) e, em empate, o mais recente. A chave de dedup
     e o id; completude e so criterio de desempate.
+
+    **Enriquecimento por contratos (2026-08-11).** A mesma deal costuma existir nas duas
+    pontas com preenchimento diferente: o deal 43258 (Agencia La Firma) esta 100% cego no
+    inbound — utm_* e url_conversao todos NULL — enquanto a linha de contratos guarda
+    url_conversao + evento_conversao com a UTM inteira do anuncio Meta que originou o lead.
+    Como o filtro CM so lia inbound/outbound, esse rastro era jogado fora e o lead (que
+    fechou USD 390) nunca contou como Content Marketing.
+
+    O LEFT JOIN **so preenche buraco**: cada coluna de atribuicao fica com o valor do lead
+    e cai pra contratos apenas quando o lead vem vazio. A populacao de leads nao muda
+    (contratos nao entra como fonte de linhas novas) e nenhuma coluna de funil — data,
+    status, dono — e tocada; essas seguem sendo as da linha do lead.
+
+    Valores-lixo ('' e a string literal 'null', comuns na ponta de contratos) sao tratados
+    como vazio nos DOIS lados, senao um 'null' textual venceria o COALESCE e mascararia o
+    dado bom.
     """
     _excl = ", ".join(str(i) for i in sorted(DEALS_TESTE_EXCLUIR_LATAM))
     where_excl = f"WHERE id NOT IN ({_excl})" if _excl else ""
+
+    def _limpo(expr: str) -> str:
+        """'' e 'null' literal contam como ausente."""
+        return f"NULLIF(NULLIF(TRIM({expr}), ''), 'null')"
+
+    atrib = ",\n        ".join(
+        f"COALESCE({_limpo('d.' + c)}, {_limpo('k.' + c)}) AS {c}" for c in _COLS_ATRIBUICAO)
+    outras = [c.strip() for c in _LEAD_COLS.split(',')]
+    outras = ",\n        ".join(f"d.{c}" for c in outras if c not in _COLS_ATRIBUICAO)
+
     return f"""(
-      SELECT DISTINCT ON (id) {_LEAD_COLS}
+      SELECT
+        {outras},
+        {atrib}
       FROM (
-        SELECT {_LEAD_COLS} FROM deals_latam_inbound_staging
-        UNION ALL
-        SELECT {_LEAD_COLS} FROM deals_latam_outbound_staging
-      ) u
-      {where_excl}
-      ORDER BY id,
-        (url_conversao IS NOT NULL AND url_conversao <> '') DESC,
-        (utm_source IS NOT NULL) DESC,
-        mdate DESC NULLS LAST
+        SELECT DISTINCT ON (id) {_LEAD_COLS}
+        FROM (
+          SELECT {_LEAD_COLS} FROM deals_latam_inbound_staging
+          UNION ALL
+          SELECT {_LEAD_COLS} FROM deals_latam_outbound_staging
+        ) u
+        {where_excl}
+        ORDER BY id,
+          (url_conversao IS NOT NULL AND url_conversao <> '') DESC,
+          (utm_source IS NOT NULL) DESC,
+          mdate DESC NULLS LAST
+      ) d
+      LEFT JOIN deals_latam_contratos_staging k ON k.id = d.id
     )"""
 
 
@@ -419,13 +606,16 @@ if __name__ == '__main__':
         cur.execute("SET statement_timeout = '120s'")
         def scalar(sql, idx=0):
             cur.execute(sql); r = cur.fetchone(); return r[idx] if r else None
-        print("== Self-test LATAM (apos exclusao buzzmonitor-institucional 2026-06-08: ~6074 all-time, ~525 em 2026) ==")
+        print("== Self-test LATAM (apos origem propria + enriquecimento por contratos + escopo"
+              " conteudo/webinar 2026-08-11: ~5716 all-time, ~694 em 2026) ==")
         cur.execute(q_count_kpis(all_ini, all_fim)); a = cur.fetchone()
         print(f"  CM all-time: leads={a[0]} ce={a[1]} reunion={a[2]}")
         cur.execute(q_count_kpis(y_ini, y_fim)); y = cur.fetchone()
         print(f"  CM 2026:     leads={y[0]} ce={y[1]} reunion={y[2]}")
         # Definicao ampliada de fechado (2026-06-06): status='Ganho' OU pagamento/contrato/cierre
-        # reais; valor pela coluna `value` (USD). Espera ~34 all-time CM, ~7 em 2026 (com data real).
+        # reais; valor pela coluna `value` (USD). Espera ~30 all-time CM (USD ~16.195) e ~4 em
+        # 2026 (USD ~1.760). Em 2026-08-11 entrou 1 (La Firma, webinar) e sairam 2 de evento
+        # presencial (Doblegiro/BuzzTalks_Chile, Pipe Toro/BuzzConnect).
         cur.execute(q_count_fechamentos(all_ini, all_fim)); fa = cur.fetchone()
         print(f"  Fechamentos CM all-time: {fa[0]} · USD {fa[1]}")
         cur.execute(q_count_fechamentos(y_ini, y_fim)); fy = cur.fetchone()

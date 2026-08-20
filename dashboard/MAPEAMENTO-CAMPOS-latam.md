@@ -22,8 +22,19 @@ usar a mesma lógica**, com duas diferenças de fonte de dados descobertas na au
    (utm_source + URL), não pelo nome da tabela nem por `origen_del_lead`** (ambos não confiáveis:
    há leads de conteúdo marcados como "Outbound").
 
-**Tamanho atual (filtro abaixo, histórico / 2026):** ~1.011 / 207 leads CM · ~65 fechamentos CM.
-A cobertura cresce quando o gap de ETL do `inbound` for corrigido.
+**Tamanho atual (filtro abaixo, histórico / 2026):** ~5.716 / 694 leads CM · ~30 fechamentos CM
+(USD 16.195), sendo 4 em 2026 (USD 1.760). A cobertura cresce quando o gap de ETL do `inbound`
+for corrigido.
+
+> **ESCOPO (decisão Victor 2026-08-11):** esta dashboard mede **conteúdo + webinar online**.
+> **Evento presencial não entra** — Café con Buzz, Merca2.0, BuzzTalks, Buzzmonitor Connect e
+> Spark Summit têm dashboard própria, mesmo tendo LP no nosso domínio de conteúdo. Ver §2.3.
+
+> **Atualização 2026-08-11 — origem própria.** O filtro passou a ler `evento_conversao` e
+> `contenido_conversao`, e o subquery de leads passou a ser enriquecido pela linha de mesmo `id`
+> em `contratos`. Ver §2.1 e §3.1. Delta líquido: **histórico** +492 leads, cierres 30 → 30
+> (USD −70: entrou La Firma +390, saíram Doblegiro −460 e Pipe Toro, ambos presenciais);
+> **2026** +13 leads, +5 reuniões, cierres 3 → 4 (USD 1.370 → 1.760).
 
 ---
 
@@ -91,6 +102,107 @@ populados, refinar aqui (hoje têm cobertura quase nula).
 
 ---
 
+## 2.1 Sinal de origem própria — `evento_conversao` / `contenido_conversao`
+
+> Decisão Victor 2026-08-11. Implementado em `sinal_origem_propria()` (branch **1b** do filtro).
+
+`url_conversao` guarda o **último toque**; `evento_conversao` e `contenido_conversao` guardam o
+**primeiro** — a URL da LP com a UTM inteira, inclusive campanha, criativo e adset. Quando o último
+toque é uma página comercial sem UTM, o filtro antigo jogava fora um lead perfeitamente rastreado.
+
+**Caso que motivou a regra — deal 43258, Agencia La Firma (Chile), USD 390:**
+
+| Coluna | Valor |
+|---|---|
+| `url_conversao` | `https://getbuzzmonitor.com/es/freetrial/` (página comercial, `utm_source` = `'null'`) |
+| `evento_conversao` | `https://webinar.buzzmonitor.com/social-listening-mayo-2026-latam?utm_source=meta&utm_medium=Instagram_Feed&utm_campaign=[LATAM][Webinar-Social-Listening]&utm_content=WEBINAR+Social+Listening+Feed+AD+4&adset=01+-+Interesses+Marca` |
+
+Anúncio Meta → LP do webinar → freetrial. CM puro, e mesmo assim caía na regra
+`URLS_COMERCIAIS_SEM_UTM_EXCLUIR` ("sem atribuição, sem CM") porque a atribuição estava na coluna ao lado.
+
+**Regra:** a origem conta como CM quando `evento_conversao` **ou** `contenido_conversao` aponta para
+domínio próprio (`ORIGEM_DOMINIOS_PROPRIOS`: `getbuzzmonitor.com` — cobre `contenido.*` e `conteudo.*` —,
+`webinar.`, `material.` e `content.buzzmonitor.com`). Domínio basta: na prática essas duas colunas **só**
+aparecem preenchidas com LP nossa, então não há risco de arrastar tráfego de terceiro.
+`evento.buzzmonitor.com` ficou **de fora** — é o domínio dos eventos presenciais (§2.3).
+
+Três guardas deliberadas:
+
+1. **Não sobrepõe a exclusão de Google Ads.** Diferente do sinal forte de URL (1), campanha de Search
+   que cai numa LP nossa continua sendo Ads. Sem essa guarda entravam ~37 leads de `[CA]`/`[CH]`/`[CO][Search]`
+   no histórico.
+2. **Não sobrepõe `URLS_FORA_CM`.** Tentamos permitir o override e deu errado: o deal 40128
+   (New Athletic, USD 590) entrou como CM tendo `url_conversao` =
+   `buzzmonitor-institucional?utm_source=google&utm_medium=cpc&utm_campaign=[LATAM][Search][Competencia-listening]&utm_term=synthesio`
+   — busca paga por concorrente. Revertido em 2026-08-11.
+3. **Escopo conteúdo/webinar.** LP de evento presencial derruba o sinal, mesmo no domínio de conteúdo (§2.3).
+
+> **⚠️ `evento_conversao` NÃO é garantidamente o primeiro toque.** Ele registra a LP de evento em que o
+> contato se inscreveu **em qualquer momento**, inclusive depois de fechar. No deal 40128 a inscrição no
+> Café con Buzz é de **24/06** e o negócio fechou em **29/01** — cinco meses antes. Ao usar esse campo para
+> atribuir, confira a cronologia (`fecha_de_inscripcion_evento` no contato) antes de concluir.
+
+## 2.2 Campanhas e fontes próprias de evento/webinar
+
+Quando o lead vem de webinar ao vivo, o `utm_source` gravado costuma ser o **material do último toque**
+(o deck exibido na tela, o e-mail pós-webinar, o QR do evento presencial) e não o anúncio que trouxe a
+pessoa. Exemplo: `Oferta_Webinar_Social_Listening` / `Slides` / `Stream_en_vivo` — os leads
+`emendoza@preciso.pe` (deal 43327), `wmarshall@grupodiniz.com.mx` (43328) e
+`lauracastanedalemus@gmail.com` (43332), todos com reunião marcada.
+
+Esses casos já passavam pelo domínio de conteúdo na `url_conversao`. Para que **não dependam** dela
+(mesmo modo de falha da La Firma), foram adicionados:
+
+- **`CM_UTM_SOURCES_LATAM`** += `slides`, `qr_code`, `newsletter`, `sitio_web`.
+- **`CM_CAMPANHAS_LIKE`** (novo): `oferta_%`, `%webinar%`, `%material rico%` / `%material+rico%`
+  — match sobre `lower(utm_campaign)`.
+
+Ambos ficam **dentro** da regra geral (2), logo a exclusão de Google Ads continua valendo por cima.
+Hoje as duas adições somam **0 leads novos** (todos já entravam pela URL): são rede de proteção para
+quando a `url_conversao` vier vazia.
+
+`qr_code` foi avaliado e **rejeitado** — QR é crachá de evento presencial (§2.3).
+
+---
+
+## 2.3 Escopo: conteúdo + webinar ONLINE (evento presencial fica fora)
+
+> Decisão Victor 2026-08-11, a partir da auditoria dos 8 cierres de 2026.
+
+Esta dashboard mede Content Marketing: material rico, blog, estudos e **webinar online**.
+**Evento presencial tem dashboard própria e não conta aqui**, mesmo com LP hospedada em
+`contenido.getbuzzmonitor.com`.
+
+Reprovados na auditoria (todos saíram):
+
+| Deal | Valor | Por quê |
+|---|---|---|
+| 40128 New Athletic | USD 590 | `cafe-con-buzz-peru-2026` — e o último toque real era Google Search |
+| 39162 Smilehood | USD 605 | campanha `BuzzTalks_Argentina`, `origen_del_lead = Outbound` |
+| 43197 TLP MX | USD 390 | `merca20-mayo-2026` |
+| 43484 News Monitor | USD 390 | `cafe-con-buzz-peru-2026`, `como_conocio = OUTBOUND` |
+
+`EVENTO_PRESENCIAL_MARCADORES` cobre `buzztalk`, `cafe-con-buzz` / `cafeconbuzz`, `merca20`,
+`merca-25`, `buzzmonitor-connect`, `buzzconnect`, `spark`, `registro-evento` e o domínio
+`evento.buzzmonitor.com`.
+
+**O marcador é aplicado em dois lugares, com escopos diferentes de propósito:**
+
+1. **Em `sinal_origem_propria()`** — testado contra `evento_conversao`, `contenido_conversao` **e**
+   `utm_campaign`. A LP presencial nunca pode ser o que faz o lead virar CM. O teste precisa incluir a
+   campanha porque a LP do BuzzTalks Argentina tem slug de conteúdo
+   (`social-listening-que-guia-decisiones-no-reportes`) e só o nome da campanha a denuncia.
+2. **No wrapper (4) do filtro** — testado **só contra `utm_campaign`**, porque a campanha é o que gerou
+   o lead. Deliberadamente **não** aplicamos ao `evento_conversao`/`url_conversao` aqui: o deal 43327
+   (Preciso, campanha `Oferta_Webinar_Social_Listening`) converteu **no webinar** e tem `cafe-con-buzz`
+   apenas como toque posterior — segue CM. Mesma lógica no 42834 (`[LATAM][Remarketing]` →
+   `plataforma-completa`, com `buzztalk` de toque lateral).
+
+Um wrapper cego em qualquer coluna derrubaria esses dois. A pergunta certa não é "esse lead
+encostou num evento presencial?", e sim "**o evento presencial foi a conversão dele?**".
+
+---
+
 ## 3. Atribuição (sem regra de 90 dias)
 
 O Brasil usa `account_id` + janela de 90 dias para atribuir eventos pós-conversão. **A LATAM não tem
@@ -101,6 +213,27 @@ O Brasil usa `account_id` + janela de 90 dias para atribuir eventos pós-convers
   Sem janela cross-table de 90 dias (não há chave de conta para ligar).
 - **Dedup:** por `id` do deal (não há dedup por pessoa — `dim_contacts` vazia). Reativar dedup por email
   quando uma fonte de contatos for populada.
+
+## 3.1 Enriquecimento do lead pela linha de `contratos`
+
+> Decisão Victor 2026-08-11. Implementado em `_leads_subquery()`.
+
+A mesma deal existe nas duas pontas com preenchimento **diferente**. O deal 43258 está 100% cego no
+`inbound` (`utm_*` e `url_conversao` todos `NULL`) enquanto a linha de `contratos` do mesmo `id` guarda
+`url_conversao` + `evento_conversao` com a UTM inteira. Como o subquery de leads só lia
+inbound ∪ outbound, esse rastro era descartado.
+
+Depois do dedup por `id`, entra um `LEFT JOIN deals_latam_contratos_staging ON id`, com três limites:
+
+1. **Só preenche buraco.** Cada coluna de `_COLS_ATRIBUICAO` fica com o valor do lead e cai para
+   contratos apenas quando o lead vem vazio. O que já estava preenchido nunca é sobrescrito.
+2. **Não cria linha.** `contratos` não é fonte de leads novos — a população continua sendo
+   inbound ∪ outbound. Só a atribuição é completada.
+3. **Não toca o funil.** Data, status, dono, `fecha_de_reunion` seguem sendo os da linha do lead.
+
+`''` e a string literal `'null'` contam como ausente **nos dois lados** — sem isso um `'null'` textual
+venceria o `COALESCE` e mascararia o dado bom (é exatamente o `utm_source` da linha de contratos da
+La Firma).
 
 ---
 
