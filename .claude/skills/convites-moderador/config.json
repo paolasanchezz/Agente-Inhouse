@@ -1,34 +1,41 @@
 {
   "series": {
-    "17689": {
-      "label": "Cxpress (Conheça a Cxpress)",
-      "moderator_email": "lilian.longo@gocxpress.com.br",
+    "17727": {
+      "label": "Buzzcreators (09:40 BRT)",
+      "moderator_emails": ["gabriel.leal@buzzmonitor.com.br", "lucas.campos@buzzmonitor.com.br"],
       "lang": "br"
     },
-    "17671": {
-      "label": "Cxpress Vozxpress (Case IA de Voz)",
-      "moderator_email": "lilian.longo@gocxpress.com.br",
-      "lang": "br"
-    },
-    "17701": {
-      "label": "Buzzmonitor Atención al Cliente (LATAM)",
+    "17927": {
+      "label": "Buzzmonitor Tu primer listening en 5 pasos (LATAM, 09:00 MX / 12:00 BRT)",
       "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
       "lang": "es"
     },
     "17646": {
-      "label": "Buzzmonitor ¿Qué es MCP? (LATAM)",
+      "label": "Buzzmonitor ¿Qué es MCP? (LATAM, 10:00 MX / 13:00 BRT)",
       "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
       "lang": "es"
     },
-    "17727": {
-      "label": "Buzzcreators",
-      "moderator_emails": ["gabriel.leal@buzzmonitor.com.br", "lucas.campos@buzzmonitor.com.br"],
-      "lang": "br"
+    "17701": {
+      "label": "Buzzmonitor Atención al Cliente (LATAM, 11:00 MX / 14:00 BRT)",
+      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "lang": "es"
+    },
+    "17928": {
+      "label": "Buzzmonitor Caso Smart Fit (LATAM, 13:00 MX / 16:00 BRT)",
+      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "lang": "es"
+    },
+    "17929": {
+      "label": "Cxpress Por qué bloquean tu WhatsApp (LATAM, 14:00 MX / 17:00 BRT)",
+      "moderator_emails": ["laura.leon@cxpress.ai", "milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "lang": "es"
     }
   },
   "_comentarios": {
     "lang": "Idioma do email de convite enviado pelo ClickMeeting. Códigos válidos: pl, en, de, ru, es, fr, it, br. Alinhar ao idioma de quem recebe, não do webinar.",
     "moderadores": "Cada série aceita 'moderator_email' (um) OU 'moderator_emails' (lista, para vários moderadores na mesma sessão). Todos recebem role=presenter. Pode usar os dois — são somados e deduplicados.",
-    "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails."
+    "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails.",
+    "ordem": "Blocos ordenados pelo horário da sessão no dia (BRT), só pra facilitar a leitura. A ordem não afeta a execução.",
+    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado."
   }
 }
