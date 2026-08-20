@@ -500,7 +500,7 @@ const chipsWrap = document.getElementById("chips");
 chipsWrap.innerHTML =
   `<button class="chip all" data-dor="all" aria-pressed="true">Todos <span class="n">${VIDEOS.length}</span></button>` +
   DORES.map(d=>`<button class="chip" data-dor="${d.id}" aria-pressed="false" style="--cc:${d.cc}">
-     <span class="dot"></span>${d.id} · ${d.nome.split(" ").slice(0,2).join(" ")} <span class="n">${counts[d.id]}</span>
+     <span class="dot"></span>${d.id} · ${d.nome} <span class="n">${counts[d.id]}</span>
    </button>`).join("");
 
 // Filtering
