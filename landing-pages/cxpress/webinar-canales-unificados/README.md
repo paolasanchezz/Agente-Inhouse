@@ -31,14 +31,15 @@
 
 - [x] HTML gerado
 - [x] Revisao tecnica (em-dash: 0, ellipsis `&hellip;` OK, GTM 2/2, Pixel 1x, `check_gtm_region.py` OK, fidelidade de copy conferida via texto renderizado) — ver `REVISAO.md`
-- [ ] CTA integrado com link/embed real de inscricao — rodar `/lp-integrar-form` quando tiver o link
-- [ ] Publicacao — pendente PR via fluxo CI (`content.cxpress.io` esta no guarda-chuva migrado)
+- [x] Formulario integrado
+- [x] Publicacao — via fluxo CI (`content.cxpress.io` esta no guarda-chuva migrado)
+
+**Form provider:** Jotform (2026-08-20) — form ID `261303944881662`, wrapper `.jotform-embed` canonico aplicado.
 
 ## Pendencias
 
-1. **Formulario de inscricao** e mock (sem backend real) — mesmo padrao das demais LPs de webinar desta serie.
-2. **OG image** — nao gerada, aponta pro logo da marca via `{{BRAND_LOGO_PNG_PATH}}`.
-3. `{{DOMAIN}}` e `{{BRAND_LOGO_PNG_PATH}}` sao placeholders resolvidos no fluxo de publicacao (CI).
+1. **OG image** — nao gerada, aponta pro logo da marca via `{{BRAND_LOGO_PNG_PATH}}`.
+2. `{{DOMAIN}}` e `{{BRAND_LOGO_PNG_PATH}}` sao placeholders resolvidos no fluxo de publicacao (CI).
 
 ## Assets referenciados
 
