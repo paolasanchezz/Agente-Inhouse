@@ -971,6 +971,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateY(-2px);
 }
 
+/* ----- Jotform embed wrapper (canonico) -----
+   Sem padding/background/border: o provedor ja vem com card proprio.
+   A regra do iframe garante que, se o provedor renderizar via iframe, ele
+   ocupa 100% da largura sem borda. */
+.jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
 /* Footer */
 .site-footer {
   background: var(--c-purple-dark);
@@ -1115,29 +1121,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Consultoria interna do time Buzzcreators</li>
         </ul>
       </div>
-      <div class="reveal">
-        <form class="form" action="#" method="post" onsubmit="event.preventDefault()" aria-labelledby="form-title">
-          <h3 id="form-title" class="form__title">Garanta sua oferta de 50% OFF</h3>
-          <p class="form__sub">Preencha seus dados e nosso time entra em contato para ativar a condição.</p>
-          <div class="form-row">
-            <label for="f-name">Nome</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Seu nome completo" required>
-          </div>
-          <div class="form-row">
-            <label for="f-email">E-mail corporativo</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" required>
-          </div>
-          <div class="form-row">
-            <label for="f-company">Empresa</label>
-            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Nome da empresa" required>
-          </div>
-          <div class="form-row">
-            <label for="f-phone">Telefone</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" required>
-          </div>
-          <button type="submit" class="cta-primary">Quero 50% OFF</button>
-          <p class="form__legal">Ao enviar, você concorda em receber contato comercial do time Buzzcreators.</p>
-        </form>
+      <div class="jotform-embed reveal">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/252333460101643"></script>
       </div>
     </div>
   </section>
