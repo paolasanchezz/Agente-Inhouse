@@ -26,7 +26,7 @@
 - [ ] **Contraste do gradiente orange→pink** (btn-primary, cta-box, gradient-text): texto branco/14-16px fica ~2.6-4.4:1 na ponta laranja, abaixo de AA. **Identico a LP design base aprovada e no ar** (plataforma-integral-social-media) — corrigir aqui divergiria a familia visual. Se quiser resolver, o certo e escurecer o gradiente nas DUAS LPs (ex.: partir de #d95400) ou usar navy nos cta-boxes.
 - [x] **Container GTM**: Victor confirmou em 2026-08-12 — manter o container padrao de Buzz LATAM (GTM-MKQBX2MG, tracking.json).
 - [ ] **Exclamacoes**: 8+ "¡...!" replicadas da LP original (teto anti-IA = 2). Sugestao em copy.txt: manter so nos 3 CTAs de botao.
-- [ ] "Informes" (~9x) vs "reportes" (padrao LATAM): mantido "informes" por fidelidade (original + design base usam).
+- [x] **"Informes" -> "Reportes"** — decisao revertida pelo Victor em 2026-08-20. O padrao ES-LATAM e explicito ("relatorio -> reporte, NAO informe" — Regra de Ouro n3 + tabela "General y Negocios"), e a propria LP ja usava "reportes" na meta description e no hero, entao a fidelidade ao design base estava gerando incoerencia interna. Aplicado no HTML e no copy.txt nas 3 ocorrencias de copy nossa (1084, 1118, 1347). O depoimento da Cecilia Esquivel (1230) ficou intacto: e fala de terceiro. A LP design base (plataforma-integral-social-media) foi corrigida no mesmo PR.
 
 ## Melhorias opcionais
 

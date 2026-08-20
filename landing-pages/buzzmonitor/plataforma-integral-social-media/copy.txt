@@ -15,7 +15,7 @@ QUOTE: Más de 1.000 empresas y agencias ya confían en Buzzmonitor.
 TILE: Escucha social en tiempo real
 TILE: Publica y programa
 TILE: Mide y analiza resultados
-TILE: Dashboards e informes
+TILE: Dashboards y reportes
 TILE: Atención al cliente desde un solo lugar
 TILE: Ahorra costos y aumenta tu ROI
 
@@ -42,7 +42,7 @@ H2: Una solución integral para toda tu estrategia
 SUB: Todos los módulos que necesitas para operar, analizar y crecer.
 LIST ITEM: Social Listening con IA. Monitorea conversaciones, tendencias, sentimiento y menciones críticas en tiempo real.
 LIST ITEM: Analytics para decidir mejor. Convierte datos de perfiles, campañas y competidores en insights accionables.
-LIST ITEM: Dashboards e informes. Genera reportes visuales y automáticos para clientes, líderes y stakeholders.
+LIST ITEM: Dashboards y reportes. Genera reportes visuales y automáticos para clientes, líderes y stakeholders.
 LIST ITEM: Buzz Pills + AI Insights. Resume grandes volúmenes de datos y libera tiempo del equipo para la estrategia.
 LIST ITEM: Atención al cliente. Centraliza mensajes, clasifica conversaciones y responde con mayor rapidez.
 LIST ITEM: Publicación de contenidos. Planifica, aprueba y publica en tus redes desde una sola plataforma.

@@ -86,7 +86,7 @@ LIST ITEM: KPIs de atención al cliente y del equipo
 # [ASSET] print: crises-2.jpg
 
 H3: Dashboards en tiempo real
-BODY: Personaliza informes con diferentes métricas y KPIs de Social Analytics, Social Listening y Atención Multicanal para compartir con tu cliente en tiempo real de manera fácil y sencilla.
+BODY: Personaliza reportes con diferentes métricas y KPIs de Social Analytics, Social Listening y Atención Multicanal para compartir con tu cliente en tiempo real de manera fácil y sencilla.
 LIST ITEM: Dashboards con datos de listening, atención y analytics
 LIST ITEM: Secciones con análisis resumidos realizados por IA
 LIST ITEM: Compartibles externamente con contraseña
@@ -103,7 +103,7 @@ BODY: Más de 50 métricas avanzadas para medir tu rendimiento frente a la compe
 LIST ITEM: Performance de múltiples redes sociales
 LIST ITEM: Performance de la competencia
 LIST ITEM: Análisis de stories y reels
-LIST ITEM: Personalización de informes
+LIST ITEM: Personalización de reportes
 
 H3: Programación y publicación
 BODY: Planifica, programa y publica en múltiples canales de forma integrada, optimizando el tiempo y manteniendo tu presencia siempre activa.
@@ -165,7 +165,7 @@ SUB: Planes a partir de $390 USD/Mes
 BODY: Obtén acceso a varias soluciones digitales en una sola plataforma líder en el uso de IA para Social Intelligence.
 LIST ITEM: Escucha social de tus redes sociales y análisis generados por IA
 LIST ITEM: Atención multicanal optimizada por IA
-LIST ITEM: Informes de performance de tu marca y tu competencia
+LIST ITEM: Reportes de performance de tu marca y tu competencia
 LIST ITEM: Optimización de procesos y mayor productividad con IA
 LIST ITEM: Y mucho más...
 H3 (card do form): Agenda una demo
@@ -179,8 +179,9 @@ LINK: Política de Privacidad y uso de Cookies → https://getbuzzmonitor.com/es
 # Revisao linguistica / anti-IA
 # RESOLVIDO 2026-08-12: Victor aprovou "Monitoreo de Redes Sociales" (padrao ES-LATAM) no lugar
 #   de "Monitorización" da LP original.
-# [SUGESTAO idioma] "Informes" aparece 6x; padrao ES-LATAM prefere "reportes". A LP original E a
-#   LP design base (ja no ar) usam "informes", entao manter e defensavel. Nao alterado.
+# [APLICADO 2026-08-20] "Informes" -> "reportes" nas 3 ocorrencias de copy nossa. Padrao ES-LATAM
+#   e explicito (Regra de Ouro n3: informe -> reporte). O depoimento da Cecilia Esquivel mantem
+#   "informes" por ser fala de terceiro. A LP design base foi corrigida no mesmo PR.
 # [SUGESTAO anti-IA] Exclamacoes: 4 ocorrencias de "¡...!" (era 8+ na v1; o corte de secoes
 #   resolveu metade). Teto das regras e 2. Restam nos 2 CTAs, no H2 de modulos e no H2 do trial.
 #   Nao alterado (replica de LP viva; ES tolera mais que PT).
