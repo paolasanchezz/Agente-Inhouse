@@ -12,6 +12,7 @@ Comece por `DESIGN.md` — ele explica a hierarquia e como carregar os arquivos.
 ```
 brand/
 ├── DESIGN.md                        ← ponto de entrada para AI
+├── TRACKING.md                      ← containers GTM por marca/regiao + divergencias
 ├── _shared/                         ← templates base para novas marcas
 │   ├── tokens-base.json
 │   └── generation-rules-base.json
@@ -20,6 +21,7 @@ brand/
 │   ├── tokens.json                  ← design tokens W3C DTCG (cores, tipo, spacing)
 │   ├── generation-rules.json        ← regras de composicao para AI
 │   ├── BRANDBOOK.md                 ← diretrizes qualitativas, do's & don'ts
+│   ├── tracking.json                ← container GTM por regiao (ver TRACKING.md)
 │   └── assets/
 │       ├── logos/                    ← SVG/PNG por variante
 │       ├── patterns/                ← elementos visuais repetiveis
@@ -33,6 +35,7 @@ brand/
 | `brand-manifest.json` | JSON | Identidade: nome, missao, voz (escala 0-1), audience, positioning |
 | `tokens.json` | JSON (DTCG) | Valores exatos: cores, tipografia, espacamento, shadows |
 | `generation-rules.json` | JSON | Regras de composicao: landing page, ad, email, newsletter |
+| `tracking.json` | JSON | Container GTM por regiao (brasil/latam/portugal). Fonte de verdade do gate de deploy das LPs. Ver [TRACKING.md](TRACKING.md) |
 | `BRANDBOOK.md` | Markdown | Contexto qualitativo: exemplos de voz, do's & don'ts, uso de logo |
 | `assets-manifest.json` | JSON | Catalogo dos arquivos visuais com path e uso |
 
