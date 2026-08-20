@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Todos os vídeos do canal Cxpress no YouTube organizados pelas 7 dores que resolvem — atendimento, vendas, centralização de canais, métricas, API WhatsApp e mais. Busca, filtros por categoria e link direto para cada vídeo.">
+<title>Repositório de Vídeos Cxpress</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&family=Bitter:wght@600;700&display=swap">
+
+<style>
+  :root{
+    --bg:#eef0f8;
+    --surface:#ffffff;
+    --surface-2:#f8f9fe;
+    --border:#e3e5f1;
+    --ink:#232960;
+    --text:#43466a;
+    --muted:#7f83a8;
+    --royal:#4A69BD;
+    --navy:#232960;
+    --accent:#EF863C;
+    --gold:#F1A908;
+    --shadow:0 1px 2px rgba(35,41,96,.05), 0 8px 24px -12px rgba(35,41,96,.18);
+    --shadow-sm:0 1px 2px rgba(35,41,96,.06);
+
+    --c01:#4A69BD; --c02:#EF863C; --c03:#2FA79F; --c04:#E0940A;
+    --c05:#22A55B; --c06:#8A8FB5; --c07:#7A5AC4;
+
+    --ok:#1f9d57; --ok-bg:#e5f6ec;
+    --unlisted:#6f739b; --unlisted-bg:#eef0f7;
+    --private:#5b63c4; --private-bg:#ecedfb;
+    --draft:#b9820a; --draft-bg:#fdf3dc;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1030;
+      --surface:#191b3d;
+      --surface-2:#20234c;
+      --border:#31356a;
+      --ink:#eef0ff;
+      --text:#c6c9e8;
+      --muted:#9195c4;
+      --royal:#8aa0e6;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+      --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+
+      --c01:#7d94e6; --c02:#f5a161; --c03:#48c4bb; --c04:#f0b23c;
+      --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6;
+
+      --ok:#4cd08a; --ok-bg:#123324;
+      --unlisted:#a6aad2; --unlisted-bg:#242858;
+      --private:#a7aef2; --private-bg:#262a5e;
+      --draft:#f0b23c; --draft-bg:#3a2f10;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1030; --surface:#191b3d; --surface-2:#20234c; --border:#31356a;
+    --ink:#eef0ff; --text:#c6c9e8; --muted:#9195c4; --royal:#8aa0e6;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+    --c01:#7d94e6; --c02:#f5a161; --c03:#48c4bb; --c04:#f0b23c;
+    --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6;
+    --ok:#4cd08a; --ok-bg:#123324;
+    --unlisted:#a6aad2; --unlisted-bg:#242858;
+    --private:#a7aef2; --private-bg:#262a5e;
+    --draft:#f0b23c; --draft-bg:#3a2f10;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Source Sans 3", system-ui, -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Brand header (always light: logo is fixed navy) ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    background:var(--bg);
+    padding:14px 0 10px;
+  }
+  .brandcard{
+    position:relative;overflow:hidden;
+    background:#ffffff;
+    border-radius:20px;
+    box-shadow:0 6px 22px -10px rgba(35,41,96,.35);
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:22px 30px 22px 26px;
+    min-height:96px;
+  }
+  .blob{position:absolute;top:0;left:0;pointer-events:none}
+  .brand-logo{position:relative;z-index:2;display:flex;align-items:center;padding-left:64px}
+  .brand-logo svg{height:38px;width:auto;display:block}
+  .brand-title{position:relative;z-index:2;text-align:right;line-height:1.12;color:var(--navy);font-family:"Open Sans",sans-serif}
+  .brand-title .t1{display:block;font-size:clamp(16px,2.4vw,25px);font-weight:600}
+  .brand-title .t2{display:block;font-size:clamp(22px,3.6vw,38px);font-weight:800;letter-spacing:-.01em}
+
+  /* ---------- Intro ---------- */
+  .intro{padding:22px 0 6px}
+  .kicker{
+    font-family:"Bitter",serif;font-weight:700;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;margin:0 0 8px
+  }
+  .intro h1{
+    font-family:"Open Sans",sans-serif;font-weight:800;color:var(--ink);
+    font-size:clamp(24px,4vw,34px);line-height:1.12;margin:0 0 10px;text-wrap:balance
+  }
+  .intro p{margin:0;max-width:65ch;color:var(--text)}
+  .stats{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;color:var(--muted);font-size:14px}
+  .stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+  /* ---------- Filter bar ---------- */
+  .filterbar{
+    position:sticky;top:120px;z-index:30;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    padding:12px 0;margin-top:12px;
+    border-bottom:1px solid var(--border);
+  }
+  .search{position:relative;margin-bottom:12px}
+  .search input{
+    width:100%;padding:12px 16px 12px 44px;
+    border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);color:var(--ink);
+    font-family:inherit;font-size:15.5px;box-shadow:var(--shadow-sm);
+  }
+  .search input::placeholder{color:var(--muted)}
+  .search input:focus{outline:2px solid var(--royal);outline-offset:1px;border-color:transparent}
+  .search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 13px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--border);background:var(--surface);
+    color:var(--text);font-family:inherit;font-size:13.5px;font-weight:600;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .chip:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+  .chip:focus-visible{outline:2px solid var(--royal);outline-offset:2px}
+  .chip .dot{width:10px;height:10px;border-radius:50%;background:var(--cc,var(--muted));flex:none}
+  .chip .n{color:var(--muted);font-variant-numeric:tabular-nums;font-weight:600}
+  .chip[aria-pressed="true"]{
+    color:#fff;border-color:transparent;
+    background:var(--cc,var(--royal));
+  }
+  .chip[aria-pressed="true"] .dot{background:rgba(255,255,255,.9)}
+  .chip[aria-pressed="true"] .n{color:rgba(255,255,255,.85)}
+  .chip.all[aria-pressed="true"]{background:var(--ink)}
+
+  /* ---------- Sections ---------- */
+  main{padding:8px 0 60px}
+  .section{padding-top:34px;scroll-margin-top:210px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;border-top:2px solid var(--cc);padding-top:16px}
+  .sec-num{
+    font-family:"Bitter",serif;font-weight:700;font-size:clamp(30px,6vw,46px);
+    line-height:.9;color:var(--cc);flex:none;font-variant-numeric:tabular-nums;
+  }
+  .sec-meta{flex:1;min-width:0}
+  .sec-meta h2{
+    font-family:"Open Sans",sans-serif;font-weight:800;color:var(--ink);
+    font-size:clamp(17px,2.6vw,22px);margin:2px 0 4px;line-height:1.15;text-wrap:balance
+  }
+  .sec-meta p{margin:0;color:var(--muted);font-size:14.5px;max-width:70ch}
+  .sec-count{
+    flex:none;align-self:center;font-family:"Open Sans",sans-serif;font-weight:700;
+    color:var(--cc);background:color-mix(in srgb, var(--cc) 14%, var(--surface));
+    padding:5px 12px;border-radius:999px;font-size:14px;font-variant-numeric:tabular-nums;
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+
+  .card{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--surface);border:1px solid var(--border);
+    border-left:4px solid var(--cc);
+    border-radius:14px;padding:16px 16px 15px;box-shadow:var(--shadow-sm);
+    transition:transform .13s ease, box-shadow .13s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+  .ref{
+    font-family:"Bitter",serif;font-weight:700;color:var(--muted);
+    font-size:13px;font-variant-numeric:tabular-nums;
+  }
+  .badge{
+    font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;line-height:1.4;
+  }
+  .b-ok{color:var(--ok);background:var(--ok-bg)}
+  .b-unlisted{color:var(--unlisted);background:var(--unlisted-bg)}
+  .b-private{color:var(--private);background:var(--private-bg)}
+  .b-draft{color:var(--draft);background:var(--draft-bg)}
+  .meta-right{margin-left:auto;display:flex;gap:12px;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .meta-right .views{display:inline-flex;align-items:center;gap:4px}
+
+  .card h3{
+    font-family:"Open Sans",sans-serif;font-weight:700;color:var(--ink);
+    font-size:16px;line-height:1.28;margin:0 0 7px;
+  }
+  .card p{margin:0 0 14px;color:var(--text);font-size:14px;line-height:1.5}
+  .card .spacer{flex:1}
+  .cta{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+    background:var(--cc);color:#fff;text-decoration:none;
+    font-family:"Open Sans",sans-serif;font-weight:700;font-size:13.5px;
+    padding:9px 15px;border-radius:9px;
+    transition:filter .12s ease, transform .12s ease;
+  }
+  .cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .cta:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .cta svg{flex:none}
+  .cta.disabled{background:var(--surface-2);color:var(--muted);border:1px dashed var(--border);pointer-events:none;font-weight:600}
+
+  .empty{display:none;text-align:center;color:var(--muted);padding:60px 0;font-size:16px}
+  .empty.show{display:block}
+  .section.hide,.card.hide{display:none}
+
+  footer{border-top:1px solid var(--border);padding:26px 0 40px;color:var(--muted);font-size:13px}
+  footer b{color:var(--text)}
+
+  @media (max-width:640px){
+    .filterbar{top:104px}
+    .section{scroll-margin-top:250px}
+    .brand-logo{padding-left:52px}
+    .grid{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandcard">
+      <svg class="blob" width="150" height="120" viewBox="0 0 150 120" fill="none" aria-hidden="true">
+        <path d="M0 0H150C150 0 128 4 96 30C64 56 60 84 24 100C4 109 0 120 0 120Z" fill="#F1A908" opacity="0"/>
+        <path d="M0 0H92C92 44 56 82 0 84Z" fill="#EF863C"/>
+        <path d="M0 0H60C60 30 34 56 0 58Z" fill="#4A69BD"/>
+      </svg>
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 310.5" role="img" aria-label="Cxpress">
+          <g fill="#232960">
+            <path d="M717.2,204.2l-25.2-28.6c-2.8-3-2.8-7.8,0-10.8l22.9-25.2c4.8-5.3.9-13.6-6-13.6h-3.2c-2.3,0-4.6.9-6.2,2.8l-20.3,23.3c-3.2,3.7-9,3.7-12.2.2l-29.3-32.3c-3-3.2-8.3-3.5-11.5-.5l-1.2,1.2c-3.2,3-3.5,8.1-.5,11.5l28.4,31.4c2.1,2.3,2.8,5.8,1.4,8.8-3.7,8.3-10.6,15.5-17.8,20.8-9.2,6.7-20.1,8.5-33,8.5s-20.8-2.1-28.9-6c-8.3-3.9-14.5-9.7-19.2-17.1s-6.7-15.9-6.7-25.6,2.1-18.5,6.2-25.9c4.2-7.4,9.9-12.9,17.5-16.9,7.6-3.9,16.4-6,26.5-6s6.9.2,10.2.9c7.4,1.4,15-2.1,18.2-8.8l.2-.7c.9-2.1.2-4.6-1.8-5.3h0c-9.2-3.7-16.2-5.5-27-5.5s-27.9,2.8-39,8.3c-11.1,5.5-19.6,13.4-25.6,23.8-6,10.2-9,22.2-9,36s3.2,25.9,9.5,36.2c6.5,10.2,15.5,18.2,27.2,23.8,11.8,5.5,25.6,8.3,41.5,8.3s24-2.1,34.4-6.2c7.8-3.2,21.7-15.2,30.7-24,3.5-3.2,8.8-3,11.8.5l20.3,23.8c1.6,1.8,3.7,2.8,6.2,2.8h4.2c7.2-.5,10.8-8.5,6.2-13.8Z"/>
+            <path d="M734.7,255.6V126.1h21.2l.2,19.4c3.7-7.2,9.5-12.7,17.1-16.6s16.4-6,26.3-6,19.4,2.1,27.5,6.2,14.3,9.9,18.7,17.3c4.4,7.4,6.7,15.9,6.7,25.6s-2.3,18.2-6.7,25.6c-4.4,7.4-10.6,13.2-18.5,17.3-7.8,4.2-17.1,6.2-27.5,6.2s-18.5-2.1-26.1-6c-7.6-3.9-13.4-9.5-17.3-16.4h-.2v57h-21.5v-.2ZM819.9,197.2c5.3-2.5,9.5-6,12.2-10.4,3-4.4,4.4-9.5,4.4-15s-1.4-10.6-4.4-15-6.9-7.8-12.2-10.4-11.3-3.7-18-3.7-12.7,1.2-18,3.7-9.5,6-12.2,10.4c-3,4.4-4.4,9.5-4.4,15s1.4,10.6,4.4,15,6.9,7.8,12.2,10.4,11.3,3.7,18,3.7c6.7,0,12.7-1.2,18-3.7Z"/>
+            <path d="M937.1,131.2c5.8,5.8,9,13.8,9.9,24l-18.9,5.1c-.7-6.7-2.5-11.8-6-15.5-3.5-3.7-7.8-5.5-13.2-5.5-7.8,0-14.1,3-18.5,9-4.6,6-6.9,14.3-6.9,24.7v44.8h-21.5v-91.6h18.2l2.8,17.3h.2c2.8-6.5,7.2-11.3,12.7-15.2,5.5-3.7,12-5.5,18.9-5.5s16.4,2.8,22.2,8.5Z"/>
+            <path d="M986.1,214.8c-9.5-4.2-16.9-10.2-22.2-17.8-5.3-7.6-8.1-16.2-8.1-25.9s2.5-17.8,7.4-25.2,11.8-13.2,20.5-17.3,18.7-6.2,29.8-6.2,20.3,2.1,28.9,6.2c8.3,4.2,15,9.7,19.6,17.1,4.6,7.2,6.9,15.7,6.9,24.9s-.2,5.5-.5,7.8h-89.3c1.2,7.8,5.5,14.1,13.2,18.9,7.6,4.8,16.9,7.4,27.5,7.4s16.4-1.4,24-4.4c7.6-2.8,13.2-6.5,17.1-11.1l11.3,10.6c-4.8,6.2-12.2,11.3-21.9,15.2-9.9,3.9-20.3,5.8-31.6,5.8-12.5.2-23.1-1.8-32.5-6.2ZM1046.3,164.5c-.7-7.8-4.2-14.1-10.4-18.7s-13.8-6.9-23.3-6.9-16.9,2.3-23.3,7.2c-6.5,4.8-9.9,10.8-11.1,18.5h68.1Z"/>
+            <path d="M1109.1,217.5c-7.8-2.3-14.3-5.8-19.6-10.2s-8.8-9.5-10.6-15.5l15-6.9c2.1,6,6.9,10.8,14.3,14.8,7.6,3.9,16.2,5.8,26.1,5.8s15.2-1.2,20.8-3.7c5.3-2.5,8.1-5.8,8.1-9.9s-1.8-5.8-5.8-7.8c-3.7-1.8-9.7-3.5-17.5-4.6l-19.4-2.3c-11.5-1.6-20.3-4.4-26.1-8.3-5.8-3.9-8.5-9.7-8.5-17.1s1.8-11.3,5.8-15.7c3.7-4.4,9-7.8,15.7-10.2,6.7-2.3,14.3-3.5,23.1-3.5s19.9,2.1,28.2,6.2c8.3,4.2,14.1,9.7,17.5,16.4l-14.3,7.4c-2.3-4.6-6.5-8.3-12.2-11.1-6-2.8-12.5-4.2-19.6-4.2s-12.7,1.2-17.3,3.7c-4.6,2.3-6.9,5.3-6.9,8.8s1.6,5.5,4.8,7.2c3.2,1.6,8.3,3,15.5,4.2l20.1,2.5c12.7,1.8,22.2,4.8,28.4,8.8,6.2,4.2,9.2,10.2,9.2,18s-2.1,11.5-6.2,16.2-9.9,8.3-17.3,10.6c-7.4,2.5-15.7,3.7-24.9,3.7-9.7.5-18.2-.9-26.1-3.2Z"/>
+            <path d="M1220.4,217.5c-7.8-2.3-14.3-5.8-19.6-10.2s-8.8-9.5-10.6-15.5l15-6.9c2.1,6,6.9,10.8,14.3,14.8,7.6,3.9,16.2,5.8,26.1,5.8s15.2-1.2,20.8-3.7c5.3-2.5,8.1-5.8,8.1-9.9s-1.8-5.8-5.8-7.8c-3.7-1.8-9.7-3.5-17.5-4.6l-19.4-2.3c-11.5-1.6-20.3-4.4-26.1-8.3-5.8-3.9-8.5-9.7-8.5-17.1s1.8-11.3,5.8-15.7c3.7-4.4,9-7.8,15.7-10.2,6.7-2.3,14.3-3.5,23.1-3.5s19.9,2.1,28.2,6.2c8.3,4.2,14.1,9.7,17.5,16.4l-14.3,7.4c-2.3-4.6-6.5-8.3-12.2-11.1-6-2.8-12.5-4.2-19.6-4.2s-12.7,1.2-17.3,3.7c-4.6,2.3-6.9,5.3-6.9,8.8s1.6,5.5,4.8,7.2c3.2,1.6,8.3,3,15.5,4.2l20.1,2.5c12.7,1.8,22.2,4.8,28.4,8.8,6.2,4.2,9.2,10.2,9.2,18s-2.1,11.5-6.2,16.2-9.9,8.3-17.3,10.6c-7.4,2.5-15.7,3.7-24.9,3.7-9.7.5-18.2-.9-26.1-3.2Z"/>
+            <path d="M294.3,184.1c3.5-.2,6.2-3.5,5.8-7.2-.2-3.5-3.5-6.2-7.2-5.8-3.5.2-6.2,3.5-5.8,7.2.5,3.5,3.7,6,7.2,5.8Z"/>
+            <path d="M312.5,182.2c3.5-.2,6.2-3.5,5.8-7.2-.2-3.5-3.5-6.2-7.2-5.8-3.5.2-6.2,3.5-5.8,7.2.2,3.7,3.5,6.2,7.2,5.8Z"/>
+            <path d="M483.6,97c-2.3-2.5-6.7-6.7-15.5-12.7-15.2-10.8-43.4-12.7-38.5-15.2,3.2-1.6,23.8-2.1,36.7-2.1s1.2-1.6.2-1.8c-11.1-1.6-29.3-3-45.7.5-9.5,2.1-17.1,4.8-23.1,8.1-3.5,1.8-1.8,6.9,2.1,6.5,32.1-3,71.6,13.2,83.1,18.2.5.5,1.2-.7.7-1.4Z"/>
+            <path d="M388.2,136.8c-5.8-12-13.6-23.8-23.8-35.8-.9-1.2-1.8-2.3-2.8-3.2,0,0-18.7-19.6-33-29.1,3-1.2,6.5-2.3,10.2-3.7,36.9-13.6,58.2-14.8,58.2-13.2.2,5.3-16.2,16.4-11.1,18.5,3.7,1.4,13.6-14.3,37.2-20.3,14.3-3.7,26.3-1.4,24.2-5.1-4.6-8.1-48.7-5.8-82.9,3.7-17.8,4.8-34.2,10.4-46.2,14.5-13.6-6.5-27-9.2-41.1-9.2s-13.6.7-18,1.8c-3.5.9-7.6,2.3-12.2,3.9-9.2-2.5-34.6-9-62.8-13.6-35.1-5.5-78.9-3.2-82.9,5.3-1.8,3.9,9.9.5,24.7,2.5,24,3.5,35.5,18,39.2,16.2,4.8-2.5-12.7-11.8-13.2-17.1-.2-1.8,21-3,59.3,6.7,9.9,2.5,18.2,4.4,22.9,5.5-3.7,1.8-7.4,3.7-10.4,5.8-12.5,7.8-18.2,18.2-28.4,29.8-9.5,14.1-16.9,23.1-23.5,35.3h-.2c-21.9,4.8-30,19.2-32.3,25.4-.5.9.7,1.6,1.4,1.2l29.1-22.6c-3,6-6.2,12.7-9.2,21.2-4.6,12.2-6.7,35.5,9.7,67.4,16.9,24.9,37.4,50.8,115.2,50.8s86.1-12,102.9-35.5c9.5-12.9,15.9-33.2,15.5-50.6-1.4-17.3-5.3-35.1-13.4-52.6l30,18.7c.9.5,1.8-.5,1.4-1.2-3.5-5.8-12.5-18.7-33.7-21.5ZM358.9,185c-6.5,2.1-13.2,1.4-19.6-.9.7,3,1.4,6,1.6,9.2,2.5,26.1-13.8,42.2-36.5,44.3-22.6,2.1-42.7-10.4-45.2-36.5-.2-1.4-.2-2.5-.2-3.9-8.5,5.5-18.7,8.8-30.7,6.7-34.6-5.8-45.9-42.7-34.6-70.2,11.5-28.9,29.1-45.2,57.7-41.5,6.9.9,13.4,3.5,19.2,7.2l17.5,11.1c4.6,3,10.4,2.8,14.8-.5l17.5-12.9c2.5-1.8,5.5-2.8,8.8-2.8,17.3.2,30.2,14.5,39.2,30.2,10.8,17.8,17.5,52.2-9.5,60.5Z"/>
+            <path d="M454.3,122.9c-13.6-9-20.3-10.8-29.1-12-9-.9-27.5-.7-33-.7s-1.8.7-1.8,1.6c-.2.9.2,1.6.9,2.1l22.2,13.2,28.6,16.2c1.8,1.2,3.9-1.4,2.5-3l-13.4-15.2c-1.4-1.4,0-3.7,1.8-3.2l19.9,4.6c2.1.7,3.2-2.1,1.4-3.5Z"/>
+            <path d="M405.8,93.1c-1.4.2-1.4,2.3,0,2.5,9.5,1.4,26.8,4.2,39,7.8,6.2,1.8,11.1,3.5,14.8,5.1,1.4.5,2.3-1.4,1.2-2.1-10.2-7.6-29.5-17.8-54.9-13.4Z"/>
+            <path d="M154.2,74.9c-6.2-2.3-14.3-4.6-23.8-5.5-16.6-1.6-34.6,1.8-45.5,4.4-1.2.2-.7,1.8.2,1.8,12.9-1.4,33.2-3.2,36.7-1.8,5.1,2.1-22.6,6.9-36.7,19.2-7.8,6.9-12,11.5-13.8,14.3-.7.7.2,1.8,1.2,1.4,10.8-6.2,48.2-26.8,80.6-27,3.7,0,4.6-5.3,1.2-6.7Z"/>
+            <path d="M164.6,114.4c.7-.5.9-1.4.7-2.3-.2-.9-1.2-1.4-2.1-1.4-5.5.5-24,2.3-32.8,4.2-8.8,1.8-15.2,4.6-27.7,15-1.6,1.4-.2,4.2,1.8,3.5l19.2-6.7c1.8-.7,3.5,1.4,2.3,3l-11.8,16.6c-1.4,1.8.9,4.2,2.8,2.8l26.5-19.2,21-15.5Z"/>
+            <path d="M148.2,97.5c1.4-.5,1.2-2.3-.2-2.5-25.9-1.6-43.9,10.6-53.1,18.9-1.2.9.2,2.8,1.4,2.1,3.5-1.8,8.1-4.2,14.1-6.5,11.8-5.1,28.6-9.7,37.9-12Z"/>
+            <path d="M330.8,199.8c-7.4,9.2-15.9,14.1-25.2,14.8-16.6,1.2-30.5-12-30.7-12.2-1.2-1.2-3-1.2-4.2,0s-1.2,3,0,4.2,14.8,13.8,32.8,13.8h2.3c11.1-.7,20.8-6.2,29.3-16.9.9-1.2.9-3-.5-4.2-1.2-.9-3-.7-3.9.5Z"/>
+            <path d="M272.6,136.8c-.7-8.3-8.1-14.3-16.4-13.6s-14.3,8.1-13.6,16.4,8.1,14.3,16.4,13.6c8.5-.7,14.5-8.1,13.6-16.4Z"/>
+            <path d="M334.5,119.4c-8.3.7-14.3,8.1-13.6,16.4s8.1,14.3,16.4,13.6,14.3-8.1,13.6-16.4-8.1-14.5-16.4-13.6Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <span class="t1">Repositório de vídeo no</span>
+        <span class="t2">Canal do Youtube</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="intro">
+    <p class="kicker">Biblioteca de conteúdo · Cxpress</p>
+    <h1>112 vídeos do canal, organizados pela dor que cada um resolve</h1>
+    <p>Todo o acervo do YouTube da Cxpress agrupado em 7 categorias de dor. Use a busca ou os filtros por categoria para achar o vídeo certo e vá direto ao conteúdo pelo botão <b>Assistir</b>.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+</div>
+
+<div class="filterbar">
+  <div class="wrap">
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Buscar por título ou descrição…" aria-label="Buscar vídeos">
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="sections"></div>
+  <p class="empty" id="empty">Nenhum vídeo encontrado com esse filtro.</p>
+</main>
+
+<footer class="wrap">
+  <p>Fonte: canal Cxpress no YouTube · export gerado em 29 de julho de 2026 (112 vídeos). Categorização por dor feita a partir de título e descrição de cada vídeo — links de vídeos <b>não listados/privados</b> só abrem para quem estiver logado numa conta com acesso.</p>
+</footer>
+
+<script>
+const DORES = [
+  {id:"01", nome:"Automação para atendimento ao cliente", cc:"var(--c01)", def:"Bots, respostas automáticas e fluxos que atendem e dão suporte ao cliente durante ou depois da jornada."},
+  {id:"02", nome:"Automação para vendas", cc:"var(--c02)", def:"Fluxos e automações para converter, qualificar leads, fazer follow-up comercial e fechar vendas."},
+  {id:"03", nome:"Centralização de canais", cc:"var(--c03)", def:"Reunir vários canais (WhatsApp, Instagram, e-mail, chat, telefone) num só lugar / inbox unificada."},
+  {id:"04", nome:"Gestão de métricas multicanais", cc:"var(--c04)", def:"Dashboards, relatórios, indicadores e análise de desempenho entre canais."},
+  {id:"05", nome:"API WhatsApp", cc:"var(--c05)", def:"Uso da API oficial do WhatsApp: integrações, disparos, verificação, número oficial e segurança da conta."},
+  {id:"06", nome:"Misturados", cc:"var(--c06)", def:"O vídeo cobre vários temas ao mesmo tempo, sem uma dor claramente dominante."},
+  {id:"07", nome:"Institucional e eventos", cc:"var(--c07)", def:"Conteúdo de marca, cultura, bastidores, podcasts, palestras, webinars e eventos."}
+];
+
+const RAW = `
+1§01§ok§19 mar 2026§21§CXTALKS | Atendimento ao Cliente e IA: Quando a automação se torna uma vantagem competitiva§Episódio do CXTALKS sobre como a automação com IA transforma o atendimento: centraliza conversas, agiliza processos e gera decisões baseadas em dados.§n6feiqLLZMQ
+2§07§unlisted§16 dez 2025§4§Cxtalks (abertura da série)§Abertura da série CXTALKS: conversas práticas sobre como IA e automação estão a redefinir o atendimento ao cliente.§C9Z3oj_9fR8
+3§03§ok§7 nov 2025§208§Cxpress | A solução completa para centralizar e automatizar o seu atendimento§Vídeo institucional da plataforma: gestão de atendimento integrada (WhatsApp, e-mail, redes, telefone e webchat) com chatbots via ChatGPT.§7lA4FOTJw7E
+4§02§unlisted§24 out 2025§8§Agente Outbound§Apresentação do recurso de agente outbound (contato ativo) da Cxpress.§y4UNVbT1ljU
+5§01§unlisted§21 out 2025§2§Futuro do atendimento by Cxpress — Aula 2 (v2)§Segunda aula (versão 2) da série 'Futuro do atendimento'.§vSy-_1vbYe0
+6§02§unlisted§17 out 2025§10§WhatsApp para Vendas: Como Automação e IA Transformam o Caos em Resultado§Como automação e IA transformam o caos do WhatsApp em resultado de vendas.§UVwFAreL3iU
+7§01§unlisted§7 out 2025§15§Futuro do atendimento by Cxpress — Aula 1§Primeira aula da série 'Futuro do atendimento'.§0x4VW0zZTi0
+8§01§unlisted§7 out 2025§9§Futuro do atendimento by Cxpress — Aula 1 (v2)§Outra versão da primeira aula da série 'Futuro do atendimento'.§hagr523VXSE
+9§04§unlisted§12 set 2025§1§Descubra como seus dados escondem oportunidades§Como transformar dados dispersos em insights estratégicos para um atendimento mais rápido, assertivo e confiável.§tPtXfBdUAwo
+10§03§unlisted§18 ago 2025§10§Aula 2 — Do caos à clareza com a centralização§Como reunir todos os canais (WhatsApp, e-mail, redes, webchat, telefone) num só lugar aumenta produtividade e onde entram os agentes inteligentes.§qDqTf3wPBZc
+11§01§unlisted§18 ago 2025§0§aula 1§Primeira aula (arquivo de trabalho).§ZUC_louzhao
+12§01§unlisted§18 ago 2025§8§Aula 6 — O futuro do atendimento ao cliente§Encerramento do curso: uso avançado da IA para antecipar necessidades, surpreender clientes e aumentar as vendas.§xI8__AzJ9sE
+13§01§unlisted§18 ago 2025§6§Aula 5 — Como identificar gargalos e melhorar processos§Como reconhecer pontos de ineficiência no atendimento e agir na prática para resolvê-los.§4aqkMPYVBDI
+14§01§unlisted§18 ago 2025§6§Aula 4 — Personalização que fideliza§Como usar histórico e comportamento para criar experiências personalizadas que aumentam satisfação e retenção.§wegPIc13nE8
+15§01§unlisted§18 ago 2025§5§Aula 3 — O impacto da Inteligência Artificial nas equipes de atendimento§Como a IA muda o dia a dia das equipes, da triagem à personalização, atuando como aliada e não substituta.§exbz-DagOZQ
+16§01§unlisted§18 ago 2025§11§Aula 01 — Por que o atendimento ao cliente está mudando?§Fatores que transformam a relação com o cliente: novas expectativas, agilidade e o papel da tecnologia.§NPqieW4kN1s
+17§05§unlisted§13 ago 2025§8§(Teaser) Como evitar o banimento do WhatsApp do seu negócio§Teaser sobre boas práticas para evitar o banimento do WhatsApp do negócio, com apresentação da plataforma.§DWjq6i2JTis
+18§01§unlisted§13 ago 2025§3§(Teaser) 5 sinais que o seu atendimento ao cliente está desorganizado (e como resolver)§Teaser dos 5 sinais de um atendimento desorganizado e como resolver, com apresentação da plataforma.§xggdvI4AB3g
+19§01§unlisted§8 ago 2025§1§5 sinais que o seu atendimento ao cliente está desorganizado (e como resolver)§Vídeo completo: os 5 sinais de um atendimento desorganizado e como resolver com a Cxpress.§LT98TIYq2w0
+20§05§unlisted§8 ago 2025§2§Como evitar o banimento do WhatsApp do seu negócio§Vídeo completo com boas práticas para evitar o banimento do WhatsApp do negócio.§u0KC3gK4z_U
+21§05§unlisted§1 ago 2025§7§4 dicas para o WhatsApp do seu negócio§4 dicas práticas para o WhatsApp da empresa, com apresentação da plataforma multicanal Cxpress.§3G39yxzBz8c
+22§01§unlisted§25 jul 2025§8§Agentes inteligentes na experiência do cliente§Como os agentes inteligentes melhoram a experiência do cliente.§oAAjL4Sn3Cg
+23§01§unlisted§25 jul 2025§0§SAC 4.0§Vídeo sobre o conceito de SAC 4.0.§mjUzu6rPVlM
+24§07§ok§10 jul 2025§54§Mais usabilidade, segurança e suporte para o seu negócio§Destaques de usabilidade, segurança e suporte da plataforma Cxpress.§VwaFn7qqkN0
+25§04§ok§10 jul 2025§69§Gestão de dados da operação e do cliente§Como a Cxpress apoia a gestão de dados da operação e do cliente.§A_8JE-YWI_I
+26§07§ok§10 jul 2025§52§Organização e produtividade para o seu negócio§Como a Cxpress traz organização e produtividade para o negócio.§Kp5gAVysXag
+27§05§ok§1 jul 2025§65§Como criar o WhatsApp profissional da sua empresa (e integrar com redes sociais)§Como ativar o WhatsApp Business API com segurança, performance e integração total com redes sociais.§4RpsKCjGALg
+28§02§unlisted§5 jun 2025§10§(Módulo 4) Contatando seus clientes — Como cadastrar seus consumidores na Cxpress§Tutorial: como cadastrar consumidores na Cxpress (Módulo 4 — Contatando seus clientes).§HOlnaPymvOE
+29§01§unlisted§5 jun 2025§9§(Módulo 7) Chatbot — Configurar mensagem inicial, de transbordo e de conteúdos incompatíveis§Tutorial: configurar mensagem inicial, de transbordo e de conteúdos incompatíveis no chatbot (Módulo 7).§UcZcR7J9rpE
+30§01§unlisted§5 jun 2025§5§(Módulo 7) Chatbot — O que é transferência direta para Cxpress e como ativá-la§Tutorial: o que é a transferência direta para a Cxpress e como ativá-la (Módulo 7 — Chatbot).§DYc1pZEU0kw
+31§01§unlisted§5 jun 2025§7§(Módulo 7) Chatbot — Como funciona o chatbot NLP na Cxpress§Tutorial: como funciona o chatbot NLP na Cxpress (Módulo 7 — Chatbot).§I3RdQm-TKOw
+32§01§unlisted§5 jun 2025§0§(Módulo 5) Configurações — Como fazer cadastro de templates na Cxpress§Tutorial: como cadastrar templates de mensagem na Cxpress (Módulo 5 — Configurações).§0V4lQHfC7_8
+33§01§unlisted§5 jun 2025§23§(Módulo 2) Tickets e rotina — Como configurar tags de Tickets e de Consumidores§Tutorial: configurar tags de tickets e de consumidores (Módulo 2 — Tickets e rotina de atendimento).§JPj2lkANWps
+34§01§unlisted§5 jun 2025§4§(Módulo 5) Configurações — Exibição de nome de empresa e agente na Cxpress§Tutorial: exibição de nome de empresa e agente na Cxpress (Módulo 5 — Configurações).§OKjVFD-3D6k
+35§01§unlisted§5 jun 2025§72§(Módulo 1) Apresentação — Agente master e como ativá-lo na Cxpress§Tutorial: o que é o agente master e como ativá-lo (Módulo 1 — Apresentação da plataforma).§b5osAIllW5k
+36§01§unlisted§5 jun 2025§61§(Módulo 1) Apresentação — Como realizar login na Cxpress§Tutorial: como realizar login na Cxpress (Módulo 1 — Apresentação da plataforma).§CSskE-UL1A0
+37§01§unlisted§4 jun 2025§18§(Módulo 7) Chatbot — Como inserir conteúdos sobre a sua empresa no chatbot§Tutorial: como inserir conteúdos sobre a empresa no chatbot (Módulo 7 — Chatbot).§j6AUotZWJT0
+38§04§unlisted§4 jun 2025§6§(Módulo 6) Dashboard — Como extrair métricas de atendimento na Cxpress§Acompanhe o desempenho do time em tempo real e extraia as métricas de atendimento num só lugar (Módulo 6).§LHfhZPj9MHg
+39§01§unlisted§4 jun 2025§5§(Módulo 5) Configurações — Como configurar uma triagem de atendimento§Tutorial: como configurar uma triagem de atendimento (Módulo 5 — Configurações).§WrikHksRPZM
+40§01§unlisted§4 jun 2025§7§(Módulo 5) Configurações — Como criar campos customizados na Cxpress§Tutorial: como criar campos customizados na Cxpress (Módulo 5 — Configurações).§XjZeBEwxhxc
+41§01§unlisted§4 jun 2025§3§(Módulo 5) Configurações — Distribuição automática de tickets§Tutorial: como configurar a distribuição automática de tickets (Módulo 5 — Configurações).§GZxOE0l4veM
+42§01§unlisted§4 jun 2025§6§(Módulo 5) Configurações — Pesquisa de satisfação do chatbot§Tutorial: como configurar a pesquisa de satisfação do chatbot (Módulo 5 — Configurações).§J3zFPX_5CDQ
+43§01§unlisted§4 jun 2025§3§(Módulo 5) Configurações — Pesquisa de satisfação do atendimento humano§Tutorial: como configurar a pesquisa de satisfação do atendimento humano (Módulo 5 — Configurações).§hAksdI_7GPw
+44§01§unlisted§4 jun 2025§3§(Módulo 5) Configurações — Encerramento dos tickets§Otimize o tempo da equipe com a funcionalidade de tempo útil de ticket (Módulo 5 — Configurações).§67bkNtDt7nI
+45§01§unlisted§4 jun 2025§2§(Módulo 5) Configurações — Horário de atendimento da sua empresa§Até empresas sem chatbot podem sinalizar aos clientes o horário de atendimento (Módulo 5 — Configurações).§MlpREtNLEek
+46§01§unlisted§4 jun 2025§2§(Módulo 5) Configurações — Como setorizar seus atendimentos§Tutorial: como setorizar os atendimentos na Cxpress (Módulo 5 — Configurações).§hwadnaLTLyA
+47§04§unlisted§4 jun 2025§3§(Módulo 4) Contatando seus clientes — Métricas dos disparos ativos§Agende envios para a base e acompanhe os indicadores de conversão (Módulo 4 — Contatando seus clientes).§W1nHIMoLHJQ
+48§02§unlisted§4 jun 2025§24§(Módulo 4) Contatando seus clientes — Como iniciar conversas com seus clientes§Tutorial: como iniciar conversas com clientes pela Cxpress (Módulo 4 — Contatando seus clientes).§lbNL3lt0nWs
+49§01§unlisted§4 jun 2025§24§(Módulo 2) Tickets e rotina — Histórico de atendimentos§Acompanhe as conversas entre clientes e agentes pelo histórico geral ou de agentes inteligentes (Módulo 2).§aqJ9DYqDv60
+50§01§unlisted§3 jun 2025§82§(Módulo 1) Apresentação — Como cadastrar agentes na Cxpress§Adicione novos agentes à Cxpress para acessarem tickets e responderem solicitações (Módulo 1).§1lWGozugaQQ
+51§01§unlisted§27 mai 2025§110§(Módulo 1) Apresentação — Como se cadastrar na Cxpress§Atendimento por WhatsApp, e-mail, telefonia e redes, e criação de agentes inteligentes com ChatGPT em 3 passos (Módulo 1).§RJ1C5_LaZEc
+52§07§unlisted§20 mai 2025§5§Gif Cxpress§Peça curta em formato GIF da Cxpress.§JNdzuH8n5R0
+53§01§ok§2 abr 2025§216§Agilize seu atendimento com a Cxpress — Plataforma para gestão de atendimento§Vídeo institucional: plataforma integrada (WhatsApp, e-mail, redes, telefone, webchat) com agentes inteligentes via ChatGPT.§uQ_80dxT9uw
+54§03§ok§2 abr 2025§143§Centralize seu atendimento com a Cxpress — Plataforma para gestão de atendimento§Vídeo institucional: centralize o atendimento em vários canais com agentes inteligentes via ChatGPT.§BWB3O_QVrDo
+55§01§ok§17 mar 2025§8181§Agilize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (v2)§Vídeo institucional: agilize o atendimento com chatbots via ChatGPT. Fala com um especialista pelo link.§36sbDc02_DU
+56§03§ok§17 mar 2025§20§Centralize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (v2)§Vídeo institucional: centralize o atendimento em vários canais com chatbots via ChatGPT.§P0VQKQZcuCc
+57§02§ok§17 mar 2025§24§Conheça o Agente Personal Shopper da Cxpress§Agente de compras com IA que atua no WhatsApp guiando o cliente até o produto certo, reduzindo esforço e aumentando conversões.§cl6t2kQ89mg
+58§01§ok§21 fev 2025§57§Como resumir o atendimento da minha empresa e receber sugestões de melhorias?§Como a Cxpress resume atendimentos e sugere melhorias, centralizando os canais com chatbots via ChatGPT.§Mh5_54ZyY7k
+59§02§ok§20 fev 2025§87§Como escalar o atendimento do WhatsApp e gerar mais oportunidades de vendas§Webinar: potencializar o atendimento com agentes inteligentes e automação para reduzir tempo de resposta e vender mais no WhatsApp.§WAZyExsYjjE
+60§03§ok§6 fev 2025§885§Demonstração plataforma Cxpress§Demonstração completa da plataforma: centraliza e gerencia todos os canais de atendimento com chatbots via ChatGPT.§dfxipCR2vTo
+61§04§ok§6 fev 2025§38§Relatórios por IA: insights para otimizar o atendimento§Como os relatórios com IA da Cxpress geram insights para otimizar o atendimento.§BJdMIrjz9t8
+62§01§ok§6 fev 2025§74§Resolva os chamados dos seus colaboradores com agentes inteligentes (RH)§Webinar: automatizar demandas repetitivas de RH com agentes inteligentes e padronizar processos para atendimento interno.§CCLCsiPpmHk
+63§01§ok§30 jan 2025§4584§Cxpress | Organize e automatize as ligações com inteligência artificial§Solução de telefonia em nuvem com IA: PABX, ramais, relatórios automáticos e robôs de voz que atendem e ligam.§ecHUJtd5Y6g
+64§01§ok§24 jan 2025§24782§Cxpress | Telefonia sem sofrimento§Telefonia em nuvem com IA operada direto na plataforma, com relatórios automáticos, ramais e robôs de voz.§chdhj84_T4U
+65§02§ok§5 dez 2024§133§Como fazer cotação de preços de forma automatizada via WhatsApp?§Como automatizar cotação de preços via WhatsApp com chatbots via ChatGPT na plataforma Cxpress.§9uujaOfM8fw
+66§01§ok§29 nov 2024§107§Chatbots de voz no atendimento via WhatsApp§Como usar chatbots de voz no atendimento via WhatsApp.§5LQjgCs87Qs
+67§06§unlisted§30 set 2024§0§Atendimento centralizado e relatórios estratégicos por IA§Atendimento centralizado e relatórios estratégicos com IA na Cxpress — reúne centralização de canais e métricas no mesmo vídeo.§pFyZhv9FzLg
+68§01§unlisted§14 jun 2024§40§(Módulo 7) Chatbot — Como utilizar seu próprio token OpenAI na Cxpress§Tutorial: como usar o seu próprio token da OpenAI no chatbot da Cxpress (Módulo 7 — Chatbot).§rgTyqBOC5OA
+69§01§unlisted§14 jun 2024§0§(Módulo 7) Chatbot — Personalizar seu chatbot NLP com prompts de atendimento§Como definir o comportamento do chatbot (gênero, pessoa, o que não dizer) via prompts de atendimento (Módulo 7).§ehS5NCTskOc
+70§01§unlisted§14 jun 2024§44§(Módulo 7) Chatbot — Introdução ao módulo de criação de chatbots§Introdução ao módulo de criação de chatbots personalizados com a tecnologia do ChatGPT (Módulo 7 — Chatbot).§XDYyJyio-Kw
+71§01§unlisted§13 jun 2024§16§(Módulo 5) Configurações — Como classificar seus clientes e atendimentos§Tags para resumir e classificar tickets entre agentes e setores, e gerar dashboards personalizados (Módulo 5).§nWBOEfP_dKE
+72§03§unlisted§12 jun 2024§160§(Módulo 3) Canais — (E-mail) Como configurar o canal e-mail na Cxpress§Tutorial: como integrar e configurar o canal de e-mail na Cxpress (Módulo 3 — Canais).§-IVPGZohe64
+73§03§unlisted§12 jun 2024§225§(Módulo 3) Canais — (Facebook e Instagram) Como integrar suas redes sociais§Tutorial: como integrar Facebook e Instagram à Cxpress (Módulo 3 — Canais).§62pk8InJTfw
+74§03§unlisted§12 jun 2024§112§(Módulo 3) Canais — Visão geral sobre a integração de canais na Cxpress§Visão geral sobre a integração dos canais de atendimento na Cxpress (Módulo 3 — Canais).§bHMK6V0xNA4
+75§03§ok§10 jun 2024§6604§Cxpress | A plataforma que unifica e automatiza o seu atendimento§Vídeo institucional: plataforma que unifica e automatiza o atendimento em vários canais com chatbots via ChatGPT.§Dkn10pIX0yU
+76§01§unlisted§14 fev 2024§556§Agilize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (2024)§Vídeo institucional: agilize o atendimento com chatbots via ChatGPT nos principais canais.§iRfrOdrv2Fw
+77§01§unlisted§7 fev 2024§81§(Módulo 5) Configurações — Como funciona a triagem de atendimento na Cxpress§Triagem para canais com e sem chatbot integrado (Módulo 5 — Configurações).§TWcXCsKDgdY
+78§05§unlisted§24 jan 2024§147§(Módulo 3) Canais — (WhatsApp) Liberar a verificação do Gerenciador de Negócios do Facebook§Como e por que liberar a verificação da conta no Meta Business para integrar o WhatsApp (Módulo 3 — Canais).§9z92tVRPnSQ
+79§03§ok§23 jan 2024§74959§Centralize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (2024)§Vídeo institucional (o mais visto do canal): centralize o atendimento nos principais canais com chatbots via ChatGPT.§jIrhusnNA_I
+80§01§ok§23 jan 2024§124§Descubra como o atendimento receptivo pelo WhatsApp pode transformar o seu negócio!§Insights do webinar da série CX na Prática sobre atendimento receptivo pelo WhatsApp.§I9ZGbe0Zhsc
+81§01§unlisted§23 jan 2024§301§Agilize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (não listado)§Vídeo institucional: agilize o atendimento com chatbots via ChatGPT.§4k5DH_-oHxU
+82§01§ok§19 jan 2024§3585§Agilize seu atendimento com a Cxpress — Plataforma para gestão de atendimento (público)§Vídeo institucional: agilize o atendimento com chatbots via ChatGPT nos principais canais.§0_v1W8No4so
+83§01§unlisted§22 dez 2023§61§(Módulo 7) Chatbot — Versões do ChatGPT disponíveis na Cxpress§Quais versões do ChatGPT estão disponíveis para criar chatbots personalizados (Módulo 7 — Chatbot).§wV4DovJlYo0
+84§01§unlisted§22 dez 2023§105§(Módulo 2) Tickets e rotina — Como criar tarefas e lembretes na Cxpress§Organize a rotina do time criando tarefas e lembretes na Cxpress (Módulo 2 — Tickets e rotina de atendimento).§3BiSzyE9Zrc
+85§02§unlisted§22 dez 2023§161§(Módulo 4) Contatando seus clientes — Configurar um disparo ativo de mensagens§Agende envios de mensagens para a base e acompanhe indicadores de conversão (Módulo 4 — Contatando seus clientes).§YUlkVQvHnk4
+86§01§unlisted§22 dez 2023§56§(Módulo 5) Configurações — Assinatura de e-mail dos seus agentes§Configure assinaturas de e-mail personalizadas por agente e setor (Módulo 5 — Configurações).§_uhx8vCcuHk
+87§01§unlisted§22 dez 2023§93§(Módulo 5) Configurações — Como configurar mensagens rápidas na Cxpress§Cadastre atalhos de texto para respostas rápidas sem abrir mão da qualidade (Módulo 5 — Configurações).§4pJMi0jyu0g
+88§01§unlisted§22 dez 2023§99§(Módulo 5) Configurações — Autenticação multifator da sua conta§Aumente a segurança com a autenticação multifator via app ou e-mail (Módulo 5 — Configurações).§kMLNj6ndrjk
+89§04§unlisted§22 dez 2023§68§(Módulo 6) Dashboard — Como filtrar os dados de atendimento na Cxpress§Crie filtros personalizados para extrair métricas mais assertivas da equipe (Módulo 6 — Dashboard).§f7kBbIzIDgs
+90§01§unlisted§22 dez 2023§217§(Módulo 2) Tickets e rotina — Como realizar atendimentos na Cxpress§O que é um ticket e como os atendimentos são criados automaticamente na Cxpress (Módulo 2).§n9N2_Ywucbc
+91§07§ok§13 dez 2023§124§Tendências 2024: O que seu cliente espera da experiência com atendimento§Insights do webinar da série CX na Prática sobre tendências de experiência de atendimento para 2024.§N1aqsJAcxjM
+92§07§ok§17 nov 2023§60§Como fidelizar clientes com o melhor atendimento?§Trechos do webinar 'Estratégias de atendimento para fidelizar mais clientes', com Thais de Freitas (Elife).§nU_2OwzCah0
+93§05§ok§5 out 2023§74§Como garantir a segurança da sua conta comercial do WhatsApp?§Trechos do webinar sobre como evitar punições e garantir a segurança da conta comercial do WhatsApp.§OrOCYYxI82w
+94§01§ok§6 set 2023§79§Como criar um chatbot inteligente na Cxpress?§Tutorial sobre como criar um chatbot inteligente na Cxpress.§Hov3fkoYft8
+95§05§ok§1 set 2023§85§Como profissionalizar seu atendimento por WhatsApp com a API oficial?§Trechos do webinar 'WhatsApp Business API: tudo que você precisa saber', com Ariane Araújo (Cxpress).§wy2IkS7ZxPs
+96§01§private§22 ago 2023§20§Como criar um chatbot inteligente na Cxpress? (privado)§Versão privada do tutorial de criação de chatbot inteligente na Cxpress.§-WM4L3OkhwQ
+97§07§draft§rascunho§0§Episódio 25 — Do não ao bilhão, com Rodrigo Cunha, da Neurotech§Podcast com Rodrigo Cunha (CPO da Neurotech, grupo B3) sobre inovação, empreendedorismo e o timing da IA. Rascunho — ainda não publicado, sem link.§
+98§01§ok§2 ago 2023§1705§Como a automação da Cxpress funciona?§Vídeo sobre como funciona a automação da Cxpress.§pWVOjG4br4Q
+99§02§unlisted§2 ago 2023§62§Conversational Commerce — Atendimento ao cliente como ferramenta de vendas§Webinar sobre Conversational Commerce: usar o atendimento como ferramenta de vendas, com o caso Coca-Cola e boas práticas.§sR9K9_MN5Ps
+100§01§unlisted§18 jul 2023§291§O futuro dos chatbots com a chegada do ChatGPT§Webinar: como o ChatGPT transforma chatbots de atendimento e vendas, e os 3 passos para criar um chatbot.§k6M391Ad6us
+101§07§unlisted§28 jun 2023§342§Conheça a Cxpress§Vídeo de apresentação da Cxpress.§WivjhDo9Blo
+102§07§ok§23 mai 2023§17127§Como funciona a Cxpress?§Vídeo explicando como funciona a plataforma Cxpress.§ipdIpmp3SoQ
+103§01§ok§8 mai 2023§92§Como criar setores e configurar o direcionamento de tickets?§Tutorial: criar setores e configurar o direcionamento de tickets na Cxpress.§QLKsXCTbO7Q
+104§01§ok§8 mai 2023§39§Como cadastrar novos consumidores?§Tutorial: como cadastrar novos consumidores na Cxpress.§e5CHoSVg-l0
+105§01§ok§8 mai 2023§62§Como configurar o tempo útil dos tickets?§Tutorial: como configurar o tempo útil dos tickets na Cxpress.§TfG8llVngj8
+106§01§ok§8 mai 2023§58§Como adicionar novos agentes?§Tutorial: como adicionar novos agentes na Cxpress.§VARSt4PTi48
+107§01§ok§8 mai 2023§133§Como criar e editar tickets de atendimento?§Tutorial: como criar e editar tickets de atendimento na Cxpress.§wrOQliUm9MU
+108§01§unlisted§12 jan 2023§11§Como criar e editar tickets de atendimento na Cxpress?§Versão não listada do tutorial de criar e editar tickets de atendimento.§QozpxbwxbjQ
+109§07§private§20 dez 2022§3§202212201750§Vídeo privado sem título definido (nome de arquivo bruto) — sem categoria clara.§r0Hgh_fkGWk
+110§05§unlisted§19 dez 2022§3§Dúvidas na hora de implantar telefonia e WhatsApp na sua empresa?§Série sobre implantação: dá para atender todo mundo com um único número? Soluções Cxpress e Vozxpress.§UvAkiYvXkwU
+111§01§unlisted§19 dez 2022§32§Como se cadastrar na Cxpress?§Tutorial: como fazer o cadastro na Cxpress e começar o teste gratuito.§Yc0AAVZHyQI
+112§05§unlisted§21 nov 2022§55§Como ativar o canal WhatsApp no Cxpress?§Tutorial: como ativar o canal WhatsApp na Cxpress.§3ZiDjUvU1vg
+`;
+
+const STATUS = {
+  ok:{label:"Público", cls:"b-ok"},
+  unlisted:{label:"Não listado", cls:"b-unlisted"},
+  private:{label:"Privado", cls:"b-private"},
+  draft:{label:"Rascunho", cls:"b-draft"}
+};
+
+const VIDEOS = RAW.trim().split("\n").map(line=>{
+  const [n,dor,st,date,views,title,desc,id] = line.split("§");
+  return {n:+n, dor, st, date, views:+views, title, desc, id:id||""};
+});
+
+const fmt = new Intl.NumberFormat("pt-BR");
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+function playIcon(){
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+}
+function eyeIcon(){
+  return '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+}
+
+function cardHTML(v){
+  const s = STATUS[v.st];
+  const meta = `<span class="ref">#${v.n}</span>
+     <span class="badge ${s.cls}">${s.label}</span>
+     <span class="meta-right"><span>${esc(v.date)}</span><span class="views">${eyeIcon()} ${fmt.format(v.views)}</span></span>`;
+  const cta = v.id
+    ? `<a class="cta" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">${playIcon()} Assistir</a>`
+    : `<span class="cta disabled">Sem link — rascunho</span>`;
+  return `<article class="card" data-dor="${v.dor}" data-text="${esc((v.title+' '+v.desc).toLowerCase())}">
+    <div class="card-top">${meta}</div>
+    <h3>${esc(v.title)}</h3>
+    <p>${esc(v.desc)}</p>
+    <div class="spacer"></div>
+    ${cta}
+  </article>`;
+}
+
+const counts = {};
+DORES.forEach(d=>counts[d.id]=VIDEOS.filter(v=>v.dor===d.id).length);
+
+// Stats row
+document.getElementById("stats").innerHTML =
+  `<span><b>${VIDEOS.length}</b> vídeos</span>
+   <span><b>7</b> categorias de dor</span>
+   <span><b>${VIDEOS.filter(v=>v.st==="ok").length}</b> públicos</span>
+   <span><b>${VIDEOS.filter(v=>v.st==="unlisted").length}</b> não listados</span>`;
+
+// Sections
+const secWrap = document.getElementById("sections");
+secWrap.innerHTML = DORES.map(d=>{
+  const cards = VIDEOS.filter(v=>v.dor===d.id).map(cardHTML).join("");
+  return `<section class="section" id="dor-${d.id}" data-dor="${d.id}" style="--cc:${d.cc}">
+    <div class="sec-head">
+      <div class="sec-num">${d.id}</div>
+      <div class="sec-meta">
+        <h2>${d.nome}</h2>
+        <p>${d.def}</p>
+      </div>
+      <div class="sec-count">${counts[d.id]}</div>
+    </div>
+    <div class="grid">${cards}</div>
+  </section>`;
+}).join("");
+
+// Chips
+const chipsWrap = document.getElementById("chips");
+chipsWrap.innerHTML =
+  `<button class="chip all" data-dor="all" aria-pressed="true">Todos <span class="n">${VIDEOS.length}</span></button>` +
+  DORES.map(d=>`<button class="chip" data-dor="${d.id}" aria-pressed="false" style="--cc:${d.cc}">
+     <span class="dot"></span>${d.id} · ${d.nome.split(" ").slice(0,2).join(" ")} <span class="n">${counts[d.id]}</span>
+   </button>`).join("");
+
+// Filtering
+const q = document.getElementById("q");
+const emptyEl = document.getElementById("empty");
+let activeDor = "all";
+
+function applyFilter(){
+  const term = q.value.trim().toLowerCase();
+  let anyVisible = false;
+  document.querySelectorAll(".section").forEach(sec=>{
+    const dor = sec.dataset.dor;
+    let secVisible = false;
+    sec.querySelectorAll(".card").forEach(card=>{
+      const okDor = activeDor==="all" || card.dataset.dor===activeDor;
+      const okText = !term || card.dataset.text.includes(term);
+      const show = okDor && okText;
+      card.classList.toggle("hide", !show);
+      if(show){secVisible=true; anyVisible=true;}
+    });
+    sec.classList.toggle("hide", !secVisible);
+  });
+  emptyEl.classList.toggle("show", !anyVisible);
+}
+
+q.addEventListener("input", applyFilter);
+
+chipsWrap.addEventListener("click", e=>{
+  const btn = e.target.closest(".chip");
+  if(!btn) return;
+  activeDor = btn.dataset.dor;
+  chipsWrap.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===btn ? "true":"false"));
+  applyFilter();
+  if(activeDor!=="all"){
+    const sec = document.getElementById("dor-"+activeDor);
+    if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+});
+</script>
+</body>
+</html>

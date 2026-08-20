@@ -156,6 +156,11 @@
       "source": "landing-pages/cxpress/pos-evento"
     },
     {
+      "slug": "repositorio-youtube",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/repositorio-youtube"
+    },
+    {
       "slug": "sector-it-latam",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/sector-it-latam"
