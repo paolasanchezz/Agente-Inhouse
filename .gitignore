@@ -94,3 +94,6 @@ criativos/*
 
 # landing-pages/build/ e o pipeline de deploy das LPs (PLANO-MIGRACAO-CI) - nao e artefato de build
 !landing-pages/build/
+
+# Dependencias npm locais (ex: pptxgenjs pro gerador de decks em apresentacoes/)
+node_modules/
