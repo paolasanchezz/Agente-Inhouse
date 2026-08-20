@@ -32,6 +32,14 @@
       ],
       "lang": "es"
     },
+    "17933": {
+      "label": "Buzzmonitor Gestión de Crisis (LATAM, 12:00 MX / 15:00 BRT)",
+      "moderator_emails": [
+        "milagro.pantoja@buzzmonitor.com",
+        "daniel.topete@buzzmonitor.com"
+      ],
+      "lang": "es"
+    },
     "17928": {
       "label": "Buzzmonitor Caso Smart Fit (LATAM, 13:00 MX / 16:00 BRT)",
       "moderator_emails": [

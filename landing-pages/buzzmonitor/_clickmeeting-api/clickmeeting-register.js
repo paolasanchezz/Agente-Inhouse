@@ -8,12 +8,13 @@ const SERIES_THANK_YOU = {
   'mcp-es': 'https://webinar.buzzmonitor.com/que-es-mcp-confirmado',
   'listening-es': 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado',
   'smartfit-es': 'https://webinar.buzzmonitor.com/caso-smartfit-confirmado',
+  'crisis-es': 'https://webinar.buzzmonitor.com/gestion-crisis-confirmado',
 };
 const FALLBACK_THANK_YOU = 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado';
 
 // Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
 // Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
-const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es', 'listening-es': 'es', 'smartfit-es': 'es' };
+const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es', 'listening-es': 'es', 'smartfit-es': 'es', 'crisis-es': 'es' };
 
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);

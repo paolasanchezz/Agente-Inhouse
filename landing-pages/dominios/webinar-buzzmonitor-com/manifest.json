@@ -91,6 +91,11 @@
       "source": "landing-pages/buzzmonitor/gestion-crisis"
     },
     {
+      "slug": "gestion-crisis-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/gestion-crisis-confirmado"
+    },
+    {
       "slug": "mcp-na-pratica-p",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/mcp-na-pratica-p"
