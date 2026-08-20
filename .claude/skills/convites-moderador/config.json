@@ -2,32 +2,49 @@
   "series": {
     "17727": {
       "label": "Buzzcreators (09:40 BRT)",
-      "moderator_emails": ["gabriel.leal@buzzmonitor.com.br", "lucas.campos@buzzmonitor.com.br"],
+      "moderator_emails": [
+        "gabriel.leal@buzzmonitor.com.br",
+        "lucas.campos@buzzmonitor.com.br"
+      ],
       "lang": "br"
     },
     "17927": {
       "label": "Buzzmonitor Tu primer listening en 5 pasos (LATAM, 09:00 MX / 12:00 BRT)",
-      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "moderator_emails": [
+        "milagro.pantoja@buzzmonitor.com",
+        "daniel.topete@buzzmonitor.com"
+      ],
       "lang": "es"
     },
     "17646": {
       "label": "Buzzmonitor ¿Qué es MCP? (LATAM, 10:00 MX / 13:00 BRT)",
-      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "moderator_emails": [
+        "milagro.pantoja@buzzmonitor.com",
+        "daniel.topete@buzzmonitor.com"
+      ],
       "lang": "es"
     },
     "17701": {
       "label": "Buzzmonitor Atención al Cliente (LATAM, 11:00 MX / 14:00 BRT)",
-      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "moderator_emails": [
+        "milagro.pantoja@buzzmonitor.com",
+        "daniel.topete@buzzmonitor.com"
+      ],
       "lang": "es"
     },
     "17928": {
       "label": "Buzzmonitor Caso Smart Fit (LATAM, 13:00 MX / 16:00 BRT)",
-      "moderator_emails": ["milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "moderator_emails": [
+        "milagro.pantoja@buzzmonitor.com",
+        "daniel.topete@buzzmonitor.com"
+      ],
       "lang": "es"
     },
     "17929": {
       "label": "Cxpress Por qué bloquean tu WhatsApp (LATAM, 14:00 MX / 17:00 BRT)",
-      "moderator_emails": ["laura.leon@cxpress.ai", "milagro.pantoja@buzzmonitor.com", "daniel.topete@buzzmonitor.com"],
+      "moderator_emails": [
+        "laura.leon@cxpress.ai"
+      ],
       "lang": "es"
     }
   },
