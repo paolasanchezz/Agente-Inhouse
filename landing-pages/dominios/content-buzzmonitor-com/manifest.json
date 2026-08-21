@@ -47,6 +47,11 @@
       "source": "landing-pages/buzzmonitor/monitoramento-com-ia"
     },
     {
+      "slug": "monitoramento-manual-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/monitoramento-manual-pt"
+    },
+    {
       "slug": "oferta-crescer-marca-influenciadores-setembro-2026",
       "marca": "buzzcreators",
       "source": "landing-pages/buzzcreators/oferta-crescer-marca-influenciadores-setembro-2026"
@@ -55,6 +60,11 @@
       "slug": "plataforma-buzzmonitor",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/plataforma-buzzmonitor"
+    },
+    {
+      "slug": "plataforma-completa-atendimento",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/plataforma-completa-atendimento"
     },
     {
       "slug": "plataforma-completa-monitoramento",

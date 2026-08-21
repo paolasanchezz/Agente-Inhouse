@@ -1,0 +1,79 @@
+# Copy LP · Buzzmonitor · plataforma-completa-atendimento · Dor 3 (atendimento descentralizado) · PT-BR
+# Fonte: Notion "Copy LP da dor 3 - Atendimento descentralizado" (https://app.notion.com/p/3b43934026fd804bb42fe073dcde9a01), página dentro de "Campanha MOFU: 4 dores dos clientes" > "Buzzmonitor 🇧🇷". Copy editada pelo usuário no Notion a partir do rascunho gerado via /lp-preparar (ver copy.txt.2026-08-05.bak para a versão anterior).
+# Domínio-alvo: content.buzzmonitor.com/plataforma-completa-atendimento (guarda-chuva migrado ao CI, ver landing-pages/dominios/MIGRADOS.json).
+# Correção tipográfica silenciosa (typo, não reescrita de tom): "SOLUCAO" tinha rótulo "H1" no Notion (duplicaria H1 de página, quebra SEO) — normalizado para H2, texto idêntico. "E respostas até 3x mais rápido ." (espaço duplo antes do ponto) normalizado para "E respostas até 3x mais rápido." — mesma correção mecânica já aplicada nas LPs irmãs (ver header de copy.txt da plataforma-completa-para-dados).
+# Cases (Youse Seguros, 14bits, Grupo Herval, E-CLIK) conferidos em brand/buzzmonitor/BRANDBOOK.md — Cases de Sucesso Verificados.
+# Filler word "realmente" (SOLUCAO, fechamento) foi sinalizada como sugestão anti-IA na rodada anterior (ver .bak) e o usuário manteve o texto como está ao editar no Notion — não reaplicar a correção silenciosamente (GUIDELINES §5: respeitar copy aprovada, não reescrever tom).
+# Round 2 (2026-08-06, feedback direto no chat pós /lp-gerar): PROBLEMA lede e SOLUCAO lede atualizados (texto abaixo já reflete a versão final); botões trocados de laranja sólido para degradê laranja->rosa; título da SOLUCAO em degradê laranja->rosa; timeline com callouts conectados visualmente à etapa 5 e rótulos "· destaque" removidos (destaque mantido só via estilo visual); banner de fechamento da timeline sem logo (só a frase); cases com todos os degradês padronizados em laranja/rosa (pendente: substituir nome das marcas por logomarcas reais — arquivos ainda não recebidos); form mock trocado por embed real Jotform (jsform/252995108251662).
+
+=== HERO ===
+H1: Atendimento ao cliente descentralizado e sem controle
+SUB: Centralize todos os canais de atendimento digital em uma única tela. Tenha controle de SLA, deixe a IA classificar e priorizar tickets em tempo real e tenha relatórios completos.
+CTA: Agendar Demonstração Gratuita
+
+=== PROBLEMA ===
+H2: Atendimento espalhado vira cliente perdido
+BODY: Quando cada canal é atendido separadamente, a operação perde controle:
+LIST ITEM (bullet point): A equipe alterna entre várias abas o tempo todo;
+LIST ITEM (bullet point): Mensagens e comentários ficam sem resposta;
+LIST ITEM (bullet point): O histórico se perde entre canais e atendentes;
+LIST ITEM (bullet point): Filas, responsáveis e prazos ficam confusos;
+LIST ITEM (bullet point): Faltam dados consolidados sobre produtividade e tempo de resposta;
+LIST ITEM (bullet point): A reputação da marca corre perigo por menções que o time nem viu;
+LIST ITEM (bullet point): Tempo alto de resposta faz perder clientes.
+BODY: O resultado é um time sobrecarregado e uma experiência desorganizada para o cliente.
+# [NOTA DE GERACAO — nao e copy visivel] "IMAGEM: crie um gif que seja condizente com o texto" (instrução original do Notion). Layout desta seção inspirado na 1ª imagem em anexo do briefing (bloco "how it works": mídia/gif à esquerda ou direita + lista numerada/com ícone ao lado) — ver briefing da frontend-design no Passo 3 do lp-gerar.
+
+=== SOLUCAO ===
+H2: Todos os canais de atendimento em uma única plataforma
+SUB: E respostas até 3x mais rápido.
+BODY: A Buzzmonitor reúne o atendimento de todas as suas contas em 15 canais digitais em uma única tela. E conta com diversas ferramentas de IA que otimizam sua rotina, melhoram o atendimento e te entregam dados para decisões estratégicas
+# [NOTA DE GERACAO] "IMAGEM: Logomarcas de todos os canais de atendimento" (instrução original do Notion) — corresponde à 4ª imagem do briefing (fila de ícones: Facebook, Instagram, YouTube, Threads, Bluesky, TikTok, WhatsApp, LinkedIn, e-mail, WordPress, Reclame Aqui, Pinterest, Reddit, Google Play, Google Meu Negócio). Recriar como fila de ícones SVG inline (mesma técnica das LPs irmãs), não como imagem externa.
+LIST ITEM (título: Distribuição automática de tickets): Automatize a criação e distribuição de tickets para o time, considerando todos os padrões que quiser: temas, horários, quantidades e mais.
+LIST ITEM (título: Categorização automática dos posts com IA): Nossa IA classifica automaticamente o sentimento dos posts e o tipo de interação: dúvidas, reclamações, elogios, sugestões, etc.
+LIST ITEM (título: ChatGPT integrado para corrigir e melhorar respostas): Com a IA do ChatGPT dentro da Buzzmonitor, com apenas um clique você pode corrigir erros ortográficos, melhorar a escrita, encurtar ou alongar respostas.
+LIST ITEM (título: Respostas automáticas com IA baseadas nas suas interações): A partir de 100 respostas enviadas pelo seu time, a IA de Smart Replies passa a sugerir respostas mantendo o tom de voz da marca e as diretrizes de cada tema.
+LIST ITEM (título: Alertas de termos sensíveis, classificação de urgência e prevenção de crises): Proteja a reputação da sua marca com ferramentas de IA que te avisam sobre casos críticos, priorizam tickets de acordo com a urgência do atendimento.
+LIST ITEM (título: Dados de atendimento em tempo real, análise do SLA e produtividade do time): Acompanhe em tempo real o resultado da sua operação de atendimento, com dashboards completos. Monitore os tickets, identifique dias e horários de pico, gaps no atendimento e veja como melhor seus recursos.
+# [NOTA DE GERACAO] Grid de 6 cards inspirado no bloco inferior ("who can benefit") da 1ª imagem do briefing — 2 linhas de 3 cards com ícone circular + título + descrição curta.
+BODY (fechamento, gradiente): Menos tempo com processos.[quebra]Mais tempo resolvendo o que o cliente realmente precisa.
+CTA: Agendar demonstração gratuita
+
+=== IA COMO DIFERENCIAL ===
+H2: A IA transformou o atendimento multicanal!
+# [NOTA DE GERACAO] Seção = recriação em HTML da 3ª imagem do briefing (infográfico "Como funciona uma operação inteligente de atendimento"). Texto abaixo transcrito literal da imagem (fonte visual fornecida pelo usuário, equivalente a copy). Formato: linha do tempo vertical de 8 etapas numeradas com ícone, seta conectando cada etapa à próxima; 3 callouts saindo da etapa 5 (ChatGPT integrado / Smart Replies / Visão integrada); banner de fechamento com wordmark. Usar GIFs/animações leves em vez de ícones estáticos (pedido explícito do usuário) — motion com fallback prefers-reduced-motion (GUIDELINES §4). **Destaque visual obrigatório nas etapas 5 e 8** (as duas que começam com "Seu time") — pedido explícito do usuário.
+SUB: Da primeira menção até a decisão estratégica
+LIST ITEM (etapa 1): Cliente menciona a marca ou manda mensagem
+LIST ITEM (etapa 2): Seu monitoramento recebe em tempo real
+LIST ITEM (etapa 3): A IA classifica, distribui e prioriza tickets automaticamente
+LIST ITEM (etapa 4): A plataforma sinaliza casos críticos, se houver
+LIST ITEM (etapa 5, DESTAQUE): Seu time realiza o atendimento de forma pessoal e com qualidade
+LIST ITEM (etapa 6): A ferramenta entrega dashboards completos em tempo real sobre a sua operação
+LIST ITEM (etapa 7): A IA analisa todos os dados e entrega relatórios resumidos via e-mail
+LIST ITEM (etapa 8, DESTAQUE): Seu time tem todos os dados que precisa para otimizar a operação e os recursos e tomar decisões com segurança!
+LIST ITEM (callout, ramifica da etapa 5): + ChatGPT integrado melhora a qualidade do texto
+LIST ITEM (callout, ramifica da etapa 5): + Smart Replies diminuem SLA em até 3x
+LIST ITEM (callout, ramifica da etapa 5): + Visão integrada do mesmo cliente em vários canais
+LABEL (banner de fechamento): Mais velocidade, mais controle e decisões melhores com IA.
+CTA: Agendar demonstração gratuita
+
+=== CASES ===
+H2: Sua empresa pode ser a próxima
+# [NOTA DE GERACAO] Layout inspirado na 2ª imagem do briefing (cards largas alternando lado da mídia/cor, foto ou bloco colorido de um lado + título/texto/CTA do outro). Sem foto real de cliente disponível — usar bloco de cor/gradiente da marca no lugar da foto, alternando esquerda/direita por card.
+CASE (Youse Seguros): SLA reduzido de 36 horas para 3 — A Youse internalizou o atendimento com IA e cortou 75% do headcount da equipe.
+CASE (14bits): Aumento de 220% em produtividade — A agência 14bits centralizou o atendimento de múltiplas contas sem aumentar a equipe.
+CASE (Grupo Herval): 100% de taxa de resposta em 142 lojas — O Grupo Herval consolidou o atendimento multi-localidade em escala enterprise.
+CASE (E-CLIK): Crise de reputação resolvida em 1 hora — A E-CLIK centralizou o SAC e cortou drasticamente o tempo de resposta a crises.
+CTA: Agendar demonstração gratuita
+
+=== CTA-FINAL ===
+H2: Chega de perder clientes entre abas e canais
+BODY: Centralize todas as conversas em uma única plataforma, organize tickets com IA, responda com mais agilidade e acompanhe sua operação em tempo real com a Buzzmonitor.
+BODY: Agende uma demonstração gratuita e comece já!
+CTA: Agendar demonstração gratuita
+
+=== LOGO-WALL ===
+# Reaproveitar o mesmo asset das LPs irmãs (landing-pages/buzzmonitor/plataforma-completa-monitoramento/assets/logo-wall.png).
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.

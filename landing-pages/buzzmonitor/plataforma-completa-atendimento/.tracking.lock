@@ -1,0 +1,11 @@
+{
+  "regiao": "brasil",
+  "expected_gtm": "GTM-WFJVK858",
+  "found_gtm": [
+    "GTM-WFJVK858"
+  ],
+  "fingerprint": "af34f6988f84559c",
+  "status": "ok",
+  "grandfathered": false,
+  "verified_at": "2026-08-07"
+}
