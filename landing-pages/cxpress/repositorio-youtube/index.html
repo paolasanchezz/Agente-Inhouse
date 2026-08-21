@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Todos os vídeos do canal Cxpress no YouTube organizados pelas 7 dores que resolvem — atendimento, vendas, centralização de canais, métricas, API WhatsApp e mais. Busca, filtros por categoria e link direto para cada vídeo.">
+<meta name="description" content="Todos os vídeos do canal Cxpress no YouTube organizados pelas dores que resolvem — atendimento, vendas, centralização de canais, métricas, API WhatsApp, institucional e demos da plataforma. Busca, filtros por categoria e link direto para cada vídeo.">
 <title>Repositório de Vídeos Cxpress</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@
     --shadow-sm:0 1px 2px rgba(35,41,96,.06);
 
     --c01:#4A69BD; --c02:#EF863C; --c03:#2FA79F; --c04:#E0940A;
-    --c05:#22A55B; --c06:#8A8FB5; --c07:#7A5AC4;
+    --c05:#22A55B; --c06:#8A8FB5; --c07:#7A5AC4; --c08:#D4426E;
 
     --ok:#1f9d57; --ok-bg:#e5f6ec;
     --unlisted:#6f739b; --unlisted-bg:#eef0f7;
@@ -47,7 +47,7 @@
       --shadow-sm:0 1px 2px rgba(0,0,0,.3);
 
       --c01:#7d94e6; --c02:#f5a161; --c03:#48c4bb; --c04:#f0b23c;
-      --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6;
+      --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6; --c08:#ef7fa3;
 
       --ok:#4cd08a; --ok-bg:#123324;
       --unlisted:#a6aad2; --unlisted-bg:#242858;
@@ -61,7 +61,7 @@
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
     --shadow-sm:0 1px 2px rgba(0,0,0,.3);
     --c01:#7d94e6; --c02:#f5a161; --c03:#48c4bb; --c04:#f0b23c;
-    --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6;
+    --c05:#42c47b; --c06:#a7abd6; --c07:#a488e6; --c08:#ef7fa3;
     --ok:#4cd08a; --ok-bg:#123324;
     --unlisted:#a6aad2; --unlisted-bg:#242858;
     --private:#a7aef2; --private-bg:#262a5e;
@@ -218,6 +218,7 @@
   .cta svg{flex:none}
   .cta.disabled{background:var(--surface-2);color:var(--muted);border:1px dashed var(--border);pointer-events:none;font-weight:600}
 
+  .only-print{display:none}
   .empty{display:none;text-align:center;color:var(--muted);padding:60px 0;font-size:16px}
   .empty.show{display:block}
   .section.hide,.card.hide{display:none}
@@ -232,6 +233,39 @@
     .grid{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  /* ---------- Impressao / PDF ---------- */
+  @media print{
+    :root{
+      --bg:#ffffff; --surface:#ffffff; --surface-2:#f7f8fd; --border:#d5d8ea;
+      --ink:#232960; --text:#3b3e63; --muted:#6b6f96;
+      --royal:#4A69BD; --navy:#232960;
+      --shadow:none; --shadow-sm:none;
+      --c01:#4A69BD; --c02:#D2691E; --c03:#1F8F87; --c04:#B87A08;
+      --c05:#1B8A4B; --c06:#6E7396; --c07:#6448A8; --c08:#B83459;
+      --ok:#177544; --ok-bg:#e8f6ee;
+      --unlisted:#5b5f87; --unlisted-bg:#f0f1f7;
+      --private:#474ea8; --private-bg:#eeeffb;
+      --draft:#8f6708; --draft-bg:#fdf5e2;
+    }
+    @page{size:A4;margin:14mm 12mm}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none!important;transform:none!important}
+    body{background:#fff;font-size:10.5pt;line-height:1.42}
+    .wrap{max-width:none;padding:0}
+    .topbar{position:static;padding:0 0 6px}
+    .filterbar,.empty,.only-screen{display:none!important}
+    .only-print{display:inline}
+    .stats{margin-top:10px;font-size:9.5pt}
+    .section{padding-top:0;break-before:page}
+    .section:first-of-type{break-before:auto}
+    .sec-head{break-after:avoid;break-inside:avoid;margin-bottom:10px;padding-top:10px}
+    .grid{grid-template-columns:1fr 1fr;gap:8px}
+    .card{break-inside:avoid;border:1px solid var(--border)}
+    .card h3{font-size:11pt}
+    .card p{font-size:9pt;margin-bottom:8px}
+    .cta{font-size:9pt}
+    footer{break-before:avoid;padding:14px 0 0;font-size:8.5pt}
+  }
 </style>
 </head>
 <body>
@@ -279,7 +313,7 @@
   <section class="intro">
     <p class="kicker">Biblioteca de conteúdo · Cxpress</p>
     <h1>112 vídeos do canal, organizados pela dor que cada um resolve</h1>
-    <p>Todo o acervo do YouTube da Cxpress agrupado em 7 categorias de dor. Use a busca ou os filtros por categoria para achar o vídeo certo e vá direto ao conteúdo pelo botão <b>Assistir</b>.</p>
+    <p>Todo o acervo do YouTube da Cxpress agrupado em 7 categorias de dor, mais uma categoria à parte para as demos da plataforma. <span class="only-screen">Use a busca ou os filtros por categoria para achar o vídeo certo e vá direto ao conteúdo pelo botão <b>Assistir</b>.</span><span class="only-print">Cada vídeo traz o link direto: clique em <b>Assistir</b> para abrir no YouTube.</span></p>
     <div class="stats" id="stats"></div>
   </section>
 </div>
@@ -311,7 +345,8 @@ const DORES = [
   {id:"04", nome:"Gestão de métricas multicanais", cc:"var(--c04)", def:"Dashboards, relatórios, indicadores e análise de desempenho entre canais."},
   {id:"05", nome:"API WhatsApp", cc:"var(--c05)", def:"Uso da API oficial do WhatsApp: integrações, disparos, verificação, número oficial e segurança da conta."},
   {id:"06", nome:"Misturados", cc:"var(--c06)", def:"O vídeo cobre vários temas ao mesmo tempo, sem uma dor claramente dominante."},
-  {id:"07", nome:"Institucional e eventos", cc:"var(--c07)", def:"Conteúdo de marca, cultura, bastidores, podcasts, palestras, webinars e eventos."}
+  {id:"07", nome:"Institucional e eventos", cc:"var(--c07)", def:"Conteúdo de marca, cultura, bastidores, podcasts, palestras, webinars e eventos."},
+  {id:"08", nome:"Demos da plataforma", cc:"var(--c08)", def:"Demonstrações e apresentações da plataforma em si — a visão geral que se manda para quem quer entender ou ver a Cxpress funcionando."}
 ];
 
 const RAW = `
@@ -374,7 +409,7 @@ const RAW = `
 57§02§ok§17 mar 2025§24§Conheça o Agente Personal Shopper da Cxpress§Agente de compras com IA que atua no WhatsApp guiando o cliente até o produto certo, reduzindo esforço e aumentando conversões.§cl6t2kQ89mg
 58§01§ok§21 fev 2025§57§Como resumir o atendimento da minha empresa e receber sugestões de melhorias?§Como a Cxpress resume atendimentos e sugere melhorias, centralizando os canais com chatbots via ChatGPT.§Mh5_54ZyY7k
 59§02§ok§20 fev 2025§87§Como escalar o atendimento do WhatsApp e gerar mais oportunidades de vendas§Webinar: potencializar o atendimento com agentes inteligentes e automação para reduzir tempo de resposta e vender mais no WhatsApp.§WAZyExsYjjE
-60§03§ok§6 fev 2025§885§Demonstração plataforma Cxpress§Demonstração completa da plataforma: centraliza e gerencia todos os canais de atendimento com chatbots via ChatGPT.§dfxipCR2vTo
+60§08§ok§6 fev 2025§885§Demonstração plataforma Cxpress§Demonstração completa da plataforma: centraliza e gerencia todos os canais de atendimento com chatbots via ChatGPT.§dfxipCR2vTo
 61§04§ok§6 fev 2025§38§Relatórios por IA: insights para otimizar o atendimento§Como os relatórios com IA da Cxpress geram insights para otimizar o atendimento.§BJdMIrjz9t8
 62§01§ok§6 fev 2025§74§Resolva os chamados dos seus colaboradores com agentes inteligentes (RH)§Webinar: automatizar demandas repetitivas de RH com agentes inteligentes e padronizar processos para atendimento interno.§CCLCsiPpmHk
 63§01§ok§30 jan 2025§4584§Cxpress | Organize e automatize as ligações com inteligência artificial§Solução de telefonia em nuvem com IA: PABX, ramais, relatórios automáticos e robôs de voz que atendem e ligam.§ecHUJtd5Y6g
@@ -415,8 +450,8 @@ const RAW = `
 98§01§ok§2 ago 2023§1705§Como a automação da Cxpress funciona?§Vídeo sobre como funciona a automação da Cxpress.§pWVOjG4br4Q
 99§02§unlisted§2 ago 2023§62§Conversational Commerce — Atendimento ao cliente como ferramenta de vendas§Webinar sobre Conversational Commerce: usar o atendimento como ferramenta de vendas, com o caso Coca-Cola e boas práticas.§sR9K9_MN5Ps
 100§01§unlisted§18 jul 2023§291§O futuro dos chatbots com a chegada do ChatGPT§Webinar: como o ChatGPT transforma chatbots de atendimento e vendas, e os 3 passos para criar um chatbot.§k6M391Ad6us
-101§07§unlisted§28 jun 2023§342§Conheça a Cxpress§Vídeo de apresentação da Cxpress.§WivjhDo9Blo
-102§07§ok§23 mai 2023§17127§Como funciona a Cxpress?§Vídeo explicando como funciona a plataforma Cxpress.§ipdIpmp3SoQ
+101§08§unlisted§28 jun 2023§342§Conheça a Cxpress§Vídeo de apresentação da Cxpress.§WivjhDo9Blo
+102§08§ok§23 mai 2023§17127§Como funciona a Cxpress?§Vídeo explicando como funciona a plataforma Cxpress.§ipdIpmp3SoQ
 103§01§ok§8 mai 2023§92§Como criar setores e configurar o direcionamento de tickets?§Tutorial: criar setores e configurar o direcionamento de tickets na Cxpress.§QLKsXCTbO7Q
 104§01§ok§8 mai 2023§39§Como cadastrar novos consumidores?§Tutorial: como cadastrar novos consumidores na Cxpress.§e5CHoSVg-l0
 105§01§ok§8 mai 2023§62§Como configurar o tempo útil dos tickets?§Tutorial: como configurar o tempo útil dos tickets na Cxpress.§TfG8llVngj8
@@ -474,7 +509,7 @@ DORES.forEach(d=>counts[d.id]=VIDEOS.filter(v=>v.dor===d.id).length);
 // Stats row
 document.getElementById("stats").innerHTML =
   `<span><b>${VIDEOS.length}</b> vídeos</span>
-   <span><b>7</b> categorias de dor</span>
+   <span><b>${DORES.length}</b> categorias</span>
    <span><b>${VIDEOS.filter(v=>v.st==="ok").length}</b> públicos</span>
    <span><b>${VIDEOS.filter(v=>v.st==="unlisted").length}</b> não listados</span>`;
 
