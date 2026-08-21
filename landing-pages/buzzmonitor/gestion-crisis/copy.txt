@@ -29,13 +29,14 @@ BODY: Configura un umbral, por ejemplo un aumento de negativas por hora, y recib
 LABEL: Qué vas a ver: la configuración de una alerta automática y el resumen diario generado por Buzz Pills.
 # [NOTA 2026-08-20] Victor pidio resumir el texto de las 5 tarjetas (BODY). Textos originales guardados en el historico de copy.txt (versoes anteriores no git); resumidos manteniendo cada funcionalidad y dato mencionado, solo cortando redundancia. LABELs (Qué vas a ver) se dejaron igual, ya eram curtos.
 # [NOTA 2026-08-20 v2] Usuario notou que os cards 01 e 05 ficaram visivelmente mais altos que 02/03/04 no grid (screenshot mostrando desalinhamento das caixas "Qué vas a ver"). Encurtados mais uma vez: 01 de 303 pra 230 caracteres, 05 de 295 pra 227, agora proximos da faixa dos outros 3 (180-197 caracteres), grid mais equilibrado.
+# [NOTA 2026-08-20 v3] Usuario pediu reescrever o insight de VOC de "Cruce de valoraciones, redes sociales y motivos de contacto en un único análisis..." pra "Valoraciones, redes sociales y motivos de contacto integrados en un único análisis...", achando mais natural. Aplicado literal.
 
 === RESULTADOS ===
 H2: Los resultados del caso
 LABEL: Crisis contenida en menos de 1 hora.
 LABEL: 28 mejoras de producto identificadas a partir de los insights obtenidos en la atención al cliente.
 LABEL: Atención de redes sociales y valoraciones de tiendas de aplicaciones, centralizada en un solo panel.
-LABEL: Cruce de valoraciones, redes sociales y motivos de contacto en un único análisis de Voz del Cliente (VOC).
+LABEL: Valoraciones, redes sociales y motivos de contacto integrados en un único análisis de Voz del Cliente (VOC).
 # [NOTA 2026-08-07] Caso E-CLIK (empresa de tecnologia especializada em solucoes para retail e fidelizacao, proprietaria da CRM Bonus) confirmado pelo usuario como valido pra referenciar em conteudo LATAM (item [VERIFICAR] do guiao original resolvido). Logo usado na secao e o de CRM Bonus (marca comercial da E-CLIK), nao um logo "E-CLIK" generico — confirmado explicitamente pelo usuario.
 # [NOTA 2026-08-20] Victor pediu mais dados na secao de resultados. O texto longo do caso (fornecido pelo Victor via Paola) so tinha esses 2 numeros verificaveis (os que ja estavam na LP) — sem mais cifras concretas. Em vez de inventar um numero, foram adicionados 2 insights qualitativos extraidos literalmente do caso (centralizacao de canais; cruzamento de dados pra VOC), sem sobrepor o card de alertas automaticas ja coberto em "Lo que aprenderás" (05). Titulo da secao trocado de "Los números del caso" pra "Los resultados del caso" pra acomodar o conteudo misto (2 numericos + 2 qualitativos) — mesmo titulo ja usado em caso-smartfit.
 
