@@ -9,17 +9,17 @@ CTA: ¡Reserva tu lugar!
 OVERLINE: LO QUE VAS A VER
 H2: Tres cambios que transformaron la operación de Smart Fit.
 H3: 01. Una sola bandeja para todos los canales
-BODY: Instagram, Facebook, WhatsApp, TikTok, YouTube y correo electrónico, todo llega a una única bandeja organizada por prioridad. Cada asesor puede acceder al historial completo del cliente, sin importar el canal desde el que haya escrito. Antes de Buzzmonitor, Smart Fit no podía garantizar que todos los mensajes fueran respondidos. Hoy alcanza el 100 % de cobertura.
+BODY: Instagram, Facebook, WhatsApp, TikTok, YouTube y correo electrónico llegan a una única bandeja organizada por prioridad, con el historial completo del cliente sin importar el canal. Hoy Smart Fit alcanza el 100 % de cobertura en sus mensajes.
 LABEL: Qué vas a ver: la bandeja unificada con tickets de Instagram, Facebook y WhatsApp organizados por prioridad, junto con el historial completo de cada cliente.
 
 H3: 02. IA asistiendo a los asesores en tiempo real
-BODY: La IA sugiere respuestas según el contexto de la conversación y el historial de la marca. Además, Auto Tag Suggestions clasifica automáticamente cada ticket (consultas sobre membresías, reclamos de cobro y más), reduciendo el trabajo manual. Así, un equipo de solo cinco asesores gestiona la atención de 40 franquicias de forma eficiente.
+BODY: La IA sugiere respuestas según el contexto y el historial de la marca, y Auto Tag Suggestions clasifica cada ticket automáticamente. Así, un equipo de solo cinco asesores gestiona la atención de 40 franquicias de forma eficiente.
 LABEL: Qué vas a ver: respuestas sugeridas por IA en segundos y etiquetas automáticas aplicadas con un solo clic.
 
 H3: 03. Dashboards en tiempo real para tomar decisiones
-BODY: Visualiza el volumen de conversaciones, tiempos de respuesta y calidad de atención por franquicia en tiempo real. Además, Buzz Pills resume las últimas 24 horas con los principales insights: la franquicia con mayor actividad, los temas más relevantes, la evolución del sentimiento y recomendaciones accionables.
+BODY: Visualiza el volumen, los tiempos de respuesta y la calidad de atención por franquicia en tiempo real. Buzz Pills resume las últimas 24 horas: franquicia con mayor actividad, temas relevantes, sentimiento y recomendaciones accionables.
 LABEL: Qué vas a ver: dashboards filtrados por franquicia y los insights diarios generados por Buzz Pills.
-# [SUGESTAO anti-IA] "Además" abre la segunda frase tanto en el BODY 02 como en el BODY 03 (2 veces en el mismo texto). No es "abrir párrafo" en sentido estricto (regras-anti-ia.md marca eso como el patrón a evitar), pero es una repetición notable de conector. Alternativa si querés variar: en BODY 03, "También Buzz Pills resume..." o cortar directo sin conector.
+# [NOTA 2026-08-20] Usuario pidio resumir el texto de "Lo que vas a ver". Los 3 BODY se acortaron de ~320-370 caracteres a ~230-244, manteniendo todos los datos (100% de cobertura, cinco asesores, 40 franquicias, Buzz Pills 24h) sin agregar ni quitar hechos. De paso se resolvio la repeticion de "Además" al inicio de BODY 02 y 03, ya sinalizada antes.
 
 === RESULTADOS ===
 H2: Los resultados del caso

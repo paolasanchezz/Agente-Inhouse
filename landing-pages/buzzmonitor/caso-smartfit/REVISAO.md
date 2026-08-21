@@ -35,3 +35,12 @@ Revisao limpa — os 2 achados foram tratados como criticos e ja aplicados.
 
 - CTA ainda e mock (`href="#"`) — quando tiver o link real de agendamento, rodar `/lp-integrar-form buzzmonitor/caso-smartfit "snippet"`.
 - Publicar: `webinar.buzzmonitor.com` esta no fluxo CI — adicionar ao manifest + PR.
+
+## Segunda passada (2026-08-20 — resumo de "Lo que vas a ver")
+
+Usuario pediu resumir o texto da secao "Lo que vas a ver" (mesmo pedido ja feito em `gestion-crisis`).
+
+- Os 3 BODY encurtados de ~320-370 pra ~230-244 caracteres, mantendo todos os dados (100% de cobertura, cinco asesores, 40 franquicias, Buzz Pills 24h).
+- De quebra, resolvida a repeticao de "Además" no inicio de BODY 02 e BODY 03, ja sinalizada como sugestao no `copy.txt` desde a v2.
+- **Nao tocado:** a integracao real com ClickMeeting (formulario, `/api/next-webinar`, `/api/clickmeeting-register`) que ja estava no arquivo, integrada em outra sessao/PR.
+- Revalidado: em-dash 0, GTM 2/2, `check_gtm_region.py` OK.
