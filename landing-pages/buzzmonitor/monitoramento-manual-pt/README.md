@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (tradução PT-PT via `/trad-traduzir` da copy de `landing-pages/buzzmonitor/plataforma-completa-monitoramento/copy.txt`)
 **Deliverable de tradução:** `traducao/entregas/2026-08/plataforma-completa-monitoramento-original.md` + `plataforma-completa-monitoramento-pt-pt.md`
 **Uso:** Réplica em Português Europeu da LP da Dor 1 (monitoramento manual, sem ferramenta)
-**Destino de publicação combinado com o usuário:** `content.buzzmonitor.com/monitoramento-manual-pt` (guarda-chuva migrado para CI — publicar via `/lp-publicar` quando aprovado)
+**Publicado em:** `content.buzzmonitor.com/monitoramento-manual-pt` (guarda-chuva migrado para CI — live desde 2026-08-21)
 
 ## Formato
 
@@ -50,7 +50,7 @@ HTML e CSS **idênticos** ao original `plataforma-completa-monitoramento/index.h
 - [x] Revisão (`/lp-revisar buzzmonitor/monitoramento-manual-pt`) — ver `REVISAO.md`: 5 críticos aplicados (hreflang recíproco com a LP BR, og:locale:alternate, fallback de `prefers-reduced-motion` em 2 animações contínuas, `transition:all` trocado por lista explícita); 2 melhorias pendentes de decisão do usuário (contraste do CTA laranja/branco e overline sem copy-fonte, ambas herdadas do original — corrigir aqui exigiria sincronizar a LP BR também); 3 nice-to-haves documentados
 - [x] Adicionada ao manifest do guarda-chuva — `slug: "monitoramento-manual-pt"` em `landing-pages/dominios/content-buzzmonitor-com/manifest.json`, URL final `content.buzzmonitor.com/monitoramento-manual-pt`
 - [x] `hreflang` recíproco fechado em 2026-08-21 — as 3 tags (`pt-BR`, `pt-PT`, `x-default`) foram espelhadas no `index.html` da LP BR `plataforma-completa-monitoramento`, mais `og:locale:alternate=pt_PT`. Sem isso o cluster era unilateral e o Google descartava a anotação.
-- [ ] Publicado — PR aberto, aguardando merge (auto-merge do bot ou aprovação do Victor) para o CI buildar e deployar
+- [x] Publicado — PR #241 mergeado pelo Victor em 2026-08-21 (commit `d8a06ca`), CI buildou e deployou `content.buzzmonitor.com/monitoramento-manual-pt` com sucesso (smoke test, OG image e hreflang recíproco confirmados no ar)
 
 ## Pendências
 
