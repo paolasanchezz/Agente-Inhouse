@@ -58,3 +58,12 @@ Victor pediu (via Paola), pro texto de um case real de E-CLIK que ele mandou: (1
 - **Grid:** `.results-grid` ja usa `grid-template-columns: repeat(2, 1fr)` — 4 cards caem naturalmente em 2x2, sem precisar mudar CSS.
 - **Nao tocado:** a integracao real com ClickMeeting (formulario, `/api/next-webinar`, `/api/clickmeeting-register`, redirect pra `/gestion-crisis-confirmado`) que ja estava no arquivo — essa parte foi integrada em outra sessao/PR, fora do escopo deste ajuste, e permaneceu intacta.
 - Revalidado: em-dash 0 (as 2 ocorrencias de "..." literais encontradas sao strings de JS pre-existentes do form — "Enviando...", "Redirigiendo..." — nao sao copy visivel nem foram tocadas nesta passada), GTM 2/2, `check_gtm_region.py` OK.
+
+## Quinta passada (2026-08-20 — balancear altura dos cards)
+
+Usuario notou (via screenshot) que os cards 01 e 05 ficaram visivelmente mais altos que 02/03/04 no grid, com a caixa "Qué vas a ver" comecando bem mais abaixo nesses dois.
+
+- **Card 01:** BODY encurtado de 303 pra 230 caracteres (removida a lista completa de variantes + a frase final redundante "sin revisar publicación por publicación", que ja estava implicita em "en tiempo real"/"antes de que escale").
+- **Card 05:** BODY encurtado de 295 pra 227 caracteres (frases mais diretas, sem perder o umbral, o canal de alerta ou os 4 pontos do Buzz Pills).
+- **Verificacao geometrica (JS no preview, viewport 1280px):** antes, o offset da caixa "Qué vas a ver" em relacao ao topo do card variava bastante entre 01 e 02/03. Depois do ajuste, os offsets ficaram em 338/340/340px (linha 1) e 313/338px (linha 2) — grid visualmente equilibrado.
+- Revalidado: em-dash 0 no `index.html`, GTM 2/2, `check_gtm_region.py` OK.

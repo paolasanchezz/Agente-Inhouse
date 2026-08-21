@@ -9,7 +9,7 @@ CTA: ¡Reserva tu lugar!
 OVERLINE: LO QUE APRENDERÁS
 H2: Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK.
 H3: 01. Detección temprana: escucha más allá de lo evidente
-BODY: Configura el monitoreo de tu marca en Theme Monitoring con todas sus variantes: nombre oficial, errores de escritura, apodos y hashtags. Buzzmonitor clasifica cada mención por sentimiento en tiempo real, así detectas un pico de negativas antes de que escale, sin revisar publicación por publicación.
+BODY: Configura el monitoreo de tu marca en Theme Monitoring con sus variantes: nombre, apodos, errores de escritura y hashtags. Buzzmonitor clasifica el sentimiento en tiempo real, así detectas un pico de negativas antes de que escale.
 LABEL: Qué vas a ver: Theme Monitoring configurado con variantes de la marca, el panel de sentimiento automático y el gráfico de evolución con un pico claramente identificado.
 
 H3: 02. Identificación de focos: quién impulsa la conversación y cuál es su alcance
@@ -25,9 +25,10 @@ BODY: Compara el sentimiento antes y después de que la marca responde. Si las m
 LABEL: Qué vas a ver: la evolución del sentimiento antes y después de la respuesta de la marca.
 
 H3: 05. Alertas automáticas y Buzz Pills: un sistema que trabaja por ti
-BODY: Configura un umbral (por ejemplo, un aumento de negativas por hora) y recibe una alerta por correo o Slack apenas se supere, incluso sin nadie monitoreando. Buzz Pills resume las últimas 24 horas en 4 puntos: tema dominante, mayor alcance, cambio de sentimiento y una recomendación de acción.
+BODY: Configura un umbral, por ejemplo un aumento de negativas por hora, y recibe una alerta por correo o Slack al momento. Buzz Pills resume las últimas 24 horas en 4 puntos: tema dominante, alcance, sentimiento y una recomendación.
 LABEL: Qué vas a ver: la configuración de una alerta automática y el resumen diario generado por Buzz Pills.
-# [NOTA 2026-08-20] Victor pidio resumir el texto de las 5 tarjetas (BODY). Textos originales guardados en el historico de copy.txt (versoes anteriores no git); resumidos manteniendo cada funcionalidad y dato mencionado, solo cortando redundancia. LABELs (Qué vas a ver) se dejaron igual, ya eran cortos.
+# [NOTA 2026-08-20] Victor pidio resumir el texto de las 5 tarjetas (BODY). Textos originales guardados en el historico de copy.txt (versoes anteriores no git); resumidos manteniendo cada funcionalidad y dato mencionado, solo cortando redundancia. LABELs (Qué vas a ver) se dejaron igual, ya eram curtos.
+# [NOTA 2026-08-20 v2] Usuario notou que os cards 01 e 05 ficaram visivelmente mais altos que 02/03/04 no grid (screenshot mostrando desalinhamento das caixas "Qué vas a ver"). Encurtados mais uma vez: 01 de 303 pra 230 caracteres, 05 de 295 pra 227, agora proximos da faixa dos outros 3 (180-197 caracteres), grid mais equilibrado.
 
 === RESULTADOS ===
 H2: Los resultados del caso
