@@ -47,3 +47,14 @@ Usuario pediu pra melhorar ainda mais a apresentacao dos logos ("mas grandes o m
 - **Tamanho:** `.results-logos img` de 44px para 52px; gap de 24px para 26px; separador "×" de 18px para 20px.
 - **Tratamento visual (novo):** classe `.client-logo` adicionada so ao `<img>` do CRM Bonus (nao ao logo Buzzmonitor, que e SVG transparente e ja se integra bem) — `border-radius: var(--radius-md)` (cantos arredondados, mesmo token usado em cards) + `box-shadow: var(--shadow-md)` (mesma sombra usada em `.hero-form`), pra que o quadrado preto pareça um badge de marca intencional em vez de um screenshot colado.
 - Revalidado: em-dash 0, GTM 2/2.
+
+## Quarta passada (2026-08-20 — resumo do texto + resultados ampliados)
+
+Victor pediu (via Paola), pro texto de um case real de E-CLIK que ele mandou: (1) resumir o BODY das 5 tarjetas de "Lo que aprenderás" e (2) trazer mais dados pra secao de Resultados.
+
+- **Resumo das 5 tarjetas:** BODY reescrito mais curto em cada uma, mantendo toda funcionalidade/dado ja presente (Theme Monitoring, classificacao por sentimento, identificacao de perfis/alcance, evolucao hora a hora, comparacao antes/depois, alertas + Buzz Pills). Nada foi cortado que mudasse o significado, so reduzida a redundancia de frases. LABELs ("Qué vas a ver") mantidos, ja eram curtos.
+- **Resultados:** o texto longo do caso (fornecido por Victor) so trouxe os 2 dados numericos que ja estavam na LP (crisis <1h, 28 melhorias) — nao havia mais cifras verificaveis. Em vez de inventar numero (proibido pelo Brandbook), foram adicionados 2 insights qualitativos extraidos literalmente do texto do caso: centralizacao de canais (redes sociais + valoracoes de apps num so painel) e cruzamento de dados pra analise de VOC. Nenhum dos dois repete o card de "alertas automaticas" ja coberto em "Lo que aprenderás" (05).
+- **Titulo da secao:** trocado de "Los números del caso" pra "Los resultados del caso" — acomoda o conteudo misto (2 numericos + 2 qualitativos) e reusa o mesmo titulo ja usado em `caso-smartfit`.
+- **Grid:** `.results-grid` ja usa `grid-template-columns: repeat(2, 1fr)` — 4 cards caem naturalmente em 2x2, sem precisar mudar CSS.
+- **Nao tocado:** a integracao real com ClickMeeting (formulario, `/api/next-webinar`, `/api/clickmeeting-register`, redirect pra `/gestion-crisis-confirmado`) que ja estava no arquivo — essa parte foi integrada em outra sessao/PR, fora do escopo deste ajuste, e permaneceu intacta.
+- Revalidado: em-dash 0 (as 2 ocorrencias de "..." literais encontradas sao strings de JS pre-existentes do form — "Enviando...", "Redirigiendo..." — nao sao copy visivel nem foram tocadas nesta passada), GTM 2/2, `check_gtm_region.py` OK.

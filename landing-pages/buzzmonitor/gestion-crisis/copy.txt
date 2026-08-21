@@ -9,30 +9,34 @@ CTA: ¡Reserva tu lugar!
 OVERLINE: LO QUE APRENDERÁS
 H2: Cinco pasos para detectar y gestionar una crisis, con el caso real de E-CLIK.
 H3: 01. Detección temprana: escucha más allá de lo evidente
-BODY: Configura el monitoreo de tu marca en Theme Monitoring con todas sus variantes (nombre oficial, errores de escritura, apodos y hashtags de campaña). Buzzmonitor recopila las menciones en tiempo real en todas las redes sociales y las clasifica automáticamente por sentimiento. Si filtras las menciones negativas de las últimas seis horas y detectas un pico inusual, tendrás una señal clara antes de que el problema escale, sin necesidad de revisar cada publicación manualmente.
+BODY: Configura el monitoreo de tu marca en Theme Monitoring con todas sus variantes: nombre oficial, errores de escritura, apodos y hashtags. Buzzmonitor clasifica cada mención por sentimiento en tiempo real, así detectas un pico de negativas antes de que escale, sin revisar publicación por publicación.
 LABEL: Qué vas a ver: Theme Monitoring configurado con variantes de la marca, el panel de sentimiento automático y el gráfico de evolución con un pico claramente identificado.
 
 H3: 02. Identificación de focos: quién impulsa la conversación y cuál es su alcance
-BODY: No todas las menciones tienen el mismo impacto. Buzzmonitor identifica qué perfiles generan mayor volumen de conversación, cuáles tienen más alcance y qué publicaciones están impulsando la propagación para que tu equipo priorice su respuesta donde realmente importa.
+BODY: No todas las menciones pesan igual. Buzzmonitor identifica qué perfiles y publicaciones impulsan la propagación, para que tu equipo priorice la respuesta donde realmente importa.
 LABEL: Qué vas a ver: menciones organizadas por alcance y los perfiles con mayor capacidad de difusión.
 
 H3: 03. Evolución en tiempo real: ¿la crisis está creciendo o disminuyendo?
-BODY: Visualiza el volumen de menciones y el sentimiento hora por hora para entender si la conversación ya alcanzó su punto máximo o sigue creciendo, si cambió de una red social a otra y en qué momento concentra más actividad. Así, las decisiones se toman con datos y no por intuición.
+BODY: Visualiza el volumen y el sentimiento hora por hora para saber si la conversación ya llegó a su pico o sigue creciendo, y en qué red social se concentra. Decisiones con datos, no por intuición.
 LABEL: Qué vas a ver: el gráfico de evolución de volumen y sentimiento con línea temporal y comparativa entre redes sociales.
 
 H3: 04. Evaluación de la respuesta: ¿la estrategia está funcionando?
-BODY: Después de que la marca responde, compara el sentimiento antes y después de la intervención. Si las menciones positivas comienzan a crecer, la estrategia está funcionando. Si el sentimiento se mantiene o empeora, es momento de ajustar el mensaje.
+BODY: Compara el sentimiento antes y después de que la marca responde. Si las menciones positivas crecen, la estrategia funciona; si se mantiene o empeora, es momento de ajustar el mensaje.
 LABEL: Qué vas a ver: la evolución del sentimiento antes y después de la respuesta de la marca.
 
 H3: 05. Alertas automáticas y Buzz Pills: un sistema que trabaja por ti
-BODY: Configura un umbral, por ejemplo, un aumento de menciones negativas por hora, y Buzzmonitor enviará una alerta por correo electrónico o Slack en cuanto se supere, incluso cuando nadie esté monitoreando la plataforma. Además, Buzz Pills resume automáticamente las últimas 24 horas en cuatro puntos clave: tema dominante, publicación con mayor alcance, cambio de sentimiento y una recomendación de acción.
+BODY: Configura un umbral (por ejemplo, un aumento de negativas por hora) y recibe una alerta por correo o Slack apenas se supere, incluso sin nadie monitoreando. Buzz Pills resume las últimas 24 horas en 4 puntos: tema dominante, mayor alcance, cambio de sentimiento y una recomendación de acción.
 LABEL: Qué vas a ver: la configuración de una alerta automática y el resumen diario generado por Buzz Pills.
+# [NOTA 2026-08-20] Victor pidio resumir el texto de las 5 tarjetas (BODY). Textos originales guardados en el historico de copy.txt (versoes anteriores no git); resumidos manteniendo cada funcionalidad y dato mencionado, solo cortando redundancia. LABELs (Qué vas a ver) se dejaron igual, ya eran cortos.
 
 === RESULTADOS ===
-H2: Los números del caso
+H2: Los resultados del caso
 LABEL: Crisis contenida en menos de 1 hora.
 LABEL: 28 mejoras de producto identificadas a partir de los insights obtenidos en la atención al cliente.
+LABEL: Atención de redes sociales y valoraciones de tiendas de aplicaciones, centralizada en un solo panel.
+LABEL: Cruce de valoraciones, redes sociales y motivos de contacto en un único análisis de Voz del Cliente (VOC).
 # [NOTA 2026-08-07] Caso E-CLIK (empresa de tecnologia especializada em solucoes para retail e fidelizacao, proprietaria da CRM Bonus) confirmado pelo usuario como valido pra referenciar em conteudo LATAM (item [VERIFICAR] do guiao original resolvido). Logo usado na secao e o de CRM Bonus (marca comercial da E-CLIK), nao um logo "E-CLIK" generico — confirmado explicitamente pelo usuario.
+# [NOTA 2026-08-20] Victor pediu mais dados na secao de resultados. O texto longo do caso (fornecido pelo Victor via Paola) so tinha esses 2 numeros verificaveis (os que ja estavam na LP) — sem mais cifras concretas. Em vez de inventar um numero, foram adicionados 2 insights qualitativos extraidos literalmente do caso (centralizacao de canais; cruzamento de dados pra VOC), sem sobrepor o card de alertas automaticas ja coberto em "Lo que aprenderás" (05). Titulo da secao trocado de "Los números del caso" pra "Los resultados del caso" pra acomodar o conteudo misto (2 numericos + 2 qualitativos) — mesmo titulo ja usado em caso-smartfit.
 
 === QUIEN PRESENTA ===
 H2: Quién presenta
