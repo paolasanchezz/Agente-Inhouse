@@ -29,15 +29,15 @@ O que mudou:
 
 ### Asset do mascote — cópia otimizada local (deliberado)
 
-`brand/cxpress/assets/mascot/samir-joinha.png` tem **2,5 MB** (1536×1024). Numa página cujo único peso
-é essa imagem, isso domina o LCP. A LP referencia `./assets/mascot/samir-joinha-web.png`
-(**84 KB**, 760×644): recorte no bounding box do conteúdo (`126,0,1334,1024`), resize LANCZOS e
-quantização FASTOCTREE em 200 cores com alpha preservado. Sem perda visual perceptível no tamanho
-de exibição (máx. 320px).
+A arte-fonte do mascote é pesada (o `Samir_joinha.svg` enviado em 2026-08-21 é, na verdade, um PNG
+de ~1,5 MB embutido em base64 dentro de um wrapper SVG, com máscara de luminância). Numa página cujo
+único peso é essa imagem, isso dominaria o LCP. A LP referencia `./assets/mascot/samir-joinha-web.png`
+(**76 KB**, 760×616): composição da cor com a máscara alpha do SVG, color-key do halo azul-claro que
+o próprio asset deixava, recorte no bounding box do conteúdo, resize LANCZOS e quantização FASTOCTREE
+em 256 cores com alpha preservado. Sem perda visual perceptível no tamanho de exibição (máx. 320px).
 
 Como o `build_umbrella.py` resolve `brand/` primeiro e só depois `{lp}/assets/`, o nome
-`samir-joinha-web.png` (que **não** existe no brand) garante que a cópia local é a usada. Validado:
-`dist/assets/cxpress/mascot/samir-joinha-web.png` = 84 KB.
+`samir-joinha-web.png` (que **não** existe no brand) garante que a cópia local é a usada.
 
 Se outra LP Cxpress quiser o mesmo tratamento, promover esse arquivo pro brand é a evolução natural,
 mas isso mexeria no asset de 12 LPs que hoje apontam pro PNG pesado, então ficou fora deste escopo.

@@ -159,8 +159,9 @@
       aspect-ratio: 1 / 1;
       margin: 0 auto clamp(30px, 4vw, 44px);
     }
-    /* A arte do mascote e um busto cortado reto na base. O disco recorta esse corte
-       (overflow: hidden + bottom negativo), em vez de deixar uma linha dura sob o medalhao. */
+    /* A arte do mascote preenche o disco (cabeca no topo, base embaixo). Ampliada e
+       ancorada embaixo: o disco recorta as pontas largas (o rabo fica de fora), mantendo
+       o rosto e a joinha inteiros. */
     .medalhao__disco {
       position: absolute; inset: 0;
       border-radius: 50%;
@@ -181,19 +182,19 @@
     }
     .medalhao__mascote {
       position: absolute;
-      left: 50%; bottom: -4%;
+      left: 50%; bottom: -3%;
       transform: translateX(-50%);
-      width: 102%;
+      width: 108%;
       height: auto;
       min-height: 0; /* GUIDELINES §14: Safari iOS */
       filter: drop-shadow(0 12px 18px rgba(35, 41, 96, 0.18));
     }
-    /* Selo de confirmacao sobre o medalhao. */
+    /* Selo de confirmacao — fica sobre o canto onde o rabo do mascote e recortado. */
     .medalhao__selo {
       position: absolute;
-      left: -2%; bottom: 16%;
-      width: clamp(52px, 9vw, 64px);
-      height: clamp(52px, 9vw, 64px);
+      left: 5%; bottom: 8%;
+      width: clamp(64px, 11vw, 80px);
+      height: clamp(64px, 11vw, 80px);
       border-radius: 50%;
       background: var(--neutral-0);
       display: grid; place-items: center;
@@ -290,7 +291,7 @@
         <div class="medalhao reveal" aria-hidden="true">
           <div class="medalhao__disco">
             <img class="medalhao__mascote" src="./assets/mascot/samir-joinha-web.png"
-                 alt="" width="760" height="644" decoding="async">
+                 alt="" width="760" height="616" decoding="async">
           </div>
           <div class="medalhao__selo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
