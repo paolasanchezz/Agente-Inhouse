@@ -244,24 +244,20 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .final__stats{display:grid;grid-template-columns:repeat(2,minmax(0,220px));gap:22px}
 .final__stat strong{display:block;font-family:var(--disp);font-weight:900;font-size:34px;color:#fff}
 .final__stat span{color:#f4e6ff;font-family:var(--sub);font-size:15px}
-.form-card{background:#fff;border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.35);padding:38px 34px}
-.form-card h3{font-family:var(--disp);font-weight:900;font-size:24px;color:var(--purple);margin-bottom:6px}
-.form-card p{font-size:14.5px;color:var(--ink-2);margin-bottom:22px}
-.form-card__price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:12px 16px;background:var(--purple-tint);border-radius:12px;font-family:var(--sub);font-weight:600;font-size:14px;color:var(--purple)}
-.form-card__price strong{font-family:var(--disp);font-weight:900;font-size:26px;color:var(--purple);line-height:1}
-.form-card__price em{font-style:normal;font-weight:400;font-size:14px;color:var(--ink-2)}
-.form-card .field{margin-bottom:14px}
-.form-card label{display:block;font-family:var(--sub);font-weight:600;font-size:13.5px;color:var(--purple);margin-bottom:6px}
-.form-card input,.form-card select{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;transition:border-color .15s ease}
-.form-card input:focus,.form-card select:focus{border-color:var(--orange);outline:none}
-.form-card .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-card button{width:100%;margin-top:10px}
-.form-card .form-msg{display:none;margin-top:14px;font-size:14.5px;border-radius:10px;padding:12px 14px}
-.form-card .form-msg--err{display:block;background:#ffe3ea;color:#8f1030}
-.form-card .form-msg--ok{display:block;background:var(--teal-tint);color:#075a59}
+.form-panel h3{font-family:var(--disp);font-weight:900;font-size:24px;color:#fff;margin-bottom:6px}
+.form-panel__sub{font-family:var(--sub);font-size:15px;color:#f4e6ff;margin-bottom:18px}
+.form-panel__price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:12px 16px;background:rgba(255,255,255,.14);border-radius:12px;font-family:var(--sub);font-weight:600;font-size:14px;color:#fff}
+.form-panel__price strong{font-family:var(--disp);font-weight:900;font-size:26px;color:#fff;line-height:1}
+.form-panel__price em{font-style:normal;font-weight:400;font-size:14px;color:#f4e6ff}
+/* ----- Jotform embed wrapper -----
+   Excecao ao wrapper canonico (sem card): este Jotform vem com fundo TRANSPARENTE,
+   entao sobre o gradiente escuro do .final os labels/inputs ficam ilegiveis.
+   Moldura branca enxuta — o form ja tem respiro interno proprio. */
+.jotform-embed{background:#fff;border-radius:18px;padding:20px 18px;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+.jotform-embed iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 @media (max-width:980px){
   .final__in{grid-template-columns:1fr}
-  .form-card .row{grid-template-columns:1fr}
+  .jotform-embed{padding:16px 14px}
 }
 
 /* FOOTER */
@@ -273,7 +269,7 @@ h3{font-family:var(--sub);font-weight:600;color:var(--purple)}
 .footer small{display:block;width:100%;margin-top:26px;color:#a586bd;font-size:13px}
 
 </style>
-<!-- Fonte da copy: copy.txt (lp-preparar). Form: réplica do form GreatPages da página original (page id 1657740) postando no mesmo endpoint /conversion. Video: youtube nBMZZZKrMpI (ES) com facade lazy. -->
+<!-- Fonte da copy: copy.txt (lp-preparar). Form: embed Jotform 241825239057661 (Buzzmonitor LATAM - Form Proposta v3). Video: youtube nBMZZZKrMpI (ES) com facade lazy. -->
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -366,37 +362,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="final__stat"><strong>10k</strong><span>usuarios</span></div>
         </div>
       </div>
-      <form class="form-card reveal" id="demoForm" novalidate>
+      <div class="form-panel reveal">
         <h3>Agenda una demo</h3>
-        <p>Completa tus datos y nuestro equipo te contactará.</p>
-        <p class="form-card__price"><span>Planes desde</span> <strong>390 USD</strong> <em>/mes</em></p>
-        <div class="field">
-          <label for="f-nombre">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
+        <p class="form-panel__sub">Completa tus datos y nuestro equipo te contactará.</p>
+        <p class="form-panel__price"><span>Planes desde</span> <strong>390 USD</strong> <em>/mes</em></p>
+        <div class="jotform-embed">
+          <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661" data-categories="essential"></script>
+          <script>
+          /* Termly (carregado pelo GTM-PC4TJ6H com autoBlock=on) classifica dominios que nao
+             conhece como "unclassified" e bloqueia o iframe ate o visitante aceitar cookies —
+             o form some. Aqui declaramos o embed como conteudo essencial da pagina (e o form
+             de demo em si, nao um tracker), que e o mecanismo documentado do Termly pra
+             classificacao manual. O jsform cria o iframe via document.write, entao o atributo
+             e carimbado nele assim que existe, antes do scan do Termly quando possivel.
+             NAO desbloqueia nada que o Termly ja tenha bloqueado — isso seria passar por cima
+             do consentimento. A correcao duravel e classificar form.jotform.com no painel do
+             Termly; enquanto isso nao acontece, isto cobre a maior parte dos carregamentos. */
+          (function(){
+            var wrap=document.currentScript.parentNode;
+            function stamp(){
+              var i=wrap.querySelector('iframe');
+              if(!i) return false;
+              if(!i.getAttribute('data-categories')) i.setAttribute('data-categories','essential');
+              return true;
+            }
+            if(stamp()) return;
+            var obs=new MutationObserver(function(){ if(stamp()) obs.disconnect(); });
+            obs.observe(wrap,{childList:true,subtree:true});
+            setTimeout(function(){obs.disconnect();},10000);
+          })();
+          </script>
         </div>
-        <div class="field">
-          <label for="f-email">E-mail Profesional</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="row">
-          <div class="field">
-            <label for="f-telefono">Teléfono</label>
-            <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required>
-          </div>
-          <div class="field">
-            <label for="f-pais">País</label>
-            <select id="f-pais" name="pais" required>
-              <option value="" selected disabled>Selecciona tu país</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-empresa">Empresa</label>
-          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
-        </div>
-        <button class="btn btn--primary" type="submit" id="formBtn">Quiero agendar una demo</button>
-        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -572,63 +569,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ifr.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     ifr.setAttribute('allowfullscreen','');
     f.replaceWith(ifr);
-  });
-})();
-
-/* ============ País (mesma lista da página original) ============ */
-(function(){
-  var PAISES=["Argentina","Austria","Bangladesh","Belgium","Bolivia","Brazil","Bulgaria","Canadá","Chile","Colombia","Costa Rica","Croatia","Cuba","Czech Republic","Ecuador","El Salvador","España","France","Greece","Grenada","Guatemala","Honduras","Hungary","India","Ireland","Israel","Italy","Jamaica","Kazakhstan","Malta","México","Monaco","Nicaragua","Norway","Panamá","Paraguay","Perú","Poland","Portugal","Puerto Rico","República Dominicana","Serbia","Sri Lanka","Sweden","Switzerland","Turkey","United Kingdom","United States of America","Uruguay","Venezuela","Vietnam","Otro"];
-  var sel=document.getElementById('f-pais');
-  PAISES.forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o);});
-})();
-
-/* ============ Form: réplica do envio GreatPages (mesmo endpoint, mesmos IDs de campo) ============ */
-(function(){
-  var ENDPOINT='https://contenido.getbuzzmonitor.com/conversion';
-  var GRACIAS='https://contenido.getbuzzmonitor.com/muchas-gracias';
-  var ELEMENTO='e_1657740_1_178036689358982975';
-  var qs=new URLSearchParams(location.search);
-  function q(k){return qs.get(k)||'';}
-  var form=document.getElementById('demoForm');
-  var btn=document.getElementById('formBtn');
-  var msg=document.getElementById('formMsg');
-  form.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    msg.className='form-msg';msg.textContent='';
-    if(!form.reportValidity()) return;
-    var campos={}; var i=0;
-    function add(id,titulo,valor,tipo){var c={id:id,titulo:titulo,valor:valor};if(tipo)c.tipo=tipo;campos[i++]=c;}
-    add('input_1657740_1_178036689358961292-nome','Nombre',document.getElementById('f-nombre').value);
-    add('input_1657740_1_178036689358990923-e-mail','E-mail Profesional',document.getElementById('f-email').value);
-    add('input_1657740_1_178036689358922905','Teléfono',document.getElementById('f-telefono').value,'telefone');
-    add('input_1657740_1_178036689358949078','País',document.getElementById('f-pais').value);
-    add('input_1657740_1_178036689358937076','Empresa',document.getElementById('f-empresa').value);
-    add('input_1657740_1_178036689358954091','UTM_SOURCE',q('utm_source'));
-    add('input_1657740_1_178036689358959365','UTM_MEDIUM',q('utm_medium'));
-    add('input_1657740_1_178036689358993508','UTM_CAMPAIGN',q('utm_campaign'));
-    add('input_1657740_1_178036689358901816','UTM_CONTENT',q('utm_content'));
-    add('input_1657740_1_178036689358930401','UTM_TERM',q('utm_term'));
-    add('input_1657740_1_178036689358950712','GCLID',q('gclid'));
-    add('input_1657740_1_178036689358902857','adset',q('adset'));
-    add('input_referral_source','Referral source',document.referrer===''?'Acesso direto':document.referrer);
-    add('input_mobile','Dispositivo',/Mobi|Android/i.test(navigator.userAgent)?'Mobile':'Desktop');
-    add('input_uri','URL',window.location.href);
-    var rnd=Math.random().toString();
-    var payload={campos:campos,elemento:ELEMENTO,eid:'GPages.'+rnd.substr(rnd.length-4)+(new Date()).getTime(),enav:'',eclid:q('fbclid'),euser:''};
-    btn.disabled=true;btn.textContent='Enviando…';
-    msg.className='form-msg form-msg--ok';msg.textContent='Enviando tus datos…';
-    var done=false;
-    function go(){
-      if(done)return;done=true;
-      try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form_id:'demo-ia-social-listening-es'});}catch(e){}
-      window.location.href=GRACIAS;
-    }
-    // /conversion é cross-origin e a resposta do POST não expõe Access-Control-Allow-Origin,
-    // então o navegador processa o envio (lead criado no servidor) mas NÃO consegue LER a
-    // resposta. Por isso concluímos tanto no sucesso quanto no bloqueio de leitura (.catch);
-    // keepalive garante a entrega mesmo com a navegação logo em seguida.
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true,mode:'cors'}).then(go).catch(go);
-    setTimeout(go,6000);
   });
 })();
 
