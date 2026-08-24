@@ -44,6 +44,11 @@
       "slug": "news-da-buzz",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/news-da-buzz"
+    },
+    {
+      "slug": "social-listening-guia-es",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/social-listening-guia-es"
     }
   ],
   "extra_files": {

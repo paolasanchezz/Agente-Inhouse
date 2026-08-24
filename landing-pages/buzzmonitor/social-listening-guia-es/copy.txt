@@ -1,0 +1,59 @@
+=== HERO ===
+OVERLINE: RECURSO GRATUITO
+H1: Alguien está hablando de tu marca ahora mismo. ¿Sabes qué está diciendo?
+SUB: Descarga la guía completa para crear tu primer proyecto de Social Listening: qué es realmente, en qué se diferencia del simple monitoreo y cómo implementarlo paso a paso en tu equipo.
+CTA: Quiero la guía gratis
+
+=== FORM ===
+H2: Descarga la guía gratis
+CTA: Quiero la guía gratis
+
+=== DESTAQUE ===
+H2: La conversación sobre tu marca ocurre, la estés escuchando o no
+BODY: La mayoría de los equipos de marketing revisa notificaciones, responde menciones y mide el volumen de conversaciones. Pero ninguna de estas acciones responde a la pregunta que realmente importa: ¿qué piensa tu consumidor y hacia dónde está evolucionando esa conversación?
+BODY: Esta guía te lleva de la teoría a la práctica. Al terminar, tendrás tu primera búsqueda configurada y un plan claro para analizar y aprovechar los resultados.
+
+=== EJEMPLO ===
+H2: Un ejemplo de lo que vas a poder ver
+LABEL: Monitoreo
+BODY: "La campaña recibió 5.000 menciones." Útil para saber que algo ocurrió, pero no orienta el siguiente paso.
+LABEL: Social Listening
+BODY: "El 72% de las menciones positivas está relacionado con el precio y la facilidad de uso, no con el mensaje principal de la campaña." Un insight accionable: el mercado valora algo distinto de lo que la marca comunica.
+
+=== QUE VAS A APRENDER ===
+H2: Qué encontrarás en la guía
+LIST ITEM: Qué es (y qué no es) el Social Listening, explicado de forma sencilla y sin tecnicismos
+LIST ITEM: Cómo crear tu primera búsqueda booleana, con un ejemplo real
+LIST ITEM: El paso a paso para lanzar tu primer proyecto de Social Listening
+LIST ITEM: Los errores más comunes de los equipos que están empezando
+LIST ITEM: Una plantilla, un mini glosario y un resumen listo para compartir con tu líder
+
+=== PARA QUIEN ===
+H2: Esta guía es para ti si...
+LIST ITEM: Eres gerente o analista de marketing y quieres pasar de revisar notificaciones a tomar decisiones con datos.
+LIST ITEM: Lideras un equipo de atención al cliente y necesitas priorizar por riesgo real, no por orden de llegada.
+LIST ITEM: Trabajas en una agencia y buscas respaldar tus recomendaciones con algo más sólido que la opinión del equipo.
+LIST ITEM: Estás por elegir o justificar una herramienta de Social Listening en tu empresa.
+
+=== CLIENTES ===
+H2: Marcas y agencias que ya escuchan con Buzzmonitor
+BODY: Franja horizontal de logos de clientes (reutilizar assets del mural de clientes ya usado en ia-para-social-listening-es / mcp-es).
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ enterprise
+LABEL: 500+ agencias
+LABEL: 10 mil usuarios
+
+=== CTA FINAL ===
+H2: Empieza a escuchar antes de que sea demasiado tarde
+CTA: Quiero la guía gratis
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos los derechos reservados
+FOOTER: Política de Privacidad
+
+# Revisão anti-IA: sem achados (em-dash: 0).
+# Nota de estrutura: FORM na 2ª seção (após o hero), conforme GUIDELINES §10 (ToFu/material rico). PARA QUIEN e CLIENTES adicionados para cobrir "Para quem" e "Prova/social proof" da estrutura mínima (§6), a pedido do usuario com referencia em content.buzzmonitor.com/plataforma-integral-social-media (logos+stats) e contenido.getbuzzmonitor.com/playbook-atencion-al-cliente (secao "para quem").
+# CLIENTES: stats reutilizados 1:1 do padrao ja usado em mcp-es/copy.txt (mesma franja de logos, "mural-1.jpeg"/"mural-2.jpeg") — validar com Paola se os assets de logos de ia-para-social-listening-es (Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Real Madrid, Bizum) sao os corretos pra reusar aqui, ou se ela quer um mural diferente.
+# Idioma: ES-LATAM. Buzzmonitor sem artigo. Tuteo aplicado.
+# v3 (2026-08-24): secao EJEMPLO adicionada a pedido do usuario ("poner algunos insights del monitoreo") — reusa 1:1 o exemplo de "Monitoreo vs. Social Listening" ja aprovado no playbook (secao 3), evitando inventar dado novo. Posicionada entre DESTAQUE e QUE VAS A APRENDER. Revisao anti-IA: sem achados (em-dash: 0).
+# Design (fora do copy.txt, aplicado direto no index.html): icone real da Buzzmonitor (logo-icon.png) substituindo o icone generico no badge flutuante do hero visual, a pedido do usuario ("el icono de buzz asi como esta").

@@ -1,0 +1,23 @@
+=== HERO ===
+OVERLINE: GUÍA LISTA
+H1: Tu guía ya está lista
+SUB: Descárgala y empieza a construir tu primer proyecto de Social Listening.
+CTA: Descargar la guía
+
+=== CTA COMERCIAL ===
+H2: ¿Quieres ver el Social Listening funcionando en una plataforma real?
+BODY: Buzzmonitor centraliza la escucha, el análisis y la atención al cliente en un solo lugar, con inteligencia artificial en cada paso.
+CTA: Conocer Buzzmonitor
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos los derechos reservados
+FOOTER: Política de Privacidad
+
+# Revisão anti-IA: sem achados (em-dash: 0).
+# Pagina thank-you da LP-mae social-listening-guia-es. Publicar sempre em batch com ela.
+# Slug: "-confirmado" (nao "-obrigado") — convencao ES-LATAM ja usada em atencion-al-cliente-es-confirmado, gestion-crisis-confirmado, primer-listening-5-pasos-confirmado. "-obrigado" e exclusivo de paginas PT-BR (ex: estudo-diversidade-2026-obrigado).
+# Regiao: o slug NAO termina em "-es" (termina em "-confirmado"), entao a cascata de deteccao por sufixo (CONTEXT §5.1, check_gtm_region.py) cai no fallback "brasil" caso alguem gere o HTML sem fixar a regiao manualmente. Fixar <html lang="es-419"> + GTM-MKQBX2MG explicitamente no lp-gerar (mesma logica ja aplicada na LP-mae) — a cascata completa (que checa <html lang>) resolve latam corretamente depois disso, igual ao precedente atencion-al-cliente-es-confirmado.
+# CTA COMERCIAL: destino https://content.buzzmonitor.com/ia-para-social-listening-es (pedido original do usuario — CTA de conversao comercial na pagina de agradecimento).
+# HERO CTA "Descargar la guia": destino = URL publica do Notion do playbook (conhecimento/copywriting/criacao/buzzmonitor/2026-08-19/social-listening-guia/playbook.md). PENDENTE: essa pagina Notion ainda nao foi publicada como publica — hoje so existe como pagina interna em Entregas. Precisa ser criada/compartilhada publicamente antes de ir ao ar.
+# Excecao deliberada as GUIDELINES (precedente: estudo-diversidade-2026-obrigado, cxpress/video-atendimento-obrigado): noindex,follow (pagina pos-acao); sem OG completo; sem estrutura minima de LP (sem form aqui, e so entrega + CTA).
+# Idioma: ES-LATAM. Buzzmonitor sem artigo. Tuteo aplicado.
