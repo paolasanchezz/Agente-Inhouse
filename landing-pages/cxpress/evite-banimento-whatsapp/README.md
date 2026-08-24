@@ -35,6 +35,27 @@ visivel sao identicas, verificado por diff automatizado.
 | 6 | Secao do form | card 2 colunas com divisor vertical | 1 coluna centralizada + apoio de fundo (malha de pontos, glows, pilulas, icones flutuantes) |
 | 7 | Contraste/separacao | `neutral-100` (#f5f5f5) alternando | tint unico da marca `#EEF3FF` + bordas de secao + sombras mais presentes nos cards + corpo de texto em `#3d4250` |
 
+### Rodada 2 de ajustes (2026-08-24, feedback do Victor sobre o live)
+
+| # | O que | De | Para |
+|---|---|---|---|
+| 8 | Espaco morto entre HERO e CLIENTES | aparelho 320px (671px de altura) vs coluna de texto ~460px + padding 140/96px | aparelho 272px (578px), `hero__inner` padding-bottom 56px, `clientes` padding-top 40px |
+| 9 | Pilula do topo direito do hero | lilas `--primary-lighter` | azul escuro `--primary-dark` (#232960) |
+| 10 | Marcador dos cards de BENEFICIOS | pilula decorativa (`.card__pill`) | badge 58px com icone (escudo-check / equipe / bolha-relogio), stroke navy, fundo no tint da cor de cada card |
+| 11 | CTA nos itens da PLATAFORMA | nao tinha | 1 CTA por feature (4 no total), estilo link com regua verde e seta |
+
+Sobre o **delta 8**: o vazio nao era padding, era a diferenca de altura entre as duas
+colunas do grid do hero (`align-items:center` com visual muito mais alto que o texto cria
+faixa morta em cima e embaixo do texto). Reduzir o aparelho atacou a causa; o corte de
+padding foi complemento. A sombra do aparelho pode transbordar pro CLIENTES sem problema,
+porque o `.hero` nao tem mais `overflow:hidden` (ver nota tecnica abaixo).
+
+Sobre o **delta 11**: o rotulo reusa o literal da copy (`Agendar demonstracao gratuita`),
+porque a regra de fidelidade de copy proibe inventar texto novo por feature. Se o time
+quiser CTA especifico por item (`Ver os canais`, `Conhecer a IA`), isso e copy nova e
+precisa vir do pipeline. Estilo de link (nao botao cheio) de proposito: 4 botoes solidos
+nessa secao competiriam com o CTA principal.
+
 ### Pontos de atencao (decisoes que precisam de OK do time)
 
 - **GTM sobrepoe o `brand/cxpress/tracking.json`.** O tracking.json aponta `GTM-T4XDWHL3`
@@ -85,7 +106,7 @@ do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
 - [x] OG image 1200×630 → `assets/og-evite-banimento-whatsapp.png` (reaproveitada da LP de referencia, mesmo tema)
 - [x] Formulario integrado (Jotform `261034073026647`)
 - [ ] Revisao — rodar `/lp-revisar cxpress/evite-banimento-whatsapp`
-- [ ] Publicado — rodar `/lp-publicar cxpress evite-banimento-whatsapp content.cxpress.io`
+- [x] Publicado em https://content.cxpress.io/evite-banimento-whatsapp (PR #345, deploy CI)
 
 ## Assets referenciados
 

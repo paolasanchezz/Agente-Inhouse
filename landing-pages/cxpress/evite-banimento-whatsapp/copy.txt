@@ -39,12 +39,16 @@ CTA: Agendar demonstração gratuita
 H2: A estrutura que o seu número ganha na plataforma
 H3: Todos os canais no mesmo painel
 BODY: WhatsApp, e-mail, redes sociais, telefone e chat do site, com histórico unificado por cliente, independente do canal usado.
+CTA: Agendar demonstração gratuita
 H3: Atendimento 24/7 com apoio de IA
 BODY: Amplie o atendimento para 24/7 com apoio de IA no primeiro nível. O time humano entra nas questões que pedem gente.
+CTA: Agendar demonstração gratuita
 H3: Gestão de tickets com fila e distribuição
 BODY: Distribua atendimentos automaticamente ou manualmente para setores e agentes específicos, com visão completa da fila.
+CTA: Agendar demonstração gratuita
 H3: Dashboards no lugar das planilhas
 BODY: Transforme as estatísticas do atendimento em painéis intuitivos, com os indicadores que o gestor acompanha de verdade.
+CTA: Agendar demonstração gratuita
 
 === FAQ ===
 H2: Dúvidas frequentes
@@ -85,5 +89,10 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 #      banimento do WhatsApp, sobre blobs/glow da identidade Cxpress
 #   6. Secao do formulario centralizada + elementos de apoio no background
 #   7. Contraste e separacao entre secoes reforcados
+#   8. Icones nos 3 cards de BENEFICIOS (substituem a pilula decorativa) e 1 CTA
+#      por item na secao PLATAFORMA. O rotulo do CTA reusa o literal da copy
+#      ("Agendar demonstracao gratuita") — nenhum rotulo novo foi inventado por
+#      feature. Se o time quiser CTA especifico por item ("Ver os canais", etc),
+#      isso e copy nova e precisa passar pelo pipeline.
 # Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0). Textos
 # herdados de copy ja revisada; nenhuma frase nova foi escrita.

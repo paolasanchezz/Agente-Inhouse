@@ -188,7 +188,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        O corte horizontal fica por conta do overflow-x:hidden do body. */
     .hero{background:var(--white);position:relative;padding:0}
     .hero__inner{
-      max-width:var(--maxw);margin:0 auto;padding:48px 32px 140px;
+      max-width:var(--maxw);margin:0 auto;padding:44px 32px 56px;
       display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
       gap:56px;align-items:center;
     }
@@ -258,12 +258,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       top:12%;left:14%;
     }
     .hero__decor .pill{border-radius:9999px}
-    .hero__decor .pill-1{width:56px;height:190px;background:var(--primary-lighter);top:2%;right:12%}
+    .hero__decor .pill-1{width:56px;height:190px;background:var(--primary-dark);top:2%;right:12%}
     .hero__decor .pill-2{width:44px;height:140px;border:3px solid var(--accent);background:transparent;bottom:12%;left:2%}
     .hero__phone{
       position:relative;z-index:1;
-      width:100%;max-width:clamp(230px,27vw,320px);height:auto;
-      filter:drop-shadow(0 26px 48px rgba(35,41,96,.28)) drop-shadow(0 8px 16px rgba(35,41,96,.13));
+      width:100%;max-width:clamp(215px,21vw,272px);height:auto;
+      filter:drop-shadow(0 18px 34px rgba(35,41,96,.26)) drop-shadow(0 6px 12px rgba(35,41,96,.12));
       animation:float 7s ease-in-out infinite alternate;
     }
     @keyframes float{from{transform:translateY(-7px)}to{transform:translateY(9px)}}
@@ -297,6 +297,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size:clamp(28px,3.4vw,42px);line-height:1.2;
       letter-spacing:-.01em;color:var(--primary-dark);
     }
+    /* Quebra de linha decidida no design (H1 do hero e H2 do form). Desligada em
+       telas estreitas, onde a quebra natural do texto le melhor que a forcada.
+       O espaco depois do <br> mantem a frase correta quando ele nao renderiza. */
+    .brk{display:none}
+    @media (min-width:600px){.brk{display:inline}}
     .sect-rule{
       display:block;width:64px;height:9px;border-radius:9999px;
       background:var(--accent);margin:0 auto 26px;
@@ -307,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .reveal.is-visible{opacity:1;transform:none}
 
     /* ===== Clientes (prova social) ===== */
-    .clientes{background:var(--white);padding:96px 0;border-bottom:1px solid var(--border)}
+    .clientes{background:var(--white);padding:40px 0 72px;border-bottom:1px solid var(--border)}
     .clientes__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,2.1fr);gap:48px;align-items:center}
     .clientes .section-title{text-align:left;margin:0;font-size:clamp(24px,2.5vw,32px)}
     .clientes__grid{border-left:1px solid var(--border-strong);padding-left:48px}
@@ -426,12 +431,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transition:transform .25s ease,box-shadow .25s ease;
     }
     .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover)}
-    .card__pill{
-      width:44px;height:16px;border-radius:9999px;
-      background:var(--primary);margin-bottom:24px;
+    .card__icon{
+      width:58px;height:58px;border-radius:18px;
+      display:grid;place-items:center;margin-bottom:24px;
+      background:var(--primary-lighter);
+      transition:transform .25s ease;
     }
-    .card:nth-child(2) .card__pill{background:var(--accent)}
-    .card:nth-child(3) .card__pill{background:var(--warning)}
+    .card__icon svg{width:29px;height:29px;color:var(--primary-dark)}
+    .card:nth-child(2) .card__icon{background:var(--accent-light)}
+    .card:nth-child(3) .card__icon{background:var(--warning-light)}
+    .card:hover .card__icon{transform:scale(1.06)}
     .card h3{
       font-family:var(--font-display);font-weight:700;font-size:22px;
       color:var(--primary-dark);margin-bottom:14px;line-height:1.3;
@@ -486,6 +495,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color:var(--primary-dark);margin-bottom:14px;line-height:1.3;
     }
     .feature p{font-size:18px;line-height:1.7;color:var(--text-body);max-width:46ch}
+    /* CTA por item: link com regua verde, nao botao cheio. 4 botoes solidos nesta
+       secao competiriam com o CTA principal e pesariam o ritmo da pagina. */
+    .feature__cta{
+      display:inline-flex;align-items:center;gap:10px;
+      margin-top:22px;
+      font-family:var(--font-display);font-weight:700;font-size:16px;
+      color:var(--primary-dark);text-decoration:none;
+      border-bottom:2px solid var(--wa);padding-bottom:4px;
+      transition:color .2s ease,gap .2s ease,border-color .2s ease;
+    }
+    .feature__cta::after{content:"→";font-size:18px;line-height:1}
+    .feature__cta:hover{color:var(--wa-dark);border-color:var(--wa-dark);gap:15px}
     .feature--textonly{
       grid-template-columns:1fr;
       background:var(--primary-lighter);
@@ -564,10 +585,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:980px){
       .hero__inner{
         grid-template-columns:1fr;
-        padding:36px 24px 112px;gap:40px;
+        padding:32px 24px 48px;gap:32px;
       }
       .hero__sub{font-size:18px}
-      .hero__phone{max-width:250px}
+      .hero__phone{max-width:230px}
       .hero__decor{inset:0}
       .hero__decor .pill-1,.hero__decor .ring{display:none}
       .container{padding:0 24px}
@@ -580,7 +601,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .agendar__card{padding:36px 24px 32px;border-radius:20px}
       .agendar h3{font-size:19px}
       .agendar__formcol{padding-top:26px}
-      .clientes{padding:64px 0}
+      .clientes{padding:40px 0 56px}
       .clientes__inner{grid-template-columns:1fr;gap:32px}
       .clientes .section-title{text-align:center}
       .sect-rule--left{margin:0 auto 20px}
@@ -629,7 +650,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero__inner">
         <div class="hero__content">
           <span class="hero__overline">API oficial do WhatsApp · Cxpress</span>
-          <h1 id="hero-title">Evite banimento do WhatsApp comercial.</h1>
+          <h1 id="hero-title">Evite banimento<br class="brk"> do WhatsApp comercial.</h1>
           <p class="hero__sub">Você não precisa correr risco de perder o número que seus clientes já conhecem. Com a Cxpress, você opera com a API oficial do WhatsApp, com múltiplos atendentes e histórico unificado, sem correr risco de banimento.</p>
           <a href="#agendar" class="btn">Agendar demonstração gratuita</a>
         </div>
@@ -680,7 +701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agendar__card">
         <div class="agendar__content reveal">
-          <h2 id="agendar-title" class="section-title">Agende sua demonstração gratuita</h2>
+          <h2 id="agendar-title" class="section-title">Agende sua<br class="brk"> demonstração gratuita</h2>
           <h3>Veja a integração oficial funcionando na sua operação</h3>
           <p class="agendar__body">Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.</p>
           <p class="agendar__price">Planos a partir de R$ 990 com 3 acessos</p>
@@ -703,17 +724,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="beneficios__grid">
           <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
+            <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.9l7.1 2.5v6.1c0 4.3-2.9 8-7.1 9.2-4.2-1.2-7.1-4.9-7.1-9.2V5.4L12 2.9z"/><path d="M8.9 12.1l2.2 2.2 4.1-4.3"/></svg></div>
             <h3>Integração oficial da Meta</h3>
             <p>A conexão é feita pela API oficial do WhatsApp, o caminho que a Meta autoriza para empresas. Sem ferramenta paralela, sem violação dos termos de uso.</p>
           </article>
           <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
+            <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="8.4" r="3.3"/><path d="M3.4 19.6c0-3.2 2.6-5.5 5.8-5.5s5.8 2.3 5.8 5.5"/><path d="M16.3 6.1a3.1 3.1 0 010 6"/><path d="M17.6 14.4c1.9.7 3.1 2.5 3.1 4.6"/></svg></div>
             <h3>Vários atendentes, um número</h3>
             <p>A equipe inteira atende pelo mesmo número, com fila, distribuição de tickets e visibilidade para o gestor. Sem celular compartilhado.</p>
           </article>
           <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
+            <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 11.4a8.4 8.4 0 01-8.4 8.4H8.2L3.4 21.2l1.1-3.9a8.4 8.4 0 1116.3-5.9z"/><path d="M12 8.3v3.5l2.5 1.5"/></svg></div>
             <h3>Histórico que não se perde</h3>
             <p>Cada conversa fica registrada por cliente, independente de quem atendeu. Se alguém sai da equipe, o histórico fica.</p>
           </article>
@@ -758,6 +779,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="feature__text">
             <h3>Todos os canais no mesmo painel</h3>
             <p>WhatsApp, e-mail, redes sociais, telefone e chat do site, com histórico unificado por cliente, independente do canal usado.</p>
+            <a href="#agendar" class="feature__cta">Agendar demonstração gratuita</a>
           </div>
         </div>
 
@@ -768,6 +790,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="feature__text">
             <h3>Atendimento 24/7 com apoio de IA</h3>
             <p>Amplie o atendimento para 24/7 com apoio de IA no primeiro nível. O time humano entra nas questões que pedem gente.</p>
+            <a href="#agendar" class="feature__cta">Agendar demonstração gratuita</a>
           </div>
         </div>
 
@@ -775,6 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="feature__text">
             <h3>Gestão de tickets com fila e distribuição</h3>
             <p>Distribua atendimentos automaticamente ou manualmente para setores e agentes específicos, com visão completa da fila.</p>
+            <a href="#agendar" class="feature__cta">Agendar demonstração gratuita</a>
           </div>
         </div>
 
@@ -785,6 +809,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="feature__text">
             <h3>Dashboards no lugar das planilhas</h3>
             <p>Transforme as estatísticas do atendimento em painéis intuitivos, com os indicadores que o gestor acompanha de verdade.</p>
+            <a href="#agendar" class="feature__cta">Agendar demonstração gratuita</a>
           </div>
         </div>
 
