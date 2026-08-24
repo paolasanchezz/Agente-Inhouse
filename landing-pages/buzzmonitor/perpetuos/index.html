@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webinars perpétuos | Grupo Elife</title>
+<link rel="canonical" href="https://{{DOMAIN}}/perpetuos">
+
+<meta name="description" content="Grade de horários e links das landing pages dos webinars perpétuos do Grupo Elife no ClickMeeting.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Buzzmonitor">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Buzzmonitor">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://{{DOMAIN}}/perpetuos">
+<meta property="og:title" content="Webinars perpétuos | Grupo Elife">
+<meta property="og:description" content="Horários e links das landing pages dos webinars perpétuos que rodam todos os dias.">
+
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --roxo:#390155; --roxo-claro:#F2D8FF;
+    --teal:#0E9D9B; --teal-claro:#CDFDFC;
+    --laranja-claro:#FFD5C3;
+    --tinta:#1a1a1a; --tinta-suave:#4a4a4a;
+    --linha:#e6e6e6; --fundo-suave:#f7f5f9; --branco:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--branco); color:var(--tinta);
+    font-family:"Lato",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px; margin:0 auto; padding:48px 24px 72px}
+
+  header{margin-bottom:40px}
+  .marca{
+    display:inline-block; font-family:"League Spartan",sans-serif; font-weight:900;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--roxo); margin-bottom:16px;
+  }
+  h1{
+    font-family:"League Spartan",sans-serif; font-weight:900; line-height:1.1;
+    font-size:clamp(30px,5vw,44px); margin:0 0 12px; color:var(--roxo);
+  }
+  .sub{margin:0; max-width:60ch; color:var(--tinta-suave); font-size:17px}
+  .atualizado{
+    margin-top:20px; display:inline-flex; align-items:center; gap:8px;
+    background:var(--fundo-suave); border-radius:9999px; padding:7px 16px;
+    font-size:13px; color:var(--tinta-suave);
+  }
+  .ponto{width:7px; height:7px; border-radius:50%; background:var(--teal); flex:none}
+
+  .aviso{
+    margin:28px 0 0; padding:16px 20px; border-left:3px solid var(--teal);
+    background:var(--teal-claro); border-radius:0 8px 8px 0; font-size:15px;
+  }
+  .aviso strong{color:var(--roxo)}
+
+  .tabela-wrap{margin-top:40px; overflow-x:auto; -webkit-overflow-scrolling:touch}
+  table{width:100%; border-collapse:collapse; font-size:15px; min-width:720px}
+  caption{
+    text-align:left; font-family:"League Spartan",sans-serif; font-weight:700;
+    font-size:20px; color:var(--roxo); padding-bottom:16px;
+  }
+  th{
+    text-align:left; font-family:"League Spartan",sans-serif; font-weight:700;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--tinta-suave); padding:0 16px 12px 0; border-bottom:2px solid var(--linha);
+    white-space:nowrap;
+  }
+  td{padding:18px 16px 18px 0; border-bottom:1px solid var(--linha); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .nome{font-weight:700; color:var(--tinta); display:block; margin-bottom:5px}
+  .idioma{font-size:13px; color:var(--tinta-suave)}
+  .hora{font-family:"League Spartan",sans-serif; font-weight:700; font-size:19px; white-space:nowrap}
+  .hora-br{color:var(--roxo)}
+  .hora-mx{color:var(--tinta-suave)}
+  .tag{
+    display:inline-block; font-size:12px; font-weight:700; letter-spacing:.03em;
+    padding:4px 11px; border-radius:9999px; white-space:nowrap;
+  }
+  .tag-buzzmonitor{background:var(--roxo-claro); color:var(--roxo)}
+  .tag-cxpress{background:var(--teal-claro); color:#0a6f6e}
+  .tag-buzzcreators{background:var(--laranja-claro); color:#a0501a}
+  a.lp{
+    color:var(--roxo); font-weight:700; text-decoration:none;
+    border-bottom:2px solid var(--roxo-claro); word-break:break-word;
+  }
+  a.lp:hover,a.lp:focus-visible{border-bottom-color:var(--roxo)}
+  a:focus-visible{outline:2px solid var(--roxo); outline-offset:3px; border-radius:2px}
+
+  footer{
+    margin-top:56px; padding-top:28px; border-top:1px solid var(--linha);
+    font-size:14px; color:var(--tinta-suave);
+  }
+  footer p{margin:0 0 10px}
+  footer p:last-child{margin-bottom:0}
+
+  @media (max-width:760px){
+    .wrap{padding:32px 18px 56px}
+    .tabela-wrap{overflow-x:visible}
+    table{min-width:0}
+    caption{padding-bottom:12px}
+    thead{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+    tbody tr{
+      display:block; border:1px solid var(--linha); border-radius:12px;
+      padding:18px 20px; margin-bottom:14px;
+    }
+    tbody td{display:block; padding:0; border:none}
+    tbody td + td{margin-top:12px}
+    tbody td[data-rotulo]::before{
+      content:attr(data-rotulo); display:block; font-family:"League Spartan",sans-serif;
+      font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--tinta-suave); margin-bottom:3px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="marca">Grupo Elife</span>
+  <h1>Webinars perpétuos</h1>
+  <p class="sub">Sete webinars que rodam automaticamente <strong>todos os dias</strong>, inclusive fim de semana. Cada link abre a landing page de inscrição, que sempre mostra a próxima sessão disponível.</p>
+  <span class="atualizado"><span class="ponto"></span>Atualizado em 24 de agosto de 2026</span>
+</header>
+
+<p class="aviso"><strong>Fuso:</strong> Brasília está sempre 3 horas à frente da Cidade do México — nenhum dos dois tem horário de verão, então a diferença vale o ano inteiro.</p>
+
+<div class="tabela-wrap">
+<table>
+  <caption>Grade e links de inscrição</caption>
+  <thead>
+    <tr>
+      <th scope="col">Webinar</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Horário BR</th>
+      <th scope="col">Horário MX</th>
+      <th scope="col">Landing page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Case Buzzcreators</span><span class="idioma">Português</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzcreators">Buzzcreators</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">09:40</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">06:40</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/conheca-o-buzzcreators">webinar.buzzmonitor.com/conheca-o-buzzcreators</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Tu primer listening en 5 pasos</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">12:00</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">09:00</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/primer-listening-5-pasos">webinar.buzzmonitor.com/primer-listening-5-pasos</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">¿Qué es MCP?</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">13:00</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">10:00</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/que-es-mcp">webinar.buzzmonitor.com/que-es-mcp</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Atención al Cliente</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">14:05</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">11:05</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/atencion-al-cliente-es">webinar.buzzmonitor.com/atencion-al-cliente-es</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Gestión de Crisis</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">15:30</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">12:30</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/gestion-crisis">webinar.buzzmonitor.com/gestion-crisis</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Caso Smart Fit Latam</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">16:00</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">13:00</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/caso-smartfit">webinar.buzzmonitor.com/caso-smartfit</a></td>
+    </tr>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">¿Por qué bloquean tu WhatsApp?</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-cxpress">Cxpress</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">17:00</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">14:00</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://content.cxpress.io/webinar-bloqueo-whatsapp">content.cxpress.io/webinar-bloqueo-whatsapp</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  <p>Página de uso interno. Os horários vêm da configuração das séries automáticas no ClickMeeting.</p>
+  <p>Mudou horário, entrou webinar novo ou saiu algum? Fale com o time de Content Marketing para atualizar esta página.</p>
+</footer>
+
+</div>
+</body>
+</html>
