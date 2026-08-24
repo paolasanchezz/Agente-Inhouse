@@ -1,0 +1,112 @@
+# LP Cxpress — evite-banimento-whatsapp
+
+**Gerado em:** 2026-08-24
+**Copy-fonte:** `copy.txt`
+**Origem:** variante da LP `banimento-whatsapp` (content.cxpress.io). Estrutura, layout e
+textos replicados da pagina de referencia a pedido do briefing. Diff de texto visivel
+contra a referencia = **1 linha** (a chamada de preco). As demais 62 linhas de texto
+visivel sao identicas, verificado por diff automatizado.
+
+- **lang:** `pt-BR`
+- **dominio alvo:** `content.cxpress.io` (guarda-chuva migrado pro CI)
+
+## Estrutura
+
+1. HERO (overline + H1 + sub + CTA + celular com a tela de banimento sobre blobs/glow)
+2. CLIENTES (prova social, grade de logos)
+3. FORM (2a dobra, centralizada, embed Jotform)
+4. BENEFICIOS (3 cards)
+5. PROVA (4 stats + nota de fonte + CTA)
+6. PLATAFORMA (4 features, 1 delas text-only)
+7. FAQ (5 perguntas)
+8. QUEM SOMOS (foto + texto + 3 badges)
+9. FECHO (secao dark, pausa)
+10. FOOTER
+
+## Deltas em relacao a `banimento-whatsapp`
+
+| # | O que | De | Para |
+|---|---|---|---|
+| 1 | Chamada de preco | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
+| 2 | Form Jotform | `261045149477663` | `261034073026647` |
+| 3 | GTM | `GTM-T4XDWHL3` | `GTM-KN8BPFG` |
+| 4 | GA4 | (nao tinha) | `gtag.js` com ID `339689858` |
+| 5 | Visual do hero | `plataforma-canais.gif` | `./assets/hero-conta-banida-whatsapp.png` + blobs/glow/pilulas |
+| 6 | Secao do form | card 2 colunas com divisor vertical | 1 coluna centralizada + apoio de fundo (malha de pontos, glows, pilulas, icones flutuantes) |
+| 7 | Contraste/separacao | `neutral-100` (#f5f5f5) alternando | tint unico da marca `#EEF3FF` + bordas de secao + sombras mais presentes nos cards + corpo de texto em `#3d4250` |
+
+### Pontos de atencao (decisoes que precisam de OK do time)
+
+- **GTM sobrepoe o `brand/cxpress/tracking.json`.** O tracking.json aponta `GTM-T4XDWHL3`
+  para a regiao `brasil`; esta LP usa `GTM-KN8BPFG` por pedido explicito no briefing.
+  Isso faz o gate `check_gtm_region.py` **bloquear** o deploy, entao a LP tem selo
+  `.tracking.lock` grandfathered (`status: wrong`, fingerprint `1b72ebbdd5041c63`) pra
+  liberar o CI sem mexer no container das outras LPs Cxpress BR. Consequencia: se alguem
+  trocar o GTM desta LP, o fingerprint muda e o gate volta a bloquear (comportamento
+  desejado). Se `GTM-KN8BPFG` virar o padrao de Cxpress BR, atualizar o `tracking.json` e
+  regravar o selo com `--write-stamp`.
+- **ID do GA4.** O briefing passou `339689858`. IDs de medicao GA4 normalmente tem o
+  formato `G-XXXXXXXXXX`; `339689858` tem cara de **ID de propriedade / de fluxo de dados**.
+  A tag foi montada literalmente com o valor recebido. Se o hit nao aparecer no GA4,
+  trocar pelo `G-...` do fluxo Web.
+- **Nota do site ativo aparece 2x.** `Ter um site ativo e um dos requisitos...` esta na
+  copy da LP (herdada da referencia) e tambem como texto de ajuda do campo "Site da
+  empresa" dentro do Jotform novo. Mantido por fidelidade a referencia; remover a linha
+  da LP e uma edicao de 1 linha se o time preferir.
+- **Form real, nao mock.** GUIDELINES §11 pede mock no `lp-gerar` e embed via
+  `/lp-integrar-form`. Aqui o snippet do Jotform veio pronto no briefing e foi embutido
+  direto, no mesmo padrao da LP de referencia.
+
+## Validacoes rodadas
+
+- `grep -c "—"` = 0 e `grep -c "&mdash;"` = 0 (anti-IA, tolerancia zero)
+- Diff de texto visivel contra a referencia: so a linha de preco
+- 10 tags `og:` / 4 tags `twitter:` / canonical / JSON-LD valido
+- Placeholders `{{DOMAIN}}`, `{{OG_IMAGE_PATH}}`, `{{BRAND_LOGO_PNG_PATH}}` presentes e
+  resolvidos pelo `build_umbrella.py`; nenhum path relativo vaza pos-rewrite
+- Todos os assets referenciados resolvem (brand ou LP-local)
+- Logos do header/footer sem `<text>` vivo (§19)
+- Sem scroll horizontal em 375 / 753 / 1265 / 1521 px
+- Mobile: headline antes do visual (§3)
+- Embed do Jotform renderiza (iframe "CXPRESS BR")
+
+### Nota tecnica: glow sem `filter: blur()`
+
+Os glows do hero e da secao do form usam **falloff do proprio `radial-gradient`**, sem
+`filter: blur()`. Motivo: `blur()` espalha cerca de 3x o raio para fora da caixa do
+elemento e era cortado pelo `overflow:hidden` da secao, gerando uma **linha reta visivel**
+no rodape do hero. Pelo mesmo motivo o `.hero` perdeu o `overflow:hidden` (a sombra do
+aparelho precisa escapar) e o corte horizontal ficou por conta do `overflow-x:hidden`
+do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
+
+## Estado
+
+- [x] HTML gerado
+- [x] OG image 1200×630 → `assets/og-evite-banimento-whatsapp.png` (reaproveitada da LP de referencia, mesmo tema)
+- [x] Formulario integrado (Jotform `261034073026647`)
+- [ ] Revisao — rodar `/lp-revisar cxpress/evite-banimento-whatsapp`
+- [ ] Publicado — rodar `/lp-publicar cxpress evite-banimento-whatsapp content.cxpress.io`
+
+## Assets referenciados
+
+- `./assets/hero-conta-banida-whatsapp.png` (LP-local, 430×901, PNG com alpha, 429 KB)
+- `./assets/og-evite-banimento-whatsapp.png` (LP-local, OG 1200×630)
+- `../../brand/cxpress/assets/logos/logo-primary.svg` (header)
+- `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
+- `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
+- `../../brand/cxpress/assets/logos/logo-primary.png` (JSON-LD, via placeholder)
+- `../../brand/cxpress/assets/plataforma/clientes-cxpress.png`
+- `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`
+- `../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif`
+- `../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif`
+- `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg`
+- `../../brand/cxpress/assets/plataforma/elife-logo.png`
+
+### Sobre o asset do hero
+
+O briefing entregou um SVG de 596 KB que era so um wrapper: 2 PNGs em base64 (a arte e
+uma mascara de luminancia) dentro de um `viewBox` com muito espaco vazio a esquerda. Foi
+convertido para **um PNG unico com canal alpha real**, recortado no bounding box do
+aparelho (medido na mascara) e re-encodado com filtro PNG adaptativo: 430×901, 429 KB.
+Contra o GIF que era o visual do hero na referencia (`plataforma-canais.gif`, 2,4 MB),
+o hero ficou cerca de 5x mais leve.
