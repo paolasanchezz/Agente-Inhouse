@@ -1,5 +1,5 @@
 === HERO ===
-OVERLINE: RECURSO GRATUITO
+OVERLINE: PLAYBOOK GRATUITO
 H1: Alguien está hablando de tu marca ahora mismo. ¿Sabes qué está diciendo?
 SUB: Descarga la guía completa para crear tu primer proyecto de Social Listening: qué es realmente, en qué se diferencia del simple monitoreo y cómo implementarlo paso a paso en tu equipo.
 CTA: Quiero la guía gratis
@@ -7,6 +7,11 @@ CTA: Quiero la guía gratis
 === FORM ===
 H2: Descarga la guía gratis
 CTA: Quiero la guía gratis
+
+=== FORM-EXTRA ===
+LABEL: Teoría + paso a paso + plantilla + glosario.
+BODY: Si sientes que reaccionas siempre un paso tarde a lo que dicen de tu marca, este material es para ti.
+BODY: Descárgalo, complétalo mientras lo lees y quédate con la plantilla y el resumen para tu líder.
 
 === DESTAQUE ===
 H2: La conversación sobre tu marca ocurre, la estés escuchando o no
@@ -55,5 +60,6 @@ FOOTER: Política de Privacidad
 # Nota de estrutura: FORM na 2ª seção (após o hero), conforme GUIDELINES §10 (ToFu/material rico). PARA QUIEN e CLIENTES adicionados para cobrir "Para quem" e "Prova/social proof" da estrutura mínima (§6), a pedido do usuario com referencia em content.buzzmonitor.com/plataforma-integral-social-media (logos+stats) e contenido.getbuzzmonitor.com/playbook-atencion-al-cliente (secao "para quem").
 # CLIENTES: stats reutilizados 1:1 do padrao ja usado em mcp-es/copy.txt (mesma franja de logos, "mural-1.jpeg"/"mural-2.jpeg") — validar com Paola se os assets de logos de ia-para-social-listening-es (Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Real Madrid, Bizum) sao os corretos pra reusar aqui, ou se ela quer um mural diferente.
 # Idioma: ES-LATAM. Buzzmonitor sem artigo. Tuteo aplicado.
+# v4 (2026-08-24): OVERLINE trocado de "RECURSO GRATUITO" para "PLAYBOOK GRATUITO" a pedido da Paola (bate com o padrao real ja usado em contenido.getbuzzmonitor.com/playbook-atencion-al-cliente). Secao FORM-EXTRA adicionada (bloco de texto ao lado do form, pra secao nao ficar vazia) com referencia visual em content.buzzmonitor.com/plataforma-integral-social-media. Revisao anti-IA: sem achados (em-dash: 0).
 # v3 (2026-08-24): secao EJEMPLO adicionada a pedido do usuario ("poner algunos insights del monitoreo") — reusa 1:1 o exemplo de "Monitoreo vs. Social Listening" ja aprovado no playbook (secao 3), evitando inventar dado novo. Posicionada entre DESTAQUE e QUE VAS A APRENDER. Revisao anti-IA: sem achados (em-dash: 0).
 # Design (fora do copy.txt, aplicado direto no index.html): icone real da Buzzmonitor (logo-icon.png) substituindo o icone generico no badge flutuante do hero visual, a pedido do usuario ("el icono de buzz asi como esta").
