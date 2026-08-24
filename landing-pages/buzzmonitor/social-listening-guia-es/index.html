@@ -334,7 +334,7 @@
       color: var(--ink); margin-bottom: 24px;
     }
     .form-extra__tagline .plus{color: var(--teal);}
-    .form-extra p{font-size:16px; color: var(--ink-soft); margin-bottom:16px;}
+    .form-extra p{font-size:19px; line-height:1.6; color: var(--ink-soft); margin-bottom:20px;}
     .form-extra p:last-child{margin-bottom:0;}
     @media (max-width: 900px){
       .section-form .wrap{grid-template-columns: 1fr; gap:40px;}
@@ -455,16 +455,24 @@
       border-top: 1px solid var(--line);
     }
     .section-clientes .section-header h2{color: var(--purple);}
-    .logo-wall{
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-      gap: 40px 56px; margin-bottom: 72px;
+    .logo-marquee{
+      overflow:hidden; margin-bottom: 72px;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
-    .logo-wall img{
-      height: 34px; width:auto;
-      filter: grayscale(1); opacity:.6;
+    .logo-marquee__track{
+      display:flex; align-items:center; gap:56px; width:max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .logo-marquee:hover .logo-marquee__track{animation-play-state: paused;}
+    @keyframes marquee{ 0%{transform: translateX(0);} 100%{transform: translateX(-50%);} }
+    @media (prefers-reduced-motion: reduce){ .logo-marquee__track{animation: none;} }
+    .logo-marquee img{
+      height: 34px; width:auto; flex: 0 0 auto;
+      filter: grayscale(1) brightness(0.7); opacity:.7;
       transition: opacity .2s ease, filter .2s ease;
     }
-    .logo-wall img:hover{opacity:1; filter:grayscale(0);}
+    .logo-marquee img:hover{opacity:1; filter:none;}
     .stats-row{
       display:grid; grid-template-columns: repeat(4, 1fr); gap:24px;
       max-width: 900px; margin:0 auto; text-align:center;
@@ -619,7 +627,7 @@
           <p class="form-disclaimer">Al registrarte aceptas recibir comunicaciones de Buzzmonitor.</p>
         </div>
         <div class="form-extra reveal">
-          <p class="form-extra__tagline">Teoría <span class="plus">+</span> paso a paso <span class="plus">+</span> plantilla <span class="plus">+</span> glosario.</p>
+          <p class="form-extra__tagline">Teoría <span class="plus">+</span> paso a paso <span class="plus">+</span> plantilla.</p>
           <p>Si sientes que reaccionas siempre un paso tarde a lo que dicen de tu marca, este material es para ti.</p>
           <p>Descárgalo, complétalo mientras lo lees y quédate con la plantilla y el resumen para tu líder.</p>
         </div>
@@ -720,23 +728,35 @@
         <div class="section-header reveal">
           <h2>Marcas y agencias que ya escuchan con Buzzmonitor</h2>
         </div>
-        <div class="logo-wall reveal">
-          <img src="./assets/clientes/logo-samsung.png" alt="Samsung">
-          <img src="./assets/clientes/logo-sony.png" alt="Sony">
-          <img src="./assets/clientes/logo-ikea.png" alt="IKEA">
-          <img src="./assets/clientes/logo-sephora.png" alt="Sephora">
-          <img src="./assets/clientes/logo-santander.png" alt="Santander">
-          <img src="./assets/clientes/logo-havas.png" alt="Havas">
-          <img src="./assets/clientes/logo-tbwa.png" alt="TBWA">
-          <img src="./assets/clientes/logo-mccann.png" alt="McCann">
-          <img src="./assets/clientes/logo-realmadrid.png" alt="Fundación Real Madrid">
-          <img src="./assets/clientes/logo-bizum.png" alt="Bizum">
+        <div class="logo-marquee reveal">
+          <div class="logo-marquee__track">
+            <img src="./assets/clientes/logo-samsung.png" alt="Samsung">
+            <img src="./assets/clientes/logo-sony.png" alt="Sony">
+            <img src="./assets/clientes/logo-ikea.png" alt="IKEA">
+            <img src="./assets/clientes/logo-sephora.png" alt="Sephora">
+            <img src="./assets/clientes/logo-santander.png" alt="Santander">
+            <img src="./assets/clientes/logo-havas.png" alt="Havas">
+            <img src="./assets/clientes/logo-tbwa.png" alt="TBWA">
+            <img src="./assets/clientes/logo-mccann.png" alt="McCann">
+            <img src="./assets/clientes/logo-realmadrid.png" alt="Fundación Real Madrid">
+            <img src="./assets/clientes/logo-bizum.png" alt="Bizum">
+            <img src="./assets/clientes/logo-samsung.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-sony.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-ikea.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-sephora.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-santander.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-havas.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-tbwa.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-mccann.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-realmadrid.png" alt="" aria-hidden="true">
+            <img src="./assets/clientes/logo-bizum.png" alt="" aria-hidden="true">
+          </div>
         </div>
         <div class="stats-row reveal">
-          <div class="stat"><strong>1.000+</strong><span>clientes en el mundo</span></div>
-          <div class="stat"><strong>300+</strong><span>enterprise</span></div>
-          <div class="stat"><strong>500+</strong><span>agencias</span></div>
-          <div class="stat"><strong>10 mil</strong><span>usuarios</span></div>
+          <div class="stat"><strong class="js-counter" data-count="1000" data-suffix="+" data-thousands="1">1.000+</strong><span>clientes en el mundo</span></div>
+          <div class="stat"><strong class="js-counter" data-count="300" data-suffix="+">300+</strong><span>enterprise</span></div>
+          <div class="stat"><strong class="js-counter" data-count="500" data-suffix="+">500+</strong><span>agencias</span></div>
+          <div class="stat"><strong class="js-counter" data-count="10" data-suffix=" mil">10 mil</strong><span>usuarios</span></div>
         </div>
       </div>
     </section>
@@ -792,6 +812,53 @@
         });
       }, { threshold: 0.15 });
       items.forEach(function(el){ obs.observe(el); });
+    })();
+
+    // Contador animado de las estadisticas (progressive enhancement: el texto final
+    // correcto ya esta en el HTML, esto solo lo anima de 0 hasta ese valor al entrar en vista).
+    (function(){
+      var counters = document.querySelectorAll('.js-counter');
+      if(!counters.length || !('IntersectionObserver' in window)) return;
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function format(n, thousands){
+        var s = String(n);
+        if(thousands === '1'){
+          s = s.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+        return s;
+      }
+
+      function animate(el){
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var thousands = el.getAttribute('data-thousands');
+        var finalText = el.textContent;
+        var duration = 1400;
+        var start = null;
+        function step(ts){
+          if(!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var value = Math.round(progress * target);
+          el.textContent = format(value, thousands) + suffix;
+          if(progress < 1){
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = finalText;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      var obsCounters = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            animate(entry.target);
+            obsCounters.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(function(el){ obsCounters.observe(el); });
     })();
   </script>
 </body>

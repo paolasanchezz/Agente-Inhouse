@@ -9,7 +9,7 @@ H2: Descarga la guía gratis
 CTA: Quiero la guía gratis
 
 === FORM-EXTRA ===
-LABEL: Teoría + paso a paso + plantilla + glosario.
+LABEL: Teoría + paso a paso + plantilla.
 BODY: Si sientes que reaccionas siempre un paso tarde a lo que dicen de tu marca, este material es para ti.
 BODY: Descárgalo, complétalo mientras lo lees y quédate con la plantilla y el resumen para tu líder.
 
