@@ -7,7 +7,7 @@ Par de páginas de **webinar perpétuo**, clonado do par `perpetuo-social-listen
 | Captura | `perpetuo-monitoramento-concorrentes` | hero + form "preencha e assista" + "o que você vai aprender" + autoridade | noindex |
 | Thank-you | `perpetuo-monitoramento-concorrentes-confirmado` | vídeo embedado + CTA "fale com especialista" | noindex |
 
-**Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-monitoramento-concorrentes-confirmado` → assiste ao vídeo → CTA de WhatsApp.
+**Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-monitoramento-concorrentes-confirmado` → assiste ao vídeo → CTA final leva pra `content.buzzmonitor.com/monitoramento-com-ia`.
 
 **Vídeo:** `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`). **Usar youtube.com, NÃO youtube-nocookie** — o CSP do guarda-chuva webinar.buzzmonitor.com só libera `www.youtube.com` no `frame-src` (o nocookie é bloqueado e o vídeo não aparece).
 
@@ -17,7 +17,7 @@ Briefing da Catharina: título "como construir um monitoramento de concorrentes"
 
 ## Pendências antes de finalizar
 
-- **Link do WhatsApp:** os CTAs da tks estão com temp `https://buzzmonitor.com/` (header + cta-final). Trocar pelo link real quando a Catharina mandar.
+- **Link do WhatsApp (header):** o CTA do header da tks ("Falar com especialista") ainda está com temp `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar. O CTA final já foi trocado (2026-08-25) pra `content.buzzmonitor.com/monitoramento-com-ia`.
 - **Form real:** a captura ainda é MOCK (redireciona no submit).
 - **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png` (do par irmão). Trocar por uma de concorrente.
 - **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas.
