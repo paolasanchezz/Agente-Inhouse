@@ -480,12 +480,6 @@
       text-transform: uppercase;
       color: var(--primary-dark);
     }
-    .cm-optional {
-      letter-spacing: 0.04em;
-      text-transform: none;
-      color: var(--neutral-700);
-      font-weight: 400;
-    }
     .cm-field input {
       font-family: var(--font-body);
       font-size: 15px;
@@ -1057,8 +1051,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <input type="email" name="email" required autocomplete="email" maxlength="200" placeholder=" ">
                 </label>
                 <label class="cm-field">
-                  <span class="cm-label">Empresa <span class="cm-optional">(opcional)</span></span>
-                  <input type="text" name="company" autocomplete="organization" maxlength="200" placeholder=" ">
+                  <span class="cm-label">Empresa</span>
+                  <input type="text" name="company" required autocomplete="organization" maxlength="200" placeholder=" ">
                 </label>
                 <input class="cm-honeypot" name="_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="cm-submit">Reservar mi lugar</button>
@@ -1320,8 +1314,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           _hp: (fd.get('_hp') || '').toString(),
         };
 
-        if (!payload.first_name || !payload.last_name || !payload.email) {
-          setFeedback('Completa nombre, apellido y correo.', null);
+        if (!payload.first_name || !payload.last_name || !payload.email || !payload.company) {
+          setFeedback('Completa nombre, apellido, correo y empresa.', null);
           return;
         }
 
