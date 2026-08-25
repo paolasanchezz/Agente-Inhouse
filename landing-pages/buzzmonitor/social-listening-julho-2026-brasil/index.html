@@ -625,32 +625,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nx-card, .nx-card:hover, .nx-btn, .nx-btn:hover { transform: none; transition: none; }
     .nx-chip .nx-dot::after { animation: none; }
   }
-  /* gravacoes (acordeao recolhido) */
+  /* ===== Assista também: playlist no YouTube ===== */
   .gv-sec { background: var(--c-n0); padding: 56px 0 72px; }
-  .gv-acc { max-width: 880px; border: 1px solid var(--c-n300); border-radius: 22px; background: var(--c-n0); overflow: hidden; }
-  .gv-acc summary { list-style: none; display: flex; align-items: center; gap: 16px; padding: 22px 26px; cursor: pointer; transition: background 180ms; }
-  .gv-acc summary::-webkit-details-marker { display: none; }
-  .gv-acc summary:hover { background: var(--c-n100); }
-  .gv-title { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-  .gv-title h2 { margin: 0; font-family: var(--ff-display); font-weight: 700; font-size: 22px; letter-spacing: -0.012em; color: var(--c-n900); }
-  .gv-count { font-family: var(--ff-sub); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c-n500); background: var(--c-n100); border: 1px solid var(--c-n300); border-radius: 9999px; padding: 4px 12px 3px; }
-  .gv-cue { flex: none; display: inline-flex; align-items: center; gap: 10px; font-family: var(--ff-sub); font-weight: 500; font-size: 14px; color: var(--c-accent); }
-  .gv-cue svg { width: 14px; height: 14px; transition: transform 180ms; }
-  .gv-acc[open] .gv-cue svg { transform: rotate(180deg); }
-  .gv-acc[open] .gv-cue .gv-closed { display: none; }
-  .gv-cue .gv-open { display: none; }
-  .gv-acc[open] .gv-cue .gv-open { display: inline; }
-  .gv-body { padding: 0 26px 10px; border-top: 1px solid var(--c-n300); }
-  .gv-row { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--c-n300); }
-  .gv-row:last-child { border-bottom: 0; }
-  .gv-play { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--c-n100); border: 1px solid var(--c-n300); display: grid; place-items: center; }
-  .gv-play svg { width: 16px; height: 16px; margin-left: 2px; }
-  .gv-txt { flex: 1; min-width: 0; }
-  .gv-txt h3 { margin: 0; font-family: var(--ff-display); font-weight: 700; font-size: 17.5px; letter-spacing: -0.012em; color: var(--c-n900); }
-  .gv-txt p { margin: 4px 0 0; font-family: var(--ff-sub); font-size: 13px; font-weight: 500; color: var(--c-n500); }
-  .gv-link { flex: none; font-family: var(--ff-sub); font-weight: 500; font-size: 14px; color: var(--c-accent); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
-  .gv-link:hover { color: var(--c-primary); }
-  @media (max-width: 640px) { .gv-row { flex-wrap: wrap; } .gv-link { margin-left: 72px; } }
+  .gv-banner { max-width: 880px; border: 1px solid var(--c-n300); border-radius: 22px; background: var(--c-n100); padding: 32px 34px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .gv-banner-icon { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--grad-hot); display: grid; place-items: center; color: #fff; }
+  .gv-banner-icon svg { width: 20px; height: 20px; margin-left: 2px; }
+  .gv-banner-txt { flex: 1; min-width: 220px; }
+  .gv-banner-txt h2 { margin: 0; font-family: var(--ff-display); font-weight: 700; font-size: 22px; letter-spacing: -0.012em; color: var(--c-n900); }
+  .gv-banner-txt p { margin: 6px 0 0; font-family: var(--ff-sub); font-size: 14.5px; color: var(--c-n700); }
+  .gv-banner-btn { flex: none; display: inline-flex; align-items: center; gap: 10px; background: var(--c-accent); color: #fff; padding: 13px 24px; border-radius: 9999px; font-family: var(--ff-sub); font-weight: 500; font-size: 14.5px; box-shadow: 0 10px 22px -8px rgba(235,124,46,.55); transition: background 180ms, transform 180ms; }
+  .gv-banner-btn:hover { background: var(--c-primary); transform: translateY(-2px); color: #fff; }
+  @media (max-width: 640px) { .gv-banner { padding: 26px; } .gv-banner-btn { width: 100%; justify-content: center; } }
 </style>
 </head>
 <body>
@@ -732,6 +717,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Agenda: proximos webinars ===== -->
+  <section class="nx-sec" id="proximos-webinars" aria-labelledby="nx-title">
+    <div class="wrap">
+      <span class="nx-eyebrow"><span class="nx-rule"></span>Agenda Buzzmonitor</span>
+      <h2 class="nx-title" id="nx-title">Próximos webinars</h2>
+      <p class="nx-sub">Sessões ao vivo, online e gratuitas. Garanta já a sua vaga.</p>
+      <div class="nx-cards">
+      <article class="nx-card">
+        <div class="nx-date"><b>15</b><span>set</span></div>
+        <div>
+          <span class="nx-chip"><span class="nx-dot"></span>Inscrições abertas</span>
+          <h3>Como Crescer sua Marca com Influenciadores</h3>
+          <p class="nx-meta"><b>11h (Brasília)</b> &middot; Online e ao vivo</p>
+          <a class="nx-btn" href="/crescer-marca-influenciadores-setembro-2026">Garantir vaga <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Assista também (playlist YouTube) ===== -->
+  <section class="gv-sec" aria-label="Mais gravações de webinars">
+    <div class="wrap">
+      <div class="gv-banner">
+        <span class="gv-banner-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="gv-banner-txt">
+          <h2>Assista também</h2>
+          <p>Todas as gravações de webinars da Buzzmonitor, reunidas numa playlist no YouTube.</p>
+        </div>
+        <a class="gv-banner-btn" href="https://www.youtube.com/watch?v=AF7y57MwlxY&amp;list=PL8qLaj4eHYH_N4ApqHne3HiIc8b3nWOC7" target="_blank" rel="noopener noreferrer">
+          <span>Ver playlist completa</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -1041,64 +1065,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ===== Agenda: proximos webinars ===== -->
-  <section class="nx-sec" id="proximos-webinars" aria-labelledby="nx-title">
-    <div class="wrap">
-      <span class="nx-eyebrow"><span class="nx-rule"></span>Agenda Buzzmonitor</span>
-      <h2 class="nx-title" id="nx-title">Próximos webinars</h2>
-      <p class="nx-sub">Sessões ao vivo, online e gratuitas. Garanta já a sua vaga.</p>
-      <div class="nx-cards">
-      <article class="nx-card">
-        <div class="nx-date"><b>4</b><span>ago</span></div>
-        <div>
-          <span class="nx-chip"><span class="nx-dot"></span>Inscrições abertas</span>
-          <h3>Estudo de Diversidade na Comunicação de Marcas</h3>
-          <p class="nx-meta"><b>11h (Brasília)</b> &middot; Online e ao vivo</p>
-          <a class="nx-btn" href="/webinar-diversidade-2026">Garantir vaga <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </article>
-      <article class="nx-card">
-        <div class="nx-date"><b>25</b><span>ago</span></div>
-        <div>
-          <span class="nx-chip"><span class="nx-dot"></span>Inscrições abertas</span>
-          <h3>Gestão de Crises com IA</h3>
-          <p class="nx-meta"><b>11h (Brasília)</b> &middot; Online e ao vivo</p>
-          <a class="nx-btn" href="/gestao-de-crises-ia-agosto-2026">Garantir vaga <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Gravações (recolhido) ===== -->
-  <section class="gv-sec" aria-label="Gravações de webinars anteriores">
-    <div class="wrap">
-      <details class="gv-acc">
-        <summary>
-          <span class="gv-title"><h2>Assista também</h2><span class="gv-count">2 gravações</span></span>
-          <span class="gv-cue"><span class="gv-closed">Ver gravações</span><span class="gv-open">Ocultar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="gv-body">
-          <div class="gv-row">
-            <span class="gv-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#390155"><path d="M8 5v14l11-7z"/></svg></span>
-            <div class="gv-txt">
-              <h3>MCP para Social Listening na prática</h3>
-              <p>Realizado em 16 de junho &middot; Gravação disponível</p>
-            </div>
-            <a class="gv-link" href="/mcp-para-social-listening">Assistir gravação <span aria-hidden="true">&rarr;</span></a>
-          </div>
-          <div class="gv-row">
-            <span class="gv-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#390155"><path d="M8 5v14l11-7z"/></svg></span>
-            <div class="gv-txt">
-              <h3>Análise Preditiva na Prática</h3>
-              <p>Realizado em 26 de maio &middot; Gravação disponível</p>
-            </div>
-            <a class="gv-link" href="/analise-preditiva-maio-2026">Assistir gravação <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </div>
-      </details>
-    </div>
-  </section>
 
 </main>
 
