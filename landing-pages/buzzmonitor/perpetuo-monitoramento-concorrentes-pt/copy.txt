@@ -1,0 +1,78 @@
+# Copy LP · Buzzmonitor · perpetuo-monitoramento-concorrentes-pt (+ tks) · PT-PT
+# Duplicado 1:1 do par PT-BR perpetuo-monitoramento-concorrentes (mesma estrutura, mesmo vídeo,
+#   mesma copy) — só o idioma muda para Português Europeu. Ver conhecimento/linguistico/pt-portugal/.
+# Estética captura: dark premium; tks clara (fundo branco). noindex de review.
+# Vídeo embedado SÓ na tks: https://www.youtube.com/watch?v=fG4KpFnwbb4 (embed www.youtube.com/embed/fG4KpFnwbb4)
+#
+# FONTE (2026-08-25): duplicação do par PT-BR perpetuo-monitoramento-concorrentes (fonte original:
+#   briefing da Catharina, 2026-08-12) para a versão PT-PT.
+# PROMESSA: criar uma monitorização de concorrente que avisa antes do cliente avisar.
+# OBJETIVO: montar na prática uma monitorização de concorrente na Buzzmonitor — criar tema dedicado ao
+#   concorrente (com variações ortográficas), comparar marca x concorrente num dashboard de benchmarking
+#   competitivo, e configurar AI Insights + Buzz Pills para avisar quando o concorrente se mexer. Central:
+#   sair da vigilância manual (visitar o perfil, cruzar captura de ecrã, esperar que o cliente comente).
+# Cards em nível teaser (sem catálogo de feature), igual ao par PT-BR. Sem stat inventada.
+
+=== PÁGINA 1 · CAPTURA (perpetuo-monitoramento-concorrentes-pt) ===
+--- META ---
+title: Vídeo · Como criar uma monitorização de concorrentes | Buzzmonitor
+robots: noindex, follow
+
+--- HERO ---
+OVERLINE: Webinar gratuito · Monitorização de concorrentes
+H1: Como criar uma monitorização de concorrentes
+LEAD (2 blocos, com espaço entre eles):
+  1) O concorrente lança uma promoção, muda o discurso, entra numa polémica, e você fica a saber pelo seu próprio cliente, que lhe envia a captura de ecrã a perguntar porque é que a sua marca não reagiu.
+FOCO (laranja, grande): Isto acaba aqui. Preencha e assista →
+TRUST: Gratuito · Direto na plataforma · Sem folha de cálculo
+
+--- FORMULÁRIO (MOCK) ---
+CAMPOS: Nome · E-mail profissional · Empresa
+CTA: Quero assistir  (submit redireciona para /perpetuo-monitoramento-concorrentes-pt-confirmado)
+
+--- SECÇÃO 1 · O QUE VAI APRENDER (teaser) ---
+LABEL: O webinar
+H2: O que vai aprender:
+SUB: Como sair da vigilância manual (visitar o perfil do concorrente, cruzar captura de ecrã, esperar que o cliente comente) e deixar a monitorização do concorrente a funcionar sozinha.
+CARD 1 — O tema do concorrente, da forma certa: Criar uma monitorização dedicada ao concorrente, com as variações ortográficas do nome, para não perder nenhuma menção.
+CARD 2 — Marca e concorrente, lado a lado: Comparar os dois num dashboard de benchmarking competitivo, para ver quem está a ganhar a conversa e onde está atrás.
+CARD 3 — O aviso antes do cliente: Configurar o alerta automático para saber quando o concorrente se mexe, antes de o cliente lhe enviar a captura de ecrã.
+
+--- SECÇÃO 2 · A BUZZMONITOR (autoridade — A CONFIRMAR com Victor) ---
+H2: Mais de 1.000 marcas já monitorizam com a Buzzmonitor.
+STATS: 1.000+ marcas · 300+ contas enterprise · 500+ agências · 10 mil utilizadores ativos
+MARQUEE: Youse · Turbi · Brisanet · Hering · Bionatural · Caffeine Army · Herval · Softys
+# Mesmos números e marcas do par PT-BR (duplicação 1:1 pedida pela Catharina). Não veio de briefing
+#   próprio; prova de marca pré-existente. Confirmar números e uso das marcas com Victor (mesma pendência
+#   do par PT-BR).
+
+--- CTA FINAL ---
+H2: Pronto para saber do concorrente antes do seu cliente?
+SUB: Assista ao vídeo e perceba a melhor forma de o fazer.
+CTA: Assistir ao vídeo agora (âncora #form)
+
+=== PÁGINA 2 · TKS (perpetuo-monitoramento-concorrentes-pt-confirmado) ===
+# Fundo branco, noindex. Vídeo + CTA (sem bloco de prova/cases).
+--- META ---
+title: O seu vídeo está pronto · Monitorização de concorrentes | Buzzmonitor
+robots: noindex, follow
+
+--- VÍDEO ---
+H1: Como criar uma monitorização de concorrentes.
+SUB: Carregue no play. Vamos criar a monitorização de concorrente do zero, diretamente na Buzzmonitor.
+EMBED: www.youtube.com/embed/fG4KpFnwbb4 (mesmo vídeo do par PT-BR, sem legendas/dublagem PT-PT)
+
+--- CTA FINAL ---
+H2: Agora é a sua vez.
+SUB: Crie essa mesma monitorização na sua conta.
+CTA: Fale com um dos nossos especialistas e teste na prática → WhatsApp (LINK PENDENTE; hoje temp -> buzzmonitor.com — mesma pendência do par PT-BR)
+
+# Duplicado 1:1 do par PT-BR perpetuo-monitoramento-concorrentes (2026-08-25), traduzido para PT-PT
+#   seguindo conhecimento/linguistico/pt-portugal/padrao-linguistico.md (Regras de Ouro: "está a
+#   funcionar", "utilizador(es)", possessivo com artigo, "folha de cálculo", "captura de ecrã") e
+#   conhecimento/editorial/regras-anti-ia.md (0 em-dash; sem "a gente").
+# Anti-IA: 0 em-dash; "a Buzzmonitor" (feminino); cards teaser (sem catálogo de feature).
+# Embed usa youtube.com (NÃO nocookie): o CSP do guarda-chuva só liberta youtube.com no frame-src.
+# PENDENTE (mesmas do par PT-BR): (1) link do WhatsApp; (2) OG dedicada (hoje reusa
+#   og-primeiro-listening-5-passos.png); (3) números/marcas (Victor); (4) form real; (5) flip index
+#   quando final.

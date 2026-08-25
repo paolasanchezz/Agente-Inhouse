@@ -146,6 +146,16 @@
       "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-concorrentes-confirmado"
     },
     {
+      "slug": "perpetuo-monitoramento-concorrentes-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-concorrentes-pt"
+    },
+    {
+      "slug": "perpetuo-monitoramento-concorrentes-pt-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-concorrentes-pt-confirmado"
+    },
+    {
       "slug": "perpetuo-social-listening",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/perpetuo-social-listening"
