@@ -17,7 +17,7 @@ CTA: Quiero la guía gratis
 === FORM-EXTRA ===
 LABEL: Acciones prácticas + paso a paso + ejemplos reales.
 BODY: Si sientes que reaccionas siempre un paso tarde a lo que dicen de tu marca, este material es para ti.
-BODY: Descárgalo, complétalo mientras lo lees y quédate con la plantilla y el resumen para tu líder.
+BODY: Descárgalo, complétalo mientras lo lees y termina con tu primer proyecto de Social Listening listo para lanzar.
 
 === DESTAQUE ===
 H2: La conversación sobre tu marca ocurre, la estés escuchando o no
@@ -59,6 +59,7 @@ FOOTER: Política de Privacidad
 # Nota de estrutura: FORM na 2ª seção (após o hero), conforme GUIDELINES §10 (ToFu/material rico). PARA QUIEN e CLIENTES adicionados para cobrir "Para quem" e "Prova/social proof" da estrutura mínima (§6), a pedido do usuario com referencia em content.buzzmonitor.com/plataforma-integral-social-media (logos+stats) e contenido.getbuzzmonitor.com/playbook-atencion-al-cliente (secao "para quem").
 # CLIENTES: stats reutilizados 1:1 do padrao ja usado em mcp-es/copy.txt (mesma franja de logos, "mural-1.jpeg"/"mural-2.jpeg") — validar com Paola se os assets de logos de ia-para-social-listening-es (Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Real Madrid, Bizum) sao os corretos pra reusar aqui, ou se ela quer um mural diferente.
 # Idioma: ES-LATAM. Buzzmonitor sem artigo. Tuteo aplicado.
+# v8 (2026-08-25): 2o BODY do FORM-EXTRA trocado ("la plantilla y el resumen" nao agradou, terceira vez que a Paola pede pra tirar enfase em formato/entregavel — glosario, plantilla). Novo foco no resultado real: terminar com o primeiro projeto de Social Listening pronto pra lancar (bate com o proprio playbook, secao 1 e 6).
 # v7 (2026-08-25): tarjetas flutuantes do hero trocadas ("Monitoreo"/"Social Listening" soltas nao diziam nada, a pedido da Paola). Novo texto curto e real, ligado ao conteudo do playbook: "Detecta crisis a tiempo" (errores comunes/casos reais), "Decide con datos reales" (tema central da guia), "Paso a paso incluido" (secao 6), "Ejemplo real explicado" (exemplo booleano aerolineas). Reduzido de 6 para 4 cards + mascote maior e centralizada.
 # v6 (2026-08-25): 5o item de QUE VAS A APRENDER trocado ("un mini glosario" tirado de novo, segunda vez que a Paola pede pra nao destacar glosario). Novo foco: casos reais de como o Social Listening potencia a estrategia digital (referencia ao "Casos de uso" real do playbook, secao 8: marcas, agencias, atencion). Design (fora do copy.txt): este card ganha fundo colorido (orange-light) pra "resaltar" dos outros 4 cards brancos.
 # v5 (2026-08-25): secao EJEMPLO removida a pedido do usuario ("esto se elimina no aporta nada"). Tagline do FORM-EXTRA trocada para "Acciones prácticas + paso a paso + ejemplos reales." (mais proxima do padrao de content.buzzmonitor.com/plataforma-integral-social-media). FORM (design, fora do copy.txt): fundo do bloco vira degrade naranja-rosa (#EB7C2E -> #DE2451, mesmo estilo do bloco final da referencia), card do form fica branco, texto do FORM-EXTRA em branco e maior. Footer ganha os 5 icones sociais reais do footer da referencia (Instagram, X, Facebook, LinkedIn, YouTube).
