@@ -83,7 +83,7 @@
       @keyframes bm-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(235,124,46,.4); } 55% { box-shadow: 0 0 0 16px rgba(235,124,46,0); } }
     }
     .section-label { display: inline-block; font-family: var(--font-accent); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
-    .section-h2 { font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
+    .section-h2 { font-size:clamp(26px, 3.4vw, 32px); font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
 
     /* ============ VIDEO HERO ============ */
     .stage {
@@ -101,7 +101,7 @@
     }
     .badge-ok svg { width: 16px; height: 16px; }
     .stage-head h1 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .stage-head p { font-size: clamp(17px, 2.1vw, 19px); color: var(--neutral-700); max-width: 600px; margin: 0 auto; }
+    .stage-head p { font-size:clamp(18px, 2.1vw, 19px); color: var(--neutral-700); max-width: 600px; margin: 0 auto; }
 
     .video-wrap { max-width: 900px; margin: 0 auto; }
     .video-frame {
@@ -128,7 +128,7 @@
     .proof { padding: 72px 0; background: var(--primary-darker); color: #fff; }
     .proof-inner { max-width: 980px; margin: 0 auto; text-align: center; }
     .proof-inner .section-label { color: var(--accent-light); }
-    .proof-inner h2 { color: #fff; font-size: clamp(22px, 3vw, 30px); font-weight: 800; line-height: 1.25; margin-bottom: 34px; }
+    .proof-inner h2 { color: #fff; font-size:clamp(26px, 3vw, 30px); font-weight: 800; line-height: 1.25; margin-bottom: 34px; }
     .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .proof-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-lg); padding: 26px 22px; text-align: left; }
     .proof-brand { font-family: var(--font-accent); font-weight: 700; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 10px; }
@@ -138,7 +138,7 @@
     /* ============ CTA FINAL ============ */
     .cta-final { padding: 48px 0 84px; background: var(--neutral-50); text-align: center; }
     .cta-final-inner { max-width: 620px; margin: 0 auto; }
-    .cta-final h2 { font-size: clamp(26px, 3.6vw, 36px); font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
+    .cta-final h2 { font-size:clamp(28px, 3.6vw, 36px); font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
     .cta-final p { font-size: 17px; color: var(--neutral-700); margin-bottom: 28px; }
 
     /* ============ FOOTER ============ */
@@ -161,7 +161,20 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .btn-lg{ font-size:17px; }
+  .section-label{ font-size:14px; }
+  .badge-ok{ font-size:15px; }
+  .stage-cta .micro{ font-size:16px; }
+  .recap-num{ font-size:16px; }
+  .recap-body{ font-size:16px; }
+  .recap-tag{ font-size:13px; }
+  .proof-brand{ font-size:13px; }
+  .footer-meta{ font-size:15px; }
+  }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

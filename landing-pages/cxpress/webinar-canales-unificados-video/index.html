@@ -173,7 +173,7 @@
       margin-bottom: 24px;
     }
     .video-hero h1 {
-      font-size: clamp(28px, 3.8vw, 44px);
+      font-size:clamp(34px, 3.8vw, 44px);
       font-weight: 800;
       letter-spacing: -0.015em;
       color: var(--primary-dark);
@@ -181,7 +181,7 @@
       margin: 0 auto 18px;
     }
     .video-hero .sub {
-      font-size: clamp(16px, 1.8vw, 19px);
+      font-size:clamp(18px, 1.8vw, 19px);
       color: var(--neutral-700);
       max-width: 30em;
       margin: 0 auto clamp(36px, 4.6vw, 56px);
@@ -207,7 +207,7 @@
     }
     .clientes__title {
       text-align: center;
-      font-size: clamp(22px, 2.6vw, 30px);
+      font-size:clamp(26px, 2.6vw, 30px);
       font-weight: 700;
       color: var(--primary-dark);
       max-width: 32em;
@@ -249,7 +249,7 @@
     }
     .cta-final h2 {
       color: var(--primary-dark);
-      font-size: clamp(30px, 4vw, 44px);
+      font-size:clamp(34px, 4vw, 44px);
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -349,7 +349,16 @@
       .clientes__grid { padding: 0 12px; }
       .footer .container { flex-direction: column; text-align: center; }
     }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .skip-link{ font-size:16px; }
+  .video-hero .eyebrow{ font-size:15px; }
+  .cta-final-meta{ font-size:15px; }
+  .btn-primary{ font-size:16px; }
+  .footer p{ font-size:16px; }
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

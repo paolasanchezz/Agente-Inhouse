@@ -435,7 +435,7 @@
 
     .section-title h2 {
       margin: 0 0 14px;
-      font-size: clamp(32px, 4vw, 50px);
+      font-size:clamp(34px, 4vw, 50px);
       line-height: 1.05;
       letter-spacing: -.04em;
     }
@@ -600,7 +600,7 @@
 
     .split h3 {
       margin: 0 0 14px;
-      font-size: clamp(26px, 3vw, 36px);
+      font-size:clamp(28px, 3vw, 36px);
       line-height: 1.08;
       letter-spacing: -.035em;
     }
@@ -754,7 +754,7 @@
 
     .cta-box h2 {
       margin: 0 0 12px;
-      font-size: clamp(30px, 3.6vw, 44px);
+      font-size:clamp(34px, 3.6vw, 44px);
       line-height: 1.05;
       letter-spacing: -.03em;
     }
@@ -950,7 +950,24 @@
       .footer-inner,
       .footer-bottom { justify-content: center; text-align: center; }
     }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:13px; }
+  .video-toggle{ font-size:17px; }
+  .feature-card p,.module-card p,.quote-card p{ font-size:15px; }
+  .check-list li{ font-size:15px; }
+  .split p{ font-size:17px; }
+  .stat span{ font-size:14px; }
+  .form-card__lead{ font-size:15px; }
+  .field label{ font-size:13px; }
+  .field input,.field select{ font-size:16px; }
+  .form-card .btn{ font-size:16px; }
+  .form-legal{ font-size:13px; }
+  .form-msg{ font-size:14px; }
+  footer{ font-size:14px; }
+  }
+</style>
 </head>
 
 <body>

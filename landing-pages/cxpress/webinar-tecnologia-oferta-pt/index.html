@@ -439,7 +439,7 @@
       margin-bottom: 24px;
     }
     .section-h2 {
-      font-size: clamp(30px, 3.8vw, 46px);
+      font-size:clamp(34px, 3.8vw, 46px);
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.028em;
@@ -521,7 +521,7 @@
       min-height: 0;
     }
     .offer-h3 {
-      font-size: clamp(20px, 2.2vw, 26px);
+      font-size:clamp(22px, 2.2vw, 26px);
       font-weight: 700;
       line-height: 1.25;
       color: var(--primary-dark);
@@ -640,7 +640,7 @@
     }
     .urgency h2 {
       color: var(--neutral-0);
-      font-size: clamp(28px, 4.2vw, 48px);
+      font-size:clamp(34px, 4.2vw, 48px);
       font-weight: 800;
       line-height: 1.08;
       letter-spacing: -0.032em;
@@ -1054,7 +1054,7 @@
       }
       .btn-large { font-size: 14px; padding: 17px 28px; }
       .form { padding: 26px 22px; }
-      .urgency h2 { font-size: clamp(26px, 6vw, 36px); }
+      .urgency h2 { font-size:clamp(28px, 6vw, 36px); }
       .header-inner { height: 64px; }
       .header-logo { height: 28px; }
       .footer-inner { justify-content: center; text-align: center; }
@@ -1070,7 +1070,22 @@
       .btn { font-size: 13px; padding: 15px 22px; }
       .video-embed { border-radius: var(--radius-lg); }
     }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .form-bullets li{ font-size:15px; }
+  .section-label{ font-size:14px; }
+  .offer-cue{ font-size:14px; }
+  .urgency-tag{ font-size:14px; }
+  .vis-text{ font-size:17px; }
+  .offer-rundown li{ font-size:17px; }
+  .offer-deadline{ font-size:14px; }
+  .form-field label{ font-size:14px; }
+  .form-field input{ font-size:17px; }
+  .form-note{ font-size:14px; }
+  .footer-meta{ font-size:15px; }
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

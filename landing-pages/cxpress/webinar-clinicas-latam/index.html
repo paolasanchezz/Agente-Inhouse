@@ -390,7 +390,7 @@
       align-items: start;
     }
     .problem-h2 {
-      font-size: clamp(26px, 3vw, 36px);
+      font-size:clamp(28px, 3vw, 36px);
       font-weight: 800;
       margin-bottom: 28px;
     }
@@ -452,7 +452,7 @@
     /* ============ APRENDIZAJES ============ */
     .lessons-section { background: var(--neutral-0); }
     .lessons-header { max-width: 760px; margin-bottom: 56px; }
-    .lessons-h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; }
+    .lessons-h2 { font-size:clamp(28px, 3vw, 36px); font-weight: 800; }
     .lessons-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -531,7 +531,7 @@
     /* ============ SPEAKERS ============ */
     .speakers-section { background: var(--neutral-0); text-align: center; }
     .speakers-header { max-width: 700px; margin: 0 auto 56px; }
-    .speakers-h2 { font-size: clamp(24px, 2.8vw, 32px); font-weight: 800; margin-bottom: 14px; }
+    .speakers-h2 { font-size:clamp(26px, 2.8vw, 32px); font-weight: 800; margin-bottom: 14px; }
     .speakers-body { font-size: 16.5px; color: var(--neutral-700); line-height: 1.6; max-width: 640px; margin: 0 auto; }
     .speakers-grid {
       display: grid;
@@ -591,13 +591,13 @@
     /* ============ PROVA SOCIAL ============ */
     .social-proof-section { background: var(--neutral-0); }
     .social-proof-inner { text-align: center; max-width: 1000px; margin: 0 auto; }
-    .social-proof-h2 { font-size: clamp(24px, 2.8vw, 32px); font-weight: 800; margin-bottom: 48px; }
+    .social-proof-h2 { font-size:clamp(26px, 2.8vw, 32px); font-weight: 800; margin-bottom: 48px; }
     .social-proof-logos { margin-bottom: 32px; }
     .social-proof-logos img { width: 100%; height: auto; display: block; }
     .social-proof-stat {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(20px, 2.4vw, 26px);
+      font-size:clamp(22px, 2.4vw, 26px);
       color: var(--primary-dark);
     }
 
@@ -627,7 +627,31 @@
     }
     .footer-social a:hover { background: var(--accent); color: var(--neutral-0); }
     .footer-copy { font-size: 13px; color: rgba(215,226,255,0.6); }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:13px; }
+  .section-label{ font-size:13px; }
+  .btn{ font-size:17px; }
+  .event-card__daylabel{ font-size:14px; }
+  .time-pill{ font-size:14px; }
+  .time-pill b{ font-size:12px; }
+  .event-card__row{ font-size:15px; }
+  .event-card__row span{ font-size:13px; }
+  .problem-body p{ font-size:17px; }
+  .form-field label{ font-size:15px; }
+  .form-field input[type="text"],.form-field input[type="email"]{ font-size:17px; }
+  .form-checkbox label{ font-size:15px; }
+  .lesson-icon{ font-size:15px; }
+  .lesson-text{ font-size:16px; }
+  .audience-item{ font-size:16px; }
+  .speakers-body{ font-size:17px; }
+  .speaker-badge{ font-size:13px; }
+  .speaker-role{ font-size:15px; }
+  .footer-links a{ font-size:15px; }
+  .footer-copy{ font-size:14px; }
+  }
+</style>
 </head>
 <body>
   <a href="#main" class="skip-link">Saltar al contenido principal</a>

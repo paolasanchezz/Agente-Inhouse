@@ -320,7 +320,7 @@
 
     .hero__h1 {
       font-family: var(--font-title);
-      font-size: clamp(28px, 3.5vw, 46px);
+      font-size:clamp(34px, 3.5vw, 46px);
       font-weight: 900;
       line-height: 1.12;
       color: var(--white);
@@ -530,7 +530,7 @@
 
     .section-h2 {
       font-family: var(--font-title);
-      font-size: clamp(26px, 3vw, 40px);
+      font-size:clamp(28px, 3vw, 40px);
       font-weight: 900;
       color: var(--navy);
       line-height: 1.15;
@@ -768,7 +768,7 @@
 
     .solucao__h2 {
       font-family: var(--font-title);
-      font-size: clamp(28px, 3.2vw, 44px);
+      font-size:clamp(34px, 3.2vw, 44px);
       font-weight: 900;
       line-height: 1.12;
       margin-bottom: 22px;
@@ -1260,7 +1260,7 @@
 
     .cta-final__h2 {
       font-family: var(--font-title);
-      font-size: clamp(30px, 4vw, 50px);
+      font-size:clamp(34px, 4vw, 50px);
       font-weight: 900;
       color: var(--white);
       line-height: 1.12;
@@ -1365,7 +1365,56 @@
       .resultado-box    { flex-direction: column; text-align: center; padding: 28px; }
       .form-card        { padding: 28px 20px; }
     }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  body{ font-size:17px; }
+  .label-tag{ font-size:12px; }
+  .hero__overline{ font-size:12px; }
+  .hero__bullets li{ font-size:16px; }
+  .hero__bullets li .check{ font-size:17px; }
+  .btn-primary{ font-size:17px; }
+  .hero__ticket-header-tag{ font-size:12px; }
+  .ticket-label{ font-size:12px; }
+  .ticket-value{ font-size:15px; }
+  .hero__ticket-free{ font-size:14px; }
+  .hero__ticket-cta{ font-size:15px; }
+  .section-label{ font-size:12px; }
+  .trust-list li{ font-size:16px; }
+  .trust-list li .check{ font-size:17px; }
+  .form-card__sub{ font-size:15px; }
+  .form__label{ font-size:14px; }
+  .form__input{ font-size:16px; }
+  .form__submit{ font-size:17px; }
+  .form__privacy{ font-size:13px; }
+  .col-title{ font-size:12px; }
+  .decisions-list li{ font-size:16px; }
+  .blockers-list li{ font-size:16px; }
+  .resultado-label{ font-size:12px; }
+  .solucao__col-title{ font-size:12px; }
+  .chip{ font-size:15px; }
+  .chip .check{ font-size:15px; }
+  .reveal-card__title{ font-size:14px; }
+  .evento__list li{ font-size:17px; }
+  .evento__side-header-title{ font-size:17px; }
+  .evento__side-label{ font-size:12px; }
+  .evento__side-value{ font-size:15px; }
+  .evento__side-cta{ font-size:15px; }
+  .mapa__address-detail{ font-size:16px; }
+  .transf-list li{ font-size:16px; }
+  .prof-card__check{ font-size:17px; }
+  .prof-card__title{ font-size:16px; }
+  .areas-box{ font-size:17px; }
+  .audience-item{ font-size:15px; }
+  .stat-card__label{ font-size:15px; }
+  .elife-badge{ font-size:16px; }
+  .cta-final__tag{ font-size:13px; }
+  .cta-final__info-item{ font-size:16px; }
+  .footer__copy{ font-size:14px; }
+  /* header nao acompanha: linha unica sem folga */
+  header, .navbar{ font-size:16px; }
+  }
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Ir para o conteúdo principal</a>

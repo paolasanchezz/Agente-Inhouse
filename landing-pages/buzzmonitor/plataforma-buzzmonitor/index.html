@@ -83,6 +83,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: 0 10px 20px rgba(57,1,85,.15);
   }
 </style>
+<!-- Pisos de tipografia mobile (GUIDELINES 20). A tipografia desta LP vem
+     do CSS exportado do Webflow em assets/css/ — override aqui pra nao
+     editar arquivo de framework. Vale so no mobile; desktop intacto. -->
+<style>
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+    .bz-body, .bzm-qtext, .bz-lead.bz-gray{ font-size:17px; }
+    .bzm-ro, .bz-footerd-desc{ font-size:16px; }
+    .bz-bars-foot{ font-size:13px; }
+  }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

@@ -160,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
   .hero-content .eyebrow{display:inline-block;margin-bottom:22px;background:var(--lilac-soft);padding:9px 18px;border-radius:var(--pill)}
-  .hero-content h1{font-size:clamp(32px,4.6vw,56px);font-weight:800;letter-spacing:-.02em}
+  .hero-content h1{font-size:clamp(34px,4.6vw, 56px);font-weight:800;letter-spacing:-.02em}
   .hero-content h1 em{font-style:normal;background:linear-gradient(120deg,var(--royal),var(--navy));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .hero-sub{margin-top:24px;font-size:clamp(18px,1.9vw,21px);color:var(--n700);max-width:540px}
   .hero-cta{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap}
@@ -218,7 +218,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ===== BRIDGE (respiro) ===== */
   .bridge{background:var(--white)}
   .bridge-inner{max-width:760px;margin:0 auto;text-align:center}
-  .bridge h3{font-size:clamp(24px,3.2vw,32px);font-weight:800;color:var(--navy);letter-spacing:-.01em;margin-bottom:22px}
+  .bridge h3{font-size:clamp(26px,3.2vw, 32px);font-weight:800;color:var(--navy);letter-spacing:-.01em;margin-bottom:22px}
   .bridge p{font-size:clamp(18px,2vw,21px);color:var(--n700);line-height:1.55}
 
   /* ===== SOLUCION + FORM ===== */
@@ -226,7 +226,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .solution::before{content:"";position:absolute;top:-100px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(closest-side,rgba(193,199,255,.45),rgba(193,199,255,0));z-index:0}
   .solution-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
   .solution-info h2{font-size:clamp(28px,3.8vw,40px);font-weight:800;letter-spacing:-.01em}
-  .solution-sub{margin-top:18px;font-size:clamp(17px,1.9vw,19px);color:var(--n700);max-width:520px}
+  .solution-sub{margin-top:18px;font-size:clamp(18px,1.9vw, 19px);color:var(--n700);max-width:520px}
   .ben-list{margin-top:36px;display:flex;flex-direction:column;gap:14px}
   .ben-item{display:flex;align-items:flex-start;gap:14px}
   .ben-check{
@@ -303,8 +303,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-final::before{content:"";position:absolute;top:-100px;left:-60px;width:320px;height:320px;border-radius:var(--pill);background:rgba(255,255,255,.06)}
   .cta-final::after{content:"";position:absolute;bottom:-120px;right:-50px;width:240px;height:440px;border-radius:var(--pill);background:rgba(239,134,60,.14)}
   .cta-final-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center}
-  .cta-final h2{color:#fff;font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.01em}
-  .cta-final .cf-sub{margin-top:18px;font-size:clamp(17px,1.9vw,20px);color:rgba(255,255,255,.86)}
+  .cta-final h2{color:#fff;font-size:clamp(34px,4.4vw, 46px);font-weight:800;letter-spacing:-.01em}
+  .cta-final .cf-sub{margin-top:18px;font-size:clamp(18px,1.9vw, 20px);color:rgba(255,255,255,.86)}
   .cta-final .btn{margin-top:32px}
 
   /* ===== FOOTER ===== */
@@ -325,6 +325,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     html{scroll-behavior:auto}
     .reveal{opacity:1!important;transform:none!important;transition:none}
     .nav-dot{animation:none}
+  }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:14px; }
+  .stat-card .kicker{ font-size:13px; }
+  .stat-card .desc{ font-size:17px; }
+  .ben-text{ font-size:17px; }
+  .field label{ font-size:15px; }
+  .field input,.field select{ font-size:16px; }
+  .form-note{ font-size:13px; }
+  .stat-lab{ font-size:15px; }
+  .results-source{ font-size:14px; }
+  .feat-card p{ font-size:17px; }
+  .footer-line{ font-size:15px; }
   }
 </style>
 </head>

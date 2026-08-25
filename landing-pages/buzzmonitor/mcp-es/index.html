@@ -188,7 +188,7 @@
     /* ===== SECTION H2 ===== */
     .section-h2 {
       font-family: var(--font-heading);
-      font-size: clamp(26px, 4vw, 38px);
+      font-size:clamp(28px, 4vw, 38px);
       font-weight: 700;
       line-height: 1.12;
       color: var(--primary);
@@ -1025,7 +1025,32 @@
        Sem padding/background/border: o provedor ja vem com card proprio.
        O iframe ocupa 100% da largura sem borda. */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  body{ font-size:17px; }
+  .overline{ font-size:12px; }
+  .hero__overline{ font-size:12px; }
+  .btn-hero{ font-size:17px; }
+  .terminal__title{ font-size:12px; }
+  .terminal__avatar{ font-size:14px; }
+  .terminal__user-text{ font-size:14px; }
+  .claude-badge-label{ font-size:12px; }
+  .modulo-card__desc{ font-size:15px; }
+  .exemplos__sub{ font-size:17px; }
+  .prompt-card__num{ font-size:12px; }
+  .prompt-card__text{ font-size:15px; }
+  .form-group label{ font-size:14px; }
+  .form-group input,.form-group select{ font-size:16px; }
+  .btn-form{ font-size:17px; }
+  .form-disclaimer{ font-size:13px; }
+  .kpi-overlay-label{ font-size:13px; }
+  .footer__copy{ font-size:14px; }
+  .footer__links a{ font-size:14px; }
+  /* header nao acompanha: linha unica sem folga */
+  header, .navbar{ font-size:16px; }
+  }
+</style>
 </head>
 <body>
 

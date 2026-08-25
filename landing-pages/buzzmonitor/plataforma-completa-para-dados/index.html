@@ -185,7 +185,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     white-space:nowrap;
   }
   .hero h1{
-    font-size:clamp(32px, 4.4vw, 52px); font-weight:800; letter-spacing:-.01em;
+    font-size:clamp(34px, 4.4vw, 52px); font-weight:800; letter-spacing:-.01em;
     margin-bottom:24px; max-width:19ch;
   }
   .hero .sub{
@@ -208,7 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width:768px){ section{ padding:var(--section-pad-m) 0; } .hero{ padding-bottom:var(--section-pad-m); } }
   .section-tint{ background:var(--paper); }
   .section-head{ max-width:680px; margin:0 auto 48px; text-align:center; }
-  .section-head h2{ font-size:clamp(26px, 3.2vw, 38px); font-weight:700; margin-bottom:0; }
+  .section-head h2{ font-size:clamp(28px, 3.2vw, 38px); font-weight:700; margin-bottom:0; }
   .overline{
     font-family:var(--font-sub); font-weight:600; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
     color:var(--purple); display:block; margin-bottom:14px;
@@ -232,7 +232,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ===== DIFERENCIAIS (SOLUCAO) ===== */
   .diferenciais{ background:var(--white); }
   .dif-hero{ max-width:680px; margin:0 auto 40px; text-align:center; }
-  .dif-hero h2{ font-size:clamp(26px,3.2vw,36px); margin-bottom:10px; }
+  .dif-hero h2{ font-size:clamp(28px,3.2vw, 36px); margin-bottom:10px; }
   .dif-hero h3{ font-family:var(--font-sub); font-weight:500; font-size:18px; color:var(--ink-soft); margin-bottom:16px; }
   .dif-hero .intro-body{ font-size:16.5px; color:var(--ink); }
   .dif-hero .pill-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:20px; }
@@ -284,7 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding-top:36px; border-top:1.5px solid var(--line);
   }
   .dif-closing p{
-    font-family:var(--font-display); font-weight:700; font-size:clamp(24px, 3.4vw, 31px);
+    font-family:var(--font-display); font-weight:700; font-size:clamp(26px, 3.4vw, 31px);
     line-height:1.25; margin-bottom:28px;
   }
   .text-gradient{
@@ -359,7 +359,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ===== CTA FINAL ===== */
   .cta-final{ background:var(--grad-hero); color:var(--white); }
   .cta-final .container{ display:grid; grid-template-columns:1fr 420px; gap:56px; align-items:center; }
-  .cta-final h2{ color:var(--white); font-size:clamp(26px,3.4vw,36px); margin-bottom:18px; }
+  .cta-final h2{ color:var(--white); font-size:clamp(28px,3.4vw, 36px); margin-bottom:18px; }
   .cta-final .sub{ font-family:var(--font-sub); font-weight:300; font-size:17px; color:rgba(255,255,255,.88); max-width:44ch; margin-bottom:16px; line-height:1.6; }
   .pill-live{
     display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.14);
@@ -386,6 +386,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .site-footer .container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
   .footer__logo img{ height:26px; width:auto; filter:brightness(0) invert(1); }
   .site-footer small{ font-size:13.5px; color:rgba(255,255,255,.6); }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .btn-sm{ font-size:15px; }
+  .overline{ font-size:14px; }
+  .dif-hero .intro-body{ font-size:17px; }
+  .dif-hero .data-pill{ font-size:15px; }
+  .dif-top .intro-body{ font-size:17px; }
+  .benefit-card h3{ font-size:17px; }
+  .benefit-card p{ font-size:15px; }
+  .ia-card p{ font-size:16px; }
+  .case-brand{ font-size:15px; }
+  .case-card p{ font-size:15px; }
+  .pill-live{ font-size:14px; }
+  .site-footer small{ font-size:15px; }
+  }
 </style>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;transition:none !important}</style></noscript>
 </head>

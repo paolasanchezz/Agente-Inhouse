@@ -12,6 +12,42 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Pisos de tipografia mobile em todas as LPs
+### 2026-08-25 — `landing-pages/GUIDELINES.md` §20 (nova) + 2 scripts em `landing-pages/build/`
+
+Victor reportou a LP `monitoramento-com-ia` com letra pequena no celular e pediu revisão nas
+outras. A causa é estrutural, não daquela LP: `font-size: clamp(MIN, Vvw, MAX)` **resolve no MIN
+em qualquer telefone** (a 375px, `5.6vw` = 21px), então o MIN do clamp *é* o tamanho mobile — e as
+LPs vinham com MIN conservador. Medido na LP em produção: corpo 16px, H1 30px, H2 26px.
+
+Novo **§20 do GUIDELINES** com a tabela de pisos por papel de texto (H1 34 / H2 28 / lead 18 /
+corpo 17 / label 14) e dois scripts:
+
+- `bump_mobile_type.py` — eleva o MIN do clamp pela faixa do MAX (papel do texto) e, pra `px`
+  cravado, anexa um `@media (max-width:640px)` repetindo o **mesmo seletor**, preservando cascata.
+  Desktop fica intacto (o MAX nunca muda). Idempotente.
+- `check_mobile_type.py` — QA em 375×812 via Playwright: overflow horizontal de elemento
+  **visível** + tamanho efetivo por papel. Aceita `--baseline` pra comparar antes/depois, que é o
+  que separa regressão de overflow pré-existente.
+
+Aplicado em **118 LPs** (437 clamps + 1585 regras px). Duas exclusões nasceram da validação:
+
+1. Regra com `white-space: nowrap` fica intocada — pílula de kicker, badge e CTA de navbar não
+   refluem, e +1px estourou o viewport em 8 LPs na primeira passada (`hero-kicker`,
+   `navbar__cta`, `hero-form-badge`). Com a exclusão: **0 regressões** em 124 LPs medidas.
+2. Seletor que a LP já ajusta em algum `@media (max-width:...)` fica fora do passo 2 — ali o
+   tamanho foi decidido de propósito.
+
+Duas pegadinhas do harness, documentadas no §20: `http.server` puro é single-thread e derruba
+requisição concorrente (asset 404 → medida falsa; usar `ThreadingHTTPServer`), e
+`landing-pages/brand` é symlink **gitignored** — em worktree limpa o logo 404 e a largura do
+header muda, o que aparece como falso positivo.
+
+`font-size` em `style=""` inline não é tocado pelos scripts; 20 LPs têm e estão listadas no
+output do `bump_mobile_type.py` pra revisão à mão.
+
+---
+
 ## Reverter o Passo 2.2 — a URL de conversão já funcionava
 ### 2026-08-11 — `lp-integrar-form` v1.5.1
 

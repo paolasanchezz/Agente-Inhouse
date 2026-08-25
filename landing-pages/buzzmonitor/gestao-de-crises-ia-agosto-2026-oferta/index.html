@@ -183,7 +183,7 @@
     }
     .section-h2 {
       font-family: var(--font-head);
-      font-size: clamp(26px, 3.2vw, 42px);
+      font-size:clamp(28px, 3.2vw, 42px);
       font-weight: 800; line-height: 1.12;
       letter-spacing: -0.03em; color: var(--neutral-900);
       margin-bottom: 48px;
@@ -298,7 +298,7 @@
     }
     .hero-sub {
       font-family: var(--font-head);
-      font-size: clamp(16px, 1.6vw, 20px);
+      font-size:clamp(18px, 1.6vw, 20px);
       font-weight: 300;
       color: var(--neutral-700);
       line-height: 1.65;
@@ -356,13 +356,13 @@
     }
     .oferta-headline .label {
       display: block;
-      font-size: clamp(24px, 4vw, 46px);
+      font-size:clamp(34px, 4vw, 46px);
       font-weight: 800;
       color: var(--white);
       letter-spacing: -0.03em;
     }
     .oferta-body {
-      font-size: clamp(16px, 1.8vw, 19px); line-height: 1.7;
+      font-size:clamp(18px, 1.8vw, 19px); line-height: 1.7;
       color: rgba(255,255,255,0.78);
       max-width: 600px; margin: 0 auto 48px;
     }
@@ -590,7 +590,7 @@
     }
     .urgencia-h2 {
       font-family: var(--font-head);
-      font-size: clamp(28px, 3.8vw, 50px);
+      font-size:clamp(34px, 3.8vw, 50px);
       font-weight: 900; line-height: 1.06;
       letter-spacing: -0.04em;
       color: var(--white); margin-bottom: 24px;
@@ -684,7 +684,7 @@
     .clientes .section-eyebrow { color: var(--primary); }
     .clientes-h2 {
       font-family: var(--font-head);
-      font-size: clamp(22px, 2.6vw, 32px);
+      font-size:clamp(26px, 2.6vw, 32px);
       font-weight: 800; line-height: 1.2;
       letter-spacing: -0.03em; color: var(--neutral-900);
       margin-bottom: 48px;
@@ -756,7 +756,26 @@
        A regra do iframe garante que, se o provedor renderizar via iframe, ele
        ocupa 100% da largura sem borda. */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .skip-link{ font-size:15px; }
+  .section-eyebrow{ font-size:12px; }
+  .hero-badge{ font-size:13px; }
+  .hero-badge .ti{ font-size:16px; }
+  .oferta-list li{ font-size:16px; }
+  .oferta-validity{ font-size:14px; }
+  .benefit-text{ font-size:15px; }
+  .modulo-body{ font-size:16px; }
+  .prova-label{ font-size:15px; }
+  .urgencia-eyebrow{ font-size:12px; }
+  .form-group label{ font-size:13px; }
+  .form-group input{ font-size:16px; }
+  .btn-form-submit{ font-size:17px; }
+  .clientes-note{ font-size:14px; }
+  .footer-copy{ font-size:14px; }
+  }
+</style>
 </head>
 <body>
 

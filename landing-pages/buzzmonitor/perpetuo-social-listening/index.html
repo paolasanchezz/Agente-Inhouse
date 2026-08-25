@@ -136,12 +136,12 @@
     .hero h1 { font-size: clamp(38px, 5.6vw, 60px); font-weight: 800; color: #fff; margin: 22px 0 24px; }
     .hero h1 .hl { color: var(--accent); position: relative; white-space: nowrap; }
     .hero h1 .hl::after { content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .11em; background: rgba(235,124,46,.32); border-radius: 3px; }
-    .hero-lead { font-size: clamp(16px, 1.9vw, 18.5px); line-height: 1.55; color: rgba(255,255,255,.82); margin: 0 0 28px; max-width: 33em; }
+    .hero-lead { font-size:clamp(18px, 1.9vw, 18.5px); line-height: 1.55; color: rgba(255,255,255,.82); margin: 0 0 28px; max-width: 33em; }
     .hero-lead strong { color: #fff; font-weight: 700; }
     .hero-focus {
       display: inline-flex; align-items: center; gap: 13px;
       font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em;
-      font-size: clamp(22px, 3vw, 30px); color: var(--accent);
+      font-size:clamp(26px, 3vw, 30px); color: var(--accent);
       margin-bottom: 30px;
     }
     .hero-focus .arw-focus { display: inline-block; will-change: transform; }
@@ -150,7 +150,7 @@
     .trust-item svg { width: 17px; height: 17px; color: var(--accent); }
 
     .speaker-sec { position: relative; overflow: hidden; background: #fff; padding: 40px 0 60px; text-align: center; }
-    .speaker-label { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4.6vw, 46px); letter-spacing: -0.02em; margin-bottom: 30px; background: linear-gradient(90deg, #f0532b, #EB7C2E, #ffb15a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #EB7C2E; }
+    .speaker-label { display: block; font-family: var(--font-display); font-weight: 800; font-size:clamp(34px, 4.6vw, 46px); letter-spacing: -0.02em; margin-bottom: 30px; background: linear-gradient(90deg, #f0532b, #EB7C2E, #ffb15a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #EB7C2E; }
     .speaker-visual { position: relative; display: inline-block; margin-bottom: 22px; }
     .speaker-visual::before { content: ""; position: absolute; top: 50%; left: 50%; width: 320px; height: 320px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(235,124,46,.16), transparent 62%); z-index: 0; pointer-events: none; }
     .speaker-rings { position: absolute; top: 50%; left: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; z-index: 0; pointer-events: none; }
@@ -190,7 +190,7 @@
     /* ============ SECTION SHELL ============ */
     .section { padding: 100px 0; position: relative; }
     .section-head { max-width: 700px; margin-bottom: 52px; }
-    .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; margin-top: 16px; }
+    .section-head h2 { font-size:clamp(34px, 4vw, 44px); font-weight: 800; margin-top: 16px; }
     .section-head p { margin-top: 16px; font-size: 18px; }
 
     /* ============ WEBINAR (light) ============ */
@@ -233,7 +233,7 @@
     }
     .case:hover { transform: translateY(-6px); background: rgba(255,255,255,.07); border-color: rgba(235,124,46,.4); }
     .case-brand { font-family: var(--font-ui); font-weight: 700; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 14px; }
-    .case-metric { font-family: var(--font-display); font-weight: 800; font-size: clamp(21px, 2.6vw, 25px); color: #fff; line-height: 1.15; margin-bottom: 12px; }
+    .case-metric { font-family: var(--font-display); font-weight: 800; font-size:clamp(22px, 2.6vw, 25px); color: #fff; line-height: 1.15; margin-bottom: 12px; }
     .case-metric b { color: var(--accent); }
     .case-desc { font-size: 14.5px; color: var(--muted-dark); }
 
@@ -248,7 +248,7 @@
     .cta { position: relative; padding: 110px 0; text-align: center; overflow: hidden; background: linear-gradient(180deg, var(--purple-ink), #22012f); }
     .cta .glow-cta { width: 620px; height: 380px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(235,124,46,.32), transparent 66%); }
     .cta-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
-    .cta h2 { font-size: clamp(30px, 5vw, 52px); font-weight: 900; color: #fff; margin-bottom: 18px; }
+    .cta h2 { font-size:clamp(34px, 5vw, 52px); font-weight: 900; color: #fff; margin-bottom: 18px; }
     .cta p { font-size: 18px; color: var(--muted-dark); margin-bottom: 34px; }
 
     /* ============ FOOTER ============ */
@@ -288,7 +288,25 @@
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
     /* ----- Jotform embed wrapper (canonico) ----- */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:13px; }
+  .trust-item{ font-size:15px; }
+  .speaker-role{ font-size:16px; }
+  .field label{ font-size:14px; }
+  .field input{ font-size:17px; }
+  .form-consent{ font-size:13px; }
+  .step-n{ font-size:14px; }
+  .step p{ font-size:16px; }
+  .step-tag{ font-size:13px; }
+  .stat-l{ font-size:15px; }
+  .case-brand{ font-size:13px; }
+  .case-desc{ font-size:15px; }
+  .marquee-lead{ font-size:13px; }
+  .footer-meta{ font-size:15px; }
+  }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     white-space: nowrap;
     will-change: transform;
   }
-  .ticker span { font-size: clamp(22px, 2.4vw, 30px); }
+  .ticker span { font-size:clamp(26px, 2.4vw, 30px); }
   .ticker .dot { color: var(--c-accent); }
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -465,7 +465,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-quote {
     position: relative; z-index: 2;
     color: #fff; font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(26px, 3vw, 40px);
+    font-size:clamp(28px, 3vw, 40px);
     line-height: .95; letter-spacing: -0.03em;
     margin: 0;
     text-wrap: balance;
@@ -474,7 +474,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-quote .kicker {
     display: block;
     font-family: var(--ff-sub); font-weight: 300;
-    font-size: clamp(13px, 1.1vw, 15px);
+    font-size:clamp(14px, 1.1vw, 15px);
     letter-spacing: .01em; text-transform: none;
     color: rgba(255,255,255,.82);
     margin-top: 14px;
@@ -484,7 +484,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .diff-quote em { font-style: italic; font-weight: 500; }
   .diff-copy p { margin-top: 18px; color: var(--c-n700); font-size: 17px; }
   .diff-copy p + p { margin-top: 14px; }
-  .diff-copy h2 { font-size: clamp(32px, 4.2vw, 54px); color: var(--c-n900); }
+  .diff-copy h2 { font-size:clamp(34px, 4.2vw, 54px); color: var(--c-n900); }
   .diff-copy .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
   /* Para quem (off-white) — lista vertical à esquerda, emoji grande à direita */
@@ -506,7 +506,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: flex; align-items: center; gap: 18px;
     font-family: var(--ff-sub);
     font-weight: 500;
-    font-size: clamp(17px, 1.6vw, 20px);
+    font-size:clamp(18px, 1.6vw, 20px);
     color: var(--c-n900);
     padding: 14px 0;
     border-bottom: 1px solid var(--c-n300);
@@ -608,7 +608,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sp-name {
     font-family: var(--ff-display);
     font-weight: 900;
-    font-size: clamp(20px, 2vw, 24px);
+    font-size:clamp(22px, 2vw, 24px);
     color: var(--c-n900);
     line-height: 1.2;
     margin: 4px 0 0;
@@ -676,7 +676,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .urgency .question {
     margin-top: 32px;
     font-family: var(--ff-sub); font-style: italic; font-weight: 400;
-    font-size: clamp(20px, 2.1vw, 26px);
+    font-size:clamp(22px, 2.1vw, 26px);
     color: rgba(255,255,255,.85);
     max-width: 44ch;
   }
@@ -913,6 +913,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .gv-link { flex: none; font-family: var(--ff-sub); font-weight: 500; font-size: 14px; color: var(--c-accent); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
   .gv-link:hover { color: var(--c-primary); }
   @media (max-width: 640px) { .gv-row { flex-wrap: wrap; } .gv-link { margin-left: 72px; } }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:14px; }
+  .btn-primary{ font-size:17px; }
+  .btn-ghost{ font-size:14px; }
+  .ticket-label{ font-size:12px; }
+  .ticket-date small{ font-size:14px; }
+  .ticket-rows{ font-size:15px; }
+  .ticket-rows dt{ font-size:12px; }
+  .p-card p{ font-size:17px; }
+  .punchline .line{ font-size:17px; }
+  .l-item p{ font-size:17px; }
+  .diff-art-tag{ font-size:12px; }
+  .sp-role{ font-size:15px; }
+  .final .when{ font-size:17px; }
+  .form label{ font-size:13px; }
+  .form .disclaimer{ font-size:13px; }
+  footer{ font-size:15px; }
+  footer .powered{ font-size:13px; }
+  footer .legal{ font-size:13px; }
+  .ticket--ended .ticket-label{ font-size:12px; }
+  .ticket-msg{ font-size:16px; }
+  .ticket-cta{ font-size:15px; }
+  .nx-eyebrow{ font-size:13px; }
+  .nx-sub{ font-size:17px; }
+  .nx-date span{ font-size:12px; }
+  .nx-chip{ font-size:13px; }
+  .nx-meta{ font-size:15px; }
+  .nx-btn{ font-size:15px; }
+  .gv-count{ font-size:13px; }
+  .gv-cue{ font-size:15px; }
+  .gv-txt p{ font-size:14px; }
+  }
 </style>
 </head>
 <body>

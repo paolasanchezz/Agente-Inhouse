@@ -790,7 +790,7 @@
 
     .cta-box h2 {
       margin: 0 0 8px;
-      font-size: clamp(30px, 4vw, 48px);
+      font-size:clamp(34px, 4vw, 48px);
       line-height: 1.05;
     }
 
@@ -963,7 +963,17 @@
       .footer-inner,
       .footer-bottom { justify-content: center; text-align: center; }
     }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:13px; }
+  .trust-note{ font-size:14px; }
+  .pain-card p,.feature-card p,.benefit-card p,.quote-card p{ font-size:15px; }
+  .audience-tab{ font-size:15px; }
+  .stat span{ font-size:14px; }
+  footer{ font-size:14px; }
+  }
+</style>
 </head>
 
 <body>

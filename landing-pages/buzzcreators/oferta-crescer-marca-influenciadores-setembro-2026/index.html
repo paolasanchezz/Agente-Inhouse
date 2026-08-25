@@ -213,7 +213,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero__kicker {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size:clamp(22px, 2.4vw, 28px);
   font-weight: 500;
   color: var(--c-text-2);
   letter-spacing: -0.01em;
@@ -237,7 +237,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: block;
 }
 .hero__h1-line {
-  font-size: clamp(22px, 2.8vw, 34px);
+  font-size:clamp(26px, 2.8vw, 34px);
   line-height: 1.15;
   font-weight: 600;
   color: var(--c-text);
@@ -252,7 +252,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-text-fill-color: transparent;
 }
 .hero__lede {
-  font-size: clamp(15.5px, 1.4vw, 17px);
+  font-size:clamp(17px, 1.4vw, 17px);
   line-height: 1.55;
   color: var(--c-text-2);
   max-width: 540px;
@@ -471,7 +471,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hook h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4.4vw, 46px);
+  font-size:clamp(34px, 4.4vw, 46px);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.03em;
@@ -514,7 +514,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .beneficios__inner { max-width: var(--max-w); margin: 0 auto; }
 .beneficios h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size:clamp(34px, 4vw, 44px);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.025em;
@@ -609,7 +609,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .cta-banner h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4.5vw, 46px);
+  font-size:clamp(34px, 4.5vw, 46px);
   font-weight: 700;
   color: var(--c-purple-dark);
   line-height: 1.15;
@@ -684,7 +684,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .faq h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size:clamp(34px, 4vw, 44px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.025em;
@@ -808,7 +808,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .urgencia h2 {
   font-family: var(--font-display);
-  font-size: clamp(26px, 3.8vw, 40px);
+  font-size:clamp(28px, 3.8vw, 40px);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.025em;
@@ -944,7 +944,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .pacote-note p {
   font-family: var(--font-display);
-  font-size: clamp(19px, 2.4vw, 25px);
+  font-size:clamp(22px, 2.4vw, 25px);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -1042,6 +1042,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .discount { transform: rotate(0deg) !important; }
   .urgencia__tag { transform: rotate(0deg) !important; }
 }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .skip-link{ font-size:15px; }
+  .cta-primary,button.cta-primary{ font-size:16px; }
+  .hero__overline{ font-size:12px; }
+  .hero__label{ font-size:15px; }
+  .discount__stamp{ font-size:13px; }
+  .discount__eyebrow{ font-size:12px; }
+  .discount__list li{ font-size:15px; }
+  .discount__num{ font-size:12px; }
+  .discount__seal-label{ font-size:12px; }
+  .hook__eyebrow{ font-size:13px; }
+  .benefit-card p{ font-size:17px; }
+  .clientes-note{ font-size:15px; }
+  .faq__eyebrow{ font-size:13px; }
+  .faq__answer{ font-size:17px; }
+  .urgencia__tag{ font-size:14px; }
+  .urgencia__list li{ font-size:16px; }
+  .form__sub{ font-size:16px; }
+  .form-row label{ font-size:13px; }
+  .form-row input{ font-size:17px; }
+  .form button.cta-primary{ font-size:16px; }
+  .form__legal{ font-size:13px; }
+  .pacote-note__eyebrow{ font-size:13px; }
+  .pacote-note__cta{ font-size:15px; }
+  .site-footer{ font-size:15px; }
+  }
 </style>
 </head>
 <body>

@@ -178,7 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ===== POR QUE IR (context) ===== */
   .context{background:var(--n100)}
   .context-inner{max-width:880px}
-  .context h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.01em;margin-bottom:30px}
+  .context h2{font-size:clamp(28px,3.6vw, 40px);font-weight:800;letter-spacing:-.01em;margin-bottom:30px}
   .context p{font-size:clamp(18px,2vw,21px);color:var(--n700);margin-bottom:20px}
   .context p:first-of-type{color:var(--navy);font-weight:500}
   .context p strong{color:var(--navy);font-weight:600}
@@ -189,7 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .reach-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
   .reach-map{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);height:430px;background:#fff;min-height:0}
   .reach-map iframe{width:100%;height:100%;border:0;display:block;min-height:0}
-  .reach-info h2{color:#fff;font-size:clamp(30px,4.6vw,48px);font-weight:800;letter-spacing:-.01em}
+  .reach-info h2{color:#fff;font-size:clamp(34px,4.6vw, 48px);font-weight:800;letter-spacing:-.01em}
   .reach-addr{margin-top:28px;display:flex;gap:16px;align-items:flex-start}
   .reach-addr svg{width:30px;height:30px;color:var(--orange);flex:0 0 auto;margin-top:2px}
   .reach-addr .a1{font-family:"Open Sans",sans-serif;font-weight:700;font-size:clamp(19px,2.4vw,23px);color:#fff;line-height:1.25}
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .cb-unit{flex:1;text-align:center;position:relative}
   .cb-unit + .cb-unit::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);height:48px;width:1px;background:rgba(255,255,255,.2)}
-  .cb-num{font-family:"Open Sans",sans-serif;font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+  .cb-num{font-family:"Open Sans",sans-serif;font-weight:800;font-size:clamp(34px,5vw, 46px);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
   .cb-lab{margin-top:9px;font-family:"Open Sans",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72)}
   .cb-done{font-family:"Open Sans",sans-serif;font-weight:700;font-size:24px;color:#fff;width:100%;text-align:center}
   @media (max-width:880px){.reach-grid{grid-template-columns:1fr;gap:34px}.reach-map{height:320px}}
@@ -286,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .signup::before{content:"";position:absolute;top:-80px;left:-60px;width:260px;height:260px;border-radius:var(--pill);background:rgba(255,255,255,.06)}
   .signup::after{content:"";position:absolute;bottom:-120px;right:-40px;width:200px;height:380px;border-radius:var(--pill);background:rgba(239,134,60,.12)}
   .signup-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;text-align:center}
-  .signup h2{color:#fff;font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.01em}
+  .signup h2{color:#fff;font-size:clamp(34px,4.4vw, 46px);font-weight:800;letter-spacing:-.01em}
   .signup-sub{margin-top:16px;font-size:19px;color:rgba(255,255,255,.86)}
   .ribbon{
     display:inline-block;background:#fff;padding:16px 54px;margin:0 0 12px;transform:rotate(-2deg);
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     clip-path:polygon(0 0,100% 0,calc(100% - 18px) 50%,100% 100%,0 100%,18px 50%);
   }
   .ribbon .ribbon-txt{
-    font-family:"Open Sans",sans-serif;font-weight:800;font-size:clamp(24px,4.2vw,40px);
+    font-family:"Open Sans",sans-serif;font-weight:800;font-size:clamp(28px,4.2vw, 40px);
     letter-spacing:.02em;text-transform:uppercase;color:var(--navy);
     background:linear-gradient(90deg,var(--royal),var(--navy));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
@@ -338,6 +338,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Sem padding/background/border: el proveedor ya trae su propio card.
      La regla del iframe garantiza que ocupe 100% del ancho sin borde. */
   .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:14px; }
+  .reach-addr .a2{ font-size:17px; }
+  .cb-lab{ font-size:13px; }
+  .q-item .q-n{ font-size:16px; }
+  .spk-badge{ font-size:15px; }
+  .spk-role{ font-size:16px; }
+  .spk-bio{ font-size:16px; }
+  .spk-logo .tbd{ font-size:14px; }
+  .clients-lbl{ font-size:14px; }
+  .field label{ font-size:15px; }
+  .field input{ font-size:17px; }
+  .form-note{ font-size:14px; }
+  .footer-line{ font-size:15px; }
+  .footer-line.muted{ font-size:14px; }
+  }
 </style>
 </head>
 <body>

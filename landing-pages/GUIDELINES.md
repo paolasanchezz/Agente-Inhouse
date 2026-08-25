@@ -352,6 +352,46 @@ grep -c '<text' brand/{marca}/assets/logos/{logo}.svg   # TEM que ser 0
 
 Histórico: 2026-05-27, LP `buzzcreators-estado-arte-influencia` publicada 2× com "CREATORS" serifada — a review (e o `lp-gerar`) trocaram o raster correto pelo "vetor limpo" sem checar o `<text>`. Referência viva correta: `evento.buzzmonitor.com/vendendo-com-creators`.
 
+## 20. Escala tipográfica mobile — pisos mínimos
+
+`font-size: clamp(MIN, Vvw, MAX)` **resolve no MIN em qualquer celular** (a 375px, `5.6vw` = 21px, então `clamp(30px, 5.6vw, 56px)` = 30px). Ou seja: o MIN do clamp *é* o tamanho mobile — não é um piso de emergência. LP gerada com `MIN` "seguro" entrega corpo de texto 16px e H1 30px no telefone, que é onde vem a maior parte do tráfego. Pequeno demais pra LP de marketing.
+
+**Pisos obrigatórios no mobile (≤640px):**
+
+| Papel | Piso | Como garantir |
+|---|---|---|
+| H1 / display (MAX ≥ 44px) | **34px** | MIN do clamp ≥ 34 |
+| H1 secundário / H2 grande (MAX 36-43) | **28px** | MIN do clamp ≥ 28 |
+| H2 de seção (MAX 30-35) | **26px** | MIN do clamp ≥ 26 |
+| H3 / título de card (MAX 24-29) | **22px** | MIN do clamp ≥ 22 |
+| Subhead / número destacado (MAX 20-23) | **18px** | MIN do clamp ≥ 18 |
+| Lead / subtítulo do hero | **18px** | `clamp(18px, 2vw, 20px)` |
+| Corpo, item de lista, botão | **17px** | 17px direto, ou override em `@media (max-width:640px)` |
+| Label, caption, rodapé | **14px** | nunca abaixo de 14px |
+
+O piso **nunca passa do MAX** — clamp com MIN > MAX é bug. Desktop não muda: só o MIN sobe.
+
+**Exceção — `white-space: nowrap` não sobe.** Pílula de kicker, badge, CTA de navbar e afins não refluem: +1px de fonte vira overflow horizontal na hora. Regra com `nowrap` fica no tamanho que está (ou reduz o `padding` antes de crescer a fonte).
+
+**Ferramentas** (`landing-pages/build/`):
+
+```bash
+# 1. aplica os pisos (só dentro dos <style>; desktop intacto; respeita nowrap)
+py landing-pages/build/bump_mobile_type.py --dry-run landing-pages/{marca}/{slug}
+
+# 2. QA: mede em 375x812 e acusa overflow horizontal de elemento visível
+py -m http.server 8123 --bind 127.0.0.1          # na raiz do repo
+py landing-pages/build/check_mobile_type.py --port 8123 landing-pages/{marca}/{slug}
+```
+
+Pra sweep em muitas LPs, rode o `check_mobile_type.py` **antes e depois** (`--json` / `--baseline`): o que importa é overflow **novo**. Boa parte das LPs já tem overflow pré-existente de elemento decorativo, e marquee de logos é mais largo que a tela por design.
+
+⚠️ O `check_mobile_type.py` precisa de servidor **threaded** (`http.server` puro é single-thread e derruba requisição concorrente → asset 404 → medida falsa). E `landing-pages/brand` é symlink gitignored: em árvore limpa (worktree) o logo 404 e a largura do header muda — não confunda com regressão.
+
+`font-size` em `style=""` inline o script não toca — revisar à mão (o `bump_mobile_type.py` lista quais LPs têm).
+
+Histórico: 2026-08-25, Victor reportou a LP `monitoramento-com-ia` (corpo 16px / H1 30px no mobile) e pediu revisão nas outras. 118 LPs ajustadas de uma vez; 8 acusaram overflow novo por pílula com `nowrap` — daí a exceção acima.
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.

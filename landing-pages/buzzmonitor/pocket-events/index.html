@@ -199,7 +199,7 @@
   .hero-h2 {
     margin-top: 28px;
     font-family: var(--ff-display);
-    font-size: clamp(22px, 2.6vw, 34px);
+    font-size:clamp(26px, 2.6vw, 34px);
     font-weight: 700;
     line-height: 1.18;
     letter-spacing: -0.02em;
@@ -311,14 +311,14 @@
 
   .sec-head { display: grid; gap: 16px; margin-bottom: 58px; max-width: 880px; }
   .sec-head .eyebrow { color: var(--c-accent-2); }
-  .sec-head h2 { font-size: clamp(32px, 4.2vw, 54px); color: var(--c-n900); }
+  .sec-head h2 { font-size:clamp(34px, 4.2vw, 54px); color: var(--c-n900); }
   .sec-head .center { text-align: center; margin-inline: auto; }
 
   /* ============================================================ SPEAKER + FORM */
   .speaker-form { background: var(--c-n100); }
   .sf-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
   .sf-head .eyebrow { color: var(--c-accent-2); }
-  .sf-head h2 { font-size: clamp(30px, 3.8vw, 46px); color: var(--c-n900); margin-top: 14px; }
+  .sf-head h2 { font-size:clamp(34px, 3.8vw, 46px); color: var(--c-n900); margin-top: 14px; }
   .sf-head .sub { margin-top: 18px; font-family: var(--ff-sub); font-weight: 400; color: var(--c-n700); font-size: 17px; }
 
   .sf-grid {
@@ -364,7 +364,7 @@
   }
   .sp-name {
     font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(20px, 2.2vw, 26px);
+    font-size:clamp(22px, 2.2vw, 26px);
     color: var(--c-n900); line-height: 1.15; margin: 4px 0 0;
     letter-spacing: -0.015em;
   }
@@ -420,7 +420,7 @@
   .logos-wall { background: var(--c-n0); }
   .lw-head { text-align: center; max-width: 880px; margin: 0 auto 56px; }
   .lw-head .eyebrow { color: var(--c-accent-2); }
-  .lw-head h2 { font-size: clamp(30px, 4vw, 50px); color: var(--c-n900); margin-top: 14px; }
+  .lw-head h2 { font-size:clamp(34px, 4vw, 50px); color: var(--c-n900); margin-top: 14px; }
 
   .mural-stage {
     position: relative;
@@ -521,7 +521,7 @@
   .testimonials-h2 {
     font-family: var(--ff-display);
     font-weight: 800;
-    font-size: clamp(30px, 4vw, 50px);
+    font-size:clamp(34px, 4vw, 50px);
     line-height: 1.1;
     color: var(--c-n900);
     margin: 14px 0 0;
@@ -712,6 +712,30 @@
     .ticket { padding: 28px 26px 26px; }
     .sp-photo { width: 140px; height: 140px; }
     .hero-times { font-size: 12px; }
+  }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:14px; }
+  .btn-primary{ font-size:17px; }
+  .ticket-label{ font-size:12px; }
+  .ticket-date small{ font-size:14px; }
+  .ticket-rows{ font-size:15px; }
+  .ticket-rows dt{ font-size:12px; }
+  .sp-photo .sp-photo-text{ font-size:12px; }
+  .sp-role{ font-size:15px; }
+  .sp-bio{ font-size:15px; }
+  .form-card .form-sub{ font-size:15px; }
+  .field label{ font-size:13px; }
+  .form-card .disclaimer{ font-size:13px; }
+  .kpi-overlay-label{ font-size:13px; }
+  .testimonial-quote{ font-size:15px; }
+  .testimonial-meta{ font-size:14px; }
+  .testimonial-author{ font-size:15px; }
+  .urgency-meta{ font-size:15px; }
+  footer{ font-size:15px; }
+  footer .f-link{ font-size:13px; }
+  footer .legal{ font-size:13px; }
   }
 </style>
 </head>

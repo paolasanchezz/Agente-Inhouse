@@ -109,6 +109,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
   <link rel="stylesheet" href="./assets/css/tabler-icons.min.css">
   <style>@keyframes bzmarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}@keyframes bzfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes bzdrift{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-15px)}}@keyframes bzgrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}html{scroll-behavior:smooth}</style>
+<!-- Pisos de tipografia mobile (GUIDELINES 20). A tipografia desta LP vem
+     do CSS exportado do Webflow em assets/css/ — override aqui pra nao
+     editar arquivo de framework. Vale so no mobile; desktop intacto. -->
+<style>
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+    .bz-qtext{ font-size:17px; }
+    .bz-ro, .foot-desc{ font-size:16px; }
+  }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

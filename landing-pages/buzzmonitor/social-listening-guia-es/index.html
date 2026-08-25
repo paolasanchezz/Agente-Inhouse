@@ -342,7 +342,7 @@
     }
     .form-extra__tagline{
       font-family: var(--font-heading); font-weight:800;
-      font-size: clamp(26px, 3.4vw, 38px); line-height:1.3;
+      font-size:clamp(28px, 3.4vw, 38px); line-height:1.3;
       color:#fff; margin-bottom: 28px;
     }
     .form-extra__tagline .plus{color: var(--yellow);}
@@ -361,7 +361,7 @@
     .section-destaque .wrap{max-width: 760px;}
     .section-destaque h2{
       font-family: var(--font-heading); font-weight:800;
-      font-size: clamp(26px, 3.4vw, 38px);
+      font-size:clamp(28px, 3.4vw, 38px);
       color: var(--purple);
       line-height:1.25; margin-bottom: 32px;
     }
@@ -378,7 +378,7 @@
     .section-header{text-align:center; max-width:640px; margin: 0 auto 56px;}
     .section-header h2{
       font-family: var(--font-heading); font-weight:800;
-      font-size: clamp(26px, 3.2vw, 36px);
+      font-size:clamp(28px, 3.2vw, 36px);
       color: var(--ink);
     }
     .benefits-grid{
@@ -464,7 +464,7 @@
     .stat{display:flex; flex-direction:column; gap:6px;}
     .stat strong{
       font-family: var(--font-heading); font-weight:900;
-      font-size: clamp(22px, 2.6vw, 32px); color: var(--purple);
+      font-size:clamp(26px, 2.6vw, 32px); color: var(--purple);
     }
     @media (max-width: 780px){ .stats-row{grid-template-columns: repeat(2,1fr); gap:32px;} }
 
@@ -475,7 +475,7 @@
     }
     .section-cta-final h2{
       font-family: var(--font-heading); font-weight:900;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size:clamp(34px, 4vw, 44px);
       max-width: 720px; margin: 0 auto 40px; line-height:1.15;
     }
     .section-cta-final .btn-primary{
@@ -525,7 +525,17 @@
        A regra do iframe garante que, se o provedor renderizar via iframe, ele
        ocupa 100% da largura sem borda. */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
-  </style>
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .form-field label{ font-size:14px; }
+  .form-field input{ font-size:16px; }
+  .form-disclaimer{ font-size:13px; }
+  .para-quien-item p{ font-size:16px; }
+  .footer__links{ font-size:15px; }
+  .footer__copy{ font-size:14px; }
+  }
+</style>
 </head>
 <body>
   <a href="#contenido" class="skip-link">Saltar al contenido</a>
