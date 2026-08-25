@@ -853,43 +853,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .reveal.in { opacity: 1; transform: none; }
   }
 
-  /* ===== Agenda viva: proximos webinars + gravacoes ===== */
-  .nx-sec { background: var(--c-n100); padding: 96px 0; }
-  @media (max-width: 720px) { .nx-sec { padding: 64px 0; } }
+  /* ===== Agenda viva: proximos webinars + assista tambem (secao unica, centralizada) ===== */
+  .nx-sec { background: var(--c-n100); padding: 72px 0; }
+  @media (max-width: 720px) { .nx-sec { padding: 56px 0; } }
+  .nx-wrap { text-align: center; }
   .nx-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-sub); font-weight: 500; font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--c-accent-2); }
-  .nx-eyebrow .nx-rule { width: 44px; height: 1.5px; background: var(--c-accent-2); }
-  .nx-title { margin: 16px 0 0; font-family: var(--ff-display); font-weight: 700; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.05; letter-spacing: -0.018em; color: var(--c-n900); }
-  .nx-sub { margin: 12px 0 0; font-family: var(--ff-sub); font-weight: 500; color: var(--c-n700); font-size: 16px; max-width: 52ch; }
-  .nx-cards { margin-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 880px; }
-  .nx-card { background: var(--c-n0); border: 1px solid var(--c-n300); border-radius: 22px; padding: 26px; display: flex; gap: 20px; align-items: flex-start; box-shadow: 0 14px 38px -14px rgba(20,17,26,.18); transition: transform 180ms; }
+  .nx-eyebrow .nx-rule { width: 28px; height: 1.5px; background: var(--c-accent-2); }
+  .nx-title { margin: 14px 0 0; font-family: var(--ff-display); font-weight: 700; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.05; letter-spacing: -0.018em; color: var(--c-n900); }
+  .nx-sub { margin: 10px auto 0; font-family: var(--ff-sub); font-weight: 500; color: var(--c-n700); font-size: 15px; max-width: 46ch; }
+  .nx-cards { margin: 26px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 880px; }
+  .nx-card { background: var(--c-n0); border: 1px solid var(--c-n300); border-radius: 20px; padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start; text-align: left; flex: 1 1 380px; max-width: 420px; box-shadow: 0 14px 38px -14px rgba(20,17,26,.18); transition: transform 180ms; }
   .nx-card:hover { transform: translateY(-3px); }
-  .nx-date { flex: none; width: 74px; border-radius: 12px; background: var(--c-primary); color: #fff; text-align: center; padding: 13px 6px 10px; }
-  .nx-date b { display: block; font-family: var(--ff-display); font-weight: 900; font-size: 30px; line-height: 1; }
-  .nx-date span { display: block; margin-top: 4px; font-family: var(--ff-sub); font-weight: 500; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .85; }
-  .nx-chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ff-sub); font-weight: 500; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--c-accent-2); }
+  .nx-date { flex: none; width: 64px; border-radius: 12px; background: var(--c-primary); color: #fff; text-align: center; padding: 11px 6px 9px; }
+  .nx-date b { display: block; font-family: var(--ff-display); font-weight: 900; font-size: 25px; line-height: 1; }
+  .nx-date span { display: block; margin-top: 3px; font-family: var(--ff-sub); font-weight: 500; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+  .nx-chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ff-sub); font-weight: 500; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--c-accent-2); }
   .nx-chip .nx-dot { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--c-accent-2); }
   .nx-chip .nx-dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--c-accent-2); opacity: .3; animation: nxPulse 2.2s ease-in-out infinite; }
   @keyframes nxPulse { 0%, 100% { transform: scale(1); opacity: .3; } 50% { transform: scale(2.1); opacity: 0; } }
-  .nx-card h3 { margin: 10px 0 0; font-family: var(--ff-display); font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -0.012em; color: var(--c-n900); }
-  .nx-meta { margin: 8px 0 0; font-family: var(--ff-sub); font-size: 13.5px; font-weight: 500; color: var(--c-n700); }
+  .nx-card h3 { margin: 8px 0 0; font-family: var(--ff-display); font-weight: 700; font-size: 18px; line-height: 1.15; letter-spacing: -0.012em; color: var(--c-n900); }
+  .nx-meta { margin: 6px 0 0; font-family: var(--ff-sub); font-size: 13px; font-weight: 500; color: var(--c-n700); }
   .nx-meta b { color: var(--c-n900); }
-  .nx-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; background: var(--c-accent); color: #fff; padding: 12px 22px; border-radius: 9999px; font-family: var(--ff-sub); font-weight: 500; font-size: 14.5px; box-shadow: 0 10px 22px -8px rgba(235,124,46,.55); transition: background 180ms, transform 180ms; }
+  .nx-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; background: var(--c-accent); color: #fff; padding: 10px 18px; border-radius: 9999px; font-family: var(--ff-sub); font-weight: 500; font-size: 13.5px; box-shadow: 0 10px 22px -8px rgba(235,124,46,.55); transition: background 180ms, transform 180ms; }
   .nx-btn:hover { background: var(--c-primary); transform: translateY(-2px); color: #fff; }
   @media (prefers-reduced-motion: reduce) {
     .nx-card, .nx-card:hover, .nx-btn, .nx-btn:hover { transform: none; transition: none; }
     .nx-chip .nx-dot::after { animation: none; }
   }
+  .nx-more { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-n300); display: flex; justify-content: center; }
+  .gv-link-inline { display: inline-flex; align-items: center; gap: 10px; font-family: var(--ff-sub); font-weight: 500; font-size: 14px; color: var(--c-n700); }
+  .gv-link-inline strong { color: var(--c-n900); }
+  .gv-link-inline .gv-ico { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--grad-hot); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+  .gv-link-inline .gv-ico svg { width: 11px; height: 11px; margin-left: 1px; }
+  .gv-link-inline .arrow { flex: none; transition: transform 180ms; }
+  .gv-link-inline:hover { color: var(--c-primary); }
+  .gv-link-inline:hover .arrow { transform: translateX(3px); }
+  @media (max-width: 480px) { .gv-link-inline { text-align: left; } }
   /* ===== Assista também: playlist no YouTube ===== */
-  .gv-sec { background: var(--c-n0); padding: 56px 0 72px; }
-  .gv-banner { max-width: 880px; border: 1px solid var(--c-n300); border-radius: 22px; background: var(--c-n100); padding: 32px 34px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  .gv-banner-icon { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--grad-hot); display: grid; place-items: center; color: #fff; }
-  .gv-banner-icon svg { width: 20px; height: 20px; margin-left: 2px; }
-  .gv-banner-txt { flex: 1; min-width: 220px; }
-  .gv-banner-txt h2 { margin: 0; font-family: var(--ff-display); font-weight: 700; font-size: 22px; letter-spacing: -0.012em; color: var(--c-n900); }
-  .gv-banner-txt p { margin: 6px 0 0; font-family: var(--ff-sub); font-size: 14.5px; color: var(--c-n700); }
-  .gv-banner-btn { flex: none; display: inline-flex; align-items: center; gap: 10px; background: var(--c-accent); color: #fff; padding: 13px 24px; border-radius: 9999px; font-family: var(--ff-sub); font-weight: 500; font-size: 14.5px; box-shadow: 0 10px 22px -8px rgba(235,124,46,.55); transition: background 180ms, transform 180ms; }
-  .gv-banner-btn:hover { background: var(--c-primary); transform: translateY(-2px); color: #fff; }
-  @media (max-width: 640px) { .gv-banner { padding: 26px; } .gv-banner-btn { width: 100%; justify-content: center; } }
 </style>
 </head>
 <body>
@@ -995,10 +995,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ===== Agenda: proximos webinars ===== -->
+  <!-- ===== Agenda: proximos webinars + assista tambem ===== -->
   <section class="nx-sec" id="proximos-webinars" aria-labelledby="nx-title">
-    <div class="wrap">
-      <span class="nx-eyebrow"><span class="nx-rule"></span>Agenda Buzzmonitor</span>
+    <div class="wrap nx-wrap">
+      <span class="nx-eyebrow"><span class="nx-rule"></span>Agenda Buzzmonitor<span class="nx-rule"></span></span>
       <h2 class="nx-title" id="nx-title">Pr&oacute;ximos webinars</h2>
       <p class="nx-sub">Ao vivo, online e gratuitos. Garanta sua vaga no pr&oacute;ximo encontro.</p>
       <div class="nx-cards">
@@ -1012,23 +1012,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </article>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== Assista tamb&eacute;m (playlist YouTube) ===== -->
-  <section class="gv-sec" aria-label="Mais grava&ccedil;&otilde;es de webinars">
-    <div class="wrap">
-      <div class="gv-banner">
-        <span class="gv-banner-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-        <div class="gv-banner-txt">
-          <h2>Assista tamb&eacute;m</h2>
-          <p>Todas as grava&ccedil;&otilde;es de webinars da Buzzmonitor, reunidas numa playlist no YouTube.</p>
-        </div>
-        <a class="gv-banner-btn" href="https://www.youtube.com/watch?v=AF7y57MwlxY&amp;list=PL8qLaj4eHYH_N4ApqHne3HiIc8b3nWOC7" target="_blank" rel="noopener noreferrer">
-          <span>Ver playlist completa</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="nx-more">
+        <a class="gv-link-inline" href="https://www.youtube.com/watch?v=AF7y57MwlxY&amp;list=PL8qLaj4eHYH_N4ApqHne3HiIc8b3nWOC7" target="_blank" rel="noopener noreferrer">
+          <span class="gv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span>Assista tamb&eacute;m: veja todas as grava&ccedil;&otilde;es na <strong>playlist do YouTube</strong></span>
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
     </div>
