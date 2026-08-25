@@ -12,6 +12,34 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Barrar commit em cima de base atrasada
+### 2026-08-25 — `commit` v2.2.0
+
+O Passo 0.4 só sincronizava a `main` **quando o tree já estava em `main`**, e o Caso B do Passo 2
+mandava reusar a branch atual sem olhar nada. Como o working tree é compartilhado, a branch checada
+costuma ser de outra tarefa, parada há dias — e alteração derivada dessa base **reverte** o que a
+`main` ganhou no meio-tempo, sem o git acusar conflito nenhum: conteúdo mais antigo não é conflito,
+é só conteúdo mais antigo.
+
+Foi o que quase aconteceu no sweep de tipografia (PR #366): tree em
+`claude/lp-agradecimento-perpetuos-latam`, **43 commits atrás** da `main`, e **26** das 121 LPs
+alteradas já tinham mudado na `main` depois. Teria revertido as 26 em silêncio.
+
+Novo **Passo 0.5**, que roda sempre, em qualquer branch: mede o atraso
+(`git rev-list --left-right --count origin/main...HEAD`) e cruza os arquivos que você mexeu com os
+que a `main` mudou depois da sua base (`comm -12`). Colisão não vazia = **para**, não commita, refaz
+em cima da `main` atual.
+
+**Caso B reescrito:** reusa a branch atual só se ela for desta tarefa E `atras = 0`. Senão cria
+branch nova a partir de `origin/main` — via `git worktree add`, não `git checkout -b`, porque com
+dezenas de arquivos modificados o checkout falha exatamente nos que a `main` mudou.
+
+Também documentado ali: pra devolver arquivo do tree principal ao original, escrever os bytes de
+`git show HEAD:{path}` — copiar de um worktree deixa o arquivo com CRLF onde o repo tem LF e ele
+fica "modificado" no `git status` sem diferença de conteúdo nenhuma.
+
+---
+
 ## Pisos de tipografia mobile em todas as LPs
 ### 2026-08-25 — `landing-pages/GUIDELINES.md` §20 (nova) + 2 scripts em `landing-pages/build/`
 

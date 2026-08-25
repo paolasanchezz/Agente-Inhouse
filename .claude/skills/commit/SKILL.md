@@ -3,7 +3,7 @@ name: commit
 description: Cria branch, commita, faz push e abre pull request para a main automaticamente via API do GitHub. NUNCA commita em main, nunca faz merge, nunca usa --force. Use ao final das alterações para entregar ao Victor revisar.
 argument-hint: "(sem args — totalmente automático)"
 allowed-tools: Bash, Read, Grep
-version: 2.1.0
+version: 2.2.0
 ---
 
 # Skill: Commit + Pull Request para revisão
@@ -67,6 +67,44 @@ git pull --rebase --autostash origin main
 - `--rebase` mantém o histórico linear. Como ninguém commita direto em `main`, na prática é um fast-forward.
 
 **Se aparecer conflito** (raro — só se o teu trabalho não-commitado tocar um arquivo que também mudou no remoto): o git para e **preserva teu trabalho no stash**. Resolva os arquivos apontados, `git add` neles, `git rebase --continue`. Se preferir voltar atrás, `git rebase --abort` restaura tudo como estava (nada perdido) — aí resolva com calma e rode `/commit` de novo.
+
+### 0.5 A base está atrasada? (roda SEMPRE, em qualquer branch)
+
+O tree é compartilhado e a branch checada pode ser de **outra tarefa**, parada há dias. Se você editou arquivos partindo dessa base velha, commitar **reverte** o que a `main` ganhou no meio-tempo — silenciosamente, porque o git não vê conflito nenhum: seu conteúdo é só mais antigo, e "mais antigo" não é conflito.
+
+```bash
+git fetch origin main --quiet
+git rev-list --left-right --count origin/main...HEAD   # "atras<TAB>a frente"
+# arquivos QUE VOCE MEXEU e que a main tambem mudou depois da sua base:
+comm -12 <(git diff --name-only HEAD origin/main | sort) <(git ls-files -m | sort)
+```
+
+Decida pelo resultado:
+
+| Situação | Ação |
+|---|---|
+| `atras = 0` | Segue normal. |
+| `atras > 0`, colisão **vazia** | Segue, mas crie a branch a partir de `origin/main` — nunca do HEAD velho (ver Caso B). |
+| `atras > 0`, colisão **não vazia** | **PARE.** Não commite. Mostre a lista e refaça a alteração em cima da `main` atual. |
+
+Mensagem quando parar:
+
+> **Sua base está {N} commits atrás da `main`, e {K} arquivo(s) que você alterou também mudaram na `main` depois disso:**
+> - `{arquivo}` …
+>
+> Commitar agora reverteria o conteúdo novo desses arquivos. Vou refazer a alteração em cima da `main` atual antes de entregar.
+
+**Alteração em massa (dezenas de arquivos): trabalhe fora do tree principal.** Worktree novo em cima da `main`, commit/push/PR de lá — o tree do usuário (com as mudanças não-commitadas de outras sessões) fica intocado:
+
+```bash
+git worktree add -b claude/{slug} "$TEMP/claude/{slug}" origin/main
+# refaça a alteração DENTRO do worktree, commite e pushe de lá
+git worktree remove --force "$TEMP/claude/{slug}"   # só depois do push
+```
+
+Se precisar devolver um arquivo do tree principal ao estado original, escreva os bytes de `git show HEAD:{path}` de volta nele. **Não copie de um worktree** — o `autocrlf` do checkout troca LF por CRLF e o arquivo fica "modificado" no `git status` sem nenhuma diferença de conteúdo. (`git checkout -- {path}` costuma ser bloqueado por ser destrutivo.)
+
+Histórico: 2026-08-25, sweep de tipografia em 121 LPs (PR #366). O tree estava em `claude/lp-agradecimento-perpetuos-latam`, **43 commits atrás** da `main`, e 26 das LPs alteradas já tinham mudado na `main` depois. Só não virou incidente porque a colisão foi vista antes do `git add`.
 
 ---
 
@@ -155,7 +193,18 @@ Crie branch nova seguindo a lógica abaixo.
 
 ### Caso B — está em branch != main
 
-**Reuse a branch atual.** Mostre: "Usando branch existente: `{nome}`". Não crie outra. Vá direto para o Passo 3.
+Reusar a branch atual só vale se ela for **sua, desta tarefa, e em cima da `main` atual**. Branch de outra tarefa recebe commit alheio no PR de outra pessoa; branch atrasada nasce com PR velho (e pode reverter conteúdo — Passo 0.5). Então checa, pelo resultado do Passo 0.5:
+
+- **`atras = 0` e a branch é desta tarefa** → reuse. Mostre: "Usando branch existente: `{nome}`". Vá para o Passo 3.
+- **`atras > 0`, ou a branch é de outro assunto** (o nome não tem nada a ver com o que você mexeu) → **não reuse**. Crie branch nova a partir de `origin/main` com a lógica de nome do Caso A:
+
+  ```bash
+  git worktree add -b {nome-novo} "$TEMP/claude/{nome-novo}" origin/main
+  ```
+
+  Worktree, e não `git checkout -b`: com dezenas de arquivos modificados o checkout falha (ou embola tudo) justamente nos arquivos que a `main` mudou. Refaça/copie a alteração dentro do worktree e siga o Passo 3 **de lá**. Diga ao usuário por que trocou:
+
+  > A branch `{atual}` é de outra tarefa e está {N} commits atrás da `main`. Criei `{nome-novo}` em cima da `main` atual para não misturar as entregas.
 
 ---
 
