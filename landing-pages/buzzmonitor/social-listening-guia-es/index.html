@@ -276,12 +276,16 @@
 
     /* Movimiento continuo (referencia: plataforma-integral-social-media) */
     @keyframes float-y{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+    @keyframes float-y-centered{
+      0%,100%{ transform: translate(-50%,-50%) translateY(0); }
+      50%{ transform: translate(-50%,-50%) translateY(-10px); }
+    }
     .float-card{ animation: float-y 4.6s ease-in-out infinite; }
     .float-card.c1{ animation-delay: 0s; }
     .float-card.c2{ animation-delay: .8s; }
     .float-card.c3{ animation-delay: 1.6s; }
     .float-card.c4{ animation-delay: 2.4s; }
-    .hero-mascot{ animation: float-y 5.2s ease-in-out infinite; animation-delay: .3s; }
+    .hero-mascot{ animation: float-y-centered 5.2s ease-in-out infinite; animation-delay: .3s; }
     @media (prefers-reduced-motion: reduce){
       .float-card, .hero-mascot{ animation: none; }
     }
