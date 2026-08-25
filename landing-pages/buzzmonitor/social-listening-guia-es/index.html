@@ -239,13 +239,13 @@
     }
     .hero-mascot{
       position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
-      width:112px; height:112px; z-index:3;
-      filter: drop-shadow(0 14px 26px rgba(57,1,85,0.28));
+      width:168px; height:168px; z-index:3;
+      filter: drop-shadow(0 18px 32px rgba(57,1,85,0.3));
     }
     .radar{ position:absolute; top:50%; left:50%; width:0; height:0; z-index:1; }
     .radar-ring{
       position:absolute; top:50%; left:50%;
-      width:112px; height:112px; margin:-56px 0 0 -56px;
+      width:168px; height:168px; margin:-84px 0 0 -84px;
       border-radius:50%; border:2px solid var(--orange);
       opacity:0; animation: radar-ping 3.6s ease-out infinite;
     }
@@ -269,35 +269,28 @@
       font-family: var(--font-heading); font-weight:800; font-size:14px;
       color: var(--ink); line-height:1.25;
     }
-    .float-card.c1{top: -2%; left: 4%; color: var(--ink-soft);}
-    .float-card.c2{top: 2%; right: -2%; color: var(--teal);}
-    .float-card.c3{top: 40%; left: -4%; color: var(--orange);}
-    .float-card.c4{top: 38%; right: -6%; color: var(--purple);}
-    .float-card.c5{bottom: -2%; left: 6%; color: var(--pink);}
-    .float-card.c6{bottom: 0%; right: 2%; color: var(--teal);}
+    .float-card.c1{top: 2%; left: 0; color: var(--pink);}
+    .float-card.c2{top: 4%; right: -4%; color: var(--teal);}
+    .float-card.c3{bottom: 4%; left: -2%; color: var(--orange);}
+    .float-card.c4{bottom: 0%; right: 0; color: var(--purple);}
 
     /* Movimiento continuo (referencia: plataforma-integral-social-media) */
     @keyframes float-y{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
     .float-card{ animation: float-y 4.6s ease-in-out infinite; }
     .float-card.c1{ animation-delay: 0s; }
-    .float-card.c2{ animation-delay: .5s; }
-    .float-card.c3{ animation-delay: 1s; }
-    .float-card.c4{ animation-delay: 1.5s; }
-    .float-card.c5{ animation-delay: 2s; }
-    .float-card.c6{ animation-delay: 2.5s; }
+    .float-card.c2{ animation-delay: .8s; }
+    .float-card.c3{ animation-delay: 1.6s; }
+    .float-card.c4{ animation-delay: 2.4s; }
     .hero-mascot{ animation: float-y 5.2s ease-in-out infinite; animation-delay: .3s; }
     @media (prefers-reduced-motion: reduce){
       .float-card, .hero-mascot{ animation: none; }
     }
-    .float-card.icon-only{width:auto; padding:18px; align-items:center;}
     @media (max-width: 980px){
-      .hero__visual{height:400px; max-width:400px;}
-      .float-card{width:120px; padding:14px 16px;}
+      .hero__visual{height:420px; max-width:400px;}
+      .float-card{width:128px; padding:14px 16px;}
       .float-card__label{font-size:12px;}
-      .float-card.c1{left:0;} .float-card.c2{right:0;}
-      .float-card.c3{left:-2%;} .float-card.c4{right:-2%;}
-      .float-card.c5{left:2%;} .float-card.c6{right:0;}
-      .hero-mascot{width:84px; height:84px;}
+      .hero-mascot{width:110px; height:110px;}
+      .radar-ring{width:110px; height:110px; margin:-55px 0 0 -55px;}
     }
 
     @media (max-width: 980px){
@@ -569,24 +562,20 @@
           </div>
           <img class="hero-mascot" src="../../brand/buzzmonitor/assets/logos/logo-icon.png" alt="">
           <div class="float-card c1">
-            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg></span>
-            <span class="float-card__label">Monitoreo</span>
+            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a6 6 0 0 0-6 6v3.5L4 16h16l-2-4.5V8a6 6 0 0 0-6-6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="float-card__label">Detecta crisis a tiempo</span>
           </div>
           <div class="float-card c2">
-            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.5.5.8 1 .8 1.7V16h6.4v-.8c0-.7.3-1.2.8-1.7A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="float-card__label">Social Listening</span>
-          </div>
-          <div class="float-card c3 icon-only">
             <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="float-card__label">Decide con datos reales</span>
           </div>
-          <div class="float-card c4 icon-only">
-            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.4 8.4 0 0 1-3.9-.9L3 21l1.9-5.7a8.4 8.4 0 1 1 16.1-3.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="float-card c3">
+            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6h13M8 12h13M8 18h13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="3.5" cy="6" r="1.4" fill="currentColor"/><circle cx="3.5" cy="12" r="1.4" fill="currentColor"/><circle cx="3.5" cy="18" r="1.4" fill="currentColor"/></svg></span>
+            <span class="float-card__label">Paso a paso incluido</span>
           </div>
-          <div class="float-card c5 icon-only">
-            <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8"/></svg></span>
-          </div>
-          <div class="float-card c6 icon-only">
+          <div class="float-card c4">
             <span class="float-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H8l-4 4V4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="float-card__label">Ejemplo real explicado</span>
           </div>
         </div>
       </div>
