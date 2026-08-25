@@ -6,16 +6,16 @@
 
 > **Nota de nomenclatura:** a pasta foi renomeada de `social-listening-guia` para `social-listening-guia-es` durante o `/lp-gerar`. Sem o sufixo `-es`, a cascata de detecção de região (`landing-pages/CONTEXT.md` §5.1) cai no fallback `brasil` — o que geraria `<html lang="pt-BR">`, GTM do Brasil e OG locale errados numa LP inteiramente em espanhol. Convenção: BR sem sufixo, LATAM/ES = `-es`, PT = `-pt`.
 
-## Estrutura
+## Estrutura (atualizada apos varias iteracoes de design, 2026-08-25)
 
-- HERO (overline + H1 com dor + sub + CTA, visual abstrato "signal/conversação" à direita)
-- FORM (2ª seção, regra ToFu/material rico do GUIDELINES §10 — mock, 3 campos)
+- HERO (overline "PLAYBOOK GRATUITO" + H1 com dor/gradiente + sub + CTA; visual: mascote grande centralizada + radar/sonar + 4 cards flutuantes com beneficios reais + dot-field + orbit path)
+- FORM (2ª seção, regra ToFu/material rico do GUIDELINES §10 — fundo gradiente laranja→rosa, card do form em branco, form real via Jotform embed, bloco de texto ao lado em branco/grande)
 - DESTAQUE (seção de pausa, H2 + 2 BODY, sem lista)
-- QUE VAS A APRENDER (grid de 5 benefícios, check teal)
-- PARA QUIEN (lista vertical de 4 itens, tratamento visual distinto do grid acima)
-- CLIENTES (prova social: 10 logos em grayscale + 4 stats, fundo primaryLight)
+- QUE VAS A APRENDER (grid de 5 beneficios, TODAS as cards em degrade roxo→laranja com texto branco)
+- PARA QUIEN (grid de 4 cards com icone em circulo pastel, nao mais lista vertical)
+- CLIENTES (prova social: 10 logos em marquee animado/loop infinito + 4 stats com contador animado, fundo branco)
 - CTA FINAL (fundo gradiente roxo→laranja)
-- FOOTER
+- FOOTER (5 redes sociais reais: Instagram, X, Facebook, LinkedIn, YouTube)
 
 ## Paleta usada (§1 GUIDELINES — 3 cores)
 
@@ -24,10 +24,12 @@ Primary `#390155` (roxo) + Secondary `#EB7C2E` (laranja, CTA) + Teal `#0E9D9B` (
 ## Estado
 
 - [x] HTML gerado
-- [ ] OG image 1200×630 → `assets/og-social-listening-guia-es.png` (arquivo **único** — nunca também `og-image.png`)
-- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/social-listening-guia-es`
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/social-listening-guia-es [snippet]` (aguardando ferramenta de automação — ActiveCampaign, confirmado com Paola)
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor social-listening-guia-es material.buzzmonitor.com`
+- [x] OG image 1200×630 → `assets/og-social-listening-guia-es.png`
+- [x] Revisão (frontend-design review + web-design-guidelines) rodada
+- [x] Formulário integrado — Jotform (2026-08-25), form id `262355185955871`
+- [x] Publicado — live em `material.buzzmonitor.com/social-listening-guia-es` (varias entregas incrementais via PR, ultima #358)
+
+**Form provider:** Jotform (2026-08-25) — `https://form.jotform.com/jsform/262355185955871`, embed via `<script>` dentro de `.jotform-embed`.
 
 ## Pendências de conteúdo (fora do código, decisão da Paola)
 

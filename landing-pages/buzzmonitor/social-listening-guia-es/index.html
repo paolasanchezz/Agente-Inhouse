@@ -519,6 +519,12 @@
       .form-card{padding: 40px 24px;}
       .footer__top, .footer__bottom{flex-direction:column; text-align:center;}
     }
+
+    /* ----- Jotform embed wrapper (canonico) -----
+       Sem padding/background/border: o provedor ja vem com card proprio.
+       A regra do iframe garante que, se o provedor renderizar via iframe, ele
+       ocupa 100% da largura sem borda. */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
   </style>
 </head>
 <body>
@@ -590,24 +596,9 @@
       <div class="wrap">
         <div class="form-card reveal">
           <h2>Descarga la guía gratis</h2>
-          <form class="form-grid" action="#" method="post" onsubmit="event.preventDefault()">
-            <div class="form-field">
-              <label for="nombre">Nombre completo</label>
-              <input type="text" id="nombre" name="nombre" required autocomplete="name">
-            </div>
-            <div class="form-field">
-              <label for="correo">Correo corporativo</label>
-              <input type="email" id="correo" name="correo" required autocomplete="email">
-            </div>
-            <div class="form-field">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa" required autocomplete="organization">
-            </div>
-            <button type="submit" class="btn-primary">
-              Quiero la guía gratis
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </form>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/262355185955871"></script>
+          </div>
           <p class="form-disclaimer">Al registrarte aceptas recibir comunicaciones de Buzzmonitor.</p>
         </div>
         <div class="form-extra reveal">
