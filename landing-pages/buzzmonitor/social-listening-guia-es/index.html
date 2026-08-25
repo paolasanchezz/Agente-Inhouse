@@ -90,6 +90,7 @@
       --teal-light: #CDFDFC;
       --pink: #DE2451;
       --pink-light: #FFD7E0;
+      --yellow: #FCBD4F;
       --ink: #1a1a1a;
       --ink-soft: #4a4a4a;
       --line: #d1d1d1;
@@ -294,47 +295,47 @@
 
     /* ============ FORM ============ */
     .section-form{
-      background: var(--mist);
-      padding: 100px 0;
+      background: linear-gradient(90deg, var(--orange), var(--pink));
+      padding: 110px 0;
     }
     .section-form .wrap{
       display:grid; grid-template-columns: 0.85fr 1fr; gap:72px; align-items:center;
     }
     .form-card{
-      background: var(--teal); border-radius: var(--radius-lg);
+      background: #fff; border-radius: var(--radius-lg);
       padding: 40px 36px;
-      box-shadow: 0 20px 50px rgba(14,157,155,0.25);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.22);
     }
     .form-card h2{
       font-family: var(--font-heading); font-weight:800;
       font-size: clamp(22px, 2.6vw, 28px);
-      color: #fff;
+      color: var(--purple);
       margin-bottom: 28px;
     }
     .form-grid{display:flex; flex-direction:column; gap:16px;}
     .form-field{display:flex; flex-direction:column; gap:6px;}
-    .form-field label{font-weight:700; font-size:13px; color: rgba(255,255,255,0.9);}
+    .form-field label{font-weight:700; font-size:13px; color: var(--ink);}
     .form-field input{
       font-family: var(--font-body); font-size:15px;
-      padding: 13px 16px; border:none; border-radius: var(--radius-md);
+      padding: 13px 16px; border:1.5px solid var(--line); border-radius: var(--radius-md);
       background:#fff; color: var(--ink);
     }
-    .form-field input:focus-visible{outline: 3px solid var(--purple); outline-offset: 2px;}
+    .form-field input:focus-visible{outline: 3px solid var(--orange); outline-offset: 2px;}
     .form-card .btn-primary{
       justify-content:center; margin-top: 8px; width:100%;
-      background: var(--pink); color:#fff;
+      background: var(--orange); color:#fff;
     }
-    .form-card .btn-primary:hover{background: #c01d44;}
+    .form-card .btn-primary:hover{background: var(--purple);}
     .form-disclaimer{
-      font-size: 12.5px; color: rgba(255,255,255,0.8); text-align:center; margin-top:16px;
+      font-size: 12.5px; color: var(--ink-soft); text-align:center; margin-top:16px;
     }
     .form-extra__tagline{
       font-family: var(--font-heading); font-weight:800;
-      font-size: clamp(24px, 3vw, 34px); line-height:1.25;
-      color: var(--ink); margin-bottom: 24px;
+      font-size: clamp(26px, 3.4vw, 38px); line-height:1.3;
+      color:#fff; margin-bottom: 28px;
     }
-    .form-extra__tagline .plus{color: var(--teal);}
-    .form-extra p{font-size:19px; line-height:1.6; color: var(--ink-soft); margin-bottom:20px;}
+    .form-extra__tagline .plus{color: var(--yellow);}
+    .form-extra p{font-size:22px; line-height:1.6; color: rgba(255,255,255,0.95); margin-bottom:22px; font-weight:500;}
     .form-extra p:last-child{margin-bottom:0;}
     @media (max-width: 900px){
       .section-form .wrap{grid-template-columns: 1fr; gap:40px;}
@@ -358,32 +359,6 @@
     }
     .section-destaque p:last-child{margin-bottom:0;}
 
-    /* ============ EJEMPLO ============ */
-    .section-ejemplo{ background: #fff; padding: 0 0 120px; }
-    .ejemplo-grid{
-      display:grid; grid-template-columns: 1fr 1fr; gap:24px;
-      max-width: 860px; margin: 0 auto;
-    }
-    .ejemplo-card{
-      border-radius: var(--radius-lg); padding: 28px 26px;
-      border: 1.5px solid var(--line);
-      display:flex; flex-direction:column; gap:14px;
-    }
-    .ejemplo-card__icon{
-      width:36px; height:36px; border-radius:50%;
-      display:grid; place-items:center; flex-shrink:0;
-    }
-    .ejemplo-card__icon svg{width:18px; height:18px;}
-    .ejemplo-card--monitoreo{background: var(--mist);}
-    .ejemplo-card--monitoreo .ejemplo-card__icon{background:#e5e5e5; color: var(--ink-soft);}
-    .ejemplo-card--listening{background: var(--teal-light); border-color: var(--teal);}
-    .ejemplo-card--listening .ejemplo-card__icon{background:#fff; color: var(--teal);}
-    .ejemplo-card__label{
-      font-family: var(--font-heading); font-weight:800; font-size:14px;
-      letter-spacing:0.04em; text-transform:uppercase; color: var(--ink);
-    }
-    .ejemplo-card p{font-size:15px; color: var(--ink-soft); line-height:1.55;}
-    @media (max-width: 720px){ .ejemplo-grid{grid-template-columns: 1fr;} }
 
     /* ============ QUE VAS A APRENDER ============ */
     .section-aprende{
@@ -627,7 +602,7 @@
           <p class="form-disclaimer">Al registrarte aceptas recibir comunicaciones de Buzzmonitor.</p>
         </div>
         <div class="form-extra reveal">
-          <p class="form-extra__tagline">Teoría <span class="plus">+</span> paso a paso <span class="plus">+</span> plantilla.</p>
+          <p class="form-extra__tagline">Acciones prácticas <span class="plus">+</span> paso a paso <span class="plus">+</span> ejemplos reales.</p>
           <p>Si sientes que reaccionas siempre un paso tarde a lo que dicen de tu marca, este material es para ti.</p>
           <p>Descárgalo, complétalo mientras lo lees y quédate con la plantilla y el resumen para tu líder.</p>
         </div>
@@ -643,26 +618,6 @@
       </div>
     </section>
 
-    <!-- ============ EJEMPLO ============ -->
-    <section class="section-ejemplo">
-      <div class="wrap">
-        <div class="section-header reveal">
-          <h2>Un ejemplo de lo que vas a poder ver</h2>
-        </div>
-        <div class="ejemplo-grid">
-          <div class="ejemplo-card ejemplo-card--monitoreo reveal">
-            <span class="ejemplo-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg></span>
-            <span class="ejemplo-card__label">Monitoreo</span>
-            <p>&ldquo;La campaña recibió 5.000 menciones.&rdquo; Útil para saber que algo ocurrió, pero no orienta el siguiente paso.</p>
-          </div>
-          <div class="ejemplo-card ejemplo-card--listening reveal">
-            <span class="ejemplo-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.5.5.8 1 .8 1.7V16h6.4v-.8c0-.7.3-1.2.8-1.7A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="ejemplo-card__label">Social Listening</span>
-            <p>&ldquo;El 72% de las menciones positivas está relacionado con el precio y la facilidad de uso, no con el mensaje principal de la campaña.&rdquo; Un insight accionable: el mercado valora algo distinto de lo que la marca comunica.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ============ QUE VAS A APRENDER ============ -->
     <section class="section-aprende">
@@ -780,10 +735,19 @@
       </a>
       <div class="footer__social">
         <a href="https://www.instagram.com/getbuzzmonitor.es/" target="_blank" rel="noopener" aria-label="Buzzmonitor en Instagram">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.89 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5ZM17.4 6.6a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0Z"/></svg>
+        </a>
+        <a href="https://twitter.com/Buzzmonitor_ES" target="_blank" rel="noopener" aria-label="Buzzmonitor en X (Twitter)">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.9 2h3.1l-6.77 7.73L23.2 22h-6.23l-4.88-6.39L6.5 22H3.4l7.24-8.27L2 2h6.38l4.4 5.84L18.9 2Zm-1.09 18h1.72L7.28 3.9H5.43L17.81 20Z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/Buzzmonitorespanol" target="_blank" rel="noopener" aria-label="Buzzmonitor en Facebook">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.55l.38-2.96h-2.93V8.53c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.3 4.3c-2.26 0-3.8 1.38-3.8 3.9v2.24H8v2.96h2.5V21h3Z"/></svg>
         </a>
         <a href="https://www.linkedin.com/company/buzzmonitor/" target="_blank" rel="noopener" aria-label="Buzzmonitor en LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10v6.2M7.5 7.6v.1M12 16.2v-4c0-1.2.9-2.2 2.1-2.2s2.1 1 2.1 2.2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-6.02c0-1.44-.03-3.28-2-3.28-2.01 0-2.32 1.57-2.32 3.18V20H9.38V8.5h3.24v1.57h.05c.45-.86 1.55-1.77 3.2-1.77 3.42 0 4.57 2.25 4.57 5.17V20Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@getbuzzmonitor_es" target="_blank" rel="noopener" aria-label="Buzzmonitor en YouTube">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 7.2s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1.01C17 3.5 12 3.5 12 3.5h-.01s-5 0-8.19.33c-.46.06-1.46.06-2.36 1.01C.74 5.56.51 7.2.51 7.2S.27 9.13.27 11.06v1.8c0 1.93.24 3.87.24 3.87s.23 1.64.94 2.36c.9.95 2.08.92 2.6 1.02 1.9.18 8.05.24 8.05.24s5 0 8.19-.33c.46-.06 1.46-.06 2.36-1.01.71-.72.94-2.36.94-2.36s.24-1.93.24-3.87v-1.8c0-1.93-.24-3.87-.24-3.87ZM9.7 15.02V8.86l6.5 3.09-6.5 3.07Z"/></svg>
         </a>
       </div>
     </div>
