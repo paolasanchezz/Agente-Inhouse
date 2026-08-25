@@ -49,6 +49,11 @@
       "slug": "social-listening-guia-es",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/social-listening-guia-es"
+    },
+    {
+      "slug": "social-listening-guia-es-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/social-listening-guia-es-confirmado"
     }
   ],
   "extra_files": {
