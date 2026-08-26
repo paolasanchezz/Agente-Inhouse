@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ width:1200px; height:630px; overflow:hidden; }
+  .og{ position:relative; width:1200px; height:630px; overflow:hidden;
+    background:linear-gradient(150deg,#4A69BD 0%,#232960 72%);
+    font-family:"Source Sans 3",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .deco{ position:absolute; inset:0; z-index:0; }
+  .content{ position:absolute; z-index:2; left:80px; top:0; height:100%;
+    display:flex; flex-direction:column; justify-content:center; max-width:800px; }
+  .badge{ display:inline-flex; align-items:center; gap:10px; align-self:flex-start;
+    background:#EF863C; color:#fff; font-family:"Open Sans",sans-serif; font-weight:800;
+    font-size:20px; letter-spacing:.08em; text-transform:uppercase; padding:10px 22px; border-radius:9999px; margin-bottom:30px; }
+  .title{ font-family:"Open Sans",sans-serif; font-weight:800; font-size:76px; line-height:1.02; letter-spacing:-.03em; color:#fff; }
+  .title span{ color:#F1A908; }
+  .sub{ margin-top:26px; font-size:30px; line-height:1.35; color:rgba(255,255,255,.9); font-weight:500; max-width:700px; }
+  .pill{ margin-top:40px; display:inline-flex; align-self:flex-start; align-items:center; gap:16px;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28); border-radius:9999px;
+    padding:14px 30px; color:#fff; font-family:"Open Sans",sans-serif; font-weight:700; font-size:24px; }
+  .pill .sep{ width:6px; height:6px; background:#EF863C; border-radius:50%; }
+  .logo{ position:absolute; z-index:2; right:70px; bottom:56px; height:44px; }
+</style>
+</head>
+<body>
+<div class="og">
+  <svg class="deco" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="1060" cy="140" r="340" fill="rgba(255,255,255,.05)"/>
+    <rect x="905" y="300" width="330" height="150" rx="16" fill="rgba(255,255,255,.06)"/>
+    <circle cx="960" cy="352" r="16" fill="rgba(255,255,255,.35)"/>
+    <rect x="990" y="342" width="150" height="20" rx="10" fill="rgba(255,255,255,.28)"/>
+    <circle cx="960" cy="404" r="16" fill="rgba(241,169,8,.7)"/>
+    <rect x="990" y="394" width="110" height="20" rx="10" fill="rgba(255,255,255,.2)"/>
+    <path d="M965 545 q120 -55 225 -18" stroke="rgba(239,134,60,.5)" stroke-width="6" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="content">
+    <span class="badge">Plataforma de atendimento</span>
+    <div class="title">Atendimento centralizado e <span>automatizado com IA</span></div>
+    <div class="sub">Vendas e suporte em um lugar só, com agentes que resolvem tickets 24h.</div>
+    <div class="pill">8 canais integrados <span class="sep"></span> IA 24h <span class="sep"></span> Dashboards</div>
+  </div>
+  <img class="logo" src="../../../../brand/cxpress/assets/logos/logo-reversed.png" alt="Cxpress">
+</div>
+</body>
+</html>
