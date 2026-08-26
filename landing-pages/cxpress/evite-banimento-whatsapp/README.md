@@ -28,7 +28,7 @@ visivel sao identicas, verificado por diff automatizado.
 | # | O que | De | Para |
 |---|---|---|---|
 | 1 | Chamada de preco | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
-| 2 | Form Jotform | `261045149477663` | `261034073026647` |
+| 2 | Form Jotform | `261045149477663` | `261027639617663` (era `261034073026647` ate o PR #374, 2026-08-26) |
 | 3 | GTM | `GTM-T4XDWHL3` | `GTM-KN8BPFG` |
 | 4 | GA4 | (nao tinha) | `gtag.js` com ID `339689858` |
 | 5 | Visual do hero | `plataforma-canais.gif` | `./assets/hero-conta-banida-whatsapp.png` + blobs/glow/pilulas |

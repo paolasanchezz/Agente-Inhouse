@@ -9,7 +9,7 @@ LP do guarda-chuva **content.cxpress.io** (projeto Vercel `cxpress-lp-playbook-w
 > em qualquer largura.
 
 - [x] Formulário integrado
-- **Form provider:** Jotform, form ID `262146559200655` (mesmo form da `banimento-whatsapp-comercial`, a pedido do Victor). A original usa outro Jotform (`261027639617663`, "LPs - Proposta").
+- **Form provider:** Jotform, form ID `261027639617663` ("LPs - Proposta"), o form unificado das LPs de proposta BR desde o PR #374 (2026-08-26). Antes usava o `262146559200655` (mesmo da `banimento-whatsapp-comercial`); as duas convergiram para o form unico, que ja era o da LP original.
 - **lang:** `pt-BR`
 - **GTM:** `GTM-T4XDWHL3` (padrão Cxpress BR do repo). A original usa `GTM-KN8BPFG`.
 
