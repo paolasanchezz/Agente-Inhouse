@@ -347,7 +347,7 @@
 
         <div class="form-card reveal" id="form" style="--d:.34s">
           <h2 class="form-title">Assista ao vídeo agora</h2>
-          <div class="jotform-embed">
+          <div class="jotform-embed" data-perpetuo-next="/perpetuo-social-listening-confirmado">
             <script type="text/javascript" src="https://form.jotform.com/jsform/261904654263661"></script>
           </div>
         </div>
@@ -479,6 +479,22 @@
           entries.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); io2.unobserve(e.target); } });
         }, { threshold: 0.6 });
         counts.forEach(function (el) { io2.observe(el); });
+      }
+
+      /* ---------- Destino pos-envio deste webinar perpetuo ----------
+         O Jotform e compartilhado por varios webinars e a Thank You Page dele e uma URL fixa,
+         igual pra todos. Entao a LP registra aqui pra onde ELA quer levar a pessoa; a pagina
+         em que o Jotform aterrissa le esse valor e encaminha. Ultima LP carregada ganha, que
+         e sempre aquela de onde a pessoa enviou o form.
+         Detalhes: landing-pages/GUIA-webinar-perpetuo-destino.md */
+      var slot = document.querySelector('[data-perpetuo-next]');
+      if (slot) {
+        try {
+          sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({
+            to: slot.getAttribute('data-perpetuo-next'),
+            at: Date.now()
+          }));
+        } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
       }
 
     })();

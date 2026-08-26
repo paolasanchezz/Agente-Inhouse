@@ -3,12 +3,32 @@ name: lp-integrar-form
 description: Substitui o form mock de uma LP por embed real (Jotform, RD Station, HubSpot ou outro). Manual-trigger — so rodar apos design aprovado (GUIDELINES §11).
 argument-hint: "[marca]/[slug] \"snippet HTML do embed\" — ex: buzzmonitor/monitoramento-maio \"<script src=...jotform.com/jsform/...></script>\""
 allowed-tools: Read, Edit, Glob, Grep
-version: 1.5.1
+version: 1.6.0
 ---
 
 # Skill: Integrar Formulario em Landing Page
 
 Substitui o form mock (`<form action="#">`) por um embed externo. Aplica o CSS wrapper canonico para manter layout. **Nao roda dentro do pipeline** — usuario invoca manualmente quando o design esta aprovado.
+
+## Caso especial: form compartilhado entre varias LPs (webinar perpetuo)
+
+Se o usuario disser que **nao pode gastar um formulario novo** por LP, ou que a pagina de
+agradecimento precisa ser decidida pela LP e nao pelo formulario, faca a integracao normal
+(Passos 1-5) e **depois** aplique o mecanismo de destino descrito em
+`landing-pages/GUIA-webinar-perpetuo-destino.md`: a LP grava o destino num `data-perpetuo-next` e a
+pagina onde o provedor aterrissa encaminha.
+
+Duas tentativas que **nao** funcionam (verificadas em 2026-08-26, detalhes no §1 do guia) — nao
+gastar tempo redescobrindo:
+
+- **Trocar o embed por form nativo postando em `submit.jotform.com/submit/{id}`** — o Jotform
+  responde `Please Complete` com CAPTCHA pra POST fora de uma sessao dele. Nao grava nada.
+- **Escutar `submission-started` / `submission-completed` via postMessage** — o primeiro e enviado
+  sem `targetOrigin` (default `"/"`, mesma origem) e o segundo nao existe no JS do formulario.
+  Nenhum dos dois chega num parent cross-origin.
+
+Manter o embed tem ainda uma vantagem concreta: ele transmite o `parentURL`, que alimenta o widget
+*Get Parent URL* e portanto o `url_conversao` no CRM (ver Notas, no fim). Form nativo perde isso.
 
 ## Passo 0.0: Sincronizar o repo (v1.4.0 — migracao CI)
 

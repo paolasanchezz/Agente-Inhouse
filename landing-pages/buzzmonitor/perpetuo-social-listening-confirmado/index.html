@@ -4,6 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- ============================================================
+       DESPACHANTE DOS WEBINARS PERPETUOS
+       O Jotform 261904654263661 e compartilhado por todos os webinars perpetuos, e a Thank You
+       Page dele e uma URL fixa (esta pagina) — nao da pra ter uma por webinar. Entao cada LP de
+       captura grava em sessionStorage pra onde quer levar a pessoa, e aqui a gente encaminha.
+       Roda antes de qualquer render pra nao piscar o video errado.
+       Se um dia a Thank You Page do Jotform passar a apontar pra uma pagina propria de despacho,
+       este bloco pode sair daqui. Detalhes: landing-pages/GUIA-webinar-perpetuo-destino.md
+       ============================================================ -->
+  <script>
+    (function () {
+      try {
+        var raw = sessionStorage.getItem('bmPerpetuoNext');
+        if (!raw) return;
+        sessionStorage.removeItem('bmPerpetuoNext');
+        var d = JSON.parse(raw);
+        if (!d || typeof d.to !== 'string') return;
+        if (d.to.charAt(0) !== '/' || d.to.charAt(1) === '/') return;  // so caminho interno
+        if (Date.now() - (d.at || 0) > 1800000) return;                // vale 30 min
+        var norm = function (p) { return p.replace(/\/+$/, ''); };
+        if (norm(d.to) === norm(location.pathname)) return;            // ja e aqui
+        location.replace(d.to);
+      } catch (e) { /* sem sessionStorage: segue nesta pagina */ }
+    })();
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

@@ -286,6 +286,8 @@
       .reveal { opacity: 1 !important; transform: none !important; }
     }
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    /* ----- Jotform embed wrapper (canonico) ----- */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
@@ -344,22 +346,13 @@
 
         <div class="form-card reveal" id="form" style="--d:.34s">
           <h2 class="form-title">Assista ao vídeo agora</h2>
-          <form id="watchForm" novalidate>
-            <div class="field">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="email">E-mail corporativo</label>
-              <input type="email" id="email" name="email" placeholder="voce@empresa.com" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization">
-            </div>
-            <button type="submit" class="btn btn-accent btn-block">Quero assistir <span class="arw" aria-hidden="true">→</span></button>
-            <p class="form-consent">Ao enviar, você aceita receber comunicações da Buzzmonitor sobre o conteúdo. Cancelável a qualquer momento. Veja a <a href="https://buzzmonitor.com/politica-de-privacidade/" target="_blank" rel="noopener noreferrer">política de privacidade</a>.</p>
-          </form>
+          <!-- Form real (era mock, nao gravava lead nenhum ate 2026-08-26).
+               Mesmo Jotform compartilhado por todos os webinars perpetuos. A pagina de
+               agradecimento NAO vem do painel do Jotform: o destino e gravado pelo script no
+               fim desta pagina. Ver landing-pages/GUIA-webinar-perpetuo-destino.md -->
+          <div class="jotform-embed" data-perpetuo-next="/perpetuo-monitoramento-concorrentes-confirmado">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261904654263661"></script>
+          </div>
         </div>
       </div>
     </section>
@@ -491,15 +484,20 @@
         counts.forEach(function (el) { io2.observe(el); });
       }
 
-      var form = document.getElementById('watchForm');
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          if (!form.checkValidity()) { form.reportValidity(); return; }
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'video_lead_submit', asset: 'perpetuo-monitoramento-concorrentes' });
-          window.location.href = '/perpetuo-monitoramento-concorrentes-confirmado';
-        });
+      /* ---------- Destino pos-envio deste webinar perpetuo ----------
+         O Jotform e compartilhado por varios webinars e a Thank You Page dele e uma URL fixa,
+         igual pra todos. Entao a LP registra aqui pra onde ELA quer levar a pessoa; a pagina
+         em que o Jotform aterrissa le esse valor e encaminha. Ultima LP carregada ganha, que
+         e sempre aquela de onde a pessoa enviou o form.
+         Detalhes: landing-pages/GUIA-webinar-perpetuo-destino.md */
+      var slot = document.querySelector('[data-perpetuo-next]');
+      if (slot) {
+        try {
+          sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({
+            to: slot.getAttribute('data-perpetuo-next'),
+            at: Date.now()
+          }));
+        } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
       }
     })();
   </script>

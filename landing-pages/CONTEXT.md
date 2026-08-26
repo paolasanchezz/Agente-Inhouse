@@ -457,6 +457,7 @@ Antes de chamar `lp-publicar`, conferir:
 ## 10. Referências cruzadas
 
 - **`landing-pages/GUIDELINES.md`** — regras de design (§1 paleta, §3 hero, §10 posicionamento do form, §11 integração tardia, §12 favicon, etc.)
+- **`landing-pages/GUIA-webinar-perpetuo-destino.md`** — como **um mesmo Jotform serve N webinars perpétuos**, cada um com a sua página de agradecimento (a Thank You Page do Jotform é fixa por formulário). Inclui o que foi testado e **não** funciona: POST direto no `submit.jotform.com` cai em captcha, e `submission-started`/`submission-completed` não atravessam para um parent cross-origin.
 - **`.claude/skills/lp-preparar/CONTEXT.md`** — convenções de marca, IDs do Notion, formato de `tracking.json`
 - **`.claude/skills/lp-publicar/vercel.template.json`** — headers de segurança + CSP padrão (Jotform, RD Station, HubSpot, GTM, Google Fonts, YouTube, Vimeo)
 - **`brand/{marca}/`** — `tokens.json`, `generation-rules.json`, `brand-manifest.json`, `tracking.json`, `assets/`

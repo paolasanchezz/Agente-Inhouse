@@ -12,6 +12,34 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Um Jotform servindo N webinars perpétuos
+### 2026-08-26 — `lp-integrar-form` v1.6.0
+
+A Thank You Page do Jotform é configuração **do formulário**, não da LP: um form = uma página de
+agradecimento. Com o plano limitando o número de formulários, cada webinar perpétuo novo queimava
+um form só pra poder ter o próprio destino pós-envio.
+
+Mecanismo novo, documentado em `landing-pages/GUIA-webinar-perpetuo-destino.md`: a LP de captura
+grava o destino dela em `sessionStorage` (via `data-perpetuo-next` no wrapper do embed) e a página
+fixa onde o Jotform aterrissa lê e encaminha. Quatro travas no despachante — consome a chave antes
+de decidir (sem loop), aceita só caminho interno (sem open redirect), expira em 30 min e não
+redireciona pra si mesma. Não exigiu nenhuma mudança no painel do Jotform.
+
+Aplicado em `buzzmonitor/perpetuo-monitoramento-concorrentes`, que **era um form mock**: redirecionava
+certo mas não gravava lead nenhum — todos os preenchimentos daquela LP eram perdidos.
+
+Três coisas verificadas empiricamente e registradas no guia pra não serem redescobertas:
+
+- **POST direto em `submit.jotform.com/submit/{id}` não funciona**: volta `Please Complete` com
+  CAPTCHA, com ou sem os campos de anti-bot. Submissão barrada por captcha não grava nada.
+- **`submission-started` e `submission-completed` não servem de gancho**: o primeiro é enviado sem
+  `targetOrigin` (default `"/"`, só mesma origem) e o segundo não existe no JS do formulário —
+  nenhum dos dois chega num parent cross-origin.
+- **O redirect do Jotform sai do iframe**, ao contrário do que a documentação genérica deles diz:
+  navega a janela de topo, em tela cheia. É essa a peça que sustenta o desenho.
+
+Efeito colateral aceito: não há evento de GTM no envio (form embedado é iframe cross-origin).
+Medir conversão pelo pageview da tks, que é o padrão nesse caso.
 ## Barrar commit em cima de base atrasada
 ### 2026-08-25 — `commit` v2.2.0
 

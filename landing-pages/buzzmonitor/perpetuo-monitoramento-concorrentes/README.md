@@ -7,7 +7,11 @@ Par de páginas de **webinar perpétuo**, clonado do par `perpetuo-social-listen
 | Captura | `perpetuo-monitoramento-concorrentes` | hero + form "preencha e assista" + "o que você vai aprender" + autoridade | noindex |
 | Thank-you | `perpetuo-monitoramento-concorrentes-confirmado` | vídeo embedado + CTA "fale com especialista" | noindex |
 
-**Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-monitoramento-concorrentes-confirmado` → assiste ao vídeo → CTA final leva pra `content.buzzmonitor.com/monitoramento-com-ia`.
+**Fluxo:** captura (Jotform `261904654263661`) → Jotform redireciona → despachante encaminha pra `/perpetuo-monitoramento-concorrentes-confirmado` → assiste ao vídeo → CTA final leva pra `content.buzzmonitor.com/monitoramento-com-ia`.
+
+> ✅ **Form real desde 2026-08-26.** Até então a captura era um **mock**: redirecionava certo mas **não gravava lead nenhum** — todo mundo que preencheu essa LP foi perdido. Agora usa o Jotform compartilhado dos webinars perpétuos (`261904654263661`, "BR | MKT | Webinar Perpétuo").
+>
+> A página de agradecimento **não** vem do painel do Jotform (lá o destino é fixo, um por formulário). A LP grava o destino dela no `data-perpetuo-next` do embed e a página onde o Jotform aterrissa encaminha. É isso que permite um form servir N webinars perpétuos. Mecanismo, testes e pegadinhas em [`landing-pages/GUIA-webinar-perpetuo-destino.md`](../../GUIA-webinar-perpetuo-destino.md).
 
 **Vídeo:** `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`). **Usar youtube.com, NÃO youtube-nocookie** — o CSP do guarda-chuva webinar.buzzmonitor.com só libera `www.youtube.com` no `frame-src` (o nocookie é bloqueado e o vídeo não aparece).
 
@@ -18,7 +22,7 @@ Briefing da Catharina: título "como construir um monitoramento de concorrentes"
 ## Pendências antes de finalizar
 
 - **Link do WhatsApp (header):** o CTA do header da tks ("Falar com especialista") ainda está com temp `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar. O CTA final já foi trocado (2026-08-25) pra `content.buzzmonitor.com/monitoramento-com-ia`.
-- **Form real:** a captura ainda é MOCK (redireciona no submit).
+- [x] **Form real:** Jotform `261904654263661` integrado em 2026-08-26. **Form provider:** Jotform (embed `jsform`). Nada a configurar no painel.
 - **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png` (do par irmão). Trocar por uma de concorrente.
 - **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas.
 - **Flip `index`** quando for a versão final (hoje `noindex` de review).
