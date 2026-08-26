@@ -13,16 +13,20 @@ Se publicará en `webinar.buzzmonitor.com/gestion-de-crisis-ia-latam-septiembre-
 - [x] Fecha/horarios actualizados (24 sept · 10:00 MX/11:00 COL-PER/12:00 CL/13:00 ARG)
 - [x] Speakers: Raquel Oliveira (Business Developer) y Amanda Bozza (Head of Operations Latam and Iberia) — fotos en `assets/speakers/`
 - [x] OG image 1200×630 → `assets/og-gestion-de-crisis-ia-latam-septiembre-2026.png`
-- [ ] Formulario real (hoy es un mock estático — Nombre/Correo/Empresa/checkbox — integrar después con `/lp-integrar-form`)
-- [x] Revisión formal (`/lp-revisar`) — 6 críticos corregidos (GTM erróneo, contraste AA en badge de speaker, piso tipográfico mobile, form mock sin atributos, JSON-LD y logos apuntando al home de Brasil en vez del home LATAM). Detalle en `REVISAO.md`. Quedan mejoras opcionales heredadas del diseño original (orden de secciones, posición del formulario, H1) sin aplicar — requieren decisión del equipo.
-- [ ] Registrar en `landing-pages/dominios/webinar-buzzmonitor-com/manifest.json` + commit/PR vía `/lp-publicar` (dominio migrado a CI, deploy manual bloqueado)
+- [x] Formulario integrado — Jotform (2026-08-26), mismo form compartido de `webinar-atencion-multicanal-latam` (`jsform/261188302248052`)
+- [x] Revisión formal (`/lp-revisar`) — 6 críticos corregidos (GTM erróneo, contraste AA en badge de speaker, piso tipográfico mobile, form mock sin atributos, JSON-LD y logos apuntando al home de Brasil en vez del home LATAM). Detalle en `REVISAO.md`.
+- [x] Reorganización a pedido del usuario (2026-08-26): formulario movido a la 2ª sección (justo después del hero, patrón ToFu de `webinar-atencion-multicanal-latam`); hero visual y área de speakers agrandados
+- [x] Registrado en `landing-pages/dominios/webinar-buzzmonitor-com/manifest.json` + publicado vía CI (`webinar.buzzmonitor.com/gestion-de-crisis-ia-latam-septiembre-2026`)
+
+**Form provider:** Jotform (`jsform/261188302248052`, 2026-08-26)
 
 ## Diferencias vs. la LP original (PT-BR)
 
 - Idioma: `es-419` (en vez de `pt-BR`), `og:locale` `es_LA`
 - Fecha: 24 de septiembre 2026 (jueves) en vez de 25 de agosto (evento multi-huso LATAM en vez de horario único Brasília)
 - Speakers: Raquel Oliveira + Amanda Bozza (en vez de Nathalia Crivellaro, Potyra Santos y Bruna Barreto) — grid ajustado a 2 columnas
-- Formulario: mock estático (la original usa un JotForm en portugués que no aplica a este público)
+- Formulario: Jotform compartido de LATAM (`jsform/261188302248052`, mismo de `webinar-atencion-multicanal-latam`) en vez del JotForm en portugués de la original
+- Orden de secciones: formulario en la 2ª sección (la original lo tiene al final) — a pedido del usuario, siguiendo el patrón de `webinar-atencion-multicanal-latam`
 - Instagram del footer: `@getbuzzmonitor.es` (cuenta LATAM, en vez de `@buzzmonitorbr`)
 - Slug/URL nuevos, sin tocar la LP original ni su registro en el manifiesto
 
