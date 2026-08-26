@@ -4,7 +4,7 @@
 > Disciplina **append-only**: nunca deletar entrada; só acrescentar e atualizar "Última verificação".
 > A skill `/blog-diario` adiciona aqui os posts que cria, marcados `status: draft-notion` (troca para `publicado` + URL viva quando o time sobe no CMS).
 
-**Blog:** https://blog.buzzcreators.com.br · **Última verificação:** 2026-07-28
+**Blog:** https://blog.buzzcreators.com.br · **Última verificação:** 2026-08-26
 
 ---
 
@@ -68,6 +68,7 @@
 | 2026-07-20 | Quanto tempo leva para o marketing de influência dar resultado | quanto-tempo-leva-resultado-influencia | C5 ROI & Preço | MoFu | quanto tempo marketing de influência resultado | publicado | https://blog.buzzcreators.com.br/blog/quanto-tempo-leva-resultado-influencia |
 | 2026-07-21 | Novidades da plataforma Buzzcreators em julho de 2026 | novidades-plataforma-julho-2026 | Novidades (changelog) | — | — (não-SEO) | publicado | https://blog.buzzcreators.com.br/blog/novidades-plataforma-julho-2026 |
 | 2026-07-28 | Como trabalhar com micro e nano influenciadores em escala | como-trabalhar-com-micro-e-nano-influenciadores | C2 Micro & Nano (ponte C3) | MoFu→BoFu | como trabalhar com micro e nano influenciadores | publicado | https://blog.buzzcreators.com.br/blog/como-trabalhar-com-micro-e-nano-influenciadores |
+| 2026-08-26 | Plataformas de influenciadores: quais existem e como escolher | plataformas-de-influenciadores-como-escolher | C3 Gestão (ponte C4) | MoFu→BoFu | plataformas de influenciadores | publicado | https://blog.buzzcreators.com.br/blog/plataformas-de-influenciadores-como-escolher |
 
 > Plano da 1ª leva (histórico): `conhecimento/produto/buzzcreators/seo/plano-editorial-20-artigos.md`
 > Arquitetura de clusters (fonte de temas): `conhecimento/produto/buzzcreators/seo/clusters-brasil.md`

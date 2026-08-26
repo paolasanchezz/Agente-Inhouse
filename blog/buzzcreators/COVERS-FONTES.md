@@ -48,6 +48,7 @@ Cada capa foi baixada já recortada em 1200×630 via CDN do Pexels (`?w=1200&h=6
 | quanto-tempo-leva-resultado-influencia | https://www.pexels.com/photo/4397906/ |
 | novidades-plataforma-julho-2026 | https://www.pexels.com/photo/10352379/ |
 | como-trabalhar-com-micro-e-nano-influenciadores | https://www.pexels.com/photo/8360444/ |
+| plataformas-de-influenciadores-como-escolher | https://www.pexels.com/photo/7710142/ |
 
 ## Posts novos
 

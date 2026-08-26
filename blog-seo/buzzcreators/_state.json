@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-07-28",
+  "ultima_atualizacao": "2026-08-26",
   "posts_criados": [
     {
       "data": "2026-07-28",
@@ -15,17 +15,110 @@
       "utm_content": "como-trabalhar-com-micro-e-nano-influenciadores",
       "cover": "/assets/covers/como-trabalhar-com-micro-e-nano-influenciadores.jpg (Pexels 8360444)",
       "status": "publicado"
+    },
+    {
+      "data": "2026-08-26",
+      "slug": "plataformas-de-influenciadores-como-escolher",
+      "h1": "Plataformas de influenciadores: quais existem e como escolher",
+      "cluster": "C3 Gestão (ponte com C4 Descoberta)",
+      "funil": "MoFu→BoFu",
+      "primary_kw": "plataformas de influenciadores",
+      "volume": 70,
+      "url_notion": "https://app.notion.com/p/3c83934026fd8108967af98a16661f27",
+      "lp": "gestao-de-influenciadores",
+      "utm_content": "plataformas-de-influenciadores-como-escolher",
+      "status": "publicado",
+      "nota": "Comparativo com Buzzcreators em 1o lugar na lista de plataformas. Concorrentes citados so por categoria, sem dados nem links externos (revisao do Victor, 2026-08-26). Diferenciado de plataforma-marketing-de-influencia (definicional) pela intencao comparativa.",
+      "url_blog": "https://blog.buzzcreators.com.br/blog/plataformas-de-influenciadores-como-escolher",
+      "cover": "/assets/covers/plataformas-de-influenciadores-como-escolher.jpg (Pexels 7710142)"
     }
   ],
   "temas_rejeitados": [],
   "clusters_cobertura": {
-    "C2 Micro & Nano": { "posts": 1, "ultimo": "2026-07-28" }
+    "C2 Micro & Nano": {
+      "posts": 1,
+      "ultimo": "2026-07-28"
+    },
+    "C3 Gestão": {
+      "posts": 1,
+      "ultimo": "2026-08-26"
+    }
   },
-  "funnel_balance": { "ToFu": 0, "MoFu": 1, "BoFu": 0 },
+  "funnel_balance": {
+    "ToFu": 0,
+    "MoFu": 2,
+    "BoFu": 1
+  },
   "volume_cache": {
-    "micro influenciadores": { "volume": 320, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
-    "microinfluenciadores": { "volume": 260, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
-    "nano influenciadores": { "volume": 260, "fontes": ["semrush-br-2026-07-02"], "ts": "2026-07-28" },
-    "como trabalhar com micro e nano influenciadores": { "volume": 0, "fontes": ["intent-rescue", "google-paa", "wsj-emarketer-hook"], "ts": "2026-07-28" }
+    "micro influenciadores": {
+      "volume": 320,
+      "fontes": [
+        "semrush-br-2026-07-02"
+      ],
+      "ts": "2026-07-28"
+    },
+    "microinfluenciadores": {
+      "volume": 260,
+      "fontes": [
+        "semrush-br-2026-07-02"
+      ],
+      "ts": "2026-07-28"
+    },
+    "nano influenciadores": {
+      "volume": 260,
+      "fontes": [
+        "semrush-br-2026-07-02"
+      ],
+      "ts": "2026-07-28"
+    },
+    "como trabalhar com micro e nano influenciadores": {
+      "volume": 0,
+      "fontes": [
+        "intent-rescue",
+        "google-paa",
+        "wsj-emarketer-hook"
+      ],
+      "ts": "2026-07-28"
+    },
+    "plataformas de influenciadores": {
+      "volume": 70,
+      "cpc": 1.21,
+      "competicao": 0.69,
+      "fontes": [
+        "semrush-br-2026-08-26",
+        "google-serp-listicles"
+      ],
+      "ts": "2026-08-26"
+    },
+    "plataforma de marketing de influência": {
+      "volume": 20,
+      "fontes": [
+        "semrush-br-2026-08-26"
+      ],
+      "ts": "2026-08-26"
+    },
+    "melhores plataformas de influenciadores": {
+      "volume": 0,
+      "fontes": [
+        "intent-rescue",
+        "google-serp-lotado"
+      ],
+      "ts": "2026-08-26"
+    },
+    "plataformas de marketing de influenciadores": {
+      "volume": 0,
+      "fontes": [
+        "intent-rescue",
+        "google-serp-lotado"
+      ],
+      "ts": "2026-08-26"
+    },
+    "ferramentas de marketing de influência": {
+      "volume": 0,
+      "fontes": [
+        "semrush-br-2026-08-26"
+      ],
+      "ts": "2026-08-26"
+    }
   }
 }
