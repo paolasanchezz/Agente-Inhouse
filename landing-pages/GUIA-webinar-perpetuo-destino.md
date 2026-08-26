@@ -1,4 +1,9 @@
-# Guia — um Jotform servindo N webinars perpétuos
+# Guia — um Jotform servindo N webinars perpétuos ("LP Aula")
+
+**Quando usar:** LP de webinar **sem sala e sem data** — a pessoa preenche e assiste na hora, com o
+vídeo já gravado na tks. É a "LP Aula" / webinar perpétuo. LP de webinar **com** sessão (ao vivo ou
+série recorrente) não entra aqui: essa usa form próprio no `/api/clickmeeting-register`. Árvore de
+decisão em [`CONTEXT.md` §2.7](CONTEXT.md).
 
 **O problema:** a Thank You Page do Jotform é configuração **do formulário**, não da LP. Um form =
 uma página de agradecimento. Como o plano tem um número limitado de formulários, cada webinar

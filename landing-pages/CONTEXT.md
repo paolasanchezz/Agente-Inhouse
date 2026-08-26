@@ -117,6 +117,42 @@ O que este modelo elimina: sibling local, `lp-sync` pré-deploy, drift-check, co
 
 ---
 
+### 2.7 LP Aula (webinar perpétuo, sem ClickMeeting) — qual form usar
+
+**O que é "LP Aula" / webinar perpétuo:** par de LPs onde a pessoa preenche e **assiste na hora**. A tks já tem o vídeo gravado embedado. Não existe sala, não existe data, não existe inscrição em sessão — logo, **nada de ClickMeeting**. Ex: `perpetuo-monitoramento-concorrentes` + `-confirmado`.
+
+Antes de escolher o form, decidir de qual tipo a LP é:
+
+| Tipo de LP de webinar | Tem sala / data? | Form | Quem decide o destino pós-envio |
+|---|---|---|---|
+| Webinar com sessão (ao vivo ou série recorrente) | sim | form próprio da LP, POST em `/api/clickmeeting-register` | mapa `SERIES_THANK_YOU` dentro do próprio `clickmeeting-register.js` |
+| **LP Aula / webinar perpétuo** | **não** | **embed `jsform` do Jotform compartilhado** | **atributo `data-perpetuo-next` na própria LP** |
+
+Errar isso custa caro nas duas direções: LP Aula com ClickMeeting inscreve a pessoa numa sala que não existe; LP com sessão usando o form compartilhado perde a inscrição na sala.
+
+#### Por que a LP decide o destino, e não o Jotform
+
+A Thank You Page do Jotform é configuração **do formulário**, não da LP: um form = uma página de agradecimento. Como o plano tem número limitado de formulários, seguir esse caminho queima um form por webinar perpétuo.
+
+A saída é deixar o Jotform redirecionar sempre pra mesma URL e **encaminhar de lá**. São duas peças, ambas com snippet pronto em [`GUIA-webinar-perpetuo-destino.md`](GUIA-webinar-perpetuo-destino.md):
+
+1. **Na LP de captura** — o wrapper do embed leva `data-perpetuo-next="/{slug}-confirmado"` e um script grava esse destino em `sessionStorage` no carregamento da página. Grava no load, não no envio, porque **não há como detectar envio dentro de um iframe cross-origin**; funciona porque a última LP carregada é sempre aquela de onde a pessoa enviou.
+2. **Na página onde o Jotform aterrissa** — bloco no início do `<head>` que lê o destino e encaminha, com quatro travas: consome a chave antes de decidir (sem loop), aceita só caminho interno (sem open redirect), expira em 30 min e não redireciona pra si mesma.
+
+Resultado: **webinar perpétuo novo não exige nenhum clique no Jotform** — é colar o embed e trocar uma string. Hoje o despachante mora na tks de `perpetuo-social-listening` (é onde a Thank You Page do form `261904654263661` aponta); o §3 do guia descreve como mover isso pra uma página dedicada de despacho.
+
+#### Não tentar (já testado, 2026-08-26)
+
+Três caminhos que parecem óbvios e não funcionam — detalhes e evidência no §1 do guia:
+
+- **Trocar o embed por form nativo postando em `submit.jotform.com/submit/{id}`** — volta `Please Complete` com CAPTCHA, com ou sem os campos de anti-bot. Nada é gravado.
+- **Escutar `submission-started` / `submission-completed` no parent** — o primeiro é enviado sem `targetOrigin` (default `"/"`, mesma origem) e o segundo não existe no JS do formulário. Nenhum chega num parent cross-origin.
+- **Contar com evento de GTM no envio** — não existe, é iframe cross-origin. Medir conversão pelo **pageview da tks**.
+
+Manter o embed tem ainda um ganho que o form nativo perde: ele transmite o `parentURL`, que alimenta o widget *Get Parent URL* e portanto o `url_conversao` no CRM. Sem isso, lead sem UTM chega sem `utm_source` **e** sem `url_conversao`, e desaparece do filtro das dashboards de CM.
+
+---
+
 ## 3. Convenção de assets / imagens (UNIFICADA)
 
 ### 3.1 Onde mora cada coisa
@@ -457,7 +493,7 @@ Antes de chamar `lp-publicar`, conferir:
 ## 10. Referências cruzadas
 
 - **`landing-pages/GUIDELINES.md`** — regras de design (§1 paleta, §3 hero, §10 posicionamento do form, §11 integração tardia, §12 favicon, etc.)
-- **`landing-pages/GUIA-webinar-perpetuo-destino.md`** — como **um mesmo Jotform serve N webinars perpétuos**, cada um com a sua página de agradecimento (a Thank You Page do Jotform é fixa por formulário). Inclui o que foi testado e **não** funciona: POST direto no `submit.jotform.com` cai em captcha, e `submission-started`/`submission-completed` não atravessam para um parent cross-origin.
+- **`landing-pages/GUIA-webinar-perpetuo-destino.md`** — snippet e mecânica do form de **"LP Aula" / webinar perpétuo**: como **um mesmo Jotform serve N LPs**, cada uma com a sua página de agradecimento (a Thank You Page do Jotform é fixa por formulário). Inclui o que foi testado e **não** funciona: POST direto no `submit.jotform.com` cai em captcha, e `submission-started`/`submission-completed` não atravessam para um parent cross-origin. Decisão "qual form usar" fica no §2.7 deste doc.
 - **`.claude/skills/lp-preparar/CONTEXT.md`** — convenções de marca, IDs do Notion, formato de `tracking.json`
 - **`.claude/skills/lp-publicar/vercel.template.json`** — headers de segurança + CSP padrão (Jotform, RD Station, HubSpot, GTM, Google Fonts, YouTube, Vimeo)
 - **`brand/{marca}/`** — `tokens.json`, `generation-rules.json`, `brand-manifest.json`, `tracking.json`, `assets/`
