@@ -23,6 +23,7 @@ LIST ITEM: Organização automatizada de tickets, com categorização e distribu
 LIST ITEM: Agendamento de mensagens ativas no WhatsApp para bases qualificadas
 LIST ITEM: Smart replies: respostas salvas para ganhar velocidade
 LIST ITEM: Sumarização de tickets gerada por IA
+LIST ITEM: API pública e webhooks
 LABEL: Dados do cliente
 LIST ITEM: Timeline inteligente com a jornada unificada do consumidor
 LIST ITEM: Histórico unificado, independente do canal em que o cliente falou
@@ -84,6 +85,7 @@ LIST ITEM: Organização automatizada de tickets | Incluído | Incluído
 LIST ITEM: Smart replies | Incluído | Incluído
 LIST ITEM: Agendamento de mensagens ativas no WhatsApp | Incluído | Incluído
 LIST ITEM: Sumarização de tickets por IA | Incluído | Incluído
+LIST ITEM: API pública e webhooks | Incluído | Incluído
 
 LABEL: Dados e CRM
 LIST ITEM: Timeline inteligente da jornada do consumidor | Incluído | Incluído
@@ -124,8 +126,8 @@ BODY: O Agente de IA atende conversa privada: WhatsApp, DM do Instagram, Faceboo
 H3: O Basic tem telefonia?
 BODY: Tem o canal de telefone com URA inteligente, que recebe a ligação e encaminha o chamado. A IA que conversa por voz é o Voice Agent, e ele entra no Enterprise.
 
-H3: Preciso de mais de um número de WhatsApp. Dá?
-BODY: Dá. O Basic inclui 1 número com API Oficial da Meta, e números adicionais entram sob demanda no Enterprise.
+H3: Preciso de mais de um número de WhatsApp. É possível?
+BODY: Sim. O Basic inclui 1 número com API Oficial da Meta, e números adicionais entram sob demanda no Enterprise.
 
 H3: Posso começar no Basic e crescer depois?
 BODY: Sim. Os incrementos entram sobre a mesma plataforma e a mesma base de histórico, sem migração e sem recomeçar a operação.

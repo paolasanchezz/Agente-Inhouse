@@ -160,3 +160,58 @@ Duas alterações de conteúdo, publicadas juntas.
 | Tipografia mobile (§20) | dry-run limpo |
 | Coerência card × tabela | os dois trazem `Instagram, Facebook, Webchat e e-mail` e `Aplicativo mobile` |
 | Render | conferido no card e na tabela |
+
+---
+
+# Revisão 5 — títulos, "Dá?" e acordeão do FAQ (2026-08-27)
+
+## Aplicado
+
+| # | Pedido | O que mudou |
+|---|---|---|
+| 1 | título da 2ª seção com cor e fonte uniformes | `.pk-plans-title` inteiro em navy `#232960` peso 700. Antes a 1ª frase era `#11110d` peso 400 e só a 2ª era navy bold, via `<span>`. O `<span>` saiu do HTML (o `<br>` entre as frases ficou) |
+| 2 | "Perguntas frequentes" também | `.pk-faq-title` de `#11110d`/400 para `#232960`/700 |
+| 3 | o "Dá" está muito informal | pergunta virou "Preciso de mais de um número de WhatsApp. **É possível?**" e a resposta abre com "**Sim.**". Aplicado no HTML e no `copy.txt` |
+| 4 | abertura dos cards igual à seção de FAQ de elifeportugal.com/agentes-de-ia | acordeão refeito no padrão da referência (detalhes abaixo) |
+
+### Leitura registrada no item 1
+
+O pedido citava a mesma frase duas vezes ("na parte do 'Uma plataforma completa.' deve ser cor e fonte iguais a 'Uma plataforma completa.'"). Interpretei o primeiro trecho como "Duas formas de contratar." e o alvo como o estilo do "Uma plataforma completa." — que é o único dos dois em navy bold. O sinal decisivo foi o item 2: "Perguntas frequentes" já era `#11110d`/400, então se o alvo fosse esse estilo não haveria nada a mudar lá.
+
+### Acordeão: o que foi copiado da referência
+
+Levantei o padrão em `assets/css/styles.css` e `assets/js/main.js` daquela página (`.services-accordion` / `.service-acc-item` / `.sa-arrow` / `.sa-desc`) e reproduzi:
+
+- **lista separada por linhas finas**, sem as caixas brancas com borda e raio que existiam antes (`border-top` na lista, `border-bottom` em cada item)
+- **seta diagonal** (SVG "arrow out", `M7 17L17 7M7 7h10v10`) à direita, que **gira 45°** e passa de cinza para royal `#4A69BD` quando abre ou no hover
+- **pergunta muda de cor** junto com a seta
+- **resposta desliza** (altura animada em 0,4s) em vez do corte seco do `<details>`
+- **uma pergunta aberta por vez**: abrir uma fecha a anterior, com animação nas duas
+
+### O que NÃO foi copiado, de propósito
+
+Na referência as respostas também abrem **no `:hover`**. No desktop isso faz painéis abrirem e fecharem sozinhos quando o mouse cruza a lista, e no touch não faz nada. Implementei só no clique.
+
+### Decisões técnicas do acordeão
+
+- **`<details>/<summary>` continuou sendo a base.** O JS faz `preventDefault()` e controla a animação, mas sem JS as perguntas ainda abrem e fecham (só sem animação) e a navegação por teclado segue funcionando. A referência usa `<div>` com listener, que perde os dois.
+- **Sem o atributo `name` de accordion nativo.** Ele daria exclusividade de graça, mas o browser fecha os irmãos instantaneamente quando o `open` é setado por script, matando a animação de fechamento. A exclusividade ficou no JS.
+- **`prefers-reduced-motion`** desliga a animação e faz o toggle direto.
+- A pergunta é `<h3>` dentro do `<summary>` (mantido da revisão 1), então a navegação por headings continua listando as 6 perguntas.
+
+## Auditorias (0 críticos)
+
+| Gate | Resultado |
+|---|---|
+| `check_gtm_region.py` | `ok`, `stamp_match: true` |
+| em-dash | 0 |
+| SEO (§15) | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| Tipografia mobile (§20) | dry-run limpo |
+| JS | chaves e parênteses balanceados; testado no Chrome real |
+| Comportamento | clique abre; clicar em outra fecha a anterior; reclicar fecha; seta em `matrix(0.707…)` = 45°; altura da seção cresce só com item aberto (os fechados ocupam 0) |
+| Console | limpo. O único 404 é `/favicon.ico`, que o navegador pede sozinho na raiz; o favicon declarado responde 200 local e em produção |
+| Overflow | 0 |
+
+## Melhoria opcional desta passada
+
+- [ ] **Dois padrões de título convivem agora.** "Duas formas de contratar. / Uma plataforma completa." e "Perguntas frequentes" ficaram navy 700; **"O que entra em cada plano"** e **"Clientes que confiam na Cxpress..."** seguem em `#11110d` peso 400. Só os dois primeiros foram pedidos. Unificar os quatro é uma linha de CSS em cada.
