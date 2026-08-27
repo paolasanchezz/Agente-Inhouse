@@ -46,3 +46,12 @@ Estilístico. Ignorar é aceitável.
 - Design aprovado? → gerar OG image (`assets/og-webinar-clinicas-latam.png`, 1200×630) — ainda pendente, bloqueia publicação.
 - Formulário real → `/lp-integrar-form cxpress/webinar-clinicas-latam "snippet"` quando houver provedor definido.
 - Publicar → `/lp-publicar cxpress webinar-clinicas-latam content.cxpress.io`
+
+## Correção pós-publicação (2026-08-20 — link do site institucional)
+
+Usuária reportou que o link "ir para o site" apontava pro site institucional de Brasil (`home.cxpress.io`), quando esta LP é LATAM (es-419). Corrigido pro domínio padrão já usado em todas as outras LPs LATAM de Cxpress (`webinar-bloqueo-whatsapp`, `webinar-canales-unificados`, `atencion-clinicas-latam`, etc.): `https://cxpress.ai/`.
+
+- Trocados: logo do header, logo do footer, e os 4 `@id`/`url`/`isPartOf`/`publisher` do JSON-LD (Organization) que também apontavam pra `home.cxpress.io`.
+- Links legais (`condiciones-generales`, `politica-de-privacidad`) e redes sociais (Instagram `.es`, LinkedIn) já estavam corretos, não precisaram de ajuste.
+- Nada mais na LP foi tocado — copy, formulário mock, seções, tudo igual.
+- Revalidado: em-dash 0, GTM 2/2, `check_gtm_region.py` OK, 0 ocorrências restantes de `home.cxpress.io`.
