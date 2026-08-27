@@ -371,6 +371,7 @@ img{ max-width:100%; }
 .pk-card-basic{ background:#fff; border:2px solid #4a69bd; }
 .pk-card-ent{ background:linear-gradient(150deg,#232960,#4a69bd); color:#fff; }
 .pk-card:hover{ transform:translateY(-6px); box-shadow:0 18px 35px rgba(35,41,96,.18); }
+
 .pk-tag{
 	display:inline-block; background:#4a69bd; color:#fff;
 	font-family:"Open Sans",sans-serif; font-weight:700; font-size:14px;
@@ -398,22 +399,30 @@ img{ max-width:100%; }
 .pk-card-btn{ width:100%; margin-bottom:30px; }
 .pk-btn-invert{ background:#fff; color:#232960!important; }
 .pk-btn-invert:hover{ box-shadow:0 10px 25px rgba(0,0,0,.3); }
+
+/* Listas abaixo do CTA: itens separados por filete de baixa opacidade. O respiro
+   vem do padding do <li>, nao de gap, pra que o filete caia no meio do intervalo
+   entre um item e outro. */
 .pk-group{
-	font-family:"Open Sans",sans-serif; font-weight:700; font-size:14px;
-	letter-spacing:1.1px; text-transform:uppercase; color:#4a69bd; margin:26px 0 12px;
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:13px;
+	letter-spacing:1.3px; text-transform:uppercase; color:#4a69bd;
+	margin:30px 0 4px;
 }
 .pk-group-light{ color:#c1c7ff; }
-.pk-list{ display:flex; flex-direction:column; gap:12px; }
+.pk-list{ display:flex; flex-direction:column; gap:0; }
 .pk-list li{
 	display:flex; gap:12px; align-items:flex-start;
-	font-family:"Open Sans",sans-serif; font-size:18px; line-height:27px; color:#0a0a0a;
+	font-family:"Open Sans",sans-serif; font-weight:400; font-size:16px; line-height:1.7;
+	color:#4a4a4a; padding:13px 0; border-bottom:1px solid rgba(35,41,96,.08);
 }
-.pk-list img{ width:22px; height:22px; flex-shrink:0; margin-top:3px; }
-.pk-list-light li{ color:#fff; }
-.pk-list-all li{ font-size:19px; }
+.pk-list li:last-child{ border-bottom:0; padding-bottom:0; }
+.pk-list img{ width:20px; height:20px; flex-shrink:0; margin-top:4px; }
+.pk-list-light li{ color:rgba(255,255,255,.88); border-bottom-color:rgba(255,255,255,.14); }
+.pk-list-all li{ font-size:16px; color:#fff; }
 .pk-addon{
-	font-family:"Open Sans",sans-serif; font-size:17px; line-height:26px; font-weight:600;
-	color:#232960; background:#d7e2ff; border-radius:10px; padding:14px 16px; margin:26px 0 0;
+	font-family:"Open Sans",sans-serif; font-size:17px; line-height:1.6; font-weight:600;
+	color:#232960; background:#d7e2ff; border-radius:10px; padding:14px 16px;
+	margin:30px 0 0;
 }
 .pk-note{
 	font-family:"Open Sans",sans-serif; font-size:16px; line-height:26px; color:#232960;
@@ -427,7 +436,8 @@ img{ max-width:100%; }
 @media(max-width:768px){
 .pk-plans-sub{ font-size:18px; line-height:29px; }
 .pk-card-desc{ font-size:17px; line-height:27px; }
-.pk-list li{ font-size:17px; line-height:26px; }
+.pk-list li{ font-size:17px; line-height:1.7; }
+.pk-list-all li{ font-size:17px; }
 }
 @media(max-width:600px){
 .pk-plans{ padding:40px 20px; }
@@ -438,7 +448,6 @@ img{ max-width:100%; }
 .pk-card-name{ font-size:26px; }
 .pk-price{ font-size:26px; }
 .pk-price span{ font-size:17px; }
-.pk-list-all li{ font-size:17px; }
 .pk-note{ font-size:15px; margin-top:28px; }
 }
 
