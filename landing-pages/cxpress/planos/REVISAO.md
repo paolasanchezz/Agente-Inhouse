@@ -95,3 +95,39 @@ Todas do mesmo tema: agora que o preço do acesso adicional é público, há 3 l
 - [ ] **Nota ao pé da seção de planos** diz "Acessos, canais, agentes de IA e serviços adicionais são cotados junto com o time comercial". Não contradiz (R$ 120 é preço de tabela), mas se quiser blindar, basta tirar "Acessos," dessa lista.
 - [ ] **FAQ "O que conta como acesso de operador?"** diz que acessos adicionais "entram como incremento", sem o valor. Poderia citar os R$ 120,00.
 - [ ] **Linha da tabela "Acessos de operador humano"** mostra "5 incluídos" no Basic. Poderia mostrar "5 incluídos (+R$ 120/acesso)".
+
+---
+
+# Revisão 3 — "Sob demanda" na linha de preço (2026-08-27)
+
+**Pedido:** na tabela comparativa, trocar o preço "Sob demanda" do Enterprise por algo tipo "falar com especialista" (print da linha `Investimento > Valor mensal`).
+
+## Aplicado
+
+- **Linha `Investimento > Valor mensal`, coluna Enterprise:** de `Sob demanda` para **`Falar com especialista`**, como **link para `#proposta`** (`.pk-cell-cta`: royal `#4A69BD`, bold, sublinhado com `text-underline-offset`, navy no hover). Virou link e não rótulo estático porque numa célula de preço o convite serve mais que a etiqueta, e o destino (formulário) já existe na própria página.
+- `copy.txt` acompanhou: `LIST ITEM: Valor mensal | A partir de R$ 1.290 | Falar com especialista`.
+
+## Escopo: o que NÃO foi trocado, e por quê
+
+Sobraram 11 ocorrências de "Sob demanda" na página. Nenhuma é preço, todas são **disponibilidade de recurso**, então ficaram:
+
+| Onde | Quantas | O que significa |
+|---|---|---|
+| Células da tabela na coluna Enterprise | 10 | TikTok, Google Meu Negócio, Agente Concierge, Voice Agent, integração com terceiros, acessos de operador, e os 4 serviços gerenciados com a Elife. Aqui "sob demanda" responde "tem ou não tem?", não "quanto custa?" |
+| Badge do card Enterprise | 1 | selo do card, par do "Mais contratado" do Basic |
+
+## Melhoria opcional desta passada
+
+- [ ] **O card Enterprise ainda anuncia preço como "Precificação sob demanda"** (28px, logo acima do botão "Pedir proposta"). É a outra declaração de preço da página com a mesma construção que você quis tirar da tabela. Não mexi porque o print apontava a tabela, e o card já tem o CTA logo abaixo. Se quiser o mesmo tratamento, dá para virar "Fale com um especialista" ou simplesmente sumir a linha e deixar o botão falar.
+
+## Auditorias após a alteração (0 críticos)
+
+| Gate | Resultado |
+|---|---|
+| `check_gtm_region.py` | `ok`, `GTM-T4XDWHL3`, `stamp_match: true` |
+| em-dash | 0 |
+| SEO (§15) | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| Tipografia mobile (§20) | dry-run limpo |
+| Overflow a 375px | só o `.skip-link` fora de tela (por construção) |
+| Render | conferido no desktop e no layout empilhado do mobile (a linha vira `ENTERPRISE  Falar com especialista`) |
+| Fidelidade de copy | texto novo literal, 1× no HTML e 1× no `copy.txt` |

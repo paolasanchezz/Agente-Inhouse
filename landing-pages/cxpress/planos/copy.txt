@@ -106,7 +106,7 @@ LABEL: Suporte
 LIST ITEM: Customer Success e onboarding | Incluído | Incluído
 
 LABEL: Investimento
-LIST ITEM: Valor mensal | A partir de R$ 1.290 | Sob demanda
+LIST ITEM: Valor mensal | A partir de R$ 1.290 | Falar com especialista
 
 === PROVA ===
 H2: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
