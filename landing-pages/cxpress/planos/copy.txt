@@ -12,7 +12,7 @@ SUB: Comece com o Basic, utilizando toda a tecnologia da Cxpress com sua própri
 LABEL: Mais contratado
 H3: Basic
 BODY: Toda a plataforma Cxpress pronta para operar, com 5 acessos de operador humano.
-LABEL: A partir de R$ 1.290 por mês
+LABEL: A partir de R$ 1.750 por mês
 LABEL: Canais
 LIST ITEM: WhatsApp com API Oficial da Meta
 LIST ITEM: Instagram, Facebook, Webchat e e-mail
@@ -109,7 +109,7 @@ LABEL: Suporte
 LIST ITEM: Customer Success e onboarding | Incluído | Incluído
 
 LABEL: Investimento
-LIST ITEM: Valor mensal | A partir de R$ 1.290 | Falar com especialista
+LIST ITEM: Valor mensal | A partir de R$ 1.750 | Falar com especialista
 
 === PROVA ===
 H2: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
@@ -150,4 +150,4 @@ FOOTER: © 2026 Cxpress®. Todos os direitos reservados
 
 # Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0; filler: 0).
 # Fonte da copy: planilha de proposta comercial Cxpress (pacote de entregas + incrementos estrategicos) e lista de recursos adicionais/servicos Elife enviada pelo Victor no chat, 2026-08-27.
-# Decisao de preco: "A partir de R$ 1.290 por mes" com 5 acessos, conforme a planilha. A fala mencionava tambem "a partir de 990 com 3 licencas"; a instrucao final ("para o plano basic considerar primeira imagem") prevaleceu.
+# Decisao de preco: "A partir de R$ 1.750 por mes" com 5 acessos, definido pelo Victor em 2026-08-27. Historico: a LP nasceu com R$ 1.290 (valor da planilha de proposta); antes disso a fala mencionava "a partir de 990 com 3 licencas".

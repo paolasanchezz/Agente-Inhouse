@@ -10,7 +10,7 @@
 via `/lp-integrar-form`.
 
 Página de pricing da Cxpress no Brasil. Dois planos: **Basic** (a plataforma completa,
-a partir de R$ 1.290/mês com 5 acessos de operador) e **Enterprise** (tudo do Basic mais
+a partir de R$ 1.750/mês com 5 acessos de operador) e **Enterprise** (tudo do Basic mais
 canais, agentes de IA, escala, integrações e serviços gerenciados com a Elife, com
 precificação sob demanda).
 
@@ -26,10 +26,10 @@ precificação sob demanda).
 
 ### Decisões de conteúdo registradas
 
-- **Preço do Basic:** "A partir de R$ 1.290 por mês", com nota de que o valor corresponde ao
-  pacote de 5 acessos. A fala do briefing mencionava também "a partir de 990 com 3 licenças";
-  prevaleceu a instrução final ("para o plano basic considerar primeira imagem"), que traz
-  R$ 1.290,00 / 5 operadores humanos.
+- **Preço do Basic:** "A partir de R$ 1.750 por mês", com nota de que o valor corresponde ao
+  pacote de 5 acessos. Definido pelo Victor em 2026-08-27. Histórico: a LP nasceu com
+  R$ 1.290,00 (valor da planilha de proposta comercial); antes disso a fala do briefing
+  mencionava "a partir de 990 com 3 licenças".
 - **Preços unitários dos incrementos ficaram fora da página** (R$ 120 por operador, R$ 300 por
   agente de IA, R$ 300 por Concierge, R$ 100 por número, R$ 1.290 por Voice Agent). O Enterprise
   foi definido como precificação sob demanda, então esses valores seguem com o comercial.

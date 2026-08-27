@@ -215,3 +215,61 @@ Na referência as respostas também abrem **no `:hover`**. No desktop isso faz p
 ## Melhoria opcional desta passada
 
 - [ ] **Dois padrões de título convivem agora.** "Duas formas de contratar. / Uma plataforma completa." e "Perguntas frequentes" ficaram navy 700; **"O que entra em cada plano"** e **"Clientes que confiam na Cxpress..."** seguem em `#11110d` peso 400. Só os dois primeiros foram pedidos. Unificar os quatro é uma linha de CSS em cada.
+
+---
+
+# Revisão 6 — preço do Basic para R$ 1.750 (2026-08-27)
+
+## Aplicado nesta LP (7 pontos)
+
+| Onde | De | Para |
+|---|---|---|
+| Card Basic (`.pk-price`) | `A partir de R$ 1.290` | `A partir de R$ 1.750` |
+| Tabela, linha `Investimento > Valor mensal` | `A partir de R$ 1.290` | `A partir de R$ 1.750` |
+| `meta description` | R$ 1.290 | R$ 1.750 |
+| `og:description` | R$ 1.290 | R$ 1.750 |
+| `twitter:description` | R$ 1.290 | R$ 1.750 |
+| JSON-LD `AggregateOffer` | `lowPrice: "1290"` | `lowPrice: "1750"` |
+| **`assets/og-planos.png`** | PNG estampava "R$ 1.290" | **regenerada** via `render_og.py` (1200×630) |
+
+`copy.txt` acompanhou (card + tabela). O `og-template.html` também, porque é a fonte da imagem.
+
+**A OG image era o ponto fácil de esquecer.** Ela é um PNG, não texto: sem regenerar, o preview no WhatsApp e no LinkedIn continuaria anunciando o preço velho mesmo com a página correta. Conferi que o md5 do arquivo no dist bate com o regenerado.
+
+## Cuidado que evitou um estrago
+
+`R$ 1.290` aparecia na página **e** no README como preço do add-on **Voice Agent** (que por coincidência custa o mesmo valor). Um find/replace cego teria transformado o Voice Agent em R$ 1.750. As trocas foram uma a uma, por âncora de contexto, e o R$ 1.290 do Voice Agent está preservado no README.
+
+## Fora desta LP: `evite-banimento-whatsapp` (5 pontos)
+
+O texto `Planos a partir de R$ 990 com 3 acessos` vivia naquela LP, não nesta. Virou
+**`Planos a partir de R$ 1.750 com 5 acessos`** no preço visível, no `og:description` e no
+`twitter:description`; e `Planos a partir de R$ 1.750.` na `meta description` e na descrição do
+JSON-LD (lá o fraseado era mais curto, sem contagem de acessos).
+
+**Troquei 3 acessos por 5**, não só o número do preço: esta LP diz que R$ 1.750 inclui 5 acessos
+de operador, então manter "R$ 1.750 com 3 acessos" criaria contradição entre as duas páginas.
+
+## Ainda com o preço antigo (não pedido, não alterado)
+
+Oito LPs Cxpress anunciam o preço velho em produção:
+
+| LPs | Texto |
+|---|---|
+| `atendimento-clinicas` · `atendimento-digital` · `banimento-whatsapp` · `banimento-whatsapp-clinicas` · `banimento-whatsapp-comercial` · `coex-whatsapp` | `Planos a partir de R$ 1.290` |
+| `whatsapp-business-smb` · `whatsapp-smb` | `Planos a partir de R$ 1.290/mês para até 5 acessos` |
+
+As menções a "economia de R$ 4 mil na implantação" (4 LPs de oferta) são desconto de implantação,
+não preço de plano, e ficaram fora do escopo.
+
+## Auditorias (0 críticos)
+
+| Gate | Resultado |
+|---|---|
+| `check_gtm_region.py` (planos) | `ok`, `stamp_match: true` |
+| `check_gtm_region.py` (evite-banimento) | 1 aviso **pré-existente e grandfathered** (container `GTM-KN8BPFG` em vez do BR) — não é desta entrega, não bloqueia |
+| em-dash nas duas | 0 |
+| JSON-LD nas duas | parseia |
+| SEO (planos) | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| Build do guarda-chuva | 54 LPs, 0 bloqueios (o único aviso é o asset ausente pré-existente da `case-ia-de-voz`) |
+| `R$ 1.290` / `R$ 990` no dist | 0 nas duas LPs |
