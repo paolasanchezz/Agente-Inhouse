@@ -79,6 +79,27 @@ Sobre o **delta 14**: o contorno mantem a hierarquia que o delta 11 protegia (o 
 principal segue sendo o unico botao solido) e ainda entrega area de clique de botao, que
 o link com regua nao tinha.
 
+### Rodada 4 de ajustes (2026-08-27, `/lp-revisar` com foco em mobile)
+
+Auditoria completa em `REVISAO.md`. Resumo do que mudou no HTML:
+
+| # | O que | De | Para |
+|---|---|---|---|
+| 15 | CTA outline da PLATAFORMA no mobile | rotulo em 2 linhas com a seta solta na borda de um botao quase full-width | `≤640px`: padding 14/18, conteudo centrado (1 linha em 390px); `≤360px` esconde a seta |
+| 16 | CTA principal dentro do card do fecho em 320px | 3 linhas (`padding:16px 34px`) | `≤520px`: `.btn` full-width, padding 16/18, `text-wrap:balance` → 2 linhas centradas |
+| 17 | Alvo de toque do CTA do header no mobile | 40px de altura | 46px (`padding:12px 16px` em `≤640px`) |
+| 18 | Aparelho do hero no mobile | `max-width:230px` fixo | `min(62vw,260px)` — 198px em 320, 260px em 430 |
+| 19 | Pilulas decorativas em tela estreita | `.f2` colava no CTA do fecho; `.pill-2` flutuava sobre os circulos | escondidas em `≤520px` |
+| 20 | Logo Elife em QUEM SOMOS | `<img>` sem width/height (CLS) | `width="250" height="140"` + `loading="lazy"` |
+| 21 | Toque no Android | atraso de 300ms do double-tap + flash cinza padrao | `touch-action:manipulation` + `-webkit-tap-highlight-color` |
+| 22 | Rodape em iPhone com home indicator | `padding-bottom:56px` | `calc(56px + env(safe-area-inset-bottom))` |
+
+Sobre o **delta 16**: com o piso de 17px em botao (GUIDELINES §20) o rotulo `Agendar demonstracao gratuita` nao cabe numa linha em 320px — nao ha ajuste de padding que resolva sem furar o piso. Full-width com 2 linhas centradas e a forma de fazer isso parecer intencional em vez de quebrado.
+
+Sobre o **delta 19**: e decisao de composicao, nao correcao de bug — as pilulas nao causavam overflow. Reverter e so apagar as duas linhas do bloco `@media (max-width:520px)`.
+
+Medicao: `scrollWidth == clientWidth` em 320/360/390/430/640/768px; pisos de tipografia intactos (h1 36px, corpo 18px); `check_mobile_type.py` sem overflow novo.
+
 ### Historico do formulario
 
 | Quando | PR | Form | Escopo |
