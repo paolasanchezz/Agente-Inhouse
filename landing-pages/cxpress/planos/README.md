@@ -3,7 +3,8 @@
 **Gerado em:** 2026-08-27
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`)
 **Notion (copy):** https://app.notion.com/p/3c93934026fd81668a43f8a4b64f04a1
-**Destino previsto:** `content.cxpress.io/planos` (guarda-chuva migrado pro CI)
+**No ar em:** https://content.cxpress.io/planos (guarda-chuva migrado pro CI)
+**Relatorio de entrega:** https://app.notion.com/p/3c93934026fd8183a186c020d7a12937
 **Form provider:** Jotform `261034073026647` (integrado em 2026-08-27). Mesmo formulário da LP
 `institucional`; a página de agradecimento é config do Jotform, não do embed. Trocar = 1 linha
 via `/lp-integrar-form`.
@@ -56,7 +57,7 @@ precificação sob demanda).
 - [x] OG image 1200×630 → `assets/og-planos.png` (arquivo único, sem `og-image.png`)
 - [x] Revisão aplicada — ver `REVISAO.md`
 - [x] Formulário integrado — Jotform `261034073026647` (2026-08-27)
-- [ ] Publicado — rodar `/lp-publicar cxpress planos content.cxpress.io`
+- [x] Publicado em https://content.cxpress.io/planos (2026-08-27, PR #389, run 33084579231)
 
 ## Desvios deliberados das GUIDELINES
 

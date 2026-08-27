@@ -31,7 +31,7 @@
   neutro em CSS (não o em-dash de texto) com `sr-only` "Não incluído".
 - **§7 contraste:** texto sobre o lilás `#D7E2FF` usa navy `#232960` (≈10:1), nunca o royal.
   Branco sobre royal `#4A69BD` dá ≈5,2:1.
-- **§11 formulário:** mock (`action="#"` + `onsubmit="event.preventDefault()"`), sem embed.
+- **§11 formulário:** era mock nesta passada; o embed real (Jotform `261034073026647`) entrou depois, via `/lp-integrar-form`.
 - **§10 posicionamento do form:** página BoFu, form na última seção, com CTA no hero rolando
   até lá.
 - **§12 favicon:** um único link, PNG do brand.
@@ -54,3 +54,44 @@
 3. **Mascote Samir** não entrou (a `institucional` também não usa). Cabe bem ao lado do bloco
    do formulário, se quiserem calor visual na última dobra.
 4. **Sem seção de urgência** (§8). Deliberado: página de pricing perene não tem escassez real.
+
+---
+
+# Revisão 2 — alterações de copy pedidas pelo Victor (2026-08-27)
+
+**Escopo:** 4 alterações de copy solicitadas no chat, aplicadas em `copy.txt` (fonte-verdade) e no `index.html`, seguidas das auditorias determinísticas.
+
+## Aplicado
+
+| # | Pedido | O que mudou |
+|---|---|---|
+| 1 | "basic embaixo pode colocar valor de licença adicional R$ 120,00" | nova linha ao pé do card Basic, em pílula lilás: "Acesso adicional de operador humano: R$ 120,00 por mês." (`.pk-addon`, 17px, navy sobre `#D7E2FF` ≈10:1) |
+| 2 | tirar "em pacotes de até 5 mil ligações mensais" do Voice Agent | removido nos 2 lugares: card Enterprise ("Voice Agent: a IA de telefonia") e linha da tabela comparativa ("Voice Agent, IA de telefonia"). Zero ocorrências de "5 mil" restantes |
+| 3 | nova frase principal do hero | subtítulo do hero trocado por "Centralize seus canais, organize toda a operação e potencialize o atendimento com inteligência artificial. Escolha o modelo mais adequado ao momento e aos objetivos da sua empresa." |
+| 4 | título e texto da segunda seção | H2 virou "Duas formas de contratar. / Uma plataforma completa." (quebra entre as duas frases, a segunda em navy bold como destaque) e o subtítulo virou "Comece com o Basic, utilizando toda a tecnologia da Cxpress com sua própria equipe, ou escolha o Enterprise para uma solução personalizada, combinando canais, agentes de IA e especialistas dedicados à sua operação." |
+
+**Leitura registrada:** "frase principal" foi aplicada como o **subtítulo** do hero, não como o H1. O texto tem duas frases descritivas e não caberia num H1 de 64px; o H1 segue "O plano certo para o seu atendimento". Trocar é uma linha, se a intenção era o H1.
+
+**Nota de escopo:** o item 1 reverte, por decisão explícita do Victor, a escolha anterior de manter os preços unitários dos incrementos fora da página. Só o acesso de operador (R$ 120,00) entrou; os demais incrementos seguem sem preço, porque o Enterprise é sob demanda.
+
+## Auditorias após a alteração (todas passaram, 0 críticos)
+
+| Gate | Resultado |
+|---|---|
+| `check_gtm_region.py` | `status: ok`, `GTM-T4XDWHL3`, região brasil, `stamp_match: true` |
+| em-dash (§5 / anti-IA) | 0 no HTML, 0 no `copy.txt` |
+| SEO (§15) | description 1, robots 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| JSON-LD | parseia; `Organization` + `WebPage` + `SoftwareApplication`; `Organization.url` = `https://home.cxpress.io` (bate com o brand-manifest) |
+| Logo regional (§17) | 0 ocorrências de `href="/"` |
+| OG image (§18) | `og-planos.png` 1200×630, sem `og-image.png` duplicado |
+| Tipografia mobile (§20) | `bump_mobile_type.py` dry-run limpo (0 regras a subir) |
+| Overflow a 375px | só o `.skip-link` em `left:-9999px` (fora de tela por construção) |
+| Fidelidade de copy | os 4 textos novos aparecem literais, 1× cada. Nenhum texto inventado |
+
+## Melhorias opcionais desta passada
+
+Todas do mesmo tema: agora que o preço do acesso adicional é público, há 3 lugares que falam de acesso extra sem citá-lo. Nenhuma é erro, só coerência.
+
+- [ ] **Nota ao pé da seção de planos** diz "Acessos, canais, agentes de IA e serviços adicionais são cotados junto com o time comercial". Não contradiz (R$ 120 é preço de tabela), mas se quiser blindar, basta tirar "Acessos," dessa lista.
+- [ ] **FAQ "O que conta como acesso de operador?"** diz que acessos adicionais "entram como incremento", sem o valor. Poderia citar os R$ 120,00.
+- [ ] **Linha da tabela "Acessos de operador humano"** mostra "5 incluídos" no Basic. Poderia mostrar "5 incluídos (+R$ 120/acesso)".
