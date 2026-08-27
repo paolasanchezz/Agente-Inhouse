@@ -1,24 +1,25 @@
 ---
 name: dashboard-atualizar
-description: Atualiza uma das dashboards CM dinamica-estaticas no Vercel — Buzzmonitor Brasil, Cxpress Brasil ou Buzzmonitor LATAM (o usuario escolhe qual, por arg ou chip). Roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger.
-argument-hint: "[buzz-br|cxpress|latam] (sem arg = pergunta com chips)"
+description: Atualiza uma das dashboards CM dinamica-estaticas no Vercel — Buzzmonitor Brasil, Cxpress Brasil, Buzzmonitor LATAM ou Buzzcreators Brasil (o usuario escolhe qual, por arg ou chip). Roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger.
+argument-hint: "[buzz-br|cxpress|latam|buzzcreators] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 3.0.1
+version: 3.1.0
 ---
 
 # Skill: Atualizar Dashboard CM (dinamica-estatica) — multi-dashboard
 
-Voce atualiza UMA das 3 dashboards de Content Marketing servidas **dinamica-estaticas** no Vercel. Todas seguem o MESMO modelo: os dados sao exportados aqui (onde o Supabase conecta) e embutidos num JSON; o navegador filtra/agrega em memoria com date-picker de intervalo livre (sem tocar no banco). Sao projetos Vercel **solo** (1 projeto = 1 dashboard, sem vizinhas).
+Voce atualiza UMA das 4 dashboards de Content Marketing servidas **dinamica-estaticas** no Vercel. Todas seguem o MESMO modelo: os dados sao exportados aqui (onde o Supabase conecta) e embutidos num JSON; o navegador filtra/agrega em memoria com date-picker de intervalo livre (sem tocar no banco). Sao projetos Vercel **solo** (1 projeto = 1 dashboard, sem vizinhas).
 
 | Dashboard | Fonte no repo | Sibling (deploy) | URL | Idioma/moeda |
 |---|---|---|---|---|
 | **buzz-br** | `dashboard-buzz-br-vercel/` | `dashboard-buzzmonitor-brasil` | dashboard-buzzmonitor-brasil.vercel.app | PT-BR / BRL |
 | **cxpress** | `dashboard-cxpress-vercel/` | `dashboard-cxpress-brasil` | dashboard-cxpress-brasil.vercel.app | PT-BR / BRL |
 | **latam** | `dashboard-latam-vercel/` | `dashboard-buzzmonitor-latam` | dashboard-buzzmonitor-latam.vercel.app | ES / USD |
+| **buzzcreators** | `dashboard-buzzcreators-vercel/` | `dashboard-buzzcreators-brasil` | dashboard-buzzcreators-brasil.vercel.app | PT-BR / BRL |
 
 **Regra inegociavel:** deploy NUNCA sai da pasta-fonte no repo. Sempre da pasta **sibling** fora do repo (com `middleware.js` de Basic Auth + `vercel.json` + `robots.txt`). Mesmo padrao do `lp-publicar`. Incidente 2026-05-25 (404 publico por deploy sem middleware) em `dashboard/DEPLOY.md`.
 
-**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). As 3 dashboards usam a **mesma credencial** (`inhouse` + senha forte); vem de `.env.local` e DEVE bater com `const PASS` no `middleware.js` da sibling.
+**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). As 4 dashboards usam a **mesma credencial** (`inhouse` + senha forte); vem de `.env.local` e DEVE bater com `const PASS` no `middleware.js` da sibling.
 
 ---
 
@@ -28,12 +29,13 @@ Voce atualiza UMA das 3 dashboards de Content Marketing servidas **dinamica-esta
    - `buzz-br`, `br`, `brasil`, `buzz`, `buzzmonitor`, `buzz-brasil` → **buzz-br**
    - `cxpress`, `cx`, `cxpress-brasil` → **cxpress**
    - `latam`, `lat`, `buzz-latam` → **latam**
-2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com 3 opcoes: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM`.
+   - `buzzcreators`, `creators`, `bc`, `buzzcreators-brasil` → **buzzcreators**
+2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com 4 opcoes: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM` / `Buzzcreators Brasil`.
 
 Fixe o slug resolvido em `$DASH` e rode o bloco de config (define TODAS as variaveis dos passos seguintes):
 
 ```bash
-DASH="<buzz-br|cxpress|latam>"   # resolvido no Passo A
+DASH="<buzz-br|cxpress|latam|buzzcreators>"   # resolvido no Passo A
 SCOPE=team_nC991VqUuSU2jXZN152xqqEg
 case "$DASH" in
   buzz-br)
@@ -48,6 +50,10 @@ case "$DASH" in
     SRC=dashboard-latam-vercel;    SIB_NAME=dashboard-buzzmonitor-latam
     URL=dashboard-buzzmonitor-latam.vercel.app; JSON=dados-latam.json; MAIN=leads
     FILES="index.html estilo.css motor.js render.js dados-latam.json"; MARKER=MotorLatam; AUDIT3=0 ;;
+  buzzcreators)
+    SRC=dashboard-buzzcreators-vercel; SIB_NAME=dashboard-buzzcreators-brasil
+    URL=dashboard-buzzcreators-brasil.vercel.app; JSON=dados-buzzcreators.json; MAIN=deals
+    FILES="index.html estilo.css motor.js render.js dados-buzzcreators.json"; MARKER=MotorBuzzcreators; AUDIT3=0 ;;
   *) echo "ERRO: dashboard invalido: '$DASH'"; exit 1 ;;
 esac
 echo "Dashboard: $DASH · fonte: $SRC · sibling: $SIB_NAME · url: $URL"
@@ -93,12 +99,12 @@ fi
 ```
 Se **DESSINCRONIZADO**: replicar em `dashboard-pessoal/lib/queries.py` e so entao seguir.
 
-> **cxpress / latam:** superficie UNICA — o exportador importa `queries_cxpress.py` / `queries_latam.py` direto de `dashboard/` (sem espelho). Nao ha o que auditar aqui; a paridade (Passo 1.5) cobre a consistencia motor × queries.
+> **cxpress / latam / buzzcreators:** superficie UNICA — o exportador importa `queries_cxpress.py` / `queries_latam.py` / `queries_buzzcreators.py` direto de `dashboard/` (sem espelho). Nao ha o que auditar aqui; a paridade (Passo 1.5) cobre a consistencia motor × queries.
 
 ### 0.3 Verificar sibling
 Deve ter `$SIBLING/.vercel/project.json`, `middleware.js`, `vercel.json`, `robots.txt`, `package.json`.
 - Faltando `.vercel/`: `cd "$SIBLING" && npx vercel link --yes --project="$SIB_NAME" --scope="$SCOPE"`
-- Faltando middleware/vercel.json/robots.txt/package.json: abortar (`Sibling corrompida — restaurar arquivos de seguranca`). Para (re)criar do zero, veja `$SRC/sync_sibling.py` (cxpress/latam) ou `dashboard/DEPLOY.md` (buzz-br).
+- Faltando middleware/vercel.json/robots.txt/package.json: abortar (`Sibling corrompida — restaurar arquivos de seguranca`). Para (re)criar do zero, veja `$SRC/sync_sibling.py` (cxpress/latam/buzzcreators) ou `dashboard/DEPLOY.md` (buzz-br).
 
 ### 0.4 Vercel CLI auth
 ```bash
@@ -212,11 +218,11 @@ Pra commitar mudancas de codigo (se houve): /commit
 ---
 
 ## Notas de seguranca e manutencao
-- **Credencial Basic Auth** (as 3 usam a MESMA) vive em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored) e no `middleware.js` de cada sibling (fora do repo). Trocar a senha = editar o `.env.local` + os 3 middlewares (ou re-rodar `sync_sibling.py` de cxpress/latam, que le a senha do middleware do buzz-br). Nunca hardcodar nesta skill.
+- **Credencial Basic Auth** (as 3 usam a MESMA) vive em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored) e no `middleware.js` de cada sibling (fora do repo). Trocar a senha = editar o `.env.local` + os 4 middlewares (ou re-rodar `sync_sibling.py` de cxpress/latam/buzzcreators, que le a senha do middleware do buzz-br). Nunca hardcodar nesta skill.
 - **Nunca** rodar `vercel deploy` da pasta-fonte no repo (sem middleware = 404/exposto). So da sibling.
 - **Nunca** copiar pra sibling alem de `$FILES` (os `.py`/`.mjs`/README/PLANO ficam so no repo).
 - **Dados gitignored:** `dados-*.json` (PII de leads + valores) e `paridade_esperado.json` sao regeneraveis e ficam fora do git; so o codigo versiona.
 - **Paridade dos numeros:** garantida por a logica CM viver no Python (o exportador reusa as `queries_*.py`); o `motor.js` so agrega. Rodar via `uv`, nao `python` direto (no Windows o `python` do PATH e o shim da Store, exit 49; o `uv` provisiona Python 3.12 com wheels de C-extension).
 - **Escopo 2026:** os exportadores cobrem 2026 + cauda p/ as series 12m. Virar 2027: ajustar `ANO_INI`/cutoff nos `exportar_dados.py`.
-- **Diferencas por dashboard:** buzz-br = funil 7 KPIs, filtro em 3 superficies (auditar 0.2b), copia 3 arquivos. cxpress = funil 7 KPIs PT-BR, superficie unica, copia 5 arquivos. latam = funil 5 fases ES/USD, leads de inbound∪outbound + fechamentos de contratos, superficie unica, copia 5 arquivos. Runbooks: `dashboard/DEPLOY.md` (buzz-br) · `dashboard/DEPLOY-cxpress.md` · `dashboard/DEPLOY-latam.md`.
+- **Diferencas por dashboard:** buzz-br = funil 7 KPIs, filtro em 3 superficies (auditar 0.2b), copia 3 arquivos. cxpress = funil 7 KPIs PT-BR, superficie unica, copia 5 arquivos. latam = funil 5 fases ES/USD, leads de inbound∪outbound + fechamentos de contratos, superficie unica, copia 5 arquivos. buzzcreators = funil 5 KPIs (Lead/Agend./Reuniao/Fech./Perdidos — **sem Proposta**), fonte Pipedrive com **UTM recuperada por join com o contato** (o deal nao tem UTM), superficie unica, copia 5 arquivos. Runbooks: `dashboard/DEPLOY.md` (buzz-br) · `dashboard/DEPLOY-cxpress.md` · `dashboard/DEPLOY-latam.md` · `dashboard/DEPLOY-buzzcreators.md`.
 ```

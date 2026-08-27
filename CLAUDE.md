@@ -281,16 +281,16 @@ Fluxo mensal ponta-a-ponta: analytics do mes anterior alimenta planejamento do m
 - Config social por marca: `brand/{marca}/social-media.json` (Buzzmonitor = modelo de referencia; Cxpress/Buzzcreators = rascunho; Elife = esqueleto — campos null a skill pergunta e preenche no uso)
 - Brand templates do Canva: especificacao em `brand/buzzmonitor/canva-brand-templates.md` (vale como modelo pra todas as marcas); IDs por marca em `brand/{marca}/canva-template-ids.json`
 
-### Dashboards CM (Buzzmonitor BR/LATAM + Cxpress BR)
+### Dashboards CM (Buzzmonitor BR/LATAM + Cxpress BR + Buzzcreators BR)
 
-Dashboards internas de Content Marketing — KPIs do funil de leads + fechamentos, **dinamica-estaticas** no Vercel (date-picker de intervalo livre; dados de 2026 embutidos num JSON, agregados no navegador — sem banco no Vercel). Uma unica skill `/dashboard-atualizar` cobre as **3** (o usuario escolhe qual por arg ou chip). O `/auditar-deals-cm` segue single-purpose (Buzzmonitor Brasil).
+Dashboards internas de Content Marketing — KPIs do funil de leads + fechamentos, **dinamica-estaticas** no Vercel (date-picker de intervalo livre; dados de 2026 embutidos num JSON, agregados no navegador — sem banco no Vercel). Uma unica skill `/dashboard-atualizar` cobre as **4** (o usuario escolhe qual por arg ou chip). O `/auditar-deals-cm` segue single-purpose (Buzzmonitor Brasil).
 
 | Comando | O que faz |
 |---|---|
-| `/dashboard-atualizar [buzz-br\|cxpress\|latam]` | Escolhe a dashboard (arg ou chip), roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha forte + noindex + arquivos servidos). Sem arg, pergunta. Manual-trigger. |
+| `/dashboard-atualizar [buzz-br\|cxpress\|latam\|buzzcreators]` | Escolhe a dashboard (arg ou chip), roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha forte + noindex + arquivos servidos). Sem arg, pergunta. Manual-trigger. |
 | `/auditar-deals-cm [--desde] [--ate]` | Read-only. Acha deals CM que somem da dashboard por UTM vazia (falha de automacao AC->Supabase): recupera UTM localmente (contato/empresa + titulo/inbound), re-roda o filtro CM reaproveitado e lista os "CM nao mapeados" em 3 niveis de confianca. So propoe remediacao; nunca grava no Supabase. |
 
-Fonte por dashboard: `dashboard-buzz-br-vercel/` · `dashboard-cxpress-vercel/` · `dashboard-latam-vercel/` (exportador + motor.js + render/index; reusam as `queries_*` da dash local como fonte unica; paridade numero-a-numero valida). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/{projeto}/` (fora do repo — evita PII no git; `dados-*.json` gitignored). Runbooks: `dashboard/DEPLOY.md` (BR) · `DEPLOY-cxpress.md` · `DEPLOY-latam.md`. Auditoria de UTM (so BR): `dashboard/AUDITORIA-DEALS-CM.md`.
+Fonte por dashboard: `dashboard-buzz-br-vercel/` · `dashboard-cxpress-vercel/` · `dashboard-latam-vercel/` · `dashboard-buzzcreators-vercel/` (exportador + motor.js + render/index; reusam as `queries_*` da dash local como fonte unica; paridade numero-a-numero valida). **Buzzcreators e a excecao:** fonte Pipedrive, deal **sem UTM** — a atribuicao e recuperada por join com o contato (`dim_pipedrive_persons` -> `dim_contacts`), o funil tem 5 KPIs (sem Proposta) e o gate de paridade compara SQL x motor.js (nao existe dash local). Deploy: pasta sibling `{DASHBOARD_SIBLING_BASE}/{projeto}/` (fora do repo — evita PII no git; `dados-*.json` gitignored). Runbooks: `dashboard/DEPLOY.md` (BR) · `DEPLOY-cxpress.md` · `DEPLOY-latam.md` · `DEPLOY-buzzcreators.md` (+ `MAPEAMENTO-CAMPOS-buzzcreators.md`). Auditoria de UTM (so BR): `dashboard/AUDITORIA-DEALS-CM.md`.
 
 ### Dashboard SEO (Buzzmonitor Brasil)
 

@@ -12,6 +12,43 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboard CM Buzzcreators Brasil — atribuição recuperada por join
+### 2026-08-26 — `dashboard-atualizar` v3.1.0
+
+Quarta dashboard de Content Marketing, e a primeira em cima do **Pipedrive**. O obstáculo era que
+`deals_pipedrive_vendas_buzzcreators` **não tem nenhum campo de UTM** — nem coluna, nem chave em
+`custom_fields`. A saída foi recuperar a atribuição do contato: `deal.person_id` →
+`dim_pipedrive_persons.custom_fields` (`*UTM Source [AUTO]`, `URL Conversão [AUTO]`, …), com
+fallback por e-mail em `dim_contacts` (ActiveCampaign). Cobertura: 55% via Pipedrive, 71% com o
+fallback, 81% no funil Inbound.
+
+Novo em `dashboard-buzzcreators-vercel/` (mesmo modelo dinâmico-estático das outras três) +
+`dashboard/queries_buzzcreators.py` como fonte única do filtro CM. Três decisões que definem os
+números, calibradas com o Victor: google/cpc fica **fora** (1.291 deals de Search pago), domínio de
+conteúdo **não** credita CM sozinho (exige `utm_source` na whitelist) e a etapa **Proposta foi
+omitida** — o Pipedrive não registra data de entrada em Proposta, e uma etapa sem data quebraria a
+comparação entre períodos. Funil: Lead → Agendamento → Reunião realizada → Fechamento (+ Perdidos).
+
+O gate de paridade mudou de natureza: como não existe dashboard local em Python pra servir de
+referência, ele compara duas implementações independentes da mesma regra — SQL agregando no
+Postgres × `motor.js` agregando no navegador (800 checagens, 0 divergências).
+
+Corrigidos no `render.js` três rótulos de data herdados do template Cxpress/BR que mentem em
+período longo: a tag do bloco 1 e os rótulos de perdas assumiam mês único ("01–26 Ago" para um YtD),
+e o período anterior de um YtD — que cai no ano passado — aparecia carimbado com o ano atual.
+**Os mesmos defeitos existem nas dashes Buzz BR, Cxpress e LATAM**, ainda não corrigidos lá.
+
+**No ar** em https://dashboard-buzzcreators-brasil.vercel.app (mesma senha forte das outras três).
+No primeiro deploy apareceu um buraco do padrão sibling: o `sync_sibling.py` (o do Cxpress inclusive)
+não gera `package.json`, e o Vercel precisa dele na raiz pra reconhecer o Edge Middleware — numa
+sibling nova isso deixaria a dashboard **sem Basic Auth**. O `sync_sibling.py` da Buzzcreators
+passou a gerar o arquivo; o do Cxpress tem o mesmo buraco latente (só não aparece porque a
+sibling dele já existe).
+
+Docs: `dashboard/MAPEAMENTO-CAMPOS-buzzcreators.md` e `dashboard/DEPLOY-buzzcreators.md`.
+
+---
+
 ## Um Jotform servindo N webinars perpétuos
 ### 2026-08-26 — `lp-integrar-form` v1.6.0
 

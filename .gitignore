@@ -16,6 +16,8 @@ dashboard-cxpress-vercel/dados-cxpress.json
 dashboard-cxpress-vercel/paridade_esperado.json
 dashboard-latam-vercel/dados-latam.json
 dashboard-latam-vercel/paridade_esperado.json
+dashboard-buzzcreators-vercel/dados-buzzcreators.json
+dashboard-buzzcreators-vercel/paridade_esperado.json
 
 # Auditoria de deals CM (PII: emails + ids de deals). Outputs regeneraveis via /auditar-deals-cm.
 # Preserva a pasta via .gitkeep; ignora os relatorios/CSVs.
