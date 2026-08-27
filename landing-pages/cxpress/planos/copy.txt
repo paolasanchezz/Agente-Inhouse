@@ -15,8 +15,7 @@ BODY: Toda a plataforma Cxpress pronta para operar, com 5 acessos de operador hu
 LABEL: A partir de R$ 1.290 por mês
 LABEL: Canais
 LIST ITEM: WhatsApp com API Oficial da Meta
-LIST ITEM: Instagram, Facebook e Webchat
-LIST ITEM: E-mail
+LIST ITEM: Instagram, Facebook, Webchat e e-mail
 LIST ITEM: Telefone com URA inteligente para encaminhamento de chamados
 LABEL: IA e automação
 LIST ITEM: 1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat
@@ -33,6 +32,7 @@ LIST ITEM: 5 acessos de operador humano
 LIST ITEM: 1 Número com API Oficial do WhatsApp
 LIST ITEM: Métricas detalhadas e personalizáveis, com análise da IA
 LIST ITEM: Ambiente de comunicação interna entre os colaboradores
+LIST ITEM: Aplicativo mobile
 LABEL: Suporte
 LIST ITEM: Atendimento especializado do time de Customer Success
 BODY: Acesso adicional de operador humano: R$ 120,00 por mês.
@@ -95,6 +95,7 @@ LABEL: Gestão e operação
 LIST ITEM: Acessos de operador humano | 5 incluídos | Sob demanda
 LIST ITEM: Métricas e dashboards com análise da IA | Incluído | Incluído
 LIST ITEM: Ambiente de comunicação interna | Incluído | Incluído
+LIST ITEM: Aplicativo mobile | Incluído | Incluído
 
 LABEL: Serviços gerenciados, com a Elife
 LIST ITEM: Criação e gestão dos Agentes de IA | Não incluído | Sob demanda

@@ -131,3 +131,32 @@ Sobraram 11 ocorrências de "Sob demanda" na página. Nenhuma é preço, todas s
 | Overflow a 375px | só o `.skip-link` fora de tela (por construção) |
 | Render | conferido no desktop e no layout empilhado do mobile (a linha vira `ENTERPRISE  Falar com especialista`) |
 | Fidelidade de copy | texto novo literal, 1× no HTML e 1× no `copy.txt` |
+
+---
+
+# Revisão 4 — e-mail junto das redes + Aplicativo mobile (2026-08-27)
+
+Duas alterações de conteúdo, publicadas juntas.
+
+## Aplicado
+
+| Pedido | O que mudou |
+|---|---|
+| "onde temos canais no plano basic a opção e-mail pode entrar junto com as redes sociais" | o bloco **Canais** do card Basic passou de 4 para 3 linhas: `WhatsApp com API Oficial da Meta`, **`Instagram, Facebook, Webchat e e-mail`**, `Telefone com URA inteligente para encaminhamento de chamados`. A grafia é a que a tabela comparativa já usava, então card e tabela agora dizem a mesma coisa |
+| "adicione nas features que temos app mobile" | **`Aplicativo mobile`** entrou no grupo `Gestão e operação`, nos dois lugares: última linha do card Basic e nova linha da tabela (Incluído nos dois planos, já que o Enterprise herda "tudo do Basic"). A tabela foi de 24 para 25 linhas |
+
+## Decisões registradas
+
+- **Grafia "Aplicativo mobile", sem adorno.** Não há registro de app mobile no `BRANDBOOK.md`, no `brand-manifest.json`, em `conhecimento/produto/cxpress/` nem em nenhuma outra LP Cxpress: a informação veio do Victor no chat. Por isso entrou como nome de feature puro, sem frase de benefício ("atenda de qualquer lugar", "gerencie no celular") que seria claim inventado. Se o app tiver escopo definido (iOS/Android, o que dá para fazer nele), vale virar linha própria no BRANDBOOK e aí a copy pode ganhar corpo.
+- **Não mexi em dois lugares que também listam esses canais:** a faixa de ícones do hero (o e-mail continua com ícone próprio, é fileira de canais e não lista) e a linha `1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat` (na planilha o agente de IA não cobre e-mail; incluí-lo mudaria o que o plano entrega).
+
+## Auditorias (0 críticos)
+
+| Gate | Resultado |
+|---|---|
+| `check_gtm_region.py` | `ok`, `stamp_match: true` |
+| em-dash | 0 |
+| SEO (§15) | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| Tipografia mobile (§20) | dry-run limpo |
+| Coerência card × tabela | os dois trazem `Instagram, Facebook, Webchat e e-mail` e `Aplicativo mobile` |
+| Render | conferido no card e na tabela |
