@@ -1,6 +1,6 @@
 # LP Buzzmonitor — news-da-buzz-obrigado
 
-Thanks page da LP `news-da-buzz`: confirma a inscrição na newsletter logo após o envio do form. Página de confirmação pura, sem CTA de venda (só um convite leve pra seguir no LinkedIn enquanto a primeira edição não chega).
+Thanks page da LP `news-da-buzz`: confirma a inscrição na newsletter logo após o envio do form. Página de confirmação pura, sem nenhum CTA (nem venda, nem social) — só o reforço de "confira sua caixa de entrada".
 
 **Gerado em:** 2026-08-27
 **Página mãe:** `landing-pages/buzzmonitor/news-da-buzz/` (publicar sempre em batch)
@@ -8,8 +8,10 @@ Thanks page da LP `news-da-buzz`: confirma a inscrição na newsletter logo apó
 
 ## Estrutura
 
-- HERO (eyebrow "Inscrição confirmada" + H1 + card de reforço "confira sua caixa de entrada" + CTA leve pra LinkedIn)
+- HERO (eyebrow "Inscrição confirmada" + H1 + card de reforço "confira sua caixa de entrada")
 - FOOTER
+
+**Ajuste 2026-08-27 (2ª rodada):** removido o botão "Seguir a Buzzmonitor no LinkedIn", a pedido da Catharina. Página ficou só com o card de confirmação, sem nenhum CTA de saída. Removido junto o CSS `.btn`/`.btn svg`/`.btn:hover` (ficou órfão sem o elemento) — isso também elimina o achado de contraste AA do botão laranja registrado em `REVISAO.md` (não existe mais o elemento).
 
 ## Integração com a LP-mãe
 

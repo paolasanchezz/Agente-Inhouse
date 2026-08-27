@@ -9,7 +9,7 @@
 
 ## Crítico sinalizado, NÃO corrigido automaticamente (decisão de marca, herdado da LP-mãe)
 
-- [ ] **Contraste do botão CTA laranja:** o botão "Seguir a Buzzmonitor no LinkedIn" usa texto branco sobre `var(--secondary)` (#EB7C2E), contraste ~2.8:1, falha AA. É o mesmo padrão já sinalizado (e deixado como decisão de marca) na `REVISAO.md` da LP-mãe `news-da-buzz` — vem do `generation-rules.json` do brand, não é um erro introduzido nesta página. Mesmas opções de resolução: (a) escurecer o laranja, (b) texto escuro sobre o laranja (~6.2:1, resolve sem trocar a cor), (c) manter. Resolver em conjunto com a LP-mãe, não isoladamente.
+- [x] **~~Contraste do botão CTA laranja~~** — não se aplica mais: o botão "Seguir a Buzzmonitor no LinkedIn" foi removido em 2026-08-27 (pedido da Catharina). CSS `.btn`/`.btn svg`/`.btn:hover` removido junto por ficar órfão.
 
 ## Melhorias opcionais (1)
 
@@ -30,5 +30,4 @@ Nenhum.
 
 ## Próximos passos
 
-- Contraste do CTA laranja: decisão pendente de marca, resolver junto com a LP-mãe.
 - Publicar: `/lp-publicar buzzmonitor news-da-buzz material.buzzmonitor.com` (guarda-chuva, publica as duas LPs — mãe + thanks page — em batch).
