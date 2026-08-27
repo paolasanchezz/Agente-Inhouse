@@ -28,7 +28,7 @@ visivel sao identicas, verificado por diff automatizado.
 | # | O que | De | Para |
 |---|---|---|---|
 | 1 | Chamada de preco | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
-| 2 | Form Jotform | `261045149477663` | `261027639617663` (era `261034073026647` ate o PR #374, 2026-08-26) |
+| 2 | Form Jotform | `261045149477663` | `261034073026647` (ver historico do form abaixo) |
 | 3 | GTM | `GTM-T4XDWHL3` | `GTM-KN8BPFG` |
 | 4 | GA4 | (nao tinha) | `gtag.js` com ID `339689858` |
 | 5 | Visual do hero | `plataforma-canais.gif` | `./assets/hero-conta-banida-whatsapp.png` + blobs/glow/pilulas |
@@ -55,6 +55,27 @@ porque a regra de fidelidade de copy proibe inventar texto novo por feature. Se 
 quiser CTA especifico por item (`Ver os canais`, `Conhecer a IA`), isso e copy nova e
 precisa vir do pipeline. Estilo de link (nao botao cheio) de proposito: 4 botoes solidos
 nessa secao competiriam com o CTA principal.
+
+### Historico do formulario
+
+| Quando | PR | Form | Escopo |
+|---|---|---|---|
+| 2026-08-24 | #345 | `261034073026647` | so esta LP (briefing original) |
+| 2026-08-26 | #374 | `261027639617663` | lote de 6 LPs de proposta Cxpress ("Jotform do contato") |
+| 2026-08-26 | #384 | `261045149477663` | lote de 7 LPs de proposta Cxpress ("Jotform de remarketing") |
+| 2026-08-27 | (este) | `261034073026647` | so esta LP, a pedido do briefing |
+
+> ⚠️ **Esta LP esta fora da unificacao das 7 LPs de proposta.** O PR #384 apontou
+> `atendimento-digital`, `banimento-whatsapp`, `banimento-whatsapp-comercial`, `coex-whatsapp`,
+> `evite-banimento-whatsapp`, `whatsapp-business-smb` e `whatsapp-smb` para o mesmo Jotform de
+> remarketing. Esta LP foi revertida para o form proprio (`261034073026647`) a pedido, o que
+> faz sentido com o fato de ela ter GTM (`GTM-KN8BPFG`) e GA4 (`339689858`) proprios: a
+> atribuicao dela e separada do resto do lote. **Se um proximo lote unificar form nas LPs de
+> proposta, esta precisa ser excluida do lote de proposito, nao por esquecimento.**
+>
+> Nota de manutencao: os PRs #374 e #384 alteraram apenas o `index.html`, deixando `copy.txt` e
+> este README apontando IDs antigos. Reconciliado agora: os tres arquivos dizem
+> `261034073026647`.
 
 ### Pontos de atencao (decisoes que precisam de OK do time)
 
@@ -105,6 +126,8 @@ do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-evite-banimento-whatsapp.png` (reaproveitada da LP de referencia, mesmo tema)
 - [x] Formulario integrado (Jotform `261034073026647`)
+
+**Form provider:** Jotform (`261034073026647`, reintegrado em 2026-08-27)
 - [ ] Revisao — rodar `/lp-revisar cxpress/evite-banimento-whatsapp`
 - [x] Publicado em https://content.cxpress.io/evite-banimento-whatsapp (PR #345, deploy CI)
 
