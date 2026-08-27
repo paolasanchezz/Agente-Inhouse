@@ -56,6 +56,29 @@ quiser CTA especifico por item (`Ver os canais`, `Conhecer a IA`), isso e copy n
 precisa vir do pipeline. Estilo de link (nao botao cheio) de proposito: 4 botoes solidos
 nessa secao competiriam com o CTA principal.
 
+### Rodada 3 de ajustes (2026-08-27, feedback do Victor sobre o live)
+
+| # | O que | De | Para |
+|---|---|---|---|
+| 12 | Fundo atras do aparelho no hero | blob azul (`.blob-a`, gradiente `--primary-lighter`) + glow royal + anel solto | circulos concentricos (`./assets/hero-circulos-concentricos.svg`) centrados no aparelho; glow ambar e as duas pilulas continuam |
+| 13 | Icone do card `Historico que nao se perde` | bolha de conversa + ponteiro de relogio | relogio com seta anti-horaria (icone de historico), mesmo peso de stroke (1.7) dos outros dois |
+| 14 | CTA nos itens da PLATAFORMA | link com regua verde e seta | botao outline (contorno `--wa` 2px, raio `--radius-btn`, hover preenche de verde) |
+
+Sobre o **delta 13**: o icone antigo estava deformado por geometria invalida, nao por CSS.
+O arco `a8.4 8.4 0 1116.3-5.9` fechava uma corda de 17,3 unidades com raio 8,4 (diametro
+16,8) — quando a corda e maior que o diametro, o SVG escala o raio pra caber e o desenho
+sai achatado. O icone novo tem arcos com corda menor que o diametro, entao renderiza igual
+em qualquer engine.
+
+Sobre o **delta 12**: os circulos sao SVG (~420 bytes) e nao PNG, pra ficarem nitidos em
+qualquer densidade de tela e nao pesarem no LCP do hero. No mobile o diametro cai pra
+`min(98%,360px)` de proposito: acima disso o anel externo estoura a coluna e o
+`overflow-x:hidden` do body corta o circulo numa linha reta.
+
+Sobre o **delta 14**: o contorno mantem a hierarquia que o delta 11 protegia (o CTA
+principal segue sendo o unico botao solido) e ainda entrega area de clique de botao, que
+o link com regua nao tinha.
+
 ### Historico do formulario
 
 | Quando | PR | Form | Escopo |
@@ -135,6 +158,7 @@ do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
 
 - `./assets/hero-conta-banida-whatsapp.png` (LP-local, 430×901, PNG com alpha, 429 KB)
 - `./assets/og-evite-banimento-whatsapp.png` (LP-local, OG 1200×630)
+- `./assets/hero-circulos-concentricos.svg` (LP-local, fundo decorativo do hero, ~420 B)
 - `../../brand/cxpress/assets/logos/logo-primary.svg` (header)
 - `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
