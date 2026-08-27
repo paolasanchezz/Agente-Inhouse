@@ -151,6 +151,11 @@
       "source": "landing-pages/cxpress/oferta-whatsapp-comercial-bloqueado"
     },
     {
+      "slug": "planos",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/planos"
+    },
+    {
       "slug": "plataforma-atendimento-clinicas",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/plataforma-atendimento-clinicas"

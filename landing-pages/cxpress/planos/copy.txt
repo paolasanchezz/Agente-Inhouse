@@ -1,0 +1,149 @@
+=== HERO ===
+OVERLINE: Planos Cxpress
+H1: O plano certo para o seu atendimento
+SUB: Todos os canais numa fila só, com IA resolvendo o primeiro nível. Comece pelo Basic e cresça com o Enterprise quando a operação pedir.
+CTA: Ver os planos
+CTA: Falar com um especialista
+
+=== PLANOS ===
+H2: Dois planos, uma plataforma
+SUB: O Basic entrega a Cxpress inteira, com 5 acessos de operador. O Enterprise soma canais, agentes de IA e equipe, com precificação sob demanda.
+
+LABEL: Mais contratado
+H3: Basic
+BODY: Toda a plataforma Cxpress pronta para operar, com 5 acessos de operador humano.
+LABEL: A partir de R$ 1.290 por mês
+LABEL: Canais
+LIST ITEM: WhatsApp com API Oficial da Meta
+LIST ITEM: Instagram, Facebook e Webchat
+LIST ITEM: E-mail
+LIST ITEM: Telefone com URA inteligente para encaminhamento de chamados
+LABEL: IA e automação
+LIST ITEM: 1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat
+LIST ITEM: Organização automatizada de tickets, com categorização e distribuição inteligente
+LIST ITEM: Agendamento de mensagens ativas no WhatsApp para bases qualificadas
+LIST ITEM: Smart replies: respostas salvas para ganhar velocidade
+LIST ITEM: Sumarização de tickets gerada por IA
+LABEL: Dados do cliente
+LIST ITEM: Timeline inteligente com a jornada unificada do consumidor
+LIST ITEM: Histórico unificado, independente do canal em que o cliente falou
+LIST ITEM: CRM: banco de dados customizável para clientes e tickets
+LABEL: Gestão e operação
+LIST ITEM: 5 acessos de operador humano
+LIST ITEM: 1 Número com API Oficial do WhatsApp
+LIST ITEM: Métricas detalhadas e personalizáveis, com análise da IA
+LIST ITEM: Ambiente de comunicação interna entre os colaboradores
+LABEL: Suporte
+LIST ITEM: Atendimento especializado do time de Customer Success
+CTA: Falar com um especialista
+
+LABEL: Sob demanda
+H3: Enterprise
+BODY: Tudo do Basic, mais os recursos e a equipe que a sua operação pedir. Cada item entra conforme o desenho da operação, por isso o valor é montado caso a caso.
+LABEL: Precificação sob demanda
+LIST ITEM: Tudo o que está no Basic
+LABEL: Canais adicionais
+LIST ITEM: TikTok
+LIST ITEM: Google Meu Negócio
+LABEL: Mais IA
+LIST ITEM: Agentes de IA privados adicionais, por canal
+LIST ITEM: Agente Concierge: a IA que responde comentários públicos no Instagram, Facebook, Google Meu Negócio e TikTok
+LIST ITEM: Voice Agent: a IA de telefonia, em pacotes de até 5 mil ligações mensais
+LABEL: Escala
+LIST ITEM: Acessos de operador humano adicionais
+LIST ITEM: Números adicionais com API Oficial do WhatsApp
+LIST ITEM: Atributos adicionais de telefonia e operadora
+LABEL: Integrações
+LIST ITEM: Integração entre a IA da Cxpress e sistemas de terceiros, para consultar e enviar dados
+LABEL: Serviços gerenciados, com a Elife
+LIST ITEM: Criação e gestão dos seus Agentes de IA
+LIST ITEM: Gestão da qualidade do atendimento com IA
+LIST ITEM: Equipe humana especializada para atender junto com você
+LIST ITEM: Inteligência estratégica contínua, com social listening, monitoramento de mercado e relatórios executivos
+CTA: Pedir proposta
+
+BODY: O valor do Basic corresponde ao pacote com 5 acessos de operador. Acessos, canais, agentes de IA e serviços adicionais são cotados junto com o time comercial.
+
+=== COMPARATIVO ===
+H2: O que entra em cada plano
+SUB: A lista completa, item por item, para comparar antes de falar com a gente.
+
+LABEL: Canais
+LIST ITEM: WhatsApp com API Oficial da Meta | 1 número | Números adicionais
+LIST ITEM: Instagram, Facebook, Webchat e e-mail | Incluído | Incluído
+LIST ITEM: Telefone com URA inteligente | Incluído | Incluído
+LIST ITEM: TikTok | Não incluído | Sob demanda
+LIST ITEM: Google Meu Negócio | Não incluído | Sob demanda
+
+LABEL: IA e automação
+LIST ITEM: Agente de IA privado (WhatsApp, Instagram, Facebook e Webchat) | 1 agente | Agentes adicionais por canal
+LIST ITEM: Agente Concierge, para comentários públicos | Não incluído | Sob demanda
+LIST ITEM: Voice Agent, IA de telefonia (até 5 mil ligações mensais) | Não incluído | Sob demanda
+LIST ITEM: Organização automatizada de tickets | Incluído | Incluído
+LIST ITEM: Smart replies | Incluído | Incluído
+LIST ITEM: Agendamento de mensagens ativas no WhatsApp | Incluído | Incluído
+LIST ITEM: Sumarização de tickets por IA | Incluído | Incluído
+
+LABEL: Dados e CRM
+LIST ITEM: Timeline inteligente da jornada do consumidor | Incluído | Incluído
+LIST ITEM: Histórico unificado por cliente | Incluído | Incluído
+LIST ITEM: CRM customizável | Incluído | Incluído
+LIST ITEM: Integração com sistemas de terceiros | Não incluído | Sob demanda
+
+LABEL: Gestão e operação
+LIST ITEM: Acessos de operador humano | 5 incluídos | Sob demanda
+LIST ITEM: Métricas e dashboards com análise da IA | Incluído | Incluído
+LIST ITEM: Ambiente de comunicação interna | Incluído | Incluído
+
+LABEL: Serviços gerenciados, com a Elife
+LIST ITEM: Criação e gestão dos Agentes de IA | Não incluído | Sob demanda
+LIST ITEM: Gestão da qualidade do atendimento com IA | Não incluído | Sob demanda
+LIST ITEM: Equipe humana especializada de atendimento | Não incluído | Sob demanda
+LIST ITEM: Social listening, monitoramento de mercado e relatórios executivos | Não incluído | Sob demanda
+
+LABEL: Suporte
+LIST ITEM: Customer Success e onboarding | Incluído | Incluído
+
+LABEL: Investimento
+LIST ITEM: Valor mensal | A partir de R$ 1.290 | Sob demanda
+
+=== PROVA ===
+H2: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
+
+=== PERGUNTAS ===
+H2: Perguntas frequentes
+
+H3: O que conta como acesso de operador?
+BODY: Cada pessoa do seu time que atende dentro da plataforma usa um acesso. O Basic vem com 5, e acessos adicionais entram como incremento.
+
+H3: Qual a diferença entre Agente de IA e Agente Concierge?
+BODY: O Agente de IA atende conversa privada: WhatsApp, DM do Instagram, Facebook e webchat. O Agente Concierge responde em ambiente público, nos comentários do Instagram, Facebook, Google Meu Negócio e TikTok.
+
+H3: O Basic tem telefonia?
+BODY: Tem o canal de telefone com URA inteligente, que recebe a ligação e encaminha o chamado. A IA que conversa por voz é o Voice Agent, e ele entra no Enterprise.
+
+H3: Preciso de mais de um número de WhatsApp. Dá?
+BODY: Dá. O Basic inclui 1 número com API Oficial da Meta, e números adicionais entram sob demanda no Enterprise.
+
+H3: Posso começar no Basic e crescer depois?
+BODY: Sim. Os incrementos entram sobre a mesma plataforma e a mesma base de histórico, sem migração e sem recomeçar a operação.
+
+H3: Como funciona a precificação do Enterprise?
+BODY: Depende do que a sua operação usa: quantos canais, quantos agentes de IA, quantos operadores e quais serviços da Elife entram. O time comercial monta a proposta a partir desse desenho.
+
+=== PROPOSTA ===
+H2: Monte o seu plano com um especialista
+BODY: Preencha o formulário. A gente olha os seus canais, o volume de tickets e o tamanho do time, e volta com o plano adequado.
+LIST ITEM: Diagnóstico dos canais que você atende hoje
+LIST ITEM: Simulação de acessos, agentes de IA e números
+LIST ITEM: Proposta separando o que é Basic e o que entra como incremento
+CTA: Quero a proposta
+
+=== FOOTER ===
+FOOTER: A Cxpress é uma plataforma construída com foco em integração total dos canais e sistemas, permitindo que diferentes produtos e tecnologias operem de forma unificada dentro do mesmo ambiente.
+FOOTER: Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 -Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.
+FOOTER: © 2026 Cxpress®. Todos os direitos reservados
+
+# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0; filler: 0).
+# Fonte da copy: planilha de proposta comercial Cxpress (pacote de entregas + incrementos estrategicos) e lista de recursos adicionais/servicos Elife enviada pelo Victor no chat, 2026-08-27.
+# Decisao de preco: "A partir de R$ 1.290 por mes" com 5 acessos, conforme a planilha. A fala mencionava tambem "a partir de 990 com 3 licencas"; a instrucao final ("para o plano basic considerar primeira imagem") prevaleceu.
