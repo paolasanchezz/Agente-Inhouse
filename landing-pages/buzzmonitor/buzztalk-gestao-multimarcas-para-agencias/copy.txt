@@ -1,0 +1,64 @@
+=== HERO ===
+H1: Gestão Multimarcas para Agências: Cases e estratégias de alto desempenho nas redes sociais
+BODY: Gerenciar múltiplas marcas nas redes sociais exige estratégia, agilidade e eficiência operacional. Com diferentes demandas e clientes ao mesmo tempo, as agências precisam encontrar formas de ganhar escala sem perder qualidade e performance.
+BODY: No próximo Buzz Talks, vamos conversar sobre "Gestão Multimarcas para Agências: Cases e estratégias de alto desempenho nas redes sociais" e mostrar como agências estão utilizando dados, monitoramento e processos mais estratégicos para otimizar operações e gerar melhores resultados.
+LABEL: 01/10/2026 · 9h às 12h · São Paulo
+CTA: [FORMULÁRIO DE INSCRIÇÃO — campos: nome, e-mail, empresa, cargo, WhatsApp]
+# [SUGESTAO GUIDELINES §3] H1 abre pela oferta/formato do evento, não pela dor do público (ex.: dificuldade de escalar operação multimarcas sem perder qualidade). Copy já aprovada no Notion (título "Copy LP ✅") — sinalizando para decisão de quem aprova, não reescrito.
+
+=== COMO CHEGAR ===
+H3: Como chegar?
+BODY: Av. Paulista, 807, 17º Andar, Bela Vista, São Paulo, SP, 01311-100 (Espaço Paulista Promoções Eventos).
+LABEL: [CONTADOR REGRESSIVO — alvo 01/10/2026, 09h, horário de Brasília]
+LABEL: [MAPA — embed Google Maps do Espaço Paulista Promoções Eventos, fornecido pelo usuário em 2026-08-27]
+
+=== APRENDIZADOS ===
+H2: Gestão Multimarcas para Agências: Sua operação está pronta para ganhar escala com eficiência?
+BODY: Neste evento, você vai aprender:
+LIST ITEM: Como estruturar operações mais eficientes para múltiplos clientes;
+LIST ITEM: Como organizar fluxos, times e processos para ganhar agilidade nas entregas;
+LIST ITEM: Como acompanhar performance e resultados de diferentes marcas de forma estratégica;
+LIST ITEM: Como transformar dados e monitoramento em insights para otimizar a gestão e gerar melhores resultados.
+CTA: Inscreva-se agora!
+
+=== MEDIADOR ===
+H2: Mediador
+LABEL: Barbara Gomes
+LABEL: Gerente de Planejamento - Anacouto
+LABEL: [FOTO — assets/mediador-barbara-gomes.jpg, fornecida pelo usuário em 2026-08-27]
+
+=== CRONOGRAMA ===
+H2: Cronograma
+LIST ITEM: 09h: Recepção dos convidados e Welcome Coffee
+LIST ITEM: 09h30: Início do evento
+LIST ITEM: 11h: Coffee Break e Relacionamento
+LIST ITEM: 11h15: Case com convidados
+LIST ITEM: 12h: Encerramento e sorteio de brindes
+
+=== PROVA SOCIAL ===
+QUOTE: "O Buzz Talks é uma série de encontros promovidos pela Buzzmonitor, plataforma SaaS para a gestão de redes sociais e atendimento multicanal. Depois de atender mais de 1.000 clientes ao redor do mundo, resolvemos compartilhar um pouco da nossa expertise com profissionais de marketing e marcas que desejam elevar o nível de sua atuação. Será um prazer te receber em nosso bate-papo."
+BODY: Espero por você!
+LABEL: Bruno Braga
+LABEL: Diretor de Novos Negócios da Buzzmonitor
+CTA: Quero minha vaga!
+
+=== NUMEROS ===
+H2: + de 1000
+BODY: clientes ao redor do mundo usam a Buzzmonitor
+CTA: Quero minha vaga!
+# [SUGESTAO anti-IA — regras-anti-ia.md, Anti-Patterns Estruturais] Excesso de exclamação: a peça inteira soma 4 pontos de exclamação ("Inscreva-se agora!", "Quero minha vaga!" ×2, "Espero por você!") contra o limite recomendado de 2 por peça. Copy já aprovada no Notion — sinalizando, não removido.
+
+=== CONTATO ===
+H2: Ficou com alguma dúvida sobre o evento?
+BODY: Entre em contato conosco via email ou WhatsApp
+LABEL: eventos@buzzmonitor.com.br
+LABEL: (11) 5039-4782
+
+=== FOOTER ===
+FOOTER: YouTube @buzzmonitorbrasil · Instagram @buzzmonitorbr · X @buzzmonitor · LinkedIn /buzzmonitorbr · Facebook /buzzmonitorbr
+FOOTER: © Buzzmonitor 2026
+FOOTER: Política de Privacidade e uso de Cookies
+
+# Revisao anti-IA: em-dash — 0 ocorrencias (verificado). 2 sugestoes marcadas acima (H1 abre pela oferta em vez da dor; excesso de exclamação). Nenhuma frase tipica de IA, filler word ou metafora aquatica encontrada — copy é institucional, direta, sem enfeite.
+# Idioma detectado: PT-BR (sem brasileirismo a marcar — não se aplica).
+# Placeholders pendentes de conteúdo real antes de publicar ao vivo: formulário de inscrição real (mock até lp-integrar-form). Endereço confirmado em 2026-08-27 (Av. Paulista, 807, Espaço Paulista Promoções Eventos). Mediadora confirmada em 2026-08-27 (Barbara Gomes).
