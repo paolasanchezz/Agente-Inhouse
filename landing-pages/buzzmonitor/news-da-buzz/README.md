@@ -46,6 +46,8 @@
   - JS de envio replicado do site (submit via iframe oculto, sem sair da página) + mensagem de sucesso inline no estilo do nosso design (`.form-success`, fundo teal-light) em vez do popup deles.
   - Testado localmente: sem erros no console, `form.action` e os 4 campos (`FNAME`, `LNAME`, `EMAIL`, `tags`) conferidos via JS. **Não testei o envio de verdade** pra não criar um assinante fake na lista real do Mailchimp — validação foi só de estrutura/código.
 
+**Ajuste 2026-08-27:** thanks page real integrada, a pedido da Catharina, pra resolver problema de tracking de conversão no Meta Ads. O form submetia via iframe oculto e nunca navegava — sem URL de sucesso própria, o Meta não tinha o que trackear. Criada `landing-pages/buzzmonitor/news-da-buzz-obrigado/` (ver README dela) e o handler de submit (`<script>` no fim do `<body>`) agora redireciona pra `/news-da-buzz-obrigado` 700ms após o envio (tempo só pra mostrar o estado "Inscrito" no botão antes de sair da página). Não precisou de Jotform nem de nenhum provedor novo — o redirect é só JS, já que o submit inteiro já era controlado por nós. Pendência fora do repo: trigger no GTM (`GTM-WFJVK858`) pra disparar o Pixel/CAPI da Meta como conversão na nova URL.
+
 ## Estado
 
 - [x] HTML gerado
@@ -53,6 +55,7 @@
 - [x] OG image gerada (1200x630) — `assets/og-news-da-buzz.png`
 - [x] Revisão — ver `REVISAO.md` (5 ajustes aplicados; 1 crítico de contraste do CTA sinalizado como decisão de marca, não corrigido sozinho; 2 melhorias e 1 nice-to-have opcionais)
 - [x] Formulário integrado — **Form provider: Mailchimp** (2026-07-21), mesmo endpoint usado em buzzmonitor.com
+- [x] Thanks page — `news-da-buzz-obrigado` (2026-08-27), redirect via JS pós-submit
 - [ ] Publicado — rodar `/lp-publicar buzzmonitor news-da-buzz material.buzzmonitor.com`
 
 ## Assets referenciados
