@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (5ª rodada: verde WhatsApp no hero e botões em pílula)
+**Atualizado:** 2026-08-28 (6ª rodada: holofote de pontos no hero)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -169,19 +169,28 @@ Ficou mais contido que a referência enviada, que usa um círculo verde sólido.
 
 **Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 erro de JS.
 
-### Pendente de decisão sua: pontilhado interativo no fundo do H1
+### Holofote de pontos no fundo do H1 — aplicado
 
-Montei cinco técnicas rodando de verdade, com o custo de main thread de cada uma medido via Chrome DevTools Protocol, em `https://claude.ai/code/artifact/8c93e5c5-e9df-43f1-87b8-8eeebe7facfc`.
+Das cinco técnicas medidas (comparativo em `https://claude.ai/code/artifact/8c93e5c5-e9df-43f1-87b8-8eeebe7facfc`), o Victor escolheu o **Holofote CSS**, que era também a recomendação.
 
 | Técnica | JS | Mexendo | Parado |
 |---|---|---|---|
-| Holofote CSS | 0,4 KB | 14,5 ms/s | 0,0 ms/s |
+| **Holofote CSS** (escolhido) | **0,4 KB** | **14,5 ms/s** | **0,0 ms/s** |
 | Paralaxe em camadas | 0,4 KB | 23,7 ms/s | 0,0 ms/s |
 | Ímã (canvas) | 1,6 KB | 24,5 ms/s | 0,0 ms/s |
 | Constelação (canvas) | 2,2 KB | 11,5 ms/s | 7,2 ms/s |
 | Onda (canvas) | 1,6 KB | 42,2 ms/s | 33,3 ms/s |
 
-Recomendação: **Holofote CSS**. Nada aplicado na LP até você escolher.
+**Medido de novo já dentro da LP: 5,0 ms/s mexendo e 0,1 ms/s parado.** Ficou 3× mais barato que na bancada porque a camada aqui é menor e a máscara mais simples que a do demo. Para escala: o orçamento de main thread a 60 FPS é 1.000 ms/s, então o efeito usa 0,5% dele.
+
+Como foi montado:
+
+- `.hero__dots` é uma camada em `z-index:1` dentro do hero, atrás do conteúdo, com `pointer-events:none`. Confirmado por `elementFromPoint` que o CTA primário segue clicável.
+- O pontilhado é `radial-gradient` repetido a cada 22px. Não existe elemento por ponto.
+- Duas máscaras compostas: o holofote circular que segue o cursor, e um degradê horizontal que apaga a malha antes da tela do produto, para não competir com ela.
+- **O JavaScript tem 6 linhas** e só escreve duas custom properties. Não há `requestAnimationFrame`, nem loop, nem timer: entre um movimento e outro do mouse o navegador não faz nada.
+- O listener só é registrado quando `matchMedia('(pointer: fine)')` casa. Em celular ele nem chega a existir, e a malha vira estática e discreta por CSS. Verificado: a 390px o `pointer: fine` retorna `false`.
+- Sob `prefers-reduced-motion`, o holofote é substituído por um degradê fixo, sem transição.
 
 ---
 

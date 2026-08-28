@@ -228,6 +228,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position:absolute;right:-90px;top:-70px;width:640px;max-width:60vw;
     opacity:.5;pointer-events:none;user-select:none;
   }
+  /* Holofote: malha de pontos em CSS, revelada ao redor do cursor.
+     Sem loop de animacao: o ponteiro so escreve --mx/--my. */
+  .hero__dots{
+    position:absolute;z-index:1;inset:0;pointer-events:none;
+    --mx:24%; --my:46%;
+    background-image:radial-gradient(rgba(74,105,189,.55) 1.3px,transparent 1.3px);
+    background-size:22px 22px;
+    opacity:.5;transition:opacity .45s ease;
+    -webkit-mask-image:
+      radial-gradient(260px 260px at var(--mx) var(--my),#000 0%,rgba(0,0,0,.4) 46%,transparent 74%),
+      linear-gradient(90deg,#000 0%,#000 46%,transparent 68%);
+    mask-image:
+      radial-gradient(260px 260px at var(--mx) var(--my),#000 0%,rgba(0,0,0,.4) 46%,transparent 74%),
+      linear-gradient(90deg,#000 0%,#000 46%,transparent 68%);
+    -webkit-mask-composite:source-in;mask-composite:intersect;
+  }
+  .hero:hover .hero__dots{opacity:.95}
+  @media (prefers-reduced-motion:reduce){
+    .hero__dots{
+      -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 62%);
+      mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 62%);
+      opacity:.28;transition:none;
+    }
+    .hero:hover .hero__dots{opacity:.28}
+  }
+  /* Sem ponteiro fino (celular/tablet): malha estatica discreta, zero listener */
+  @media (hover:none),(pointer:coarse){
+    .hero__dots{
+      -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 66%);
+      mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 66%);
+      opacity:.3;
+    }
+  }
   .hero__grid{
     position:relative;z-index:2;
     display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);
@@ -585,6 +618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ================= HERO ================= -->
   <section class="hero">
     <img class="hero__wave" src="./assets/onda-decorativa.png" alt="" aria-hidden="true" width="540" height="490">
+    <div class="hero__dots" id="heroDots" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div class="hero-content">
         <span class="eyebrow reveal">Plataforma de automação de WhatsApp</span>
@@ -982,6 +1016,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el.style.transitionDelay = Math.min(idx % 5, 4) * 60 + 'ms';
       io.observe(el);
     });
+  }
+
+  /* Holofote do hero: so escreve --mx/--my. Sem rAF, sem loop. */
+  var hero = document.querySelector('.hero'), dots = document.getElementById('heroDots');
+  if (hero && dots && matchMedia('(pointer: fine)').matches &&
+      !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      dots.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      dots.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, {passive:true});
   }
 
   /* Big numbers: contagem animada ao entrar na tela */
