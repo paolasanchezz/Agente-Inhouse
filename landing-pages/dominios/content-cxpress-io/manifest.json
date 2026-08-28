@@ -251,6 +251,11 @@
       "source": "landing-pages/cxpress/whatsapp-agencias-pt"
     },
     {
+      "slug": "whatsapp-business",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/whatsapp-business"
+    },
+    {
       "slug": "whatsapp-business-smb",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/whatsapp-business-smb"
