@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (8ª rodada: camadas animadas sobre as telas do produto)
+**Atualizado:** 2026-08-28 (9ª rodada: desempenho no PageSpeed)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -263,6 +263,51 @@ Os dois entraram no mesmo observer das camadas novas. Depois disso o controle da
 | Rolando a página inteira | — | 5,6 ms/s |
 
 **Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
+
+---
+
+## 9ª rodada (2026-08-28) — desempenho
+
+PageSpeed desktop acusava **Desempenho 70**, com TBT 370 ms e LCP 2,2 s. A cota da API do PageSpeed estava estourada, então rodei o Lighthouse local contra a URL de produção para pegar a auditoria completa. O diagnóstico apontou coisas diferentes do que o número sugeria.
+
+### O que estava errado, por ordem de impacto
+
+**1. O H1 era o elemento do LCP e estava esperando o `reveal`.** Fases medidas: TTFB 220 ms + Load 0 ms + **Render Delay 2.103 ms**. O H1 tinha `class="reveal"`, ou seja, ficava em `opacity:0` até o `IntersectionObserver` rodar. O maior elemento da tela não podia pintar antes do JavaScript. Correção: **nada acima da dobra usa `reveal`** (eyebrow, H1, subtítulo, CTAs e o visual do hero). Reveal continua valendo abaixo da dobra, que é onde ele faz sentido.
+
+**2. A folha do Google Fonts bloqueava a renderização por 420 ms**, para 3 KB de CSS. Correção: `preload as=style` mais `media="print" onload="this.media='all'"`, com `<noscript>` de fallback. Como já usávamos `display=swap` e há pilha de fallback declarada, o texto pinta na hora e troca de fonte quando a folha chega. Render-blocking foi a zero.
+
+**3. O Jotform carregava 873 KB no load inicial** para um formulário que fica na penúltima seção — sendo **488 KB só de fontes próprias dele** (Inter em 4 pesos + Roboto). Correção: a tag do `jsform` passa a ser injetada 600 px antes da seção entrar em vista.
+
+> Isso só é seguro porque o `jsform` **não usa `document.write`**: verifiquei o script e ele se localiza por `querySelector('script[src*="jsform/{id}"]')` e insere o iframe como próximo irmão. Injetando a tag dentro do host, o iframe nasce exatamente onde nascia antes, e o `parentURL` continua sendo montado pelo próprio script. Confirmado por teste: o iframe monta dentro de `#jotHost` e a URL carrega `parentURL`, então a **atribuição de `url_conversao` no CRM segue intacta**. Mantive um `<iframe>` direto dentro de `<noscript>` para quem não tem JS.
+
+**4. Os 42 logos de cliente estavam todos `eager`.** Fui eu que fiz isso na 3ª rodada, para evitar que algum entrasse em branco enquanto o carrossel gira. Só que 8 aparecem sem rolar o carrossel. Correção: 8 `eager`, 34 `lazy`.
+
+**5. As fotos embutidas nos SVGs de tela.** O SVG do hero tinha **190 KB em 7 fotos de avatar base64, 52% do arquivo**, uma delas com 54 KB — para renderizar em círculos de ~33 px. Reencodei tudo com teto de 160 px no lado maior (cobre retina com folga), mantendo PNG onde havia transparência.
+
+| Arquivo | Antes | Depois |
+|---|---|---|
+| `tela-tickets.svg` | 366 KB | **218 KB** |
+| `tela-canais.svg` | 183 KB | **126 KB** |
+| `tela-chatbot-whatsapp.svg` | 195 KB | **137 KB** |
+| `tela-agentes.svg` | 118 KB | 114 KB |
+
+### Resultado
+
+| | Antes (produção) | Depois (local) |
+|---|---|---|
+| Desempenho | 83 | **90** |
+| FCP | 1,2 s | **0,7 s** |
+| LCP | 2,3 s | **2,0 s** |
+| TBT | 95 ms | **32 ms** |
+| Speed Index | 1,6 s | **1,0 s** |
+| Peso da página | 1.690 KB | **1.244 KB** |
+| Requisições | 81 | **23** |
+
+O antes é medição de produção e o depois é local, então os números não são estritamente comparáveis (sem CDN nem latência real aqui). A medição de produção pós-deploy está no fim desta seção.
+
+### O que sobra e não está na nossa mão
+
+**O Pixel do Facebook responde por 95 ms de bloqueio e 171 KB**, e é o maior contribuinte restante do TBT. Ele não está no HTML da LP: **quem dispara é o GTM**. Reduzir isso é decisão de tracking, não de código de página. As opções seriam atrasar o disparo do pixel dentro do GTM ou usar a API de conversões no servidor. Fica registrado para o Victor decidir com quem cuida do GTM.
 
 ---
 
