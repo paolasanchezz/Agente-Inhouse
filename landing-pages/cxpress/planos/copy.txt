@@ -86,7 +86,7 @@ LIST ITEM: Customer Success e onboarding | Incluído | Incluído
 LABEL: Investimento
 LIST ITEM: Valor mensal | A partir de R$ 1.750 | Falar com especialista
 
-BODY: Além dos itens desta lista, a plataforma traz outros recursos de atendimento, gestão e produtividade, que o time comercial mostra na demonstração.
+BODY: Além dos itens desta lista, a plataforma traz outros recursos de atendimento, gestão e produtividade, que o time comercial apresenta na demonstração.
 
 === PROVA ===
 H2: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
