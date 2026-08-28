@@ -20,7 +20,7 @@ Página construída em GreatPages (não WordPress) — imagens carregam via lazy
 5. **Prova (stats)** — 14% / 9% / 25% / 45%, com notas de rodapé NBER/McKinsey. **Sem headline própria na fonte** — não inventei uma.
 6. **Plataforma** — 5 features (uma a mais que o padrão de 4 usado nas outras LPs): 3 ilustradas com os GIFs de produto já existentes (`plataforma-canais.gif`, `plataforma-chatbot-ia.gif`, `plataforma-dashboard.gif`) e 2 em cards `feature--textonly` (a fonte não tem imagem própria pra essas duas).
 7. **Quem somos** — texto institucional padrão + badges (API oficial WhatsApp, API oficial ChatGPT, Um produto Elife).
-8. **Condições especiais / Formulário** — badges de preço, H2, corpo, preço (R$ 1.290/mês até 5 acessos), e-mail comercial, formulário Jotform.
+8. **Condições especiais / Formulário** — badges de preço, H2, corpo, preço (R$ 1.750), e-mail comercial, formulário Jotform.
 9. **FAQ** — 6 perguntas (uma a mais que o padrão de 5: inclui "Posso usar o mesmo número no WhatsApp Business e na Cxpress?", específica desta LP).
 
 Não existe seção "Fecho" (pausa dark) nesta LP — a fonte não tem, então não foi criada.
@@ -67,3 +67,14 @@ Jotform `261027639617663` — **mesmo ID usado na página fonte** (confirmado vi
 - `../../brand/cxpress/assets/plataforma/clientes-cxpress.png` (prova social)
 - `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`, `plataforma-chatbot-ia.gif`, `plataforma-dashboard.gif` (seção Plataforma, 3 das 5 features)
 - `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg`
+
+## Atualizacao de preco — 2026-08-28
+
+Novo preco minimo de plano da Cxpress: **R$ 1.750**. A chamada de preco desta LP passou a
+`Planos a partir de R$ 1.750`, **sem** mencao a quantidade de acessos — por decisao do usuario,
+o detalhamento de acessos fica restrito a LP canonica de precos (`/planos`), que segue intacta
+com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicada em bloco nas
+9 LPs BR da Cxpress que citavam preco fora da `/planos`.
+
+As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
+em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.

@@ -53,3 +53,14 @@ Design idêntico à referência [`content.cxpress.io/banimento-whatsapp`](https:
 - `../../brand/cxpress/assets/plataforma/clientes-cxpress.png` (prova social)
 - `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`, `plataforma-chatbot-ia.gif`, `plataforma-dashboard.gif` (seção Plataforma)
 - `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg`
+
+## Atualizacao de preco — 2026-08-28
+
+Novo preco minimo de plano da Cxpress: **R$ 1.750**. A chamada de preco desta LP passou a
+`Planos a partir de R$ 1.750`, **sem** mencao a quantidade de acessos — por decisao do usuario,
+o detalhamento de acessos fica restrito a LP canonica de precos (`/planos`), que segue intacta
+com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicada em bloco nas
+9 LPs BR da Cxpress que citavam preco fora da `/planos`.
+
+As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
+em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.

@@ -27,7 +27,7 @@ visivel sao identicas, verificado por diff automatizado.
 
 | # | O que | De | Para |
 |---|---|---|---|
-| 1 | Chamada de preco | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
+| 1 | ~~Chamada de preco~~ — delta encerrado em 2026-08-28: as duas LPs convergiram para `Planos a partir de R$ 1.750` | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
 | 2 | Form Jotform | `261045149477663` | `261034073026647` (ver historico do form abaixo) |
 | 3 | GTM | `GTM-T4XDWHL3` | `GTM-KN8BPFG` |
 | 4 | GA4 | (nao tinha) | `gtag.js` com ID `339689858` |
@@ -199,3 +199,14 @@ convertido para **um PNG unico com canal alpha real**, recortado no bounding box
 aparelho (medido na mascara) e re-encodado com filtro PNG adaptativo: 430×901, 429 KB.
 Contra o GIF que era o visual do hero na referencia (`plataforma-canais.gif`, 2,4 MB),
 o hero ficou cerca de 5x mais leve.
+
+## Atualizacao de preco — 2026-08-28
+
+Novo preco minimo de plano da Cxpress: **R$ 1.750**. A chamada de preco desta LP passou a
+`Planos a partir de R$ 1.750`, **sem** mencao a quantidade de acessos — por decisao do usuario,
+o detalhamento de acessos fica restrito a LP canonica de precos (`/planos`), que segue intacta
+com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicada em bloco nas
+9 LPs BR da Cxpress que citavam preco fora da `/planos`.
+
+As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
+em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.

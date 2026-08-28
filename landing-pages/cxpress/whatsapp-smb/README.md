@@ -58,7 +58,7 @@ Tudo o que muda em relação a `agentes.elife.com.br/smb`, e por quê:
    MELHOR CUSTO BENEFÍCIO / *Preços para canais WhatsApp + E-mail" marcado com
    `esconder_desktop esconder_mobile`: ele **não renderiza para ninguém** na página no ar.
    Como não é conteúdo visível, ficou de fora. O preço que aparece de fato
-   ("Planos a partir de R$ 1.290/mês para até 5 acessos") está mantido.
+   ("Planos a partir de R$ 1.750") está mantido.
 4. **Título "Fale com especialista" acima do form.** Na original ele é texto branco sobre
    card branco, ou seja, invisível. Não foi reproduzido; o Jotform já traz o próprio título.
 5. **FAQ com cor única.** Na original os 3 primeiros itens usam `#232960` e os 3 últimos
@@ -100,3 +100,14 @@ Para aplicar, basta trocar `--green:#21CC78` por um tom mais escuro **só nos te
 Os GIFs de plataforma somam ~6 MB (mesmo padrão já usado em `banimento-whatsapp-comercial`,
 que serve os mesmos arquivos). Todos abaixo da dobra estão com `loading="lazy"`.
 Se o Victor quiser reduzir, o caminho é converter para MP4 com `<video autoplay muted loop>`.
+
+## Atualizacao de preco — 2026-08-28
+
+Novo preco minimo de plano da Cxpress: **R$ 1.750**. A chamada de preco desta LP passou a
+`Planos a partir de R$ 1.750`, **sem** mencao a quantidade de acessos — por decisao do usuario,
+o detalhamento de acessos fica restrito a LP canonica de precos (`/planos`), que segue intacta
+com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicada em bloco nas
+9 LPs BR da Cxpress que citavam preco fora da `/planos`.
+
+As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
+em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.

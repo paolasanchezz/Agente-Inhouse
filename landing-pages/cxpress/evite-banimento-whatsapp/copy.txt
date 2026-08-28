@@ -13,7 +13,7 @@ BODY: [grade de logos — ../../brand/cxpress/assets/plataforma/clientes-cxpress
 H2: Agende sua demonstração gratuita
 H3: Veja a integração oficial funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
-PRICE: Planos a partir de R$ 1.750 com 5 acessos
+PRICE: Planos a partir de R$ 1.750
 REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
 FORM: [embed Jotform 261034073026647]
 
@@ -83,6 +83,8 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 # layout e textos replicados da pagina de referencia; o que muda nesta versao:
 #   1. PRICE: "Planos a partir de R$ 1.290" -> "Planos a partir de R$ 990 com 3 acessos"
 #      (2026-08-27, rodada de preco) -> "Planos a partir de R$ 1.750 com 5 acessos", acompanhando o novo preco do Basic na LP planos
+#      (2026-08-28, unificacao) -> "Planos a partir de R$ 1.750", sem mencao a acessos: a citacao
+#      de quantidade de acessos ficou restrita a LP canonica de precos (/planos), por decisao do usuario
 #   2. FORM: Jotform 261045149477663 -> 261034073026647
 #   3. GTM: GTM-T4XDWHL3 -> GTM-KN8BPFG (pedido explicito, sobrepoe brand/cxpress/tracking.json)
 #   4. GA4: tag gtag.js adicionada com o ID 339689858

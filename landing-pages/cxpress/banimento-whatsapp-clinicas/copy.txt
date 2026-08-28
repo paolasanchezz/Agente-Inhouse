@@ -13,7 +13,7 @@ BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.pn
 H2: Agende sua demonstração gratuita
 H3: Veja a integração oficial funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
-BODY: Planos a partir de R$ 1.290
+BODY: Planos a partir de R$ 1.750
 BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
 LABEL: Nome
 LABEL: E-mail de trabalho
