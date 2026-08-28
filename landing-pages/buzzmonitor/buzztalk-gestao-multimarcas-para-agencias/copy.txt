@@ -29,7 +29,7 @@ LABEL: [LOGO — Buzzmonitor, brand/buzzmonitor/assets/logos/logo-primary.svg]
 LABEL: [FOTO — assets/palestrante-tereza-rici.jpg, fornecida pelo usuário em 2026-08-28]
 H2: Speaker convidada
 LABEL: Barbara Gomes
-LABEL: Gerente de Planejamento, Ana Couto
+LABEL: Gerente de Planejamento
 LABEL: [LOGO — Ana Couto, assets/anacouto-logo.png, fornecida pelo usuário em 2026-08-28]
 LABEL: [FOTO — assets/convidada-barbara-gomes.jpg, fornecida pelo usuário em 2026-08-27]
 
