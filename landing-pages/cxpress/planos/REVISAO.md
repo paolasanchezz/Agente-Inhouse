@@ -273,3 +273,72 @@ não preço de plano, e ficaram fora do escopo.
 | SEO (planos) | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
 | Build do guarda-chuva | 54 LPs, 0 bloqueios (o único aviso é o asset ausente pré-existente da `case-ia-de-voz`) |
 | `R$ 1.290` / `R$ 990` no dist | 0 nas duas LPs |
+
+---
+
+# Passada 7 — 2026-08-28 · frases de "e muito mais" + quebra de linha equilibrada
+
+Pedido do Victor com as posições marcadas em print: duas frases novas, cada uma no ponto
+apontado, mais a regra geral de **corrigir as quebras de linha** ("tem espaço para manter as
+linhas equilibradas") valendo pras construções futuras.
+
+## Copy — o que entrou e o que mudou na frase
+
+| Onde | Texto pedido | Texto publicado | Por que mexi |
+|---|---|---|---|
+| Card Basic, entre o CTA "Ver a lista completa" e a caixa do R$ 120 (seta no print) | "E muito mais recursos para organizar, acompanhar e evoluir toda a sua operação **de atendimento**." | "E muito mais recursos para organizar, acompanhar e evoluir toda a sua operação." | "de atendimento" é redundante dentro de um card que só fala de atendimento; sem ele a frase cabe em 2 linhas equilibradas (13%) em vez de 3 |
+| Abaixo da tabela do comparativo (X no print) | "Além **dessas funcionalidades**, você conta com **diversos** outros recursos para atendimento, gestão e produtividade." | "Além dos itens desta lista, a plataforma traz outros recursos de atendimento, gestão e produtividade, que o time comercial mostra na demonstração." | "dessas funcionalidades" era vago logo depois de uma tabela (quais?) → "dos itens desta lista"; "diversos" é filler; e a frase ganhou **onde** esses recursos aparecem, senão promete sem entregar |
+
+## Altura dos cards
+
+A frase nova cresceu o Basic. Em vez de padding, entrou **1 item real** no Enterprise
+(autorizado pelo Victor, "buscando nas fontes que enviei"): **"Números adicionais de WhatsApp
+com API Oficial da Meta"** — fonte é a própria linha do comparativo (`1 número` × `Números
+adicionais`), e o item é diferenciador de verdade, não enchimento.
+
+Resultado medido em 1440: Basic 1046px, Enterprise 1046px, **delta 0**.
+
+## Quebra de linha equilibrada (regra nova — GUIDELINES §21)
+
+Bloco único no `<style>` do `<head>`: `text-wrap: balance` em bloco curto, `text-wrap: pretty`
+em parágrafo longo. Ganho medido (desequilíbrio = `1 − linha_menor / linha_maior`, desktop 1440):
+
+| Bloco | Sem | Com |
+|---|---|---|
+| `.pk-note` (a que o Victor apontou) | 66% | **6%** |
+| `.pk-hero-sub` | 38% | 6% |
+| `.pk-plans-sub` | 53% | 8% |
+| `.pk-card-desc` (Enterprise) | 53% | 2% |
+| `.pk-clients-title` | 48% | 7% |
+| `.cxp-form-title` | 33% | 9% |
+| `.pk-more-note` (frase nova) | 86% | 13% |
+| `.pk-cmp-note` (nota nova) | 27% | 7% |
+| item "Integração entre a IA da Cxpress…" | 69% | 2% |
+| `.pk-cmp-title` (mobile 375) | 73% | 18% |
+
+Duas coisas que o `balance` **não** resolveu e precisaram de decisão:
+
+1. **Célula de tabela o Chrome não balanceia** — testei wrapper `display:block`, `inline-block`
+   e `width:100%`: nenhum funciona dentro de table layout. A única célula multi-linha era
+   `Agentes adicionais por canal` ([147, 74] px = 50% de desequilíbrio); virou
+   **`Adicionais por canal`**, que cabe em 1 linha (o rótulo da linha já diz "Agente de IA
+   privado"). Agora **zero** células quebrando. O `td` fica na lista de `balance` porque no
+   mobile a tabela vira cards (`display:block`) e aí pega.
+2. **`<br>` manual briga com o balance** — `.pk-plans-title` no mobile ia pra 4 linhas com órfã
+   de 139px ("completa."). Entrou `.pk-plans-title br{ display:none }` no ≤600px, mesmo padrão
+   que o `.pk-hero-title` já usava: caiu pra 3 linhas sem órfã.
+
+`.k2x-text` (parágrafo do rodapé) ficou em 54% de propósito: é corpo longo alinhado à esquerda,
+onde reequilibrar atrapalha o ritmo de leitura. Leva `pretty`, que só mata órfã.
+
+## Auditorias
+
+| Gate | Resultado |
+|---|---|
+| Build do guarda-chuva | 54 LPs, 0 bloqueios (1 aviso pré-existente da `case-ia-de-voz`) |
+| `check_gtm_region.py` | 51 ok, 0 bloqueios |
+| em-dash | 0 |
+| SEO | description 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| `check_mobile_type.py` | só o `.skip-link` em `left:-9999px`, que é by design |
+| Overflow horizontal | 0 em 1440, 768 e 375 |
+| Erros de JS no console | nenhum |

@@ -20,6 +20,7 @@ LIST ITEM: 1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat
 LIST ITEM: 5 acessos de operador humano
 LIST ITEM: Histórico unificado, independente do canal em que o cliente falou
 CTA: Ver a lista completa
+BODY: E muito mais recursos para organizar, acompanhar e evoluir toda a sua operação.
 BODY: Acesso adicional de operador humano: R$ 120,00 por mês.
 CTA: Falar com um especialista
 
@@ -28,6 +29,7 @@ H3: Enterprise
 BODY: Tudo do Basic, mais os recursos e a equipe que a sua operação pedir. Cada item entra conforme o desenho da operação, por isso o valor é montado caso a caso.
 LABEL: Precificação sob demanda
 LIST ITEM: Tudo o que está no Basic
+LIST ITEM: Números adicionais de WhatsApp com API Oficial da Meta
 LIST ITEM: TikTok e Google Meu Negócio
 LIST ITEM: Agentes de IA privados adicionais, por canal
 LIST ITEM: Agente Concierge: a IA que responde comentários públicos no Instagram, Facebook, Google Meu Negócio e TikTok
@@ -51,7 +53,7 @@ LIST ITEM: TikTok | Não incluído | Sob demanda
 LIST ITEM: Google Meu Negócio | Não incluído | Sob demanda
 
 LABEL: IA e automação
-LIST ITEM: Agente de IA privado (WhatsApp, Instagram, Facebook e Webchat) | 1 agente | Agentes adicionais por canal
+LIST ITEM: Agente de IA privado (WhatsApp, Instagram, Facebook e Webchat) | 1 agente | Adicionais por canal
 LIST ITEM: Agente Concierge, para comentários públicos | Não incluído | Sob demanda
 LIST ITEM: Voice Agent, IA de telefonia | Não incluído | Sob demanda
 LIST ITEM: Organização automatizada de tickets | Incluído | Incluído
@@ -83,6 +85,8 @@ LIST ITEM: Customer Success e onboarding | Incluído | Incluído
 
 LABEL: Investimento
 LIST ITEM: Valor mensal | A partir de R$ 1.750 | Falar com especialista
+
+BODY: Além dos itens desta lista, a plataforma traz outros recursos de atendimento, gestão e produtividade, que o time comercial mostra na demonstração.
 
 === PROVA ===
 H2: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
@@ -123,4 +127,11 @@ FOOTER: © 2026 Cxpress®. Todos os direitos reservados
 
 # Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0; filler: 0).
 # Fonte da copy: planilha de proposta comercial Cxpress (pacote de entregas + incrementos estrategicos) e lista de recursos adicionais/servicos Elife enviada pelo Victor no chat, 2026-08-27.
+# Frases "e muito mais" (card Basic) e nota sob a tabela: pedidas pelo Victor em 2026-08-28, com as
+#   posicoes marcadas em print. Texto original ("E muito mais recursos para organizar, acompanhar e
+#   evoluir toda a sua operacao de atendimento." / "Alem dessas funcionalidades, voce conta com diversos
+#   outros recursos para atendimento, gestao e produtividade.") foi enxugado: caiu o "de atendimento"
+#   redundante na 1a e o "diversos" vago na 2a, que ganhou onde os recursos aparecem (a demonstracao).
+# Item "Numeros adicionais de WhatsApp com API Oficial da Meta" entrou no card Enterprise pra reequilibrar
+#   a altura dos dois cards (fonte: a propria linha do comparativo, "1 numero" x "Numeros adicionais").
 # Decisao de preco: "A partir de R$ 1.750 por mes" com 5 acessos, definido pelo Victor em 2026-08-27. Historico: a LP nasceu com R$ 1.290 (valor da planilha de proposta); antes disso a fala mencionava "a partir de 990 com 3 licencas".
