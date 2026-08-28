@@ -21,11 +21,17 @@ LIST ITEM: Como acompanhar performance e resultados de diferentes marcas de form
 LIST ITEM: Como transformar dados e monitoramento em insights para otimizar a gestão e gerar melhores resultados.
 CTA: Inscreva-se agora!
 
-=== MEDIADOR ===
-H2: Mediador
+=== PALESTRANTES ===
+H2: Palestrante
+LABEL: Tereza Rici
+LABEL: Senior Account Executive
+LABEL: [LOGO — Buzzmonitor, brand/buzzmonitor/assets/logos/logo-primary.svg]
+LABEL: [FOTO — assets/palestrante-tereza-rici.jpg, fornecida pelo usuário em 2026-08-28]
+H2: Speaker convidada
 LABEL: Barbara Gomes
-LABEL: Gerente de Planejamento - Anacouto
-LABEL: [FOTO — assets/mediador-barbara-gomes.jpg, fornecida pelo usuário em 2026-08-27]
+LABEL: Gerente de Planejamento, Ana Couto
+LABEL: [LOGO — Ana Couto, assets/anacouto-logo.png, fornecida pelo usuário em 2026-08-28]
+LABEL: [FOTO — assets/convidada-barbara-gomes.jpg, fornecida pelo usuário em 2026-08-27]
 
 === CRONOGRAMA ===
 H2: Cronograma

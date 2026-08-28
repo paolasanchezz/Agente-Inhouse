@@ -18,6 +18,16 @@
 - [x] `landing-pages/dominios/content-buzzmonitor-com/vercel.json` — adicionado `https://www.google.com` ao `frame-src` do CSP (patch cirúrgico, só essa entrada) para o embed do Maps não ficar bloqueado no live. Como é um arquivo mecânico do guarda-chuva (afeta todas as LPs do domínio), o PR provavelmente cai em `precisa-revisao-victor` em vez de auto-merge (CONTEXT.md §2.6) — atenção ao abrir o PR.
 - [x] Mediadora confirmada pelo usuário (Barbara Gomes) — placeholder circular trocado pela foto real (`assets/mediador-barbara-gomes.jpg`, 1037×1600, fornecida em 2026-08-27). `alt` da imagem = "Barbara Gomes". CSS morta do placeholder (`.avatar-placeholder`) removida.
 
+## Atualização pós-publicação (2026-08-28) — seção de palestrantes expandida
+
+LP já estava no ar; alteração feita direto no `index.html` (não via `lp-gerar`, para preservar as customizações visuais já aprovadas — vidro fosco, ruas animadas, etc.) e depois auditada manualmente.
+
+- [x] Seção "Mediador" (1 pessoa) virou "Palestrantes" (2 pessoas, grid 2 colunas): **Tereza Rici** — Senior Account Executive (Buzzmonitor), com o logo da Buzzmonitor pequeno abaixo do cargo — e **Barbara Gomes**, reclassificada de "Mediador" para "Speaker convidada" — Gerente de Planejamento, Ana Couto, com o logo da Ana Couto abaixo do cargo.
+- [x] **Correção de grafia:** o pedido original dizia "Anacouto" (sem espaço); o logo fornecido pelo usuário mostra "ANA COUTO" (duas palavras) — corrigido para "Ana Couto" em `copy.txt` e no HTML, respaldado pelo próprio asset visual.
+- [x] Assets renomeados para kebab-case: `Tereza Rici.jpeg` → `palestrante-tereza-rici.jpg`; `mediador-barbara-gomes.jpg` → `convidada-barbara-gomes.jpg` (papel mudou); `Anacoutologo.png` → `anacouto-logo.png`.
+- [x] Header: logo da Buzzmonitor removida a pedido do usuário — sobra só o logo Buzz Talks (o link continua indo para buzzmonitor.com, GUIDELINES §17, só a marca visual saiu).
+- Validado: em-dash 0, JSON-LD válido, HTML balanceado (parser), nenhuma referência solta aos nomes de arquivo antigos.
+
 ## Melhorias opcionais (2)
 
 - [ ] Grid do contador regressivo fica apertado em telas muito pequenas (<350px) — considerar layout 2×2 nesse breakpoint.
