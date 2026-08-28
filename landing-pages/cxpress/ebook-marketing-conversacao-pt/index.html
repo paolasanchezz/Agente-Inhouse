@@ -1004,31 +1004,12 @@
       </div>
     </section>
 
-    <!-- ============ FORMULARIO (mock, aguarda integracao) ============ -->
+    <!-- ============ FORMULARIO (Jotform integrado) ============ -->
     <section class="form-section" id="formulario-section" aria-label="Formulário de descarregamento">
       <div class="container">
         <div class="form-wrap">
-          <div class="form-card reveal">
-            <form class="form" id="formulario" action="#" method="post" onsubmit="event.preventDefault()" novalidate>
-              <div class="field">
-                <label for="nome">Nome completo</label>
-                <input id="nome" name="nome" type="text" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="email">Email profissional</label>
-                <input id="email" name="email" type="email" autocomplete="email" required>
-              </div>
-              <div class="field">
-                <label for="empresa">Empresa</label>
-                <input id="empresa" name="empresa" type="text" autocomplete="organization" required>
-              </div>
-              <div class="field">
-                <label for="telefone">Telefone (opcional)</label>
-                <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel">
-              </div>
-              <button type="submit" class="btn btn-primary form-submit">Descarregar ebook <span class="arrow" aria-hidden="true">&rarr;</span></button>
-              <p class="form-disclaimer">Ao registar-se, aceita receber comunica&ccedil;&otilde;es da Cxpress sobre produtos e conte&uacute;dos relacionados. Pode cancelar a subscri&ccedil;&atilde;o em qualquer momento.</p>
-            </form>
+          <div class="jotform-embed reveal" id="formulario">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261826255094865"></script>
           </div>
         </div>
       </div>
