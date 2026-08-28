@@ -7,8 +7,8 @@
 
 ## Estrutura
 
-1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo + palco da tela do produto (elevada, com halo, anel inclinado e selos de canal flutuantes)
-2. Prova rápida — 2 métricas com contagem animada (85% de redução de SLA · +220% de interações) + carrossel infinito de 42 logos de clientes
+1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo lado a lado (sólido + outline) + palco da tela do produto (elevada, com halo verde, anel inclinado e selos de canal flutuantes) + holofote de pontos seguindo o cursor
+2. Prova rápida — rótulo curto, 2 métricas com contagem animada (85% de redução de SLA · +220% de interações) + carrossel infinito de 42 logos de clientes
 3. Dores — lista vertical com X vermelhos, 5 itens (GUIDELINES §8)
 4. Plataforma — 5 funcionalidades alternando lado, cada uma com a tela real correspondente
 5. Integrações — 7 chips (HubSpot, Buzzmonitor, RD Station Marketing, Pipedrive, TOTVS, ActiveCampaign, Jira)
@@ -55,7 +55,6 @@ Se um dia esta LP precisar de um GA4 próprio fora do GTM, o padrão está na `e
 - `telas/tela-principal.svg` — feature 04 (cadastro unificado)
 - `telas/tela-dashboard.svg` — feature 05 (dashboards)
 - `clientes/cliente-01..42.png` — 42 logos de clientes, um por arquivo, para o carrossel
-- `onda-decorativa.png` — ornamento do hero (da home atual)
 - `elife-logo-badge.png` — badge "elifegroup"
 - `og-whatsapp-business.png` + `og-template.html` + `render_og.py`
 

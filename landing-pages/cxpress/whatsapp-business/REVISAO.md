@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (6ª rodada: holofote de pontos no hero)
+**Atualizado:** 2026-08-28 (7ª rodada: hero enxuto e espaçamento entre seções)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -191,6 +191,28 @@ Como foi montado:
 - **O JavaScript tem 6 linhas** e só escreve duas custom properties. Não há `requestAnimationFrame`, nem loop, nem timer: entre um movimento e outro do mouse o navegador não faz nada.
 - O listener só é registrado quando `matchMedia('(pointer: fine)')` casa. Em celular ele nem chega a existir, e a malha vira estática e discreta por CSS. Verificado: a 390px o `pointer: fine` retorna `false`.
 - Sob `prefers-reduced-motion`, o holofote é substituído por um degradê fixo, sem transição.
+
+---
+
+## 7ª rodada (2026-08-28) — hero enxuto e seções mais próximas
+
+| Pedido | O que foi feito |
+|---|---|
+| CTA outline ao lado do principal | O botão de WhatsApp saiu do bloco próprio embaixo e virou pílula outline ao lado do CTA primário, com borda e texto em navy (11,3:1) |
+| Rótulo "Conversar pelo WhatsApp" | Substitui as 10 palavras anteriores. Aplicado também no CTA final, para não haver dois nomes para a mesma ação |
+| Título de clientes fino e curto | "Clientes que confiam na Cxpress", em fonte de corpo peso 400 a ~20px em vez de display 700 a 34px |
+| Subir o bloco de clientes | Topo da seção de 96px para 56px, e o carrossel de 52px para 34px abaixo do título |
+| Excluir a imagem das ondas | Removida do HTML, com CSS e o arquivo `onda-decorativa.png` |
+| Excluir "Agiliza seu atendimento…" | Removida, junto do CSS de `.hero-note` |
+| Aproximar as seções | `--pad-sec` de 140/96/84px para 104/80/64px, mais os espaçamentos internos dos blocos longos |
+
+**A página encolheu de 9.002px para 8.007px**, cerca de 1.000px a menos de rolagem sem perder nenhum conteúdo.
+
+Um detalhe que precisou de medição: os dois CTAs somavam 568px numa coluna de 550px, então empilhavam em vez de ficar lado a lado. Alarguei a coluna de texto do hero (1,06fr → 1,16fr), enxuguei o padding horizontal dos botões e travei `flex-wrap:nowrap` acima de 1000px, para que ficarem lado a lado seja contrato e não sorte. No mobile eles voltam a empilhar em largura cheia, como antes.
+
+**Limpeza que veio junto:** com o rótulo curto, o JS que trocava o texto do botão por "WhatsApp" no mobile deixou de existir, e o CSS de `.hero-note`, `.hero__wave` e `.btn-wa-long/short` saiu inteiro.
+
+**Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
 
 ---
 

@@ -3,8 +3,7 @@ LABEL: Plataforma de automação de WhatsApp
 H1: Centralize seus canais de atendimento e automatize o primeiro contato com IA sem perder histórico, SLA ou controle da operação
 SUB: Seu Atendimento no WhatsApp turbinado com a automação de conversas
 CTA: Fale com especialista
-CTA-SECUNDARIO: Fale com um de nossos consultores no WhatsApp agora mesmo!
-BODY: Agiliza seu atendimento com a Cxpress Plataforma para gestão
+CTA-SECUNDARIO: Conversar pelo WhatsApp
 # [DECISAO 2026-08-28] Victor escolheu a variante B do REVISAO.md: headline que abre pelo
 #   ganho operacional (exemplo do proprio guia), no lugar do H1 do briefing que abria pela
 #   categoria do produto. O H1 antigo ("Plataforma de Automacao de WhatsApp para atendimento
@@ -13,10 +12,18 @@ BODY: Agiliza seu atendimento com a Cxpress Plataforma para gestão
 #   porque a variante B ja abre com "Centralize seus canais... e automatize" (ritmo sintatico
 #   repetitivo, regras-anti-ia.md). Reposicionada como SUB da secao PLATAFORMA, sem perder a
 #   linha do briefing. Segue tambem na OG image.
-# [NOTA DE DESIGN] Visual do hero: tela real do produto (assets/telas/tela-tickets.svg), sobre fundo claro com gradiente sutil da paleta Cxpress. Dupla rota de conversao do guia (§4): CTA primario alta intencao + CTA secundario WhatsApp baixa friccao.
+# [NOTA DE DESIGN] Visual do hero: tela real do produto (assets/telas/tela-tickets.svg), sobre fundo claro com gradiente sutil da paleta Cxpress. Dupla rota de conversao do guia (§4): CTA primario alta intencao + CTA secundario WhatsApp baixa friccao, agora lado a lado.
+# [DECISAO 2026-08-28, 7a rodada] Tres mudancas de copy pedidas pelo Victor:
+#   a) CTA secundario encurtado de "Fale com um de nossos consultores no WhatsApp agora mesmo!"
+#      (10 palavras, ocupava 2 linhas num bloco proprio) para "Conversar pelo WhatsApp". Resolve
+#      a melhoria opcional que estava aberta desde a 1a revisao. Mesmo rotulo no CTA final, pra
+#      nao existirem dois nomes para a mesma acao na pagina.
+#   b) Linha "Agiliza seu atendimento com a Cxpress Plataforma para gestao" REMOVIDA do hero.
+#   c) H2 de clientes encurtado de "...para otimizar seu atendimento" para "Clientes que confiam
+#      na Cxpress", e rebaixado a rotulo (fonte de corpo, peso 400, ~20px) em vez de titulo.
 
 === CLIENTES (prova rápida) ===
-H2: Clientes que confiam na Cxpress para otimizar seu atendimento
+H2: Clientes que confiam na Cxpress
 STAT: 85% de redução de SLA
 STAT: +220% de interações nas redes sociais
 BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.png) — inclui MONDIAL e CAPPTA]
@@ -96,7 +103,7 @@ LABEL: elifegroup
 === CTA FINAL / FORM ===
 H2: Entre em contato conosco!
 CTA: Fale com especialista
-CTA-SECUNDARIO: Fale com um de nossos consultores no WhatsApp agora mesmo!
+CTA-SECUNDARIO: Conversar pelo WhatsApp
 LABEL: Nome
 LABEL: E-mail corporativo
 LABEL: WhatsApp

@@ -124,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --font-display:'Open Sans',Helvetica,Arial,sans-serif;
     --font-body:'Source Sans 3',Helvetica,Arial,sans-serif;
     --maxw:1180px;
-    --pad-sec:140px;
+    --pad-sec:104px;
   }
 
   *,*::before,*::after{box-sizing:border-box}
@@ -145,7 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Quebra de linha equilibrada (GUIDELINES §21) ---- */
   h1,h2,h3,h4,
-  .eyebrow,.hero-sub,.hero-note,.clients-title,.sec-lead,
+  .eyebrow,.hero-sub,.clients-title,.sec-lead,
   .feat-title,.feat-index,.qs-badge,.stat__label,
   .pain,.integra-note,.faq-item summary h3,.cta-note,.foot-note{ text-wrap:balance; }
   .hero-body,.feat-body,.qs-text,.faq-body p,.footer p{ text-wrap:pretty; }
@@ -186,16 +186,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
     font-family:var(--font-display);font-weight:700;font-size:17px;
-    padding:16px 30px;border-radius:var(--radius-btn);
+    padding:16px 27px;border-radius:var(--radius-btn);
     text-decoration:none;border:2px solid transparent;cursor:pointer;
     transition:transform .18s ease,background .18s ease,box-shadow .18s ease,border-color .18s ease;
   }
   .btn--primary{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(74,105,189,.28)}
   .btn--primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 14px 30px rgba(35,41,96,.3)}
-  .btn--wa{background:transparent;color:var(--primary-dark);border-color:var(--neutral-300);font-size:16px;padding:15px 24px}
-  .btn--wa:hover{border-color:var(--success);color:var(--success-text);transform:translateY(-2px)}
+  .btn--wa{background:transparent;color:var(--primary-dark);border-color:var(--primary-dark);font-size:17px;padding:16px 25px}
+  .btn--wa:hover{border-color:var(--success-text);color:var(--success-text);background:rgba(37,211,102,.08);transform:translateY(-2px)}
   .btn--wa svg{width:21px;height:21px;flex-shrink:0;fill:var(--success)}
-  .btn--wa .btn-wa-long{display:inline}
   .btn--light{background:#fff;color:var(--primary-dark)}
   .btn--light:hover{background:var(--primary-lighter);transform:translateY(-2px)}
 
@@ -222,11 +221,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero{
     position:relative;overflow:hidden;
     background:linear-gradient(175deg,#FFFFFF 0%,#EFF3FF 46%,#DAE3FB 100%);
-    padding:104px 0 128px;
-  }
-  .hero__wave{
-    position:absolute;right:-90px;top:-70px;width:640px;max-width:60vw;
-    opacity:.5;pointer-events:none;user-select:none;
+    padding:92px 0 96px;
   }
   /* Holofote: malha de pontos em CSS, revelada ao redor do cursor.
      Sem loop de animacao: o ponteiro so escreve --mx/--my. */
@@ -263,8 +258,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero__grid{
     position:relative;z-index:2;
-    display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);
-    gap:48px;align-items:start;
+    display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,1fr);
+    gap:44px;align-items:start;
   }
   .hero h1{
     font-size:clamp(31px,3.15vw,43px);font-weight:800;
@@ -277,14 +272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero-body{font-size:clamp(17px,1.35vw,19px);color:var(--neutral-700);margin-top:20px;max-width:44ch}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
-  .hero-note{
-    display:flex;align-items:center;gap:10px;margin-top:26px;
-    font-size:15px;color:var(--neutral-700);font-weight:500;
-  }
-  .hero-note::before{
-    content:"";width:8px;height:8px;border-radius:50%;
-    background:var(--accent);flex-shrink:0;
-  }
+  @media (min-width:1001px){ .hero-actions{flex-wrap:nowrap} }
 
   /* ---- Moldura de tela do produto ---- */
   .frame{
@@ -342,13 +330,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* ---- Clientes ---- */
-  .clients{background:var(--white);padding:96px 0}
+  .clients{background:var(--white);padding:56px 0 84px}
   .clients-title{
-    text-align:center;font-size:clamp(26px,2.5vw,34px);font-weight:700;
-    max-width:24ch;margin:0 auto;
+    text-align:center;font-family:var(--font-body);
+    font-size:clamp(18px,1.6vw,21px);font-weight:400;
+    color:var(--neutral-700);letter-spacing:.01em;
+    max-width:34ch;margin:0 auto;
   }
   .clients-marquee{
-    margin-top:52px;overflow:hidden;
+    margin-top:34px;overflow:hidden;
     -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
     mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
   }
@@ -366,7 +356,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Prova rapida: metricas ---- */
   .stats{
-    margin-top:48px;display:flex;flex-wrap:wrap;justify-content:center;
+    margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;
     gap:22px;
   }
   .stat{
@@ -385,7 +375,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .pains{background:var(--neutral-100)}
   .pains__inner{max-width:var(--maxw)}
   .pains h2{font-size:clamp(30px,3.3vw,44px);font-weight:800;letter-spacing:-.015em;max-width:19ch}
-  .pain-list{list-style:none;margin:54px 0 0;padding:0;display:flex;flex-direction:column;max-width:900px}
+  .pain-list{list-style:none;margin:40px 0 0;padding:0;display:flex;flex-direction:column;max-width:900px}
   .pain{
     display:flex;align-items:flex-start;gap:18px;
     padding:22px 0;border-bottom:1px solid var(--neutral-300);
@@ -403,7 +393,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .integra__inner{max-width:900px;margin:0 auto;text-align:center}
   .integra h2{font-size:clamp(30px,3.3vw,44px);font-weight:800;letter-spacing:-.015em;max-width:20ch;margin:0 auto}
   .integra-list{
-    list-style:none;margin:50px 0 0;padding:0;
+    list-style:none;margin:38px 0 0;padding:0;
     display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
   }
   .integra-chip{
@@ -420,7 +410,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .platform{background:var(--white);overflow-x:clip}
   .sec-head{max-width:640px}
   .sec-head h2{font-size:clamp(30px,3.3vw,44px);font-weight:800;letter-spacing:-.015em;max-width:17ch}
-  .feat-list{margin-top:96px;display:flex;flex-direction:column;gap:110px}
+  .feat-list{margin-top:68px;display:flex;flex-direction:column;gap:84px}
   .feat{
     display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
     gap:66px;align-items:center;
@@ -459,7 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .about .eyebrow{background:rgba(215,226,255,.16);color:#D7E2FF}
   .qs-text{font-size:clamp(17px,1.35vw,19px);color:#D5DBF2}
   .qs-text + .qs-text{margin-top:22px}
-  .qs-badges{display:flex;flex-wrap:wrap;gap:38px;align-items:center;margin-top:46px;padding-top:38px;border-top:1px solid rgba(215,226,255,.18)}
+  .qs-badges{display:flex;flex-wrap:wrap;gap:38px;align-items:center;margin-top:36px;padding-top:30px;border-top:1px solid rgba(215,226,255,.18)}
   .qs-badge{
     display:flex;align-items:center;gap:12px;
     font-family:var(--font-display);font-weight:700;font-size:14px;
@@ -508,7 +498,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .faq{background:var(--neutral-100)}
   .faq__inner{max-width:880px;margin:0 auto}
   .faq h2{font-size:clamp(30px,3.3vw,44px);font-weight:800;letter-spacing:-.015em;text-align:center}
-  .faq-list{margin-top:56px;border-top:1px solid var(--neutral-300)}
+  .faq-list{margin-top:42px;border-top:1px solid var(--neutral-300)}
   .faq-item{border-bottom:1px solid var(--neutral-300)}
   .faq-item summary{
     list-style:none;cursor:pointer;
@@ -555,22 +545,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Responsivo ---- */
   @media (max-width:1000px){
-    :root{--pad-sec:96px}
+    :root{--pad-sec:80px}
     .hero__grid,.feat,.about__grid,.cta__grid{grid-template-columns:1fr;gap:46px}
     .feat:nth-child(even) .feat-text,.feat:nth-child(even) .feat-visual{order:0}
-    .feat-list{gap:76px;margin-top:66px}
+    .feat-list{gap:60px;margin-top:52px}
     .feat-visual::before{inset:-7% 0 -9% 0;border-radius:22px}
-    .hero{padding:76px 0 92px}
+    .hero{padding:68px 0 76px}
     .hero-visual{margin-top:8px;margin-right:0}
     .hero-visual::after{display:none}
     .hero h1,.hero-sub,.hero-body,.sec-head{max-width:none}
-    .hero__wave{width:420px;opacity:.35;right:-120px}
   }
   @media (max-width:640px){
-    :root{--pad-sec:84px}
+    :root{--pad-sec:64px}
     body{font-size:17px}
     .wrap,.navbar__inner,.footer__inner{padding-left:22px;padding-right:22px}
-    .hero{padding:60px 0 76px}
+    .hero{padding:56px 0 64px}
     .hero-visual{margin-top:4px}
     .feat-visual::before{inset:-6% -4% -8% -4%;border-radius:20px}
     .hero__chip{width:44px;height:44px}
@@ -579,10 +568,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__chip--ig{right:-8px;width:40px;height:40px}
     .hero__chip--mail{left:-6px;width:40px;height:40px}
     .hero-actions .btn{width:100%}
-    .btn--wa .btn-wa-long{display:none}
     .qs-badges{gap:26px}
     .faq-item summary{padding:22px 2px}
-    .clients-title{font-size:26px}
+    .clients-title{font-size:18px}
     .stats{gap:14px}
     .stat{flex:1 1 100%;padding:24px 20px}
     .integra-chip{font-size:16px;padding:11px 20px}
@@ -617,7 +605,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <img class="hero__wave" src="./assets/onda-decorativa.png" alt="" aria-hidden="true" width="540" height="490">
     <div class="hero__dots" id="heroDots" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div class="hero-content">
@@ -628,11 +615,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#contato" class="btn btn--primary">Fale com especialista</a>
           <a href="https://wa.me/5511993464966" class="btn btn--wa" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span class="btn-wa-long">Fale com um de nossos consultores no WhatsApp agora mesmo!</span>
-            <span class="btn-wa-short" hidden>WhatsApp</span>
+            Conversar pelo WhatsApp
           </a>
         </div>
-        <p class="hero-note reveal">Agiliza seu atendimento com a Cxpress Plataforma para gestão</p>
       </div>
       <div class="hero-visual reveal">
         <span class="hero__chip hero__chip--wa" aria-hidden="true">
@@ -659,7 +644,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ================= CLIENTES ================= -->
   <section class="clients">
     <div class="wrap">
-      <h2 class="clients-title reveal">Clientes que confiam na Cxpress para otimizar seu atendimento</h2>
+      <h2 class="clients-title reveal">Clientes que confiam na Cxpress</h2>
       <div class="stats reveal">
         <div class="stat">
           <p class="stat__num" data-count-to="85" data-suffix="%">85%</p>
@@ -929,8 +914,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="cta-side-actions">
           <a href="https://wa.me/5511993464966" class="btn btn--wa" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span class="btn-wa-long">Fale com um de nossos consultores no WhatsApp agora mesmo!</span>
-            <span class="btn-wa-short" hidden>WhatsApp</span>
+            Conversar pelo WhatsApp
           </a>
           <a href="mailto:comercial@gocxpress.com.br" class="cta-mail">comercial@gocxpress.com.br</a>
         </div>
@@ -1060,14 +1044,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* Sem IO, com reduced-motion, ou se o observer nunca disparar: o valor final ja esta
      escrito no HTML. O zero so aparece dentro do runCount, no instante em que a animacao
      comeca de fato. Nunca ha estado "travado no 0". */
-
-  /* CTA WhatsApp: rotulo curto no mobile */
-  function syncWaLabel(){
-    var narrow = window.matchMedia('(max-width:640px)').matches;
-    document.querySelectorAll('.btn-wa-short').forEach(function(s){ s.hidden = !narrow; });
-  }
-  syncWaLabel();
-  window.addEventListener('resize', syncWaLabel);
 
 })();
 </script>
