@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (2ª rodada, após as decisões das 5 lacunas)
+**Atualizado:** 2026-08-28 (3ª rodada: destaque do hero, carrossel de clientes, big numbers animados)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -57,6 +57,47 @@ Registradas aqui por transparência (foram feitas antes deste relatório fechar,
 | Tipografia mobile (§20) | `check_mobile_type.py` | H1=31 · corpo=17 · menor fonte=14 — pisos atendidos (H1 com MAX 43 cai na faixa 36-43, piso 28) |
 | Overflow horizontal | `scrollWidth` a 390px | **390 = 390** (sem overflow). Os 3 itens que o script lista são conhecidos e intencionais: skip-link fora da tela por design, `.hero__wave` recortada por `overflow:hidden`, faixa de logos dentro de `overflow-x:auto` |
 | Formulário (pós-integração) | Playwright | Embed do Jotform carrega · iframe 575×796 no desktop e 346×947 a 390px · `scrollWidth` 390 = 390 (sem overflow) · acordeão do FAQ abre · **0 erros de JS** |
+
+---
+
+## 3ª rodada (2026-08-28) — pedidos do Victor
+
+### 1. Tela do sistema mais acima, com elementos de destaque
+
+O `.hero__grid` passou de `align-items:center` para `start`, e o `.hero-visual` ganhou `margin-top:-26px` e `margin-right:-70px`. A tela agora começa **acima da linha do H1** e sangra em direção à borda do viewport (contida pelo `overflow:hidden` do hero, então não gera scroll horizontal: `scrollWidth` = viewport em 390, 768, 1024 e 1440).
+
+Quatro elementos de destaque, todos decorativos:
+
+| Elemento | O que é |
+|---|---|
+| `.hero-visual::before` | Halo radial azul atrás da tela, com `blur(6px)` |
+| `.hero-visual::after` | Anel de contorno inclinado 2,6°, contrapondo o tilt de -0,7° da moldura |
+| Sombra da moldura | Reforçada para `0 40px 80px -26px` |
+| `.hero__chip` × 3 | Selos circulares brancos com ícone de WhatsApp, Instagram e e-mail, flutuando em loop de 6 s |
+
+**Nenhum texto novo entrou.** Os selos são só ícone, `aria-hidden`, e a animação de flutuação para sob `prefers-reduced-motion`. No mobile os selos encolhem, o anel some e as margens negativas zeram.
+
+### 2. Carrossel de clientes
+
+Substitui a imagem única de grade. Segue o padrão da `buzzmonitor/monitoramento-com-ia`: dois grupos idênticos dentro de um track com `width:max-content`, `translate3d(0 → -50%)` em loop linear, máscara de fade nas duas bordas, pausa no hover e `animation:none` sob `prefers-reduced-motion`.
+
+Diferença em relação à referência: o primeiro grupo é **eager**, só o segundo é `lazy`. Como os dois apontam para os mesmos 42 arquivos, o segundo resolve do cache e nenhum logo entra em branco enquanto o track gira. Cada `<img>` carrega `width`/`height` reais para não gerar CLS.
+
+Acessibilidade: o contêiner é `role="img"` com `aria-label` nomeando os clientes; os 84 `<img>` internos ficam `alt=""` + `aria-hidden`, para o leitor de tela anunciar uma coisa só em vez de 84.
+
+**Os logos são reais, não placeholder.** Fatiei os 42 da grade que a LP já usava (detalhes e parâmetros no `README.md`), o que também derrubou o peso de 360 KB da grade para 225 KB no conjunto todo, e resolveu de quebra a ilegibilidade no mobile que estava anotada como melhoria opcional na 2ª rodada.
+
+### 3. Big numbers animados
+
+Contagem de 0 até o valor, 1,5 s, easing cubic-out, disparada por `IntersectionObserver` a 25% de visibilidade, uma vez só por número.
+
+**O zero só existe dentro da animação.** O HTML entregue já traz `85%` e `+220%` escritos; o `runCount` zera no primeiro frame e conta a partir dali. Assim, se o observer nunca disparar (sem JS, sem `IntersectionObserver`, `prefers-reduced-motion`, ou o usuário simplesmente não rolar até lá), o número correto é o que fica na tela. Não existe estado "travado no 0".
+
+Testado nos 3 cenários: sem rolar → `85%` / `+220%`; rolando → anima e termina certo; `prefers-reduced-motion` → valor final direto, e o marquee parado (`animationName: none`).
+
+### Regressão verificada
+
+`scrollWidth` = viewport em 390/768/1024/1440 · em-dash 0 (um escapou num comentário de JS e foi corrigido) · pisos de tipografia mobile mantidos (H1 31, corpo 17, mínimo 14) · SEO, GTM, JSON-LD e build do guarda-chuva intactos · 0 erro de JS · 0 imagem quebrada.
 
 ---
 

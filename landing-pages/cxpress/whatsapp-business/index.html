@@ -166,6 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     html{scroll-behavior:auto}
     .reveal{opacity:1!important;transform:none!important;transition:none!important}
     *{animation:none!important}
+    .clients-track{animation:none;transform:none}
   }
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
@@ -228,8 +229,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero__grid{
     position:relative;z-index:2;
-    display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-    gap:56px;align-items:center;
+    display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);
+    gap:48px;align-items:start;
   }
   .hero h1{
     font-size:clamp(31px,3.15vw,43px);font-weight:800;
@@ -265,7 +266,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .frame__dot:first-child{background:#E8B0A0}
   .frame__dot:nth-child(2){background:#EBD3A2}
   .frame img{display:block;width:100%;height:auto;min-height:0}
-  .hero__frame{transform:rotate(-.7deg)}
+  /* Palco do hero: tela do produto puxada pra cima, maior e destacada */
+  .hero-visual{position:relative;margin-top:-26px;margin-right:-70px}
+  .hero-visual::before{
+    content:"";position:absolute;z-index:0;
+    inset:-16% -10% -22% -12%;
+    background:radial-gradient(58% 52% at 52% 44%,rgba(74,105,189,.32) 0%,rgba(74,105,189,.13) 42%,rgba(74,105,189,0) 72%);
+    filter:blur(6px);pointer-events:none;
+  }
+  .hero-visual::after{
+    content:"";position:absolute;z-index:0;
+    left:6%;right:6%;top:4%;bottom:4%;
+    border-radius:26px;
+    border:1px solid rgba(74,105,189,.22);
+    transform:rotate(2.6deg);
+    pointer-events:none;
+  }
+  .hero__stage{position:relative;z-index:2}
+  .hero__frame{
+    transform:rotate(-.7deg);
+    box-shadow:0 40px 80px -26px rgba(35,41,96,.42),0 8px 20px rgba(35,41,96,.1);
+  }
+  /* Selos de canal flutuantes (decorativos, sem texto) */
+  .hero__chip{
+    position:absolute;z-index:3;
+    width:58px;height:58px;border-radius:50%;
+    display:grid;place-items:center;
+    background:#fff;box-shadow:0 12px 26px -8px rgba(35,41,96,.34);
+    animation:chipFloat 6s ease-in-out infinite;
+  }
+  .hero__chip svg{width:27px;height:27px}
+  .hero__chip--wa{left:-26px;top:16%;animation-delay:0s}
+  .hero__chip--ig{right:-18px;top:44%;width:52px;height:52px;animation-delay:1.4s}
+  .hero__chip--mail{left:-14px;bottom:12%;width:52px;height:52px;animation-delay:2.8s}
+  @keyframes chipFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-9px)}
+  }
 
   /* ---- Clientes ---- */
   .clients{background:var(--white);padding:96px 0}
@@ -273,8 +310,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-align:center;font-size:clamp(26px,2.5vw,34px);font-weight:700;
     max-width:24ch;margin:0 auto;
   }
-  .clients-logos{margin-top:52px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .clients-logos img{display:block;width:100%;height:auto;min-width:0}
+  .clients-marquee{
+    margin-top:52px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+  }
+  .clients-track{display:flex;width:max-content;animation:clientsMarquee 64s linear infinite}
+  .clients-group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
+  .clients-group img{
+    flex:0 0 auto;width:auto;max-width:170px;
+    height:clamp(30px,3.4vw,42px);object-fit:contain;
+    opacity:.72;filter:saturate(.9);
+    transition:opacity .25s ease,filter .25s ease;
+  }
+  .clients-group img:hover{opacity:1;filter:none}
+  @keyframes clientsMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+  .clients-marquee:hover .clients-track{animation-play-state:paused}
 
   /* ---- Prova rapida: metricas ---- */
   .stats{
@@ -438,6 +489,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .feat:nth-child(even) .feat-text,.feat:nth-child(even) .feat-visual{order:0}
     .feat-list{gap:76px;margin-top:66px}
     .hero{padding:76px 0 92px}
+    .hero-visual{margin-top:8px;margin-right:0}
+    .hero-visual::after{display:none}
     .hero h1,.hero-sub,.hero-body,.sec-head{max-width:none}
     .hero__wave{width:420px;opacity:.35;right:-120px}
   }
@@ -446,6 +499,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     body{font-size:17px}
     .wrap,.navbar__inner,.footer__inner{padding-left:22px;padding-right:22px}
     .hero{padding:60px 0 76px}
+    .hero-visual{margin-top:4px}
+    .hero__chip{width:44px;height:44px}
+    .hero__chip svg{width:21px;height:21px}
+    .hero__chip--wa{left:-12px}
+    .hero__chip--ig{right:-8px;width:40px;height:40px}
+    .hero__chip--mail{left:-6px;width:40px;height:40px}
     .hero-actions .btn{width:100%}
     .btn--wa .btn-wa-long{display:none}
     .qs-badges{gap:26px}
@@ -455,8 +514,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .stat{flex:1 1 100%;padding:24px 20px}
     .integra-chip{font-size:16px;padding:11px 20px}
     .pain{gap:14px;font-size:17px}
-    .clients-logos{margin-left:-22px;margin-right:-22px;padding:0 22px}
-    .clients-logos img{min-width:660px;width:660px}
+    .clients-marquee{margin-left:-22px;margin-right:-22px}
+    .clients-group{gap:26px;padding-inline:13px}
+    .clients-group img{height:28px;max-width:132px}
+    .clients-track{animation-duration:46s}
     .wa-float{width:52px;height:52px;right:16px;bottom:16px}
     .wa-float svg{width:27px;height:27px}
   }
@@ -500,11 +561,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="hero-note reveal">Agiliza seu atendimento com a Cxpress Plataforma para gestão</p>
       </div>
       <div class="hero-visual reveal">
+        <span class="hero__chip hero__chip--wa" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="hero__chip hero__chip--ig" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 01-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 00-2.13 1.38A5.86 5.86 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.86 5.86 0 002.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.13-1.38 5.86 5.86 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.13A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.41a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </span>
+        <span class="hero__chip hero__chip--mail" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4A69BD" stroke-width="1.9"><rect x="2.5" y="5" width="19" height="14" rx="2.4"/><path d="M3 6.5l9 6.2 9-6.2" stroke-linecap="round"/></svg>
+        </span>
+        <div class="hero__stage">
         <div class="frame hero__frame">
           <div class="frame__bar" aria-hidden="true">
             <span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span>
           </div>
           <img src="./assets/telas/tela-tickets.svg" fetchpriority="high" alt="Painel de tickets da Cxpress com fila de atendimentos do WhatsApp, e-mail e redes sociais" width="1400" height="900">
+        </div>
         </div>
       </div>
     </div>
@@ -516,16 +588,105 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="clients-title reveal">Clientes que confiam na Cxpress para otimizar seu atendimento</h2>
       <div class="stats reveal">
         <div class="stat">
-          <p class="stat__num">85%</p>
+          <p class="stat__num" data-count-to="85" data-suffix="%">85%</p>
           <p class="stat__label">de redução de SLA</p>
         </div>
         <div class="stat">
-          <p class="stat__num">+220%</p>
+          <p class="stat__num" data-count-to="220" data-prefix="+" data-suffix="%">+220%</p>
           <p class="stat__label">de interações nas redes sociais</p>
         </div>
       </div>
-      <div class="clients-logos reveal">
-        <img src="../../brand/cxpress/assets/plataforma/clientes-cxpress.png" alt="Logos de clientes da Cxpress, entre eles Mondial e Cappta" width="1600" height="420" loading="lazy">
+      <div class="clients-marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+        <div class="clients-track">
+          <div class="clients-group">
+          <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
+          <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
+          <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
+          <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
+          <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
+          <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
+          <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
+          <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
+          <img src="./assets/clientes/cliente-09.png" alt="" aria-hidden="true" width="127" height="84">
+          <img src="./assets/clientes/cliente-10.png" alt="" aria-hidden="true" width="437" height="84">
+          <img src="./assets/clientes/cliente-11.png" alt="" aria-hidden="true" width="195" height="84">
+          <img src="./assets/clientes/cliente-12.png" alt="" aria-hidden="true" width="84" height="84">
+          <img src="./assets/clientes/cliente-13.png" alt="" aria-hidden="true" width="325" height="84">
+          <img src="./assets/clientes/cliente-14.png" alt="" aria-hidden="true" width="89" height="84">
+          <img src="./assets/clientes/cliente-15.png" alt="" aria-hidden="true" width="66" height="84">
+          <img src="./assets/clientes/cliente-16.png" alt="" aria-hidden="true" width="162" height="84">
+          <img src="./assets/clientes/cliente-17.png" alt="" aria-hidden="true" width="162" height="84">
+          <img src="./assets/clientes/cliente-18.png" alt="" aria-hidden="true" width="272" height="84">
+          <img src="./assets/clientes/cliente-19.png" alt="" aria-hidden="true" width="192" height="84">
+          <img src="./assets/clientes/cliente-20.png" alt="" aria-hidden="true" width="147" height="84">
+          <img src="./assets/clientes/cliente-21.png" alt="" aria-hidden="true" width="168" height="84">
+          <img src="./assets/clientes/cliente-22.png" alt="" aria-hidden="true" width="96" height="84">
+          <img src="./assets/clientes/cliente-23.png" alt="" aria-hidden="true" width="179" height="84">
+          <img src="./assets/clientes/cliente-24.png" alt="" aria-hidden="true" width="357" height="84">
+          <img src="./assets/clientes/cliente-25.png" alt="" aria-hidden="true" width="83" height="84">
+          <img src="./assets/clientes/cliente-26.png" alt="" aria-hidden="true" width="260" height="84">
+          <img src="./assets/clientes/cliente-27.png" alt="" aria-hidden="true" width="205" height="84">
+          <img src="./assets/clientes/cliente-28.png" alt="" aria-hidden="true" width="134" height="84">
+          <img src="./assets/clientes/cliente-29.png" alt="" aria-hidden="true" width="218" height="84">
+          <img src="./assets/clientes/cliente-30.png" alt="" aria-hidden="true" width="450" height="84">
+          <img src="./assets/clientes/cliente-31.png" alt="" aria-hidden="true" width="234" height="84">
+          <img src="./assets/clientes/cliente-32.png" alt="" aria-hidden="true" width="206" height="84">
+          <img src="./assets/clientes/cliente-33.png" alt="" aria-hidden="true" width="321" height="84">
+          <img src="./assets/clientes/cliente-34.png" alt="" aria-hidden="true" width="152" height="84">
+          <img src="./assets/clientes/cliente-35.png" alt="" aria-hidden="true" width="84" height="84">
+          <img src="./assets/clientes/cliente-36.png" alt="" aria-hidden="true" width="103" height="84">
+          <img src="./assets/clientes/cliente-37.png" alt="" aria-hidden="true" width="89" height="84">
+          <img src="./assets/clientes/cliente-38.png" alt="" aria-hidden="true" width="131" height="84">
+          <img src="./assets/clientes/cliente-39.png" alt="" aria-hidden="true" width="358" height="84">
+          <img src="./assets/clientes/cliente-40.png" alt="" aria-hidden="true" width="289" height="84">
+          <img src="./assets/clientes/cliente-41.png" alt="" aria-hidden="true" width="250" height="84">
+          <img src="./assets/clientes/cliente-42.png" alt="" aria-hidden="true" width="328" height="84">
+          </div>
+          <div class="clients-group" aria-hidden="true">
+          <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" loading="lazy" width="199" height="84">
+          <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" loading="lazy" width="85" height="84">
+          <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" loading="lazy" width="199" height="84">
+          <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" loading="lazy" width="301" height="84">
+          <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" loading="lazy" width="324" height="84">
+          <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" loading="lazy" width="172" height="84">
+          <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" loading="lazy" width="93" height="84">
+          <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" loading="lazy" width="86" height="84">
+          <img src="./assets/clientes/cliente-09.png" alt="" aria-hidden="true" loading="lazy" width="127" height="84">
+          <img src="./assets/clientes/cliente-10.png" alt="" aria-hidden="true" loading="lazy" width="437" height="84">
+          <img src="./assets/clientes/cliente-11.png" alt="" aria-hidden="true" loading="lazy" width="195" height="84">
+          <img src="./assets/clientes/cliente-12.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
+          <img src="./assets/clientes/cliente-13.png" alt="" aria-hidden="true" loading="lazy" width="325" height="84">
+          <img src="./assets/clientes/cliente-14.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
+          <img src="./assets/clientes/cliente-15.png" alt="" aria-hidden="true" loading="lazy" width="66" height="84">
+          <img src="./assets/clientes/cliente-16.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
+          <img src="./assets/clientes/cliente-17.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
+          <img src="./assets/clientes/cliente-18.png" alt="" aria-hidden="true" loading="lazy" width="272" height="84">
+          <img src="./assets/clientes/cliente-19.png" alt="" aria-hidden="true" loading="lazy" width="192" height="84">
+          <img src="./assets/clientes/cliente-20.png" alt="" aria-hidden="true" loading="lazy" width="147" height="84">
+          <img src="./assets/clientes/cliente-21.png" alt="" aria-hidden="true" loading="lazy" width="168" height="84">
+          <img src="./assets/clientes/cliente-22.png" alt="" aria-hidden="true" loading="lazy" width="96" height="84">
+          <img src="./assets/clientes/cliente-23.png" alt="" aria-hidden="true" loading="lazy" width="179" height="84">
+          <img src="./assets/clientes/cliente-24.png" alt="" aria-hidden="true" loading="lazy" width="357" height="84">
+          <img src="./assets/clientes/cliente-25.png" alt="" aria-hidden="true" loading="lazy" width="83" height="84">
+          <img src="./assets/clientes/cliente-26.png" alt="" aria-hidden="true" loading="lazy" width="260" height="84">
+          <img src="./assets/clientes/cliente-27.png" alt="" aria-hidden="true" loading="lazy" width="205" height="84">
+          <img src="./assets/clientes/cliente-28.png" alt="" aria-hidden="true" loading="lazy" width="134" height="84">
+          <img src="./assets/clientes/cliente-29.png" alt="" aria-hidden="true" loading="lazy" width="218" height="84">
+          <img src="./assets/clientes/cliente-30.png" alt="" aria-hidden="true" loading="lazy" width="450" height="84">
+          <img src="./assets/clientes/cliente-31.png" alt="" aria-hidden="true" loading="lazy" width="234" height="84">
+          <img src="./assets/clientes/cliente-32.png" alt="" aria-hidden="true" loading="lazy" width="206" height="84">
+          <img src="./assets/clientes/cliente-33.png" alt="" aria-hidden="true" loading="lazy" width="321" height="84">
+          <img src="./assets/clientes/cliente-34.png" alt="" aria-hidden="true" loading="lazy" width="152" height="84">
+          <img src="./assets/clientes/cliente-35.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
+          <img src="./assets/clientes/cliente-36.png" alt="" aria-hidden="true" loading="lazy" width="103" height="84">
+          <img src="./assets/clientes/cliente-37.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
+          <img src="./assets/clientes/cliente-38.png" alt="" aria-hidden="true" loading="lazy" width="131" height="84">
+          <img src="./assets/clientes/cliente-39.png" alt="" aria-hidden="true" loading="lazy" width="358" height="84">
+          <img src="./assets/clientes/cliente-40.png" alt="" aria-hidden="true" loading="lazy" width="289" height="84">
+          <img src="./assets/clientes/cliente-41.png" alt="" aria-hidden="true" loading="lazy" width="250" height="84">
+          <img src="./assets/clientes/cliente-42.png" alt="" aria-hidden="true" loading="lazy" width="328" height="84">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -782,6 +943,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       io.observe(el);
     });
   }
+
+  /* Big numbers: contagem animada ao entrar na tela */
+  var nums = document.querySelectorAll('[data-count-to]');
+  var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function runCount(el){
+    var target = parseFloat(el.getAttribute('data-count-to')),
+        pre = el.getAttribute('data-prefix') || '',
+        suf = el.getAttribute('data-suffix') || '',
+        dur = 1500, t0 = null;
+    el.textContent = pre + '0' + suf;
+    function frame(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1),
+          eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(target * eased) + suf;
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  if (nums.length && !noMotion && 'IntersectionObserver' in window) {
+    var ioNum = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ ioNum.unobserve(e.target); runCount(e.target); }
+      });
+    }, { threshold: 0.25 });
+    nums.forEach(function(el){ ioNum.observe(el); });
+  }
+  /* Sem IO, com reduced-motion, ou se o observer nunca disparar: o valor final ja esta
+     escrito no HTML. O zero so aparece dentro do runCount, no instante em que a animacao
+     comeca de fato. Nunca ha estado "travado no 0". */
 
   /* CTA WhatsApp: rotulo curto no mobile */
   function syncWaLabel(){

@@ -7,8 +7,8 @@
 
 ## Estrutura
 
-1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo + tela real do produto
-2. Prova rápida — 2 métricas (85% de redução de SLA · +220% de interações) + grade de logos
+1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo + palco da tela do produto (elevada, com halo, anel inclinado e selos de canal flutuantes)
+2. Prova rápida — 2 métricas com contagem animada (85% de redução de SLA · +220% de interações) + carrossel infinito de 42 logos de clientes
 3. Dores — lista vertical com X vermelhos, 5 itens (GUIDELINES §8)
 4. Plataforma — 5 funcionalidades alternando lado, cada uma com a tela real correspondente
 5. Integrações — 7 chips (HubSpot, Buzzmonitor, RD Station Marketing, Pipedrive, TOTVS, ActiveCampaign, Jira)
@@ -44,7 +44,6 @@ Se um dia esta LP precisar de um GA4 próprio fora do GTM, o padrão está na `e
 - `logos/logo-primary.svg` — navbar (validado §19: 0 `<text>`, vetor outline)
 - `logos/logo-reversed.svg` — footer (idem)
 - `logos/logo-icon.png` — favicon
-- `plataforma/clientes-cxpress.png` — grade de logos de clientes
 
 **LP-local (`./assets/`)**
 - `telas/tela-tickets.svg` — hero (painel de tickets)
@@ -53,6 +52,7 @@ Se um dia esta LP precisar de um GA4 próprio fora do GTM, o padrão está na `e
 - `telas/tela-canais.svg` — feature 03 (canais integrados)
 - `telas/tela-principal.svg` — feature 04 (cadastro unificado)
 - `telas/tela-dashboard.svg` — feature 05 (dashboards)
+- `clientes/cliente-01..42.png` — 42 logos de clientes, um por arquivo, para o carrossel
 - `onda-decorativa.png` — ornamento do hero (da home atual)
 - `elife-logo-badge.png` — badge "elifegroup"
 - `og-whatsapp-business.png` + `og-template.html` + `render_og.py`
@@ -74,6 +74,14 @@ Embed `jsform` do Jotform `261027639617663`, o mesmo da LP irmã `whatsapp-busin
 Ou seja, o form compartilhado já qualifica quase tudo. Faltam só 2 dos 8 campos que o mock tinha, e ele ainda traz opt-out de newsletter e dois CTAs de saída (Falar pelo WhatsApp / Receber uma ligação). Se um dia quiserem os 2 campos que faltam, é edição no Jotform, não na LP.
 
 **Telas não usadas** (copiadas mas sem lugar na copy atual, disponíveis se algum bloco novo entrar): `tela-agentes.svg`, `tela-disparo-ativo.svg`.
+
+### Nota sobre os logos de clientes
+
+Os 42 arquivos de `assets/clientes/` foram **fatiados programaticamente** de `brand/cxpress/assets/plataforma/clientes-cxpress.png` (a grade única de 1886×906 que a LP usava antes). O script detecta faixas de linha e coluna por densidade de pixel não-branco, recorta cada célula na bounding box do conteúdo, normaliza a altura e re-encoda em PNG paletizado.
+
+Resultado: 42 logos reais, sem placeholder, **225 KB no total** (a grade original sozinha pesava 360 KB e era ilegível no mobile). O maior arquivo tem 11 KB. Altura de 84 px cobre retina 2× para a exibição de 42 px.
+
+Parâmetros usados, caso precise refazer com uma grade nova: gap de merge 10 px nas linhas e 22 px nas colunas, corte mínimo de 350 px de conteúdo por célula, padding de 6 px, paleta adaptativa de 128 cores.
 
 ### Nota sobre os SVGs de tela
 
