@@ -331,13 +331,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-final__sub{ font-family:var(--ff-sub); font-weight:500; font-size:clamp(19px,2vw,22px); margin-top:18px; color:var(--c-orange) }
   .cta-final__body{ margin-top:16px; color:rgba(255,255,255,.88); max-width:52ch; font-size:18px }
 
-  .form-card{ position:relative; background:#fff; border:2.5px solid var(--c-ink); border-radius:var(--radius-lg); box-shadow:8px 8px 0 rgba(255,255,255,.35); padding:30px }
-  .form-field{ margin-bottom:16px; display:flex; flex-direction:column; gap:6px }
-  .form-field label{ font-family:var(--ff-sub); font-size:13px; font-weight:700; letter-spacing:.04em; color:var(--c-ink-soft) }
-  .form-field input{ font-family:var(--ff-body); font-size:17px; padding:13px 15px; border-radius:10px; border:1.5px solid var(--c-border); color:var(--c-ink); background:#fff }
-  .form-field input:focus-visible{ outline:3px solid var(--c-orange); outline-offset:1px; border-color:var(--c-ink) }
-  .form-disclaimer{ font-size:13px; color:var(--c-ink-soft); margin-top:14px; line-height:1.5 }
-  .form-submit{ width:100%; margin-top:8px; justify-content:center }
+  /* Jotform embed wrapper (canonico), sem padding/background/border: o provedor ja vem com card proprio */
+  .jotform-embed iframe{ width:100% !important; max-width:100% !important; border:0; display:block }
 
   /* ============ CONTATO ============ */
   .contato{ background:var(--c-cream); text-align:center }
@@ -644,30 +639,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="cta-final__sub">Campanhas fortes atraem consumidores. Experiências consistentes fazem eles voltarem.</p>
         <p class="cta-final__body">Prepare sua marca para lidar com o maior volume de conversas, interações e oportunidades do ano.</p>
       </div>
-      <form class="form-card reveal" action="#" method="post" onsubmit="event.preventDefault()">
-        <div class="form-field">
-          <label for="f-nome">Nome</label>
-          <input id="f-nome" name="nome" type="text" autocomplete="name" required>
-        </div>
-        <div class="form-field">
-          <label for="f-email">E-mail corporativo</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" required>
-        </div>
-        <div class="form-field">
-          <label for="f-empresa">Empresa</label>
-          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
-        </div>
-        <div class="form-field">
-          <label for="f-cargo">Cargo</label>
-          <input id="f-cargo" name="cargo" type="text" autocomplete="organization-title">
-        </div>
-        <div class="form-field">
-          <label for="f-whatsapp">WhatsApp</label>
-          <input id="f-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required>
-        </div>
-        <button type="submit" class="btn btn--primary form-submit">Quero participar</button>
-        <p class="form-disclaimer">Ao se inscrever, você concorda em receber comunicações da Buzzmonitor sobre este evento.</p>
-      </form>
+      <div class="jotform-embed reveal">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/250493444653662"></script>
+      </div>
     </div>
   </section>
 

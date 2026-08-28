@@ -58,7 +58,7 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
 - [x] Redesenho de identidade visual (Buzzconnect) aplicado 2026-08-27 — paleta/contraste revalidados do zero (ver nota de acessibilidade acima); os 6 críticos do `REVISAO.md` original (rodado sobre o design anterior, mais corporativo) já vêm incorporados nativamente neste redesenho — não reabrir, ver seção "Redesenho" do `REVISAO.md`
 - [ ] OG image 1200×630 → `assets/og-black-friday-alta-performance-outubro-2026.png` (arquivo único — nunca também `og-image.png`)
 - [ ] Rodar `/lp-revisar` novamente sobre o HTML redesenhado, para auditoria formal independente (a validação atual foi feita inline durante a criação, não por uma passada dedicada)
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/black-friday-alta-performance-outubro-2026 [snippet]`
+- [x] Formulário integrado — **Form provider:** Jotform (`250493444653662`), integrado em 2026-08-28. Form mock removido, embed com wrapper CSS canônico (`.jotform-embed iframe`), sem card duplicado.
 - [ ] **BLOQUEADOR antes de publicar ao vivo:** a copy-fonte só traz o placeholder "[Foto + Nome + Cargo + Empresa]" x2 para a seção Palestrantes, sem nomes/fotos reais confirmados. A LP está com avatar genérico + "Palestrante a confirmar" (sem inventar identidade). Precisa voltar aqui para preencher com os nomes/fotos reais assim que confirmados.
 - [ ] Publicado — rodar `/lp-publicar buzzmonitor black-friday-alta-performance-outubro-2026 content.buzzmonitor.com`
 
