@@ -406,6 +406,85 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .sec-lead{margin-top:20px;font-size:clamp(18px,1.5vw,20px);color:var(--neutral-700);max-width:46ch}
 
+
+  /* ---- Camadas animadas sobre a tela (2 features, nao as 5) ----
+     Pausam fora da tela via .is-idle, e somem sob prefers-reduced-motion. */
+  .feat-visual .frame{position:relative;z-index:2}
+  .fx-idle *,.fx-idle{animation-play-state:paused !important}
+
+  /* Holofote sequencial (feature 04). Anima SO transform: custo zero de main
+     thread, porque o compositor resolve sem acordar a thread principal. */
+  .spot-wrap{position:absolute;left:0;right:0;bottom:0;top:38px;overflow:hidden;pointer-events:none;z-index:3}
+  .spot{
+    position:absolute;left:0;top:0;width:100%;height:100%;
+    transform-origin:0 0;border-radius:26px;
+    background:rgba(74,105,189,.07);
+    box-shadow:0 0 0 9999px rgba(20,26,66,.32);
+    animation:spotMove 13s cubic-bezier(.6,0,.2,1) infinite;
+  }
+  @keyframes spotMove{
+    0%,18%   {transform:translate(2%,4%)  scale(.22,.92)}
+    26%,44%  {transform:translate(26%,3%) scale(.30,.30)}
+    52%,70%  {transform:translate(26%,16%) scale(.30,.80)}
+    78%,96%  {transform:translate(58%,3%) scale(.40,.93)}
+    100%     {transform:translate(2%,4%)  scale(.22,.92)}
+  }
+
+  /* Conectores tracejados + selos de canal (feature 03).
+     O SVG escala junto, entao nao precisa de calibragem por tela. */
+  /* Conector curto ao lado de cada selo, na faixa entre o palco e a moldura.
+     SVG proprio por conector: sem preserveAspectRatio="none", o tracejado nao
+     distorce e nao precisa de calibragem quando a largura muda. */
+  .conn{position:absolute;z-index:3;pointer-events:none;overflow:visible}
+  .conn path{
+    fill:none;stroke:#3497F9;stroke-width:2;stroke-linecap:round;
+    stroke-dasharray:4 4;stroke-dashoffset:0;opacity:.85;
+  }
+  .conn--wa{left:14px;top:calc(14% + 20px);width:96px;height:64px}
+  .conn--ig{right:12px;top:calc(46% + 20px);width:86px;height:56px}
+  .conn--mail{left:20px;bottom:calc(14% + 20px);width:92px;height:60px}
+  /* Traca uma vez ao entrar em vista e para. Correr o tracejado em loop
+     repintava o SVG a cada quadro: 16 ms/s so nisso, medido. */
+  .conn path{stroke-dasharray:4 260;stroke-dashoffset:264}
+  [data-fx]:not(.fx-idle) .conn path{animation:dashDraw 1.1s ease-out forwards}
+  .conn--ig path{animation-delay:.22s}
+  .conn--mail path{animation-delay:.44s}
+  @keyframes dashDraw{ to{stroke-dasharray:4 4;stroke-dashoffset:0} }
+  .cbadge{
+    position:absolute;z-index:4;width:46px;height:46px;border-radius:50%;
+    background:#fff;display:grid;place-items:center;pointer-events:none;
+    box-shadow:0 12px 26px -10px rgba(35,41,96,.42);
+    opacity:0;animation:badgePop 7s cubic-bezier(.2,.8,.3,1) infinite;
+  }
+  .cbadge svg{width:23px;height:23px}
+  .cbadge--wa{left:-24px;top:14%;animation-delay:0s}
+  .cbadge--ig{right:-20px;top:46%;animation-delay:.8s}
+  .cbadge--mail{left:-16px;bottom:14%;animation-delay:1.6s}
+  @keyframes badgePop{
+    0%{opacity:0;transform:scale(.6)}
+    9%,68%{opacity:1;transform:scale(1)}
+    80%,100%{opacity:0;transform:scale(.85)}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .spot-wrap{display:none}
+    .conn path{animation:none}
+    .cbadge{animation:none;opacity:1}
+  }
+  /* No mobile fica so a camada 04: a 03 depende de tela grande pro movimento
+     ser percebido, e a 390px vira tremor. */
+  @media (max-width:640px){
+    .spot-wrap{display:none}
+    .cbadge{width:34px;height:34px}
+    .cbadge svg{width:17px;height:17px}
+    .cbadge--wa{left:-10px}
+    .cbadge--ig{right:-8px}
+    .cbadge--mail{left:-6px}
+    .conn--wa{left:6px;width:56px;height:40px}
+    .conn--ig{right:6px;width:52px;height:36px}
+    .conn--mail{left:10px;width:54px;height:38px}
+  }
+
   /* ---- Plataforma / features ---- */
   .platform{background:var(--white);overflow-x:clip}
   .sec-head{max-width:640px}
@@ -619,7 +698,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </a>
         </div>
       </div>
-      <div class="hero-visual reveal">
+      <div class="hero-visual reveal" data-fx>
         <span class="hero__chip hero__chip--wa" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </span>
@@ -655,7 +734,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="stat__label">de interações nas redes sociais</p>
         </div>
       </div>
-      <div class="clients-marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+      <div class="clients-marquee reveal" data-fx role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
         <div class="clients-track">
           <div class="clients-group">
           <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
@@ -823,7 +902,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 class="feat-title">Organize seu atendimento de forma integrada</h3>
             <p class="feat-body">Centralize e organize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.</p>
           </div>
-          <div class="feat-visual reveal">
+          <div class="feat-visual reveal" data-fx>
+            <svg class="conn conn--wa" viewBox="0 0 96 64" aria-hidden="true"><path d="M2 10 H54 C74 10 84 22 84 42 V62"/></svg>
+            <svg class="conn conn--ig" viewBox="0 0 86 56" aria-hidden="true"><path d="M84 8 H36 C16 8 6 20 6 38 V54"/></svg>
+            <svg class="conn conn--mail" viewBox="0 0 92 60" aria-hidden="true"><path d="M2 52 H50 C70 52 80 40 80 22 V2"/></svg>
+            <span class="cbadge cbadge--wa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.4.2-.6.1c-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.3-.2-.6-.4M12 21.8a9.9 9.9 0 01-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 012.2 12 9.9 9.9 0 0112 2.2c2.6 0 5.1 1 7 2.9a9.8 9.8 0 012.9 7c0 5.4-4.4 9.9-9.9 9.9m8.4-18.3A11.8 11.8 0 0012 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 005.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.4z"/></svg></span>
+            <span class="cbadge cbadge--ig" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9s.7.8.9 1.4c.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4s-.8.7-1.4.9c-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4a3.7 3.7 0 01-1.4-.9 3.7 3.7 0 01-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4s.8-.7 1.4-.9c.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6a5.9 5.9 0 00-2.1 1.4A5.9 5.9 0 00.6 4.1C.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c0 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1a5.9 5.9 0 002.1 1.4c.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6a5.9 5.9 0 002.1-1.4 5.9 5.9 0 001.4-2.1c.3-.8.5-1.6.6-2.9.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.1-.6-2.9a5.9 5.9 0 00-1.4-2.1A5.9 5.9 0 0019.9.6c-.8-.3-1.6-.5-2.9-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm7.8-10.4a1.4 1.4 0 11-2.9 0 1.4 1.4 0 012.9 0z"/></svg></span>
+            <span class="cbadge cbadge--mail" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#4A69BD" stroke-width="1.9"><rect x="2.5" y="5" width="19" height="14" rx="2.4"/><path d="M3 6.5l9 6.2 9-6.2" stroke-linecap="round"/></svg></span>
             <div class="frame">
               <div class="frame__bar" aria-hidden="true"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></div>
               <img src="./assets/telas/tela-canais.svg" alt="Tela de configuração de canais da Cxpress com WhatsApp, Facebook, Instagram, e-mail, telefone e webchat" width="1400" height="900" loading="lazy">
@@ -837,10 +922,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 class="feat-title">Centralize os cadastros dos clientes para uma experiência unificada</h3>
             <p class="feat-body">Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.</p>
           </div>
-          <div class="feat-visual reveal">
+          <div class="feat-visual reveal" data-fx>
             <div class="frame">
               <div class="frame__bar" aria-hidden="true"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></div>
               <img src="./assets/telas/tela-principal.svg" alt="Tela de atendimento da Cxpress com conversa do cliente ao lado do cadastro e do histórico unificado" width="1400" height="900" loading="lazy">
+              <div class="spot-wrap" aria-hidden="true"><span class="spot"></span></div>
             </div>
           </div>
         </article>
@@ -1000,6 +1086,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el.style.transitionDelay = Math.min(idx % 5, 4) * 60 + 'ms';
       io.observe(el);
     });
+  }
+
+  /* Camadas sobre as telas: pausa a animacao quando a feature sai de vista. */
+  var fx = document.querySelectorAll('[data-fx]');
+  if (fx.length && 'IntersectionObserver' in window) {
+    var ioFx = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){ e.target.classList.toggle('fx-idle', !e.isIntersecting); });
+    }, {threshold:.08});
+    fx.forEach(function(el){ el.classList.add('fx-idle'); ioFx.observe(el); });
   }
 
   /* Holofote do hero: so escreve --mx/--my. Sem rAF, sem loop. */

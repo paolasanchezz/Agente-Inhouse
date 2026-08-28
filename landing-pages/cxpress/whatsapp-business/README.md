@@ -10,7 +10,7 @@
 1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo lado a lado (sólido + outline) + palco da tela do produto (elevada, com halo verde, anel inclinado e selos de canal flutuantes) + holofote de pontos seguindo o cursor
 2. Prova rápida — rótulo curto, 2 métricas com contagem animada (85% de redução de SLA · +220% de interações) + carrossel infinito de 42 logos de clientes
 3. Dores — lista vertical com X vermelhos, 5 itens (GUIDELINES §8)
-4. Plataforma — 5 funcionalidades alternando lado, cada uma com a tela real correspondente
+4. Plataforma — 5 funcionalidades alternando lado, cada uma com a tela real correspondente. Duas ganham camada animada: a **03** tem conectores tracejados ligando selos de canal à tela, a **04** tem holofote sequencial percorrendo as colunas da interface. As outras três ficam estáticas de propósito
 5. Integrações — 7 chips (HubSpot, Buzzmonitor, RD Station Marketing, Pipedrive, TOTVS, ActiveCampaign, Jira)
 6. Quem somos — faixa escura (única da LP), 2 parágrafos + badges API oficial WhatsApp / ChatGPT / elifegroup
 7. CTA final — embed do Jotform + WhatsApp + e-mail comercial
@@ -73,6 +73,12 @@ Embed `jsform` do Jotform `261027639617663`, o mesmo da LP irmã `whatsapp-busin
 | (não tem) | Etapa 2: principal canal · volume de atendimentos/mês |
 
 Ou seja, o form compartilhado já qualifica quase tudo. Faltam só 2 dos 8 campos que o mock tinha, e ele ainda traz opt-out de newsletter e dois CTAs de saída (Falar pelo WhatsApp / Receber uma ligação). Se um dia quiserem os 2 campos que faltam, é edição no Jotform, não na LP.
+
+### Animações e custo
+
+Toda animação da LP pausa quando o elemento sai da tela, via um `IntersectionObserver` que alterna `animation-play-state` nos elementos marcados com `data-fx` (hero, carrossel de clientes e as duas features com camada). Sem isso, os selos do hero e o carrossel custavam ~15 ms/s o tempo todo.
+
+Regra que vale para qualquer animação nova aqui: **animar `transform` e `opacity` custa zero** (o compositor resolve sozinho); animar geometria (`width`/`height`/`left`/`top`) ou repintura (`stroke-dashoffset`) custa. Foi o que decidiu o desenho do holofote e dos conectores.
 
 **Telas não usadas** (copiadas mas sem lugar na copy atual, disponíveis se algum bloco novo entrar): `tela-agentes.svg`, `tela-disparo-ativo.svg`.
 

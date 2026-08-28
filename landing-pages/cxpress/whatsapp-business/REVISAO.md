@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (7ª rodada: hero enxuto e espaçamento entre seções)
+**Atualizado:** 2026-08-28 (8ª rodada: camadas animadas sobre as telas do produto)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -211,6 +211,56 @@ Como foi montado:
 Um detalhe que precisou de medição: os dois CTAs somavam 568px numa coluna de 550px, então empilhavam em vez de ficar lado a lado. Alarguei a coluna de texto do hero (1,06fr → 1,16fr), enxuguei o padding horizontal dos botões e travei `flex-wrap:nowrap` acima de 1000px, para que ficarem lado a lado seja contrato e não sorte. No mobile eles voltam a empilhar em largura cheia, como antes.
 
 **Limpeza que veio junto:** com o rótulo curto, o JS que trocava o texto do botão por "WhatsApp" no mobile deixou de existir, e o CSS de `.hero-note`, `.hero__wave` e `.btn-wa-long/short` saiu inteiro.
+
+**Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
+
+---
+
+## 8ª rodada (2026-08-28) — camadas animadas sobre as telas
+
+Referência: a seção "A single workflow for every outbound motion" da sendr.ai. **Não consegui inspecionar o código deles**: o site é Framer e aquela seção só monta sob demanda, então no navegador de bancada o documento inteiro fica em 1.499px e ela nunca renderiza. O que foi feito é a reconstrução do padrão sobre os nossos ativos. Comparativo das quatro opções em `https://claude.ai/code/artifact/140a4c37-c96f-48cb-baac-76ff2828d393`.
+
+O Victor pediu para seguir todas as recomendações. Eram quatro:
+
+### 1. Duas features, não as cinco
+
+Animar as cinco telas em sequência viraria ruído e disputaria com a leitura. Ficaram duas, escolhidas pelo casamento entre efeito e copy:
+
+- **Feature 03, "Organize seu atendimento de forma integrada"** → conectores tracejados. A tela é justamente a de configuração de canais, e os selos de WhatsApp, Instagram e e-mail ligados a ela ilustram literalmente o que a copy diz.
+- **Feature 04, "Centralize os cadastros dos clientes para uma experiência unificada"** → holofote sequencial. É a tela mais densa da LP (lista de tickets + conversa + ficha do cliente), e o holofote percorre as três colunas na ordem em que a copy conta a história.
+
+### 2. Holofote reescrito para custar zero
+
+Na bancada ele custava 5,9 ms/s porque animava `left`, `top`, `width` e `height`, e cada quadro disso obriga o navegador a recalcular layout. Aqui ele anima **só `transform: translate() scale()`** sobre um retângulo de tamanho fixo com `transform-origin:0 0`, que o compositor resolve sem acordar a thread principal.
+
+Uma concessão de desenho para conseguir isso: o retângulo perdeu a borda visível, porque uma borda de 2px sob `scale(.22, .92)` renderizaria com espessura diferente na horizontal e na vertical. O destaque ficou sendo só o escurecimento em volta, o que é suficiente e some com o problema.
+
+**Medido na LP: 0,1 ms/s.**
+
+### 3. Conectores sem o tracejado correndo
+
+O `stroke-dashoffset` em loop custava **16 ms/s sozinho** (17,9 com ele, 1,9 sem, medido com 3 repetições). Trocado por um traçado que **se desenha uma vez** quando a feature entra em vista e depois para. O movimento contínuo ficou por conta dos selos, que animam `transform` e `opacity` e custam zero.
+
+O SVG esticado também foi desfeito: eram três `path` num viewBox com `preserveAspectRatio="none"`, que distorcia o tracejado e ficava atrás da moldura opaca (as linhas mal apareciam). Agora são três SVGs curtos, um ao lado de cada selo, sem distorção e sem calibragem por largura.
+
+**Medido na LP: 5,1 ms/s**, quase tudo do loop dos selos.
+
+### 4. No celular, só os conectores
+
+O holofote depende de tela grande para o movimento ser percebido; a 390px vira tremor. `.spot-wrap` fica `display:none` no breakpoint móvel. Os conectores continuam, com selos menores. Sob `prefers-reduced-motion` o holofote também some e os selos ficam parados e visíveis.
+
+### Um defeito que a medição revelou
+
+Enquanto media a feature 04, o controle (com a animação do holofote desligada) dava **14,9 ms/s**, quando deveria dar quase zero. Investigando: **os selos de canal do hero e o carrossel de clientes rodavam o tempo todo, mesmo com a seção fora da tela.** Eram ~15 ms/s de custo de fundo em toda a rolagem da página, desde a 3ª rodada, e ninguém tinha percebido porque nenhum deles chega perto de travar nada.
+
+Os dois entraram no mesmo observer das camadas novas. Depois disso o controle da feature 04 caiu de 14,9 para **1,2 ms/s**.
+
+| Medição | Antes | Depois |
+|---|---|---|
+| Fundo da página (elementos fora de vista) | ~15 ms/s | ~1 ms/s |
+| Feature 03 com conectores | 17,9 ms/s | **5,1 ms/s** |
+| Feature 04 com holofote | 14,6 ms/s | **0,1 ms/s** |
+| Rolando a página inteira | — | 5,6 ms/s |
 
 **Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
 
