@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (3ª rodada: destaque do hero, carrossel de clientes, big numbers animados)
+**Atualizado:** 2026-08-28 (4ª rodada: contraste visual da página)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -98,6 +98,64 @@ Testado nos 3 cenários: sem rolar → `85%` / `+220%`; rolando → anima e term
 ### Regressão verificada
 
 `scrollWidth` = viewport em 390/768/1024/1440 · em-dash 0 (um escapou num comentário de JS e foi corrigido) · pisos de tipografia mobile mantidos (H1 31, corpo 17, mínimo 14) · SEO, GTM, JSON-LD e build do guarda-chuva intactos · 0 erro de JS · 0 imagem quebrada.
+
+---
+
+## 4ª rodada (2026-08-28) — "a página está com contraste fraco"
+
+### O diagnóstico
+
+Medi as duas coisas que "contraste fraco" pode significar, antes de mexer em qualquer cor.
+
+**Acessibilidade: nada errado.** Instrumentei a página e calculei o ratio WCAG de todo par texto/fundo renderizado: 25 pares, **zero reprovando AA**. O texto nunca foi o problema.
+
+**Peso visual: o problema era esse.** A varredura tonal do screenshot de página inteira (9.005px) explicou a sua leitura com precisão:
+
+| Métrica | Antes |
+|---|---|
+| Área quase branca (luminância > 95%) | **83,2%** |
+| Luminância média da página | **89,8%** |
+| Trecho sem variação tonal | y=1.000 a y=6.000, **5.000px** entre 94% e 98% |
+
+A causa raiz: `--neutral-100` era `#F7F9FE`, a **5 pontos** do branco puro. A alternância branco ↔ off-white que deveria separar as seções era literalmente imperceptível. Pior, `.clients` e `.pains` eram **as duas brancas**, e a seção da plataforma (a mais longa, ~3.500px) era um bloco branco corrido.
+
+### O que foi feito
+
+**1. Paleta com separação real**
+
+| Token | Antes | Depois | Efeito |
+|---|---|---|---|
+| `--neutral-100` | `#F7F9FE` (5 pts do branco) | `#EDF1FA` (**12 pts**) | alternância de seção passa a ser visível |
+| `--neutral-700` | `#4a4a4a` | `#39435A` | corpo mais escuro (8,86 → **9,88:1**) e azulado, alinhado à marca |
+| `--neutral-500` | `#6b7280` | `#5A6478` | idem para textos de apoio |
+| `--neutral-300` | `#d8ddea` | `#C6D0E4` | bordas de card com definição |
+
+**2. Alternância ABAB de verdade.** `.clients` e `.pains` eram ambas brancas. Agora: hero (gradiente) → clientes (branco) → dores (tint) → plataforma (branco) → integrações (tint) → quem somos (navy) → CTA (royal) → FAQ (tint) → footer (navy).
+
+**3. CTA final com fundo de destaque.** É o que o GUIDELINES §8 já pedia para essa seção ("fundo destaque, gradiente ou cor primária") e nunca tinha sido aplicado. Antes de arriscar, medi por pixel se o Jotform traz superfície própria: traz, `rgb(255,255,255)` opaco. Então o embed vira um card branco flutuando sobre o royal, com sombra. Texto branco sobre o fundo real medido = **5,67:1**.
+
+Isso não viola o §1 ("uma única seção pode ser escura"): a única *dark* segue sendo o "Quem somos" em navy. O CTA usa a primária como **destaque**, que é exatamente o que o §8 prescreve.
+
+**4. Palco atrás de cada tela do produto.** O trecho da plataforma continuava sendo 3.500px de branco. Listrar o fundo a cada feature viraria a "colcha de retalhos" que o §1 proíbe, então a âncora tonal foi para o objeto: cada tela ganhou um painel arredondado em degradê azul-claro atrás, inclinado 1,4° (alternando o sentido a cada feature), com a sombra da moldura reforçada. Mesmo motivo visual do hero, repetido 5 vezes.
+
+**5. Cards com leito próprio.** `.stat` e `.integra-chip` passaram a ter fundo branco sobre o tint da seção, mais borda e sombra baixa. Antes eram tint sobre tint.
+
+### Resultado medido
+
+| Métrica | Antes | Depois |
+|---|---|---|
+| Área quase branca | 83,2% | **45,6%** |
+| Luminância média | 89,8% | **83,6%** |
+| Reprovações AA | 0 | **0** |
+
+### Dois defeitos que a mudança revelou (e que foram corrigidos)
+
+- **Desalinhamento na seção de dores.** Com os fundos separando, ficou visível que o conteúdo começava 108px à direita das outras seções. Causa: `.pains__inner` estava na *mesma tag* que `.wrap`, então o `max-width:900px` sobrescrevia o 1180 do wrap e o `margin:0 auto` recentrava o bloco todo. Corrigido devolvendo a largura de wrap e limitando a medida só na `.pain-list`. Conferido por medição: as 5 seções agora começam em 162px.
+- **Overflow horizontal em 768px e 1024px.** O palco das telas projeta 7% para cada lado; quando o grid vira 1 coluna nesse intervalo, sangrava além do viewport. Corrigido zerando o inset horizontal no breakpoint e com `overflow-x:clip` na seção. `scrollWidth` = viewport em 390/768/1024/1440.
+
+### Também verificado
+
+Contadores animados, marquee, `prefers-reduced-motion`, em-dash 0, GTM, SEO, JSON-LD, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
 
 ---
 

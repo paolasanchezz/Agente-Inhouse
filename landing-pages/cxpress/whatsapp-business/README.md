@@ -17,6 +17,8 @@
 8. FAQ — acordeão `<details>` com 4 perguntas
 9. Footer
 
+**Ritmo tonal** (4ª rodada): hero gradiente → clientes branco → dores tint → plataforma branco → integrações tint → quem somos navy → CTA royal → FAQ tint → footer navy. A alternância só passou a funcionar quando `--neutral-100` saiu de `#F7F9FE` (5 pontos do branco, imperceptível) para `#EDF1FA` (12 pontos). Detalhes e medições no `REVISAO.md`.
+
 Ordem conforme o template modular do guia: Hero → Prova rápida → Dores → Como funciona → Integrações → CTA → FAQ.
 
 ## Estado
