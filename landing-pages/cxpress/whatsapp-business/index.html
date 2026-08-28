@@ -110,6 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --accent-text:#A85207;
     --warning:#F1A908;
     --success:#1E9E5A;
+    --wa:#25D366;
     --danger:#C0392B;
     --success-text:#12703E;
     --neutral-900:#1a1a1a;
@@ -118,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --neutral-300:#C6D0E4;
     --neutral-100:#EDF1FA;
     --white:#ffffff;
-    --radius-btn:9px;
+    --radius-btn:9999px;
     --radius-card:16px;
     --font-display:'Open Sans',Helvetica,Arial,sans-serif;
     --font-body:'Source Sans 3',Helvetica,Arial,sans-serif;
@@ -154,7 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .skip-link{
     position:absolute;left:-9999px;top:0;z-index:999;
     background:var(--primary-dark);color:#fff;padding:12px 20px;
-    font-family:var(--font-display);font-weight:700;font-size:15px;border-radius:0 0 var(--radius-btn) 0;
+    font-family:var(--font-display);font-weight:700;font-size:15px;border-radius:0 0 10px 0;
   }
   .skip-link:focus{left:0}
   :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
@@ -268,17 +269,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .frame img{display:block;width:100%;height:auto;min-height:0}
   /* Palco do hero: tela do produto puxada pra cima, maior e destacada */
   .hero-visual{position:relative;margin-top:-26px;margin-right:-70px}
+  /* Halo verde WhatsApp atras da tela: sinaliza o canal sem tingir a secao */
   .hero-visual::before{
     content:"";position:absolute;z-index:0;
-    inset:-16% -10% -22% -12%;
-    background:radial-gradient(58% 52% at 52% 44%,rgba(74,105,189,.32) 0%,rgba(74,105,189,.13) 42%,rgba(74,105,189,0) 72%);
-    filter:blur(6px);pointer-events:none;
+    inset:-18% -12% -24% -14%;
+    background:
+      radial-gradient(44% 44% at 58% 38%,rgba(37,211,102,.46) 0%,rgba(37,211,102,.22) 44%,rgba(37,211,102,0) 70%),
+      radial-gradient(52% 48% at 34% 66%,rgba(74,105,189,.20) 0%,rgba(74,105,189,0) 70%);
+    filter:blur(8px);pointer-events:none;
   }
   .hero-visual::after{
     content:"";position:absolute;z-index:0;
     left:6%;right:6%;top:4%;bottom:4%;
     border-radius:26px;
-    border:1px solid rgba(74,105,189,.22);
+    border:1px solid rgba(37,211,102,.30);
     transform:rotate(2.6deg);
     pointer-events:none;
   }
@@ -296,7 +300,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     animation:chipFloat 6s ease-in-out infinite;
   }
   .hero__chip svg{width:27px;height:27px}
-  .hero__chip--wa{left:-26px;top:16%;animation-delay:0s}
+  .hero__chip--wa{left:-26px;top:16%;animation-delay:0s;box-shadow:0 12px 26px -8px rgba(20,120,60,.4),0 0 0 4px rgba(37,211,102,.16)}
   .hero__chip--ig{right:-18px;top:44%;width:52px;height:52px;animation-delay:1.4s}
   .hero__chip--mail{left:-14px;bottom:12%;width:52px;height:52px;animation-delay:2.8s}
   @keyframes chipFloat{

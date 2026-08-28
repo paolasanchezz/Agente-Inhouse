@@ -1,7 +1,7 @@
 # Revisão LP — cxpress/whatsapp-business
 
 **Data:** 2026-08-28
-**Atualizado:** 2026-08-28 (4ª rodada: contraste visual da página)
+**Atualizado:** 2026-08-28 (5ª rodada: verde WhatsApp no hero e botões em pílula)
 **Auditores:** frontend-design (review mode) + web-design-guidelines (Vercel Web Interface Guidelines) + medição instrumentada (Playwright 390 / 1440px) + `check_mobile_type.py` + `check_gtm_region.py` + cálculo de contraste WCAG + teste funcional do formulário
 
 ---
@@ -156,6 +156,32 @@ Isso não viola o §1 ("uma única seção pode ser escura"): a única *dark* se
 ### Também verificado
 
 Contadores animados, marquee, `prefers-reduced-motion`, em-dash 0, GTM, SEO, JSON-LD, pisos de tipografia mobile, 0 imagem quebrada, 0 erro de JS.
+
+---
+
+## 5ª rodada (2026-08-28) — referência de hero verde e botões pílula
+
+**Botões em pílula.** `--radius-btn` foi de `9px` para `9999px`, o que cobre CTA primário, CTA da navbar e o botão de WhatsApp de uma vez. O skip-link ficou de fora: ele usa raio assimétrico (`0 0 X 0`) e viraria uma forma estranha como pílula.
+
+**Halo verde atrás da tela.** O halo do hero era azul royal; virou um degradê duplo, verde WhatsApp na frente e um resto de azul embaixo, para não perder o vínculo com a paleta da marca. O anel inclinado também passou a verde, e o selo de WhatsApp ganhou um aro verde translúcido de 4px.
+
+Ficou mais contido que a referência enviada, que usa um círculo verde sólido. O motivo: a Cxpress já roda com navy + royal + laranja, e um bloco verde chapado nesse tamanho passaria a ser a cor dominante do hero de uma marca que não é verde. Do jeito que ficou, o verde sinaliza o canal sem disputar a identidade. **Se você quiser mais próximo da referência, é aumentar a opacidade do primeiro `radial-gradient` de `.hero-visual::before` — a estrutura já está lá.**
+
+**Verificado:** `scrollWidth` = viewport em 390/768/1024/1440, em-dash 0, GTM, SEO, pisos de tipografia mobile, 0 erro de JS.
+
+### Pendente de decisão sua: pontilhado interativo no fundo do H1
+
+Montei cinco técnicas rodando de verdade, com o custo de main thread de cada uma medido via Chrome DevTools Protocol, em `https://claude.ai/code/artifact/8c93e5c5-e9df-43f1-87b8-8eeebe7facfc`.
+
+| Técnica | JS | Mexendo | Parado |
+|---|---|---|---|
+| Holofote CSS | 0,4 KB | 14,5 ms/s | 0,0 ms/s |
+| Paralaxe em camadas | 0,4 KB | 23,7 ms/s | 0,0 ms/s |
+| Ímã (canvas) | 1,6 KB | 24,5 ms/s | 0,0 ms/s |
+| Constelação (canvas) | 2,2 KB | 11,5 ms/s | 7,2 ms/s |
+| Onda (canvas) | 1,6 KB | 42,2 ms/s | 33,3 ms/s |
+
+Recomendação: **Holofote CSS**. Nada aplicado na LP até você escolher.
 
 ---
 
