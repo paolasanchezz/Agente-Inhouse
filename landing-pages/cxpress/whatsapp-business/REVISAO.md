@@ -303,7 +303,43 @@ PageSpeed desktop acusava **Desempenho 70**, com TBT 370 ms e LCP 2,2 s. A cota 
 | Peso da página | 1.690 KB | **1.244 KB** |
 | Requisições | 81 | **23** |
 
-O antes é medição de produção e o depois é local, então os números não são estritamente comparáveis (sem CDN nem latência real aqui). A medição de produção pós-deploy está no fim desta seção.
+### Medição de produção pós-deploy (3 corridas, mediana)
+
+| | Antes | Depois |
+|---|---|---|
+| Desempenho | 83 | **85** |
+| LCP | 2,32 s | **2,11 s** |
+| TBT | 95 ms | 110 ms |
+| CLS | 0,01 | 0,012 |
+| **Peso do carregamento inicial** | **1.690 KB** | **490 KB** |
+| **Requisições** | **81** | **20** |
+| Render-blocking | 1 | **0** |
+
+**Sendo honesto sobre o que isso significa:** o ganho grande foi em peso e requisições, não na nota. A nota subiu 2 pontos, dentro da faixa de variação entre corridas. O motivo está no próximo bloco.
+
+### Por que a nota não sobe mais: 100% do TBT é o Pixel do Facebook
+
+A auditoria de terceiros na medição pós-deploy:
+
+| Origem | Bloqueio | Transferência |
+|---|---|---|
+| **Facebook** | **110 ms** | 171 KB |
+| Google Tag Manager | 0 ms | 116 KB |
+| Google Fonts | 0 ms | 73 KB |
+
+O TBT total da página é 110 ms, e **os 110 ms são do Pixel**. Nenhum outro recurso contribui. O LCP conta a mesma história: o elemento é a tela do hero, que carrega em 92 ms mas leva 1.801 ms de Render Delay, porque a main thread está ocupada pelo mesmo script.
+
+Ou seja: **o código da página já não é o gargalo.** O que sobra é decisão de tracking, e tem três caminhos, todos fora do HTML da LP:
+
+1. Atrasar o disparo do Pixel dentro do GTM (por exemplo, para depois do `window.load` ou na primeira interação). Custo: eventos dos primeiros segundos podem se perder.
+2. Migrar para a API de Conversões do Meta, no servidor. Tira o peso do navegador de vez, mas é projeto, não ajuste.
+3. Aceitar. 110 ms de TBT ainda é "bom" no Lighthouse (o limite do verde é 200 ms).
+
+**Não mexi no GTM por dois motivos:** o snippet é canônico no `landing-pages/CONTEXT.md` §5.3 e a skill proíbe parafrasear, e mudar a hora em que o Pixel dispara é decisão de quem cuida da mensuração, não minha.
+
+### Nota sobre a diferença entre o seu 70 e o 85 daqui
+
+O PageSpeed Insights aplica throttling de CPU mais agressivo que a bancada local e mistura dados de campo (CrUX) com o teste de laboratório. Os dois números não estão na mesma escala. O que vale comparar é a variação na mesma bancada, que é a tabela acima. Vale re-rodar o PSI para ver o novo patamar de campo, que leva alguns dias para atualizar.
 
 ### O que sobra e não está na nossa mão
 
