@@ -13,29 +13,13 @@ LABEL: Mais contratado
 H3: Basic
 BODY: Toda a plataforma Cxpress pronta para operar, com 5 acessos de operador humano.
 LABEL: A partir de R$ 1.750 por mês
-LABEL: Canais
 LIST ITEM: WhatsApp com API Oficial da Meta
 LIST ITEM: Instagram, Facebook, Webchat e e-mail
 LIST ITEM: Telefone com URA inteligente para encaminhamento de chamados
-LABEL: IA e automação
 LIST ITEM: 1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat
-LIST ITEM: Organização automatizada de tickets, com categorização e distribuição inteligente
-LIST ITEM: Agendamento de mensagens ativas no WhatsApp para bases qualificadas
-LIST ITEM: Smart replies: respostas salvas para ganhar velocidade
-LIST ITEM: Sumarização de tickets gerada por IA
-LIST ITEM: API pública e webhooks
-LABEL: Dados do cliente
-LIST ITEM: Timeline inteligente com a jornada unificada do consumidor
-LIST ITEM: Histórico unificado, independente do canal em que o cliente falou
-LIST ITEM: CRM: banco de dados customizável para clientes e tickets
-LABEL: Gestão e operação
 LIST ITEM: 5 acessos de operador humano
-LIST ITEM: 1 Número com API Oficial do WhatsApp
-LIST ITEM: Métricas detalhadas e personalizáveis, com análise da IA
-LIST ITEM: Ambiente de comunicação interna entre os colaboradores
-LIST ITEM: Aplicativo mobile
-LABEL: Suporte
-LIST ITEM: Atendimento especializado do time de Customer Success
+LIST ITEM: Histórico unificado, independente do canal em que o cliente falou
+CTA: Ver a lista completa
 BODY: Acesso adicional de operador humano: R$ 120,00 por mês.
 CTA: Falar com um especialista
 
@@ -44,24 +28,13 @@ H3: Enterprise
 BODY: Tudo do Basic, mais os recursos e a equipe que a sua operação pedir. Cada item entra conforme o desenho da operação, por isso o valor é montado caso a caso.
 LABEL: Precificação sob demanda
 LIST ITEM: Tudo o que está no Basic
-LABEL: Canais adicionais
-LIST ITEM: TikTok
-LIST ITEM: Google Meu Negócio
-LABEL: Mais IA
+LIST ITEM: TikTok e Google Meu Negócio
 LIST ITEM: Agentes de IA privados adicionais, por canal
 LIST ITEM: Agente Concierge: a IA que responde comentários públicos no Instagram, Facebook, Google Meu Negócio e TikTok
 LIST ITEM: Voice Agent: a IA de telefonia
-LABEL: Escala
-LIST ITEM: Acessos de operador humano adicionais
-LIST ITEM: Números adicionais com API Oficial do WhatsApp
-LIST ITEM: Atributos adicionais de telefonia e operadora
-LABEL: Integrações
 LIST ITEM: Integração entre a IA da Cxpress e sistemas de terceiros, para consultar e enviar dados
-LABEL: Serviços gerenciados, com a Elife
-LIST ITEM: Criação e gestão dos seus Agentes de IA
-LIST ITEM: Gestão da qualidade do atendimento com IA
 LIST ITEM: Equipe humana especializada para atender junto com você
-LIST ITEM: Inteligência estratégica contínua, com social listening, monitoramento de mercado e relatórios executivos
+CTA: Ver a lista completa
 CTA: Pedir proposta
 
 BODY: O valor do Basic corresponde ao pacote com 5 acessos de operador. Acessos, canais, agentes de IA e serviços adicionais são cotados junto com o time comercial.
