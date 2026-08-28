@@ -1,0 +1,94 @@
+=== HERO ===
+OVERLINE: Evento exclusivo para clientes Buzzmonitor
+H1: Da Campanha ao Pós-Venda: Como Preparar sua Marca para uma Black Friday de Alta Performance
+BODY: A Black Friday é um dos períodos mais importantes (e desafiadores) para as marcas. Com o aumento do volume de campanhas, interações e demandas de atendimento, estar preparado pode fazer toda a diferença entre uma operação eficiente e uma experiência que gera impactos para a reputação da marca.
+BODY: Neste encontro exclusivo para clientes, vamos mostrar, na prática, como utilizar a Buzzmonitor para preparar sua operação para a Black Friday.
+BODY: Vamos abordar boas práticas para monitorar campanhas e a repercussão da marca, organizar o atendimento no pré e no pós-venda, acompanhar indicadores e identificar rapidamente sinais de possíveis crises.
+LABEL: Data: 01/10/2026
+LABEL: Horário: 14h às 18h
+LABEL: Local: Presencial, São Paulo, Av. Paulista 807, Bela Vista
+CTA: Quero participar
+
+=== APRENDIZADOS ===
+H2: O que você vai aprender
+LIST ITEM: Monitoramento de campanhas e marca. Acompanhe a repercussão das suas ações e entenda o que os consumidores estão falando antes, durante e depois da Black Friday.
+LIST ITEM: Atendimento preparado para o pico. Organize o fluxo de atendimento e esteja preparado para o aumento de interações, dúvidas e demandas no pré e no pós-venda.
+LIST ITEM: Indicadores que importam. Acompanhe os principais dados da operação para identificar oportunidades, gargalos e mudanças no comportamento do consumidor.
+LIST ITEM: Identificação de crises. Aprenda a reconhecer rapidamente sinais de alerta e agir antes que uma situação ganhe proporções maiores.
+LIST ITEM: Recursos e configurações da Buzzmonitor. Conheça funcionalidades que podem ajudar sua equipe a ganhar velocidade, organização e eficiência durante o período.
+LIST ITEM: Experiência do consumidor. Conecte monitoramento, atendimento e dados para oferecer uma jornada mais eficiente em todos os pontos de contato.
+SUB: Prepare sua operação antes do pico.
+SUB: A Black Friday acontece em poucas horas, mas a preparação começa muito antes.
+BODY: Participe do encontro e descubra como usar a Buzzmonitor para transformar dados, monitoramento e atendimento em uma operação mais preparada para a Black Friday.
+CTA: Quero participar
+
+=== VISAO-360 ===
+H2: Do planejamento ao pós-venda: uma visão 360º da Black Friday
+BODY: Vamos falar sobre os principais desafios que as marcas enfrentam durante o período.
+H3: Campanha
+BODY: Estratégia, comunicação e preparação para o aumento de demanda.
+H3: Monitoramento
+BODY: O que os consumidores estão falando antes, durante e depois da Black Friday.
+H3: Atendimento
+BODY: Como lidar com o aumento de interações sem perder qualidade e agilidade.
+H3: Crises
+BODY: Como identificar sinais de alerta e agir antes que pequenos problemas se tornem grandes crises.
+H3: IA e Automação
+BODY: Como utilizar tecnologia para ganhar velocidade, produtividade e inteligência na operação.
+H3: Pós-venda
+BODY: Como transformar uma compra pontual em uma experiência que fortalece o relacionamento com o consumidor.
+
+=== URGENCIA ===
+H2: Black Friday de alta performance exige preparação
+LABEL: Não espere a Black Friday começar para descobrir onde estão os riscos.
+BODY: Prepare sua marca para antecipar demandas, responder mais rápido, tomar decisões baseadas em dados e entregar uma experiência melhor em todos os pontos da jornada.
+H3: Participe do evento e prepare sua estratégia para a Black Friday.
+CTA: Quero participar
+
+=== PALESTRANTES ===
+H2: Palestrantes
+BODY: Conheça os especialistas que irão compartilhar estratégias, insights e boas práticas para preparar sua marca para a Black Friday.
+# [PENDENTE] A copy-fonte traz apenas placeholder "[Foto + Nome + Cargo + Empresa]" x2 -- nomes/fotos dos 2 palestrantes ainda nao confirmados. BLOQUEADOR antes de publicar ao vivo, nao inventar nomes nem usar fotos de pessoas nao confirmadas (mesmo tratamento dado a LP buzztalk-gestao-multimarcas-para-agencias).
+
+=== PROGRAMACAO ===
+H2: Programação
+BODY: Confira os conteúdos que preparamos para você.
+LIST ITEM: 14h00, Recepção e welcome coffee
+LIST ITEM: 14h30, Abertura e contexto da Black Friday
+LIST ITEM: 15h00, Campanha, monitoramento e preparação para o pico
+LIST ITEM: 16h00, Atendimento, IA e gestão de crises
+LIST ITEM: 17h00, Cases e boas práticas de mercado
+LIST ITEM: 17h30, Perguntas, networking e encerramento
+
+=== PUBLICO-ALVO ===
+H2: Para quem é este evento?
+BODY: Profissionais e equipes de:
+LIST ITEM: Marketing
+LIST ITEM: Social Media
+LIST ITEM: Customer Experience
+LIST ITEM: Atendimento
+LIST ITEM: Customer Success
+LIST ITEM: E-commerce
+LIST ITEM: Comunicação
+LIST ITEM: Branding
+LIST ITEM: Relações Públicas
+LIST ITEM: Gestão de Crises
+BODY: Se sua marca participa da Black Friday, este encontro é para você.
+
+=== CTA-FINAL ===
+H2: Sua Black Friday pode vender mais. Mas sua operação precisa estar pronta.
+SUB: Campanhas fortes atraem consumidores. Experiências consistentes fazem eles voltarem.
+# [SUGESTAO anti-IA] As duas frases da linha SUB tem a mesma estrutura sintatica (sujeito + adjetivo + verbo + objeto), o que pode soar cadenciado demais em sequencia. Deixo a escolha de variar com quem aprova a copy.
+BODY: Prepare sua marca para lidar com o maior volume de conversas, interações e oportunidades do ano.
+CTA: Quero participar
+
+=== CONTATO ===
+H3: Ficou com alguma dúvida?
+BODY: Entre em contato conosco via e-mail:
+LABEL: atendimento@buzzmonitor.com.br
+
+=== FOOTER ===
+FOOTER: Buzzmonitor. Inteligência para transformar conversas em decisões.
+
+# Revisao anti-IA: em-dash na copy-fonte original: 9 ocorrencias (2 em "Black Friday e um dos periodos mais importantes (e desafiadores)", 6 na Programacao 14h00-17h30, 1 na assinatura final Buzzmonitor). Todas substituidas por parenteses/virgula/ponto conforme funcao (Passo 4.1). Recontagem no arquivo final: 0.
+# Fora isso, sem frases-tipo-IA nem filler words identificados. 1 sugestao de ritmo sintatico marcada acima (CTA-FINAL), nao aplicada automaticamente.
