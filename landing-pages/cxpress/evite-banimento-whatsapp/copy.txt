@@ -1,30 +1,24 @@
 === HERO ===
 OVERLINE: API oficial do WhatsApp · Cxpress
-H1: Evite banimento do WhatsApp comercial.
-SUB: Você não precisa correr risco de perder o número que seus clientes já conhecem. Com a Cxpress, você opera com a API oficial do WhatsApp, com múltiplos atendentes e histórico unificado, sem correr risco de banimento.
-CTA: Agendar demonstração gratuita
+H1: WhatsApp bloqueado ou banido? Reduza o risco de banimento na sua operação!
+SUB: Se sua empresa já teve o WhatsApp bloqueado por spam, recebeu a mensagem "Esta conta não pode mais usar o WhatsApp" ou depende desse canal para atender clientes, profissionalize sua operação com a API Oficial do WhatsApp.
+SUB: Tenha múltiplos atendentes, histórico unificado, gestão de filas e automação em uma única plataforma.
+CTA: Agende uma demonstração gratuita da plataforma
 VISUAL: Celular com a tela de banimento do WhatsApp ("Esta conta não pode usar o WhatsApp") — ./assets/hero-conta-banida-whatsapp.png
 
 === CLIENTES (prova social) ===
-H2: Clientes que confiam na Cxpress para otimizar seu atendimento
-BODY: [grade de logos — ../../brand/cxpress/assets/plataforma/clientes-cxpress.png]
-
-=== FORM (segunda dobra) ===
-H2: Agende sua demonstração gratuita
-H3: Veja a integração oficial funcionando na sua operação
-BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
-PRICE: Planos a partir de R$ 1.750
-REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
-FORM: [embed Jotform 261034073026647]
+SUB: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
+BODY: [esteira infinita com 42 logos — ./assets/clientes/cliente-01..42.png, a mesma da LP /whatsapp-business]
 
 === BENEFICIOS ===
-H2: O que muda na sua operação com a integração oficial
-H3: Integração oficial da Meta
-BODY: A conexão é feita pela API oficial do WhatsApp, o caminho que a Meta autoriza para empresas. Sem ferramenta paralela, sem violação dos termos de uso.
-H3: Vários atendentes, um número
-BODY: A equipe inteira atende pelo mesmo número, com fila, distribuição de tickets e visibilidade para o gestor. Sem celular compartilhado.
+H2: O que muda na sua operação com a integração oficial da Meta
+H3: Integração oficial
+BODY: Conecte sua operação à API Oficial do WhatsApp e elimine a dependência de ferramentas paralelas para atender seus clientes.
+H3: Vários atendentes, um único número
+BODY: Sua equipe inteira pode atender pelo mesmo WhatsApp, com filas, distribuição de tickets e visibilidade para os gestores.
 H3: Histórico que não se perde
-BODY: Cada conversa fica registrada por cliente, independente de quem atendeu. Se alguém sai da equipe, o histórico fica.
+BODY: Cada conversa fica registrada no histórico do cliente, independentemente do atendente responsável pelo contato.
+CTA: Agende uma demonstração gratuita da plataforma
 
 === PROVA ===
 H2: Resultados de quem estruturou o atendimento com a Cxpress
@@ -36,32 +30,39 @@ BODY: *Resultados de clientes Cxpress em atendimento a redes sociais (relatório
 CTA: Agendar demonstração gratuita
 
 === PLATAFORMA ===
-H2: A estrutura que o seu número ganha na plataforma
+H2: Mais do que evitar banimento: transforme o WhatsApp em um canal profissional de atendimento
+SUB: Com a Cxpress, sua empresa não apenas estrutura o uso do WhatsApp. Toda a operação de atendimento pode ser centralizada em uma única plataforma.
 H3: Todos os canais no mesmo painel
-BODY: WhatsApp, e-mail, redes sociais, telefone e chat do site, com histórico unificado por cliente, independente do canal usado.
+BODY: WhatsApp, e-mail, Instagram, Facebook, telefone e chat do site com um único histórico por cliente.
 CTA: Agendar demonstração gratuita
-H3: Atendimento 24/7 com apoio de IA
-BODY: Amplie o atendimento para 24/7 com apoio de IA no primeiro nível. O time humano entra nas questões que pedem gente.
+H3: Atendimento 24/7 com Inteligência Artificial
+BODY: Automatize as primeiras interações e mantenha seu atendimento disponível mesmo quando sua equipe não estiver online.
 CTA: Agendar demonstração gratuita
-H3: Gestão de tickets com fila e distribuição
-BODY: Distribua atendimentos automaticamente ou manualmente para setores e agentes específicos, com visão completa da fila.
+H3: Gestão de tickets e filas
+BODY: Distribua os atendimentos automaticamente ou manualmente entre setores e agentes.
 CTA: Agendar demonstração gratuita
-H3: Dashboards no lugar das planilhas
-BODY: Transforme as estatísticas do atendimento em painéis intuitivos, com os indicadores que o gestor acompanha de verdade.
+H3: Dashboards para acompanhar a operação
+BODY: Visualize os principais indicadores do atendimento sem depender de controles e planilhas paralelas.
 CTA: Agendar demonstração gratuita
 
 === FAQ ===
-H2: Dúvidas frequentes
-H3: Por que empresas são banidas do WhatsApp?
-BODY: Os casos mais comuns envolvem violação dos termos de uso da Meta: várias pessoas atendendo pelo aplicativo num celular compartilhado, ferramentas não-oficiais de multiatendimento e disparos em massa fora das regras.
-H3: A Cxpress usa a API oficial do WhatsApp?
-BODY: Sim. A integração é feita pela API oficial, o caminho que a Meta autoriza para o atendimento de empresas.
-H3: Vou precisar trocar de número para usar a API oficial?
-BODY: Não. Com o WhatsApp CoEx, o mesmo número pode operar no aplicativo e na API oficial ao mesmo tempo.
-H3: Posso conectar mais de um número à Cxpress?
-BODY: Sim, é possível conectar mais de um número na mesma operação.
-H3: Quais canais podem ser integrados?
-BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+H2: Dúvidas sobre bloqueio e banimento do WhatsApp
+H3: Por que o WhatsApp é banido?
+BODY: Uma conta pode sofrer restrições quando o WhatsApp identifica violações de suas políticas, como mensagens indesejadas, práticas consideradas spam ou utilização inadequada dos serviços.
+H3: O que significa "Esta conta não pode mais usar o WhatsApp"?
+BODY: Essa é uma mensagem que pode aparecer quando uma conta sofre uma restrição ou banimento. Dependendo da situação, o próprio WhatsApp pode disponibilizar opções para solicitar uma revisão.
+H3: Meu WhatsApp foi bloqueado por spam. A Cxpress consegue desbloquear minha conta?
+BODY: Não. A Cxpress não é um serviço de recuperação ou desbloqueio de contas banidas. A plataforma ajuda empresas a estruturar sua operação de atendimento utilizando a API Oficial do WhatsApp, reduzindo a dependência de ferramentas paralelas e aumentando o controle sobre o canal.
+H3: Como evitar banimento no WhatsApp?
+BODY: Empresas devem utilizar soluções oficiais, respeitar as políticas do WhatsApp, evitar mensagens não solicitadas e adotar boas práticas de consentimento e atendimento.
+H3: O WhatsApp Business pode ser banido?
+BODY: Sim. Utilizar o WhatsApp Business não elimina a necessidade de seguir as políticas e diretrizes estabelecidas pelo WhatsApp.
+H3: Usar a API Oficial impede o banimento do WhatsApp?
+BODY: Não existe garantia de risco zero. A API Oficial permite estruturar a operação utilizando os recursos empresariais disponibilizados oficialmente pelo WhatsApp, mas a empresa continua responsável por seguir suas políticas.
+H3: Posso continuar usando meu número atual?
+BODY: Sim. Com o WhatsApp CoEx, é possível manter o mesmo número no aplicativo e integrá-lo à estrutura profissional de atendimento da Cxpress.
+H3: Posso ter vários atendentes no mesmo WhatsApp?
+BODY: Sim. Com a Cxpress, diferentes agentes podem atender pelo mesmo número, com filas, distribuição de tickets e histórico centralizado.
 
 === QUEM SOMOS ===
 H2: Quem somos
@@ -71,8 +72,17 @@ BADGE: Api Oficial do ChatGPT
 BADGE: Um produto Elife
 
 === FECHO ===
-H2: Seu número levou anos para entrar na agenda do cliente. Não deixe um improviso tirar ele de lá.
-CTA: Agendar demonstração gratuita
+H2: Não espere seu WhatsApp ser bloqueado para profissionalizar sua operação
+SUB: Seu número levou anos para ser conhecido pelos clientes. Estruture seu atendimento com a API Oficial do WhatsApp, múltiplos atendentes, histórico centralizado, automação e Inteligência Artificial.
+CTA: Agende uma demonstração gratuita da plataforma
+
+=== FORM (ultima secao da pagina) ===
+H2: Agende sua demonstração gratuita
+H3: Veja a integração oficial funcionando na sua operação
+BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
+PRICE: Planos a partir de R$ 1.750
+REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+FORM: [embed Jotform 261034073026647]
 
 === FOOTER ===
 FOOTER: Cxpress é um produto Elife. © 2026
@@ -83,8 +93,9 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 # layout e textos replicados da pagina de referencia; o que muda nesta versao:
 #   1. PRICE: "Planos a partir de R$ 1.290" -> "Planos a partir de R$ 990 com 3 acessos"
 #      (2026-08-27, rodada de preco) -> "Planos a partir de R$ 1.750 com 5 acessos", acompanhando o novo preco do Basic na LP planos
-#      (2026-08-28, unificacao) -> "Planos a partir de R$ 1.750", sem mencao a acessos: a citacao
-#      de quantidade de acessos ficou restrita a LP canonica de precos (/planos), por decisao do usuario
+#      -> "Planos a partir de R$ 990" (doc do Google Ads) -> "Planos a partir de R$ 1.750"
+#      (2026-08-30, Victor: o piso publico continua sendo o do Basic da LP planos;
+#      o que o doc pediu foi encurtar a linha, nao baixar o preco)
 #   2. FORM: Jotform 261045149477663 -> 261034073026647
 #   3. GTM: GTM-T4XDWHL3 -> GTM-KN8BPFG (pedido explicito, sobrepoe brand/cxpress/tracking.json)
 #   4. GA4: tag gtag.js adicionada com o ID 339689858
@@ -93,9 +104,24 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 #   6. Secao do formulario centralizada + elementos de apoio no background
 #   7. Contraste e separacao entre secoes reforcados
 #   8. Icones nos 3 cards de BENEFICIOS (substituem a pilula decorativa) e 1 CTA
-#      por item na secao PLATAFORMA. O rotulo do CTA reusa o literal da copy
-#      ("Agendar demonstracao gratuita") — nenhum rotulo novo foi inventado por
-#      feature. Se o time quiser CTA especifico por item ("Ver os canais", etc),
-#      isso e copy nova e precisa passar pelo pipeline.
-# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0). Textos
-# herdados de copy ja revisada; nenhuma frase nova foi escrita.
+#      por item na secao PLATAFORMA.
+#
+# 2026-08-30 — rodada de otimizacao para Google Ads (doc "Otimizacao Banimento
+# Whats (Google Ads)"). Copy substituida em HERO, CLIENTES, BENEFICIOS,
+# PLATAFORMA, FAQ e FECHO; PROVA e QUEM SOMOS mantidos. Mudancas estruturais:
+#   a. O formulario saiu da 2a dobra e virou a ULTIMA secao da pagina. Os 9 CTAs
+#      continuam apontando para #agendar.
+#   b. CLIENTES: a grade estatica (clientes-cxpress.png) virou a esteira de 42
+#      logos da LP /whatsapp-business (assets/clientes/), a pedido do Victor.
+#      As 2 metricas que acompanham a esteira naquela LP nao vieram junto: o
+#      "+220%" ja aparece na secao PROVA desta pagina. O titulo entra com peso de
+#      subtitulo (fonte de corpo, 400, sem a regua laranja) e a secao ficou curta, a
+#      pedido do Victor — e faixa de apoio, nao secao de conteudo.
+#   c. FAQ: de 5 para 8 perguntas, todas do doc. O subtitulo que o doc traz na
+#      secao 7 e identico ao da secao 6 (PLATAFORMA) — nao foi replicado aqui
+#      para nao repetir a mesma frase duas vezes na pagina. Confirmar com o Victor.
+#   d. CTA: o doc usa dois rotulos. "Agende uma demonstracao gratuita da
+#      plataforma" no hero, beneficios e fecho; "Agendar demonstracao gratuita"
+#      na prova, no header e nos 4 itens da plataforma.
+# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0). Copy
+# recebida pronta do doc; nenhuma frase nova foi escrita.

@@ -12,22 +12,25 @@ visivel sao identicas, verificado por diff automatizado.
 
 ## Estrutura
 
-1. HERO (overline + H1 + sub + CTA + celular com a tela de banimento sobre blobs/glow)
-2. CLIENTES (prova social, grade de logos)
-3. FORM (2a dobra, centralizada, embed Jotform)
-4. BENEFICIOS (3 cards)
-5. PROVA (4 stats + nota de fonte + CTA)
-6. PLATAFORMA (4 features, 1 delas text-only)
-7. FAQ (5 perguntas)
-8. QUEM SOMOS (foto + texto + 3 badges)
-9. FECHO (secao dark, pausa)
+1. HERO (overline + H1 + 2 paragrafos + CTA + celular com a tela de banimento sobre circulos/glow)
+2. CLIENTES (prova social, esteira infinita com 42 logos)
+3. BENEFICIOS (3 cards + CTA da secao)
+4. PROVA (4 stats + nota de fonte + CTA)
+5. PLATAFORMA (titulo + subtitulo + 4 features, 1 delas text-only)
+6. FAQ (8 perguntas)
+7. QUEM SOMOS (foto + texto + 3 badges)
+8. FECHO (secao dark, titulo + subtitulo + CTA)
+9. FORM (ultima secao, centralizada, embed Jotform) — alvo dos 9 CTAs (`#agendar`)
 10. FOOTER
+
+> A ordem acima e a de 2026-08-30. Ate essa data o FORM era a 2a dobra (item 3) e o
+> FECHO fechava a pagina.
 
 ## Deltas em relacao a `banimento-whatsapp`
 
 | # | O que | De | Para |
 |---|---|---|---|
-| 1 | ~~Chamada de preco~~ — delta encerrado em 2026-08-28: as duas LPs convergiram para `Planos a partir de R$ 1.750` | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
+| 1 | Chamada de preco | `Planos a partir de R$ 1.290` | `Planos a partir de R$ 990 com 3 acessos` |
 | 2 | Form Jotform | `261045149477663` | `261034073026647` (ver historico do form abaixo) |
 | 3 | GTM | `GTM-T4XDWHL3` | `GTM-KN8BPFG` |
 | 4 | GA4 | (nao tinha) | `gtag.js` com ID `339689858` |
@@ -168,7 +171,7 @@ do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
 ## Estado
 
 - [x] HTML gerado
-- [x] OG image 1200×630 → `assets/og-evite-banimento-whatsapp.png` (reaproveitada da LP de referencia, mesmo tema)
+- [x] OG image 1200×630 → `assets/og-evite-banimento-whatsapp.png` (regerada em 2026-08-30 a partir de `assets/og-template.html`)
 - [x] Formulario integrado (Jotform `261034073026647`)
 
 **Form provider:** Jotform (`261034073026647`, reintegrado em 2026-08-27)
@@ -184,7 +187,8 @@ do `body`. Se alguem reintroduzir `blur()` nesses elementos, o artefato volta.
 - `../../brand/cxpress/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/cxpress/assets/logos/logo-icon.png` (favicon)
 - `../../brand/cxpress/assets/logos/logo-primary.png` (JSON-LD, via placeholder)
-- `../../brand/cxpress/assets/plataforma/clientes-cxpress.png`
+- `./assets/clientes/cliente-01..42.png` (LP-local, 42 logos da esteira, 308 KB no total — copiados da LP `whatsapp-business`)
+- `./assets/og-template.html` (LP-local, fonte da OG image; renderizar em 1200x630)
 - `../../brand/cxpress/assets/plataforma/plataforma-canais.gif`
 - `../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif`
 - `../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif`
@@ -200,13 +204,51 @@ aparelho (medido na mascara) e re-encodado com filtro PNG adaptativo: 430×901, 
 Contra o GIF que era o visual do hero na referencia (`plataforma-canais.gif`, 2,4 MB),
 o hero ficou cerca de 5x mais leve.
 
-## Atualizacao de preco — 2026-08-28
+### Rodada 5 (2026-08-30, otimizacao de copy para Google Ads)
 
-Novo preco minimo de plano da Cxpress: **R$ 1.750**. A chamada de preco desta LP passou a
-`Planos a partir de R$ 1.750`, **sem** mencao a quantidade de acessos — por decisao do usuario,
-o detalhamento de acessos fica restrito a LP canonica de precos (`/planos`), que segue intacta
-com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicada em bloco nas
-9 LPs BR da Cxpress que citavam preco fora da `/planos`.
+Copy nova do doc **"Otimizacao Banimento Whats (Google Ads)"**, aplicada via `/lp-revisar`.
+Substituida em HERO, CLIENTES, BENEFICIOS, PLATAFORMA, FAQ e FECHO; PROVA e QUEM SOMOS
+seguem como estavam (o doc pediu "deixar assim").
 
-As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
-em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.
+| # | O que | De | Para |
+|---|---|---|---|
+| 23 | Posicao do formulario | 2a dobra (logo depois de CLIENTES) | **ultima secao da pagina**, depois do FECHO. Os 9 CTAs continuam em `#agendar` |
+| 24 | Chamada de preco | `Planos a partir de R$ 1.750 com 5 acessos` | `Planos a partir de R$ 1.750` (o doc pedia `R$ 990`; o Victor confirmou que o piso publico continua o do Basic — o que muda e so a linha, mais curta) |
+| 25 | Secao CLIENTES | grade estatica (`clientes-cxpress.png`) alinhada a esquerda, titulo com peso de H2 | esteira infinita com os **42 logos da LP `whatsapp-business`**; titulo centralizado com peso de **subtitulo** (`.clientes__title`: fonte de corpo, 400, `clamp(18px,1.55vw,20px)`, sem a regua laranja) e secao curta (`44px 0 52px`) |
+| 26 | FAQ | 5 perguntas | 8 perguntas (todas do doc) + `FAQPage` no JSON-LD |
+| 27 | Rotulo de CTA | 1 rotulo unico | 2 rotulos, como o doc pede: `Agende uma demonstracao gratuita da plataforma` (hero, beneficios, fecho) e `Agendar demonstracao gratuita` (header, prova, 4 itens da plataforma) |
+| 28 | CTA na secao BENEFICIOS | nao tinha | 1 botao solido no fim da grade de cards |
+| 29 | Subtitulo em PLATAFORMA e FECHO | nao tinha | `.plataforma__sub` e `.fecho__sub` |
+| 30 | Quebra de linha (GUIDELINES §21) | so `.btn` em `≤520px` | bloco unico de `text-wrap` com 20 seletores em `balance` e 3 em `pretty` |
+| 31 | OG image | headline antiga ("Atendimento no WhatsApp sem risco de banimento") | regerada com o novo angulo, a partir de `assets/og-template.html` |
+| 32 | `<title>` / meta description / OG / JSON-LD | angulo "evite banimento" | angulo "WhatsApp bloqueado ou banido" (preco segue `R$ 1.750`) |
+
+Sobre o **delta 25**: a faixa de clientes e prova social de apoio, nao secao de conteudo — por isso o titulo perdeu o peso de H2 e a regua laranja, e a largura (`max-width:42ch`) esta calibrada pra fechar em **2 linhas** em 1440 / 1200 / 768 / 390px. Continua sendo um `<h2>` no HTML (a hierarquia semantica nao muda, so a visual).
+
+Sobre a origem do delta 25: a esteira veio inteira da `whatsapp-business` (markup, CSS, mascara
+de fade e os 42 PNGs), com as classes renomeadas pro padrao BEM desta LP
+(`clients-track` → `clientes__track`). O que **nao** veio junto foram as **2 metricas**
+(`85% de reducao de SLA`, `+220% de interacoes nas redes sociais`) que naquela LP ficam
+entre o titulo e a esteira: o `+220%` ja e um dos 4 stats da secao PROVA desta pagina, e
+repetir o numero duas vezes enfraquece os dois blocos. Se o Victor quiser as metricas
+tambem, e copiar o bloco `.stats` da `whatsapp-business` (e ai vale tirar o `+220%` da PROVA).
+
+Sobre o **delta 26**: o doc traz, na secao 7 (FAQ), um subtitulo **identico** ao da secao 6
+(PLATAFORMA) — "Com a Cxpress, sua empresa nao apenas estrutura o uso do WhatsApp...".
+Tem cara de copiar-e-colar do doc, e a frase nao fala de duvidas sobre banimento. Foi
+aplicada so na PLATAFORMA. **Confirmar com o Victor** se ele quer mesmo repetir.
+
+Sobre o **delta 30**: com o titulo novo (mais longo), o `balance` sozinho nao resolveu tudo.
+Dois tetos de tipografia tiveram que mudar junto — `.fecho h2` de 48 para 44px (em 48 caia
+em 3 linhas com 35% de desequilibrio; em 44 fecha em 2 com 14%) e `.agendar .section-title`
+de 42 para 38px (cabe numa linha so dentro do card de 780px). O piso do `.hero h1` foi de
+32 para 30px porque em 390px o `balance` deixava "WhatsApp" sozinho na primeira linha.
+Duas armadilhas confirmadas na medicao, alem das ja documentadas na GUIDELINES §21:
+`text-wrap` **nao age em `<span>` inline** (`.stat__label` precisou de `display:block`) e o
+`<br class="brk">` do H2 do form brigava com o `balance` (removido).
+
+**Medicao pos-mudanca** (desequilibrio = `1 − linha_menor / linha_maior`, via Range +
+`getClientRects()`): em 1440px e 768px nenhum bloco de texto passa de 36% e nao ha orfa de
+uma palavra; em 390px o unico resto e o rotulo do CTA outline do card sem imagem
+("Agendar / demonstracao gratuita"), que nao cabe numa linha nos 286px disponiveis sem
+furar o piso de 17px da GUIDELINES §20. `scrollWidth == clientWidth` em 390px.
