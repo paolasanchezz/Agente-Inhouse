@@ -1,0 +1,138 @@
+=== HERO ===
+OVERLINE: API Oficial do WhatsApp · Cxpress
+H1: WhatsApp bloqueado ou banido? Proteja sua operação de atendimento agora mesmo!
+SUB: Se sua empresa recebeu uma mensagem de banimento do WhatsApp ou enfrenta bloqueios por spam, profissionalize sua operação com a API Oficial e uma plataforma preparada para atendimento em escala.
+CTA: Agende uma demonstração gratuita da plataforma
+BODY: Descubra como operar seu WhatsApp Business com mais controle, segurança e produtividade.
+VISUAL: Celular com a tela de banimento ("Esta conta não pode mais usar o WhatsApp") e, ao lado, a mesma operação organizada dentro da Cxpress (painel com fila, atendentes e resposta da IA).
+
+=== CLIENTES (prova social) ===
+SUB: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
+BODY: [esteira infinita com 42 logos, ./assets/clientes/cliente-01..42.png, a mesma da LP /evite-banimento-whatsapp]
+
+=== SINTOMAS ===
+H2: Seu WhatsApp Business está sendo bloqueado?
+SUB: O WhatsApp se tornou um dos principais canais de atendimento e vendas das empresas. Quando um número é bloqueado ou banido, toda a operação pode ser impactada.
+SUB: Alguns sinais são bastante conhecidos:
+LIST ITEM: WhatsApp bloqueado por spam
+LIST ITEM: Conta temporariamente bloqueada
+LIST ITEM: Mensagem &ldquo;Esta conta não pode mais usar o WhatsApp&rdquo;
+LIST ITEM: Restrições no envio de mensagens
+LIST ITEM: Banimento do WhatsApp Business
+BODY: Para empresas que dependem do WhatsApp todos os dias, um bloqueio pode significar oportunidades perdidas, clientes sem resposta e equipes paradas.
+
+=== IMPACTO ===
+H2: Um WhatsApp banido pode parar seu atendimento e suas vendas
+H3: Clientes sem resposta
+BODY: Conversas importantes ficam interrompidas e sua equipe perde contato com os clientes.
+H3: Vendas interrompidas
+BODY: Leads que estavam avançando podem deixar de receber respostas e procurar concorrentes.
+H3: Histórico descentralizado
+BODY: Quando toda a operação depende de celulares e contas individuais, informações importantes podem ficar espalhadas.
+H3: Equipe improdutiva
+BODY: Sem uma estrutura profissional, diferentes atendentes podem disputar conversas, repetir respostas e perder oportunidades.
+
+=== COMO EVITAR ===
+H2: Como evitar problemas de banimento no WhatsApp da sua empresa?
+H3: API Oficial do WhatsApp
+BODY: Opere seu atendimento utilizando uma estrutura preparada para empresas.
+H3: Múltiplos atendentes
+BODY: Vários agentes podem atender clientes sem depender de diferentes celulares.
+H3: Gestão de atendimento
+BODY: Organize filas, setores, responsáveis e históricos em uma única plataforma.
+H3: Automação com IA
+BODY: Automatize as primeiras interações e mantenha seu atendimento disponível 24 horas.
+
+=== COMPARATIVO ===
+H2: WhatsApp comum ou operação profissional de atendimento?
+LABEL: Operação convencional
+LABEL: Com a Cxpress
+LIST ITEM: Atendimento concentrado em celulares | Atendimento em uma única plataforma
+LIST ITEM: Conversas espalhadas | Histórico centralizado
+LIST ITEM: Processos manuais | Filas e distribuições automáticas
+LIST ITEM: Dependência de atendentes disponíveis | Atendimento inicial com IA
+LIST ITEM: Dificuldade para acompanhar a operação | Dashboards e indicadores
+LIST ITEM: Pouco controle sobre os atendimentos | Gestão centralizada da equipe
+H3: Profissionalize seu atendimento pelo WhatsApp
+CTA: Agende uma demonstração gratuita da plataforma
+
+=== API OFICIAL ===
+H2: Use o WhatsApp de forma profissional com a API Oficial
+# [SUGESTAO anti-IA] "de forma profissional" cai na familia "de forma X" (regras-anti-ia.md, Filler Words). Alternativa que preserva a keyword: "Use o WhatsApp como canal profissional com a API Oficial". Titulo veio pronto do doc do Google Ads e nao foi alterado.
+SUB: Se o WhatsApp é um canal estratégico para sua empresa, sua operação precisa estar preparada para atender clientes em escala.
+SUB: A Cxpress permite integrar o WhatsApp a uma estrutura profissional de atendimento, centralizando conversas, equipes, históricos e automações em um único ambiente.
+LIST ITEM: API Oficial do WhatsApp
+LIST ITEM: Um número com múltiplos atendentes
+LIST ITEM: Distribuição automática de conversas
+LIST ITEM: Histórico unificado dos clientes
+LIST ITEM: Chatbot e agentes com Inteligência Artificial
+LIST ITEM: Dashboards de atendimento
+LIST ITEM: Integração com outros canais
+
+=== OMNICHANNEL ===
+H2: WhatsApp, redes sociais, e-mail e telefone em uma única plataforma
+SUB: Além do WhatsApp, a Cxpress permite que sua equipe centralize diferentes canais de atendimento em uma única fila.
+SUB: Assim, seu cliente pode começar uma conversa pelo WhatsApp e continuar sendo atendido sem perder seu histórico.
+VISUAL: Diagrama WhatsApp + Instagram + Facebook + E-mail + Telefone > Cxpress > Equipe de atendimento
+
+=== IA ===
+H2: Atenda seus clientes 24/7 com Inteligência Artificial
+SUB: Reduza o volume de interações manuais automatizando as primeiras etapas do atendimento.
+BODY: A IA da Cxpress pode compreender mensagens em linguagem natural, responder perguntas, realizar triagens e encaminhar o atendimento para a equipe responsável quando necessário.
+BODY: Isso ajuda sua empresa a responder mais rápido sem depender exclusivamente de atendentes humanos para cada nova mensagem.
+CTA: Agende uma demonstração gratuita da plataforma
+
+=== FAQ ===
+H2: Dúvidas frequentes sobre bloqueio e banimento do WhatsApp
+H3: Meu WhatsApp foi bloqueado por spam. O que fazer?
+BODY: O bloqueio pode acontecer quando o WhatsApp identifica atividades que violam suas políticas ou padrões considerados inadequados. Para empresas, é importante revisar a forma como o canal está sendo utilizado e estruturar uma operação baseada nas soluções oficiais disponibilizadas pelo WhatsApp.
+H3: O que significa &ldquo;Esta conta não pode mais usar o WhatsApp&rdquo;?
+BODY: Essa mensagem pode indicar que a conta recebeu uma restrição ou banimento. Dependendo do caso, o próprio WhatsApp pode disponibilizar opções de revisão da decisão.
+H3: Como evitar banimento no WhatsApp Business?
+BODY: Empresas devem adotar boas práticas de comunicação, respeitar as políticas do WhatsApp, evitar abordagens inadequadas e utilizar soluções oficiais para estruturar suas operações de atendimento.
+H3: Usar a API Oficial evita banimento do WhatsApp?
+BODY: A utilização de soluções oficiais não significa que uma empresa possa ignorar as políticas do WhatsApp. No entanto, permite estruturar uma operação empresarial dentro dos recursos disponibilizados oficialmente pela plataforma e com maior controle dos processos de atendimento.
+H3: Posso ter vários atendentes no mesmo WhatsApp?
+BODY: Sim. Com uma plataforma de atendimento integrada ao WhatsApp, diferentes agentes podem atender clientes de forma organizada, com filas, setores e históricos centralizados.
+# [SUGESTAO de escopo] O doc nao traz a pergunta "A Cxpress consegue desbloquear minha conta?", que existe na LP /evite-banimento-whatsapp com a resposta "Nao". Como a campanha compra keywords de quem JA foi banido ("whatsapp banido", "mensagem de banimento"), a ausencia dessa pergunta deixa margem para o visitante entender que a Cxpress desbloqueia contas. Decisao do Victor: seguir o doc. Recomendo reincluir antes de publicar.
+
+=== FECHO ===
+H2: Não deixe sua operação depender de um WhatsApp desorganizado
+SUB: Centralize seu atendimento, utilize a API Oficial do WhatsApp, organize sua equipe e automatize interações com Inteligência Artificial.
+BODY: Conheça a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp.
+CTA: Agende uma demonstração gratuita da plataforma
+# [SUGESTAO de formato] No doc, "Conheca a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp" esta rotulada como CTA. Sao 96 caracteres: como rotulo de botao quebra em 3 linhas no mobile e perde o verbo de acao. Mantida como linha de apoio acima do botao; o botao repete o rotulo usado no resto da pagina.
+
+=== FORM (ultima secao da pagina) ===
+H2: Agende sua demonstração gratuita
+H3: Veja a API Oficial funcionando na sua operação
+BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API Oficial ativa.
+PRICE: Planos a partir de R$ 1.750
+REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+FORM: [mock durante o design, GUIDELINES §11. Embed real entra por /lp-integrar-form]
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# ---------------------------------------------------------------------------
+# Origem: doc "Nova Banimento Whats (Google Ads)" (Victor, 2026-08-30).
+# Estrutura = as 10 secoes do doc, na ordem do doc, mais a secao de formulario
+# no fim (o proprio doc pede: "jogar o formulario la pra baixo, e todo
+# botao/cta redirecionar para" ele).
+#
+# Decisao do Victor (2026-08-30): seguir SO o doc. As secoes PROVA (metricas
+# +220% / 15x / -60% / 98%) e QUEM SOMOS, que existem na LP de referencia
+# /evite-banimento-whatsapp, ficam de fora desta pagina.
+#
+# Copy do form (H2/H3/BODY/PRICE/REQ) e do footer: o doc nao cobre esses blocos,
+# entao foram reaproveitados da /evite-banimento-whatsapp sem alteracao de tom.
+#
+# Referencias visuais pedidas:
+#   - Identidade e tokens: landing-pages/cxpress/evite-banimento-whatsapp
+#   - Distribuicao de informacao, esqueleto e animacoes: LP da Umbler
+#     ("Clone seu melhor atendente com IA"), salva pelo Victor em 2026-08-30.
+#
+# Revisao anti-IA: 1 sugestao marcada ("de forma profissional", secao API
+# OFICIAL). em-dash: 0. antitese-por-negacao: 0. exclamacoes: 1 (H1 do hero).
+# Idioma: PT-BR. Copy recebida pronta do doc; nenhuma frase nova foi escrita.

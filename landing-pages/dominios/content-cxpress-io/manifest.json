@@ -36,6 +36,11 @@
       "source": "landing-pages/cxpress/atendimento-sem-metrica"
     },
     {
+      "slug": "banimento-de-whatsapp",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/banimento-de-whatsapp"
+    },
+    {
       "slug": "banimento-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/banimento-whatsapp"

@@ -1,0 +1,12 @@
+{
+  "regiao": "brasil",
+  "expected_gtm": "GTM-T4XDWHL3",
+  "found_gtm": [
+    "GTM-KN8BPFG"
+  ],
+  "fingerprint": "1b72ebbdd5041c63",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-08-30",
+  "note": "container definido explicitamente no briefing desta LP (GTM-KN8BPFG, container de Google Ads), divergente do container BR da marca em brand/cxpress/tracking.json (GTM-T4XDWHL3). Decisao consciente do Victor em 2026-08-30, confirmada por escrito; mesma escolha da LP irma /evite-banimento-whatsapp, que tambem e de Google Ads. Nao e heranca de traducao. Se GTM-KN8BPFG virar o padrao de Cxpress BR, atualizar o tracking.json e regravar este selo com --write-stamp. Qualquer troca de GTM muda o fingerprint e re-abre o gate."
+}
