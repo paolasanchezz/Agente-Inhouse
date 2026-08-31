@@ -323,7 +323,7 @@
     .hero-sub {
       margin: 0 0 20px;
       max-width: 660px;
-      font-size: clamp(23px, 2.4vw, 32px);
+      font-size: clamp(26px, 2.4vw, 32px);
       font-weight: 800;
       line-height: 1.16;
       letter-spacing: -.03em;
@@ -968,18 +968,26 @@
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
-  .eyebrow{ font-size:13px; }
-  .hero-lead{ font-size:17px; }
+  .eyebrow{ font-size:14px; }
+  .hero-lead{ font-size:18px; }
   .video-toggle{ font-size:17px; }
-  .feature-card p,.module-card p,.quote-card p{ font-size:15px; }
-  .check-list li{ font-size:15px; }
+  .feature-card h3,.module-card h3{ font-size:20px; }
+  .feature-card p,.module-card p,.quote-card p{ font-size:17px; }
+  .check-list li{ font-size:17px; }
+  .cta-box p{ font-size:17px; }
   .split p{ font-size:17px; }
   .stat span{ font-size:14px; }
-  .form-card__lead{ font-size:15px; }
-  .field label{ font-size:13px; }
+  .quote-card strong{ font-size:17px; }
+  .quote-card small{ font-size:14px; }
+  .logos p{ font-size:14px; }
+  .btn{ font-size:17px; }
+  /* CTA da navbar: sobe pouco e compensa no padding (a linha do header nao tem folga) */
+  .nav .btn-primary{ font-size:14px; padding:0 15px; }
+  .form-card__lead{ font-size:17px; }
+  .field label{ font-size:14px; }
   .field input,.field select{ font-size:16px; }
-  .form-card .btn{ font-size:16px; }
-  .form-legal{ font-size:13px; }
+  .form-card .btn{ font-size:17px; }
+  .form-legal{ font-size:14px; }
   .form-msg{ font-size:14px; }
   footer{ font-size:14px; }
   }

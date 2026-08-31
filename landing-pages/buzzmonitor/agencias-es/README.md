@@ -31,6 +31,16 @@ Racional dos cortes em `REVISAO.md` e no cabecalho do `copy.txt`.
   headline, porque pseudo-elemento posicionado pinta acima de conteudo nao posicionado. Corrigido
   com `position:relative; z-index:1` no `.hero-grid` (vale em qualquer largura) + textura menor e
   mais clara em `<=980px` (380px, opacity .6) e `<=640px` (240px, opacity .45).
+- **Tipografia mobile subida pros pisos da GUIDELINES §20** (o bloco que existia na LP era de um
+  sweep anterior, com valores mais baixos): corpo/lista/CTA 15-16px → **17px**, lead do hero 17 →
+  **18px**, H2 do hero `clamp(23px, 2.4vw, 32px)` → `clamp(26px, 2.4vw, 32px)`, titulo de card
+  18.7 → **20px**, label/caption 13 → **14px**. Desktop intacto (só o MIN dos clamps e os
+  overrides de ≤640px sobem).
+  Excecao tratada a parte: o CTA da navbar (`.nav .btn-primary`) — a linha do header nao tem folga
+  (79 + 183 + 37 + 2×24 = 347px, exatamente a largura util), entao foi de 13 → **14px** com o
+  padding caindo de 18 → 15px pra largura do botao nao crescer. Medido em 375×812:
+  `scrollWidth` = `clientWidth` = 375, sem overflow novo alem do marquee (clipado por design) e
+  do skip-link. QA: `check_mobile_type.py` reporta h1=38 h2=26 p=17 li=17 btn=14, menor fonte 14.
 - Paddings reajustados por causa da troca de vizinhanca: `.clients-proof` voltou a ter padding-top
   (76px, antes 0 porque colava no bloco de depoimentos), `#soluciones` perdeu o `padding-top:0`
   inline e `.logos` passou a `76px 0 86px` (antes 10px no topo, porque colava no hero).
