@@ -31,6 +31,7 @@ _BADGE_CLASSES = {
     'pos-webinar':                       'b-webinar',
     'notion':                            'b-notion',
     'linkedin':                          'b-linkedin',
+    'tiktok':                            'b-tiktok',
 }
 
 
@@ -39,7 +40,7 @@ def badge_source(name) -> str:
     name = (name or '').strip() if name else ''
     if not name:
         return '<span class="b">(vazio)</span>'
-    cls = _BADGE_CLASSES.get(name)
+    cls = _BADGE_CLASSES.get(name) or _BADGE_CLASSES.get(name.lower())
     if cls:
         return f'<span class="b {cls}">{escape(name)}</span>'
     return f'<span class="b">{escape(name)}</span>'

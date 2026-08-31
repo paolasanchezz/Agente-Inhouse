@@ -12,6 +12,41 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Filtro CM aceita LinkedIn e TikTok em qualquer variante
+### 2026-08-31 — `dashboard-atualizar` v3.1.1
+
+LinkedIn Ads e TikTok Ads entraram no mix de Content Marketing do Buzzmonitor Brasil. O deal 194056
+(`utm_source=linkedin`, `utm_medium=paid-social`, campanha "InMail - Conversões", LP
+`content.buzzmonitor.com/monitoramento-com-ia`) já entrava — `linkedin` e `tiktok` estavam na
+whitelist desde sempre. O problema era outro: a comparação de `utm_source` era um `IN` **case-sensitive**,
+então `LinkedIn`, `TikTok` ou `linkedin-ads` escapariam **em silêncio** na primeira campanha que a
+plataforma taguear diferente. A própria whitelist já carregava `Instagram_Feed` e `Instagram_Stories`
+como prova de que isso acontece.
+
+Mudanças em `dashboard/queries.py` + espelho `dashboard-pessoal/lib/queries.py`:
+
+- `filtro_cm()` compara `LOWER(TRIM(COALESCE(utm_source,'')))` — a lista é normalizada em minúsculas
+  ao montar o SQL. Mesmo padrão que o `queries_cxpress.py` já usava.
+- Nova constante `CM_UTM_SOURCE_PREFIXOS = ['linkedin', 'tiktok']` — casa a família inteira por prefixo
+  (`linkedin-ads`, `linkedin_inmail`, `tiktok.com`, ...) sem catalogar typo por typo. Só entra aqui canal
+  em que **toda** variante é CM; `meta` e `google` ficam de fora de propósito.
+- `Instagram_Reels` entrou na whitelist (Victor, 2026-08-31) — mesmo posicionamento Meta que `Instagram_Feed`
+  e `Instagram_Stories`, que já contavam. É a única mudança de número: +2 leads no YtD 2026 (jan e fev).
+- O `COALESCE` no `utm_source` da exclusão `google`+`cpc` foi preservado de propósito: sem ele, um deal com
+  `utm_source` NULL e `utm_medium='cpc'` viraria NULL no `NOT (...)` e sairia do filtro em silêncio (mesma
+  classe do bug corrigido em 2026-05-26).
+
+Impacto medido no banco antes de subir: a mudança de **forma** do filtro move zero deals em 2026 (0 entram,
+0 saem) — é proteção pra frente. Paridade motor.js × SQL: 838 checagens, 0 divergências.
+
+Na skill, o sync-check do Passo 0.2b passou a comparar também o **SQL gerado** por `filtro_cm()`,
+`filtro_inbound()` e `_sem_outbound()` entre a superfície oficial e o espelho, não só as constantes — era
+exatamente esse o buraco que deixava uma divergência de lógica passar calada.
+
+Badge da nova origem: `.b-tiktok` criado e `.b-linkedin` ganhou a cor da marca (antes cinza, sem
+distinção); o lookup do badge virou case-insensitive nas três superfícies de render (dash Vercel, dash
+local e `render_helpers.py`), acompanhando o filtro.
+
 ## Dashboard CM Buzzcreators Brasil — atribuição recuperada por join
 ### 2026-08-26 — `dashboard-atualizar` v3.1.0
 

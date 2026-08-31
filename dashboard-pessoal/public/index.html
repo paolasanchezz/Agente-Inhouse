@@ -511,7 +511,8 @@
   .b-lp { background: rgba(110,167,255,0.18); color: #1D4ED8; }
   .b-webinar { background: rgba(107,114,128,0.10); color: var(--text-muted); }
   .b-notion { background: rgba(107,114,128,0.10); color: var(--text-muted); }
-  .b-linkedin { background: rgba(107,114,128,0.10); color: var(--text-muted); }
+  .b-linkedin { background: rgba(10,102,194,0.12); color: #0A66C2; }
+  .b-tiktok { background: rgba(17,24,39,0.08); color: #111827; }
   .b-status-ok { background: var(--success-soft); color: var(--success); font-weight: 700; }
   .b-status-pending { background: var(--warning-soft); color: var(--warning); font-weight: 700; }
   .b-status-no { background: rgba(107,114,128,0.1); color: var(--text-muted); }
@@ -1147,7 +1148,7 @@ const BADGE_CLASSES = {
   'meta': 'b-meta', 'chatgpt.com': 'b-chatgpt', 'email': 'b-email', 'blog': 'b-blog',
   'lp-agradecimento': 'b-lp', 'lp-agradecimento-oferta-trends': 'b-lp', 'lp-agradecimento-evento': 'b-lp',
   'webinar-ao-vivo': 'b-webinar', 'apresentacao-webinar': 'b-webinar', 'pos-webinar': 'b-webinar',
-  'notion': 'b-notion', 'linkedin': 'b-linkedin',
+  'notion': 'b-notion', 'linkedin': 'b-linkedin', 'tiktok': 'b-tiktok',
 };
 function escapeHtml(s) {
   if (s === null || s === undefined) return '';
@@ -1156,7 +1157,7 @@ function escapeHtml(s) {
 function badgeSource(name) {
   const n = (name || '').trim();
   if (!n) return '<span class="b">(vazio)</span>';
-  const cls = BADGE_CLASSES[n];
+  const cls = BADGE_CLASSES[n] || BADGE_CLASSES[n.toLowerCase()];
   return cls ? `<span class="b ${cls}">${escapeHtml(n)}</span>` : `<span class="b">${escapeHtml(n)}</span>`;
 }
 function rankCell(idx) {

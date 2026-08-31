@@ -40,11 +40,23 @@ CM_UTM_SOURCES: list[str] = [
     # deal 183535) eh CM legitimo confirmado e entrou na EMAIL_WHITELIST.
     'apresentacao', 'webinar', 'newsletter',
     'Instagram_Feed', 'Instagram_Stories',
+    'Instagram_Reels',  # posicionamento Meta, mesma familia de Feed/Stories (Victor, 2026-08-31)
     'insta-bio',  # link da bio do Instagram (Victor confirmou CM, 2026-07-01)
     'instabio',  # Instabio (link na bio), variante sem hifen (Victor confirmou CM, 2026-07-27)
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
+
+# Prefixos de utm_source CM (casamento por PREFIXO, case-insensitive) — 2026-08-31.
+# Motivo: entrada de LinkedIn Ads e TikTok Ads no mix de CM (deal 194056,
+# utm_source=linkedin / utm_medium=paid-social / campanha "InMail - Conversoes",
+# confirmado CM pelo Victor). As plataformas e o time geram variantes que a lista
+# exata nao pega: 'linkedin-ads', 'linkedin_inmail', 'LinkedIn', 'tiktok-ads',
+# 'TikTok', 'tiktok.com'. O prefixo cobre a familia inteira sem precisar catalogar
+# typo por typo. So entram aqui canais em que QUALQUER variante e CM — nao usar
+# pra 'meta'/'google' (convivem com midia paga nao-CM e com o par google/cpc).
+CM_UTM_SOURCE_PREFIXOS: list[str] = ['linkedin', 'tiktok']
+
 
 # Sources que NAO bloqueiam a heranca de atribuicao 90d (touchpoint interno do
 # time, nao origem de aquisicao — ex: re-conversao via link mandado pelo SDR,
@@ -353,14 +365,27 @@ def filtro_cm(alias: str = '') -> str:
 
     `alias` opcional prefixa as colunas (utm_source, utm_medium, url_conversao)
     para uso em queries com JOIN — ex: filtro_cm('d') gera `d.utm_source IN (...)`.
-    Sem alias, aplica em WHERE onde as colunas nao sao ambiguas e gera SQL
-    byte-identico ao anterior.
+
+    Comparacao de utm_source e case-insensitive + trim (LOWER(TRIM(...)), 2026-08-31):
+    a lista CM_UTM_SOURCES e normalizada em minusculas na hora de montar o SQL, e
+    CM_UTM_SOURCE_PREFIXOS casa familias inteiras por prefixo (linkedin%, tiktok%).
+    Antes o `IN` era case-sensitive e 'LinkedIn'/'TikTok' escapavam em silencio —
+    a propria whitelist tinha 'Instagram_Feed'/'Instagram_Stories' como prova de
+    que as plataformas variam a caixa. Mesmo padrao ja usado no queries_cxpress.py.
 
     Espelha §2 do MAPEAMENTO-CAMPOS.md.
     """
     p = f"{alias}." if alias else ""
-    sources = _sql_list(CM_UTM_SOURCES)
-    internos = _sql_list(INTERNOS_EXCLUIR)
+    # COALESCE obrigatorio: sem ele, um deal com utm_source NULL e utm_medium='cpc'
+    # faz `NULL = 'google' AND TRUE` = NULL, `NOT NULL` = NULL e o WHERE descarta o
+    # lead em silencio (mesma classe do bug corrigido em 2026-05-26).
+    src = f"LOWER(TRIM(COALESCE({p}utm_source, '')))"
+    med = f"LOWER(TRIM(COALESCE({p}utm_medium, '')))"
+    sources = _sql_list(sorted({s.lower() for s in CM_UTM_SOURCES}))
+    internos = _sql_list(sorted({s.lower() for s in INTERNOS_EXCLUIR}))
+    prefixos = "\n      OR ".join(
+        f"{src} LIKE '{pref}%'" for pref in CM_UTM_SOURCE_PREFIXOS
+    )
     exclusao = _sql_exclusao_deals(alias)
     slugs_clauses = "\n          OR ".join(
         f"{p}url_conversao ILIKE 'https://conteudo.buzzmonitor.com.br/{slug}%'"
@@ -375,15 +400,16 @@ def filtro_cm(alias: str = '') -> str:
     # — NAO entra por dominio".
     return f"""(
     {exclusao}
-    AND NOT (COALESCE({p}utm_source, '') = 'google' AND COALESCE({p}utm_medium, '') = 'cpc')
+    AND NOT ({src} = 'google' AND {med} = 'cpc')
     AND (
-      {p}utm_source IN ({sources})
+      {src} IN ({sources})
+      OR {prefixos}
       OR {p}url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
       OR {p}url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
       OR {p}url_conversao ILIKE 'https://material.buzzmonitor.com/%'
       OR {p}url_conversao ILIKE 'https://evento.buzzmonitor.com/%'
       OR (
-        ({p}utm_source IS NULL OR {p}utm_source NOT IN ({internos}))
+        ({p}utm_source IS NULL OR {src} NOT IN ({internos}))
         AND (
           {slugs_clauses}
         )

@@ -76,8 +76,35 @@ Esta é a regra fundamental de "o que é CM". Aplica a TODOS os eventos da dashb
 ```
 meta, lp-agradecimento, ig, instagram, linkedin, notion, email, checklist,
 whatsapp, pos-webinar, sms, webinar-ao-vivo, apresentacao-webinar,
-lp-agradecimento-oferta-trends, lp-agradecimento-evento, tiktok, chatgpt.com, gemini, blog
+lp-agradecimento-oferta-trends, lp-agradecimento-evento, tiktok, chatgpt.com, gemini, blog,
+apresentacao, webinar, newsletter, Instagram_Feed, Instagram_Stories, Instagram_Reels, insta-bio, instabio
 ```
+
+**Comparacao case-insensitive + prefixos (2026-08-31).** A comparacao de `utm_source` roda em
+`LOWER(TRIM(...))` — a lista acima e normalizada em minusculas ao montar o SQL. Alem da lista exata,
+duas **familias entram por prefixo**:
+
+```
+linkedin%   → linkedin, linkedin-ads, linkedin_inmail, LinkedIn, ...
+tiktok%     → tiktok, tiktok-ads, TikTok, tiktok.com, ...
+```
+
+Motivo: LinkedIn Ads e TikTok Ads entraram no mix de CM (deal 194056 — `utm_source=linkedin`,
+`utm_medium=paid-social`, campanha "InMail - Conversoes", LP `content.buzzmonitor.com/monitoramento-com-ia`,
+confirmado CM pelo Victor). O `IN` era case-sensitive e deixava passar em silencio qualquer variante de
+caixa ou sufixo que a plataforma/o time gerasse — a propria lista tinha `Instagram_Feed` e
+`Instagram_Stories` como prova de que isso acontece. **O prefixo so vale pra canal em que TODA variante
+e CM**; `meta` e `google` ficam de fora de proposito (convivem com midia paga nao-CM e com o par
+`google/cpc`). Constantes: `CM_UTM_SOURCES` + `CM_UTM_SOURCE_PREFIXOS` em `queries.py`.
+
+Impacto medido no banco em 2026-08-31: a mudanca de FORMA do filtro (LOWER/TRIM + prefixos) move
+**zero** deals em 2026 — 0 entram, 0 saem — porque os dados existentes ja usam `linkedin` minusculo. E
+protecao pra frente, nao recontagem do passado. A unica mudanca de numero no mesmo dia veio da inclusao
+de `Instagram_Reels` na lista (+2 leads no YtD 2026, jan e fev): 751 -> 753 leads; 13 fechamentos
+inalterados.
+
+`utm_medium=paid-social` **nao** e barrado: o unico par pago excluido e `google`+`cpc`. LinkedIn/TikTok
+pagos contam como CM (decisao Victor 2026-08-31, deal 194056).
 
 **Excluídos explicitamente** (canais internos ou pagos):
 - `comercial`, `sdr`, `cs`, `crm` — distribuição interna do time (não geração CM)
@@ -148,12 +175,18 @@ deals_cm AS (
         -- descarta o lead silenciosamente (bug corrigido em 2026-05-26).
         NOT (COALESCE(utm_source, '') = 'google' AND COALESCE(utm_medium, '') = 'cpc')
         AND (
-          utm_source IN (
+          -- LOWER(TRIM(...)) desde 2026-08-31: 'LinkedIn'/'TikTok' escapavam do IN
+          LOWER(TRIM(COALESCE(utm_source, ''))) IN (
             'meta','lp-agradecimento','ig','instagram','linkedin','notion','email',
             'checklist','whatsapp','pos-webinar','sms','webinar-ao-vivo',
             'apresentacao-webinar','lp-agradecimento-oferta-trends',
-            'lp-agradecimento-evento','tiktok','chatgpt.com','gemini','blog'
+            'lp-agradecimento-evento','tiktok','chatgpt.com','gemini','blog',
+            'apresentacao','webinar','newsletter','instagram_feed','instagram_stories',
+            'instagram_reels','insta-bio','instabio'
           )
+          -- familias por prefixo (CM_UTM_SOURCE_PREFIXOS)
+          OR LOWER(TRIM(COALESCE(utm_source, ''))) LIKE 'linkedin%'
+          OR LOWER(TRIM(COALESCE(utm_source, ''))) LIKE 'tiktok%'
           OR url_conversao ILIKE 'https://buzzmonitor.com/blog/%'
           OR url_conversao ILIKE 'https://buzzmonitor.com.br/blog/%'
           OR url_conversao ILIKE 'https://material.buzzmonitor.com/%'
