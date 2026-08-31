@@ -48,7 +48,11 @@ CTA: Quero participar
 === PALESTRANTES ===
 H2: Palestrantes
 BODY: Conheça os especialistas que irão compartilhar estratégias, insights e boas práticas para preparar sua marca para a Black Friday.
-# [PENDENTE] A copy-fonte traz apenas placeholder "[Foto + Nome + Cargo + Empresa]" x2 -- nomes/fotos dos 2 palestrantes ainda nao confirmados. BLOQUEADOR antes de publicar ao vivo, nao inventar nomes nem usar fotos de pessoas nao confirmadas (mesmo tratamento dado a LP buzztalk-gestao-multimarcas-para-agencias).
+LABEL: Palestrante
+LIST ITEM: Thiago Rodrigues, Head de Customer Success, Buzzmonitor
+LABEL: Speaker convidada
+LIST ITEM: Beatriz Moreira, Gerente de Operações Digitais, Elife
+# Confirmado em 2026-08-31 pelo usuario (fotos + logos enviadas): Thiago Rodrigues (Buzzmonitor) e Beatriz Moreira (Elife). Substitui o placeholder anterior.
 
 === PROGRAMACAO ===
 H2: Programação

@@ -38,13 +38,21 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
 - Larguras de texto aumentadas (estavam limitadas a ~56-60ch, sobrando margem lateral): bloco da Urgência (`.urgencia__inner` 740px→900px, `.urgencia__body` →820px) e fechamento da seção Aprendizados (`.learn-close` →820px, `.learn-outro` →860px).
 - Selo flutuante do hero trocado: em vez do círculo tracejado com "01/OUT", agora tem um **sino animado** (ícone SVG com animação de "toque" a cada ~3,4s, período de descanso entre um toque e outro — usa `bell-ring`, keyframe novo) mais um ponto de notificação pulsante (`pulse-dot`), ambos com fallback `prefers-reduced-motion`. Data do evento continua visível normalmente na linha "Data" do card ao lado, então nada de informação foi perdido.
 
+**Ajuste 2026-08-31 (rodada 5, palestrantes confirmados + selo Buzzconnect):**
+- Seção Palestrantes reconstruída no formato usado em `buzztalk-gestao-multimarcas-para-agencias` (mesmo repo): card branco, foto circular com anel gradiente (`linear-gradient(135deg, teal, laranja)`) atrás, e no hover 2 anéis de "onda sonora" se expandindo (teal + laranja, `@keyframes soundwave`, com fallback `prefers-reduced-motion`). Estrutura: rótulo (Palestrante/Speaker convidada) → nome → cargo → logo da empresa.
+- Fotos e logo fornecidos pelo usuário: `assets/Thiagorodrigues.png`, `assets/Beatrizmoreira.png`, `assets/elifelogo.png` (logo Buzzmonitor já existia em `brand/`).
+- Menção à "Buzzconnect" adicionada — a série nunca era citada nominalmente na página. Duas tentativas antes da versão final, ambas a pedido do usuário:
+  1. Primeiro como selo separado no header (pill laranja rotacionada ao lado do logo). **Bug encontrado e corrigido durante o teste:** em telas muito estreitas (<400px) esse selo colidia visualmente com o botão "Quero participar" (sem gerar scroll horizontal, mas sobrepondo os dois elementos). Corrigido com `flex-wrap` no header, mas o usuário pediu pra mudar de lugar antes de publicar.
+  2. Versão final: o selo saiu do header e o texto virou parte do chip já existente no topo do Hero — `"Buzzconnect - Evento exclusivo para clientes Buzzmonitor"` (hífen normal, não em-dash) no lugar do texto antigo do chip. Header voltou ao normal (só logo + CTA), sem risco de colisão.
+- `copy.txt` atualizado com os dados confirmados dos palestrantes (substitui a marcação `[PENDENTE]` anterior).
+
 ## Estrutura
 
 - HERO — chip de evento, H1 (com destaque em gradiente na cauda do texto), contexto (3 parágrafos), card-ticket "sticker" (data/horário/local + selo de data + contador regressivo, JS, alvo 01/10/2026 14h BRT, fallback noscript)
 - APRENDIZADOS — grid de 6 cards estilo sticker (check teal/tinta) + 2 linhas de fechamento + CTA
 - VISÃO 360 — 6 blocos em grid (Campanha, Monitoramento, Atendimento, Crises, IA e Automação, Pós-venda)
 - URGÊNCIA — seção escura (roxo) com anéis decorativos girando, CTA
-- PALESTRANTES — 2 tiles tracejados com avatar genérico e rótulo "Palestrante a confirmar" (ver bloqueador abaixo)
+- PALESTRANTES — 2 cards com foto real (anel gradiente teal→laranja, efeito de "onda sonora" no hover, mesmo formato da LP `buzztalk-gestao-multimarcas-para-agencias`): Thiago Rodrigues (Head de Customer Success, Buzzmonitor) e Beatriz Moreira (Gerente de Operações Digitais, Elife)
 - PROGRAMAÇÃO — timeline de 6 etapas com badges roxo/rosa alternados (14h00 às 17h30)
 - PARA QUEM É — lista numerada de 10 públicos-alvo (seção de respiro/pausa, sem CTA)
 - CTA FINAL — headline (destaque em gradiente) + form de inscrição mock estilo sticker (nome, e-mail corporativo, empresa, cargo, WhatsApp)
@@ -59,8 +67,9 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
 - [ ] OG image 1200×630 → `assets/og-black-friday-alta-performance-outubro-2026.png` (arquivo único — nunca também `og-image.png`)
 - [ ] Rodar `/lp-revisar` novamente sobre o HTML redesenhado, para auditoria formal independente (a validação atual foi feita inline durante a criação, não por uma passada dedicada)
 - [x] Formulário integrado — **Form provider:** Jotform (`250493444653662`), integrado em 2026-08-28. Form mock removido, embed com wrapper CSS canônico (`.jotform-embed iframe`), sem card duplicado.
-- [ ] **BLOQUEADOR antes de publicar ao vivo:** a copy-fonte só traz o placeholder "[Foto + Nome + Cargo + Empresa]" x2 para a seção Palestrantes, sem nomes/fotos reais confirmados. A LP está com avatar genérico + "Palestrante a confirmar" (sem inventar identidade). Precisa voltar aqui para preencher com os nomes/fotos reais assim que confirmados.
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor black-friday-alta-performance-outubro-2026 content.buzzmonitor.com`
+- [x] Palestrantes confirmados em 2026-08-31 (fotos + logos enviadas pelo usuário) — Thiago Rodrigues (Buzzmonitor) e Beatriz Moreira (Elife). Card redesenhado no formato da LP `buzztalk-gestao-multimarcas-para-agencias` (blob gradiente + anéis de "onda sonora" no hover).
+- [x] Menção "Buzzconnect" incorporada ao chip do Hero (`"Buzzconnect - Evento exclusivo para clientes Buzzmonitor"`), a pedido do usuário — a série nunca era mencionada nominalmente na página. Header permanece só com logo + CTA.
+- [x] Publicado — `/lp-publicar buzzmonitor black-friday-alta-performance-outubro-2026 content.buzzmonitor.com` (2026-08-28, PR #405) + form Jotform (PR #419). **Pendente republicar** com os palestrantes/selo desta rodada.
 
 ## Assets referenciados
 
@@ -68,6 +77,10 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
 - `./assets/plateia-evento-buzzmonitor.jpg` (fundo parallax da seção Programação, foto de plateia de evento anterior fornecida pelo usuário)
+- `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (logo da empresa no card do palestrante Thiago Rodrigues)
+- `./assets/Thiagorodrigues.png` (foto do palestrante Thiago Rodrigues, fornecida pelo usuário)
+- `./assets/Beatrizmoreira.png` (foto da palestrante Beatriz Moreira, fornecida pelo usuário)
+- `./assets/elifelogo.png` (logo Elife no card da palestrante Beatriz Moreira, fornecido pelo usuário)
 
 ## Validação local (2026-08-27, pós-redesenho Buzzconnect)
 

@@ -268,12 +268,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .palestrantes{ background:radial-gradient(circle at 8% -10%, rgba(14,157,155,.1), transparent 45%), radial-gradient(circle at 95% 100%, rgba(235,124,46,.1), transparent 45%), var(--c-white); position:relative; overflow:hidden }
   .palestrantes .blob{ background:var(--c-teal); width:280px; height:280px; top:-100px; right:-120px; opacity:.1 }
   .palestrantes .section-head{ text-align:center; margin-inline:auto }
-  .speaker-tiles{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:760px; margin-inline:auto }
+  .speaker-tiles{ display:grid; grid-template-columns:repeat(2,1fr); gap:32px; max-width:820px; margin-inline:auto }
   @media (max-width:640px){ .speaker-tiles{ grid-template-columns:1fr } }
-  .speaker-tile{ position:relative; background:var(--c-cream); border:2.5px dashed var(--c-ink); border-radius:var(--radius-lg); padding:28px 22px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px }
-  .speaker-tile__avatar{ width:72px; height:72px; border-radius:50%; background:#fff; border:1.5px solid var(--c-border); display:flex; align-items:center; justify-content:center }
-  .speaker-tile__avatar svg{ width:32px; height:32px; color:var(--c-teal) }
-  .speaker-tile__label{ font-family:var(--ff-sub); font-weight:600; font-size:14px; color:var(--c-ink-soft) }
+  .speaker-card{ position:relative; z-index:0; background:#fff; border:1.5px solid var(--c-border); border-radius:var(--radius-lg); padding:40px 24px 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; box-shadow:0 20px 50px -26px rgba(18,18,18,.3); transition:transform .3s ease, box-shadow .3s ease }
+  .speaker-card:hover{ transform:translateY(-6px); box-shadow:0 28px 60px -20px rgba(18,18,18,.4) }
+  .speaker-photo-wrap{ position:relative; flex:none }
+  .speaker-photo-wrap::before, .speaker-photo-wrap::after{ content:''; position:absolute; top:-14px; left:-14px; width:158px; height:158px; border-radius:50%; border:2px solid var(--c-teal); opacity:0; z-index:-1; pointer-events:none }
+  .speaker-card:hover .speaker-photo-wrap::before{ animation:soundwave 1.7s ease-out infinite }
+  .speaker-card:hover .speaker-photo-wrap::after{ animation:soundwave 1.7s ease-out infinite; animation-delay:.55s; border-color:var(--c-orange) }
+  @keyframes soundwave{ 0%{ transform:scale(1); opacity:.6 } 70%{ opacity:.18 } 100%{ transform:scale(2.3); opacity:0 } }
+  @media (prefers-reduced-motion: reduce){ .speaker-card:hover .speaker-photo-wrap::before, .speaker-card:hover .speaker-photo-wrap::after{ animation:none } }
+  .speaker-blob{ position:absolute; width:158px; height:158px; border-radius:50%; background:linear-gradient(135deg, var(--c-teal), var(--c-orange)); top:-14px; left:-14px; z-index:0; transition:transform .3s ease }
+  .speaker-photo-wrap:hover .speaker-blob{ transform:rotate(12deg) scale(1.05) }
+  .speaker-photo{ position:relative; z-index:1; width:130px; height:130px; border-radius:50%; overflow:hidden; margin:0; border:5px solid #fff; box-shadow:0 20px 40px -14px rgba(18,18,18,.35); transition:transform .3s ease }
+  .speaker-photo img{ width:100%; height:100%; object-fit:cover; min-height:0 }
+  .speaker-photo-wrap:hover .speaker-photo{ transform:scale(1.04) }
+  .speaker-info{ display:flex; flex-direction:column; align-items:center }
+  .speaker-info__label{ font-family:var(--ff-sub); font-size:13px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--c-teal-text); margin-bottom:6px }
+  .speaker-info__name{ font-family:var(--ff-display); font-weight:900; font-size:clamp(20px,2.4vw,24px); color:var(--c-ink); line-height:1.1 }
+  .speaker-info__role{ display:block; font-family:var(--ff-body); font-size:15px; font-weight:600; color:var(--c-ink-soft); margin-top:6px }
+  .speaker-info__logo{ display:block; height:24px; width:auto; margin:14px auto 0 }
 
   /* ============ PROGRAMACAO ============ */
   .programacao{ background:var(--c-black); color:#fff; position:relative; overflow:hidden }
@@ -403,7 +417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="wrap hero__layout">
       <div class="hero-content reveal">
-        <span class="hero-chip">Evento exclusivo para clientes Buzzmonitor</span>
+        <span class="hero-chip">Buzzconnect - Evento exclusivo para clientes Buzzmonitor</span>
         <h1 class="h1">Da Campanha ao Pós-Venda: Como Preparar sua Marca para uma <span class="highlight-mark">Black Friday de Alta Performance</span></h1>
         <div class="hero__body">
           <p>A Black Friday é um dos períodos mais importantes (e desafiadores) para as marcas. Com o aumento do volume de campanhas, interações e demandas de atendimento, estar preparado pode fazer toda a diferença entre uma operação eficiente e uma experiência que gera impactos para a reputação da marca.</p>
@@ -545,13 +559,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="lead">Conheça os especialistas que irão compartilhar estratégias, insights e boas práticas para preparar sua marca para a Black Friday.</p>
       </div>
       <div class="speaker-tiles reveal">
-        <div class="speaker-tile">
-          <span class="speaker-tile__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-3.6 4.3-5.5 7.5-5.5s6.1 1.9 7.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <span class="speaker-tile__label">Palestrante a confirmar</span>
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <span class="speaker-blob" aria-hidden="true"></span>
+            <div class="speaker-photo"><img src="./assets/Thiagorodrigues.png" alt="Thiago Rodrigues" style="object-position:center 18%"></div>
+          </div>
+          <div class="speaker-info">
+            <span class="speaker-info__label">Palestrante</span>
+            <p class="speaker-info__name">Thiago Rodrigues</p>
+            <span class="speaker-info__role">Head de Customer Success</span>
+            <img class="speaker-info__logo" src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor">
+          </div>
         </div>
-        <div class="speaker-tile">
-          <span class="speaker-tile__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-3.6 4.3-5.5 7.5-5.5s6.1 1.9 7.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <span class="speaker-tile__label">Palestrante a confirmar</span>
+        <div class="speaker-card">
+          <div class="speaker-photo-wrap">
+            <span class="speaker-blob" aria-hidden="true"></span>
+            <div class="speaker-photo"><img src="./assets/Beatrizmoreira.png" alt="Beatriz Moreira" style="object-position:center 15%"></div>
+          </div>
+          <div class="speaker-info">
+            <span class="speaker-info__label">Speaker convidada</span>
+            <p class="speaker-info__name">Beatriz Moreira</p>
+            <span class="speaker-info__role">Gerente de Operações Digitais</span>
+            <img class="speaker-info__logo" src="./assets/elifelogo.png" alt="Elife">
+          </div>
         </div>
       </div>
     </div>
