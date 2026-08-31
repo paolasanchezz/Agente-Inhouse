@@ -1,0 +1,123 @@
+# COPY ESTRUTURADA — escolha-a-cxpress (Cxpress · Brasil · PT-BR)
+# Origem: reprodução de https://home.cxpress.io/escolha-a-cxpress (WordPress)
+# Destino: content.cxpress.io/escolha-a-cxpress
+# Estágio de funil: BoFu (tráfego de campanha Google Search, intenção de compra)
+
+## SEÇÃO 1 — HERO (com formulário centralizado)
+
+OVERLINE: O melhor custo-benefício do mercado   (laranja, como na página original)
+H1: Seu [atendimento] cresce. Sua operação acompanha?   ("atendimento" em azul royal #4a69bd)
+SUB: As principais plataformas já oferecem funcionalidades similares. O que diferencia é o que acontece depois: implementação, suporte e controle da operação.
+
+FORM TITLE: Peça uma demonstração da Cxpress
+FORM TEXT: Um especialista analisa seus canais, o volume de atendimentos e o tamanho do time, e mostra a plataforma rodando no seu cenário.
+
+TRUST ITEM: Mais de 800 empresas no Brasil, LATAM e Portugal
+TRUST ITEM: WhatsApp com API Oficial da Meta
+TRUST ITEM: Suporte em português, com time no Brasil
+
+SELO: Conecte-se à Cxpress   (laranja, com check animado, âncora para o comparativo)
+
+## SEÇÃO 2 — COMPARATIVO
+
+OVERLINE: Compare antes de contratar
+H2: As funcionalidades são parecidas. As experiências não.
+SUB: Compare o que realmente impacta sua operação no dia a dia.
+
+LEGENDA: Atende bem (marca azul) | Parcial ou limitado (marca ambar) | Nao atende (marca cinza)
+
+MAPA DE MARCADORES (um marcador por rotulo, sem excecao):
+  Atende bem       -> Sim · Totalmente integrados · Excelente · Agil · Rapido ·
+                      Proximo e resolutivo · Guiado e estruturado · Transparente ·
+                      Intuitivo · IA + humano
+  Parcial/limitado -> Razoavel · Variavel · Limitado · Basico · Tecnico · Lento · Complexo
+  Nao atende       -> Nao · Alto custo
+
+TABELA (colunas: Critério · Cxpress · ZNV · ZDK · OCD · CHG)
+
+LINHA: Canais de atendimento (WhatsApp, Instagram, e-mail, telefone, webchat) | Totalmente integrados | Sim | Sim | Não | Limitado
+LINHA: Custo-benefício | Excelente | Razoável | Alto custo | Razoável | Razoável
+LINHA: Tempo de resposta do suporte | Ágil | Variável | Lento | Rápido | Limitado
+LINHA: Suporte local dedicado e rápido em português | Próximo e resolutivo | Lento | Técnico | Básico | Limitado
+LINHA: Onboarding e implementação | Guiado e estruturado | Complexo | Técnico | Básico | Básico
+LINHA: Clareza de configuração | Transparente | Limitado | Técnico | Básico | Limitado
+LINHA: Facilidade de uso | Intuitivo | Sim | Técnico | Sim | Sim
+LINHA: Automação e Agente Inteligente com IA | IA + humano | Sim | Sim | Sim | Básico
+
+NOTA: Comparativo qualitativo elaborado pela Cxpress. Concorrentes identificados por siglas.
+
+FECHO: Se todas as plataformas fazem o básico, a diferença está em quem faz sua operação funcionar melhor.
+CTA PRIMÁRIO: Contratar a Cxpress
+CTA SECUNDÁRIO: Falar no WhatsApp
+
+## SEÇÃO 3 — POR QUE ESCOLHEM A CXPRESS
+
+OVERLINE: Elimine riscos
+H2: Por que as empresas escolhem a Cxpress?
+LIST ITEM: Plataforma completa e fácil de usar
+LIST ITEM: Integração com os principais canais
+LIST ITEM: Atendimento organizado e escalável
+LIST ITEM: Mais produtividade para a equipe
+LIST ITEM: Melhor experiência para o cliente
+CTA: Ver o comparativo completo
+
+## SEÇÃO 4 — MÓDULOS DA PLATAFORMA
+
+H2: Tudo o que sua marca precisa para atender melhor e vender mais
+SUB: Centralize WhatsApp, redes sociais, webchat, e-mail e voz, organize seus atendimentos e automatize respostas, tudo com a Cxpress.
+
+H3: Organize seu atendimento de forma integrada
+BODY: Centralize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, com mais eficiência para a sua equipe.
+
+H3: Atendimento automático ininterrupto com inteligência artificial
+BODY: Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.
+
+H3: Centralize os cadastros dos clientes para uma experiência unificada
+BODY: Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.
+
+H3: Otimize a gestão de tickets
+BODY: Distribua tickets (registros) de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.
+
+H3: Gerencie com eficiência por meio de dashboards
+BODY: Deixe as planilhas para trás. Transforme suas estatísticas de atendimento em painéis intuitivos.
+
+## SEÇÃO 5 — PROVA SOCIAL
+
+H2: Mais de 800 empresas no Brasil, LATAM e Portugal confiam na Cxpress para seu atendimento
+
+## SEÇÃO 6 — FAQ
+
+H2: Perguntas frequentes
+
+H3: Quanto custa a Cxpress?
+BODY: O plano Basic começa em R$ 1.750 por mês e traz a plataforma completa com 5 acessos de operador. Operações maiores montam o Enterprise item a item, com canais, agentes de IA e equipe conforme o desenho da operação. Os detalhes estão na página de planos.
+
+H3: Quais canais a plataforma integra?
+BODY: WhatsApp com API Oficial da Meta, Instagram, Facebook, webchat do site, e-mail e telefone, todos no mesmo painel e com histórico unificado por cliente.
+
+H3: A inteligência artificial substitui o time de atendimento?
+BODY: Não. A IA responde o primeiro contato em linguagem natural e passa a conversa para a pessoa certa quando o caso pede, com histórico e contexto preservados.
+
+H3: Como funciona a implementação?
+BODY: O onboarding é guiado. O time da Cxpress configura canais, filas e agentes junto com a sua operação, e o cronograma sai no diagnóstico inicial.
+
+H3: O suporte é em português?
+BODY: Sim. A Cxpress é um produto da Elife, com time no Brasil e atendimento em português.
+
+H3: A Cxpress atende empresas fora do Brasil?
+BODY: Sim. A plataforma opera no Brasil, na América Latina e em Portugal.
+
+## SEÇÃO 7 — CTA FINAL
+
+H2: Pronto para contratar a Cxpress?
+BODY: Preencha o formulário e um especialista monta a proposta com os canais, os acessos e os agentes de IA que a sua operação pede. Se preferir, fale agora pelo WhatsApp.
+CTA PRIMÁRIO: Preencher o formulário
+CTA SECUNDÁRIO: Falar no WhatsApp
+
+## FOOTER
+
+BODY: A Cxpress é uma plataforma multicanal que centraliza, automatiza e otimiza o atendimento ao cliente, integrando canais como WhatsApp, redes sociais, e-mail e telefone em um único lugar.
+LABEL: Canais integrados:
+CONTATO: (11) 5039-5028 · comercial@gocxpress.com.br
+LEGAL: Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 - Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.
+COPY: © 2026 Cxpress®. Todos os direitos reservados
