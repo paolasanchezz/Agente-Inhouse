@@ -22,15 +22,23 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 2. **Code** — para cada série do mapa `SERIES`: filtra `recurring_config_id` + `registration_enabled` + `starts_at` futuro, pega a **mais próxima**, e emite 1 item por (sessão, e-mail de moderador).
 3. **POST** `…/conferences/{roomId}/invitation/email/{lang}` com `attendees[0][email]`, `template=advanced`, `role=presenter`. `onError: continueRegularOutput` (uma falha não derruba o lote). **Sem retry** — a API não deduplica, retry = e-mail em dobro.
 
-## Séries (estado 2026-07-14 — igual ao config.json da skill)
+## Séries (estado 2026-08-24 — igual ao config.json da skill)
+
+Ordenadas pelo horário da sessão no dia (BRT).
 
 | recurring_config_id | Rótulo | Moderador(es) | lang |
 |---|---|---|---|
-| 17689 | Cxpress (Conheça a Cxpress) | lilian.longo@gocxpress.com.br | br |
-| 17671 | Cxpress Vozxpress (Case IA de Voz) | lilian.longo@gocxpress.com.br | br |
-| 17701 | Buzzmonitor Atención (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
-| 17646 | Buzzmonitor ¿Qué es MCP? (LATAM) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
-| 17727 | Buzzcreators | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
+| 17727 | Buzzcreators (09:40 BRT) | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
+| 17927 | Buzzmonitor Tu primer listening (LATAM, 12:00 BRT) | daniel.topete@buzzmonitor.com | es |
+| 17646 | Buzzmonitor ¿Qué es MCP? (LATAM, 13:00 BRT) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
+| 17701 | Buzzmonitor Atención al Cliente (LATAM, 14:00 BRT) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
+| 17933 | Buzzmonitor Gestión de Crisis (LATAM, 15:00 BRT) | milagro.pantoja@buzzmonitor.com | es |
+| 17928 | Buzzmonitor Caso Smart Fit (LATAM, 16:00 BRT) | milagro.pantoja@buzzmonitor.com | es |
+| 17929 | Cxpress Por qué bloquean tu WhatsApp (LATAM, 17:00 BRT) | laura.leon@cxpress.ai | es |
+
+Histórico: em 2026-08-19 saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress) — séries
+apagadas no ClickMeeting por limite de disco, com zero inscritos — e entraram 17927, 17928 e 17929.
+Em 2026-08-24 a 17927 ficou só com o Daniel e a 17933 + 17928 ficaram só com a Milagro.
 
 ## Detalhes que importam
 

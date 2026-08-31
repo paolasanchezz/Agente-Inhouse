@@ -11,7 +11,6 @@
     "17927": {
       "label": "Buzzmonitor Tu primer listening en 5 pasos (LATAM, 09:00 MX / 12:00 BRT)",
       "moderator_emails": [
-        "milagro.pantoja@buzzmonitor.com",
         "daniel.topete@buzzmonitor.com"
       ],
       "lang": "es"
@@ -35,16 +34,14 @@
     "17933": {
       "label": "Buzzmonitor Gestión de Crisis (LATAM, 12:00 MX / 15:00 BRT)",
       "moderator_emails": [
-        "milagro.pantoja@buzzmonitor.com",
-        "daniel.topete@buzzmonitor.com"
+        "milagro.pantoja@buzzmonitor.com"
       ],
       "lang": "es"
     },
     "17928": {
       "label": "Buzzmonitor Caso Smart Fit (LATAM, 13:00 MX / 16:00 BRT)",
       "moderator_emails": [
-        "milagro.pantoja@buzzmonitor.com",
-        "daniel.topete@buzzmonitor.com"
+        "milagro.pantoja@buzzmonitor.com"
       ],
       "lang": "es"
     },
@@ -61,6 +58,6 @@
     "moderadores": "Cada série aceita 'moderator_email' (um) OU 'moderator_emails' (lista, para vários moderadores na mesma sessão). Todos recebem role=presenter. Pode usar os dois — são somados e deduplicados.",
     "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails.",
     "ordem": "Blocos ordenados pelo horário da sessão no dia (BRT), só pra facilitar a leitura. A ordem não afeta a execução.",
-    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado."
+    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado. 2026-08-24: 17927 (Tu primer listening) ficou so com Daniel; 17933 (Gestion de Crisis) e 17928 (Caso Smart Fit) ficaram so com Milagro. 17646 (MCP) e 17701 (Atencion al Cliente) seguem com os dois."
   }
 }
