@@ -55,6 +55,17 @@ Racional dos cortes em `REVISAO.md` e no cabecalho do `copy.txt`.
   - **Progressive enhancement:** o HTML entrega os 15 canais abertos e o JS colapsa no load. Sem
     JS nada fica inacessivel. Botao com `aria-expanded` + `aria-controls`; os icones tem `alt=""`
     (decorativos) porque o nome do canal ja esta em texto ao lado.
+  - **Espacamento (corrigido logo depois de subir a caixa):** o ritmo da secao vinha de
+    `.split + .split { margin-top: 80px }`. A caixa entrou ENTRE dois `.split` e quebrou a
+    adjacencia, entao o `.split--flip` seguinte ficou com `margin-top: 0`, colado na caixa.
+    Ritmo agora e explicito: `.nets { margin-top: 56px }` (a caixa pertence ao bloco de
+    Monitoreo, por isso fica mais perto dele) e `.nets + .split { margin-top: 80px }` (o proximo
+    split e outro assunto, mantem a cadencia da secao). Em `<=640px` vira 40px / 60px, junto do
+    resto da cadencia mobile. **Licao:** ao inserir bloco entre irmaos, conferir se algum seletor
+    de adjacencia (`+`) governava o espacamento deles.
+  - As regras mobile da caixa (margem e padding menores) vivem no breakpoint de **640px**, nao
+    no de 980px, que existe so pra empilhar as grades. No de 980 elas deixavam o tablet com o
+    espacamento apertado de celular.
 - Paddings reajustados por causa da troca de vizinhanca: `.clients-proof` voltou a ter padding-top
   (76px, antes 0 porque colava no bloco de depoimentos), `#soluciones` perdeu o `padding-top:0`
   inline e `.logos` passou a `76px 0 86px` (antes 10px no topo, porque colava no hero).

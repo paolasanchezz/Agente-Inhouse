@@ -640,10 +640,11 @@
     .split--flip .split-media { order: -1; }
 
     .split + .split { margin-top: 80px; }
+    .nets + .split { margin-top: 80px; }
 
     /* Caixa de redes e canais integrados (abaixo do split de Monitoreo) */
     .nets {
-      margin-top: 34px;
+      margin-top: 56px;
       padding: 26px 24px 22px;
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -1033,7 +1034,6 @@
       .split { grid-template-columns: 1fr; }
       .hero:before { width: 380px; height: 380px; right: -90px; top: -80px; opacity: .6; }
       .split--flip .split-media { order: 0; }
-      .nets { padding: 22px 16px 18px; }
       .nets__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
       .module-grid,
@@ -1055,6 +1055,8 @@
       .cta-box { padding: 30px 22px; }
       section { padding: 70px 0; }
       .split + .split { margin-top: 60px; }
+      .nets { margin-top: 40px; padding: 22px 16px 18px; }
+      .nets + .split { margin-top: 60px; }
       .footer-inner,
       .footer-bottom { justify-content: center; text-align: center; }
     }
