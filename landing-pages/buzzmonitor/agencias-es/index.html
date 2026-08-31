@@ -305,6 +305,8 @@
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1.02fr .98fr;
       gap: 58px;
@@ -312,15 +314,26 @@
     }
 
     h1 {
-      margin: 24px 0 22px;
+      margin: 0 0 18px;
       font-size: clamp(38px, 4.6vw, 62px);
       line-height: 1.02;
       letter-spacing: -.045em;
     }
 
-    .hero-copy p {
+    .hero-sub {
+      margin: 0 0 20px;
+      max-width: 660px;
+      font-size: clamp(23px, 2.4vw, 32px);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -.03em;
+    }
+
+    .hero-lead {
       max-width: 660px;
       font-size: 18px;
+      font-weight: 500;
+      line-height: 1.55;
       color: var(--muted);
       margin: 0 0 30px;
     }
@@ -367,7 +380,7 @@
     .video-toggle:hover { background: var(--navy); }
 
     .logos {
-      padding: 10px 0 76px;
+      padding: 76px 0 86px;
       text-align: center;
     }
 
@@ -652,7 +665,7 @@
     .quote-card strong { display: block; margin-top: 20px; }
 
     /* Stats + marquee */
-    .clients-proof { background: #f8fafc; padding-top: 0; }
+    .clients-proof { background: #f8fafc; padding: 76px 0; }
 
     .stats-row {
       display: flex;
@@ -927,6 +940,7 @@
       .menu-btn { display: block; }
       .hero-grid,
       .split { grid-template-columns: 1fr; }
+      .hero:before { width: 380px; height: 380px; right: -90px; top: -80px; opacity: .6; }
       .split--flip .split-media { order: 0; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
       .module-grid,
@@ -938,6 +952,7 @@
     @media (max-width: 640px) {
       .container { width: min(100% - 28px, 1180px); }
       .hero { padding-top: 44px; }
+      .hero:before { width: 240px; height: 240px; right: -80px; top: -60px; opacity: .45; }
       .hero-actions { flex-direction: column; }
       .btn { width: 100%; }
       .feature-grid { grid-template-columns: 1fr; }
@@ -954,6 +969,7 @@
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
   .eyebrow{ font-size:13px; }
+  .hero-lead{ font-size:17px; }
   .video-toggle{ font-size:17px; }
   .feature-card p,.module-card p,.quote-card p{ font-size:15px; }
   .check-list li{ font-size:15px; }
@@ -999,18 +1015,18 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Tus clientes no cancelan por precio.</span>
+          <h1>Tus clientes no cancelan por precio.</h1>
 
-          <h1>
+          <h2 class="hero-sub">
             Cancelan cuando tu agencia deja de aportar
             <span class="gradient-text">inteligencia estratégica.</span>
-          </h1>
+          </h2>
 
-          <p>
+          <h3 class="hero-lead">
             Buzzmonitor te ayuda a detectar oportunidades, riesgos y señales de cambio antes
             que tus clientes para fortalecer la retención, justificar tu fee y abrir nuevas
             oportunidades de negocio.
-          </p>
+          </h3>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#demo">Agenda una demo <span aria-hidden="true">→</span></a>
@@ -1028,34 +1044,92 @@
       </div>
     </section>
 
-    <div class="container logos">
-      <p>Agencias que ya confían en Buzzmonitor</p>
-      <div class="logo-row">
-        <img src="./assets/logos-agencias/kaleidoscopio-agency.png" alt="Kaleidoscopio Agency" width="180" height="34" loading="lazy">
-        <img src="./assets/logos-agencias/mccann.png" alt="McCann" width="180" height="34" loading="lazy">
-        <span class="lead-logo">
-          <img class="lead-logo__lead" src="./assets/logos-agencias/lead-word-red.png" alt="Agencia Lead" width="120" height="20" loading="lazy">
-          <img class="lead-logo__digital" src="./assets/logos-agencias/lead-digital-word.png" alt="" aria-hidden="true" width="120" height="8" loading="lazy">
-        </span>
-        <img src="./assets/logos-agencias/sube.png" alt="Sube" width="180" height="34" loading="lazy">
-        <img src="./assets/logos-agencias/eureka-co.png" alt="Eureka&amp;Co" width="180" height="34" loading="lazy">
-        <img src="./assets/logos-agencias/havas.png" alt="Havas" width="180" height="34" loading="lazy">
-        <img src="./assets/logos-agencias/tbwa.png" alt="TBWA" width="180" height="34" loading="lazy">
-      </div>
-    </div>
-
-    <section>
+    <section class="clients-proof">
       <div class="container">
         <div class="section-title">
-          <h2>Lo que las mejores agencias <span class="gradient-text">hacen diferente.</span></h2>
-          <p>Las agencias que retienen más cuentas no solo ejecutan campañas. Ayudan a sus clientes a tomar mejores decisiones.</p>
-          <p>Buzzmonitor te permite detectar tendencias emergentes, oportunidades de negocio, riesgos reputacionales y cambios en la percepción de marca antes de que impacten los resultados.</p>
-          <p>Cuando muestras a tus clientes lo que otros no ven, la conversación deja de ser sobre precio. Empieza a ser sobre valor.</p>
+          <h2>Empresas que ya <span class="gradient-text">confían en Buzzmonitor</span></h2>
+        </div>
+
+        <div class="stats-row reveal">
+          <div class="stat"><strong class="js-counter" data-count="1000" data-suffix="+" data-thousands="1">1.000+</strong><span>clientes en el mundo</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong class="js-counter" data-count="300" data-suffix="+">300+</strong><span>clientes enterprise</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong class="js-counter" data-count="10" data-suffix="k">10k</strong><span>usuarios</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong class="js-counter" data-count="500" data-suffix="+">500+</strong><span>agencias</span></div>
+        </div>
+
+        <div class="logo-marquee">
+          <div class="logo-marquee__track">
+          <img src="./assets/logos-clientes/coca-cola.png" alt="Coca-Cola" loading="lazy">
+          <img src="./assets/logos-clientes/eureka-co.png" alt="Eureka&amp;Co" loading="lazy">
+          <img src="./assets/logos-clientes/islas-canarias.png" alt="Islas Canarias" loading="lazy">
+          <img src="./assets/logos-clientes/sephora.png" alt="Sephora" loading="lazy">
+          <img src="./assets/logos-clientes/samsung.png" alt="Samsung" loading="lazy">
+          <img src="./assets/logos-clientes/bershka.png" alt="Bershka" loading="lazy">
+          <img src="./assets/logos-clientes/andalucia.png" alt="Andalucía" loading="lazy">
+          <img src="./assets/logos-clientes/bizum.png" alt="Bizum" loading="lazy">
+          <img src="./assets/logos-clientes/ikea.png" alt="IKEA" loading="lazy">
+          <img src="./assets/logos-clientes/repsol.png" alt="Repsol" loading="lazy">
+          <img src="./assets/logos-clientes/evo.png" alt="EVO" loading="lazy">
+          <img src="./assets/logos-clientes/havas.png" alt="Havas" loading="lazy">
+          <img src="./assets/logos-clientes/omd.svg" alt="OMD" loading="lazy">
+          <img src="./assets/logos-clientes/caja-rural.png" alt="Caja Rural" loading="lazy">
+          <img src="./assets/logos-clientes/nu.png" alt="Nu" loading="lazy">
+          <img src="./assets/logos-clientes/mcdonalds.png" alt="McDonald's" loading="lazy">
+          <img src="./assets/logos-clientes/sony.png" alt="Sony" loading="lazy">
+          <img src="./assets/logos-clientes/fundacion-real-madrid.png" alt="Fundación Real Madrid" loading="lazy">
+          <img src="./assets/logos-clientes/tbwa.png" alt="TBWA" loading="lazy">
+          <img src="./assets/logos-clientes/holaluz.png" alt="Holaluz" loading="lazy">
+          <img src="./assets/logos-clientes/loreal.png" alt="L'Oréal" loading="lazy">
+          <img src="./assets/logos-clientes/mapfre.png" alt="Mapfre" loading="lazy">
+          <img src="./assets/logos-clientes/sube.png" alt="Sube" loading="lazy">
+          <img src="./assets/logos-clientes/mccann.png" alt="McCann" loading="lazy">
+          <img src="./assets/logos-clientes/burger-king.png" alt="Burger King" loading="lazy">
+          <img src="./assets/logos-clientes/flax-kale.png" alt="Flax &amp; Kale" loading="lazy">
+          <img src="./assets/logos-clientes/santander.png" alt="Santander" loading="lazy">
+          <img src="./assets/logos-clientes/ouigo.png" alt="Ouigo" loading="lazy">
+          <img src="./assets/logos-clientes/amazon.png" alt="Amazon" loading="lazy">
+          <img src="./assets/logos-clientes/uber.png" alt="Uber" loading="lazy">
+          <span aria-hidden="true" style="display:flex;align-items:center;gap:48px;">
+          <img src="./assets/logos-clientes/coca-cola.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/eureka-co.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/islas-canarias.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/sephora.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/samsung.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/bershka.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/andalucia.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/bizum.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/ikea.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/repsol.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/evo.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/havas.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/omd.svg" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/caja-rural.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/nu.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/mcdonalds.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/sony.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/fundacion-real-madrid.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/tbwa.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/holaluz.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/loreal.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/mapfre.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/sube.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/mccann.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/burger-king.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/flax-kale.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/santander.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/ouigo.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/amazon.png" alt="" loading="lazy">
+          <img src="./assets/logos-clientes/uber.png" alt="" loading="lazy">
+          </span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="soluciones" style="padding-top:0;">
+    <section id="soluciones">
       <div class="container">
         <div class="section-title">
           <span class="eyebrow">Automatiza procesos, analiza datos e impulsa tus resultados con IA</span>
@@ -1266,91 +1340,6 @@
       </div>
     </section>
 
-    <section class="clients-proof">
-      <div class="container">
-        <div class="section-title">
-          <h2>Empresas que ya <span class="gradient-text">confían en Buzzmonitor</span></h2>
-        </div>
-
-        <div class="stats-row reveal">
-          <div class="stat"><strong class="js-counter" data-count="1000" data-suffix="+" data-thousands="1">1.000+</strong><span>clientes en el mundo</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><strong class="js-counter" data-count="300" data-suffix="+">300+</strong><span>clientes enterprise</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><strong class="js-counter" data-count="10" data-suffix="k">10k</strong><span>usuarios</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><strong class="js-counter" data-count="500" data-suffix="+">500+</strong><span>agencias</span></div>
-        </div>
-
-        <div class="logo-marquee">
-          <div class="logo-marquee__track">
-          <img src="./assets/logos-clientes/coca-cola.png" alt="Coca-Cola" loading="lazy">
-          <img src="./assets/logos-clientes/eureka-co.png" alt="Eureka&amp;Co" loading="lazy">
-          <img src="./assets/logos-clientes/islas-canarias.png" alt="Islas Canarias" loading="lazy">
-          <img src="./assets/logos-clientes/sephora.png" alt="Sephora" loading="lazy">
-          <img src="./assets/logos-clientes/samsung.png" alt="Samsung" loading="lazy">
-          <img src="./assets/logos-clientes/bershka.png" alt="Bershka" loading="lazy">
-          <img src="./assets/logos-clientes/andalucia.png" alt="Andalucía" loading="lazy">
-          <img src="./assets/logos-clientes/bizum.png" alt="Bizum" loading="lazy">
-          <img src="./assets/logos-clientes/ikea.png" alt="IKEA" loading="lazy">
-          <img src="./assets/logos-clientes/repsol.png" alt="Repsol" loading="lazy">
-          <img src="./assets/logos-clientes/evo.png" alt="EVO" loading="lazy">
-          <img src="./assets/logos-clientes/havas.png" alt="Havas" loading="lazy">
-          <img src="./assets/logos-clientes/omd.svg" alt="OMD" loading="lazy">
-          <img src="./assets/logos-clientes/caja-rural.png" alt="Caja Rural" loading="lazy">
-          <img src="./assets/logos-clientes/nu.png" alt="Nu" loading="lazy">
-          <img src="./assets/logos-clientes/mcdonalds.png" alt="McDonald's" loading="lazy">
-          <img src="./assets/logos-clientes/sony.png" alt="Sony" loading="lazy">
-          <img src="./assets/logos-clientes/fundacion-real-madrid.png" alt="Fundación Real Madrid" loading="lazy">
-          <img src="./assets/logos-clientes/tbwa.png" alt="TBWA" loading="lazy">
-          <img src="./assets/logos-clientes/holaluz.png" alt="Holaluz" loading="lazy">
-          <img src="./assets/logos-clientes/loreal.png" alt="L'Oréal" loading="lazy">
-          <img src="./assets/logos-clientes/mapfre.png" alt="Mapfre" loading="lazy">
-          <img src="./assets/logos-clientes/sube.png" alt="Sube" loading="lazy">
-          <img src="./assets/logos-clientes/mccann.png" alt="McCann" loading="lazy">
-          <img src="./assets/logos-clientes/burger-king.png" alt="Burger King" loading="lazy">
-          <img src="./assets/logos-clientes/flax-kale.png" alt="Flax &amp; Kale" loading="lazy">
-          <img src="./assets/logos-clientes/santander.png" alt="Santander" loading="lazy">
-          <img src="./assets/logos-clientes/ouigo.png" alt="Ouigo" loading="lazy">
-          <img src="./assets/logos-clientes/amazon.png" alt="Amazon" loading="lazy">
-          <img src="./assets/logos-clientes/uber.png" alt="Uber" loading="lazy">
-          <span aria-hidden="true" style="display:flex;align-items:center;gap:48px;">
-          <img src="./assets/logos-clientes/coca-cola.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/eureka-co.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/islas-canarias.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/sephora.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/samsung.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/bershka.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/andalucia.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/bizum.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/ikea.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/repsol.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/evo.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/havas.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/omd.svg" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/caja-rural.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/nu.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/mcdonalds.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/sony.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/fundacion-real-madrid.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/tbwa.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/holaluz.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/loreal.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/mapfre.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/sube.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/mccann.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/burger-king.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/flax-kale.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/santander.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/ouigo.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/amazon.png" alt="" loading="lazy">
-          <img src="./assets/logos-clientes/uber.png" alt="" loading="lazy">
-          </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="final-cta" id="demo" style="padding-top:0;">
       <div class="container">
         <div class="cta-box reveal">
@@ -1429,6 +1418,22 @@
         </div>
       </div>
     </section>
+
+    <div class="container logos">
+      <p>Agencias que ya confían en Buzzmonitor</p>
+      <div class="logo-row">
+        <img src="./assets/logos-agencias/kaleidoscopio-agency.png" alt="Kaleidoscopio Agency" width="180" height="34" loading="lazy">
+        <img src="./assets/logos-agencias/mccann.png" alt="McCann" width="180" height="34" loading="lazy">
+        <span class="lead-logo">
+          <img class="lead-logo__lead" src="./assets/logos-agencias/lead-word-red.png" alt="Agencia Lead" width="120" height="20" loading="lazy">
+          <img class="lead-logo__digital" src="./assets/logos-agencias/lead-digital-word.png" alt="" aria-hidden="true" width="120" height="8" loading="lazy">
+        </span>
+        <img src="./assets/logos-agencias/sube.png" alt="Sube" width="180" height="34" loading="lazy">
+        <img src="./assets/logos-agencias/eureka-co.png" alt="Eureka&amp;Co" width="180" height="34" loading="lazy">
+        <img src="./assets/logos-agencias/havas.png" alt="Havas" width="180" height="34" loading="lazy">
+        <img src="./assets/logos-agencias/tbwa.png" alt="TBWA" width="180" height="34" loading="lazy">
+      </div>
+    </div>
   </main>
 
   <footer>

@@ -40,6 +40,18 @@
 # [ASSET] Prints: crises-1.png, crises-2.jpg, img-relatorios-dashboard.png (splits), ai-insights.png (IA)
 # [ASSET] Logos: ./assets/logos-agencias/ e ./assets/logos-clientes/ (origem: plataforma-integral-social-media)
 # [FORM] Jotform 241825239057661 (o mesmo da LP plataforma-integral-social-media)
+#
+# v3 (2026-08-31): ajustes pedidos pelo Victor.
+#   - HERO: a frase de dor virou H1 ("Tus clientes no cancelan por precio."), o antigo H1 virou H2
+#     e o paragrafo virou H3. Sem eyebrow: a promessa ja e a headline.
+#   - "Empresas que ya confian en Buzzmonitor" (numeros + parede de logos) SUBIU pra 2a secao.
+#   - A faixa de logos de agencias DESCEU pro fim da pagina (fechamento, depois do CTA).
+#   - Secao DIFERENCIAL ("Lo que las mejores agencias hacen diferente") REMOVIDA: o argumento
+#     dela agora esta condensado no proprio hero (H2 + H3).
+#   - Mobile: textura de bolinhas do hero passava POR CIMA do texto (pseudo-elemento posicionado
+#     pintando acima de conteudo nao posicionado). Conteudo elevado com z-index e a textura
+#     encolhida/clareada em <=980px e <=640px.
+#
 
 === NAV ===
 LINK: Soluciones
@@ -48,23 +60,21 @@ LINK: Clientes
 CTA: Agenda una demo
 
 === 1. HERO ===
-OVERLINE: Tus clientes no cancelan por precio.
-H1: Cancelan cuando tu agencia deja de aportar inteligencia estratégica.
-BODY: Buzzmonitor te ayuda a detectar oportunidades, riesgos y señales de cambio antes que tus clientes para fortalecer la retención, justificar tu fee y abrir nuevas oportunidades de negocio.
+H1: Tus clientes no cancelan por precio.
+H2: Cancelan cuando tu agencia deja de aportar inteligencia estratégica.
+H3: Buzzmonitor te ayuda a detectar oportunidades, riesgos y señales de cambio antes que tus clientes para fortalecer la retención, justificar tu fee y abrir nuevas oportunidades de negocio.
 CTA: Agenda una demo
 # [ASSET] video hero (autoplay muted loop + botao de pausa; reduced-motion mostra so o poster)
 
-=== 2. PROVA SOCIAL IMEDIATA ===
-SUB: Agencias que ya confían en Buzzmonitor
-# [LOGOS] Kaleidoscopio, McCann, Lead, Sube, Eureka&Co, Havas, TBWA
+=== 2. NUMEROS + PAREDE DE LOGOS (prova social imediata) ===
+H2: Empresas que ya confían en Buzzmonitor
+LABEL: 1.000+ clientes en el mundo
+LABEL: 300+ clientes enterprise
+LABEL: 10k usuarios
+LABEL: 500+ agencias
+# [ASSET] logo wall: logos-clientes/
 
-=== 3. DIFERENCIAL / POR QUE ===
-H2: Lo que las mejores agencias hacen diferente.
-BODY: Las agencias que retienen más cuentas no solo ejecutan campañas. Ayudan a sus clientes a tomar mejores decisiones.
-BODY: Buzzmonitor te permite detectar tendencias emergentes, oportunidades de negocio, riesgos reputacionales y cambios en la percepción de marca antes de que impacten los resultados.
-BODY: Cuando muestras a tus clientes lo que otros no ven, la conversación deja de ser sobre precio. Empieza a ser sobre valor.
-
-=== 4. SOLUCIONES (3 splits com print) ===
+=== 3. SOLUCIONES (3 splits com print) ===
 OVERLINE: Automatiza procesos, analiza datos e impulsa tus resultados con IA
 H2: Conoce la plataforma más completa para la gestión de redes sociales de tu agencia
 BODY: Gestiona las redes sociales y la experiencia de tus clientes en una sola plataforma, líder en el uso de inteligencia artificial para social listening, insights, reportes de performance y atención digital.
@@ -95,7 +105,7 @@ LIST ITEM: Uno para cada necesidad: campañas, competidores, salud de marca, etc
 
 CTA: ¡Experimenta Buzzmonitor ahora!
 
-=== 5. MODULOS RESTANTES (grade de 3) ===
+=== 4. MODULOS RESTANTES (grade de 3) ===
 H2: ¡Todo esto en una sola plataforma!
 
 H3: Métricas de Social Media
@@ -119,7 +129,7 @@ LIST ITEM: Detecta señales antes de que la crisis comience
 LIST ITEM: Seguimiento en tiempo real
 LIST ITEM: Extracción de oportunidades en las crisis
 
-=== 6. IA (secao unica) ===
+=== 5. IA (secao unica) ===
 H2: La Inteligencia Artificial lo cambia todo
 # [ASSET] print: ai-insights.png
 H3: AI Insights
@@ -135,7 +145,7 @@ BODY: Funcionalidad que sugiere opciones de respuestas automáticas.
 H3: ChatGPT
 BODY: Integración con la IA de OpenAI para atención al cliente y creación de contenidos.
 
-=== 7. DEPOIMENTOS ===
+=== 6. DEPOIMENTOS ===
 H2: ¿Aún no estás convencido?
 SUB: Escucha a quienes ya utilizan Buzzmonitor
 QUOTE: Necesitábamos un aliado como Buzzmonitor para poder no solamente prevenir potenciales crisis, sino también amplificar la voz de cada uno de los aliados de Kaleidoscopio.
@@ -151,15 +161,7 @@ LABEL: Isabela Matias da Silva, Gerente de Comunidades, SA365
 QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchmark también y lo más importante es que tenemos una perspectiva mucho más amplia de la conversación.
 LABEL: Celina Mendoza, Copywriter Coordinator, Sube Agencia
 
-=== 8. NUMEROS + PAREDE DE LOGOS ===
-H2: Empresas que ya confían en Buzzmonitor
-LABEL: 1.000+ clientes en el mundo
-LABEL: 300+ clientes enterprise
-LABEL: 10k usuarios
-LABEL: 500+ agencias
-# [ASSET] logo wall: logos-clientes/
-
-=== 9. CTA FINAL (oferta + FORM) ===
+=== 7. CTA FINAL (oferta + FORM) ===
 H2: ¡Prueba Buzzmonitor gratis durante 14 días!
 SUB: Planes a partir de $390 USD/Mes
 BODY: Obtén acceso a varias soluciones digitales en una sola plataforma líder en el uso de IA para Social Intelligence.
@@ -170,6 +172,10 @@ LIST ITEM: Optimización de procesos y mayor productividad con IA
 LIST ITEM: Y mucho más...
 H3 (card do form): Agenda una demo
 # [FORM] Jotform 241825239057661
+
+=== 8. LOGOS DE AGENCIAS (fechamento) ===
+SUB: Agencias que ya confían en Buzzmonitor
+# [LOGOS] Kaleidoscopio, McCann, Lead, Sube, Eureka&Co, Havas, TBWA
 
 === FOOTER ===
 FOOTER: © Buzzmonitor 2026

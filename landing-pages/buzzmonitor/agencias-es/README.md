@@ -6,19 +6,34 @@
 **Região/idioma:** LATAM · es-419 (slug com sufixo `-es` resolve latam na cascata; confirmado pelo gate de CI)
 **GTM:** GTM-MKQBX2MG (latam, tracking.json) + Meta Pixel 935436740448328 (mesmo par da LP design base, mesmo domínio)
 
-## Estrutura (v2 enxuta, 2026-08-12)
+## Estrutura (v3, 2026-08-31)
 
-8 secoes. Racional do corte em `REVISAO.md` e no cabecalho do `copy.txt`.
+Racional dos cortes em `REVISAO.md` e no cabecalho do `copy.txt`.
 
-1. HERO (overline dor + H1 + CTA + **video** `social-listening-es.mp4`)
-2. Prova social imediata (logos de agencias)
-3. Diferencial ("Lo que las mejores agencias hacen diferente.")
-4. Soluciones (3 splits com print: Monitoreo · Atencion Centralizada · Dashboards, 4 bullets cada) + CTA
-5. Modulos restantes (grade de 3: Metricas · Programacion · Gestion de Crisis)
-6. IA (print ai-insights + 6 cards com nomes oficiais)
-7. Depoimentos (6 agencias) + Numeros e parede de logos
-8. CTA final: oferta de 14 dias + **form nativo** (replica do GreatPages)
+1. HERO (H1 "Tus clientes no cancelan por precio." + H2 + H3 + CTA + **video** `social-listening-es.mp4`)
+2. Prova social imediata: "Empresas que ya confian en Buzzmonitor" (numeros + parede de logos de clientes)
+3. Soluciones (3 splits com print: Monitoreo · Atencion Centralizada · Dashboards, 4 bullets cada) + CTA
+4. Modulos restantes (grade de 3: Metricas · Programacion · Gestion de Crisis)
+5. IA (print ai-insights + 6 cards com nomes oficiais)
+6. Depoimentos (6 agencias)
+7. CTA final: oferta de 14 dias + **form nativo** (replica do GreatPages)
+8. Fechamento: faixa de logos de agencias ("Agencias que ya confian en Buzzmonitor")
 9. Footer
+
+### v3 — o que mudou (2026-08-31, pedido do Victor)
+
+- **Hero**: a frase de dor deixou de ser eyebrow e virou o H1; o antigo H1 desceu pra H2 (`.hero-sub`)
+  e o paragrafo virou H3 (`.hero-lead`). Sem eyebrow.
+- **"Empresas que ya confian"** subiu de 7ª pra 2ª secao; a faixa de logos de agencias, que era a 2ª,
+  desceu pro fim da pagina.
+- **Secao "Lo que las mejores agencias hacen diferente" removida** — o argumento vive agora no hero.
+- **Mobile — legibilidade do hero**: a textura de bolinhas (`.hero:before`) pintava POR CIMA da
+  headline, porque pseudo-elemento posicionado pinta acima de conteudo nao posicionado. Corrigido
+  com `position:relative; z-index:1` no `.hero-grid` (vale em qualquer largura) + textura menor e
+  mais clara em `<=980px` (380px, opacity .6) e `<=640px` (240px, opacity .45).
+- Paddings reajustados por causa da troca de vizinhanca: `.clients-proof` voltou a ter padding-top
+  (76px, antes 0 porque colava no bloco de depoimentos), `#soluciones` perdeu o `padding-top:0`
+  inline e `.logos` passou a `76px 0 86px` (antes 10px no topo, porque colava no hero).
 
 ## Estado
 
