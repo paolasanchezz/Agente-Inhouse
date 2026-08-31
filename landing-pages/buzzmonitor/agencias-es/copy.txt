@@ -87,6 +87,21 @@ LIST ITEM: Monitoreo de la competencia
 LIST ITEM: Alertas para la prevención de crisis de marca
 # [ASSET] print: crises-1.png
 
+# --- CAIXA DE CANAIS (abaixo do split de Monitoreo, largura cheia) ---
+SUB: Redes y canales integrados
+BODY: Monitorea menciones, comentarios y mensajes de todos estos canales en un mismo panel.
+CTA (toggle): Ver más / Ver menos
+# Visiveis antes do clique (5): WhatsApp, Instagram, Facebook, TikTok, YouTube
+#   Criterio: top 5 de penetracao de redes na LATAM (WhatsApp 420M usuarios, Facebook 360M,
+#   Instagram 290M; TikTok com LATAM entre os mercados de maior crescimento; YouTube quase
+#   universal). Fonte: larepublica.co + johnnygalo.com/DataReportal, consultadas 2026-08-31.
+#   Semrush nao pode ser usado como fonte de volume: cota de API zerada no dia.
+# Atras do "Ver mas" (10): LinkedIn, Threads, Pinterest, Reddit, Bluesky, Google My Business,
+#   Google Play Store, WordPress, E-mail, Reclame Aqui
+# [ASSET] icones 68x68 webp em ./assets/plataformas/ (origem: LP monitoramento-com-ia)
+# Nota: "Reclame Aqui" e canal so do Brasil. Entrou porque o pedido foi trazer TODAS as
+#   logos da LP de origem; se incomodar numa LP ES-LATAM, e o primeiro a cortar.
+
 H3: Atención al Cliente Centralizada
 BODY: No pierdas más tiempo respondiendo de red social en red social para cada cliente de tu agencia. ¡Centraliza toda tu atención al cliente en una única plataforma y responde en todas las redes sociales de tus clientes desde un solo lugar!
 LIST ITEM: Más de 15 canales digitales en una sola pantalla

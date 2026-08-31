@@ -12,7 +12,8 @@ Racional dos cortes em `REVISAO.md` e no cabecalho do `copy.txt`.
 
 1. HERO (H1 "Tus clientes no cancelan por precio." + H2 + H3 + CTA + **video** `social-listening-es.mp4`)
 2. Prova social imediata: "Empresas que ya confian en Buzzmonitor" (numeros + parede de logos de clientes)
-3. Soluciones (3 splits com print: Monitoreo · Atencion Centralizada · Dashboards, 4 bullets cada) + CTA
+3. Soluciones (3 splits com print: Monitoreo · Atencion Centralizada · Dashboards, 4 bullets cada)
+   + **caixa "Redes y canales integrados"** (15 canais, 5 visiveis + "Ver mas") + CTA
 4. Modulos restantes (grade de 3: Metricas · Programacion · Gestion de Crisis)
 5. IA (print ai-insights + 6 cards com nomes oficiais)
 6. Depoimentos (6 agencias)
@@ -41,6 +42,19 @@ Racional dos cortes em `REVISAO.md` e no cabecalho do `copy.txt`.
   padding caindo de 18 → 15px pra largura do botao nao crescer. Medido em 375×812:
   `scrollWidth` = `clientWidth` = 375, sem overflow novo alem do marquee (clipado por design) e
   do skip-link. QA: `check_mobile_type.py` reporta h1=38 h2=26 p=17 li=17 btn=14, menor fonte 14.
+- **Caixa "Redes y canales integrados"** logo abaixo do split de Monitoreo (`.nets`): grade de
+  chips com os **15 canais** que a plataforma monitora. **5 visiveis** antes do clique (WhatsApp,
+  Instagram, Facebook, TikTok, YouTube) e **10 atras do botao "Ver mas"** (LinkedIn, Threads,
+  Pinterest, Reddit, Bluesky, Google My Business, Google Play Store, WordPress, E-mail,
+  Reclame Aqui). Racional das 5 visiveis: top de penetracao de redes na LATAM (ver `copy.txt`
+  com as fontes). Os 5 tambem fecham exatamente uma linha da grade no desktop (5x3 quando aberta).
+  - Icones: `./assets/plataformas/*.webp` (68x68, ~33 KB os 15 juntos), copiados da LP
+    `monitoramento-com-ia`. **Subpasta de proposito:** no guarda-chuva todo asset de LP
+    buzzmonitor cai em `/assets/buzzmonitor/`, e os nomes flat da LP de origem colidiriam com
+    os dela. `plataformas/` isola.
+  - **Progressive enhancement:** o HTML entrega os 15 canais abertos e o JS colapsa no load. Sem
+    JS nada fica inacessivel. Botao com `aria-expanded` + `aria-controls`; os icones tem `alt=""`
+    (decorativos) porque o nome do canal ja esta em texto ao lado.
 - Paddings reajustados por causa da troca de vizinhanca: `.clients-proof` voltou a ter padding-top
   (76px, antes 0 porque colava no bloco de depoimentos), `#soluciones` perdeu o `padding-top:0`
   inline e `.logos` passou a `76px 0 86px` (antes 10px no topo, porque colava no hero).
@@ -79,6 +93,10 @@ Jotform saiu; entrou uma réplica nativa do form GreatPages da LP original, mesm
 - [x] Publicado em https://content.buzzmonitor.com/agencias-es (guarda-chuva CI)
 
 ## Assets referenciados
+
+- `./assets/plataformas/*.webp` (15 icones de canais: whatsapp, instagram, facebook, tiktok,
+  youtube, linkedin, threads, pinterest, reddit, bluesky, googlemybusiness, playstore,
+  wordpress, email, reclameaqui) — origem: `landing-pages/buzzmonitor/monitoramento-com-ia/assets/`
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header/footer; raster base64, web-safe §19)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)

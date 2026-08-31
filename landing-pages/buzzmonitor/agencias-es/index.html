@@ -641,6 +641,97 @@
 
     .split + .split { margin-top: 80px; }
 
+    /* Caixa de redes e canais integrados (abaixo do split de Monitoreo) */
+    .nets {
+      margin-top: 34px;
+      padding: 26px 24px 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #f8fafc;
+    }
+
+    .nets__title {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .nets__lead {
+      margin: 0 0 20px;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .nets__grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+      gap: 10px;
+    }
+
+    .nets__grid li {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      min-height: 52px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nets__grid img {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      min-height: 0;
+    }
+
+    .nets__grid span {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .nets.is-collapsed .net--extra { display: none; }
+
+    .nets__toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,107,22,.45);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .nets__toggle:hover {
+      border-color: var(--orange);
+      background: var(--soft);
+    }
+
+    .nets__toggle-icon {
+      font-size: 15px;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .nets.is-collapsed .nets__toggle-icon { transform: rotate(180deg); }
+
     .center-cta {
       text-align: center;
       margin-top: 48px;
@@ -942,6 +1033,8 @@
       .split { grid-template-columns: 1fr; }
       .hero:before { width: 380px; height: 380px; right: -90px; top: -80px; opacity: .6; }
       .split--flip .split-media { order: 0; }
+      .nets { padding: 22px 16px 18px; }
+      .nets__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
       .module-grid,
       .quote-grid { grid-template-columns: 1fr; }
@@ -975,6 +1068,9 @@
   .feature-card p,.module-card p,.quote-card p{ font-size:17px; }
   .check-list li{ font-size:17px; }
   .cta-box p{ font-size:17px; }
+  .nets__lead{ font-size:17px; }
+  .nets__grid li{ font-size:15px; }
+  .nets__toggle{ font-size:15px; }
   .split p{ font-size:17px; }
   .stat span{ font-size:14px; }
   .quote-card strong{ font-size:17px; }
@@ -1159,6 +1255,80 @@
           <div class="split-media reveal">
             <img src="./assets/crises-1.png" alt="Alertas y monitoreo de menciones en Buzzmonitor" width="1200" height="800" loading="lazy">
           </div>
+        </div>
+
+        <div class="nets" id="nets">
+          <p class="nets__title">Redes y canales integrados</p>
+          <p class="nets__lead">Monitorea menciones, comentarios y mensajes de todos estos canales en un mismo panel.</p>
+
+          <ul class="nets__grid" id="nets-grid">
+          <li class="net">
+            <img src="./assets/plataformas/whatsapp.webp" alt="" width="68" height="68" loading="lazy">
+            <span>WhatsApp</span>
+          </li>
+          <li class="net">
+            <img src="./assets/plataformas/instagram.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Instagram</span>
+          </li>
+          <li class="net">
+            <img src="./assets/plataformas/facebook.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Facebook</span>
+          </li>
+          <li class="net">
+            <img src="./assets/plataformas/tiktok.webp" alt="" width="68" height="68" loading="lazy">
+            <span>TikTok</span>
+          </li>
+          <li class="net">
+            <img src="./assets/plataformas/youtube.webp" alt="" width="68" height="68" loading="lazy">
+            <span>YouTube</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/linkedin.webp" alt="" width="68" height="68" loading="lazy">
+            <span>LinkedIn</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/threads.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Threads</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/pinterest.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Pinterest</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/reddit.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Reddit</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/bluesky.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Bluesky</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/googlemybusiness.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Google My Business</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/playstore.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Google Play Store</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/wordpress.webp" alt="" width="68" height="68" loading="lazy">
+            <span>WordPress</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/email.webp" alt="" width="68" height="68" loading="lazy">
+            <span>E-mail</span>
+          </li>
+          <li class="net net--extra">
+            <img src="./assets/plataformas/reclameaqui.webp" alt="" width="68" height="68" loading="lazy">
+            <span>Reclame Aqui</span>
+          </li>
+          </ul>
+
+          <button class="nets__toggle" type="button" id="netsToggle"
+                  aria-expanded="true" aria-controls="nets-grid">
+            <span class="nets__toggle-label">Ver menos</span>
+            <span class="nets__toggle-icon" aria-hidden="true">&#8963;</span>
+          </button>
         </div>
 
         <div class="split split--flip">
@@ -1740,6 +1910,32 @@
           mode: "cors"
         }).then(go).catch(go);
         setTimeout(go, 6000);
+      });
+    })();
+
+    // Caixa de redes e canais: colapsa no load (progressive enhancement).
+    // Sem JS o HTML entrega os 15 canais abertos, nada fica inacessivel.
+    (function () {
+      var box = document.getElementById("nets");
+      var btn = document.getElementById("netsToggle");
+      if (!box || !btn) return;
+      var label = btn.querySelector(".nets__toggle-label");
+
+      function pinta(colapsado) {
+        box.classList.toggle("is-collapsed", colapsado);
+        btn.setAttribute("aria-expanded", colapsado ? "false" : "true");
+        label.textContent = colapsado ? "Ver más" : "Ver menos";
+      }
+
+      pinta(true);
+
+      btn.addEventListener("click", function () {
+        var vaiAbrir = box.classList.contains("is-collapsed");
+        pinta(!vaiAbrir);
+        if (vaiAbrir) {
+          var primeiro = box.querySelector(".net--extra");
+          if (primeiro) primeiro.scrollIntoView({ block: "nearest" });
+        }
       });
     })();
   </script>
