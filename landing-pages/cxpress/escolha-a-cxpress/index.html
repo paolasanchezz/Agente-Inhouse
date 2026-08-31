@@ -177,7 +177,7 @@ button{ font:inherit; background:none; border:none; cursor:pointer; }
 }
 .skip-link:focus{ left:0; }
 :focus-visible{ outline:3px solid var(--navy); outline-offset:3px; }
-.hero :focus-visible,.cta-final :focus-visible,.site-footer :focus-visible{ outline-color:#fff; }
+.hero :focus-visible,.cta-final :focus-visible,.k2x-footer :focus-visible{ outline-color:#fff; }
 
 .wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding:0 24px; }
 section{ width:100%; }
@@ -203,7 +203,7 @@ h3{ font-size:clamp(22px,2vw,27px); font-weight:700; line-height:1.25; }
 h1,h2,h3,.eyebrow,.lead,.form-card__title,.form-card__text,
 .trust li,.cmp-note,.cmp-close,.why li,.stat span,.clients h2,.connect,
 .faq summary h3,.cta-final p,.cmp-table td,.cmp-table th{ text-wrap:balance; }
-.faq-body p,.site-footer p,.legal{ text-wrap:pretty; }
+.faq-body p,.k2x-text,.k2x-legal{ text-wrap:pretty; }
 
 /* ---------- botoes ---------- */
 .btn{
@@ -539,24 +539,52 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 /* ==========================================================================
    FOOTER
    ========================================================================== */
-.site-footer{ background:var(--navy); color:#fff; padding:66px 0 30px; }
-.site-footer__top{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:22px; }
-.site-footer__logo img{ width:220px; height:53px; object-fit:contain; }
-.site-footer__line{ height:1px; background:rgba(255,255,255,.18); margin:34px 0; }
-.site-footer__grid{ display:grid; grid-template-columns:1.6fr 1fr; gap:48px; }
-.site-footer p{ color:#d7ddf5; font-size:17px; line-height:1.7; }
-.site-footer strong{ color:#fff; }
-.site-footer__label{ display:block; font-family:var(--head); font-weight:700; font-size:15px; color:#fff; margin:22px 0 12px; }
-.site-footer__icons{ width:100%; max-width:460px; height:auto; }
-.site-footer__title{ display:block; font-family:var(--head); font-weight:700; font-size:17px; color:#fff; margin-bottom:14px; }
-.site-footer__contact{ display:flex; flex-direction:column; gap:10px; font-size:17px; }
-.site-footer__contact a{ color:#d7ddf5; }
-.site-footer__contact a:hover{ color:#fff; text-decoration:underline; }
-.site-footer__wa{ display:inline-flex; align-items:center; gap:9px; }
-.site-footer__wa img{ width:22px; height:22px; object-fit:contain; }
-.legal{ font-size:14px; color:#a8b1d8; line-height:1.6; margin-top:34px; }
-.copy{ font-size:14px; color:#a8b1d8; margin-top:18px; padding-top:18px; border-top:1px solid rgba(255,255,255,.18); }
-@media (max-width:820px){ .site-footer__grid{ grid-template-columns:1fr; gap:30px; } }
+/* Rodape unificado com a LP /planos (k2x). A tipografia usa as fontes desta LP:
+   o original usa "Inter", que aqui nao e carregada e puxaria uma familia so pro rodape. */
+.k2x-footer{ width:100%; padding:90px 40px 40px; background:radial-gradient(55% 90% at 38% 100%,#142F64 0%,#0A0B12 100%); color:#fff; }
+.k2x-container{ max-width:1380px; margin:0 auto; }
+.k2x-top{ display:flex; justify-content:space-between; align-items:center; gap:22px; margin-bottom:50px; }
+.k2x-logo{ width:260px; height:auto; }
+.k2x-btn{
+	display:flex; align-items:center; gap:10px; padding:14px 26px; border-radius:50px;
+	background:linear-gradient(120deg,#4A69BD,#3a56a5); color:#fff;
+	font-family:var(--head); font-weight:700; font-size:18px;
+	position:relative; overflow:hidden; transition:.4s;
+}
+.k2x-btn::before{ content:""; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(120deg,transparent,rgba(255,255,255,.3),transparent); transition:.5s; }
+.k2x-btn:hover::before{ left:100%; }
+.k2x-btn:hover{ transform:translateY(-3px); box-shadow:0 10px 25px rgba(0,0,0,.4); }
+.k2x-line{ position:relative; height:1px; background:#3f3f3f; margin:40px 0; }
+.k2x-line::after{ content:"+"; position:absolute; left:50%; top:0; transform:translate(-50%,-50%); font-size:14px; color:#3f3f3f; font-family:var(--head); }
+.k2x-line2{ position:relative; height:1px; background:#434D94; margin:40px 0; }
+.k2x-line2::after{ content:"+"; position:absolute; left:50%; top:0; transform:translate(-50%,-50%); font-size:14px; color:#434D94; font-family:var(--head); }
+.k2x-grid{ display:grid; grid-template-columns:2.2fr 1.4fr; gap:60px; align-items:start; }
+.k2x-col{ display:flex; flex-direction:column; gap:30px; }
+.k2x-text{ font-family:var(--head); font-size:20px; line-height:33px; color:#fff; }
+.k2x-sub{ font-family:var(--head); font-size:16px; }
+.k2x-icons{ width:340px; max-width:100%; height:auto; }
+.k2x-legal-links{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-family:var(--head); font-size:16px; line-height:22px; }
+.k2x-legal-links a{ color:#fff; text-decoration:underline; text-underline-offset:3px; transition:.3s; }
+.k2x-legal-links a:hover{ color:#C1C7FF; }
+.k2x-legal-links span{ color:#8f96c4; }
+.k2x-legal-wrap{ display:flex; justify-content:flex-end; }
+.k2x-legal{ max-width:925px; margin-top:30px; font-family:var(--head); font-size:16px; line-height:1.35; text-align:right; }
+.k2x-copy{ display:flex; justify-content:center; font-family:var(--head); font-size:16px; }
+@media (max-width:1400px){ .k2x-footer{ padding:60px 30px; } }
+@media (max-width:1200px){ .k2x-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:768px){
+	.k2x-top{ flex-direction:column; align-items:flex-start; gap:20px; }
+	.k2x-grid{ grid-template-columns:1fr; }
+	.k2x-copy{ flex-direction:column; gap:10px; }
+	.k2x-legal{ text-align:left; }
+	.k2x-footer{ padding:50px 40px; }
+}
+@media (max-width:600px){
+	.k2x-footer{ padding:34px 20px 30px; }
+	.k2x-grid,.k2x-col{ gap:20px; }
+	.k2x-text{ font-size:17px; line-height:28px; }
+	.k2x-legal,.k2x-copy{ font-size:14px; }
+}
 
 /* ==========================================================================
    BARRA FIXA MOBILE (trafego pago entra e sai rapido no celular)
@@ -611,7 +639,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 	.why li,.mod__text p,.faq-body p{ font-size:17px; }
 	.faq summary{ font-size:18px; }
 	.cta-final p{ font-size:17px; }
-	.site-footer p,.site-footer__contact{ font-size:17px; }
+	.k2x-text{ font-size:17px; }
 	.legal,.copy,.cmp-note{ font-size:14px; }
 }
 </style>
@@ -940,34 +968,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <!-- ============================ FOOTER ============================ -->
-<footer class="site-footer">
-	<div class="wrap">
-		<div class="site-footer__top">
-			<a href="https://home.cxpress.io" class="site-footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
-				<img src="./assets/logo-cxpress-branco.png" alt="" width="220" height="53" loading="lazy" decoding="async">
+<footer class="k2x-footer">
+	<div class="k2x-container">
+		<div class="k2x-top">
+			<a href="https://home.cxpress.io" class="k2x-logolink" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+				<img class="k2x-logo" src="./assets/logo-cxpress-branco.png" alt="" width="262" height="63" loading="lazy" decoding="async">
 			</a>
-			<a href="#form" class="btn btn--primary">Falar com um especialista</a>
+			<a href="#form" class="k2x-btn">
+				Falar com um especialista
+				<img src="./assets/icon-footer-1.png" alt="" aria-hidden="true" width="16" height="16" loading="lazy" decoding="async">
+			</a>
 		</div>
-		<div class="site-footer__line"></div>
-		<div class="site-footer__grid">
-			<div>
-				<p>A <strong>Cxpress</strong> é uma plataforma multicanal que centraliza, automatiza e otimiza o atendimento ao cliente, integrando canais como WhatsApp, redes sociais, e-mail e telefone em um único lugar.</p>
-				<span class="site-footer__label">Canais integrados:</span>
-				<img class="site-footer__icons" src="./assets/canais-integrados.webp" alt="Canais integrados pela Cxpress" width="1200" height="156" loading="lazy" decoding="async">
+		<div class="k2x-line"></div>
+		<div class="k2x-grid">
+			<div class="k2x-col">
+				<p class="k2x-text">A <strong>Cxpress</strong> é uma plataforma construída com foco em integração total dos canais e sistemas, permitindo que diferentes produtos e tecnologias operem de forma unificada dentro do mesmo ambiente.</p>
+				<span class="k2x-sub">Canais integrados:</span>
+				<img class="k2x-icons" src="./assets/canais-integrados.webp" alt="Canais integrados da plataforma Cxpress" width="1200" height="156" loading="lazy" decoding="async">
 			</div>
-			<div>
-				<span class="site-footer__title">Contatos</span>
-				<div class="site-footer__contact">
-					<a href="tel:+551150395028">(11) 5039-5028</a>
-					<a href="mailto:comercial@gocxpress.com.br">comercial@gocxpress.com.br</a>
-					<a class="site-footer__wa" href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20de%20compara%C3%A7%C3%A3o%20da%20Cxpress." target="_blank" rel="noopener">
-						<img src="./assets/icon-whatsapp.png" alt="" aria-hidden="true" width="22" height="22" loading="lazy" decoding="async">WhatsApp comercial
-					</a>
-				</div>
+			<div class="k2x-col">
+				<nav class="k2x-legal-links" aria-label="Documentos legais">
+					<a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso da Cxpress</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://blog.cxpress.io/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a>
+				</nav>
 			</div>
 		</div>
-		<p class="legal">Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 - Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.</p>
-		<p class="copy">&copy; 2026 Cxpress&reg;. Todos os direitos reservados</p>
+	</div>
+	<div class="k2x-container">
+		<div class="k2x-legal-wrap">
+			<p class="k2x-legal">Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 - Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.</p>
+		</div>
+	</div>
+	<div class="k2x-container">
+		<div class="k2x-line2"></div>
+		<div class="k2x-copy">
+			<span>&copy; 2026 Cxpress&reg;. Todos os direitos reservados</span>
+		</div>
 	</div>
 </footer>
 

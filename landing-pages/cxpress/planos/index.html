@@ -871,20 +871,11 @@ img{ max-width:100%; }
 					<img class="k2x-icons" src="./assets/Cxpress_icons_social-scaled.png" alt="Canais integrados da plataforma Cxpress" width="2560" height="333" loading="lazy" decoding="async">
 				</div>
 				<div class="k2x-col">
-					<div class="k2x-block">
-						<span class="k2x-title">Contatos</span>
-						<div class="k2x-contato-tel">
-							<a href="tel:+551150395028" class="k2x-link">(11) 5039-5028</a>
-							<a href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20de%20planos%20da%20Cxpress."
-							class="k2x-whats"
-							target="_blank"
-							rel="noopener"
-							aria-label="Conversar pelo WhatsApp com o número (11) 5039-5028">
-								<img src="./assets/whatsapp-icon.png" alt="" aria-hidden="true" width="35" height="44" loading="lazy" decoding="async">
-							</a>
-						</div>
-						<a href="mailto:comercial@gocxpress.com.br">comercial@gocxpress.com.br</a>
-					</div>
+					<nav class="k2x-legal-links" aria-label="Documentos legais">
+						<a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso da Cxpress</a>
+						<span aria-hidden="true">·</span>
+						<a href="https://blog.cxpress.io/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -925,6 +916,12 @@ img{ max-width:100%; }
 		.k2x-link{text-decoration:underline}
 		.k2x-contato-tel{display:flex;align-items:center;gap:14px}
 		.k2x-whats img{width:26px;height:auto}
+		/* Links legais no lugar do bloco de contatos: a LP ja tem CTA e WhatsApp no corpo,
+		   e o rodape passa a carregar o que e obrigatorio por lei. */
+		.k2x-legal-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:"Open Sans",sans-serif;font-size:16px;line-height:22px}
+		.k2x-legal-links a{color:#fff;text-decoration:underline;text-underline-offset:3px;transition:.3s}
+		.k2x-legal-links a:hover{color:#C1C7FF}
+		.k2x-legal-links span{color:#8f96c4}
 		.k2x-legal-wrap{display:flex;justify-content:flex-end}
 		.k2x-legal{max-width:925px;margin-top:30px;font-family:"Open Sans",sans-serif;font-size:16px;line-height:1.35;text-align:right}
 		.k2x-copy{display:flex;justify-content:center;font-family:"Inter",sans-serif;font-size:16px}
