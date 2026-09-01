@@ -11,7 +11,7 @@ Evento atualizado para a próxima edição (01/10/2026), conforme página de pla
 
 ## Estrutura
 
-- HERO — headline, contexto, form de inscrição mock (nome, e-mail, empresa, cargo, WhatsApp)
+- HERO — headline, contexto, form de inscrição via Jotform (form ID `250504226492654`)
 - COMO CHEGAR — endereço confirmado (Av. Paulista, 807, Espaço Paulista) + mapa embed do Google Maps + contador regressivo (JS, alvo 01/10/2026 09h BRT, com fallback noscript)
 - APRENDIZADOS — 4 bullets do que será ensinado, grid com check
 - PALESTRANTES — Tereza Rici (Senior Account Executive, Buzzmonitor) + Barbara Gomes (Speaker convidada, Ana Couto), foto e logo da empresa de cada uma
@@ -26,13 +26,14 @@ Evento atualizado para a próxima edição (01/10/2026), conforme página de pla
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-buzztalk-gestao-multimarcas-para-agencias.png` (gerada via Chrome headless a partir de `assets/og-template-buzztalk-gestao-multimarcas-para-agencias.html`)
 - [x] Revisão (frontend-design review + web-design-guidelines) — ver `REVISAO.md` (6 críticos corrigidos: contraste do botão laranja, 4 textos inventados removidos, fallback do contador)
-- [ ] Formulário integrado — rodar `/lp-integrar-form buzzmonitor/buzztalk-gestao-multimarcas-para-agencias [snippet]`
-- [ ] **BLOQUEADOR antes de publicar ao vivo** (não é só nice-to-have — a página não pode ir ao ar assim):
+- [x] Formulário integrado — Jotform (form ID `250504226492654`), integrado em 2026-08-28
+- **Form provider:** Jotform (2026-08-28)
+- [x] **BLOQUEADORES antes de publicar ao vivo** — todos resolvidos:
   - [x] Endereço do evento — confirmado 2026-08-27 (Av. Paulista, 807, Espaço Paulista Promoções Eventos) + mapa embed
   - [x] Palestrantes confirmados 2026-08-28 — Tereza Rici (Senior Account Executive, Buzzmonitor) e Barbara Gomes (Speaker convidada, Ana Couto), fotos + logos das empresas
-  - [ ] Formulário real conectado a um provedor (Jotform/RD Station/HubSpot) via `lp-integrar-form`
-- [ ] **Nota de infra:** o embed do Google Maps exige `https://www.google.com` em `frame-src` — já patcheado em `landing-pages/dominios/content-buzzmonitor-com/vercel.json` (mudança em arquivo mecânico do guarda-chuva, PR provavelmente cai em `precisa-revisao-victor` em vez de auto-merge, ver CONTEXT.md §2.6)
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor buzztalk-gestao-multimarcas-para-agencias content.buzzmonitor.com`
+  - [x] Formulário real conectado — Jotform, via `lp-integrar-form` (2026-08-28)
+- [x] **Nota de infra:** o embed do Google Maps exigiu `https://www.google.com` em `frame-src` — patcheado em `landing-pages/dominios/content-buzzmonitor-com/vercel.json` (já mergeado)
+- [x] Publicado — live em `content.buzzmonitor.com/buzztalk-gestao-multimarcas-para-agencias` desde 2026-08-27; esta atualização (form real) sai no próximo deploy do CI após o PR mergear
 
 ## Assets referenciados
 

@@ -141,12 +141,8 @@
   .hero h1{font-size:clamp(30px,4vw,46px);font-weight:800;margin-bottom:22px}
   .hero p{font-size:18px;color:rgba(255,255,255,.92);margin-bottom:16px;max-width:56ch}
   .hero-card{background:#fff;color:var(--texto);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-lg)}
-  .field{margin-bottom:16px}
-  .field label{display:block;font-family:var(--body);font-weight:700;font-size:13px;color:var(--texto-sec);margin-bottom:6px}
-  .field input{width:100%;padding:13px 14px;border:1.5px solid var(--borda);border-radius:10px;font-family:var(--body);font-size:15px;color:var(--texto);background:var(--bg-claro)}
-  .field input:focus{border-color:var(--teal);background:#fff}
-  .form .btn{width:100%;margin-top:6px}
-  .form-note{font-size:12px;color:var(--texto-sec);margin-top:14px;line-height:1.5}
+  /* Jotform embed wrapper (canonico): sem padding/background/border, o provedor ja vem com card proprio */
+  .jotform-embed iframe{width:100% !important;max-width:100% !important;border:0;display:block}
 
   /* Section rhythm */
   section{padding:120px 0}
@@ -331,30 +327,9 @@
         <p>No próximo Buzz Talks, vamos conversar sobre &ldquo;Gestão Multimarcas para Agências: Cases e estratégias de alto desempenho nas redes sociais&rdquo; e mostrar como agências estão utilizando dados, monitoramento e processos mais estratégicos para otimizar operações e gerar melhores resultados.</p>
       </div>
       <div class="hero-card reveal" id="inscricao">
-        <form class="form" action="#" method="post" onsubmit="event.preventDefault()">
-          <div class="field">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="empresa">Empresa</label>
-            <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
-          </div>
-          <div class="field">
-            <label for="cargo">Cargo</label>
-            <input type="text" id="cargo" name="cargo" autocomplete="organization-title">
-          </div>
-          <div class="field">
-            <label for="whatsapp">WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" required>
-          </div>
-          <button type="submit" class="btn btn-laranja">Inscreva-se agora!</button>
-          <p class="form-note">Ao se inscrever, você concorda em receber comunicações da Buzzmonitor sobre este e outros eventos.</p>
-        </form>
+        <div class="jotform-embed">
+          <script type="text/javascript" src="https://form.jotform.com/jsform/250504226492654"></script>
+        </div>
       </div>
     </div>
   </section>
