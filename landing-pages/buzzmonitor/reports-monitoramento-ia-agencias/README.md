@@ -6,6 +6,12 @@
 **Webinar:** Reports e Monitoramento com IA para Agências — 6 de outubro de 2026, 11h, online e ao vivo
 **Domínio-alvo:** webinar.buzzmonitor.com (guarda-chuva migrado pro CI)
 
+## Nota sobre o JotForm (2026-09-01)
+
+O form de inscrição (`252154974852667`) é o "BR | MKT | LPs - Eventos Geral [CTA Cinza]" — form **compartilhado por todas as LPs de evento**, não dedicado a este webinar. A Catharina confirmou que isso é por design (planilha única), mas quis um jeito de identificar a origem por LP pra filtrar depois. Adicionei `utm_source`, `utm_medium` e `utm_campaign` na URL do iframe (`utm_campaign=reports-monitoramento-ia-agencias` identifica esta LP especificamente).
+
+**Importante — isso sozinho não resolve:** passar UTM na URL só popula a planilha se o form no JotForm tiver **campos ocultos configurados pra capturar esses parâmetros** (Form Builder → Add Field → Hidden Field → "Get value from URL parameter" com o nome exato `utm_source`/`utm_medium`/`utm_campaign`). Sem acesso ao painel do JotForm nesta sessão, não dá pra confirmar/configurar isso — a Catharina precisa checar isso do lado do JotForm. Vale notar também que o embed handler do próprio JotForm já anexa automaticamente um `parentURL` (URL da LP) na query string do iframe — se o form já tiver um campo pra capturar isso, a origem já estaria disponível sem precisar dos UTMs.
+
 ## Padrão de layout
 
 A pedido da Catharina, o HTML foi reconstruído para reaproveitar literalmente o sistema de design (CSS vars, classes, componentes) de `gestao-de-crises-ia-agosto-2026/index.html` — a LP de webinar mais recente da marca — em vez do layout genérico gerado na primeira passada pela `frontend-design`. Isso inclui: nav absoluta com dot pulsante "Ao vivo", ticket card "Save the date", punchline em gradiente gigante, cards de problema com X circular, grid de programa com check, lista numerada "para quem", seção de urgência com círculos decorativos, e form no final da página (não na 2ª seção — esse é o padrão real usado em todas as LPs de webinar da marca, prevalece sobre o default genérico do GUIDELINES §10).
