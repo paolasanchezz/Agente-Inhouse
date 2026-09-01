@@ -1,0 +1,51 @@
+=== HERO ===
+OVERLINE: Agente para Engagement
+H1: Tu asistente personalizado de atención al cliente
+SUB: Conecta con tu comunidad y transforma engagement en ventas con un agente automático para Instagram, WhatsApp y TikTok.
+CTA: Agenda una demo
+
+=== CLIENTES ===
+LABEL: Más de 800 clientes confían en nosotros
+
+=== BENEFICIOS ===
+H2: Transforma conversaciones en más engagement y ventas
+LIST ITEM: Respuestas instantáneas a preguntas frecuentes
+LIST ITEM: Identifica intención de compra, nutre la relación con tus clientes y aumenta tus ventas
+LIST ITEM: Responde comentarios y DMs al instante, automáticamente
+LIST ITEM: Automatiza mensajes con acciones clave. Envía DMs, crea flujos y responde comentarios
+
+=== PARA-QUIEN ===
+H2: Pensado para quien vive de la presencia digital
+LIST ITEM: Directores y responsables de marketing.
+LIST ITEM: Equipos de marketing.
+LIST ITEM: Agencias de comunicación y publicidad.
+LIST ITEM: Agencias de marketing digital.
+LIST ITEM: Community managers y gestores de redes sociales.
+LIST ITEM: Marcas con alto volumen de comentarios e interacciones.
+
+=== RESULTADOS ===
+H2: Resultados de empresas que potenciaron a sus equipos con Cxpress
+LIST ITEM: +220% de interacciones realizadas con la misma estructura de atención.*
+LIST ITEM: Hasta 15x más productividad en las interacciones automatizadas por IA, ampliando la capacidad del equipo.*
+LIST ITEM: 98% de calidad en las respuestas automatizadas evaluadas, según los criterios definidos para cada operación.*
+BODY: *Resultados obtenidos por clientes Cxpress en la atención a través de redes sociales, con base en el reporte interno Concierge, de 2025. Los resultados pueden variar según la operación.
+
+=== CTA-FINAL ===
+H2: Transforma conversaciones en oportunidades de venta
+CTA: Agenda una demo
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos los derechos reservados.
+
+# Adaptacion ES-LATAM de landing-pages/cxpress/agente-concierge-pt/copy.txt (2026-08-31).
+# Pilares aplicados: padrao-linguistico ES-LATAM (tuteo, espanol neutro, "reporte" y no "informe",
+# "celular" y no "movil", sin voseo ni vosotros), fundamentos-copy.md (H1 lidera por la dor) y
+# regras-anti-ia.md + Anexo ES-LATAM.
+# Revision anti-IA: sin hallazgos (em-dash: 0; antitese-por-negacao: 0; sin frases-tipo IA).
+# Sin seccion de Urgencia: no hay plazo real (GUIDELINES parag. 9: vacio es valido).
+#
+# [ALTERACOES a pedido do usuario, 2026-08-31] Hero: H1, SUB e CTA do botao reescritos
+# (posicionamento passou de "no dejes comentarios sin respuesta" para asistente de atencion +
+# engagement que vira venda). Bloco PROBLEMA ("Las redes sociales nunca paran") removido por
+# completo, junto com o asset assets/problema-bg.png. BENEFICIOS: H2 novo e os 6 cards trocados
+# pelos 4 fornecidos pelo usuario. CTA-FINAL: H2 novo.
