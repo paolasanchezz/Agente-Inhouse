@@ -30,6 +30,17 @@ LIST ITEM: Hasta 15x más productividad en las interacciones automatizadas por I
 LIST ITEM: 98% de calidad en las respuestas automatizadas evaluadas, según los criterios definidos para cada operación.*
 BODY: *Resultados obtenidos por clientes Cxpress en la atención a través de redes sociales, con base en el reporte interno Concierge, de 2025. Los resultados pueden variar según la operación.
 
+=== POR-QUE ===
+H2: ¿Por qué usar un asistente personalizado para tu atención?
+H3: Habla con el tono de tu marca
+BODY: Responde con tus palabras y tu forma de decir las cosas, no con un guion genérico.
+H3: Atiende sin horarios
+BODY: Contesta el primer mensaje a cualquier hora, en lenguaje natural.
+H3: Mantiene el mismo criterio
+BODY: Cada persona recibe la misma calidad de respuesta, sin importar el volumen.
+H3: Libera a tu equipo
+BODY: Deja de responder mil veces lo mismo y enfócate en las conversaciones que deciden una venta.
+
 === CTA-FINAL ===
 H2: Transforma conversaciones en oportunidades de venta
 CTA: Agenda una demo

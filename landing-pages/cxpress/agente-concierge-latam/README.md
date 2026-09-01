@@ -341,26 +341,24 @@ Num canvas 1000×1100 (raio 500), a y=132 so aparece x de 161 a 838. O cartao de
 imagem ja conta a conversa; as duas coisas competiam), junto com o CSS `.bubble*`/`.dots` que virou
 morto. `hero-conversaciones.png` saiu (sem uso).
 
-### Hero em WebP (2026-09-01)
+### Redes sociais LATAM no rodape (2026-09-01)
 
-O key visual e o elemento **LCP** da pagina e estava saindo em PNG 2000×2200 = **1433 KB**, sendo
-exibido a ~452px. Passou pra **WebP 1200×1320, qualidade 94 = 81 KB** (17× menor). Comparadas as duas
-versoes no tamanho real de exibicao, sao indistinguiveis — e ilustracao de cores chapadas, formato em
-que o WebP rende muito. O `<img>` ganhou `fetchpriority="high"` e `decoding="async"`.
+Adicionados Facebook, Instagram e LinkedIn no rodape (URLs fornecidas pelo usuario), reusando
+**o mesmo padrao de icones e aria-labels** da LP irma `webinar-clinicas-latam`, que ja publica
+exatamente essas tres URLs. Alvo `_blank` + `rel="noopener"`, area de toque 40×40 e contraste
+lilas sobre navy (hover inverte pra branco).
 
-Medicoes que embasaram a escolha (mesma peca, redimensionada):
+- Facebook: `https://www.facebook.com/profile.php?id=61584681389155`
+- Instagram: `https://www.instagram.com/cxpress.es/`
+- LinkedIn: `https://www.linkedin.com/company/cxpress/`
 
-| Versao | Peso |
-|---|---|
-| 2000px PNG (anterior) | 1433 KB |
-| 1200px PNG otimizado | 656 KB |
-| 1200px PNG 256 cores | 304 KB |
-| **1200px WebP q94** | **81 KB** |
+**Tambem preenchido o `sameAs` do JSON-LD** (`Organization`), que estava vazio — GUIDELINES §15 pede
+LinkedIn + Instagram regional ali, e a ausencia estava documentada como pendencia desde a LP PT-PT.
 
-WebP ja era usado no repo (ex: `buzzmonitor/plataforma-completa-para-dados/assets/*.webp`), entao nao
-introduz convencao nova. O master da peca segue em PNG 2000×2200 em
-`criativos/cxpress/latam/hero-agente-concierge/`.
+**Nao incluido:** a `webinar-clinicas-latam` linka tambem um YouTube (`@Cxpress_es`). Como o pedido
+listou so as tres redes acima, o YouTube ficou de fora — e um `<a>` a mais se quiserem.
 
-**Ainda em PNG:** `samir-laptop.png` (293 KB), no card de beneficios. Nao e LCP e carrega com
-`loading="lazy"`, mas da o mesmo tipo de ganho se um dia valer a pena.
+**Fonte de verdade:** o `brand/cxpress/brand-manifest.json` ainda nao tem bloco de redes (so
+`brand.websites`), entao as URLs seguem no HTML da LP. Migrar isso pro manifesto evitaria que a
+proxima LP as hardcode de novo.
 
