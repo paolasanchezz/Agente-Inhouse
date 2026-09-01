@@ -1,0 +1,77 @@
+=== HERO ===
+BADGE: Oferta exclusiva do webinar (box degradê roxo, sem data)
+H1: Do relatório manual ao relatório pronto, em minutos.
+SUB: Essa oferta é só para quem esteve no webinar Reports e Monitoramento com IA para Agências e quer levar o método pra prática.
+CTA: Quero aproveitar a oferta
+
+
+=== OFERTA ===
+EYEBROW: A oferta exclusiva
+DESTAQUE: 14 dias grátis da Buzzmonitor
+BODY: Para participantes do webinar "Reports e Monitoramento com IA para Agências", preparamos uma condição especial: acesso completo à plataforma, com suporte consultivo dedicado para montar o monitoramento e os relatórios da sua agência.
+LIST ITEM: 14 dias grátis de Buzzmonitor
+LIST ITEM: Suporte consultivo especializado durante o período de teste
+LIST ITEM: Configuração de relatórios e dashboards para as contas da sua agência
+BONUS: E não para por aí: ao fim dos 14 dias, você garante um desconto imperdível para continuar com a Buzzmonitor.
+LABEL: válida por tempo limitado
+CTA: Quero aproveitar a oferta
+
+
+=== BENEFICIOS ===
+H2: O que você consegue fazer com a Buzzmonitor
+LIST ITEM: Relatório e dashboard de cada conta numa tela só, sem virar noite com print
+LIST ITEM: IA classificando menção, resumindo relatório e sugerindo pauta pra você
+LIST ITEM: Monitoramento de cliente novo estruturado em poucos dias
+LIST ITEM: Várias contas de cliente numa única operação, sem contratar mais um analista
+LIST ITEM: Atendimento e SAC centralizado, sem nenhuma interação escapando
+
+
+=== MODULOS ===
+H2: Uma plataforma. Quatro módulos integrados.
+H3: Listening
+BODY: Monitoramento de crises, triggers automáticos e classificação de sentimento. Você sabe o que estão falando da sua marca antes de ser tarde.
+H3: Analytics
+BODY: Insights qualitativos, pesquisa ilimitada e relatórios personalizados para entender o tamanho real de uma crise.
+H3: Atendimento ao Cliente
+BODY: Gestão multicanal com KPIs consolidados e sugestões com IA para responder mais rápido e melhor.
+H3: Agendamento
+BODY: Publicações ilimitadas e criação de conteúdo com IA integrada, sem alternar entre ferramentas na hora de responder.
+
+# Secao MODULOS mantida identica a gestao-de-crises-ia-agosto-2026-oferta (descricao generica da plataforma, nao especifica do webinar).
+
+
+=== PROVA SOCIAL ===
+H2: 1.000+ marcas já monitoram com a Buzzmonitor
+LIST ITEM: 1.000+ clientes globais
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agências parceiras
+LIST ITEM: 10.000 usuários ativos
+
+
+=== CLIENTES ===
+EYEBROW: Quem já confia
+H2: Marcas que confiam na Buzzmonitor
+NOTA: e mais de 1.000 marcas no Brasil, América Latina e Portugal
+# Mural de logos (mural-1.jpeg + mural-2.jpeg) reaproveitado de gestao-de-crises-ia-agosto-2026-oferta, slideshow 16s.
+
+
+=== URGENCIA ===
+LABEL: oferta por tempo limitado
+H2: Essa condição vale só para quem participou do webinar.
+BODY: O período de teste é gratuito. O suporte consultivo também. Mas a oferta é por tempo limitado e encerra em breve.
+CTA: Aproveitar oferta exclusiva
+
+# Secao URGENCIA mantida identica - texto ja generico, nao cita o nome do webinar.
+
+
+=== CTA FINAL ===
+H2: Comece agora. Sem compromisso.
+BODY: 14 dias para montar o monitoramento e os relatórios da sua agência, com suporte de quem entende do seu negócio.
+FORM TITLE: Garanta sua oferta
+# Form: mesmo JotForm reaproveitado em todas as LPs de oferta (ID 253573505200650), diferente do form de inscricao do webinar (252154974852667).
+
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados. | Política de Privacidade
+
+# Fonte/padrao: LP gestao-de-crises-ia-agosto-2026-oferta (mesmo template, mesma oferta de 14 dias gratis + desconto, mesmos modulos/prova social/clientes/urgencia). Adaptado: HERO H1+SUB, OFERTA body + 3o item da lista, BENEFICIOS (5 itens), CTA FINAL sub, todos para o tema "reports e monitoramento com IA para agencias" em vez de "gestao de crises". Revisao anti-IA: sem achados (em-dash: 0, exclamacao: 0).
