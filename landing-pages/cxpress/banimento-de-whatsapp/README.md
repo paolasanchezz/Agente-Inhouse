@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (doc "Nova Banimento Whats (Google Ads)", Victor)
 **Domínio de destino:** `content.cxpress.io/banimento-de-whatsapp` (guarda-chuva, deploy via CI)
 **Idioma / região:** PT-BR / brasil
-**Form provider:** Jotform `261034073026647` (o mesmo da LP irmã `/evite-banimento-whatsapp`, integrado em 2026-08-30)
+**Form provider:** ⚠️ **mock** — o embed do Jotform `261034073026647` foi retirado em 2026-09-01 para simular em HTML o layout de formulário de referência (Octadesk). Reintegrar via `/lp-integrar-form cxpress/banimento-de-whatsapp` **antes de publicar**.
 **Tracking:** GTM-KN8BPFG + GA4 339689858 (container de Google Ads, confirmado pelo Victor em 2026-08-30)
 
 ## De onde veio
@@ -41,8 +41,14 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-banimento-de-whatsapp.png` (template em `assets/og-template.html`)
 - [x] Revisão de design + a11y aplicada — ver `REVISAO.md`
-- [x] Formulário integrado — Jotform `261034073026647`
+- [ ] Formulário integrado — hoje é **mock** (GUIDELINES §11). Reintegrar o Jotform `261034073026647` via `/lp-integrar-form` antes de publicar
 - [ ] Entrar no `landing-pages/dominios/content-cxpress-io/manifest.json` e publicar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
+
+## Ajustes de 2026-09-01 (Bruno)
+
+1. **Menu transparente:** navbar adotou o vidro do padrão `content.buzzmonitor.com/monitoramento-com-ia` — `rgba(255,255,255,.80)` + `backdrop-filter:blur(5px)` + borda `#e2e8f0`.
+2. **CTAs azul-escuro em pílula:** todos os botões (`.btn`, `.navbar__cta`, `.btn--light`) passaram de verde WhatsApp para `--primary-dark` (#232960) com texto branco e `border-radius: var(--radius-pill)`. O verde `--wa` continua só como acento gráfico (checks, tags do hero, trilho do fluxo).
+3. **Formulário simulado:** o embed do Jotform virou mock HTML reproduzindo o formulário de referência (Octadesk): nome, e-mail corporativo, site, faixa de funcionários, cargo, departamento, WhatsApp com DDI +55 fixo, nota de privacidade, opt-in marcado e botão Enviar. Bandeira do Brasil é SVG inline (o emoji 🇧🇷 renderiza como "BR" no Chrome/Windows).
 
 ## Decisões do Victor (2026-08-30)
 
