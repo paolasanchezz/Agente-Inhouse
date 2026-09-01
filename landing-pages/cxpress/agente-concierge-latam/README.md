@@ -341,3 +341,26 @@ Num canvas 1000×1100 (raio 500), a y=132 so aparece x de 161 a 838. O cartao de
 imagem ja conta a conversa; as duas coisas competiam), junto com o CSS `.bubble*`/`.dots` que virou
 morto. `hero-conversaciones.png` saiu (sem uso).
 
+### Hero em WebP (2026-09-01)
+
+O key visual e o elemento **LCP** da pagina e estava saindo em PNG 2000×2200 = **1433 KB**, sendo
+exibido a ~452px. Passou pra **WebP 1200×1320, qualidade 94 = 81 KB** (17× menor). Comparadas as duas
+versoes no tamanho real de exibicao, sao indistinguiveis — e ilustracao de cores chapadas, formato em
+que o WebP rende muito. O `<img>` ganhou `fetchpriority="high"` e `decoding="async"`.
+
+Medicoes que embasaram a escolha (mesma peca, redimensionada):
+
+| Versao | Peso |
+|---|---|
+| 2000px PNG (anterior) | 1433 KB |
+| 1200px PNG otimizado | 656 KB |
+| 1200px PNG 256 cores | 304 KB |
+| **1200px WebP q94** | **81 KB** |
+
+WebP ja era usado no repo (ex: `buzzmonitor/plataforma-completa-para-dados/assets/*.webp`), entao nao
+introduz convencao nova. O master da peca segue em PNG 2000×2200 em
+`criativos/cxpress/latam/hero-agente-concierge/`.
+
+**Ainda em PNG:** `samir-laptop.png` (293 KB), no card de beneficios. Nao e LCP e carrega com
+`loading="lazy"`, mas da o mesmo tipo de ganho se um dia valer a pena.
+
