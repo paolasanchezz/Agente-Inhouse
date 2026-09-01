@@ -294,6 +294,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .why__ico{width:44px;height:44px;border-radius:13px;background:var(--off);display:grid;place-items:center;margin-bottom:18px}
   .why__ico svg{width:21px;height:21px}
   .why h3{font-family:var(--display);font-weight:800;font-size:clamp(20px,1.6vw,22px);line-height:1.2;margin-bottom:10px}
+  /* reserva 2 linhas de titulo a partir de 2 colunas: alinha o inicio dos paragrafos entre os cards */
+  @media (min-width:720px){.why h3{min-height:2.4em}}
   .why__item p{font-size:17px;color:var(--ink);line-height:1.55}
 
   /* ---------- CTA final (borda superior em arco) ---------- */
