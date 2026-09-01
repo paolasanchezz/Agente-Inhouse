@@ -317,3 +317,27 @@ blanca arriba) y el agente responde (burbuja navy junto al celular).
 `hero-bg.png` fue **eliminado de esta LP**. Sigue en `agente-concierge-pt/assets/`, que continua
 publicando esa cara a sangre completa: **pendiente de decidir con el Victor**.
 
+### Hero: key visual proprio no lugar da foto (2026-09-01)
+
+O usuario pediu um visual "mais atrativo" pro header. A foto saiu; entrou uma **peca desenhada**
+(`assets/hero-kv.png`, 2000×2200), gerada em HTML/CSS + Chrome headless — a engine padrao das
+`criativos/GUIDELINES.md` §3. Fonte editavel e instrucoes de re-render em
+`criativos/cxpress/latam/hero-agente-concierge/` (gitignored, como todo output de criativo).
+
+**O que a peca mostra:** comentario publico do Instagram (cartao flutuante) -> telefone com a
+resposta do agente e o chip "Respuesta automática" -> quick replies. Profundidade por perspectiva
+3D, glow radial e sombras em camadas; pilulas canonicas e grid de pontos como atmosfera.
+
+**Licao de escala:** a 1a versao foi desenhada como cena completa (post + no + DM) num canvas de
+1400px com texto 16px. No hero ela aparece a **~452px**: virava miniatura ilegivel. Refeita com
+menos elementos e o dobro de escala. Regra: desenhar no tamanho em que a peca vai ser vista.
+
+**Zona segura do arco:** o hero mascara a imagem num semicirculo, entao o terco superior e estreito.
+Num canvas 1000×1100 (raio 500), a y=132 so aparece x de 161 a 838. O cartao de comentario estava em
+`left:40px` e perdia ~120px pela esquerda (o usuario reportou o texto cortado); corrigido para
+`left:192px; top:176px`. A conta e a tabela ficaram no README do criativo.
+
+**Consequencias no HTML:** as duas burbulhas de chat em HTML sobre o arco foram **removidas** (a
+imagem ja conta a conversa; as duas coisas competiam), junto com o CSS `.bubble*`/`.dots` que virou
+morto. `hero-conversaciones.png` saiu (sem uso).
+

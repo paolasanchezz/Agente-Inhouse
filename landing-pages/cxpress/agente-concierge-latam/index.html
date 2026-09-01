@@ -207,19 +207,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width:100%;height:100%;overflow:hidden;background:var(--white);
     border-radius:calc(9999px - 18px) calc(9999px - 18px) 0 0;
   }
-  .arcframe img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:66% 50%}
+  .arcframe img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:center}
   .arcbase{display:none}
-  .bubble{position:absolute;z-index:3;background:var(--white);border-radius:20px;box-shadow:var(--sh-2);padding:14px 17px;max-width:245px;border:1px solid var(--line)}
-  .bubble b{display:block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--royal);margin-bottom:5px}
-  .bubble p{font-size:15px;line-height:1.42}
-  .bubble--in{top:12%;left:-6%;border-bottom-left-radius:6px}
-  .bubble--out{bottom:11%;right:-15%;background:var(--navy);border-color:var(--navy);border-bottom-right-radius:6px}
-  .bubble--out b{color:var(--lilac)}
-  .bubble--out p{color:var(--white)}
-  .dots{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
-  .dots i{width:5px;height:5px;border-radius:50%;background:var(--lilac);animation:blink 1.4s infinite}
-  .dots i:nth-child(2){animation-delay:.2s}
-  .dots i:nth-child(3){animation-delay:.4s}
 
   /* ---------- clientes ---------- */
   .clients{padding:0 0 12px;border-top:1px solid var(--line)}
@@ -316,8 +305,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .anim{opacity:0;animation:rise .8s cubic-bezier(.2,.9,.3,1) both}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
   .d4{animation-delay:.35s}.d5{animation-delay:.45s}
-  .bubble--in{animation:rise .7s .75s cubic-bezier(.2,.9,.3,1) both,float 6s 1.6s ease-in-out infinite}
-  .bubble--out{animation:rise .7s 1s cubic-bezier(.2,.9,.3,1) both,float 7s 2.1s ease-in-out infinite}
 
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.9,.3,1)}
   .reveal.on{opacity:1;transform:none}
@@ -334,7 +321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .anim,.reveal,.bubble--in,.bubble--out{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+    .anim,.reveal{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
     .hero h1 .mark{animation:none!important;background-size:100% .18em}
     .ticker__track,.eyebrow i,.dots i{animation:none!important}
     .btn:hover,.tile:hover,.aud__item:hover{transform:none;padding-left:6px}
@@ -348,10 +335,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .aud__item{font-size:17px}
     .stat__t{font-size:17px}
     .note{font-size:14px}
-    .bubble{max-width:184px;padding:11px 13px}
-    .bubble p{font-size:14px;line-height:1.38}
-    .bubble--in{top:-12px;left:-4px}
-    .bubble--out{bottom:-12px;right:-4px}
     .ticker__row{gap:36px;padding:12px 20px}
     .ticker__logo{height:25px}
     .arcbase{display:none}
@@ -404,16 +387,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="arcbase" aria-hidden="true"></span>
         <div class="arcframe anim d3">
           <div class="arcframe__img">
-            <img src="./assets/hero-conversaciones.png" alt="Celular sobre un escritorio con comentarios y mensajes de redes sociales llegando" width="1100" height="619" loading="eager">
+            <img src="./assets/hero-kv.png" alt="Un comentario de Instagram y la conversación por mensaje directo donde el Agente Concierge responde de forma automática" width="2000" height="2200" loading="eager">
           </div>
-        </div>
-        <div class="bubble bubble--in">
-          <b>Comentario en Instagram</b>
-          <p>¿Hacen envíos a todo el país?</p>
-        </div>
-        <div class="bubble bubble--out">
-          <b>Agente Concierge</b>
-          <p>Sí, enviamos a todo el país. Te paso los tiempos de entrega<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></p>
         </div>
       </div>
     </div>
