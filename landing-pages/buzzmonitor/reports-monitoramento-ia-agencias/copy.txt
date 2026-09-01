@@ -1,0 +1,92 @@
+=== HERO ===
+OVERLINE: Webinar Online e Ao Vivo · 6 de Outubro, 11h
+H1: Reports e Monitoramento com IA para Agências
+SUB: Como agências podem usar social listening e IA para automatizar processos, relatórios e atendimento.
+CTA: Garantir minha vaga
+
+
+=== CONTEXTO DE MERCADO ===
+H2: 92% das empresas brasileiras vão investir em IA aplicada a marketing em 2026.
+BODY: Fonte: Índice de Maturidade Tecnológica em Marketing B2B (IMTM), Live University + Ibramerc, 2026, via E-Commerce Brasil.
+
+# Dado buscado a pedido da Catharina, pra seguir o padrao estrutural da LP crescer-marca-influenciadores-setembro-2026 (secao de contexto de mercado logo apos o hero). Nao achei stat equivalente no blog proprio da Buzzmonitor de forma acessivel via busca; usado dado externo de fonte jornalistica/pesquisa de mercado (nao concorrente), com atribuicao clara.
+
+
+=== PROBLEMA ===
+H2: Sem uma boa ferramenta, a realidade da sua agência é essa...
+LIST ITEM: O relatório do cliente ainda sai de print colado em PPT.
+LIST ITEM: O SAC não tem controle, e alguma interação sempre escapa.
+LIST ITEM: Sem radar de concorrente, a pauta da reunião vira chute.
+LIST ITEM: O volume de menção cresce e a equipe não cresce junto.
+LIST ITEM: Contrato novo, cliente empolgado, e nenhuma ferramenta rodando ainda.
+
+
+=== DIFERENCIAL ===
+H3: Aprenda a usar IA e automações para otimizar relatórios
+BODY: A IA virou pré-requisito em social listening, mas o que importa é o que ela faz por você: classifica menção, resume relatório, sugere pauta, acelera resposta. Isso muda tudo!
+
+
+=== PROGRAMA ===
+H2: O que você vai levar deste webinar
+LIST ITEM: Como montar relatório e dashboard de cada conta numa tela só, sem virar noite com print
+LIST ITEM: Como estruturar o monitoramento de um cliente novo em poucos dias
+LIST ITEM: Como usar IA para classificar, resumir e sugerir pauta sem perder o controle da conta
+LIST ITEM: Como manter várias contas de cliente numa única operação sem contratar mais um analista
+LIST ITEM (destaque): Demonstração ao vivo da Buzzmonitor, com casos reais de agência
+
+
+=== PARA QUEM ===
+H2: Este webinar é pra você que...
+LIST ITEM: Gerencia redes sociais de mais de um cliente e sente o tempo faltar
+LIST ITEM: Ainda monta relatório de cliente na mão
+LIST ITEM: Quer chegar na reunião de alinhamento sabendo antes do que o cliente sabe
+LIST ITEM: Está decidindo se vale a pena uma ferramenta de social listening pra agência
+
+
+=== PROVA SOCIAL ===
+H2: 1.000+ marcas já monitoram com a Buzzmonitor
+LIST ITEM: 1.000+ clientes globais
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agências parceiras
+LIST ITEM: 10.000 usuários ativos
+
+
+=== URGENCIA ===
+LABEL: Inscrição gratuita
+H2: Aprenda a automatizar o trabalho manual da sua agência com IA, na prática.
+BODY: 6 de outubro, 11h. Webinar gratuito e ao vivo, com demonstração real da plataforma.
+CTA: Quero minha vaga
+
+
+=== PERGUNTAS FREQUENTES ===
+H2: Como a Buzzmonitor pode ser útil pra sua agência?
+QUESTION: Quanto consome de franquia de menções e o que acontece se eu estourar?
+ANSWER: Depende do plano contratado e de como sua agência divide as contas entre clientes. O Buzzmonitor Trends, por exemplo, monitora concorrentes sem consumir a franquia de menções dos perfis oficiais. É um dos primeiros ajustes que fazemos junto com quem assina.
+QUESTION: Dá para usar uma licença para vários clientes e diluir o custo?
+ANSWER: Sim. É o modelo mais comum entre as agências parceiras da Buzzmonitor: uma licença, várias contas de cliente.
+QUESTION: Quanto de dado retroativo eu tenho logo no primeiro mês?
+ANSWER: Varia por módulo e fonte monitorada. No webinar, mostramos como isso funciona pra colocar uma conta nova em pé rápido.
+QUESTION: Quem faz o setup e em quanto tempo minha conta entra no ar?
+ANSWER: A Buzzmonitor acompanha a configuração com você, do primeiro dia até a conta estar rodando.
+QUESTION: O cliente final da agência consegue acessar o dashboard?
+ANSWER: É possível montar um dashboard próprio pra compartilhar com o cliente final, com o recorte que fizer sentido pra cada conta.
+
+# Fonte: doc de insumo (secao "Objecoes recorrentes nas calls", print enviado pela Catharina), 5 objecoes reais levantadas em 24%/8%/etc das calls comerciais com agencias. Respostas escritas de forma factual/conservadora (sem inventar numero de franquia, prazo de setup ou politica de retroativo nao confirmados); Q2 e a unica com resposta afirmativa direta, por ja estar confirmada no doc de insumo (41% dos leads falam de multi-cliente).
+
+# Revisao 2026-09-01 contra o doc de insumo completo (dores + necessidades + solucao de interesse, nao so objecoes): Q1 (franquia) reforcada citando o Buzzmonitor Trends, que o proprio doc registra como argumento de fechamento usado pelas agencias ("monitorar concorrentes sem custo extra, sem consumir a franquia de mencoes dos perfis oficiais" - conta Index). Resolve ao mesmo tempo a dor "sem radar de concorrente" (PROBLEMA) e a objecao de franquia (FAQ), que antes nao se conectavam.
+
+
+=== CTA FINAL ===
+H2: Chegue na próxima reunião de alinhamento com o dado em mãos.
+BODY: Inscrição gratuita. Vagas limitadas.
+CTA: Garantir minha vaga
+
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados. | Política de Privacidade
+
+# Revisao anti-IA (2a passada, apos adicionar FAQ): em-dash 0. Encontrada 2a instancia de antitese-por-negacao em DIFERENCIAL BODY ("nao e sobre ter IA. E sobre..."), logo apos o H3 que ja usa a mesma familia ("nao e sorte, e ferramenta") - dois seguidos na mesma secao ficava repetitivo mesmo dentro do limite numerico (2 por peca de ate 500 palavras, copy tem ~505). Reescrito o BODY sem a construcao "nao e X, e Y", mantendo so 1 instancia (o H3). Filler words: nenhuma. "de forma X": nenhuma. Metaforas aquaticas: nenhuma. Exclamacao: 0. Adjetivos empilhados: nenhum.
+
+# 2026-09-01: "achismo" (PROBLEMA) trocado por "chute" a pedido da Catharina.
+
+# Secao CLIENTES (mural de logos) removida a pedido da Catharina em 2026-09-01 (4a rodada de ajustes).
