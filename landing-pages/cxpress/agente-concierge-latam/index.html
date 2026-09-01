@@ -76,370 +76,285 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=Bitter:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
 
+
 <noscript><style>.reveal,.anim{opacity:1!important;transform:none!important}</style></noscript>
 
 <style>
   :root{
-    /* Brand tokens Cxpress (brand/cxpress/tokens.json) */
-    --navy:#232960;          /* primaryDark: texto, seccion oscura */
-    --royal:#4A69BD;         /* primary: acentos, numeros, kickers */
-    --wa:#21CC78;            /* verde WhatsApp de los CTA (decision del usuario, LP PT-PT) */
-    --wa-dark:#1AAE63;
-    --royal-dark:#3B569E;
+    /* Cxpress (brand/cxpress/tokens.json) */
+    --navy:#232960;
+    --royal:#4A69BD;
+    --royal-deep:#3B569E;
     --lilac:#C1C7FF;
     --lilac-soft:#D7E2FF;
-    --orange:#EF863C;        /* accent: micro-acento decorativo */
+    --orange:#EF863C;
     --peach:#FFDCC3;
-    --ink-700:#4a4a4a;
-    --line:#E3E7F5;
-    --off:#F5F7FD;
-    --white:#ffffff;
+    --wa:#21CC78;
+    --wa-dark:#1AAE63;
+    --ink:#4a4a4a;
+    --line:#E4E8F6;
+    --off:#F4F6FD;
+    --white:#fff;
 
-    --font-display:'Open Sans', system-ui, sans-serif;
-    --font-body:'Source Sans 3', system-ui, sans-serif;
-    --font-accent:'Bitter', Georgia, serif;
+    --display:'Open Sans', system-ui, sans-serif;
+    --body:'Source Sans 3', system-ui, sans-serif;
+    --accent:'Bitter', Georgia, serif;
 
-    --r-btn:9px;             /* radio de boton del brandbook */
-    --r-card:22px;
-    --r-pill:9999px;
+    --arc:9999px 9999px 0 0;      /* arco canonico do brandbook */
+    --pill:9999px;
+    --card:26px;
 
-    --sh-sm:0 2px 8px rgba(35,41,96,.06);
-    --sh-md:0 12px 28px -10px rgba(35,41,96,.20);
-    --sh-lg:0 34px 70px -24px rgba(35,41,96,.34);
-
-    --pad-y:132px;
-    --pad-y-mob:84px;
+    --sh-1:0 2px 10px rgba(35,41,96,.05);
+    --sh-2:0 18px 40px -18px rgba(35,41,96,.28);
+    --sh-3:0 40px 80px -30px rgba(35,41,96,.42);
   }
 
-  *,*::before,*::after{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    margin:0;
-    font-family:var(--font-body);
-    font-size:18px;
-    color:var(--navy);
-    background:var(--white);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    margin:0;font-family:var(--body);font-size:18px;
+    color:var(--navy);background:var(--white);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-  img{max-width:100%;display:block;}
-  a{color:inherit;}
-  p{margin:0;}
-  ul{margin:0;padding:0;list-style:none;}
-  h1,h2,h3{
-    font-family:var(--font-display);
-    color:var(--navy);
-    margin:0;
-    font-weight:800;
-    letter-spacing:-0.022em;
-    line-height:1.04;
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  p{margin:0}
+  ul{margin:0;padding:0;list-style:none}
+  h1,h2,h3{font-family:var(--display);color:var(--navy);margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.02}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-inline:28px}
+  section{padding:88px 0}
+  @media (min-width:960px){section{padding:136px 0}}
+
+  /* kicker editorial em Bitter (fonte de personalidade da marca) */
+  .kicker{
+    font-family:var(--accent);font-style:italic;font-weight:500;
+    font-size:clamp(16px,1.4vw,19px);color:var(--royal);
+    display:inline-flex;align-items:center;gap:12px;margin-bottom:16px;
   }
+  .kicker::before{content:"";width:34px;height:2px;background:var(--orange);flex-shrink:0}
 
-  .container{max-width:1200px;margin:0 auto;padding-inline:28px;}
-  section{padding:var(--pad-y-mob) 0;}
-  @media (min-width:960px){section{padding:var(--pad-y) 0;}}
-  .band--off{background:var(--off);}
+  .skip-link{position:absolute;left:-9999px;background:var(--navy);color:var(--white);padding:14px 22px;border-radius:0 0 12px 0;z-index:1000;font-weight:700;text-decoration:none}
+  .skip-link:focus{left:0;top:0}
+  :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
 
-  /* ---------- a11y ---------- */
-  .skip-link{
-    position:absolute;left:-9999px;top:auto;
-    background:var(--navy);color:var(--white);
-    padding:14px 22px;border-radius:0 0 var(--r-btn) 0;
-    z-index:1000;font-weight:700;text-decoration:none;
-  }
-  .skip-link:focus{left:0;top:0;}
-  :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px;}
-
-  /* ---------- botones ---------- */
+  /* ---------- botoes ---------- */
   .btn{
     display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--font-display);font-weight:800;font-size:17px;
-    letter-spacing:-0.01em;
-    padding:16px 30px;border-radius:var(--r-pill);
-    text-decoration:none;border:2px solid transparent;cursor:pointer;
-    white-space:nowrap;
-    transition:transform .22s cubic-bezier(.2,.8,.3,1), box-shadow .22s ease, background-color .2s ease;
+    font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-.01em;
+    padding:17px 32px;border-radius:var(--pill);text-decoration:none;border:0;cursor:pointer;white-space:nowrap;
+    transition:transform .25s cubic-bezier(.2,.9,.3,1),box-shadow .25s ease,background-color .2s ease;
   }
-  .btn--primary{background:var(--wa);color:var(--white);box-shadow:0 10px 22px -10px rgba(33,204,120,.85);}
-  .btn--primary:hover{background:var(--wa-dark);transform:translateY(-3px);box-shadow:0 18px 34px -12px rgba(33,204,120,.8);}
-  .btn--light{background:var(--white);color:var(--navy);box-shadow:var(--sh-md);}
-  .btn--light:hover{transform:translateY(-3px);box-shadow:var(--sh-lg);}
-  .btn__arrow{width:18px;height:18px;flex-shrink:0;transition:transform .22s ease;}
-  .btn:hover .btn__arrow{transform:translateX(4px);}
+  .btn--wa{background:var(--wa);color:var(--white);box-shadow:0 12px 26px -12px rgba(33,204,120,.95)}
+  .btn--wa:hover{background:var(--wa-dark);transform:translateY(-3px);box-shadow:0 22px 40px -14px rgba(33,204,120,.9)}
+  .btn svg{width:18px;height:18px;flex-shrink:0;transition:transform .25s ease}
+  .btn:hover svg{transform:translateX(5px)}
 
   /* ---------- header ---------- */
-  header{
-    position:sticky;top:0;z-index:60;
-    background:rgba(255,255,255,.86);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid transparent;
-    transition:border-color .3s ease, box-shadow .3s ease;
-  }
-  header.is-stuck{border-bottom-color:var(--line);box-shadow:0 6px 20px -14px rgba(35,41,96,.5);}
-  .navbar{
-    display:flex;align-items:center;justify-content:space-between;gap:20px;
-    max-width:1200px;margin:0 auto;padding:18px 28px;
-  }
-  .navbar__logo{display:flex;align-items:center;text-decoration:none;}
-  .navbar__logo img{height:34px;width:auto;}
-  .navbar .btn{display:none;padding:13px 24px;font-size:16px;}
-  @media (min-width:760px){.navbar .btn{display:inline-flex;}}
+  header{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);transition:box-shadow .3s ease}
+  header.stuck{box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(35,41,96,.7)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1240px;margin:0 auto;padding:16px 28px}
+  .nav__logo img{height:34px;width:auto}
+  .nav .btn{display:none;padding:13px 24px;font-size:15px}
+  @media (min-width:800px){.nav .btn{display:inline-flex}}
 
-  /* ---------- eyebrow ---------- */
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding:52px 0 76px}
+  @media (min-width:960px){.hero{padding:84px 0 120px}}
+  .hero__mesh{
+    position:absolute;z-index:0;pointer-events:none;
+    width:920px;height:920px;right:-320px;top:-460px;border-radius:50%;
+    background:radial-gradient(circle,rgba(193,199,255,.55) 0%,rgba(215,226,255,.28) 45%,rgba(255,255,255,0) 70%);
+  }
+  .shape{position:absolute;z-index:0;pointer-events:none}
+  .shape--pill{width:66px;height:210px;border-radius:var(--pill);background:var(--lilac-soft);left:52%;top:-84px}
+  .shape--ring{width:120px;height:120px;border-radius:var(--pill);border:7px solid var(--peach);right:4%;bottom:8%}
+  .shape--dot{width:15px;height:15px;border-radius:50%;background:var(--orange);left:41%;top:16%}
+  @media (max-width:959px){.shape{display:none}}
+
+  .hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
+  @media (min-width:960px){.hero__grid{grid-template-columns:1.05fr .95fr;gap:56px}}
+  .hero__copy{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
   .eyebrow{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:var(--font-display);font-weight:800;
-    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--navy);background:var(--lilac-soft);
-    padding:9px 18px;border-radius:var(--r-pill);white-space:nowrap;
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:800;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--navy);background:var(--lilac-soft);padding:9px 18px;border-radius:var(--pill);white-space:nowrap;
   }
-  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;}
-
-  /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;padding-top:56px;padding-bottom:72px;}
-  @media (min-width:960px){.hero{padding-top:76px;padding-bottom:104px;}}
-  .hero__grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;}
-  @media (min-width:960px){.hero__grid{grid-template-columns:1.02fr .98fr;gap:64px;}}
-  .hero__content{display:flex;flex-direction:column;align-items:flex-start;gap:24px;position:relative;z-index:2;}
-  .hero h1{font-size:clamp(38px,5.6vw,70px);max-width:660px;}
-  .hero h1 .hl{
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2.4s ease-in-out infinite}
+  .hero h1{font-size:clamp(40px,5.9vw,76px);max-width:14ch}
+  .hero h1 .mark{
     color:var(--royal);
     background-image:linear-gradient(var(--peach),var(--peach));
-    background-repeat:no-repeat;
-    background-position:0 92%;
-    background-size:0% .17em;
+    background-repeat:no-repeat;background-position:0 92%;background-size:0% .18em;
     -webkit-box-decoration-break:clone;box-decoration-break:clone;
-    animation:sweep .9s .55s cubic-bezier(.2,.8,.3,1) both;
+    animation:mark 1s .5s cubic-bezier(.2,.9,.3,1) both;
   }
-  .hero__lead{font-size:clamp(18px,1.5vw,21px);color:var(--ink-700);max-width:46ch;}
-  .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
-  .hero__chips{display:flex;flex-wrap:wrap;gap:10px;padding-top:4px;}
-  .chip{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:15px;font-weight:600;color:var(--navy);
-    background:var(--white);border:1px solid var(--line);
-    padding:8px 16px;border-radius:var(--r-pill);box-shadow:var(--sh-sm);
-  }
-  .chip svg{width:16px;height:16px;flex-shrink:0;}
+  .hero__lead{font-size:clamp(18px,1.5vw,21px);color:var(--ink);max-width:44ch}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;background:var(--white);border:1px solid var(--line);padding:8px 15px;border-radius:var(--pill);box-shadow:var(--sh-1)}
+  .chip svg{width:16px;height:16px}
 
-  /* formas decorativas canonicas (pill + arco) */
-  .deco{position:absolute;z-index:0;pointer-events:none;}
-  .deco--pill{width:74px;height:230px;border-radius:var(--r-pill);background:var(--lilac-soft);top:-70px;right:16%;}
-  @media (max-width:959px){.deco{display:none;}}
+  /* foto dentro do ARCO canonico do brandbook */
+  .hero__art{position:relative}
+  /* arco canonico do brandbook como moldura preenchida. A imagem e uma composicao
+     de bordas retas: precisa de recorte pra nao mostrar as pontas. Sem scrim. */
+  .arcframe{
+    position:relative;width:100%;max-width:452px;margin-inline:auto;z-index:2;
+    aspect-ratio:1/1.1;border-radius:var(--arc);
+    background:var(--lilac-soft);padding:18px;box-shadow:var(--sh-3);
+  }
+  .arcframe__img{
+    width:100%;height:100%;overflow:hidden;background:var(--white);
+    border-radius:calc(9999px - 18px) calc(9999px - 18px) 0 0;
+  }
+  .arcframe img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:66% 50%}
+  .arcbase{display:none}
+  .bubble{position:absolute;z-index:3;background:var(--white);border-radius:20px;box-shadow:var(--sh-2);padding:14px 17px;max-width:245px;border:1px solid var(--line)}
+  .bubble b{display:block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--royal);margin-bottom:5px}
+  .bubble p{font-size:15px;line-height:1.42}
+  .bubble--in{top:12%;left:-6%;border-bottom-left-radius:6px}
+  .bubble--out{bottom:11%;right:-15%;background:var(--navy);border-color:var(--navy);border-bottom-right-radius:6px}
+  .bubble--out b{color:var(--lilac)}
+  .bubble--out p{color:var(--white)}
+  .dots{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
+  .dots i{width:5px;height:5px;border-radius:50%;background:var(--lilac);animation:blink 1.4s infinite}
+  .dots i:nth-child(2){animation-delay:.2s}
+  .dots i:nth-child(3){animation-delay:.4s}
 
-  /* visual del hero: foto en tarjeta + burbujas */
-  .hero__visual{position:relative;z-index:1;}
-  .shot{
-    position:relative;display:grid;place-items:center;
-    aspect-ratio:4/3;width:100%;overflow:hidden;
-    border-radius:var(--r-card);
-    box-shadow:var(--sh-lg);
-    background:var(--off);
-  }
-  .shot img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:60% center;}
-  .bubble{
-    position:absolute;z-index:3;
-    background:var(--white);border:1px solid var(--line);
-    border-radius:18px;box-shadow:var(--sh-md);
-    padding:13px 16px;max-width:250px;
-  }
-  .bubble__tag{
-    display:block;font-family:var(--font-display);font-weight:800;
-    font-size:11px;letter-spacing:.07em;text-transform:uppercase;
-    color:var(--royal);margin-bottom:5px;
-  }
-  .bubble p{font-size:15px;line-height:1.45;color:var(--navy);}
-  .bubble--in{top:8%;left:-14px;border-bottom-left-radius:6px;}
-  .bubble--out{bottom:8%;right:-14px;border-bottom-right-radius:6px;background:var(--navy);border-color:var(--navy);}
-  .bubble--out .bubble__tag{color:var(--lilac);}
-  .bubble--out p{color:var(--white);}
-  @media (min-width:600px){.bubble--in{left:-40px;}.bubble--out{right:-34px;}}
-  .dots{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle;}
-  .dots span{width:5px;height:5px;border-radius:50%;background:var(--lilac);animation:blink 1.4s infinite;}
-  .dots span:nth-child(2){animation-delay:.2s;}
-  .dots span:nth-child(3){animation-delay:.4s;}
+  /* ---------- clientes ---------- */
+  .clients{padding:0 0 12px;border-top:1px solid var(--line)}
+  .clients__row{display:grid;grid-template-columns:1fr;gap:14px;align-items:center;padding-top:26px}
+  @media (min-width:900px){.clients__row{grid-template-columns:auto 1fr;gap:34px}}
+  .clients__label{font-family:var(--accent);font-style:italic;font-size:16px;color:var(--ink);white-space:nowrap}
+  .ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .ticker__track{display:flex;width:max-content;animation:slide 46s linear infinite}
+  .ticker:hover .ticker__track{animation-play-state:paused}
+  .ticker__row{display:flex;align-items:center;gap:52px;padding:14px 26px}
+  .ticker__logo{height:31px;width:auto;flex-shrink:0;filter:grayscale(1);opacity:.72;transition:filter .3s,opacity .3s}
+  .ticker:hover .ticker__logo{filter:none;opacity:1}
 
-  /* ---------- marquee (transicion hero -> contenido) ---------- */
-  .ticker{
-    border-block:1px solid var(--line);
-    background:var(--white);
-    padding:0;overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  /* ---------- beneficios (bento) ---------- */
+  .bento{display:grid;grid-template-columns:1fr;gap:18px;margin-top:52px}
+  @media (min-width:900px){.bento{grid-template-columns:repeat(3,1fr);gap:22px}.bento__hero{grid-column:span 3}}
+  .tile{
+    position:relative;overflow:hidden;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--card);padding:34px 30px;
+    transition:transform .3s cubic-bezier(.2,.9,.3,1),box-shadow .3s,border-color .3s;
   }
-  .ticker__track{display:flex;width:max-content;animation:slide 52s linear infinite;}
-  .ticker:hover .ticker__track{animation-play-state:paused;}
-  .ticker__row{display:flex;align-items:center;gap:56px;padding:26px 28px;}
-  .ticker__logo{
-    height:34px;width:auto;flex-shrink:0;
-    filter:grayscale(1);opacity:.9;
-    transition:filter .3s ease, opacity .3s ease;
+  .tile:hover{transform:translateY(-7px);box-shadow:var(--sh-2);border-color:var(--lilac)}
+  .tile__n{font-family:var(--accent);font-style:italic;font-weight:600;font-size:15px;color:var(--royal);display:block;margin-bottom:14px}
+  .tile p{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.6vw,23px);line-height:1.26;letter-spacing:-.018em}
+  .tile::after{content:"";position:absolute;right:-46px;bottom:-46px;width:120px;height:120px;border-radius:var(--pill);background:var(--lilac-soft);opacity:0;transition:opacity .35s,transform .35s;transform:scale(.6)}
+  .tile:hover::after{opacity:.7;transform:scale(1)}
+  .bento__hero{
+    background:linear-gradient(120deg,var(--lilac-soft) 0%,#EAF0FF 55%,var(--white) 100%);
+    display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:34px 30px;
   }
-  .ticker:hover .ticker__logo{filter:none;opacity:1;}
-  .clients__label{
-    text-align:center;
-    font-family:var(--font-display);font-weight:800;
-    font-size:14px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--ink-700);
-    padding:0 0 22px;
-  }
-  .clients{padding-top:40px;}
-  @media (min-width:960px){.clients{padding-top:60px;}}
+  @media (min-width:720px){.bento__hero{grid-template-columns:1.35fr .65fr;padding:42px 44px}}
+  .bento__hero p{font-size:clamp(23px,2.5vw,34px);line-height:1.15;max-width:26ch}
+  .bento__hero::after{display:none}
+  .mascot{width:min(250px,86%);height:auto;margin-inline:auto;filter:drop-shadow(0 24px 34px rgba(35,41,96,.24))}
 
-  /* ---------- titulos de seccion ---------- */
-  .head{max-width:620px;}
-  .head--center{margin-inline:auto;text-align:center;max-width:900px;}
-  .head h2{font-size:clamp(30px,4vw,52px);}
-  .head__kicker{
-    font-family:var(--font-accent);font-style:italic;font-weight:500;
-    font-size:clamp(17px,1.5vw,19px);color:var(--royal);
-    display:block;margin-bottom:14px;
+  /* ---------- publico (editorial) ---------- */
+  .aud{position:relative;overflow:hidden}
+  .aud__arc{position:absolute;left:-90px;top:16%;width:260px;height:360px;border-radius:var(--arc);border:2px solid var(--line);z-index:0}
+  .aud__grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:44px}
+  @media (min-width:960px){.aud__grid{grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}}
+  .aud h2{font-size:clamp(31px,3.9vw,50px);max-width:15ch}
+  .aud__list{border-top:1px solid var(--line)}
+  .aud__item{
+    position:relative;display:flex;align-items:baseline;gap:20px;
+    padding:22px 6px;border-bottom:1px solid var(--line);
+    font-size:clamp(17px,1.35vw,19px);font-weight:600;
+    transition:padding-left .3s cubic-bezier(.2,.9,.3,1);
   }
-
-  /* ---------- beneficios ---------- */
-  .benefits .head{margin-bottom:56px;}
-  .cards{display:grid;grid-template-columns:1fr;gap:18px;}
-  @media (min-width:820px){.cards{grid-template-columns:repeat(2,1fr);gap:22px;}}
-  .card{
-    position:relative;overflow:hidden;
-    background:var(--white);border:1px solid var(--line);
-    border-radius:var(--r-card);padding:34px 32px 36px;
-    box-shadow:var(--sh-sm);
-    display:flex;flex-direction:column;gap:16px;
-    transition:transform .28s cubic-bezier(.2,.8,.3,1), box-shadow .28s ease, border-color .28s ease;
-  }
-  .card::before{
-    content:"";position:absolute;inset:0 0 auto 0;height:4px;
-    background:linear-gradient(90deg,var(--royal),var(--lilac));
-    transform:scaleX(0);transform-origin:left;
-    transition:transform .38s cubic-bezier(.2,.8,.3,1);
-  }
-  .card:hover{transform:translateY(-6px);box-shadow:var(--sh-md);border-color:var(--lilac);}
-  .card:hover::before{transform:scaleX(1);}
-  .card__num{
-    font-family:var(--font-display);font-weight:800;
-    font-size:15px;letter-spacing:.06em;
-    color:var(--royal);
-  }
-  .card__icon{
-    width:46px;height:46px;border-radius:14px;
-    background:var(--lilac-soft);display:grid;place-items:center;flex-shrink:0;
-  }
-  .card__icon svg{width:22px;height:22px;}
-  .card p{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,1.7vw,23px);line-height:1.28;letter-spacing:-0.015em;}
-
-  /* ---------- para quien ---------- */
-  .audience__grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:start;}
-  @media (min-width:960px){.audience__grid{grid-template-columns:.92fr 1.08fr;gap:60px;}}
-  .audience__list{display:grid;grid-template-columns:1fr;gap:12px;}
-  @media (min-width:600px){.audience__list{grid-template-columns:repeat(2,1fr);}}
-  .audience__item{
-    display:flex;align-items:center;gap:14px;
-    padding:16px 20px;border-radius:16px;
-    background:var(--white);border:1px solid var(--line);
-    font-size:17px;font-weight:600;
-    transition:transform .22s ease, border-color .22s ease;
-  }
-  .audience__item:hover{transform:translateX(5px);border-color:var(--royal);}
-  .audience__item i{width:9px;height:24px;border-radius:var(--r-pill);background:var(--royal);flex-shrink:0;}
-  .audience__item:nth-child(2n) i{background:var(--orange);}
+  .aud__item::before{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--royal);transition:width .5s cubic-bezier(.2,.9,.3,1)}
+  .aud__item:hover{padding-left:18px}
+  .aud__item:hover::before{width:100%}
+  .aud__item span{font-family:var(--accent);font-style:italic;font-size:15px;color:var(--royal);flex-shrink:0;min-width:26px}
 
   /* ---------- resultados ---------- */
-  .results .head{margin-bottom:60px;}
-  .stats{display:grid;grid-template-columns:1fr;gap:26px;margin-bottom:34px;}
-  @media (min-width:820px){.stats{grid-template-columns:repeat(3,1fr);gap:30px;}}
-  .stat{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;}
-  .stat__kicker{
-    font-family:var(--font-display);font-weight:800;font-size:14px;
-    letter-spacing:.08em;text-transform:uppercase;color:var(--navy);
-    min-height:1em;
-  }
-  .stat__num{
-    font-family:var(--font-display);font-weight:800;
-    font-size:clamp(52px,7vw,86px);line-height:1;letter-spacing:-0.04em;
-    color:var(--royal);
-  }
-  .stat__label{font-size:17px;color:var(--ink-700);max-width:32ch;}
-  .stat__rule{width:52px;height:5px;border-radius:var(--r-pill);background:var(--lilac);margin-top:6px;}
-  .results__note{max-width:720px;margin:0 auto;text-align:center;font-size:14px;color:var(--ink-700);line-height:1.6;}
+  .res{background:var(--off);position:relative;overflow:hidden}
+  .res__ring{position:absolute;right:-90px;top:-90px;width:280px;height:280px;border-radius:50%;border:2px dashed var(--lilac)}
+  .res .wrap{position:relative;z-index:1}
+  .res__head{max-width:760px}
+  .res h2{font-size:clamp(31px,3.9vw,50px)}
+  .stats{display:grid;grid-template-columns:1fr;gap:8px;margin:56px 0 30px}
+  @media (min-width:820px){.stats{grid-template-columns:repeat(3,1fr);gap:0}}
+  .stat{padding:8px 4px 26px}
+  @media (min-width:820px){.stat{padding:8px 34px 26px;border-left:1px solid var(--line)}.stat:first-child{border-left:0;padding-left:0}}
+  .stat__k{font-family:var(--accent);font-style:italic;font-size:16px;color:var(--royal);display:block;min-height:1.2em}
+  .stat__n{font-family:var(--display);font-weight:800;font-size:clamp(54px,7.6vw,96px);line-height:.98;letter-spacing:-.05em;color:var(--royal);display:block;margin:4px 0 14px}
+  .stat__t{font-size:17px;color:var(--ink);max-width:34ch}
+  .note{font-size:14px;color:var(--ink);max-width:760px;line-height:1.6}
 
-  /* ---------- CTA final ---------- */
-  .cta{position:relative;overflow:hidden;background:var(--navy);color:var(--white);}
-  .cta::before{
-    content:"";position:absolute;width:620px;height:620px;border-radius:50%;
-    background:radial-gradient(circle,rgba(74,105,189,.62) 0%,rgba(74,105,189,0) 68%);
-    top:-260px;left:-180px;
-  }
-  .cta::after{
-    content:"";position:absolute;width:96px;height:300px;border-radius:var(--r-pill);
-    background:rgba(193,199,255,.10);bottom:-130px;right:7%;
-  }
-  .cta__inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;}
-  .cta h2{color:var(--white);font-size:clamp(31px,4.3vw,55px);}
-  .cta p{font-size:clamp(18px,1.5vw,20px);color:rgba(255,255,255,.84);max-width:54ch;}
-  .form-card{
-    width:100%;max-width:640px;margin-top:10px;
-    background:var(--white);border-radius:var(--r-card);
-    padding:30px;box-shadow:var(--sh-lg);
-  }
-  .form-card iframe{width:100%!important;max-width:100%!important;border:0;display:block;}
+  /* ---------- CTA final (borda superior em arco) ---------- */
+  .cta{position:relative;background:var(--navy);color:var(--white);border-radius:clamp(40px,7vw,90px) clamp(40px,7vw,90px) 0 0;overflow:hidden;margin-top:-1px}
+  .cta__glow{position:absolute;width:700px;height:700px;border-radius:50%;top:-330px;left:-190px;background:radial-gradient(circle,rgba(74,105,189,.6) 0%,rgba(74,105,189,0) 68%)}
+  .cta__pill{position:absolute;width:88px;height:290px;border-radius:var(--pill);background:rgba(193,199,255,.1);bottom:-130px;right:8%}
+  .cta__in{position:relative;z-index:1;max-width:740px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+  .cta .kicker{color:var(--lilac)}
+  .cta .kicker::before{background:var(--orange)}
+  .cta h2{color:var(--white);font-size:clamp(32px,4.4vw,58px)}
+  .formcard{width:100%;max-width:640px;margin-top:14px;background:var(--white);border-radius:var(--card);padding:30px;box-shadow:var(--sh-3)}
+  .formcard iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 
-  /* ---------- footer ---------- */
-  footer{background:var(--navy);color:rgba(255,255,255,.7);padding:44px 0;border-top:1px solid rgba(255,255,255,.1);}
-  .footer__inner{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;}
-  @media (min-width:720px){.footer__inner{flex-direction:row;justify-content:space-between;text-align:left;}}
-  .footer__logo img{height:28px;width:auto;}
-  footer p{font-size:15px;}
+  footer{background:var(--navy);color:rgba(255,255,255,.68);padding:40px 0 46px}
+  .foot{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  @media (min-width:720px){.foot{flex-direction:row;justify-content:space-between;text-align:left}}
+  .foot img{height:27px;width:auto}
+  footer p{font-size:15px}
 
-  /* ---------- animaciones ---------- */
-  @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
-  @keyframes sweep{from{background-size:0% .17em;}to{background-size:100% .17em;}}
-  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
-  @keyframes blink{0%,60%,100%{opacity:.3;}30%{opacity:1;}}
-  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  /* ---------- motion ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  @keyframes mark{from{background-size:0% .18em}to{background-size:100% .18em}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  .anim{opacity:0;animation:rise .78s cubic-bezier(.2,.8,.3,1) both;}
-  .d1{animation-delay:.06s;} .d2{animation-delay:.16s;} .d3{animation-delay:.26s;}
-  .d4{animation-delay:.36s;} .d5{animation-delay:.46s;} .d6{animation-delay:.6s;}
-  .bubble--in{animation:rise .7s .7s cubic-bezier(.2,.8,.3,1) both, floaty 5.5s 1.5s ease-in-out infinite;}
-  .bubble--out{animation:rise .7s .95s cubic-bezier(.2,.8,.3,1) both, floaty 6.5s 2s ease-in-out infinite;}
+  .anim{opacity:0;animation:rise .8s cubic-bezier(.2,.9,.3,1) both}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
+  .d4{animation-delay:.35s}.d5{animation-delay:.45s}
+  .bubble--in{animation:rise .7s .75s cubic-bezier(.2,.9,.3,1) both,float 6s 1.6s ease-in-out infinite}
+  .bubble--out{animation:rise .7s 1s cubic-bezier(.2,.9,.3,1) both,float 7s 2.1s ease-in-out infinite}
 
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .72s ease, transform .72s cubic-bezier(.2,.8,.3,1);}
-  .reveal.is-visible{opacity:1;transform:none;}
-  .cards .reveal:nth-child(2){transition-delay:.09s;}
-  .cards .reveal:nth-child(3){transition-delay:.18s;}
-  .cards .reveal:nth-child(4){transition-delay:.27s;}
-  .stats .reveal:nth-child(2){transition-delay:.12s;}
-  .stats .reveal:nth-child(3){transition-delay:.24s;}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.9,.3,1)}
+  .reveal.on{opacity:1;transform:none}
+  .bento .reveal:nth-child(2){transition-delay:.08s}
+  .bento .reveal:nth-child(3){transition-delay:.16s}
+  .bento .reveal:nth-child(4){transition-delay:.24s}
+  .aud__list .reveal:nth-child(2){transition-delay:.05s}
+  .aud__list .reveal:nth-child(3){transition-delay:.1s}
+  .aud__list .reveal:nth-child(4){transition-delay:.15s}
+  .aud__list .reveal:nth-child(5){transition-delay:.2s}
+  .aud__list .reveal:nth-child(6){transition-delay:.25s}
+  .stats .reveal:nth-child(2){transition-delay:.12s}
+  .stats .reveal:nth-child(3){transition-delay:.24s}
 
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .anim,.reveal,.bubble--in,.bubble--out{
-      opacity:1!important;transform:none!important;animation:none!important;transition:none!important;
-    }
-    .hero h1 .hl{animation:none!important;background-size:100% .17em;}
-    .ticker__track{animation:none;}
-    .btn:hover,.card:hover,.audience__item:hover{transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .anim,.reveal,.bubble--in,.bubble--out{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+    .hero h1 .mark{animation:none!important;background-size:100% .18em}
+    .ticker__track,.eyebrow i,.dots i{animation:none!important}
+    .btn:hover,.tile:hover,.aud__item:hover{transform:none;padding-left:6px}
   }
 
   /* pisos tipograficos mobile (GUIDELINES parag. 20) */
   @media (max-width:640px){
-    body{font-size:17px;}
-    .card p{font-size:22px;}
-    .audience__item{font-size:17px;}
-    .stat__label{font-size:17px;}
-    .results__note{font-size:14px;}
-    .chip{font-size:15px;}
-    .hero__visual{margin-block:16px 22px;}
-    .bubble{max-width:172px;padding:10px 13px;}
-    .bubble p{font-size:14px;line-height:1.4;}
-    .bubble__tag{font-size:10px;margin-bottom:3px;}
-    .bubble--in{top:-14px;left:-6px;}
-    .bubble--out{bottom:-14px;right:-6px;}
-    .ticker__row{gap:36px;padding:20px;}
-    .ticker__logo{height:26px;}
-    .clients__label{font-size:12px;letter-spacing:.07em;padding-bottom:16px;}
+    body{font-size:17px}
+    .tile p{font-size:22px}
+    .bento__hero p{font-size:26px}
+    .aud__item{font-size:17px}
+    .stat__t{font-size:17px}
+    .note{font-size:14px}
+    .bubble{max-width:184px;padding:11px 13px}
+    .bubble p{font-size:14px;line-height:1.38}
+    .bubble--in{top:-12px;left:-4px}
+    .bubble--out{bottom:-12px;right:-4px}
+    .ticker__row{gap:36px;padding:12px 20px}
+    .ticker__logo{height:25px}
+    .arcbase{display:none}
   }
 </style>
 </head>
@@ -451,12 +366,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
-<header id="site-header">
-  <nav class="navbar" aria-label="Principal">
-    <a class="navbar__logo" href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
+<header id="hdr">
+  <nav class="nav" aria-label="Principal">
+    <a class="nav__logo" href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
       <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" width="140" height="34">
     </a>
-    <a class="btn btn--primary" href="#cta-final">Agenda una demostración gratuita</a>
+    <a class="btn btn--wa" href="#cta-final">Agenda una demostración gratuita</a>
   </nav>
 </header>
 
@@ -464,106 +379,114 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
-    <span class="deco deco--pill" aria-hidden="true"></span>
-    <div class="container hero__grid">
+    <span class="hero__mesh" aria-hidden="true"></span>
+    <span class="shape shape--pill" data-par="0.16" aria-hidden="true"></span>
+    <span class="shape shape--ring" data-par="-0.12" aria-hidden="true"></span>
+    <span class="shape shape--dot" data-par="0.22" aria-hidden="true"></span>
 
-      <div class="hero__content">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
         <span class="eyebrow anim d1"><i aria-hidden="true"></i>Agente para Engagement</span>
-        <h1 id="hero-title" class="anim d2">Tu asistente personalizado de <span class="hl">atención al cliente</span></h1>
+        <h1 id="hero-title" class="anim d2">Tu asistente personalizado de <span class="mark">atención al cliente</span></h1>
         <p class="hero__lead anim d3">Conecta con tu comunidad y transforma engagement en ventas con un agente automático para Instagram, WhatsApp y TikTok.</p>
-        <div class="hero__ctas anim d4">
-          <a class="btn btn--primary" href="#cta-final">
-            Agenda una demo
-            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-        <div class="hero__chips anim d5">
+        <a class="btn btn--wa anim d4" href="#cta-final">
+          Agenda una demo
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="chips anim d5">
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#4A69BD" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#4A69BD" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#4A69BD"/></svg>Instagram</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.4-1.2A9 9 0 1 0 12 3Z" stroke="#4A69BD" stroke-width="2" stroke-linejoin="round"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5" stroke="#4A69BD" stroke-width="2" stroke-linecap="round"/></svg>WhatsApp</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" stroke="#4A69BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4c.6 2.4 2.2 3.8 4.5 4" stroke="#4A69BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>TikTok</span>
         </div>
       </div>
 
-      <div class="hero__visual">
-        <div class="shot anim d3">
-          <img src="./assets/hero-bg.png" alt="Equipo de marketing analizando comentarios e interacciones en redes sociales" width="1672" height="941" loading="eager">
+      <div class="hero__art">
+        <span class="arcbase" aria-hidden="true"></span>
+        <div class="arcframe anim d3">
+          <div class="arcframe__img">
+            <img src="./assets/hero-conversaciones.png" alt="Celular sobre un escritorio con comentarios y mensajes de redes sociales llegando" width="1100" height="619" loading="eager">
+          </div>
         </div>
         <div class="bubble bubble--in">
-          <span class="bubble__tag">Comentario en Instagram</span>
+          <b>Comentario en Instagram</b>
           <p>¿Hacen envíos a todo el país?</p>
         </div>
         <div class="bubble bubble--out">
-          <span class="bubble__tag">Agente Concierge</span>
-          <p>Sí, enviamos a todo el país. Te paso los tiempos de entrega<span class="dots" aria-hidden="true"><span></span><span></span><span></span></span></p>
+          <b>Agente Concierge</b>
+          <p>Sí, enviamos a todo el país. Te paso los tiempos de entrega<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></p>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- CLIENTES -->
   <div class="clients">
-    <p class="clients__label reveal">Más de 800 clientes confían en nosotros</p>
-    <div class="ticker">
-      <div class="ticker__track">
-        <div class="ticker__row">
-        <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
-        </div>
-        <div class="ticker__row" aria-hidden="true">
-        <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
-        <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+    <div class="wrap clients__row">
+      <p class="clients__label">Más de 800 clientes confían en nosotros</p>
+      <div class="ticker">
+        <div class="ticker__track">
+          <div class="ticker__row">
+            <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
+          </div>
+          <div class="ticker__row" aria-hidden="true">
+            <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- BENEFICIOS -->
-  <section class="benefits band--off">
-    <div class="container">
-      <div class="head head--center reveal">
-        <span class="head__kicker">Qué hace por ti</span>
-        <h2>Transforma conversaciones en más engagement y ventas</h2>
+  <section class="benefits">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <span class="kicker">Qué hace por ti</span>
+        <h2 style="font-size:clamp(31px,3.9vw,50px)">Transforma conversaciones en más engagement y ventas</h2>
       </div>
-      <div class="cards">
-        <article class="card reveal">
-          <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="#4A69BD" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      <div class="bento">
+        <article class="tile bento__hero reveal">
+          <div>
+            <span class="tile__n">01</span>
+            <p>Identifica intención de compra, nutre la relación con tus clientes y aumenta tus ventas</p>
+          </div>
+          <img class="mascot" src="./assets/samir-laptop.png" alt="" aria-hidden="true" width="620" height="473" loading="lazy">
+        </article>
+        <article class="tile reveal">
+          <span class="tile__n">02</span>
           <p>Respuestas instantáneas a preguntas frecuentes</p>
         </article>
-        <article class="card reveal">
-          <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9M10 18V5M16 18v-6M20 18H3" stroke="#4A69BD" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <p>Identifica intención de compra, nutre la relación con tus clientes y aumenta tus ventas</p>
-        </article>
-        <article class="card reveal">
-          <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 12a7 7 0 0 1-7 7H8l-4 3v-4.6A7 7 0 0 1 8 5h5a7 7 0 0 1 7 7Z" stroke="#4A69BD" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <article class="tile reveal">
+          <span class="tile__n">03</span>
           <p>Responde comentarios y DMs al instante, automáticamente</p>
         </article>
-        <article class="card reveal">
-          <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#4A69BD" stroke-width="2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="#4A69BD" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <article class="tile reveal">
+          <span class="tile__n">04</span>
           <p>Automatiza mensajes con acciones clave. Envía DMs, crea flujos y responde comentarios</p>
         </article>
       </div>
@@ -571,59 +494,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- PARA QUIEN -->
-  <section class="audience">
-    <div class="container audience__grid">
-      <div class="head reveal">
-        <span class="head__kicker">Para quién es</span>
+  <section class="aud">
+    <span class="aud__arc" aria-hidden="true"></span>
+    <div class="wrap aud__grid">
+      <div class="reveal">
+        <span class="kicker">Para quién es</span>
         <h2>Pensado para quien vive de la presencia digital</h2>
       </div>
-      <ul class="audience__list">
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Directores y responsables de marketing.</li>
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Equipos de marketing.</li>
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Agencias de comunicación y publicidad.</li>
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Agencias de marketing digital.</li>
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Community managers y gestores de redes sociales.</li>
-        <li class="audience__item reveal"><i aria-hidden="true"></i>Marcas con alto volumen de comentarios e interacciones.</li>
+      <ul class="aud__list">
+        <li class="aud__item reveal"><span>01</span>Directores y responsables de marketing.</li>
+        <li class="aud__item reveal"><span>02</span>Equipos de marketing.</li>
+        <li class="aud__item reveal"><span>03</span>Agencias de comunicación y publicidad.</li>
+        <li class="aud__item reveal"><span>04</span>Agencias de marketing digital.</li>
+        <li class="aud__item reveal"><span>05</span>Community managers y gestores de redes sociales.</li>
+        <li class="aud__item reveal"><span>06</span>Marcas con alto volumen de comentarios e interacciones.</li>
       </ul>
     </div>
   </section>
 
   <!-- RESULTADOS -->
-  <section class="results band--off">
-    <div class="container">
-      <div class="head head--center reveal">
-        <span class="head__kicker">La prueba</span>
+  <section class="res">
+    <span class="res__ring" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="res__head reveal">
+        <span class="kicker">La prueba</span>
         <h2>Resultados de empresas que potenciaron a sus equipos con Cxpress</h2>
       </div>
       <ul class="stats">
         <li class="stat reveal">
-          <span class="stat__kicker">&nbsp;</span>
-          <span class="stat__num" data-count="220" data-prefix="+" data-suffix="%">+220%</span>
-          <span class="stat__rule" aria-hidden="true"></span>
-          <span class="stat__label">de interacciones realizadas con la misma estructura de atención.*</span>
+          <span class="stat__k">&nbsp;</span>
+          <span class="stat__n" data-count="220" data-prefix="+" data-suffix="%">+220%</span>
+          <span class="stat__t">de interacciones realizadas con la misma estructura de atención.*</span>
         </li>
         <li class="stat reveal">
-          <span class="stat__kicker">Hasta</span>
-          <span class="stat__num" data-count="15" data-suffix="x">15x</span>
-          <span class="stat__rule" aria-hidden="true"></span>
-          <span class="stat__label">más productividad en las interacciones automatizadas por IA, ampliando la capacidad del equipo.*</span>
+          <span class="stat__k">Hasta</span>
+          <span class="stat__n" data-count="15" data-suffix="x">15x</span>
+          <span class="stat__t">más productividad en las interacciones automatizadas por IA, ampliando la capacidad del equipo.*</span>
         </li>
         <li class="stat reveal">
-          <span class="stat__kicker">&nbsp;</span>
-          <span class="stat__num" data-count="98" data-suffix="%">98%</span>
-          <span class="stat__rule" aria-hidden="true"></span>
-          <span class="stat__label">de calidad en las respuestas automatizadas evaluadas, según los criterios definidos para cada operación.*</span>
+          <span class="stat__k">&nbsp;</span>
+          <span class="stat__n" data-count="98" data-suffix="%">98%</span>
+          <span class="stat__t">de calidad en las respuestas automatizadas evaluadas, según los criterios definidos para cada operación.*</span>
         </li>
       </ul>
-      <p class="results__note reveal">*Resultados obtenidos por clientes Cxpress en la atención a través de redes sociales, con base en el reporte interno Concierge, de 2025. Los resultados pueden variar según la operación.</p>
+      <p class="note reveal">*Resultados obtenidos por clientes Cxpress en la atención a través de redes sociales, con base en el reporte interno Concierge, de 2025. Los resultados pueden variar según la operación.</p>
     </div>
   </section>
 
   <!-- CTA FINAL -->
   <section class="cta" id="cta-final">
-    <div class="container cta__inner">
+    <span class="cta__glow" aria-hidden="true"></span>
+    <span class="cta__pill" aria-hidden="true"></span>
+    <div class="wrap cta__in">
+      <span class="kicker reveal">Empieza hoy</span>
       <h2 class="reveal">Transforma conversaciones en oportunidades de venta</h2>
-      <div class="form-card reveal">
+      <div class="formcard reveal">
         <script type="text/javascript" src="https://form.jotform.com/jsform/252398149653872"></script>
       </div>
     </div>
@@ -632,9 +557,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <footer>
-  <div class="container footer__inner">
-    <a class="footer__logo" href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
-      <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" width="120" height="28">
+  <div class="wrap foot">
+    <a href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
+      <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" width="120" height="27">
     </a>
     <p>&copy; 2026 Cxpress. Todos los derechos reservados.</p>
   </div>
@@ -644,47 +569,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* sombra del header al hacer scroll */
-    var header = document.getElementById('site-header');
-    if(header){
-      var onScroll = function(){ header.classList.toggle('is-stuck', window.scrollY > 8); };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive:true });
+    var hdr = document.getElementById('hdr');
+    var shapes = [].slice.call(document.querySelectorAll('[data-par]'));
+    var ticking = false;
+    function onScroll(){
+      if(hdr) hdr.classList.toggle('stuck', window.scrollY > 8);
+      if(!reduce && shapes.length && !ticking){
+        ticking = true;
+        requestAnimationFrame(function(){
+          var y = window.scrollY;
+          shapes.forEach(function(el){
+            el.style.transform = 'translate3d(0,' + (y * parseFloat(el.getAttribute('data-par'))).toFixed(1) + 'px,0)';
+          });
+          ticking = false;
+        });
+      }
     }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive:true });
 
-    /* contador de las estadisticas (el valor final ya esta en el HTML) */
     function countUp(el){
       var target = parseInt(el.getAttribute('data-count'), 10);
       if(isNaN(target) || reduce) return;
-      var prefix = el.getAttribute('data-prefix') || '';
-      var suffix = el.getAttribute('data-suffix') || '';
-      var start = null, dur = 1300;
+      var pre = el.getAttribute('data-prefix') || '', suf = el.getAttribute('data-suffix') || '';
+      var start = null, dur = 1400;
       function step(ts){
         if(start === null) start = ts;
         var p = Math.min((ts - start) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = prefix + Math.round(target * eased) + suffix;
+        el.textContent = pre + Math.round(target * (1 - Math.pow(1 - p, 3))) + suf;
         if(p < 1) requestAnimationFrame(step);
       }
-      el.textContent = prefix + '0' + suffix;
+      el.textContent = pre + '0' + suf;
       requestAnimationFrame(step);
     }
 
     var items = document.querySelectorAll('.reveal');
     if(!('IntersectionObserver' in window) || !items.length){
-      Array.prototype.forEach.call(items, function(el){ el.classList.add('is-visible'); });
+      Array.prototype.forEach.call(items, function(el){ el.classList.add('on'); });
       return;
     }
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        var num = entry.target.querySelector('.stat__num');
-        if(num) countUp(num);
-        observer.unobserve(entry.target);
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('on');
+        var n = e.target.querySelector('.stat__n');
+        if(n) countUp(n);
+        io.unobserve(e.target);
       });
-    }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
-    Array.prototype.forEach.call(items, function(el){ observer.observe(el); });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    Array.prototype.forEach.call(items, function(el){ io.observe(el); });
   })();
 </script>
 

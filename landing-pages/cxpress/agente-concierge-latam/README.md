@@ -204,3 +204,116 @@ referencia (conferidos um a um os 14 logos usados contra o `alt` de cada `<img>`
 
 Licao pro futuro: a numeracao `cliente-NN` do mural `brand/cxpress/assets/plataforma/clientes-cxpress.png`
 ja e convencao no repo. Antes de recortar de novo, checar se outra LP ja tem o set.
+
+## Rediseño v3 — "editorial Cxpress" (2026-09-01)
+
+Pedido: look mas moderno y dinamico, sin salir de las directrices Cxpress, que no se sienta generico.
+Copy intacta (verificada linea por linea contra `copy.txt`: 0 ausencias) y `<head>` intacto.
+
+**Lo que lo saca de generico, usando activos de marca que estaban sin usar**
+- **La mascota Samir** (`brand/cxpress/assets/mascot/samir-laptop.png`, con headset y laptop) protagoniza
+  la tarjeta destacada de beneficios. Optimizada a 620px / 300 KB en `assets/samir-laptop.png` (el
+  original pesa 2,1 MB).
+- **Arco canonico del brandbook** (`border-radius: 9999px 9999px 0 0`) enmarcando la foto del hero,
+  sobre un pedestal en pildora. Es literal la regla "emoldurar fotos de pessoas dentro de arcos" de
+  `generation-rules.json`, que ninguna version anterior aplicaba.
+- **Bitter en cursiva** (la fuente de personalidad de la marca) para kickers de seccion y numeracion.
+  Antes solo se usaban Open Sans + Source Sans.
+- **Composicion de pildora + anillo + punto** con parallax en el hero (formas canonicas, max 5).
+- **Borde superior en arco** en la seccion final navy, en vez de una banda plana.
+
+**Cambios de estructura**
+- Beneficios pasan de 4 tarjetas iguales a **bento**: una destacada a todo el ancho (con la mascota) y
+  tres normales, numeradas 01-04.
+- Publico pasa de rejilla de pildoras a **lista editorial** con numeracion y linea que se dibuja en hover.
+- Resultados pasan a numeros sobredimensionados (hasta 96px) separados por reglas verticales.
+- Barra de clientes: el label pasa a la izquierda, en Bitter, con el marquee a la derecha.
+
+**Verificado**
+- Sin overflow horizontal a 390px (`scrollWidth == clientWidth == 390`); las formas que sobresalen
+  viven dentro de secciones con `overflow:hidden`.
+- `prefers-reduced-motion`: parallax, marquee, pulso, flotacion y reveals apagados.
+- Sin JS: render completo (noscript deja `.reveal`/`.anim` visibles).
+- Build del guarda-chuva: exit 0, mascota copiada al dist, 0 placeholders, 0 paths relativos.
+- Gate GTM: 0 bloqueios.
+
+**Contraste (regresion propia, detectada y corregida):** primero puse los numeros 01-04, el "Hasta" y
+la numeracion de publico en naranja `#EF863C`, que sobre blanco da **2.5:1** y reprueba AA. Pasaron a
+royal `#4A69BD` (4.85-5.2:1). El naranja queda solo en decoracion sin texto: la regla del kicker, el
+punto del eyebrow, el anillo y el punto del hero.
+
+**Sigue en pie la excepcion consciente:** CTA verde `#21CC78` con texto blanco (2.1:1), decision del
+usuario documentada arriba.
+
+### Correccion del hero (2026-09-01, reportada por el usuario)
+
+El usuario vio "una sombra rara sobre la chica del sueter naranja" y la imagen "un poco extraña".
+Dos causas distintas:
+
+1. **La sombra era mia:** `.arcframe::after` pintaba un degradado navy (`rgba(35,41,96,.34)`) sobre el
+   tercio inferior de la foto, para dar contraste a la burbuja de abajo. Como esa persona esta
+   justo en esa banda, parecia suciedad sobre el sueter. **Eliminado** (la burbuja inferior ya tiene
+   fondo navy propio, no necesitaba el degradado).
+2. **El arco no se leia:** `hero-bg.png` no es foto a sangre, es una composicion sobre fondo claro
+   con adornos propios. Enmarcarla hacia que la silueta del arco desapareciera contra el blanco y que
+   el pill lila de atras pareciera la forma principal ("tarjeta dentro de tarjeta"). Se probo dejar la
+   imagen suelta sin marco: peor, porque quedan a la vista sus bordes rectos y los adornos cortados.
+   **Solucion:** arco como moldura preenchida en lila (rim de 18px) que recorta la imagen y esconde sus
+   bordes, con `object-position:56% 54%` para centrar al grupo. Se quito el pill de fondo que competia.
+
+Regla que queda: esta imagen **necesita recorte**; no funciona suelta.
+
+### Hero: la foto sale, entra Samir (2026-09-01)
+
+El usuario reporto "una marca extraña justo en la cara de la chica del sueter naranja". Se verifico a
+resolucion completa **en el archivo original**: `hero-bg.png` tiene la cara de esa persona deformada
+(la zona del ojo es un borron, artefacto tipico de imagen generada). No es CSS: se probo reencuadrar
+mas ancho y correrla al borde, y el defecto sigue visible; sacarla del todo desbalancea la composicion.
+
+**El defecto ya estaba publicado**: la version en el aire de esta LP y, sobre todo, la LP hermana
+`agente-concierge-pt`, que usa la misma imagen a sangre completa (mismo md5).
+
+**Decision del usuario:** reemplazar la foto por la mascota. El hero ahora lleva `samir-hero.png`
+(recorte de `brand/cxpress/assets/mascot/samir-dashboard.png`, con headset y tablero de resultados,
+760px / 449 KB) dentro del arco canonico, con un halo circular blanco detras y las burbujas de chat
+encima. La tarjeta destacada de beneficios mantiene `samir-laptop.png`: son dos poses distintas en
+contextos distintos, no repeticion.
+
+`hero-bg.png` fue **eliminado de esta LP** (ya no se referencia). Sigue existiendo en
+`landing-pages/cxpress/agente-concierge-pt/assets/`.
+
+**Pendiente para el Victor:** decidir que hacer con la LP PT-PT, que sigue mostrando esa cara a tamano
+completo en produccion.
+
+### Vuelta a la foto en el hero (2026-09-01, decision del usuario)
+
+Tras ver las dos versiones, el usuario pidio volver a la foto. El hero usa de nuevo `hero-bg.png`
+dentro del arco (moldura lila de 18px, `object-position:56% 54%`), **sin** el degradado navy que
+provocaba la "sombra" sobre una de las personas. `samir-hero.png` fue eliminado; la mascota sigue
+solo en la tarjeta destacada de beneficios (`samir-laptop.png`).
+
+**Queda en pie, conscientemente:** la cara deformada de una de las personas de `hero-bg.png` (ver
+seccion anterior). Es la misma imagen que ya esta publicada aqui y en `agente-concierge-pt`. Si algun
+dia hay una foto de reemplazo, se cambia el archivo y no hace falta tocar el CSS.
+
+### Imagen del hero definitiva: sin caras (2026-09-01)
+
+El usuario pidio una replica corregida de `hero-bg.png`. **No se pudo:** a resolucion nativa el ojo
+no esta danado, esta **ausente** (piel lisa donde deberia ir el ojo). No hay informacion que
+recuperar, asi que no seria retoque sino dibujar una cara humana que no existe, en una imagen que se
+presenta como foto de una persona real. Ademas, el unico conector de imagen disponible (Arcads)
+requiere autorizacion que no se puede completar en sesion no interactiva. Tampoco existe en el repo
+una version mejor de esa composicion (solo 2 copias identicas de 1672x941).
+
+**Decision del usuario:** reemplazar por una imagen del mismo estilo **sin caras humanas**.
+Se reuso `agente-concierge-pt/assets/problema-bg.png` (celular sobre escritorio con burbujas de chat
+y notificaciones flotando), material ya aprobado y publicado. Copiado a
+`assets/hero-conversaciones.png`, redimensionado a 1100px / 594 KB.
+
+Encuadre final: `object-position:66% 50%`, con la burbuja del agente en `bottom:11%; right:-15%` para
+que quede a la altura del celular y no lo tape. Lectura resultante: entra el comentario (burbuja
+blanca arriba) y el agente responde (burbuja navy junto al celular).
+
+`hero-bg.png` fue **eliminado de esta LP**. Sigue en `agente-concierge-pt/assets/`, que continua
+publicando esa cara a sangre completa: **pendiente de decidir con el Victor**.
+
