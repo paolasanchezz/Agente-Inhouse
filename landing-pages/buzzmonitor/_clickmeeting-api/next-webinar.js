@@ -33,7 +33,7 @@ function formatFullPt(d) {
 // Chave desconhecida -> tambem cai no padrao (fallback seguro, nunca quebra as LPs vizinhas).
 const SERIES = {
   atencion: '17701', // Buzzmonitor Atención al Cliente (LP /atencion-al-cliente-es) — série recriada 2026-07-08 (antiga 17544 esgotou as sessões)
-  buzzcreators: '17727', // Buzzcreators (LP /conheca-o-buzzcreators) — série recriada 2026-07-14 (antiga 17560 esgotou as sessões), room_pin 276-382-621
+  buzzcreators: '18050', // Buzzcreators (LP /conheca-o-buzzcreators) — série recriada 2026-09-02 (antiga 17727 esgotou as sessões), room_pin 983-466-465, PT-BR, tz America/Sao_Paulo, 10:20 BRT
   'mcp-es': '17646', // Buzzmonitor Que es MCP (LP /que-es-mcp + -confirmado), room_pin 224-255-882, ES-LATAM, tz America/Mexico_City
   'listening-es': '17927', // Tu primer listening en 5 pasos (LP /primer-listening-5-pasos + -confirmado), room_pin 568-312-489, ES-LATAM, tz America/Mexico_City
   'smartfit-es': '17928', // Caso Smart Fit Latam (LP /caso-smartfit + -confirmado), room_pin 854-775-474, ES-LATAM, tz America/Mexico_City

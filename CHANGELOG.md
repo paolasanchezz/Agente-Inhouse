@@ -12,6 +12,35 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Série perpétua do Buzzcreators recriada (17727 → 18050)
+### 2026-09-02 — conteúdo + skill `convites-moderador` (1.2.1 → 1.2.2)
+
+A série `17727` esgotou o limite de repetições e sumiu de `GET /conferences/active`, então
+`/api/next-webinar?series=buzzcreators` respondia `no_upcoming`: as LPs `/conheca-o-buzzcreators`
+e `-confirmado` mostravam "Próxima sessão em breve" e **não capturavam inscrição nenhuma**.
+Quarto episódio do mesmo padrão (17497→17529, 17544→17701, 17560→17727).
+
+O Victor recriou a automação no painel — a API REST não cria série recorrente. Nova série:
+`recurring_config_id` **18050**, "Conheça o buzzcreators", diária **10:20 BRT** (antes 09:40),
+sessão de 25 min, `room_pin` 983-466-465, tz `America/Sao_Paulo`, `room_type` webinar,
+`room_url` `elifegroup.clickmeeting.com/conheca-o-buzzcreators`.
+
+- `_clickmeeting-api/next-webinar.js` (+ cópia servida em `dominios/webinar-buzzmonitor-com/extras/api/`):
+  `buzzcreators` passou de `'17727'` para `'18050'` no mapa `SERIES`. As duas cópias seguem idênticas.
+- `_clickmeeting-api/README.md`: tabela de séries atualizada.
+- `buzzmonitor/perpetuos/index.html`: a linha do Buzzcreators no hub foi de 09:40 BR / 06:40 MX
+  para **10:20 BR / 07:20 MX**.
+- `convites-moderador/config.json` + `integracoes/n8n/convites-moderador-clickmeeting.{json,md}`:
+  chave `17727` → `18050`, rótulo com o horário novo. **O workflow que roda de verdade no n8n
+  (id `1TFA4xHvFEZQ5lns`) precisa da mesma edição à mão** — enquanto não for, o Gabriel e o
+  Lucas param de receber convite de moderador da sessão do Buzzcreators.
+
+Sondagem do formulário da sala nova (POST sem e-mail → 422, não cria lead): obrigatórios são
+o campo **3** (e-mail, e só aceita e-mail corporativo) e o **10** (Company) — mesmo contrato das
+outras séries. O formulário da sala não tem o campo **2** (sobrenome), mas a API **ignora** um
+`registration[2]` extra em vez de recusar (testado), então `clickmeeting-register.js` e o form da
+LP seguem sem alteração.
+
 ## LP perpetuo-monitoramento-concorrentes virou par de webinar ao vivo
 ### 2026-09-02 — conteúdo (LP + serverless functions do guarda-chuva)
 

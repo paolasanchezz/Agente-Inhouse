@@ -1,7 +1,7 @@
 {
   "series": {
-    "17727": {
-      "label": "Buzzcreators (09:40 BRT)",
+    "18050": {
+      "label": "Buzzcreators (10:20 BRT)",
       "moderator_emails": [
         "gabriel.leal@buzzmonitor.com.br",
         "lucas.campos@buzzmonitor.com.br"
@@ -58,6 +58,6 @@
     "moderadores": "Cada série aceita 'moderator_email' (um) OU 'moderator_emails' (lista, para vários moderadores na mesma sessão). Todos recebem role=presenter. Pode usar os dois — são somados e deduplicados.",
     "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails.",
     "ordem": "Blocos ordenados pelo horário da sessão no dia (BRT), só pra facilitar a leitura. A ordem não afeta a execução.",
-    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado. 2026-08-24: 17927 (Tu primer listening) ficou so com Daniel; 17933 (Gestion de Crisis) e 17928 (Caso Smart Fit) ficaram so com Milagro. 17646 (MCP) e 17701 (Atencion al Cliente) seguem com os dois."
+    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado. 2026-08-24: 17927 (Tu primer listening) ficou so com Daniel; 17933 (Gestion de Crisis) e 17928 (Caso Smart Fit) ficaram so com Milagro. 17646 (MCP) e 17701 (Atencion al Cliente) seguem com os dois. 2026-09-02: 17727 (Buzzcreators) esgotou as sessoes e foi recriada como 18050, agora as 10:20 BRT (antes 09:40)."
   }
 }

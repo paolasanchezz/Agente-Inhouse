@@ -22,13 +22,13 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 2. **Code** — para cada série do mapa `SERIES`: filtra `recurring_config_id` + `registration_enabled` + `starts_at` futuro, pega a **mais próxima**, e emite 1 item por (sessão, e-mail de moderador).
 3. **POST** `…/conferences/{roomId}/invitation/email/{lang}` com `attendees[0][email]`, `template=advanced`, `role=presenter`. `onError: continueRegularOutput` (uma falha não derruba o lote). **Sem retry** — a API não deduplica, retry = e-mail em dobro.
 
-## Séries (estado 2026-08-24 — igual ao config.json da skill)
+## Séries (estado 2026-09-02 — igual ao config.json da skill)
 
 Ordenadas pelo horário da sessão no dia (BRT).
 
 | recurring_config_id | Rótulo | Moderador(es) | lang |
 |---|---|---|---|
-| 17727 | Buzzcreators (09:40 BRT) | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
+| 18050 | Buzzcreators (10:20 BRT) | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
 | 17927 | Buzzmonitor Tu primer listening (LATAM, 12:00 BRT) | daniel.topete@buzzmonitor.com | es |
 | 17646 | Buzzmonitor ¿Qué es MCP? (LATAM, 13:00 BRT) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |
 | 17701 | Buzzmonitor Atención al Cliente (LATAM, 14:00 BRT) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |

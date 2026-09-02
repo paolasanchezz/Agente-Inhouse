@@ -28,7 +28,7 @@ em vez de anunciar silenciosamente o webinar de outra LP. Com `?series=<chave>`,
 | `series` | recurring_config_id | Webinar | LP |
 |---|---|---|---|
 | `atencion` | `17701` | Buzzmonitor Atención al Cliente (ES-LATAM) — série recriada 2026-07-08 (antiga `17544` esgotou as sessões) | `/atencion-al-cliente-es` (+ `-confirmado`) |
-| `buzzcreators` | `17727` | Conheça o Buzzcreators — série recriada 2026-07-14 (antiga `17560` esgotou as sessões), room_pin 276-382-621 | `/conheca-o-buzzcreators` (+ `-confirmado`) |
+| `buzzcreators` | `18050` | Conheça o Buzzcreators (PT-BR, room_pin 983-466-465, tz America/Sao_Paulo, 10:20 BRT, sessão de 25 min) — série recriada 2026-09-02 (antiga `17727` esgotou as sessões) | `/conheca-o-buzzcreators` (+ `-confirmado`) |
 | `mcp-es` | `17646` | Buzzmonitor Que es MCP (ES-LATAM, room_pin 224-255-882, tz America/Mexico_City) | `/que-es-mcp` (+ `-confirmado`) |
 | `listening-es` | `17927` | Tu primer listening en 5 pasos (ES-LATAM, room_pin 568-312-489, tz America/Mexico_City, 09:00 MX) | `/primer-listening-5-pasos` (+ `-confirmado`) |
 | `smartfit-es` | `17928` | Caso Smart Fit Latam (ES-LATAM, room_pin 854-775-474, tz America/Mexico_City, 13:00 MX) | `/caso-smartfit` (+ `-confirmado`) |
