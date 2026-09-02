@@ -221,6 +221,11 @@
       "source": "landing-pages/cxpress/video-atendimento-obrigado"
     },
     {
+      "slug": "vsl-atendimento-ia",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/vsl-atendimento-ia"
+    },
+    {
       "slug": "webinar-bloqueo-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-bloqueo-whatsapp"
