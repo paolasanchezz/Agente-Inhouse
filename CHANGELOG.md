@@ -12,6 +12,45 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## LP perpetuo-monitoramento-concorrentes virou par de webinar ao vivo
+### 2026-09-02 — conteúdo (LP + serverless functions do guarda-chuva)
+
+A série perpétua da ClickMeeting pro tema de concorrentes foi criada (`recurring_config_id` **18043**,
+"Como construir um monitoramento de concorrentes", diária 09:00 BRT, sessão de 25 min, `room_pin`
+692-573-549, tz `America/Sao_Paulo`). Até aqui o par de LPs era **on-demand**: Jotform compartilhado
+`261904654263661` + despachante `data-perpetuo-next` → thank-you com o vídeo `fG4KpFnwbb4` do YouTube.
+Passou pro mesmo padrão ao vivo das outras 6 séries do domínio.
+
+- `_clickmeeting-api/next-webinar.js` (+ cópia servida em `dominios/webinar-buzzmonitor-com/extras/api/`):
+  nova chave `'concorrentes-br': '18043'` no mapa `SERIES`.
+- `_clickmeeting-api/clickmeeting-register.js` (+ cópia): `SERIES_THANK_YOU['concorrentes-br']` aponta pra
+  `/perpetuo-monitoramento-concorrentes-confirmado`. Sem entrada em `SERIES_LANG`, então o e-mail de
+  confirmação sai no default `br`.
+- **Captura:** saiu o embed do Jotform e o script do despachante; entrou o form nativo (nome, sobrenome,
+  e-mail, empresa + honeypot `_hp`) com a data da próxima sessão vinda da API. Campo **empresa** é
+  obrigatório porque o form de registro da série exige o campo 10 (confirmado contra a API: sem ele,
+  422 `VALIDATION_ERRORS` e a inscrição não acontece).
+- **Thank-you:** o vídeo saiu. Entrou confirmação em 2 estados — A lê o `sessionStorage`
+  (`bm_webinar_confirmation`), saúda pelo nome, mostra a sessão, botão da sala e Google Agenda, e dentro
+  da janela ao vivo (start até start+40min, ou `in_progress`) vira "Entrar na sala agora"; B (visita
+  direta, storage bloqueado, sem JS) avisa que o link está no e-mail e busca a próxima sessão na API.
+- Dois defeitos de layout mobile corrigidos no caminho: o CTA do header quebrava em 2 linhas e passava
+  por cima do logo a 375px nas duas páginas (agora `nowrap` + rótulo curto na captura, e redução a
+  ≤420px na tks — na tks o problema era pré-existente), e a regra que colapsa Nome/Sobrenome em 1 coluna
+  no mobile estava **antes** da definição base na cascata, então não valia.
+
+Validação: `node --check` nas 4 functions e nos scripts inline das 2 páginas; `build_umbrella.py` OK
+(45 LPs); `check_gtm_region.py` OK nas duas; fluxo ponta-a-ponta (form → storage → tks estado A → estado
+B → estado ao vivo → estado sem sessão) testado contra stub local das serverless functions; anti-IA 0
+em-dash e 0 termos da lista. `og-primeiro-listening-5-passos.png` continua referenciada e inexistente
+(débito pré-existente, mesmo aviso nos outros 3 pares perpétuos).
+
+O par irmão `perpetuo-social-listening` segue no modelo on-demand, e o par PT-PT
+`perpetuo-monitoramento-concorrentes-pt` ficou de fora de propósito (a série 18043 é BRT e a formatação
+da data sai em PT-BR).
+
+---
+
 ## Filtro CM aceita LinkedIn e TikTok em qualquer variante
 ### 2026-08-31 — `dashboard-atualizar` v3.1.1
 

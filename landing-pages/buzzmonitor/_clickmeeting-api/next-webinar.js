@@ -38,6 +38,7 @@ const SERIES = {
   'listening-es': '17927', // Tu primer listening en 5 pasos (LP /primer-listening-5-pasos + -confirmado), room_pin 568-312-489, ES-LATAM, tz America/Mexico_City
   'smartfit-es': '17928', // Caso Smart Fit Latam (LP /caso-smartfit + -confirmado), room_pin 854-775-474, ES-LATAM, tz America/Mexico_City
   'crisis-es': '17933', // Gestión de Crisis (LP /gestion-crisis + -confirmado), room_pin 361-697-942, ES-LATAM, tz America/Mexico_City
+  'concorrentes-br': '18043', // Como construir um monitoramento de concorrentes (LP /perpetuo-monitoramento-concorrentes + -confirmado), room_pin 692-573-549, PT-BR, tz America/Sao_Paulo, 09:00 BRT
 };
 // Aposentada 2026-08-19: mcp (17601, Buzzmonitor MCP PT-BR). Serie apagada no ClickMeeting
 // por limite de disco (zero inscritos em 57 sessoes). A LP /mcp-na-pratica-p seguiu no ar

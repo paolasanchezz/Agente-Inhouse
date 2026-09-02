@@ -32,6 +32,8 @@ em vez de anunciar silenciosamente o webinar de outra LP. Com `?series=<chave>`,
 | `mcp-es` | `17646` | Buzzmonitor Que es MCP (ES-LATAM, room_pin 224-255-882, tz America/Mexico_City) | `/que-es-mcp` (+ `-confirmado`) |
 | `listening-es` | `17927` | Tu primer listening en 5 pasos (ES-LATAM, room_pin 568-312-489, tz America/Mexico_City, 09:00 MX) | `/primer-listening-5-pasos` (+ `-confirmado`) |
 | `smartfit-es` | `17928` | Caso Smart Fit Latam (ES-LATAM, room_pin 854-775-474, tz America/Mexico_City, 13:00 MX) | `/caso-smartfit` (+ `-confirmado`) |
+| `crisis-es` | `17933` | Gestión de Crisis (ES-LATAM, room_pin 361-697-942, tz America/Mexico_City) | `/gestion-crisis` (+ `-confirmado`) |
+| `concorrentes-br` | `18043` | Como construir um monitoramento de concorrentes (PT-BR, room_pin 692-573-549, tz America/Sao_Paulo, 09:00 BRT, sessão de 25 min) | `/perpetuo-monitoramento-concorrentes` (+ `-confirmado`) |
 
 Aposentada em 2026-08-19: `mcp` (`17601`, Buzzmonitor MCP PT-BR). Série apagada no ClickMeeting
 por limite de disco, com zero inscritos em 57 sessões. A LP `/mcp-na-pratica-p` seguiu no ar com
@@ -41,8 +43,9 @@ Chave desconhecida → cai no env padrão. Se o env também não resolver, a fun
 `no_series` em vez de devolver a próxima sessão de qualquer série da conta (era esse o risco:
 a LP anunciar o webinar errado).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.
-**E-mail de confirmação ES:** `SERIES_LANG` mapeia `atencion`, `mcp-es`, `listening-es` e
-`smartfit-es` → `es`. As demais usam o default `br`.
+**E-mail de confirmação ES:** `SERIES_LANG` mapeia `atencion`, `mcp-es`, `listening-es`,
+`smartfit-es` e `crisis-es` → `es`. As demais usam o default `br` (é o caso de `buzzcreators` e
+`concorrentes-br`).
 **Thank-you de segurança:** `SERIES_THANK_YOU` dá a página `-confirmado` de cada série, usada
 só quando a API não devolve a URL da sala. Até 2026-08-19 isso apontava pra `home.cxpress.io`
 mesmo aqui no domínio da Buzzmonitor.

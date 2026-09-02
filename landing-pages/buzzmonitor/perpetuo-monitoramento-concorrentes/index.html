@@ -12,21 +12,21 @@
   })(window,document,'script','dataLayer','GTM-WFJVK858');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Vídeo · Como construir um monitoramento de concorrentes | Buzzmonitor</title>
-  <meta name="description" content="Preencha e assista ao vídeo: monte um monitoramento de concorrente do zero, que avisa quando ele se mexer.">
+  <title>Webinar ao vivo · Como construir um monitoramento de concorrentes | Buzzmonitor</title>
+  <meta name="description" content="Webinar ao vivo e gratuito: monte um monitoramento de concorrente do zero, que avisa quando ele se mexer. Sessões diárias, 25 minutos.">
   <meta name="robots" content="noindex, follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Buzzmonitor">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes">
   <meta property="og:title" content="Monitoramento de concorrente, do zero">
-  <meta property="og:description" content="Preencha e assista. Monte um monitoramento que avisa quando o concorrente se mexer, antes do seu cliente avisar.">
-  <meta property="og:image" content="https://webinar.buzzmonitor.com/assets/buzzmonitor/og-primeiro-listening-5-passos.png">
+  <meta property="og:description" content="Webinar ao vivo e gratuito. Monte um monitoramento que avisa quando o concorrente se mexer, antes do seu cliente avisar.">
+  <meta property="og:image" content="https://webinar.buzzmonitor.com/assets/buzzmonitor/og-perpetuo-monitoramento-concorrentes.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Monitoramento de concorrente, do zero">
-  <meta name="twitter:image" content="https://webinar.buzzmonitor.com/assets/buzzmonitor/og-primeiro-listening-5-passos.png">
+  <meta name="twitter:image" content="https://webinar.buzzmonitor.com/assets/buzzmonitor/og-perpetuo-monitoramento-concorrentes.png">
 
   <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +96,7 @@
     .header-cta {
       font-family: var(--font-ui); font-weight: 700; font-size: 14px; letter-spacing: .02em;
       color: var(--purple-ink); background: var(--accent);
-      padding: 11px 22px; border-radius: 999px;
+      padding: 11px 22px; border-radius: 999px; white-space: nowrap;
       transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
       box-shadow: 0 6px 20px -6px rgba(235,124,46,.6);
     }
@@ -286,8 +286,32 @@
       .reveal { opacity: 1 !important; transform: none !important; }
     }
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    /* ----- Jotform embed wrapper (canonico) ----- */
-    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+    /* ----- Form nativo ClickMeeting (webinar perpetuo ao vivo) ----- */
+    .webinar-info {
+      display: flex; align-items: center; gap: 9px;
+      font-family: var(--font-ui); font-weight: 700; font-size: 14px; line-height: 1.35;
+      color: var(--purple); background: #f6edfb; border-radius: var(--r-md);
+      padding: 12px 14px; margin-bottom: 18px; min-height: 46px;
+    }
+    .webinar-info-skeleton {
+      display: block; width: 100%; height: 15px; border-radius: 6px;
+      background: linear-gradient(90deg, #ece0f3 25%, #f7f1fa 50%, #ece0f3 75%);
+      background-size: 200% 100%; animation: cmSkeleton 1.4s infinite;
+    }
+    .webinar-info[data-state="ready"] .webinar-info-skeleton,
+    .webinar-info[data-state="error"] .webinar-info-skeleton { display: none; }
+    .webinar-info[data-state="loading"] .webinar-info-text { display: none; }
+    .webinar-info[data-state="ready"] .webinar-info-text,
+    .webinar-info[data-state="error"] .webinar-info-text { opacity: 0; animation: cmFadein .4s ease forwards; }
+    @keyframes cmSkeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @keyframes cmFadein { to { opacity: 1; } }
+
+    .cm-form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    @media (max-width: 560px) { .cm-form-row-2col { grid-template-columns: 1fr; gap: 0; } }
+    .cm-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .cm-feedback { font-family: var(--font-ui); font-weight: 600; font-size: 13.5px; color: var(--pink); margin-top: 12px; min-height: 1px; }
+    .cm-feedback[data-state="success"] { color: #0f7a52; }
+    .form-card button[disabled] { opacity: .65; cursor: not-allowed; transform: none; }
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
@@ -297,6 +321,8 @@
   .field label{ font-size:14px; }
   .field input{ font-size:17px; }
   .form-consent{ font-size:13px; }
+  .webinar-info{ font-size:15px; }
+  .cm-feedback{ font-size:15px; }
   .step-n{ font-size:14px; }
   .step p{ font-size:16px; }
   .step-tag{ font-size:13px; }
@@ -312,14 +338,14 @@
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFJVK858" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <a href="#form" class="skip-link">Ir para o formulário</a>
+  <a href="#form" class="skip-link">Ir para o formulário de inscrição</a>
 
   <header class="header">
     <div class="container header-inner">
       <a href="https://buzzmonitor.com/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
         <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" class="header-logo" width="150" height="30">
       </a>
-      <a href="#form" class="header-cta">Assistir agora</a>
+      <a href="#form" class="header-cta">Garantir vaga</a>
     </div>
   </header>
 
@@ -336,24 +362,51 @@
           <span class="eyebrow reveal" style="--d:.05s">Webinar gratuito · Monitoramento de concorrentes</span>
           <h1 class="reveal" style="--d:.12s">Como construir um monitoramento de concorrentes</h1>
           <p class="hero-lead reveal" style="--d:.18s">O concorrente lança uma promoção, muda o discurso, entra numa polêmica, e você fica sabendo pelo seu próprio cliente, que manda o print perguntando por que a sua marca não reagiu.</p>
-          <p class="hero-focus reveal" style="--d:.26s">Isso acaba aqui. Preencha e assista <span class="arw-focus" aria-hidden="true">→</span></p>
+          <p class="hero-focus reveal" style="--d:.26s">Isso acaba aqui. Garanta sua vaga <span class="arw-focus" aria-hidden="true">→</span></p>
           <div class="hero-trust reveal" style="--d:.28s">
             <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Gratuito</span>
             <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Direto na plataforma</span>
-            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sem planilha</span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 25 minutos</span>
           </div>
         </div>
 
-        <div class="form-card reveal" id="form" style="--d:.34s">
-          <h2 class="form-title">Assista ao vídeo agora</h2>
-          <!-- Form real (era mock, nao gravava lead nenhum ate 2026-08-26).
-               Mesmo Jotform compartilhado por todos os webinars perpetuos. A pagina de
-               agradecimento NAO vem do painel do Jotform: o destino e gravado pelo script no
-               fim desta pagina. Ver landing-pages/GUIA-webinar-perpetuo-destino.md -->
-          <div class="jotform-embed" data-perpetuo-next="/perpetuo-monitoramento-concorrentes-confirmado">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/261904654263661"></script>
+        <aside class="form-card reveal" id="form" style="--d:.34s" aria-label="Inscrição no webinar">
+          <h2 class="form-title">Garanta sua vaga</h2>
+          <!-- Form nativo ClickMeeting. Inscreve na serie perpetua 18043 pelas serverless
+               functions do guarda-chuva (/api/next-webinar + /api/clickmeeting-register,
+               series=concorrentes-br). Fonte das functions:
+               landing-pages/buzzmonitor/_clickmeeting-api/ (+ copia servida em
+               landing-pages/dominios/webinar-buzzmonitor-com/extras/api/).
+               Ate 2026-09-02 esta LP era on-demand (Jotform 261904654263661 -> video no YouTube). -->
+          <div class="webinar-info" data-state="loading" aria-live="polite">
+            <span class="webinar-info-skeleton" aria-hidden="true"></span>
+            <span class="webinar-info-text"></span>
           </div>
-        </div>
+          <form class="cm-form" id="cmForm" novalidate>
+            <div class="cm-form-row-2col">
+              <div class="field">
+                <label for="cmFirstName">Nome</label>
+                <input id="cmFirstName" type="text" name="first_name" required autocomplete="given-name" maxlength="100">
+              </div>
+              <div class="field">
+                <label for="cmLastName">Sobrenome</label>
+                <input id="cmLastName" type="text" name="last_name" required autocomplete="family-name" maxlength="100">
+              </div>
+            </div>
+            <div class="field">
+              <label for="cmEmail">E-mail corporativo</label>
+              <input id="cmEmail" type="email" name="email" required autocomplete="email" maxlength="200">
+            </div>
+            <div class="field">
+              <label for="cmCompany">Empresa</label>
+              <input id="cmCompany" type="text" name="company" required autocomplete="organization" maxlength="200">
+            </div>
+            <input class="cm-honeypot" name="_hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="btn btn-accent btn-block">Garantir minha vaga <span class="arw" aria-hidden="true">→</span></button>
+            <p class="cm-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <p class="form-consent">Ao se inscrever, você aceita receber comunicações da Buzzmonitor sobre o webinar. Cancelável a qualquer momento.</p>
+        </aside>
       </div>
     </section>
 
@@ -431,8 +484,8 @@
       <span class="glow glow-cta" aria-hidden="true"></span>
       <div class="container cta-inner reveal">
         <h2>Pronto pra saber do concorrente antes do seu cliente?</h2>
-        <p>Assista ao vídeo e entenda a melhor forma de fazer isso.</p>
-        <a href="#form" class="btn btn-accent">Assistir o vídeo agora <span class="arw" aria-hidden="true">→</span></a>
+        <p>Entre na próxima sessão ao vivo e monte o seu monitoramento junto com a gente.</p>
+        <a href="#form" class="btn btn-accent">Garantir minha vaga <span class="arw" aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
@@ -484,21 +537,129 @@
         counts.forEach(function (el) { io2.observe(el); });
       }
 
-      /* ---------- Destino pos-envio deste webinar perpetuo ----------
-         O Jotform e compartilhado por varios webinars e a Thank You Page dele e uma URL fixa,
-         igual pra todos. Entao a LP registra aqui pra onde ELA quer levar a pessoa; a pagina
-         em que o Jotform aterrissa le esse valor e encaminha. Ultima LP carregada ganha, que
-         e sempre aquela de onde a pessoa enviou o form.
-         Detalhes: landing-pages/GUIA-webinar-perpetuo-destino.md */
-      var slot = document.querySelector('[data-perpetuo-next]');
-      if (slot) {
-        try {
-          sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({
-            to: slot.getAttribute('data-perpetuo-next'),
-            at: Date.now()
-          }));
-        } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
+    })();
+
+    /* ---------- Inscricao no webinar perpetuo (serie ClickMeeting 18043) ----------
+       A data da proxima sessao vem de /api/next-webinar?series=concorrentes-br e a inscricao
+       vai por /api/clickmeeting-register (mesmas functions das outras series do dominio).
+       O link pessoal da sala e passado pra pagina de confirmacao por sessionStorage; se o
+       storage falhar, o visitante e mandado direto pra sala. */
+    (function () {
+      var SERIES = 'concorrentes-br';
+      var THANK_YOU = '/perpetuo-monitoramento-concorrentes-confirmado';
+      var STORAGE_KEY = 'bm_webinar_confirmation';
+      var nextWebinar = null;
+
+      var info = document.querySelector('.webinar-info');
+      var infoText = info ? info.querySelector('.webinar-info-text') : null;
+      if (info && infoText) {
+        fetch('/api/next-webinar?series=' + SERIES, { headers: { 'Accept': 'application/json' } })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data && data.ok && data.formatted_full_pt) {
+              nextWebinar = data;
+              infoText.textContent = data.in_progress
+                ? 'Acontecendo agora · ' + data.formatted_full_pt
+                : data.formatted_full_pt;
+              info.dataset.state = 'ready';
+            } else {
+              infoText.textContent = (data && data.message) ? data.message : 'Próxima sessão sendo agendada.';
+              info.dataset.state = 'error';
+            }
+          })
+          .catch(function () {
+            infoText.textContent = 'Online · 25 minutos · Vagas limitadas';
+            info.dataset.state = 'error';
+          });
       }
+
+      var form = document.getElementById('cmForm');
+      if (!form) return;
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var feedback = form.querySelector('.cm-feedback');
+      var originalBtnHtml = submitBtn.innerHTML;
+
+      function setFeedback(message, state) {
+        feedback.textContent = message || '';
+        if (state) feedback.dataset.state = state;
+        else delete feedback.dataset.state;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setFeedback('', null);
+
+        var fd = new FormData(form);
+        var payload = {
+          first_name: (fd.get('first_name') || '').toString().trim(),
+          last_name: (fd.get('last_name') || '').toString().trim(),
+          email: (fd.get('email') || '').toString().trim(),
+          company: (fd.get('company') || '').toString().trim(),
+          _hp: (fd.get('_hp') || '').toString(),
+          series: SERIES
+        };
+
+        if (!payload.first_name || !payload.last_name || !payload.email || !payload.company) {
+          setFeedback('Preencha nome, sobrenome, e-mail e empresa.', null);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        fetch('/api/clickmeeting-register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (result) {
+              return { res: res, result: result };
+            });
+          })
+          .then(function (o) {
+            var res = o.res, result = o.result;
+            if (res.ok && result && result.ok && result.redirect_url) {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({ event: 'webinar_lead_submitted', form_id: 'cmForm' });
+
+              var stored = false;
+              try {
+                sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+                  v: 1,
+                  join_url: result.redirect_url,
+                  email: payload.email,
+                  first_name: payload.first_name,
+                  starts_at: (nextWebinar && nextWebinar.starts_at) || null,
+                  in_progress: !!(nextWebinar && nextWebinar.in_progress),
+                  formatted_full_pt: (nextWebinar && nextWebinar.formatted_full_pt) || null,
+                  saved_at: new Date().toISOString()
+                }));
+                stored = sessionStorage.getItem(STORAGE_KEY) !== null;
+              } catch (_) { stored = false; }
+
+              var dest = stored ? THANK_YOU : result.redirect_url;
+              setFeedback('Inscrição confirmada. Redirecionando...', 'success');
+              setTimeout(function () { window.location.href = dest; }, 600);
+              return;
+            }
+
+            var msg = (result && result.message)
+              ? result.message
+              : 'Não foi possível concluir sua inscrição. Tente novamente.';
+            if (result && result.error === 'already_registered') {
+              msg += ' Seu link de acesso já foi enviado por e-mail (remetente ClickMeeting).';
+            }
+            setFeedback(msg, null);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          })
+          .catch(function () {
+            setFeedback('Erro de conexão. Verifique sua internet e tente novamente.', null);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          });
+      });
     })();
   </script>
 </body>

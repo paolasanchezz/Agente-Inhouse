@@ -9,6 +9,7 @@ const SERIES_THANK_YOU = {
   'listening-es': 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado',
   'smartfit-es': 'https://webinar.buzzmonitor.com/caso-smartfit-confirmado',
   'crisis-es': 'https://webinar.buzzmonitor.com/gestion-crisis-confirmado',
+  'concorrentes-br': 'https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes-confirmado',
 };
 const FALLBACK_THANK_YOU = 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado';
 

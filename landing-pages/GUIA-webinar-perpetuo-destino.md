@@ -137,7 +137,10 @@ Enquanto isso não for feito, o arranjo atual é o que está no ar e está corre
 
 | LP de captura | Form | Destino (`data-perpetuo-next`) |
 |---|---|---|
-| `buzzmonitor/perpetuo-monitoramento-concorrentes` | `261904654263661` | `/perpetuo-monitoramento-concorrentes-confirmado` |
 | `buzzmonitor/perpetuo-social-listening` | `261904654263661` | `/perpetuo-social-listening-confirmado` |
+
+Saiu em 2026-09-02: `buzzmonitor/perpetuo-monitoramento-concorrentes`. O par virou webinar **ao
+vivo** (série ClickMeeting `18043`) e agora usa o form nativo + as serverless functions do
+guarda-chuva, não o Jotform. Ver o README da LP.
 
 Despachante (§2.2) hoje em: `buzzmonitor/perpetuo-social-listening-confirmado`.

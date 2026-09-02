@@ -1,19 +1,25 @@
 # LP · perpetuo-monitoramento-concorrentes (par captura + tks)
 
-Par de páginas de **webinar perpétuo**, clonado do par `perpetuo-social-listening` e adaptado pro tema de **monitoramento de concorrente**. A captura leva à thank-you, onde o vídeo do webinar fica embedado.
+Par de páginas de **webinar perpétuo ao vivo**, clonado do par `perpetuo-social-listening` e adaptado pro tema de **monitoramento de concorrente**. A captura inscreve na próxima sessão da série; a thank-you confirma a vaga e entrega o link da sala.
 
 | Página | Slug | Papel | robots |
 |---|---|---|---|
-| Captura | `perpetuo-monitoramento-concorrentes` | hero + form "preencha e assista" + "o que você vai aprender" + autoridade | noindex |
-| Thank-you | `perpetuo-monitoramento-concorrentes-confirmado` | vídeo embedado + CTA "fale com especialista" | noindex |
+| Captura | `perpetuo-monitoramento-concorrentes` | hero + form nativo ClickMeeting + "o que você vai aprender" + autoridade | noindex |
+| Thank-you | `perpetuo-monitoramento-concorrentes-confirmado` | confirmação em 2 estados + link da sala + Google Agenda | noindex |
 
-**Fluxo:** captura (Jotform `261904654263661`) → Jotform redireciona → despachante encaminha pra `/perpetuo-monitoramento-concorrentes-confirmado` → assiste ao vídeo → CTA final leva pra `content.buzzmonitor.com/monitoramento-com-ia`.
+**Série ClickMeeting:** `recurring_config_id` **18043** ("Como construir um monitoramento de concorrentes"), diária às **09:00 BRT**, sessão de **25 min**, `room_pin` 692-573-549, tz `America/Sao_Paulo`. Registro exige nome, sobrenome, e-mail e **empresa** (campo 10 — sem ele a API devolve 422 e a inscrição não acontece). Página pública da série: `https://elifegroup.clickmeeting.com/como-construir-um-monitoramento-de-concorrentes/register`.
 
-> ✅ **Form real desde 2026-08-26.** Até então a captura era um **mock**: redirecionava certo mas **não gravava lead nenhum** — todo mundo que preencheu essa LP foi perdido. Agora usa o Jotform compartilhado dos webinars perpétuos (`261904654263661`, "BR | MKT | Webinar Perpétuo").
+**Fluxo:** captura chama `/api/next-webinar?series=concorrentes-br` pra mostrar a data → o form posta em `/api/clickmeeting-register` (`series: 'concorrentes-br'`) → grava `bm_webinar_confirmation` no `sessionStorage` → redireciona pra `/perpetuo-monitoramento-concorrentes-confirmado`. Se o storage falhar, manda direto pra sala do ClickMeeting.
+
+As duas serverless functions vivem em [`landing-pages/buzzmonitor/_clickmeeting-api/`](../_clickmeeting-api/) (cópia canônica) e são servidas pelo `extra_files` do manifesto em `landing-pages/dominios/webinar-buzzmonitor-com/extras/api/`. **Mudança nelas exige editar as duas cópias.**
+
+**Thank-you, 2 estados:**
+- **A (veio do form):** lê o `sessionStorage`, saúda pelo primeiro nome, mostra a sessão, botão "Acessar a sala" e link do Google Agenda. Dentro da janela ao vivo (start até start+40min, ou `in_progress` da API), aparece a faixa "acontecendo agora" e o botão vira "Entrar na sala agora".
+- **B (visita direta / storage bloqueado / sem JS):** avisa que o link está no e-mail, busca a próxima sessão na API e oferece volta pra captura. Sem JS, o `<noscript>` cobre.
+
+> 🔁 **Modelo trocado em 2026-09-02.** Antes desta data o par era **on-demand**: form Jotform `261904654263661` + despachante `data-perpetuo-next` → thank-you com o vídeo `fG4KpFnwbb4` embedado do YouTube. Com a série perpétua criada, virou par ao vivo no mesmo padrão das outras 6 séries do domínio. O Jotform e o vídeo saíram das duas páginas; o par irmão `perpetuo-social-listening` segue no modelo antigo.
 >
-> A página de agradecimento **não** vem do painel do Jotform (lá o destino é fixo, um por formulário). A LP grava o destino dela no `data-perpetuo-next` do embed e a página onde o Jotform aterrissa encaminha. É isso que permite um form servir N webinars perpétuos. Mecanismo, testes e pegadinhas em [`landing-pages/GUIA-webinar-perpetuo-destino.md`](../../GUIA-webinar-perpetuo-destino.md).
-
-**Vídeo:** `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`). **Usar youtube.com, NÃO youtube-nocookie** — o CSP do guarda-chuva webinar.buzzmonitor.com só libera `www.youtube.com` no `frame-src` (o nocookie é bloqueado e o vídeo não aparece).
+> Entre 2026-08-12 e 2026-08-26 a captura era um **mock** que redirecionava certo mas não gravava lead nenhum — todo mundo que preencheu nessa janela foi perdido.
 
 ## Fonte da copy (2026-08-12)
 
@@ -21,9 +27,10 @@ Briefing da Catharina: título "como construir um monitoramento de concorrentes"
 
 ## Pendências antes de finalizar
 
-- **Link do WhatsApp (header):** o CTA do header da tks ("Falar com especialista") ainda está com temp `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar. O CTA final já foi trocado (2026-08-25) pra `content.buzzmonitor.com/monitoramento-com-ia`.
-- [x] **Form real:** Jotform `261904654263661` integrado em 2026-08-26. **Form provider:** Jotform (embed `jsform`). Nada a configurar no painel.
-- **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png` (do par irmão). Trocar por uma de concorrente.
+- [x] **OG dedicada:** gerada em 2026-09-02. `assets/og-source.html` + `assets/render_og.py` (dark premium, mesmo eixo do hero; headline "Saiba do concorrente antes do seu cliente"), output `assets/og-perpetuo-monitoramento-concorrentes.png` (1200×630). **Uma cópia física só**, aqui na LP-mãe: a thank-you aponta pro mesmo arquivo (exceção de OG compartilhada entre irmãs, GUIDELINES §18). Antes as duas páginas reusavam a OG do par `primeiro-listening-5-passos`.
+
+> ⚠️ **O aviso `asset referenciado inexistente` do `build_umbrella.py` nos pares perpétuos é falso alarme.** O arquivo existe e **chega no dist**: a resolução procura o basename em `brand/{marca}/assets/` e na pasta da LP que referencia, e só pula se o destino já foi copiado. Quando uma LP aponta pra OG de outra, o aviso aparece se ela vier **antes** da LP dona na ordem do manifesto (era o caso: `perpetuo-*` nos índices 25-32, `primeiro-listening-5-passos` no 33) — a dona copia depois e a URL responde 200 em produção. Não confundir com OG de verdade quebrada: confira `test -f` no source antes de sair caçando bug.
+- [x] **Form real:** série ClickMeeting `18043` integrada em 2026-09-02 (form nativo + serverless functions do guarda-chuva). Nada a configurar em painel de form.
 - **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas.
 - **Flip `index`** quando for a versão final (hoje `noindex` de review).
 
