@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (doc "Nova Banimento Whats (Google Ads)", Victor)
 **Domínio de destino:** `content.cxpress.io/banimento-de-whatsapp` (guarda-chuva, deploy via CI)
 **Idioma / região:** PT-BR / brasil
-**Form provider:** ⚠️ **mock** — o embed do Jotform `261034073026647` foi retirado em 2026-09-01 para simular em HTML o layout de formulário de referência (Octadesk). Reintegrar via `/lp-integrar-form cxpress/banimento-de-whatsapp` **antes de publicar**.
+**Form provider:** **misto** (decisão do Victor, 2026-09-02) — o formulário do **rodapé é mock** (HTML simulando o layout de referência Octadesk; não envia nada) e o **pop-up do botão flutuante do WhatsApp usa o embed real do Jotform `261034073026647`**, que é quem captura o lead.
 **Tracking:** GTM-KN8BPFG + GA4 339689858 (container de Google Ads, confirmado pelo Victor em 2026-08-30)
 
 ## De onde veio
@@ -41,8 +41,33 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-banimento-de-whatsapp.png` (template em `assets/og-template.html`)
 - [x] Revisão de design + a11y aplicada — ver `REVISAO.md`
-- [ ] Formulário integrado — hoje é **mock** (GUIDELINES §11). Reintegrar o Jotform `261034073026647` via `/lp-integrar-form` antes de publicar
-- [ ] Entrar no `landing-pages/dominios/content-cxpress-io/manifest.json` e publicar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
+- [x] Formulário integrado no **pop-up** do botão flutuante (Jotform `261034073026647`). O do **rodapé segue mock de propósito** — Victor optou por manter o layout simulado (2026-09-02)
+- [x] No `landing-pages/dominios/content-cxpress-io/manifest.json` e no ar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
+
+## Ajustes de 2026-09-02 (Bruno) — botão flutuante do WhatsApp
+
+Pedido do Victor: botão flutuante com a marca do WhatsApp que abre o formulário num pop-up e,
+no envio, leva a conversa pro WhatsApp comercial numa nova aba.
+
+- **Botão** (`.wa-fab`): fixo no canto inferior direito, verde oficial `#25D366` com o glifo branco.
+  Padrão herdado da LP irmã `whatsapp-business` — inclusive o anel de 2px em `--wa-ink` (#15884D,
+  3.4:1 no branco), que é quem cumpre o mínimo de 3:1 de limite de controle da WCAG 1.4.11; o verde
+  oficial sozinho dá 1.98:1.
+- **Pop-up** (`.wa-modal`): `role="dialog"` + `aria-modal`, fecha no X, no clique fora e no Esc,
+  devolve o foco pro botão e trava o scroll do body. O iframe só recebe `src` no primeiro clique
+  (nada de Jotform no carregamento da página) e a altura é sincronizada pela mensagem `setHeight`
+  do provedor.
+- **Formulário do pop-up:** embed real do Jotform `261034073026647` (decisão do Victor de 2026-08-30).
+  O formulário do rodapé **continua mock** por decisão do Victor (2026-09-02) — ele mantém o layout
+  de referência simulado em HTML e, como antes, não envia nada.
+- **Dupla confirmação no envio:** o Jotform mostra a própria página de agradecimento dentro do
+  pop-up e a conversa abre em nova aba no `wa.me/551150395028` (mesmo número das outras LPs Cxpress).
+  Dois sinais de envio, nessa ordem: a mensagem `{action:"submission-end"}` que o Jotform posta ainda
+  dentro do clique no Enviar (é síncrona com o gesto, então a aba nova não cai no bloqueador de
+  pop-up — a ativação do usuário propaga do iframe pro frame pai) e, como rede, o segundo `load` do
+  iframe, que já é a página de agradecimento. Se o navegador barrar a aba mesmo assim, o aviso verde
+  no topo do pop-up leva pro WhatsApp num clique. `concluir()` é idempotente: os dois sinais juntos
+  abrem uma aba só.
 
 ## Ajustes de 2026-09-03 (Bruno)
 

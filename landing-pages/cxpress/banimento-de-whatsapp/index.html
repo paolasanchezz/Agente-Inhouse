@@ -1062,6 +1062,76 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        ocupa 100% da largura sem borda. */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
+    /* ----- Botao flutuante do WhatsApp + modal do formulario -----
+       O verde oficial #25D366 da 1.98:1 no branco e reprova o minimo de 3:1
+       de limite de controle (WCAG 1.4.11). O glifo branco no verde e a marca
+       oficial e fica; quem cumpre o 3:1 e a borda do botao, com um anel em
+       --wa-ink (#15884D = 3.4:1 no branco). Mesmo padrao da LP irma
+       whatsapp-business. */
+    .wa-fab{
+      position:fixed;right:22px;bottom:22px;z-index:70;
+      width:58px;height:58px;border:0;border-radius:50%;
+      display:grid;place-items:center;background:#25D366;cursor:pointer;
+      box-shadow:0 0 0 2px var(--wa-ink),0 10px 26px rgba(20,24,60,.26);
+      transition:transform .18s ease,box-shadow .18s ease;
+    }
+    .wa-fab:hover{transform:scale(1.07);box-shadow:0 0 0 2px var(--wa-ink),0 14px 32px rgba(20,24,60,.32)}
+    .wa-fab svg{width:31px;height:31px;fill:#fff}
+
+    .wa-modal{
+      position:fixed;inset:0;z-index:90;
+      padding:26px 16px;overflow-y:auto;
+      background:rgba(35,41,96,.58);
+      -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+    }
+    .wa-modal[hidden]{display:none}
+    body.wa-lock{overflow:hidden}
+    .wa-modal__dialog{
+      position:relative;max-width:560px;margin:0 auto;
+      background:var(--white);border-radius:var(--radius-card);
+      box-shadow:0 30px 70px rgba(20,24,60,.38);
+      animation:waModalIn .22s ease-out;
+    }
+    @keyframes waModalIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    .wa-modal__close{
+      position:absolute;top:14px;right:14px;z-index:2;
+      width:38px;height:38px;border:1px solid var(--border);border-radius:50%;
+      background:var(--white);color:var(--primary-dark);cursor:pointer;
+      display:grid;place-items:center;
+      transition:background .2s ease,border-color .2s ease;
+    }
+    .wa-modal__close:hover{background:var(--tint);border-color:var(--border-strong)}
+    .wa-modal__close svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round}
+    .wa-modal__head{display:flex;gap:14px;align-items:flex-start;padding:26px 64px 6px 26px}
+    .wa-modal__badge{
+      flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:#25D366;
+      display:grid;place-items:center;box-shadow:0 0 0 2px var(--wa-ink);
+    }
+    .wa-modal__badge svg{width:23px;height:23px;fill:#fff}
+    .wa-modal__head h2{
+      font-family:var(--font-display);font-weight:800;
+      font-size:21px;line-height:1.3;color:var(--primary-dark);
+    }
+    .wa-modal__head p{margin-top:6px;font-size:16px;line-height:1.5;color:var(--text-muted)}
+    .wa-modal__body{padding:10px 12px 18px}
+    .wa-modal__wait{padding:28px 14px;text-align:center;font-size:16px;color:var(--text-muted)}
+    .wa-modal__done{
+      margin:4px 8px 14px;padding:14px 16px;
+      border:1px solid var(--wa);border-radius:12px;background:#E8FAF0;
+      font-size:16px;line-height:1.5;color:#0E5C36;
+    }
+    .wa-modal__done a{color:#0B4629;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+    .wa-modal__frame{display:block;width:100%;height:740px;border:0}
+
+    @media (max-width:640px){
+      .wa-fab{width:52px;height:52px;right:16px;bottom:16px}
+      .wa-fab svg{width:27px;height:27px}
+      .wa-modal{padding:14px 10px}
+      .wa-modal__head{padding:22px 58px 4px 20px}
+      .wa-modal__head h2{font-size:19px}
+      .wa-modal__body{padding:8px 6px 14px}
+    }
+
     /* toque: mata o atraso de 300ms do double-tap e o flash cinza do Android */
     a,button,summary,input,select,label{touch-action:manipulation;-webkit-tap-highlight-color:rgba(35,41,96,.12)}
   </style>
@@ -1589,6 +1659,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
+  <!-- Botao flutuante: abre o formulario da campanha num modal -->
+  <button type="button" class="wa-fab" id="wa-fab" aria-haspopup="dialog" aria-controls="wa-modal" aria-expanded="false" aria-label="Agendar demonstração gratuita e falar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+
+  <div class="wa-modal" id="wa-modal" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title" hidden>
+    <div class="wa-modal__dialog">
+      <button type="button" class="wa-modal__close" aria-label="Fechar formulário">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="wa-modal__head">
+        <span class="wa-modal__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <div>
+          <h2 id="wa-modal-title">Agende sua demonstração gratuita</h2>
+          <p>Preencha os dados e continue a conversa com um especialista no WhatsApp.</p>
+        </div>
+      </div>
+      <div class="wa-modal__body">
+        <p class="wa-modal__done" data-wa-done hidden>
+          Pedido enviado. Abrimos a conversa com um especialista numa nova aba —
+          <a href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Acabei%20de%20pedir%20uma%20demonstra%C3%A7%C3%A3o%20da%20Cxpress%20pela%20p%C3%A1gina%20de%20banimento%20do%20WhatsApp." target="_blank" rel="noopener">se ela não abriu, toque aqui</a>.
+        </p>
+        <p class="wa-modal__wait" data-wa-wait>Carregando o formulário&hellip;</p>
+        <div class="jotform-embed">
+          <iframe class="wa-modal__frame" title="Formulário de agendamento de demonstração" data-src="https://form.jotform.com/261034073026647" scrolling="no"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function(){
       var els = document.querySelectorAll('.reveal');
@@ -1628,6 +1730,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if('ResizeObserver' in window){ new ResizeObserver(ajustar).observe(wrap); }
       else { window.addEventListener('resize', ajustar); }
       if(document.fonts && document.fonts.ready){ document.fonts.ready.then(ajustar); }
+    })();
+
+    /* Botao flutuante -> modal com o Jotform da campanha (261034073026647, o
+       mesmo formulario da LP irma). O provedor mostra a propria pagina de
+       agradecimento dentro do modal e, no mesmo envio, a conversa segue numa
+       nova aba do WhatsApp comercial.
+
+       Dois sinais de envio, nesta ordem: (1) a mensagem {action:"submission-end"}
+       que o Jotform posta ainda dentro do clique no Enviar — sincrona com o
+       gesto, entao a aba nova nao cai no bloqueador de pop-up; (2) o segundo
+       `load` do iframe, que ja e a pagina de agradecimento, como rede pra
+       quando a mensagem nao chega. Se o navegador barrar a aba mesmo assim, o
+       aviso verde no topo do modal leva pro WhatsApp num clique. */
+    (function(){
+      var fab = document.getElementById('wa-fab');
+      var modal = document.getElementById('wa-modal');
+      if(!fab || !modal) return;
+
+      var frame = modal.querySelector('.wa-modal__frame');
+      var espera = modal.querySelector('[data-wa-wait]');
+      var aviso = modal.querySelector('[data-wa-done]');
+      var fechaBtn = modal.querySelector('.wa-modal__close');
+      var whatsapp = 'https://wa.me/551150395028?text=' + encodeURIComponent('Olá! Acabei de pedir uma demonstração da Cxpress pela página de banimento do WhatsApp.');
+      var focoAnterior = null, loads = 0, enviado = false;
+
+      function abrir(){
+        focoAnterior = document.activeElement;
+        modal.hidden = false;
+        fab.setAttribute('aria-expanded','true');
+        document.body.classList.add('wa-lock');
+        if(!frame.getAttribute('src')){ frame.setAttribute('src', frame.getAttribute('data-src')); }
+        fechaBtn.focus();
+      }
+      function fechar(){
+        modal.hidden = true;
+        fab.setAttribute('aria-expanded','false');
+        document.body.classList.remove('wa-lock');
+        if(focoAnterior && focoAnterior.focus){ focoAnterior.focus(); }
+      }
+      function concluir(){
+        if(enviado) return;
+        enviado = true;
+        window.open(whatsapp, '_blank', 'noopener');
+        if(aviso){ aviso.hidden = false; }
+      }
+
+      fab.addEventListener('click', abrir);
+      fechaBtn.addEventListener('click', fechar);
+      modal.addEventListener('mousedown', function(e){ if(e.target === modal){ fechar(); } });
+      document.addEventListener('keydown', function(e){
+        if((e.key === 'Escape' || e.key === 'Esc') && !modal.hidden){ fechar(); }
+      });
+
+      frame.addEventListener('load', function(){
+        if(espera){ espera.hidden = true; }
+        loads += 1;
+        if(loads > 1){ concluir(); }
+      });
+
+      window.addEventListener('message', function(e){
+        var origem = String(e.origin || '');
+        if(origem.indexOf('jotform') === -1 && origem.indexOf('jotfor.ms') === -1) return;
+        if(typeof e.data === 'string'){
+          if(e.data.indexOf('setHeight:') === 0){
+            var altura = parseInt(e.data.split(':')[1], 10);
+            if(altura > 0){ frame.style.height = altura + 'px'; }
+          }
+          return;
+        }
+        if(e.data && e.data.action === 'submission-end'){ concluir(); }
+      });
     })();
   </script>
 </body>
