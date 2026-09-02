@@ -1,0 +1,56 @@
+=== HERO ===
+OVERLINE: Cxpress para times de atendimento
+H1: Cada canal guarda um pedaço da história do seu cliente
+SUB: A Cxpress reúne WhatsApp, Instagram, Facebook, webchat, e-mail e telefone em um painel só, com histórico unificado por cliente e agentes de IA que resolvem o primeiro nível de atendimento.
+
+FORM TITLE: Fale com um especialista
+FORM LEAD: São quatro campos. Um especialista analisa o cenário que você descrever e mostra a plataforma resolvendo os casos que a sua equipe atende todo dia.
+FORM FIELD: Nome completo
+FORM FIELD: E-mail corporativo
+FORM HINT: Use o e-mail da empresa. É por ele que o especialista prepara a análise e envia o convite da reunião.
+FORM FIELD: Cargo
+FORM FIELD: Tamanho da equipe de atendimento
+FORM OPTION: 1 a 3 pessoas
+FORM OPTION: 4 a 10 pessoas
+FORM OPTION: 11 a 30 pessoas
+FORM OPTION: Mais de 30 pessoas
+CTA: Ver a Cxpress na prática
+
+=== PROBLEMA ===
+H2: Onde o atendimento perde tempo e perde cliente
+LIST ITEM: O cliente escreve no WhatsApp, volta no Instagram e repete tudo de novo, porque o histórico ficou em outro lugar.
+LIST ITEM: Cada atendente abre uma aba diferente para descobrir o que já foi respondido.
+LIST ITEM: As métricas do atendimento vivem em planilha, atualizadas à mão e sempre atrasadas.
+LIST ITEM: Perguntas repetidas ocupam a equipe inteira, e o caso urgente espera na fila.
+LIST ITEM: Quando alguém sai da equipe, o contexto dos clientes sai junto.
+
+=== BENEFICIOS ===
+H2: O que muda quando tudo está no mesmo painel
+
+H3: Tempo que volta para a equipe
+BODY: Os agentes de IA respondem o primeiro nível por texto, áudio e ligação, 24 horas por dia. O time humano entra quando o caso pede, já com o contexto da conversa na tela.
+
+H3: Um histórico, todos os canais
+BODY: WhatsApp com API oficial da Meta, Instagram, Facebook, webchat, e-mail e telefone com URA inteligente. Cada conversa entra no mesmo perfil de cliente, com tickets distribuídos por setor e dashboards no lugar da planilha.
+
+H3: Cliente que não repete a história
+BODY: Quem procura a sua empresa fala com alguém que já sabe o que aconteceu antes. Menos retrabalho na fila, resposta mais rápida e um motivo a menos para o cliente desistir.
+
+=== PARA QUEM ===
+H2: Para quem essa conversa faz sentido
+
+LABEL: Faz sentido se
+LIST ITEM: Você tem uma equipe de atendimento, mesmo que pequena, e ela já não dá conta do volume.
+LIST ITEM: Sua operação usa três canais ou mais, e o WhatsApp é o principal deles.
+LIST ITEM: Você precisa de número para decidir sobre o atendimento, e hoje monta esse número na mão.
+
+LABEL: Ainda não é a hora se
+LIST ITEM: Você atende sozinho, por um canal só, e o volume cabe no celular.
+LIST ITEM: Está pesquisando por curiosidade, sem prazo nem orçamento para mudar o atendimento este ano.
+
+=== CTA FINAL ===
+H2: Veja a Cxpress rodando com os dados da sua operação
+CTA: Ver a Cxpress na prática
+
+=== FOOTER ===
+BODY: comercial@gocxpress.com.br
