@@ -261,6 +261,11 @@ fbq('track', 'PageView');
      ganha a altura do mais alto sozinho (sem height fixo, que cortava no mobile). */
   .sw{display:grid}
   .sw>*{grid-area:1/1;animation:ctxOn 12s ease-in-out infinite both}
+  /* Dentro da janela de ~2,6s de cada rede, a conversa se monta em 3 tempos:
+     pergunta, resposta e acao. Todas terminam juntas, antes da rede trocar. */
+  .cc__cmt>*{animation-name:swPergunta}
+  .cc__rep>*{animation-name:swResposta}
+  .cc__dm>*{animation-name:swAcao}
   .sw>*:nth-child(1){animation-delay:0s}
   .sw>*:nth-child(2){animation-delay:-9s}
   .sw>*:nth-child(3){animation-delay:-6s}
@@ -334,14 +339,6 @@ fbq('track', 'PageView');
   .cc__ok{margin-left:auto;color:var(--wa);flex-shrink:0}
   .cc__ok svg{width:16px;height:16px;color:var(--wa)}
 
-  /* a cena se monta e reinicia, como o GIF do site, porem em CSS (0 KB) */
-  .kvframe__in>*{animation:ccIn 12s cubic-bezier(.2,.9,.3,1) infinite both}
-  .kvframe__in>.cc__nets{animation:none}
-  .kvframe__in>.cc__post{animation-delay:.2s}
-  .kvframe__in>.cc__media{animation-delay:.6s}
-  .kvframe__in>.cc__cmt{animation-delay:1.6s}
-  .kvframe__in>.cc__rep{animation-delay:2.9s}
-  .kvframe__in>.cc__dm{animation-delay:4.3s}
 
   /* ---------- clientes ---------- */
   .clients{padding:0 0 12px;border-top:1px solid var(--line)}
@@ -466,9 +463,11 @@ fbq('track', 'PageView');
   @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
   @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @keyframes ccIn{0%{opacity:0;transform:translateY(10px)}5%,86%{opacity:1;transform:none}93%,100%{opacity:0;transform:translateY(-6px)}}
   @keyframes netOn{0%,20%{background:var(--bt);color:var(--b)}25%,100%{background:transparent;color:#9AA3C4}}
   @keyframes ctxOn{0%,22%{opacity:1}25%,100%{opacity:0}}
+  @keyframes swPergunta{0%{opacity:0;transform:translateY(6px)}4%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
+  @keyframes swResposta{0%,7%{opacity:0;transform:translateY(6px)}11%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
+  @keyframes swAcao{0%,14%{opacity:0;transform:translateY(6px)}18%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
 
   .anim{opacity:0;animation:rise .8s cubic-bezier(.2,.9,.3,1) both}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
@@ -492,7 +491,7 @@ fbq('track', 'PageView');
     .anim,.reveal{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
     .hero h1 .mark{animation:none!important;background-size:100% .18em}
     .ticker__track,.eyebrow i,.dots i{animation:none!important}
-    .kvframe__in>*,.cc__net{animation:none!important;opacity:1!important;transform:none!important}
+    .cc__net{animation:none!important}
     .cc__net:nth-child(1){background:var(--bt);color:var(--b)}
     /* sem movimento: mostra so o 1o variante de cada switcher (Instagram) */
     .sw>*{animation:none!important;opacity:0}
