@@ -64,6 +64,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --neutral-300:#d1d1d1;
       --neutral-100:#f5f5f5;
       --white:#ffffff;
+      --green:#21CC78;
+      --green-dark:#1AAE63;
       --danger:#C0392F;
       --success:#1B7F5C;
       --radius-btn:9px;
@@ -120,14 +122,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hd img{height:30px;width:auto;display:block}
     .hd .hd-cta{
       font-family:var(--font-display);font-weight:700;font-size:15px;
-      background:var(--primary-dark);color:#fff;text-decoration:none;
+      background:var(--green);color:#fff;text-decoration:none;
       padding:11px 20px;border-radius:var(--radius-btn);white-space:nowrap;
       transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
     }
-    .hd .hd-cta:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,41,96,.22)}
+    .hd .hd-cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
 
     /* hero */
-    .hero{padding:80px 0 104px;background:var(--white)}
+    .hero{padding:80px 0 96px;background:var(--white)}
+    .hero__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:56px;align-items:center}
+    .hero__visual{
+      border-radius:var(--radius-card);overflow:hidden;
+      box-shadow:var(--shadow-float);background:var(--neutral-100);
+      line-height:0;
+    }
+    .hero__visual img{width:100%;height:auto;display:block}
     .eyebrow{
       display:inline-block;font-family:"Open Sans",sans-serif;font-weight:700;
       font-size:12px;letter-spacing:.12em;text-transform:uppercase;
@@ -138,8 +147,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero .lead{font-size:clamp(18px,2vw,21px);line-height:1.55;color:var(--ink-2);margin:20px 0 0;max-width:56ch}
     .hero .lead b{color:var(--ink);font-weight:600}
 
+    .videobox{padding:0 0 96px;background:var(--white)}
     .video{
-      margin:40px 0 0;position:relative;width:100%;padding-top:56.25%;
+      margin:0;position:relative;width:100%;padding-top:56.25%;
       background:var(--primary-dark);border-radius:var(--radius-card);overflow:hidden;
       box-shadow:var(--shadow-float);
     }
@@ -148,11 +158,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:32px 0 0}
     .btn{
       font-family:var(--font-display);font-weight:700;font-size:17px;
-      background:var(--primary-dark);color:#fff;text-decoration:none;
+      background:var(--green);color:#fff;text-decoration:none;
       padding:16px 28px;border-radius:var(--radius-btn);display:inline-block;border:0;cursor:pointer;
       transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
     }
-    .btn:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,41,96,.22)}
+    .btn:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
     .btn.ghost{background:transparent;color:var(--primary-dark);border:2px solid var(--rule);padding:14px 26px}
     .btn.ghost:hover{border-color:var(--primary);background:transparent;box-shadow:none}
     .cta-note{font-size:15px;color:var(--ink-3)}
@@ -160,6 +170,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* logos */
     .logos{padding:52px 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);background:var(--off)}
     .logos p{text-align:center;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+    .clientes__marquee{
+      margin-top:26px;overflow:hidden;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+      mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+    }
+    .clientes__track{display:flex;width:max-content;animation:clientesMarquee 64s linear infinite}
+    .clientes__group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
+    .clientes__group img{
+      flex:0 0 auto;width:auto;max-width:170px;
+      height:clamp(30px,3.4vw,42px);object-fit:contain;
+      opacity:.72;filter:saturate(.9);
+      transition:opacity .25s ease,filter .25s ease;
+    }
+    .clientes__group img:hover{opacity:1;filter:none}
+    @keyframes clientesMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .clientes__marquee:hover .clientes__track{animation-play-state:paused}
 
     /* section head */
     .sec-head{max-width:720px;margin:0 auto 56px;text-align:center}
@@ -200,12 +226,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .case{
       background:var(--white);border:1px solid var(--rule-soft);
       border-radius:var(--radius-card);padding:56px 44px;
-      box-shadow:var(--shadow-float);text-align:center;
+      box-shadow:var(--shadow-float);
     }
+    .case__head{text-align:center;margin-bottom:8px}
     .case__logo{display:block;height:64px;width:auto;margin:0 auto 28px}
     .case .tag{font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
     .case h2{font-size:clamp(28px,3.4vw,36px);line-height:1.2;margin:14px auto 0;max-width:24ch}
-    .case p{font-size:18px;color:var(--ink-2);margin:20px auto 0;max-width:64ch}
+    .case p{font-size:18px;color:var(--ink-2);margin:20px 0 0;max-width:64ch}
     .case p b{color:var(--primary-dark);font-weight:600}
     .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin:40px 0 0;padding:32px 0 0;border-top:1px solid var(--rule-soft)}
     .nums .n .v{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,3.4vw,36px);color:var(--primary);line-height:1;letter-spacing:-.03em}
@@ -213,7 +240,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .quote{
       font-family:var(--font-accent);font-style:italic;font-weight:500;
       font-size:clamp(18px,2vw,20px);color:var(--primary-dark);
-      margin:36px auto 0;max-width:44ch;padding-top:28px;border-top:1px solid var(--rule-soft);
+      margin:36px 0 0;max-width:44ch;padding-top:28px;border-top:1px solid var(--rule-soft);
     }
 
     /* comparativo */
@@ -253,12 +280,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     @media (max-width:980px){
       .fgrid{grid-template-columns:1fr;gap:36px}
+      .hero__grid{grid-template-columns:1fr;gap:40px}
+      .hero h1,.hero .lead{max-width:none}
     }
     @media (max-width:640px){
       body{font-size:17px}
       section{padding:80px 0}
       section.tight{padding:64px 0}
-      .hero{padding:56px 0 72px}
+      .hero{padding:56px 0 56px}
+      .videobox{padding-bottom:72px}
+      .clientes__marquee{margin-left:-24px;margin-right:-24px}
+      .clientes__group{gap:24px;padding-inline:12px}
+      .clientes__group img{height:28px;max-width:132px}
+      .clientes__track{animation-duration:46s}
       .final{padding:80px 0}
       .case{padding:36px 22px}
       .case__logo{height:52px;margin-bottom:22px}
@@ -295,11 +329,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- HERO -->
     <div class="hero">
-      <div class="wrap">
-        <span class="eyebrow">Demonstração de 6 minutos</span>
-        <h1>Seu cliente manda mensagem no domingo. Seu time responde na segunda.</h1>
-        <p class="lead">Veja como a IA da Cxpress atende 24 horas por texto e por áudio, resolve o que é repetitivo e passa pro seu time <b>só o que precisa de gente</b>.</p>
+      <div class="wrap hero__grid">
+        <div class="hero__content">
+          <span class="eyebrow">Demonstração de 6 minutos</span>
+          <h1>Seu cliente manda mensagem no domingo. Seu time responde na segunda.</h1>
+          <p class="lead">Veja como a IA da Cxpress atende 24 horas por texto e por áudio, resolve o que é repetitivo e passa pro seu time <b>só o que precisa de gente</b>.</p>
+          <div class="cta-row">
+            <a class="btn" href="#agendar">Agendar demonstração gratuita</a>
+            <span class="cta-note">30 minutos, com os seus canais e o seu volume.</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Painel da Cxpress com os tickets de WhatsApp, Instagram, e-mail, Facebook, webchat e telefone num lugar só" width="566" height="318" />
+        </div>
+      </div>
+    </div>
 
+    <div class="videobox">
+      <div class="wrap">
         <div class="video reveal">
           <iframe
             src="https://www.youtube.com/embed/dfxipCR2vTo?rel=0"
@@ -308,16 +355,105 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             allowfullscreen
             loading="lazy"></iframe>
         </div>
-
-        <div class="cta-row">
-          <a class="btn" href="#agendar">Agendar demonstração gratuita</a>
-          <span class="cta-note">30 minutos, com os seus canais e o seu volume.</span>
-        </div>
       </div>
     </div>
 
     <div class="logos">
-      <div class="wrap"><p>Marcas que atendem com a Cxpress</p></div>
+      <div class="wrap">
+        <p>Marcas que atendem com a Cxpress</p>
+        <div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+          <div class="clientes__track">
+            <div class="clientes__group">
+              <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
+              <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
+              <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
+              <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
+              <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
+              <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
+              <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+              <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+              <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+              <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+              <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+              <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+              <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+              <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+              <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+              <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+              <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+              <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+              <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+              <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+              <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+              <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+              <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+              <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+              <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+              <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+              <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+              <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+              <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+              <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+              <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+              <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+              <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+              <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+            </div>
+            <div class="clientes__group" aria-hidden="true">
+              <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
+              <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
+              <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
+              <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
+              <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
+              <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
+              <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+              <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+              <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+              <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+              <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+              <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+              <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+              <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+              <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+              <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+              <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+              <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+              <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+              <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+              <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+              <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+              <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+              <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+              <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+              <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+              <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+              <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+              <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+              <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+              <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+              <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+              <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+              <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- PROBLEMA -->
@@ -396,9 +532,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section>
       <div class="wrap">
         <div class="case reveal">
-          <img class="case__logo" src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy" />
-          <span class="tag">Case &middot; Cacau Show</span>
-          <h2>SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
+          <div class="case__head">
+            <img class="case__logo" src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy" />
+            <span class="tag">Case &middot; Cacau Show</span>
+            <h2>SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
+          </div>
           <p>Na Páscoa de 2024, a Cacau Show recebia uma explosão diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, <b>apenas 34% das interações conseguiam ser respondidas</b>. O resto virava dúvida sem retorno, venda perdida e risco de imagem no pico comercial do ano.</p>
           <p>Um agente de IA treinado na linguagem e na base oficial da marca passou a cuidar de engajamento e dúvidas, com regras claras de transbordo. Casos sensíveis vão direto para pessoas.</p>
           <div class="nums">
