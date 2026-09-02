@@ -44,6 +44,28 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [ ] Formulário integrado — hoje é **mock** (GUIDELINES §11). Reintegrar o Jotform `261034073026647` via `/lp-integrar-form` antes de publicar
 - [ ] Entrar no `landing-pages/dominios/content-cxpress-io/manifest.json` e publicar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
 
+## Ajustes de 2026-09-02 (Bruno)
+
+1. **Seção omni virou diagrama radial** (opção "Convergência", escolhida entre 3 protótipos animados).
+   Saiu o fluxo linear `canais -> Cxpress -> equipe`; entrou o notebook com a marca no centro de 4 anéis
+   concêntricos, os 5 canais nos anéis e 4 agentes em volta da plataforma. Cada canal dispara um ponto
+   verde que percorre a linha radial até o notebook; ao chegar, a tela reage e um agente acende.
+   Removidos `.fluxo`, `.canais`, `.canal`, `.trilho`, `.no-cx`, `.no-equipe` e `@keyframes fluir`/`fluirV`.
+2. **Palco de tamanho fixo escalado por JS** (`--sw`/`--sh` no CSS, `transform: scale()` no script).
+   Composição radial feita com `%` quebra em telas estreitas; com escala, não. Abaixo de 760px o palco
+   troca pra uma composição compacta e as pílulas ficam **só com ícone** — rótulo de 16px reduzido a 0.4
+   fica ilegível, e o H2 da seção já nomeia os canais.
+3. **Ângulos dos agentes** ficam no meio dos 4 maiores vãos entre canais (-95°, 21°, 88°, 177°). Em ±40/±140
+   o agente ficava a 6° do Facebook e colidia quando os raios comprimem no mobile.
+4. **Ícone do WhatsApp → WhatsApp Business** (bolha com "B" no lugar do fone), desenhado inline. 19px em vez
+   de 17px: a bolha não preenche a caixa como o retângulo do Instagram, e 2px equilibram a massa óptica.
+5. **Subtítulo da seção**: as duas frases viraram um parágrafo só a 760px — cai de 4 pra 3 linhas.
+   Medido: cada frase sozinha precisa de 922px pra caber em 1 linha, e a maior linha do H2 tem 717px;
+   deixar o subtítulo mais largo que o título inverteria a hierarquia.
+
+Todo o movimento vive em `prefers-reduced-motion: no-preference`. Sem ele, anéis, linhas, pílulas,
+agentes, notebook e legenda seguem visíveis — só os pontos (decorativos) somem.
+
 ## Ajustes de 2026-09-01 (Bruno)
 
 1. **Menu transparente:** navbar adotou o vidro do padrão `content.buzzmonitor.com/monitoramento-com-ia` — `rgba(255,255,255,.80)` + `backdrop-filter:blur(5px)` + borda `#e2e8f0`.

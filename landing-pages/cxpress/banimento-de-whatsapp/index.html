@@ -562,59 +562,134 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ===== Omnichannel (diagrama canais > Cxpress > equipe) ===== */
     .omni .section-title{text-align:center;max-width:840px;margin:0 auto 20px}
-    .omni__sub{text-align:center;max-width:62ch;margin:0 auto 12px}
-    .omni__sub--2{margin-bottom:72px}
-    .fluxo{
-      display:grid;grid-template-columns:auto minmax(80px,170px) auto minmax(80px,170px) auto;
-      gap:26px;align-items:center;justify-content:center;
+    /* medido: cada frase sozinha precisa de 922px pra caber em 1 linha, e a maior
+       linha do H2 tem 717px — subtitulo mais largo que o titulo inverteria a
+       hierarquia. Com as duas frases num paragrafo so a 760px, cai de 4 pra 3 linhas. */
+    .omni__sub{text-align:center;max-width:760px;margin:0 auto 12px}
+    .omni__sub--2{margin-bottom:64px}
+    /* --- Diagrama radial: canais convergem para a plataforma, que distribui
+       para a equipe. Palco de tamanho fixo escalado por JS: composicao radial
+       feita com % quebra, com escala nao. --- */
+    .orbita{position:relative;width:100%;overflow:hidden}
+    .orbita__stage{
+      --sw:880;--sh:540;--cy:268px;
+      --d1:224px;--d2:352px;--d3:462px;--d4:530px;
+      --rp:1;--ra:130px;
+      position:relative;
+      width:calc(var(--sw) * 1px);height:calc(var(--sh) * 1px);
+      margin:0 auto;transform-origin:top center;
     }
-    .canais{display:grid;gap:12px}
-    .canal{
-      display:flex;align-items:center;gap:12px;
+    .orb-ring{
+      position:absolute;left:50%;top:var(--cy);
+      border:1.6px solid #E6E8F5;border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+    .orb-ring--1{width:var(--d1);height:var(--d1)}
+    .orb-ring--2{width:var(--d2);height:var(--d2)}
+    .orb-ring--3{width:var(--d3);height:var(--d3)}
+    .orb-ring--4{width:var(--d4);height:var(--d4)}
+
+    /* --a = angulo a partir das 12h, --r = raio; o contra-rotate mantem a pilula em pe */
+    .orb-node{
+      position:absolute;left:50%;top:var(--cy);
+      transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r) * var(--rp))) rotate(calc(-1 * var(--a)));
+    }
+    .orb-pill{
+      display:flex;align-items:center;gap:10px;white-space:nowrap;
       background:var(--white);border:1px solid var(--border);
-      border-radius:9999px;padding:11px 20px 11px 12px;
+      border-radius:9999px;padding:8px 18px 8px 8px;
       font-family:var(--font-display);font-weight:700;font-size:16px;
-      color:var(--primary-dark);white-space:nowrap;
-      box-shadow:0 1px 2px rgba(35,41,96,.05);
+      color:var(--primary-dark);
+      box-shadow:0 1px 2px rgba(35,41,96,.05),0 8px 22px rgba(35,41,96,.07);
     }
-    .canal i{
-      width:34px;height:34px;border-radius:50%;flex:0 0 auto;
+    .orb-pill i{
+      width:32px;height:32px;border-radius:50%;flex:0 0 auto;
       display:grid;place-items:center;background:var(--tint);color:var(--primary-deep);
     }
-    .canal svg{width:18px;height:18px}
-    .canal--wa i{background:rgba(33,204,120,.16);color:var(--wa-ink)}
-    /* trilho de fluxo: o tracejado anda da esquerda pra direita, indicando direcao */
-    .trilho{height:3px;border-radius:2px;position:relative;overflow:hidden;background:var(--border-strong)}
-    .trilho::after{
-      content:"";position:absolute;inset:0;
-      background:repeating-linear-gradient(90deg,var(--wa) 0 12px,transparent 12px 26px);
-      animation:fluir 1.4s linear infinite;
+    .orb-pill svg{width:17px;height:17px}
+    .orb-pill--wa i{background:rgba(33,204,120,.16);color:var(--wa-ink)}
+    .orb-pill--wa svg{width:19px;height:19px}
+
+    /* linha radial que o ponto percorre */
+    .orb-spoke{
+      position:absolute;left:50%;top:var(--cy);
+      height:2px;width:calc(var(--r) * var(--rp));
+      background:linear-gradient(90deg,rgba(74,105,189,.14),rgba(74,105,189,.46));
+      transform-origin:0 50%;
+      transform:rotate(calc(var(--a) - 90deg));
     }
-    @keyframes fluir{from{transform:translateX(0)}to{transform:translateX(26px)}}
-    .no-cx{
-      background:var(--primary-dark);color:var(--white);
-      border-radius:20px;padding:26px 30px;text-align:center;
-      box-shadow:0 18px 40px rgba(35,41,96,.24);
+    .orb-dot{
+      position:absolute;top:50%;left:0;
+      width:9px;height:9px;border-radius:50%;
+      background:var(--wa);box-shadow:0 0 0 4px rgba(33,204,120,.18);
+      transform:translate(-50%,-50%);opacity:0;
     }
-    .no-cx img{display:block;height:30px;width:auto;margin:0 auto 12px;min-height:0}
-    .no-cx small{
-      display:block;font-family:var(--font-display);font-weight:700;
-      font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-      color:var(--primary-lighter);
+
+    .orb-laptop{position:absolute;left:50%;top:var(--cy);transform:translate(-50%,-50%);width:186px}
+    .orb-laptop__screen{
+      background:var(--primary-dark);border-radius:12px 12px 4px 4px;
+      height:112px;display:grid;place-items:center;
+      box-shadow:0 20px 44px rgba(35,41,96,.28);
     }
-    .no-equipe{
-      background:var(--white);border:2px solid var(--wa);
-      border-radius:20px;padding:24px 26px;text-align:center;
-      font-family:var(--font-display);font-weight:700;font-size:17px;
-      color:var(--primary-dark);line-height:1.35;max-width:190px;
-      box-shadow:var(--shadow-card);
+    .orb-laptop__screen img{display:block;width:118px;height:27px;min-height:0}
+    .orb-laptop__base{
+      height:9px;margin:0 -16px;border-radius:0 0 9px 9px;
+      background:linear-gradient(180deg,var(--primary-dark),#1a1f4c);
     }
-    .no-equipe i{
-      display:grid;place-items:center;width:44px;height:44px;
-      margin:0 auto 12px;border-radius:50%;
-      background:rgba(33,204,120,.16);color:var(--wa-ink);
+    .orb-laptop__base::after{
+      content:"";display:block;width:44px;height:3px;border-radius:2px;
+      background:rgba(255,255,255,.28);margin:3px auto 0;
     }
-    .no-equipe svg{width:23px;height:23px}
+
+    .orb-agent{
+      display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+      background:var(--white);border:2px solid var(--border-strong);color:var(--primary-deep);
+      box-shadow:0 6px 16px rgba(35,41,96,.12);
+    }
+    .orb-agent svg{width:21px;height:21px}
+
+    .orb-legend{
+      position:absolute;left:0;bottom:0;
+      display:flex;align-items:center;gap:9px;
+      font-family:var(--font-display);font-weight:700;
+      font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--text-muted);
+    }
+    .orb-legend b{
+      display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+      background:var(--white);border:2px solid var(--border-strong);color:var(--primary-deep);
+    }
+    .orb-legend b svg{width:13px;height:13px}
+
+    /* o movimento vive todo aqui: sem ele o diagrama fica parado e completo */
+    @media (prefers-reduced-motion: no-preference){
+      .orb-dot{animation:convergir 3s cubic-bezier(.55,0,.5,1) infinite}
+      .orb-spoke--2 .orb-dot{animation-delay:.6s}
+      .orb-spoke--3 .orb-dot{animation-delay:1.2s}
+      .orb-spoke--4 .orb-dot{animation-delay:1.8s}
+      .orb-spoke--5 .orb-dot{animation-delay:2.4s}
+      .orb-laptop__screen{animation:receber 3s ease-out infinite}
+      .orb-agent{animation:atender 3s ease-out infinite}
+      .orb-ag--2 .orb-agent{animation-delay:.75s}
+      .orb-ag--3 .orb-agent{animation-delay:1.5s}
+      .orb-ag--4 .orb-agent{animation-delay:2.25s}
+    }
+    @keyframes convergir{
+      0%{transform:translate(-50%,-50%) translateX(calc(var(--r) * var(--rp)));opacity:0}
+      12%{opacity:1}
+      84%{opacity:1}
+      100%{transform:translate(-50%,-50%) translateX(0);opacity:0}
+    }
+    @keyframes receber{
+      0%,72%{box-shadow:0 20px 44px rgba(35,41,96,.28)}
+      84%{box-shadow:0 20px 44px rgba(35,41,96,.28),0 0 0 12px rgba(33,204,120,.16)}
+      100%{box-shadow:0 20px 44px rgba(35,41,96,.28)}
+    }
+    @keyframes atender{
+      0%,70%{border-color:var(--border-strong);transform:scale(1)}
+      84%{border-color:var(--wa);transform:scale(1.12)}
+      100%{border-color:var(--border-strong);transform:scale(1)}
+    }
 
     /* ===== IA (texto + midia) ===== */
     .ia__inner{
@@ -836,19 +911,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
 
     /* ===== Responsivo ===== */
-    @media (max-width:1080px){
-      .fluxo{grid-template-columns:1fr;gap:20px;justify-items:center}
-      .canais{width:100%;max-width:420px;grid-template-columns:repeat(2,1fr)}
-      .canal{font-size:15px;padding:10px 16px 10px 10px}
-      /* no empilhado o trilho vira vertical e o tracejado desce */
-      .trilho{width:3px;height:44px;justify-self:center}
-      .trilho::after{
-        background:repeating-linear-gradient(180deg,var(--wa) 0 12px,transparent 12px 26px);
-        animation-name:fluirV;
+    /* Abaixo de 760px o palco encolhe e as pilulas ficam so com icone: rotulo
+       de 16px reduzido a 0.4 vira ilegivel, e o H2 da secao ja nomeia os canais. */
+    @media (max-width:760px){
+      .orbita__stage{
+        --sw:380;--sh:380;--cy:190px;
+        --d1:134px;--d2:211px;--d3:277px;--d4:318px;
+        --rp:.60;--ra:145px;
       }
-      @keyframes fluirV{from{transform:translateY(0)}to{transform:translateY(26px)}}
-      .no-cx{width:100%;max-width:280px}
-      .no-equipe{max-width:280px;width:100%}
+      .orb-pill{padding:6px;gap:0}
+      .orb-pill span{display:none}
+      .orb-pill i{width:36px;height:36px}
+      .orb-pill svg{width:19px;height:19px}
+      .orb-laptop{width:118px}
+      .orb-laptop__screen{height:68px;border-radius:9px 9px 3px 3px}
+      .orb-laptop__screen img{width:76px;height:18px}
+      .orb-laptop__base{height:7px;margin:0 -11px}
+      .orb-agent{width:34px;height:34px}
+      .orb-agent svg{width:16px;height:16px}
+      .orb-legend{font-size:12px;gap:7px}
+      .orb-legend b{width:22px;height:22px}
+      .orb-legend b svg{width:11px;height:11px}
     }
     @media (max-width:980px){
       .hero__inner{grid-template-columns:1fr;padding:32px 24px 52px;gap:36px}
@@ -881,7 +964,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .clientes__group{gap:24px;padding-inline:12px}
       .clientes__group img{height:28px;max-width:132px}
       .clientes__track{animation-duration:46s}
-      .canais{grid-template-columns:1fr}
       /* GUIDELINES 20 - pisos de tipografia mobile */
       .section-sub,.omni__sub,.ia__sub,.fecho__sub{font-size:18px}
       .sinal,.recurso{font-size:17px}
@@ -926,7 +1008,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .api__sub,
     .recurso .t,
     .omni__sub,
-    .no-equipe,
     .ia__sub,
     .faq summary,
     .fecho h2,
@@ -1262,26 +1343,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="reveal">
           <span class="sect-rule sect-rule--center" aria-hidden="true"></span>
           <h2 id="omni-title" class="section-title">WhatsApp, redes sociais, e-mail e telefone em uma única plataforma</h2>
-          <p class="omni__sub section-sub">Além do WhatsApp, a Cxpress permite que sua equipe centralize diferentes canais de atendimento em uma única fila.</p>
-          <p class="omni__sub omni__sub--2 section-sub">Assim, seu cliente pode começar uma conversa pelo WhatsApp e continuar sendo atendido sem perder seu histórico.</p>
+          <p class="omni__sub omni__sub--2 section-sub">Além do WhatsApp, a Cxpress permite que sua equipe centralize diferentes canais de atendimento em uma única fila. Assim, seu cliente pode começar uma conversa pelo WhatsApp e continuar sendo atendido sem perder seu histórico.</p>
         </div>
-        <div class="fluxo reveal">
-          <ul class="canais">
-            <li class="canal canal--wa"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></i>WhatsApp</li>
-            <li class="canal"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg></i>Instagram</li>
-            <li class="canal"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.75 8.44-4.92 8.44-9.94z"/></svg></i>Facebook</li>
-            <li class="canal"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></i>E-mail</li>
-            <li class="canal"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 3.5h3l1.5 3.8-1.9 1.5a12.5 12.5 0 006.4 6.4l1.5-1.9 3.8 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 014.2 5.7a2 2 0 012-2.2z"/></svg></i>Telefone</li>
-          </ul>
-          <span class="trilho" aria-hidden="true"></span>
-          <div class="no-cx">
-            <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" width="150" height="30">
+        <div class="orbita reveal">
+          <div class="orbita__stage" role="img" aria-label="Diagrama: WhatsApp, Instagram, Facebook, e-mail e telefone convergem por linhas radiais para a plataforma da Cxpress no centro, que distribui os atendimentos para a equipe em volta.">
+            <span class="orb-ring orb-ring--1" aria-hidden="true"></span>
+            <span class="orb-ring orb-ring--2" aria-hidden="true"></span>
+            <span class="orb-ring orb-ring--3" aria-hidden="true"></span>
+            <span class="orb-ring orb-ring--4" aria-hidden="true"></span>
+            <span class="orb-spoke orb-spoke--1" style="--a:-56deg;--r:228px" aria-hidden="true"><i class="orb-dot"></i></span>
+            <span class="orb-spoke orb-spoke--2" style="--a:-6deg;--r:224px" aria-hidden="true"><i class="orb-dot"></i></span>
+            <span class="orb-spoke orb-spoke--3" style="--a:48deg;--r:222px" aria-hidden="true"><i class="orb-dot"></i></span>
+            <span class="orb-spoke orb-spoke--4" style="--a:128deg;--r:206px" aria-hidden="true"><i class="orb-dot"></i></span>
+            <span class="orb-spoke orb-spoke--5" style="--a:-134deg;--r:210px" aria-hidden="true"><i class="orb-dot"></i></span>
+            <span class="orb-node" style="--a:-56deg;--r:228px"><span class="orb-pill orb-pill--wa"><i><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.4 A9.6 9.6 0 0 0 3.76 16.95 L2.4 21.6 L7.15 20.3 A9.6 9.6 0 1 0 12 2.4 Z" stroke="currentColor" stroke-width="1.85" stroke-linejoin="round"/><path fill="currentColor" fill-rule="evenodd" d="M9.55 7.55h3.4a2.4 2.4 0 011.63 4.16 2.55 2.55 0 01-1.28 4.74H9.55Zm1.9 1.8v2.15h1.5a1.075 1.075 0 000-2.15Zm0 3.85v1.95h1.75a.975.975 0 000-1.95Z"/></svg></i><span>WhatsApp</span></span></span>
+            <span class="orb-node" style="--a:-6deg;--r:224px"><span class="orb-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.2 3.5h3l1.5 3.8-1.9 1.5a12.5 12.5 0 006.4 6.4l1.5-1.9 3.8 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 014.2 5.7a2 2 0 012-2.2z"/></svg></i><span>Telefone</span></span></span>
+            <span class="orb-node" style="--a:48deg;--r:222px"><span class="orb-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></svg></i><span>Instagram</span></span></span>
+            <span class="orb-node" style="--a:128deg;--r:206px"><span class="orb-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></i><span>E-mail</span></span></span>
+            <span class="orb-node" style="--a:-134deg;--r:210px"><span class="orb-pill"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.75 8.44-4.92 8.44-9.94z"/></svg></i><span>Facebook</span></span></span>
+            <span class="orb-node orb-ag--1" style="--a:-95deg;--r:var(--ra)"><span class="orb-agent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></span></span>
+            <span class="orb-node orb-ag--2" style="--a:21deg;--r:var(--ra)"><span class="orb-agent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></span></span>
+            <span class="orb-node orb-ag--3" style="--a:88deg;--r:var(--ra)"><span class="orb-agent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></span></span>
+            <span class="orb-node orb-ag--4" style="--a:177deg;--r:var(--ra)"><span class="orb-agent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></span></span>
+            <div class="orb-laptop">
+              <div class="orb-laptop__screen"><img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="Cxpress" width="118" height="27"></div>
+              <div class="orb-laptop__base" aria-hidden="true"></div>
+            </div>
+            <p class="orb-legend"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></b>Equipe de atendimento</p>
           </div>
-          <span class="trilho" aria-hidden="true"></span>
-          <p class="no-equipe">
-            <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="8.4" r="3.3"/><path d="M3.4 19.6c0-3.2 2.6-5.5 5.8-5.5s5.8 2.3 5.8 5.5"/><path d="M16.3 6.1a3.1 3.1 0 010 6"/><path d="M17.6 14.4c1.9.7 3.1 2.5 3.1 4.6"/></svg></i>
-            Equipe de atendimento
-          </p>
         </div>
       </div>
     </section>
@@ -1473,6 +1562,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
       els.forEach(function(el){io.observe(el)});
+    })();
+
+    /* Escala o palco do diagrama radial pra caber na largura disponivel.
+       O tamanho de projeto vem do CSS (--sw/--sh), entao a media query de
+       mobile troca a composicao e este codigo continua valendo. */
+    (function(){
+      var wrap = document.querySelector('.orbita');
+      if(!wrap) return;
+      var stage = wrap.querySelector('.orbita__stage');
+      if(!stage) return;
+      function ajustar(){
+        var cs = getComputedStyle(stage);
+        var w = parseFloat(cs.getPropertyValue('--sw'));
+        var h = parseFloat(cs.getPropertyValue('--sh'));
+        if(!w || !h) return;
+        var escala = Math.min(1, wrap.clientWidth / w);
+        stage.style.transform = 'scale(' + escala + ')';
+        wrap.style.height = (h * escala) + 'px';
+      }
+      ajustar();
+      if('ResizeObserver' in window){ new ResizeObserver(ajustar).observe(wrap); }
+      else { window.addEventListener('resize', ajustar); }
+      if(document.fonts && document.fonts.ready){ document.fonts.ready.then(ajustar); }
     })();
   </script>
 </body>
