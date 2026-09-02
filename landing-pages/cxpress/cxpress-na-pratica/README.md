@@ -64,11 +64,12 @@ Migrar o manifest para o formato `regions` e rodar `/lp-revisar` para completar 
 ## Estado
 
 - [x] HTML gerado
-- [ ] OG image 1200×630 → `assets/og-cxpress-na-pratica.png` (arquivo **único** — nunca também `og-image.png`).
-      Template em `.claude/skills/lp-gerar/og-template.html` + Chrome headless.
+- [x] OG image 1200×630 → `assets/og-cxpress-na-pratica.png` (template em `assets/og-template.html`)
 - [ ] Revisão — rodar `/lp-revisar cxpress/cxpress-na-pratica`
-- [ ] Formulário integrado — rodar `/lp-integrar-form cxpress/cxpress-na-pratica "snippet"`
-- [ ] Publicado — rodar `/lp-publicar cxpress cxpress-na-pratica content.cxpress.io`
+- [ ] **Formulário integrado** — está em mock (`action="#"`), não captura lead.
+      Rodar `/lp-integrar-form cxpress/cxpress-na-pratica "snippet"` antes de rodar mídia.
+- [x] Publicado em 2026-09-02 → https://content.cxpress.io/cxpress-na-pratica
+      PR #476 · deploy CI run 33667522244 · relatório no Notion (Entregas)
 
 ## Assets referenciados
 
