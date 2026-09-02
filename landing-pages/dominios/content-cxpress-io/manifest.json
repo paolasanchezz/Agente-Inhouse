@@ -36,6 +36,11 @@
       "source": "landing-pages/cxpress/atendimento-digital"
     },
     {
+      "slug": "atendimento-domingo",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atendimento-domingo"
+    },
+    {
       "slug": "atendimento-sem-metrica",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/atendimento-sem-metrica"
