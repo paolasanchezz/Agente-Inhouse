@@ -201,6 +201,11 @@
       "source": "landing-pages/cxpress/sector-marketing-latam"
     },
     {
+      "slug": "telefonia-ia-latam",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/telefonia-ia-latam"
+    },
+    {
       "slug": "video-atendimento",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/video-atendimento"

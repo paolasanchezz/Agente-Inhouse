@@ -1,0 +1,112 @@
+LP: cxpress / telefonia-ia-latam
+IDIOMA: ES-LATAM (es-419)
+FONTE: https://www.cxpress.ai/telefono + brand/cxpress/BRANDBOOK.md §2 (Modulos Principais, Features de IA, Diferenciais-Chave)
+ESTAGIO: MoFu/BoFu -> form na ultima secao (GUIDELINES §10)
+REFERENCIA DE ESTILO: landing-pages/cxpress/agente-concierge-latam
+
+=== HERO ===
+OVERLINE: Cxpress.voz
+H1: Tu cliente repite la misma historia en cada llamada
+BODY: Cxpress.voz es la telefonía en la nube que contesta con IA, dirige cada llamada a quien sabe resolverla y guarda el historial junto al de WhatsApp, correo y redes. Todo en el mismo panel.
+CTA: Quiero saber más
+CHIPS: Llamadas · WhatsApp · Voicebot
+
+=== CLIENTES ===
+LABEL: Clientes que confían en Cxpress para optimizar la atención al cliente
+
+=== TELEFONIA (Cxpress.voz) ===
+KICKER: Cxpress.voz
+H2: La central telefónica dejó de ser una caja en la pared
+BODY: Telefonía en la nube, en el mismo panel donde ya atiendes todo lo demás.
+
+01 · H3: Cada llamada llega a quien sabe resolverla
+BODY: La distribución inteligente organiza la fila, da instrucciones claras y dirige cada contacto al colaborador más adecuado. Menos transferencias y menos "le paso con el área".
+
+02 · H3: Llama desde donde estés
+BODY: Computadora, celular o teléfono IP. Sin centralita física, sin cables y sin esperar al técnico.
+
+03 · H3: Un voicebot que contesta al primer timbre
+BODY: Atención automatizada las 24 horas, los 7 días, con respuestas rápidas y personalizadas en lenguaje natural.
+
+04 · H3: Cada llamada, también en texto
+BODY: La transcripción automática convierte la conversación en texto para revisar casos, entrenar al equipo y auditar sin volver a escuchar el audio.
+
+05 · H3: Grabaciones y métricas a la mano
+BODY: Accede a las grabaciones y sigue los indicadores de la operación en paneles, sin armar reportes a mano.
+
+06 · H3: Teléfono y WhatsApp, un solo número
+BODY: Integra los dos canales en el mismo número y deja de repartir contactos distintos según por dónde te escriban.
+
+=== CTA INTERMEDIO ===
+BODY: Agenda un diagnóstico gratuito de tu operación de atención con nuestros consultores especializados.
+CTA: Agendar
+
+=== TODA LA PLATAFORMA ===
+KICKER: Más allá del teléfono
+H2: El teléfono es un canal. Cxpress es toda la operación.
+BODY: Los módulos que ya vienen en la misma plataforma.
+
+01 Centralización de canales: WhatsApp con API oficial, correo electrónico, Facebook, Instagram, teléfono y el chat del sitio en un solo panel, con el historial completo de cada cliente.
+02 Automatización con IA: ChatGPT integrado responde el primer nivel en lenguaje natural, a cualquier hora, y pasa la conversación a una persona con todo el contexto.
+03 Gestión de tickets: distribución automática o manual por sector y por agente, con las filas organizadas y el historial en un solo lugar.
+04 Paneles analíticos: los indicadores del área en tableros que reemplazan las hojas de cálculo.
+05 Chatbots con voz personalizada: bots con la personalidad de voz que configura tu empresa, conectados al resto de los canales.
+
+=== DIFERENCIALES ===
+KICKER: Por qué Cxpress
+H2: Lo que no viene en cualquier plataforma
+
+H3: API oficial de WhatsApp
+BODY: Integración certificada, no WhatsApp Web. Tu número trabaja con las reglas de Meta a favor.
+
+H3: Un historial por cliente, no por canal
+BODY: Quien atiende ve todo lo anterior, sin importar si el contacto llegó por teléfono, WhatsApp o correo.
+
+H3: La IA sabe cuándo ceder el turno
+BODY: Cuando el caso se complica, la conversación pasa a una persona con el contexto completo.
+
+H3: Pensada para empresas que no tienen un área de TI
+BODY: Implementación simple, sin el peso ni el precio de una solución enterprise.
+
+=== QUIENES SOMOS ===
+KICKER: Quiénes somos
+H2: La plataforma que unifica toda tu atención
+BODY: Cxpress es una plataforma en la nube de Grupo Elife que unifica y automatiza los canales de atención de tu empresa. WhatsApp, redes sociales, correo electrónico y teléfono se integran para ofrecer una visión única y simplificada de la interacción con el cliente, desde el primer contacto hasta la resolución del caso.
+BODY: La Inteligencia Artificial de Cxpress automatiza las primeras interacciones en lenguaje natural y gestiona las colas, lo que optimiza la productividad de los equipos de atención.
+
+=== FAQ ===
+KICKER: Antes de empezar
+H2: Preguntas frecuentes
+
+P: ¿Cuáles son los requisitos previos para utilizar Cxpress?
+R: Para usar la herramienta necesitas un sitio web activo y una persona responsable de administrar la plataforma.
+
+P: ¿La inteligencia artificial (IA) atiende por sí sola?
+R: No. La IA de Cxpress realiza únicamente el primer nivel de atención (N1), respondiendo preguntas sobre servicios y productos. Un colaborador humano debe estar disponible para las cuestiones más complejas que el chatbot no pueda responder o cuando el cliente desee hablar con un agente humano.
+
+P: ¿Puedo conectar más de un número a Cxpress?
+R: Sí, es posible.
+
+P: ¿Qué canales se pueden integrar?
+R: Se integran nativamente WhatsApp, correo electrónico, redes sociales (Facebook e Instagram), teléfono y el chat del sitio web.
+
+P: ¿La plataforma es compatible con integración de CRM?
+R: Sí, es posible integrarla con sistemas de CRM. Antes hacemos un análisis con nuestro equipo técnico para garantizar que todo funcione bien.
+
+=== CTA FINAL ===
+KICKER: Empieza hoy
+H2: ¿Quieres saber más? Habla con nosotros
+BODY: Explora nuestra plataforma en la práctica y obtén una evaluación gratuita de tu operación de atención con la orientación de nuestros especialistas.
+NOTA DO FORM: Para usar Cxpress, tu empresa necesita un sitio web activo.
+CTA: Enviar
+
+=== NOTAS DE ADAPTACAO (para revisao) ===
+- H1 agora lidera pela DOR (fundamentos-copy §0), nao pela solucao. A dor escolhida ("repetir a
+  historia a cada ligacao") e a que o diferencial de historico unificado resolve.
+- Features novas vieram do BRANDBOOK §2, nao inventadas: transcricao automatica de chamadas,
+  tickets originados por voz, chatbot com voz personalizada, API oficial do WhatsApp.
+- Vocabulario ES-LATAM: computadora (nao ordenador), celular (nao movil), hojas de calculo.
+- Antitese-por-negacao usada 2x (limite do anti-IA): "Integración certificada, no WhatsApp Web"
+  e "Un historial por cliente, no por canal".
+- Zero em-dash. Zero "de forma/manera X".
+- Listas com 6 / 5 / 4 / 5 itens (nunca a cadencia de 3 que denuncia IA).
