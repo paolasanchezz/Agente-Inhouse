@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es-419" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKQBX2MG');</script>
+<!-- End Google Tag Manager -->
+<title>Museo de las Conversaciones Perdidas</title>
+<meta name="description" content="Una experiencia de Buzzmonitor. Ponte los audífonos y entra a las conversaciones que ocurren sobre las marcas en México mientras nadie las escucha.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Buzzmonitor">
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Buzzmonitor">
+<meta property="og:locale" content="es_LA">
+<meta property="og:url" content="https://{{DOMAIN}}/buzz-digital-experience">
+<meta property="og:title" content="Museo de las Conversaciones Perdidas">
+<meta property="og:description" content="Mientras estás aquí, México sigue hablando de las marcas. Una experiencia interactiva de Buzzmonitor.">
+<meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Museo de las Conversaciones Perdidas, una experiencia de Buzzmonitor">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Museo de las Conversaciones Perdidas">
+<meta name="twitter:description" content="Mientras estás aquí, México sigue hablando de las marcas. Una experiencia interactiva de Buzzmonitor.">
+<meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#07030C;
+  --ink-2:#12071C;
+  --purple:#390155;
+  --purple-deep:#25013A;
+  --orange:#EB7C2E;
+  --orange-soft:#FFD5C3;
+  --teal:#0E9D9B;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,.60);
+  --muted-2:rgba(255,255,255,.42);
+  --line:rgba(255,255,255,.12);
+  --glass:rgba(255,255,255,.045);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:"League Spartan","Trebuchet MS",system-ui,sans-serif;
+  --body:"Lato","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--white);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  overflow-x:hidden;
+}
+body.is-locked{overflow:hidden;height:100vh}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:2000;background:var(--orange);color:#1a0c00;padding:12px 18px;font-family:var(--display);font-weight:800}
+.skip:focus{left:12px;top:12px}
+
+h1,h2,h3,h4,.display{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1;margin:0}
+h1{font-size:clamp(38px,6.6vw,86px)}
+h2{font-size:clamp(30px,4.6vw,62px)}
+h3{font-size:clamp(22px,2.6vw,32px);letter-spacing:-.01em}
+p{margin:0}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:var(--muted);max-width:56ch}
+.tiny{font-size:14px;color:var(--muted-2);line-height:1.5}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.tag{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange)}
+.tag--muted{color:var(--muted-2)}
+.wrap{width:min(1120px,90vw);margin-inline:auto}
+.wrap--narrow{width:min(820px,90vw)}
+.stack>*+*{margin-top:22px}
+
+/* ---------- reveal engine ---------- */
+.rv{opacity:0;transform:translate3d(0,34px,0);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:var(--d,0ms);will-change:opacity,transform}
+.rv--left{transform:translate3d(-40px,0,0)}
+.rv--scale{transform:scale(.92)}
+.rv--blur{filter:blur(10px)}
+.rv.in{opacity:1;transform:none;filter:none}
+html.no-js .rv{opacity:1;transform:none;filter:none}
+.is-hidden{display:none}
+html.no-js .flood__center,html.no-js .swap,html.no-js .verdict__b,html.no-js .stamp,
+html.no-js .gate,html.no-js .twist,html.no-js .chain__i,html.no-js .found,
+html.no-js .galaxy__line,html.no-js .echo{opacity:1;transform:none;pointer-events:auto}
+html.no-js .stamp{transform:rotate(-2.5deg)}
+html.no-js .is-hidden{display:grid}
+html.no-js .cue,html.no-js .flood__field,html.no-js .noise,html.no-js .galaxy__canvas,html.no-js .clock{display:none}
+html.no-js .flood{height:auto}
+html.no-js .galaxy{height:auto}
+html.no-js .scene__stage{position:static;height:auto;padding:clamp(90px,14vh,160px) 20px}
+html.no-js .scan__row{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .marquee__row{animation:none!important}
+  .drop{animation:none!important}
+}
+
+/* ---------- chrome ---------- */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;background:transparent;z-index:900}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--teal));box-shadow:0 0 18px rgba(235,124,46,.6)}
+.hud{position:fixed;top:18px;right:18px;z-index:1002;display:flex;gap:10px;align-items:center}
+.hud__room{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.16em;color:var(--muted);background:rgba(0,0,0,.35);border:1px solid var(--line);padding:8px 12px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(8px)}
+.sound{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--white);padding:8px 14px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(8px);transition:border-color .3s,color .3s}
+.sound:hover{border-color:var(--orange);color:var(--orange)}
+.sound[aria-pressed="true"]{border-color:var(--orange);color:var(--orange)}
+.sound__eq{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.sound__eq i{width:2px;height:4px;background:currentColor;display:block}
+.sound[aria-pressed="true"] .sound__eq i{animation:eq .9s var(--ease) infinite alternate}
+.sound[aria-pressed="true"] .sound__eq i:nth-child(2){animation-delay:.15s}
+.sound[aria-pressed="true"] .sound__eq i:nth-child(3){animation-delay:.3s}
+@keyframes eq{from{height:3px}to{height:12px}}
+body.is-locked .hud__room{opacity:0;pointer-events:none}
+@media (max-width:640px){.hud__room{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#210E00;border:0;border-radius:999px;padding:18px 34px;font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s;box-shadow:0 10px 40px rgba(235,124,46,.25)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 60px rgba(235,124,46,.45)}
+.btn--ghost{background:transparent;color:var(--white);border:1px solid var(--line);box-shadow:none}
+.btn--ghost:hover{border-color:var(--orange);color:var(--orange);box-shadow:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.next{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:8px 0;color:var(--muted);font-family:var(--display);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:14px;transition:color .3s,gap .3s}
+.next:hover{color:var(--orange);gap:16px}
+.next span{display:inline-block;animation:bob 2.4s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ---------- portal ---------- */
+html.no-js .portal{display:none}
+.portal{position:fixed;inset:0;z-index:1000;background:radial-gradient(120% 90% at 50% 0%,#1B0430 0%,var(--ink) 62%);display:grid;place-items:center;padding:32px;text-align:center;transition:opacity 1.1s var(--ease),visibility 1.1s}
+.portal.is-gone{opacity:0;visibility:hidden;pointer-events:none}
+.portal__inner{width:min(900px,92vw);display:grid;gap:clamp(26px,4vh,44px);justify-items:center}
+.portal h1{font-size:clamp(34px,5.6vw,72px);max-width:22ch}
+.portal h1 em{font-style:normal;color:var(--orange)}
+.counters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%}
+.counter{border:1px solid var(--line);background:var(--glass);border-radius:14px;padding:18px 12px;text-align:left}
+.counter__n{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.2vw,42px);line-height:1;color:var(--white);font-variant-numeric:tabular-nums}
+.counter__l{display:block;margin-top:8px;font-size:13px;letter-spacing:.04em;color:var(--muted-2)}
+.counter:nth-child(1) .counter__n{color:var(--orange)}
+.counter:nth-child(3) .counter__n{color:var(--teal)}
+@media (max-width:720px){.counters{grid-template-columns:repeat(2,1fr)}}
+.portal__ask{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:.02em}
+.headphones{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted-2)}
+
+/* ---------- generic sala ---------- */
+.sala{position:relative;padding:clamp(110px,16vh,200px) 0;border-top:1px solid rgba(255,255,255,.06)}
+.sala--flush{border-top:0}
+.sala__head{display:grid;gap:18px;margin-bottom:clamp(40px,6vh,72px)}
+.sala--center .sala__head{justify-items:center;text-align:center}
+.scene{position:relative}
+.scene__stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+
+/* ---------- 01 flood ---------- */
+.flood{height:520vh}
+.flood__stage{background:var(--ink)}
+.flood__field{position:absolute;inset:0}
+.bubble{position:absolute;max-width:min(340px,74vw);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:16px;padding:14px 18px;font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);opacity:0;transform:translateY(20px) scale(.95) rotate(var(--rot,0deg));transition:opacity .5s var(--ease),transform .6s var(--ease);backdrop-filter:blur(4px)}
+.bubble.on{opacity:1;transform:translateY(0) scale(1) rotate(var(--rot,0deg))}
+@media (max-width:720px){.bubble{max-width:68vw;font-size:14px;padding:11px 14px;border-radius:13px}}
+.bubble b{display:block;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:6px}
+.flood__center{position:relative;text-align:center;z-index:3;display:grid;gap:22px;justify-items:center;width:min(760px,88vw);opacity:0;transition:opacity .8s var(--ease)}
+.flood__center.on{opacity:1}
+.strike{position:relative;display:inline-block;font-family:var(--display);font-weight:900;font-size:clamp(44px,9vw,120px);letter-spacing:-.03em}
+.strike::after{content:"";position:absolute;left:-4%;right:-4%;top:52%;height:8px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.strike.cut::after{transform:scaleX(1)}
+.swap{display:block;font-family:var(--display);font-weight:900;font-size:clamp(30px,5.4vw,68px);color:var(--orange);opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease) .2s,transform .8s var(--ease) .2s}
+.swap.on{opacity:1;transform:none}
+.cue{position:absolute;left:50%;bottom:clamp(40px,8vh,90px);transform:translateX(-50%);z-index:4;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap;transition:opacity .6s var(--ease)}
+.cue span{display:inline-block;animation:bob 2.2s var(--ease) infinite}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(70% 60% at 50% 50%,transparent 30%,rgba(7,3,12,.94) 78%);transition:opacity .6s linear}
+
+/* ---------- 02 puertas ---------- */
+.doors{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.door{position:relative;display:grid;gap:14px;align-content:end;min-height:min(46vh,320px);padding:22px 20px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.06));text-align:left;overflow:hidden;transition:transform .5s var(--ease),border-color .4s,background .4s}
+.door::before{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.door:hover{transform:translateY(-8px);border-color:rgba(235,124,46,.5)}
+.door:hover::before,.door[aria-pressed="true"]::before{transform:scaleX(1)}
+.door[aria-pressed="true"]{border-color:var(--orange);background:linear-gradient(180deg,rgba(235,124,46,.16),rgba(235,124,46,.04))}
+.door__ico{font-size:30px;line-height:1}
+.door__name{font-family:var(--display);font-weight:800;font-size:clamp(19px,1.9vw,24px);letter-spacing:.02em}
+.door__hint{font-size:14px;color:var(--muted-2);line-height:1.4}
+@media (max-width:980px){.doors{grid-template-columns:repeat(2,1fr)}.door{min-height:180px}}
+@media (max-width:520px){.doors{grid-template-columns:1fr}.door{min-height:0}}
+.gate{margin-top:36px;display:grid;gap:16px;justify-items:start;opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);pointer-events:none}
+.gate.on{opacity:1;transform:none;pointer-events:auto}
+
+/* ---------- 03 conversacion perdida ---------- */
+.thread{border:1px solid var(--line);border-radius:20px;background:var(--glass);overflow:hidden}
+.thread__bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.25)}
+.thread__src{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+.clock{font-family:var(--display);font-weight:800;font-size:22px;color:var(--orange);font-variant-numeric:tabular-nums}
+.thread__post{padding:26px 22px;font-size:clamp(19px,2.1vw,26px);line-height:1.35;font-family:var(--display);font-weight:700;letter-spacing:-.01em}
+.thread__list{list-style:none;margin:0;padding:0 22px 22px;display:grid;gap:12px}
+.reply{display:grid;gap:6px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.reply.on{opacity:1;transform:none}
+.reply span{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2)}
+.reply.rival{border-color:rgba(235,124,46,.45);background:rgba(235,124,46,.10)}
+.reply.rival span{color:var(--orange)}
+.stamp{margin-top:26px;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:6px;background:var(--orange);color:#210E00;font-family:var(--display);font-weight:900;letter-spacing:.1em;text-transform:uppercase;transform:rotate(-2.5deg) scale(.8);opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.stamp.on{opacity:1;transform:rotate(-2.5deg) scale(1)}
+.verdict{margin-top:44px;display:grid;gap:10px}
+.verdict__a{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.6vw,48px);color:var(--muted)}
+.verdict__b{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,80px);color:var(--orange);opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) .6s,transform .9s var(--ease) .6s}
+.verdict__b.on{opacity:1;transform:none}
+
+/* ---------- 04 tu marca ---------- */
+.field{display:grid;gap:10px;max-width:520px}
+.field label{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:17px 18px;color:var(--white);font-family:var(--body);font-size:17px;transition:border-color .3s,background .3s}
+.field input::placeholder{color:rgba(255,255,255,.32)}
+.field input:focus{border-color:var(--orange);background:rgba(235,124,46,.07);outline:none}
+.scan{margin-top:34px;display:grid;gap:12px;max-width:560px}
+.scan__row{display:flex;align-items:center;gap:14px;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);opacity:0;transform:translateX(-12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.scan__row.on{opacity:1;transform:none}
+.scan__row.done{color:var(--white)}
+.scan__row i{flex:1;height:1px;background:var(--line);position:relative;overflow:hidden}
+.scan__row i::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease)}
+.scan__row.done i::after{transform:scaleX(1)}
+.found{margin-top:34px;font-family:var(--display);font-weight:900;font-size:clamp(30px,5vw,64px);color:var(--teal);opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.found.on{opacity:1;transform:none}
+
+/* ---------- 05 espejo ---------- */
+.mirror{display:grid;gap:18px}
+.insight{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--glass);transition:border-color .4s,transform .5s var(--ease)}
+.insight:hover{border-color:rgba(235,124,46,.4);transform:translateY(-4px)}
+.insight__n{font-family:var(--display);font-weight:900;font-size:clamp(26px,3vw,38px);color:var(--orange);line-height:1}
+.insight__k{font-family:var(--display);font-weight:800;font-size:clamp(18px,1.8vw,22px);letter-spacing:.06em;text-transform:uppercase}
+.insight__q{margin-top:12px;font-size:clamp(17px,1.6vw,20px);color:var(--muted);line-height:1.5}
+@media (max-width:560px){.insight{grid-template-columns:1fr;gap:12px}}
+
+/* ---------- 06 constelacion ---------- */
+.galaxy{height:420vh}
+.galaxy__stage{background:radial-gradient(120% 100% at 50% 50%,#160329 0%,var(--ink) 70%)}
+.galaxy__canvas{position:absolute;inset:0;width:100%;height:100%}
+.galaxy__core{position:relative;z-index:2;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(20px,2.6vw,34px);letter-spacing:.04em;text-transform:uppercase;padding:18px 26px;border:1px solid rgba(235,124,46,.5);border-radius:999px;background:rgba(7,3,12,.72);backdrop-filter:blur(6px);max-width:80vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.galaxy__line{position:absolute;left:50%;bottom:clamp(48px,9vh,110px);transform:translateX(-50%);width:min(760px,86vw);text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,40px);line-height:1.15;opacity:0;transition:opacity .9s var(--ease);z-index:3}
+.galaxy__line.on{opacity:1}
+.galaxy__line b{color:var(--orange)}
+
+/* ---------- 07 incomodo ---------- */
+.versus{display:grid;gap:26px;transition:opacity .8s var(--ease)}
+.versus.fade{opacity:.28;transform:scale(.985)}
+.bar{display:grid;gap:10px}
+.bar__top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.bar__name{font-family:var(--display);font-weight:800;font-size:clamp(18px,2vw,24px);letter-spacing:.04em;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar__n{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.4vw,44px);font-variant-numeric:tabular-nums}
+.bar__track{height:14px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar__fill{height:100%;width:0;border-radius:999px;background:var(--orange);transition:width 1.6s var(--ease)}
+.bar--rival .bar__n{color:var(--teal)}
+.bar--rival .bar__fill{background:var(--teal)}
+.twist{margin-top:44px;display:grid;gap:20px;opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.twist.on{opacity:1;transform:none}
+.quote{padding:26px;border-left:3px solid var(--orange);background:rgba(235,124,46,.08);border-radius:0 16px 16px 0;font-size:clamp(18px,1.9vw,23px);line-height:1.5}
+
+/* ---------- 08 que harias ---------- */
+.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.choice{padding:20px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;text-align:left;transition:border-color .35s,transform .4s var(--ease),background .35s}
+.choice:hover{border-color:var(--orange);transform:translateY(-4px)}
+.choice[aria-pressed="true"]{border-color:var(--orange);background:rgba(235,124,46,.14)}
+@media (max-width:820px){.choices{grid-template-columns:repeat(2,1fr)}}
+.echo{margin-top:26px;font-size:clamp(17px,1.7vw,20px);color:var(--muted);min-height:1.6em;opacity:0;transition:opacity .6s var(--ease)}
+.echo.on{opacity:1}
+.chain{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.chain__i{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;border:1px solid rgba(14,157,155,.45);background:rgba(14,157,155,.10);font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(12px) scale(.94);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.chain__i.on{opacity:1;transform:none}
+.chain__sep{color:var(--muted-2);font-family:var(--display);font-weight:800}
+
+/* ---------- 09 mercado ---------- */
+.market{background:linear-gradient(180deg,var(--ink) 0%,#0E0418 50%,var(--ink) 100%)}
+.bigcount{font-family:var(--display);font-weight:900;font-size:clamp(52px,13vw,180px);line-height:.9;color:var(--orange);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.marquee{margin-top:clamp(40px,6vh,70px);border-block:1px solid var(--line);padding:18px 0;overflow:hidden;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:14%;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--ink),transparent)}
+.marquee__row{display:flex;gap:52px;width:max-content;animation:slide 34s linear infinite}
+.marquee--rev .marquee__row{animation-direction:reverse;animation-duration:44s}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tickr{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:clamp(16px,1.7vw,20px);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.86)}
+.tickr b{color:var(--orange);font-variant-numeric:tabular-nums}
+.tickr.dn b{color:var(--teal)}
+.drops{margin-top:clamp(40px,6vh,70px);position:relative;height:min(46vh,340px);overflow:hidden;border:1px solid var(--line);border-radius:20px;background:rgba(0,0,0,.28)}
+.drop{position:absolute;top:-70px;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(0) rotate(-2deg);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(420px) rotate(3deg);opacity:0}}
+
+/* ---------- 10 revelacion ---------- */
+.reveal{min-height:100vh;display:grid;place-items:center;text-align:center;background:radial-gradient(100% 80% at 50% 40%,#1B0430,var(--ink) 70%)}
+.reveal__inner{display:grid;gap:clamp(34px,6vh,64px);justify-items:center;width:min(920px,90vw)}
+.reveal__logo{width:min(280px,62vw)}
+.reveal h2{font-size:clamp(28px,4.4vw,58px);line-height:1.06;max-width:24ch}
+.reveal h2 b{color:var(--orange)}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%}
+.four span{font-family:var(--display);font-weight:900;font-size:clamp(19px,2.4vw,30px);letter-spacing:.02em;padding:20px 8px;border-top:2px solid var(--orange);text-align:left}
+@media (max-width:640px){.four{grid-template-columns:repeat(2,1fr)}.four span{text-align:center;border-top-width:1px}}
+
+/* ---------- 11 lead ---------- */
+.close{background:linear-gradient(180deg,var(--ink),#1A0430)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
+.form .field{max-width:none}
+.form__full{grid-column:1/-1}
+@media (max-width:700px){.form{grid-template-columns:1fr}}
+.recap{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);font-size:14px;color:var(--muted)}
+.chip b{font-family:var(--display);font-weight:800;color:var(--white);letter-spacing:.04em}
+.thanks{margin-top:30px;padding:26px;border:1px solid rgba(14,157,155,.5);background:rgba(14,157,155,.1);border-radius:18px;display:none}
+.thanks.on{display:block}
+
+/* ---------- footer ---------- */
+.foot{padding:60px 0 46px;border-top:1px solid var(--line);text-align:center;display:grid;gap:20px;justify-items:center}
+.foot img{width:170px;opacity:.9}
+.foot a{color:var(--muted)}
+</style>
+<link rel="canonical" href="https://{{DOMAIN}}/buzz-digital-experience">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://getbuzzmonitor.com/es/#organization", "name": "Buzzmonitor", "url": "https://getbuzzmonitor.com/es/", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/buzzmonitor/", "https://www.instagram.com/getbuzzmonitor.es/"] },
+    { "@type": "WebPage", "@id": "https://{{DOMAIN}}/buzz-digital-experience#webpage", "url": "https://{{DOMAIN}}/buzz-digital-experience", "name": "Museo de las Conversaciones Perdidas", "inLanguage": "es-419", "isPartOf": { "@id": "https://getbuzzmonitor.com/es/#organization" }, "description": "Experiencia interactiva de Buzzmonitor sobre las conversaciones que las marcas en México no están escuchando." },
+    { "@type": "SoftwareApplication", "name": "Buzzmonitor", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://getbuzzmonitor.com/es/", "inLanguage": "es-419", "publisher": { "@id": "https://getbuzzmonitor.com/es/#organization" } }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKQBX2MG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
+<a class="skip" href="#sala-01">Ir al contenido</a>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="bar"></div></div>
+
+<div class="hud">
+  <p class="hud__room" id="roomLabel" aria-hidden="true">Sala 01 / 11</p>
+  <button class="sound" id="soundBtn" type="button" aria-pressed="false">
+    <span class="sound__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span id="soundTxt">Sonido</span>
+  </button>
+</div>
+
+<!-- ============ PORTAL ============ -->
+<div class="portal" id="portal" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
+  <div class="portal__inner">
+    <p class="tag rv in">Una experiencia de Buzzmonitor</p>
+    <h1 id="portalTitle">Mientras estás aquí, México sigue <em>hablando de las marcas</em>.</h1>
+
+    <div class="counters" aria-hidden="true">
+      <div class="counter"><span class="counter__n" data-to="1284">0</span><span class="counter__l">conversaciones</span></div>
+      <div class="counter"><span class="counter__n" data-to="312">0</span><span class="counter__l">quejas</span></div>
+      <div class="counter"><span class="counter__n" data-to="97">0</span><span class="counter__l">intenciones de compra</span></div>
+      <div class="counter"><span class="counter__n" data-to="146">0</span><span class="counter__l">comparaciones</span></div>
+    </div>
+    <p class="tiny">Cifras de muestra, calculadas con volúmenes típicos de monitoreo en México. Sirven para ilustrar la escala, no describen una marca en particular.</p>
+
+    <p class="portal__ask">¿Quieres escuchar?</p>
+    <button class="btn" id="enterBtn" type="button">Entrar</button>
+    <p class="headphones"><span aria-hidden="true">🎧</span> Se disfruta mejor con audífonos y el sonido activado.</p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ 01 ============ -->
+<section class="scene flood" id="sala-01" aria-labelledby="t01" data-room="1">
+  <div class="scene__stage flood__stage">
+    <h2 id="t01" class="sr-only" style="position:absolute;left:-9999px">Sala 01. Ponte los audífonos</h2>
+    <div class="flood__field" id="floodField" aria-hidden="true"></div>
+    <div class="noise" id="floodNoise" aria-hidden="true"></div>
+    <p class="cue" id="cue" aria-hidden="true">Desliza para escuchar <span>↓</span></p>
+    <div class="flood__center" id="floodCenter">
+      <p class="tag tag--muted">01 / La entrada</p>
+      <p class="display" style="font-size:clamp(24px,3.4vw,44px);line-height:1.1">Esto es lo que llamamos</p>
+      <p class="strike" id="strike">Ruido</p>
+      <p class="swap" id="swap">Esto son oportunidades.</p>
+      <button class="next" type="button" data-goto="#sala-02">Siguiente <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="sala" id="sala-02" aria-labelledby="t02" data-room="2">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">02 / Elige qué quieres ignorar</p>
+      <h2 class="rv" style="--d:80ms" id="t02">Elige una conversación que tu empresa podría estar perdiendo.</h2>
+      <p class="lead rv" style="--d:160ms">Cinco puertas. Cada una es un tipo de conversación que ocurre hoy, con o sin ti.</p>
+    </div>
+
+    <div class="doors" role="group" aria-label="Puertas del museo">
+      <button class="door rv" style="--d:0ms" type="button" data-door="ventas" aria-pressed="false">
+        <span class="door__ico" aria-hidden="true">💰</span>
+        <span class="door__name">Ventas</span>
+        <span class="door__hint">Alguien está a punto de comprar y pide una recomendación.</span>
+      </button>
+      <button class="door rv" style="--d:90ms" type="button" data-door="reputacion" aria-pressed="false">
+        <span class="door__ico" aria-hidden="true">😡</span>
+        <span class="door__name">Reputación</span>
+        <span class="door__hint">Una molestia que empieza en un comentario y no se queda ahí.</span>
+      </button>
+      <button class="door rv" style="--d:180ms" type="button" data-door="experiencia" aria-pressed="false">
+        <span class="door__ico" aria-hidden="true">❤️</span>
+        <span class="door__name">Experiencia</span>
+        <span class="door__hint">Le gusta tu producto, pero algo en el camino le estorba.</span>
+      </button>
+      <button class="door rv" style="--d:270ms" type="button" data-door="crisis" aria-pressed="false">
+        <span class="door__ico" aria-hidden="true">⚠️</span>
+        <span class="door__name">Crisis</span>
+        <span class="door__hint">Un rumor que crece mientras tu equipo duerme.</span>
+      </button>
+      <button class="door rv" style="--d:360ms" type="button" data-door="competencia" aria-pressed="false">
+        <span class="door__ico" aria-hidden="true">👀</span>
+        <span class="door__name">Competencia</span>
+        <span class="door__hint">Tu cliente menciona a otra marca en tu propia conversación.</span>
+      </button>
+    </div>
+
+    <div class="gate" id="gate02">
+      <p class="lead" id="gate02Txt" role="status"></p>
+      <button class="next" type="button" data-goto="#sala-03">Abrir la puerta <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="sala" id="sala-03" aria-labelledby="t03" data-room="3">
+  <div class="wrap wrap--narrow">
+    <div class="sala__head">
+      <p class="tag rv">03 / La conversación perdida</p>
+      <h2 class="rv" style="--d:80ms" id="t03">Esto pasó en 34 segundos.</h2>
+      <p class="tiny rv" style="--d:140ms">Conversación representativa, reescrita a partir de patrones reales de monitoreo. No reproduce publicaciones ni personas identificables.</p>
+    </div>
+
+    <div class="thread rv" style="--d:200ms">
+      <div class="thread__bar">
+        <p class="thread__src" id="threadSrc">Grupo público / Facebook</p>
+        <p class="clock mono" id="clock" aria-hidden="true">00:00</p>
+      </div>
+      <p class="thread__post" id="threadPost">&ldquo;Estoy entre Marca A y Marca B. ¿Cuál recomiendan?&rdquo;</p>
+      <ul class="thread__list" id="threadList"></ul>
+    </div>
+
+    <div class="stamp" id="stamp" role="status">Decisión tomada<span aria-hidden="true">·</span><span id="stampWho">Competidor elegido</span></div>
+
+    <div class="verdict">
+      <p class="verdict__a rv">La marca no perdió una conversación.</p>
+      <p class="verdict__b" id="verdictB">Perdió una venta.</p>
+    </div>
+
+    <p class="lead rv" style="--d:120ms;margin-top:34px">Nadie de esa marca estaba ahí. Nadie les avisó.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-04">Siguiente <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="sala" id="sala-04" aria-labelledby="t04" data-room="4">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">04 / Ahora elige tu marca</p>
+      <h2 class="rv" style="--d:80ms" id="t04">Ya viste lo que pasa con otras marcas. Ahora veamos la tuya.</h2>
+    </div>
+
+    <form id="brandForm" novalidate>
+      <div class="field rv" style="--d:140ms">
+        <label for="brandInput">Escribe tu marca</label>
+        <input id="brandInput" name="brand" type="text" autocomplete="organization" placeholder="Ej. Café Milagro" maxlength="42" required>
+      </div>
+      <p class="rv" style="--d:200ms;margin-top:22px"><button class="btn" type="submit" id="listenBtn">Escuchar mi marca</button></p>
+    </form>
+
+    <div class="scan" id="scan" aria-hidden="true">
+      <p class="scan__row" data-scan="1">Buscando conversaciones <i></i></p>
+      <p class="scan__row" data-scan="2">Analizando <i></i></p>
+      <p class="scan__row" data-scan="3">Detectando señales <i></i></p>
+    </div>
+    <p class="found" id="found" role="status">Encontramos algo.</p>
+    <p class="tiny rv" style="--d:80ms;margin-top:22px;max-width:60ch">Esta demostración no consulta datos de tu marca en vivo. Arma el recorrido con ejemplos representativos para que veas cómo se ve el problema. El análisis con tus datos ocurre después, con un especialista.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-05">Ver el espejo <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section class="sala sala--center" id="sala-05" aria-labelledby="t05" data-room="5">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">05 / El espejo</p>
+      <h2 class="rv" style="--d:80ms" id="t05">Esto es lo que México podría estar diciendo de <span id="mirrorBrand">tu marca</span>.</h2>
+    </div>
+
+    <div class="mirror">
+      <article class="insight rv" style="--d:0ms">
+        <p class="insight__n">01</p>
+        <div>
+          <h3 class="insight__k">Alguien quiere comprar</h3>
+          <p class="insight__q">&ldquo;Ando buscando algo así, ¿alguien ha probado <span class="mBrand">tu marca</span>? Necesito decidir esta semana.&rdquo;</p>
+        </div>
+      </article>
+      <article class="insight rv" style="--d:120ms">
+        <p class="insight__n">02</p>
+        <div>
+          <h3 class="insight__k">Alguien está frustrado</h3>
+          <p class="insight__q">&ldquo;Me gusta el producto, pero llevo dos días esperando que me contesten. Ya me estoy arrepintiendo.&rdquo;</p>
+        </div>
+      </article>
+      <article class="insight rv" style="--d:240ms">
+        <p class="insight__n">03</p>
+        <div>
+          <h3 class="insight__k">Alguien te comparó</h3>
+          <p class="insight__q">&ldquo;<span class="mBrand">Tu marca</span> está bien, pero la otra me salió más barata y me llegó al día siguiente.&rdquo;</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="lead rv" style="--d:120ms;margin:38px auto 0;text-align:center">Encontramos más. Todavía no te vamos a pedir nada.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-06">Siguiente <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section class="scene galaxy" id="sala-06" aria-labelledby="t06" data-room="6">
+  <div class="scene__stage galaxy__stage">
+    <h2 id="t06" style="position:absolute;left:-9999px">Sala 06. ¿Estás escuchando?</h2>
+    <canvas class="galaxy__canvas" id="galaxy" aria-hidden="true"></canvas>
+    <p class="galaxy__core" id="galaxyCore">Tu marca</p>
+    <p class="galaxy__line" id="galaxyLine">Tu marca no necesita más datos. <b>Necesita entender cuáles importan.</b></p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section class="sala" id="sala-07" aria-labelledby="t07" data-room="7">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">07 / ¿Quieres ver algo incómodo?</p>
+      <h2 class="rv" style="--d:80ms" id="t07">Elige a un competidor.</h2>
+    </div>
+
+    <form id="rivalForm" novalidate>
+      <div class="field rv" style="--d:140ms">
+        <label for="rivalInput">Nombre del competidor</label>
+        <input id="rivalInput" name="rival" type="text" placeholder="Ej. la marca que siempre te aparece" maxlength="42" required>
+      </div>
+      <p class="rv" style="--d:200ms;margin-top:22px"><button class="btn" type="submit">Comparar</button></p>
+    </form>
+
+    <div class="versus is-hidden" id="versus" style="margin-top:52px">
+      <div class="bar">
+        <div class="bar__top"><p class="bar__name" id="barMine">Tu marca</p><p class="bar__n mono" data-to="2481">0</p></div>
+        <div class="bar__track"><span class="bar__fill" data-w="53"></span></div>
+      </div>
+      <div class="bar bar--rival">
+        <div class="bar__top"><p class="bar__name" id="barRival">Competidor</p><p class="bar__n mono" data-to="4719">0</p></div>
+        <div class="bar__track"><span class="bar__fill" data-w="100"></span></div>
+      </div>
+      <p class="tiny">Volúmenes de muestra para ilustrar la brecha. Con tu cuenta real, el número sale de tu propio monitoreo.</p>
+    </div>
+
+    <div class="twist" id="twist">
+      <h3>Pero ese no es el problema.</h3>
+      <p class="lead">El problema es dónde aparece ese nombre. Hay conversaciones donde tus propios clientes mencionan a tu competencia, dentro de tus publicaciones, en tus grupos, debajo de tus anuncios.</p>
+      <blockquote class="quote">&ldquo;Yo compraba aquí, pero desde que <span class="rBrand">la otra marca</span> puso envío gratis, ni lo pienso.&rdquo;</blockquote>
+      <p class="tiny">Ejemplo representativo, construido a partir de patrones frecuentes de comparación entre marcas.</p>
+      <p><button class="next" type="button" data-goto="#sala-08">Siguiente <span aria-hidden="true">↓</span></button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section class="sala" id="sala-08" aria-labelledby="t08" data-room="8">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">08 / La sala &ldquo;¿qué harías?&rdquo;</p>
+      <h2 class="rv" style="--d:80ms" id="t08">&ldquo;Estoy pensando cancelar porque llevo tres días sin respuesta.&rdquo;</h2>
+      <p class="lead rv" style="--d:160ms">Este mensaje ya está publicado. Tienes cuatro caminos.</p>
+    </div>
+
+    <div class="choices rv" style="--d:220ms" role="group" aria-label="¿Qué harías?">
+      <button class="choice" type="button" data-act="ignorar" aria-pressed="false">Ignorar</button>
+      <button class="choice" type="button" data-act="responder" aria-pressed="false">Responder</button>
+      <button class="choice" type="button" data-act="cx" aria-pressed="false">Enviar a CX</button>
+      <button class="choice" type="button" data-act="historial" aria-pressed="false">Analizar el historial</button>
+    </div>
+    <p class="echo" id="echo" role="status"></p>
+
+    <div style="margin-top:52px">
+      <p class="tag rv">Buzzmonitor haría esto</p>
+      <div class="chain" id="chain" aria-label="Detecta, clasifica, analiza, prioriza, acciona">
+        <span class="chain__i" data-step="1">Detecta</span><span class="chain__sep" aria-hidden="true">→</span>
+        <span class="chain__i" data-step="2">Clasifica</span><span class="chain__sep" aria-hidden="true">→</span>
+        <span class="chain__i" data-step="3">Analiza</span><span class="chain__sep" aria-hidden="true">→</span>
+        <span class="chain__i" data-step="4">Prioriza</span><span class="chain__sep" aria-hidden="true">→</span>
+        <span class="chain__i" data-step="5">Acciona</span>
+      </div>
+    </div>
+    <p style="margin-top:34px"><button class="next" type="button" data-goto="#sala-09">Siguiente <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section class="sala market sala--center" id="sala-09" aria-labelledby="t09" data-room="9">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">09 / La habitación de las oportunidades perdidas</p>
+      <h2 class="rv" style="--d:80ms" id="t09">Conversaciones que las marcas podrían estar perdiendo hoy</h2>
+      <p class="bigcount mono rv" style="--d:160ms" id="bigCount" aria-hidden="true">0</p>
+      <p class="tiny rv" style="--d:200ms">Estimación de muestra construida con volúmenes típicos de monitoreo en México. Es una escala, no un dato auditado.</p>
+    </div>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__row" id="tick1"></div></div>
+    <div class="marquee marquee--rev" aria-hidden="true"><div class="marquee__row" id="tick2"></div></div>
+
+    <div class="drops" id="drops" aria-hidden="true"></div>
+    <p style="margin-top:34px"><button class="next" type="button" data-goto="#sala-10">Salir del mercado <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="sala reveal sala--flush" id="sala-10" aria-labelledby="t10" data-room="10">
+  <div class="reveal__inner">
+    <img class="reveal__logo rv rv--scale" src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43">
+    <h2 class="rv" style="--d:140ms" id="t10">México no necesita hablar más. <b>Las marcas necesitan escuchar mejor.</b></h2>
+    <p class="lead rv" style="--d:240ms;text-align:center">Todo lo que viste puede convertirse en inteligencia con Buzzmonitor.</p>
+    <div class="four">
+      <span class="rv" style="--d:300ms">Escucha.</span>
+      <span class="rv" style="--d:380ms">Entiende.</span>
+      <span class="rv" style="--d:460ms">Decide.</span>
+      <span class="rv" style="--d:540ms">Actúa.</span>
+    </div>
+    <button class="next rv" style="--d:620ms" type="button" data-goto="#sala-11">Última sala <span aria-hidden="true">↓</span></button>
+  </div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section class="sala close" id="sala-11" aria-labelledby="t11" data-room="11">
+  <div class="wrap wrap--narrow">
+    <div class="sala__head">
+      <p class="tag rv">11 / Salida</p>
+      <h2 class="rv" style="--d:80ms" id="t11">Tu visita terminó. La de tu marca apenas empieza.</h2>
+      <p class="lead rv" style="--d:160ms">Te preparamos un análisis de las conversaciones que podrían importar para tu negocio, con tus canales y tu categoría.</p>
+    </div>
+
+    <div class="recap rv" style="--d:200ms" id="recap" aria-label="Tu recorrido"></div>
+
+    <form class="form" id="leadForm" action="#" method="post" novalidate>
+      <div class="field rv" style="--d:80ms">
+        <label for="fName">Nombre</label>
+        <input id="fName" name="nombre" type="text" autocomplete="name" required>
+      </div>
+      <div class="field rv" style="--d:140ms">
+        <label for="fRole">Cargo</label>
+        <input id="fRole" name="cargo" type="text" autocomplete="organization-title" required>
+      </div>
+      <div class="field rv" style="--d:200ms">
+        <label for="fCompany">Empresa</label>
+        <input id="fCompany" name="empresa" type="text" autocomplete="organization" required>
+      </div>
+      <div class="field rv" style="--d:260ms">
+        <label for="fMail">Correo corporativo</label>
+        <input id="fMail" name="email" type="email" autocomplete="email" required>
+      </div>
+      <p class="form__full rv" style="--d:320ms"><button class="btn" type="submit">Hablar con un especialista</button></p>
+      <p class="form__full tiny rv" style="--d:360ms">Formulario de demostración. Todavía no envía datos a ningún lado.</p>
+    </form>
+
+    <div class="thanks" id="thanks" role="status">
+      <h3>Listo, <span id="thanksName">gracias</span>.</h3>
+      <p class="lead" style="margin-top:12px">Un especialista de Buzzmonitor te va a escribir con el primer corte de conversaciones de tu categoría.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <a href="https://getbuzzmonitor.com/es/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página principal">
+    <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43">
+  </a>
+  <p class="tiny" style="max-width:64ch;margin-inline:auto">Museo de las Conversaciones Perdidas es una experiencia de demostración. Las conversaciones, cifras y comparaciones que aparecen son de muestra, construidas a partir de patrones reales de monitoreo, y no reproducen publicaciones ni personas identificables.</p>
+  <p class="tiny">© 2026 Buzzmonitor · Grupo Elife</p>
+</footer>
+<script>
+(function(){
+"use strict";
+var html=document.documentElement;
+html.classList.remove("no-js");html.classList.add("js");
+var RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.body.classList.add("is-locked");
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var clamp=function(v,a,b){return v<a?a:v>b?b:v;};
+var ease=function(t){return 1-Math.pow(1-t,3);};
+var nf=new Intl.NumberFormat("es-MX");
+
+/* ---------------- sonido ---------------- */
+var Audio1={on:false,ctx:null};
+Audio1.init=function(){
+  if(Audio1.ctx)return;
+  var AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return;
+  Audio1.ctx=new AC();
+  Audio1.master=Audio1.ctx.createGain();
+  Audio1.master.gain.value=0.0001;
+  Audio1.master.connect(Audio1.ctx.destination);
+};
+Audio1.enable=function(){
+  Audio1.init();
+  if(!Audio1.ctx)return false;
+  if(Audio1.ctx.state==="suspended")Audio1.ctx.resume();
+  Audio1.on=true;
+  Audio1.master.gain.setTargetAtTime(0.5,Audio1.ctx.currentTime,0.2);
+  return true;
+};
+Audio1.disable=function(){
+  Audio1.on=false;
+  if(Audio1.ctx)Audio1.master.gain.setTargetAtTime(0.0001,Audio1.ctx.currentTime,0.15);
+};
+Audio1.blip=function(freq,dur,type){
+  if(!Audio1.on||!Audio1.ctx)return;
+  var t=Audio1.ctx.currentTime,o=Audio1.ctx.createOscillator(),g=Audio1.ctx.createGain();
+  o.type=type||"sine";o.frequency.setValueAtTime(freq,t);
+  o.frequency.exponentialRampToValueAtTime(freq*0.62,t+(dur||0.16));
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(0.22,t+0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||0.16));
+  o.connect(g);g.connect(Audio1.master);o.start(t);o.stop(t+(dur||0.16)+0.02);
+};
+var soundBtn=$("#soundBtn"),soundTxt=$("#soundTxt");
+document.addEventListener("keydown",function(ev){
+  if(ev.key!=="Tab"||portal.classList.contains("is-gone"))return;
+  var f=[soundBtn,document.getElementById("enterBtn")];
+  var i=f.indexOf(document.activeElement);
+  ev.preventDefault();
+  f[(i+(ev.shiftKey?f.length-1:1))%f.length].focus();
+});
+soundBtn.addEventListener("click",function(){
+  if(Audio1.on){Audio1.disable();soundBtn.setAttribute("aria-pressed","false");soundTxt.textContent="Sonido";}
+  else{ if(Audio1.enable()){soundBtn.setAttribute("aria-pressed","true");soundTxt.textContent="Sonido activo";Audio1.blip(680,.18,"triangle");} }
+});
+
+/* ---------------- reveal ---------------- */
+var revealed=new WeakSet();
+var io=new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting&&!revealed.has(e.target)){revealed.add(e.target);e.target.classList.add("in");}
+  });
+},{rootMargin:"0px 0px -12% 0px",threshold:0.15});
+$$(".rv").forEach(function(el){io.observe(el);});
+setTimeout(function(){$$(".rv").forEach(function(el){if(!el.classList.contains("in")&&el.getBoundingClientRect().top<window.innerHeight)el.classList.add("in");});},2600);
+
+/* ---------------- estado del recorrido ---------------- */
+var state={door:null,doorLabel:null,brand:null,rival:null,act:null};
+
+/* ---------------- progreso + sala ---------------- */
+var bar=$("#bar"),roomLabel=$("#roomLabel"),salas=$$("[data-room]");
+var ticking=false;
+function onScroll(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  var p=h>0?clamp(window.scrollY/h,0,1):0;
+  bar.style.width=(p*100).toFixed(2)+"%";
+  var mid=window.innerHeight*0.45,cur=1;
+  for(var i=0;i<salas.length;i++){var r=salas[i].getBoundingClientRect();if(r.top<=mid)cur=salas[i].getAttribute("data-room");}
+  roomLabel.textContent="Sala "+String(cur).padStart(2,"0")+" / 11";
+  flood.update();galaxy.update();
+  ticking=false;
+}
+window.addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+
+/* ---------------- contadores ---------------- */
+function countTo(el,to,ms){
+  var from=0,t0=null;
+  function step(t){
+    if(!t0)t0=t;
+    var p=clamp((t-t0)/(ms||1600),0,1);
+    el.textContent=nf.format(Math.round(from+(to-from)*ease(p)));
+    if(p<1)requestAnimationFrame(step);
+  }
+  if(RM){el.textContent=nf.format(to);return;}
+  requestAnimationFrame(step);
+}
+
+/* ---------------- portal ---------------- */
+var portal=$("#portal");
+$$("#portal .counter__n").forEach(function(el,i){
+  setTimeout(function(){countTo(el,parseInt(el.getAttribute("data-to"),10),1900+i*260);},420+i*180);
+});
+setTimeout(function(){var b=document.getElementById("enterBtn");if(b)b.focus({preventScroll:true});},400);
+$("#enterBtn").addEventListener("click",function(){
+  Audio1.enable()&&(soundBtn.setAttribute("aria-pressed","true"),soundTxt.textContent="Sonido activo");
+  portal.classList.add("is-gone");
+  document.body.classList.remove("is-locked");
+  setTimeout(function(){portal.setAttribute("hidden","");onScroll();},1200);
+  Audio1.blip(520,.3,"triangle");
+});
+$$("[data-goto]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var t=$(b.getAttribute("data-goto"));
+    if(t)t.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});
+  });
+});
+
+/* ---------------- 01 inundacion ---------------- */
+var COMMENTS=[
+ "¿Alguien sabe si funciona?","Llevo dos días esperando respuesta.","Yo prefiero la competencia.",
+ "Necesito una recomendación.","¿Por qué no hacen una versión que sirva para equipos chicos?",
+ "Nunca me contestaron.","¿Dónde puedo comprarlo?","Me lo recomendaron pero no encuentro el precio.",
+ "¿Hacen envíos a Monterrey?","Ya cancelé, muy tardado.","La app se me cierra a cada rato.",
+ "¿Tienen alguna promo por el Buen Fin?","Justo ayer hablaba de esto con mi equipo.",
+ "El de la esquina me lo dejó más barato.","¿Y el soporte contesta los fines de semana?",
+ "Mi pedido llegó incompleto.","Excelente atención, muy amables.","¿Alguien ya lo probó en su empresa?",
+ "Otra vez la misma falla.","¿Cuál me conviene para 20 personas?","Sigo esperando mi factura.",
+ "Voy a comparar antes de decidir."
+];
+var POS=[[6,14],[58,8],[30,24],[70,30],[12,38],[45,44],[76,52],[20,58],[52,66],[8,74],[64,78],
+ [34,86],[80,14],[4,50],[42,4],[24,70],[68,64],[14,26],[86,40],[38,54],[56,90],[2,88]];
+var floodField=$("#floodField"),floodNoise=$("#floodNoise"),floodCenter=$("#floodCenter");
+var bubbles=[];
+COMMENTS.forEach(function(txt,i){
+  var d=document.createElement("div");
+  d.className="bubble";
+  var p=POS[i%POS.length];
+  d.style.left=p[0]+"%";d.style.top=p[1]+"%";
+  d.style.setProperty("--rot",(((i%5)-2)*0.8)+"deg");
+  d.innerHTML="<b>Comentario público</b>";
+  var s=document.createElement("span");s.textContent="“"+txt+"”";
+  d.appendChild(s);
+  floodField.appendChild(d);bubbles.push(d);
+});
+var MPOS=[[3,5],[27,14],[5,23],[30,32],[4,41],[25,50],[7,59],[29,68],[5,77],[26,86],[11,93],[30,59]];
+var liveBubbles=bubbles.length;
+function layoutBubbles(){
+  var m=window.innerWidth<720;
+  liveBubbles=m?MPOS.length:bubbles.length;
+  bubbles.forEach(function(b,i){
+    if(m&&i>=MPOS.length){b.style.display="none";b.classList.remove("on");return;}
+    b.style.display="";
+    var pos=m?MPOS[i]:POS[i%POS.length];
+    b.style.left=pos[0]+"%";b.style.top=pos[1]+"%";
+  });
+  flood.last=-1;
+}
+var flood={last:-1};
+flood.update=function(){
+  var sec=$("#sala-01"),r=sec.getBoundingClientRect();
+  var total=sec.offsetHeight-window.innerHeight;
+  if(total<=0)return;
+  var p=clamp(-r.top/total,0,1);
+  var fill=clamp(p/0.62,0,1);
+  var shown=Math.round(fill*liveBubbles);
+  if(shown!==flood.last){
+    for(var i=0;i<liveBubbles;i++){
+      var on=i<shown&&p<0.72;
+      if(on!==bubbles[i].classList.contains("on")){
+        bubbles[i].classList.toggle("on",on);
+        if(on&&i>flood.last&&flood.last>=0)Audio1.blip(420+i*26,.12,"sine");
+      }
+    }
+    flood.last=shown;
+  }
+  floodNoise.style.opacity=(p<0.72?clamp((fill-0.35)/0.5,0,1)*0.9:0).toFixed(3);
+  floodField.style.filter=p<0.72?"blur("+(clamp((fill-0.5)/0.5,0,1)*3).toFixed(2)+"px)":"blur(6px)";
+  floodField.style.opacity=p<0.72?"1":"0";
+  $("#cue").style.opacity=p<0.06?"1":"0";
+  floodCenter.classList.toggle("on",p>0.74);
+  $("#strike").classList.toggle("cut",p>0.82);
+  $("#swap").classList.toggle("on",p>0.88);
+};
+
+/* ---------------- 02 puertas ---------------- */
+var DOORS={
+ ventas:{label:"Ventas",src:"Grupo público / Facebook",
+  post:"“Estoy entre Marca A y Marca B. ¿Cuál recomiendan?”",
+  replies:[
+   {t:6,txt:"Yo llevo un año con la B y todo bien, cero problemas."},
+   {t:11,rival:true,txt:"La B, sin pensarlo. Me contestaron en 5 minutos por WhatsApp."},
+   {t:19,txt:"De la A tuve una mala experiencia, todavía espero mi reembolso."},
+   {t:27,rival:true,txt:"Ya pedí con la B. Gracias a todos."}],
+  who:"Competidor elegido",a:"La marca no perdió una conversación.",b:"Perdió una venta."},
+ reputacion:{label:"Reputación",src:"Hilo público / X",
+  post:"“¿A alguien más le cobraron dos veces? Van tres días sin respuesta.”",
+  replies:[
+   {t:5,txt:"A mí me pasó la semana pasada, mismo problema."},
+   {t:12,rival:true,txt:"Ya somos varios. Alguien debería subir las capturas."},
+   {t:20,txt:"Yo ya levanté mi reporte, ni una llamada."},
+   {t:28,rival:true,txt:"Compartido en mi grupo, para que no les pase."}],
+  who:"Hilo convertido en queja pública",a:"Nadie de la marca leyó el hilo.",b:"Se enteró cuando ya era captura de pantalla."},
+ experiencia:{label:"Experiencia",src:"Comentarios / Instagram",
+  post:"“El producto me encanta, pero la entrega fue un desastre.”",
+  replies:[
+   {t:7,txt:"Igual yo. El producto sí vale, el envío no."},
+   {t:14,txt:"A mí llegó bien, pero tardaron 9 días."},
+   {t:22,rival:true,txt:"Por eso me cambié. La otra marca me deja rastrear el pedido."},
+   {t:29,txt:"Ojalá lo lean, porque el producto sí está bueno."}],
+  who:"Cliente satisfecho, experiencia rota",a:"El producto le gustaba.",b:"Se fue por lo que pasó después de la compra."},
+ crisis:{label:"Crisis",src:"Publicación abierta / TikTok",
+  post:"“Me dijeron que cambiaron la fórmula y ahora rinde menos. ¿Es cierto?”",
+  replies:[
+   {t:4,txt:"Sí, a mí me dijeron lo mismo en la tienda."},
+   {t:10,rival:true,txt:"Yo vi un video que lo explica. Ya lleva miles de vistas."},
+   {t:18,txt:"Entonces no era mi impresión, sí cambió."},
+   {t:26,rival:true,txt:"Ya se está compartiendo en varios grupos."}],
+  who:"Rumor en circulación",a:"Empezó con un solo mensaje.",b:"En tres horas ya tenía nombre propio."},
+ competencia:{label:"Competencia",src:"Tu publicación / Facebook",
+  post:"“Está padre lo que publican, pero la otra marca ya lo tiene desde el año pasado.”",
+  replies:[
+   {t:6,txt:"Es cierto, yo lo vi primero allá."},
+   {t:13,rival:true,txt:"Y allá te lo dan sin costo extra."},
+   {t:21,txt:"¿Alguien de la marca puede aclarar?"},
+   {t:28,rival:true,txt:"Nadie contesta. Mejor pregunto en el otro perfil."}],
+  who:"Conversación capturada por la competencia",a:"La conversación era de tu marca.",b:"El que respondió fue tu competencia."}
+};
+var gate02=$("#gate02"),gate02Txt=$("#gate02Txt");
+$$(".door").forEach(function(b){
+  b.addEventListener("click",function(){
+    $$(".door").forEach(function(o){o.setAttribute("aria-pressed","false");});
+    b.setAttribute("aria-pressed","true");
+    state.door=b.getAttribute("data-door");
+    state.doorLabel=DOORS[state.door].label;
+    gate02Txt.textContent="Elegiste "+state.doorLabel+". Vamos a ver una conversación de esa puerta, tal como ocurre cuando nadie la está escuchando.";
+    gate02.classList.add("on");
+    buildThread();
+    Audio1.blip(760,.2,"triangle");
+    buildRecap();
+  });
+});
+
+/* ---------------- 03 conversacion perdida ---------------- */
+var threadRun=false;
+function buildThread(){
+  var d=DOORS[state.door||"ventas"];
+  $("#threadSrc").textContent=d.src;
+  $("#threadPost").textContent=d.post;
+  var ul=$("#threadList");ul.innerHTML="";
+  d.replies.forEach(function(r,i){
+    var li=document.createElement("li");
+    li.className="reply"+(r.rival?" rival":"");
+    li.setAttribute("data-at",r.t);
+    var s=document.createElement("span");
+    s.textContent="Comentario "+String(r.t).padStart(2,"0")+" s";
+    var p=document.createElement("p");p.textContent="“"+r.txt+"”";
+    li.appendChild(s);li.appendChild(p);ul.appendChild(li);
+  });
+  $("#stampWho").textContent=d.who;
+  $(".verdict__a").textContent=d.a;
+  $("#verdictB").textContent=d.b;
+  $("#stamp").classList.remove("on");
+  $("#verdictB").classList.remove("on");
+  $("#clock").textContent="00:00";
+  threadRun=false;
+  var box=$("#sala-03 .thread").getBoundingClientRect();
+  if(box.top<window.innerHeight*0.85&&box.bottom>0)setTimeout(runThread,500);
+}
+buildThread();
+function runThread(){
+  if(threadRun)return;threadRun=true;
+  var clock=$("#clock"),replies=$$("#threadList .reply"),t=0;
+  if(RM){clock.textContent="00:34";replies.forEach(function(r){r.classList.add("on");});$("#stamp").classList.add("on");$("#verdictB").classList.add("on");return;}
+  var iv=setInterval(function(){
+    t++;
+    clock.textContent="00:"+String(t).padStart(2,"0");
+    replies.forEach(function(r){
+      if(parseInt(r.getAttribute("data-at"),10)===t){r.classList.add("on");Audio1.blip(520,.12,"sine");}
+    });
+    if(t===31){$("#stamp").classList.add("on");Audio1.blip(240,.42,"square");}
+    if(t===34){$("#verdictB").classList.add("on");clearInterval(iv);}
+  },170);
+}
+new IntersectionObserver(function(en){
+  en.forEach(function(e){if(e.isIntersecting)runThread();});
+},{threshold:0.35}).observe($("#sala-03 .thread"));
+
+/* ---------------- 04 tu marca ---------------- */
+function setBrand(name){
+  state.brand=name;
+  $("#mirrorBrand").textContent=name;
+  $$(".mBrand").forEach(function(el){el.textContent=name;});
+  $("#galaxyCore").textContent=name;
+  $("#barMine").textContent=name;
+  buildRecap();
+}
+$("#brandForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var v=$("#brandInput").value.trim();
+  if(!v){$("#brandInput").focus();return;}
+  setBrand(v);
+  var rows=$$("#scan .scan__row"),i=0;
+  $("#found").classList.remove("on");
+  rows.forEach(function(r){r.classList.remove("on","done");});
+  (function nextRow(){
+    if(i>=rows.length){ $("#found").classList.add("on"); Audio1.blip(880,.4,"triangle"); return; }
+    var r=rows[i++];
+    r.classList.add("on");
+    Audio1.blip(360+i*90,.14,"sine");
+    setTimeout(function(){r.classList.add("done");setTimeout(nextRow,RM?0:420);},RM?0:520);
+  })();
+});
+$("#brandInput").addEventListener("input",function(){
+  var v=this.value.trim();
+  if(v.length>1)setBrand(v);
+});
+
+/* ---------------- 06 constelacion ---------------- */
+var LABELS=["Compra","Queja","Competidor","Tendencia","Duda","Crisis","Elogio"];
+var cv=$("#galaxy"),cx=cv.getContext("2d"),dots=[],DPR=Math.min(window.devicePixelRatio||1,2);
+(function seed(){
+  var s=20260902;
+  function rnd(){s=(s*1664525+1013904223)%4294967296;return s/4294967296;}
+  var COL=["235,124,46","255,255,255","14,157,155","255,255,255","235,124,46","255,255,255","14,157,155"];
+  for(var i=0;i<2400;i++){
+    var c=i%LABELS.length;
+    var base=-Math.PI/2+c*(Math.PI*2/LABELS.length);
+    var jitter=(rnd()+rnd()+rnd()-1.5)*0.38;
+    var r=120+Math.pow(rnd(),0.72)*1320;
+    dots.push({a:base+jitter,r:r,c:c,col:COL[c],k:rnd(),s:1+rnd()*2.1});
+  }
+})();
+function sizeCanvas(){
+  var r=cv.getBoundingClientRect();
+  cv.width=Math.max(1,Math.round(r.width*DPR));
+  cv.height=Math.max(1,Math.round(r.height*DPR));
+}
+sizeCanvas();
+window.addEventListener("resize",function(){sizeCanvas();galaxy.draw(galaxy.p);layoutBubbles();flood.update();});
+var galaxy={p:0};
+galaxy.update=function(){
+  var sec=$("#sala-06"),r=sec.getBoundingClientRect(),total=sec.offsetHeight-window.innerHeight;
+  if(total<=0)return;
+  var p=clamp(-r.top/total,0,1);
+  galaxy.p=p;
+  galaxy.draw(p);
+  $("#galaxyLine").classList.toggle("on",p>0.8);
+  var core=$("#galaxyCore");
+  var z=p<0.45?1:1-clamp((p-0.45)/0.5,0,1)*0.66;
+  core.style.transform="scale("+z.toFixed(3)+")";
+  core.style.opacity=(0.35+0.65*z).toFixed(2);
+};
+galaxy.draw=function(p){
+  var w=cv.width,h=cv.height,cxp=w/2,cyp=h/2;
+  cx.clearRect(0,0,w,h);
+  var grow=clamp(p/0.55,0,1);
+  var n=Math.round(ease(grow)*dots.length);
+  var zoom=(p<0.45?1:1-clamp((p-0.45)/0.5,0,1)*0.84)*DPR;
+  for(var i=0;i<n;i++){
+    var d=dots[i],x=cxp+Math.cos(d.a)*d.r*zoom,y=cyp+Math.sin(d.a)*d.r*zoom;
+    if(x<-20||y<-20||x>w+20||y>h+20)continue;
+    var al=0.22+d.k*0.6;
+    cx.fillStyle="rgba("+d.col+","+al.toFixed(2)+")";
+    cx.beginPath();cx.arc(x,y,Math.max(0.9,d.s*zoom*0.95),0,6.2832);cx.fill();
+  }
+  var lz=p<0.45?1:1-clamp((p-0.45)/0.35,0,1);
+  if(lz>0.02){
+    cx.lineWidth=Math.max(1,DPR);
+    for(var k=0;k<LABELS.length;k++){
+      var ka=-Math.PI/2+k*(Math.PI*2/LABELS.length);
+      var kr=Math.min(w,h)*0.30*(zoom/DPR);
+      cx.strokeStyle="rgba(255,255,255,"+(0.09*lz).toFixed(3)+")";
+      cx.beginPath();cx.moveTo(cxp+Math.cos(ka)*70*DPR*(zoom/DPR),cyp+Math.sin(ka)*70*DPR*(zoom/DPR));
+      cx.lineTo(cxp+Math.cos(ka)*kr,cyp+Math.sin(ka)*kr);cx.stroke();
+    }
+    cx.font="700 "+(13*DPR)+"px 'League Spartan', sans-serif";
+    cx.textAlign="center";cx.textBaseline="middle";
+    for(var j=0;j<LABELS.length;j++){
+      var ang=-Math.PI/2+j*(Math.PI*2/LABELS.length);
+      var rr=Math.min(w,h)*0.33*(zoom/DPR);
+      cx.fillStyle="rgba(255,255,255,"+(0.72*lz).toFixed(2)+")";
+      cx.fillText(LABELS[j].toUpperCase(),cxp+Math.cos(ang)*rr,cyp+Math.sin(ang)*rr);
+    }
+  }
+};
+
+/* ---------------- 07 competidor ---------------- */
+$("#rivalForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var v=$("#rivalInput").value.trim();
+  if(!v){$("#rivalInput").focus();return;}
+  state.rival=v;
+  buildRecap();
+  $("#barRival").textContent=v;
+  $$(".rBrand").forEach(function(el){el.textContent=v;});
+  var vs=$("#versus");
+  vs.classList.remove("is-hidden");
+  requestAnimationFrame(function(){
+    $$("#versus .bar__n").forEach(function(el){countTo(el,parseInt(el.getAttribute("data-to"),10),1700);});
+    $$("#versus .bar__fill").forEach(function(el){el.style.width=el.getAttribute("data-w")+"%";});
+  });
+  Audio1.blip(300,.3,"square");
+  setTimeout(function(){vs.classList.add("fade");$("#twist").classList.add("on");},RM?0:2600);
+});
+
+/* ---------------- 08 que harias ---------------- */
+var ACTS={
+ ignorar:"Ignorar también es una respuesta. La diferencia es que la da el silencio, y el cliente la interpreta solo.",
+ responder:"Buena decisión. La pregunta es cómo llega ese mensaje a tu equipo antes de las 72 horas.",
+ cx:"Correcto, si CX se enteró. Ese mensaje vive en un comentario, no en un ticket.",
+ historial:"Ahí está la jugada. Ese cliente ya se había quejado dos veces, y eso cambia la prioridad del caso."
+};
+$$(".choice").forEach(function(b){
+  b.addEventListener("click",function(){
+    $$(".choice").forEach(function(o){o.setAttribute("aria-pressed","false");});
+    b.setAttribute("aria-pressed","true");
+    state.act=b.textContent.trim();
+    var echo=$("#echo");
+    echo.textContent=ACTS[b.getAttribute("data-act")];
+    echo.classList.add("on");
+    Audio1.blip(660,.16,"triangle");
+    buildRecap();
+    var steps=$$("#chain .chain__i"),i=0;
+    (function go(){
+      if(i>=steps.length)return;
+      steps[i].classList.add("on");
+      Audio1.blip(420+i*110,.12,"sine");
+      i++;setTimeout(go,RM?0:260);
+    })();
+  });
+});
+
+/* ---------------- 09 mercado ---------------- */
+var TICKS=[["Reputación",1.8],["Intención de compra",4.2],["Quejas",2.6],["Competencia",3.1],
+ ["Tendencia",5.4],["Insight de producto",1.2],["Crisis",0.7],["Elogio",2.2],["Comparación",3.8],["Duda",1.5]];
+function fillTicker(el,rev){
+  var frag="";
+  for(var pass=0;pass<2;pass++){
+    TICKS.forEach(function(t,i){
+      var alt=(i+(rev?1:0))%3===0;
+      frag+='<span class="tickr'+(alt?" dn":"")+'">'+t[0].toUpperCase()+' <b>↑ '+t[1].toFixed(1)+'%</b></span>';
+    });
+  }
+  el.innerHTML=frag;
+}
+fillTicker($("#tick1"),false);fillTicker($("#tick2"),true);
+var DROPS=["Intención de compra","Queja","Crisis","Competidor","Tendencia","Insight de producto","Duda","Elogio","Comparación","Recomendación","Cancelación","Pregunta sin responder"];
+(function(){
+  var box=$("#drops");
+  for(var i=0;i<16;i++){
+    var d=document.createElement("span");
+    d.className="drop";
+    d.textContent=DROPS[i%DROPS.length];
+    d.style.left=(4+(i*6.1)%88)+"%";
+    d.style.animationDuration=(7+((i*3)%9))+"s";
+    d.style.animationDelay=(-(i*1.37)%9)+"s";
+    if(i%4===0)d.style.borderColor="rgba(235,124,46,.55)";
+    if(i%5===0)d.style.borderColor="rgba(14,157,155,.55)";
+    box.appendChild(d);
+  }
+})();
+var bigStarted=false;
+new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting&&!bigStarted){
+      bigStarted=true;
+      var el=$("#bigCount"),target=1284000;
+      countTo(el,target,2400);
+      if(RM)return;
+      setTimeout(function(){
+        setInterval(function(){
+          target+=Math.floor(6+Math.random()*38);
+          el.textContent=nf.format(target);
+        },900);
+      },2500);
+    }
+  });
+},{threshold:0.4}).observe($("#sala-09"));
+
+/* ---------------- 11 recap + lead ---------------- */
+function buildRecap(){
+  var box=$("#recap");box.innerHTML="";
+  var items=[];
+  if(state.doorLabel)items.push(["Puerta",state.doorLabel]);
+  if(state.brand)items.push(["Tu marca",state.brand]);
+  if(state.rival)items.push(["Competidor",state.rival]);
+  if(state.act)items.push(["Tu decisión",state.act]);
+  if(!items.length){box.innerHTML='<span class="chip">Tu recorrido aparece aquí conforme eliges en las salas.</span>';return;}
+  items.forEach(function(it){
+    var s=document.createElement("span");s.className="chip";
+    s.appendChild(document.createTextNode(it[0]+": "));
+    var b=document.createElement("b");b.textContent=it[1];s.appendChild(b);
+    box.appendChild(s);
+  });
+}
+buildRecap();
+$("#leadForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var name=$("#fName").value.trim(),mail=$("#fMail").value.trim();
+  if(!name||!mail){ (name?$("#fMail"):$("#fName")).focus(); return; }
+  $("#thanksName").textContent=name;
+  $("#thanks").classList.add("on");
+  this.style.display="none";
+  Audio1.blip(880,.5,"triangle");
+  $("#thanks").scrollIntoView({behavior:RM?"auto":"smooth",block:"center"});
+});
+
+layoutBubbles();
+onScroll();
+})();
+</script>
+</body>
+</html>
