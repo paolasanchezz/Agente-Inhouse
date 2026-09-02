@@ -28,6 +28,7 @@ Ordenadas pelo horário da sessão no dia (BRT).
 
 | recurring_config_id | Rótulo | Moderador(es) | lang |
 |---|---|---|---|
+| 18043 | Buzzmonitor Monitoramento de Concorrentes (BR, 09:00 BRT) | fernanda.carvalho@buzzmonitor.com.br · thamiris.sales@buzzmonitor.com.br · gestaoprevendas@buzzmonitor.com.br | br |
 | 18050 | Buzzcreators (10:20 BRT) | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
 | 17927 | Buzzmonitor Tu primer listening (LATAM, 12:00 BRT) | daniel.topete@buzzmonitor.com | es |
 | 17646 | Buzzmonitor ¿Qué es MCP? (LATAM, 13:00 BRT) | milagro.pantoja@buzzmonitor.com · daniel.topete@buzzmonitor.com | es |

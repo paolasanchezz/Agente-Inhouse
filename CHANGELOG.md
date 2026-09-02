@@ -12,6 +12,21 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Convite de moderador para o webinar de concorrentes (BR)
+### 2026-09-02 — skill `convites-moderador` (1.2.2 → 1.2.3)
+
+A série **18043** ("Como construir um monitoramento de concorrentes", PT-BR, diária 09:00 BRT)
+entrou no ar em 2026-09-02 junto com o par de LPs, mas ficou **sem moderador mapeado** — a sessão
+rodava sem vendedor. Agora recebe convite diário (`role=presenter`) para
+`fernanda.carvalho@buzzmonitor.com.br`, `thamiris.sales@buzzmonitor.com.br` e
+`gestaoprevendas@buzzmonitor.com.br`, `lang: br`.
+
+- `convites-moderador/config.json`: bloco `18043` — primeiro da lista, que é ordenada pelo horário
+  da sessão no dia (09:00 BRT é a mais cedo).
+- `integracoes/n8n/convites-moderador-clickmeeting.{json,md}`: mesmo mapping no espelho versionado.
+  O workflow que roda de verdade (n8n `1TFA4xHvFEZQ5lns`) foi editado à mão no mesmo dia —
+  são 8 séries e 11 convites/dia útil.
+
 ## Série perpétua do Buzzcreators recriada (17727 → 18050)
 ### 2026-09-02 — conteúdo + skill `convites-moderador` (1.2.1 → 1.2.2)
 

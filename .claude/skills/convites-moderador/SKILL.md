@@ -3,7 +3,7 @@ name: convites-moderador
 description: Envia convite diario de moderador (role=presenter) para a proxima sessao de cada serie recorrente do ClickMeeting (webinars perpetuos das LPs "conheca a marca" e "atencion al cliente"). Le config.json com mapping serie -> email do moderador, descobre a proxima sessao via API e dispara o invite nativo do ClickMeeting. 1 email por serie configurada. So roda em dias uteis — sab/dom nao envia nada e sessao de fim de semana nunca e escolhida. Roda manual (`/convites-moderador`) ou agendada diariamente via `/schedule`.
 argument-hint: "[--dry-run] [--series RECURRING_CONFIG_ID] [--force]"
 allowed-tools: Read, Bash, Skill
-version: 1.2.2
+version: 1.2.3
 ---
 
 # Skill: Convites diarios de moderador (ClickMeeting)
