@@ -50,36 +50,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600&family=Bitter:ital,wght@1,500&display=swap">
 
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
   <style>
     :root{
-      --royal:#4A69BD;
-      --navy:#232960;
-      --orange:#EF863C;
-      --ink:#1a1a1a;
-      --ink-2:#4a4a4a;
-      --ink-3:#767676;
-      --rule:#d1d1d1;
-      --rule-soft:#e6e6ec;
+      --primary:#4A69BD;
+      --primary-dark:#232960;
+      --primary-lighter:#D7E2FF;
+      --accent:#EF863C;
+      --warning:#F1A908;
+      --neutral-900:#1a1a1a;
+      --neutral-700:#4a4a4a;
+      --neutral-300:#d1d1d1;
+      --neutral-100:#f5f5f5;
       --white:#ffffff;
-      --off:#f5f5f5;
-      --tint:#D7E2FF;
       --danger:#C0392F;
       --success:#1B7F5C;
-      --shadow:0 1px 2px rgba(35,41,96,.05), 0 14px 34px -22px rgba(35,41,96,.35);
+      --radius-btn:9px;
+      --radius-card:16px;
+      --font-display:'Open Sans',sans-serif;
+      --font-body:'Source Sans 3',sans-serif;
+      --font-accent:'Bitter',serif;
+      /* aliases usados no restante da folha */
+      --royal:var(--primary);
+      --navy:var(--primary-dark);
+      --tint:var(--primary-lighter);
+      --ink:var(--primary-dark);
+      --ink-2:var(--neutral-700);
+      --ink-3:#6b7280;
+      --rule:var(--neutral-300);
+      --rule-soft:#e6e6ec;
+      --off:var(--neutral-100);
+      --shadow:0 4px 6px rgba(0,0,0,.04);
+      --shadow-lift:0 14px 28px rgba(35,41,96,.10);
+      --shadow-float:0 24px 60px rgba(35,41,96,.12);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;background:var(--white);color:var(--ink);
-      font-family:"Source Sans 3",system-ui,-apple-system,sans-serif;
-      font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;
+      margin:0;background:var(--white);color:var(--primary-dark);
+      font-family:var(--font-body);
+      font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-    h1,h2,h3{font-family:"Open Sans",system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
+    h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;margin:0;color:var(--primary-dark);text-wrap:balance}
     p{margin:0}
-    a{color:var(--royal)}
+    a{color:var(--primary)}
+
+    /* entrada flutuante no scroll */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.is-in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
     .skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:12px 18px;z-index:100;border-radius:0 0 8px 0}
     .skip:focus{left:0}
-    :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
     section{padding:120px 0}
@@ -87,15 +111,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .off{background:var(--off)}
 
     /* header */
-    header{padding:20px 0;border-bottom:1px solid var(--rule-soft);background:var(--white)}
+    header{
+      position:sticky;top:0;z-index:50;padding:18px 0;
+      border-bottom:1px solid var(--rule-soft);
+      background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+    }
     .hd{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .hd img{height:30px;width:auto;display:block}
     .hd .hd-cta{
-      font-family:"Open Sans",sans-serif;font-weight:700;font-size:15px;
-      background:var(--royal);color:#fff;text-decoration:none;
-      padding:11px 20px;border-radius:9px;white-space:nowrap;
+      font-family:var(--font-display);font-weight:700;font-size:15px;
+      background:var(--primary-dark);color:#fff;text-decoration:none;
+      padding:11px 20px;border-radius:var(--radius-btn);white-space:nowrap;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
     }
-    .hd .hd-cta:hover{background:var(--navy)}
+    .hd .hd-cta:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,41,96,.22)}
 
     /* hero */
     .hero{padding:80px 0 104px;background:var(--white)}
@@ -111,19 +140,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .video{
       margin:40px 0 0;position:relative;width:100%;padding-top:56.25%;
-      background:var(--navy);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+      background:var(--primary-dark);border-radius:var(--radius-card);overflow:hidden;
+      box-shadow:var(--shadow-float);
     }
     .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
     .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:32px 0 0}
     .btn{
-      font-family:"Open Sans",sans-serif;font-weight:700;font-size:17px;
-      background:var(--royal);color:#fff;text-decoration:none;
-      padding:16px 28px;border-radius:11px;display:inline-block;border:0;cursor:pointer;
+      font-family:var(--font-display);font-weight:700;font-size:17px;
+      background:var(--primary-dark);color:#fff;text-decoration:none;
+      padding:16px 28px;border-radius:var(--radius-btn);display:inline-block;border:0;cursor:pointer;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
     }
-    .btn:hover{background:var(--navy)}
-    .btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--rule);padding:14px 26px}
-    .btn.ghost:hover{border-color:var(--navy);background:transparent}
+    .btn:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,41,96,.22)}
+    .btn.ghost{background:transparent;color:var(--primary-dark);border:2px solid var(--rule);padding:14px 26px}
+    .btn.ghost:hover{border-color:var(--primary);background:transparent;box-shadow:none}
     .cta-note{font-size:15px;color:var(--ink-3)}
 
     /* logos */
@@ -149,12 +180,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* beneficios: grid, check verde */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-    .card{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:28px;box-shadow:var(--shadow)}
-    .card .ck{
-      width:28px;height:28px;border-radius:50%;background:#DDF0E7;color:var(--success);
-      display:grid;place-items:center;font-weight:800;font-size:15px;margin-bottom:16px;
-      font-family:"Open Sans",sans-serif;
+    .card{
+      background:var(--white);border:1px solid var(--rule-soft);
+      border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow);
+      transition:transform .25s ease,box-shadow .25s ease;
     }
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+    .card__pill{
+      display:block;width:44px;height:16px;border-radius:9999px;
+      background:var(--primary);margin-bottom:24px;
+    }
+    .card:nth-child(2) .card__pill{background:var(--accent)}
+    .card:nth-child(3) .card__pill{background:var(--warning)}
+    .card:nth-child(4) .card__pill{background:var(--primary-dark)}
     .card h3{font-size:clamp(22px,2.2vw,23px);line-height:1.28}
     .card p{font-size:17px;color:var(--ink-2);margin:10px 0 0}
 
@@ -251,7 +289,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1>Seu cliente manda mensagem no domingo. Seu time responde na segunda.</h1>
         <p class="lead">Veja como a IA da Cxpress atende 24 horas por texto e por áudio, resolve o que é repetitivo e passa pro seu time <b>só o que precisa de gente</b>.</p>
 
-        <div class="video">
+        <div class="video reveal">
           <iframe
             src="https://www.youtube.com/embed/dfxipCR2vTo?rel=0"
             title="Demonstração da plataforma Cxpress"
@@ -319,23 +357,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p>Quatro coisas, e todas no primeiro mês.</p>
         </div>
         <div class="grid">
-          <article class="card">
-            <span class="ck" aria-hidden="true">✓</span>
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>A IA responde antes do seu atendente</h3>
             <p>Perguntas repetidas são resolvidas por texto ou por áudio, a qualquer hora. Seu time entra só no que exige julgamento.</p>
           </article>
-          <article class="card">
-            <span class="ck" aria-hidden="true">✓</span>
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>Mesmo número, sem risco de bloqueio</h3>
             <p>A operação roda na API oficial da Meta. Você mantém a titularidade do número que seus clientes já têm salvo.</p>
           </article>
-          <article class="card">
-            <span class="ck" aria-hidden="true">✓</span>
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>Todos os canais num painel só</h3>
             <p>WhatsApp, Instagram, e-mail, telefone e chat do site na mesma tela, com histórico único por cliente.</p>
           </article>
-          <article class="card">
-            <span class="ck" aria-hidden="true">✓</span>
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>Você vê quem respondeu e em quanto tempo</h3>
             <p>Tempo de resposta por atendente, fila por canal e volume em andamento. Dá para saber quem está sobrecarregado antes de o cliente sentir.</p>
           </article>
@@ -346,7 +384,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- CASE -->
     <section>
       <div class="wrap">
-        <div class="case">
+        <div class="case reveal">
           <span class="tag">Case &middot; Cacau Show</span>
           <h2>SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
           <p>Na Páscoa de 2024, a Cacau Show recebia uma explosão diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, <b>apenas 34% das interações conseguiam ser respondidas</b>. O resto virava dúvida sem retorno, venda perdida e risco de imagem no pico comercial do ano.</p>
@@ -368,19 +406,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2>Por que empresas saem do WhatsApp Business comum</h2>
         </div>
         <div class="grid">
-          <article class="card">
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>No ar em 15 a 21 dias</h3>
             <p>Do contrato ao atendimento rodando, sem parar a operação durante a transição.</p>
           </article>
-          <article class="card">
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>Suporte brasileiro, em português</h3>
             <p>Onboarding, treinamento e acompanhamento durante toda a implantação. Sem ticket em inglês e resposta no dia seguinte.</p>
           </article>
-          <article class="card">
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>Integra com o que você já usa</h3>
             <p>API aberta para CRM próprio, ERP e sistema de gestão. Já integramos com sistema hospitalar e com CRM feito em casa.</p>
           </article>
-          <article class="card">
+          <article class="card reveal">
+            <span class="card__pill" aria-hidden="true"></span>
             <h3>IA que entende, não robô de menu</h3>
             <p>Interpreta intenção, mantém contexto, transcreve áudio e sabe quando passar para um humano.</p>
           </article>
@@ -394,7 +436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="sec-head">
           <h2>De onde nossos clientes vieram</h2>
         </div>
-        <div class="tw">
+        <div class="tw reveal">
           <table>
             <caption class="sr-only" style="position:absolute;left:-9999px">Comparativo entre WhatsApp Business comum, plataforma sem API oficial e Cxpress</caption>
             <thead>
@@ -476,5 +518,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Cxpress é um produto Elife. &copy; 2026 &middot; <a href="https://home.cxpress.io/politica-de-privacidade" target="_blank" rel="noopener">Política de privacidade</a></p>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    var reveal = function (el) { el.classList.add('is-in'); };
+    var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduz || !('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(els, reveal);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+
+    // rede de seguranca: nada fica invisivel por falha de animacao (GUIDELINES 4)
+    setTimeout(function () { Array.prototype.forEach.call(els, reveal); }, 2500);
+  })();
+  </script>
 </body>
 </html>
