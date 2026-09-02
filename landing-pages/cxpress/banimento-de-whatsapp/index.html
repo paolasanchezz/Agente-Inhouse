@@ -561,11 +561,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .recurso svg{width:15px;height:15px}
 
     /* ===== Omnichannel (diagrama canais > Cxpress > equipe) ===== */
-    .omni .section-title{text-align:center;max-width:840px;margin:0 auto 20px}
+    /* Secao escura: mesh de pontos + glows radiais (mesmo vocabulario do .agendar)
+       e pilulas decorativas nas bordas (mesmo do .fecho). A mascara do mesh abre
+       um buraco no meio pra nao competir com o diagrama. */
+    .omni{background:var(--primary-dark);position:relative;overflow:hidden}
+    .omni__mesh{
+      position:absolute;inset:0;pointer-events:none;
+      background-image:radial-gradient(rgba(255,255,255,.16) 1.5px,transparent 1.5px);
+      background-size:26px 26px;
+      -webkit-mask-image:radial-gradient(112% 68% at 50% 62%,transparent 32%,#000 78%);
+      mask-image:radial-gradient(112% 68% at 50% 62%,transparent 32%,#000 78%);
+    }
+    .omni__shapes{position:absolute;inset:0;pointer-events:none}
+    .omni__shapes span{position:absolute;display:block}
+    .omni__shapes .o-glow{
+      width:min(56vw,680px);aspect-ratio:1;border-radius:50%;
+      background:radial-gradient(circle,rgba(74,105,189,.55) 0%,rgba(74,105,189,.20) 45%,rgba(74,105,189,0) 72%);
+      top:-18%;left:-12%;
+    }
+    .omni__shapes .o-glow2{
+      width:min(48vw,580px);aspect-ratio:1;border-radius:50%;
+      background:radial-gradient(circle,rgba(239,134,60,.28) 0%,rgba(239,134,60,.10) 45%,rgba(239,134,60,0) 72%);
+      bottom:-20%;right:-10%;
+    }
+    .omni__shapes .o-pill{border-radius:9999px}
+    .omni__shapes .o-pill-1{width:54px;height:176px;background:var(--primary);opacity:.5;top:-46px;left:6%}
+    .omni__shapes .o-pill-2{width:132px;height:50px;border:3px solid var(--accent);bottom:-16px;right:8%;opacity:.75}
+    @media (max-width:1080px){.omni__shapes .o-pill{display:none}}
+    .omni .container{position:relative;z-index:1}
+
+    .omni .section-title{text-align:center;max-width:840px;margin:0 auto 20px;color:var(--white)}
     /* medido: cada frase sozinha precisa de 922px pra caber em 1 linha, e a maior
        linha do H2 tem 717px — subtitulo mais largo que o titulo inverteria a
        hierarquia. Com as duas frases num paragrafo so a 760px, cai de 4 pra 3 linhas. */
-    .omni__sub{text-align:center;max-width:760px;margin:0 auto 12px}
+    .omni__sub{text-align:center;max-width:760px;margin:0 auto 12px;color:var(--primary-lighter)}
     .omni__sub--2{margin-bottom:64px}
     /* --- Diagrama radial: canais convergem para a plataforma, que distribui
        para a equipe. Palco de tamanho fixo escalado por JS: composicao radial
@@ -581,7 +610,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .orb-ring{
       position:absolute;left:50%;top:var(--cy);
-      border:1.6px solid #E6E8F5;border-radius:50%;
+      border:1.6px solid rgba(255,255,255,.16);border-radius:50%;
       transform:translate(-50%,-50%);
     }
     .orb-ring--1{width:var(--d1);height:var(--d1)}
@@ -596,11 +625,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .orb-pill{
       display:flex;align-items:center;gap:10px;white-space:nowrap;
-      background:var(--white);border:1px solid var(--border);
+      background:var(--white);border:1px solid rgba(255,255,255,.55);
       border-radius:9999px;padding:8px 18px 8px 8px;
       font-family:var(--font-display);font-weight:700;font-size:16px;
       color:var(--primary-dark);
-      box-shadow:0 1px 2px rgba(35,41,96,.05),0 8px 22px rgba(35,41,96,.07);
+      box-shadow:0 2px 6px rgba(0,0,0,.18),0 14px 32px rgba(0,0,0,.26);
     }
     .orb-pill i{
       width:32px;height:32px;border-radius:50%;flex:0 0 auto;
@@ -614,7 +643,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .orb-spoke{
       position:absolute;left:50%;top:var(--cy);
       height:2px;width:calc(var(--r) * var(--rp));
-      background:linear-gradient(90deg,rgba(74,105,189,.14),rgba(74,105,189,.46));
+      background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(255,255,255,.42));
       transform-origin:0 50%;
       transform:rotate(calc(var(--a) - 90deg));
     }
@@ -627,14 +656,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .orb-laptop{position:absolute;left:50%;top:var(--cy);transform:translate(-50%,-50%);width:186px}
     .orb-laptop__screen{
-      background:var(--primary-dark);border-radius:12px 12px 4px 4px;
+      background:linear-gradient(160deg,#3a4a9e 0%,#2a3376 55%,#1c2258 100%);
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:12px 12px 4px 4px;
       height:112px;display:grid;place-items:center;
-      box-shadow:0 20px 44px rgba(35,41,96,.28);
+      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 46px rgba(74,105,189,.55),0 26px 56px rgba(0,0,0,.45);
     }
     .orb-laptop__screen img{display:block;width:118px;height:27px;min-height:0}
     .orb-laptop__base{
       height:9px;margin:0 -16px;border-radius:0 0 9px 9px;
-      background:linear-gradient(180deg,var(--primary-dark),#1a1f4c);
+      background:linear-gradient(180deg,#3a4899,#232960);
     }
     .orb-laptop__base::after{
       content:"";display:block;width:44px;height:3px;border-radius:2px;
@@ -643,8 +674,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .orb-agent{
       display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
-      background:var(--white);border:2px solid var(--border-strong);color:var(--primary-deep);
-      box-shadow:0 6px 16px rgba(35,41,96,.12);
+      background:var(--white);border:2px solid rgba(255,255,255,.7);color:var(--primary-deep);
+      box-shadow:0 6px 18px rgba(0,0,0,.3);
     }
     .orb-agent svg{width:21px;height:21px}
 
@@ -653,11 +684,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display:flex;align-items:center;gap:9px;
       font-family:var(--font-display);font-weight:700;
       font-size:13px;letter-spacing:.06em;text-transform:uppercase;
-      color:var(--text-muted);
+      color:var(--primary-lighter);
     }
     .orb-legend b{
       display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
-      background:var(--white);border:2px solid var(--border-strong);color:var(--primary-deep);
+      background:var(--white);border:2px solid rgba(255,255,255,.7);color:var(--primary-deep);
     }
     .orb-legend b svg{width:13px;height:13px}
 
@@ -681,14 +712,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       100%{transform:translate(-50%,-50%) translateX(0);opacity:0}
     }
     @keyframes receber{
-      0%,72%{box-shadow:0 20px 44px rgba(35,41,96,.28)}
-      84%{box-shadow:0 20px 44px rgba(35,41,96,.28),0 0 0 12px rgba(33,204,120,.16)}
-      100%{box-shadow:0 20px 44px rgba(35,41,96,.28)}
+      0%,72%{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 46px rgba(74,105,189,.55),0 26px 56px rgba(0,0,0,.45)}
+      84%{box-shadow:0 0 0 12px rgba(33,204,120,.22),0 0 60px rgba(33,204,120,.5),0 26px 56px rgba(0,0,0,.45)}
+      100%{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 46px rgba(74,105,189,.55),0 26px 56px rgba(0,0,0,.45)}
     }
     @keyframes atender{
-      0%,70%{border-color:var(--border-strong);transform:scale(1)}
+      0%,70%{border-color:rgba(255,255,255,.7);transform:scale(1)}
       84%{border-color:var(--wa);transform:scale(1.12)}
-      100%{border-color:var(--border-strong);transform:scale(1)}
+      100%{border-color:rgba(255,255,255,.7);transform:scale(1)}
     }
 
     /* ===== IA (texto + midia) ===== */
@@ -1344,6 +1375,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- OMNICHANNEL -->
     <section class="omni" aria-labelledby="omni-title">
+      <div class="omni__mesh" aria-hidden="true"></div>
+      <div class="omni__shapes" aria-hidden="true">
+        <span class="o-glow"></span>
+        <span class="o-glow2"></span>
+        <span class="o-pill o-pill-1"></span>
+        <span class="o-pill o-pill-2"></span>
+      </div>
       <div class="container">
         <div class="reveal">
           <span class="sect-rule sect-rule--center" aria-hidden="true"></span>

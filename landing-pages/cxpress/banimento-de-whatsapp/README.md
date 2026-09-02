@@ -44,6 +44,33 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [ ] Formulário integrado — hoje é **mock** (GUIDELINES §11). Reintegrar o Jotform `261034073026647` via `/lp-integrar-form` antes de publicar
 - [ ] Entrar no `landing-pages/dominios/content-cxpress-io/manifest.json` e publicar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
 
+## Ajustes de 2026-09-03 (Bruno)
+
+**Seção omni ficou escura.** Fundo `--primary-dark` com efeito montado a partir do vocabulário
+que a LP já tinha: mesh de pontos com máscara radial (mesmo do `.agendar`) mais dois glows
+(azul `--primary` no topo-esquerda, laranja `--accent` embaixo-direita) e duas pílulas decorativas
+nas bordas (mesmo do `.fecho`). A máscara abre um buraco no centro pra o mesh não competir com o diagrama.
+
+Itens invertidos pra ganhar destaque no navy:
+
+| Item | Antes | Agora |
+|---|---|---|
+| Título | `--primary-dark` | `--white` |
+| Subtítulo e legenda | `--text-body` / `--text-muted` | `--primary-lighter` |
+| Anéis | `#E6E8F5` | `rgba(255,255,255,.16)` |
+| Linhas radiais | azul translucido | branco translucido |
+| Pílulas de canal | branco com sombra navy | branco com aro claro e sombra preta |
+| Agentes | aro `--border-strong` | aro `rgba(255,255,255,.7)` |
+| Tela do notebook | navy chapado | gradiente aceso + halo azul |
+
+A tela do notebook era navy chapado e sumiria no fundo navy. Virou **tela acesa** (gradiente
+`#3a4a9e -> #1c2258` + borda clara + halo) em vez de mais uma superfície branca: assim o centro
+segue sendo o elemento mais forte sem se confundir com as pílulas. Pelo mesmo motivo o halo do
+keyframe `receber` passou de navy (invisível no navy) para verde `--wa`.
+
+Contraste medido no fundo navy: título 13.5:1, subtítulo e legenda 10.4:1, texto das pílulas
+13.5:1 no branco, barra laranja 5.2:1 (mínimo de 3:1 para elemento gráfico).
+
 ## Ajustes de 2026-09-02 (Bruno)
 
 1. **Seção omni virou diagrama radial** (opção "Convergência", escolhida entre 3 protótipos animados).
