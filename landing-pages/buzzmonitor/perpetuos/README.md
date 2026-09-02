@@ -28,6 +28,16 @@ Quando entrar webinar novo, mudar horário ou uma série for encerrada:
 
 ## Estado registrado nesta versão
 
-Última verificação: **24/08/2026** — 7 séries ativas, todas rodando diariamente (inclusive
-fim de semana). As três séries em português (17671 Vozxpress, 17689 Conheça a Cxpress,
+Última verificação: **02/09/2026** — 8 séries ativas, todas rodando diariamente (inclusive
+fim de semana). Duas mudanças nesse dia:
+
+- Entrou **18043** "Como construir um monitoramento de concorrentes" (PT-BR, 09:00 BRT,
+  sessão de 25 min) — primeira linha da tabela, que é ordenada pelo horário BR.
+- **17727** (Case Buzzcreators) esgotou as sessões e foi recriada como **18050**, que roda
+  **10:20 BRT** — era 09:40.
+
+Nos dois webinars em português o horário foi escolhido para o Brasil, então a coluna de
+México cai bem cedo (06:00 e 07:20) de propósito — está ali só como referência de fuso.
+
+As três séries em português que existiam antes (17671 Vozxpress, 17689 Conheça a Cxpress,
 17601 Buzzmonitor MCP) foram encerradas em 19/08/2026 e não constam na tabela.
