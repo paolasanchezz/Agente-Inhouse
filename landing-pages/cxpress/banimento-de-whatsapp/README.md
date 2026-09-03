@@ -46,6 +46,13 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 
 ## Ajustes de 2026-09-03 (Bruno) — segunda rodada
 
+4b. **Nota de requisito removida da pagina** (pedido do Bruno, mesma data). Saiu o
+   paragrafo `.agendar__req` ("Ter um site ativo e um dos requisitos para se tornar cliente
+   da Cxpress") que ficava acima do formulario, com o CSS dela (regra base, media query
+   mobile e a entrada na lista de `text-wrap: balance`), e a linha `REQ:` do `copy.txt`.
+   A mesma informacao continua dentro do proprio Jotform, como texto de apoio do campo
+   "Site da empresa" — essa nao foi tocada, e so muda no editor do Jotform.
+
 4. **Preco removido da pagina** (pedido do Bruno). Saiu a pilula
    `.agendar__price` ("Planos a partir de R$ 1.750") da secao do formulario, com o CSS
    dela (regra base, `::before`, media query mobile e a entrada na lista de

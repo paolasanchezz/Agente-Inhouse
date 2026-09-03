@@ -107,7 +107,6 @@ CTA: Agende uma demonstração gratuita da plataforma
 H2: Agende sua demonstração gratuita
 H3: Veja a API Oficial funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API Oficial ativa.
-REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
 FORM: [mock durante o design, GUIDELINES §11. Embed real entra por /lp-integrar-form]
 
 === FOOTER ===
