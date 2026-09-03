@@ -44,6 +44,26 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [x] Formulário integrado nos dois pontos — seção e pop-up do botão flutuante, ambos no Jotform `261034073026647` (2026-09-03)
 - [x] No `landing-pages/dominios/content-cxpress-io/manifest.json` e no ar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
 
+## Ajustes de 2026-09-03 (Bruno) — segunda rodada
+
+4. **Preco removido da pagina** (pedido do Bruno). Saiu a pilula
+   `.agendar__price` ("Planos a partir de R$ 1.750") da secao do formulario, com o CSS
+   dela (regra base, `::before`, media query mobile e a entrada na lista de
+   `text-wrap: balance`). A linha `PRICE:` tambem saiu do `copy.txt`, pra fonte e HTML
+   nao divergirem e o valor nao voltar numa regeracao. A LP irma
+   `evite-banimento-whatsapp` ainda mostra o preco — se a decisao vale pras duas,
+   rodar la tambem.
+5. **Titulo e corpo do formulario reequilibrados.** `.agendar h3` foi de 34ch pra 44ch
+   (a frase tem 492px de largura natural e o interno do card, 668px: cabe em uma linha) e
+   `.agendar__body` de 52ch pra 70ch (natural de 1191px, entao cada uma das duas linhas
+   precisa de ~596px). Confirmado em 1440, 1280, 1024 e 820px.
+6. **Icone do card "Clientes sem resposta" corrigido.** O `path` do balao terminava com um
+   arco de raio 8.4 para uma corda de 17.8; como o raio nao alcanca, o SVG manda o navegador
+   reescala-lo, e era isso que achatava a bolha. Trocado pelo balao de fala fechado do mesmo
+   conjunto de icones. Varredura dos 47 SVGs da pagina nao achou outro arco no mesmo caso.
+7. **Em-dashes zerados de novo.** A revisao de 30/08 ja tinha zerado o grep; 8 voltaram
+   depois (1 em copy renderizada, no aviso do pop-up, e 7 em comentarios). Ver `REVISAO.md`.
+
 ## Ajustes de 2026-09-03 (Bruno)
 
 1. **Formulário da seção virou Jotform real.** O mock HTML (que reproduzia o layout de

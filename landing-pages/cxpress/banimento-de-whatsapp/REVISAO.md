@@ -62,3 +62,58 @@ cd landing-pages && py -m http.server 8137 --bind 127.0.0.1
 ```
 
 Depois abrir `http://127.0.0.1:8137/cxpress/banimento-de-whatsapp/index.html` (servindo a partir de `landing-pages/`, para o symlink `brand` resolver).
+
+---
+
+# Revisão de 2026-09-03 — as alterações de hoje
+
+**Escopo:** o que mudou hoje (embed do Jotform na seção, listener anti-colisão, pulso do
+botão flutuante, troca do ícone do card, `max-width` do H3 e do corpo do form).
+**Auditores:** design contra `GUIDELINES.md` §1–21 + `web-design-guidelines` (Vercel Web
+Interface Guidelines), com tudo medido no Chromium contra a página em produção (1440 e 390).
+
+## Aplicado automaticamente (1 crítico)
+
+| # | Achado | Correção |
+|---|---|---|
+| 1 | **8 em-dashes no HTML.** Tolerância zero (GUIDELINES §5 e `regras-anti-ia.md`). Um deles em **copy renderizada** (aviso de envio do pop-up, linha 1590); os outros 7 em comentários de CSS/JS. O item 6 da revisão de 2026-08-30 já tinha zerado esse grep: os 8 voltaram depois, no trabalho do botão flutuante (3) e nas alterações de hoje (4). As LPs irmãs `evite-banimento-whatsapp`, `whatsapp-business` e `planos` estão todas em 0. | Copy: a pausa forte virou ponto ("…numa nova aba. Se ela não abriu, toque aqui."). Comentários: vírgula, ponto e vírgula, dois-pontos ou parênteses conforme a função (tabela de `regras-anti-ia.md`). `grep -c "—"` = 0 |
+
+## Melhorias opcionais (4)
+
+- [ ] **Nome acessível do iframe do Jotform da seção** — o `jsform` cria o iframe com o nome
+  interno do formulário como `title` ("CXPRESS BR | MKT | LPs - Proposta (V2)"), que é o que
+  o leitor de tela anuncia. O iframe do pop-up tem título próprio em português. Cumpre o
+  WCAG 4.1.2 (tem nome), mas o nome é administrativo. Fix: 3 linhas de script setando o
+  `title` depois do load.
+- [ ] **`.agendar h3` no mobile: 2 linhas com 43% de desequilíbrio** (160px + 280px), acima
+  do que a §21 aceita. **Não é regressão de hoje** — medido com `max-width:34ch` (o valor
+  anterior) e com `44ch` (o atual): resultado idêntico, porque em 390px quem limita é o card
+  (340px), não o `max-width`. O `balance` já faz o melhor split possível; a alavanca da
+  ressalva 4 da §21 (baixar o teto de fonte) não fecha em 1 linha nessa largura.
+- [ ] **Botão flutuante cobre a borda direita dos campos.** Sendo `fixed`, ele passa por cima
+  do formulário conforme a pessoa rola (em 390px ocupa x 322–374 e o form vai até 365) — e
+  agora são campos de verdade, não mais o mock. Um `bottom` maior dentro da seção do form, ou
+  esconder o FAB quando a seção estiver visível, resolveria.
+- [ ] **Sem `<meta name="theme-color">`** (pré-existente).
+
+## Nice-to-haves (1)
+
+- [ ] **Loops decorativos infinitos** (pulso do FAB e o dot do overline do hero) começam
+  sozinhos e passam de 5s, o que a WCAG 2.2.2 pede pausar. Os dois param sob
+  `prefers-reduced-motion`, que é o remédio que a própria diretriz prevê para loop decorativo.
+
+## Verificado e sem achado
+
+| Item | Resultado |
+|---|---|
+| GTM (script determinístico) | `status=wrong`, mas `grandfathered=true` e selo batendo. É o container de Google Ads que o Victor escolheu em 2026-08-30. **Não mexer** |
+| `hreflang` | Ausente e correto: não há LP irmã com o mesmo slug-base |
+| Pacote SEO (§15) | description 1, robots 1, og 10, twitter 4, JSON-LD 1, canonical 1 |
+| OG image (§18) | `og-banimento-de-whatsapp.png`, 1200×630, sem `og-image.png` órfão |
+| Logo regional (§17) | Nenhum `href="/"` em navbar/footer |
+| Âncora `#agendar` × navbar sticky | 0px do H2 coberto (197px no desktop, 145px no mobile, contra 77px de navbar) |
+| Overflow horizontal do halo | 0 nas duas larguras |
+| Equilíbrio §21 no desktop | `.agendar__body` 6%, `.agendar__req` 9%, card do impacto 1% |
+| Motion | Só `transform`/`opacity`; nenhum `transition: all`; tudo dentro de `prefers-reduced-motion` |
+| Toque e foco | `touch-action:manipulation` + `-webkit-tap-highlight-color` cobrem o FAB; `:focus-visible` global; FAB 58×58 (52×52 no mobile) |
+| Ícone trocado | `aria-hidden="true"` no wrapper; varredura dos 47 SVGs da página não achou outro arco com raio menor que a corda |

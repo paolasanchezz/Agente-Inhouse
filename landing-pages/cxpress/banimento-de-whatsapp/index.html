@@ -592,7 +592,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .omni .section-title{text-align:center;max-width:840px;margin:0 auto 20px;color:var(--white)}
     /* medido: cada frase sozinha precisa de 922px pra caber em 1 linha, e a maior
-       linha do H2 tem 717px — subtitulo mais largo que o titulo inverteria a
+       linha do H2 tem 717px; subtitulo mais largo que o titulo inverteria a
        hierarquia. Com as duas frases num paragrafo so a 760px, cai de 4 pra 3 linhas. */
     .omni__sub{text-align:center;max-width:760px;margin:0 auto 12px;color:var(--primary-lighter)}
     .omni__sub--2{margin-bottom:64px}
@@ -782,7 +782,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color:var(--white);letter-spacing:-.005em;
     }
     /* Descricao em 4 linhas (2 + 2). Medido: o sub so cabe em 2 linhas a partir
-       de 560px e o body vira 1 linha acima de 745px — a janela para 2+2 e
+       de 560px e o body vira 1 linha acima de 745px, entao a janela para 2+2 e
        [560, 745]. 640px fica no meio dela e bate com a maior linha do H2 (635px),
        entao a descricao nao fica mais larga que o titulo. Mesma largura nos dois
        paragrafos para o bloco fechar como uma coluna so. */
@@ -846,7 +846,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .agendar h3{
       font-family:var(--font-display);font-weight:700;font-size:21px;
       color:var(--primary-deep);margin-bottom:18px;line-height:1.35;
-      /* 44ch (~528px) segura a frase inteira numa linha no desktop —
+      /* 44ch (~528px) segura a frase inteira numa linha no desktop:
          o natural dela e 492px e o interno do card, 668px. */
       max-width:44ch;margin-left:auto;margin-right:auto;
     }
@@ -855,18 +855,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       /* 70ch (~627px) para o texto fechar em DUAS linhas: o natural e 1191px,
          entao cada linha precisa de ~596px, e o interno do card da 668px. */
       max-width:70ch;margin:0 auto 24px;
-    }
-    .agendar__price{
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:var(--font-display);font-weight:800;font-size:19px;
-      color:var(--primary-dark);background:var(--warning-light);
-      border:1px solid rgba(241,169,8,.55);
-      border-radius:9999px;padding:11px 24px;margin-bottom:14px;
-      line-height:1.3;
-    }
-    .agendar__price::before{
-      content:"";width:9px;height:9px;border-radius:50%;
-      background:var(--warning);flex-shrink:0;
     }
     .agendar__req{
       font-size:14px;line-height:1.5;color:var(--text-body);
@@ -953,7 +941,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (max-width:520px){
       .fecho__pills .f2{display:none}
-      .agendar__price{font-size:17px;padding:10px 18px}
       .btn{display:block;width:100%;padding:16px 18px;text-align:center;text-wrap:balance}
       .hero__tag--off{left:-2%}
       .hero__tag--on{right:0}
@@ -991,7 +978,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .fecho__body,
     .agendar h3,
     .agendar__body,
-    .agendar__price,
     .agendar__req,
     .btn{ text-wrap:balance; }
 
@@ -1017,7 +1003,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .wa-fab:hover{transform:scale(1.07);box-shadow:0 0 0 2px var(--wa-ink),0 14px 32px rgba(20,24,60,.32)}
     .wa-fab svg{width:31px;height:31px;fill:#fff}
     /* Pulso continuo: um halo que expande mais uma batida leve no proprio
-       botao. Quem anima e o ::after — o anel de contraste do box-shadow (o
+       botao. Quem anima e o ::after, entao o anel de contraste do box-shadow (o
        que cumpre o 3:1) fica intacto. No hover o pulso para, pra nao brigar
        com o scale(1.07). */
     @media (prefers-reduced-motion: no-preference){
@@ -1520,11 +1506,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 id="agendar-title" class="section-title">Agende sua demonstração gratuita</h2>
           <h3>Veja a API Oficial funcionando na sua operação</h3>
           <p class="agendar__body">Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API Oficial ativa.</p>
-          <p class="agendar__price">Planos a partir de R$ 1.750</p>
           <p class="agendar__req">Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.</p>
         </div>
         <div class="agendar__formcol reveal">
-          <!-- Formulario da campanha (Jotform 261034073026647) — o mesmo que o
+          <!-- Formulario da campanha (Jotform 261034073026647), o mesmo que o
                modal do botao flutuante carrega. -->
           <script>
           /* O resizer que vem no jsform acha o iframe pelo id do FORMULARIO.
@@ -1587,8 +1572,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="wa-modal__body">
         <p class="wa-modal__done" data-wa-done hidden>
-          Pedido enviado. Abrimos a conversa com um especialista numa nova aba —
-          <a href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Acabei%20de%20pedir%20uma%20demonstra%C3%A7%C3%A3o%20da%20Cxpress%20pela%20p%C3%A1gina%20de%20banimento%20do%20WhatsApp." target="_blank" rel="noopener">se ela não abriu, toque aqui</a>.
+          Pedido enviado. Abrimos a conversa com um especialista numa nova aba.
+          Se ela não abriu,
+          <a href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Acabei%20de%20pedir%20uma%20demonstra%C3%A7%C3%A3o%20da%20Cxpress%20pela%20p%C3%A1gina%20de%20banimento%20do%20WhatsApp." target="_blank" rel="noopener">toque aqui</a>.
         </p>
         <p class="wa-modal__wait" data-wa-wait>Carregando o formulário&hellip;</p>
         <div class="jotform-embed">
@@ -1645,8 +1631,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        nova aba do WhatsApp comercial.
 
        Dois sinais de envio, nesta ordem: (1) a mensagem {action:"submission-end"}
-       que o Jotform posta ainda dentro do clique no Enviar — sincrona com o
-       gesto, entao a aba nova nao cai no bloqueador de pop-up; (2) o segundo
+       que o Jotform posta ainda dentro do clique no Enviar (sincrona com o
+       gesto, entao a aba nova nao cai no bloqueador de pop-up); (2) o segundo
        `load` do iframe, que ja e a pagina de agradecimento, como rede pra
        quando a mensagem nao chega. Se o navegador barrar a aba mesmo assim, o
        aviso verde no topo do modal leva pro WhatsApp num clique. */
@@ -1697,7 +1683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
 
       /* A pagina tem dois embeds do mesmo formulario (a secao "Agende sua
-         demonstracao" e este modal), entao so vale o que vem DESTE iframe —
+         demonstracao" e este modal), entao so vale o que vem DESTE iframe:
          senao um envio feito na secao abriria o WhatsApp por aqui. A altura
          em mensagem de texto e tratada no listener da secao do formulario. */
       window.addEventListener('message', function(e){
