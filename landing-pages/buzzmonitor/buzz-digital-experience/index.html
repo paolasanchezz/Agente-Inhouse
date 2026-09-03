@@ -576,6 +576,9 @@ html.no-js .portal{display:none}
 .foot a{color:var(--muted)}
 </style>
 <link rel="canonical" href="https://{{DOMAIN}}/buzz-digital-experience">
+<link rel="alternate" hreflang="es-419" href="https://{{DOMAIN}}/buzz-digital-experience">
+<link rel="alternate" hreflang="pt-BR" href="https://{{DOMAIN}}/buzz-digital-experience-br">
+<link rel="alternate" hreflang="x-default" href="https://{{DOMAIN}}/buzz-digital-experience">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -2108,7 +2111,9 @@ $$(".choice").forEach(function(b){
   b.addEventListener("click",function(){
     $$(".choice").forEach(function(o){o.setAttribute("aria-pressed","false");});
     b.setAttribute("aria-pressed","true");
-    state.act=b.textContent.trim();
+    /* el <span> del numero forma parte del textContent: quedarse con la etiqueta */
+    var etiqueta=b.lastChild&&b.lastChild.nodeType===3?b.lastChild.textContent:b.textContent;
+    state.act=etiqueta.trim();
     var echo=$("#echo");
     echo.textContent=ACTS[b.getAttribute("data-act")];
     echo.classList.add("on");

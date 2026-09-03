@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WFJVK858');</script>
+<!-- End Google Tag Manager -->
+<title>Museu das Conversas Perdidas</title>
+<meta name="description" content="Uma experiência da Buzzmonitor. Coloque os fones e entre nas conversas que acontecem sobre as marcas no México enquanto ninguém está ouvindo.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Buzzmonitor">
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Buzzmonitor">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://{{DOMAIN}}/buzz-digital-experience-br">
+<meta property="og:title" content="Museu das Conversas Perdidas">
+<meta property="og:description" content="Enquanto você está aqui, o México segue falando da sua marca. Uma experiência interativa da Buzzmonitor.">
+<meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Museu das Conversas Perdidas, uma experiência da Buzzmonitor">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Museu das Conversas Perdidas">
+<meta name="twitter:description" content="Enquanto você está aqui, o México segue falando da sua marca. Uma experiência interativa da Buzzmonitor.">
+<meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#07030C;
+  --ink-2:#12071C;
+  --purple:#390155;
+  --purple-deep:#25013A;
+  --orange:#EB7C2E;
+  --orange-soft:#FFD5C3;
+  --teal:#0E9D9B;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,.60);
+  --muted-2:rgba(255,255,255,.42);
+  --line:rgba(255,255,255,.12);
+  --glass:rgba(255,255,255,.045);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:"League Spartan","Trebuchet MS",system-ui,sans-serif;
+  --body:"Lato","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;
+  /* Tope entre salas: el scroll se ancla al inicio de cada bloque cuando pasa
+     cerca, y "stop:always" impide saltarse una sala de un solo gesto. Es
+     "proximity", no "mandatory": dentro de una sala larga se navega libre. */
+  scroll-snap-type:y proximity}
+.sala,.scene{scroll-snap-align:start;scroll-snap-stop:always}
+@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
+body{
+  margin:0;background:var(--ink);color:var(--white);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  overflow-x:hidden;
+}
+body.is-locked{overflow:hidden;height:100vh}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:2000;background:var(--orange);color:#1a0c00;padding:12px 18px;font-family:var(--display);font-weight:800}
+.skip:focus{left:12px;top:12px}
+
+h1,h2,h3,h4,.display{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1;margin:0}
+h1{font-size:clamp(38px,6.6vw,86px)}
+h2{font-size:clamp(30px,4.6vw,62px)}
+h3{font-size:clamp(22px,2.6vw,32px);letter-spacing:-.01em}
+p{margin:0}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:var(--muted);max-width:56ch}
+.tiny{font-size:14px;color:var(--muted-2);line-height:1.5}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.geo{white-space:nowrap}
+.src{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;border:1px solid rgba(14,157,155,.45);background:rgba(14,157,155,.10);
+  font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);white-space:nowrap}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.src[hidden]{display:none}
+.tag{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange)}
+.tag--muted{color:var(--muted-2)}
+.tag--logo{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.tag__logo{width:clamp(104px,10vw,132px);height:auto;transform:translateY(-1px)}
+.wrap{width:min(1120px,90vw);margin-inline:auto}
+.wrap--narrow{width:min(820px,90vw)}
+.stack>*+*{margin-top:22px}
+
+/* ---------- secuencia tipo video ---------- */
+.cine{opacity:0;transform:translate3d(0,26px,0) scale(.985);filter:blur(9px);
+  transition:opacity 1.15s var(--ease),transform 1.35s var(--ease),filter 1.05s var(--ease);will-change:opacity,transform,filter}
+.cine.on{opacity:1;transform:none;filter:none}
+.cine--soft.on{opacity:var(--o,.55)}
+html.no-js .cine{opacity:1;transform:none;filter:none}
+html.no-js .type,html.no-js .hero-logo{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.cine{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+.cine--soft{opacity:var(--o,.55)!important}}
+
+/* ---------- reveal engine ---------- */
+.rv{opacity:0;transform:translate3d(0,34px,0);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:var(--d,0ms);will-change:opacity,transform}
+.rv--left{transform:translate3d(-40px,0,0)}
+.rv--scale{transform:scale(.92)}
+.rv--blur{filter:blur(10px)}
+.rv.in{opacity:1;transform:none;filter:none}
+html.no-js .rv{opacity:1;transform:none;filter:none}
+.is-hidden{display:none}
+html.no-js .flood__center,html.no-js .swap,html.no-js .verdict__b,html.no-js .stamp,
+html.no-js .gate,html.no-js .twist,html.no-js .chain__i,html.no-js .found,
+html.no-js .galaxy__line,html.no-js .echo{opacity:1;transform:none;pointer-events:auto}
+html.no-js .stamp{transform:rotate(-2.5deg)}
+html.no-js .is-hidden{display:grid}
+html.no-js .cue,html.no-js .flood__field,html.no-js .noise,html.no-js .galaxy__canvas,html.no-js .clock{display:none}
+html.no-js .flood{height:auto}
+html.no-js .galaxy{height:auto}
+html.no-js .scene__stage{position:static;height:auto;padding:clamp(90px,14vh,160px) 20px}
+html.no-js .scan__row{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .marquee__row{animation:none!important}
+  .drop{animation:none!important}
+}
+
+/* ---------- transicion a blanco (salas 10 y 11) ----------
+   Una hoja blanca fija que gana opacidad con el scroll. Las dos ultimas salas
+   pierden su fondo propio para dejarla ver, y el texto cambia de familia de
+   color cuando la hoja ya cubre. */
+.paper{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:0}
+main{position:relative;z-index:1}
+.foot{position:relative;z-index:1}
+
+/* texto activo, como escrito al momento */
+.type{opacity:0;transition:opacity .5s var(--ease)}
+html.js #sala-10 .type:not(.on){visibility:hidden}
+.type.on{opacity:1}
+.type::after{content:"";display:inline-block;width:2px;height:.92em;background:currentColor;margin-left:5px;vertical-align:-.1em;opacity:0}
+.type.caret::after{opacity:1;animation:caret 1.05s steps(1) infinite}
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.hero-logo{width:clamp(220px,27vw,340px);height:auto;opacity:0;transform:translateY(16px) scale(.96);
+  transition:opacity 1.2s var(--ease),transform 1.3s var(--ease)}
+.hero-logo.on{opacity:1;transform:none}
+#sala-10 .cine,#sala-11 .cine{transition-duration:1.5s,1.7s,1.4s}
+
+body.is-light{color:var(--ink)}
+body.is-light #sala-10,body.is-light #sala-11,body.is-light .foot{color:var(--ink);border-top-color:rgba(0,0,0,.10)}
+body.is-light #sala-10 h2 span,body.is-light #sala-11 h2 span{color:var(--ink)}
+body.is-light .lead,body.is-light #sala-10 .type,body.is-light .four span{color:var(--ink)}
+body.is-light #sala-10 .lead,body.is-light #sala-11 .lead{color:rgba(0,0,0,.68)}
+body.is-light .tiny{color:rgba(0,0,0,.52)}
+body.is-light .next{color:rgba(0,0,0,.55)}
+body.is-light .next:hover{color:var(--orange)}
+body.is-light .field label{color:rgba(0,0,0,.6)}
+body.is-light .field input{background:#fff;border-color:rgba(0,0,0,.18);color:var(--ink)}
+body.is-light .field input::placeholder{color:rgba(0,0,0,.34)}
+body.is-light .field input:focus{border-color:var(--orange);background:rgba(235,124,46,.06)}
+body.is-light .chip{border-color:rgba(0,0,0,.2);color:rgba(0,0,0,.62)}
+body.is-light .chip b{color:var(--ink)}
+body.is-light .thanks{background:rgba(14,157,155,.09)}
+body.is-light .foot a{color:rgba(0,0,0,.58)}
+body.is-light .sound{background:rgba(255,255,255,.78);border-color:rgba(0,0,0,.16);color:#1a1a1a}
+body.is-light .sound[aria-pressed="true"]{color:var(--orange);border-color:var(--orange)}
+body.is-light .hud__room{background:rgba(255,255,255,.78);border-color:rgba(0,0,0,.14);color:rgba(0,0,0,.58)}
+
+/* ---------- chrome ---------- */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;background:transparent;z-index:900}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--teal));box-shadow:0 0 18px rgba(235,124,46,.6)}
+.hud{position:fixed;top:18px;right:18px;z-index:1002;display:flex;gap:10px;align-items:center}
+.hud__room{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.16em;color:var(--muted);background:rgba(0,0,0,.35);border:1px solid var(--line);padding:8px 12px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(8px)}
+/* Marca fija arriba a la izquierda. El halo la separa de las tarjetas que
+   pasan volando por detras, sin dibujar una caja que compita con el HUD. */
+/* Marca fija arriba a la izquierda. Los dos logos se cruzan con el mismo
+   progreso que blanquea la pagina (--lp): las letras pasan de blanco a negro
+   sin salto. El halo claro solo entra al final, cuando el fondo ya es blanco. */
+.brandmark{position:fixed;top:10px;left:10px;z-index:1002;display:flex;align-items:center;
+  padding:10px 18px;border-radius:999px;isolation:isolate}
+.brandmark::before,.brandmark::after{content:"";position:absolute;inset:0;border-radius:999px;z-index:-1}
+/* El cruce no se solapa: el logo blanco aguanta hasta que el fondo termina de
+   blanquear (90% del recorrido) y recien ahi entra el negro, en la misma caja. */
+.brandmark::before{background:radial-gradient(closest-side,rgba(7,3,12,.92),rgba(7,3,12,.62) 62%,transparent 100%);
+  opacity:calc((.9 - var(--lp,0)) * 10)}
+.brandmark::after{background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.65) 60%,transparent 100%);
+  opacity:calc((var(--lp,0) - .93) * 14)}
+.logoswap{position:relative;display:block;line-height:0}
+.brandmark .lg,.logoswap .lg{display:block;height:28px;width:auto}
+.lg--dark{opacity:calc((.9 - var(--lp,0)) * 10)}
+.lg--light{position:absolute;top:0;left:0;height:28px;width:auto;opacity:calc((var(--lp,0) - .9) * 10)}
+.foot .logoswap{width:170px}
+.foot .logoswap .lg{height:auto;width:170px}
+.foot .logoswap .lg--light{height:auto;width:170px}
+@media (max-width:640px){.brandmark{top:12px;left:8px;padding:8px 14px}.brandmark .lg{height:21px}}
+@media (max-width:380px){.brandmark .lg{height:18px}}
+.sound{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--white);padding:8px 14px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(8px);transition:border-color .3s,color .3s}
+.sound:hover{border-color:var(--orange);color:var(--orange)}
+.sound[aria-pressed="true"]{border-color:var(--orange);color:var(--orange)}
+.sound__eq{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.sound__eq i{width:2px;height:4px;background:currentColor;display:block}
+.sound[aria-pressed="true"] .sound__eq i{animation:eq .9s var(--ease) infinite alternate}
+.sound[aria-pressed="true"] .sound__eq i:nth-child(2){animation-delay:.15s}
+.sound[aria-pressed="true"] .sound__eq i:nth-child(3){animation-delay:.3s}
+@keyframes eq{from{height:3px}to{height:12px}}
+body.is-locked .hud__room{opacity:0;pointer-events:none}
+@media (max-width:640px){.hud__room{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#210E00;border:0;border-radius:999px;padding:18px 34px;font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s;box-shadow:0 10px 40px rgba(235,124,46,.25)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 60px rgba(235,124,46,.45)}
+.btn--ghost{background:transparent;color:var(--white);border:1px solid var(--line);box-shadow:none}
+.btn--ghost:hover{border-color:var(--orange);color:var(--orange);box-shadow:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.next{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:8px 0;color:var(--muted);font-family:var(--display);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:14px;transition:color .3s,gap .3s}
+.next:hover{color:var(--orange);gap:16px}
+.next span{display:inline-block;animation:bob 2.4s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ---------- portal ---------- */
+html.no-js .portal{display:none}
+.portal{position:fixed;inset:0;z-index:1000;background:radial-gradient(120% 90% at 50% 0%,#1B0430 0%,var(--ink) 62%);
+  display:flex;align-items:center;justify-content:center;padding:clamp(20px,4vh,44px) 20px;text-align:center;
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  transition:opacity 1.1s var(--ease),visibility 1.1s}
+.portal.is-gone{opacity:0;visibility:hidden;pointer-events:none}
+.portal__inner{width:min(900px,92vw);display:grid;gap:clamp(18px,3.2vh,40px);justify-items:center;margin:auto}
+.portal h1{font-size:clamp(34px,5.6vw,72px);max-width:22ch}
+.portal h1 em{font-style:normal;color:var(--orange)}
+.counters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%}
+.counter{border:1px solid var(--line);background:var(--glass);border-radius:14px;padding:18px 12px;text-align:left}
+.counter__n{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.2vw,42px);line-height:1;color:var(--white);font-variant-numeric:tabular-nums}
+.counter__l{display:block;margin-top:8px;font-size:13px;letter-spacing:.04em;color:var(--muted-2)}
+.counter:nth-child(1) .counter__n{color:var(--orange)}
+.counter:nth-child(3) .counter__n{color:var(--teal)}
+@media (max-width:720px){.counters{grid-template-columns:repeat(2,1fr)}}
+.portal__center{display:contents}
+.portal__core,.portal__cta{display:grid;gap:clamp(14px,2.4vh,26px);justify-items:center;position:relative;z-index:2}
+.portal__core{order:1}
+.board{order:2}
+.portal__cta{order:3}
+.board{width:100%;display:grid;gap:14px}
+.board__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}
+.panel{border:1px solid var(--line);background:var(--glass);border-radius:14px;padding:16px 16px 14px;text-align:left;min-width:0}
+.panel__t{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}
+.panel__t span{color:rgba(255,255,255,.28);letter-spacing:.06em}
+.spark{width:100%;height:clamp(64px,8vh,96px);display:block;overflow:visible}
+.spark__line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s var(--ease) .3s}
+.spark.on .spark__line{stroke-dashoffset:0}
+.spark__area{opacity:0;transition:opacity 1s var(--ease) 1s}
+.spark.on .spark__area{opacity:1}
+.spark__dot{opacity:0;transition:opacity .5s var(--ease) 1.8s}
+.spark.on .spark__dot{opacity:1;filter:drop-shadow(0 0 6px rgba(235,124,46,.9))}
+.donut{display:flex;align-items:center;gap:14px}
+.donut svg{width:88px;height:88px;flex:none;transform:rotate(-90deg)}
+.donut__bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:5}
+.donut__seg{fill:none;stroke-width:5;stroke-linecap:butt;stroke-dasharray:0 100;transition:stroke-dasharray 1.4s var(--ease) .4s}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:12px;color:var(--muted);min-width:0}
+.legend li{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.legend i{width:8px;height:8px;border-radius:2px;flex:none}
+.legend b{color:var(--white);font-family:var(--display);font-weight:800;margin-left:auto}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:12px;color:var(--muted)}
+.bars li{display:grid;grid-template-columns:64px 1fr 30px;align-items:center;gap:9px}
+.bars i{display:block;height:6px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.bars b{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--orange),#F2A45F);transition:width 1.3s var(--ease) .5s}
+.board.on .bars b{width:var(--w)}
+.bars em{font-style:normal;font-family:var(--display);font-weight:800;color:var(--white);text-align:right}
+@media (max-width:820px){
+  .board__grid{grid-template-columns:1fr 1fr}
+  .panel--wide{grid-column:1/-1;order:-1}
+  .donut svg{width:74px;height:74px}
+  .donut{gap:10px}
+}
+@media (max-width:640px){
+  .portal{padding-top:74px}
+  .board__grid .panel:not(.panel--wide){display:none}
+  .spark{height:56px}
+  .panel{padding:12px 13px 10px}
+  .counter{padding:13px 11px}
+}
+@media (max-height:620px){
+  .board__grid{display:none}
+  .portal h1{font-size:clamp(30px,4.6vw,52px)}
+}
+/* Teaser: el titulo se queda quieto en el centro y los datos viajan alrededor.
+   Cada pieza nace del fondo (chica y desenfocada), pasa nitida a media altura
+   y se va deshaciendo al salir de cuadro. El texto va por encima, asi que las
+   piezas se ocultan detras de el en lugar de estorbar la lectura. */
+.chips{display:none}
+.chipcard{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;
+  border:1px solid var(--line);background:rgba(255,255,255,.05);backdrop-filter:blur(3px);
+  font-size:13px;color:rgba(255,255,255,.82);white-space:nowrap}
+.chipcard b{font-family:var(--display);font-weight:800;color:var(--orange)}
+.chipcard--warn b{color:var(--orange)}
+.chipcard--quote{font-style:italic;color:rgba(255,255,255,.6)}
+
+@keyframes drift{
+  0%{opacity:0;transform:translate(-50%,-50%) translate(var(--x0),var(--y0)) scale(.42) rotate(var(--rot,0deg));filter:blur(8px)}
+  8%{opacity:var(--o,.55);filter:blur(1.2px)}
+  26%{opacity:var(--o,.55);filter:blur(0)}
+  70%{opacity:var(--o,.55);filter:blur(0)}
+  90%{opacity:calc(var(--o,.55) * .6);filter:blur(5px)}
+  100%{opacity:0;transform:translate(-50%,-50%) translate(var(--x1),var(--y1)) scale(1.34) rotate(var(--rot,0deg));filter:blur(14px)}
+}
+
+/* Mobile first: la deriva es el comportamiento normal en cualquier pantalla con
+   alto suficiente. Solo en viewports muy bajos (landscape de telefono) se vuelve
+   al apilado, donde el contenido necesita todo el alto disponible. */
+@media (min-height:560px){
+  .portal{align-items:stretch;overflow:hidden;padding-top:clamp(20px,4vh,44px)}
+  .portal__inner{position:absolute;inset:0;display:block;margin:0;width:auto}
+  .portal__center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:min(640px,90vw);display:grid;gap:clamp(14px,2.6vh,34px);z-index:3}
+  .portal__core,.portal__cta{order:0}
+  .board{position:absolute;inset:0;display:block;pointer-events:none;z-index:1;gap:0}
+  .board .counters,.board__grid{display:contents}
+  .chips{display:contents}
+  .board .counter,.board .panel,.board .chipcard{position:absolute;top:50%;left:50%;margin:0;opacity:0}
+  .board .counter{width:min(196px,46vw)}
+  .board .panel{width:min(262px,72vw)}
+  .board.drifting .counter,.board.drifting .panel,.board.drifting .chipcard{
+    animation:drift var(--dur,16s) linear var(--delay,0s) infinite;will-change:transform,opacity,filter}
+  .spark{height:72px}
+  .donut svg{width:66px;height:66px}
+  /* halo bajo el nucleo: en pantallas chicas las piezas pasan mas cerca del texto */
+  .portal__center::before{content:"";position:absolute;inset:-12% -16%;z-index:-1;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(7,3,12,.94),rgba(7,3,12,.78) 58%,transparent 100%)}
+}
+@media (min-width:900px){
+  .portal__center{width:min(640px,58vw)}
+  .portal__center::before{inset:-14% -22%}
+}
+@media (max-width:640px){
+  .board .chipcard{font-size:12px;padding:9px 13px}
+  .board .counter{padding:12px 12px}
+  .board .counter .counter__n{font-size:26px}
+  .board .counter .counter__l{font-size:11px}
+}
+@media (max-width:420px){
+  .board .chipcard:nth-child(n+5){display:none}   /* menos capas con blur en telefono */
+}
+@media (prefers-reduced-motion:reduce){
+  .board.drifting .counter,.board.drifting .panel,.board.drifting .chipcard{animation:none;opacity:var(--o,.55);
+    transform:translate(-50%,-50%) translate(var(--xs,0),var(--ys,0))}
+}
+.portal__ask{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:.02em}
+.headphones{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted-2)}
+
+/* ---------- generic sala ---------- */
+.sala{position:relative;padding:clamp(110px,16vh,200px) 0;border-top:1px solid rgba(255,255,255,.06)}
+.sala--flush{border-top:0}
+.sala__head{display:grid;gap:18px;margin-bottom:clamp(40px,6vh,72px)}
+.sala--center .sala__head{justify-items:center;text-align:center}
+.scene{position:relative}
+.scene__stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+
+/* ---------- 01 flood ---------- */
+.flood{height:520vh}
+.flood__stage{background:var(--ink)}
+.flood__field{position:absolute;inset:0}
+.bubble{position:absolute;max-width:min(340px,74vw);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:16px;padding:14px 18px;font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);opacity:0;transform:translateY(20px) scale(.95) rotate(var(--rot,0deg));transition:opacity .5s var(--ease),transform .6s var(--ease);backdrop-filter:blur(4px)}
+.bubble.on{opacity:1;transform:translateY(0) scale(1) rotate(var(--rot,0deg))}
+@media (max-width:720px){.bubble{max-width:64vw;font-size:13.5px;line-height:1.4;padding:10px 13px;border-radius:13px}}
+.bubble b{display:block;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:6px}
+.flood__center{position:relative;text-align:center;z-index:3;display:grid;gap:10px;justify-items:center;width:min(820px,88vw);opacity:0;transition:opacity .8s var(--ease)}
+.flood__center .next{margin-top:22px}
+.flood__center.on{opacity:1}
+.verdictLine{font-family:var(--display);font-weight:900;font-size:clamp(38px,7.4vw,96px);line-height:.92;letter-spacing:-.03em}
+.strike{position:relative;display:inline-block;font-family:var(--display);font-weight:900;font-size:clamp(38px,7.4vw,96px);line-height:.92;letter-spacing:-.03em}
+.strike::after{content:"";position:absolute;left:-4%;right:-4%;top:50%;height:7px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.strike.cut::after{transform:scaleX(1)}
+.swap{display:block;font-family:var(--display);font-weight:900;font-size:clamp(38px,7.4vw,96px);line-height:.92;letter-spacing:-.03em;color:var(--orange);opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease) .2s,transform .8s var(--ease) .2s}
+.swap.on{opacity:1;transform:none}
+.cue{position:absolute;left:50%;bottom:clamp(40px,8vh,90px);transform:translateX(-50%);z-index:4;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap;transition:opacity .6s var(--ease)}
+.cue span{display:inline-block;animation:bob 2.2s var(--ease) infinite}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(70% 60% at 50% 50%,transparent 30%,rgba(7,3,12,.94) 78%);transition:opacity .6s linear}
+
+/* ---------- 02 puertas ---------- */
+.pick-cue{font-family:var(--display);font-weight:800;font-size:clamp(18px,2vw,24px);letter-spacing:.02em;color:var(--orange)}
+.doors{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.door{position:relative;display:grid;gap:12px;align-content:end;min-height:min(42vh,300px);padding:22px 20px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.06));text-align:left;overflow:hidden;transition:transform .5s var(--ease),border-color .4s,background .4s}
+.door::before{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.door:hover,.door:focus-visible{transform:translateY(-8px);border-color:var(--orange);background:var(--orange)}
+.door:hover .door__name,.door:focus-visible .door__name{color:#210E00}
+.door:hover .door__hint,.door:focus-visible .door__hint{color:rgba(33,14,0,.78)}
+.door:hover::before,.door[aria-pressed="true"]::before{transform:scaleX(1)}
+.door[aria-pressed="true"]{border-color:var(--orange);background:var(--orange)}
+.door[aria-pressed="true"] .door__name{color:#210E00}
+.door[aria-pressed="true"] .door__hint{color:rgba(33,14,0,.78)}
+.door__name{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.5vw,32px);line-height:1.02;letter-spacing:-.01em;transition:color .35s}
+.door__hint{font-size:14px;color:var(--muted-2);line-height:1.4;transition:color .35s}
+@media (max-width:980px){.doors{grid-template-columns:repeat(2,1fr)}.door{min-height:180px}}
+@media (max-width:520px){.doors{grid-template-columns:1fr}.door{min-height:0}}
+.picked{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.6vw,32px);line-height:1.15;letter-spacing:-.01em;color:var(--white);max-width:30ch}
+.picked b{color:var(--orange)}
+.gate{margin-top:36px;display:grid;gap:16px;justify-items:start;opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);pointer-events:none}
+.gate.on{opacity:1;transform:none;pointer-events:auto}
+
+/* ---------- 03 conversacion perdida ---------- */
+.thread{border:1px solid var(--line);border-radius:20px;background:var(--glass);overflow:hidden}
+.thread__bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.25)}
+.thread__src{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+.clock{font-family:var(--display);font-weight:800;font-size:22px;color:var(--orange);font-variant-numeric:tabular-nums}
+.thread__post{padding:26px 22px;font-size:clamp(19px,2.1vw,26px);line-height:1.35;font-family:var(--display);font-weight:700;letter-spacing:-.01em}
+.thread__list{list-style:none;margin:0;padding:0 22px 22px;display:grid;gap:12px}
+.reply{display:grid;gap:6px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.reply.on{opacity:1;transform:none}
+.reply span{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2)}
+.reply.rival{border-color:rgba(235,124,46,.45);background:rgba(235,124,46,.10)}
+.reply.rival span{color:var(--orange)}
+.stamp{margin-top:26px;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:6px;background:var(--orange);color:#210E00;font-family:var(--display);font-weight:900;letter-spacing:.1em;text-transform:uppercase;transform:rotate(-2.5deg) scale(.8);opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.stamp.on{opacity:1;transform:rotate(-2.5deg) scale(1)}
+.verdict{margin-top:44px;display:grid;gap:2px}
+.verdict__a{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.6vw,48px);line-height:.98;letter-spacing:-.02em;color:var(--muted)}
+.verdict__b{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,80px);line-height:.9;letter-spacing:-.03em;color:var(--orange);opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) .6s,transform .9s var(--ease) .6s}
+.verdict__b.on{opacity:1;transform:none}
+
+/* ---------- 04 tu marca ---------- */
+.field{display:grid;gap:10px;max-width:520px}
+.field label{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:17px 18px;color:var(--white);font-family:var(--body);font-size:17px;transition:border-color .3s,background .3s}
+.field input::placeholder{color:rgba(255,255,255,.32)}
+.field input:focus{border-color:var(--orange);background:rgba(235,124,46,.07);outline:none}
+.scan{margin-top:34px;display:grid;gap:12px;max-width:560px}
+.scan__row{display:flex;align-items:center;gap:14px;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);opacity:0;transform:translateX(-12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.scan__row.on{opacity:1;transform:none}
+.scan__row.done{color:var(--white)}
+.scan__row i{flex:1;height:1px;background:var(--line);position:relative;overflow:hidden}
+.scan__row i::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease)}
+.scan__row.done i::after{transform:scaleX(1)}
+.found{margin-top:34px;font-family:var(--display);font-weight:900;font-size:clamp(30px,5vw,64px);color:var(--teal);opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.found.on{opacity:1;transform:none}
+
+/* ---------- 05 espejo ---------- */
+.brandglow{color:var(--orange);text-shadow:0 0 26px rgba(235,124,46,.55),0 0 60px rgba(235,124,46,.28)}
+.mirror{display:grid;gap:18px}
+.insight{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--glass);transition:border-color .4s,transform .5s var(--ease)}
+.insight:hover{border-color:rgba(235,124,46,.4);transform:translateY(-4px)}
+.insight__n{font-family:var(--display);font-weight:900;font-size:clamp(26px,3vw,38px);color:var(--orange);line-height:1}
+.insight__k{font-family:var(--display);font-weight:800;font-size:clamp(18px,1.8vw,22px);letter-spacing:.06em;text-transform:uppercase}
+.insight__q{margin-top:12px;font-size:clamp(17px,1.6vw,20px);color:var(--muted);line-height:1.5}
+@media (max-width:560px){.insight{grid-template-columns:1fr;gap:12px}}
+
+/* ---------- 06 constelacion ---------- */
+.galaxy{height:420vh}
+.galaxy__stage{background:radial-gradient(120% 100% at 50% 50%,#160329 0%,var(--ink) 70%)}
+.galaxy__canvas{position:absolute;inset:0;width:100%;height:100%}
+.galaxy__core{position:relative;z-index:2;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(20px,2.6vw,34px);letter-spacing:.04em;text-transform:uppercase;padding:18px 30px;border:1px solid var(--orange);border-radius:999px;background:var(--orange);color:#fff;box-shadow:0 12px 44px rgba(235,124,46,.35);max-width:80vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.galaxy__line{position:absolute;left:50%;bottom:clamp(48px,9vh,110px);transform:translateX(-50%);width:min(760px,86vw);text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,40px);line-height:1.15;opacity:0;transition:opacity .9s var(--ease);z-index:3}
+.galaxy__line.on{opacity:1}
+.galaxy__line b{color:var(--orange)}
+
+/* ---------- 07 incomodo ---------- */
+.versus{display:grid;gap:26px;transition:opacity .8s var(--ease)}
+.versus.fade{opacity:.28;transform:scale(.985)}
+.bar{display:grid;gap:10px}
+.bar__top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.bar__name{font-family:var(--display);font-weight:800;font-size:clamp(18px,2vw,24px);letter-spacing:.04em;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar__n{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.4vw,44px);font-variant-numeric:tabular-nums}
+.bar__track{height:14px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar__fill{height:100%;width:0;border-radius:999px;background:var(--orange);transition:width 1.6s var(--ease)}
+.bar--rival .bar__n{color:var(--teal)}
+.bar--rival .bar__fill{background:var(--teal)}
+.twist{margin-top:44px;display:grid;gap:20px;opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.twist.on{opacity:1;transform:none}
+.quote{padding:26px;border-left:3px solid var(--orange);background:rgba(235,124,46,.08);border-radius:0 16px 16px 0;font-size:clamp(18px,1.9vw,23px);line-height:1.5}
+
+/* ---------- 08 que harias ---------- */
+.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.choice__n{display:block;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.16em;color:var(--muted-2);margin-bottom:8px;transition:color .35s}
+.choice:hover .choice__n,.choice[aria-pressed="true"] .choice__n{color:var(--orange)}
+.choice{padding:20px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;text-align:left;transition:border-color .35s,transform .4s var(--ease),background .35s}
+.choice:hover{border-color:var(--orange);transform:translateY(-4px)}
+.choice[aria-pressed="true"]{border-color:var(--orange);background:rgba(235,124,46,.14)}
+@media (max-width:820px){.choices{grid-template-columns:repeat(2,1fr)}}
+.echo{margin-top:26px;padding:20px 24px;border-left:3px solid var(--orange);background:rgba(235,124,46,.09);border-radius:0 14px 14px 0;
+  font-family:var(--display);font-weight:700;font-size:clamp(19px,2.1vw,26px);line-height:1.3;color:var(--white);
+  min-height:1.6em;opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.echo.on{opacity:1;transform:none}
+.echo:not(.on){margin:0;padding:0;border-left-width:0;min-height:0;height:0;overflow:hidden}
+.flow{margin-top:clamp(56px,8vh,90px);padding:clamp(26px,4vh,44px) clamp(20px,3vw,36px);
+  border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 140% at 50% 0%,rgba(235,124,46,.10),rgba(255,255,255,.02) 55%)}
+.flow__label{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:clamp(24px,3.4vh,38px)}
+.flow__logo{width:190px;height:auto}
+.flow__label span{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.3vw,28px);letter-spacing:-.01em}
+.flow__track{list-style:none;margin:0;padding:0;display:flex;align-items:stretch;gap:0}
+.flowcard{flex:1 1 0;min-width:0;position:relative;padding:20px 18px 18px;cursor:default;border:1px solid var(--line);border-radius:16px;
+  background:rgba(255,255,255,.035);
+  transition:transform .5s var(--ease),border-color .4s,background .4s,box-shadow .5s var(--ease)}
+.flowcard__n{font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.16em;color:var(--muted-2);transition:color .35s}
+.flowcard__t{font-family:var(--display);font-weight:800;font-size:clamp(19px,1.9vw,23px);letter-spacing:-.01em;margin:8px 0 8px}
+.flowcard__d{font-size:14px;line-height:1.45;color:var(--muted)}
+.flowcard.hot{transform:translateY(-8px);border-color:rgba(235,124,46,.75);background:rgba(235,124,46,.12);
+  box-shadow:0 18px 46px rgba(235,124,46,.22)}
+.flowcard.hot .flowcard__n{color:var(--orange)}
+.flowlink{flex:0 0 clamp(22px,3vw,46px);display:flex;align-items:center;justify-content:center;position:relative}
+.flowlink i{display:block;width:100%;height:2px;background:rgba(255,255,255,.13);position:relative;border-radius:2px}
+.flowlink i::before{content:"";position:absolute;inset:0;background:var(--orange);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.flowlink i::after{content:"";position:absolute;top:-4px;left:0;width:9px;height:9px;border-radius:50%;background:var(--orange);
+  opacity:0;box-shadow:0 0 14px rgba(235,124,46,.95)}
+.flowlink.run i::before{transform:scaleX(1)}
+.flowlink.run i::after{animation:travel .5s var(--ease) forwards}
+.flowlink.off i::before{transform:scaleX(0);transition-duration:.9s}
+@keyframes travel{0%{left:0;opacity:0}18%{opacity:1}82%{opacity:1}100%{left:calc(100% - 9px);opacity:0}}
+@media (max-width:900px){
+  .flow__track{flex-direction:column}
+  .flowcard{flex:none}
+  .flowlink{flex:0 0 26px;padding:4px 0}
+  .flowlink i{width:2px;height:100%;min-height:22px}
+  .flowlink i::before{transform:scaleY(0);transform-origin:top}
+  .flowlink.run i::before{transform:scaleY(1)}
+  .flowlink.off i::before{transform:scaleY(0)}
+  .flowlink i::after{top:0;left:-4px}
+  @keyframes travel{0%{top:0;opacity:0}18%{opacity:1}82%{opacity:1}100%{top:calc(100% - 9px);opacity:0}}
+  .flow__logo{width:150px}
+}
+@media (prefers-reduced-motion:reduce){.flowcard.hot{transform:none;box-shadow:none}.flowlink.run i::after{animation:none}}
+
+/* ---------- 09 mercado ---------- */
+.market{background:linear-gradient(180deg,var(--ink) 0%,#0E0418 50%,var(--ink) 100%)}
+.bigcount{font-family:var(--display);font-weight:900;font-size:clamp(52px,13vw,180px);line-height:.9;color:var(--orange);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.marquee{margin-top:clamp(40px,6vh,70px);border-block:1px solid var(--line);padding:18px 0;overflow:hidden;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:14%;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--ink),transparent)}
+.marquee__row{display:flex;gap:52px;width:max-content;animation:slide 34s linear infinite}
+.marquee--rev .marquee__row{animation-direction:reverse;animation-duration:44s}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tickr{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:clamp(16px,1.7vw,20px);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.86)}
+.tickr b{color:var(--orange);font-variant-numeric:tabular-nums}
+.tickr.dn b{color:var(--teal)}
+.market{position:relative;overflow:hidden}
+.market .wrap{position:relative;z-index:2}
+.drops{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.drop{position:absolute;top:-80px;padding:11px 17px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.035);
+  font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
+  color:rgba(255,255,255,.85);opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(0) rotate(-2deg);opacity:0}14%{opacity:.26}86%{opacity:.26}100%{transform:translateY(115vh) rotate(3deg);opacity:0}}
+@media (max-width:640px){.drop{font-size:11px;padding:9px 13px}}
+
+/* ---------- 10 revelacion ---------- */
+.reveal{min-height:100vh;display:grid;place-items:center;text-align:center;background:transparent}
+.reveal__inner{display:grid;gap:clamp(34px,6vh,64px);justify-items:center;width:min(920px,90vw)}
+.reveal__logo{width:min(280px,62vw)}
+.reveal h2{font-size:clamp(28px,4.4vw,58px);line-height:1.02;max-width:26ch;display:grid;gap:6px}
+.reveal h2 span,.reveal h2 b{display:block}
+.inline-logo{display:inline-block;width:clamp(132px,13vw,176px);height:auto;vertical-align:-.22em;margin:0 2px}
+.reveal h2 b{color:var(--orange)}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%}
+.four span{font-family:var(--display);font-weight:900;font-size:clamp(19px,2.4vw,30px);letter-spacing:.02em;padding:20px 8px;border-top:2px solid var(--orange);text-align:left}
+@media (max-width:640px){.four{grid-template-columns:repeat(2,1fr)}.four span{text-align:center;border-top-width:1px}}
+
+/* ---------- 11 lead ---------- */
+.close{background:transparent}
+#sala-11 h2{display:grid;gap:6px;line-height:1.02}
+#sala-11 h2 span,#sala-11 h2 b{display:block}
+#sala-11 h2 b{color:var(--orange)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
+.form .field{max-width:none}
+.form__full{grid-column:1/-1}
+@media (max-width:700px){.form{grid-template-columns:1fr}}
+.recap{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);font-size:14px;color:var(--muted)}
+.chip b{font-family:var(--display);font-weight:800;color:var(--white);letter-spacing:.04em}
+.thanks{margin-top:30px;padding:26px;border:1px solid rgba(14,157,155,.5);background:rgba(14,157,155,.1);border-radius:18px;display:none}
+.thanks.on{display:block}
+
+/* ---------- footer ---------- */
+.foot{padding:60px 0 46px;border-top:1px solid var(--line);text-align:center;display:grid;gap:20px;justify-items:center}
+.foot .logoswap{width:170px;opacity:.9}
+.foot a{color:var(--muted)}
+</style>
+<link rel="canonical" href="https://{{DOMAIN}}/buzz-digital-experience-br">
+<link rel="alternate" hreflang="es-419" href="https://{{DOMAIN}}/buzz-digital-experience">
+<link rel="alternate" hreflang="pt-BR" href="https://{{DOMAIN}}/buzz-digital-experience-br">
+<link rel="alternate" hreflang="x-default" href="https://{{DOMAIN}}/buzz-digital-experience">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://buzzmonitor.com/#organization", "name": "Buzzmonitor", "url": "https://buzzmonitor.com/", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/buzzmonitor/", "https://www.instagram.com/buzzmonitorbr/"] },
+    { "@type": "WebPage", "@id": "https://{{DOMAIN}}/buzz-digital-experience-br#webpage", "url": "https://{{DOMAIN}}/buzz-digital-experience-br", "name": "Museu das Conversas Perdidas", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://buzzmonitor.com/#organization" }, "description": "Experiência interativa da Buzzmonitor sobre as conversas que as marcas no México não estão ouvindo." },
+    { "@type": "SoftwareApplication", "name": "Buzzmonitor", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://buzzmonitor.com/", "inLanguage": "pt-BR", "publisher": { "@id": "https://buzzmonitor.com/#organization" } }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFJVK858"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
+<a class="skip" href="#sala-01">Ir para o conteúdo</a>
+
+<div class="paper" id="paper" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="bar"></div></div>
+
+<div class="brandmark cine" id="hudLogo">
+  <span class="logoswap">
+    <img class="lg lg--dark" src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43">
+    <img class="lg lg--light" src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="" aria-hidden="true" width="225" height="43">
+  </span>
+</div>
+
+<div class="hud">
+  <p class="hud__room" id="roomLabel" aria-hidden="true">Sala 01 / 11</p>
+  <button class="sound" id="soundBtn" type="button" aria-pressed="false">
+    <span class="sound__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span id="soundTxt">Som</span>
+  </button>
+</div>
+
+<!-- ============ PORTAL ============ -->
+<div class="portal" id="portal" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
+  <div class="portal__inner">
+    <div class="board" id="board" aria-hidden="true">
+      <div class="counters">
+        <div class="counter cine cine--soft" style="--o:.62"><span class="counter__n" data-to="1284">0</span><span class="counter__l">conversas</span></div>
+        <div class="counter cine cine--soft" style="--o:.62"><span class="counter__n" data-to="312">0</span><span class="counter__l">reclamações</span></div>
+        <div class="counter cine cine--soft" style="--o:.62"><span class="counter__n" data-to="97">0</span><span class="counter__l">intenções de compra</span></div>
+        <div class="counter cine cine--soft" style="--o:.62"><span class="counter__n" data-to="146">0</span><span class="counter__l">comparações</span></div>
+      </div>
+
+      <div class="board__grid">
+        <div class="panel panel--wide cine cine--soft" style="--o:.58">
+          <p class="panel__t">Conversas por hora <span>últimas 12 h</span></p>
+          <svg class="spark" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-hidden="true">
+            <defs>
+              <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#EB7C2E" stop-opacity=".42"/>
+                <stop offset="100%" stop-color="#EB7C2E" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="spark__area" id="sparkArea" d="" fill="url(#sparkFill)"/>
+            <path class="spark__line" id="sparkLine" d="" fill="none" stroke="#EB7C2E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle class="spark__dot" id="sparkDot" r="4" cx="0" cy="0" fill="#EB7C2E"/>
+          </svg>
+        </div>
+
+        <div class="panel cine cine--soft" style="--o:.58">
+          <p class="panel__t">Tom da conversa</p>
+          <div class="donut">
+            <svg viewBox="0 0 42 42" role="img" aria-hidden="true">
+              <circle class="donut__bg" cx="21" cy="21" r="15.9"/>
+              <circle class="donut__seg" id="donutNeg" cx="21" cy="21" r="15.9" stroke="#EB7C2E"/>
+              <circle class="donut__seg" id="donutNeu" cx="21" cy="21" r="15.9" stroke="rgba(255,255,255,.28)"/>
+              <circle class="donut__seg" id="donutPos" cx="21" cy="21" r="15.9" stroke="#0E9D9B"/>
+            </svg>
+            <ul class="legend">
+              <li><i style="background:#EB7C2E"></i>Negativo <b>41%</b></li>
+              <li><i style="background:rgba(255,255,255,.28)"></i>Neutro <b>37%</b></li>
+              <li><i style="background:#0E9D9B"></i>Positivo <b>22%</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel cine cine--soft" style="--o:.58">
+          <p class="panel__t">Onde acontece</p>
+          <ul class="bars">
+            <li><span>Facebook</span><i><b style="--w:88%"></b></i><em>32%</em></li>
+            <li><span>TikTok</span><i><b style="--w:72%"></b></i><em>26%</em></li>
+            <li><span>Instagram</span><i><b style="--w:61%"></b></i><em>22%</em></li>
+            <li><span>X</span><i><b style="--w:34%"></b></i><em>12%</em></li>
+            <li><span>Avaliações</span><i><b style="--w:22%"></b></i><em>8%</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chips">
+        <span class="chipcard chipcard--quote">&ldquo;alguém recomenda?&rdquo;</span>
+        <span class="chipcard">Intenção de compra <b>↑ 4.2%</b></span>
+        <span class="chipcard">TikTok <b>26%</b></span>
+        <span class="chipcard chipcard--warn">Negativo <b>41%</b></span>
+        <span class="chipcard chipcard--quote">&ldquo;faz dois dias que espero&rdquo;</span>
+        <span class="chipcard">Menções por hora <b>↑ 5.4%</b></span>
+      </div>
+    </div>
+    <div class="portal__center">
+      <div class="portal__core">
+        <p class="tag tag--logo cine">Uma experiência da <img class="tag__logo" src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43"></p>
+        <h1 id="portalTitle" class="cine">Enquanto você está aqui, o <span class="geo">México</span> segue <em>falando da sua marca</em>.</h1>
+        <p class="tiny cine">Números de amostra, calculados com volumes típicos de monitoramento no <span class="geo">México</span>. Servem para ilustrar a escala, não descrevem uma marca específica.</p>
+      </div>
+      <div class="portal__cta">
+        <p class="portal__ask cine">Quer ouvir?</p>
+        <button class="btn cine" id="enterBtn" type="button">Entrar</button>
+        <p class="headphones cine"><span aria-hidden="true">🎧</span> A experiência é melhor com fones e o som ligado.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ 01 ============ -->
+<section class="scene flood" id="sala-01" aria-labelledby="t01" data-room="1">
+  <div class="scene__stage flood__stage">
+    <h2 id="t01" class="sr-only" style="position:absolute;left:-9999px">Sala 01. Coloque os fones</h2>
+    <div class="flood__field" id="floodField" aria-hidden="true"></div>
+    <div class="noise" id="floodNoise" aria-hidden="true"></div>
+    <p class="cue" id="cue" aria-hidden="true">Deslize para ouvir <span>↓</span></p>
+    <div class="flood__center" id="floodCenter">
+      <p class="tag tag--muted">01 / A entrada</p>
+      <p class="verdictLine">Isto</p>
+      <p class="strike" id="strike">é RUÍDO</p>
+      <p class="swap" id="swap">são OPORTUNIDADES</p>
+      <button class="next" type="button" data-goto="#sala-02">Seguir <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="sala" id="sala-02" aria-labelledby="t02" data-room="2">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">02 / Escolha o que quer ignorar</p>
+      <h2 class="rv" style="--d:80ms" id="t02">Cinco portas. Cada uma é um tipo de conversa que acontece hoje, com ou sem você.</h2>
+      <p class="pick-cue rv" style="--d:150ms">Escolha uma porta</p>
+    </div>
+
+    <div class="doors" role="group" aria-label="Portas do museu">
+      <button class="door rv" style="--d:0ms" type="button" data-door="ventas" aria-pressed="false">
+        <span class="door__name">Vendas</span>
+        <span class="door__hint">Alguém está prestes a comprar e pede uma indicação.</span>
+      </button>
+      <button class="door rv" style="--d:90ms" type="button" data-door="reputacion" aria-pressed="false">
+        <span class="door__name">Reputação</span>
+        <span class="door__hint">Um incômodo que começa num comentário e não para por aí.</span>
+      </button>
+      <button class="door rv" style="--d:180ms" type="button" data-door="experiencia" aria-pressed="false">
+        <span class="door__name">Experiência</span>
+        <span class="door__hint">Gosta do seu produto, mas algo no caminho atrapalha.</span>
+      </button>
+      <button class="door rv" style="--d:270ms" type="button" data-door="crisis" aria-pressed="false">
+        <span class="door__name">Crisis</span>
+        <span class="door__hint">Um boato que cresce enquanto seu time dorme.</span>
+      </button>
+      <button class="door rv" style="--d:360ms" type="button" data-door="competencia" aria-pressed="false">
+        <span class="door__name">Concorrência</span>
+        <span class="door__hint">Seu cliente cita outra marca dentro da sua própria conversa.</span>
+      </button>
+    </div>
+
+    <div class="gate" id="gate02">
+      <p class="picked" id="gate02Txt" role="status"></p>
+      <button class="next" type="button" data-goto="#sala-03">Abrir a porta <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="sala" id="sala-03" aria-labelledby="t03" data-room="3">
+  <div class="wrap wrap--narrow">
+    <div class="sala__head">
+      <p class="tag rv" id="t03">03 / A conversa perdida</p>
+    </div>
+
+    <div class="thread rv" style="--d:200ms">
+      <div class="thread__bar">
+        <p class="thread__src" id="threadSrc">Grupo público / Facebook</p>
+        <p class="clock mono" id="clock" aria-hidden="true">00:00</p>
+      </div>
+      <p class="thread__post" id="threadPost">&ldquo;Estou entre a Marca A e a Marca B. Qual vocês indicam?&rdquo;</p>
+      <ul class="thread__list" id="threadList"></ul>
+    </div>
+
+    <p class="tiny rv" style="--d:60ms;margin-top:18px">Conversa representativa, reescrita a partir de padrões reais de monitoramento. Não reproduz publicações nem pessoas identificáveis.</p>
+
+    <div class="stamp" id="stamp" role="status">Decisão tomada<span aria-hidden="true">·</span><span id="stampWho">Concorrente escolhido</span></div>
+
+    <div class="verdict">
+      <p class="verdict__a rv">A marca não perdeu uma conversa.</p>
+      <p class="verdict__b" id="verdictB">Perdeu uma venda.</p>
+    </div>
+
+    <p class="lead rv" style="--d:120ms;margin-top:34px">Ninguém dessa marca estava lá. Ninguém avisou.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-04">Seguir <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="sala" id="sala-04" aria-labelledby="t04" data-room="4">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">04 / Agora escolha a sua marca</p>
+      <h2 class="rv" style="--d:80ms" id="t04">Você já viu o que acontece com outras marcas. Agora vamos ver a sua.</h2>
+    </div>
+
+    <form id="brandForm" novalidate>
+      <div class="field rv" style="--d:140ms">
+        <label for="brandInput">Escreva a sua marca</label>
+        <input id="brandInput" name="brand" type="text" autocomplete="organization" placeholder="Ex. Café Milagre" maxlength="42" required>
+      </div>
+      <p class="rv" style="--d:200ms;margin-top:22px"><button class="btn" type="submit" id="listenBtn">Ouvir a minha marca</button></p>
+    </form>
+
+    <div class="scan" id="scan" aria-hidden="true">
+      <p class="scan__row" data-scan="1">Buscando conversas <i></i></p>
+      <p class="scan__row" data-scan="2">Analisando <i></i></p>
+      <p class="scan__row" data-scan="3">Detectando sinais <i></i></p>
+    </div>
+    <p class="found" id="found" role="status">Encontramos algo.</p>
+    <p style="margin-top:22px"><span class="src" id="mirrorSrc" hidden>Dados do Buzzmonitor Trends</span></p>
+    <p class="tiny rv" id="mirrorNote" style="--d:80ms;margin-top:14px;max-width:60ch">Esta demonstração não consulta dados da sua marca ao vivo. Ela monta o percurso com exemplos representativos para você ver como o problema aparece. A análise completa com os seus dados vem depois, com um especialista.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-05">Ver o espelho <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section class="sala sala--center" id="sala-05" aria-labelledby="t05" data-room="5">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">05 / O espelho</p>
+      <h2 class="rv" style="--d:80ms" id="t05">Isto é o que o <span class="geo">México</span> pode estar dizendo de <span id="mirrorBrand" class="brandglow">sua marca</span>.</h2>
+    </div>
+
+    <div class="mirror">
+      <article class="insight rv" style="--d:0ms">
+        <p class="insight__n">01</p>
+        <div>
+          <h3 class="insight__k">Alguém quer comprar</h3>
+          <p class="insight__q">&ldquo;Estou procurando um tablet, alguém já testou os tablets da Samsung? Preciso dele ainda esta semana.&rdquo;</p>
+        </div>
+      </article>
+      <article class="insight rv" style="--d:120ms">
+        <p class="insight__n">02</p>
+        <div>
+          <h3 class="insight__k">Alguém está frustrado</h3>
+          <p class="insight__q">&ldquo;Comprei um Galaxy Z Fold8 e ainda não chegou. Faz dias que espero e já estou me arrependendo.&rdquo;</p>
+        </div>
+      </article>
+      <article class="insight rv" style="--d:240ms">
+        <p class="insight__n">03</p>
+        <div>
+          <h3 class="insight__k">Alguém te comparou</h3>
+          <p class="insight__q">&ldquo;Amo esse celular, é a melhor câmera que já testei.&rdquo;</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="lead rv" style="--d:120ms;margin:38px auto 0;text-align:center">Encontramos mais. Ainda não vamos pedir nada em troca.</p>
+    <p style="margin-top:26px"><button class="next" type="button" data-goto="#sala-06">Seguir <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section class="scene galaxy" id="sala-06" aria-labelledby="t06" data-room="6">
+  <div class="scene__stage galaxy__stage">
+    <h2 id="t06" style="position:absolute;left:-9999px">Sala 06. Você está ouvindo?</h2>
+    <canvas class="galaxy__canvas" id="galaxy" aria-hidden="true"></canvas>
+    <p class="galaxy__core" id="galaxyCore">Sua marca</p>
+    <p class="galaxy__line" id="galaxyLine">A sua marca não precisa de mais dados. <b>Precisa entender quais importam.</b></p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section class="sala" id="sala-07" aria-labelledby="t07" data-room="7">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">07 / Quer ver algo incômodo?</p>
+      <h2 class="rv" style="--d:80ms" id="t07">Escolha um concorrente.</h2>
+    </div>
+
+    <form id="rivalForm" novalidate>
+      <div class="field rv" style="--d:140ms">
+        <label for="rivalInput">Nome do concorrente</label>
+        <input id="rivalInput" name="rival" type="text" placeholder="Ex. a marca que sempre aparece pra você" maxlength="42" required>
+      </div>
+      <p class="rv" style="--d:200ms;margin-top:22px"><button class="btn" type="submit">Comparar</button></p>
+    </form>
+
+    <div class="versus is-hidden" id="versus" style="margin-top:52px">
+      <div class="bar">
+        <div class="bar__top"><p class="bar__name" id="barMine">Sua marca</p><p class="bar__n mono" data-to="2481">0</p></div>
+        <div class="bar__track"><span class="bar__fill" data-w="53"></span></div>
+      </div>
+      <div class="bar bar--rival">
+        <div class="bar__top"><p class="bar__name" id="barRival">Concorrente</p><p class="bar__n mono" data-to="4719">0</p></div>
+        <div class="bar__track"><span class="bar__fill" data-w="100"></span></div>
+      </div>
+      <p style="margin-top:4px"><span class="src" id="versusSrc" hidden>Dados do Buzzmonitor Trends</span></p>
+      <p class="tiny" id="versusNote">Volumes de amostra para ilustrar a diferença. Com a sua conta, o número sai do seu próprio monitoramento.</p>
+    </div>
+
+    <div class="twist" id="twist">
+      <h3>Mas esse não é o problema.</h3>
+      <p class="lead">O problema é onde esse nome aparece. Existem conversas em que os seus próprios clientes citam a concorrência, dentro das suas publicações, nos seus grupos, embaixo dos seus anúncios.</p>
+      <blockquote class="quote">&ldquo;Eu comprava aqui, mas desde que <span class="rBrand">a outra marca</span> passou a ter frete grátis, nem penso duas vezes.&rdquo;</blockquote>
+      <p class="tiny">Exemplo representativo, construído a partir de padrões frequentes de comparação entre marcas.</p>
+      <p><button class="next" type="button" data-goto="#sala-08">Seguir <span aria-hidden="true">↓</span></button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section class="sala" id="sala-08" aria-labelledby="t08" data-room="8">
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">08 / O que você faria?</p>
+      <h2 class="rv" style="--d:80ms" id="t08">&ldquo;Estou pensando em cancelar porque faz três dias que ninguém responde.&rdquo;</h2>
+      <p class="lead rv" style="--d:160ms">Se você encontrasse esta mensagem nas redes sociais da sua marca, o que faria? Escolha um dos quatro caminhos:</p>
+    </div>
+
+    <div class="choices rv" style="--d:220ms" role="group" aria-label="O que você faria?">
+      <button class="choice" type="button" data-act="ignorar" aria-pressed="false"><span class="choice__n">01</span>Ignorar</button>
+      <button class="choice" type="button" data-act="responder" aria-pressed="false"><span class="choice__n">02</span>Responder</button>
+      <button class="choice" type="button" data-act="cx" aria-pressed="false"><span class="choice__n">03</span>Enviar pro CX</button>
+      <button class="choice" type="button" data-act="historial" aria-pressed="false"><span class="choice__n">04</span>Analisar o histórico</button>
+    </div>
+    <p class="echo" id="echo" role="status"></p>
+
+    <div class="flow" id="flow">
+      <p class="flow__label cine">
+        <img class="flow__logo" src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43">
+        <span>faria assim</span>
+      </p>
+      <ol class="flow__track" id="chain" aria-label="Detecta, classifica, analisa, prioriza e aciona">
+        <li class="flowcard cine" data-step="1">
+          <span class="flowcard__n">01</span>
+          <h3 class="flowcard__t">Detecta</h3>
+          <p class="flowcard__d">Acha a mensagem no canal onde ela aconteceu, mesmo que ninguém reporte.</p>
+        </li>
+        <li class="flowlink" aria-hidden="true"><i></i></li>
+        <li class="flowcard cine" data-step="2">
+          <span class="flowcard__n">02</span>
+          <h3 class="flowcard__t">Classifica</h3>
+          <p class="flowcard__d">Marca por tema, tom e urgência, sem ninguém ler uma a uma.</p>
+        </li>
+        <li class="flowlink" aria-hidden="true"><i></i></li>
+        <li class="flowcard cine" data-step="3">
+          <span class="flowcard__n">03</span>
+          <h3 class="flowcard__t">Analisa</h3>
+          <p class="flowcard__d">Cruza o histórico dessa pessoa e dessa conversa com a sua marca.</p>
+        </li>
+        <li class="flowlink" aria-hidden="true"><i></i></li>
+        <li class="flowcard cine" data-step="4">
+          <span class="flowcard__n">04</span>
+          <h3 class="flowcard__t">Prioriza</h3>
+          <p class="flowcard__d">Sobe pro topo se houver risco de cancelamento ou intenção de compra.</p>
+        </li>
+        <li class="flowlink" aria-hidden="true"><i></i></li>
+        <li class="flowcard cine" data-step="5">
+          <span class="flowcard__n">05</span>
+          <h3 class="flowcard__t">Aciona</h3>
+          <p class="flowcard__d">Manda pro time que pode resolver, com o contexto já pronto.</p>
+        </li>
+      </ol>
+    </div>
+    <p style="margin-top:34px"><button class="next" type="button" data-goto="#sala-09">Seguir <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section class="sala market sala--center" id="sala-09" aria-labelledby="t09" data-room="9">
+  <div class="drops" id="drops" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sala__head">
+      <p class="tag rv">09 / A sala das oportunidades perdidas</p>
+      <h2 class="rv" style="--d:80ms" id="t09">Conversas que as marcas podem estar perdendo hoje</h2>
+      <p class="bigcount mono rv" style="--d:160ms" id="bigCount" aria-hidden="true">0</p>
+      <p class="tiny rv" style="--d:200ms">Estimativa de amostra construída com volumes típicos de monitoramento no <span class="geo">México</span>. É uma escala, não um dado auditado.</p>
+    </div>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__row" id="tick1"></div></div>
+    <div class="marquee marquee--rev" aria-hidden="true"><div class="marquee__row" id="tick2"></div></div>
+
+    <p style="margin-top:34px"><button class="next" type="button" data-goto="#sala-10">Seguir <span aria-hidden="true">↓</span></button></p>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="sala reveal sala--flush" id="sala-10" aria-labelledby="t10" data-room="10">
+  <div class="reveal__inner">
+    <h2 id="t10"><span class="cine">A sua marca não precisa de mais dados.</span><b class="cine">Precisa ouvir melhor.</b></h2>
+    <p class="lead type" id="t10lead" data-text="Comece a aplicar tudo o que você viu na sua marca com">Comece a aplicar tudo o que você viu na sua marca com</p>
+    <img class="hero-logo" id="t10logo" src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="225" height="43">
+    <div class="four">
+      <span class="type" data-text="Escute.">Escute.</span>
+      <span class="type" data-text="Entenda.">Entenda.</span>
+      <span class="type" data-text="Decida.">Decida.</span>
+      <span class="type" data-text="Aja.">Aja.</span>
+    </div>
+    <button class="next cine" type="button" data-goto="#sala-11">Última sala <span aria-hidden="true">↓</span></button>
+  </div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section class="sala close" id="sala-11" aria-labelledby="t11" data-room="11">
+  <div class="wrap wrap--narrow">
+    <div class="sala__head">
+      <p class="tag cine">11 / Saída</p>
+      <h2 id="t11"><span class="cine">A sua visita terminou.</span><b class="cine">A da sua marca está só começando.</b></h2>
+      <p class="lead cine">Preparamos uma análise das conversas que podem importar para o seu negócio, com os seus canais e a sua categoria.</p>
+    </div>
+
+    <div class="recap cine" id="recap" aria-label="Seu percurso"></div>
+
+    <form class="form" id="leadForm" action="#" method="post" novalidate>
+      <input type="hidden" name="marca_analizada" id="hMarca" value="">
+      <input type="hidden" name="competidor" id="hRival" value="">
+      <input type="hidden" name="puerta" id="hPuerta" value="">
+      <div class="field cine">
+        <label for="fName">Nome</label>
+        <input id="fName" name="nombre" type="text" autocomplete="name" required>
+      </div>
+      <div class="field cine">
+        <label for="fRole">Cargo</label>
+        <input id="fRole" name="cargo" type="text" autocomplete="organization-title" required>
+      </div>
+      <div class="field cine">
+        <label for="fCompany">Empresa</label>
+        <input id="fCompany" name="empresa" type="text" autocomplete="organization" required>
+      </div>
+      <div class="field cine">
+        <label for="fMail">E-mail corporativo</label>
+        <input id="fMail" name="email" type="email" autocomplete="email" required>
+      </div>
+      <p class="form__full cine"><button class="btn" type="submit">Falar com um especialista</button></p>
+      <p class="form__full tiny cine">Formulário de demonstração. Ainda não envia dados para lugar nenhum.</p>
+    </form>
+
+    <div class="thanks" id="thanks" role="status">
+      <h3>Pronto, <span id="thanksName">obrigado</span>.</h3>
+      <p class="lead" style="margin-top:12px">Um especialista da Buzzmonitor vai te escrever com o primeiro recorte de conversas da sua categoria.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <a href="https://buzzmonitor.com/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+    <span class="logoswap">
+      <img class="lg lg--dark" src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="225" height="43">
+      <img class="lg lg--light" src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="" aria-hidden="true" width="225" height="43">
+    </span>
+  </a>
+  <p class="tiny" style="max-width:64ch;margin-inline:auto">Museu das Conversas Perdidas é uma experiência de demonstração. As conversas, números e comparações que aparecem são de amostra, construídos a partir de padrões reais de monitoramento, e não reproduzem publicações nem pessoas identificáveis.</p>
+  <p class="tiny">© 2026 Buzzmonitor · Grupo Elife</p>
+</footer>
+<script>
+(function(){
+"use strict";
+var html=document.documentElement;
+html.classList.remove("no-js");html.classList.add("js");
+var RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.body.classList.add("is-locked");
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var clamp=function(v,a,b){return v<a?a:v>b?b:v;};
+var ease=function(t){return 1-Math.pow(1-t,3);};
+var nf=new Intl.NumberFormat("es-MX");
+
+/* Config editable sin tocar el resto del archivo.
+   trendsEndpoint: URL que reciba ?term= y devuelva JSON de Buzzmonitor Trends.
+   Hoy va en null porque trends.app.buzzmonitor.com.br no expone API publica ni CORS;
+   en cuanto exista (o un proxy propio), se apunta aqui y las salas 04 y 07 lo usan solas. */
+var CONFIG=window.MUSEO_CONFIG||{};
+if(CONFIG.trendsEndpoint===undefined)CONFIG.trendsEndpoint=null;
+/* Deteccion de pais por IP: APAGADA en produccion. Encenderla exige dos cosas
+   juntas, y la segunda toca mecanica del dominio (PR con revision):
+     1) window.MUSEO_CONFIG = { geo:true } antes de este script
+     2) https://ipwho.is y https://get.geojs.io en el connect-src del CSP
+        (landing-pages/dominios/content-buzzmonitor-com/vercel.json)
+   Sin el paso 2 el navegador bloquea la consulta; sin el paso 1 ni se intenta.
+   Con la deteccion apagada la pagina dice "México", que es su diseno original. */
+if(CONFIG.geo===undefined)CONFIG.geo=false;
+
+/* ---------------- pais por IP ----------------
+   Dos proveedores con CORS abierto, timeout corto y "México" como reserva:
+   la experiencia se diseño para MX y nunca debe quedarse sin pais. */
+var GEO={country:"México",code:"MX"};
+var COUNTRY_PT={MX:"México",AR:"Argentina",CO:"Colômbia",CL:"Chile",PE:"Peru",BR:"Brasil",
+  ES:"Espanha",US:"Estados Unidos",EC:"Equador",UY:"Uruguai",PY:"Paraguai",BO:"Bolívia",
+  VE:"Venezuela",CR:"Costa Rica",PA:"Panamá",GT:"Guatemala",HN:"Honduras",SV:"El Salvador",
+  NI:"Nicarágua",DO:"República Dominicana",CU:"Cuba",PR:"Porto Rico",PT:"Portugal",
+  CA:"Canadá",FR:"França",IT:"Itália",DE:"Alemanha",GB:"Reino Unido"};
+function paintCountry(){
+  $$(".geo").forEach(function(el){el.textContent=GEO.country;});
+}
+function detectCountry(){
+  var sources=[
+    {url:"https://ipwho.is/?fields=country_code,country",pick:function(d){return [d.country_code,d.country];}},
+    {url:"https://get.geojs.io/v1/ip/country.json",pick:function(d){return [d.country,d.name];}}
+  ];
+  function tryOne(i){
+    if(i>=sources.length)return;
+    var src=sources[i],ctrl=("AbortController" in window)?new AbortController():null;
+    var to=setTimeout(function(){ctrl&&ctrl.abort();},3500);
+    fetch(src.url,{signal:ctrl?ctrl.signal:undefined,cache:"no-store"})
+      .then(function(r){return r.ok?r.json():Promise.reject();})
+      .then(function(d){
+        clearTimeout(to);
+        var v=src.pick(d)||[],code=(v[0]||"").toUpperCase(),name=v[1];
+        if(!code)return Promise.reject();
+        GEO.code=code;
+        GEO.country=COUNTRY_PT[code]||name||GEO.country;
+        paintCountry();
+      })
+      .catch(function(){clearTimeout(to);tryOne(i+1);});
+  }
+  tryOne(0);
+}
+paintCountry();
+if(CONFIG.geo)detectCountry();
+
+/* ---------------- Buzzmonitor Trends ----------------
+   Capa unica de consulta. Sin endpoint configurado devuelve null enseguida y
+   cada sala cae en su plan B, que es el comportamiento pedido. */
+var TRENDS={};
+TRENDS.lookup=function(term){
+  var ep=CONFIG.trendsEndpoint;
+  if(!ep||!term)return Promise.resolve(null);
+  var url=ep+(ep.indexOf("?")>-1?"&":"?")+"term="+encodeURIComponent(term);
+  var ctrl=("AbortController" in window)?new AbortController():null;
+  var to=setTimeout(function(){ctrl&&ctrl.abort();},CONFIG.trendsTimeout||5000);
+  return fetch(url,{signal:ctrl?ctrl.signal:undefined})
+    .then(function(r){return r.ok?r.json():Promise.reject();})
+    .then(function(d){
+      clearTimeout(to);
+      return TRENDS.normalize(d,term);
+    })
+    .catch(function(){clearTimeout(to);return null;});
+};
+/* Acepta varias formas de respuesta y devuelve siempre la misma figura,
+   o null si no vino nada aprovechable. */
+TRENDS.normalize=function(d,term){
+  if(!d)return null;
+  var root=d.data||d.result||d;
+  var vol=root.volume||root.total||root.mentions_count||root.count;
+  var raw=root.mentions||root.posts||root.samples||root.items||[];
+  var list=[];
+  (Array.isArray(raw)?raw:[]).slice(0,3).forEach(function(m){
+    var txt=(typeof m==="string")?m:(m.text||m.content||m.message||m.title);
+    if(txt)list.push({text:String(txt).slice(0,240),kind:(m.sentiment||m.category||"")});
+  });
+  if(!vol&&!list.length)return null;
+  return {term:term,volume:typeof vol==="number"?vol:null,mentions:list};
+};
+
+/* ---------------- sonido ----------------
+   Motor chico de sintesis: ruido filtrado para los "hoosh", campanas de dos
+   parciales para las notificaciones, click mecanico de dos capas y ticks para
+   los contadores. Todo pasa por un compresor y una reverb corta (IR sintetico)
+   para que no suene a chip de consola. Nada arranca sin permiso del usuario. */
+var SFX={on:false,ctx:null,last:{}};
+
+SFX.makeNoise=function(sec){
+  var ctx=SFX.ctx,len=Math.floor(ctx.sampleRate*sec),b=ctx.createBuffer(2,len,ctx.sampleRate);
+  for(var ch=0;ch<2;ch++){
+    var d=b.getChannelData(ch);
+    for(var i=0;i<len;i++)d[i]=Math.random()*2-1;
+  }
+  return b;
+};
+SFX.makeIR=function(sec,decay){
+  var ctx=SFX.ctx,len=Math.floor(ctx.sampleRate*sec),b=ctx.createBuffer(2,len,ctx.sampleRate);
+  for(var ch=0;ch<2;ch++){
+    var d=b.getChannelData(ch);
+    for(var i=0;i<len;i++){
+      var t=i/len;
+      d[i]=(Math.random()*2-1)*Math.pow(1-t,decay)*(1-t*0.15);
+    }
+  }
+  return b;
+};
+SFX.init=function(){
+  if(SFX.ctx)return;
+  var AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return;
+  var ctx=SFX.ctx=new AC();
+  var comp=ctx.createDynamicsCompressor();
+  comp.threshold.value=-16;comp.knee.value=24;comp.ratio.value=6;
+  comp.attack.value=0.004;comp.release.value=0.2;
+  var master=ctx.createGain();master.gain.value=0.0001;
+  comp.connect(master);master.connect(ctx.destination);
+  SFX.bus=comp;SFX.master=master;
+  var rev=ctx.createConvolver();rev.buffer=SFX.makeIR(1.7,3.2);
+  var revGain=ctx.createGain();revGain.gain.value=0.85;
+  rev.connect(revGain);revGain.connect(comp);
+  SFX.rev=rev;
+  SFX.noise=SFX.makeNoise(2);
+};
+SFX.enable=function(){
+  SFX.init();
+  if(!SFX.ctx)return false;
+  if(SFX.ctx.state==="suspended")SFX.ctx.resume();
+  SFX.on=true;
+  SFX.master.gain.setTargetAtTime(0.8,SFX.ctx.currentTime,0.18);
+  return true;
+};
+SFX.disable=function(){
+  SFX.on=false;
+  if(SFX.ctx)SFX.master.gain.setTargetAtTime(0.0001,SFX.ctx.currentTime,0.12);
+};
+/* limitador simple: evita que 20 comentarios juntos se vuelvan una pared */
+SFX.gate=function(key,ms){
+  var now=Date.now();
+  if(SFX.last[key]&&now-SFX.last[key]<ms)return false;
+  SFX.last[key]=now;return true;
+};
+SFX.wet=function(node,amt){
+  if(!SFX.rev||!amt)return;
+  var g=SFX.ctx.createGain();g.gain.value=amt;
+  node.connect(g);g.connect(SFX.rev);
+};
+SFX.pan=function(v){
+  if(!SFX.ctx.createStereoPanner)return null;
+  var p=SFX.ctx.createStereoPanner();p.pan.value=v||0;return p;
+};
+
+/* "hoosh": ruido barrido con pasa-banda. dir up = entra, down = se va */
+SFX.whoosh=function(o){
+  if(!SFX.on||!SFX.ctx)return;
+  o=o||{};
+  var ctx=SFX.ctx,t=ctx.currentTime,dur=o.dur||0.6,vol=Math.min(0.9,(o.vol||0.3)*1.9),down=o.dir==="down";
+  var src=ctx.createBufferSource();src.buffer=SFX.noise;src.loop=true;
+  src.playbackRate.value=0.85+Math.random()*0.3;
+  var bp=ctx.createBiquadFilter();bp.type="bandpass";bp.Q.value=o.q||0.85;
+  var lp=ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=7200;
+  var g=ctx.createGain();
+  var f0=down?2400:220,f1=down?200:2800;
+  bp.frequency.setValueAtTime(f0,t);
+  bp.frequency.exponentialRampToValueAtTime(f1,t+dur);
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(vol,t+dur*0.38);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  var chain=src;chain.connect(bp);bp.connect(lp);lp.connect(g);
+  var p=SFX.pan((Math.random()*2-1)*0.5);
+  if(p){g.connect(p);p.connect(SFX.bus);}else{g.connect(SFX.bus);}
+  SFX.wet(g,o.wet===undefined?0.2:o.wet);
+  src.start(t);src.stop(t+dur+0.06);
+};
+
+/* Pop de burbuja. Lo que hace que el oido lo lea como burbuja no es el timbre
+   sino el glissando ASCENDENTE: una burbuja al colapsar sube de tono mientras
+   se apaga (resonancia de Minnaert). Por eso el seno sube ~1.9x en 75 ms con
+   caida exponencial corta. Nada de ruido en el ataque: eso sonaria a clic. */
+SFX.pop=function(step,vol){
+  if(!SFX.on||!SFX.ctx)return;
+  var ctx=SFX.ctx,t=ctx.currentTime;
+  vol=vol||0.2;
+  var base=300+((step||0)%6)*42;          /* burbujas de distinto tamano */
+
+  var o=ctx.createOscillator();o.type="sine";
+  o.frequency.setValueAtTime(base,t);
+  o.frequency.exponentialRampToValueAtTime(base*1.9,t+0.075);
+  o.frequency.exponentialRampToValueAtTime(base*2.05,t+0.14);
+  var lp=ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2200;
+  var g=ctx.createGain();
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(vol,t+0.009);
+  g.gain.exponentialRampToValueAtTime(vol*0.35,t+0.06);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.19);
+  o.connect(lp);lp.connect(g);g.connect(SFX.bus);
+  SFX.wet(g,0.26);
+
+  /* burbujita de acompanamiento, mas aguda y mas corta: da el "blub" */
+  var o2=ctx.createOscillator();o2.type="sine";
+  o2.frequency.setValueAtTime(base*1.6,t+0.012);
+  o2.frequency.exponentialRampToValueAtTime(base*2.7,t+0.07);
+  var g2=ctx.createGain();
+  g2.gain.setValueAtTime(0.0001,t);
+  g2.gain.setValueAtTime(0.0001,t+0.012);
+  g2.gain.exponentialRampToValueAtTime(vol*0.22,t+0.024);
+  g2.gain.exponentialRampToValueAtTime(0.0001,t+0.1);
+  o2.connect(g2);g2.connect(SFX.bus);SFX.wet(g2,0.34);
+
+  o.start(t);o.stop(t+0.22);
+  o2.start(t+0.01);o2.stop(t+0.12);
+};
+
+/* notificacion: campana de dos parciales sobre escala pentatonica */
+SFX.SCALE=[523.25,587.33,659.25,783.99,880,1046.5,1174.66];
+SFX.notify=function(step,vol){
+  if(!SFX.on||!SFX.ctx)return;
+  var ctx=SFX.ctx,t=ctx.currentTime,f=SFX.SCALE[(step||0)%SFX.SCALE.length];
+  vol=vol||0.16;
+  var g=ctx.createGain();
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(vol,t+0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.42);
+  var o1=ctx.createOscillator();o1.type="sine";o1.frequency.value=f;
+  var o2=ctx.createOscillator();o2.type="sine";o2.frequency.value=f*2.76;
+  var g2=ctx.createGain();g2.gain.value=0.22;
+  o2.connect(g2);g2.connect(g);o1.connect(g);
+  /* transitorio corto: le da el "tap" del aviso */
+  var n=ctx.createBufferSource();n.buffer=SFX.noise;
+  var hp=ctx.createBiquadFilter();hp.type="highpass";hp.frequency.value=3200;
+  var ng=ctx.createGain();
+  ng.gain.setValueAtTime(vol*0.5,t);
+  ng.gain.exponentialRampToValueAtTime(0.0001,t+0.03);
+  n.connect(hp);hp.connect(ng);ng.connect(SFX.bus);
+  g.connect(SFX.bus);SFX.wet(g,0.35);
+  o1.start(t);o2.start(t);n.start(t);
+  o1.stop(t+0.45);o2.stop(t+0.45);n.stop(t+0.05);
+};
+
+/* click de mouse: transitorio de ruido + cuerpo grave muy corto */
+SFX.click=function(vol){
+  if(!SFX.on||!SFX.ctx)return;
+  var ctx=SFX.ctx,t=ctx.currentTime;vol=(vol||0.5)*1.6;
+  var n=ctx.createBufferSource();n.buffer=SFX.noise;
+  n.playbackRate.value=1.6;
+  var hp=ctx.createBiquadFilter();hp.type="highpass";hp.frequency.value=1800;
+  var bp=ctx.createBiquadFilter();bp.type="bandpass";bp.frequency.value=2600;bp.Q.value=0.7;
+  var ng=ctx.createGain();
+  ng.gain.setValueAtTime(vol*0.34,t);
+  ng.gain.exponentialRampToValueAtTime(0.0001,t+0.014);
+  n.connect(hp);hp.connect(bp);bp.connect(ng);ng.connect(SFX.bus);
+  var o=ctx.createOscillator();o.type="sine";
+  o.frequency.setValueAtTime(190,t);
+  o.frequency.exponentialRampToValueAtTime(90,t+0.05);
+  var og=ctx.createGain();
+  og.gain.setValueAtTime(vol*0.18,t);
+  og.gain.exponentialRampToValueAtTime(0.0001,t+0.055);
+  o.connect(og);og.connect(SFX.bus);
+  n.start(t);n.stop(t+0.03);o.start(t);o.stop(t+0.07);
+};
+
+/* tick de contador: casi un roce, sube de tono con el avance */
+SFX.tick=function(prog,vol){
+  if(!SFX.on||!SFX.ctx)return;
+  if(!SFX.gate("tick",34))return;
+  var ctx=SFX.ctx,t=ctx.currentTime;
+  var n=ctx.createBufferSource();n.buffer=SFX.noise;
+  n.playbackRate.value=1.1+(prog||0)*0.9+Math.random()*0.15;
+  var bp=ctx.createBiquadFilter();bp.type="bandpass";
+  bp.frequency.value=2400+(prog||0)*2600;bp.Q.value=6;
+  var g=ctx.createGain();
+  g.gain.setValueAtTime((vol||0.12)*4.2,t);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.028);
+  n.connect(bp);bp.connect(g);g.connect(SFX.bus);
+  n.start(t);n.stop(t+0.04);
+};
+
+/* Marca de momento (sello, veredicto, giro incomodo). Antes era un golpe
+   grave tipo bombo; ahora es una revelacion: un ascenso corto de aire que se
+   corta y deja sonando una quinta con cola de reverb. Pesa sin percutir. */
+SFX.mark=function(vol){
+  if(!SFX.on||!SFX.ctx)return;
+  var ctx=SFX.ctx,t=ctx.currentTime;vol=(vol||0.5);
+  /* aire que sube y se corta */
+  var n=ctx.createBufferSource();n.buffer=SFX.noise;n.playbackRate.value=0.9;
+  var bp=ctx.createBiquadFilter();bp.type="bandpass";bp.Q.value=1.1;
+  bp.frequency.setValueAtTime(380,t);
+  bp.frequency.exponentialRampToValueAtTime(3000,t+0.26);
+  var ng=ctx.createGain();
+  ng.gain.setValueAtTime(0.0001,t);
+  ng.gain.exponentialRampToValueAtTime(vol*0.26,t+0.24);
+  ng.gain.exponentialRampToValueAtTime(0.0001,t+0.42);
+  n.connect(bp);bp.connect(ng);ng.connect(SFX.bus);
+  SFX.wet(ng,0.3);
+  /* cuerpo: quinta con ataque lento, nada de transitorio */
+  [[110,1],[164.81,0.72],[329.63,0.3]].forEach(function(v,i){
+    var o=ctx.createOscillator();o.type=i===2?"triangle":"sine";
+    o.frequency.value=v[0];
+    var g=ctx.createGain();
+    /* silenciar desde ya: un createGain arranca en 1 y el oscilador sonaria a
+       todo volumen los 20 ms que van hasta la primera automatizacion (era el
+       chasquido que hacia sonar esto como un golpe de tambor). */
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.setValueAtTime(0.0001,t+0.08);
+    g.gain.exponentialRampToValueAtTime(vol*0.16*v[1],t+0.24);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+1.5);
+    o.connect(g);g.connect(SFX.bus);SFX.wet(g,0.34);
+    o.start(t+0.06);o.stop(t+1.6);
+  });
+  n.start(t);n.stop(t+0.45);
+};
+/* acorde: hallazgo, cierre, envio del formulario */
+SFX.chord=function(base,vol){
+  if(!SFX.on||!SFX.ctx)return;
+  var ctx=SFX.ctx,t0=ctx.currentTime,f=base||392;
+  var ratios=[1,1.5,2,2.5];
+  ratios.forEach(function(r,i){
+    var t=t0+i*0.075;
+    var o=ctx.createOscillator();o.type=i===3?"triangle":"sine";
+    o.frequency.value=f*r;
+    var g=ctx.createGain();
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime((vol||0.13)/(1+i*0.5),t+0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+1.1);
+    o.connect(g);g.connect(SFX.bus);SFX.wet(g,0.6);
+    o.start(t);o.stop(t+1.2);
+  });
+};
+
+var soundBtn=$("#soundBtn"),soundTxt=$("#soundTxt");
+document.addEventListener("keydown",function(ev){
+  if(ev.key!=="Tab"||portal.classList.contains("is-gone"))return;
+  var f=[soundBtn,document.getElementById("enterBtn")];
+  var i=f.indexOf(document.activeElement);
+  ev.preventDefault();
+  f[(i+(ev.shiftKey?f.length-1:1))%f.length].focus();
+});
+soundBtn.addEventListener("click",function(){
+  if(SFX.on){SFX.disable();soundBtn.setAttribute("aria-pressed","false");soundTxt.textContent="Som";}
+  else{ if(SFX.enable()){soundBtn.setAttribute("aria-pressed","true");soundTxt.textContent="Som ativo";SFX.whoosh({dur:.5,vol:.24});SFX.notify(3,.12);} }
+});
+
+/* ---------------- director de escenas ----------------
+   Las salas cinematograficas no revelan todo junto: encadenan elemento por
+   elemento con un ritmo fijo, para que se lean como un plano y no como una
+   lista que aparece de golpe. */
+function playSeq(list,gap,done){
+  var i=0;
+  (function nx(){
+    if(i>=list.length){if(done)done();return;}
+    var el=list[i++];
+    if(el){
+      el.classList.add("on");
+      if(el.__onShow)el.__onShow();
+    }
+    setTimeout(nx,RM?0:(typeof gap==="function"?gap(i):gap));
+  })();
+}
+function playScene(root,gap){
+  var el=(typeof root==="string")?$(root):root;
+  if(!el||el.__played)return;
+  el.__played=true;
+  playSeq($$(".cine",el),gap||300);
+}
+function sceneOnView(sel,gap,cb){
+  var el=$(sel);if(!el)return;
+  new IntersectionObserver(function(en,obs){
+    en.forEach(function(e){
+      if(!e.isIntersecting)return;
+      playScene(el,gap);
+      if(cb)cb();
+      obs.disconnect();
+    });
+  },{threshold:0.25}).observe(el);
+}
+
+/* ---------------- reveal ---------------- */
+var revealed=new WeakSet();
+var io=new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting&&!revealed.has(e.target)){revealed.add(e.target);e.target.classList.add("in");}
+  });
+},{rootMargin:"0px 0px -12% 0px",threshold:0.15});
+$$(".rv").forEach(function(el){io.observe(el);});
+setTimeout(function(){$$(".rv").forEach(function(el){if(!el.classList.contains("in")&&el.getBoundingClientRect().top<window.innerHeight)el.classList.add("in");});},2600);
+setInterval(function(){
+  $$(".cine").forEach(function(el){
+    if(el.classList.contains("on"))return;
+    var r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.9&&r.bottom>0&&!el.__seen){el.__seen=Date.now();}
+    else if(el.__seen&&Date.now()-el.__seen>3500)el.classList.add("on");
+  });
+},1200);
+
+/* ---------------- estado del recorrido ---------------- */
+var state={door:null,doorLabel:null,brand:null,rival:null,act:null};
+
+/* ---------------- progreso + sala ---------------- */
+var bar=$("#bar"),roomLabel=$("#roomLabel"),salas=$$("[data-room]");
+var ticking=false;
+function onScroll(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  var p=h>0?clamp(window.scrollY/h,0,1):0;
+  bar.style.width=(p*100).toFixed(2)+"%";
+  var mid=window.innerHeight*0.45,cur=1;
+  for(var i=0;i<salas.length;i++){var r=salas[i].getBoundingClientRect();if(r.top<=mid)cur=salas[i].getAttribute("data-room");}
+  roomLabel.textContent="Sala "+String(cur).padStart(2,"0")+" / 11";
+  flood.update();galaxy.update();paperUpdate();
+  ticking=false;
+}
+
+/* La pagina se aclara durante la ultima pantalla de la sala 09: cuando se llega
+   al cierre, el fondo ya es blanco y el texto es negro. */
+var paper=$("#paper"),PAPER={light:false};
+function paperUpdate(){
+  var s10=$("#sala-10");
+  if(!s10||!paper)return;
+  /* Termina de blanquear justo cuando el cierre entra en cuadro: si sigue a
+     medio camino, el fondo se ve gris en vez de blanco. */
+  var start=s10.offsetTop-window.innerHeight*0.85;
+  var end=s10.offsetTop-window.innerHeight*0.05;
+  var p=clamp((window.scrollY-start)/Math.max(1,end-start),0,1);
+  paper.style.opacity=p.toFixed(3);
+  document.documentElement.style.setProperty("--lp",p.toFixed(3));
+  var light=p>0.55;
+  if(light!==PAPER.light){
+    PAPER.light=light;
+    document.body.classList.toggle("is-light",light);
+
+  }
+}
+window.addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+
+/* ---------------- contadores ---------------- */
+function countTo(el,to,ms,quiet){
+  var from=0,t0=null;
+  function step(t){
+    if(!t0)t0=t;
+    var p=clamp((t-t0)/(ms||1600),0,1);
+    el.textContent=nf.format(Math.round(from+(to-from)*ease(p)));
+    if(!quiet&&p<1)SFX.tick(p,0.1);
+    if(p<1)requestAnimationFrame(step);
+  }
+  if(RM){el.textContent=nf.format(to);return;}
+  requestAnimationFrame(step);
+}
+
+/* ---------------- portal ---------------- */
+var portal=$("#portal");
+
+/* mini dashboard: los mismos numeros del hero, dibujados */
+(function board(){
+  var pts=[38,52,44,61,58,74,66,83,71,92,86,104,97,88,110,121,113,132,126,145,138,158,151,167];
+  var W=320,H=96,max=Math.max.apply(null,pts),min=Math.min.apply(null,pts);
+  var x=function(i){return i*(W/(pts.length-1));};
+  var y=function(v){return H-8-((v-min)/(max-min))*(H-22);};
+  var d="M"+pts.map(function(v,i){return x(i).toFixed(1)+" "+y(v).toFixed(1);}).join(" L");
+  var line=$("#sparkLine"),area=$("#sparkArea"),dot=$("#sparkDot");
+  line.setAttribute("d",d);
+  area.setAttribute("d",d+" L"+W+" "+H+" L0 "+H+" Z");
+  dot.setAttribute("cx",x(pts.length-1));dot.setAttribute("cy",y(pts[pts.length-1]));
+  var len=line.getTotalLength?line.getTotalLength():400;
+  line.style.strokeDasharray=len;line.style.strokeDashoffset=len;
+  requestAnimationFrame(function(){
+    line.parentNode.classList.add("on");
+    line.style.strokeDashoffset=0;
+    $("#donutNeg").style.strokeDasharray="41 59";
+    $("#donutNeu").style.strokeDasharray="37 63";$("#donutNeu").style.strokeDashoffset="-41";
+    $("#donutPos").style.strokeDasharray="22 78";$("#donutPos").style.strokeDashoffset="-78";
+    $(".board").classList.add("on");
+  });
+})();
+
+/* Guion del portal: primero la firma, luego el titular (que se queda quieto en
+   el centro) y despues los datos, que en pantallas amplias no se posan: nacen
+   del fondo, cruzan la pantalla y se deshacen al salir. */
+var DRIFT={mq:window.matchMedia("(min-height:560px)"),on:false};
+function driftCards(){return $$("#board .counter").concat($$("#board .panel")).concat($$("#board .chipcard"));}
+/* Reparte las piezas por tipo antes de asignar angulos: si dos paneles caen en
+   carriles vecinos se pisan en pleno vuelo (son los elementos mas anchos). */
+function driftOrder(){
+  var vivo=function(el){return getComputedStyle(el).display!=="none";};
+  var pools=[$$("#board .panel").filter(vivo),$$("#board .counter").filter(vivo),$$("#board .chipcard").filter(vivo)];
+  var total=pools[0].length+pools[1].length+pools[2].length;   /* fijo: los pools se vacian */
+  var out=[],k=0;
+  while(out.length<total&&k<total*4){
+    var pool=pools[k%pools.length];
+    if(pool.length)out.push(pool.shift());
+    k++;
+  }
+  return out;
+}
+function layoutDrift(){
+  var cards=driftOrder(),n=cards.length||1;
+  var R=Math.hypot(window.innerWidth,window.innerHeight)*0.62;
+  cards.forEach(function(c,i){
+    var deg=(i*(360/n))+(i%2?13:-9)+8;
+    /* nada cruza el carril de abajo: ahi viven el CTA y su resplandor */
+    var down=((deg%360)+360)%360;
+    if(down>68&&down<112)deg+=(down<90?-26:26);
+    var ang=deg*Math.PI/180;
+    var r0=130+((i*53)%90);
+    c.style.setProperty("--x0",Math.round(Math.cos(ang)*r0)+"px");
+    c.style.setProperty("--y0",Math.round(Math.sin(ang)*r0*0.72)+"px");
+    c.style.setProperty("--x1",Math.round(Math.cos(ang)*R)+"px");
+    c.style.setProperty("--y1",Math.round(Math.sin(ang)*R*0.85)+"px");
+    c.style.setProperty("--xs",Math.round(Math.cos(ang)*R*0.6)+"px");
+    c.style.setProperty("--ys",Math.round(Math.sin(ang)*R*0.48)+"px");
+    var dur=(c.classList.contains("panel")?16:13)+((i*3.1)%8);
+    c.style.setProperty("--dur",dur.toFixed(1)+"s");
+    /* Las tres primeras nacen a la vista para que se entienda de donde salen;
+       las demas arrancan con retraso negativo, o sea ya en pleno vuelo, y la
+       pantalla se puebla en el primer segundo en vez de tardar el ciclo entero. */
+    var fase=(i<3)?(i*0.18):-((i-3)*(dur/Math.max(1,n-3))+dur*0.12);
+    c.style.setProperty("--delay",fase.toFixed(2)+"s");
+    c.style.setProperty("--rot",(((i%3)-1)*1.2).toFixed(1)+"deg");
+    c.style.setProperty("--o",c.classList.contains("chipcard")?".5":".6");
+  });
+}
+function startDrift(){
+  if(!DRIFT.mq.matches)return false;
+  layoutDrift();
+  driftCards().forEach(function(c){c.classList.remove("cine","cine--soft");});
+  var board=$("#board");
+  board.classList.add("drifting","on");
+  $$("#board .counter").forEach(function(c,i){
+    var num=c.querySelector(".counter__n");
+    /* silenciosos: si el sonido se enciende con Entrar mientras siguen
+       corriendo, sus ticks suenan a conteo y ensucian la entrada. */
+    setTimeout(function(){countTo(num,parseInt(num.getAttribute("data-to"),10),1700,true);},600+i*650);
+  });
+  DRIFT.on=true;
+  return true;
+}
+window.addEventListener("resize",function(){
+  if(DRIFT.on)layoutDrift();
+  else if(DRIFT.mq.matches&&portal&&!portal.classList.contains("is-gone"))startDrift();
+});
+$$("#board .counter").forEach(function(c,i){
+  var num=c.querySelector(".counter__n");
+  c.__onShow=function(){countTo(num,parseInt(num.getAttribute("data-to"),10),1700+i*220,true);};
+});
+(function portalScript(){
+  var core=$(".portal__core");
+  var tag=core.querySelector(".tag"),h1=$("#portalTitle");
+  var rest=[core.querySelector(".tiny"),$(".portal__ask"),$("#enterBtn"),$(".headphones"),$("#hudLogo")];
+
+  /* Todo lo que no es la firma entra cuando la firma empieza a subir. */
+  function entraElResto(){
+    h1.classList.add("on");
+    if(startDrift()){
+      playSeq(rest,RM?0:330);
+    }else{
+      playSeq($$("#board .counter").concat($$("#board .panel")),RM?0:230,function(){
+        playSeq(rest,RM?0:260);
+      });
+    }
+  }
+
+  /* La firma abre sola: nace grande en el centro de la pantalla y desde ahi se
+     encoge hasta su sitio real. Se mide en su estado final y se la desplaza con
+     un transform, asi el layout definitivo nunca cambia. */
+  function abreLaFirma(){
+    if(RM){tag.classList.add("on");entraElResto();return;}
+    tag.style.transition="none";
+    tag.classList.add("on");
+    var r=tag.getBoundingClientRect();
+    if(!r.width){tag.style.transition="";entraElResto();return;}
+    var vw=window.innerWidth,vh=window.innerHeight;
+    var dx=Math.round(vw/2-(r.left+r.width/2));
+    var dy=Math.round(vh/2-(r.top+r.height/2));
+    /* Sin cambio de escala: la firma se ve siempre en su tamano definitivo y
+       lo unico que ocurre es el desplazamiento desde el centro hasta su sitio. */
+    tag.style.transform="translate("+dx+"px,"+dy+"px)";
+    tag.style.opacity="0";
+    tag.style.filter="blur(14px)";
+    void tag.offsetWidth;
+    tag.style.transition="opacity .8s var(--ease),filter .9s var(--ease)";
+    tag.style.opacity="1";
+    tag.style.filter="none";
+    setTimeout(function(){
+      tag.style.transition="transform 1.35s cubic-bezier(.22,1,.28,1),filter .6s var(--ease)";
+      tag.style.transform="none";
+      /* La firma arranca a subir antes y el titular espera a que despeje su
+         zona: asi los dos no se pisan en el aire. */
+      setTimeout(entraElResto,RM?0:430);
+      setTimeout(function(){
+        tag.style.transition="";tag.style.transform="";tag.style.opacity="";tag.style.filter="";
+      },1500);
+    },1600);   /* la firma se sostiene sola en cuadro antes de subir */
+  }
+  setTimeout(abreLaFirma,RM?0:240);
+})();
+setTimeout(function(){var b=document.getElementById("enterBtn");if(b)b.focus({preventScroll:true});},400);
+
+/* El portal es un estado del historial: al retroceder se vuelve a el,
+   sin depender de que la persona haga scroll hacia arriba. */
+function showPortal(){
+  portal.removeAttribute("hidden");
+  portal.classList.remove("is-gone");
+  document.body.classList.add("is-locked");
+  window.scrollTo(0,0);
+  setTimeout(function(){var b=$("#enterBtn");if(b)b.focus({preventScroll:true});},80);
+  SFX.whoosh({dir:"down",dur:.7,vol:.22});
+}
+function hidePortal(){
+  portal.classList.add("is-gone");
+  document.body.classList.remove("is-locked");
+  setTimeout(function(){
+    if(portal.classList.contains("is-gone"))portal.setAttribute("hidden","");
+    onScroll();
+  },1200);
+  flood.autoStart();
+}
+if(window.history&&history.replaceState)history.replaceState({museo:"portal"},"");
+window.addEventListener("popstate",function(ev){
+  var inside=ev.state&&ev.state.museo==="dentro";
+  if(inside){ if(!portal.classList.contains("is-gone"))hidePortal(); }
+  else{ if(portal.classList.contains("is-gone"))showPortal(); }
+});
+
+$("#enterBtn").addEventListener("click",function(){
+  SFX.enable()&&(soundBtn.setAttribute("aria-pressed","true"),soundTxt.textContent="Som ativo");
+  if(window.history&&history.pushState)history.pushState({museo:"dentro"},"");
+  hidePortal();
+  SFX.click(.45);SFX.whoosh({dur:.9,vol:.34,wet:.3});
+  setTimeout(function(){SFX.chord(392,.11);},220);
+});
+$$("[data-goto]").forEach(function(b){
+  b.addEventListener("click",function(){
+    SFX.click(.4);SFX.whoosh({dur:.75,vol:.26});
+    var t=$(b.getAttribute("data-goto"));
+    if(t)t.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});
+  });
+});
+
+/* ---------------- 01 inundacion ---------------- */
+var COMMENTS=[
+ "Alguém sabe se funciona?","Faz dois dias que espero resposta.","Eu prefiro a concorrência.",
+ "Preciso de uma indicação.","Por que não fazem uma versão que sirva para times pequenos?",
+ "Nunca me responderam.","Onde eu compro?","Me indicaram, mas não acho o preço.",
+ "Vocês entregam em Monterrey?","Já cancelei, demorou demais.","O app fecha sozinho toda hora.",
+ "Tem alguma promoção no Buen Fin?","Ontem mesmo eu falava disso com o meu time.",
+ "O da esquina me fez mais barato.","E o suporte responde no fim de semana?",
+ "Meu pedido chegou incompleto.","Atendimento excelente, muito atenciosos.","Alguém já testou na empresa?",
+ "De novo a mesma falha.","Qual compensa para 20 pessoas?","Continuo esperando a minha nota.",
+ "Vou comparar antes de decidir."
+];
+var POS=[[6,14],[58,8],[30,24],[70,30],[12,38],[45,44],[76,52],[20,58],[52,66],[8,74],[64,78],
+ [34,86],[80,14],[4,50],[42,4],[24,70],[68,64],[14,26],[86,40],[38,54],[56,90],[2,88]];
+var floodField=$("#floodField"),floodNoise=$("#floodNoise"),floodCenter=$("#floodCenter");
+var bubbles=[];
+COMMENTS.forEach(function(txt,i){
+  var d=document.createElement("div");
+  d.className="bubble";
+  var p=POS[i%POS.length];
+  d.style.left=p[0]+"%";d.style.top=p[1]+"%";
+  d.style.setProperty("--rot",(((i%5)-2)*0.8)+"deg");
+  d.innerHTML="<b>Comentario público</b>";
+  var s=document.createElement("span");s.textContent="“"+txt+"”";
+  d.appendChild(s);
+  floodField.appendChild(d);bubbles.push(d);
+});
+/* Telefono: los seis primeros (los que entran solos) van en carriles separados
+   ~16% de alto, que es mas que la altura de una burbuja de tres lineas. Los
+   siguientes rellenan los huecos y ahi si pueden encimarse: esa es la invasion. */
+var MPOS=[[5,5],[17,20],[4,35],[19,50],[6,64],[16,78],
+          [8,12],[3,27],[20,42],[5,57],[18,71],[9,88]];
+var liveBubbles=bubbles.length;
+function layoutBubbles(){
+  var m=window.innerWidth<720;
+  liveBubbles=m?MPOS.length:bubbles.length;
+  bubbles.forEach(function(b,i){
+    if(m&&i>=MPOS.length){b.style.display="none";b.classList.remove("on");return;}
+    b.style.display="";
+    var pos=m?MPOS[i]:POS[i%POS.length];
+    b.style.left=pos[0]+"%";b.style.top=pos[1]+"%";
+  });
+  flood.last=-1;
+}
+var flood={last:-1,auto:0};
+/* Al entrar, la sala no puede quedarse en negro esperando scroll:
+   los primeros comentarios aparecen solos y el resto los trae el scroll. */
+flood.autoStart=function(){
+  if(flood.autoDone)return;
+  flood.autoDone=true;
+  var n=Math.min(6,liveBubbles),i=0;
+  (function nx(){
+    if(i>=n)return;
+    flood.auto=++i;
+    flood.update();
+    setTimeout(nx,RM?0:(360+Math.random()*260));
+  })();
+};
+flood.update=function(){
+  var sec=$("#sala-01"),r=sec.getBoundingClientRect();
+  var total=sec.offsetHeight-window.innerHeight;
+  if(total<=0)return;
+  var p=clamp(-r.top/total,0,1);
+  var fill=clamp(p/0.62,0,1);
+  var shown=Math.max(Math.round(fill*liveBubbles),flood.auto||0);
+  if(shown!==flood.last){
+    for(var i=0;i<liveBubbles;i++){
+      var on=i<shown&&p<0.72;
+      if(on!==bubbles[i].classList.contains("on")){
+        bubbles[i].classList.toggle("on",on);
+        /* La burbuja que acaba de entrar tiene indice = cuenta anterior, asi que
+           la comparacion tiene que ser >=. Con > (y con el guard de >=0) no
+           sonaba ninguna: cada pasada agrega una sola y quedaba fuera. */
+        if(on&&i>=Math.max(0,flood.last)&&SFX.gate("bubble",90))
+          SFX.pop(i,0.22-Math.min(0.1,i*0.006));
+      }
+    }
+    flood.last=shown;
+  }
+  floodNoise.style.opacity=(p<0.72?clamp((fill-0.35)/0.5,0,1)*0.9:0).toFixed(3);
+  floodField.style.filter=p<0.72?"blur("+(clamp((fill-0.5)/0.5,0,1)*3).toFixed(2)+"px)":"blur(6px)";
+  floodField.style.opacity=p<0.72?"1":"0";
+  $("#cue").style.opacity=(p<0.06&&flood.auto>=3)?"1":"0";
+  var hushed=p>0.72;
+  if(hushed!==flood.hushed){flood.hushed=hushed;if(hushed)SFX.whoosh({dir:"down",dur:1.2,vol:.32,wet:.45});}
+  floodCenter.classList.toggle("on",p>0.74);
+  var cut=p>0.82;
+  if(cut!==flood.cut){flood.cut=cut;if(cut)SFX.mark(.42);}
+  $("#strike").classList.toggle("cut",cut);
+  var swapped=p>0.88;
+  if(swapped!==flood.swapped){flood.swapped=swapped;if(swapped)SFX.chord(523.25,.1);}
+  $("#swap").classList.toggle("on",swapped);
+};
+
+/* ---------------- 02 puertas ---------------- */
+var DOORS={
+ ventas:{label:"Vendas",src:"Grupo público / Facebook",
+  post:"“Estou entre a Marca A e a Marca B. Qual vocês indicam?”",
+  replies:[
+   {t:6,txt:"Faz um ano que uso a B e tudo certo, zero problema."},
+   {t:11,rival:true,txt:"A B, sem pensar. Me responderam em 5 minutos no WhatsApp."},
+   {t:19,txt:"Com a A eu tive uma experiência ruim, até hoje espero o reembolso."},
+   {t:27,rival:true,txt:"Já pedi com a B. Valeu, pessoal."}],
+  who:"Concorrente escolhido",a:"A marca não perdeu uma conversa.",b:"Perdeu uma venda."},
+ reputacion:{label:"Reputação",src:"Thread pública / X",
+  post:"“Cobraram em dobro de mais alguém? Já são três dias sem resposta.”",
+  replies:[
+   {t:5,txt:"Comigo aconteceu semana passada, mesmo problema."},
+   {t:12,rival:true,txt:"Já somos vários. Alguém devia subir os prints."},
+   {t:20,txt:"Eu já abri chamado, nem uma ligação."},
+   {t:28,rival:true,txt:"Compartilhei no meu grupo, pra não acontecer com mais gente."}],
+  who:"Thread virou reclamação pública",a:"Ninguém da marca monitorou a conversa.",b:"Souberam quando viram um reel de um influenciador reclamando do problema."},
+ experiencia:{label:"Experiência",src:"Comentários / Instagram",
+  post:"“Amo o produto, mas a entrega foi um desastre.”",
+  replies:[
+   {t:7,txt:"Comigo foi igual. O produto vale, a entrega não."},
+   {t:14,txt:"O meu chegou certo, mas demorou 9 dias."},
+   {t:22,rival:true,txt:"Foi por isso que eu troquei. A outra marca deixa rastrear o pedido."},
+   {t:29,txt:"Tomara que leiam, porque o produto é bom mesmo."}],
+  who:"Bom produto, péssima experiência",a:"",b:"O cliente foi embora por uma experiência ruim depois da venda."},
+ crisis:{label:"Crise",src:"Publicação aberta / TikTok",
+  post:"“Me disseram que mudaram a fórmula e agora rende menos. É verdade?”",
+  replies:[
+   {t:4,txt:"É, me falaram a mesma coisa na loja."},
+   {t:10,rival:true,txt:"Vi um vídeo explicando. Já tem milhares de visualizações."},
+   {t:18,txt:"Então não era impressão minha, mudou mesmo."},
+   {t:26,rival:true,txt:"Já está rolando em vários grupos."}],
+  who:"Boato em circulação",a:"Começou com uma mensagem só.",b:"Em três horas já era tendência."},
+ competencia:{label:"Concorrência",src:"Sua publicação / Facebook",
+  post:"“Legal o que vocês publicam, mas a outra marca já tem isso desde o ano passado.”",
+  replies:[
+   {t:6,txt:"Verdade, eu vi lá primeiro."},
+   {t:13,rival:true,txt:"E lá vem sem custo extra."},
+   {t:21,txt:"Alguém da marca pode esclarecer?"},
+   {t:26,rival:true,txt:"Isso mesmo, a gente tem essa função faz tempo. Mandamos a info no DM. 😉",competidor:true},
+   {t:30,rival:true,txt:"Ninguém responde. Melhor perguntar no outro perfil."}],
+  who:"Conversa capturada pela concorrência",a:"A conversa era da sua marca.",b:"Quem respondeu foi a sua concorrência."}
+};
+var gate02=$("#gate02"),gate02Txt=$("#gate02Txt");
+$$(".door").forEach(function(b){
+  b.addEventListener("click",function(){
+    $$(".door").forEach(function(o){o.setAttribute("aria-pressed","false");});
+    b.setAttribute("aria-pressed","true");
+    state.door=b.getAttribute("data-door");
+    state.doorLabel=DOORS[state.door].label;
+    syncLead();
+    gate02Txt.innerHTML="";
+    gate02Txt.appendChild(document.createTextNode("Você escolheu "));
+    var strong=document.createElement("b");
+    strong.textContent=state.doorLabel.toUpperCase();
+    gate02Txt.appendChild(strong);
+    gate02Txt.appendChild(document.createTextNode(". É assim que essa conversa acontece quando ninguém está ouvindo."));
+    gate02.classList.add("on");
+    buildThread();
+    SFX.click();SFX.whoosh({dur:.55,vol:.2});
+    buildRecap();
+  });
+});
+
+/* ---------------- 03 conversacion perdida ---------------- */
+var threadRun=false;
+function buildThread(){
+  var d=DOORS[state.door||"ventas"];
+  $("#threadSrc").textContent=d.src;
+  $("#threadPost").textContent=d.post;
+  var ul=$("#threadList");ul.innerHTML="";
+  d.replies.forEach(function(r,i){
+    var li=document.createElement("li");
+    li.className="reply"+(r.rival?" rival":"");
+    li.setAttribute("data-at",r.t);
+    var s=document.createElement("span");
+    s.textContent=(r.competidor?"Concorrente · ":"Comentário ")+String(r.t).padStart(2,"0")+" s";
+    var p=document.createElement("p");p.textContent="“"+r.txt+"”";
+    li.appendChild(s);li.appendChild(p);ul.appendChild(li);
+  });
+  $("#stampWho").textContent=d.who;
+  var va=$(".verdict__a");
+  va.textContent=d.a||"";
+  va.style.display=d.a?"":"none";
+  $("#verdictB").textContent=d.b;
+  $("#stamp").classList.remove("on");
+  $("#verdictB").classList.remove("on");
+  $("#clock").textContent="00:00";
+  threadRun=false;
+  var box=$("#sala-03 .thread").getBoundingClientRect();
+  if(box.top<window.innerHeight*0.85&&box.bottom>0)setTimeout(runThread,500);
+}
+buildThread();
+function runThread(){
+  if(threadRun)return;threadRun=true;
+  var clock=$("#clock"),replies=$$("#threadList .reply"),t=0;
+  if(RM){clock.textContent="00:36";replies.forEach(function(r){r.classList.add("on");});$("#stamp").classList.add("on");$("#verdictB").classList.add("on");return;}
+  var iv=setInterval(function(){
+    t++;
+    clock.textContent="00:"+String(t).padStart(2,"0");
+    replies.forEach(function(r){
+      if(parseInt(r.getAttribute("data-at"),10)===t){
+        r.classList.add("on");
+        SFX.pop(r.classList.contains("rival")?4:1,r.classList.contains("rival")?0.24:0.18);
+      }
+    });
+    if(t===33){$("#stamp").classList.add("on");SFX.mark(.62);}
+    if(t===36){$("#verdictB").classList.add("on");SFX.mark(.38);clearInterval(iv);}
+  },170);
+}
+new IntersectionObserver(function(en){
+  en.forEach(function(e){if(e.isIntersecting)runThread();});
+},{threshold:0.35}).observe($("#sala-03 .thread"));
+
+new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting&&portal.classList.contains("is-gone"))flood.autoStart();
+  });
+},{threshold:0.2}).observe($("#sala-01"));
+
+/* ---------------- 04 tu marca ---------------- */
+function setBrand(name){
+  state.brand=name;
+  syncLead();
+  $("#mirrorBrand").textContent=name;
+  $$(".mBrand").forEach(function(el){el.textContent=name;});
+  $("#galaxyCore").textContent=name;
+  $("#barMine").textContent=name;
+  buildRecap();
+}
+$("#brandForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var v=$("#brandInput").value.trim();
+  if(!v){$("#brandInput").focus();return;}
+  setBrand(v);
+  var rows=$$("#scan .scan__row"),i=0;
+  $("#found").classList.remove("on");
+  rows.forEach(function(r){r.classList.remove("on","done");});
+  var pending=TRENDS.lookup(v);   /* corre mientras la animacion de escaneo avanza */
+  (function nextRow(){
+    if(i>=rows.length){
+      pending.then(function(data){
+        state.trendsBrand=data;
+        applyMirror(data);
+        $("#found").classList.add("on");
+        SFX.chord(523.25,.14);
+      });
+      return;
+    }
+    var r=rows[i++];
+    r.classList.add("on");
+    SFX.whoosh({dur:.5,vol:.2,q:1.3});
+    SFX.tick(i/rows.length,0.08);
+    setTimeout(function(){r.classList.add("done");setTimeout(nextRow,RM?0:420);},RM?0:520);
+  })();
+});
+$("#brandInput").addEventListener("input",function(){
+  var v=this.value.trim();
+  if(v.length>1)setBrand(v);
+});
+
+/* El espejo se rellena con lo que traiga Trends; sin datos, se queda con los
+   ejemplos representativos que ya trae la sala. */
+function applyMirror(data){
+  var src=$("#mirrorSrc"),note=$("#mirrorNote");
+  if(!data||!data.mentions||!data.mentions.length){
+    if(src)src.hidden=true;
+    if(note)note.textContent="Esta demonstração não consulta dados da sua marca ao vivo. Ela monta o percurso com exemplos representativos para você ver como o problema aparece. A análise completa com os seus dados vem depois, com um especialista.";
+    return;
+  }
+  if(src)src.hidden=false;
+  if(note)note.textContent="Amostra parcial obtida do Buzzmonitor Trends. A análise completa com os seus dados vem depois, com um especialista.";
+  var cards=$$("#sala-05 .insight");
+  data.mentions.slice(0,cards.length).forEach(function(m,i){
+    var q=cards[i].querySelector(".insight__q");
+    if(q)q.textContent="\u201C"+m.text+"\u201D";
+  });
+}
+
+/* ---------------- 06 constelacion ---------------- */
+var LABELS=["Apple","Android","Tela","2026","iPhone","Disponível","IA","Carplay",
+  "Preço","Câmera","Tecnologia","Fold","Mercado","TV","Design","Tempo","Modelo",
+  "Empresa","Samsung","Galaxy","Ultra","Fold8"];
+var cv=$("#galaxy"),cx=cv.getContext("2d"),dots=[],DPR=Math.min(window.devicePixelRatio||1,2);
+(function seed(){
+  var s=20260902;
+  function rnd(){s=(s*1664525+1013904223)%4294967296;return s/4294967296;}
+  var COL=["235,124,46","255,255,255","14,157,155","255,255,255","235,124,46","255,255,255","14,157,155"];
+  for(var i=0;i<2400;i++){
+    var c=i%LABELS.length;
+    var base=-Math.PI/2+c*(Math.PI*2/LABELS.length);
+    var jitter=(rnd()+rnd()+rnd()-1.5)*0.38;
+    var r=120+Math.pow(rnd(),0.72)*1320;
+    dots.push({a:base+jitter,r:r,c:c,col:COL[c],k:rnd(),s:1+rnd()*2.1});
+  }
+})();
+function sizeCanvas(){
+  var r=cv.getBoundingClientRect();
+  cv.width=Math.max(1,Math.round(r.width*DPR));
+  cv.height=Math.max(1,Math.round(r.height*DPR));
+}
+sizeCanvas();
+window.addEventListener("resize",function(){sizeCanvas();galaxy.draw(galaxy.p);layoutBubbles();flood.update();});
+var galaxy={p:0};
+galaxy.update=function(){
+  var sec=$("#sala-06"),r=sec.getBoundingClientRect(),total=sec.offsetHeight-window.innerHeight;
+  if(total<=0)return;
+  var p=clamp(-r.top/total,0,1);
+  galaxy.p=p;
+  galaxy.draw(p);
+  var zooming=p>0.45;
+  if(zooming!==galaxy.zooming){galaxy.zooming=zooming;if(zooming)SFX.whoosh({dir:"down",dur:1.6,vol:.3,q:.6,wet:.5});}
+  var lineOn=p>0.8;
+  if(lineOn!==galaxy.lineOn){galaxy.lineOn=lineOn;if(lineOn)SFX.chord(329.63,.1);}
+  $("#galaxyLine").classList.toggle("on",lineOn);
+  var core=$("#galaxyCore");
+  var z=p<0.45?1:1-clamp((p-0.45)/0.5,0,1)*0.66;
+  core.style.transform="scale("+z.toFixed(3)+")";
+  core.style.opacity=(0.35+0.65*z).toFixed(2);
+};
+galaxy.draw=function(p){
+  var w=cv.width,h=cv.height,cxp=w/2,cyp=h/2;
+  cx.clearRect(0,0,w,h);
+  var grow=clamp(p/0.55,0,1);
+  var n=Math.round(ease(grow)*dots.length);
+  var zoom=(p<0.45?1:1-clamp((p-0.45)/0.5,0,1)*0.84)*DPR;
+  for(var i=0;i<n;i++){
+    var d=dots[i],x=cxp+Math.cos(d.a)*d.r*zoom,y=cyp+Math.sin(d.a)*d.r*zoom;
+    if(x<-20||y<-20||x>w+20||y>h+20)continue;
+    var al=0.22+d.k*0.6;
+    cx.fillStyle="rgba("+d.col+","+al.toFixed(2)+")";
+    cx.beginPath();cx.arc(x,y,Math.max(0.9,d.s*zoom*0.95),0,6.2832);cx.fill();
+  }
+  var lz=p<0.45?1:1-clamp((p-0.45)/0.35,0,1);
+  if(lz>0.02){
+    var zz=zoom/DPR,base=Math.min(w,h);
+    cx.lineWidth=Math.max(1,DPR);
+    cx.textAlign="center";cx.textBaseline="middle";
+    for(var j=0;j<LABELS.length;j++){
+      /* dos anillos alternados + tamaño variable: se lee como nube, no como reloj */
+      var ang=-Math.PI/2+j*(Math.PI*2/LABELS.length)+(j%2?0.11:-0.06);
+      var ring=(j%2)?0.44:0.29;
+      var rr=base*ring*zz;
+      var xx=cxp+Math.cos(ang)*rr,yy=cyp+Math.sin(ang)*rr;
+      var big=(j%3===0);
+      if(!(j%2)){
+        cx.strokeStyle="rgba(255,255,255,"+(0.08*lz).toFixed(3)+")";
+        cx.beginPath();
+        cx.moveTo(cxp+Math.cos(ang)*72*DPR*zz,cyp+Math.sin(ang)*72*DPR*zz);
+        cx.lineTo(xx,yy);cx.stroke();
+      }
+      cx.font="800 "+((big?15:12)*DPR)+"px 'League Spartan', sans-serif";
+      cx.fillStyle="rgba(255,255,255,"+((big?0.78:0.5)*lz).toFixed(2)+")";
+      cx.fillText(LABELS[j].toUpperCase(),xx,yy);
+    }
+  }
+};
+
+/* ---------------- 07 competidor ---------------- */
+$("#rivalForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var v=$("#rivalInput").value.trim();
+  if(!v){$("#rivalInput").focus();return;}
+  state.rival=v;
+  syncLead();
+  buildRecap();
+  $("#barRival").textContent=v;
+  $$(".rBrand").forEach(function(el){el.textContent=v;});
+  var vs=$("#versus");
+  vs.classList.remove("is-hidden");
+  SFX.whoosh({dur:.8,vol:.3});
+
+  TRENDS.lookup(v).then(function(rivalData){
+    var mine=state.trendsBrand,mineVol=mine&&mine.volume,rivalVol=rivalData&&rivalData.volume;
+    /* 1) los dos en Trends  2) solo la marca: al competidor se le da ventaja
+       3) nada: los numeros de muestra que ya trae la seccion */
+    var realMine=!!mineVol,realRival=!!rivalVol;
+    if(mineVol&&!rivalVol)rivalVol=Math.round(mineVol*(1.6+Math.random()*0.5));
+    if(!mineVol&&rivalVol)mineVol=Math.round(rivalVol*0.55);
+    if(!mineVol||!rivalVol){mineVol=2481;rivalVol=4719;realMine=realRival=false;}
+    var src=$("#versusSrc");if(src)src.hidden=!(realMine||realRival);
+    var note=$("#versusNote");
+    if(note){
+      if(realMine&&realRival)
+        note.textContent="Volumes obtidos do Buzzmonitor Trends. Com a sua conta o recorte é completo e por canal.";
+      else if(realMine)
+        note.textContent="O volume da sua marca vem do Buzzmonitor Trends. O do concorrente é uma estimativa de amostra até rodarmos a análise completa.";
+      else if(realRival)
+        note.textContent="O volume do concorrente vem do Buzzmonitor Trends. O da sua marca é uma estimativa de amostra até rodarmos a análise completa.";
+      else
+        note.textContent="Volumes de amostra para ilustrar a diferença. Com a sua conta, o número sai do seu próprio monitoramento.";
+    }
+    var bars=$$("#versus .bar__n"),fills=$$("#versus .bar__fill");
+    var top=Math.max(mineVol,rivalVol);
+    requestAnimationFrame(function(){
+      countTo(bars[0],mineVol,1700);countTo(bars[1],rivalVol,1700);
+      fills[0].style.width=Math.max(8,Math.round(mineVol/top*100))+"%";
+      fills[1].style.width=Math.max(8,Math.round(rivalVol/top*100))+"%";
+    });
+  });
+  setTimeout(function(){
+    vs.classList.add("fade");$("#twist").classList.add("on");
+    SFX.whoosh({dir:"down",dur:1,vol:.26,wet:.4});SFX.mark(.45);
+  },RM?0:2600);
+});
+
+/* ---------------- 08 que harias ---------------- */
+var ACTS={
+ ignorar:"Ignorar também é uma resposta. A diferença é que quem responde é o silêncio, e o cliente interpreta sozinho.",
+ responder:"Boa decisão. A pergunta é como essa mensagem chega ao seu time antes das 72 horas.",
+ cx:"Certo, se o CX ficou sabendo. Essa mensagem vive num comentário, não num ticket.",
+ historial:"Aí está a jogada. Esse cliente já tinha reclamado duas vezes, e isso muda a prioridade do caso."
+};
+$$(".choice").forEach(function(b){
+  b.addEventListener("click",function(){
+    $$(".choice").forEach(function(o){o.setAttribute("aria-pressed","false");});
+    b.setAttribute("aria-pressed","true");
+    /* el <span> del numero forma parte del textContent: quedarse con la etiqueta */
+    var etiqueta=b.lastChild&&b.lastChild.nodeType===3?b.lastChild.textContent:b.textContent;
+    state.act=etiqueta.trim();
+    var echo=$("#echo");
+    echo.textContent=ACTS[b.getAttribute("data-act")];
+    echo.classList.add("on");
+    SFX.click();
+    buildRecap();
+    flowStart(true);
+  });
+});
+
+/* El flujo de producto es la funcionalidad estrella de esta sala: entra carta
+   por carta y despues queda en bucle, con el pulso viajando por las flechas. */
+var FLOW={timer:null,started:false,cycles:0,paused:false};
+function flowStart(force){
+  var cards=$$("#chain .flowcard");
+  if(!cards.length)return;
+  if(!FLOW.started){
+    FLOW.started=true;
+    $(".flow__label").classList.add("on");
+    playSeq(cards,RM?0:240,function(){flowLoop();});
+  }else if(force){flowLoop();}
+}
+function flowLoop(){
+  if(RM||FLOW.paused)return;
+  var cards=$$("#chain .flowcard"),links=$$("#chain .flowlink"),k=0;
+  clearInterval(FLOW.timer);
+  function step(){
+    cards.forEach(function(c,idx){c.classList.toggle("hot",idx===k);});
+    links.forEach(function(l,idx){l.classList.remove("off");l.classList.toggle("run",idx===k);});
+    if(k<cards.length&&FLOW.cycles<1)SFX.notify(k,0.09);
+    k++;
+    if(k>cards.length){
+      k=0;FLOW.cycles++;
+      cards.forEach(function(c){c.classList.remove("hot");});
+      links.forEach(function(l){l.classList.remove("run");l.classList.add("off");});
+    }
+  }
+  step();
+  FLOW.timer=setInterval(step,820);
+}
+new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting){ if(FLOW.started&&!FLOW.paused)flowLoop(); }
+    else clearInterval(FLOW.timer);          /* fuera de cuadro no gasta CPU */
+  });
+},{threshold:0.2}).observe($("#flow"));
+
+/* Con el cursor encima de un paso el bucle se detiene y el foco sigue al mouse;
+   al salir, retoma solo. */
+$$("#chain .flowcard").forEach(function(card,idx){
+  card.addEventListener("mouseenter",function(){
+    if(!FLOW.started)return;
+    FLOW.paused=true;
+    clearInterval(FLOW.timer);
+    $$("#chain .flowcard").forEach(function(o,j){o.classList.toggle("hot",j===idx);});
+    $$("#chain .flowlink").forEach(function(l,j){l.classList.remove("off");l.classList.toggle("run",j<idx);});
+  });
+  card.addEventListener("mouseleave",function(){
+    if(!FLOW.started)return;
+    FLOW.paused=false;
+    flowLoop();
+  });
+});
+
+/* ---------------- cierre: texto activo ----------------
+   Escribe caracter por caracter y deja el cursor parpadeando al detenerse. */
+function typeText(el,txt,speed,done){
+  if(RM){el.textContent=txt;if(done)done();return;}
+  el.textContent="";
+  var i=0;
+  (function step(){
+    if(i>=txt.length){if(done)done();return;}
+    el.textContent+=txt.charAt(i++);
+    if(i%3===0)SFX.tick(i/txt.length,0.045);
+    setTimeout(step,speed);
+  })();
+}
+
+function playSala10(){
+  var T=function(ms){return RM?0:ms;};
+  var l1=$("#sala-10 h2 span"),l2=$("#sala-10 h2 b");
+  var lead=$("#t10lead"),logo=$("#t10logo");
+  var words=$$("#sala-10 .four .type"),btn=$("#sala-10 .next");
+  setTimeout(function(){
+    l1.classList.add("on");
+    setTimeout(function(){
+      l2.classList.add("on");
+      setTimeout(function(){
+        lead.classList.add("on","caret");
+        typeText(lead,lead.getAttribute("data-text"),36,function(){
+          setTimeout(function(){
+            logo.classList.add("on");
+            SFX.chord(392,.12);
+            setTimeout(function(){
+              (function nextWord(i){
+                if(i>=words.length){btn.classList.add("on");return;}
+                var w=words[i];
+                w.classList.add("on","caret");
+                typeText(w,w.getAttribute("data-text"),58,function(){
+                  setTimeout(function(){
+                    w.classList.remove("caret");
+                    nextWord(i+1);
+                  },T(480));
+                });
+              })(0);
+            },T(780));
+          },T(700));
+        });
+      },T(1250));
+    },T(1800));   /* respiro entre la linea negra y la naranja */
+  },T(320));
+}
+
+function playSala11(){
+  var T=function(ms){return RM?0:ms;};
+  var tag=$("#sala-11 .tag"),l1=$("#sala-11 h2 span"),l2=$("#sala-11 h2 b"),lead=$("#sala-11 .lead");
+  var rest=[$("#recap")].concat($$("#sala-11 .field")).concat($$("#sala-11 .form__full"));
+  setTimeout(function(){
+    tag.classList.add("on");
+    setTimeout(function(){
+      l1.classList.add("on");
+      setTimeout(function(){
+        l2.classList.add("on");
+        setTimeout(function(){
+          lead.classList.add("on");
+          setTimeout(function(){playSeq(rest,T(420));},T(900));
+        },T(1150));
+      },T(1600));   /* mismo respiro antes de la linea naranja */
+    },T(420));
+  },T(280));
+}
+
+new IntersectionObserver(function(en,obs){
+  en.forEach(function(e){if(e.isIntersecting){playSala10();obs.disconnect();}});
+},{threshold:0.3}).observe($("#sala-10"));
+new IntersectionObserver(function(en,obs){
+  en.forEach(function(e){if(e.isIntersecting){playSala11();obs.disconnect();}});
+},{threshold:0.25}).observe($("#sala-11"));
+
+/* ---------------- 09 mercado ---------------- */
+var TICKS=[["Reputação",1.8],["Intenção de compra",4.2],["Reclamações",2.6],["Concorrência",3.1],
+ ["Tendência",5.4],["Insight de produto",1.2],["Crise",0.7],["Elogio",2.2],["Comparação",3.8],["Dúvida",1.5]];
+function fillTicker(el,rev){
+  var frag="";
+  for(var pass=0;pass<2;pass++){
+    TICKS.forEach(function(t,i){
+      var alt=(i+(rev?1:0))%3===0;
+      frag+='<span class="tickr'+(alt?" dn":"")+'">'+t[0].toUpperCase()+' <b>↑ '+t[1].toFixed(1)+'%</b></span>';
+    });
+  }
+  el.innerHTML=frag;
+}
+fillTicker($("#tick1"),false);fillTicker($("#tick2"),true);
+var DROPS=["Intenção de compra","Reclamação","Crise","Concorrente","Tendência","Insight de produto","Dúvida","Elogio","Comparação","Indicação","Cancelamento","Pergunta sem resposta"];
+(function(){
+  var box=$("#drops");
+  for(var i=0;i<18;i++){
+    var d=document.createElement("span");
+    d.className="drop";
+    d.textContent=DROPS[i%DROPS.length];
+    d.style.left=(2+(i*5.3)%92).toFixed(1)+"%";
+    d.style.animationDuration=(11+((i*3.7)%9)).toFixed(1)+"s";
+    d.style.animationDelay=(-(i*1.9)%13).toFixed(1)+"s";
+    if(i%4===0)d.style.borderColor="rgba(235,124,46,.45)";
+    if(i%5===0)d.style.borderColor="rgba(14,157,155,.45)";
+    box.appendChild(d);
+  }
+})();
+var bigStarted=false;
+new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting&&!bigStarted){
+      bigStarted=true;
+      var el=$("#bigCount"),target=1284000;
+      countTo(el,target,2400);
+      if(RM)return;
+      setTimeout(function(){
+        setInterval(function(){
+          target+=Math.floor(6+Math.random()*38);
+          el.textContent=nf.format(target);
+          if(el.getBoundingClientRect().top<window.innerHeight&&el.getBoundingClientRect().bottom>0)
+            SFX.tick(Math.random(),0.05);
+        },900);
+      },2500);
+    }
+  });
+},{threshold:0.4}).observe($("#sala-09"));
+
+/* ---------------- 11 recap + lead ---------------- */
+/* Lo que la persona eligio durante el recorrido se guarda con el lead, y su
+   marca precarga el campo Empresa (solo si todavia no lo escribio a mano). */
+function syncLead(){
+  var m=$("#hMarca"),r=$("#hRival"),d=$("#hPuerta"),emp=$("#fCompany");
+  if(m)m.value=state.brand||"";
+  if(r)r.value=state.rival||"";
+  if(d)d.value=state.doorLabel||"";
+  if(emp&&state.brand&&!emp.dataset.touched)emp.value=state.brand;
+}
+
+function buildRecap(){
+  var box=$("#recap");box.innerHTML="";
+  var items=[];
+  if(state.doorLabel)items.push(["Porta",state.doorLabel]);
+  if(state.brand)items.push(["Sua marca",state.brand]);
+  if(state.rival)items.push(["Concorrente",state.rival]);
+  if(state.act)items.push(["Sua decisão",state.act]);
+  if(!items.length){box.innerHTML='<span class="chip">Seu percurso aparece aqui conforme você escolhe nas salas.</span>';return;}
+  items.forEach(function(it){
+    var s=document.createElement("span");s.className="chip";
+    s.appendChild(document.createTextNode(it[0]+": "));
+    var b=document.createElement("b");b.textContent=it[1];s.appendChild(b);
+    box.appendChild(s);
+  });
+}
+buildRecap();
+$("#fCompany").addEventListener("input",function(){this.dataset.touched="1";});
+syncLead();
+
+$("#leadForm").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var name=$("#fName").value.trim(),mail=$("#fMail").value.trim();
+  if(!name||!mail){ (name?$("#fMail"):$("#fName")).focus(); return; }
+  $("#thanksName").textContent=name;
+  $("#thanks").classList.add("on");
+  this.style.display="none";
+  SFX.click(.45);SFX.chord(440,.15);
+  $("#thanks").scrollIntoView({behavior:RM?"auto":"smooth",block:"center"});
+});
+
+layoutBubbles();
+onScroll();
+})();
+</script>
+</body>
+</html>

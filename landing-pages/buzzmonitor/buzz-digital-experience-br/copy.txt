@@ -1,0 +1,57 @@
+MUSEU DAS CONVERSAS PERDIDAS
+Uma experiência da Buzzmonitor · PT-BR (Brasil)
+
+Versão em português da LP buzz-digital-experience (ES-LATAM). O cenário continua sendo o México,
+por decisão do Ulises: só o idioma muda.
+
+PORTAL
+Overline: Uma experiência da [logo Buzzmonitor]
+H1: Enquanto você está aqui, o México segue falando da sua marca.
+Contadores: conversas · reclamações · intenções de compra · comparações
+Nota: Números de amostra, calculados com volumes típicos de monitoramento no México.
+Pergunta: Quer ouvir?
+CTA: Entrar
+
+01 A ENTRADA
+Isto / é RUÍDO (riscado) → são OPORTUNIDADES
+
+02 ESCOLHA O QUE QUER IGNORAR
+H2: Cinco portas. Cada uma é um tipo de conversa que acontece hoje, com ou sem você.
+Instrução: Escolha uma porta
+Portas: Vendas · Reputação · Experiência · Crise · Concorrência
+
+03 A CONVERSA PERDIDA
+Veredicto (Vendas): A marca não perdeu uma conversa. Perdeu uma venda.
+Fecho: Ninguém dessa marca estava lá. Ninguém avisou.
+
+04 AGORA ESCOLHA A SUA MARCA
+Estados: Buscando conversas / Analisando / Detectando sinais → Encontramos algo.
+
+05 O ESPELHO
+H2: Isto é o que o México pode estar dizendo da sua marca.
+01 Alguém quer comprar · 02 Alguém está frustrado · 03 Alguém te comparou
+
+06 VOCÊ ESTÁ OUVINDO?
+A sua marca não precisa de mais dados. Precisa entender quais importam.
+
+07 QUER VER ALGO INCÔMODO?
+H2: Escolha um concorrente.
+Twist: Mas esse não é o problema. O problema é onde esse nome aparece.
+
+08 O QUE VOCÊ FARIA?
+H2: "Estou pensando em cancelar porque faz três dias que ninguém responde."
+Opções: Ignorar · Responder · Enviar pro CX · Analisar o histórico
+Buzzmonitor faria assim: Detecta → Classifica → Analisa → Prioriza → Aciona
+
+09 A SALA DAS OPORTUNIDADES PERDIDAS
+H2: Conversas que as marcas podem estar perdendo hoje
+
+10 FECHO
+H2: A sua marca não precisa de mais dados. Precisa ouvir melhor.
+Lead: Comece a aplicar tudo o que você viu na sua marca com [logo Buzzmonitor]
+Escute. Entenda. Decida. Aja.
+
+11 SAÍDA
+H2: A sua visita terminou. A da sua marca está só começando.
+Campos: Nome · Cargo · Empresa · E-mail corporativo
+CTA: Falar com um especialista
