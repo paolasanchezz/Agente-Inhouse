@@ -46,6 +46,14 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 
 ## Ajustes de 2026-09-03 (Bruno) — segunda rodada
 
+4c. **Formulario aproximado do texto.** `.agendar__formcol` foi de `margin-top:30px`
+   para `-14px`, absorvendo o espaco morto que vem de dentro do iframe (8px de margem
+   do body do Jotform + 48px de padding do `.form-all`). O vao ate a caixa azul dos
+   campos caiu de 86px para 66px; ate a borda do card do Jotform ficam 18px, igual em
+   1440 e 390. **A moldura cinza continua** — e o `box-shadow` + `border-radius` do
+   `.form-all`, dentro de um iframe cross-origin, e so sai editando o CSS do formulario
+   261034073026647 no designer do Jotform, que e o mesmo da LP `evite-banimento-whatsapp`.
+
 4b. **Nota de requisito removida da pagina** (pedido do Bruno, mesma data). Saiu o
    paragrafo `.agendar__req` ("Ter um site ativo e um dos requisitos para se tornar cliente
    da Cxpress") que ficava acima do formulario, com o CSS dela (regra base, media query
