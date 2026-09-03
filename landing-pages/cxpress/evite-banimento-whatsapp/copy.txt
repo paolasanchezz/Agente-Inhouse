@@ -80,7 +80,6 @@ CTA: Agende uma demonstração gratuita da plataforma
 H2: Agende sua demonstração gratuita
 H3: Veja a integração oficial funcionando na sua operação
 BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: o número que você já usa, os canais que já atende e o que muda com a API oficial ativa.
-PRICE: Planos a partir de R$ 1.750
 REQ: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
 FORM: [embed Jotform 261034073026647]
 
@@ -96,6 +95,8 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 #      -> "Planos a partir de R$ 990" (doc do Google Ads) -> "Planos a partir de R$ 1.750"
 #      (2026-08-30, Victor: o piso publico continua sendo o do Basic da LP planos;
 #      o que o doc pediu foi encurtar a linha, nao baixar o preco)
+#      -> LINHA REMOVIDA DA PAGINA em 2026-09-03 (pedido do Bruno, varredura que tirou
+#      o preco de 12 LPs Cxpress). A pagina /planos segue como referencia publica de preco.
 #   2. FORM: Jotform 261045149477663 -> 261034073026647
 #   3. GTM: GTM-T4XDWHL3 -> GTM-KN8BPFG (pedido explicito, sobrepoe brand/cxpress/tracking.json)
 #   4. GA4: tag gtag.js adicionada com o ID 339689858

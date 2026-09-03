@@ -137,7 +137,6 @@ SELOS: Api Oficial do WhatsApp | Api Oficial do ChatGPT | Um produto elife
 CONTATO (form)
 ===============================================================================
 H2: Entre em contato conosco!
-PRECO: Planos a partir de R$ 1.750
 BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua
       operação de atendimento com a orientação de nossos especialistas.
 EMAIL: comercial@gocxpress.com.br
