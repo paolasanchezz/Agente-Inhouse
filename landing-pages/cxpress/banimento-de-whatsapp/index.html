@@ -846,11 +846,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .agendar h3{
       font-family:var(--font-display);font-weight:700;font-size:21px;
       color:var(--primary-deep);margin-bottom:18px;line-height:1.35;
-      max-width:34ch;margin-left:auto;margin-right:auto;
+      /* 44ch (~528px) segura a frase inteira numa linha no desktop —
+         o natural dela e 492px e o interno do card, 668px. */
+      max-width:44ch;margin-left:auto;margin-right:auto;
     }
     .agendar__body{
       font-size:18px;line-height:1.7;color:var(--text-body);
-      max-width:52ch;margin:0 auto 24px;
+      /* 70ch (~627px) para o texto fechar em DUAS linhas: o natural e 1191px,
+         entao cada linha precisa de ~596px, e o interno do card da 668px. */
+      max-width:70ch;margin:0 auto 24px;
     }
     .agendar__price{
       display:inline-flex;align-items:center;gap:10px;
@@ -1274,7 +1278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="impacto__grid">
           <article class="card reveal" data-step="1">
-            <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-8.5 8.4H8L3 21.5l1.2-4A8.4 8.4 0 1121 11.5z"/><path d="M12 7.6v4.2"/><path d="M12 15.2h.01"/></svg></div>
+            <div class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
             <h3>Clientes sem resposta</h3>
             <p>Conversas importantes ficam interrompidas e sua equipe perde contato com os clientes.</p>
           </article>
