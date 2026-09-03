@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (doc "Nova Banimento Whats (Google Ads)", Victor)
 **Domínio de destino:** `content.cxpress.io/banimento-de-whatsapp` (guarda-chuva, deploy via CI)
 **Idioma / região:** PT-BR / brasil
-**Form provider:** **misto** (decisão do Victor, 2026-09-02) — o formulário do **rodapé é mock** (HTML simulando o layout de referência Octadesk; não envia nada) e o **pop-up do botão flutuante do WhatsApp usa o embed real do Jotform `261034073026647`**, que é quem captura o lead.
+**Form provider:** **Jotform `261034073026647`** nos dois pontos de captura — a seção “Agende sua demonstração” (embed `jsform`) e o pop-up do botão flutuante do WhatsApp (iframe). O mock HTML do rodapé saiu em 2026-09-03 (pedido do Bruno).
 **Tracking:** GTM-KN8BPFG + GA4 339689858 (container de Google Ads, confirmado pelo Victor em 2026-08-30)
 
 ## De onde veio
@@ -41,8 +41,31 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-banimento-de-whatsapp.png` (template em `assets/og-template.html`)
 - [x] Revisão de design + a11y aplicada — ver `REVISAO.md`
-- [x] Formulário integrado no **pop-up** do botão flutuante (Jotform `261034073026647`). O do **rodapé segue mock de propósito** — Victor optou por manter o layout simulado (2026-09-02)
+- [x] Formulário integrado nos dois pontos — seção e pop-up do botão flutuante, ambos no Jotform `261034073026647` (2026-09-03)
 - [x] No `landing-pages/dominios/content-cxpress-io/manifest.json` e no ar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
+
+## Ajustes de 2026-09-03 (Bruno)
+
+1. **Formulário da seção virou Jotform real.** O mock HTML (que reproduzia o layout de
+   referência da Octadesk e não enviava nada) saiu e no lugar entrou o embed padrão
+   `<script src="https://form.jotform.com/jsform/261034073026647">` dentro do
+   `.jotform-embed`. **Reverte a decisão do Victor de 2026-09-02** de manter o rodapé
+   simulado — agora as duas capturas da página (seção e pop-up) são o mesmo formulário.
+   O CSS do mock (`.field`, `.field__phone`, `.form-check`, `.form-note`, `.form-sep`) foi
+   removido junto, e `.agendar__formcol` perdeu fundo/borda/padding porque o Jotform já traz
+   card próprio.
+2. **Dois embeds do mesmo formulário na mesma página — duas proteções.** O resizer que vem
+   no `jsform` procura o iframe pelo **id do formulário**, então as mensagens `setHeight`
+   vindas do iframe do pop-up redimensionariam o embed da seção. Um listener registrado
+   **antes** do `jsform` (logo acima da tag, na própria seção) aplica a altura no iframe certo
+   e barra a mensagem com `stopImmediatePropagation()`. Pelo mesmo motivo, o handler do
+   pop-up passou a exigir `e.source === frame.contentWindow`: sem isso, um envio feito no
+   formulário da seção abriria a aba do WhatsApp do pop-up.
+3. **Pulso no botão flutuante.** Um `::after` com anel verde expande em loop (`waFabHalo`)
+   e o botão dá uma batida leve no fim do ciclo (`waFabBate`), tudo dentro de
+   `@media (prefers-reduced-motion: no-preference)`. Quem anima é o pseudo-elemento — o
+   `box-shadow` de 2px em `--wa-ink`, que é o que cumpre o 3:1 da WCAG 1.4.11, fica intacto.
+   No hover o pulso para, pra não brigar com o `scale(1.07)`.
 
 ## Ajustes de 2026-09-02 (Bruno) — botão flutuante do WhatsApp
 
@@ -58,8 +81,7 @@ no envio, leva a conversa pro WhatsApp comercial numa nova aba.
   (nada de Jotform no carregamento da página) e a altura é sincronizada pela mensagem `setHeight`
   do provedor.
 - **Formulário do pop-up:** embed real do Jotform `261034073026647` (decisão do Victor de 2026-08-30).
-  O formulário do rodapé **continua mock** por decisão do Victor (2026-09-02) — ele mantém o layout
-  de referência simulado em HTML e, como antes, não envia nada.
+  O do rodapé ficou mock até 2026-09-02 e voltou pro mesmo Jotform em 2026-09-03 — ver a seção abaixo.
 - **Dupla confirmação no envio:** o Jotform mostra a própria página de agradecimento dentro do
   pop-up e a conversa abre em nova aba no `wa.me/551150395028` (mesmo número das outras LPs Cxpress).
   Dois sinais de envio, nessa ordem: a mensagem `{action:"submission-end"}` que o Jotform posta ainda
