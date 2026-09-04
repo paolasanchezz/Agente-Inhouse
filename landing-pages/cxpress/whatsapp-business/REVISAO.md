@@ -14,7 +14,7 @@ Nada aqui foi resolvido por conta própria: são escolhas de conteúdo que a tro
 - [ ] **As 2 métricas próprias da Cxpress saíram** (85 % de redução de SLA, +220 % de interações nas redes sociais). A prova numérica agora é a da origem (NBER/McKinsey). As métricas próprias são mais fortes que estudo de terceiro, mas continuavam **sem atribuição definida** (pendência aberta desde 2026-08-28: caso de qual cliente? média da base? recorte de período?). Se a atribuição sair, cabe uma faixa própria.
 - [ ] **Seções DORES e INTEGRAÇÕES saíram** (a origem não tem). A copy das dores foi escrita pelo protocolo em agosto e a lista de 7 integrações veio do Victor. Nada foi perdido: está no histórico do git e no `copy.txt` anterior. Reintroduzir exige decidir se esta LP passa a divergir da página institucional.
 - [ ] **Links de condições de uso e política de privacidade saíram do rodapé** junto com a adoção do rodapé padrão da `banimento-de-whatsapp` (que traz redes sociais no lugar). Se os links jurídicos precisam ficar em toda LP, o ajuste é no padrão, não só aqui.
-- [ ] **OG image desatualizada.** `assets/og-whatsapp-business.png` foi gerada com o H1 antigo ("Centralize seus canais…"). Regerar com `assets/og-template.html` + `assets/render_og.py` antes de publicar, senão o preview no WhatsApp e no LinkedIn contradiz a página.
+- [x] **OG image conferida, não precisou regerar.** Eu tinha suposto que trazia o H1 antigo; ao abrir o PNG, ela diz "Atendimento no WhatsApp inteligente e organizado" mais "Centralize e automatize o seu atendimento, simples e eficaz." — as duas linhas alinhadas com a copy da origem. Ficou como estava.
 
 ---
 
@@ -23,7 +23,37 @@ Nada aqui foi resolvido por conta própria: são escolhas de conteúdo que a tro
 - **[corrigido] Vídeo bloqueado pelo CSP.** A fachada carregava o iframe em `www.youtube-nocookie.com` (escolha de privacidade), mas o `frame-src` do `vercel.json` de `content.cxpress.io` libera só `www.youtube.com`. No live o clique no play não fazia nada e o console acusava `Framing 'https://www.youtube-nocookie.com/' violates the following Content Security Policy directive`. Trocado para `www.youtube.com/embed/`, que o CSP já cobre e é o domínio que a LP irmã `whatsapp-smb` usa. Verificado no navegador contra o live, não só por leitura do header.
 - **[para o Victor, mecânica do guarda-chuva] `form-action` do CSP bloqueia o Meta Pixel.** O console do live acusa `Sending form data to 'https://www.facebook.com/tr/' violates ... "form-action 'self' https://*.jotform.com https://*.rdstation.com.br https://*.hubspot.com https://*.list-manage.com"`. O pixel dispara por GTM em toda LP do domínio, então **não é específico desta LP**: o `form-action` do template (e do `vercel.json` do guarda-chuva) não tem `https://www.facebook.com`. O `script-src` e o `frame-src` já foram liberados na v3.2.0 do template; o `form-action` ficou de fora. Corrigir mexe em mecânica compartilhada (path protegido, PR não auto-mergeado), então fica registrado aqui em vez de entrar numa entrega de conteúdo.
 
-## 2. Aplicado nesta rodada
+## 1.2 Segunda rodada (2026-09-04, correções do Bruno sobre a página no ar)
+
+### Medições
+
+| Bloco | Antes | Depois | Alavanca |
+|---|---|---|---|
+| `.hero h1` | 40 px, 3 linhas, 15 % | **48 px**, 3 linhas, 16 % (a 1440 e a 1280) | coluna do hero 1.32fr → 1.9fr, gap 48 → 40 px, medida 28ch → 34ch |
+| `.video h2` | 36 px, **3 linhas** | 36 px, **2 linhas**, 25 % | medida 24ch → 38ch |
+| `.proof__n` | `clamp(38px, 3.6vw, 50px)` | **`clamp(52px, 5.2vw, 76px)`** (74,9 px a 1440; 52 px a 375) | teto |
+
+O H1 a 48 px custou 19 px do palco da tela (460 → 441 px). Medi 4 combinações de coluna × corpo antes de escolher: com 1.4fr–1.6fr, qualquer corpo acima de 44 px caía em 4 linhas com 44 % de desequilíbrio.
+
+Pisos mobile (§20) recontados depois das mudanças: 19 papéis, todos cumpridos. Overflow horizontal: 0 a 375, 1280 e 1440.
+
+### O bug de stagger que explicava a "falta de animação"
+
+Os cards do "Porquê" já tinham `.reveal`. O atraso, porém, vinha do JS como `idx % 5 * 60ms` sobre a ordem **global** dos `.reveal` da página — num grid de 3 a sequência saía embaralhada (ex.: 240 ms, 0 ms, 60 ms), e o efeito lia como quebrado em vez de escalonado. Pior: sendo `style` inline, vencia qualquer regra de CSS que tentasse corrigir.
+
+O JS não escreve mais delay; o stagger vem do CSS por seção. Isso conserta a entrada **em toda a página**, não só nesses cards (a grade da PROVA e o par texto/visual das features também ganharam sequência própria).
+
+### Contador dos big numbers
+
+Mesmo padrão da LP `banimento-de-whatsapp`: o valor final já está no HTML, então sem JS, sem `IntersectionObserver` ou com `prefers-reduced-motion` a seção continua correta e **nunca fica travada no zero** — o zero só existe dentro do `runCount`, no instante em que a animação começa. Testei o easing isolado no Node: as 4 séries (14, 9, 25, 45) sobem monotônicas e terminam exatamente no alvo.
+
+### Limite desta verificação
+
+O painel de preview desta sessão estava **oculto**, e nesse estado o compositor não roda: `scrollY` fica em 0, `innerWidth` chega a reportar 0 e **nenhum** `IntersectionObserver` dispara (confirmei criando um na hora, que também não disparou). Por isso não consegui *assistir* a entrada dos cards nem a contagem rodando.
+
+O que dá para afirmar, e como: emulei viewport explícito (375/1280/1440) para as medições de linha e piso; verifiquei os estados inicial e final do CSS alternando a classe `is-in` à mão e lendo o estilo computado com `transition:none` (sem isso, o valor lido é o da transição congelada — foi o que me confundiu na primeira leitura, com o marcador preso em `opacity:0`); e testei a matemática do contador no Node. **A entrada animada e a contagem em movimento ainda merecem um olhar num navegador de verdade.**
+
+## 2. Aplicado na primeira rodada
 
 ### Diagramação (GUIDELINES §21)
 
@@ -103,3 +133,10 @@ Um detalhe que já custou caro antes e está coberto: a página tem **dois embed
 - [ ] `CONSULTOR` e `PLATAFORMA` são duas seções brancas seguidas. Separadas por filete mais 128 px de respiro, e o card cheio do CONSULTOR dá identidade à faixa. Tingir uma das duas resolveria, mas encostaria tint em tint com a PROVA (ou apagaria o halo azul-claro que fica atrás das telas da PLATAFORMA).
 - [ ] Números da PROVA entram estáticos. As LPs irmãs animam a contagem ao entrar na tela; aqui o valor final já está no HTML e não há JS de contagem. Vale se quiser o mesmo brilho da `banimento-de-whatsapp`.
 - [ ] `assets/telas/tela-agentes.svg`, `tela-disparo-ativo.svg` e `tela-tickets.svg` ficaram sem uso. Mantidos de propósito (telas já otimizadas), mas são 3 arquivos pesados sem referência.
+
+---
+
+## 5. Decisão nova aberta pela 2ª rodada
+
+- [ ] **Troca do formulário muda o roteamento do lead.** A LP passou do Jotform `261027639617663` ("LPs - Proposta", o form unificado das LPs de proposta BR) para o `261034073026647`, o mesmo da LP irmã `banimento-de-whatsapp`, a pedido do Bruno, que passou o snippet explicitamente. Vale conferir com quem cuida do funil se os leads desta LP devem cair na mesma caixa da campanha de banimento, e qual é a página de agradecimento configurada nesse form (ela acompanha o form, não o embed).
+- [ ] **A LP passou a divergir da página de origem** ao remover a faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!". Se a intenção era manter as duas páginas espelhadas, a faixa precisa sair da `home.cxpress.io/app-whatsapp` também.

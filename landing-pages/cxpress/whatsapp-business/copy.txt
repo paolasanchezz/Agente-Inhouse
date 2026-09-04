@@ -57,13 +57,6 @@ NOTE: **Estimativas da McKinsey, consultoria empresarial norte-americana.
 # [ORIGEM] Numeros e notas de rodape literais da pagina de origem. Mesma copy da
 #   LP irma whatsapp-smb (secao "NUMEROS"), conferida numero a numero.
 
-=== CONSULTOR (faixa WhatsApp) ===
-H2: Fale com um de nossos consultores no WhatsApp agora mesmo!
-CTA: Fale agora!
-# [ORIGEM] Faixa literal da pagina de origem, entre a prova numerica e a secao de
-#   plataforma. O CTA laranja usa texto navy (contraste: laranja Cxpress so como
-#   preenchimento).
-
 === PLATAFORMA ===
 H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
 H3: Organize seu atendimento de forma integrada
@@ -103,9 +96,13 @@ H2: Entre em contato conosco!
 BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.
 MAIL: comercial@gocxpress.com.br
 CTA: Fale com especialista
-# [FORM] Jotform 261027639617663 ("LPs - Proposta"), o form unificado das LPs de
-#   proposta BR. Mantido: a troca de copy nao mexe em roteamento de lead.
-#   Carregado sob demanda (jsform injetado 600px antes da secao).
+# [FORM] Jotform 261034073026647, o mesmo formulario da LP irma banimento-de-whatsapp.
+#   TROCADO em 2026-09-04 (2a rodada) a pedido do Bruno, que passou o snippet
+#   <script src="https://form.jotform.com/jsform/261034073026647"> explicitamente.
+#   Antes era o 261027639617663 ("LPs - Proposta", o form unificado das LPs de
+#   proposta BR) — a troca muda o roteamento do lead, entao esta registrada aqui e
+#   em REVISAO.md. Usado nos DOIS pontos de captura: esta secao e o modal do botao
+#   flutuante. Carregado sob demanda (jsform injetado 600px antes da secao).
 # [POSICAO] Ultima secao antes do FAQ, como na pagina de origem. LP e MoFu/BoFu,
 #   entao GUIDELINES §10 pede form no fim com CTA no hero rolando ate ele.
 
@@ -143,7 +140,7 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 # [PADRAO] Botao flutuante pulsante da LP banimento-de-whatsapp (secao padrao
 #   pedida pelo Bruno): halo que expande mais uma batida leve no proprio botao,
 #   ambos no ::after e no transform, com o anel de contraste do box-shadow
-#   intacto. Abre modal com o formulario da LP (261027639617663) e, no envio,
+#   intacto. Abre modal com o formulario da LP (261034073026647) e, no envio,
 #   segue a conversa no WhatsApp comercial numa nova aba.
 # [NOTA] O modal e a secao FORM carregam o MESMO formulario. O resizer do jsform
 #   acha o iframe pelo id do FORMULARIO, entao existe um listener que aplica a
@@ -176,5 +173,49 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 #   - VIDEO (YouTube 36sbDc02_DU)
 #   - PROVA (14% / 9% / 25% / 45% com notas NBER e McKinsey)
 #   - CONSULTOR (faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!")
+#     ENTROU em 2026-09-04 e SAIU no mesmo dia, a pedido do Bruno (ver notas da 2a rodada).
 #
 # Tracking: GTM-T4XDWHL3 (Cxpress brasil, brand/cxpress/tracking.json), inalterado.
+
+# ==========================================================================
+# 2a RODADA — 2026-09-04 (correcoes pedidas pelo Bruno depois do 1o deploy)
+# ==========================================================================
+# Nenhuma palavra de copy foi reescrita nesta rodada. As mudancas sao de estrutura
+# (1 secao removida), de peso tipografico e de movimento, mais a troca do formulario.
+#
+# 1. SECAO CONSULTOR REMOVIDA. A faixa "Fale com um de nossos consultores no
+#    WhatsApp agora mesmo!" saiu da pagina. Ela existe na pagina de origem, entao
+#    a LP passa a divergir dela neste ponto — por decisao do Bruno, nao por
+#    omissao. O texto segue no historico do git. Com a saida, o rota de conversa
+#    por WhatsApp na pagina fica sendo o botao flutuante pulsante (que abre o
+#    formulario e, no envio, segue no WhatsApp comercial).
+#
+# 2. H1 MAIOR. Teto de fonte de 40px para 48px, letter-spacing de -.015em para
+#    -.025em e line-height 1.08. Pra caber em 3 linhas nesse corpo, a coluna de
+#    texto do hero foi de 1.32fr para 1.9fr e o gap de 48px para 40px (o palco da
+#    tela cai de 460px para 441px). Medido: 3 linhas com 16% de desequilibrio a
+#    1440 e a 1280 (GUIDELINES §21).
+#
+# 3. TITULO DO VIDEO EM NO MAXIMO 2 LINHAS. A medida foi de 24ch para 38ch e o
+#    teto de 36px ficou. Resultado: 2 linhas a 1440 (36px) e a 1280 (33px).
+#
+# 4. BIG NUMBERS COM DESTAQUE E CONTADOR. Numero de clamp(38-50px) para
+#    clamp(52-76px), cor do numero de --primary para --primary-dark (o "%" segue
+#    em --accent-text) e contagem animada ao entrar na tela. O valor final JA esta
+#    no HTML: sem JS, com IntersectionObserver ausente ou com prefers-reduced-motion
+#    a secao continua correta e nunca fica travada no zero.
+#
+# 5. ANIMACAO NOS CARDS DO "PORQUE" + MENOS RESPIRO NO TOPO. Os cards ja tinham
+#    .reveal, mas o atraso era calculado no JS como `idx % 5 * 60ms` sobre a ordem
+#    GLOBAL dos .reveal da pagina — dentro de um grid de 3 a ordem saia embaralhada
+#    (ex: 240ms, 0ms, 60ms) e a entrada parecia quebrada. O delay inline tambem
+#    vencia qualquer regra de CSS. Agora o JS nao escreve delay nenhum e o stagger
+#    vem do CSS por seccao (0 / .10s / .20s). Cada card entra com translateY(30px)
+#    + scale(.985) e o marcador verde entra depois, com escala. Hover mexe so em
+#    sombra e borda, de proposito: `transform` fica reservado a entrada, senao o
+#    hover herdaria o delay do stagger e sairia lento.
+#    Respiro do topo da secao: padding-top de 128px para 72px (a faixa de clientes
+#    acima ja fecha com 96px, e a soma abria um vao vazio grande).
+#
+# 6. FORMULARIO trocado para o Jotform 261034073026647 nos dois pontos de captura
+#    (ver nota no bloco FORM).
