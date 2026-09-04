@@ -187,3 +187,43 @@ Peguei porque medi o `transform` computado antes e depois de aplicar `is-in`, em
 ### Limite, de novo
 
 O painel de preview continua sem compositor mesmo com a aba em primeiro plano: `scrollY` não sai de 0 e nenhum `IntersectionObserver` dispara. Verifiquei os estados de CSS alternando `is-in` à mão com `transition:none`, que é o que revelou o bug de especificidade acima. **A animação em movimento (Z-pattern, cascata dos cards e contagem dos números) segue precisando de um olhar num navegador de verdade.**
+
+---
+
+## 7. Quinta rodada (2026-09-04): escala do H1, com teste antes de publicar
+
+O Bruno mandou a LP `atendimento-domingo` como referência de mancha e pediu para ver antes de subir. Publiquei um artefato com o hero de cada opção em tamanho real e ele escolheu a **opção C** (54 px).
+
+### O que foi medido na referência
+
+`atendimento-domingo`: H1 de 54 px, `max-width:17ch` (538 px), 57 caracteres, **4 linhas** de [434, 391, 348, 425], desequilíbrio 20%, bloco de 538×248. Dá ~14 caracteres por linha: é isso que faz a mancha parecer densa e deliberada.
+
+### O achado que decidiu a conversa
+
+**A evenness do nosso H1 está travada em 16%, em qualquer escala.** Medi 3 famílias:
+
+| Caminho | Resultado |
+|---|---|
+| Escala (48 → 54 px, com a coluna acompanhando) | sempre 3 linhas, sempre **16%** |
+| Quebra natural de 4 linhas | existe **uma só**, igual em qualquer corpo, e dá **44%** |
+| 7 quebras manuais com `<br>` | entre **44% e 56%** |
+
+A causa: a referência tem 57 caracteres de palavras parelhas; o nosso tem 79, com `de`, `e` e `para` espalhados, que sempre empurram a 3ª linha para curta. O perfil das nossas 3 linhas é 88,8% / 88,3% / 74,9% e se mantém proporcional em qualquer corpo.
+
+O teto de 4 linhas tem explicação técnica: **o `text-wrap: balance` do Chrome equilibra este bloco só até 3 linhas.** De 4 para cima ele volta ao algoritmo guloso, e é por isso que toda variante de 4 linhas piora em vez de melhorar. Vale como nota para a GUIDELINES §21.
+
+### Uma troca a favor que apareceu no caminho das 4 linhas
+
+Como a quebra de 4 linhas usa uma medida mais estreita, sobra coluna e o palco da tela **cresce**: 534 px a 48 px de fonte (contra 441 px de então), ou 441 px a 56 px de fonte. Ou seja, 4 linhas trocaria evenness (16% → 44%) por densidade e uma tela maior. Ficou registrado no teste; o Bruno preferiu as 3 linhas na escala da referência.
+
+### O que entrou
+
+`clamp(36px,3.4vw,48px)` → **`clamp(36px,3.8vw,54px)`** e a coluna de texto de 1.9fr → **2.6fr**.
+
+| Viewport | Fonte | Caixa do H1 | Tela | Linhas | Desequilíbrio | Overflow |
+|---|---|---|---|---|---|---|
+| 1440 | 54 px | 777 px | 369 px | 3 | 16% | 0 |
+| 1280 | 48,6 px | 777 px | 369 px | 3 | 16% | 0 |
+| 375 | 36 px | (empilhado) | (empilhado) | — | — | 0 |
+
+Pisos tipográficos mobile (§20) recontados: todos cumpridos. O palco da tela cai de 441 para 369 px, 16% menor, que é o preço da escala e estava explícito no teste.

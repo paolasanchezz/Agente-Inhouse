@@ -28,7 +28,7 @@ Correções pedidas pelo Bruno olhando a página no ar. Nenhuma palavra de copy 
 | # | Pedido | O que foi feito |
 |---|---|---|
 | 1 | Tirar a faixa do consultor | Seção removida (markup + CSS). Saiu junto o `.btn--accent`, que só ela usava |
-| 2 | H1 maior e com mais destaque | Teto de 40 → **48 px**, `letter-spacing` -.015 → -.025em, `line-height` 1.08. Para caber em 3 linhas nesse corpo, a coluna de texto do hero foi de 1.32fr → 1.9fr e o gap 48 → 40 px |
+| 2 | H1 maior e com mais destaque | Teto de 40 → 48 px, `letter-spacing` -.015 → -.025em, `line-height` 1.08. Depois levado a **54 px** na 5ª rodada (ver abaixo) |
 | 3 | Título do vídeo em no máximo 2 linhas | Medida de 24ch → **38ch**. Dá 2 linhas a 1440 (36 px) e a 1280 (33 px) |
 | 4 | Big numbers com destaque e contador | Número de `clamp(38-50px)` → **`clamp(52-76px)`**, cor para navy (o `%` segue laranja escuro) e contagem animada ao entrar na tela |
 | 5 | Faltavam animações nos cards do "Porquê" | Corrigido um bug de stagger (ver abaixo) + entrada com `translateY(30px) scale(.985)`, marcador verde entrando depois com escala, e hover em sombra/borda |
@@ -92,7 +92,7 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 
 ## Estado
 
-- [x] HTML gerado (`index.html`, 1683 linhas, 99 KB)
+- [x] HTML gerado (`index.html`, 1688 linhas, 99 KB)
 - [x] Copy trocada pela da página de origem e conferida string por string (auditoria de fidelidade no `REVISAO.md`)
 - [x] Seções padrão portadas da `banimento-de-whatsapp` (navbar, rodapé, FAB pulsante + modal, slider de clientes)
 - [x] Cena animada do hero
@@ -119,3 +119,21 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 | `./assets/og-whatsapp-business.png` | OG image |
 
 `assets/telas/tela-agentes.svg`, `tela-disparo-ativo.svg` e `tela-tickets.svg` ficaram sem uso nesta versão. Mantidos na pasta: são telas do produto já otimizadas, úteis se uma feature voltar.
+
+## 5ª rodada (2026-09-04): escala do H1
+
+O Bruno apontou a mancha do H1 da LP `atendimento-domingo` como referência e pediu um teste antes de publicar. Publiquei um comparativo com o hero de cada opção em tamanho real e ele escolheu a **opção C**.
+
+| | Antes | Depois |
+|---|---|---|
+| Teto do H1 | `clamp(36px, 3.4vw, 48px)` | **`clamp(36px, 3.8vw, 54px)`** |
+| Coluna de texto do hero | 1.9fr | **2.6fr** |
+| Caixa do H1 a 1440 | 705 px | **777 px** |
+| Palco da tela | 441 px | **369 px** |
+| Linhas / desequilíbrio | 3 / 16% | 3 / **16%** (não muda) |
+
+**O que a medição estabeleceu, e que vale guardar:** o desequilíbrio deste H1 está **travado em 16%** e não melhora em escala nenhuma. A evenness da referência vem do **texto** dela (57 caracteres de palavras parelhas, que caem em 4 linhas naturais), não do CSS; o nosso tem 79 caracteres com `de`, `e` e `para` espalhados, que sempre empurram a 3ª linha para curta.
+
+Existe **uma única** quebra natural de 4 linhas para este texto, igual em qualquer corpo (*Plataforma de / Automação de WhatsApp / para atendimento / inteligente e Organizado*), e ela dá **44%**. As 7 quebras manuais com `<br>` que testei ficaram entre 44% e 56%. O teto tem explicação: o `text-wrap: balance` do Chrome equilibra este bloco só até 3 linhas; de 4 para cima ele volta ao guloso.
+
+Conclusão prática para quem mexer nisso depois: **mudar o CSS altera escala e densidade, não a evenness.** Mancha compacta de verdade só encurtando a copy do H1.
