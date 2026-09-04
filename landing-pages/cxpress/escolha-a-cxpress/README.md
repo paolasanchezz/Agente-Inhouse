@@ -304,3 +304,47 @@ nenhum dos 9 GIFs nem o asset escuro mais próximo em proporção (`89865d70476a
 que é line-art decorativo) correspondem. Provavelmente é composto pelo builder do
 WordPress (div escura + cards soltos) ou não entrou no dump do mirror. **Aguardando o
 arquivo do Victor.**
+
+---
+
+## 9. Terceira rodada (2026-09-04)
+
+| Ajuste | Detalhe |
+|---|---|
+| Só o botão pulsante para WhatsApp | Saíram os 3 CTA "Falar no WhatsApp" (comparativo, CTA final e barra fixa do mobile). O único caminho de WhatsApp agora é o botão flutuante. As classes `.btn--ghost` e `.btn--ghost-light` ficaram sem uso e saíram do CSS |
+| H1 | "cresce" subiu para a 1ª linha: **"Seu atendimento cresce."** / **"Sua operação acompanha?"**. O royal, que era só em "atendimento", passou a cobrir "atendimento cresce" e "operação acompanha" |
+| Caixa do formulário centralizada | `text-align:center` no `.form-card`; o `.jotform-embed` recebe `text-align:left` para o formulário não herdar o centro |
+| Menu com efeito vidro | O menu saiu do hero e virou `<header class="topbar">` **antes do `<main>`**, `position:sticky` com `backdrop-filter: saturate(180%) blur(14px)` sobre `rgba(255,255,255,.72)`. A logo agora aponta para `#form` |
+
+### Por que a barra ficou fora do `.hero`
+
+O `.hero` tem `overflow:hidden` (por causa das pílulas decorativas), e `position:sticky`
+dentro de um ancestral com `overflow:hidden` **para de colar** assim que a seção sai de
+cena. Como `<header>` irmão do `<main>`, a barra cola em qualquer posição de scroll
+(medido: `top: 0` no topo, no meio e no fim da página).
+
+Camadas: barra `z-index: 75`, acima do botão flutuante (70) e abaixo do modal (90).
+Há um `@supports not (backdrop-filter)` que sobe a opacidade do fundo para `.94`, senão
+em navegador sem suporte a logo ficaria sobre o texto que passa atrás.
+
+### Efeitos colaterais tratados
+
+- **Pílulas decorativas subiram 80px** (`top` de 108/132/232/250 para 28/52/152/170).
+  Sem a barra dentro do hero o conteúdo subiu ~102px, e sem isso elas ficariam baixas
+  em relação à headline. `.hero` padding-top foi de 26px para 40px.
+- **`scroll-margin-top` do `.form-card`** foi de 20px para 96px (76px no mobile), senão
+  a âncora `#form` (que a logo usa) paravam com o título do card atrás da barra.
+  Medido: card para em 96px, título em 131px, base da barra em 77px.
+- **`.hero :focus-visible` saiu da regra de outline branco.** O hero tem fundo claro, e
+  o outline branco ali era invisível. Bug pré-existente, corrigido de passagem porque a
+  regra estava sendo editada de todo jeito.
+- **Barra fixa do mobile ficou com 1 botão** ("Contratar a Cxpress"). O botão flutuante
+  segue em `bottom: calc(94px + safe-area)` para não cair sobre ela (medido: não se
+  sobrepõem a 375px).
+
+### A conferir com o Victor
+
+A copy do CTA final ainda termina com **"Se preferir, fale agora pelo WhatsApp."**, mas o
+botão de WhatsApp que ficava ao lado dela saiu. A frase não virou mentira (o botão
+flutuante está na tela, pulsando), mas ficou sem um alvo adjacente. Não mexi porque
+é decisão de copy (GUIDELINES §5).

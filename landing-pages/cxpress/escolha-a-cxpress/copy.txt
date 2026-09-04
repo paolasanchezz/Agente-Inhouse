@@ -5,14 +5,14 @@
 
 ## MENU
 
-LOGO: Cxpress (centralizada, âncora para o topo da página)
+LOGO: Cxpress (centralizada, barra fixa com efeito vidro, âncora para o formulário)
 # O link "Falar no WhatsApp" saiu do menu: quem cobre esse caminho agora
 # é o botão flutuante do WhatsApp (ver ## BOTÃO FLUTUANTE).
 
 ## SEÇÃO 1 — HERO (com formulário centralizado)
 
 OVERLINE: O melhor custo-benefício do mercado   (laranja, como na página original)
-H1: Seu [atendimento] / cresce. Sua operação acompanha?   ("atendimento" em azul royal #4a69bd; "/" = quebra de linha da página original, só no desktop)
+H1: Seu [atendimento cresce]. / Sua [operação acompanha]?   ([entre colchetes] = azul royal #4a69bd; "/" = quebra de linha, só no desktop)
 SUB: As principais plataformas já oferecem funcionalidades similares. O que diferencia é o que acontece depois: implementação, suporte e controle da operação.
 
 FORM TITLE: Peça uma demonstração da Cxpress
@@ -51,7 +51,6 @@ NOTA: Comparativo qualitativo elaborado pela Cxpress. Concorrentes identificados
 
 FECHO: Se todas as plataformas fazem o básico, a diferença está em quem faz sua operação funcionar melhor.
 CTA PRIMÁRIO: Contratar a Cxpress
-CTA SECUNDÁRIO: Falar no WhatsApp
 
 ## SEÇÃO 3 — POR QUE ESCOLHEM A CXPRESS
 
@@ -116,7 +115,6 @@ BODY: Sim. A plataforma opera no Brasil, na América Latina e em Portugal.
 H2: Pronto para contratar a Cxpress?
 BODY: Preencha o formulário e um especialista monta a proposta com os canais, os acessos e os agentes de IA que a sua operação pede. Se preferir, fale agora pelo WhatsApp.
 CTA PRIMÁRIO: Preencher o formulário
-CTA SECUNDÁRIO: Falar no WhatsApp
 
 ## BOTÃO FLUTUANTE (WhatsApp)
 
