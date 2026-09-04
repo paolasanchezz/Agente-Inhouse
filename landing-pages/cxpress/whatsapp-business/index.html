@@ -1442,7 +1442,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var id = videoPlay.getAttribute('data-yt');
       var host = document.getElementById('videoFrame');
       var f = document.createElement('iframe');
-      f.setAttribute('src','https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1');
+      /* www.youtube.com, nao youtube-nocookie.com: o CSP do guarda-chuva libera
+         apenas o primeiro em frame-src, e o nocookie era bloqueado em runtime
+         ("Framing ... has been blocked"). Mesmo dominio da LP irma whatsapp-smb. */
+      f.setAttribute('src','https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1');
       f.setAttribute('title','Agilize seu atendimento com a Cxpress, plataforma para gestão');
       f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       f.setAttribute('allowfullscreen','');

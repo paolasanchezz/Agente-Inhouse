@@ -18,6 +18,11 @@ Nada aqui foi resolvido por conta própria: são escolhas de conteúdo que a tro
 
 ---
 
+## 1.1 Achados da publicação (2026-09-04, pós-deploy)
+
+- **[corrigido] Vídeo bloqueado pelo CSP.** A fachada carregava o iframe em `www.youtube-nocookie.com` (escolha de privacidade), mas o `frame-src` do `vercel.json` de `content.cxpress.io` libera só `www.youtube.com`. No live o clique no play não fazia nada e o console acusava `Framing 'https://www.youtube-nocookie.com/' violates the following Content Security Policy directive`. Trocado para `www.youtube.com/embed/`, que o CSP já cobre e é o domínio que a LP irmã `whatsapp-smb` usa. Verificado no navegador contra o live, não só por leitura do header.
+- **[para o Victor, mecânica do guarda-chuva] `form-action` do CSP bloqueia o Meta Pixel.** O console do live acusa `Sending form data to 'https://www.facebook.com/tr/' violates ... "form-action 'self' https://*.jotform.com https://*.rdstation.com.br https://*.hubspot.com https://*.list-manage.com"`. O pixel dispara por GTM em toda LP do domínio, então **não é específico desta LP**: o `form-action` do template (e do `vercel.json` do guarda-chuva) não tem `https://www.facebook.com`. O `script-src` e o `frame-src` já foram liberados na v3.2.0 do template; o `form-action` ficou de fora. Corrigir mexe em mecânica compartilhada (path protegido, PR não auto-mergeado), então fica registrado aqui em vez de entrar numa entrega de conteúdo.
+
 ## 2. Aplicado nesta rodada
 
 ### Diagramação (GUIDELINES §21)
