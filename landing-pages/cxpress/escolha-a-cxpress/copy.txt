@@ -20,12 +20,10 @@ FORM TEXT: Um especialista analisa seus canais, o volume de atendimentos e o tam
 
 TRUST ITEM: Mais de 800 empresas no Brasil, LATAM e Portugal
 TRUST ITEM: WhatsApp com API Oficial da Meta
-TRUST ITEM: Suporte em português, com time no Brasil
 
 ## SEÇÃO 2 — COMPARATIVO
 
-SELO: Conecte-se à Cxpress   (abre a seção, como na página original: anel laranja VAZADO com o check desenhado acima do texto, não mais no fim do hero)
-OVERLINE: Compare antes de contratar
+SELO: Conecte-se à Cxpress   (abre a seção, como na página original: anel laranja VAZADO com o check acima do texto. 40px, em loop de 2,02s igual ao GIF original: o anel fica inteiro e só o check apaga e redesenha)
 H2: As funcionalidades são parecidas. As experiências não.
 SUB: Compare o que realmente impacta sua operação no dia a dia.
 

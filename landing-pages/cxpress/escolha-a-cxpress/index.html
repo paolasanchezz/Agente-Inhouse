@@ -246,7 +246,7 @@ h1,h2,h3,.eyebrow,.lead,.form-card__title,.form-card__text,
 .hero{
 	position:relative; overflow:hidden;
 	background:linear-gradient(178deg,#fff 0%,#f4f7ff 62%,#eef3ff 100%);
-	padding:26px 0 96px;
+	padding:26px 0 64px;
 }
 /* Menu: so a logo, centralizada, ancorando o topo da pagina. O link "Falar no
    WhatsApp" saiu daqui, quem cobre esse caminho agora e o botao flutuante. */
@@ -286,30 +286,30 @@ h1,h2,h3,.eyebrow,.lead,.form-card__title,.form-card__text,
 /* "Conecte-se a Cxpress": selo da pagina original. La ele ABRE a secao de
    comparativo (nao fecha o hero), o check fica ACIMA do texto e o desenho e
    um anel laranja VAZADO com o traco tambem laranja, nao um circulo cheio com
-   traco branco. O anel e o traco sao SVG desenhados por stroke-dashoffset:
-   zero byte de imagem e sem repetir em loop. Como o selo agora nasce abaixo da
-   dobra, o traco so comeca quando o bloco entra em cena (.is-visible), senao a
-   animacao terminaria antes de alguem ver. */
+   traco branco. Anel e traco sao SVG por stroke-dashoffset, zero byte de imagem.
+   O loop copia o do GIF original (4d9d0c6bf57aff01cc6e.gif, 2020ms): o ANEL fica
+   completo o tempo todo e so o CHECK apaga e redesenha. Por isso o estado-base dos
+   dois e 'desenhado' (dashoffset 0) e a animacao e um extra que roda quando o bloco
+   entra em cena: sem observer, sem JS ou com reduced-motion, o selo aparece inteiro
+   em vez de ficar invisivel esperando animacao (GUIDELINES 4). */
 .connect{
 	display:flex; flex-direction:column; align-items:center; gap:14px;
 	margin:0 auto 34px; font-family:var(--head); font-weight:700; font-size:19px;
 	color:var(--orange-ink); text-align:center; width:max-content; max-width:100%;
 }
-.connect__mark{ width:58px; height:58px; flex:none; }
-.connect__mark svg{ width:58px; height:58px; }
+.connect__mark{ width:40px; height:40px; flex:none; }
+.connect__mark svg{ width:40px; height:40px; }
 .connect__mark circle,.connect__mark path{ stroke:var(--orange); }
-/* r=19.5 -> perimetro 122.5; o traco do check mede ~24.8 */
-.connect__mark circle{ stroke-dasharray:123; stroke-dashoffset:123; }
-.connect__mark path{ stroke-dasharray:30; stroke-dashoffset:30; }
-.connect.is-visible .connect__mark circle{ animation:connect-ring .7s ease-out forwards; }
-.connect.is-visible .connect__mark path{ animation:connect-check .5s .55s ease-out forwards; }
-@keyframes connect-ring{ to{ stroke-dashoffset:0; } }
-@keyframes connect-check{ to{ stroke-dashoffset:0; } }
-/* redes de seguranca: sem observer (ou com reveal desligado) o selo aparece
-   inteiro em vez de ficar invisivel esperando animacao (GUIDELINES 4). */
-.no-reveal .connect__mark circle,.no-reveal .connect__mark path{ stroke-dashoffset:0; }
+/* o traco do check mede ~24.8; o anel nao usa dash (fica sempre inteiro) */
+.connect__mark path{ stroke-dasharray:30; stroke-dashoffset:0; }
+.connect.is-visible .connect__mark path{ animation:connect-check 2.02s ease-in-out infinite; }
+@keyframes connect-check{
+	0%,8%{ stroke-dashoffset:0; }
+	48%{ stroke-dashoffset:30; }
+	92%,100%{ stroke-dashoffset:0; }
+}
 @media (prefers-reduced-motion:reduce){
-	.connect__mark circle,.connect__mark path{ animation:none; stroke-dashoffset:0; }
+	.connect__mark path{ animation:none; stroke-dashoffset:0; }
 }
 
 /* pilulas decorativas da marca (canonicas): composicao de arcos/pilulas, 0 byte */
@@ -330,7 +330,7 @@ h1,h2,h3,.eyebrow,.lead,.form-card__title,.form-card__text,
 /* ==========================================================================
    COMPARATIVO
    ========================================================================== */
-.cmp{ background:#fff; padding:110px 0 96px; }
+.cmp{ background:#fff; padding:64px 0 72px; }
 .cmp__head{ max-width:760px; margin:0 auto 40px; text-align:center; }
 .cmp__head .lead{ margin-top:16px; }
 
@@ -413,7 +413,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 /* ==========================================================================
    POR QUE ESCOLHEM
    ========================================================================== */
-.why{ background:var(--bg-alt); padding:96px 0; }
+.why{ background:var(--bg-alt); padding:72px 0; }
 .why__grid{ display:grid; grid-template-columns:1.05fr 1fr; gap:64px; align-items:center; }
 .why__visual{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .stat{
@@ -440,7 +440,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 /* ==========================================================================
    MODULOS
    ========================================================================== */
-.mods{ background:#fff; padding:110px 0 96px; }
+.mods{ background:#fff; padding:76px 0 72px; }
 .mods__head{ max-width:820px; margin:0 auto 68px; text-align:center; }
 .mods__head .lead{ margin-top:18px; }
 .mod{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:44px 0; }
@@ -509,7 +509,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
    secao fica entre duas secoes brancas e precisa separar (GUIDELINES 1), e o
    H2 mantem o tamanho display desta LP: la a faixa e uma tira fina colada no
    hero, aqui e uma secao de prova com headline propria. */
-.clientes{ background:var(--bg-alt); padding:88px 0; text-align:center; }
+.clientes{ background:var(--bg-alt); padding:66px 0; text-align:center; }
 .clientes h2{ max-width:900px; margin:0 auto 40px; }
 .clientes__marquee{
 	overflow:hidden;
@@ -536,7 +536,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 /* ==========================================================================
    FAQ
    ========================================================================== */
-.faq{ background:#fff; padding:96px 0; }
+.faq{ background:#fff; padding:72px 0; }
 .faq .wrap{ max-width:880px; }
 .faq h2{ text-align:center; margin-bottom:38px; }
 .faq-list{ border-top:1px solid var(--line); }
@@ -567,7 +567,7 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 /* ==========================================================================
    CTA FINAL
    ========================================================================== */
-.cta-final{ background:linear-gradient(150deg,#232960,#3a54a0); padding:96px 0; text-align:center; color:#fff; }
+.cta-final{ background:linear-gradient(150deg,#232960,#3a54a0); padding:76px 0; text-align:center; color:#fff; }
 .cta-final h2{ color:#fff; max-width:760px; margin:0 auto; }
 .cta-final p{ max-width:660px; margin:20px auto 0; font-size:19px; line-height:1.65; color:#e3e9ff; }
 .cta-final__row{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:34px; }
@@ -714,9 +714,9 @@ body.wa-lock{ overflow:hidden; }
    GUIDELINES 20 - pisos de tipografia mobile
    ========================================================================== */
 @media (max-width:860px){
-	.cmp{ padding:74px 0 68px; }
-	.why,.clientes,.faq,.cta-final{ padding:70px 0; }
-	.mods{ padding:74px 0 60px; }
+	.cmp{ padding:48px 0 52px; }
+	.why,.clientes,.faq,.cta-final{ padding:54px 0; }
+	.mods{ padding:56px 0 48px; }
 	.mods__head{ margin-bottom:38px; }
 }
 @media (max-width:640px){
@@ -749,7 +749,7 @@ body.wa-lock{ overflow:hidden; }
 	.cmp-note{ font-size:14px; }
 }
 </style>
-<noscript><style>.reveal{opacity:1!important;transform:none!important}.connect__mark circle,.connect__mark path{stroke-dashoffset:0!important}</style></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body id="topo">
 <!-- Google Tag Manager (noscript) -->
@@ -812,7 +812,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<ul class="trust">
 			<li>Mais de 800 empresas no Brasil, LATAM e Portugal</li>
 			<li>WhatsApp com API Oficial da Meta</li>
-			<li>Suporte em português, com time no Brasil</li>
 		</ul>
 	</div>
 </section>
@@ -833,7 +832,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</p>
 
 		<div class="cmp__head reveal">
-			<p class="eyebrow">Compare antes de contratar</p>
 			<h2>As funcionalidades são parecidas. As experiências não.</h2>
 			<p class="lead">Compare o que realmente impacta sua operação no dia a dia.</p>
 		</div>

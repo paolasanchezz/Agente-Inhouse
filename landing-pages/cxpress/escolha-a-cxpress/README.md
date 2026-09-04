@@ -251,3 +251,56 @@ página-padrão e a `telefonia-ia-latam` como origem do desenho.
   "Condições gerais de uso" e "Políticas de privacidade", que existiam no rodapé k2x.
   A `banimento-de-whatsapp` também não traz. **Decidido pelo Victor em 2026-09-04:
   segue sem os links legais no rodapé.**
+
+---
+
+## 8. Segunda rodada (2026-09-04, pós-publicação)
+
+Ajustes pedidos pelo Victor depois de ver a página no ar, com o full-page capture da
+página original (`01 - Escolha a Cxpress/FireShot Capture 009`) como referência.
+
+| Ajuste | Detalhe |
+|---|---|
+| Trust item removido | Saiu "Suporte em português, com time no Brasil"; a faixa ficou com 2 itens |
+| Overline do comparativo removido | Saiu "Compare antes de contratar"; o `.cmp__head` ficou com H2 + lead |
+| Selo menor e em loop | 58px → 40px. O loop agora copia o GIF original (`4d9d0c6bf57aff01cc6e.gif`, 2020ms): o **anel fica inteiro o tempo todo** e só o **check** apaga e redesenha (2,02s, infinito) |
+| Menos respiro entre seções | Ver tabela abaixo. O vão da faixa de provas até o selo caiu de 206px para 146px, e a página encurtou ~430px no total |
+
+### Paddings de seção
+
+| Seção | Antes | Depois |
+|---|---|---|
+| `.hero` (base) | 96px | 64px |
+| `.cmp` | 110 / 96 | 64 / 72 |
+| `.why` | 96 | 72 |
+| `.mods` | 110 / 96 | 76 / 72 |
+| `.clientes` | 88 | 66 |
+| `.faq` | 96 | 72 |
+| `.cta-final` | 96 | 76 |
+| mobile (`≤860px`) | 70-74 | 48-56 |
+
+> **Desvio consciente do GUIDELINES §2.** A regra pede mínimo de 120px no desktop e 80px
+> no mobile. Estes valores ficam abaixo dos dois por **pedido explícito do Victor**
+> (2026-09-04), depois de ver o vão entre a faixa de provas e o selo na página no ar.
+> Não "corrigir de volta" sem falar com ele. Vale notar que os valores anteriores
+> (96-110px) já estavam abaixo do mínimo do §2.
+
+### Sobre o estado-base do selo
+
+Com o loop, o estado-base de anel e check passou a ser **desenhado** (`dashoffset: 0`) e a
+animação virou um extra que roda em `.is-visible`. Antes o base era "apagado" e só a
+animação revelava o selo: se o IntersectionObserver não disparasse, o selo ficava
+invisível. Agora sem JS, sem observer ou com `prefers-reduced-motion` ele aparece
+inteiro (GUIDELINES §4). O `<noscript>` deixou de precisar forçar `dashoffset`.
+
+### Pendente desta rodada
+
+**Imagem do módulo "Gerencie com eficiência por meio de dashboards".** Na página original
+esse módulo usa um **painel escuro com cards de KPI flutuando** ("Tempo médio de espera",
+"Total de consumidores", "Taxa de desistência" etc.), e o monitor claro que a nossa LP usa
+(`mockup-dashboard.webp`) aparece lá na seção "Por que as empresas escolhem". Esse painel
+escuro **não foi encontrado** na pasta de assets do mirror: não há vídeo (`.mp4`/`.webm`) e
+nenhum dos 9 GIFs nem o asset escuro mais próximo em proporção (`89865d70476a5e6f931f.webp`,
+que é line-art decorativo) correspondem. Provavelmente é composto pelo builder do
+WordPress (div escura + cards soltos) ou não entrou no dump do mirror. **Aguardando o
+arquivo do Victor.**
