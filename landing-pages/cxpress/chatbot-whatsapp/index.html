@@ -153,22 +153,35 @@ section{padding:110px 0}
 .reveal[data-step="5"]{transition-delay:.40s}
 
 /* ===== Hero ===== */
-.hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 62%);padding:64px 0 0}
-.hero__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px 56px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
+.hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 62%);padding:64px 0 0;position:relative;overflow:hidden}
+.hero__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px 56px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+/* Clusters decorativos de pilulas nas laterais do hero (padrao da pagina de origem).
+   Somem abaixo de 1100px: ali a coluna de texto ocupa a largura toda e eles
+   passariam por cima do H1. */
+.hero__pills{position:absolute;z-index:0;width:clamp(74px,7.6vw,118px);pointer-events:none}
+.hero__pills svg{display:block;width:100%;height:auto}
+.hero__pills .p1{fill:var(--warning)}
+.hero__pills .p2{fill:var(--accent)}
+.hero__pills .p3{fill:var(--primary)}
+.hero__pills .p4{fill:var(--primary-dark)}
+.hero__pills--left{top:8%;left:1.5%}
+.hero__pills--right{top:38%;right:1.5%;transform:scaleX(-1)}
+@media (max-width:1100px){.hero__pills{display:none}}
 .hero__overline{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-dark);background:var(--primary-lighter);border-radius:9999px;padding:8px 18px;margin-bottom:24px}
 .hero__overline::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wa);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,3.6vw,44px);line-height:1.16;letter-spacing:-.015em;color:var(--primary-dark);margin-bottom:20px}
+.hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,3.6vw,44px);line-height:1.16;letter-spacing:-.015em;color:var(--primary-dark);margin-bottom:20px;max-width:26ch;text-wrap:balance}
 .hero h1 .wa-ico{color:var(--wa-ink)}
-.hero__sub{font-size:19px;line-height:1.65;color:var(--text-body);max-width:56ch;margin-bottom:30px}
-.hero__stage{position:relative;display:grid;place-items:center}
-.hero__stage img{width:100%;max-width:480px;height:auto;border-radius:20px;box-shadow:0 30px 70px -20px rgba(35,41,96,.35)}
+.hero__sub{font-size:19px;line-height:1.65;color:var(--text-body);max-width:62ch;margin:0 auto 30px;text-wrap:pretty}
+.hero__stage{position:relative;display:grid;place-items:center;margin-top:48px;width:100%}
+.hero__stage img{width:100%;max-width:860px;height:auto;border-radius:20px;box-shadow:0 30px 70px -20px rgba(35,41,96,.35)}
 
 /* ===== Stats rápidos (faixa existente) ===== */
 .quickstats{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:52px 0}
 .quickstats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
 .quickstats__n{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,3vw,42px);color:var(--primary-dark);display:block}
 .quickstats__t{margin-top:8px;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.quickstats__note{margin:32px auto 0;max-width:110ch;text-align:center;font-size:13px;line-height:1.55;color:var(--text-muted);opacity:.85;text-wrap:pretty}
 @media (max-width:760px){.quickstats__grid{grid-template-columns:repeat(2,1fr);gap:28px 20px}}
 
 /* ===== Clientes ===== */
@@ -177,23 +190,6 @@ section{padding:110px 0}
 .clientes__row{display:flex;justify-content:center;align-items:center;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
 .clientes__row span{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--text-muted);opacity:.75;letter-spacing:.01em}
 
-/* ===== Big numbers (Task 5) ===== */
-.bignum{background:var(--primary-dark);padding:64px 0}
-.bignum__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-.bignum__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
-.bignum__item{text-align:center;padding:0 8px;border-left:1px solid rgba(255,255,255,.16)}
-.bignum__item:first-child{border-left:0}
-.bignum__n{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(38px,4vw,50px);line-height:1.05;letter-spacing:-.02em;color:var(--white);font-variant-numeric:tabular-nums}
-.bignum__t{margin:12px auto 0;font-size:16px;line-height:1.55;color:var(--white)}
-.bignum__notewrap{margin-top:30px}
-.bignum__note{margin:0 auto;max-width:118ch;text-align:center;font-size:13.5px;line-height:1.55;color:var(--white);opacity:.7}
-@media (max-width:860px){
-  .bignum{padding:52px 0}
-  .bignum__grid{grid-template-columns:1fr;gap:26px}
-  .bignum__item{border-left:0;padding:0}
-  .bignum__item + .bignum__item{border-top:1px solid rgba(255,255,255,.16);padding-top:26px}
-  .bignum__t{font-size:16px;max-width:46ch;margin-inline:auto}
-}
 
 /* ===== Form (Task 3 — estilo da última seção de telefonia-ia-latam, sem formas geométricas) ===== */
 .agendar{background:var(--primary-dark);color:var(--white);border-radius:clamp(32px,6vw,72px) clamp(32px,6vw,72px) 0 0;padding:96px 0 88px;position:relative;overflow:hidden}
@@ -219,11 +215,6 @@ section{padding:110px 0}
 .card p{font-size:16px;line-height:1.6;color:var(--text-body)}
 @media (max-width:900px){.sistema__grid{grid-template-columns:1fr;gap:20px}}
 
-/* ===== CTA banner WhatsApp ===== */
-.ctabanner{background:var(--wa);padding:0}
-.ctabanner__inner{max-width:var(--maxw);margin:0 auto;padding:44px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.ctabanner h2{font-family:var(--font-display);font-weight:800;font-size:clamp(22px,2.6vw,30px);color:#04301C;max-width:640px}
-@media (max-width:700px){.ctabanner__inner{flex-direction:column;text-align:center}}
 
 /* ===== Vídeo / automação de conversas ===== */
 .videosect__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;text-align:center}
@@ -361,13 +352,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Hero -->
   <section class="hero">
+    <div class="hero__pills hero__pills--left" aria-hidden="true">
+      <svg viewBox="0 0 255 890" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <rect x="0" y="0" width="120" height="365" rx="60" class="p1"/>
+        <rect x="135" y="140" width="120" height="365" rx="60" class="p2"/>
+        <rect x="0" y="385" width="120" height="365" rx="60" class="p3"/>
+        <rect x="135" y="525" width="120" height="365" rx="60" class="p4"/>
+      </svg>
+    </div>
+    <div class="hero__pills hero__pills--right" aria-hidden="true">
+      <svg viewBox="0 0 255 890" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <rect x="0" y="0" width="120" height="365" rx="60" class="p1"/>
+        <rect x="135" y="140" width="120" height="365" rx="60" class="p2"/>
+        <rect x="0" y="385" width="120" height="365" rx="60" class="p3"/>
+        <rect x="135" y="525" width="120" height="365" rx="60" class="p4"/>
+      </svg>
+    </div>
     <div class="hero__inner">
-      <div class="hero__content">
-        <span class="hero__overline">Chatbot WhatsApp · API Oficial · Cxpress</span>
-        <h1>Plataforma de automação de WhatsApp para atendimento inteligente e organizado</h1>
-        <p class="hero__sub">Centralize e automatize o atendimento no WhatsApp com a Cxpress. Transforme conversas em resultados com uma plataforma oficial do WhatsApp, completa para gestão, triagem e automação do atendimento.</p>
-        <a href="#agendar" class="btn">Fale com um especialista</a>
-      </div>
+      <span class="hero__overline">Chatbot WhatsApp · API Oficial · Cxpress</span>
+      <h1>Plataforma de automação de WhatsApp para atendimento inteligente e organizado</h1>
+      <p class="hero__sub">Centralize e automatize o atendimento no WhatsApp com a Cxpress. Transforme conversas em resultados com uma plataforma oficial do WhatsApp, completa para gestão, triagem e automação do atendimento.</p>
+      <a href="#agendar" class="btn">Fale com um especialista</a>
       <div class="hero__stage reveal">
         <img src="./assets/painel-atendimento.webp" alt="Painel de atendimento da plataforma Cxpress">
       </div>
@@ -383,6 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="reveal" data-step="2"><span class="quickstats__n">25%</span><p class="quickstats__t">Redução do desgaste dos atendentes com alto volume de solicitações.</p></div>
         <div class="reveal" data-step="3"><span class="quickstats__n">45%</span><p class="quickstats__t">Aumento da produtividade com IA generativa.**</p></div>
       </div>
+      <p class="quickstats__note">*Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.</p>
     </div>
   </section>
 
@@ -396,29 +402,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span>Trendtec</span>
         <span>Boa Vontade</span>
         <span>Netsul</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Task 5: Big Numbers ===== -->
-  <section class="bignum" aria-label="Resultados de clientes da Cxpress">
-    <div class="bignum__inner">
-      <div class="bignum__grid">
-        <div class="bignum__item reveal">
-          <span class="bignum__n" data-count="220" data-count-prefix="+" data-count-suffix="%">+220%</span>
-          <p class="bignum__t">de interações realizadas com a mesma estrutura de atendimento.*</p>
-        </div>
-        <div class="bignum__item reveal" data-step="1">
-          <span class="bignum__n" data-count="15" data-count-prefix="Até " data-count-suffix="x">Até 15x</span>
-          <p class="bignum__t">mais produtividade nas interações automatizadas, o que aumenta a capacidade da equipe.*</p>
-        </div>
-        <div class="bignum__item reveal" data-step="2">
-          <span class="bignum__n" data-count="98" data-count-suffix="%">98%</span>
-          <p class="bignum__t">de qualidade nas respostas automatizadas avaliadas, segundo os critérios definidos para cada operação.*</p>
-        </div>
-      </div>
-      <div class="bignum__notewrap reveal" data-step="3">
-        <p class="bignum__note">*Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.</p>
       </div>
     </div>
   </section>
@@ -469,13 +452,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- CTA banner -->
-  <section class="ctabanner">
-    <div class="ctabanner__inner">
-      <h2>Fale com um de nossos especialistas no WhatsApp agora mesmo!</h2>
-      <a href="#agendar" class="btn" style="background:#04301C">Fale agora!</a>
-    </div>
-  </section>
-
   <!-- Vídeo / automação -->
   <section class="videosect">
     <div class="videosect__inner">
@@ -672,42 +648,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(el){io.observe(el)});
-})();
-
-/* Contagem dos big numbers (Task 5): sobe uma vez quando o número entra na tela. */
-(function(){
-  var nums = document.querySelectorAll('[data-count]');
-  if(!nums.length) return;
-  var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduz || !('IntersectionObserver' in window)) return;
-
-  function texto(el, valor){
-    return (el.getAttribute('data-count-prefix') || '') +
-           valor.toLocaleString('pt-BR') +
-           (el.getAttribute('data-count-suffix') || '');
-  }
-  function contar(el){
-    var alvo = parseFloat(el.getAttribute('data-count'));
-    if(!(alvo > 0)) return;
-    var dur = 1400, inicio = null;
-    el.textContent = texto(el, 0);
-    function passo(agora){
-      if(inicio === null){ inicio = agora; }
-      var t = Math.min(1, (agora - inicio) / dur);
-      el.textContent = texto(el, Math.round(alvo * (1 - Math.pow(1 - t, 3))));
-      if(t < 1){ requestAnimationFrame(passo); }
-    }
-    requestAnimationFrame(passo);
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        io.unobserve(entry.target);
-        contar(entry.target);
-      }
-    });
-  },{threshold:.4});
-  nums.forEach(function(el){io.observe(el)});
 })();
 
 /* Botão flutuante -> modal com o Jotform (padrão Cxpress) */

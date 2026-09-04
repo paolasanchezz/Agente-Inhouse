@@ -19,6 +19,21 @@ Nenhuma palavra de copy foi reescrita — a copy publicada está transcrita em `
 | 4 | `<link rel="canonical">`, `robots`, `author`, favicon, Open Graph e Twitter Card | A versão solo não tinha nenhum deles. O canonical aponta para `content.cxpress.io/chatbot-whatsapp`, que passa a ser a URL oficial |
 | 5 | `assets/og-chatbot-whatsapp.png` (1200×630) | Gerado por `assets/render_og.py` a partir de `assets/og-template.html`, no mesmo padrão da LP irmã `whatsapp-business` (GUIDELINES §18) |
 
+## 2ª rodada (2026-09-04, olhando a página no ar)
+
+Pedidos do Bruno com base no print da página de origem (`home.cxpress.io/app-whatsapp`). Nenhuma palavra de copy reescrita.
+
+| # | Pedido | O que foi feito |
+|---|---|---|
+| 1 | Centralizar o H1 e jogar os assets para as laterais, como no print | Hero deixou de ser grid de 2 colunas e virou coluna única centrada (overline, H1, apoio, CTA e print da plataforma empilhados). H1 com `max-width:26ch` + `text-wrap:balance`; o print da plataforma cresceu de 480 para 860 px, já que agora ocupa a largura toda |
+| 2 | Assets nas laterais | Dois clusters de 4 pílulas (amarelo, laranja, azul, navy) em SVG inline, um em cima à esquerda e outro espelhado mais abaixo à direita, no arranjo do print. Cores por token (`--warning`, `--accent`, `--primary`, `--primary-dark`), aplicadas por CSS e não por atributo `fill` |
+| 3 | Excluir os big numbers | Seção `+220% / Até 15x / 98%` removida inteira — markup, CSS e o JS do contador animado, que só ela usava |
+| 4 | Excluir "Fale com um de nossos especialistas no WhatsApp agora mesmo!" | Faixa verde removida (markup + CSS) |
+
+**A nota de fonte não foi embora com os big numbers.** Ela explicava o `*` que também marca três números da faixa de resultados do topo (14%, 9%, 45%); deixar os asteriscos sem nota nenhuma transformaria aqueles números em afirmação sem fonte. A nota passou para o rodapé da própria faixa de resultados.
+
+**Onde os clusters somem.** Abaixo de 1100 px eles ficam `display:none`: nesse ponto a coluna de texto centrada ocupa a largura toda e as pílulas passariam por cima do H1. Verificado a 1440, 1200, 1024 e 375 px — sem colisão com o H1 e sem scroll horizontal em nenhum deles.
+
 ## Assets
 
 | Arquivo | Onde aparece |
@@ -37,4 +52,4 @@ Nenhuma palavra de copy foi reescrita — a copy publicada está transcrita em `
 
 - **Projeto solo `cxpress-chatbot-whatsapp` continua no ar.** Com a LP publicada no guarda-chuva, o ideal é apontar o solo para a URL nova (ou pausar o projeto) para não competir no índice. Precisa de decisão do Bruno/Victor — não foi mexido.
 - **Sem JSON-LD.** As LPs irmãs (`whatsapp-business`) têm `Organization` + `FAQPage`. Esta tem FAQ na página mas não tem o schema. Nice-to-have para SEO, não bloqueia.
-- **Faixa de resultados sem fonte visível.** Os números da faixa do topo (14%, 9%, 25%, 45%) trazem `*` e `**` mas a página só tem a nota de rodapé dos big numbers. Herdado da versão solo — vale conferir a origem antes da próxima revisão.
+- **O `**` da faixa de resultados continua sem definição.** Depois da rodada 2 a nota de fonte (`*`) está na própria faixa, mas "Aumento da produtividade com IA generativa.**" usa um segundo nível de asterisco que nenhuma nota explica. Herdado da versão solo — precisa da fonte para fechar.

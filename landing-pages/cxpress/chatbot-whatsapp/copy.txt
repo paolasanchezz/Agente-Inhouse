@@ -17,16 +17,14 @@ CTA: Fale com um especialista
 9% — Redução do tempo médio de resolução via chat.*
 25% — Redução do desgaste dos atendentes com alto volume de solicitações.
 45% — Aumento da produtividade com IA generativa.**
+NOTA: *Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.
+# [2026-09-04] Esta nota vivia na secao BIG NUMBERS, que saiu. Ficou aqui porque
+#   e ela que explica o * dos numeros desta faixa. O ** continua sem definicao
+#   (herdado da versao solo) - pendencia registrada no README.
 
 === CLIENTES ===
 H2: Clientes que confiam na Cxpress para otimizar seu atendimento
 BODY: Real · Riosal · Trendtec · Boa Vontade · Netsul
-
-=== BIG NUMBERS ===
-+220% — de interações realizadas com a mesma estrutura de atendimento.*
-Até 15x — mais produtividade nas interações automatizadas, o que aumenta a capacidade da equipe.*
-98% — de qualidade nas respostas automatizadas avaliadas, segundo os critérios definidos para cada operação.*
-NOTA: *Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.
 
 === FORMULARIO ===
 H2: Solicite uma apresentação gratuita
@@ -40,10 +38,6 @@ BODY: Centralize e profissionalize sua comunicação. A Cxpress é a ferramenta 
 CARD 1: Acabe com a demora e as filas de espera — Agente Inteligente para respostas automáticas: atendimento 24/7 sem filas, reduzindo o tempo de espera.
 CARD 2: Elimine a desorganização e o desvio de chamados — Triagem automática com IA e direcionamento automático para vendas, suporte ou financeiro, com um fluxo de conversa fluido e inteligente.
 CARD 3: Organização e rastreabilidade — Relatórios e métricas de desempenho, histórico completo e auditável, tags e tickets organizados por prioridade.
-
-=== FAIXA WHATSAPP ===
-H2: Fale com um de nossos especialistas no WhatsApp agora mesmo!
-CTA: Fale agora!
 
 === PLATAFORMA ===
 H2: O seu atendimento no WhatsApp potenciado com a automação de conversas
