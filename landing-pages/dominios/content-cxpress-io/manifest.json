@@ -91,6 +91,11 @@
       "source": "landing-pages/cxpress/case-ia-de-voz"
     },
     {
+      "slug": "chatbot-whatsapp",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/chatbot-whatsapp"
+    },
+    {
       "slug": "coex-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/coex-whatsapp"

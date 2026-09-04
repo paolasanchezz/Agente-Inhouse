@@ -1,0 +1,74 @@
+=== ORIGEM DESTA COPY ===
+# Esta LP nao foi escrita aqui. Ela chegou pronta e no ar, num projeto Vercel
+# solo (https://cxpress-chatbot-whatsapp.vercel.app/), e foi importada para o
+# guarda-chuva content.cxpress.io em 2026-09-04 sem uma palavra reescrita.
+# Este arquivo e a transcricao da copy publicada, para servir de base a
+# revisoes futuras. Nenhum passo de /lp-preparar (anti-IA, reestruturacao) foi
+# reaplicado: o texto ja estava aprovado e vivo.
+
+=== HERO ===
+OVERLINE: Chatbot WhatsApp · API Oficial · Cxpress
+H1: Plataforma de automação de WhatsApp para atendimento inteligente e organizado
+BODY: Centralize e automatize o atendimento no WhatsApp com a Cxpress. Transforme conversas em resultados com uma plataforma oficial do WhatsApp, completa para gestão, triagem e automação do atendimento.
+CTA: Fale com um especialista
+
+=== FAIXA DE RESULTADOS ===
+14% — Aumento de demandas resolvidas por hora.*
+9% — Redução do tempo médio de resolução via chat.*
+25% — Redução do desgaste dos atendentes com alto volume de solicitações.
+45% — Aumento da produtividade com IA generativa.**
+
+=== CLIENTES ===
+H2: Clientes que confiam na Cxpress para otimizar seu atendimento
+BODY: Real · Riosal · Trendtec · Boa Vontade · Netsul
+
+=== BIG NUMBERS ===
++220% — de interações realizadas com a mesma estrutura de atendimento.*
+Até 15x — mais produtividade nas interações automatizadas, o que aumenta a capacidade da equipe.*
+98% — de qualidade nas respostas automatizadas avaliadas, segundo os critérios definidos para cada operação.*
+NOTA: *Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.
+
+=== FORMULARIO ===
+H2: Solicite uma apresentação gratuita
+BODY: Veja como empresas já estão otimizando o atendimento no WhatsApp com o chatbot de IA da Cxpress.
+CHECKS: Diagnóstico completo e gratuito para o seu negócio · Suporte consultivo e exclusivo para você · Sem fidelidade, sem custos adicionais
+FORM: Jotform 261034073026647
+
+=== SISTEMA DE ATENDIMENTO ===
+H2: Sistema de atendimento pelo WhatsApp com alta performance
+BODY: Centralize e profissionalize sua comunicação. A Cxpress é a ferramenta de atendimento no WhatsApp definitiva para escalar seu suporte e vendas com a API Oficial.
+CARD 1: Acabe com a demora e as filas de espera — Agente Inteligente para respostas automáticas: atendimento 24/7 sem filas, reduzindo o tempo de espera.
+CARD 2: Elimine a desorganização e o desvio de chamados — Triagem automática com IA e direcionamento automático para vendas, suporte ou financeiro, com um fluxo de conversa fluido e inteligente.
+CARD 3: Organização e rastreabilidade — Relatórios e métricas de desempenho, histórico completo e auditável, tags e tickets organizados por prioridade.
+
+=== FAIXA WHATSAPP ===
+H2: Fale com um de nossos especialistas no WhatsApp agora mesmo!
+CTA: Fale agora!
+
+=== PLATAFORMA ===
+H2: O seu atendimento no WhatsApp potenciado com a automação de conversas
+BODY: Descubra tudo o que é possível fazer com a plataforma Cxpress!
+BLOCO 1: Organize seu atendimento de forma integrada — Centralize e organize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.
+BLOCO 2: Atendimento automático ininterrupto com inteligência artificial — Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.
+BLOCO 3: Centralize os cadastros dos clientes para uma experiência unificada — Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.
+BLOCO 4: Otimize a gestão de tickets — Distribua tickets de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.
+BLOCO 5: Gerencie com eficiência por meio de dashboards — Deixe as planilhas para trás! Transforme suas estatísticas de atendimento em painéis intuitivos.
+CTA (repetido): Fale com um especialista
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+SELOS: Um produto Elife · API Oficial do ChatGPT · API Oficial do WhatsApp
+
+=== FECHAMENTO ===
+H2: Não deixe sua operação depender de um WhatsApp desorganizado
+BODY: Centralize seu atendimento, utilize a API Oficial do WhatsApp, organize sua equipe e automatize interações com Inteligência Artificial. Conheça a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp com um chatbot inteligente.
+CTA: Agende uma demonstração gratuita da plataforma
+
+=== FAQ ===
+H2: Dúvidas frequentes sobre o chatbot de WhatsApp
+1. O que é o chatbot de WhatsApp da Cxpress?
+2. O chatbot atende automaticamente 24 horas por dia?
+3. É preciso programar para configurar os fluxos de automação?
+4. O chatbot substitui totalmente os atendentes humanos?
+5. Como o chatbot se integra com a equipe de atendimento?
