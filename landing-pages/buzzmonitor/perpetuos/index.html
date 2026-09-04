@@ -78,8 +78,7 @@
   }
   td{padding:18px 16px 18px 0; border-bottom:1px solid var(--linha); vertical-align:top}
   tbody tr:last-child td{border-bottom:none}
-  .nome{font-weight:700; color:var(--tinta); display:block; margin-bottom:5px}
-  .idioma{font-size:13px; color:var(--tinta-suave)}
+  .nome{font-weight:700; color:var(--tinta); display:block}
   .hora{font-family:"League Spartan",sans-serif; font-weight:700; font-size:19px; white-space:nowrap}
   .hora-br{color:var(--roxo)}
   .hora-mx{color:var(--tinta-suave)}
@@ -90,6 +89,12 @@
   .tag-buzzmonitor{background:var(--roxo-claro); color:var(--roxo)}
   .tag-cxpress{background:var(--teal-claro); color:#0a6f6e}
   .tag-buzzcreators{background:var(--laranja-claro); color:#a0501a}
+  .regiao{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:"League Spartan",sans-serif; font-weight:700;
+    font-size:13px; letter-spacing:.05em; white-space:nowrap; color:var(--tinta);
+  }
+  .bandeira{font-size:17px; line-height:1; font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
   a.lp{
     color:var(--roxo); font-weight:700; text-decoration:none;
     border-bottom:2px solid var(--roxo-claro); word-break:break-word;
@@ -130,7 +135,7 @@
   .atualizado{ font-size:14px; }
   .aviso{ font-size:16px; }
   table{ font-size:16px; }
-  .idioma{ font-size:14px; }
+  .regiao{ font-size:14px; }
   footer{ font-size:15px; }
   /* header nao acompanha: linha unica sem folga */
   header{ font-size:16px; }
@@ -147,6 +152,8 @@
   <span class="atualizado"><span class="ponto"></span>Atualizado em 2 de setembro de 2026</span>
 </header>
 
+<p class="aviso"><strong>Região:</strong> indica o público de cada webinar — <strong>BR</strong> (português do Brasil), <strong>PT</strong> (português de Portugal) e <strong>LATAM</strong> (espanhol). Hoje a grade tem dois webinars para o Brasil e seis para a LATAM.</p>
+
 <p class="aviso"><strong>Fuso:</strong> Brasília está sempre 3 horas à frente da Cidade do México — nenhum dos dois tem horário de verão, então a diferença vale o ano inteiro. Nos webinars em português o horário foi escolhido pensando no Brasil: a coluna de México está ali só como referência, e por isso cai bem cedo.</p>
 
 <div class="tabela-wrap">
@@ -156,6 +163,7 @@
     <tr>
       <th scope="col">Webinar</th>
       <th scope="col">Marca</th>
+      <th scope="col">Região</th>
       <th scope="col">Horário BR</th>
       <th scope="col">Horário MX</th>
       <th scope="col">Landing page</th>
@@ -163,57 +171,65 @@
   </thead>
   <tbody>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Como construir um monitoramento de concorrentes</span><span class="idioma">Português</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Como construir um monitoramento de concorrentes</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="BR">🇧🇷</span>BR</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">09:00</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">06:00</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes">webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Case Buzzcreators</span><span class="idioma">Português</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Case Buzzcreators</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzcreators">Buzzcreators</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="BR">🇧🇷</span>BR</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">10:20</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">07:20</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/conheca-o-buzzcreators">webinar.buzzmonitor.com/conheca-o-buzzcreators</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Tu primer listening en 5 pasos</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Tu primer listening en 5 pasos</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">12:00</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">09:00</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/primer-listening-5-pasos">webinar.buzzmonitor.com/primer-listening-5-pasos</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">¿Qué es MCP?</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">¿Qué es MCP?</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">13:00</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">10:00</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/que-es-mcp">webinar.buzzmonitor.com/que-es-mcp</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Atención al Cliente</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Atención al Cliente</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">14:05</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">11:05</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/atencion-al-cliente-es">webinar.buzzmonitor.com/atencion-al-cliente-es</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Gestión de Crisis</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Gestión de Crisis</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">15:30</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">12:30</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/gestion-crisis">webinar.buzzmonitor.com/gestion-crisis</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">Caso Smart Fit Latam</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">Caso Smart Fit Latam</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">16:00</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">13:00</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/caso-smartfit">webinar.buzzmonitor.com/caso-smartfit</a></td>
     </tr>
     <tr>
-      <td data-rotulo="Webinar"><span class="nome">¿Por qué bloquean tu WhatsApp?</span><span class="idioma">Espanhol · LATAM</span></td>
+      <td data-rotulo="Webinar"><span class="nome">¿Por qué bloquean tu WhatsApp?</span></td>
       <td data-rotulo="Marca"><span class="tag tag-cxpress">Cxpress</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="LATAM">🌎</span>LATAM</span></td>
       <td data-rotulo="Horário BR" class="hora hora-br">17:00</td>
       <td data-rotulo="Horário MX" class="hora hora-mx">14:00</td>
       <td data-rotulo="Landing page"><a class="lp" href="https://content.cxpress.io/webinar-bloqueo-whatsapp">content.cxpress.io/webinar-bloqueo-whatsapp</a></td>
