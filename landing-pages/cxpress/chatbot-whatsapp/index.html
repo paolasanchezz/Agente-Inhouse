@@ -50,6 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --wa:#21CC78;
   --wa-dark:#1AAE63;
   --wa-ink:#15884D;
+  --accent-ink:#A94D07;
   --danger:#C4362F;
   --danger-light:#FBE4E2;
   --text-body:#3d4250;
@@ -177,12 +178,34 @@ section{padding:110px 0}
 .hero__stage img{width:100%;max-width:860px;height:auto;border-radius:20px;box-shadow:0 30px 70px -20px rgba(35,41,96,.35)}
 
 /* ===== Stats rápidos (faixa existente) ===== */
-.quickstats{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:52px 0}
-.quickstats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
-.quickstats__n{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,3vw,42px);color:var(--primary-dark);display:block}
-.quickstats__t{margin-top:8px;font-size:15px;line-height:1.5;color:var(--text-muted)}
-.quickstats__note{margin:32px auto 0;max-width:110ch;text-align:center;font-size:13px;line-height:1.55;color:var(--text-muted);opacity:.85;text-wrap:pretty}
-@media (max-width:760px){.quickstats__grid{grid-template-columns:repeat(2,1fr);gap:28px 20px}}
+.quickstats{background:var(--tint);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 0}
+.quickstats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.quickstats__item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-card);padding:36px 24px 32px;box-shadow:var(--shadow-card);transition:transform .3s ease,box-shadow .3s ease,opacity .65s ease}
+.quickstats__item:hover{transform:translateY(-8px);box-shadow:var(--shadow-card-hover)}
+/* Cascata por posicao, nao pela ordem global dos .reveal da pagina: dentro de um
+   grid o data-step generico entrega o atraso embaralhado. */
+.quickstats__item.reveal{transition:opacity .65s ease,transform .65s ease,box-shadow .3s ease}
+.quickstats__item:nth-child(1){transition-delay:0s}
+.quickstats__item:nth-child(2){transition-delay:.12s}
+.quickstats__item:nth-child(3){transition-delay:.24s}
+.quickstats__item:nth-child(4){transition-delay:.36s}
+.quickstats__n{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(46px,5.6vw,76px);line-height:1;letter-spacing:-.035em;color:var(--primary-dark);font-variant-numeric:tabular-nums}
+/* Gradiente so onde o recorte no texto existe. Sem o @supports, um navegador que
+   ignora background-clip renderiza o numero transparente = numero invisivel. */
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+  .quickstats__n{background-image:linear-gradient(135deg,var(--grad-a) 0%,var(--grad-b) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+}
+/* Gradiente monocromatico por numero: cruzar matizes (laranja -> navy) passa por
+   um marrom sujo no meio do glifo. Cada par fica dentro da propria familia e os
+   dois stops passam 4.5:1 em branco e no tint, bem acima do 3:1 de texto grande. */
+.quickstats__item:nth-child(1){--grad-a:var(--primary);--grad-b:#1F3E8F}
+.quickstats__item:nth-child(2){--grad-a:var(--primary-deep);--grad-b:var(--primary-dark)}
+.quickstats__item:nth-child(3){--grad-a:var(--wa-ink);--grad-b:#0E5C34}
+.quickstats__item:nth-child(4){--grad-a:var(--accent-ink);--grad-b:#7A3806}
+.quickstats__t{margin-top:16px;font-size:16px;line-height:1.55;color:var(--text-muted);text-wrap:balance}
+.quickstats__note{margin:36px auto 0;max-width:110ch;text-align:center;font-size:13px;line-height:1.55;color:var(--text-muted);opacity:.85;text-wrap:pretty}
+@media (max-width:900px){.quickstats__grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media (max-width:560px){.quickstats{padding:56px 0}.quickstats__grid{grid-template-columns:1fr}.quickstats__item{padding:30px 22px 26px}}
 
 /* ===== Clientes ===== */
 .clientes{background:var(--white);padding:44px 0}
@@ -383,10 +406,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="quickstats" aria-label="Resultados da Cxpress">
     <div class="container">
       <div class="quickstats__grid">
-        <div class="reveal"><span class="quickstats__n">14%</span><p class="quickstats__t">Aumento de demandas resolvidas por hora.*</p></div>
-        <div class="reveal" data-step="1"><span class="quickstats__n">9%</span><p class="quickstats__t">Redução do tempo médio de resolução via chat.*</p></div>
-        <div class="reveal" data-step="2"><span class="quickstats__n">25%</span><p class="quickstats__t">Redução do desgaste dos atendentes com alto volume de solicitações.</p></div>
-        <div class="reveal" data-step="3"><span class="quickstats__n">45%</span><p class="quickstats__t">Aumento da produtividade com IA generativa.**</p></div>
+        <div class="quickstats__item reveal">
+          <span class="quickstats__n" data-count="14" data-count-suffix="%">14%</span>
+          <p class="quickstats__t">Aumento de demandas resolvidas por hora.*</p>
+        </div>
+        <div class="quickstats__item reveal">
+          <span class="quickstats__n" data-count="9" data-count-suffix="%">9%</span>
+          <p class="quickstats__t">Redução do tempo médio de resolução via chat.*</p>
+        </div>
+        <div class="quickstats__item reveal">
+          <span class="quickstats__n" data-count="25" data-count-suffix="%">25%</span>
+          <p class="quickstats__t">Redução do desgaste dos atendentes com alto volume de solicitações.</p>
+        </div>
+        <div class="quickstats__item reveal">
+          <span class="quickstats__n" data-count="45" data-count-suffix="%">45%</span>
+          <p class="quickstats__t">Aumento da produtividade com IA generativa.**</p>
+        </div>
       </div>
       <p class="quickstats__note">*Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.</p>
     </div>
@@ -648,6 +683,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(el){io.observe(el)});
+})();
+
+/* Contagem dos big numbers: sobe de 0 ate o valor uma unica vez, quando o numero
+   entra na tela. Respeita prefers-reduced-motion (fica no valor final e pronto). */
+(function(){
+  var nums = document.querySelectorAll('[data-count]');
+  if(!nums.length) return;
+  var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduz || !('IntersectionObserver' in window)) return;
+
+  function texto(el, valor){
+    return (el.getAttribute('data-count-prefix') || '') +
+           valor.toLocaleString('pt-BR') +
+           (el.getAttribute('data-count-suffix') || '');
+  }
+  function contar(el){
+    var alvo = parseFloat(el.getAttribute('data-count'));
+    if(!(alvo > 0)) return;
+    var dur = 2000, inicio = null;
+    el.textContent = texto(el, 0);
+    function passo(agora){
+      if(inicio === null){ inicio = agora; }
+      var t = Math.min(1, (agora - inicio) / dur);
+      el.textContent = texto(el, Math.round(alvo * (1 - Math.pow(1 - t, 3))));
+      if(t < 1){ requestAnimationFrame(passo); }
+    }
+    requestAnimationFrame(passo);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        io.unobserve(entry.target);
+        contar(entry.target);
+      }
+    });
+  },{threshold:.4});
+  nums.forEach(function(el){io.observe(el)});
 })();
 
 /* Botão flutuante -> modal com o Jotform (padrão Cxpress) */

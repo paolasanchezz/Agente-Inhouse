@@ -34,6 +34,40 @@ Pedidos do Bruno com base no print da página de origem (`home.cxpress.io/app-wh
 
 **Onde os clusters somem.** Abaixo de 1100 px eles ficam `display:none`: nesse ponto a coluna de texto centrada ocupa a largura toda e as pílulas passariam por cima do H1. Verificado a 1440, 1200, 1024 e 375 px — sem colisão com o H1 e sem scroll horizontal em nenhum deles.
 
+## 3ª rodada (2026-09-04, faixa de resultados)
+
+Pedido do Bruno: transformar a faixa de resultados do topo (14%, 9%, 25%, 45%) em big numbers de verdade — números grandes, cor moderna, entrada em cascata, contagem animada e hover de card.
+
+| Item | Antes | Agora |
+|---|---|---|
+| Tamanho do número | `clamp(32px, 3vw, 42px)` | `clamp(46px, 5.6vw, 76px)`, peso 800, `letter-spacing` -.035em |
+| Cor | sólida, `--primary-dark` | gradiente no próprio glifo (`background-clip:text`), um por número |
+| Bloco | texto solto sobre faixa branca | card branco com borda, raio e `--shadow-card`, sobre faixa `--tint` |
+| Entrada | `.reveal` com `data-step` genérico | cascata por posição no grid (0 / .12 / .24 / .36s) |
+| Contagem | não tinha | sobe de 0 até o valor em 2s, uma vez, ao entrar na tela |
+| Hover | não tinha | `translateY(-8px)` + `--shadow-card-hover` |
+| Grid | 4 colunas, 2 abaixo de 760px | 4 / 2 (≤900px) / 1 (≤560px) |
+| Apoio | 15px | 16px, `text-wrap:balance` |
+
+### Três decisões que fogem do pedido literal
+
+**Gradiente não é "azul para roxo".** Roxo não existe na paleta da Cxpress. Cada número usa um gradiente **dentro da própria família de cor** da marca: 14% e 9% em azul (`--primary` → `#1F3E8F`, `--primary-deep` → `--primary-dark`), 25% em verde WhatsApp (`--wa-ink` → `#0E5C34`) e 45% em laranja escuro (`--accent-ink` → `#7A3806`).
+
+**Gradiente monocromático, não entre matizes.** A primeira versão ia de laranja/verde até o navy; no meio do glifo isso vira um marrom sujo. Ficando dentro da família, a cor sai limpa.
+
+**Nenhum stop usa o laranja e o amarelo de preenchimento.** `--accent` (#EF863C) dá 2,58:1 em branco e `--warning` (#F1A908) dá 2,02:1 — abaixo do 3:1 mínimo até para texto grande. Por isso entrou o token `--accent-ink` (#A94D07, 5,60:1), irmão do `--wa-ink` que já existia. Todos os oito stops usados ficam acima de 4,5:1 em branco e no `--tint`.
+
+### Detalhes de implementação
+
+- O gradiente só é aplicado dentro de um `@supports (background-clip:text)`. Sem essa guarda, um navegador que ignore a propriedade renderizaria o número transparente — ou seja, invisível. O fallback é `--primary-dark` sólido.
+- A cascata vem de `nth-child` na seção, não do `data-step` global. Dentro de um grid, o `data-step` calculado sobre a ordem global dos `.reveal` entrega o atraso embaralhado (mesmo bug documentado na LP irmã `whatsapp-business`).
+- O contador respeita `prefers-reduced-motion`: com movimento reduzido o número fica direto no valor final.
+- `font-weight: 900` não foi usado — a Open Sans carregada na página traz só 700 e 800; pedir 900 faria o navegador engordar a fonte por síntese.
+
+### Verificado
+
+1400 px (4 colunas), 768 px (2 colunas), 390 px (1 coluna) — sem scroll horizontal em nenhum, contagem partindo de 0 e cascata visualmente correta.
+
 ## Assets
 
 | Arquivo | Onde aparece |
