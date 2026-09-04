@@ -68,6 +68,28 @@ Pedido do Bruno: transformar a faixa de resultados do topo (14%, 9%, 25%, 45%) e
 
 1400 px (4 colunas), 768 px (2 colunas), 390 px (1 coluna) — sem scroll horizontal em nenhum, contagem partindo de 0 e cascata visualmente correta.
 
+## 4ª rodada (2026-09-05, seção de clientes)
+
+Pedido do Bruno: trocar a seção de clientes pela da LP `quiz-atendimento-latam` (`Más de 800 clientes confían en nosotros`), traduzida, e tirar qualquer opacidade dos logos.
+
+| Antes | Agora |
+|---|---|
+| Título centrado + 5 nomes de clientes em texto (Real, Riosal, Trendtec, Boa Vontade, Netsul) | Esteira infinita com 14 logos reais + rótulo `Mais de 800 clientes confiam em nós` |
+| Sem imagem nenhuma | `assets/clientes/` com os 14 PNGs |
+| Nomes com `opacity:.75` | Logos com `opacity:1`, sem filtro |
+
+**Tradução.** `Más de 800 clientes confían en nosotros` → `Mais de 800 clientes confiam em nós`. Região brasil, então não entra padrão linguístico de PT-PT/ES-LATAM; a frase é literal e já nativa em PT-BR.
+
+**Tirei também o `grayscale`, não só a opacidade.** A LP de origem usa `filter:grayscale(1); opacity:.72` e a irmã `whatsapp-business` usa `opacity:.72; filter:saturate(.9)` — as duas metades do mesmo efeito de apagar a esteira. O pedido foi "deixe 100%", então os logos ficaram em cor cheia. **Se a intenção era manter o cinza e mexer só na opacidade, é uma linha:** devolver `filter:grayscale(1)` em `.ticker__logo`.
+
+**Os PNGs vieram da `whatsapp-business`, não baixados da LP de origem.** Conferi por hash: os arquivos que a `quiz-atendimento-latam` serve são byte-a-byte iguais aos que já estão no repositório. Isso importa porque o guarda-chuva tem **namespace de assets compartilhado** (`/assets/cxpress/clientes/`): como `chatbot-whatsapp` vem antes de `whatsapp-business` na ordem alfabética do manifesto, as cópias desta LP é que vão pro dist. Sendo idênticas, a vizinha não muda — validado comparando os 42 logos do dist com a fonte da `whatsapp-business`.
+
+**Animação.** Marquee de 46s, pausa no hover, `mask-image` com fade nas bordas. O bloco global de `prefers-reduced-motion` da página já congela a esteira (`animation:none!important`), deixando a primeira fila legível e parada.
+
+### Verificado
+
+1400 px (rótulo à esquerda + esteira à direita), 390 px (empilhado) — 14 logos carregando, nenhum quebrado, `opacity:1`, `filter:none`, sem scroll horizontal.
+
 ## Assets
 
 | Arquivo | Onde aparece |
@@ -79,6 +101,7 @@ Pedido do Bruno: transformar a faixa de resultados do topo (14%, 9%, 25%, 45%) e
 | `gestao-tickets.webp` | plataforma, bloco 4 |
 | `dashboards.webp` | plataforma, bloco 5 |
 | `especialista-atendimento.webp` | faixa "Fale com um especialista no WhatsApp" |
+| `clientes/cliente-*.png` (14) | esteira de clientes |
 | `og-chatbot-whatsapp.png` | Open Graph / Twitter Card |
 | `og-template.html` + `render_og.py` | fonte da imagem de OG (não vão pro deploy) |
 

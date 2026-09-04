@@ -23,8 +23,12 @@ NOTA: *Resultados obtidos por clientes da Cxpress no atendimento através de red
 #   (herdado da versao solo) - pendencia registrada no README.
 
 === CLIENTES ===
-H2: Clientes que confiam na Cxpress para otimizar seu atendimento
-BODY: Real · Riosal · Trendtec · Boa Vontade · Netsul
+LABEL: Mais de 800 clientes confiam em nós
+BODY: [esteira infinita com 14 logos em ./assets/clientes/]
+# [2026-09-05] Secao trocada pela da LP quiz-atendimento-latam
+#   ("Mas de 800 clientes confian en nosotros"), traduzida. Os 5 nomes em
+#   texto que ficavam aqui sairam. Logos em cor cheia, sem opacidade nem
+#   grayscale, a pedido do Bruno.
 
 === FORMULARIO ===
 H2: Solicite uma apresentação gratuita
