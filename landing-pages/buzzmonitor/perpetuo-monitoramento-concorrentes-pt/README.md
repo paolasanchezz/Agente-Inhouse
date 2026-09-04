@@ -38,6 +38,25 @@ mesmo padrão das LPs ES (que formatam em `es-MX` / Cidade do México).
 ru, es, fr, it, br). As mensagens de erro do formulário, essas sim, saem em PT-PT
 (`MESSAGES.pt` no `clickmeeting-register.js`).
 
+## Destinos: nada aponta para buzzmonitor.com
+
+Decisão do Victor (2026-09-04): esta é uma LP **PT**, então nenhum link dela pode levar ao
+`buzzmonitor.com`, que é o site focado em BR. Todos os destinos externos das duas páginas (logo do
+header, logo do rodapé, link do rodapé, CTA "Falar com especialista" da tks e CTA final da tks)
+apontam para:
+
+```
+https://content.buzzmonitor.com/monitoramento-manual-pt?utm_source=webinar&utm_medium=lp-webinar-perpetuo&utm_campaign=perpetuo-monitoramento-pt&utm_content=botao-lp-monitoramento-pt
+```
+
+**Única exceção:** o link da **política de privacidade** no consentimento do formulário segue em
+`buzzmonitor.com/politica-de-privacidade/`. É link legal, não destino de marketing: mandar quem
+procura a política para uma LP de campanha seria errado. Se existir versão PT da política, trocar
+por ela.
+
+O link do rodapé deixou de se chamar "buzzmonitor.com" e passou a "Saber mais", para o texto não
+prometer um destino diferente do que o link abre.
+
 **Convite de moderador:** série mapeada em `.claude/skills/convites-moderador/config.json` para
 `manuela.martins@elifeportugal.com` e `raquel.oliveira@buzzmonitor.com`. Como a sessão começa
 06:00 BRT e o cron roda 07:00 BRT, o convite desta série é sempre para a sessão do dia seguinte.
@@ -57,8 +76,9 @@ vídeo pela confirmação. Vocabulário PT-PT do formulário: **"Apelido"** (nã
 
 ## Pendências antes de finalizar
 
-- **Link do WhatsApp (header da tks):** o CTA "Falar com especialista" ainda está com temp
-  `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar.
+- **Link do WhatsApp (header da tks):** o CTA "Falar com especialista" aponta hoje para a LP
+  `monitoramento-manual-pt` (saiu o temp `buzzmonitor.com` em 2026-09-04). Trocar pelo link de
+  WhatsApp quando a Catharina mandar.
 - **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png`. O par PT-BR já ganhou a sua
   (`og-perpetuo-monitoramento-concorrentes.png`); gerar a versão PT com o mesmo
   `assets/og-source.html` + `render_og.py` do par BR.
