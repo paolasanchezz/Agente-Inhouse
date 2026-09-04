@@ -1,156 +1,180 @@
 === HERO ===
-LABEL: Plataforma de automação de WhatsApp
-H1: Centralize seus canais de atendimento e automatize o primeiro contato com IA sem perder histórico, SLA ou controle da operação
-SUB: Seu Atendimento no WhatsApp turbinado com a automação de conversas
-CTA: Fale com especialista
-CTA-SECUNDARIO: Conversar pelo WhatsApp
-# [DECISAO 2026-08-28] Victor escolheu a variante B do REVISAO.md: headline que abre pelo
-#   ganho operacional (exemplo do proprio guia), no lugar do H1 do briefing que abria pela
-#   categoria do produto. O H1 antigo ("Plataforma de Automacao de WhatsApp para atendimento
-#   inteligente e organizado") continua vivo como <title>, og:title e eyebrow de categoria.
-# [MOVIDO] A linha "Centralize e automatize o seu atendimento, simples e eficaz." saiu do hero
-#   porque a variante B ja abre com "Centralize seus canais... e automatize" (ritmo sintatico
-#   repetitivo, regras-anti-ia.md). Reposicionada como SUB da secao PLATAFORMA, sem perder a
-#   linha do briefing. Segue tambem na OG image.
-# [NOTA DE DESIGN] Visual do hero: tela real do produto (assets/telas/tela-tickets.svg), sobre fundo claro com gradiente sutil da paleta Cxpress. Dupla rota de conversao do guia (§4): CTA primario alta intencao + CTA secundario WhatsApp baixa friccao, agora lado a lado.
-# [DECISAO 2026-08-28, 7a rodada] Tres mudancas de copy pedidas pelo Victor:
-#   a) CTA secundario encurtado de "Fale com um de nossos consultores no WhatsApp agora mesmo!"
-#      (10 palavras, ocupava 2 linhas num bloco proprio) para "Conversar pelo WhatsApp". Resolve
-#      a melhoria opcional que estava aberta desde a 1a revisao. Mesmo rotulo no CTA final, pra
-#      nao existirem dois nomes para a mesma acao na pagina.
-#   b) Linha "Agiliza seu atendimento com a Cxpress Plataforma para gestao" REMOVIDA do hero.
-#   c) H2 de clientes encurtado de "...para otimizar seu atendimento" para "Clientes que confiam
-#      na Cxpress", e rebaixado a rotulo (fonte de corpo, peso 400, ~20px) em vez de titulo.
+H1: Plataforma de Automação de WhatsApp para atendimento inteligente e Organizado
+BODY: Centralize e Automatize o Atendimento no WhatsApp com a Cxpress. Transforme conversas em resultados com uma plataforma oficial do WhatsApp, completa para gestão, triagem e automação do atendimento.
+CTA: Fale com um especialista
+# [DECISAO 2026-09-04] Copy da LP inteira trocada pela da pagina viva
+#   https://home.cxpress.io/app-whatsapp (print enviado pelo Bruno). Reverte a
+#   "variante B" de 2026-08-28 (headline pelo ganho operacional) e volta ao H1 que
+#   abre pela categoria do produto, como a pagina institucional publica.
+#   O H1 anterior ("Centralize seus canais de atendimento e automatize o primeiro
+#   contato com IA sem perder historico, SLA ou controle da operacao") sai da pagina.
+# [LITERAL] "Organizado" com O maiusculo no meio da frase vem assim da pagina de
+#   origem. Mantido literal (regra de fidelidade). Registrado em REVISAO.md como
+#   sugestao de correcao, nao aplicada por conta propria.
+# [NOTA DE DESIGN] Visual do hero: tela real do chatbot (assets/telas/tela-chatbot-whatsapp.svg)
+#   com camada animada sobre ela, no padrao da LP telefonia-ia-latam (revelacao
+#   sequencial de elementos de UI em loop, pilula com ponto pulsante, indicador de
+#   digitacao). O GIF do hero da pagina de origem foi ignorado a pedido do Bruno.
 
-=== CLIENTES (prova rápida) ===
-H2: Clientes que confiam na Cxpress
-STAT: 85% de redução de SLA
-STAT: +220% de interações nas redes sociais
-BODY: [grade de logos (../../brand/cxpress/assets/plataforma/clientes-cxpress.png) — inclui MONDIAL e CAPPTA]
-# [DECISAO 2026-08-28] Victor optou pela saida (b) do REVISAO.md: metricas proprias da Cxpress
-#   no lugar dos estudos NBER/McKinsey da LP irma. Os 2 numeros vieram dele, literais.
-#   Ele avisou que complementa com mais numeros depois, entao o grid ja aceita novos cards.
-# [PENDENTE] Definir a atribuicao dos numeros antes de publicar (caso de qual cliente? media
-#   da base? recorte de periodo?). Afirmacao de resultado sem fonte e o tipo de coisa que o
-#   juridico costuma pedir depois. Registrado em REVISAO.md.
+=== CLIENTES ===
+H2: Clientes que confiam na Cxpress para otimizar seu atendimento
+BODY: [esteira infinita com 42 logos de clientes em ./assets/clientes/cliente-01..42.png]
+# [PADRAO] Slider de clientes identico ao da LP banimento-de-whatsapp (secao padrao
+#   pedida pelo Bruno): 2 grupos de 42 logos, marquee de 64s, pausa no hover,
+#   mascara de fade nas bordas.
+# [SAIU] As 2 metricas proprias da Cxpress que ficavam nesta secao (85% de reducao
+#   de SLA, +220% de interacoes nas redes sociais) sairam com a troca de copy: a
+#   pagina de origem nao tem esse bloco aqui, e a prova numerica dela e a secao
+#   PROVA (NBER/McKinsey), mais abaixo. Registrado em REVISAO.md.
 
-=== DORES (o que muda na rotina) ===
-H2: O problema do atendimento não é o volume. É o sistema.
-LIST ITEM: Seu cliente repete a mesma história para três atendentes diferentes.
-LIST ITEM: A equipe abre WhatsApp, Instagram, e-mail e telefone em abas separadas.
-LIST ITEM: Mensagem que chega às 19h só é lida no dia seguinte.
-LIST ITEM: Ninguém sabe dizer quantos atendimentos ficaram sem resposta hoje.
-LIST ITEM: Cada pessoa que sai da equipe leva junto o histórico dos clientes que atendia.
-# [ORIGEM] Copy escrita nesta sessao (2026-08-28) a pedido do Victor, saida (b) da lacuna 1
-#   do REVISAO.md. Nao veio do briefing. Protocolo de copy aplicado: fundamentos-copy.md
-#   (regra de ouro §0 — cada item nomeia uma cena da rotina, nao uma feature) + regras-anti-ia.md.
-# [ANTI-IA] em-dash: 0. Antitese-por-negacao: 1 instancia (o H2), dentro do limite de 2 —
-#   e o H2 e frase sancionada do brand-manifest (samplePhrases.do). Filler words: 0.
-#   5 itens, nao 3, para fugir do anti-pattern de lista sempre-3. Comprimento de frase variado.
-# [FONTE DO ITEM 1] "Seu cliente repete a mesma historia para tres atendentes diferentes" e o
-#   exemplo canonico de Cxpress em conhecimento/copywriting/fundamentos-copy.md §0.
-# [DESIGN] GUIDELINES §8: secao de problema = lista vertical com X vermelhos (nunca grid).
-#   Posicao segue a ordem do guia: Hero -> Prova rapida -> Dores -> Como funciona.
+=== PORQUE ===
+H2: Centralize e automatize o seu atendimento, simples e eficaz.
+SUB: E nós te mostramos o porquê:
+H3: Economia de tempo
+BODY: Com a Cxpress, centralize todas as conversas e elimine a troca entre plataformas, economizando tempo para sua equipe.
+H3: Respostas rápidas
+BODY: Automatize respostas com IA para dúvidas frequentes, garantindo satisfação com respostas instantâneas.
+H3: API oficial do WhatsApp
+BODY: Com a API oficial do WhatsApp, acesse recursos como mensagens em massa, automações personalizadas e relatórios detalhados.
+# [DESIGN] GUIDELINES §8: secao de beneficio = grid com marcador verde. 3 colunas
+#   porque a copy tem 3 cards (§9). A linha "Centralize e automatize o seu
+#   atendimento, simples e eficaz." volta a ser H2 desta secao, como na origem
+#   (na versao anterior ela era SUB da secao de plataforma).
 
-=== PLATAFORMA (funcionalidades) ===
+=== VIDEO ===
+H2: Seu Atendimento no WhatsApp turbinado com a automação de conversas
+CTA: Fale com um especialista
+# [VIDEO] YouTube 36sbDc02_DU, o mesmo da pagina de origem e da LP irma whatsapp-smb.
+#   Carregado sob demanda (fachada com clique) pra nao pesar o carregamento inicial.
+
+=== PROVA ===
+STAT: 14% Aumento de demandas resolvidas por hora.*
+STAT: 9% Redução do tempo médio de resolução via chat.*
+STAT: 25% Redução do desgaste dos atendentes com alto volume de solicitações.
+STAT: 45% Aumento da produtividade com IA generativa.**
+NOTE: *Pesquisa realizada pelo National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente, sobre os resultados da aplicação de inteligência artificial generativa aos processos de suporte das empresas.
+NOTE: **Estimativas da McKinsey, consultoria empresarial norte-americana.
+# [ORIGEM] Numeros e notas de rodape literais da pagina de origem. Mesma copy da
+#   LP irma whatsapp-smb (secao "NUMEROS"), conferida numero a numero.
+
+=== CONSULTOR (faixa WhatsApp) ===
+H2: Fale com um de nossos consultores no WhatsApp agora mesmo!
+CTA: Fale agora!
+# [ORIGEM] Faixa literal da pagina de origem, entre a prova numerica e a secao de
+#   plataforma. O CTA laranja usa texto navy (contraste: laranja Cxpress so como
+#   preenchimento).
+
+=== PLATAFORMA ===
 H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
-SUB: Centralize e automatize o seu atendimento, simples e eficaz.
-H3: Atendimento automático ininterrupto com inteligência artificial
-BODY: Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.
-# [TELA] assets/telas/tela-chatbot-whatsapp.svg
-H3: Otimize a gestão de tickets
-BODY: Distribua tickets (registros) de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.
-# [TELA] assets/telas/tela-tickets.svg
 H3: Organize seu atendimento de forma integrada
 BODY: Centralize e organize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.
 # [TELA] assets/telas/tela-canais.svg
+H3: Atendimento automático ininterrupto com inteligência artificial
+BODY: Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.
+# [TELA] assets/telas/tela-chatbot-whatsapp.svg
 H3: Centralize os cadastros dos clientes para uma experiência unificada
 BODY: Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.
 # [TELA] assets/telas/tela-principal.svg
+H3: Otimize a gestão de tickets
+BODY: Distribua tickets (registros) de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.
+# [TELA] assets/telas/tela-distribuicao.svg
 H3: Gerencie com eficiência por meio de dashboards
 BODY: Deixe as planilhas para trás! Transforme suas estatísticas de atendimento em painéis intuitivos.
 # [TELA] assets/telas/tela-dashboard.svg
-# [NOTA] Titulos das 5 features vieram literais do briefing. As descricoes de apoio foram restauradas da LP irma landing-pages/cxpress/whatsapp-business-smb/copy.txt, que e transcricao literal da pagina viva home.cxpress.io — o briefing pediu "usar como a pagina esta hoje". Nada inventado.
-
-=== INTEGRAÇÕES ===
-H2: Conecte a Cxpress ao que a sua operação já usa
-LIST ITEM: HubSpot
-LIST ITEM: Buzzmonitor
-LIST ITEM: RD Station Marketing
-LIST ITEM: Pipedrive
-LIST ITEM: TOTVS
-LIST ITEM: ActiveCampaign
-LIST ITEM: Jira
-BODY: Integrações passam por uma análise prévia da nossa equipe técnica.
-# [ORIGEM] Lista dos 7 sistemas informada pelo Victor em 2026-08-28 (lacuna 5 do REVISAO.md).
-#   Grafia normalizada para a oficial de cada produto (HubSpot, RD Station Marketing, TOTVS,
-#   ActiveCampaign, Jira) — o briefing veio em caixa livre.
-# [NOTA] A linha de analise previa nao e ressalva inventada: e a mesma condicao que ja esta na
-#   resposta do FAQ sobre CRM. Sem ela a secao promete integracao plug-and-play, o que a
-#   propria FAQ desmente 2 blocos abaixo.
-# [DESIGN] Chips de texto, nao logos: so temos o logo do Buzzmonitor no repo. Um logo real ao
-#   lado de 6 nomes em texto fica pior que 7 chips consistentes.
+# [ORDEM] A ordem das 5 features segue a pagina de origem (Organize -> IA ->
+#   Cadastros -> Tickets -> Dashboards). Na versao anterior a ordem era outra.
+# [SUB REMOVIDO] O subtitulo "Centralize e automatize o seu atendimento, simples e
+#   eficaz." saiu desta secao porque voltou a ser H2 da secao PORQUE, como na origem.
 
 === QUEM SOMOS ===
 H2: Quem somos
-BODY: Plataforma que automatiza canais de atendimento (WhatsApp, Redes Sociais, E-mail e Telefone), oferecendo uma visão única e amplificada da interação com o cliente, desde o primeiro contato.
-BODY: O uso da Inteligência Artificial para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade da equipe de atendimento.
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso.
+BODY: O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
 LABEL: Api Oficial do WhatsApp
 LABEL: Api Oficial do ChatGPT
-LABEL: elifegroup
-# [NOTA DE DESIGN] Badges "Api Oficial" reaproveitados de banimento-whatsapp-clinicas / whatsapp-business-smb. Assinatura corporativa usa ../../brand/cxpress/assets/plataforma/elife-logo.png.
+LABEL: Um produto
+# [ORIGEM] Texto literal da pagina de origem, mais longo que o da versao anterior
+#   (que era a versao resumida do briefing de agosto). A quebra em 2 paragrafos e
+#   escolha de leitura, nao alteracao de texto: nenhuma palavra mudou.
+# [BADGE] "Um produto" acompanha o logo do elifegroup (./assets/elife-logo-badge.png).
 
-=== CTA FINAL / FORM ===
+=== FORM ===
 H2: Entre em contato conosco!
+BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.
+MAIL: comercial@gocxpress.com.br
 CTA: Fale com especialista
-CTA-SECUNDARIO: Conversar pelo WhatsApp
-LABEL: Nome
-LABEL: E-mail corporativo
-LABEL: WhatsApp
-LABEL: Empresa
-LABEL: Porte da empresa
-LABEL: Principal canal de atendimento
-LABEL: Maior dor hoje
-LABEL: Volume de atendimentos por mês
-# [NOTA DE DESIGN] Formulario progressivo em 2 etapas (guia §4): etapa 1 captura (Nome, E-mail corporativo, WhatsApp, Empresa), etapa 2 qualifica (Porte, Canal, Dor, Volume) pra roteamento de SDR. Form em MOCK (GUIDELINES §11) — integracao real via /lp-integrar-form depois do design aprovado.
-# [NOTA] Posicao do form: ultima secao antes do FAQ. LP e MoFu/BoFu (produto, "fale com especialista"), entao GUIDELINES §10 pede form no fim, com CTA no hero rolando ate ele.
+# [FORM] Jotform 261027639617663 ("LPs - Proposta"), o form unificado das LPs de
+#   proposta BR. Mantido: a troca de copy nao mexe em roteamento de lead.
+#   Carregado sob demanda (jsform injetado 600px antes da secao).
+# [POSICAO] Ultima secao antes do FAQ, como na pagina de origem. LP e MoFu/BoFu,
+#   entao GUIDELINES §10 pede form no fim com CTA no hero rolando ate ele.
 
 === FAQ ===
 H2: Dúvidas frequentes
 H3: Quais são os pré-requisitos para usar a Cxpress?
 BODY: Para conseguir usar a ferramenta é necessário ter um site ativo e um colaborador responsável pela administração da plataforma.
+H3: A inteligência artificial (IA) faz o atendimento sozinha?
+BODY: Não. A IA da Cxpress realiza apenas o primeiro nível de atendimento (N1), respondendo a perguntas sobre serviços e produtos. Um colaborador humano deve estar disponível para questões mais complexas que o Agente Inteligente não saiba responder ou quando o cliente desejar falar com um atendente humano.
 H3: Posso conectar mais de um número à Cxpress?
 BODY: Sim, é possível.
 H3: Quais canais podem ser integrados?
-BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site. Tiktok e Google meu negócio.
+BODY: Podem ser integrados de forma nativa o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
 H3: A plataforma é compatível com integração de CRM?
 BODY: Sim, é possível integrar com sistemas de CRM, porém é necessário passar por uma análise prévia da nossa equipe técnica para garantir que tudo funcione perfeitamente.
-# [NOTA] O briefing trouxe as 4 respostas com os titulos marcados como "[Inserir Pergunta N]". As perguntas foram restauradas da LP irma whatsapp-business-smb (transcricao da pagina viva), casando resposta por resposta — aprovado pelo usuario antes de gerar. A resposta de canais mantem o acrescimo do briefing ("Tiktok e Google meu negocio").
+# [ORIGEM] 5 perguntas literais da pagina de origem, na ordem dela. A versao
+#   anterior tinha 4 (faltava "A inteligencia artificial (IA) faz o atendimento
+#   sozinha?").
+# [MUDANCA] A resposta de canais perdeu o acrescimo "Tiktok e Google meu negocio."
+#   que o briefing de agosto tinha somado: a pagina de origem nao traz. Registrado
+#   em REVISAO.md pra o Victor decidir se recoloca.
 
 === FOOTER ===
 FOOTER: Cxpress é um produto Elife. © 2026
-FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+# [PADRAO] Rodape padrao da LP banimento-de-whatsapp (secao padrao pedida pelo
+#   Bruno): logo reversa, linha legal e as 4 redes sociais (Facebook, Instagram,
+#   LinkedIn, YouTube) numa linha no desktop, empilhados e centrados no mobile.
+#   Os links de condicoes de uso e politica de privacidade sairam do rodape com a
+#   adocao do padrao. Registrado em REVISAO.md.
+
+=== BOTAO FLUTUANTE ===
+LABEL: Agendar demonstração gratuita e falar no WhatsApp
+H2: Fale com um especialista
+BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
+# [PADRAO] Botao flutuante pulsante da LP banimento-de-whatsapp (secao padrao
+#   pedida pelo Bruno): halo que expande mais uma batida leve no proprio botao,
+#   ambos no ::after e no transform, com o anel de contraste do box-shadow
+#   intacto. Abre modal com o formulario da LP (261027639617663) e, no envio,
+#   segue a conversa no WhatsApp comercial numa nova aba.
+# [NOTA] O modal e a secao FORM carregam o MESMO formulario. O resizer do jsform
+#   acha o iframe pelo id do FORMULARIO, entao existe um listener que aplica a
+#   altura no iframe do modal e barra a mensagem ali, senao os dois embeds se
+#   redimensionam entre si.
 
 # ==========================================================================
 # NOTAS DE PREPARACAO
 # ==========================================================================
-# Fonte da copy: briefing colado pelo usuario em 2026-08-28 (transcricao da LP de
-#   home.cxpress.io + PDF FireShot da pagina viva).
-# Revisao anti-IA: em-dash = 0 ocorrencias. Aspas curvas aplicadas no HTML.
-#   Nenhuma frase reescrita — todo texto visivel vem literal do briefing ou da LP irma
-#   whatsapp-business-smb (restauracao autorizada, ver notas por bloco).
+# Fonte da copy: pagina viva https://home.cxpress.io/app-whatsapp (print enviado
+#   pelo Bruno em 2026-09-04 + espelho local em
+#   "D:\Elife\174 - LP ClaudeCode\mirrors\mirrors\pages\app-whatsapp.html",
+#   capturado em 2026-07-23). Todo texto visivel vem literal de la.
 #
-# LACUNAS vs. o "Guia de Criacao: Novas Landing Pages Cxpress" (documentar em REVISAO.md,
-# NAO preencher por conta propria — GUIDELINES §9 proibe inventar bloco):
-#   RESOLVIDAS em 2026-08-28 com as decisoes do Victor:
-#   1. [OK] Dores resolvidas — secao criada, copy escrita nesta sessao pelo protocolo.
-#   2. [OK] H1 — trocado para a variante B (ganho operacional).
-#   3. [OK] Prova com numeros — 2 metricas proprias da Cxpress, mais a complementar.
-#   5. [OK] Integracoes — secao criada com os 7 sistemas informados.
-#   PENDENTE:
-#   4. Bloco "Casos de uso" por tarefa (vendas, suporte, gestao) — adiado por decisao do
-#      Victor para uma 2a rodada. Sem copy no briefing.
+# Regiao/idioma: brasil / pt-BR. Pilar linguistico nao se aplica (PT-BR nativo).
+# Anti-IA (conhecimento/editorial/regras-anti-ia.md): em-dash = 0 ocorrencias na
+#   copy e no HTML. Nenhuma frase reescrita, nenhum sinonimo trocado, nenhuma
+#   frase encurtada. Aspas curvas e ellipsis aplicados no HTML.
 #
-# Tracking: GTM-T4XDWHL3 (Cxpress brasil, brand/cxpress/tracking.json). GA4 dispara
-#   dentro do container GTM — sem gtag.js hardcoded (decisao do usuario em 2026-08-28,
-#   evita dupla contagem de pageview).
+# SECOES QUE SAIRAM com a troca de copy (a pagina de origem nao tem):
+#   - DORES ("O problema do atendimento nao e o volume. E o sistema.", 5 itens)
+#   - INTEGRACOES (7 chips: HubSpot, Buzzmonitor, RD Station Marketing, Pipedrive,
+#     TOTVS, ActiveCampaign, Jira + nota de analise previa)
+#   - Metricas proprias da Cxpress na secao de clientes (85% / +220%)
+#   Nenhuma delas foi apagada do repo: o texto segue no historico do git e as
+#   decisoes estao em REVISAO.md, caso o Victor queira reintroduzir.
+#
+# SECOES QUE ENTRARAM (a pagina de origem tem):
+#   - PORQUE (3 cards de beneficio)
+#   - VIDEO (YouTube 36sbDc02_DU)
+#   - PROVA (14% / 9% / 25% / 45% com notas NBER e McKinsey)
+#   - CONSULTOR (faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!")
+#
+# Tracking: GTM-T4XDWHL3 (Cxpress brasil, brand/cxpress/tracking.json), inalterado.

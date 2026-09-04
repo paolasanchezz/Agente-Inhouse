@@ -1,117 +1,80 @@
 # LP Cxpress — whatsapp-business
 
-**Gerado em:** 2026-08-28
-**Copy-fonte:** `copy.txt` (briefing colado pelo Victor + restauração pontual da LP irmã `whatsapp-business-smb`)
+**Gerado em:** 2026-08-28 · **Refeito em:** 2026-09-04 (troca integral de copy)
+**Copy-fonte:** `copy.txt` — transcrição da página viva [`home.cxpress.io/app-whatsapp`](https://home.cxpress.io/app-whatsapp) (print enviado pelo Bruno + espelho local `D:\Elife\174 - LP ClaudeCode\mirrors\mirrors\pages\app-whatsapp.html`, capturado em 2026-07-23)
 **Região:** brasil (pt-BR) · **Domínio alvo:** `content.cxpress.io` (guarda-chuva migrado pro CI)
-**Form provider:** Jotform `261027639617663` (compartilhado com a LP irmã `whatsapp-business-smb`) — integrado em 2026-08-28
+**Form provider:** Jotform `261027639617663` ("LPs - Proposta"), nos dois pontos de captura: a seção "Entre em contato conosco!" e o modal do botão flutuante
+**Tracking:** GTM-T4XDWHL3 (padrão Cxpress BR, `brand/cxpress/tracking.json`). GA4 dispara dentro do container
 
-## Estrutura
+## O que mudou em 2026-09-04
 
-1. Hero — categoria + H1 (variante B, ganho operacional) + subtítulo + CTA duplo lado a lado (sólido + outline) + palco da tela do produto (elevada, com halo verde, anel inclinado e selos de canal flutuantes) + holofote de pontos seguindo o cursor
-2. Prova rápida — rótulo curto, 2 métricas com contagem animada (85% de redução de SLA · +220% de interações) + carrossel infinito de 42 logos de clientes
-3. Dores — lista vertical com X vermelhos, 5 itens (GUIDELINES §8)
-4. Plataforma — 5 funcionalidades alternando lado, cada uma com a tela real correspondente. Duas ganham camada animada: a **03** tem conectores tracejados ligando selos de canal à tela, a **04** tem holofote sequencial percorrendo as colunas da interface. As outras três ficam estáticas de propósito
-5. Integrações — 7 chips (HubSpot, Buzzmonitor, RD Station Marketing, Pipedrive, TOTVS, ActiveCampaign, Jira)
-6. Quem somos — faixa escura (única da LP), 2 parágrafos + badges API oficial WhatsApp / ChatGPT / elifegroup
-7. CTA final — embed do Jotform + WhatsApp + e-mail comercial
-8. FAQ — acordeão `<details>` com 4 perguntas
-9. Footer
+Pedido do Bruno: adotar as **seções padrão da LP irmã `banimento-de-whatsapp`** (menu, rodapé, botão pulsante do WhatsApp e slider de clientes), **trocar toda a copy pela da `home.cxpress.io/app-whatsapp`** e, no hero, **ignorar o GIF** e animar o SVG `Chatbot_WhatsApp` no padrão da LP `telefonia-ia-latam`.
 
-**Ritmo tonal** (4ª rodada): hero gradiente → clientes branco → dores tint → plataforma branco → integrações tint → quem somos navy → CTA royal → FAQ tint → footer navy. A alternância só passou a funcionar quando `--neutral-100` saiu de `#F7F9FE` (5 pontos do branco, imperceptível) para `#EDF1FA` (12 pontos). Detalhes e medições no `REVISAO.md`.
+| Item | Antes (2026-08-28) | Agora |
+|---|---|---|
+| H1 | "Centralize seus canais de atendimento e automatize o primeiro contato com IA…" (variante B, ganho operacional) | "Plataforma de Automação de WhatsApp para atendimento inteligente e Organizado" (categoria, literal da origem) |
+| Hero visual | `tela-tickets.svg` estática | `tela-chatbot-whatsapp.svg` com cena animada (holofote sequencial + indicador de digitação) |
+| Navbar | própria | padrão `banimento-de-whatsapp` (rótulo longo/curto por breakpoint) |
+| Rodapé | próprio (logo + linha legal + 2 links jurídicos) | padrão `banimento-de-whatsapp` (logo + linha legal + 4 redes sociais) |
+| Botão flutuante | link `wa-float` estático | FAB **pulsante** padrão + modal com o Jotform da LP |
+| Slider de clientes | esteira de 42 logos + 2 métricas próprias | esteira de 42 logos (métricas saíram, ver `REVISAO.md`) |
+| Seções | Hero · Clientes+métricas · **Dores** · Plataforma · **Integrações** · Quem somos · Form · FAQ | Hero · Clientes · **Porquê (3 cards)** · **Vídeo** · **Prova (4 números)** · **Consultor** · Plataforma · Quem somos · Form · FAQ |
+| FAQ | 4 perguntas | 5 perguntas (entrou "A inteligência artificial (IA) faz o atendimento sozinha?") |
 
-Ordem conforme o template modular do guia: Hero → Prova rápida → Dores → Como funciona → Integrações → CTA → FAQ.
+## Estrutura (10 seções, ordem da página de origem)
+
+| # | Seção | Layout | Fundo |
+|---|---|---|---|
+| 1 | HERO | Texto à esquerda (H1 com "WhatsApp" em verde escuro), tela do chatbot animada à direita, selos de canal flutuantes | gradiente claro |
+| 2 | CLIENTES | Rótulo + esteira infinita com 42 logos (padrão `banimento-de-whatsapp`) | branco |
+| 3 | PORQUÊ | H2 + subtítulo + grid de 3 cards com ✓ verde (GUIDELINES §8) | tint |
+| 4 | VÍDEO | H2 + fachada de vídeo (YouTube `36sbDc02_DU` sob demanda) + CTA | branco |
+| 5 | PROVA | 4 números (14% · 9% · 25% · 45%) + notas NBER e McKinsey | tint |
+| 6 | CONSULTOR | Card com H2 + CTA laranja "Fale agora!" + glifo do WhatsApp | branco |
+| 7 | PLATAFORMA | 5 features alternando lado, cada uma com a tela real. A 01 tem selos de canal pulsando, a 03 tem holofote sequencial | branco |
+| 8 | QUEM SOMOS | Faixa escura (única da LP), 2 parágrafos + 3 badges | navy |
+| 9 | FORM | H2 + apoio + e-mail comercial + embed do Jotform | royal |
+| 10 | FAQ | Acordeão `<details>` com 5 perguntas | tint |
+
+Ritmo tonal: gradiente → branco → tint → branco → tint → branco → branco → navy → royal → tint → rodapé navy.
+A única adjacência de mesma cor (CONSULTOR e PLATAFORMA, ambas brancas) é separada por filete de seção mais 128 px de respiro, e o card cheio do CONSULTOR dá identidade própria à faixa. Registrado em `REVISAO.md`.
+
+## Cena animada do hero
+
+Mesma gramática da LP `telefonia-ia-latam`: a interface real é a base e a animação **revela regiões dela em sequência**, em loop de 14 s, só com `transform`/`opacity`.
+
+- **Holofote sequencial** (`.hero__spot`): três paradas medidas no próprio SVG — linha de abas de canal → par de selos de API oficial → conversa. Escurecimento de 20 % em volta (em 30 % a tela do produto ficava suja no primeiro quadro, que é o que o visitante vê antes do ciclo começar).
+- **Indicador de digitação** (`.hero__typing`): entra junto com a parada da conversa e sai com ela. Sem rótulo, só os três pontos, para **não inventar texto** que não está na copy.
+- **Selos de canal flutuantes** (`.hero__chip`): WhatsApp, Instagram e e-mail, decorativos, sem texto.
+- Pausa fora de vista via `.fx-idle` (IntersectionObserver). Sob `prefers-reduced-motion` e abaixo de 720 px a cena não existe: fica só a tela, limpa.
+
+Os conectores tracejados que existiam na versão anterior **saíram**: com holofote, digitação, selos, malha de pontos, halo verde e anel inclinado, o hero passava do "um elemento forte" da GUIDELINES §3.
 
 ## Estado
 
-- [x] HTML gerado (`index.html`, 978 linhas, 52 KB)
-- [x] OG image 1200×630 → `assets/og-whatsapp-business.png` (arquivo único, sem `og-image.png`)
-- [x] Revisão (frontend-design + web-design-guidelines + auditorias determinísticas) → `REVISAO.md`, 10 críticos aplicados
-- [x] Conteúdo aprovado (copy das dores + decisões das 5 lacunas)
-- [x] Formulário integrado — Jotform `261027639617663` (embed `jsform`), 28/08
+- [x] HTML gerado (`index.html`, 1524 linhas, 90 KB)
+- [x] Copy trocada pela da página de origem e conferida string por string (auditoria de fidelidade no `REVISAO.md`)
+- [x] Seções padrão portadas da `banimento-de-whatsapp` (navbar, rodapé, FAB pulsante + modal, slider de clientes)
+- [x] Cena animada do hero
+- [x] Formulário integrado — Jotform `261027639617663` na seção e no modal, com o listener que impede os dois embeds do mesmo form de se redimensionarem entre si
+- [x] Validações determinísticas (SEO, anti-IA, diagramação, contraste, pisos mobile, overflow) — ver `REVISAO.md`
+- [ ] **OG image desatualizada** — `assets/og-whatsapp-business.png` ainda traz o H1 antigo. Regerar com `assets/og-template.html` + `assets/render_og.py` antes de publicar
 - [ ] Publicado — rodar `/lp-publicar cxpress whatsapp-business content.cxpress.io`
-
-## Tracking
-
-| Item | Valor |
-|---|---|
-| GTM | `GTM-T4XDWHL3` (Cxpress brasil, de `brand/cxpress/tracking.json`) — `<head>` + `<noscript>` |
-| GA4 | **Sem `gtag.js` no HTML.** Decisão do Victor em 2026-08-28: o GA4 é disparado pela tag configurada dentro do container GTM. Hardcodar um segundo snippet duplicaria a contagem de pageview. |
-| Gate de CI | `check_gtm_region.py` → `status=ok`, selo `.tracking.lock` gravado |
-
-Se um dia esta LP precisar de um GA4 próprio fora do GTM, o padrão está na `evite-banimento-whatsapp` (que usa container e GA próprios por briefing específico, com selo de grandfathering).
 
 ## Assets referenciados
 
-**Brand (`../../brand/cxpress/assets/`)**
-- `logos/logo-primary.svg` — navbar (validado §19: 0 `<text>`, vetor outline)
-- `logos/logo-reversed.svg` — footer (idem)
-- `logos/logo-icon.png` — favicon
-
-**LP-local (`./assets/`)**
-- `telas/tela-tickets.svg` — hero (painel de tickets)
-- `telas/tela-chatbot-whatsapp.svg` — feature 01 (IA)
-- `telas/tela-distribuicao.svg` — feature 02 (tickets por setor)
-- `telas/tela-canais.svg` — feature 03 (canais integrados)
-- `telas/tela-principal.svg` — feature 04 (cadastro unificado)
-- `telas/tela-dashboard.svg` — feature 05 (dashboards)
-- `clientes/cliente-01..42.png` — 42 logos de clientes, um por arquivo, para o carrossel
-- `elife-logo-badge.png` — badge "elifegroup"
-- `og-whatsapp-business.png` + `og-template.html` + `render_og.py`
-
-## Formulário
-
-Embed `jsform` do Jotform `261027639617663`, o mesmo da LP irmã `whatsapp-business-smb`, dentro de `<div class="jotform-embed reveal">` com o wrapper CSS canônico da skill (sem padding/borda/fundo próprios: o Jotform já traz card).
-
-**O mock de 2 etapas foi removido junto**, com todo o CSS e JS dele (a LP encolheu de 978 para 797 linhas). O que o form real entrega, medido no embed ao vivo:
-
-| Campo do Jotform | Cobre o quê do guia §4 |
+| Path | Onde aparece |
 |---|---|
-| Seu nome · Sua empresa · Seu e-mail da empresa · Seu WhatsApp | Etapa 1 (captura) completa |
-| Site da empresa | Extra — casa com o pré-requisito da FAQ ("ter um site ativo") |
-| O que você gostaria de resolver na sua operação? | Etapa 2: maior dor |
-| Quantidade de colaboradores | Etapa 2: porte da empresa |
-| (não tem) | Etapa 2: principal canal · volume de atendimentos/mês |
+| `../../brand/cxpress/assets/logos/logo-primary.svg` | navbar |
+| `../../brand/cxpress/assets/logos/logo-reversed.svg` | rodapé |
+| `../../brand/cxpress/assets/logos/logo-icon.png` | favicon |
+| `./assets/telas/tela-chatbot-whatsapp.svg` | hero (animado) e feature 02 |
+| `./assets/telas/tela-canais.svg` | feature 01 |
+| `./assets/telas/tela-principal.svg` | feature 03 |
+| `./assets/telas/tela-distribuicao.svg` | feature 04 |
+| `./assets/telas/tela-dashboard.svg` | feature 05 |
+| `./assets/clientes/cliente-01..42.png` | esteira de clientes |
+| `./assets/elife-logo-badge.png` | badge "Um produto" em Quem somos |
+| `./assets/og-whatsapp-business.png` | OG image (a regerar) |
 
-Ou seja, o form compartilhado já qualifica quase tudo. Faltam só 2 dos 8 campos que o mock tinha, e ele ainda traz opt-out de newsletter e dois CTAs de saída (Falar pelo WhatsApp / Receber uma ligação). Se um dia quiserem os 2 campos que faltam, é edição no Jotform, não na LP.
-
-### Animações e custo
-
-Toda animação da LP pausa quando o elemento sai da tela, via um `IntersectionObserver` que alterna `animation-play-state` nos elementos marcados com `data-fx` (hero, carrossel de clientes e as duas features com camada). Sem isso, os selos do hero e o carrossel custavam ~15 ms/s o tempo todo.
-
-Regra que vale para qualquer animação nova aqui: **animar `transform` e `opacity` custa zero** (o compositor resolve sozinho); animar geometria (`width`/`height`/`left`/`top`) ou repintura (`stroke-dashoffset`) custa. Foi o que decidiu o desenho do holofote e dos conectores.
-
-**Telas não usadas** (copiadas mas sem lugar na copy atual, disponíveis se algum bloco novo entrar): `tela-agentes.svg`, `tela-disparo-ativo.svg`.
-
-### Nota sobre os logos de clientes
-
-Os 42 arquivos de `assets/clientes/` foram **fatiados programaticamente** de `brand/cxpress/assets/plataforma/clientes-cxpress.png` (a grade única de 1886×906 que a LP usava antes). O script detecta faixas de linha e coluna por densidade de pixel não-branco, recorta cada célula na bounding box do conteúdo, normaliza a altura e re-encoda em PNG paletizado.
-
-Resultado: 42 logos reais, sem placeholder, **225 KB no total** (a grade original sozinha pesava 360 KB e era ilegível no mobile). O maior arquivo tem 11 KB. Altura de 84 px cobre retina 2× para a exibição de 42 px.
-
-Parâmetros usados, caso precise refazer com uma grade nova: gap de merge 10 px nas linhas e 22 px nas colunas, corte mínimo de 350 px de conteúdo por célula, padding de 6 px, paleta adaptativa de 128 cores.
-
-### Nota sobre os SVGs de tela
-
-Os arquivos vieram de `D:\Elife\174 - LP ClaudeCode\03 - App WhatsApp\telas\` (export Figma de 2023). Cada um tinha de 1 a 4 nós `<text>` vivos com `font-family="Montserrat, ..."` **sem fallback genérico** — em navegador sem Montserrat instalada isso cai na fonte serifada padrão, e rótulos como "Email:" a 32px na tela de canais sairiam serifados (mesma armadilha do GUIDELINES §19, aqui aplicada a screenshot em vez de logo).
-
-Corrigido na cópia local: cada `font-family` ganhou `Open Sans, Helvetica, Arial, sans-serif` no fim da pilha. Renderização validada com Chrome headless antes de entrar na LP. **Se estes SVGs forem re-exportados do Figma, refazer o patch.**
-
-## Decisões de conteúdo que precisam do seu aval
-
-Estão detalhadas em `REVISAO.md`. Em uma linha cada:
-
-1. **Copy das 5 dores: APROVADA em 28/08.** Escrita nesta sessão sob o protocolo (fundamentos + anti-IA), não veio do briefing. Texto integral no `REVISAO.md`.
-2. **Atribuição dos 2 números (85% de SLA, +220% de interações): adiada em 28/08**, por decisão do Victor. Vão ao ar sem nota de fonte. Não é bloqueante; quando quiser resolver, é uma linha de nota abaixo dos cards.
-3. **Perguntas do FAQ foram restauradas** da LP irmã `whatsapp-business-smb` (transcrição da página viva), casando resposta por resposta — o briefing trouxe as respostas com os títulos como "[Inserir Pergunta N]". Você aprovou antes da geração.
-4. **Descrições das 5 funcionalidades** também vieram da irmã pelo mesmo motivo (o briefing só trouxe os títulos). Nada inventado.
-5. **Bloco "Casos de uso" adiado** para uma 2ª rodada, por decisão sua. Entra entre a plataforma e as integrações sem mexer no que já existe.
-
-### Decisões registradas em 2026-08-28
-
-| Lacuna | Decisão | Status |
-|---|---|---|
-| Dores resolvidas | (b) eu escrevo, você aprova | **Aplicada e aprovada** |
-| Headline do hero | Variante B (ganho operacional) | Aplicada |
-| Prova com números | (b) métricas próprias | **Aplicada**; atribuição adiada de propósito |
-| Casos de uso | Adiar | Pendente, 2ª rodada |
-| Integrações | 7 sistemas informados | Aplicada |
+`assets/telas/tela-agentes.svg`, `tela-disparo-ativo.svg` e `tela-tickets.svg` ficaram sem uso nesta versão. Mantidos na pasta: são telas do produto já otimizadas, úteis se uma feature voltar.
