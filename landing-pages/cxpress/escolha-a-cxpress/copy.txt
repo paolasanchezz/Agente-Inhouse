@@ -16,7 +16,6 @@ H1: Seu [atendimento cresce]. / Sua [operação acompanha]?   ([entre colchetes]
 SUB: As principais plataformas já oferecem funcionalidades similares. O que diferencia é o que acontece depois: implementação, suporte e controle da operação.
 
 FORM TITLE: Peça uma demonstração da Cxpress
-FORM TEXT: Um especialista analisa seus canais, o volume de atendimentos e o tamanho do time, e mostra a plataforma rodando no seu cenário.
 
 TRUST ITEM: Mais de 800 empresas no Brasil, LATAM e Portugal
 TRUST ITEM: WhatsApp com API Oficial da Meta

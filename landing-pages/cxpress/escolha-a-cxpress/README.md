@@ -409,3 +409,29 @@ qualquer screenshot ou thumbnail) mostre o painel legível em vez da pilha fecha
 lidos de um frame onde os dois textos se sobrepõem. Pode ser leitura errada. São números
 ilustrativos de um elemento decorativo, no mesmo espírito dos nomes fictícios da
 `.queue`, mas vale confirmar com o Victor.
+
+---
+
+## 11. Subtitulo em duas linhas e card sem texto de apoio (2026-09-04)
+
+| Ajuste | Detalhe |
+|---|---|
+| Texto de apoio do formulario removido | Saiu o `.form-card__text` ("Um especialista analisa seus canais..."). O card vai direto do H2 para o Jotform. A regra CSS ficou sem uso e saiu, junto com a mencao na lista de `text-wrap: balance` |
+| Subtitulo do hero em 2 linhas | `.hero__head .lead` foi de `max-width: 700px` para `800px` |
+
+### Por que 800px
+
+Medido no render, com a fonte no topo do `clamp` (21px): a frase inteira ocupa
+**1358px** numa linha so, entao cada metade pede **~679px**. Em 700px o balanceador
+nao tinha folga e caia para tres linhas. Com 800px o `text-wrap: balance` escolhe o
+corte e entrega duas linhas equilibradas:
+
+> As principais plataformas ja oferecem funcionalidades similares. O que diferencia
+> e o que acontece depois: implementacao, suporte e controle da operacao.
+
+Conferido em 1440px (fonte 21px) e 1024px (fonte 18px): duas linhas nos dois, e o H1
+segue em duas. Em telas estreitas o texto quebra em mais linhas normalmente, como
+esperado: o pedido era sobre o desktop.
+
+800px continua abaixo dos 980px do `.hero__head`, entao o subtitulo nunca fica mais
+largo que o H1.
