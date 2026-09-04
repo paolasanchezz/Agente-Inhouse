@@ -35,12 +35,13 @@ Correções pedidas pelo Bruno olhando a página no ar. Nenhuma palavra de copy 
 | 6 | Espaço vazio grande no topo da seção | `padding-top` da seção de 128 → **72 px** |
 | 7 | Trocar o formulário | Jotform `261034073026647` nos dois pontos de captura |
 | 8 | Centralizar a seção do formulário como na `banimento-de-whatsapp` | Grid de 2 colunas trocado por coluna única centrada: pílula verde 76×9 em `--wa`, H2 e apoio em 820px, Jotform num card branco de 600px com radius 24px. Valores idênticos aos da LP irmã |
+| 9 | Fechar o paralelo com a irmã | **Formulário movido para depois do FAQ** e a seção virou navy com topo arredondado (`clamp(40px,7vw,90px)`), padding 104/96 e `margin-top:-1px`. Na 1ª tentativa mantive o fundo royal justamente porque o form vinha antes do FAQ, com "Quem somos" (navy) logo acima; com a mudança de ordem o navy deixou de encostar em outro bloco escuro e o topo arredondado passou a ter para onde fluir (o rodapé, também navy) |
 
 **O bug do stagger.** Os cards já tinham `.reveal`, mas o atraso vinha do JS como `idx % 5 * 60ms` calculado sobre a ordem **global** dos `.reveal` da página. Dentro de um grid de 3, a ordem saía embaralhada (240 ms, 0 ms, 60 ms) e a entrada parecia quebrada; o delay inline também vencia qualquer regra de CSS. Agora o JS não escreve delay nenhum e o stagger vem do CSS por seção (0 / .10s / .20s) — o que arruma a entrada em toda a página, não só nesses cards.
 
 O hover dos cards mexe só em sombra e borda, de propósito: `transform` fica reservado à entrada. Se o hover também usasse `transform`, herdaria o `transition-delay` do stagger e sairia lento.
 
-## Estrutura (9 seções, ordem da página de origem)
+## Estrutura (9 seções)
 
 | # | Seção | Layout | Fundo |
 |---|---|---|---|
@@ -51,10 +52,12 @@ O hover dos cards mexe só em sombra e borda, de propósito: `transform` fica re
 | 5 | PROVA | 4 números grandes (14% · 9% · 25% · 45%) com contagem animada + notas NBER e McKinsey | tint |
 | 6 | PLATAFORMA | 5 features alternando lado, cada uma com a tela real. A 01 tem selos de canal pulsando, a 03 tem holofote sequencial | branco |
 | 7 | QUEM SOMOS | Faixa escura (única da LP), 2 parágrafos + 3 badges | navy |
-| 8 | FORM | Composição centralizada no desenho da `banimento-de-whatsapp`: pílula verde, H2 e apoio centrados em 820px, e-mail, e o Jotform num card branco de 600px no meio | royal |
-| 9 | FAQ | Acordeão `<details>` com 5 perguntas | tint |
+| 8 | FAQ | Acordeão `<details>` com 5 perguntas | tint |
+| 9 | FORM | Fecho escuro com topo arredondado, no desenho da `banimento-de-whatsapp`: pílula verde, H2 e apoio centrados em 820px, e-mail, e o Jotform num card branco de 600px no meio | navy |
 
-Ritmo tonal: gradiente → branco → tint → branco → tint → branco → navy → royal → tint → rodapé navy. Alternância perfeita, sem duas seções da mesma cor encostadas.
+Ritmo tonal: gradiente → branco → tint → branco → tint → branco → navy → tint → navy → rodapé navy. O bloco do formulário e o rodapé são os dois navy e se encostam de propósito: o `border-radius` no topo do formulário faz a emenda, e o `margin-top:-1px` mata a linha de subpixel entre os dois (medido: 0 px de emenda).
+
+**Duas divergências deliberadas em relação à página de origem**, ambas por decisão do Bruno: o formulário fica depois do FAQ (na origem vem antes) e a faixa do consultor não existe.
 
 A faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!" existia entre a PROVA e a PLATAFORMA e **saiu em 2026-09-04** a pedido do Bruno. A LP passa a divergir da página de origem nesse ponto por decisão, não por omissão. A rota de conversa por WhatsApp na página fica sendo o botão flutuante pulsante.
 
@@ -71,7 +74,7 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 
 ## Estado
 
-- [x] HTML gerado (`index.html`, 1570 linhas, 91 KB)
+- [x] HTML gerado (`index.html`, 1577 linhas, 92 KB)
 - [x] Copy trocada pela da página de origem e conferida string por string (auditoria de fidelidade no `REVISAO.md`)
 - [x] Seções padrão portadas da `banimento-de-whatsapp` (navbar, rodapé, FAB pulsante + modal, slider de clientes)
 - [x] Cena animada do hero

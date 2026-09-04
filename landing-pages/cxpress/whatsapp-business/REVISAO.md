@@ -49,7 +49,11 @@ Pedido: "centralizar igual na banimento-de-whatsapp". O grid de 2 colunas (texto
 
 Medido (centro da seccao / do bloco de texto / do card do form, em px): **713 / 713 / 713** a 1440, **633 / 633 / 633** a 1280 e **188 / 188 / 188** a 375. O H2 subiu de `clamp(26-32px)` para `clamp(28-40px)` e cabe em 1 linha; o apoio ficou em 2 linhas com **1 %** de desequilibrio, que importa mais aqui do que nos blocos alinhados a esquerda (texto centralizado denuncia orfa).
 
-**Uma diferenca deliberada:** na `banimento-de-whatsapp` essa seccao e navy com o topo arredondado, porque e a ULTIMA antes do rodape (tambem navy, e por isso o `margin-top:-1px` de lá). Aqui o form vem ANTES do FAQ (ordem da pagina de origem) e a seccao anterior, "Quem somos", ja e navy. Copiar o navy encostaria dois blocos escuros e deixaria um topo arredondado no meio da pagina sem nada pra onde fluir, entao o fundo royal ficou. A composicao interna e que e igual.
+**Atualizacao (3a rodada, mesmo dia):** o Bruno optou por mover o formulario pra depois do FAQ, e com isso o paralelo com a irma fechou por inteiro. A seccao virou o fecho escuro da pagina: navy cheio, topo arredondado em `clamp(40px,7vw,90px)`, padding 104/96 e `margin-top:-1px` contra o rodape (tambem navy). Medido: **0 px** de emenda entre os dois blocos, a 1440 e a 375.
+
+A ressalva que eu tinha levantado era exatamente essa: enquanto o form vinha ANTES do FAQ, com "Quem somos" (navy) logo acima, o navy encostaria dois blocos escuros e o topo arredondado ficaria no meio da pagina sem pra onde fluir. Mudando a ordem, o problema deixou de existir.
+
+O apoio saiu de `#F4F7FF` (calibrado pro gradiente royal) pra `rgba(255,255,255,.82)`, o mesmo da irma: **9.51:1** sobre o navy, medido no live local.
 
 ### Contador dos big numbers
 

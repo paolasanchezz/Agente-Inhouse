@@ -103,8 +103,11 @@ CTA: Fale com especialista
 #   proposta BR) — a troca muda o roteamento do lead, entao esta registrada aqui e
 #   em REVISAO.md. Usado nos DOIS pontos de captura: esta secao e o modal do botao
 #   flutuante. Carregado sob demanda (jsform injetado 600px antes da secao).
-# [POSICAO] Ultima secao antes do FAQ, como na pagina de origem. LP e MoFu/BoFu,
-#   entao GUIDELINES §10 pede form no fim com CTA no hero rolando ate ele.
+# [POSICAO] ULTIMA secao da pagina, depois do FAQ. Na pagina de origem o form vem
+#   ANTES do FAQ; a troca foi pedida pelo Bruno em 2026-09-04 pra fechar o paralelo
+#   com a LP irma banimento-de-whatsapp, onde essa secao e o fecho escuro com topo
+#   arredondado que emenda no rodape. Segue coerente com GUIDELINES §10 (LP MoFu/BoFu
+#   pede form no fim, com CTA no hero rolando ate ele).
 
 === FAQ ===
 H2: Dúvidas frequentes
@@ -219,3 +222,12 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 #
 # 6. FORMULARIO trocado para o Jotform 261034073026647 nos dois pontos de captura
 #    (ver nota no bloco FORM).
+#
+# 7. FORMULARIO MOVIDO PRA DEPOIS DO FAQ (2026-09-04, 3a rodada). Com isso a secao
+#    virou o fecho escuro da pagina, no desenho da irma banimento-de-whatsapp:
+#    navy cheio, topo arredondado em clamp(40px,7vw,90px), padding 104/96 e
+#    margin-top:-1px pra matar a linha de subpixel contra o rodape (tambem navy).
+#    O apoio saiu de #F4F7FF (calibrado pro gradiente royal, que deixou de existir)
+#    pra rgba(255,255,255,.82), que da 9.51:1 no navy.
+#    Consequencia: a pagina passa a divergir da origem em DOIS pontos, os dois por
+#    decisao do Bruno — a posicao do form e a ausencia da faixa do consultor.

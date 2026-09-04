@@ -646,15 +646,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .qs-badge img{height:26px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.85}
 
   /* ---- CTA final + formulário (GUIDELINES §8: fundo destaque) ---- */
+  /* Fecho escuro com o topo arredondado, no mesmo desenho da ultima secao da LP
+     irma banimento-de-whatsapp: navy cheio, titulo e apoio em branco e o
+     formulario num card branco por cima. Sem elementos geometricos de fundo
+     (glow, arco): aqui o desenho vem do bloco, nao das formas.
+     Isso so ficou possivel quando o form passou a ser a ULTIMA secao, depois do
+     FAQ: antes ele vinha entre "Quem somos" (navy) e o FAQ, e o navy encostaria
+     dois blocos escuros com um topo arredondado no meio da pagina. */
   .cta{
-    background:linear-gradient(160deg,#4A69BD 0%,#3C58A6 100%);
+    background:var(--primary-dark);
+    color:var(--white);
+    border-radius:clamp(40px,7vw,90px) clamp(40px,7vw,90px) 0 0;
+    padding:104px 0 96px;
     position:relative;overflow:hidden;
-  }
-  .cta::after{
-    content:"";position:absolute;right:-160px;top:-140px;
-    width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 70%);
-    pointer-events:none;
+    /* o rodape tambem e navy: -1px mata a linha de subpixel entre os dois */
+    margin-top:-1px;
   }
   /* Composicao centralizada, no mesmo desenho da secao de formulario da LP irma
      banimento-de-whatsapp: pilula verde de acento, titulo e apoio centrados numa
@@ -675,8 +681,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:var(--wa);margin:0 auto 26px;
   }
   .cta h2{color:#fff;font-size:clamp(28px,3.2vw,40px);font-weight:800;letter-spacing:-.02em;max-width:24ch;margin:0 auto}
-  /* #F4F7FF da 4.80:1 no topo do gradiente (#4A69BD); o #E4EAFB anterior dava 4.27:1 e reprovava o AA de texto normal (GUIDELINES §7). */
-  .cta-lead{margin-top:18px;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#F4F7FF;max-width:66ch;margin-left:auto;margin-right:auto}
+  /* rgba(255,255,255,.82) sobre o navy da 9.4:1 (o #F4F7FF de antes era calibrado
+     pro gradiente royal, que saiu com a mudanca pra navy). */
+  .cta-lead{margin-top:18px;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:rgba(255,255,255,.82);max-width:66ch;margin-left:auto;margin-right:auto}
   .cta .cta-mail{color:#fff;text-decoration:underline;text-underline-offset:4px}
   .cta .cta-mail:hover{color:#fff;text-decoration-thickness:2px}
   .cta :focus-visible{outline-color:#fff}
@@ -871,6 +878,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .proof__grid{grid-template-columns:1fr;gap:16px}
     .proof__item{padding:26px 22px}
     .qs-badges{gap:24px}
+    .cta{padding:72px 0 68px}
     .faq-item summary{padding:24px 2px}
     .clients-title{font-size:18px}
     .clients-marquee{margin-left:-22px;margin-right:-22px}
@@ -1236,23 +1244,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ================= FORM ================= -->
-  <section class="cta" id="contato" aria-labelledby="cta-title">
-    <div class="wrap">
-      <div class="cta__card reveal">
-        <h2 id="cta-title">Entre em contato conosco!</h2>
-        <p class="cta-lead">Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.</p>
-        <div class="cta-side-actions">
-          <a href="mailto:comercial@gocxpress.com.br" class="cta-mail">comercial@gocxpress.com.br</a>
-        </div>
-      </div>
-
-      <div class="jotform-embed reveal" id="jotHost" data-jotform="261034073026647">
-        <noscript><iframe src="https://form.jotform.com/261034073026647" title="Fale com um especialista da Cxpress" style="width:100%;height:800px;border:0"></iframe></noscript>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= FAQ ================= -->
   <section class="faq" aria-labelledby="faq-title">
     <div class="wrap faq__inner">
@@ -1299,6 +1290,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="faq-body"><p>Sim, é possível integrar com sistemas de CRM, porém é necessário passar por uma análise prévia da nossa equipe técnica para garantir que tudo funcione perfeitamente.</p></div>
         </details>
 
+      </div>
+    </div>
+  </section>
+  <!-- ================= FORM ================= -->
+  <section class="cta" id="contato" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta__card reveal">
+        <h2 id="cta-title">Entre em contato conosco!</h2>
+        <p class="cta-lead">Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.</p>
+        <div class="cta-side-actions">
+          <a href="mailto:comercial@gocxpress.com.br" class="cta-mail">comercial@gocxpress.com.br</a>
+        </div>
+      </div>
+
+      <div class="jotform-embed reveal" id="jotHost" data-jotform="261034073026647">
+        <noscript><iframe src="https://form.jotform.com/261034073026647" title="Fale com um especialista da Cxpress" style="width:100%;height:800px;border:0"></iframe></noscript>
       </div>
     </div>
   </section>
