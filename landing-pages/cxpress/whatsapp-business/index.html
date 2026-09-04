@@ -656,22 +656,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:radial-gradient(circle,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 70%);
     pointer-events:none;
   }
-  .cta__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
-  /* Teto de 36px pra "Entre em contato conosco!" caber numa linha so: em 40px
-     com 16ch quebrava em "Entre em" + "contato conosco!" (47% de desequilibrio,
-     e o balance nao junta linhas, GUIDELINES §21 ressalva 4). */
-  .cta h2{color:#fff;font-size:clamp(26px,2.5vw,32px);font-weight:800;letter-spacing:-.015em;max-width:26ch}
+  /* Composicao centralizada, no mesmo desenho da secao de formulario da LP irma
+     banimento-de-whatsapp: pilula verde de acento, titulo e apoio centrados numa
+     coluna de 820px, e o formulario num card branco de 600px no meio.
+     Diferenca deliberada: la a secao e navy com o topo arredondado porque e a
+     ULTIMA antes do rodape (tambem navy). Aqui o form vem ANTES do FAQ (ordem da
+     pagina de origem) e a secao anterior, "Quem somos", ja e navy -- manter o
+     royal evita dois blocos navy encostados e o topo arredondado no meio da
+     pagina, que nao teria pra onde fluir. */
+  .cta__card{
+    position:relative;z-index:2;
+    max-width:820px;margin:0 auto;
+    text-align:center;
+  }
+  .cta__card::before{
+    content:"";display:block;
+    width:76px;height:9px;border-radius:9999px;
+    background:var(--wa);margin:0 auto 26px;
+  }
+  .cta h2{color:#fff;font-size:clamp(28px,3.2vw,40px);font-weight:800;letter-spacing:-.02em;max-width:24ch;margin:0 auto}
   /* #F4F7FF da 4.80:1 no topo do gradiente (#4A69BD); o #E4EAFB anterior dava 4.27:1 e reprovava o AA de texto normal (GUIDELINES §7). */
-  .cta-lead{margin-top:20px;font-size:clamp(17px,1.3vw,19px);color:#F4F7FF;max-width:44ch}
+  .cta-lead{margin-top:18px;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#F4F7FF;max-width:66ch;margin-left:auto;margin-right:auto}
   .cta .cta-mail{color:#fff;text-decoration:underline;text-underline-offset:4px}
   .cta .cta-mail:hover{color:#fff;text-decoration-thickness:2px}
   .cta :focus-visible{outline-color:#fff}
-  /* O Jotform traz superficie branca propria: vira card sobre a cor */
+  /* Card branco do formulario. O Jotform 261034073026647 vem com fundo
+     transparente e rotulos em navy, entao sem esta superficie branca ficaria
+     ilegivel sobre o bloco de cor. `text-align:left` porque o centro vale pro
+     bloco de texto, nao pros campos. */
   .cta .jotform-embed{
-    background:#fff;border-radius:var(--radius-card);overflow:hidden;
-    box-shadow:0 30px 60px -24px rgba(20,26,66,.55);
+    position:relative;z-index:2;
+    max-width:600px;margin:38px auto 0;
+    background:#fff;border-radius:24px;overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(10,14,45,.55);
+    text-align:left;
   }
-  .cta-side-actions{margin-top:32px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+  .cta-side-actions{margin-top:28px;display:flex;flex-direction:column;gap:16px;align-items:center}
   .cta-mail{
     display:inline-flex;align-items:center;gap:8px;
     font-family:var(--font-display);font-weight:700;font-size:16px;
@@ -819,7 +839,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---- Responsivo ---- */
   @media (max-width:1000px){
     :root{--pad-sec:96px}
-    .hero__grid,.feat,.about__grid,.cta__grid{grid-template-columns:1fr;gap:48px}
+    .hero__grid,.feat,.about__grid{grid-template-columns:1fr;gap:48px}
     .feat:nth-child(even) .feat-text,.feat:nth-child(even) .feat-visual{order:0}
     .feat-list{gap:64px;margin-top:48px}
     .feat-visual::before{inset:-7% 0 -9% 0;border-radius:22px}
@@ -1218,8 +1238,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= FORM ================= -->
   <section class="cta" id="contato" aria-labelledby="cta-title">
-    <div class="wrap cta__grid">
-      <div class="reveal">
+    <div class="wrap">
+      <div class="cta__card reveal">
         <h2 id="cta-title">Entre em contato conosco!</h2>
         <p class="cta-lead">Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.</p>
         <div class="cta-side-actions">

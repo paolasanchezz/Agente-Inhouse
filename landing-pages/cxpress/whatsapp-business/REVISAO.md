@@ -43,6 +43,14 @@ Os cards do "Porquê" já tinham `.reveal`. O atraso, porém, vinha do JS como `
 
 O JS não escreve mais delay; o stagger vem do CSS por seção. Isso conserta a entrada **em toda a página**, não só nesses cards (a grade da PROVA e o par texto/visual das features também ganharam sequência própria).
 
+### Seccao do formulario centralizada
+
+Pedido: "centralizar igual na banimento-de-whatsapp". O grid de 2 colunas (texto a esquerda, form a direita) virou coluna unica centrada, com os valores lidos direto do live da LP irma: pilula de acento 76x9 px em `--wa` com `margin:0 auto 26px`, bloco de texto em `max-width:820px` com `text-align:center`, e o Jotform num card branco de `max-width:600px`, `border-radius:24px`, `margin:38px auto 0` e `box-shadow:0 40px 80px -30px rgba(10,14,45,.55)`. O `text-align` volta a `left` dentro do card: o centro vale pro texto, nao pros campos.
+
+Medido (centro da seccao / do bloco de texto / do card do form, em px): **713 / 713 / 713** a 1440, **633 / 633 / 633** a 1280 e **188 / 188 / 188** a 375. O H2 subiu de `clamp(26-32px)` para `clamp(28-40px)` e cabe em 1 linha; o apoio ficou em 2 linhas com **1 %** de desequilibrio, que importa mais aqui do que nos blocos alinhados a esquerda (texto centralizado denuncia orfa).
+
+**Uma diferenca deliberada:** na `banimento-de-whatsapp` essa seccao e navy com o topo arredondado, porque e a ULTIMA antes do rodape (tambem navy, e por isso o `margin-top:-1px` de lá). Aqui o form vem ANTES do FAQ (ordem da pagina de origem) e a seccao anterior, "Quem somos", ja e navy. Copiar o navy encostaria dois blocos escuros e deixaria um topo arredondado no meio da pagina sem nada pra onde fluir, entao o fundo royal ficou. A composicao interna e que e igual.
+
 ### Contador dos big numbers
 
 Mesmo padrão da LP `banimento-de-whatsapp`: o valor final já está no HTML, então sem JS, sem `IntersectionObserver` ou com `prefers-reduced-motion` a seção continua correta e **nunca fica travada no zero** — o zero só existe dentro do `runCount`, no instante em que a animação começa. Testei o easing isolado no Node: as 4 séries (14, 9, 25, 45) sobem monotônicas e terminam exatamente no alvo.
