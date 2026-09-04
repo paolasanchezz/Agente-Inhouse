@@ -60,6 +60,8 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
 - FOOTER — logo, tagline, copyright, redes sociais (Instagram/LinkedIn da marca)
 - CTA fixo mobile (aparece após rolar a hero)
 
+**Ajuste 2026-09-04 (cronograma atualizado pelo usuário):** Programação trocada para 14h00 Recepção dos convidados e welcome coffee → 14h30 Início do evento com o time Buzzmonitor → 15h30 Networking + café com a Buzz → 16h00 Cases de clientes Buzzmonitor → 16h30 Sorteio de brindes e últimos detalhes → 17h00 Encerramento. `copy.txt` atualizado junto. Horário geral do evento também ajustado de 14h-18h para **14h-17h** em todos os pontos consistentes: LABEL do hero-card (`copy.txt` + `index.html`), JSON-LD `Event.endDate` (18:00 → 17:00). O `startDate`/alvo do contador regressivo (14h) não mudou.
+
 ## Estado
 
 - [x] HTML gerado e validado (SEO, GTM, JSON-LD, zero em-dash)

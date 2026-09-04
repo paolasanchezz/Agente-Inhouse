@@ -5,7 +5,7 @@ BODY: A Black Friday é um dos períodos mais importantes (e desafiadores) para 
 BODY: Neste encontro exclusivo para clientes, vamos mostrar, na prática, como utilizar a Buzzmonitor para preparar sua operação para a Black Friday.
 BODY: Vamos abordar boas práticas para monitorar campanhas e a repercussão da marca, organizar o atendimento no pré e no pós-venda, acompanhar indicadores e identificar rapidamente sinais de possíveis crises.
 LABEL: Data: 01/10/2026
-LABEL: Horário: 14h às 18h
+LABEL: Horário: 14h às 17h
 LABEL: Local: Presencial, São Paulo, Av. Paulista 807, Bela Vista
 CTA: Quero participar
 
@@ -57,12 +57,12 @@ LIST ITEM: Beatriz Moreira, Gerente de Operações Digitais, Elife
 === PROGRAMACAO ===
 H2: Programação
 BODY: Confira os conteúdos que preparamos para você.
-LIST ITEM: 14h00, Recepção e welcome coffee
-LIST ITEM: 14h30, Abertura e contexto da Black Friday
-LIST ITEM: 15h00, Campanha, monitoramento e preparação para o pico
-LIST ITEM: 16h00, Atendimento, IA e gestão de crises
-LIST ITEM: 17h00, Cases e boas práticas de mercado
-LIST ITEM: 17h30, Perguntas, networking e encerramento
+LIST ITEM: 14h00, Recepção dos convidados e welcome coffee
+LIST ITEM: 14h30, Início do evento com o time Buzzmonitor
+LIST ITEM: 15h30, Networking + café com a Buzz
+LIST ITEM: 16h00, Cases de clientes Buzzmonitor
+LIST ITEM: 16h30, Sorteio de brindes e últimos detalhes
+LIST ITEM: 17h00, Encerramento
 
 === PUBLICO-ALVO ===
 H2: Para quem é este evento?
