@@ -57,6 +57,17 @@ NOTE: **Estimativas da McKinsey, consultoria empresarial norte-americana.
 # [ORIGEM] Numeros e notas de rodape literais da pagina de origem. Mesma copy da
 #   LP irma whatsapp-smb (secao "NUMEROS"), conferida numero a numero.
 
+=== CONSULTOR (banner intermediario de WhatsApp) ===
+H2: Fale com um de nossos consultores no WhatsApp agora mesmo!
+CTA: Fale agora!
+# [ORIGEM] Faixa literal da pagina de origem, entre a prova numerica e a secao de
+#   plataforma -- exatamente onde ela esta de volta.
+# [HISTORICO] Removida na 2a rodada de 2026-09-04 a pedido do Bruno e REPOSTA na 4a
+#   rodada do mesmo dia, quando ele trouxe a referencia de uma LP concorrente: em
+#   pagina longa, o CTA de meio de scroll evita obrigar o visitante a rolar ate o
+#   fim ou voltar ao topo pra converter. Sem ela, a unica rota de conversa por
+#   WhatsApp no meio da pagina era o botao flutuante.
+
 === PLATAFORMA ===
 H2: Descubra tudo o que é possível fazer com a plataforma Cxpress!
 H3: Organize seu atendimento de forma integrada
@@ -176,7 +187,7 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 #   - VIDEO (YouTube 36sbDc02_DU)
 #   - PROVA (14% / 9% / 25% / 45% com notas NBER e McKinsey)
 #   - CONSULTOR (faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!")
-#     ENTROU em 2026-09-04 e SAIU no mesmo dia, a pedido do Bruno (ver notas da 2a rodada).
+#     ENTROU, SAIU e VOLTOU em 2026-09-04 (ver itens 1 e 8c das notas de rodada).
 #
 # Tracking: GTM-T4XDWHL3 (Cxpress brasil, brand/cxpress/tracking.json), inalterado.
 
@@ -186,7 +197,8 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 # Nenhuma palavra de copy foi reescrita nesta rodada. As mudancas sao de estrutura
 # (1 secao removida), de peso tipografico e de movimento, mais a troca do formulario.
 #
-# 1. SECAO CONSULTOR REMOVIDA. A faixa "Fale com um de nossos consultores no
+# 1. SECAO CONSULTOR REMOVIDA. [REVERTIDO na 4a rodada do mesmo dia — a faixa
+#    esta de volta. Ver item 8c.] A faixa "Fale com um de nossos consultores no
 #    WhatsApp agora mesmo!" saiu da pagina. Ela existe na pagina de origem, entao
 #    a LP passa a divergir dela neste ponto — por decisao do Bruno, nao por
 #    omissao. O texto segue no historico do git. Com a saida, o rota de conversa
@@ -231,3 +243,20 @@ BODY: Preencha os dados e continue a conversa com um especialista no WhatsApp.
 #    pra rgba(255,255,255,.82), que da 9.51:1 no navy.
 #    Consequencia: a pagina passa a divergir da origem em DOIS pontos, os dois por
 #    decisao do Bruno — a posicao do form e a ausencia da faixa do consultor.
+#
+# 8. 4a RODADA (2026-09-04) — contraste, banner e conexao humana. Pedido do Bruno
+#    a partir de uma LP de referencia. Nenhuma palavra de copy nova: o unico texto
+#    que entra e o do banner do consultor, literal da pagina de origem e ja usado
+#    na 1a rodada.
+#    a) CTAs em verde (--cta-green #25D366, o verde oficial do WhatsApp e o que a
+#       pagina ja usava no botao flutuante) com rotulo navy: 6.8:1. O azul dos
+#       botoes se perdia contra o gradiente azul-claro do hero.
+#    b) Realce do H1: a letra fica no verde ESCURO (#12703E, 6.5:1) e o verde
+#       vibrante entra como barra por baixo. Verde vibrante como cor de letra da
+#       1.7-1.9:1 e reprova o AA — mesma logica do laranja da marca.
+#    c) Banner do consultor de volta, entre PROVA e PLATAFORMA.
+#    d) "Quem somos" ganha foto de equipe (brand/cxpress/assets/plataforma/
+#       quem-somos-foto.jpg, a mesma da LP irma evite-banimento-whatsapp).
+#    e) Respiro entre funcionalidades de 96px para 128px e medida do corpo em 48ch.
+#    f) Reveal em Z nas funcionalidades, cascata 0.1/0.2/0.3 nos cards e
+#       scale(1.05) no hover dos botoes.

@@ -124,6 +124,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Anel de contraste do botao flutuante: 3.4:1 no branco, cumpre o minimo de
        limite de controle (WCAG 1.4.11) que o verde oficial nao cumpre. */
     --wa-ink:#15884D;
+    /* ---- Verde dos CTAs ----
+       O pedido foi "#00E676 ou similar que garanta acessibilidade". Fico com o
+       #25D366, que ja e o verde desta pagina (botao flutuante, pilula do fecho) e
+       e o verde oficial do WhatsApp, tema da LP: evita um segundo verde quase
+       identico e mantem o subset de cor da GUIDELINES §1.
+       Contraste com texto navy: #25D366 = 6.74:1, #1EB855 (hover) = 5.12:1.
+       O #00E676 tambem passaria (8.01:1 com navy), mas texto BRANCO sobre
+       qualquer um dos dois reprova feio (1.67:1), por isso o rotulo e navy. */
+    --cta-green:#25D366;
+    --cta-green-hover:#1EB855;
+    --cta-ink:#232960;
     --danger:#C0392B;
     --success-text:#12703E;
     --neutral-900:#1a1a1a;
@@ -195,10 +206,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Stagger por seccao, deterministico (o JS nao escreve mais delay inline) */
   .why-grid .why-card.reveal:nth-child(2){transition-delay:.10s}
   .why-grid .why-card.reveal:nth-child(3){transition-delay:.20s}
-  .proof__grid .reveal:nth-child(2){transition-delay:.08s}
-  .proof__grid .reveal:nth-child(3){transition-delay:.16s}
-  .proof__grid .reveal:nth-child(4){transition-delay:.24s}
-  .feat-list .feat .feat-visual.reveal{transition-delay:.08s}
+  .proof__grid .reveal:nth-child(2){transition-delay:.10s}
+  .proof__grid .reveal:nth-child(3){transition-delay:.20s}
+  .proof__grid .reveal:nth-child(4){transition-delay:.30s}
+
+  /* Reveal em Z nas funcionalidades: o texto entra do lado em que ele esta e a
+     tela entra do lado oposto, entao o par converge pro centro. Nas linhas pares
+     o grid inverte a ordem visual, e a direcao inverte junto (senao a peca da
+     direita entraria vindo da esquerda, atravessando a outra).
+     So no desktop: abaixo de 1000px o layout empilha e o movimento lateral vira
+     ruido. */
+  @media (min-width:1001px){
+    .feat:nth-child(odd) .feat-text.reveal{transform:translateX(-30px)}
+    .feat:nth-child(odd) .feat-visual.reveal{transform:translateX(30px)}
+    .feat:nth-child(even) .feat-text.reveal{transform:translateX(30px)}
+    .feat:nth-child(even) .feat-visual.reveal{transform:translateX(-30px)}
+    /* O reset precisa empatar em especificidade com as 4 regras acima. Um
+       `.feat .reveal.is-in` (0,3,0) PERDE pra `.feat:nth-child(odd)
+       .feat-text.reveal` (0,4,0), porque o :nth-child conta como classe, e as
+       funcionalidades ficariam presas deslocadas em 30px pra sempre. */
+    .feat:nth-child(odd) .feat-text.reveal.is-in,
+    .feat:nth-child(odd) .feat-visual.reveal.is-in,
+    .feat:nth-child(even) .feat-text.reveal.is-in,
+    .feat:nth-child(even) .feat-visual.reveal.is-in{transform:none}
+    .feat-list .feat .feat-visual.reveal{transition-delay:.12s}
+  }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1!important;transform:none!important;transition:none!important}
@@ -218,8 +250,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-decoration:none;border:2px solid transparent;cursor:pointer;
     transition:transform .18s ease,background .18s ease,box-shadow .18s ease,border-color .18s ease;
   }
-  .btn--primary{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(74,105,189,.28)}
-  .btn--primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 14px 30px rgba(35,41,96,.3)}
+  /* CTA em verde: o azul do botao se perdia contra o gradiente azul-claro do hero
+     e contra o bloco royal. O verde e a unica cor da pagina que nao compete com o
+     tema, entao vira o sinal unico de "acao". Rotulo em navy (6.74:1). */
+  .btn--primary{background:var(--cta-green);color:var(--cta-ink);box-shadow:0 10px 26px rgba(20,120,60,.34)}
+  .btn--primary:hover{background:var(--cta-green-hover);color:var(--cta-ink);transform:translateY(-2px) scale(1.05);box-shadow:0 16px 34px rgba(20,120,60,.4)}
 
   /* ---- Navbar (padrao banimento-de-whatsapp) ---- */
   .navbar{
@@ -235,13 +270,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .navbar__logo img{display:block;height:38px;width:auto}
   .navbar__cta{
     font-family:var(--font-display);font-weight:700;font-size:15px;
-    background:var(--primary-dark);color:var(--white);
+    background:var(--cta-green);color:var(--cta-ink);
     padding:11px 24px;border-radius:var(--radius-btn);
     text-decoration:none;white-space:nowrap;
-    box-shadow:0 2px 10px rgba(35,41,96,.26);
-    transition:background .2s ease,transform .2s ease;
+    box-shadow:0 2px 12px rgba(20,120,60,.3);
+    transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
   }
-  .navbar__cta:hover{background:var(--primary);color:var(--white);transform:translateY(-1px)}
+  .navbar__cta:hover{background:var(--cta-green-hover);color:var(--cta-ink);transform:translateY(-1px) scale(1.05);box-shadow:0 6px 18px rgba(20,120,60,.38)}
   .navbar__cta-short{display:none}
   @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 
@@ -297,10 +332,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:clamp(36px,3.4vw,48px);font-weight:800;
     letter-spacing:-.025em;line-height:1.08;margin:0;max-width:34ch;
   }
-  /* "WhatsApp" em verde, como na pagina de origem. O verde oficial (#25D366)
-     reprova como texto (1.98:1), entao o realce usa o verde escuro da paleta:
-     #12703E da 6.5:1 no gradiente claro do hero. */
-  .hero h1 .mark{color:var(--success-text)}
+  /* Realce de "WhatsApp" no H1. O verde vibrante NAO pode ser a cor da letra:
+     #25D366 da 1.9:1 e #00E676 da 1.7:1 sobre o gradiente claro do hero, contra
+     os 4.5:1 do AA. Entao a letra fica no verde escuro (#12703E = 6.5:1) e o
+     verde vibrante entra como BARRA por baixo, que e preenchimento e nao texto.
+     Mesmo padrao da LP telefonia-ia-latam: o ponto de foco imediato acontece,
+     sem reprovar contraste. A barra se desenha ao carregar. */
+  .hero h1 .mark{
+    color:var(--success-text);
+    background-image:linear-gradient(var(--cta-green),var(--cta-green));
+    background-repeat:no-repeat;
+    background-position:0 92%;
+    background-size:100% .14em;
+    padding-bottom:.02em;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero h1 .mark{animation:markDraw .9s cubic-bezier(.2,.9,.3,1) .35s both}
+  }
+  @keyframes markDraw{from{background-size:0% .14em}to{background-size:100% .14em}}
   .hero-body{font-size:clamp(17px,1.35vw,19px);color:var(--neutral-700);margin-top:24px;max-width:46ch}
   .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px;align-items:center}
 
@@ -541,6 +590,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .proof__note{font-size:13px;line-height:1.55;color:var(--neutral-500)}
 
 
+  /* ---- Banner intermediario do WhatsApp (CTA de meio de pagina) ----
+     Rota de conversao no meio do scroll: em LP longa o visitante nao precisa
+     chegar ao fim nem voltar ao topo pra converter. Card claro sobre a faixa,
+     flex com texto a esquerda e glifo + botao a direita no desktop. */
+  .consult{background:var(--white);border-top:1px solid var(--rule);padding:88px 0}
+  .consult__card{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:40px;flex-wrap:wrap;
+    background:var(--neutral-100);
+    border:1px solid var(--neutral-300);border-radius:28px;
+    padding:44px 52px;
+    box-shadow:0 18px 44px -30px rgba(35,41,96,.45);
+  }
+  .consult__text{flex:1 1 420px;min-width:0}
+  .consult h2{font-size:clamp(24px,2.3vw,30px);font-weight:800;letter-spacing:-.015em;max-width:26ch}
+  .consult h2 .mark{color:var(--success-text)}
+  .consult__aside{display:flex;align-items:center;gap:28px;flex:0 0 auto}
+  .consult__glyph{
+    width:92px;height:92px;border-radius:50%;flex:0 0 auto;
+    display:grid;place-items:center;background:var(--cta-green);
+    box-shadow:0 0 0 3px var(--wa-ink),0 18px 36px -14px rgba(20,120,60,.6);
+  }
+  .consult__glyph svg{width:48px;height:48px;fill:#fff}
+  @media (max-width:900px){
+    .consult__card{flex-direction:column;align-items:flex-start;padding:36px 30px}
+    .consult__aside{width:100%;justify-content:flex-start}
+  }
+
   /* ---- Camadas animadas sobre a tela (2 features, nao as 5) ----
      Pausam fora da tela via .is-idle, e somem sob prefers-reduced-motion. */
   .feat-visual .frame{position:relative;z-index:2}
@@ -599,7 +676,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .platform{background:var(--white);overflow-x:clip;border-top:1px solid var(--rule)}
   .sec-head{max-width:640px}
   .sec-head h2{font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.015em;max-width:19ch}
-  .feat-list{margin-top:64px;display:flex;flex-direction:column;gap:96px}
+  /* Respiro entre funcionalidades: 96px -> 128px. O pedido citou "5rem a 6rem"
+     (80-96px), mas isso e MENOS do que ja havia aqui; o que apertava era o
+     intervalo entre um par texto/tela e o proximo, nao o padding da seccao
+     (128px, ja acima do minimo de 120px da GUIDELINES §2). Subi o intervalo. */
+  .feat-list{margin-top:72px;display:flex;flex-direction:column;gap:128px}
   .feat{
     display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
     gap:64px;align-items:center;
@@ -612,8 +693,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color:var(--accent-text);letter-spacing:.06em;
   }
   .feat-index::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,rgba(239,134,60,.85),rgba(239,134,60,0))}
-  .feat-title{font-size:clamp(22px,2vw,27px);font-weight:700;margin-top:16px}
-  .feat-body{font-size:clamp(17px,1.3vw,18px);margin-top:16px}
+  .feat-title{font-size:clamp(22px,2vw,27px);font-weight:700;margin-top:16px;max-width:24ch}
+  /* Medida de leitura confortavel: sem teto, a coluna deixava a linha passar de
+     55ch. 48ch fica dentro da faixa pedida (45-50ch). */
+  .feat-body{font-size:clamp(17px,1.3vw,18px);margin-top:16px;max-width:48ch}
   .feat-visual{position:relative;overflow:visible}
   .feat-visual::before{
     content:"";position:absolute;z-index:0;
@@ -632,7 +715,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:radial-gradient(circle,rgba(74,105,189,.45) 0%,rgba(35,41,96,0) 70%);
     pointer-events:none;
   }
-  .about__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:64px;align-items:start}
+  /* Foto de equipe a esquerda, texto a direita. Rosto humano faz a secao
+     institucional deixar de ser um bloco de texto sobre fundo escuro. Foto e a
+     mesma da LP irma evite-banimento-whatsapp (asset de marca). */
+  .about__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1fr);gap:64px;align-items:center}
+  .about__foto{border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(0,0,0,.65)}
+  .about__foto img{display:block;width:100%;height:auto;min-height:0}
   .about h2{color:#fff;font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.015em}
   .qs-text{font-size:clamp(17px,1.3vw,19px);color:#D5DBF2}
   .qs-text + .qs-text{margin-top:24px}
@@ -1130,6 +1218,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- ================= CONSULTOR (CTA de meio de pagina) ================= -->
+  <section class="consult" aria-labelledby="consult-title">
+    <div class="wrap">
+      <div class="consult__card reveal">
+        <div class="consult__text">
+          <h2 id="consult-title">Fale com um de nossos consultores no <span class="mark">WhatsApp</span> agora mesmo!</h2>
+        </div>
+        <div class="consult__aside">
+          <span class="consult__glyph" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </span>
+          <a href="https://wa.me/5511993464966" class="btn btn--primary" target="_blank" rel="noopener">Fale agora!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= PLATAFORMA ================= -->
   <section class="platform" aria-labelledby="platform-title">
     <div class="wrap">
@@ -1220,10 +1325,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ================= QUEM SOMOS ================= -->
   <section class="about" aria-labelledby="about-title">
     <div class="wrap about__grid">
-      <div class="reveal">
-        <h2 id="about-title">Quem somos</h2>
+      <div class="about__foto reveal">
+        <img src="../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg" alt="Equipe de atendimento da Cxpress trabalhando com headset" width="399" height="349" loading="lazy">
       </div>
       <div class="reveal">
+        <h2 id="about-title">Quem somos</h2>
         <p class="qs-text">A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso.</p>
         <p class="qs-text">O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.</p>
         <div class="qs-badges">
@@ -1401,7 +1507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       entries.forEach(function(e){
         if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
     /* Sem delay inline aqui: o atraso vem do CSS, por seccao (`.reveal:nth-child`).
        Antes o delay era `idx % 5 * 60ms` sobre a ordem GLOBAL dos .reveal, entao
        dentro de um grid de 3 cards a ordem podia sair embaralhada (ex: 240ms, 0ms,

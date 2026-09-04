@@ -152,3 +152,38 @@ Um detalhe que já custou caro antes e está coberto: a página tem **dois embed
 
 - [ ] **Troca do formulário muda o roteamento do lead.** A LP passou do Jotform `261027639617663` ("LPs - Proposta", o form unificado das LPs de proposta BR) para o `261034073026647`, o mesmo da LP irmã `banimento-de-whatsapp`, a pedido do Bruno, que passou o snippet explicitamente. Vale conferir com quem cuida do funil se os leads desta LP devem cair na mesma caixa da campanha de banimento, e qual é a página de agradecimento configurada nesse form (ela acompanha o form, não o embed).
 - [ ] **A LP passou a divergir da página de origem** ao remover a faixa "Fale com um de nossos consultores no WhatsApp agora mesmo!". Se a intenção era manter as duas páginas espelhadas, a faixa precisa sair da `home.cxpress.io/app-whatsapp` também.
+
+---
+
+## 6. Quarta rodada (2026-09-04): contraste, banner e conexão humana
+
+### O que eu não fiz do jeito pedido, e por quê
+
+**Verde vibrante como cor de letra no H1.** O pedido era aplicar a mesma cor verde vibrante nas palavras-chave do título. Medi antes de aplicar: `#00E676` como texto dá **1,67:1** sobre o gradiente claro do hero e `#25D366` dá **1,9:1**, contra os **4,5:1** que o AA exige (GUIDELINES §7). Reprovaria feio. Como o próprio pedido dizia "ou similar que garanta acessibilidade", resolvi assim: a letra fica no verde escuro (`#12703E`, 6,5:1) e o **verde vibrante entra como barra por baixo da palavra**, que é preenchimento e não texto. O ponto de foco imediato acontece, sem reprovar. É a mesma lógica que o laranja da marca já segue (`#EF863C` só como preenchimento) e o mesmo padrão da LP `telefonia-ia-latam`.
+
+**`#25D366` no lugar de `#00E676`.** Os dois passam como preenchimento com rótulo navy (6,8:1 e 8,0:1 — texto **branco** sobre qualquer um dos dois reprovaria, 1,67:1, então o rótulo é navy nos dois casos). Fiquei com o `#25D366` porque já era o verde desta página (botão flutuante, pílula do fecho) e é o verde oficial do WhatsApp, tema da LP. Adotar o `#00E676` somaria um segundo verde quase idêntico, contra o subset de cor da GUIDELINES §1.
+
+**Padding de "5rem a 6rem" entre as funcionalidades.** Isso é 80-96 px, **menos** do que a página já tinha (`--pad-sec` = 128 px, acima do mínimo de 120 px da §2), então aplicar ao pé da letra teria apertado em vez de soltar. O que apertava era o intervalo entre um par texto/tela e o próximo: subi de 96 → 128 px e cortei a medida do corpo para 48ch (dentro da faixa 45-50ch pedida).
+
+### O bug de especificidade do reveal em Z
+
+Escrevi as 4 regras de direção como `.feat:nth-child(odd) .feat-text.reveal` e o reset como `.feat .reveal.is-in`. O reset **nunca aplicava**: `:nth-child` conta como classe no cálculo, então as regras de direção somam (0,4,0) e o reset só (0,3,0). Efeito: as funcionalidades entrariam e ficariam **presas deslocadas em 30 px para sempre**.
+
+Peguei porque medi o `transform` computado antes e depois de aplicar `is-in`, em vez de confiar na leitura do CSS. O reset agora repete os 4 seletores com `.is-in` no fim, empatando em (0,5,0). Verificado: as 5 linhas saem de `translateX(±30px)` para `none`, com a direção acompanhando o lado em que cada peça está na tela (linha ímpar texto pela esquerda, linha par invertido junto com o grid).
+
+### Medições
+
+| Item | Resultado |
+|---|---|
+| Contraste, varredura de 23 elementos de texto | 0 reprovações |
+| Botão CTA e botão da navbar | verde `#25D366` com navy, **6,8:1** |
+| Intervalo entre funcionalidades | 128 px |
+| Medida do corpo das funcionalidades | 429 px (≈48ch) |
+| Overflow horizontal | 0 a 375 e a 1440 |
+| Pisos tipográficos mobile (§20), 22 papéis | todos cumpridos |
+| Z-pattern no mobile | desativado (só `translateY`), como planejado |
+| Banner do consultor no mobile | empilha em coluna |
+
+### Limite, de novo
+
+O painel de preview continua sem compositor mesmo com a aba em primeiro plano: `scrollY` não sai de 0 e nenhum `IntersectionObserver` dispara. Verifiquei os estados de CSS alternando `is-in` à mão com `transition:none`, que é o que revelou o bug de especificidade acima. **A animação em movimento (Z-pattern, cascata dos cards e contagem dos números) segue precisando de um olhar num navegador de verdade.**

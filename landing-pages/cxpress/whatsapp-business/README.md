@@ -41,7 +41,24 @@ Correções pedidas pelo Bruno olhando a página no ar. Nenhuma palavra de copy 
 
 O hover dos cards mexe só em sombra e borda, de propósito: `transform` fica reservado à entrada. Se o hover também usasse `transform`, herdaria o `transition-delay` do stagger e sairia lento.
 
-## Estrutura (9 seções)
+## 4ª rodada (2026-09-04): contraste, banner e conexão humana
+
+Pedido do Bruno a partir de uma LP de referência. Nenhuma palavra de copy nova: o único texto que entra é o do banner do consultor, literal da origem.
+
+| Pedido | O que foi feito |
+|---|---|
+| CTAs em verde vibrante | `--cta-green: #25D366` com rótulo navy, **6,8:1**. Aplicado no botão da navbar e em todos os `.btn--primary` |
+| Palavras-chave do H1 em verde | A letra fica no **verde escuro** (`#12703E`, 6,5:1) e o verde vibrante entra como **barra por baixo**, que se desenha ao carregar |
+| Banner intermediário de WhatsApp | Seção `.consult` de volta, entre PROVA e PLATAFORMA: card claro arredondado, flex, glifo grande e CTA verde |
+| "Quem somos" com foto | Grid de 2 colunas com `quem-somos-foto.jpg` (asset de marca, o mesmo da `evite-banimento-whatsapp`) |
+| Mais respiro nas funcionalidades | Intervalo entre pares de 96 → **128 px**; corpo com medida de **48ch** |
+| Reveal em Z, cascata e hover | Z-pattern nas funcionalidades (só ≥1001px), cascata 0.1/0.2/0.3 nos cards, `scale(1.05)` no hover dos botões, `threshold` do observer de 0.05 → 0.15 |
+
+**Por que o verde do H1 não é o vibrante.** `#00E676` como cor de letra dá **1,67:1** sobre o gradiente claro do hero, e `#25D366` dá 1,9:1, contra os 4,5:1 que o AA exige. O pedido dizia "ou similar que garanta acessibilidade", então a letra ficou no verde escuro e o vibrante virou preenchimento (a barra). Mesma lógica que o laranja da marca já segue.
+
+**Por que `#25D366` e não `#00E676`.** Os dois passam como preenchimento com texto navy (6,8:1 e 8,0:1). O `#25D366` já era o verde desta página (botão flutuante, pílula do fecho) e é o verde oficial do WhatsApp, tema da LP. Adotar o `#00E676` somaria um segundo verde quase idêntico, contra a GUIDELINES §1.
+
+## Estrutura (10 seções)
 
 | # | Seção | Layout | Fundo |
 |---|---|---|---|
@@ -50,12 +67,13 @@ O hover dos cards mexe só em sombra e borda, de propósito: `transform` fica re
 | 3 | PORQUÊ | H2 + subtítulo + grid de 3 cards com ✓ verde (GUIDELINES §8) | tint |
 | 4 | VÍDEO | H2 + fachada de vídeo (YouTube `36sbDc02_DU` sob demanda) + CTA | branco |
 | 5 | PROVA | 4 números grandes (14% · 9% · 25% · 45%) com contagem animada + notas NBER e McKinsey | tint |
-| 6 | PLATAFORMA | 5 features alternando lado, cada uma com a tela real. A 01 tem selos de canal pulsando, a 03 tem holofote sequencial | branco |
-| 7 | QUEM SOMOS | Faixa escura (única da LP), 2 parágrafos + 3 badges | navy |
-| 8 | FAQ | Acordeão `<details>` com 5 perguntas | tint |
-| 9 | FORM | Fecho escuro com topo arredondado, no desenho da `banimento-de-whatsapp`: pílula verde, H2 e apoio centrados em 820px, e-mail, e o Jotform num card branco de 600px no meio | navy |
+| 6 | CONSULTOR | Banner de meio de página: card claro arredondado, texto à esquerda, glifo grande do WhatsApp e CTA verde à direita (flex; empilha abaixo de 900px) | branco |
+| 7 | PLATAFORMA | 5 features alternando lado, cada uma com a tela real. A 01 tem selos de canal pulsando, a 03 tem holofote sequencial | branco |
+| 8 | QUEM SOMOS | Faixa escura, grid de 2 colunas: foto da equipe à esquerda (cantos arredondados) e texto + 3 badges à direita | navy |
+| 9 | FAQ | Acordeão `<details>` com 5 perguntas | tint |
+| 10 | FORM | Fecho escuro com topo arredondado, no desenho da `banimento-de-whatsapp`: pílula verde, H2 e apoio centrados em 820px, e-mail, e o Jotform num card branco de 600px no meio | navy |
 
-Ritmo tonal: gradiente → branco → tint → branco → tint → branco → navy → tint → navy → rodapé navy. O bloco do formulário e o rodapé são os dois navy e se encostam de propósito: o `border-radius` no topo do formulário faz a emenda, e o `margin-top:-1px` mata a linha de subpixel entre os dois (medido: 0 px de emenda).
+Ritmo tonal: gradiente → branco → tint → branco → tint → branco → branco → navy → tint → navy → rodapé navy. A única adjacência de mesma cor (CONSULTOR e PLATAFORMA, ambas brancas) é quebrada pelo card claro cheio do banner, que dá identidade própria à faixa, mais o filete de topo da PLATAFORMA. O bloco do formulário e o rodapé são os dois navy e se encostam de propósito: o `border-radius` no topo do formulário faz a emenda, e o `margin-top:-1px` mata a linha de subpixel entre os dois (medido: 0 px de emenda).
 
 **Duas divergências deliberadas em relação à página de origem**, ambas por decisão do Bruno: o formulário fica depois do FAQ (na origem vem antes) e a faixa do consultor não existe.
 
@@ -74,7 +92,7 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 
 ## Estado
 
-- [x] HTML gerado (`index.html`, 1577 linhas, 92 KB)
+- [x] HTML gerado (`index.html`, 1683 linhas, 99 KB)
 - [x] Copy trocada pela da página de origem e conferida string por string (auditoria de fidelidade no `REVISAO.md`)
 - [x] Seções padrão portadas da `banimento-de-whatsapp` (navbar, rodapé, FAB pulsante + modal, slider de clientes)
 - [x] Cena animada do hero
@@ -96,6 +114,7 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 | `./assets/telas/tela-distribuicao.svg` | feature 04 |
 | `./assets/telas/tela-dashboard.svg` | feature 05 |
 | `./assets/clientes/cliente-01..42.png` | esteira de clientes |
+| `../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg` | foto da equipe em Quem somos |
 | `./assets/elife-logo-badge.png` | badge "Um produto" em Quem somos |
 | `./assets/og-whatsapp-business.png` | OG image |
 
