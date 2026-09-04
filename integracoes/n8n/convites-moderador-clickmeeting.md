@@ -22,12 +22,13 @@ Todo dia 07:00 (BRT) ──┘        GET /active            (Code: filtra + esc
 2. **Code** — para cada série do mapa `SERIES`: filtra `recurring_config_id` + `registration_enabled` + `starts_at` futuro, pega a **mais próxima**, e emite 1 item por (sessão, e-mail de moderador).
 3. **POST** `…/conferences/{roomId}/invitation/email/{lang}` com `attendees[0][email]`, `template=advanced`, `role=presenter`. `onError: continueRegularOutput` (uma falha não derruba o lote). **Sem retry** — a API não deduplica, retry = e-mail em dobro.
 
-## Séries (estado 2026-09-02 — igual ao config.json da skill)
+## Séries (estado 2026-09-04 — igual ao config.json da skill)
 
 Ordenadas pelo horário da sessão no dia (BRT).
 
 | recurring_config_id | Rótulo | Moderador(es) | lang |
 |---|---|---|---|
+| 18086 | Buzzmonitor Monitorização de Concorrentes (Portugal, 10:00 Lisboa = 06:00 BRT) | manuela.martins@elifeportugal.com · raquel.oliveira@buzzmonitor.com | br |
 | 18043 | Buzzmonitor Monitoramento de Concorrentes (BR, 09:00 BRT) | fernanda.carvalho@buzzmonitor.com.br · thamiris.sales@buzzmonitor.com.br · gestaoprevendas@buzzmonitor.com.br | br |
 | 18050 | Buzzcreators (10:20 BRT) | gabriel.leal@buzzmonitor.com.br · lucas.campos@buzzmonitor.com.br | br |
 | 17927 | Buzzmonitor Tu primer listening (LATAM, 12:00 BRT) | daniel.topete@buzzmonitor.com | es |
@@ -40,6 +41,10 @@ Ordenadas pelo horário da sessão no dia (BRT).
 Histórico: em 2026-08-19 saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress) — séries
 apagadas no ClickMeeting por limite de disco, com zero inscritos — e entraram 17927, 17928 e 17929.
 Em 2026-08-24 a 17927 ficou só com o Daniel e a 17933 + 17928 ficaram só com a Milagro.
+Em 2026-09-04 entrou a 18086 (Portugal). Atenção ao horário dessa série: a sessão começa
+**06:00 BRT**, antes das 07:00 BRT em que o cron roda, então o convite dela é sempre para a
+sessão do **dia seguinte** (as demais são do mesmo dia). Para virar convite do mesmo dia, o
+gatilho teria que rodar antes das 06:00 BRT, o que mexeria em todas as séries.
 
 ## Detalhes que importam
 

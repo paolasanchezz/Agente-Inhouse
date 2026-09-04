@@ -1,5 +1,13 @@
 {
   "series": {
+    "18086": {
+      "label": "Buzzmonitor Monitorização de Concorrentes (Portugal, 10:00 Lisboa / 06:00 BRT)",
+      "moderator_emails": [
+        "manuela.martins@elifeportugal.com",
+        "raquel.oliveira@buzzmonitor.com"
+      ],
+      "lang": "br"
+    },
     "18043": {
       "label": "Buzzmonitor Monitoramento de Concorrentes (BR, 09:00 BRT)",
       "moderator_emails": [
@@ -66,7 +74,7 @@
     "lang": "Idioma do email de convite enviado pelo ClickMeeting. Códigos válidos: pl, en, de, ru, es, fr, it, br. Alinhar ao idioma de quem recebe, não do webinar.",
     "moderadores": "Cada série aceita 'moderator_email' (um) OU 'moderator_emails' (lista, para vários moderadores na mesma sessão). Todos recebem role=presenter. Pode usar os dois — são somados e deduplicados.",
     "como_editar": "Para adicionar nova série: cole o recurring_config_id como chave + label + moderator_email(s) + lang. Para remover: apague o bloco. Para trocar/adicionar moderador: edite moderator_email ou moderator_emails.",
-    "ordem": "Blocos ordenados pelo horário da sessão no dia (BRT), só pra facilitar a leitura. A ordem não afeta a execução.",
-    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado. 2026-08-24: 17927 (Tu primer listening) ficou so com Daniel; 17933 (Gestion de Crisis) e 17928 (Caso Smart Fit) ficaram so com Milagro. 17646 (MCP) e 17701 (Atencion al Cliente) seguem com os dois. 2026-09-02: 17727 (Buzzcreators) esgotou as sessoes e foi recriada como 18050, agora as 10:20 BRT (antes 09:40). 2026-09-02: entrou 18043 (Buzzmonitor Monitoramento de Concorrentes, BR, 09:00 BRT) com Fernanda, Thamiris e gestaoprevendas."
+    "ordem": "Blocos ordenados pelo horário da sessão no dia convertido pra BRT, só pra facilitar a leitura. A ordem não afeta a execução.",
+    "historico": "2026-08-19: saíram 17689 (Conheça a Cxpress) e 17671 (Cxpress Vozxpress), séries apagadas no ClickMeeting por limite de disco (zero inscritos). Entraram 17927, 17928 e 17929. A série 17601 (Buzzmonitor MCP PT-BR) também foi apagada e nunca teve moderador mapeado. 2026-08-24: 17927 (Tu primer listening) ficou so com Daniel; 17933 (Gestion de Crisis) e 17928 (Caso Smart Fit) ficaram so com Milagro. 17646 (MCP) e 17701 (Atencion al Cliente) seguem com os dois. 2026-09-02: 17727 (Buzzcreators) esgotou as sessoes e foi recriada como 18050, agora as 10:20 BRT (antes 09:40). 2026-09-02: entrou 18043 (Buzzmonitor Monitoramento de Concorrentes, BR, 09:00 BRT) com Fernanda, Thamiris e gestaoprevendas. 2026-09-04: entrou 18086 (Monitorização de Concorrentes Portugal, tz Europe/Lisbon, 10:00 Lisboa = 06:00 BRT) com Manuela e Raquel; lang 'br' porque o ClickMeeting não tem código pt-PT. Como a sessão PT começa antes das 07:00 BRT (horário do cron), o convite desta série sai sempre para a sessão do dia seguinte."
   }
 }

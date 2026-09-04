@@ -34,6 +34,7 @@ em vez de anunciar silenciosamente o webinar de outra LP. Com `?series=<chave>`,
 | `smartfit-es` | `17928` | Caso Smart Fit Latam (ES-LATAM, room_pin 854-775-474, tz America/Mexico_City, 13:00 MX) | `/caso-smartfit` (+ `-confirmado`) |
 | `crisis-es` | `17933` | Gestión de Crisis (ES-LATAM, room_pin 361-697-942, tz America/Mexico_City) | `/gestion-crisis` (+ `-confirmado`) |
 | `concorrentes-br` | `18043` | Como construir um monitoramento de concorrentes (PT-BR, room_pin 692-573-549, tz America/Sao_Paulo, 09:00 BRT, sessão de 25 min) | `/perpetuo-monitoramento-concorrentes` (+ `-confirmado`) |
+| `concorrentes-pt` | `18086` | Como construir um monitoramento de concorrentes Portugal (PT-PT, room_pin 355-724-775, tz Europe/Lisbon, 10:00 hora de Lisboa = 06:00 BRT, sessão de 30 min) | `/perpetuo-monitoramento-concorrentes-pt` (+ `-confirmado`) |
 
 Aposentada em 2026-08-19: `mcp` (`17601`, Buzzmonitor MCP PT-BR). Série apagada no ClickMeeting
 por limite de disco, com zero inscritos em 57 sessões. A LP `/mcp-na-pratica-p` seguiu no ar com
@@ -43,9 +44,19 @@ Chave desconhecida → cai no env padrão. Se o env também não resolver, a fun
 `no_series` em vez de devolver a próxima sessão de qualquer série da conta (era esse o risco:
 a LP anunciar o webinar errado).
 `clickmeeting-register.js` lê `series` do body e repassa pro `next-webinar` interno.
-**E-mail de confirmação ES:** `SERIES_LANG` mapeia `atencion`, `mcp-es`, `listening-es`,
-`smartfit-es` e `crisis-es` → `es`. As demais usam o default `br` (é o caso de `buzzcreators` e
-`concorrentes-br`).
+**Idioma por série:** `SERIES_LANG` escolhe **duas** coisas ao mesmo tempo: o pack de
+mensagens devolvido ao visitante (`MESSAGES`) e o idioma do e-mail de confirmação do ClickMeeting.
+Mapeia `atencion`, `mcp-es`, `listening-es`, `smartfit-es` e `crisis-es` → `es`, e
+`concorrentes-pt` → `pt` (PT-PT). As demais usam o default `br` (é o caso de `buzzcreators` e
+`concorrentes-br`). Como o ClickMeeting **não tem código pt-PT** (aceita só pl, en, de, ru, es,
+fr, it, br), `CM_EMAIL_LANG` traduz `pt` → `br` na hora de pedir o e-mail de confirmação: a LP
+responde em PT-PT, o e-mail sai no pack português da própria ferramenta.
+
+**Data formatada: só serve para BR.** Os campos `formatted_date_pt` / `formatted_time_pt` /
+`formatted_full_pt` do `next-webinar.js` são gerados em `pt-BR` + `America/Sao_Paulo`, fixo. LP de
+outra região **não** deve usá-los, senão anuncia a hora de Brasília: as LPs ES (Cidade do México)
+e a LP PT (Lisboa) formatam no cliente a partir de `starts_at`, que é ISO com offset. Se uma
+série nova for de fora do Brasil, repetir esse padrão.
 **Thank-you de segurança:** `SERIES_THANK_YOU` dá a página `-confirmado` de cada série, usada
 só quando a API não devolve a URL da sala. Até 2026-08-19 isso apontava pra `home.cxpress.io`
 mesmo aqui no domínio da Buzzmonitor.

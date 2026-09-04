@@ -12,6 +12,42 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Webinar de concorrentes PT ao vivo (série 18086) + convite de moderador
+### 2026-09-04 — conteúdo + skill `convites-moderador` (1.2.3 → 1.2.4)
+
+O par PT-PT `perpetuo-monitoramento-concorrentes-pt` (+ `-confirmado`) era on-demand com form
+**mock**: o submit só redirecionava para a tks, que tinha o vídeo gravado no YouTube. Nenhum lead
+era gravado em lugar nenhum. Agora está ligado à série ClickMeeting **18086** ("Como construir um
+monitoramento de concorrentes  Portugal", `room_pin` 355-724-775, tz `Europe/Lisbon`, diária
+**10:00 hora de Lisboa** = 06:00 BRT, sessão de 30 min), mesmo desenho do par PT-BR (série 18043,
+2026-09-02).
+
+- `_clickmeeting-api/next-webinar.js` (+ cópia servida em `dominios/webinar-buzzmonitor-com/extras/api/`):
+  nova chave `concorrentes-pt` → `18086` no mapa `SERIES`.
+- `_clickmeeting-api/clickmeeting-register.js` (idem, 2 cópias): `SERIES_THANK_YOU` aponta pra
+  `/perpetuo-monitoramento-concorrentes-pt-confirmado` e **entrou o pack `MESSAGES.pt`** (PT-PT),
+  o terceiro idioma das mensagens ao visitante. `SERIES_LANG` agora escolhe pack **e** idioma do
+  e-mail, e o novo `CM_EMAIL_LANG` traduz `pt` → `br` só na chamada ao ClickMeeting, que não tem
+  código `pt-PT` (aceita pl, en, de, ru, es, fr, it, br). Antes o `msg()` tinha um ternário
+  `es`-ou-`br` que ignoraria qualquer pack novo.
+- **LP de captura:** form nativo de 4 campos (Nome, **Apelido**, e-mail, empresa) + honeypot,
+  badge com a data da próxima sessão, copy de inscrição no lugar de "preencha e assista".
+- **Thank-you:** vídeo saiu, entrou a confirmação em 2 estados do par BR (estado A com nome, botão
+  da sala, banner de "a decorrer agora" e Google Calendar; estado B com a próxima sessão vinda da
+  API, para visita direta ou `sessionStorage` bloqueado).
+- **Data formatada no cliente:** os campos `formatted_*_pt` da API são fixos em `pt-BR` +
+  `America/Sao_Paulo` e anunciariam 06h00 em Lisboa. As duas páginas PT formatam a partir de
+  `starts_at` com `Intl.DateTimeFormat('pt-PT', { timeZone: 'Europe/Lisbon' })`, mesmo padrão das
+  LPs ES. Registrado no README das functions pra série nova de fora do Brasil não repetir o erro.
+- **Convite de moderador:** série 18086 → `manuela.martins@elifeportugal.com` e
+  `raquel.oliveira@buzzmonitor.com`, `lang: br`. Entrou no `config.json` da skill, no espelho
+  `integracoes/n8n/convites-moderador-clickmeeting.{json,md}` e **no workflow que roda de verdade**
+  (n8n `1TFA4xHvFEZQ5lns`, atualizado via API — 9 séries, 13 convites/dia útil). Pegadinha
+  anotada: a sessão PT começa 06:00 BRT, **antes** das 07:00 BRT do cron, então o convite desta
+  série é sempre para a sessão do dia seguinte.
+- `landing-pages/CONTEXT.md` §2.7 deixou de usar o par de concorrentes como exemplo de "LP Aula"
+  (os dois pares usam ClickMeeting hoje); o exemplo virou `perpetuo-social-listening`.
+
 ## Convite de moderador para o webinar de concorrentes (BR)
 ### 2026-09-02 — skill `convites-moderador` (1.2.2 → 1.2.3)
 

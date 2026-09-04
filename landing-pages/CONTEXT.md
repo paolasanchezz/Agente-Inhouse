@@ -119,7 +119,7 @@ O que este modelo elimina: sibling local, `lp-sync` pré-deploy, drift-check, co
 
 ### 2.7 LP Aula (webinar perpétuo, sem ClickMeeting) — qual form usar
 
-**O que é "LP Aula" / webinar perpétuo:** par de LPs onde a pessoa preenche e **assiste na hora**. A tks já tem o vídeo gravado embedado. Não existe sala, não existe data, não existe inscrição em sessão — logo, **nada de ClickMeeting**. Ex: `perpetuo-monitoramento-concorrentes` + `-confirmado`.
+**O que é "LP Aula" / webinar perpétuo:** par de LPs onde a pessoa preenche e **assiste na hora**. A tks já tem o vídeo gravado embedado. Não existe sala, não existe data, não existe inscrição em sessão — logo, **nada de ClickMeeting**. Ex: `perpetuo-social-listening` + `-confirmado`. (O par `perpetuo-monitoramento-concorrentes` era o exemplo aqui até virar webinar ao vivo em 2026-09-02, e o par `-pt` em 2026-09-04: os dois usam ClickMeeting hoje.)
 
 Antes de escolher o form, decidir de qual tipo a LP é:
 

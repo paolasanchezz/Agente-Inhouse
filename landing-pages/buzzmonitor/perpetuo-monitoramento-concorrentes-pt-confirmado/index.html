@@ -12,14 +12,14 @@
   })(window,document,'script','dataLayer','GTM-NCFT22CW');</script>
   <!-- End Google Tag Manager -->
 
-  <title>O seu vídeo está pronto · Monitorização de concorrentes | Buzzmonitor</title>
-  <meta name="description" content="Assista ao vídeo e crie uma monitorização de concorrentes que o avisa quando ele se mexer. Depois, teste a plataforma na prática.">
+  <title>Inscrição confirmada · Monitorização de concorrentes | Buzzmonitor</title>
+  <meta name="description" content="O seu lugar no webinar está garantido. Consulte a hora da sessão e a ligação de acesso à sala.">
   <meta name="robots" content="noindex, follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Buzzmonitor">
   <meta property="og:locale" content="pt_PT">
-  <meta property="og:title" content="O seu vídeo está pronto · Monitorização de concorrentes">
-  <meta property="og:description" content="Carregue no play e crie uma monitorização de concorrentes que o avisa quando ele se mexer. Depois, teste na prática.">
+  <meta property="og:title" content="Inscrição confirmada · Monitorização de concorrentes">
+  <meta property="og:description" content="O seu lugar está garantido. Consulte a hora da sessão e a ligação de acesso à sala.">
   <meta property="og:image" content="https://webinar.buzzmonitor.com/assets/buzzmonitor/og-primeiro-listening-5-passos.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -103,16 +103,36 @@
     .stage-head h1 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
     .stage-head p { font-size:clamp(18px, 2.1vw, 19px); color: var(--neutral-700); max-width: 600px; margin: 0 auto; }
 
-    .video-wrap { max-width: 900px; margin: 0 auto; }
-    .video-frame {
-      position: relative; aspect-ratio: 16/9; border-radius: var(--radius-lg);
-      overflow: hidden; box-shadow: var(--shadow-lg); background: var(--primary-darker);
-      border: 1px solid rgba(57,1,85,.12);
+    /* ============ CARTAO DE CONFIRMACAO ============ */
+    .confirm-card {
+      max-width: 680px; margin: 0 auto; background: var(--neutral-0);
+      border: 1px solid rgba(57,1,85,.08); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); padding: 38px 34px 32px; text-align: center;
     }
-    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .session-box {
+      background: var(--neutral-50); border: 1px solid rgba(57,1,85,.08);
+      border-radius: var(--radius-md); padding: 20px 22px; margin: 26px 0 4px; text-align: left;
+    }
+    .session-label { display: block; font-family: var(--font-accent); font-weight: 700; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+    .session-when { display: block; font-family: var(--font-heading); font-weight: 800; font-size: clamp(19px, 2.4vw, 22px); line-height: 1.25; color: var(--primary-dark); }
+    .session-when .session-tz { display: block; margin-top: 5px; font-family: var(--font-accent); font-weight: 600; font-size: 14px; color: var(--neutral-700); }
+    .session-skeleton {
+      display: block; width: 100%; max-width: 340px; height: 18px; border-radius: 6px;
+      background: linear-gradient(90deg, #ece0f3 25%, #f7f1fa 50%, #ece0f3 75%);
+      background-size: 200% 100%; animation: bmSkeleton 1.4s infinite;
+    }
+    @keyframes bmSkeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .session-gcal { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-family: var(--font-accent); font-weight: 700; font-size: 13.5px; color: var(--primary); text-decoration: underline; }
+    .session-gcal:hover { color: var(--accent); }
 
-    .stage-cta { text-align: center; margin-top: 32px; }
-    .stage-cta .micro { font-size: 15px; color: var(--neutral-700); margin-top: 14px; }
+    .live-banner { background: var(--success-bg); border-radius: var(--radius-md); padding: 14px 18px; margin-top: 18px; text-align: left; }
+    .live-banner-title { display: flex; align-items: center; gap: 9px; font-family: var(--font-accent); font-weight: 700; font-size: 15px; color: #0a7170; }
+    .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #0a7170; flex-shrink: 0; }
+
+    .confirm-actions { margin-top: 26px; }
+    .confirm-micro { font-size: 15px; color: var(--neutral-700); margin-top: 18px; }
+    .confirm-email { font-size: 15px; color: var(--neutral-700); margin-top: 10px; }
+    .js-only { display: none; }
 
     /* ============ RECAP DOS 5 PASSOS ============ */
     .recap { padding: 84px 0; background: var(--neutral-0); }
@@ -155,6 +175,7 @@
     }
     @media (max-width: 560px) {
       .stage { padding: 40px 0 52px; }
+      .confirm-card { padding: 28px 20px 24px; }
       .recap, .proof, .cta-final { padding: 60px 0; }
       .footer-inner { justify-content: center; text-align: center; }
       .btn-lg { width: 100%; white-space: normal; }
@@ -167,7 +188,12 @@
   .btn-lg{ font-size:17px; }
   .section-label{ font-size:14px; }
   .badge-ok{ font-size:15px; }
-  .stage-cta .micro{ font-size:16px; }
+  .session-label{ font-size:13px; }
+  .session-when .session-tz{ font-size:15px; }
+  .session-gcal{ font-size:15px; }
+  .live-banner-title{ font-size:16px; }
+  .confirm-micro{ font-size:16px; }
+  .confirm-email{ font-size:16px; }
   .recap-num{ font-size:16px; }
   .recap-body{ font-size:16px; }
   .recap-tag{ font-size:13px; }
@@ -182,7 +208,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <a href="#video" class="skip-link">Ir para o vídeo</a>
+  <a href="#confirmacao" class="skip-link">Ir para a confirmação</a>
 
   <header class="header">
     <div class="container header-inner">
@@ -195,28 +221,72 @@
   </header>
 
   <main id="main">
-    <!-- VIDEO -->
-    <section class="stage" id="video">
+    <!-- CONFIRMACAO (2 estados: veio do form x visita direta) -->
+    <section class="stage" id="confirmacao">
       <div class="container">
-        <div class="stage-head">
-          <span class="badge-ok">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            Vídeo disponível
-          </span>
-          <h1>Como criar uma monitorização de concorrentes.</h1>
-          <p>Carregue no play. Vamos criar a monitorização de concorrente do zero, diretamente na Buzzmonitor.</p>
-        </div>
+        <div class="confirm-card">
 
-        <div class="video-wrap">
-          <div class="video-frame">
-            <iframe
-              src="https://www.youtube.com/embed/fG4KpFnwbb4?rel=0"
-              title="Webinar Buzzmonitor: como criar uma monitorização de concorrentes"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
+          <!-- ESTADO A: veio do form, sessionStorage presente -->
+          <div data-block="confirmed" hidden>
+            <span class="badge-ok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Inscrição confirmada
+            </span>
+            <h1>O seu lugar está garantido<span id="confirmName"></span>.</h1>
+            <p>Inscreveu-se no <strong>Como criar uma monitorização de concorrentes</strong>, um webinar ao vivo de 30 minutos, diretamente na plataforma.</p>
+
+            <div class="session-box">
+              <span class="session-label">A sua sessão</span>
+              <strong class="session-when" id="sessionWhenA">Consulte a data no e-mail de confirmação.</strong>
+              <a class="session-gcal" id="gcalA" target="_blank" rel="noopener noreferrer" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/>
+                </svg>
+                Adicionar ao Google Calendar
+              </a>
+            </div>
+
+            <div class="live-banner" id="liveBanner" hidden>
+              <p class="live-banner-title"><span class="live-dot" aria-hidden="true"></span> A sessão está a decorrer agora.</p>
+            </div>
+
+            <div class="confirm-actions">
+              <a class="btn btn-primary btn-lg btn-wrap" id="enterBtn" target="_blank" rel="noopener noreferrer" hidden>
+                <span id="enterBtnLabel">Aceder à sala do webinar</span> <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <p class="confirm-micro">Pelo botão acima entra na sala de espera do ClickMeeting. A apresentação começa à hora marcada.</p>
+            <p class="confirm-email">Enviámos a ligação de acesso para <strong id="emailAddr">o e-mail indicado</strong>. O remetente é ClickMeeting. Se não encontrar, verifique o spam.</p>
           </div>
+
+          <!-- ESTADO B: visita direta / sem sessionStorage / sem JS -->
+          <div data-block="fallback">
+            <h1>A sua ligação de acesso está no seu e-mail</h1>
+            <p>Se se inscreveu no webinar <strong>Como criar uma monitorização de concorrentes</strong>, a ligação exclusiva da sala foi enviada para o e-mail indicado. O remetente é ClickMeeting. Se não encontrar, verifique o spam.</p>
+
+            <div class="session-box">
+              <span class="session-label">Próxima sessão</span>
+              <span class="session-skeleton js-only" id="sessionSkelB" aria-hidden="true"></span>
+              <strong class="session-when" id="sessionWhenB" hidden></strong>
+              <noscript><strong class="session-when">Consulte a data e a ligação no e-mail de confirmação.</strong></noscript>
+              <a class="session-gcal" id="gcalB" target="_blank" rel="noopener noreferrer" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/>
+                </svg>
+                Adicionar ao Google Calendar
+              </a>
+            </div>
+
+            <div class="confirm-actions">
+              <a class="btn btn-primary btn-lg btn-wrap" href="/perpetuo-monitoramento-concorrentes-pt">
+                Garanta o seu lugar <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -246,8 +316,134 @@
   </footer>
 
   <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'video_tks_view', asset: 'perpetuo-monitoramento-concorrentes-pt' });
+    /* Confirmacao do webinar perpetuo PT (serie ClickMeeting 18086).
+       Estado A: veio do form da LP de captura, com o link pessoal da sala no sessionStorage.
+       Estado B: visita direta ou storage bloqueado, busca a proxima sessao na API pra nao
+       deixar a pagina sem data. A data e formatada aqui em pt-PT / Europe/Lisbon, porque os
+       campos formatted_*_pt da API saem em horario de Brasilia. */
+    (function () {
+      var KEY = 'bm_webinar_confirmation';
+      var SERIES = 'concorrentes-pt';
+      var TZ = 'Europe/Lisbon';
+      // Sessao de 30 min; a folga cobre atraso de inicio e quem chega no fim.
+      var SESSION_MS = 30 * 60 * 1000;
+      var LIVE_WINDOW_MS = 45 * 60 * 1000;
+
+      var blockA = document.querySelector('[data-block="confirmed"]');
+      var blockB = document.querySelector('[data-block="fallback"]');
+
+      var data = null;
+      try { data = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (_) { data = null; }
+      var valid = !!(data && data.v === 1 && typeof data.join_url === 'string' && data.join_url);
+      var hasRoomUrl = valid && /^https:\/\/[^\/?#]*\.clickmeeting\.com(\/|\?|#|$)/i.test(data.join_url);
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'webinar_confirmation_view', has_join_url: hasRoomUrl });
+
+      function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1) : t; }
+      function escapeHtml(t) {
+        return String(t).replace(/[&<>"']/g, function (ch) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+        });
+      }
+      function formatFullPt(iso) {
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return null;
+        var wd = new Intl.DateTimeFormat('pt-PT', { weekday: 'long', timeZone: TZ }).format(d);
+        var dia = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', timeZone: TZ }).format(d);
+        var hora = new Intl.DateTimeFormat('pt-PT', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: TZ })
+          .format(d).replace(':', 'h');
+        return escapeHtml(cap(wd) + ', ' + dia)
+          + '<span class="session-tz">' + escapeHtml(hora + ' (hora de Lisboa) · 30 minutos') + '</span>';
+      }
+
+      function gcalUrl(startsAtIso) {
+        var start = new Date(startsAtIso);
+        if (isNaN(start.getTime())) return null;
+        var end = new Date(start.getTime() + SESSION_MS);
+        var fmt = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+        var params = new URLSearchParams({
+          action: 'TEMPLATE',
+          text: 'Webinar Buzzmonitor: como criar uma monitorização de concorrentes',
+          dates: fmt(start) + '/' + fmt(end),
+          details: 'Webinar ao vivo da Buzzmonitor. A ligação da sala está no e-mail de confirmação (remetente ClickMeeting).',
+          location: 'Online'
+        });
+        return 'https://calendar.google.com/calendar/render?' + params.toString();
+      }
+
+      function fillGcal(el, startsAtIso) {
+        if (!el || !startsAtIso) return;
+        var url = gcalUrl(startsAtIso);
+        if (!url) return;
+        el.href = url;
+        el.hidden = false;
+      }
+
+      if (valid) {
+        // ---- ESTADO A ----
+        blockA.hidden = false;
+        blockB.hidden = true;
+
+        if (data.first_name) {
+          document.getElementById('confirmName').textContent = ', ' + data.first_name;
+        }
+        if (data.email) {
+          document.getElementById('emailAddr').textContent = data.email;
+        }
+        if (data.starts_at) {
+          var htmlA = formatFullPt(data.starts_at);
+          if (htmlA) document.getElementById('sessionWhenA').innerHTML = htmlA;
+        }
+        fillGcal(document.getElementById('gcalA'), data.starts_at);
+
+        if (hasRoomUrl) {
+          var enterBtn = document.getElementById('enterBtn');
+          enterBtn.href = data.join_url;
+          enterBtn.hidden = false;
+        }
+
+        var startMs = data.starts_at ? new Date(data.starts_at).getTime() : NaN;
+        var agora = Date.now();
+        var aoVivo = data.in_progress
+          || (isFinite(startMs) && agora >= startMs && agora < startMs + LIVE_WINDOW_MS);
+        if (aoVivo) {
+          document.getElementById('liveBanner').hidden = false;
+          var label = document.getElementById('enterBtnLabel');
+          if (label) label.textContent = 'Entrar na sala agora';
+        }
+        return;
+      }
+
+      // ---- ESTADO B: busca a proxima sessao pra nao deixar a pagina sem data ----
+      var skel = document.getElementById('sessionSkelB');
+      var whenB = document.getElementById('sessionWhenB');
+      if (skel) skel.style.display = 'block';
+
+      function encerraSkeleton(conteudo, isHtml) {
+        if (skel) skel.remove();
+        if (whenB) {
+          if (isHtml) whenB.innerHTML = conteudo;
+          else whenB.textContent = conteudo;
+          whenB.hidden = false;
+        }
+      }
+
+      fetch('/api/next-webinar?series=' + SERIES, { headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var html = (d && d.ok && d.starts_at) ? formatFullPt(d.starts_at) : null;
+          if (html) {
+            encerraSkeleton(html, true);
+            fillGcal(document.getElementById('gcalB'), d.starts_at);
+          } else {
+            encerraSkeleton('Próxima sessão a ser agendada.', false);
+          }
+        })
+        .catch(function () {
+          encerraSkeleton('Consulte a data e a ligação no e-mail de confirmação.', false);
+        });
+    })();
   </script>
 </body>
 </html>

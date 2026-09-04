@@ -143,4 +143,8 @@ Saiu em 2026-09-02: `buzzmonitor/perpetuo-monitoramento-concorrentes`. O par vir
 vivo** (série ClickMeeting `18043`) e agora usa o form nativo + as serverless functions do
 guarda-chuva, não o Jotform. Ver o README da LP.
 
+Saiu em 2026-09-04: `buzzmonitor/perpetuo-monitoramento-concorrentes-pt`, pelo mesmo motivo (série
+`18086`, Portugal). Esse par nunca chegou a usar o Jotform: tinha form **mock** que só redirecionava
+para a tks com o vídeo.
+
 Despachante (§2.2) hoje em: `buzzmonitor/perpetuo-social-listening-confirmado`.

@@ -1,28 +1,76 @@
 # LP · perpetuo-monitoramento-concorrentes-pt (par captura + tks) · PT-PT
 
-Duplicação **1:1** do par PT-BR [`perpetuo-monitoramento-concorrentes`](../perpetuo-monitoramento-concorrentes/README.md) — mesmo design, mesmo vídeo, mesma copy — traduzida para Português Europeu (PT-PT).
+Par PT-PT do webinar perpétuo **ao vivo** de monitorização de concorrentes. Nasceu em 2026-08-25
+como duplicação 1:1 do par PT-BR [`perpetuo-monitoramento-concorrentes`](../perpetuo-monitoramento-concorrentes/README.md)
+no modelo on-demand (form mock + vídeo gravado na tks) e passou a webinar ao vivo em 2026-09-04,
+ligado à série ClickMeeting **18086** (Portugal).
 
 | Página | Slug | Papel | robots |
 |---|---|---|---|
-| Captura | `perpetuo-monitoramento-concorrentes-pt` | hero + form "preencha e assista" + "o que vai aprender" + autoridade | noindex |
-| Thank-you | `perpetuo-monitoramento-concorrentes-pt-confirmado` | vídeo embedado + CTA "fale com especialista" | noindex |
+| Captura | `perpetuo-monitoramento-concorrentes-pt` | hero + form nativo ClickMeeting + "o que vai aprender" + autoridade | noindex |
+| Thank-you | `perpetuo-monitoramento-concorrentes-pt-confirmado` | confirmação em 2 estados (link da sala + data da sessão) + CTA | noindex |
 
-**Fluxo:** captura (form mock) → submit redireciona para `/perpetuo-monitoramento-concorrentes-pt-confirmado` → assiste ao vídeo → CTA final leva para `content.buzzmonitor.com/monitoramento-manual-pt` (conteúdo próprio da versão PT, diferente do CTA da versão PT-BR — pedido explícito da Catharina, 2026-08-25).
+**Fluxo:** captura → o form posta em `/api/clickmeeting-register` (`series=concorrentes-pt`),
+que inscreve na próxima sessão da série → a resposta traz a **ligação pessoal da sala**, guardada
+em `sessionStorage` → redirect para `/perpetuo-monitoramento-concorrentes-pt-confirmado`, que
+mostra o botão de entrar na sala, a data da sessão e o "adicionar ao Google Calendar". CTA final
+leva para `content.buzzmonitor.com/monitoramento-manual-pt` (conteúdo próprio da versão PT,
+diferente do CTA da versão PT-BR — pedido explícito da Catharina, 2026-08-25).
 
-**Vídeo:** o mesmo do par PT-BR — `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`), sem legendas/dobragem PT-PT. **Usar youtube.com, NÃO youtube-nocookie** — o CSP do guarda-chuva webinar.buzzmonitor.com só liberta `www.youtube.com` no `frame-src`.
+## Série ClickMeeting (18086)
 
-## Origem da copy (2026-08-25)
+| Campo | Valor |
+|---|---|
+| `recurring_config_id` | `18086` |
+| Chave `?series=` | `concorrentes-pt` |
+| Nome | Como construir um monitoramento de concorrentes  Portugal |
+| `room_url` | `elifegroup.clickmeeting.com/como-construir-um-monitoramento-de-concorrentes-portugal` |
+| `room_pin` | 355-724-775 |
+| Horário | **10:00 hora de Lisboa** (= 06:00 BRT), sessão de 30 min, diária |
+| Timezone | `Europe/Lisbon` |
 
-Duplicação pedida pela Catharina do par PT-BR `perpetuo-monitoramento-concorrentes` (fonte original: briefing de 2026-08-12). Mesma estrutura, mesmo vídeo, mesma copy — apenas traduzida para PT-PT seguindo `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` (Regras de Ouro: "está a funcionar", "utilizador(es)", possessivo com artigo, "folha de cálculo", "captura de ecrã", "monitorização"/"monitorizar") e `conhecimento/editorial/regras-anti-ia.md`.
+**Data na página é formatada no cliente.** O `next-webinar.js` devolve `formatted_full_pt` em
+`pt-BR` + `America/Sao_Paulo`; usar esse campo aqui anunciaria 06h00 em vez de 10h00. As duas
+páginas formatam a partir de `starts_at` com `Intl.DateTimeFormat('pt-PT', { timeZone: 'Europe/Lisbon' })`,
+mesmo padrão das LPs ES (que formatam em `es-MX` / Cidade do México).
+
+**E-mail de confirmação sai no pack `br`.** O ClickMeeting não tem código `pt-PT` (só pl, en, de,
+ru, es, fr, it, br). As mensagens de erro do formulário, essas sim, saem em PT-PT
+(`MESSAGES.pt` no `clickmeeting-register.js`).
+
+**Convite de moderador:** série mapeada em `.claude/skills/convites-moderador/config.json` para
+`manuela.martins@elifeportugal.com` e `raquel.oliveira@buzzmonitor.com`. Como a sessão começa
+06:00 BRT e o cron roda 07:00 BRT, o convite desta série é sempre para a sessão do dia seguinte.
+
+## Origem da copy
+
+Duplicação pedida pela Catharina (2026-08-25) do par PT-BR `perpetuo-monitoramento-concorrentes`
+(fonte original: briefing de 2026-08-12). Mesma estrutura e mesma copy, traduzida para PT-PT
+seguindo `conhecimento/linguistico/pt-portugal/padrao-linguistico.md` (Regras de Ouro: "está a
+funcionar", "utilizador(es)", possessivo com artigo, "folha de cálculo", "captura de ecrã",
+"monitorização"/"monitorizar") e `conhecimento/editorial/regras-anti-ia.md`.
+
+Em 2026-09-04, com a virada para ao vivo, a copy de "preencha e assista" deu lugar a copy de
+inscrição ("Garanta o seu lugar", "30 minutos", CTA final para a próxima sessão) e a tks trocou o
+vídeo pela confirmação. Vocabulário PT-PT do formulário: **"Apelido"** (não "Sobrenome"),
+**"ligação"** de acesso (não "link"), "A enviar...", "Erro de ligação".
 
 ## Pendências antes de finalizar
 
-- **Link do WhatsApp (header):** o CTA do header da tks ("Falar com especialista") ainda está com temp `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar. O CTA final já foi trocado (2026-08-25) pra `content.buzzmonitor.com/monitoramento-manual-pt`.
-- **Form real:** a captura ainda é MOCK (redireciona no submit).
-- **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png` (do par PT-BR/irmão). Trocar por uma de concorrente.
-- **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas — os mesmos números e marcas do par PT-BR foram mantidos por pedido explícito de duplicação 1:1.
+- **Link do WhatsApp (header da tks):** o CTA "Falar com especialista" ainda está com temp
+  `https://buzzmonitor.com/`. Trocar pelo link real quando a Catharina mandar.
+- **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png`. O par PT-BR já ganhou a sua
+  (`og-perpetuo-monitoramento-concorrentes.png`); gerar a versão PT com o mesmo
+  `assets/og-source.html` + `render_og.py` do par BR.
+- **Vídeo gravado aposentado:** o embed do YouTube `fG4KpFnwbb4` saiu da tks. Se algum dia a
+  versão on-demand voltar a ser útil, ela vive no histórico do Git (commit anterior a 2026-09-04).
+- **Dados de autoridade (Victor):** confirmar números (1.000+/300+/500+/10mil) e uso das marcas —
+  os mesmos números e marcas do par PT-BR foram mantidos por pedido de duplicação 1:1.
 - **Flip `index`** quando for a versão final (hoje `noindex` de review).
 
 ## Construção
 
-Captura **dark premium**; tks **clara** (fundo branco). Anti-IA aplicado (0 em-dash, "a Buzzmonitor" feminino). Publicar via fluxo CI: worktree a partir da main + entrada no manifesto + PR pela web (sem `gh` nesta máquina; o merge-bot auto-mergeia conteúdo).
+Captura **dark premium**; tks **clara** (fundo branco). Anti-IA aplicado (0 em-dash, "a
+Buzzmonitor" feminino). Publicar via fluxo CI: entrada já existe no manifesto de
+`webinar.buzzmonitor.com`, então é PR na main e o `lp-deploy.yml` publica (sem sibling, sem deploy
+manual).

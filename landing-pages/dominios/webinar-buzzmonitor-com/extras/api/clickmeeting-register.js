@@ -10,12 +10,17 @@ const SERIES_THANK_YOU = {
   'smartfit-es': 'https://webinar.buzzmonitor.com/caso-smartfit-confirmado',
   'crisis-es': 'https://webinar.buzzmonitor.com/gestion-crisis-confirmado',
   'concorrentes-br': 'https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes-confirmado',
+  'concorrentes-pt': 'https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes-pt-confirmado',
 };
 const FALLBACK_THANK_YOU = 'https://webinar.buzzmonitor.com/primer-listening-5-pasos-confirmado';
 
-// Idioma do e-mail de confirmacao do ClickMeeting, por serie. Default 'br' (PT-BR).
-// Codigos validos ClickMeeting: pl, en, de, ru, es, fr, it, br.
-const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es', 'listening-es': 'es', 'smartfit-es': 'es', 'crisis-es': 'es' };
+// Idioma da serie: escolhe o pack de mensagens devolvido ao visitante E o e-mail de
+// confirmacao do ClickMeeting. Default 'br' (PT-BR).
+const SERIES_LANG = { atencion: 'es', 'mcp-es': 'es', 'listening-es': 'es', 'smartfit-es': 'es', 'crisis-es': 'es', 'concorrentes-pt': 'pt' };
+// Codigos validos no ClickMeeting: pl, en, de, ru, es, fr, it, br. Nao existe pt-PT, entao a
+// serie portuguesa (concorrentes-pt) recebe o e-mail de confirmacao no pack 'br', que e o em
+// portugues. Isto vale so pro e-mail: as mensagens da LP saem em PT-PT (MESSAGES.pt).
+const CM_EMAIL_LANG = { pt: 'br' };
 
 // Mensagens ao visitante, no idioma da serie. O dominio serve LPs em PT-BR e em ES-LATAM;
 // ate 2026-08-25 todas as respostas saiam em PT-BR, inclusive nas LPs espanholas.
@@ -42,10 +47,21 @@ const MESSAGES = {
     already_registered: 'Este correo ya est\u00e1 registrado en este webinar.',
     cm_failed: 'No pudimos completar tu registro. Int\u00e9ntalo de nuevo.',
   },
+  pt: {
+    invalid_payload: 'Dados inv\u00e1lidos. Recarregue a p\u00e1gina e tente novamente.',
+    missing_fields: 'Preencha o nome, o apelido, o e-mail e a empresa.',
+    invalid_email: 'E-mail inv\u00e1lido.',
+    no_webinar: 'N\u00e3o h\u00e1 nenhuma sess\u00e3o dispon\u00edvel neste momento. Tente novamente dentro de alguns minutos.',
+    resolve_failed: 'N\u00e3o foi poss\u00edvel concluir a sua inscri\u00e7\u00e3o agora. Tente novamente dentro de instantes.',
+    cm_unreachable: 'N\u00e3o foi poss\u00edvel concluir a sua inscri\u00e7\u00e3o agora. Tente novamente dentro de instantes.',
+    validation_error: 'Confirme os dados: nome, apelido, e-mail e empresa s\u00e3o obrigat\u00f3rios.',
+    already_registered: 'Este e-mail j\u00e1 est\u00e1 inscrito neste webinar.',
+    cm_failed: 'N\u00e3o foi poss\u00edvel concluir a sua inscri\u00e7\u00e3o. Tente novamente.',
+  },
 };
 
 function msg(series, key) {
-  const pack = MESSAGES[SERIES_LANG[series] === 'es' ? 'es' : 'br'] || MESSAGES.br;
+  const pack = MESSAGES[SERIES_LANG[series]] || MESSAGES.br;
   return pack[key];
 }
 
@@ -148,7 +164,8 @@ module.exports = async (req, res) => {
   params.append('registration[3]', email);
   params.append('registration[10]', company);
   params.append('confirmation_email[enabled]', '1');
-  params.append('confirmation_email[lang]', SERIES_LANG[series] || 'br');
+  const serieLang = SERIES_LANG[series] || 'br';
+  params.append('confirmation_email[lang]', CM_EMAIL_LANG[serieLang] || serieLang);
 
   let apiResponse;
   try {

@@ -39,6 +39,7 @@ const SERIES = {
   'smartfit-es': '17928', // Caso Smart Fit Latam (LP /caso-smartfit + -confirmado), room_pin 854-775-474, ES-LATAM, tz America/Mexico_City
   'crisis-es': '17933', // Gestión de Crisis (LP /gestion-crisis + -confirmado), room_pin 361-697-942, ES-LATAM, tz America/Mexico_City
   'concorrentes-br': '18043', // Como construir um monitoramento de concorrentes (LP /perpetuo-monitoramento-concorrentes + -confirmado), room_pin 692-573-549, PT-BR, tz America/Sao_Paulo, 09:00 BRT
+  'concorrentes-pt': '18086', // Como construir um monitoramento de concorrentes Portugal (LP /perpetuo-monitoramento-concorrentes-pt + -confirmado), room_pin 355-724-775, PT-PT, tz Europe/Lisbon, 10:00 hora de Lisboa. A LP formata a data no cliente (pt-PT/Lisboa): os campos formatted_*_pt desta resposta saem sempre em horario de Brasilia.
 };
 // Aposentada 2026-08-19: mcp (17601, Buzzmonitor MCP PT-BR). Serie apagada no ClickMeeting
 // por limite de disco (zero inscritos em 57 sessoes). A LP /mcp-na-pratica-p seguiu no ar
