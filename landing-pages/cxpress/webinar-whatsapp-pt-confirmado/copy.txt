@@ -1,0 +1,30 @@
+=== HERO ===
+OVERLINE: Inscrição confirmada
+H1: Está inscrito. O acesso ao webinar vai a caminho.
+SUB: Enviámos a ligação de acesso para o e-mail que indicou. Se não chegar nos próximos minutos, verifique a pasta de spam ou de promoções.
+CTA: Abrir o webinar
+LABEL: 10 minutos · Online
+
+=== PREPARACAO ===
+H2: Como aproveitar os 10 minutos
+LIST ITEM: Reserve os 10 minutos sem interrupções. O webinar é curto e cada bloco tem informação prática.
+LIST ITEM: Tenha presente como a sua empresa usa o WhatsApp hoje: aplicação no telemóvel, WhatsApp Web ou ferramenta externa. Vai perceber logo em que ponto está.
+LIST ITEM: Se partilha o número com a equipa, avise quem atende. A decisão de migrar passa por essas pessoas.
+LIST ITEM: Anote as dúvidas. No fim pode pedir uma demonstração e falar com um especialista sobre o seu caso.
+
+=== PLATAFORMA ===
+H2: Enquanto o e-mail chega
+BODY: A Cxpress unifica WhatsApp (API Oficial da Meta), Instagram, Facebook, e-mail, chat do site e telefonia no mesmo painel. Um cliente, um histórico, uma visão completa da conversa, independentemente do canal por onde ela começou.
+BODY: Com apoio de IA no primeiro nível e distribuição dos contactos pela equipa de vendas.
+CTA: Pedir uma demonstração
+LABEL: Sem trocar o número. Sem parar a operação.
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos os direitos reservados.
+
+# Thanks page da LP webinar-whatsapp-pt (mesmo webinar perpetuo no ClickMeeting).
+# Idioma: PT-PT nativo. "Enviamos" no preterito perfeito com acento (enviamos = presente / enviamos = passado -> "Enviamos"
+#   grafado "Enviámos" conforme norma PT-PT), "apelido", "ligacao", "telemovel", "equipa", "aplicacao", "partilha".
+# Lista de 4 itens (evita o padrao "sempre 3").
+# Revisao anti-IA: em-dash 0. Antitese-por-negacao 0. Exclamacoes 0. Sem filler.
+# CTA secundario aponta para pedido de demonstracao (unico proximo passo comercial, alinhado ao ultimo slide do deck).

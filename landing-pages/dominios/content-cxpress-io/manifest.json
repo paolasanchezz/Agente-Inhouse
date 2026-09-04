@@ -281,6 +281,16 @@
       "source": "landing-pages/cxpress/webinar-tecnologia-pt"
     },
     {
+      "slug": "webinar-whatsapp-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-whatsapp-pt"
+    },
+    {
+      "slug": "webinar-whatsapp-pt-confirmado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-whatsapp-pt-confirmado"
+    },
+    {
       "slug": "whatsapp-agencias-pt",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/whatsapp-agencias-pt"

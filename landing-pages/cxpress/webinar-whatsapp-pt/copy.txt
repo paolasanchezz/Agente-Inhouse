@@ -1,0 +1,117 @@
+=== HERO ===
+OVERLINE: Webinar online e gratuito · 10 minutos
+H1: O número de WhatsApp da sua empresa pode ser bloqueado amanhã.
+SUB: Em 10 minutos, veja como migrar para a API Oficial da Meta sem trocar o número que os seus clientes já conhecem, automatizar com apoio de IA e distribuir os contactos pela equipa de vendas.
+CTA: Garantir o meu lugar
+LABEL: Inscrição gratuita
+
+=== INSCRICAO ===
+H2: Receba o acesso ao webinar
+SUB: Registe-se e receba a ligação de acesso no seu e-mail.
+LABEL: Nome
+LABEL: Apelido
+LABEL: E-mail profissional
+LABEL: Empresa
+CTA: Quero ver o webinar
+LABEL: Gratuito. Ao registar-se, aceita receber comunicações da Cxpress.
+
+=== PROBLEMA ===
+H2: Começou pequeno. Depois o negócio cresceu.
+BODY: Um número, um telemóvel, uma pessoa responsável por responder. Enquanto o volume era baixo, funcionava.
+LIST ITEM: O telemóvel da empresa passou a circular entre várias pessoas.
+LIST ITEM: A equipa abriu várias sessões de WhatsApp Web para dar conta das mensagens.
+LIST ITEM: Para acelerar os envios, entrou uma ferramenta de automação não oficial.
+LIST ITEM: Os disparos em massa começaram a gerar denúncias por parte dos utilizadores.
+LIST ITEM: Vários acessos em simultâneo e padrões de envio pouco naturais colocaram o número em risco.
+BODY: A aplicação WhatsApp Business foi concebida para operações pequenas, com uma pessoa a atender. O que a sua empresa faz hoje já está muito acima disso.
+
+=== CONSEQUENCIA ===
+H2: A restrição chega primeiro como bloqueio temporário. Depois deixa de ser temporária.
+BODY: E o número que estava no site, no Google, no cartão e nos contactos guardados pelos clientes deixa de funcionar.
+H3: Para o cliente
+BODY: Envia mensagem, não recebe resposta e conclui que a empresa deixou de responder.
+H3: Para a equipa
+BODY: Instala-se o caos: contactar clientes por outros meios, recuperar conversas e explicar o que aconteceu.
+H3: Para o negócio
+BODY: Pedidos sem resposta, orçamentos parados e vendas que vão para o concorrente.
+BODY: O risco não está no bloqueio em si. Está em assentar a operação numa estrutura que nunca foi pensada para este nível de utilização.
+
+=== PROGRAMA ===
+H2: O que vai ver em 10 minutos
+H3: Porque é que alguns números acabam bloqueados
+BODY: Os sinais que a Meta lê como abuso e que aumentam a probabilidade de restrição, mesmo em empresas sérias.
+H3: A diferença real entre as formas de usar o WhatsApp numa empresa
+BODY: Aplicação WhatsApp Business, soluções não oficiais e API Oficial da Meta. O que cada uma permite e onde cada uma falha.
+H3: Como migrar para a API Oficial sem perder o número
+BODY: O processo de migração, o que muda para quem já atende pela aplicação e em que casos o COEX simplifica a transição.
+
+=== TRES-FORMAS ===
+H2: Três formas de usar o WhatsApp. Não oferecem a mesma segurança.
+H3: Aplicação WhatsApp Business
+BODY: Aplicação no telemóvel, pensada para pequenos negócios com uma pessoa a atender.
+H3: Soluções não oficiais
+BODY: Recorrem ao WhatsApp Web para dar acesso a vários utilizadores. Funcionam fora das regras da Meta e arriscam bloqueio.
+H3: API Oficial da Meta
+BODY: Solução empresarial certificada pela Meta, para vários utilizadores, integrações, automações e infraestrutura profissional em conformidade com as políticas da plataforma.
+BODY: Se usa uma das duas primeiras, vale a pena planear a transição.
+
+=== NUMERO ===
+H2: «Vou perder o meu número?» Não.
+BODY: A migração mantém exatamente o mesmo número que os seus clientes já conhecem. Passa a funcionar através da infraestrutura oficial do WhatsApp.
+LIST ITEM: Vários colaboradores a responder pelo mesmo número
+LIST ITEM: Funcionamento dentro das regras da Meta
+LIST ITEM: Histórico centralizado e maior estabilidade
+LIST ITEM: Risco de bloqueio muito mais baixo
+BODY: A API Oficial reduz o risco. As boas práticas mantêm-no baixo: comunicar apenas com quem deu autorização, usar os modelos de mensagem aprovados e respeitar quem deixa de querer receber comunicações.
+
+=== COEX ===
+OVERLINE: COEX
+H2: A coexistência que resolve o dilema da migração
+BODY: O COEX é uma funcionalidade oficial da Meta que permite usar a aplicação WhatsApp Business e a API Oficial ao mesmo tempo, no mesmo número.
+LIST ITEM: Quem está habituado a responder pela aplicação continua a fazê-lo
+LIST ITEM: A empresa passa também a beneficiar das funcionalidades profissionais da API
+LIST ITEM: A migração acontece sem interromper o atendimento
+BODY: O COEX faz mais sentido quando a operação já depende da aplicação móvel. Nesses casos, costuma ser a transição mais simples.
+
+=== PLATAFORMA ===
+H2: Na Cxpress, o atendimento acontece num único lugar
+BODY: WhatsApp, Instagram, Facebook, e-mail, chat do site e telefonia no mesmo painel. Um cliente, um histórico, uma visão completa da conversa, independentemente do canal por onde ela começou.
+BODY: Com apoio de IA no primeiro nível e distribuição dos contactos pela equipa de vendas.
+
+=== PARA QUEM ===
+H2: Este webinar é para si se...
+LIST ITEM: Atende ou vende pelo WhatsApp e o número da empresa é o principal ponto de contacto.
+LIST ITEM: A equipa partilha o mesmo telemóvel ou usa várias sessões de WhatsApp Web.
+LIST ITEM: Já teve um bloqueio temporário, ou conhece alguém do setor que perdeu o número.
+LIST ITEM: Quer estrutura profissional sem trocar o número nem parar a operação.
+
+=== URGENCIA ===
+LABEL: O bloqueio não avisa
+H2: Ninguém planeia a migração no dia em que o número deixa de funcionar.
+BODY: Nessa altura já é tarde. A operação está parada, os clientes estão sem resposta e a equipa está a improvisar. Dez minutos agora poupam essa semana.
+CTA: Garantir o meu lugar
+
+=== CTA-FINAL ===
+H2: Qual é a estrutura certa para a sua operação?
+BODY: API Oficial, automação com apoio de IA e distribuição dos contactos pela equipa. Depende de como vende hoje e de para onde quer crescer. Veja o webinar de 10 minutos e decida com informação.
+CTA: Garantir o meu lugar
+LABEL: Online · Gratuito · 10 minutos
+
+=== FOOTER ===
+FOOTER: © 2026 Cxpress. Todos os direitos reservados.
+
+# Fonte: "Webinar Perpetuo Cxpress.pdf" (apresentacao de 80 slides, PT-PT), enviada pela Marielle em 2026-09-04.
+# Idioma: PT-PT nativo (deck ja vinha em PT-PT; copy escrita nativamente, nao traduzida do BR).
+# PT-PT aplicado: "equipa", "telemovel", "aplicacao", "utilizadores", "contactos", "apelido",
+#   "ligacao de acesso", "esta a improvisar" (nunca gerundio), "precisam do COEX" (precisar de),
+#   possessivo com artigo ("a sua empresa", "o seu e-mail"), aspas francesas, CTA nominal
+#   ("Garantir o meu lugar"), tratamento "voce" em 3.a pessoa ("veja", "registe-se", "para si").
+# Funil: ToFu (webinar, trafego frio de anuncio) -> form na 2.a secao (GUIDELINES §10).
+# Form: MOCK. Publicacao pedida sem formulario real (GUIDELINES §11). Integracao futura via
+#   /lp-integrar-form ou via a API do ClickMeeting (ver landing-pages/cxpress/conheca-a-cxpress/BRIEF-IMPLEMENTACAO.md).
+# Revisao anti-IA: em-dash 0. Antitese-por-negacao 1x ("O risco nao esta no bloqueio em si. Esta em assentar...")
+#   dentro do limite de 2. Exclamacoes 0. Pergunta retorica: 1 por secao (NUMERO, CTA-FINAL). Sem filler.
+# Listas variadas (5 / 3 / 4 / 3 / 4) para nao cair no padrao "sempre 3 itens".
+# Boas praticas de envio entregues em prosa fluida, nao em checklist (padroes-de-copy.md Padrao 2).
+# "apoio de IA no primeiro nivel" em vez de "atendimento com IA" (padroes-de-copy.md Padrao 4).
+# Nenhum dado quantitativo inventado: o deck nao traz metrica e o BRANDBOOK proibe case nao verificado.
