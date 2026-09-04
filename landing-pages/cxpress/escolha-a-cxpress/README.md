@@ -348,3 +348,64 @@ A copy do CTA final ainda termina com **"Se preferir, fale agora pelo WhatsApp."
 botão de WhatsApp que ficava ao lado dela saiu. A frase não virou mentira (o botão
 flutuante está na tela, pulsando), mas ficou sem um alvo adjacente. Não mexi porque
 é decisão de copy (GUIDELINES §5).
+
+---
+
+## 10. Painel de dashboards em CSS (2026-09-04)
+
+O módulo "Gerencie com eficiência por meio de dashboards" deixou de usar o
+`mockup-dashboard.webp` (monitor com o dashboard) e passou a reproduzir o **painel
+escuro com leque de cartas de KPI** que a página original usa ali. Feito em CSS, zero
+byte de imagem, mesmo caminho de `.chips` e `.queue`.
+
+Preview publicado (tamanho real, animado, com as duas variantes de movimento):
+<https://claude.ai/code/artifact/1557bbd1-8484-4029-8e46-0ae472a1c0e3>
+
+### Por que não foi o arquivo original
+
+O painel do original é **animado** (o frame disponível mostra as cartas em pleno
+deslocamento, com o texto fantasma), e o arquivo não está na pasta de assets do
+mirror: não há `.mp4`/`.webm`, e nenhum dos 9 GIFs corresponde. Decisão do Victor
+(2026-09-04): seguir com a versão em CSS.
+
+### Medidas tiradas do frame original
+
+| O que | Valor |
+|---|---|
+| Fundo do painel | `#2f2f2f` (cinza escuro neutro, não navy) |
+| Preenchimento da carta da frente | `#d7d7e3`, ou seja branco a ~82% sobre o painel |
+| Rótulo | navy (`--navy`) |
+| Valor | royal (`--royal`) |
+
+As cartas são de vidro **claro** com texto escuro. A primeira versão do preview tinha
+isso invertido (rótulo branco sobre carta escura); corrigido depois de amostrar os
+pixels do frame.
+
+### Como escala
+
+O painel declara `container-type: inline-size` e **todo o interior está em `cqw`**, então
+a composição inteira escala junto com a coluna do módulo, como uma imagem faria. Dois
+detalhes que isso exigiu:
+
+- A `perspective` mora no `.kpis__deck`, não no `.kpis`. Unidade `cqw` usada no próprio
+  elemento que declara `container-type` se refere ao container **ancestral**, não a ele
+  mesmo, e a perspectiva sairia errada.
+- Os tamanhos de fonte têm piso em `max()` (9px no rótulo, 13px no valor). Sem isso, na
+  coluna estreita do mobile o texto cairia para ~8px.
+
+### Geometria do leque
+
+O primeiro ajuste espalhava as cartas demais e a sétima era **cortada** pelo
+`overflow:hidden` do painel (44px para fora na horizontal). O passo do leque foi de
+11cqw para 8.2cqw e o avanço em Z de 3.8cqw para 2.2cqw. Medido depois: as 7 cartas
+cabem com folga mínima de 21px, num painel de 520×293.
+
+O `@keyframes kpiLeque` começa **aberto** de propósito, para que o primeiro frame (e
+qualquer screenshot ou thumbnail) mostre o painel legível em vez da pilha fechada.
+
+### Pendente
+
+**Dois valores incertos.** "Tickets novos" e "Tickets em andamento" estão ambos com 58,
+lidos de um frame onde os dois textos se sobrepõem. Pode ser leitura errada. São números
+ilustrativos de um elemento decorativo, no mesmo espírito dos nomes fictícios da
+`.queue`, mas vale confirmar com o Victor.

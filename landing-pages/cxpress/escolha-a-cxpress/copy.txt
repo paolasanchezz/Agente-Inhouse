@@ -82,6 +82,7 @@ BODY: Distribua tickets (registros) de atendimento automaticamente ou manualment
 
 H3: Gerencie com eficiência por meio de dashboards
 BODY: Deixe as planilhas para trás. Transforme suas estatísticas de atendimento em painéis intuitivos.
+VISUAL: painel escuro com leque de 7 cartas de KPI, em CSS (decorativo, aria-hidden). Cartas: Tempo médio de espera 1h · Total de consumidores 585 · Tempo médio de resposta 1h · Mensagens trocadas 6.000 · Tickets novos 58 · Tickets em andamento 58 · Taxa de desistência 5,4%
 
 ## SEÇÃO 5 — PROVA SOCIAL
 
