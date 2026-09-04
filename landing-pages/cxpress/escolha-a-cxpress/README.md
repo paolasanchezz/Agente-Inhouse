@@ -117,15 +117,18 @@ Para reverter qualquer célula, é trocar `mk--part` por `mk--yes` / `mk--no` na
 
 ## 2. Estrutura
 
-1. **Hero** (`#topo-hero`) — logo, WhatsApp, overline, H1 com a dor, subtítulo, **formulário
+0. **Menu** — só a logo, centralizada, ancorando `#topo`.
+1. **Hero** (`#topo-hero`) — overline, H1 com a dor, subtítulo, **formulário
    centralizado** (`#form`), faixa de 3 provas.
-2. **Comparativo** (`#comparativo`) — legenda, tabela, fecho e CTA duplo.
+2. **Comparativo** (`#comparativo`) — selo "Conecte-se à Cxpress", legenda, tabela,
+   fecho e CTA duplo.
 3. **Por que escolhem** — 4 números de prova (em CSS) + os 5 bullets da original.
 4. **Módulos** — os 5 blocos da original, alternando texto e visual.
-5. **Clientes** — parede de logos ("mais de 800 empresas").
+5. **Clientes** — esteira infinita com 42 logos.
 6. **FAQ** — 6 perguntas em `<details>`.
 7. **CTA final** — volta para o formulário, WhatsApp e telefone.
-8. **Rodapé** — institucional, canais, contatos, dados legais.
+8. **Rodapé** — logo, linha legal e redes sociais.
+9. **Botão flutuante** — abre o formulário da campanha num modal.
 
 ---
 
@@ -133,14 +136,20 @@ Para reverter qualquer célula, é trocar `mk--part` por `mk--yes` / `mk--no` na
 
 | Arquivo | Origem | Observação |
 |---|---|---|
-| `logo-cxpress.png`, `logo-cxpress-branco.png`, `icon-whatsapp.png`, `canais-integrados.webp` | LP `planos` | `canais-integrados` recomprimido de PNG 127 KB para WebP 23 KB |
-| `clientes-cxpress.webp` | `brand/cxpress/assets/plataforma/clientes-cxpress.png` | 368 KB PNG → 68 KB WebP a 1600 px |
+| `logo-cxpress.png`, `icon-whatsapp.png` | LP `planos` | |
+| `clientes/cliente-01..42.png` | LP `banimento-de-whatsapp` | 42 logos da esteira, 308 KB no total; o build deduplica no destino |
+| logo do rodapé | `brand/cxpress/assets/logos/logo-reversed.svg` | referenciado por `../../brand/...`, o build reescreve para `/assets/cxpress/logos/` |
 | `mockup-tickets.webp`, `mockup-dashboard.webp`, `card-api-chatgpt.webp` | mirrors da página original | redimensionados e reconvertidos |
 | `fonts/*.woff2` | Google Fonts, subset latin | Open Sans e Source Sans 3, variáveis |
 | `og-escolha-a-cxpress.png` | `assets/og-template.html` via `render_og.py` | 1200×630 |
 
 Os dois blocos que eram GIF/imagem na original ("canais no mesmo painel" e "fila de tickets")
-são markup + CSS, sem imagem.
+são markup + CSS, sem imagem. O mesmo vale para o selo "Conecte-se à Cxpress": o GIF
+do anel laranja virou SVG desenhado por `stroke-dashoffset`.
+
+Saíram com a troca do rodapé e da seção de clientes (não são mais referenciados):
+`logo-cxpress-branco.png`, `canais-integrados.webp`, `clientes-cxpress.webp`,
+`icon-footer-1.png`.
 
 ---
 
@@ -199,3 +208,46 @@ painel do Jotform, que resolve todas as LPs de uma vez, e não CSS LP a LP.
 - [ ] Rodar `/lp-publicar cxpress escolha-a-cxpress content.cxpress.io` (entra no manifesto e o
       CI deploya). **Nunca deployar à mão.**
 - [ ] Depois de publicar, adicionar a linha em `landing-pages/catalogo/lps-cxpress.md`.
+
+---
+
+## 7. Alinhamento com a `banimento-de-whatsapp` e a `telefonia-ia-latam`
+
+Rodada de ajustes pedida pelo Victor, tomando a `banimento-de-whatsapp` como
+página-padrão e a `telefonia-ia-latam` como origem do desenho.
+
+| # | Ajuste | Referência |
+|---|---|---|
+| 2 | Rodapé enxuto (logo + linha legal + 4 redes, alvos de 44 px) no lugar do rodapé k2x | `banimento-de-whatsapp` |
+| 3 | H1 quebra depois de "atendimento", como na original. Exigiu abrir o `.hero__head` de 820 px para 980 px: a 2ª linha pede 949 px no topo do `clamp` | mirror WordPress |
+| 3 | Selo "Conecte-se à Cxpress" foi do fim do hero para o **topo do comparativo**, com o check **acima** do texto e o anel laranja **vazado** (era círculo cheio com traço branco) | mirror WordPress |
+| 4 | Seção de clientes virou esteira infinita de 42 logos, com pausa no hover | `banimento-de-whatsapp` |
+| 4 | Checagem dos títulos: 9 títulos, nenhum duplicado (o do modal foi renomeado para "Fale com um especialista pelo WhatsApp") | — |
+| 5 | Menu: link "Falar no WhatsApp" removido, logo centralizada ancorando `#topo` | — |
+| 6 | Botão flutuante do WhatsApp abrindo o formulário num modal | `banimento-de-whatsapp` |
+
+### Cuidados que isso trouxe
+
+- **Dois embeds do mesmo Jotform** (261034073026647: o do hero e o do modal). O resizer
+  do `jsform` acha o iframe pelo id do FORMULÁRIO, então um redimensionaria o outro.
+  Um listener registrado **antes** do embed do hero aplica a altura no iframe certo e
+  barra a mensagem ali (mesma solução da `banimento-de-whatsapp`).
+- **`.jotform-embed` com margem negativa no mobile** foi escopado para
+  `.form-card .jotform-embed`, senão vazava para dentro do modal.
+- **Botão flutuante x barra fixa do mobile**: abaixo de 860 px o botão sobe para
+  `bottom: calc(94px + safe-area)` para não cair sobre a `.sticky-cta`.
+- **Selo abaixo da dobra**: o traço do check só anima em `.is-visible`, senão a
+  animação terminaria antes de alguém ver. Com `.no-reveal` e no `<noscript>` o selo
+  aparece desenhado (GUIDELINES §4).
+- **Esteira e `prefers-reduced-motion`**: a regra global zera `animation-duration` e a
+  esteira saltaria para -50%; aí ela recebe `animation: none`.
+
+### Deliberadamente diferente da `banimento-de-whatsapp`
+
+- A seção de clientes ficou com fundo off-white (lá é branco) e manteve o H2 no
+  tamanho display desta LP: lá a faixa é uma tira fina colada no hero, aqui é uma
+  seção de prova com headline própria entre duas seções brancas (GUIDELINES §1).
+- O rodapé novo **não traz** o CNPJ/endereço da Elife nem os links de
+  "Condições gerais de uso" e "Políticas de privacidade", que existiam no rodapé k2x.
+  A `banimento-de-whatsapp` também não traz. **Decidido pelo Victor em 2026-09-04:
+  segue sem os links legais no rodapé.**

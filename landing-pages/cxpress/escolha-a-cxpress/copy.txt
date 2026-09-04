@@ -3,10 +3,16 @@
 # Destino: content.cxpress.io/escolha-a-cxpress
 # Estágio de funil: BoFu (tráfego de campanha Google Search, intenção de compra)
 
+## MENU
+
+LOGO: Cxpress (centralizada, âncora para o topo da página)
+# O link "Falar no WhatsApp" saiu do menu: quem cobre esse caminho agora
+# é o botão flutuante do WhatsApp (ver ## BOTÃO FLUTUANTE).
+
 ## SEÇÃO 1 — HERO (com formulário centralizado)
 
 OVERLINE: O melhor custo-benefício do mercado   (laranja, como na página original)
-H1: Seu [atendimento] cresce. Sua operação acompanha?   ("atendimento" em azul royal #4a69bd)
+H1: Seu [atendimento] / cresce. Sua operação acompanha?   ("atendimento" em azul royal #4a69bd; "/" = quebra de linha da página original, só no desktop)
 SUB: As principais plataformas já oferecem funcionalidades similares. O que diferencia é o que acontece depois: implementação, suporte e controle da operação.
 
 FORM TITLE: Peça uma demonstração da Cxpress
@@ -16,10 +22,9 @@ TRUST ITEM: Mais de 800 empresas no Brasil, LATAM e Portugal
 TRUST ITEM: WhatsApp com API Oficial da Meta
 TRUST ITEM: Suporte em português, com time no Brasil
 
-SELO: Conecte-se à Cxpress   (laranja, com check animado, âncora para o comparativo)
-
 ## SEÇÃO 2 — COMPARATIVO
 
+SELO: Conecte-se à Cxpress   (abre a seção, como na página original: anel laranja VAZADO com o check desenhado acima do texto, não mais no fim do hero)
 OVERLINE: Compare antes de contratar
 H2: As funcionalidades são parecidas. As experiências não.
 SUB: Compare o que realmente impacta sua operação no dia a dia.
@@ -84,6 +89,7 @@ BODY: Deixe as planilhas para trás. Transforme suas estatísticas de atendiment
 ## SEÇÃO 5 — PROVA SOCIAL
 
 H2: Mais de 800 empresas no Brasil, LATAM e Portugal confiam na Cxpress para seu atendimento
+LOGOS: esteira infinita com 42 logos de clientes (mesmo tratamento da LP banimento-de-whatsapp; pausa no hover)
 
 ## SEÇÃO 6 — FAQ
 
@@ -114,10 +120,18 @@ BODY: Preencha o formulário e um especialista monta a proposta com os canais, o
 CTA PRIMÁRIO: Preencher o formulário
 CTA SECUNDÁRIO: Falar no WhatsApp
 
+## BOTÃO FLUTUANTE (WhatsApp)
+
+ÍCONE: glifo do WhatsApp em botão verde fixo, canto inferior direito
+AÇÃO: abre um modal com o mesmo formulário da campanha (Jotform 261034073026647)
+MODAL TITLE: Fale com um especialista pelo WhatsApp
+MODAL TEXT: Preencha os dados e continue a conversa com um especialista no WhatsApp.
+PÓS-ENVIO: abre a conversa no WhatsApp numa nova aba (com aviso de fallback se o navegador barrar o pop-up)
+
 ## FOOTER
 
-BODY: A Cxpress é uma plataforma multicanal que centraliza, automatiza e otimiza o atendimento ao cliente, integrando canais como WhatsApp, redes sociais, e-mail e telefone em um único lugar.
-LABEL: Canais integrados:
-CONTATO: (11) 5039-5028 · comercial@gocxpress.com.br
-LEGAL: Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 - Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.
-COPY: © 2026 Cxpress®. Todos os direitos reservados
+# Rodape enxuto, copiado da LP banimento-de-whatsapp (substituiu o rodape
+# k2x com bloco institucional, canais integrados e links legais).
+LOGO: Cxpress (versão reversa, sobre navy)
+LEGAL: Cxpress é um produto Elife. © 2026
+REDES: Facebook · Instagram · LinkedIn · YouTube
