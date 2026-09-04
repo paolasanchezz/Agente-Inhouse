@@ -10,6 +10,21 @@ VISUAL: Celular com a tela de banimento ("Esta conta não pode mais usar o Whats
 SUB: Clientes que confiam na Cxpress para otimizar suas operações de atendimento
 BODY: [esteira infinita com 42 logos, ./assets/clientes/cliente-01..42.png, a mesma da LP /evite-banimento-whatsapp]
 
+=== BIG NUMBERS (prova de resultado) ===
+NUM: +220%
+BODY: de interações realizadas com a mesma estrutura de atendimento.*
+NUM: Até 15x
+BODY: mais produtividade nas interações automatizadas, o que aumenta a capacidade da equipe.*
+NUM: 98%
+BODY: de qualidade nas respostas automatizadas avaliadas, segundo os critérios definidos para cada operação.*
+NOTE: *Resultados obtidos por clientes da Cxpress no atendimento através de redes sociais, com base no relatório interno Concierge de 2025. Os resultados podem variar segundo a operação.
+# Pedido do Bruno (2026-09-04). Reverte parcialmente a decisao do Victor de
+# 2026-08-30 (as metricas ficariam fora desta pagina): entram 3 das 4 (o -60%
+# de reducao de equipe fica fora) com texto novo, num bloco escuro horizontal
+# com contagem animada. Nao e a mesma redacao da /evite-banimento-whatsapp:
+# lá o relatorio citado e o "Sentinela"; aqui, o "Concierge". Textos vieram
+# prontos do Bruno, ja traduzidos.
+
 === SINTOMAS ===
 H2: Seu WhatsApp Business está sendo bloqueado?
 SUB: O WhatsApp se tornou um dos principais canais de atendimento e vendas das empresas. Quando um número é bloqueado ou banido, toda a operação pode ser impactada.
@@ -82,6 +97,13 @@ BODY: A IA da Cxpress pode compreender mensagens em linguagem natural, responder
 BODY: Isso ajuda sua empresa a responder mais rápido sem depender exclusivamente de atendentes humanos para cada nova mensagem.
 CTA: Agende uma demonstração gratuita da plataforma
 
+=== FECHO ===
+H2: Não deixe sua operação depender de um WhatsApp desorganizado
+SUB: Centralize seu atendimento, utilize a API Oficial do WhatsApp, organize sua equipe e automatize interações com Inteligência Artificial.
+BODY: Conheça a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp.
+CTA: Agende uma demonstração gratuita da plataforma
+# [SUGESTAO de formato] No doc, "Conheca a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp" esta rotulada como CTA. Sao 96 caracteres: como rotulo de botao quebra em 3 linhas no mobile e perde o verbo de acao. Mantida como linha de apoio acima do botao; o botao repete o rotulo usado no resto da pagina.
+
 === FAQ ===
 H2: Dúvidas frequentes sobre bloqueio e banimento do WhatsApp
 H3: Meu WhatsApp foi bloqueado por spam. O que fazer?
@@ -96,13 +118,6 @@ H3: Posso ter vários atendentes no mesmo WhatsApp?
 BODY: Sim. Com uma plataforma de atendimento integrada ao WhatsApp, diferentes agentes podem atender clientes de forma organizada, com filas, setores e históricos centralizados.
 # [SUGESTAO de escopo] O doc nao traz a pergunta "A Cxpress consegue desbloquear minha conta?", que existe na LP /evite-banimento-whatsapp com a resposta "Nao". Como a campanha compra keywords de quem JA foi banido ("whatsapp banido", "mensagem de banimento"), a ausencia dessa pergunta deixa margem para o visitante entender que a Cxpress desbloqueia contas. Decisao do Victor: seguir o doc. Recomendo reincluir antes de publicar.
 
-=== FECHO ===
-H2: Não deixe sua operação depender de um WhatsApp desorganizado
-SUB: Centralize seu atendimento, utilize a API Oficial do WhatsApp, organize sua equipe e automatize interações com Inteligência Artificial.
-BODY: Conheça a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp.
-CTA: Agende uma demonstração gratuita da plataforma
-# [SUGESTAO de formato] No doc, "Conheca a Cxpress e descubra como profissionalizar o atendimento da sua empresa pelo WhatsApp" esta rotulada como CTA. Sao 96 caracteres: como rotulo de botao quebra em 3 linhas no mobile e perde o verbo de acao. Mantida como linha de apoio acima do botao; o botao repete o rotulo usado no resto da pagina.
-
 === FORM (ultima secao da pagina) ===
 H2: Agende sua demonstração gratuita
 H3: Veja a API Oficial funcionando na sua operação
@@ -111,7 +126,12 @@ FORM: [mock durante o design, GUIDELINES §11. Embed real entra por /lp-integrar
 
 === FOOTER ===
 FOOTER: Cxpress é um produto Elife. © 2026
-FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+SOCIAL: Facebook https://www.facebook.com/cxpress.io
+SOCIAL: Instagram https://www.instagram.com/cxpress.io/
+SOCIAL: LinkedIn https://www.linkedin.com/company/cxpress/
+SOCIAL: YouTube https://www.youtube.com/@cxpress_io
+# A linha "Condicoes gerais de uso da Cxpress · Politicas de privacidade" saiu
+# a pedido do Bruno (2026-09-04): era texto solto, sem link.
 
 # ---------------------------------------------------------------------------
 # Origem: doc "Nova Banimento Whats (Google Ads)" (Victor, 2026-08-30).

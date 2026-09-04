@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (doc "Nova Banimento Whats (Google Ads)", Victor)
 **Domínio de destino:** `content.cxpress.io/banimento-de-whatsapp` (guarda-chuva, deploy via CI)
 **Idioma / região:** PT-BR / brasil
-**Form provider:** **Jotform `261034073026647`** nos dois pontos de captura — a seção “Agende sua demonstração” (embed `jsform`) e o pop-up do botão flutuante do WhatsApp (iframe). O mock HTML do rodapé saiu em 2026-09-03 (pedido do Bruno).
+**Form provider:** **Jotform `261034073026647`** nos dois pontos de captura — a seção “Agende sua demonstração” (embed `jsform`, agora num card branco sobre o bloco navy) e o pop-up do botão flutuante do WhatsApp (iframe). O mock HTML do rodapé saiu em 2026-09-03 (pedido do Bruno).
 **Tracking:** GTM-KN8BPFG + GA4 339689858 (container de Google Ads, confirmado pelo Victor em 2026-08-30)
 
 ## De onde veio
@@ -23,6 +23,7 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 |---|---|---|---|
 | 1 | HERO | Texto à esquerda; à direita o celular banido sobreposto ao painel da Cxpress, com tags "Operação convencional" e "Com a Cxpress" | branco |
 | — | CLIENTES | Esteira infinita com 42 logos | branco |
+| — | BIG NUMBERS | 3 números em linha (+220% · Até 15x · 98%) com contagem animada e disclaimer a 70% de opacidade | navy |
 | 2 | SINTOMAS | Texto + nota destacada à esquerda, 5 sinais em lista vertical com X vermelho à direita (GUIDELINES §8) | tint |
 | 3 | IMPACTO | 4 cards 2×2, ícone vermelho | branco |
 | 4 | COMO EVITAR | 4 passos numerados 01→04 com trilho contínuo e ✓ verde | tint |
@@ -30,9 +31,9 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 | 6 | API OFICIAL | Texto à esquerda, 7 recursos em pílulas com ✓ à direita | tint |
 | 7 | OMNICHANNEL | Diagrama 5 canais → Cxpress → Equipe, com trilho tracejado animado | branco |
 | 8 | IA | Texto + CTA à esquerda, GIF do chatbot à direita | tint |
+| 10 | FECHO | H2 em Bitter itálico; movido para **antes** do FAQ em 2026-09-04 | navy |
 | 9 | FAQ | 5 perguntas em `<details>` (JSON-LD FAQPage com as mesmas 5) | branco |
-| 10 | FECHO | Única seção dark, H2 em Bitter itálico | navy |
-| — | FORM | Card centralizado, **última seção** (o doc pede o form "lá pra baixo") | tint |
+| — | FORM | Topo arredondado, título em branco e o formulário num card branco, **última seção** (o doc pede o form "lá pra baixo") | navy |
 
 **CTAs:** 5 âncoras para `#agendar` (navbar, hero, comparativo, IA, fecho) + o botão do próprio formulário. Nenhum CTA aponta para fora.
 
@@ -43,6 +44,47 @@ A página **não** é uma cópia da `/evite-banimento-whatsapp`: as seções PRO
 - [x] Revisão de design + a11y aplicada — ver `REVISAO.md`
 - [x] Formulário integrado nos dois pontos — seção e pop-up do botão flutuante, ambos no Jotform `261034073026647` (2026-09-03)
 - [x] No `landing-pages/dominios/content-cxpress-io/manifest.json` e no ar — rodar `/lp-publicar cxpress banimento-de-whatsapp content.cxpress.io`
+
+## Ajustes de 2026-09-04 (Bruno)
+
+1. **Seção do formulário e rodapé no desenho da `/telefonia-ia-latam`.** A `.agendar`
+   deixou o fundo tint com malha de pontos, glows e pílulas decorativas e virou um
+   bloco navy com o **topo arredondado** (`border-radius:clamp(40px,7vw,90px) … 0 0`),
+   título e apoio em branco e o formulário num card branco por cima. Os elementos
+   geométricos da página de referência (`cta__glow`, `cta__pill`, `cta__arc`) **não**
+   vieram, a pedido do Bruno. O card branco é obrigatório, não decoração: o Jotform
+   `261034073026647` renderiza com fundo transparente e rótulos em navy (medido no
+   provedor), então sobre o bloco escuro o formulário ficaria ilegível.
+2. **Rodapé com as redes sociais oficiais do Brasil.** Grid de 3 colunas no desktop
+   (logo · linha legal · redes) e empilhado no mobile, como na referência. Ícones em
+   `--primary-lighter` com aro de 1px e alvo de toque de 44px. Links: `facebook.com/cxpress.io`,
+   `instagram.com/cxpress.io`, `linkedin.com/company/cxpress`, `youtube.com/@cxpress_io`
+   (os da referência eram os perfis `.es`).
+3. **Linha "Condições gerais de uso da Cxpress · Políticas de privacidade" removida**
+   do rodapé (pedido do Bruno) — era texto solto, sem link.
+4. **FECHO movido para antes do FAQ.** A ordem agora é IA → FECHO → FAQ → FORM.
+5. **Nova seção BIG NUMBERS**, logo abaixo da faixa de clientes: 3 números em linha
+   sobre navy, brancos, com **contagem animada** disparada por `IntersectionObserver`
+   quando o bloco entra na tela (`data-count` + `data-count-prefix`/`-suffix`, ease-out
+   cúbico de 1,4s, `font-variant-numeric:tabular-nums` pra largura não tremer). O valor
+   final já vem no HTML: sem JS, e com `prefers-reduced-motion: reduce`, o número
+   aparece parado no valor certo. O disclaimer fica a `opacity:.7` — num wrapper
+   próprio, porque `.reveal.is-visible{opacity:1}` venceria a regra no mesmo elemento.
+   Branco a 70% sobre o navy dá 7,4:1, então continua legível.
+   Reverte parcialmente a decisão do Victor de 2026-08-30 (as métricas ficariam fora
+   desta página): entram 3 das 4, com redação nova e citando o relatório **Concierge**
+   (na `/evite-banimento-whatsapp` o relatório citado é o Sentinela).
+   **Altura revisada no mesmo dia** (o Bruno achou o bloco alto): padding 96→56px,
+   número `clamp(42,5.2vw,66)`→`clamp(38,4vw,50)`, legenda 17→16px e, principalmente,
+   o cap de `30ch` da legenda **removido** — era ele que jogava a legenda mais longa
+   pra 4 linhas. Ficou 483px→323px de altura e 2/3/4→2/2/3 linhas em 1440px. Uma faixa
+   `max-width:1180px` derruba a legenda pra 15px para as 3 colunas apertadas não
+   voltarem a 4 linhas, e no empilhado a legenda recupera medida de leitura (`46ch`),
+   que no desktop vem da própria coluna.
+6. **Nota de GUIDELINES:** a página passa a ter 3 blocos escuros (BIG NUMBERS, FECHO e
+   FORM), e o §"fundos" pede no máximo um. Foi decisão explícita do Bruno; os três
+   estão bem separados (posições 3, 11 e 13) e o FORM emenda no rodapé navy como um
+   fecho só.
 
 ## Ajustes de 2026-09-03 (Bruno) — segunda rodada
 
