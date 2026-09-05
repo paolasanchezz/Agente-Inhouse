@@ -28,7 +28,7 @@ Correções pedidas pelo Bruno olhando a página no ar. Nenhuma palavra de copy 
 | # | Pedido | O que foi feito |
 |---|---|---|
 | 1 | Tirar a faixa do consultor | Seção removida (markup + CSS). Saiu junto o `.btn--accent`, que só ela usava |
-| 2 | H1 maior e com mais destaque | Teto de 40 → 48 px, `letter-spacing` -.015 → -.025em, `line-height` 1.08. Depois levado a **54 px** na 5ª rodada (ver abaixo) |
+| 2 | H1 maior e com mais destaque | Teto de 40 → **48 px**, `letter-spacing` -.015 → -.025em, `line-height` 1.08. A 5ª rodada tentou 54 px e voltou (ver abaixo) |
 | 3 | Título do vídeo em no máximo 2 linhas | Medida de 24ch → **38ch**. Dá 2 linhas a 1440 (36 px) e a 1280 (33 px) |
 | 4 | Big numbers com destaque e contador | Número de `clamp(38-50px)` → **`clamp(52-76px)`**, cor para navy (o `%` segue laranja escuro) e contagem animada ao entrar na tela |
 | 5 | Faltavam animações nos cards do "Porquê" | Corrigido um bug de stagger (ver abaixo) + entrada com `translateY(30px) scale(.985)`, marcador verde entrando depois com escala, e hover em sombra/borda |
@@ -120,17 +120,19 @@ Os conectores tracejados que existiam na versão anterior **saíram**: com holof
 
 `assets/telas/tela-agentes.svg`, `tela-disparo-ativo.svg` e `tela-tickets.svg` ficaram sem uso nesta versão. Mantidos na pasta: são telas do produto já otimizadas, úteis se uma feature voltar.
 
-## 5ª rodada (2026-09-04): escala do H1
+## 5ª rodada (2026-09-04): escala do H1, tentada e revertida
 
-O Bruno apontou a mancha do H1 da LP `atendimento-domingo` como referência e pediu um teste antes de publicar. Publiquei um comparativo com o hero de cada opção em tamanho real e ele escolheu a **opção C**.
+O Bruno apontou a mancha do H1 da LP `atendimento-domingo` como referência e pediu um teste antes de publicar. Publiquei um comparativo com o hero de cada opção em tamanho real, ele escolheu a **opção C** (54 px), viu no ar e **mandou voltar**: a proporção do hero piorou.
 
-| | Antes | Depois |
+> **Não repetir.** O H1 a 54 px exige coluna de 2.6fr, e aí o palco da tela cai de 441 px para 369 px (16% menor). O par texto/tela desequilibra e o ganho de escala não paga. A LP está de volta em `clamp(36px, 3.4vw, 48px)` com 1.9fr.
+
+| | Hoje (e antes) | Opção C, revertida |
 |---|---|---|
-| Teto do H1 | `clamp(36px, 3.4vw, 48px)` | **`clamp(36px, 3.8vw, 54px)`** |
-| Coluna de texto do hero | 1.9fr | **2.6fr** |
-| Caixa do H1 a 1440 | 705 px | **777 px** |
-| Palco da tela | 441 px | **369 px** |
-| Linhas / desequilíbrio | 3 / 16% | 3 / **16%** (não muda) |
+| Teto do H1 | **`clamp(36px, 3.4vw, 48px)`** | `clamp(36px, 3.8vw, 54px)` |
+| Coluna de texto do hero | **1.9fr** | 2.6fr |
+| Caixa do H1 a 1440 | **705 px** | 777 px |
+| Palco da tela | **441 px** | 369 px ← o problema |
+| Linhas / desequilíbrio | 3 / 16% | 3 / 16% (não muda) |
 
 **O que a medição estabeleceu, e que vale guardar:** o desequilíbrio deste H1 está **travado em 16%** e não melhora em escala nenhuma. A evenness da referência vem do **texto** dela (57 caracteres de palavras parelhas, que caem em 4 linhas naturais), não do CSS; o nosso tem 79 caracteres com `de`, `e` e `para` espalhados, que sempre empurram a 3ª linha para curta.
 

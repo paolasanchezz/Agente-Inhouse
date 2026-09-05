@@ -321,20 +321,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero__grid{
     position:relative;z-index:2;
-    display:grid;grid-template-columns:minmax(0,2.6fr) minmax(0,1fr);
+    display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);
     gap:40px;align-items:start;
   }
-  /* Teto de 54px, a mesma escala do H1 da LP atendimento-domingo, que o Bruno usou
-     como referencia de mancha (opcao C do teste comparativo). A evenness NAO muda
-     com a escala: este texto trava em 16% de desequilibrio em qualquer corpo,
-     porque "de", "e" e "para" sempre empurram a 3a linha pra curta. A mancha
-     compacta da referencia vem do TEXTO dela (57 caracteres de palavras parelhas
-     em 4 linhas naturais), nao do CSS; o nosso tem 79. Testei 7 quebras manuais
-     com <br> pra forcar 4 linhas: todas entre 44% e 56%, piores que estas 3.
-     Custo desta escala: a coluna de texto vai de 1.9fr pra 2.6fr e o palco da
-     tela cai de 441px pra 369px. Medido a 1440: 3 linhas, 16% (GUIDELINES §21). */
+  /* Teto de 48px e coluna de 1.9fr. NAO subir pra 54px/2.6fr: foi tentado no ar
+     em 2026-09-04 (a escala do H1 da LP atendimento-domingo, referencia de mancha
+     do Bruno) e REVERTIDO no mesmo dia, porque a proporcao do hero piora. A conta:
+     o H1 a 54px exige coluna de 2.6fr e o palco da tela cai de 441px pra 369px,
+     16% menor, e o par texto/tela desequilibra. O ganho de escala nao paga.
+     A evenness, essa, NAO muda com o tamanho: este texto trava em 16% de
+     desequilibrio em qualquer corpo, porque "de", "e" e "para" sempre empurram a
+     3a linha pra curta. A mancha compacta da referencia vem do TEXTO dela (57
+     caracteres de palavras parelhas em 4 linhas naturais), nao do CSS; o nosso tem
+     79. Testei 7 quebras manuais com <br> pra forcar 4 linhas: todas entre 44% e
+     56%, piores que estas 3. Medido a 1440: 3 linhas, 16% (GUIDELINES §21). */
   .hero h1{
-    font-size:clamp(36px,3.8vw,54px);font-weight:800;
+    font-size:clamp(36px,3.4vw,48px);font-weight:800;
     letter-spacing:-.025em;line-height:1.08;margin:0;max-width:34ch;
   }
   /* Realce de "WhatsApp" no H1. O verde vibrante NAO pode ser a cor da letra:

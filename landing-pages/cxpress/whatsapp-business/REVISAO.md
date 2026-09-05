@@ -190,9 +190,9 @@ O painel de preview continua sem compositor mesmo com a aba em primeiro plano: `
 
 ---
 
-## 7. Quinta rodada (2026-09-04): escala do H1, com teste antes de publicar
+## 7. Quinta rodada (2026-09-04): escala do H1, testada, publicada e revertida
 
-O Bruno mandou a LP `atendimento-domingo` como referência de mancha e pediu para ver antes de subir. Publiquei um artefato com o hero de cada opção em tamanho real e ele escolheu a **opção C** (54 px).
+O Bruno mandou a LP `atendimento-domingo` como referência de mancha e pediu para ver antes de subir. Publiquei um artefato com o hero de cada opção em tamanho real, ele escolheu a **opção C** (54 px), viu no ar e **mandou voltar**.
 
 ### O que foi medido na referência
 
@@ -227,3 +227,15 @@ Como a quebra de 4 linhas usa uma medida mais estreita, sobra coluna e o palco d
 | 375 | 36 px | (empilhado) | (empilhado) | — | — | 0 |
 
 Pisos tipográficos mobile (§20) recontados: todos cumpridos. O palco da tela cai de 441 para 369 px, 16% menor, que é o preço da escala e estava explícito no teste.
+
+### Desfecho: a opção C foi revertida
+
+Publicada e revertida no mesmo dia. O motivo é o que o teste já mostrava como custo, e que só ficou evidente na página inteira: **a proporção entre o H1 e a tela do produto quebra.**
+
+A conta: o H1 a 54 px só cabe em 3 linhas com uma coluna de texto de 2.6fr, e isso empurra o palco da tela de 441 px para **369 px, 16% menor**. O bloco de texto fica dominante e a tela, que é a prova visual do produto, encolhe demais para o peso que tem no hero.
+
+A LP voltou para `clamp(36px, 3.4vw, 48px)` com coluna de 1.9fr, exatamente o estado anterior ao PR #522.
+
+**Lição que fica registrada no CSS, junto da regra:** neste hero o teto do H1 não é uma escolha tipográfica isolada, é uma negociação com a largura da tela do produto. 48 px/1.9fr é o ponto de equilíbrio encontrado; subir o H1 sem encurtar a copy sempre vai cobrar da tela.
+
+O que continua valendo da medição, e que não muda com o revert: o desequilíbrio está travado em 16% em qualquer escala, existe uma única quebra natural de 4 linhas (44%), as 7 quebras manuais ficaram entre 44% e 56%, e o `text-wrap: balance` do Chrome só equilibra este bloco até 3 linhas.
