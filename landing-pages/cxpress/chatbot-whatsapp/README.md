@@ -130,6 +130,24 @@ Os GIFs somam 5,0 MB, e os assets da LP vão a 6,7 MB. Todos os cinco estão aba
 
 1400 px e 390 px: os cinco painéis com medida idêntica, nenhuma imagem estourando o quadro, todos os arquivos servindo 200 e sem scroll horizontal.
 
+## 6ª rodada (2026-09-05, moldura das imagens)
+
+Pedido do Bruno: tirar o retângulo atrás das imagens da seção de plataforma — a moldura que a rodada anterior tinha criado.
+
+Saíram a borda, a sombra e o fundo branco do `.feature__media`. Ficou só o `border-radius` com `overflow:hidden`, e a proporção 16:9 continua na imagem. Os painéis passaram de 538×303 para 540×304 (os 2 px eram a borda).
+
+**A remoção é total em 2 dos 5 blocos e parcial nos outros 3.** Conferido no arquivo:
+
+| Bloco | Arquivo | Fundo do arquivo | Resultado |
+|---|---|---|---|
+| 1 Atendimento integrado | `atendimento-integrado.png` | RGBA transparente | retângulo sumiu de vez, a ilustração senta no tint |
+| 3 Cadastros | `cadastros-clientes.webp` | RGBA transparente | idem, só o mockup de laptop |
+| 2 IA | `plataforma-chatbot-ia.gif` | opaco `#f2f2f2` | segue um bloco cinza claro |
+| 4 Tickets | `plataforma-canais.gif` | opaco `#fcfcfc` | segue um bloco quase branco |
+| 5 Dashboards | `plataforma-dashboard.gif` | opaco `#2e2e2e` | segue um bloco cinza escuro, o mais visível dos três |
+
+Nos três GIFs o retângulo está **dentro do arquivo**, não no CSS — nenhuma regra de estilo tira aquilo. Para sumir de verdade seria preciso reexportar os GIFs com fundo transparente, e no caso do dashboard isso quebraria a legibilidade: os cards dele são claros e existem justamente por contraste com o fundo escuro. Por isso o raio de canto ficou: é o que o CSS ainda pode fazer para o bloco de cor não parecer um retângulo duro.
+
 ## Assets
 
 | Arquivo | Onde aparece |

@@ -262,7 +262,11 @@ section{padding:110px 0}
    entao cada bloco saia com uma altura diferente (de 303 a 594 px na coluna de
    540 px) e o menor asset subia 2,5x, borrado. O quadro 16:9 iguala a altura de
    todos e o object-fit:contain encaixa cada imagem sem distorcer. */
-.feature__media{border-radius:var(--radius-card);border:1px solid var(--border);box-shadow:var(--shadow-card);background:var(--white);overflow:hidden}
+/* Sem moldura: nada de borda, sombra ou fundo branco atras da imagem. Os dois
+   arquivos com alpha (a ilustracao e o mockup de laptop) passam a sentar direto
+   no tint da secao. O raio fica so pra arredondar o canto dos 3 GIFs, que tem
+   fundo opaco no proprio arquivo e por isso seguem sendo um bloco de cor. */
+.feature__media{border-radius:var(--radius-card);overflow:hidden}
 /* A proporcao fica na propria imagem: altura em % nao resolve dentro de um
    container dimensionado por aspect-ratio, e a imagem voltava a crescer pela
    razao intrinseca (538x428 num painel de 540x304, estourando o quadro). */
