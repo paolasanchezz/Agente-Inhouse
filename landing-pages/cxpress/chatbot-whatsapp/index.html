@@ -258,7 +258,15 @@ section{padding:110px 0}
 .features .section-title{text-align:center;max-width:760px;margin:0 auto 64px}
 .feature{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .feature + .feature{margin-top:76px}
-.feature__media img{width:100%;height:auto;border-radius:var(--radius-card);border:1px solid var(--border);box-shadow:var(--shadow-card)}
+/* Painel de proporcao fixa: as 5 imagens da secao tinham razoes de 0,91 a 1,78,
+   entao cada bloco saia com uma altura diferente (de 303 a 594 px na coluna de
+   540 px) e o menor asset subia 2,5x, borrado. O quadro 16:9 iguala a altura de
+   todos e o object-fit:contain encaixa cada imagem sem distorcer. */
+.feature__media{border-radius:var(--radius-card);border:1px solid var(--border);box-shadow:var(--shadow-card);background:var(--white);overflow:hidden}
+/* A proporcao fica na propria imagem: altura em % nao resolve dentro de um
+   container dimensionado por aspect-ratio, e a imagem voltava a crescer pela
+   razao intrinseca (538x428 num painel de 540x304, estourando o quadro). */
+.feature__media img{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:contain}
 .feature__text h3{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.4vw,28px);color:var(--primary-dark);margin-bottom:14px;line-height:1.3}
 .feature__text p{font-size:17px;line-height:1.65;color:var(--text-body);margin-bottom:22px}
 .feature:nth-child(even) .feature__media{order:2}
@@ -543,7 +551,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="feature reveal" style="margin-top:20px">
-      <div class="feature__media"><img src="./assets/atendimento-integrado.png" alt="Organize o atendimento de forma integrada"></div>
+      <div class="feature__media"><img src="./assets/atendimento-integrado.png" alt="Conversas de vários canais reunidas num só painel da Cxpress" width="880" height="700" loading="lazy"></div>
       <div class="feature__text">
         <h3>Organize seu atendimento de forma integrada</h3>
         <p>Centralize e organize as interações de vários canais, otimize a triagem e reduza o volume de atendimentos, proporcionando mais eficiência à sua equipe.</p>
@@ -552,7 +560,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="feature reveal">
-      <div class="feature__media"><img src="./assets/atendimento-ia.webp" alt="Atendimento automático com inteligência artificial"></div>
+      <div class="feature__media"><img src="./assets/plataforma/plataforma-chatbot-ia.gif" alt="Configuração do chatbot na Cxpress e o bot respondendo um cliente no WhatsApp" width="786" height="442" loading="lazy"></div>
       <div class="feature__text">
         <h3>Atendimento automático ininterrupto com inteligência artificial</h3>
         <p>Amplie seu atendimento para 24/7 com Inteligência Artificial que responde ao primeiro contato de visitantes e clientes usando linguagem natural.</p>
@@ -561,7 +569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="feature reveal">
-      <div class="feature__media"><img src="./assets/cadastros-clientes.webp" alt="Centralize os cadastros dos clientes"></div>
+      <div class="feature__media"><img src="./assets/cadastros-clientes.webp" alt="Ficha do cliente com histórico unificado na plataforma Cxpress" width="1779" height="1033" loading="lazy"></div>
       <div class="feature__text">
         <h3>Centralize os cadastros dos clientes para uma experiência unificada</h3>
         <p>Tenha uma visão completa e integrada do seu cliente, centralizando interações de diferentes canais em um único histórico.</p>
@@ -569,7 +577,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="feature reveal">
-      <div class="feature__media"><img src="./assets/gestao-tickets.webp" alt="Otimize a gestão de tickets"></div>
+      <div class="feature__media"><img src="./assets/plataforma/plataforma-canais.gif" alt="Fila de tickets, canais de atendimento e distribuição entre agentes na Cxpress" width="566" height="318" loading="lazy"></div>
       <div class="feature__text">
         <h3>Otimize a gestão de tickets</h3>
         <p>Distribua tickets de atendimento automaticamente ou manualmente para setores e agentes específicos, simplificando seus processos.</p>
@@ -577,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="feature reveal">
-      <div class="feature__media"><img src="./assets/dashboards.webp" alt="Gerencie com eficiência por meio de dashboards"></div>
+      <div class="feature__media"><img src="./assets/plataforma/plataforma-dashboard.gif" alt="Painéis de métricas de atendimento da Cxpress" width="816" height="458" loading="lazy"></div>
       <div class="feature__text">
         <h3>Gerencie com eficiência por meio de dashboards</h3>
         <p>Deixe as planilhas para trás! Transforme suas estatísticas de atendimento em painéis intuitivos.</p>

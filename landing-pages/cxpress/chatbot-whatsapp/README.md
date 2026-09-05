@@ -90,16 +90,56 @@ Pedido do Bruno: trocar a seção de clientes pela da LP `quiz-atendimento-latam
 
 1400 px (rótulo à esquerda + esteira à direita), 390 px (empilhado) — 14 logos carregando, nenhum quebrado, `opacity:1`, `filter:none`, sem scroll horizontal.
 
+## 5ª rodada (2026-09-05, seção "Descubra tudo o que é possível fazer")
+
+Pedido do Bruno: comparar as proporções das imagens da seção e corrigir. A comparação achou desproporcão **e** dois assets quebrados.
+
+### O diagnóstico
+
+| # | Bloco | Arquivo antigo | Dimensões | Razão | Problema |
+|---|---|---|---|---|---|
+| 1 | Atendimento integrado | `atendimento-integrado.png` | 880×700 | 1,26 | ilustração, razão fora da série |
+| 2 | Inteligência artificial | `atendimento-ia.webp` | 219×241 | 0,91 | **badge de 219 px** esticado 2,5× numa coluna de 540 — borrado, e ainda era o bloco mais alto |
+| 3 | Cadastros | `cadastros-clientes.webp` | 1779×1033 | 1,72 | ok |
+| 4 | Tickets | `gestao-tickets.webp` | 566×318 | 1,78 | **frame 0 do `plataforma-canais.gif`** — tela praticamente vazia, 843 KB de nada |
+| 5 | Dashboards | `dashboards.webp` | 816×458 | 1,78 | **frame escuro do `plataforma-dashboard.gif`** — borrado e ilegível |
+
+Com `width:100%;height:auto`, essas razões davam blocos de **303 a 594 px** de altura na mesma coluna de 540 px.
+
+Os arquivos 4 e 5 batem **pixel a pixel** com as dimensões dos GIFs de plataforma que o repositório já tem: alguém congelou um frame de cada animação na versão solo, e calhou de pegar o frame vazio num e o frame escuro no outro.
+
+### As correções
+
+| # | Agora |
+|---|---|
+| 2 | `plataforma/plataforma-chatbot-ia.gif` (786×442) — mostra a configuração do chatbot e o bot respondendo no WhatsApp, que é exatamente o que o bloco promete |
+| 4 | `plataforma/plataforma-canais.gif` (566×318) — fila de tickets, canais e distribuição entre agentes |
+| 5 | `plataforma/plataforma-dashboard.gif` (816×458) — painéis de métrica legíveis |
+
+Os três GIFs vieram da LP irmã `atendimento-clinicas`, byte a byte (o namespace `/assets/cxpress/plataforma/` é compartilhado no guarda-chuva, então precisam ser idênticos — validado no dist). Os três `.webp` mortos saíram do repositório (1,4 MB).
+
+**Moldura única.** `.feature__media` virou um painel com borda, raio e sombra, e a imagem ganhou `aspect-ratio:16/9` + `object-fit:contain`. Os cinco blocos passam a medir igual — 540×305 no desktop, 326×184 a 390 px — e nenhuma imagem distorce: a ilustração de 1,26, que é a única fora da série, encaixa centralizada.
+
+**A proporção ficou na imagem, não no container.** A primeira tentativa pôs `aspect-ratio:16/9` no `.feature__media` e `height:100%` na imagem. Altura em porcentagem não resolve dentro de um container dimensionado por `aspect-ratio`: a imagem voltava à razão intrínseca e renderizava 538×428 dentro de um painel de 540×304, estourando o quadro (o `overflow:hidden` cortava o pé da ilustração). Com a proporção na própria `img`, não há porcentagem para resolver.
+
+### Peso
+
+Os GIFs somam 5,0 MB, e os assets da LP vão a 6,7 MB. Todos os cinco estão abaixo da dobra e receberam `loading="lazy"` mais `width`/`height` (que também reserva o espaço e evita salto de layout). Se o peso incomodar, o caminho é reencodar os GIFs para vídeo (`.webm`/`.mp4` em loop mudo), que cortaria isso em mais de 90% — vale como pauta separada, porque as LPs irmãs carregam os mesmos arquivos.
+
+### Verificado
+
+1400 px e 390 px: os cinco painéis com medida idêntica, nenhuma imagem estourando o quadro, todos os arquivos servindo 200 e sem scroll horizontal.
+
 ## Assets
 
 | Arquivo | Onde aparece |
 |---|---|
 | `painel-atendimento.webp` | hero |
 | `atendimento-integrado.png` | plataforma, bloco 1 |
-| `atendimento-ia.webp` | plataforma, bloco 2 |
+| `plataforma/plataforma-chatbot-ia.gif` | plataforma, bloco 2 |
 | `cadastros-clientes.webp` | plataforma, bloco 3 |
-| `gestao-tickets.webp` | plataforma, bloco 4 |
-| `dashboards.webp` | plataforma, bloco 5 |
+| `plataforma/plataforma-canais.gif` | plataforma, bloco 4 |
+| `plataforma/plataforma-dashboard.gif` | plataforma, bloco 5 |
 | `especialista-atendimento.webp` | faixa "Fale com um especialista no WhatsApp" |
 | `clientes/cliente-*.png` (14) | esteira de clientes |
 | `og-chatbot-whatsapp.png` | Open Graph / Twitter Card |
