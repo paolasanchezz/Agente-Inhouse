@@ -1,0 +1,25 @@
+=== COMPORTAMENTO TECNICO (instrucao pro lp-gerar, nao e copy visivel) ===
+BODY: Esta e a pagina de RESULTADO do Teste de Maturidade em Redes Sociais para quem pontuou 6 a 10 pontos (Nível Básico). O teste em si roda num Jotform externo (https://form.jotform.com/261735831186058); o Victor vai configurar no Jotform o redirecionamento de quem pontuar nessa faixa direto pra esta URL. Uma de 5 LPs irmas, uma por faixa de pontuacao (Inicial 0-5, Basico 6-10, Intermediario 11-15, Avancado 16-18, Maduro 19-20), todas reaproveitando a mesma estrutura e identidade visual da LP teste-de-maturidade-resultado-inicial (a primeira aprovada), so trocando copy e o segmento/agulha ativos do gauge.
+BODY: Mesma identidade visual das LPs irmas: capa (1 dobra, fundo em degrade animado roxo, sem pontilhado) com botao "Ver resultado" que dissolve a capa e revela o resultado por baixo (gauge + badge + diagnóstico + CTA final), sem scroll. Fonte League Spartan (headings) + Lato (corpo), paleta roxo #2E0044 + laranja #EB7C2E.
+# Revisao anti-IA: nao se aplica (secao tecnica, nao e copy final).
+
+=== HERO ===
+OVERLINE: Diagnóstico de maturidade em redes sociais
+H1: Seu resultado esta pronto
+SUB: Baseado nas suas respostas, veja o nível de maturidade da sua empresa em redes sociais hoje e o que fazer para evoluir.
+CTA: Ver resultado
+
+=== RESULTADO * NÍVEL BÁSICO (6 a 10 pontos) ===
+LABEL: Nível Básico
+H2: Já existe operação, mas com escopo limitado e baixa integração
+BODY: Sua empresa já deu passos importantes na gestão de redes sociais. Existem processos, fontes de informação e algum nível de acompanhamento, mesmo que manual, mas o resultado indica que essa inteligência ainda não está sendo explorada em todo o seu potencial. É comum, nesse estágio, que diferentes práticas tenham níveis distintos de maturidade: a empresa pode acompanhar bem seus próprios canais, por exemplo, mas ainda ter pouca visibilidade sobre concorrentes, mercado ou conversas que acontecem fora deles.
+BODY: O próximo ganho de maturidade está justamente em ampliar o escopo e conectar melhor essas iniciativas. Isso significa sair de uma lógica focada apenas no desempenho dos próprios perfis para entender também o contexto em que a marca está inserida. Concorrentes, categoria, tendências, influenciadores e temas relacionados ao negócio podem revelar mudanças de comportamento, oportunidades de conteúdo, sinais de crise e movimentos que as métricas proprietárias não mostram sozinhas.
+BODY: Também é o momento de reduzir a dependência de controles manuais e análises isoladas. Quanto mais os dados estiverem estruturados e acessíveis, mais fácil será utilizá-los não apenas para mensurar campanhas, mas para desenvolver estratégias, apoiar outras áreas e demonstrar o impacto das redes sociais sobre o negócio.
+BODY: Com a Buzzmonitor, sua empresa pode evoluir de uma operação fragmentada para uma visão mais ampla e integrada de social media. Monitore diferentes fontes, acompanhe concorrentes e temas estratégicos, organize indicadores e use inteligência artificial para acelerar análises e encontrar insights. Descubra como transformar uma operação que já funciona em uma fonte contínua de inteligência.
+CTA: Agende uma demonstração gratuita
+# Revisao anti-IA: sem achados (em-dash: 0).
+
+=== FOOTER ===
+FOOTER: A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.
+FOOTER: (c) Buzzmonitor 2026
+FOOTER: Política de Privacidade e uso de Cookies

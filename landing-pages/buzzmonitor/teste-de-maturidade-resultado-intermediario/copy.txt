@@ -1,0 +1,26 @@
+=== COMPORTAMENTO TECNICO (instrucao pro lp-gerar, nao e copy visivel) ===
+BODY: Esta e a pagina de RESULTADO do Teste de Maturidade em Redes Sociais para quem pontuou 11 a 15 pontos (Nível Intermediário). O teste em si roda num Jotform externo (https://form.jotform.com/261735831186058); o Victor vai configurar no Jotform o redirecionamento de quem pontuar nessa faixa direto pra esta URL. Uma de 5 LPs irmas, uma por faixa de pontuacao (Inicial 0-5, Basico 6-10, Intermediario 11-15, Avancado 16-18, Maduro 19-20), todas reaproveitando a mesma estrutura e identidade visual da LP teste-de-maturidade-resultado-inicial (a primeira aprovada), so trocando copy e o segmento/agulha ativos do gauge.
+BODY: Mesma identidade visual das LPs irmas: capa (1 dobra, fundo em degrade animado roxo, sem pontilhado) com botao "Ver resultado" que dissolve a capa e revela o resultado por baixo (gauge + badge + diagnóstico + CTA final), sem scroll. Fonte League Spartan (headings) + Lato (corpo), paleta roxo #2E0044 + laranja #EB7C2E.
+# Revisao anti-IA: nao se aplica (secao tecnica, nao e copy final).
+
+=== HERO ===
+OVERLINE: Diagnóstico de maturidade em redes sociais
+H1: Seu resultado esta pronto
+SUB: Baseado nas suas respostas, veja o nível de maturidade da sua empresa em redes sociais hoje e o que fazer para evoluir.
+CTA: Ver resultado
+
+=== RESULTADO * NÍVEL INTERMEDIÁRIO (11 a 15 pontos) ===
+LABEL: Nível Intermediário
+H2: Seus dados já contam uma história. O próximo passo é fazer mais áreas ouvirem.
+BODY: Você já está na frente da maioria das empresas do seu mercado. O monitoramento provavelmente cobre concorrentes e categoria, os dados passam por ferramenta estruturada com relatório organizado, e essa informação já alimenta mais de uma frente, como campanha, conteúdo ou até o time de vendas.
+BODY: O que falta para o próximo nível é profundidade de leitura sobre o volume de dado que já existe. Ferramenta estruturada sem IA ainda depende de alguém sentado analisando exportação de relatório, e seleção de influenciador só por métrica deixa passar parceria que erra o tom da marca mesmo com número bom. Empresas nesse estágio também raramente medem ROI de social listening, o que deixa a área sem argumento de peso na reunião de orçamento.
+BODY: A virada de chave é colocar IA pra gerar o insight que hoje exige análise manual, cruzar métrica com fit de marca na escolha de influenciador, e passar a medir ROI como qualquer outra área da empresa.
+BODY: É exatamente aí que a Buzzmonitor entra: AI Insights e Buzz Pills transformam milhares de menções em leitura pronta em minutos, liberando o time para decidir em vez de garimpar dado. E com nossa integração com o Claude, você pode gerar dashboards e análises completas com apenas um prompt.
+BODY: Transforme dado estruturado em vantagem competitiva.
+CTA: Agende uma demonstração gratuita
+# Revisao anti-IA: sem achados (em-dash: 0).
+
+=== FOOTER ===
+FOOTER: A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.
+FOOTER: (c) Buzzmonitor 2026
+FOOTER: Política de Privacidade e uso de Cookies

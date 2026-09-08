@@ -115,6 +115,31 @@
       "slug": "teste-de-maturidade-es",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/teste-de-maturidade-es"
+    },
+    {
+      "slug": "teste-de-maturidade-resultado-avancado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-avancado"
+    },
+    {
+      "slug": "teste-de-maturidade-resultado-basico",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-basico"
+    },
+    {
+      "slug": "teste-de-maturidade-resultado-inicial",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-inicial"
+    },
+    {
+      "slug": "teste-de-maturidade-resultado-intermediario",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-intermediario"
+    },
+    {
+      "slug": "teste-de-maturidade-resultado-maduro",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-maduro"
     }
   ],
   "extra_files": {

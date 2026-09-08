@@ -1,0 +1,26 @@
+=== COMPORTAMENTO TECNICO (instrucao pro lp-gerar, nao e copy visivel) ===
+BODY: Esta e a pagina de RESULTADO do Teste de Maturidade em Redes Sociais para quem pontuou de 0 a 5 no teste (Nível Inicial). O teste em si roda num Jotform externo (https://form.jotform.com/261735831186058); o Victor vai configurar no Jotform o redirecionamento de quem pontuar 0-5 direto pra esta URL. Pagina estatica, sem logica de JS de pontuacao (essa e a primeira de 5 LPs irmas, uma por faixa de pontuacao (Inicial 0-5, Basico 6-10, Intermediario 11-15, Avancado 16-18, Maduro 19-20). As outras 4 sao geradas depois desta ser aprovada, reaproveitando a mesma estrutura e trocando copy + badge/cor do nivel).
+BODY: Mesma identidade visual da LP landing-pages/buzzmonitor/teste-de-maturidade/index.html: paleta roxo var(--purple: #2E0044) + laranja var(--orange: #EB7C2E), fundo --cloud (#EFEFF4) com radial-gradient de pontinhos no hero, fontes League Spartan (headings) + Lato (corpo), mesmo header/nav e footer (reaproveitar o HTML/CSS literalmente, so trocar o conteudo do main). Reaproveitar o padrao visual da secao "quiz" da LP original (fundo roxo escuro, watermark de icone, CTA laranja) pro bloco de CTA final.
+BODY: Estrutura da pagina: HERO (fundo cloud pontilhado, eyebrow + H1 fixos) seguido de um bloco "RESULTADO" com badge do nivel (LABEL), titulo (H2) e os paragrafos de diagnóstico, e CTA final em fundo roxo escuro (mesmo padrao da secao quiz original). Sem formulario nesta pagina, so o CTA "Agende uma demonstração gratuita" (mock link por enquanto, GUIDELINES §11).
+# Revisao anti-IA: nao se aplica (secao tecnica, nao e copy final).
+
+=== HERO ===
+OVERLINE: Diagnóstico de maturidade em redes sociais
+H1: Seu resultado esta pronto
+SUB: Baseado nas suas respostas, veja o nível de maturidade da sua empresa em redes sociais hoje e o que fazer para evoluir.
+
+=== RESULTADO · NÍVEL INICIAL (0 A 5 PONTOS) ===
+LABEL: Nível Inicial
+H2: Uso muito restrito, pouco estruturado e reativo
+BODY: Hoje o monitoramento da sua empresa mora na cabeça de alguém, não em um processo. Na maioria dos casos ele cobre só o nome da marca, sem um lugar fixo onde essa escuta aconteça, e a leitura do que aparece é feita no improviso, quando alguém lembra de abrir o Instagram ou recebe um print de um colega. Não existe rotina que transforme o que se fala sobre a empresa em decisão.
+BODY: Uma reclamação que vira crise só chega até você quando já estourou no grupo de WhatsApp da diretoria. Um elogio que poderia virar case de marketing passa direto pelo feed sem que ninguém repare. Enquanto isso, concorrentes que já monitoram categoria e mercado tomam decisão um passo na frente, com a mesma informação que está passando pela sua tela agora e ninguém está vendo.
+BODY: Nesse estágio, o principal desafio não é gerar mais dados, mas começar a capturar e organizar os dados certos. O próximo passo é simples de nomear e dá trabalho pra fazer sozinho: colocar a escuta da marca, dos concorrentes e do mercado em um lugar só, com processo fixo; estruturar critérios para trabalhar com influenciadores e substituir análises pontuais por uma leitura contínua já pode representar um salto importante.
+BODY: Também é importante começar a conectar os dados sociais a objetivos concretos, como avaliar campanhas, orientar conteúdos, identificar riscos e entender melhor o comportamento do público.
+BODY: A Buzzmonitor entrega exatamente essa base: monitoramento de marca, concorrentes e mercado em um único painel, com IA que já filtra o que importa dentro do volume de menções. Conheça a plataforma e descubra como evoluir sua operação de social media com mais visibilidade, organização e inteligência.
+CTA: Agende uma demonstração gratuita
+# Revisao anti-IA: sem achados (em-dash: 0).
+
+=== FOOTER ===
+FOOTER: A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.
+FOOTER: (c) Buzzmonitor 2026
+FOOTER: Política de Privacidade e uso de Cookies
