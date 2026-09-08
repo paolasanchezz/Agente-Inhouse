@@ -307,6 +307,21 @@ h1,h2,h3,.eyebrow,.hero__sub,.section__lead,.pill-label,.problem__item,.card__ti
 .hero__aside{animation-duration:.9s;animation-delay:.2s}
 
 /* responsivo */
+
+/* ===== Clientes (esteira padrao — referencia: chatbot-whatsapp) ===== */
+.clientes{background:var(--white);padding:56px 0 64px}
+.clientes__row{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}
+.clientes__label{font-family:var(--body);font-style:italic;font-size:17px;color:var(--muted);text-align:center}
+.ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.ticker__track{display:flex;width:max-content;animation:clientesSlide 46s linear infinite}
+.ticker:hover .ticker__track{animation-play-state:paused}
+.ticker__row{display:flex;align-items:center;gap:52px;padding:14px 26px}
+/* Logos em forca total: sem opacity e sem grayscale (pedido do Bruno, 2026-09-05). */
+.ticker__logo{height:34px;width:auto;flex-shrink:0;opacity:1}
+@keyframes clientesSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (min-width:900px){.clientes__row{grid-template-columns:auto 1fr;gap:34px}.clientes__label{text-align:left;white-space:nowrap}}
+@media (max-width:560px){.ticker__row{gap:36px;padding:12px 18px}.ticker__logo{height:28px}}
+
 @media (max-width:980px){
   .hero{padding:64px 0 88px}
   .hero__grid{grid-template-columns:1fr;gap:48px}
@@ -434,6 +449,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span>Quando alguém sai da equipe, o contexto dos clientes sai junto.</span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="clientes" aria-label="Clientes que confiam na Cxpress">
+    <div class="wrap clientes__row">
+      <p class="clientes__label reveal">Mais de 800 clientes confiam em nós</p>
+      <div class="ticker">
+        <div class="ticker__track">
+          <div class="ticker__row">
+            <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
+          </div>
+          <div class="ticker__row" aria-hidden="true">
+            <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
+            <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

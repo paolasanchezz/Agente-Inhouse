@@ -205,7 +205,7 @@ h3{ font-size:clamp(22px,2vw,27px); font-weight:700; line-height:1.25; }
 /* GUIDELINES 21 - quebra de linha equilibrada.
    balance em bloco curto (ate ~4 linhas); pretty em paragrafo longo. */
 h1,h2,h3,.eyebrow,.lead,.form-card__title,
-.trust li,.cmp-note,.cmp-close,.why li,.stat span,.clientes h2,.connect,
+.trust li,.cmp-note,.cmp-close,.why li,.stat span,.clientes__label,.connect,
 .faq summary h3,.cta-final p,.cmp-table td,.cmp-table th{ text-wrap:balance; }
 .faq-body p,.footer p{ text-wrap:pretty; }
 
@@ -569,38 +569,19 @@ td.is-cx .cell b{ color:var(--navy); font-weight:700; font-size:15px; }
 	.mod:nth-child(even) .mod__text{ order:0; }
 }
 
-/* ==========================================================================
-   CLIENTES
-   ========================================================================== */
-/* Esteira infinita da LP banimento-de-whatsapp: o track tem duas copias do
-   grupo e desliza -50%, entao o recomeco cai exatamente onde a primeira copia
-   terminou. O fundo segue off-white (na banimento e branco) porque aqui a
-   secao fica entre duas secoes brancas e precisa separar (GUIDELINES 1), e o
-   H2 mantem o tamanho display desta LP: la a faixa e uma tira fina colada no
-   hero, aqui e uma secao de prova com headline propria. */
-.clientes{ background:var(--bg-alt); padding:66px 0; text-align:center; }
-.clientes h2{ max-width:900px; margin:0 auto 40px; }
-.clientes__marquee{
-	overflow:hidden;
-	-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-	mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-}
-.clientes__track{ display:flex; width:max-content; animation:clientesMarquee 64s linear infinite; }
-.clientes__group{ display:flex; align-items:center; gap:clamp(30px,4vw,54px); padding-inline:clamp(15px,2vw,27px); }
-.clientes__group img{
-	flex:0 0 auto; width:auto; max-width:170px;
-	height:clamp(30px,3.4vw,42px); object-fit:contain;
-	opacity:.72; filter:saturate(.9);
-	transition:opacity .25s ease,filter .25s ease;
-}
-.clientes__group img:hover{ opacity:1; filter:none; }
-@keyframes clientesMarquee{ from{ transform:translate3d(0,0,0); } to{ transform:translate3d(-50%,0,0); } }
-.clientes__marquee:hover .clientes__track{ animation-play-state:paused; }
-/* a regra global de reduced-motion zera a duracao e a esteira saltaria pro
-   fim (-50%): aqui ela simplesmente nao anda. */
-@media (prefers-reduced-motion:reduce){
-	.clientes__track{ animation:none!important; }
-}
+/* ===== Clientes (esteira padrao — referencia: chatbot-whatsapp) ===== */
+.clientes{background:#fff;padding:56px 0 64px}
+.clientes__row{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}
+.clientes__label{font-family:var(--body);font-style:italic;font-size:17px;color:var(--muted);text-align:center}
+.ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.ticker__track{display:flex;width:max-content;animation:clientesSlide 46s linear infinite}
+.ticker:hover .ticker__track{animation-play-state:paused}
+.ticker__row{display:flex;align-items:center;gap:52px;padding:14px 26px}
+/* Logos em forca total: sem opacity e sem grayscale (pedido do Bruno, 2026-09-05). */
+.ticker__logo{height:34px;width:auto;flex-shrink:0;opacity:1}
+@keyframes clientesSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (min-width:900px){.clientes__row{grid-template-columns:auto 1fr;gap:34px}.clientes__label{text-align:left;white-space:nowrap}}
+@media (max-width:560px){.ticker__row{gap:36px;padding:12px 18px}.ticker__logo{height:28px}}
 
 /* ==========================================================================
    FAQ
@@ -1115,102 +1096,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============================ CLIENTES ============================ -->
 <!-- ============================ CLIENTES ============================ -->
-<section class="clientes">
-	<div class="wrap">
-		<h2 class="reveal">Mais de 800 empresas no Brasil, LATAM e Portugal confiam na Cxpress para seu atendimento</h2>
-		<div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
-			<div class="clientes__track">
-				<div class="clientes__group">
-					<img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
-					<img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
-					<img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
-					<img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
-					<img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
-					<img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
-					<img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
-					<img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
-					<img src="./assets/clientes/cliente-09.png" alt="" aria-hidden="true" loading="lazy" width="127" height="84">
-					<img src="./assets/clientes/cliente-10.png" alt="" aria-hidden="true" loading="lazy" width="437" height="84">
-					<img src="./assets/clientes/cliente-11.png" alt="" aria-hidden="true" loading="lazy" width="195" height="84">
-					<img src="./assets/clientes/cliente-12.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
-					<img src="./assets/clientes/cliente-13.png" alt="" aria-hidden="true" loading="lazy" width="325" height="84">
-					<img src="./assets/clientes/cliente-14.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
-					<img src="./assets/clientes/cliente-15.png" alt="" aria-hidden="true" loading="lazy" width="66" height="84">
-					<img src="./assets/clientes/cliente-16.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
-					<img src="./assets/clientes/cliente-17.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
-					<img src="./assets/clientes/cliente-18.png" alt="" aria-hidden="true" loading="lazy" width="272" height="84">
-					<img src="./assets/clientes/cliente-19.png" alt="" aria-hidden="true" loading="lazy" width="192" height="84">
-					<img src="./assets/clientes/cliente-20.png" alt="" aria-hidden="true" loading="lazy" width="147" height="84">
-					<img src="./assets/clientes/cliente-21.png" alt="" aria-hidden="true" loading="lazy" width="168" height="84">
-					<img src="./assets/clientes/cliente-22.png" alt="" aria-hidden="true" loading="lazy" width="96" height="84">
-					<img src="./assets/clientes/cliente-23.png" alt="" aria-hidden="true" loading="lazy" width="179" height="84">
-					<img src="./assets/clientes/cliente-24.png" alt="" aria-hidden="true" loading="lazy" width="357" height="84">
-					<img src="./assets/clientes/cliente-25.png" alt="" aria-hidden="true" loading="lazy" width="83" height="84">
-					<img src="./assets/clientes/cliente-26.png" alt="" aria-hidden="true" loading="lazy" width="260" height="84">
-					<img src="./assets/clientes/cliente-27.png" alt="" aria-hidden="true" loading="lazy" width="205" height="84">
-					<img src="./assets/clientes/cliente-28.png" alt="" aria-hidden="true" loading="lazy" width="134" height="84">
-					<img src="./assets/clientes/cliente-29.png" alt="" aria-hidden="true" loading="lazy" width="218" height="84">
-					<img src="./assets/clientes/cliente-30.png" alt="" aria-hidden="true" loading="lazy" width="450" height="84">
-					<img src="./assets/clientes/cliente-31.png" alt="" aria-hidden="true" loading="lazy" width="234" height="84">
-					<img src="./assets/clientes/cliente-32.png" alt="" aria-hidden="true" loading="lazy" width="206" height="84">
-					<img src="./assets/clientes/cliente-33.png" alt="" aria-hidden="true" loading="lazy" width="321" height="84">
-					<img src="./assets/clientes/cliente-34.png" alt="" aria-hidden="true" loading="lazy" width="152" height="84">
-					<img src="./assets/clientes/cliente-35.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
-					<img src="./assets/clientes/cliente-36.png" alt="" aria-hidden="true" loading="lazy" width="103" height="84">
-					<img src="./assets/clientes/cliente-37.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
-					<img src="./assets/clientes/cliente-38.png" alt="" aria-hidden="true" loading="lazy" width="131" height="84">
-					<img src="./assets/clientes/cliente-39.png" alt="" aria-hidden="true" loading="lazy" width="358" height="84">
-					<img src="./assets/clientes/cliente-40.png" alt="" aria-hidden="true" loading="lazy" width="289" height="84">
-					<img src="./assets/clientes/cliente-41.png" alt="" aria-hidden="true" loading="lazy" width="250" height="84">
-					<img src="./assets/clientes/cliente-42.png" alt="" aria-hidden="true" loading="lazy" width="328" height="84">
-				</div>
-				<div class="clientes__group" aria-hidden="true">
-					<img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" loading="lazy" width="199" height="84">
-					<img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" loading="lazy" width="85" height="84">
-					<img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" loading="lazy" width="199" height="84">
-					<img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" loading="lazy" width="301" height="84">
-					<img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" loading="lazy" width="324" height="84">
-					<img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" loading="lazy" width="172" height="84">
-					<img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" loading="lazy" width="93" height="84">
-					<img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" loading="lazy" width="86" height="84">
-					<img src="./assets/clientes/cliente-09.png" alt="" aria-hidden="true" loading="lazy" width="127" height="84">
-					<img src="./assets/clientes/cliente-10.png" alt="" aria-hidden="true" loading="lazy" width="437" height="84">
-					<img src="./assets/clientes/cliente-11.png" alt="" aria-hidden="true" loading="lazy" width="195" height="84">
-					<img src="./assets/clientes/cliente-12.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
-					<img src="./assets/clientes/cliente-13.png" alt="" aria-hidden="true" loading="lazy" width="325" height="84">
-					<img src="./assets/clientes/cliente-14.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
-					<img src="./assets/clientes/cliente-15.png" alt="" aria-hidden="true" loading="lazy" width="66" height="84">
-					<img src="./assets/clientes/cliente-16.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
-					<img src="./assets/clientes/cliente-17.png" alt="" aria-hidden="true" loading="lazy" width="162" height="84">
-					<img src="./assets/clientes/cliente-18.png" alt="" aria-hidden="true" loading="lazy" width="272" height="84">
-					<img src="./assets/clientes/cliente-19.png" alt="" aria-hidden="true" loading="lazy" width="192" height="84">
-					<img src="./assets/clientes/cliente-20.png" alt="" aria-hidden="true" loading="lazy" width="147" height="84">
-					<img src="./assets/clientes/cliente-21.png" alt="" aria-hidden="true" loading="lazy" width="168" height="84">
-					<img src="./assets/clientes/cliente-22.png" alt="" aria-hidden="true" loading="lazy" width="96" height="84">
-					<img src="./assets/clientes/cliente-23.png" alt="" aria-hidden="true" loading="lazy" width="179" height="84">
-					<img src="./assets/clientes/cliente-24.png" alt="" aria-hidden="true" loading="lazy" width="357" height="84">
-					<img src="./assets/clientes/cliente-25.png" alt="" aria-hidden="true" loading="lazy" width="83" height="84">
-					<img src="./assets/clientes/cliente-26.png" alt="" aria-hidden="true" loading="lazy" width="260" height="84">
-					<img src="./assets/clientes/cliente-27.png" alt="" aria-hidden="true" loading="lazy" width="205" height="84">
-					<img src="./assets/clientes/cliente-28.png" alt="" aria-hidden="true" loading="lazy" width="134" height="84">
-					<img src="./assets/clientes/cliente-29.png" alt="" aria-hidden="true" loading="lazy" width="218" height="84">
-					<img src="./assets/clientes/cliente-30.png" alt="" aria-hidden="true" loading="lazy" width="450" height="84">
-					<img src="./assets/clientes/cliente-31.png" alt="" aria-hidden="true" loading="lazy" width="234" height="84">
-					<img src="./assets/clientes/cliente-32.png" alt="" aria-hidden="true" loading="lazy" width="206" height="84">
-					<img src="./assets/clientes/cliente-33.png" alt="" aria-hidden="true" loading="lazy" width="321" height="84">
-					<img src="./assets/clientes/cliente-34.png" alt="" aria-hidden="true" loading="lazy" width="152" height="84">
-					<img src="./assets/clientes/cliente-35.png" alt="" aria-hidden="true" loading="lazy" width="84" height="84">
-					<img src="./assets/clientes/cliente-36.png" alt="" aria-hidden="true" loading="lazy" width="103" height="84">
-					<img src="./assets/clientes/cliente-37.png" alt="" aria-hidden="true" loading="lazy" width="89" height="84">
-					<img src="./assets/clientes/cliente-38.png" alt="" aria-hidden="true" loading="lazy" width="131" height="84">
-					<img src="./assets/clientes/cliente-39.png" alt="" aria-hidden="true" loading="lazy" width="358" height="84">
-					<img src="./assets/clientes/cliente-40.png" alt="" aria-hidden="true" loading="lazy" width="289" height="84">
-					<img src="./assets/clientes/cliente-41.png" alt="" aria-hidden="true" loading="lazy" width="250" height="84">
-					<img src="./assets/clientes/cliente-42.png" alt="" aria-hidden="true" loading="lazy" width="328" height="84">
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="clientes" aria-label="Clientes que confiam na Cxpress">
+  <div class="wrap clientes__row">
+    <p class="clientes__label reveal">Mais de 800 clientes confiam em nós</p>
+    <div class="ticker">
+      <div class="ticker__track">
+        <div class="ticker__row">
+          <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
+        </div>
+        <div class="ticker__row" aria-hidden="true">
+          <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
+          <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ============================ FAQ ============================ -->
