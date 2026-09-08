@@ -530,7 +530,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .why-card p{margin-top:14px;font-size:17px;color:var(--neutral-700)}
 
   /* ---- Vídeo ---- */
-  .video{background:var(--white);border-top:1px solid var(--rule);text-align:center}
+  .video{background:var(--white);border-top:1px solid var(--rule);text-align:center;position:relative;overflow:hidden}
+  /* Grafismos decorativos na base da secao — mesma arte e mesmos valores da LP
+     irma chatbot-whatsapp. A arte ja vem cortada pelo proprio viewBox (os paths
+     passam de 520), entao bottom:0 encosta os arcos no fim da secao, e os offsets
+     negativos sangram pras extremidades (o excedente e cortado pelo overflow).
+     .wrap e classe compartilhada da pagina: o z-index vai escopado em .video .wrap. */
+  .video .wrap{position:relative;z-index:1}
+  .video__pills{position:absolute;bottom:0;z-index:0;width:clamp(180px,24vw,330px);pointer-events:none}
+  .video__pills svg{display:block;width:100%;height:auto}
+  .video__pills .p1{fill:var(--accent)}
+  .video__pills .p2{fill:var(--warning)}
+  .video__pills .p3{fill:var(--primary)}
+  .video__pills--left{left:-2.5%}
+  .video__pills--right{right:-2.5%;transform:scaleX(-1)}
   /* Teto de 36px: em 40px/22ch o titulo caia em 4 linhas com 37% de
      desequilibrio e orfa na ultima (GUIDELINES §21 ressalva 4). */
   /* No maximo 2 linhas (pedido do Bruno): a medida de 24ch dava 3. Com 38ch cabe
@@ -1062,6 +1075,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= VÍDEO ================= -->
   <section class="video" aria-labelledby="video-title">
+    <div class="video__pills video__pills--left" aria-hidden="true">
+      <svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/>
+        <path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/>
+        <path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/>
+      </svg>
+    </div>
+    <div class="video__pills video__pills--right" aria-hidden="true">
+      <svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/>
+        <path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/>
+        <path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/>
+      </svg>
+    </div>
     <div class="wrap">
       <h2 id="video-title" class="reveal">Seu Atendimento no WhatsApp turbinado com a automação de conversas</h2>
       <div class="video__frame reveal">

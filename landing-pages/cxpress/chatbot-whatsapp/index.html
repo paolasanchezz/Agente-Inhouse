@@ -249,10 +249,28 @@ section{padding:110px 0}
 
 
 /* ===== Vídeo / automação de conversas ===== */
-.videosect__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;text-align:center}
+.videosect__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;text-align:center;position:relative;z-index:1}
 .videosect .section-title{max-width:760px;margin:0 auto 40px}
 .videosect__frame{max-width:860px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-card-hover);aspect-ratio:16/9;background:#0b0f2e}
 .videosect__frame iframe{width:100%;height:100%;border:0;display:block}
+/* Grafismos decorativos colados na base da secao (arte do designer, 2026-09-08).
+   Mesmo padrao dos clusters do hero: SVG inline, fill por token, atras do conteudo.
+   A arte ja vem cortada pelo proprio viewBox (os paths passam de 520), entao
+   ancorar em bottom:0 encosta os arcos no fim da secao.
+   Path data copiado byte-a-byte de Grafismo_01_esquerda.svg. O lado direito sai
+   de scaleX(-1) em vez do 2o arquivo: o Grafismo_01_direita.svg e o mesmo espelho,
+   com 0.01 de arredondamento de export em 2 dos 3 paths (0.008px no render). */
+.videosect{position:relative;overflow:hidden}
+.videosect__pills{position:absolute;bottom:0;z-index:0;width:clamp(180px,24vw,330px);pointer-events:none}
+.videosect__pills svg{display:block;width:100%;height:auto}
+.videosect__pills .p1{fill:var(--accent)}
+.videosect__pills .p2{fill:var(--warning)}
+.videosect__pills .p3{fill:var(--primary)}
+/* Negativos de proposito: os arcos sangram pras extremidades e o excedente e cortado
+   pelo overflow:hidden da secao, ganhando altura sem empurrar o conteudo. */
+.videosect__pills--left{left:-2.5%}
+.videosect__pills--right{right:-2.5%;transform:scaleX(-1)}
+
 
 /* ===== Descubra tudo (features alternadas) ===== */
 .features .section-title{text-align:center;max-width:760px;margin:0 auto 64px}
@@ -539,6 +557,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- CTA banner -->
   <!-- Vídeo / automação -->
   <section class="videosect">
+    <div class="videosect__pills videosect__pills--left" aria-hidden="true">
+      <svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/>
+        <path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/>
+        <path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/>
+      </svg>
+    </div>
+    <div class="videosect__pills videosect__pills--right" aria-hidden="true">
+      <svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/>
+        <path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/>
+        <path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/>
+      </svg>
+    </div>
     <div class="videosect__inner">
       <h2 class="section-title">O seu atendimento no WhatsApp potenciado com a automação de conversas</h2>
       <div class="videosect__frame reveal">
