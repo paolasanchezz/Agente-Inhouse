@@ -539,30 +539,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .video__frame{
     position:relative;margin:48px auto 0;max-width:900px;
     aspect-ratio:16/9;border-radius:var(--radius-card);overflow:hidden;
-    background:
-      radial-gradient(60% 60% at 50% 40%,rgba(74,105,189,.55) 0%,rgba(35,41,96,0) 70%),
-      linear-gradient(160deg,#2B3374 0%,#191F52 100%);
+    /* Fundo escuro apenas enquanto o iframe carrega: o preview visivel e o
+       poster do proprio player do YouTube, como na LP irma chatbot-whatsapp.
+       Antes daqui vinha um gradiente navy que fazia de poster falso. */
+    background:#0b0f2e;
     box-shadow:0 34px 70px -26px rgba(20,26,66,.55);
   }
   .video__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-  .video__play{
-    position:absolute;inset:0;width:100%;height:100%;
-    display:grid;place-items:center;gap:0;
-    background:transparent;border:0;cursor:pointer;
-  }
-  .video__play::before{
-    content:"";position:absolute;inset:0;
-    background-image:radial-gradient(rgba(255,255,255,.22) 1.2px,transparent 1.2px);
-    background-size:26px 26px;opacity:.55;
-  }
-  .video__glyph{
-    position:relative;width:88px;height:88px;border-radius:50%;
-    display:grid;place-items:center;background:var(--white);
-    box-shadow:0 18px 40px -14px rgba(0,0,0,.5);
-    transition:transform .2s ease;
-  }
-  .video__play:hover .video__glyph{transform:scale(1.07)}
-  .video__glyph svg{width:32px;height:32px;fill:var(--primary-dark);margin-left:4px}
   .video .btn{margin-top:40px}
 
   /* ---- Prova (números NBER / McKinsey) ---- */
@@ -928,8 +911,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .why-grid{grid-template-columns:1fr;margin-top:40px}
     .why-card{padding:30px 24px}
     .video__frame{margin-top:36px;border-radius:14px}
-    .video__glyph{width:70px;height:70px}
-    .video__glyph svg{width:26px;height:26px}
     .proof__grid{grid-template-columns:1fr;gap:16px}
     .proof__item{padding:26px 22px}
     .qs-badges{gap:24px}
@@ -1083,14 +1064,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="video" aria-labelledby="video-title">
     <div class="wrap">
       <h2 id="video-title" class="reveal">Seu Atendimento no WhatsApp turbinado com a automação de conversas</h2>
-      <!-- Fachada: o iframe do YouTube (861 KB de terceiros) só entra no clique. -->
-      <div class="video__frame reveal" id="videoFrame">
-        <button type="button" class="video__play" id="videoPlay" data-yt="36sbDc02_DU"
-                aria-label="Assistir ao vídeo: agilize seu atendimento com a Cxpress, plataforma para gestão">
-          <span class="video__glyph" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
-          </span>
-        </button>
+      <div class="video__frame reveal">
+        <iframe src="https://www.youtube.com/embed/36sbDc02_DU" title="Cxpress - Automação de atendimento no WhatsApp" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <a href="#contato" class="btn btn--primary reveal">Fale com um especialista</a>
     </div>
@@ -1479,25 +1454,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nums.forEach(function(el){ ioNum.observe(el); });
   }
 
-  /* Video sob demanda: o iframe do YouTube (861 KB de terceiros, medido) so
-     entra no clique. Sem clique, a secao e um poster em CSS puro. */
-  var videoPlay = document.getElementById('videoPlay');
-  if (videoPlay) {
-    videoPlay.addEventListener('click', function(){
-      var id = videoPlay.getAttribute('data-yt');
-      var host = document.getElementById('videoFrame');
-      var f = document.createElement('iframe');
-      /* www.youtube.com, nao youtube-nocookie.com: o CSP do guarda-chuva libera
-         apenas o primeiro em frame-src, e o nocookie era bloqueado em runtime
-         ("Framing ... has been blocked"). Mesmo dominio da LP irma whatsapp-smb. */
-      f.setAttribute('src','https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1');
-      f.setAttribute('title','Agilize seu atendimento com a Cxpress, plataforma para gestão');
-      f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-      f.setAttribute('allowfullscreen','');
-      videoPlay.remove();
-      host.appendChild(f);
-    });
-  }
 })();
 
 /* Botao flutuante -> modal com o Jotform da LP (261034073026647, o mesmo da
