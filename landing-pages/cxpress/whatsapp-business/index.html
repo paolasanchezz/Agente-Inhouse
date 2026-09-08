@@ -1419,6 +1419,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
       jotHost.appendChild(sc);
     };
+    /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
+       caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
+       secao sai do proprio DOM, sem hardcode. */
+    var sec = jotHost.closest ? jotHost.closest('section[id]') : null;
+    if (sec && sec.id) {
+      var atalhos = document.querySelectorAll('a[href="#' + sec.id + '"]');
+      Array.prototype.forEach.call(atalhos, function(a){
+        ['pointerenter', 'touchstart', 'click'].forEach(function(ev){
+          a.addEventListener(ev, carregaJot, {once: true, passive: true});
+        });
+      });
+    }
     if ('IntersectionObserver' in window) {
       var ioJot = new IntersectionObserver(function(en){
         en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });

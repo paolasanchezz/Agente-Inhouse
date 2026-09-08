@@ -1542,8 +1542,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           });
         })();
         </script>
-        <div class="jotform-embed">
-          <script type="text/javascript" src="https://form.jotform.com/jsform/261034073026647"></script>
+        <div class="jotform-embed" id="jotHost" data-jotform="261034073026647">
           <noscript><iframe src="https://form.jotform.com/261034073026647" title="Formulário de agendamento de demonstração" style="width:100%;height:900px;border:0"></iframe></noscript>
         </div>
       </div>
@@ -1757,5 +1756,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     })();
   </script>
+<script>
+/* Jotform sob demanda: o loader do jsform era um <script src> sincrono aqui no
+   body, e por vir antes deste bloco prendia o DOMContentLoaded da pagina ao tempo
+   de resposta do provedor. Agora o script so e injetado quando a secao do
+   formulario chega a 600px da viewport. Mesmo padrao da LP irma whatsapp-business.
+   Sem IntersectionObserver (navegador antigo), carrega de imediato. */
+(function(){
+  var jotHost = document.getElementById('jotHost');
+  if (!jotHost) return;
+  var carregaJot = function(){
+    if (jotHost.dataset.carregado) return;
+    jotHost.dataset.carregado = '1';
+    var sc = document.createElement('script');
+    sc.type = 'text/javascript';
+    sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
+    jotHost.appendChild(sc);
+  };
+  /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
+     caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
+     secao sai do proprio DOM, sem hardcode. */
+  var sec = jotHost.closest ? jotHost.closest('section[id]') : null;
+  if (sec && sec.id) {
+    var atalhos = document.querySelectorAll('a[href="#' + sec.id + '"]');
+    Array.prototype.forEach.call(atalhos, function(a){
+      ['pointerenter', 'touchstart', 'click'].forEach(function(ev){
+        a.addEventListener(ev, carregaJot, {once: true, passive: true});
+      });
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var ioJot = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });
+    }, {rootMargin: '600px 0px'});
+    ioJot.observe(jotHost);
+  } else {
+    carregaJot();
+  }
+})();
+</script>
 </body>
 </html>
