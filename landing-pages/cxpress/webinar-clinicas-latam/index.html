@@ -505,15 +505,15 @@
     }
 
     /* ============ PARA-QUIEN ============ */
-    .audience-section { background: var(--primary-dark); color: var(--neutral-0); position: relative; overflow: hidden; }
+    .audience-section { background: var(--neutral-100); color: var(--primary-dark); position: relative; overflow: hidden; }
     .audience-pills span { position: absolute; border-radius: 9999px; display: block; pointer-events: none; }
-    .audience-pills .p1 { width: 54px; height: 190px; background: var(--primary); opacity: .5; top: -50px; left: 5%; }
-    .audience-pills .p2 { width: 150px; height: 54px; border: 3px solid var(--accent); background: transparent; opacity: .85; bottom: -20px; right: 7%; }
-    .audience-pills .p3 { width: 30px; height: 30px; background: var(--warning); opacity: .5; top: 18%; right: 3%; }
+    .audience-pills .p1 { width: 54px; height: 190px; background: var(--primary-light); opacity: .6; top: -50px; left: 5%; }
+    .audience-pills .p2 { width: 150px; height: 54px; border: 3px solid var(--accent); background: transparent; opacity: .5; bottom: -20px; right: 7%; }
+    .audience-pills .p3 { width: 30px; height: 30px; background: var(--warning); opacity: .35; top: 18%; right: 3%; }
     .audience-section .container { position: relative; z-index: 1; }
     .audience-header { max-width: 640px; margin: 0 auto 48px; text-align: center; }
     .audience-header .section-label { background: var(--accent); color: var(--primary-dark); }
-    .audience-h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; color: var(--neutral-0); }
+    .audience-h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; color: var(--primary-dark); }
     .audience-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -526,25 +526,34 @@
       align-items: flex-start;
       gap: 12px;
       padding: 20px 22px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-200);
       border-radius: var(--radius-lg);
       font-size: 15px;
-      color: var(--primary-lighter);
+      color: var(--primary-dark);
       line-height: 1.5;
-      transition: transform 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
     }
     .audience-item:hover {
       transform: translateY(-5px);
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.26);
-      box-shadow: 0 14px 28px rgba(0,0,0,0.18);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
     }
     .audience-item svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
     .audience-cta { display: flex; justify-content: center; }
 
     @media (max-width: 720px) {
       .audience-list { grid-template-columns: 1fr; }
+    }
+
+    /* ============ DECORACION ANIMADA (pildoras/arcos) ============ */
+    .practice-pills .p1, .audience-pills .p1 { animation: decor-float 6.5s ease-in-out infinite; }
+    .practice-pills .p2, .audience-pills .p2 { animation: decor-float 7.5s ease-in-out infinite reverse; }
+    .practice-pills .p3, .audience-pills .p3 { animation: decor-pulse 2.4s ease-in-out infinite; }
+    @keyframes decor-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes decor-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+    @media (prefers-reduced-motion: reduce) {
+      .practice-pills span, .audience-pills span { animation: none !important; }
     }
 
     /* ============ DE LA TEORIA A LA PRACTICA ============ */
