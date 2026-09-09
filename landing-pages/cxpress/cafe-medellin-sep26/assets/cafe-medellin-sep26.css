@@ -378,6 +378,13 @@ h1,h2,h3,
 .about .section-head h2{color:var(--white)}
 .about-copy p{font-size:18px;color:var(--muted-dark);max-width:52em}
 .about-copy p+p{margin-top:16px}
+/* .about y .cta comparten el mismo campo navy y no hay cambio de fondo que marque
+   el limite entre las dos: sumar el padding-bottom de una con el padding-top de la
+   otra abria 209px de vacio. Se colapsa la costura por el lado de .about, que es
+   la seccion corta; el padding-top de .cta se mantiene, porque le da aire al sello.
+   Selector doble (.section.about) a proposito: gana sobre el .section de los
+   @media de mas abajo sin depender del orden en el archivo. */
+.section.about{padding-bottom:28px}
 
 
 /* ============ 15. CTA FINAL ============ */
