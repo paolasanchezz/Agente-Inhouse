@@ -88,8 +88,13 @@ parágrafo do rodapé caiu de 62% para 21% em 390. Zero overflow horizontal em 1
 - [x] `check_gtm_region.py`: 1 OK, 0 bloqueio
 - [x] `bump_mobile_type.py --dry-run`: 0 clamps a ajustar (H1 34px, corpo 17px, mínimo 15px no mobile)
 - [x] `build_umbrella.py` com manifesto de teste: 0 aviso, 0 path relativo sobrando, 10 assets copiados
-- [ ] Revisão (`lp-revisar`)
-- [ ] Publicada — falta entrar em `landing-pages/dominios/content-cxpress-io/manifest.json` via `lp-publicar`
+- [x] Publicada — https://content.cxpress.io/obrigado (2026-09-09, PR #566, deploy CI run 34394978336)
+- [ ] Revisão (`lp-revisar`) — opcional, a LP não passou por auditoria de design/a11y automatizada
+
+Validações do live: hash idêntico ao do dist (`5a72875999637ce20c95a1e2705d57aa`), 10/10 assets 200,
+7/7 headers de segurança, GTM 3/3 tokens, vizinhas intactas (smoke do CI nas 68 URLs do manifesto).
+PageSpeed não rodou na entrega (API devolveu 429, quota do dia) — pendente.
+Relatório: Notion, `Entregas > Entrega LP · Cxpress · obrigado · 2026-09-09`.
 
 ## Exceções deliberadas às GUIDELINES (precedente: cadastro-realizado / video-atendimento-obrigado)
 
