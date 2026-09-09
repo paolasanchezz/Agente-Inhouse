@@ -1363,7 +1363,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var sc = document.createElement('script');
     sc.type = 'text/javascript';
     sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
+    sc.onerror = contingencia;
     jotHost.appendChild(sc);
+    setTimeout(function(){ if (!jotHost.querySelector("iframe")) contingencia(); }, 6000);
+  };
+  /* Rede de seguranca: se o script do jsform nao executar (bloqueador, shield,
+     proxy, falha de rede), sem isso o host fica em 0px pra sempre — sem iframe,
+     sem aviso e sem retentativa. Degrau 1: iframe simples, que nao depende do
+     jsform. Degrau 2: link pra abrir o formulario em nova aba. */
+  var contingencia = function(){
+    if (jotHost.querySelector("iframe")) return;
+    var ns = jotHost.querySelector("noscript");
+    if (ns && ns.textContent.indexOf("<iframe") > -1) {
+      jotHost.insertAdjacentHTML("beforeend", ns.textContent);
+    } else {
+      var f = document.createElement("iframe");
+      f.src = "https://form.jotform.com/" + jotHost.dataset.jotform;
+      f.title = "Formulário de contato";
+      f.style.cssText = "width:100%;height:900px;border:0;display:block";
+      jotHost.appendChild(f);
+    }
+    /* Nao da pra saber se um iframe cross-origin renderizou: o evento load
+       dispara tambem na pagina de erro do navegador. Como aqui ja estamos em
+       caminho degradado, o link de escape vai junto com o iframe. */
+    ultimoRecurso();
+  };
+  var ultimoRecurso = function(){
+    if (jotHost.dataset.recurso) return;
+    jotHost.dataset.recurso = "1";
+    var url = "https://form.jotform.com/" + jotHost.dataset.jotform;
+    jotHost.insertAdjacentHTML("beforeend",
+      '<p style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
+      '<a href="' + url + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
   };
   /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
      caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
