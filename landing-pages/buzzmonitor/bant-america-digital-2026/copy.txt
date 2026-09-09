@@ -39,7 +39,8 @@ Tipo: email · opcional
 [CAMPO 2] Closer *
 Tipo: select · obligatorio
 Placeholder: Selecciona una opción
-Opciones: Milagro Pantoja · Nadia Lezcano (equipo de LATAM para América Digital)
+Opciones: David Lopez · Juan Forero · Luis Perez · Maria Jose Ramirez · Milagro Pantoja · Nadia Lezcano
+(equipo de LATAM para América Digital, orden alfabético por nombre)
 
 [CAMPO 3] Intereses demostrados durante la conversación *
 Tipo: checkbox múltiple · obligatorio
