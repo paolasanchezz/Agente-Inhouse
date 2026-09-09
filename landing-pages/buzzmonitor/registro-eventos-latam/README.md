@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 (2026-09-09, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (2026-09-09, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -20,8 +20,8 @@ A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem red
 
 | # | Secao | Blocos | Fundo |
 |---|---|---|---|
-| 1 | Hero + formulario | overline, H1, sub, 3 flags, CTA · card com 4 campos | **roxo** (`#390155`) |
-| 2 | Oferta | 3 cards + linha de reforco | **branco** (titulo laranja, conteudo preto) |
+| 1 | Hero + formulario | overline, H1 (realce laranja), sub, 3 flags, CTA · card com 4 campos · **8 chips de metrica animados** | **roxo** (`#390155`) |
+| 2 | Oferta | 3 cards + linha de reforco | **branco** (titulo `#EB7C2E`, conteudo preto) |
 | 3 | Lo que te llevas | 5 itens (grid 3+2) + CTA outline | branco |
 | 4 | Costo de no actuar | tag rotacionada, H2, 3 itens, fecho, CTA | **magenta** (`#DE2451`) |
 | 5 | Plataforma | H2, sub, 4 itens (secao de pausa) | branco |
@@ -460,6 +460,75 @@ branca. Nao precisou de fio divisorio: a composicao geometrica (semicirculo teal
 laranja + retangulo roxo) assentada na borda de baixo da Oferta ja faz o corte, e a secao
 seguinte abre com o proprio marcador de secao.
 
+## v2.6 — realce laranja no H1 e metricas animadas em volta do formulario
+
+Quatro pedidos do Victor nesta rodada.
+
+### 1. Titulo da Oferta no `#EB7C2E`
+
+Voltou pro laranja vivo, **por decisao explicita dele**. Registro do que isso custa em
+acessibilidade esta em `REVISAO.md`; resumo: `#EB7C2E` sobre branco da **2,84:1** e reprova AA
+inclusive no piso de 3:1 de texto grande. Pra reverter, e trocar `var(--accent)` por
+`var(--accent-ink)` em `.block--paper h2`.
+
+### 2. Realce laranja atras da segunda frase do H1
+
+A separacao das duas frases deixou de ser sublinhado amarelo e virou **marca-texto laranja**.
+Detalhe que importa: o texto dentro do realce e **roxo**, nao branco. Branco sobre `#EB7C2E`
+daria 2,84:1; roxo da **5,70:1**. E `box-decoration-break: clone` faz o realce acompanhar cada
+linha em vez de virar um retangulo unico atras do bloco todo.
+
+A marcacao do H1 mudou (a primeira frase ganhou um `<span>` pra manter a quebra de linha, ja que
+o `<em>` deixou de ser `display: block`), mas **o texto e identico**.
+
+### 3. Overline sem "Participantes del evento"
+
+`Oferta exclusiva · Participantes del evento` -> **`Oferta exclusiva`**. Mudanca de copy,
+aplicada tambem no `copy.txt`.
+
+### 4. Menos ar no hero
+
+`padding-block` de `clamp(64px, 7vw, 112px) var(--pad-y)` para
+`clamp(44px, 4.6vw, 76px) clamp(64px, 7vw, 104px)`. No desktop caiu de 112/176px para 76/104px.
+
+### As metricas animadas
+
+8 chips decorativos (contadores, sparkline, donut de sentimento, barras) que sobem do fundo,
+atravessam o hero e saem de quadro, em loop infinito. Passam **atras** do card de formulario
+(`.metrics` em `z-index: 0`, o `.wrap` em `z-index: 2`), entao nunca cobrem conteudo.
+
+- 3 trajetorias diferentes (`cross-a` sobe pra direita, `cross-b` entra pela direita e sai pela
+  esquerda, `cross-c` sobe pra esquerda), com duracoes de 17s a 29s e atrasos de 0 a 12s. As
+  duracoes sao desencontradas de proposito pra nunca reentrarem em sincronia.
+- So `transform` e `opacity` sao animados (compositor-friendly), com `will-change`.
+- **No mobile ficam 5** dos 8 (os outros somem via `display: none`), um pouco menores. Verificado
+  num viewport real de 390x780: 4 chips simultaneos com opacidade entre 0,53 e 0,95.
+
+#### O bug que quase passou
+
+A primeira versao usava porcentagem no `translate` (`translate3d(0, 130%, 0)`). **Porcentagem em
+`translate` e relativa ao proprio elemento**, nao ao container: um chip de ~40px de altura andava
+~110px e o movimento passava despercebido. Trocado por `vh`/`vw`, que se referem ao viewport. Foi
+detectado medindo o deslocamento real no navegador em dois instantes, nao olhando screenshot.
+
+Segunda correcao: os chips estavam ancorados na base do hero e a rampa de opacidade abria em 38%
+da animacao, entao ficavam visiveis pouco e longe do formulario. Passaram a ser ancorados no meio
+do hero (`top: 40%..72%`) com opacidade abrindo em 10%.
+
+#### Acessibilidade deste efeito
+
+- Tudo dentro de `.metrics`, que e **`aria-hidden="true"`**: nao entra na arvore de acessibilidade.
+- **`prefers-reduced-motion: reduce` esconde o bloco inteiro** (`display: none`). Quem pediu menos
+  movimento nao ve nenhum.
+- Os numeros sao **ilustrativos**, declarados no `copy.txt` no bloco
+  `=== METRICAS ANIMADAS (decorativo, rotulos de UI, datos de ejemplo) ===`. Nao ha afirmacao de
+  resultado de cliente.
+- **Ponto aberto (WCAG 2.2.2):** movimento automatico que dura mais de 5s e roda em paralelo com
+  outro conteudo pede um mecanismo de pausar/parar/ocultar. Hoje a LP atende so pela via
+  automatica (`prefers-reduced-motion`); nao ha botao de pausa, porque o pedido foi movimento
+  continuo. Fechar isso e um botao discreto de pausa, como o que a v1 teve no marquee. **Decisao
+  do Victor.**
+
 ## Historico de versoes
 
 | Versao | O que era | Estado |
@@ -471,7 +540,8 @@ seguinte abre com o proprio marcador de secao.
 | v2.2 | v2.1 + sistema de bloco de cor do "Manual de Active Campaign": 3 blocos saturados, sunburst, formas planas e reticula em grade. | substituida |
 | v2.3 | Troca de "webinar" por "evento" em toda a copy publica (9 no HTML, 4 no `copy.txt`). | incorporada |
 | v2.4 | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. | substituida |
-| **v2.5** | Oferta volta pro branco com titulo laranja e conteudo preto. Restam 3 blocos de cor: hero (roxo), costo (magenta) e CTA final (roxo). Copy inalterada. | **vigente** |
+| v2.5 | Oferta volta pro branco com titulo laranja e conteudo preto. Restam 3 blocos de cor: hero (roxo), costo (magenta) e CTA final (roxo). | substituida |
+| **v2.6** | Titulo da Oferta no `#EB7C2E`; realce laranja atras da 2a frase do H1; overline encurtado; menos ar no hero; 8 chips de metrica animados em volta do formulario (5 no mobile). | **vigente** |
 
 O revert da v3 foi validado por comparacao pixel a pixel contra o render da v2: **0 pixels de
 diferenca** em 1440x10400. A `copy.txt` voltou do backup tirado antes da reescrita.

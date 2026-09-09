@@ -80,6 +80,46 @@ esse `vercel.json` e compartilhado pelas 28 LPs do dominio.
 PageSpeed Insights nao rodou (API publica devolveu 429 em 4 tentativas). Substituido por medicao
 real de Navigation Timing no live; comando pra tentar de novo esta no `README.md`.
 
+### v2.6 (2026-09-09): desvio de contraste decidido pelo Victor
+
+**O titulo do bloco de Oferta usa `#EB7C2E` sobre branco. Isso da 2,84:1.**
+
+| Requisito | Piso | `#EB7C2E` sobre branco | Situacao |
+|---|---|---|---|
+| WCAG AA, texto normal | 4,5:1 | 2,84:1 | reprova |
+| WCAG AA, texto grande (>=24px ou >=18,66px bold) | 3:1 | 2,84:1 | **reprova tambem** |
+
+O H2 esta em 54px, entao cai na regra de texto grande, e mesmo assim nao passa. Eu havia
+aplicado `#B85210` (4,97:1) na v2.5 exatamente por isso e sinalizei o problema; o Victor pediu
+o `#EB7C2E` de forma explicita, com o hex. Aplicado como pedido e registrado aqui.
+
+**Impacto pratico:** quem tem baixa visao ou usa a pagina sob luz forte pode nao conseguir ler o
+titulo dessa secao. O resto do bloco nao e afetado (conteudo em `#1a1a1a`, 18,3:1).
+
+**Reversao:** uma linha. Em `.block--paper h2`, trocar `var(--accent)` por `var(--accent-ink)`.
+
+Onde o laranja vivo **continua correto** neste bloco: regua da secao, fio de 2px no topo dos
+cards e sunburst. Sao elementos graficos, sem requisito de contraste de texto.
+
+### v2.6: o que foi verificado no efeito de metricas animadas
+
+- `.metrics` inteiro com `aria-hidden="true"`.
+- `prefers-reduced-motion: reduce` -> `display: none` no bloco todo.
+- Chips em `z-index: 0`, conteudo do hero em `z-index: 2`: passam atras do card, nunca cobrem
+  formulario nem texto.
+- So `transform` e `opacity` animados.
+- Numeros ilustrativos, declarados no `copy.txt`.
+- Os chips ficam abaixo do piso de 14px da §20 no mobile (rotulo em 12px): **isento de
+  proposito**, sao decoracao ambiente com `aria-hidden` e `white-space: nowrap`, e a propria §20
+  isenta nowrap. O `bump_mobile_type.py` concorda (0 pendencias).
+- Nao geram overflow horizontal: `check_mobile_type` a 375px segue acusando so os 3 itens
+  decorativos conhecidos.
+
+**Pendencia aberta (WCAG 2.2.2):** movimento automatico com mais de 5s de duracao, em paralelo
+com outro conteudo, pede mecanismo de pausar/parar/ocultar. A LP cobre hoje so a via automatica
+(`prefers-reduced-motion`). Nao ha botao de pausa porque o pedido foi movimento continuo.
+Decisao do Victor se entra.
+
 ---
 
 ## Criticos aplicados (v1, historico)

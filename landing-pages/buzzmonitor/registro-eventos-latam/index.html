@@ -291,7 +291,7 @@
     .mk--cross { color: var(--peach); width: 20px; height: 20px; margin-top: 5px; }
 
     /* ---------- Hero ---------- */
-    .hero { padding-block: clamp(64px, 7vw, 112px) var(--pad-y); }
+    .hero { padding-block: clamp(44px, 4.6vw, 76px) clamp(64px, 7vw, 104px); }
     .hero__grid {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
@@ -305,17 +305,19 @@
       margin-block: 30px 0;
       color: #ffffff;
     }
-    /* o desfecho da headline ganha sublinhado amarelo: separa as duas frases sem
-       precisar de uma segunda cor de texto (no roxo, so o branco fecha AA) */
+    .hero__h1-a { display: block; }
+    /* o desfecho da headline ganha fundo laranja, tipo marca-texto. O texto vira
+       roxo: sobre #EB7C2E o roxo da 5,70:1, o branco daria 2,84:1 e reprovaria.
+       box-decoration-break: clone faz o realce acompanhar cada linha. */
     .hero__h1 em {
       font-style: normal;
-      color: #ffffff;
-      display: block;
-      text-decoration: underline;
-      text-decoration-color: var(--yellow);
-      text-decoration-thickness: 5px;
-      text-underline-offset: 9px;
-      text-decoration-skip-ink: none;
+      display: inline;
+      color: var(--ink);
+      background: var(--accent);
+      padding: .04em .2em;
+      border-radius: 5px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
     }
     .hero__sub {
       font-size: clamp(18px, 1.7vw, 21px);
@@ -920,7 +922,10 @@
        elemento grafico (regua da secao, fio do card, sunburst), onde nao ha
        requisito de contraste de texto. */
     .block--paper { background: var(--white); color: var(--ink-900); }
-    .block--paper h2 { color: var(--accent-ink); }
+    /* #EB7C2E pedido explicitamente pelo Victor. Da 2,84:1 sobre branco e reprova
+       AA (e o piso de 3:1 de texto grande). Desvio decidido por ele, registrado
+       em REVISAO.md. Pra reverter: trocar por var(--accent-ink) (#B85210, 4,97:1). */
+    .block--paper h2 { color: var(--accent); }
     .block--paper h3, .block--paper .note { color: var(--ink-900); }
 
     /* Closers do manual = magenta. Branco fecha 4,73:1. */
@@ -1020,6 +1025,107 @@
       .burst--spin { animation: none; }
     }
 
+
+    /* =========================================================
+       v2.6: metricas animadas em volta do formulario.
+       Chips decorativos (dados de exemplo) que sobem do fundo,
+       atravessam o hero e saem de quadro, em loop continuo.
+       Passam ATRAS do card de formulario: nunca cobrem conteudo.
+       Tudo aria-hidden e tudo desligado em prefers-reduced-motion.
+       ========================================================= */
+    .metrics {
+      position: absolute;
+      inset: 0;
+      z-index: 0;          /* atras do .wrap, que e z-index 1 */
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .m {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .28);
+      color: #ffffff;
+      font-family: Lato, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      will-change: transform, opacity;
+      animation-name: cross-a;
+      animation-duration: var(--dur, 20s);
+      animation-delay: var(--delay, 0s);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .m__n {
+      font-family: "League Spartan", Impact, sans-serif;
+      font-weight: 900;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .m__l { color: #F2D8FF; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+    .m svg { display: block; }
+    .m--b { animation-name: cross-b; }
+    .m--c { animation-name: cross-c; }
+    .m--plain { padding: 0; background: none; border: 0; }
+
+    /* Tres trajetorias. O deslocamento vai em vh/vw de proposito: porcentagem em
+       translate() e relativa ao PROPRIO elemento, entao um chip de 40px de altura
+       andaria ~110px e o movimento passava despercebido. Em vh ele cruza o hero. */
+    @keyframes cross-a {   /* sobe e sai por cima, derivando pra direita */
+      0%   { transform: translate3d(0, 36vh, 0) scale(.74); opacity: 0; }
+      10%  { opacity: .95; }
+      90%  { opacity: .95; }
+      100% { transform: translate3d(14vw, -46vh, 0) scale(1.16); opacity: 0; }
+    }
+    @keyframes cross-b {   /* entra pela direita e sai pela esquerda */
+      0%   { transform: translate3d(26vw, 20vh, 0) scale(.8); opacity: 0; }
+      12%  { opacity: .92; }
+      88%  { opacity: .92; }
+      100% { transform: translate3d(-30vw, -26vh, 0) scale(1.12); opacity: 0; }
+    }
+    @keyframes cross-c {   /* sobe derivando pra esquerda */
+      0%   { transform: translate3d(0, 34vh, 0) scale(.76); opacity: 0; }
+      11%  { opacity: .9; }
+      89%  { opacity: .9; }
+      100% { transform: translate3d(-13vw, -44vh, 0) scale(1.14); opacity: 0; }
+    }
+
+    /* Ancorados no meio do hero (nao na base): assim a janela visivel de cada chip
+       cobre a faixa do formulario. Duracoes desencontradas pra nunca sincronizarem. */
+    .m1 { left: 4%;  top: 58%; --dur: 17s; --delay: 0s; }
+    .m2 { left: 28%; top: 66%; --dur: 23s; --delay: 2s; }
+    .m3 { left: 60%; top: 52%; --dur: 19s; --delay: 4.5s; }
+    .m4 { left: 80%; top: 62%; --dur: 26s; --delay: 1s; }
+    .m5 { left: 44%; top: 44%; --dur: 21s; --delay: 7s; }
+    .m6 { left: 14%; top: 72%; --dur: 29s; --delay: 3s; }
+    .m7 { left: 70%; top: 40%; --dur: 24s; --delay: 9.5s; }
+    .m8 { left: 22%; top: 48%; --dur: 20s; --delay: 12s; }
+
+    @media (max-width: 760px) {
+      /* no celular ficam 5, um pouco menores: movimento sem peso */
+      .m { font-size: 14px; padding: 8px 11px; gap: 7px; }
+      .m__n { font-size: 17px; }
+      /* 12px fica abaixo do piso de 14px da GUIDELINES §20 de proposito: estes chips
+         sao decoracao ambiente (aria-hidden + nowrap), nao conteudo legivel. O §20
+         existe pra texto que o usuario le, e a propria regra isenta nowrap. */
+      .m__l { font-size: 12px; }
+      .m4, .m6, .m8 { display: none; }
+      .m1 { left: 3%; }
+      .m3 { left: 48%; }
+      .m7 { left: 52%; top: 56%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .metrics { display: none; }
+    }
+
 </style>
 </head>
 <body>
@@ -1044,12 +1150,22 @@
     <!-- 1. HERO -->
     <section class="hero has-ht block block--ink">
       <div class="ht ht--hero" aria-hidden="true"></div>
+      <div class="metrics" aria-hidden="true">
+        <div class="m m1"><span class="m__l">Menciones</span><span class="m__n">12.480</span></div>
+        <div class="m m--b m2"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCBD4F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg><span class="m__n">+18%</span></div>
+        <div class="m m3"><span class="m__l">Share of voice</span><span class="m__n">38%</span></div>
+        <div class="m m--c m--plain m4"><svg width="62" height="22" viewBox="0 0 62 22" fill="none"><path d="M1 17 L11 13 L21 15 L31 8 L41 10 L51 4 L61 2" stroke="#FCBD4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="m m5"><svg width="26" height="26" viewBox="0 0 40 40" style="transform:rotate(-90deg)"><circle cx="20" cy="20" r="15.9155" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="6"/><circle cx="20" cy="20" r="15.9155" fill="none" stroke="#0E9D9B" stroke-width="6" stroke-dasharray="62 100" stroke-linecap="round"/></svg><span class="m__l">Positivo</span><span class="m__n">62%</span></div>
+        <div class="m m--b m6"><span class="m__l">Alertas</span><span class="m__n">5</span></div>
+        <div class="m m--c m--plain m7"><svg width="46" height="22" viewBox="0 0 46 22" fill="none"><rect x="1" y="12" width="8" height="10" rx="1.5" fill="#EB7C2E"/><rect x="13" y="7" width="8" height="15" rx="1.5" fill="#0E9D9B"/><rect x="25" y="3" width="8" height="19" rx="1.5" fill="#FCBD4F"/><rect x="37" y="9" width="8" height="13" rx="1.5" fill="#F2D8FF"/></svg></div>
+        <div class="m m8"><span class="m__l">Temas nuevos</span><span class="m__n">12</span></div>
+      </div>
       <svg class="burst burst--hero burst--spin" viewBox="0 0 100 100" aria-hidden="true"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>
       <div class="wrap hero__grid">
         <div class="hero-content reveal">
-          <span class="eyebrow">Oferta exclusiva · Participantes del evento</span>
+          <span class="eyebrow">Oferta exclusiva</span>
           <h1 class="hero__h1">
-            Los datos no solo sirven para explicar el pasado.
+            <span class="hero__h1-a">Los datos no solo sirven para explicar el pasado.</span>
             <em>Sirven para construir tu próximo movimiento.</em>
           </h1>
           <p class="hero__sub">Ya viste el método en el evento. Activa ahora tus 15 días gratis en Buzzmonitor, con especialistas al lado y tu primer dashboard armado por nuestro equipo.</p>
