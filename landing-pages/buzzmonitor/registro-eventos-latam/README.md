@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 (2026-09-09, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 (2026-09-09, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -21,7 +21,7 @@ A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem red
 | # | Secao | Blocos | Fundo |
 |---|---|---|---|
 | 1 | Hero + formulario | overline, H1, sub, 3 flags, CTA · card com 4 campos | **roxo** (`#390155`) |
-| 2 | Oferta | 3 cards + linha de reforco | off-white |
+| 2 | Oferta | 3 cards + linha de reforco | **branco** (titulo laranja, conteudo preto) |
 | 3 | Lo que te llevas | 5 itens (grid 3+2) + CTA outline | branco |
 | 4 | Costo de no actuar | tag rotacionada, H2, 3 itens, fecho, CTA | **magenta** (`#DE2451`) |
 | 5 | Plataforma | H2, sub, 4 itens (secao de pausa) | branco |
@@ -364,7 +364,7 @@ outro do mesmo tom:
 | Bloco | Antes | Agora | Por que |
 |---|---|---|---|
 | Hero | branco | **roxo `#390155`** | E o primario da marca e o tom mais escuro da paleta. Branco sobre ele da **15:1**, o que libera o tipo maior e mais pesado de toda a pagina (H1 subiu de 52px pra 62px). O card branco do formulario tambem flutua com mais forca sobre o fundo mais escuro |
-| Oferta | laranja | laranja (inalterado) | Roxo -> laranja e transicao limpa de escuro pra quente. Magenta -> laranja vibraria |
+| Oferta | laranja | laranja na v2.4, **branco na v2.5** | Ver secao v2.5 abaixo |
 | Costo de no actuar | roxo | **magenta `#DE2451`** | Precisava sair do roxo pro hero ficar sendo o unico bloco roxo do topo. Magenta ainda cai bem no registro de alerta da secao de dor |
 | CTA final | magenta | **roxo `#390155`** | Fecha a pagina no mesmo tom que abre. Hero e CTA final viram os dois extremos do mesmo bloco |
 
@@ -405,6 +405,61 @@ e continua valendo: 3 cores fortes, cada uma com papel fixo, e 6 das 10 secoes s
   Removida, junto com dois comentarios que ainda falavam de gradiente. **A LP nao tem mais nenhum
   `linear-gradient`** (os `radial-gradient` que sobraram sao o halftone e os brilhos).
 
+## v2.5 — a Oferta volta pro branco, com titulo laranja e conteudo preto
+
+Pedido do Victor: "que o bloco laranja seja branco, o titulo desse bloco seja laranja e os
+bullet points (15 dias gratis, soporte consultivo, etc), incluindo suas descricoes, sejam pretos".
+
+| Elemento | Antes (bloco laranja) | Agora (bloco branco) |
+|---|---|---|
+| Fundo da secao | `#EB7C2E` | `#ffffff` |
+| H2 | roxo `#390155` | **laranja `#B85210`** |
+| Titulo dos 3 cards | roxo | **preto `#1a1a1a`** |
+| Descricao dos 3 cards | roxo a 88% | **preto `#1a1a1a`** |
+| Linha "Y además..." | roxo | preto `#1a1a1a` |
+
+### O laranja do titulo nao e o #EB7C2E, e proposital
+
+`#EB7C2E` sobre branco da **2,84:1**. Isso reprova AA para texto normal (4,5:1) e reprova
+tambem o piso de **3:1 de texto grande** da `GUIDELINES §7`, mesmo com o H2 em 54px. Entao o
+titulo usa **`--accent-ink` `#B85210`** (4,97:1), que e o mesmo laranja acessivel que a LP ja
+usava pra texto desde a v1. Visualmente le como laranja; a diferenca e de luminancia, nao de
+matiz.
+
+O `#EB7C2E` vivo continua presente no bloco, mas so como **elemento grafico**, onde nao existe
+requisito de contraste de texto: a regua da secao, o fio de 2px no topo de cada card e o
+sunburst.
+
+### Preto = `neutral.900` do brandbook
+
+`#1a1a1a`, que o `brand/buzzmonitor/tokens.json` define como "Texto principal". Da 18,3:1 sobre
+branco. Nao usei `#000` puro: o brandbook ja tem um preto de texto definido, e usar o token
+mantem a LP consistente com o resto do sistema.
+
+### Ajustes que a troca de fundo obrigou
+
+Formas e tints desenhados pra fundo laranja nao funcionam em branco:
+
+- **Badge do check:** era branco a 55% (invisivel no branco). Virou tint laranja `#FDF0E5`, com
+  o check em `#B85210` (4,6:1 sobre o tint).
+- **Fio do topo do card:** era roxo a 30% (pensado pra contrastar com laranja). Virou
+  `2px solid #EB7C2E`, que amarra com o titulo.
+- **Sunburst:** era amarelo. Sobre branco o amarelo da 1,6:1 e praticamente desaparece. Virou
+  laranja `#EB7C2E`.
+- **Quarto de circulo da composicao:** mesmo problema, amarelo -> laranja. O semicirculo teal e
+  o retangulo roxo ficaram (leem bem no branco).
+- **Reticula halftone:** roxa a 30% ficava pesada no branco; baixou pra 18%.
+
+### Limpeza
+
+`--ink-on-orange` existia so pra carregar o texto roxo sobre o bloco laranja. Sem bloco laranja,
+virou codigo morto: removida.
+
+**Nota de composicao:** a Oferta em branco fica encostada em "Lo que te llevas", que tambem e
+branca. Nao precisou de fio divisorio: a composicao geometrica (semicirculo teal + quarto
+laranja + retangulo roxo) assentada na borda de baixo da Oferta ja faz o corte, e a secao
+seguinte abre com o proprio marcador de secao.
+
 ## Historico de versoes
 
 | Versao | O que era | Estado |
@@ -415,7 +470,8 @@ e continua valendo: 3 cores fortes, cada uma com papel fixo, e 6 das 10 secoes s
 | v2.1 | v2 + camada halftone em 4 momentos e plaquetas de cor por card. | substituida (as plaquetas sairam na v2.2, o halftone ficou) |
 | v2.2 | v2.1 + sistema de bloco de cor do "Manual de Active Campaign": 3 blocos saturados, sunburst, formas planas e reticula em grade. | substituida |
 | v2.3 | Troca de "webinar" por "evento" em toda a copy publica (9 no HTML, 4 no `copy.txt`). | incorporada |
-| **v2.4** | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. Copy inalterada. | **vigente** |
+| v2.4 | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. | substituida |
+| **v2.5** | Oferta volta pro branco com titulo laranja e conteudo preto. Restam 3 blocos de cor: hero (roxo), costo (magenta) e CTA final (roxo). Copy inalterada. | **vigente** |
 
 O revert da v3 foi validado por comparacao pixel a pixel contra o render da v2: **0 pixels de
 diferenca** em 1440x10400. A `copy.txt` voltou do backup tirado antes da reescrita.
