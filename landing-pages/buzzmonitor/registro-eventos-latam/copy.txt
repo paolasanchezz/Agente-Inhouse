@@ -1,7 +1,7 @@
 === HERO ===
-OVERLINE: Oferta exclusiva · Participantes del webinar
+OVERLINE: Oferta exclusiva · Participantes del evento
 H1: Los datos no solo sirven para explicar el pasado. Sirven para construir tu próximo movimiento.
-SUB: Ya viste el método en el webinar. Activa ahora tus 15 días gratis en Buzzmonitor, con especialistas al lado y tu primer dashboard armado por nuestro equipo.
+SUB: Ya viste el método en el evento. Activa ahora tus 15 días gratis en Buzzmonitor, con especialistas al lado y tu primer dashboard armado por nuestro equipo.
 LABEL: Sin tarjeta de crédito
 LABEL: Acceso completo
 LABEL: Descuento exclusivo al final
@@ -47,7 +47,7 @@ CTA: Aprovecha la oferta
 
 === PLATAFORMA ===
 H2: Aquí es donde entra Buzzmonitor
-SUB: La plataforma te permite poner en práctica todo lo que aprendiste en el webinar.
+SUB: La plataforma te permite poner en práctica todo lo que aprendiste en el evento.
 LIST ITEM: Entiende el share of voice y el sentimiento de tu público en redes sociales
 LIST ITEM: Haz benchmarking y convierte las comparativas en objetivos reales
 LIST ITEM: Identifica oportunidades antes que tu competencia y toma la delantera
@@ -138,7 +138,7 @@ H2: Empresas que ya confían en Buzzmonitor
 === CTA FINAL ===
 LABEL: Comienza ahora
 H2: Comienza a transformar señales en estrategia hoy.
-BODY: Obtén 15 días gratis en Buzzmonitor, soporte consultivo y descuento exclusivo para los participantes del webinar.
+BODY: Obtén 15 días gratis en Buzzmonitor, soporte consultivo y descuento exclusivo para los participantes del evento.
 CTA: Aprovecha la oferta
 
 === FOOTER ===
@@ -182,7 +182,7 @@ FOOTER: Política de Privacidad y uso de Cookies
 #   O H1 atual ("Los datos no solo sirven para explicar el pasado...") abre pelo ganho.
 #   Mantido literal porque o publico e BoFu quente (participante que acabou de sair do webinar),
 #   caso em que §0 permite abrir pelo ganho. Se quiser testar a versao com dor explicita:
-#   H1: "Terminó el webinar y tu competencia sigue viendo lo que tú todavía no ves."
+#   H1: "Terminó el evento y tu competencia sigue viendo lo que tú todavía no ves."
 #   H2: "Los datos no solo explican el pasado. Activa tus 15 días gratis y construye tu próximo movimiento."
 #   Decisao de quem aprova a copy (A/B).
 #
@@ -198,3 +198,40 @@ FOOTER: Política de Privacidad y uso de Cookies
 #   E do GreatPages, nao da copy, mas vale corrigir la.
 #
 # Em-dash: 0 ocorrencias na copy (varredura por em-dash e por entidade HTML: zero).
+#
+# ===================================================================
+# REVISION v2.3 (2026-09-09): "webinar" -> "evento"
+# Pedido do Victor: "cambia todo lo que diga webinar por evento".
+# ===================================================================
+#
+# 9 ocorrencias no index.html (4 de copy visivel + 5 em meta/JSON-LD) e 4 nos blocos de copy
+# deste arquivo. Todas eram minusculas e todas precedidas de "el"/"del": "evento" tambem e
+# masculino singular, entao nao houve concordancia a ajustar.
+#
+# | Onde | Antes | Agora |
+# |---|---|---|
+# | HERO OVERLINE | Participantes del webinar | Participantes del evento |
+# | HERO BODY | Ya viste el método en el webinar. | ...en el evento. |
+# | PLATAFORMA SUB | ...aprendiste en el webinar. | ...en el evento. |
+# | CTA FINAL BODY | ...participantes del webinar. | ...del evento. |
+# | meta description | ...quienes vieron el webinar. | ...vieron el evento. |
+# | og / twitter description | ...participantes del webinar. | ...del evento. |
+# | og:image:alt + JSON-LD description | ...participantes del webinar: ... | ...del evento: ... |
+#
+# GANHO LATERAL: o footer ja dizia "¿Tienes alguna duda sobre el evento?" desde a v1. A pagina
+# estava misturando os dois termos; agora esta coerente de ponta a ponta.
+#
+# NAO MUDOU:
+#   - A OG image nao tem a palavra (o texto dela e "Oferta exclusiva" / "15 días gratis de
+#     Buzzmonitor" / "Soporte consultivo con especialistas" / "Tu primer dashboard listo"),
+#     entao nao precisou ser regerada.
+#   - O <title> e o H1 nunca citaram webinar.
+#   - A linha 183 deste log ("participante que acabou de sair do webinar") ficou como esta:
+#     e nota historica do porque o H1 foi mantido, e um webinar de fato aconteceu. Reescrever
+#     falsificaria o registro. A sugestao de H1 alternativa (linha 185) foi atualizada, porque
+#     essa sim e pra usar.
+#   - README.md e REVISAO.md seguem falando "pos-webinar" ao descrever a origem da LP: e
+#     documentacao interna do contexto real, nao copy publica.
+#
+# Checagens: em-dash 0 · tuteo consistente · sem vocabulario de Espanha · fidelidade
+# copy.txt <-> index.html 100%.
