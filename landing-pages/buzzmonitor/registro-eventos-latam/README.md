@@ -89,7 +89,7 @@ tirar cor e sombra da pagina e deixar tipografia, hairline e respiro fazerem o t
 
 - [x] Copy estruturada (`copy.txt`) + revisao linguistica ES-LATAM e anti-IA
 - [x] HTML gerado
-- [x] OG image 1200×630 → `assets/og-registro-eventos-latam.png` (321 KB, arquivo unico, na paleta v2)
+- [x] OG image 1200×630 → `assets/og-registro-eventos-latam-v2.png` (160 KB, arquivo unico, sistema v2.2)
 - [x] Gates locais: `check_gtm_region.py` OK · `bump_mobile_type.py` 0 pendencias · em-dash 0
 - [x] Auditoria de acessibilidade (Web Interface Guidelines) — ver `REVISAO.md`
 - [x] Formulario real integrado (replica do endpoint GreatPages, ver "Formulario" abaixo)
@@ -170,12 +170,60 @@ pra uso sustentado). Pra tentar de novo:
 https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Fcontent.buzzmonitor.com%2Fregistro-eventos-latam&strategy=mobile&category=performance&category=accessibility&category=seo&category=best-practices
 ```
 
+## OG image (miniatura de redes sociais)
+
+Refeita no sistema v2.2 pra bater com a pagina: magenta chapado `#DE2451`, reticula halftone em
+vinheta, sunburst amarelo, sunburst roxo sangrando no canto e os blocos planos (retangulo roxo +
+semicirculo teal) na faixa de baixo. Nada de gradiente, porque o manual usa cor plana.
+Branco sobre magenta fecha 4,73:1.
+
+### Por que o nome tem `-v2`
+
+O crawler do Facebook (que e o mesmo que alimenta a previa do WhatsApp) **cacheia a imagem por
+URL**. Trocar o conteudo mantendo `og-{slug}.png` deixaria a miniatura antiga aparecendo em novos
+compartilhamentos ate o cache expirar, que leva dias.
+
+Duas saidas foram consideradas:
+
+1. **Query string** (`og-{slug}.png?v=2`) — **nao funciona aqui.** O `build_umbrella.py` (linha 80)
+   coleta os assets com `re.findall(r"/assets/{marca}/([^\"'\)\s>]+)")`, e o `?` nao esta na
+   classe de exclusao: o `?v=2` entra no nome do arquivo procurado, o asset nao e copiado e a
+   miniatura vira 404.
+2. **Nome versionado + path literal no `og:image`** — o que foi feito. E a excecao que a
+   `GUIDELINES §18` ja preve ("referencie o arquivo por path literal no `og:image` em vez do
+   placeholder `{{OG_IMAGE_PATH}}`"). Continua **um** arquivo fisico: o `og-{slug}.png` antigo foi
+   removido no mesmo commit, sem duplicata.
+
+**Custo dessa escolha:** o `og:image` desta LP nao usa mais o placeholder, entao o path
+`assets/buzzmonitor/...` esta escrito na mao e assume modo guarda-chuva (que e o caso). Se algum
+dia a LP virar solo, esse path precisa virar `assets/...`.
+
+### Se precisar de uma v3
+
+Bump o sufixo (`-v3`), troque nos dois metas (`og:image` e `twitter:image`), apague o `-v2` e
+regenere:
+
+```bash
+# servidor na raiz do repo, depois:
+chrome --headless=new --window-size=1200,630 --virtual-time-budget=7000 \
+  --screenshot="landing-pages/buzzmonitor/registro-eventos-latam/assets/og-registro-eventos-latam-v3.png" \
+  "http://127.0.0.1:PORT/landing-pages/buzzmonitor/registro-eventos-latam/assets/og-template-registro-eventos-latam.html"
+```
+
+### O que o versionamento NAO resolve
+
+Mensagem de WhatsApp **ja enviada** guarda a previa dentro dela pra sempre: nao existe mudanca no
+servidor que atualize um link que ja foi mandado. O `-v2` garante a miniatura certa em
+compartilhamentos **novos**. Pra forcar o re-scrape da URL antiga (a da pagina, nao a da imagem),
+usar o Sharing Debugger do Facebook em https://developers.facebook.com/tools/debug/ e clicar em
+"Scrape Again".
+
 ## Assets referenciados
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header e footer, raster base64, sem `<text>` vivo)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon)
 - `assets/logos-clientes/*.png` (12 logos, copiados de `agencias-es`)
-- `assets/og-registro-eventos-latam.png` (OG)
+- `assets/og-registro-eventos-latam-v2.png` (OG, paleta v2.2 — nome versionado, ver "OG image" abaixo)
 - `assets/og-template-registro-eventos-latam.html` (template do OG, para regerar)
 
 ## Pendencias e pontos de decisao

@@ -2,71 +2,67 @@
 <html lang="es-419">
 <head>
   <meta charset="UTF-8">
-  <title>OG · registro-eventos-latam</title>
+  <title>OG - registro-eventos-latam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Mesmo sistema visual da LP v2.2: bloco de cor chapado (o magenta do CTA final),
+       reticula halftone, sunburst e blocos geometricos planos. Sem gradiente. */
     * { box-sizing: border-box; margin: 0; }
-    body {
-      width: 1200px;
-      height: 630px;
-      overflow: hidden;
-      background: #390155;
-      font-family: Lato, Arial, sans-serif;
-      color: #fff;
-    }
+    body { width: 1200px; height: 630px; overflow: hidden; font-family: Lato, Arial, sans-serif; color: #fff; }
     .card {
       position: relative;
-      width: 1200px;
-      height: 630px;
-      padding: 66px 76px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(120deg, #390155 0%, #EB7C2E 165%);
+      width: 1200px; height: 630px;
+      padding: 62px 74px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: #DE2451;
       overflow: hidden;
     }
-    .halo {
-      position: absolute;
-      right: -180px;
-      top: -220px;
-      width: 620px;
-      height: 620px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(235, 124, 46, .3), rgba(235, 124, 46, 0) 68%);
+    .ht {
+      position: absolute; inset: 0;
+      color: #fff; opacity: .2;
+      background-image:
+        radial-gradient(currentColor 2.1px, transparent 2.2px),
+        radial-gradient(currentColor 1.05px, transparent 1.15px);
+      background-size: 10px 10px, 10px 10px;
+      background-position: 0 0, 5px 5px;
+      -webkit-mask-image: radial-gradient(ellipse 58% 66% at 46% 50%, transparent 52%, rgba(0,0,0,.6) 76%, #000 100%);
+      mask-image: radial-gradient(ellipse 58% 66% at 46% 50%, transparent 52%, rgba(0,0,0,.6) 76%, #000 100%);
     }
-    .top { position: relative; display: flex; align-items: center; justify-content: space-between; }
-    .logo { height: 42px; width: auto; display: block; }
+    .burst { position: absolute; display: block; }
+    .burst path { fill: currentColor; }
+    .b-top { top: 196px; right: 88px; width: 214px; color: #FCBD4F; }
+    .b-low { bottom: -34px; right: -34px; width: 138px; color: #390155; }
+    .compo { position: absolute; left: 0; bottom: 0; height: 62px; }
+    .compo i { position: absolute; bottom: 0; display: block; }
+    .r1 { left: 0; width: 168px; height: 44px; background: #390155; border-radius: 2px; }
+    .r2 { left: 190px; width: 84px; height: 56px; background: #0E9D9B; border-radius: 999px 999px 0 0; }
+    .top { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+    .logo { height: 40px; width: auto; display: block; }
     .pill {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, .16);
-      border: 1px solid rgba(255, 255, 255, .4);
-      border-radius: 8px;
-      padding: 12px 22px;
-      white-space: nowrap;
+      font-size: 19px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.55); border-radius: 6px; padding: 11px 20px; white-space: nowrap;
     }
-    .main { position: relative; }
+    .main { position: relative; z-index: 2; }
+    .rule { width: 26px; height: 4px; background: #FCBD4F; margin-bottom: 30px; }
     h1 {
       font-family: "League Spartan", Impact, sans-serif;
-      font-weight: 900;
-      font-size: 100px;
-      line-height: .96;
-      letter-spacing: -0.038em;
-      max-width: 17ch;
+      font-weight: 900; font-size: 104px; line-height: .93;
+      letter-spacing: -0.042em; max-width: 15ch;
     }
-    .rule { width: 84px; height: 5px; background: #EB7C2E; border-radius: 999px; margin-bottom: 34px; }
-    .foot { position: relative; display: flex; gap: 46px; font-size: 25px; font-weight: 700; }
-    .foot span { display: flex; align-items: center; gap: 13px; }
-    .foot svg { width: 26px; height: 26px; color: #EB7C2E; flex: 0 0 auto; }
+    .foot { position: relative; z-index: 2; display: flex; gap: 44px; font-size: 24px; font-weight: 700; }
+    .foot span { display: flex; align-items: center; gap: 12px; }
+    .foot svg { width: 25px; height: 25px; color: #fff; flex: 0 0 auto; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="halo"></div>
+    <div class="ht"></div>
+    <svg class="burst b-top" viewBox="0 0 100 100"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>
+    <svg class="burst b-low" viewBox="0 0 100 100"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>
+    <div class="compo"><i class="r1"></i><i class="r2"></i></div>
+
     <div class="top">
       <img class="logo" src="../../../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor">
       <span class="pill">Oferta exclusiva</span>
@@ -76,14 +72,8 @@
       <h1>15 días gratis de Buzzmonitor</h1>
     </div>
     <div class="foot">
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
-        Soporte consultivo con especialistas
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
-        Tu primer dashboard listo
-      </span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg> Soporte consultivo con especialistas</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg> Tu primer dashboard listo</span>
     </div>
   </div>
 </body>
