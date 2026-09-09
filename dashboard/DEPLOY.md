@@ -1,5 +1,20 @@
 # Deploy do Dashboard CM Buzzmonitor
 
+
+> ## 🔒 v3 — Guarda-chuva único (desde 2026-09-09) — **ESTE é o fluxo atual**
+>
+> A dashboard não tem mais projeto Vercel próprio: vive em **/buzz-br/** dentro do guarda-chuva
+> `dashboards-elife` (dashboards-elife.vercel.app), com **um único Basic Auth** e barra de
+> navegação compartilhada. `dashboard-buzzmonitor-brasil.vercel.app` agora é um **308** pra lá.
+>
+> **Deploy:** só pela skill `/dashboard-atualizar` (v4), que exporta → roda
+> `dashboards-umbrella/build_umbrella.py` → deploya o guarda-chuva inteiro → valida.
+> Arquitetura e pegadinhas em `dashboards-umbrella/README.md`.
+>
+> O que vem abaixo continua valendo pra **exportar dados, entender o funil e depurar
+> números**. O que está aposentado é a parte de **sibling própria + deploy do projeto
+> individual** (inclusive `sync_sibling.py`, que o build substituiu).
+
 > ⚠️ **DESATUALIZADO desde 2026-07-01 (v2.0.0).** A dash no Vercel virou **dinâmica-estática** (date-picker de intervalo livre + dados de 2026 embutidos) — fonte em `dashboard-buzz-br-vercel/`, arquitetura em `dashboard-buzz-br-vercel/PLANO-VERCEL.md`, fluxo na skill `/dashboard-atualizar` (v2.0.0). Este runbook descreve o **snapshot semanal antigo** (aposentado) — mantido só para auditoria/recovery histórico.
 
 > **Skill preferida:** `/dashboard-atualizar` orquestra todo o fluxo abaixo (gera, lida com gate de regressao, deploya, valida). Use o fluxo manual abaixo apenas para debug isolado ou recovery quando a skill estiver fora de alcance.

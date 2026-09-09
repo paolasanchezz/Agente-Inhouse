@@ -1,5 +1,10 @@
 """sync_sibling.py — Cxpress: sincroniza a sibling de deploy com o codigo desta pasta.
 
+> APOSENTADO em 2026-09-09: as dashboards viraram um guarda-chuva unico
+> (`dashboards-elife`). Quem monta a pasta de deploy agora e
+> `dashboards-umbrella/build_umbrella.py`, chamado pela skill `/dashboard-atualizar` (v4).
+> Este script so serve pra recovery do modelo antigo de sibling por projeto.
+
 Copia os 5 estaticos (index.html, estilo.css, motor.js, render.js, dados-cxpress.json) para a
 sibling fora do repo e (re)gera middleware.js (Basic Auth com a MESMA credencial do Buzz BR —
 lida do middleware dele, sem digitar a senha), vercel.json e robots.txt identicos ao Buzz BR.

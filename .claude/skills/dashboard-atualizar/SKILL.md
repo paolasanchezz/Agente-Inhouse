@@ -1,88 +1,90 @@
 ---
 name: dashboard-atualizar
-description: Atualiza uma das dashboards CM dinamica-estaticas no Vercel — Buzzmonitor Brasil, Cxpress Brasil, Buzzmonitor LATAM ou Buzzcreators Brasil (o usuario escolhe qual, por arg ou chip). Roda o exportador Python (Supabase -> JSON de dados), copia os arquivos do site pra pasta sibling fora do repo, deploya na Vercel via CLI e valida (senha + noindex + arquivos servidos). Manual-trigger.
-argument-hint: "[buzz-br|cxpress|latam|buzzcreators] (sem arg = pergunta com chips)"
+description: Atualiza as dashboards CM dinamica-estaticas servidas no guarda-chuva unico do Vercel — Buzzmonitor Brasil, Cxpress Brasil, Buzzmonitor LATAM e Buzzcreators Brasil, todas atras de um unico login em dashboards-elife.vercel.app. Roda o exportador Python (Supabase -> JSON de dados), monta a dist do guarda-chuva com build_umbrella.py, deploya na Vercel via CLI e valida (senha + noindex + as 4 rotas servidas). Manual-trigger.
+argument-hint: "[buzz-br|cxpress|latam|buzzcreators|todas] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 3.1.1
+version: 4.0.0
 ---
 
-# Skill: Atualizar Dashboard CM (dinamica-estatica) — multi-dashboard
+# Skill: Atualizar Dashboards CM (guarda-chuva unico)
 
-Voce atualiza UMA das 4 dashboards de Content Marketing servidas **dinamica-estaticas** no Vercel. Todas seguem o MESMO modelo: os dados sao exportados aqui (onde o Supabase conecta) e embutidos num JSON; o navegador filtra/agrega em memoria com date-picker de intervalo livre (sem tocar no banco). Sao projetos Vercel **solo** (1 projeto = 1 dashboard, sem vizinhas).
+Voce atualiza as dashboards de Content Marketing servidas **dinamica-estaticas** no Vercel. Todas seguem o MESMO modelo: os dados sao exportados aqui (onde o Supabase conecta) e embutidos num JSON; o navegador filtra/agrega em memoria com date-picker de intervalo livre (sem tocar no banco).
 
-| Dashboard | Fonte no repo | Sibling (deploy) | URL | Idioma/moeda |
-|---|---|---|---|---|
-| **buzz-br** | `dashboard-buzz-br-vercel/` | `dashboard-buzzmonitor-brasil` | dashboard-buzzmonitor-brasil.vercel.app | PT-BR / BRL |
-| **cxpress** | `dashboard-cxpress-vercel/` | `dashboard-cxpress-brasil` | dashboard-cxpress-brasil.vercel.app | PT-BR / BRL |
-| **latam** | `dashboard-latam-vercel/` | `dashboard-buzzmonitor-latam` | dashboard-buzzmonitor-latam.vercel.app | ES / USD |
-| **buzzcreators** | `dashboard-buzzcreators-vercel/` | `dashboard-buzzcreators-brasil` | dashboard-buzzcreators-brasil.vercel.app | PT-BR / BRL |
+Desde 2026-09-09 elas nao sao mais 4 projetos Vercel soltos: vivem num **guarda-chuva unico** (`dashboards-elife`), cada uma numa rota, com **um unico Basic Auth** e uma **barra de navegacao compartilhada** no topo. Foi exatamente isso que motivou a unificacao — Basic Auth e por origem, entao 4 subdominios pediam a senha 4 vezes.
 
-**Regra inegociavel:** deploy NUNCA sai da pasta-fonte no repo. Sempre da pasta **sibling** fora do repo (com `middleware.js` de Basic Auth + `vercel.json` + `robots.txt`). Mesmo padrao do `lp-publicar`. Incidente 2026-05-25 (404 publico por deploy sem middleware) em `dashboard/DEPLOY.md`.
+| Dashboard | Rota | Fonte no repo | Idioma/moeda |
+|---|---|---|---|
+| **buzz-br** | `/buzz-br/` | `dashboard-buzz-br-vercel/` | PT-BR / BRL |
+| **cxpress** | `/cxpress/` | `dashboard-cxpress-vercel/` | PT-BR / BRL |
+| **latam** | `/latam/` | `dashboard-latam-vercel/` | ES / USD |
+| **buzzcreators** | `/buzzcreators/` | `dashboard-buzzcreators-vercel/` | PT-BR / BRL |
 
-**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). As 4 dashboards usam a **mesma credencial** (`inhouse` + senha forte); vem de `.env.local` e DEVE bater com `const PASS` no `middleware.js` da sibling.
+Hub com os cards na raiz (`/`). Projeto: **`dashboards-elife`** · URL: **dashboards-elife.vercel.app**.
+
+**Regra inegociavel:** deploy NUNCA sai da pasta-fonte no repo. Sempre da **dist/sibling** fora do repo, montada pelo `dashboards-umbrella/build_umbrella.py` (que escreve `middleware.js` + `vercel.json` + `robots.txt` + `package.json`). Mesmo padrao do `lp-publicar`. Incidente 2026-05-25 (404 publico por deploy sem middleware) em `dashboard/DEPLOY.md`.
+
+**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). Credencial em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`); o build a injeta no middleware. Um login cobre as 4.
+
+**O guarda-chuva deploya inteiro, sempre.** Nao existe deploy de uma rota so. Atualizar uma dashboard = exportar o JSON dela e rebuildar tudo; os JSONs das outras vem das pastas-fonte (ou, se faltarem, o build reusa o que ja esta na dist e **avisa** — nunca em silencio).
 
 ---
 
-## Passo A: Resolver QUAL dashboard
+## Passo A: Resolver QUAIS dashboards exportar
 
 1. Se `$ARGUMENTS` trouxer um slug, normalizar (case-insensitive):
    - `buzz-br`, `br`, `brasil`, `buzz`, `buzzmonitor`, `buzz-brasil` → **buzz-br**
    - `cxpress`, `cx`, `cxpress-brasil` → **cxpress**
    - `latam`, `lat`, `buzz-latam` → **latam**
    - `buzzcreators`, `creators`, `bc`, `buzzcreators-brasil` → **buzzcreators**
-2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com 4 opcoes: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM` / `Buzzcreators Brasil`.
+   - `todas`, `all`, `tudo` → **as 4** (export sequencial; leva 6-12min)
+2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM` / `Buzzcreators Brasil` / `Todas` (multiSelect ligado).
 
-Fixe o slug resolvido em `$DASH` e rode o bloco de config (define TODAS as variaveis dos passos seguintes):
+Fixe a lista resolvida em `$DASHES` (separada por espaco) e rode o bloco de config:
 
 ```bash
-DASH="<buzz-br|cxpress|latam|buzzcreators>"   # resolvido no Passo A
+DASHES="<slugs separados por espaco>"   # resolvido no Passo A
 SCOPE=team_nC991VqUuSU2jXZN152xqqEg
-case "$DASH" in
-  buzz-br)
-    SRC=dashboard-buzz-br-vercel;  SIB_NAME=dashboard-buzzmonitor-brasil
-    URL=dashboard-buzzmonitor-brasil.vercel.app; JSON=dados-2026.json; MAIN=leads
-    FILES="index.html motor.js dados-2026.json"; MARKER=MotorCM; AUDIT3=1 ;;
-  cxpress)
-    SRC=dashboard-cxpress-vercel;  SIB_NAME=dashboard-cxpress-brasil
-    URL=dashboard-cxpress-brasil.vercel.app; JSON=dados-cxpress.json; MAIN=deals
-    FILES="index.html estilo.css motor.js render.js dados-cxpress.json"; MARKER=MotorCxpress; AUDIT3=0 ;;
-  latam)
-    SRC=dashboard-latam-vercel;    SIB_NAME=dashboard-buzzmonitor-latam
-    URL=dashboard-buzzmonitor-latam.vercel.app; JSON=dados-latam.json; MAIN=leads
-    FILES="index.html estilo.css motor.js render.js dados-latam.json"; MARKER=MotorLatam; AUDIT3=0 ;;
-  buzzcreators)
-    SRC=dashboard-buzzcreators-vercel; SIB_NAME=dashboard-buzzcreators-brasil
-    URL=dashboard-buzzcreators-brasil.vercel.app; JSON=dados-buzzcreators.json; MAIN=deals
-    FILES="index.html estilo.css motor.js render.js dados-buzzcreators.json"; MARKER=MotorBuzzcreators; AUDIT3=0 ;;
-  *) echo "ERRO: dashboard invalido: '$DASH'"; exit 1 ;;
-esac
-echo "Dashboard: $DASH · fonte: $SRC · sibling: $SIB_NAME · url: $URL"
+PROJ=dashboards-elife
+URL=dashboards-elife.vercel.app
+
+# config por dashboard: SRC | JSON | chave principal | marcador do motor | audita 3 superficies
+cfg() {
+  case "$1" in
+    buzz-br)      echo "dashboard-buzz-br-vercel dados-2026.json leads MotorCM 1" ;;
+    cxpress)      echo "dashboard-cxpress-vercel dados-cxpress.json deals MotorCxpress 0" ;;
+    latam)        echo "dashboard-latam-vercel dados-latam.json leads MotorLatam 0" ;;
+    buzzcreators) echo "dashboard-buzzcreators-vercel dados-buzzcreators.json deals MotorBuzzcreators 0" ;;
+    *) echo ""; return 1 ;;
+  esac
+}
+for D in $DASHES; do cfg "$D" >/dev/null || { echo "ERRO: dashboard invalido: '$D'"; exit 1; }; done
+echo "Vou exportar: $DASHES · projeto: $PROJ · url: $URL"
 ```
 
 ---
 
 ## Passo 0: Pre-flight
 
-### 0.1 Resolver a sibling
+### 0.1 Resolver a dist (sibling do guarda-chuva)
 ```bash
 SIBLING_BASE="${DASHBOARD_SIBLING_BASE}"
 if [ -z "$SIBLING_BASE" ] && [ -f .env.local ]; then
   SIBLING_BASE=$(grep -E '^DASHBOARD_SIBLING_BASE=' .env.local | head -1 | sed 's/^[^=]*=//')
 fi
 [ -z "$SIBLING_BASE" ] && { echo "ERRO: DASHBOARD_SIBLING_BASE nao configurado em .env.local"; exit 1; }
-SIBLING="$SIBLING_BASE/$SIB_NAME"
+SIBLING="$SIBLING_BASE/$PROJ"
 ```
 
-### 0.2 Verificar repo + fonte + env do Supabase
+### 0.2 Verificar repo + fontes + env do Supabase
 - `git rev-parse --show-toplevel` deve resolver (rode da raiz do repo).
-- `$SRC/exportar_dados.py` e `$SRC/$JSON`-geraveis devem existir (`ls "$SRC"`).
+- `dashboards-umbrella/manifest.json` e `build_umbrella.py` devem existir.
 - `dashboard/.env` (ou `dashboard-pessoal/.env`) deve ter `SUPABASE_PG_URL=` — o exportador reusa a conexao/queries da dash local.
 
-### 0.2b Auditar sincronia do filtro CM — **SO se `AUDIT3=1` (buzz-br)**
-O buzz-br tem o filtro CM em 3 superficies sincronizadas a mao (`dashboard/queries.py` oficial × `dashboard-pessoal/lib/queries.py` espelho, que o exportador usa). Se divergirem, sobe deals errados (caso ECHEF ROBOT, 2026-07-01). Rode a auditoria de constantes:
+### 0.2b Auditar sincronia do filtro CM — **so se `buzz-br` estiver em `$DASHES`**
+O buzz-br tem o filtro CM em 3 superficies sincronizadas a mao (`dashboard/queries.py` oficial × `dashboard-pessoal/lib/queries.py` espelho, que o exportador usa). Se divergirem, sobe deals errados (caso ECHEF ROBOT, 2026-07-01):
 
 ```bash
-if [ "$AUDIT3" = "1" ]; then
+case " $DASHES " in *" buzz-br "*)
 uv run --python 3.12 python -c "
 import importlib.util
 def L(p,n):
@@ -96,17 +98,17 @@ for a in ['CM_DEALS_FORCADOS','FECHAMENTOS_FORCADOS','RECONVERSOES_MANUAIS','DEA
 for fn in ['filtro_cm','filtro_inbound','_sem_outbound']:
     if getattr(o,fn)() != getattr(e,fn)(): d=True; print(f'{fn}(): SQL DIFERENTE entre oficial e espelho')
 print('FILTRO SINCRONIZADO' if not d else 'DESSINCRONIZADO — replicar no espelho ANTES de exportar')
-"
-fi
+" ;;
+esac
 ```
 Se **DESSINCRONIZADO**: replicar em `dashboard-pessoal/lib/queries.py` e so entao seguir.
 
 > **cxpress / latam / buzzcreators:** superficie UNICA — o exportador importa `queries_cxpress.py` / `queries_latam.py` / `queries_buzzcreators.py` direto de `dashboard/` (sem espelho). Nao ha o que auditar aqui; a paridade (Passo 1.5) cobre a consistencia motor × queries.
 
-### 0.3 Verificar sibling
-Deve ter `$SIBLING/.vercel/project.json`, `middleware.js`, `vercel.json`, `robots.txt`, `package.json`.
-- Faltando `.vercel/`: `cd "$SIBLING" && npx vercel link --yes --project="$SIB_NAME" --scope="$SCOPE"`
-- Faltando middleware/vercel.json/robots.txt/package.json: abortar (`Sibling corrompida — restaurar arquivos de seguranca`). Para (re)criar do zero, veja `$SRC/sync_sibling.py` (cxpress/latam/buzzcreators) ou `dashboard/DEPLOY.md` (buzz-br).
+### 0.3 Verificar a dist
+Deve ter `$SIBLING/.vercel/project.json` apontando pro projeto `dashboards-elife`.
+- Faltando `.vercel/`: `mkdir -p "$SIBLING" && (cd "$SIBLING" && npx vercel link --yes --project="$PROJ" --scope="$SCOPE")`
+- `middleware.js`/`vercel.json`/`robots.txt`/`package.json` **nao** precisam existir: o `build_umbrella.py` regenera os quatro a cada build (essa e a diferenca pro modelo antigo de sibling, onde eles eram preservados a mao).
 
 ### 0.4 Vercel CLI auth
 ```bash
@@ -114,38 +116,37 @@ npx --yes vercel whoami --scope="$SCOPE"
 ```
 Exit != 0: abortar (`Rode 'npx vercel login' e re-execute`).
 
-### 0.5 Resolver credencial Basic Auth (de .env.local; deve bater com o middleware)
+### 0.5 Resolver credencial Basic Auth
 ```bash
 BASIC_AUTH_USER=$(grep -E '^DASHBOARD_BASIC_AUTH_USER=' .env.local | head -1 | sed 's/^[^=]*=//')
 BASIC_AUTH_PASS=$(grep -E '^DASHBOARD_BASIC_AUTH_PASS=' .env.local | head -1 | sed 's/^[^=]*=//')
 [ -z "$BASIC_AUTH_PASS" ] && { echo "ERRO: DASHBOARD_BASIC_AUTH_PASS ausente em .env.local"; exit 1; }
-MW_PASS=$(grep -oE "const PASS = '[^']*';" "$SIBLING/middleware.js" | sed "s/const PASS = '//;s/';//")
-[ "$MW_PASS" = "$BASIC_AUTH_PASS" ] || echo "WARN: senha do .env.local != middleware.js — vai dar 401 na validacao. Sincronizar antes."
 TODAY=$(date +%Y-%m-%d); mkdir -p tmp
 ```
+O build le a mesma fonte, entao aqui nao existe mais o risco de `.env.local` divergir do middleware.
 
 ---
 
-## Passo 1: Exportar dados frescos + sanity
+## Passo 1: Exportar dados frescos + sanity (por dashboard escolhida)
 
 ```bash
-uv run --python 3.12 --with "psycopg[binary]" python "$SRC/exportar_dados.py" 2>&1 | tee "tmp/dash-$DASH-export-$TODAY.log"
-EXIT=${PIPESTATUS[0]}
-```
-- Exit != 0: abortar e propagar as ultimas 15 linhas do log (Supabase fora, statement_timeout, import). Normal levar 1-3min (conexao cold + queries).
-
-**Sanity do JSON** (defesa contra dados corrompidos/vazios — usa `$MAIN` e `$JSON` da config):
-```bash
-uv run --python 3.12 python -c "
+for D in $DASHES; do
+  set -- $(cfg "$D"); SRC=$1; JSON=$2; MAIN=$3
+  echo "=== exportando $D"
+  uv run --python 3.12 --with "psycopg[binary]" python "$SRC/exportar_dados.py" 2>&1 | tee "tmp/dash-$D-export-$TODAY.log"
+  [ "${PIPESTATUS[0]}" = "0" ] || { echo "ERRO no export de $D"; exit 1; }
+  uv run --python 3.12 python -c "
 import json,os
 p='$SRC/$JSON'; d=json.load(open(p,encoding='utf-8')); sz=os.path.getsize(p)
 assert d.get('gerado_em'), 'falta gerado_em'
 assert isinstance(d.get('$MAIN'),list) and len(d['$MAIN'])>0, '$MAIN vazio/ausente'
 assert sz < 3_400_000, f'JSON grande demais: {sz}b (rever campos/compressao)'
-print(f'sanity OK — $MAIN={len(d[\"$MAIN\"])} gerado_em={d[\"gerado_em\"]} tamanho={sz//1024}KB')
-"
+print(f'sanity OK ($D) — $MAIN={len(d[\"$MAIN\"])} gerado_em={d[\"gerado_em\"]} tamanho={sz//1024}KB')
+" || { echo "ERRO no sanity de $D"; exit 1; }
+done
 ```
-Falhou o sanity: abortar (nao copiar/deployar dados suspeitos).
+- Export normal leva 1-3min por dashboard (conexao cold + queries). Exit != 0: abortar e propagar as ultimas 15 linhas do log (Supabase fora, statement_timeout, import).
+- Falhou o sanity: abortar (nao buildar/deployar dados suspeitos).
 
 ---
 
@@ -154,64 +155,84 @@ Falhou o sanity: abortar (nao copiar/deployar dados suspeitos).
 O motor JS so bate com a dash local se `motor.js`/`render.js`/as queries nao divergirem. Rode se voce **alterou** motor/render/queries desde o ultimo deploy (em atualizacao de dados rotineira o motor e o mesmo — pode pular):
 
 ```bash
-uv run --python 3.12 --with "psycopg[binary]" python "$SRC/paridade_gerar_esperado.py" && node "$SRC/paridade_check.mjs"
+for D in $DASHES; do
+  set -- $(cfg "$D"); SRC=$1
+  uv run --python 3.12 --with "psycopg[binary]" python "$SRC/paridade_gerar_esperado.py" && node "$SRC/paridade_check.mjs"
+done
 ```
 Deve terminar em **0 divergencias**. Qualquer divergencia: corrigir o motor/render antes de deployar (nao suba numeros errados).
 
 ---
 
-## Passo 2: Copiar os arquivos do site pra sibling
+## Passo 2: Montar a dist do guarda-chuva
 
-Copia **apenas** os arquivos de conteudo (`$FILES`) — preserva `middleware.js`/`vercel.json`/`robots.txt`/`package.json` da sibling (Basic Auth + seguranca):
+Substitui a copia manual do modelo antigo. O build copia so os arquivos listados no manifesto, injeta a barra de navegacao no `<head>` de cada dashboard, gera o hub e regenera middleware/vercel.json/robots.txt/package.json:
+
 ```bash
-for f in $FILES; do
-  cp "$SRC/$f" "$SIBLING/$f"
-  a=$(stat -c%s "$SRC/$f"); b=$(stat -c%s "$SIBLING/$f")
-  [ "$a" = "$b" ] || { echo "ERRO copia $f: $a != $b"; exit 1; }
-done
-echo "copia OK ($FILES)"
+py dashboards-umbrella/build_umbrella.py "$SIBLING" --dry-run   # confere o plano
+py dashboards-umbrella/build_umbrella.py "$SIBLING"
 ```
+
+**Leia os `AVISO` do build.** `REUSADO` significa que o JSON daquela dashboard nao existia na fonte e o build aproveitou o que ja estava no ar — os numeros dela vao subir com a data antiga. Se nao era isso que voce queria, exporte a dashboard e rebuilde.
+
+Adicionar uma dashboard nova ao guarda-chuva = uma entrada em `dashboards-umbrella/manifest.json` (slug, nome, curto, cor, fonte, arquivos, dados) + uma entrada na `cfg()` do Passo A. Nada mais: nav, hub e rota saem do manifesto.
 
 ---
 
 ## Passo 3: Deploy
+
 ```bash
-npx --yes vercel deploy --prod --yes --cwd "$SIBLING" --scope="$SCOPE" 2>&1 | tee "tmp/dash-$DASH-deploy-$TODAY.log"
-NEW_DPL_ID=$(grep -oE 'dpl_[a-zA-Z0-9]+' "tmp/dash-$DASH-deploy-$TODAY.log" | head -1)
+npx --yes vercel deploy --prod --yes --cwd "$SIBLING" --scope="$SCOPE" 2>&1 | tee "tmp/dash-deploy-$TODAY.log"
+NEW_DPL_ID=$(grep -oE 'dpl_[a-zA-Z0-9]+' "tmp/dash-deploy-$TODAY.log" | head -1)
 ```
 - Linha `▲ Aliased https://$URL` = alias bateu, seguir. Se nao aparecer (raro, pos-rollback): `npx vercel promote "$NEW_DPL_ID" --cwd "$SIBLING" --scope="$SCOPE"`.
-- `FetchError` intermitente da CLI: nao retry cego — `npx vercel ls "$SIB_NAME" --cwd "$SIBLING" --scope="$SCOPE" | head -5` e ver se ficou READY.
+- `FetchError` intermitente da CLI: nao retry cego — `npx vercel ls "$PROJ" --cwd "$SIBLING" --scope="$SCOPE" | head -5` e ver se ficou READY.
+- O hook `guard_vercel_deploy.py` vai pedir confirmacao. Estar **dentro desta skill** e o contexto sancionado — confirme. Fora dela, recuse.
 
 ---
 
 ## Passo 4: Validacao (as garantias)
+
 ```bash
-B="https://$URL"
-echo "sem auth (espera 401):  $(curl -s -o /dev/null -w '%{http_code}' "$B/")"
-echo "index   (espera 200):   $(curl -s -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" -o tmp/v.html -w '%{http_code} %{size_download}b' "$B/")"
-echo "$JSON:                  $(curl -s -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" -o /dev/null -w '%{http_code} %{size_download}b' "$B/$JSON")"
-grep -oq "$MARKER" tmp/v.html && echo "index e a dash nova ($MARKER): OK" || echo "ERRO: index servido nao referencia $MARKER"
+B="https://$URL"; A="$BASIC_AUTH_USER:$BASIC_AUTH_PASS"
+echo "sem auth (espera 401):    $(curl -s -o /dev/null -w '%{http_code}' "$B/")"
+echo "hub     (espera 200):     $(curl -s -u "$A" -o tmp/v-hub.html -w '%{http_code} %{size_download}b' "$B/")"
+echo "nav.js  (espera 200):     $(curl -s -u "$A" -o /dev/null -w '%{http_code} %{size_download}b' "$B/nav.js")"
 echo -n "senha fraca antiga (espera 401): "; curl -s -u "inhouse:inhouse@77" -o /dev/null -w '%{http_code}\n' "$B/"
-curl -s -D - -o /dev/null -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASS" "$B/" | grep -i 'x-robots-tag'
+curl -s -D - -o /dev/null -u "$A" "$B/" | grep -i 'x-robots-tag'
+
+# as 4 rotas: 308 sem barra, 200 com barra, motor certo, JSON servido
+for D in buzz-br cxpress latam buzzcreators; do
+  set -- $(cfg "$D"); JSON=$2; MARKER=$4
+  R=$(curl -s -u "$A" -o /dev/null -w '%{http_code}' "$B/$D")
+  H=$(curl -s -u "$A" -o "tmp/v-$D.html" -w '%{http_code}' "$B/$D/")
+  J=$(curl -s -u "$A" -o /dev/null -w '%{http_code}' "$B/$D/$JSON")
+  N=$(grep -c '/nav.js' "tmp/v-$D.html")
+  M=$(grep -c "$MARKER" "tmp/v-$D.html")
+  echo "$D: /$D=$R(308) /$D/=$H(200) $JSON=$J(200) nav=$N(1) $MARKER=$M(>=1)"
+done
 ```
-Esperado: 401 sem auth · 200 no index · 200 no `$JSON` (bate com o local) · index referencia `$MARKER` · 401 com a senha fraca antiga · `X-Robots-Tag: noindex`.
+Esperado: 401 sem auth · 200 no hub e no `nav.js` · `X-Robots-Tag: noindex` · 401 com a senha fraca antiga · para cada rota **308 sem barra**, **200 com barra**, JSON 200, `nav.js` injetado, motor certo.
 
 **Erros:**
-- **401 com a credencial certa:** `.env.local` != `const PASS` do `$SIBLING/middleware.js`. Sincronizar e re-deployar.
+- **401 com a credencial certa:** o build rodou com `.env.local` diferente do que voce esta testando. Rebuildar e re-deployar.
+- **Rota 200 mas pagina quebrada / JSON 404:** provavel `trailingSlash` fora do lugar no `vercel.json` — as dashboards carregam `motor.js`/`estilo.css`/`dados-*.json` por caminho **relativo**, entao `/buzz-br` sem barra resolveria `/motor.js`. O 308 tem que vir antes de renderizar.
 - **404 no root:** deploy saiu sem index.html (incidente 2026-05-25). Rollback: `npx vercel rollback <dpl_anterior_READY> --yes --cwd "$SIBLING" --scope="$SCOPE"`.
-- **index no ar sem `$MARKER`:** subiu versao velha/errada — reconferir Passo 2 e re-deployar.
+- **Rota servindo versao velha:** o build nao rodou depois do export — refazer o Passo 2.
 
 ---
 
 ## Passo 5: Relatorio
+
 ```
 ============================================================
-Dashboard CM $DASH (dinamica) — atualizada
+Dashboards CM — guarda-chuva atualizado
 ============================================================
-URL:        https://$URL/  (login: inhouse + senha do .env.local)
+Hub:        https://dashboards-elife.vercel.app/  (login: inhouse + senha do .env.local)
 Deploy ID:  $NEW_DPL_ID · READY
-Dados:      $MAIN=$N gerado_em=$GERADO_EM · $JSON
-Intervalo:  date-picker livre no navegador (dados de 2026); troca de filtro instantanea.
+Exportadas: $DASHES
+No ar:      /buzz-br/ · /cxpress/ · /latam/ · /buzzcreators/  (datas dos dados no hub)
+Navegacao:  barra no topo de todas as paginas; um unico login cobre as 4.
 
 Rollback rapido: npx vercel rollback <dpl_anterior> --cwd "$SIBLING" --scope="$SCOPE"
 Pra commitar mudancas de codigo (se houve): /commit
@@ -220,11 +241,11 @@ Pra commitar mudancas de codigo (se houve): /commit
 ---
 
 ## Notas de seguranca e manutencao
-- **Credencial Basic Auth** (as 3 usam a MESMA) vive em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored) e no `middleware.js` de cada sibling (fora do repo). Trocar a senha = editar o `.env.local` + os 4 middlewares (ou re-rodar `sync_sibling.py` de cxpress/latam/buzzcreators, que le a senha do middleware do buzz-br). Nunca hardcodar nesta skill.
-- **Nunca** rodar `vercel deploy` da pasta-fonte no repo (sem middleware = 404/exposto). So da sibling.
-- **Nunca** copiar pra sibling alem de `$FILES` (os `.py`/`.mjs`/README/PLANO ficam so no repo).
-- **Dados gitignored:** `dados-*.json` (PII de leads + valores) e `paridade_esperado.json` sao regeneraveis e ficam fora do git; so o codigo versiona.
+- **Credencial Basic Auth** vive so em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored). O `build_umbrella.py` a injeta no `middleware.js` da dist. Trocar a senha = editar o `.env.local` + rebuildar + deployar. Nunca hardcodar nesta skill nem no repo.
+- **Nunca** rodar `vercel deploy` da pasta-fonte no repo (sem middleware = 404/exposto). So da dist.
+- **Nunca** copiar arquivo pra dist a mao — o build e a unica porta de entrada, e ele remove o que nao esta no manifesto.
+- **Dados gitignored:** `dados-*.json` (PII de leads + valores) e `paridade_esperado.json` sao regeneraveis e ficam fora do git; so o codigo versiona. Num clone novo, exporte as 4 antes do primeiro build.
+- **Projetos antigos** (`dashboard-buzzmonitor-brasil`, `dashboard-cxpress-brasil`, `dashboard-buzzmonitor-latam`, `dashboard-buzzcreators-brasil`) viraram **redirect 308** pro guarda-chuva — os links antigos continuam funcionando. Nao deployar dashboard neles.
 - **Paridade dos numeros:** garantida por a logica CM viver no Python (o exportador reusa as `queries_*.py`); o `motor.js` so agrega. Rodar via `uv`, nao `python` direto (no Windows o `python` do PATH e o shim da Store, exit 49; o `uv` provisiona Python 3.12 com wheels de C-extension).
 - **Escopo 2026:** os exportadores cobrem 2026 + cauda p/ as series 12m. Virar 2027: ajustar `ANO_INI`/cutoff nos `exportar_dados.py`.
-- **Diferencas por dashboard:** buzz-br = funil 7 KPIs, filtro em 3 superficies (auditar 0.2b), copia 3 arquivos. cxpress = funil 7 KPIs PT-BR, superficie unica, copia 5 arquivos. latam = funil 5 fases ES/USD, leads de inbound∪outbound + fechamentos de contratos, superficie unica, copia 5 arquivos. buzzcreators = funil 5 KPIs (Lead/Agend./Reuniao/Fech./Perdidos — **sem Proposta**), fonte Pipedrive com **UTM recuperada por join com o contato** (o deal nao tem UTM), superficie unica, copia 5 arquivos. Runbooks: `dashboard/DEPLOY.md` (buzz-br) · `dashboard/DEPLOY-cxpress.md` · `dashboard/DEPLOY-latam.md` · `dashboard/DEPLOY-buzzcreators.md`.
-```
+- **Diferencas por dashboard:** buzz-br = funil 7 KPIs, filtro em 3 superficies (auditar 0.2b), CSS inline. cxpress = funil 7 KPIs PT-BR, superficie unica. latam = funil 5 fases ES/USD, leads de inbound∪outbound + fechamentos de contratos, superficie unica. buzzcreators = funil 5 KPIs (Lead/Agend./Reuniao/Fech./Perdidos — **sem Proposta**), fonte Pipedrive com **UTM recuperada por join com o contato** (o deal nao tem UTM), superficie unica. Runbooks: `dashboard/DEPLOY.md` (buzz-br) · `dashboard/DEPLOY-cxpress.md` · `dashboard/DEPLOY-latam.md` · `dashboard/DEPLOY-buzzcreators.md`.

@@ -12,6 +12,41 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM unificadas num guarda-chuva único
+### 2026-09-09 — skill `dashboard-atualizar` (3.1.1 → 4.0.0) + `dashboards-umbrella/`
+
+As 4 dashboards de Content Marketing eram 4 projetos Vercel independentes, cada uma no seu
+subdomínio e com seu próprio `middleware.js`. O pedido era um seletor pra navegar entre elas — e
+aí apareceu o motivo real de unificar: **Basic Auth é por origem**. Mesmo com a senha idêntica nas
+quatro, o navegador pedia a credencial de novo a cada subdomínio, então um seletor daria 4 prompts
+de senha por sessão.
+
+Agora as quatro vivem em **`dashboards-elife.vercel.app`**, cada uma numa rota (`/buzz-br/`,
+`/cxpress/`, `/latam/`, `/buzzcreators/`), com um **único login**, um hub de cards na raiz e uma
+barra de navegação compartilhada no topo de todas as páginas. Os 4 projetos antigos viraram **308**
+pras rotas correspondentes — nenhum link antigo quebrou.
+
+**Novo:** `dashboards-umbrella/` — `manifest.json` (fonte única: rota, rótulo, cor, arquivos),
+`templates/nav.js.tpl` (barra), `templates/hub.html.tpl` (hub) e `build_umbrella.py`, que monta a
+dist fora do repo: copia os arquivos do manifesto, injeta a barra no `<head>` de cada dashboard e
+gera hub, `middleware.js`, `vercel.json` e `robots.txt`. Substitui os `sync_sibling.py`.
+
+**Breaking na skill (4.0.0):** o argumento passa a aceitar `todas` e multi-seleção; o Passo 2 troca
+a cópia manual pra sibling pelo build; a validação agora cobre as 4 rotas de uma vez (308 sem barra,
+200 com barra, JSON servido, barra injetada, motor certo). **O deploy é sempre do guarda-chuva
+inteiro** — atualizar uma dashboard rebuilda as quatro.
+
+Duas decisões que economizam depuração depois, documentadas em `dashboards-umbrella/README.md`:
+`trailingSlash: true` no `vercel.json` é obrigatório (as dashboards carregam `motor.js`/`estilo.css`/
+`dados-*.json` por caminho relativo — `/buzz-br` sem barra resolveria `/motor.js`), e a barra é
+`position: fixed` e não `sticky` (as páginas têm `html { overflow-x: hidden }`, que quebra sticky).
+Se o JSON de uma dashboard faltar na fonte, o build **reusa o que está na dist e avisa** (`REUSADO`),
+pra nunca apagar os dados de uma ao deployar outra.
+
+As siblings antigas seguem intactas como rollback.
+
+---
+
 ## Webinar de concorrentes PT ao vivo (série 18086) + convite de moderador
 ### 2026-09-04 — conteúdo + skill `convites-moderador` (1.2.3 → 1.2.4)
 

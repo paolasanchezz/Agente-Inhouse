@@ -1,6 +1,6 @@
 # Dashboard CM pessoal · Buzzmonitor Brasil
 
-Versão **local-only** do [dashboard-buzzmonitor-brasil.vercel.app](https://dashboard-buzzmonitor-brasil.vercel.app/) com:
+Versão **local-only** do [dashboards-elife.vercel.app/buzz-br/](https://dashboards-elife.vercel.app/buzz-br/) com:
 
 - **Seletor de período** — presets (7d / 15d / 30d / 90d / MtD / YtD) + date picker custom
 - **Mesmas regras CM** do dashboard oficial (filtro UTM/blog/material/eventos + regra 90d + whitelist/blacklist)

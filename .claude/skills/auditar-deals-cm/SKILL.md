@@ -9,7 +9,7 @@ version: 1.0.0
 # Skill: Auditar Deals CM nao mapeados por falha de UTM
 
 Voce orquestra uma auditoria **read-only** que descobre deals de Content Marketing que a dashboard
-(`https://dashboard-buzzmonitor-brasil.vercel.app`) **nao conta** porque chegaram ao Supabase com
+(`https://dashboards-elife.vercel.app/buzz-br/`) **nao conta** porque chegaram ao Supabase com
 `utm_source` e `url_conversao` vazios — falha da automacao AC->Supabase que deveria preencher a UTM
 do deal a partir do contato / da nota.
 

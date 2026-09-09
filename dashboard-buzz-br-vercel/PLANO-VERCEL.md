@@ -7,7 +7,7 @@
 
 ## 1. Objetivo
 
-Servir a experiência da **dashboard local dinâmica** (`dashboard-pessoal`, hoje só em `127.0.0.1:8000`) — com **date-picker de intervalo livre** e **todos os dados de 2026** — no link protegido do Vercel (`dashboard-buzzmonitor-brasil.vercel.app`), **sem o Vercel precisar conectar no Supabase**.
+Servir a experiência da **dashboard local dinâmica** (`dashboard-pessoal`, hoje só em `127.0.0.1:8000`) — com **date-picker de intervalo livre** e **todos os dados de 2026** — no link protegido do Vercel (`dashboards-elife.vercel.app/buzz-br/`), **sem o Vercel precisar conectar no Supabase**.
 
 ### Por que não é só "subir a dash local"
 A dash local consulta o Supabase a cada clique. O próprio código dela documenta que **já tentaram** rodar isso como função no Vercel e **não funcionou** — o pooler IPv4 do Supabase não aceita o usuário `looker_readonly`. Por isso ela ficou presa no local.

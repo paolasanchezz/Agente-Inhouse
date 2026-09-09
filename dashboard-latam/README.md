@@ -6,7 +6,7 @@ Versão **interativa** da dashboard de Content Marketing LATAM, com **seletor de
 > **Por que local?** O Vercel não consegue conectar no Supabase com o user `looker_readonly`
 > (pooler IPv4 — mesmo motivo da `dashboard-pessoal`). Então esta versão roda **na sua máquina**.
 > A versão **publicada** (snapshot semanal estático, sem seletor) continua em
-> https://dashboard-buzzmonitor-latam.vercel.app — as duas coexistem e usam o mesmo visual/critério.
+> https://dashboards-elife.vercel.app/latam/ — as duas coexistem e usam o mesmo visual/critério.
 
 ## Como rodar
 

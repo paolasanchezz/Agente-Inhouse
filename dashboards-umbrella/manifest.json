@@ -1,0 +1,69 @@
+{
+  "$comment": "Manifesto do guarda-chuva de dashboards internas. Fonte unica: build_umbrella.py, nav.js e o hub sao gerados daqui. Ordem do array = ordem no seletor e no hub.",
+  "projeto": "dashboards-elife",
+  "sibling": "dashboards-elife",
+  "titulo": "Dashboards internas",
+  "org": "Grupo Elife",
+  "dashboards": [
+    {
+      "slug": "buzz-br",
+      "cor": "#0B63FF",
+      "nome": "Buzzmonitor Brasil",
+      "curto": "Buzz BR",
+      "marca": "buzzmonitor",
+      "regiao": "Brasil",
+      "idioma": "pt-BR",
+      "moeda": "BRL",
+      "fonte": "dashboard-buzz-br-vercel",
+      "dados": "dados-2026.json",
+      "arquivos": ["index.html", "motor.js", "dados-2026.json"],
+      "legado": "dashboard-buzzmonitor-brasil",
+      "resumo": "Funil de leads, deals e fechamentos de Content Marketing no Brasil."
+    },
+    {
+      "slug": "cxpress",
+      "cor": "#4A69BD",
+      "nome": "Cxpress Brasil",
+      "curto": "Cxpress",
+      "marca": "cxpress",
+      "regiao": "Brasil",
+      "idioma": "pt-BR",
+      "moeda": "BRL",
+      "fonte": "dashboard-cxpress-vercel",
+      "dados": "dados-cxpress.json",
+      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-cxpress.json"],
+      "legado": "dashboard-cxpress-brasil",
+      "resumo": "Funil de 7 KPIs da Cxpress no Brasil, com atribuição por utm_creative."
+    },
+    {
+      "slug": "latam",
+      "cor": "#0E9D9B",
+      "nome": "Buzzmonitor LATAM",
+      "curto": "LATAM",
+      "marca": "buzzmonitor",
+      "regiao": "LATAM",
+      "idioma": "es",
+      "moeda": "USD",
+      "fonte": "dashboard-latam-vercel",
+      "dados": "dados-latam.json",
+      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-latam.json"],
+      "legado": "dashboard-buzzmonitor-latam",
+      "resumo": "Embudo de 5 fases del Content Marketing en LATAM, en español y USD."
+    },
+    {
+      "slug": "buzzcreators",
+      "cor": "#FF8119",
+      "nome": "Buzzcreators Brasil",
+      "curto": "Buzzcreators",
+      "marca": "buzzcreators",
+      "regiao": "Brasil",
+      "idioma": "pt-BR",
+      "moeda": "BRL",
+      "fonte": "dashboard-buzzcreators-vercel",
+      "dados": "dados-buzzcreators.json",
+      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-buzzcreators.json"],
+      "legado": "dashboard-buzzcreators-brasil",
+      "resumo": "Funil de 5 KPIs vindo do Pipedrive, com atribuição recuperada pelo contato."
+    }
+  ]
+}

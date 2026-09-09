@@ -1,5 +1,20 @@
 # Deploy do Dashboard Funil Inbound **Cxpress Brasil**
 
+
+> ## 🔒 v3 — Guarda-chuva único (desde 2026-09-09) — **ESTE é o fluxo atual**
+>
+> A dashboard não tem mais projeto Vercel próprio: vive em **/cxpress/** dentro do guarda-chuva
+> `dashboards-elife` (dashboards-elife.vercel.app), com **um único Basic Auth** e barra de
+> navegação compartilhada. `dashboard-cxpress-brasil.vercel.app` agora é um **308** pra lá.
+>
+> **Deploy:** só pela skill `/dashboard-atualizar` (v4), que exporta → roda
+> `dashboards-umbrella/build_umbrella.py` → deploya o guarda-chuva inteiro → valida.
+> Arquitetura e pegadinhas em `dashboards-umbrella/README.md`.
+>
+> O que vem abaixo continua valendo pra **exportar dados, entender o funil e depurar
+> números**. O que está aposentado é a parte de **sibling própria + deploy do projeto
+> individual** (inclusive `sync_sibling.py`, que o build substituiu).
+
 > ## ⚡ v2 — Dashboard dinâmica-estática (desde 2026-07-07) — **ESTE é o fluxo atual**
 >
 > A dashboard no Vercel virou **dinâmica-estática** (date-picker de intervalo livre + presets, igual à
