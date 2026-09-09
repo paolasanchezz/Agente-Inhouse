@@ -63,12 +63,12 @@
       },
       {
         "@type": "Event",
-        "name": "Webinar: No hagas esperar a tus pacientes",
+        "name": "Webinar: Cómo organizar la atención al cliente de tu clínica",
         "url": "https://{{DOMAIN}}/webinar-clinicas-latam",
         "startDate": "2026-09-23T10:00:00-06:00",
         "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
-        "description": "Un sistema probado para organizar la atención de tu clínica.",
+        "description": "Descubre en este webinar gratuito cómo centralizar WhatsApp, automatizar respuestas y organizar la atención de tus pacientes en un solo lugar.",
         "inLanguage": "es-419",
         "isAccessibleForFree": true,
         "publisher": { "@id": "https://cxpress.ai/#organization" }
@@ -381,6 +381,24 @@
       .hero-content { max-width: none; }
     }
 
+    /* ============ CLIENTES (ticker) ============ */
+    .clients { padding: 28px 0; border-top: 1px solid var(--neutral-200); background: var(--neutral-0); }
+    .clients__row { display: grid; grid-template-columns: 1fr; gap: 14px; align-items: center; }
+    @media (min-width: 900px) { .clients__row { grid-template-columns: auto 1fr; gap: 34px; } }
+    .clients__label { font-family: var(--font-accent); font-style: italic; font-size: 16px; color: var(--primary-dark); white-space: nowrap; }
+    .ticker { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+    .ticker__track { display: flex; width: max-content; animation: clients-slide 46s linear infinite; }
+    .ticker:hover .ticker__track { animation-play-state: paused; }
+    .ticker__row { display: flex; align-items: center; gap: 52px; padding: 14px 26px; }
+    .ticker__logo { height: 31px; width: auto; flex-shrink: 0; filter: grayscale(1); opacity: .72; transition: filter .3s, opacity .3s; }
+    .ticker:hover .ticker__logo { filter: none; opacity: 1; }
+    @keyframes clients-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .ticker__track { animation: none !important; } }
+    @media (max-width: 720px) {
+      .ticker__row { gap: 36px; padding: 12px 20px; }
+      .ticker__logo { height: 25px; }
+    }
+
     /* ============ PROBLEMA-Y-FORM ============ */
     .problem-section { background: var(--neutral-100); }
     .problem-grid {
@@ -449,40 +467,60 @@
       .form-card { padding: 28px; }
     }
 
-    /* ============ APRENDIZAJES ============ */
+    /* ============ APRENDIZAJES (lo que vas a ver) ============ */
     .lessons-section { background: var(--neutral-0); }
     .lessons-header { max-width: 760px; margin-bottom: 56px; }
     .lessons-h2 { font-size:clamp(28px, 3vw, 36px); font-weight: 800; }
-    .lessons-list {
+    .program-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .lesson-item {
-      display: flex;
-      gap: 16px;
-      padding: 24px;
+    .program-card {
       background: var(--neutral-100);
       border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
       transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
     }
-    .lesson-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .lesson-icon {
-      flex-shrink: 0;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--primary-dark);
-      color: var(--neutral-0);
-      display: grid; place-items: center;
+    .program-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .program-number {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 14px;
+      font-size: 38px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
     }
-    .lesson-text { font-size: 15px; color: var(--neutral-700); line-height: 1.55; }
-    .lesson-text strong { color: var(--primary-dark); }
+    .program-title { font-size: 19px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; color: var(--primary-dark); }
+    .program-body { font-size: 15px; line-height: 1.6; color: var(--neutral-700); }
+    .program-prompt {
+      margin-top: 18px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--primary-lighter);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 12px 14px;
+    }
+    .program-prompt-label {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
 
     @media (max-width: 860px) {
-      .lessons-list { grid-template-columns: 1fr; }
+      .program-grid { grid-template-columns: 1fr; }
     }
 
     /* ============ PARA-QUIEN ============ */
@@ -588,18 +626,6 @@
       .speakers-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; gap: 40px; }
     }
 
-    /* ============ PROVA SOCIAL ============ */
-    .social-proof-section { background: var(--neutral-0); }
-    .social-proof-inner { text-align: center; max-width: 1000px; margin: 0 auto; }
-    .social-proof-h2 { font-size:clamp(26px, 2.8vw, 32px); font-weight: 800; margin-bottom: 48px; }
-    .social-proof-logos { margin-bottom: 32px; }
-    .social-proof-logos img { width: 100%; height: auto; display: block; }
-    .social-proof-stat {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size:clamp(22px, 2.4vw, 26px);
-      color: var(--primary-dark);
-    }
 
     /* ============ FOOTER ============ */
     .footer { background: var(--primary-darker); color: var(--primary-lighter); padding: 56px 0 32px; }
@@ -642,8 +668,8 @@
   .form-field label{ font-size:15px; }
   .form-field input[type="text"],.form-field input[type="email"]{ font-size:17px; }
   .form-checkbox label{ font-size:15px; }
-  .lesson-icon{ font-size:15px; }
-  .lesson-text{ font-size:16px; }
+  .program-body{ font-size:17px; }
+  .program-prompt{ font-size:15px; }
   .audience-item{ font-size:16px; }
   .speakers-body{ font-size:17px; }
   .speaker-badge{ font-size:13px; }
@@ -679,8 +705,8 @@
             <span class="eyebrow">CONTENIDO EXCLUSIVO</span>
             <span class="eyebrow eyebrow--accent">Webinar online</span>
           </div>
-          <h1 class="hero-h1">No hagas esperar a tus pacientes:</h1>
-          <p class="hero-sub">Un sistema probado para organizar la atención de tu clínica</p>
+          <h1 class="hero-h1">Cómo organizar la atención al cliente de tu clínica</h1>
+          <p class="hero-sub">Descubre en este webinar gratuito cómo centralizar WhatsApp, automatizar respuestas y organizar la atención de tus pacientes en un solo lugar.</p>
           <div class="hero-actions">
             <a href="#problema-form" class="btn btn-primary">¡Quiero inscribirme!</a>
           </div>
@@ -703,6 +729,49 @@
       </div>
     </section>
 
+    <!-- CLIENTES -->
+    <div class="clients">
+      <div class="container clients__row">
+        <p class="clients__label">Más de 800 clientes confían en nosotros</p>
+        <div class="ticker">
+          <div class="ticker__track">
+            <div class="ticker__row">
+              <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
+            </div>
+            <div class="ticker__row" aria-hidden="true">
+              <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- PROBLEMA-Y-FORM -->
     <section class="problem-section reveal" id="problema-form" aria-labelledby="problem-title">
       <div class="container problem-grid">
@@ -724,35 +793,38 @@
     <section class="lessons-section reveal" aria-labelledby="lessons-title">
       <div class="container">
         <div class="lessons-header">
-          <span class="section-label">Lo que aprenderás</span>
-          <h2 id="lessons-title" class="lessons-h2">Lo que aprenderás:</h2>
+          <span class="section-label">Lo que vas a ver</span>
+          <h2 id="lessons-title" class="lessons-h2">Tres formas de organizar la atención de tu clínica, con demostración en vivo.</h2>
         </div>
-        <ul class="lessons-list">
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">1</span>
-            <p class="lesson-text">Cómo centralizar todos los canales de atención de tu clínica. WhatsApp, Instagram, chat y otros canales organizados en un solo lugar.</p>
-          </li>
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">2</span>
-            <p class="lesson-text">Cómo automatizar las tareas repetitivas del equipo de atención. Preguntas frecuentes, información básica y solicitudes simples pueden responderse automáticamente.</p>
-          </li>
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">3</span>
-            <p class="lesson-text">Confirmación automática de citas. Envía mensajes automáticos para confirmar asistencia, reducir ausencias y mantener tu agenda organizada.</p>
-          </li>
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">4</span>
-            <p class="lesson-text">Distribución inteligente de solicitudes. Cada consulta llega directamente a la persona adecuada dentro del equipo.</p>
-          </li>
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">5</span>
-            <p class="lesson-text">Visibilidad completa de la operación de atención. Accede a indicadores que muestran el volumen de mensajes, los tiempos de respuesta y los principales desafíos.</p>
-          </li>
-          <li class="lesson-item">
-            <span class="lesson-icon" aria-hidden="true">6</span>
-            <p class="lesson-text">Casos prácticos de clínicas que ya optimizaron su atención. Descubre cómo otras clínicas están organizando sus procesos para atender.</p>
-          </li>
-        </ul>
+        <div class="program-grid">
+          <article class="program-card">
+            <span class="program-number" aria-hidden="true">01</span>
+            <h3 class="program-title">Centralización de canales</h3>
+            <p class="program-body">Cxpress conecta WhatsApp, Instagram, chat y demás canales de tu clínica en un mismo panel, con el historial completo de cada paciente sin importar por dónde escribió.</p>
+            <div class="program-prompt">
+              <span class="program-prompt-label">Qué vas a ver</span>
+              El panel de canales centralizado y el historial de un paciente que pasó de WhatsApp a Instagram sin perder el contexto.
+            </div>
+          </article>
+          <article class="program-card">
+            <span class="program-number" aria-hidden="true">02</span>
+            <h3 class="program-title">Automatización con IA</h3>
+            <p class="program-body">La IA responde preguntas frecuentes y confirma la asistencia a citas, sin que tu equipo tenga que escribir el mismo mensaje una y otra vez.</p>
+            <div class="program-prompt">
+              <span class="program-prompt-label">Qué vas a ver</span>
+              Una conversación respondida automáticamente y el envío de una confirmación de cita en tiempo real.
+            </div>
+          </article>
+          <article class="program-card">
+            <span class="program-number" aria-hidden="true">03</span>
+            <h3 class="program-title">Distribución inteligente y visibilidad</h3>
+            <p class="program-body">Cada consulta llega directo a la persona correcta del equipo, y los dashboards muestran el volumen de mensajes y el tiempo de respuesta para detectar problemas antes de que crezcan.</p>
+            <div class="program-prompt">
+              <span class="program-prompt-label">Qué vas a ver</span>
+              El panel de distribución de solicitudes y el dashboard con los indicadores de atención de una clínica real.
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -819,17 +891,6 @@
           </article>
         </div>
         <a href="#problema-form" class="btn btn-primary">¡Quiero inscribirme!</a>
-      </div>
-    </section>
-
-    <!-- PROVA-SOCIAL -->
-    <section class="social-proof-section reveal" aria-labelledby="social-proof-title">
-      <div class="container social-proof-inner">
-        <h2 id="social-proof-title" class="social-proof-h2">Empresas que ya confían en Cxpress</h2>
-        <div class="social-proof-logos">
-          <img src="../../brand/cxpress/assets/plataforma/clientes-cxpress.png" alt="Logos de empresas que confían en Cxpress" loading="lazy" width="1886" height="906">
-        </div>
-        <p class="social-proof-stat">+800 clientes en Brasil, Latam y Portugal</p>
       </div>
     </section>
   </main>
