@@ -1,0 +1,45 @@
+=== META ===
+BODY: Marca: Cxpress. Regiao: Brasil (PT-BR). Dominio: content.cxpress.io (guarda-chuva).
+BODY: Estrutura: clone estrutural de landing-pages/cxpress/oferta-atendimento-metrica (pagina de oferta pos-webinar), copy adaptada para o tema "Black Friday sem atendimento no vermelho".
+BODY: Oferta (conversao): pacote padrao Cxpress de onboarding do agente de IA (mesma oferta reutilizada em oferta-atendimento-metrica, oferta-whatsapp-comercial-bloqueado e webinar-tecnologia-maio2026-oferta), ate 20h de configuracao com especialistas, economia de R$ 4 mil, sem multa de cancelamento.
+BODY: Case usado (verificado): Cacau Show, Pascoa 2024, 34% dos comentarios no Instagram e Facebook respondidos manualmente (baseline real, ver brand/cxpress/BRANDBOOK.md). Resultados pos-implementacao sao qualitativos (escala sem aumentar equipe, respostas mais rapidas, mais engajamento) - nenhum percentual "depois" foi divulgado, entao nenhum numero foi inventado pra preencher essa lacuna.
+BODY: [NOTA] O usuario pediu explicitamente a mesma estrutura de secoes da referencia oferta-atendimento-metrica. A fonte bruta enviada foi só o paragrafo do HERO (ver SUB e a linha de transicao antes da oferta); as demais secoes (H1, IMPACTO, CARD DESTACADO, DEPOIS DA VIRADA) foram redigidas seguindo o mesmo esqueleto de blocos da referencia, a voz da marca (brand-manifest.json) e o material ja aprovado da campanha (cadencia de convites + e-mails de oferta do webinar). Sinalizado aqui para transparencia - nao e copy literal de um documento do usuario, e autoria nova dentro da estrutura pedida.
+LABEL: <title> sugerido: Black Friday sem Atendimento no Vermelho: garanta sua condição especial | Cxpress
+BODY: meta description sugerida: Aproveite a condição especial da Cxpress pra preparar seu atendimento pro pico da Black Friday. Oferta exclusiva para quem participou.
+
+=== HERO ===
+LABEL: Oferta exclusiva para quem participou do webinar
+H1: Saia do vermelho antes que a Black Friday comece
+SUB: No webinar, mostramos como atender mais rápido, priorizar oportunidades de venda e usar IA para ganhar escala no atendimento.
+BODY: Agora, aproveite a condição especial da Cxpress para colocar essa estratégia em prática na sua operação.
+LABEL: Condição especial para quem participou do webinar
+LIST ITEM: Nosso time de especialistas vai dedicar até 20h na criação do seu primeiro agente de IA
+LIST ITEM: Economize R$ 4 mil e comece com uma estrutura pronta para escalar seu atendimento
+LIST ITEM: E mais: contrato sem multa de cancelamento.
+CTA: [form mock, integrar Jotform depois do design aprovado, GUIDELINES §11]
+LABEL: Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta. (disclaimer de consentimento, generico/whitelist)
+
+=== IMPACTO ===
+H2: Quanto da sua operação aguenta o pico da Black Friday?
+BODY: A maioria dos gestores sabe quantas mensagens chegam num dia normal.
+BODY: Poucos sabem quanto esse número multiplica na Black Friday, quanto tempo o cliente espera na fila ou quantas vendas se perdem por demora.
+
+=== CARD DESTACADO ===
+H2: A Cacau Show enfrentou o mesmo desafio nos períodos de pico
+H3: E saiu de 34% de respostas manuais para uma operação preparada para ganhar escala.
+BODY: Durante a Páscoa, apenas 34% dos comentários no Instagram e Facebook da Cacau Show eram respondidos manualmente. Com o aumento do volume e a cobertura limitada fora do horário comercial, muitas interações ficavam sem resposta.
+BODY: Com a IA assumindo parte do primeiro atendimento e a equipe atuando nos casos que exigiam atenção humana, a operação passou a responder mais, com mais agilidade, mesmo nos picos sazonais.
+
+=== DEPOIS DA VIRADA ===
+H2: O que muda quando a operação está preparada para o pico
+LIST ITEM: Fila organizada por prioridade, não apenas por ordem de chegada
+LIST ITEM: Dúvidas repetidas respondidas pela IA, sem deixar o cliente esperando
+LIST ITEM: Equipe focada nos clientes e situações que mais precisam de atenção
+LIST ITEM: Mais capacidade para absorver os picos sem perder qualidade no atendimento
+BODY: Menos clientes esperando na fila. Mais controle sobre o atendimento nos momentos que mais importam para a venda.
+CTA: Garantir oferta
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. (c) 2026. Condições gerais de uso da Cxpress. Políticas de privacidade.
+
+# Revisao anti-IA (apos ajustes do usuario, 2026-09-09): em-dash = 0. Antitese-por-negacao: 1 instancia ("por prioridade, não apenas por ordem de chegada" em DEPOIS DA VIRADA), dentro do limite de ate 2 por peca (regras-anti-ia.md). "Menos X. Mais Y." no fechamento e antitese literaria (nao e a familia de negacao) e ecoa de proposito o fechamento da LP-referencia ("Menos achismo... Mais controle..."), coerente com o pedido de clonar a estrutura. Sem filler words, sem frases-tipicas-de-IA, sem metafora aquatica, 0 exclamacoes, 1 pergunta retorica (H2 de IMPACTO, dentro do limite de 1 por secao). Grafia "a Cxpress" (feminino) conferida em todas as ocorrencias. Nota: CARD DESTACADO agora diz "Durante a Páscoa" sem o ano (2024) — segue verdadeiro, so menos especifico; o dado 34% continua o mesmo do case verificado.
