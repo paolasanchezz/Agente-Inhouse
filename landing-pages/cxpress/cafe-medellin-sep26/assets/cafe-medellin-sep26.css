@@ -92,6 +92,7 @@ h1,h2,h3,
 .ch-name,.q-item p,.cq-intro,
 .spk-name,.spk-role,
 .reach-addr .a1,.reach-addr .a2,.cb-lab,
+.clients-title,
 .cta p,.trust-item{
   text-wrap:balance;
 }
@@ -379,21 +380,30 @@ h1,h2,h3,
 .about-copy p{font-size:18px;color:var(--muted-dark);max-width:52em}
 .about-copy p+p{margin-top:16px}
 
-.marquee-wrap{
-  margin-top:44px;overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+/* ============ 14b. CLIENTES (seccion clara) ============
+   Los logos son PNG opacos con fondo claro (0% de transparencia): sobre el navy
+   se verian como rectangulos blancos. Por eso viven en su propia seccion blanca,
+   igual que en content.cxpress.io/whatsapp-business, de donde vienen los archivos. */
+.clients{background:var(--white);color:var(--n900);padding:64px 0 72px;border-top:1px solid #e6e9f5}
+.clients-title{
+  text-align:center;font-family:var(--font-body);font-weight:400;
+  font-size:clamp(18px,1.6vw,20px);color:var(--n700);
+  max-width:40ch;margin:0 auto;
 }
-.marquee-lead{
-  text-align:center;font-family:var(--font-display);font-weight:600;
-  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);margin-bottom:20px;
+.clients-marquee{
+  margin-top:32px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
 }
-.marquee{display:flex;width:max-content;gap:44px}
-.marquee span{
-  font-family:var(--font-display);font-weight:700;font-size:22px;
-  color:rgba(255,255,255,.6);white-space:nowrap;
+.clients-track{display:flex;width:max-content}
+.clients-group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
+.clients-group img{
+  flex:0 0 auto;width:auto;max-width:170px;min-height:0;
+  height:clamp(30px,3.4vw,42px);object-fit:contain;
+  opacity:.72;filter:saturate(.9);
+  transition:opacity .25s var(--ease),filter .25s var(--ease);
 }
+.clients-group img:hover{opacity:1;filter:none}
 
 /* ============ 15. CTA FINAL ============ */
 .cta{
@@ -434,8 +444,8 @@ h1,h2,h3,
   .glow-b{animation:breathe 11s var(--ease) infinite reverse}
   .glow-c{animation:breathe 13s var(--ease) infinite}
   .hero-focus .arw-focus{animation:nudge 1.6s var(--ease) infinite}
-  .marquee{animation:marquee 28s linear infinite}
-  .marquee-wrap:hover .marquee{animation-play-state:paused}
+  .clients-track{animation:marquee 64s linear infinite}
+  .clients-marquee:hover .clients-track{animation-play-state:paused}
   .spk-rings span{animation:ringPulse 3.2s cubic-bezier(.22,.8,.22,1) infinite}
   .spk-rings span:nth-child(2){animation-delay:1.07s}
   .spk-rings span:nth-child(3){animation-delay:2.13s}
