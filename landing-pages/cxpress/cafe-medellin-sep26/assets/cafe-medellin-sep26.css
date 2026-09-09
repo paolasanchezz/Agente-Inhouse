@@ -90,7 +90,7 @@ h1,h2,h3,
 .form-title,.form-sub,
 .section-head p,.ben-card p,
 .ch-name,.q-item p,.cq-intro,
-.spk-name,.spk-role,
+.spk-name,.spk-role,.spk-info-label,
 .reach-addr .a1,.reach-addr .a2,.cb-lab,
 .cta p,.trust-item{
   text-wrap:balance;
@@ -225,8 +225,14 @@ h1,h2,h3,
   -webkit-mask-composite:xor;mask-composite:exclude;
   pointer-events:none;
 }
-.form-title{font-size:clamp(24px,4.4vw,28px);color:var(--navy);margin-bottom:6px}
-.form-sub{font-size:17px;color:var(--n500);margin-bottom:20px}
+.form-title{font-size:clamp(24px,4.4vw,28px);color:var(--navy);margin-bottom:6px;text-align:center}
+.form-sub{font-size:17px;color:var(--n500);margin-bottom:20px;text-align:center;max-width:34ch;margin-inline:auto}
+/* entrada propia de la tarjeta: sube y crece un poco, en vez del translate plano
+   del .reveal generico. El selector doble gana sobre .reveal / .reveal.in.
+   No se anima nada en hover: dentro vive el iframe del formulario y mover la
+   tarjeta mientras alguien escribe seria hostil. */
+.form-card.reveal{transform:translateY(30px) scale(.975)}
+.form-card.reveal.in{transform:none}
 .form-consent{font-size:14px;color:var(--n500);margin-top:14px}
 .form-consent a{color:var(--royal);text-decoration:underline}
 /* wrapper canónico del embed real (Jotform/RD/HubSpot) */
@@ -345,30 +351,63 @@ h1,h2,h3,
   font-size:18px;color:var(--n700);max-width:60em;
 }
 
-/* ============ 13. PONENTE (anillos pulsantes) ============ */
-.spk{background:var(--n100);text-align:center;padding:56px 0 60px;overflow:hidden;position:relative}
+/* ============ 13. PONENTE (tarjeta, patron de content.buzzmonitor.com/black-friday-alta-performance-outubro-2026) ============ */
+.spk{background:var(--n100);text-align:center;padding:56px 0 64px;overflow:hidden;position:relative}
 .spk-label{
   display:block;font-family:var(--font-display);font-weight:800;
-  font-size:clamp(28px,5.6vw,42px);letter-spacing:-.02em;margin-bottom:28px;
+  font-size:clamp(28px,5.6vw,42px);letter-spacing:-.02em;margin-bottom:32px;
   color:var(--navy);
 }
-.spk-visual{position:relative;display:inline-block;margin-bottom:20px}
-.spk-visual::before{
-  content:"";position:absolute;top:50%;left:50%;width:260px;height:260px;
-  transform:translate(-50%,-50%);z-index:0;pointer-events:none;
-  background:radial-gradient(circle,rgba(239,134,60,.18),transparent 62%);
+
+/* tarjeta unica, centrada (hay una sola ponente) */
+.spk-card{
+  position:relative;z-index:0;
+  max-width:380px;margin-inline:auto;
+  background:var(--white);border:1.5px solid #e6e9f5;border-radius:var(--r-lg);
+  padding:40px 24px 32px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
+  box-shadow:0 20px 50px -26px rgba(35,41,96,.3);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-.spk-rings{position:absolute;top:50%;left:50%;width:150px;height:150px;margin:-75px 0 0 -75px;z-index:0;pointer-events:none}
-.spk-rings span{position:absolute;inset:0;border-radius:50%;border:2px solid var(--orange);opacity:0}
+.spk-card:hover{transform:translateY(-6px);box-shadow:0 28px 60px -20px rgba(35,41,96,.4)}
+
+.spk-visual{position:relative;flex:none;display:block}
+/* dos anillos que salen de la foto al pasar por la tarjeta */
+.spk-visual::before,.spk-visual::after{
+  content:"";position:absolute;top:-14px;left:-14px;
+  width:158px;height:158px;border-radius:50%;
+  border:2px solid var(--royal);opacity:0;z-index:-1;pointer-events:none;
+}
+/* blob en degradado detras de la foto */
+.spk-blob{
+  position:absolute;top:-14px;left:-14px;
+  width:158px;height:158px;border-radius:50%;z-index:0;
+  background:linear-gradient(135deg,var(--royal),var(--orange));
+  transition:transform .3s var(--ease);
+}
+.spk-card:hover .spk-blob{transform:rotate(12deg) scale(1.05)}
 .spk-photo{
   position:relative;z-index:1;display:block;
-  width:150px;height:150px;border-radius:50%;object-fit:cover;
-  border:4px solid var(--orange);background:var(--lilac-soft);
-  box-shadow:0 22px 48px -20px rgba(35,41,96,.45);
+  width:130px;height:130px;border-radius:50%;object-fit:cover;
+  border:5px solid var(--white);background:var(--lilac-soft);
+  box-shadow:0 20px 40px -14px rgba(35,41,96,.35);
   min-height:0;
+  transition:transform .3s var(--ease);
 }
-.spk-name{font-size:clamp(22px,4.4vw,28px);color:var(--navy);line-height:1.15}
-.spk-role{font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--n500);margin-top:8px}
+.spk-card:hover .spk-photo{transform:scale(1.04)}
+
+.spk-info{display:flex;flex-direction:column;align-items:center}
+.spk-info-label{
+  font-family:var(--font-display);font-weight:700;font-size:14px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink);
+  margin-bottom:6px;
+}
+.spk-name{font-size:clamp(22px,4.4vw,26px);color:var(--navy);line-height:1.15}
+.spk-role{
+  display:block;font-family:var(--font-body);font-weight:600;font-size:16px;
+  color:var(--n500);margin-top:6px;
+}
+.spk-logo{display:block;height:26px;width:auto;margin:18px auto 0}
 
 /* ============ 14. SOBRE CXPRESS (oscuro) ============ */
 .about{background:var(--navy-deep);position:relative;overflow:hidden}
@@ -418,16 +457,19 @@ h1,h2,h3,
 /* ============ 17. KEYFRAMES ============ */
 @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.85;transform:scale(1.12)}}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
-@keyframes ringPulse{0%{transform:scale(.9);opacity:.5}80%{opacity:0}100%{transform:scale(2.3);opacity:0}}
+@keyframes ringPulse{0%{transform:scale(1);opacity:.6}70%{opacity:.18}100%{transform:scale(2.3);opacity:0}}
+/* borde en degradado de la tarjeta del formulario, respirando */
+@keyframes cardEdge{0%,100%{opacity:.5}50%{opacity:1}}
 
 @media (prefers-reduced-motion:no-preference){
   .glow-a{animation:breathe 9s var(--ease) infinite}
   .glow-b{animation:breathe 11s var(--ease) infinite reverse}
   .glow-c{animation:breathe 13s var(--ease) infinite}
   .hero-focus .arw-focus{animation:nudge 1.6s var(--ease) infinite}
-  .spk-rings span{animation:ringPulse 3.2s cubic-bezier(.22,.8,.22,1) infinite}
-  .spk-rings span:nth-child(2){animation-delay:1.07s}
-  .spk-rings span:nth-child(3){animation-delay:2.13s}
+  /* los anillos salen al pasar por la tarjeta, no en loop permanente */
+  .spk-card:hover .spk-visual::before{animation:ringPulse 1.7s ease-out infinite}
+  .spk-card:hover .spk-visual::after{animation:ringPulse 1.7s ease-out infinite;animation-delay:.55s;border-color:var(--orange)}
+  .form-card::before{animation:cardEdge 4.5s var(--ease) infinite}
 }
 
 /* ============ 18. BREAKPOINTS (mobile first) ============ */
