@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Solicita tu propuesta</title>
+  <meta name="description" content="Solicita tu propuesta comercial y descubre los beneficios de Buzzmonitor para marcas de retail.">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Buzzmonitor">
+  <meta property="og:locale" content="es_LA">
+  <meta property="og:title" content="Solicita tu propuesta">
+  <meta property="og:description" content="Solicita tu propuesta comercial y descubre los beneficios de Buzzmonitor para marcas de retail.">
+
+  <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800&family=Lato:wght@400;700&display=swap">
+
+  <style>
+    /* ============================================================
+       Estilo tomado del "Manual de Active Campaign" (Buzzmonitor):
+       fondo naranja a sangre, bloques geometricos, estallido amarillo,
+       tarjetas blancas flotando y base crema. Los hex del manual son
+       los mismos tokens de brand/buzzmonitor/tokens.json.
+       ============================================================ */
+    :root {
+      --orange: #EB7C2E;
+      --orange-deep: #D96A1E;
+      /* Naranja de la banda superior, aclarado a pedido. Con blanco da 4.16:1:
+         el H1 (62px) supera de sobra el umbral de texto grande (3:1); la
+         entradilla de 18px queda algo por debajo del 4.5:1 de texto normal.
+         Version estricta AA: #BA5D11 (4.50:1). Mas calido aun: #C76619 (3.93:1). */
+      --orange-hero: #C26216;
+      --purple: #390155;
+      --purple-deep: #26013a;
+      --yellow: #FCBD4F;
+      --teal: #0E9D9B;
+      --crimson: #DE2451;
+      --peach-tint: #FFF1E6;
+      --cream: #FFF8F2;
+
+      --ink: #241B2B;
+      --ink-mid: #5C5266;
+      --ink-soft: #756B7E;
+      --line: #EADFD4;
+      --line-strong: #D8C6B6;
+      --white: #ffffff;
+      --req: #C4123C;
+
+      --font-display: 'League Spartan', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --measure: 680px;
+      --measure-banda: 1080px;
+      --pad: 24px;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+    .wrap--banda { max-width: var(--measure-banda); }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--purple); color: #fff; padding: 12px 18px; z-index: 30;
+    }
+    .skip-link:focus { left: 0; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    :focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 6px; }
+    .hero :focus-visible, .cobrand :focus-visible { outline-color: var(--white); }
+
+    /* ============ BARRA DE CO-BRANDING ============ */
+    /* Sin morado: comparte el naranja del hero y los dos bloques leen como uno. */
+    .cobrand { background: var(--orange-hero); }
+    .cobrand .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; min-height: 74px; padding-top: 12px; padding-bottom: 12px;
+    }
+    .lockup { display: flex; align-items: center; gap: 20px; }
+    .lockup img { display: block; width: auto; }
+    .lockup-buzz img { height: 32px; }
+    .lockup-evento img { height: 30px; }
+    .lockup-div { width: 1px; height: 32px; background: rgba(255,255,255,.55); flex: none; }
+    .cobrand-evento {
+      margin: 0; text-align: right; line-height: 1.35;
+      font-family: var(--font-display); font-weight: 600; font-size: 14px;
+      color: var(--white);
+    }
+    .cobrand-evento b { display: block; font-weight: 700; color: var(--white); }
+
+    /* ============ HERO NARANJA ============ */
+    .hero { position: relative; background: var(--orange-hero); overflow: hidden; }
+
+    .hero-grid {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: minmax(0, 1fr) 372px;
+      gap: 56px; align-items: center;
+    }
+    .hero-body { padding: 76px 0 84px; max-width: 34rem; }
+
+    .eyebrow {
+      display: inline-block; margin: 0 0 22px; padding: 8px 18px 7px;
+      border-radius: 999px; background: transparent; color: var(--white);
+      border: 2px solid var(--white);
+      font-family: var(--font-display); font-weight: 700; font-size: 14px;
+      letter-spacing: .1em; text-transform: uppercase; line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(42px, 6vw, 62px); line-height: 1.0;
+      letter-spacing: -.025em; color: var(--white);
+    }
+    .lead { margin: 0; font-size: 18px; line-height: 1.6; color: var(--white); }
+
+    /* ---- composicion geometrica del manual ---- */
+    .hero-panel { position: relative; }
+    .compo { position: absolute; inset: -46px -30px -46px -46px; pointer-events: none; }
+    .compo span, .compo svg { position: absolute; display: block; }
+    .compo-rect {
+      right: -14px; top: 6px; width: 210px; height: 210px;
+      background: var(--purple);
+    }
+    .compo-tri {
+      left: -6px; bottom: 4px;
+      width: 0; height: 0;
+      border-left: 74px solid transparent;
+      border-right: 74px solid transparent;
+      border-bottom: 108px solid var(--yellow);
+    }
+    .compo-quarter {
+      right: 96px; bottom: -6px; width: 132px; height: 132px;
+      background: var(--teal);
+      border-radius: 132px 0 0 0;
+    }
+    .compo-star { left: -40px; top: -22px; width: 104px; height: 104px; }
+    .compo-star path { fill: var(--yellow); }
+
+    /* ============ TARJETA DE REPORTE ============ */
+    .panel {
+      position: relative; z-index: 2;
+      background: var(--white); border-radius: 18px; padding: 22px;
+      box-shadow: 0 26px 54px rgba(38, 1, 58, .26);
+    }
+    .panel-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 18px;
+    }
+    .panel-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--purple); }
+    .panel-live { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-soft); }
+    .panel-live i { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: latido 1.9s ease-in-out infinite; }
+    @keyframes latido { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.45);opacity:.55} }
+
+    .panel-kpi {
+      display: block; font-family: var(--font-display); font-weight: 800;
+      font-size: 40px; line-height: 1; color: var(--purple); font-variant-numeric: tabular-nums;
+    }
+    .panel-kpi-label { font-size: 14px; color: var(--ink-soft); }
+
+    .panel-bars { display: flex; align-items: flex-end; gap: 7px; height: 80px; margin-top: 20px; }
+    .panel-bars i {
+      flex: 1; border-radius: 5px 5px 0 0; background: var(--orange);
+      transform-origin: bottom; animation: subir 3.4s ease-in-out infinite;
+    }
+    .panel-bars i:nth-child(even) { background: var(--yellow); }
+    .panel-bars i:nth-child(1){height:38%;animation-delay:0s}
+    .panel-bars i:nth-child(2){height:62%;animation-delay:.18s}
+    .panel-bars i:nth-child(3){height:46%;animation-delay:.36s}
+    .panel-bars i:nth-child(4){height:84%;animation-delay:.54s}
+    .panel-bars i:nth-child(5){height:55%;animation-delay:.72s}
+    .panel-bars i:nth-child(6){height:71%;animation-delay:.9s;background:var(--teal)}
+    .panel-bars i:nth-child(7){height:100%;animation-delay:1.08s;background:var(--purple)}
+    @keyframes subir { 0%,100%{transform:scaleY(.62)} 50%{transform:scaleY(1)} }
+
+    .panel-foot {
+      display: flex; gap: 18px; margin-top: 18px; padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .panel-foot div { flex: 1; }
+    .panel-foot b {
+      display: block; font-family: var(--font-display); font-weight: 800;
+      font-size: 19px; color: var(--purple); font-variant-numeric: tabular-nums;
+    }
+    .panel-foot span { font-size: 13px; color: var(--ink-soft); }
+
+    /* ============ FRANJA DE SOLUCIONES ============ */
+    .ticker {
+      position: relative; z-index: 2; overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.3);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    }
+    .ticker-track {
+      display: flex; align-items: center; gap: 12px; width: max-content;
+      padding: 18px 0; animation: correr 64s linear infinite;
+    }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    @keyframes correr { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-radius: 999px; background: var(--white);
+      white-space: nowrap; font-size: 15px; color: var(--ink-mid);
+      box-shadow: 0 6px 16px rgba(38, 1, 58, .12);
+    }
+    .chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); flex: none; }
+    .chip:nth-child(3n) i { background: var(--teal); }
+    .chip:nth-child(3n+2) i { background: var(--crimson); }
+    .chip:nth-child(4n) i { background: var(--yellow); }
+    .chip b { font-family: var(--font-display); font-weight: 800; color: var(--purple); }
+
+    /* ============ GRUPOS DEL FORMULARIO ============ */
+    .form-shell { padding: 8px 0 0; }
+    .group { border-bottom: 1px solid var(--line); padding: 48px 0; }
+    .group:last-of-type { border-bottom: 0; padding-bottom: 40px; }
+    .group-head { display: flex; align-items: center; gap: 16px; margin-bottom: 34px; }
+    .group-num {
+      flex: none; display: grid; place-items: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--purple); color: var(--white);
+      font-family: var(--font-display); font-weight: 800; font-size: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+    .group h2 {
+      margin: 0; font-family: var(--font-display); font-weight: 700;
+      font-size: 26px; letter-spacing: -.015em; color: var(--purple);
+    }
+
+    .field { margin-bottom: 34px; }
+    .field:last-child { margin-bottom: 0; }
+    .field-label, .field legend {
+      display: block; font-family: var(--font-display); font-weight: 600;
+      font-size: 17px; line-height: 1.4; color: var(--ink);
+      margin-bottom: 12px; padding: 0;
+    }
+    .req { color: var(--req); margin-left: 3px; font-weight: 400; }
+    .hint { display: block; font-size: 15px; color: var(--ink-soft); margin: -6px 0 14px; }
+
+    input[type="email"], select, textarea {
+      width: 100%; font-family: var(--font-body); font-size: 17px; line-height: 1.5;
+      color: var(--ink); background: var(--white);
+      border: 1.5px solid var(--line-strong); border-radius: var(--radius);
+      padding: 14px 16px; min-height: 56px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    textarea { min-height: 136px; resize: vertical; }
+    input[type="email"]:hover, select:hover, textarea:hover { border-color: var(--orange); }
+    input[type="email"]:focus, select:focus, textarea:focus {
+      border-color: var(--orange); box-shadow: 0 0 0 4px rgba(235,124,46,.22);
+    }
+    select { appearance: none; background-image: none; cursor: pointer; padding-right: 48px; }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: ""; position: absolute; right: 20px; top: 50%;
+      width: 9px; height: 9px;
+      border-right: 2px solid var(--orange); border-bottom: 2px solid var(--orange);
+      transform: translateY(-70%) rotate(45deg); pointer-events: none;
+    }
+    fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+    .options { display: grid; gap: 10px; }
+    .options--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .opt {
+      display: flex; align-items: center; gap: 12px; min-height: 56px;
+      padding: 12px 16px; border: 1.5px solid var(--line); border-radius: var(--radius);
+      background: var(--white); font-size: 17px; line-height: 1.4; color: var(--ink);
+      cursor: pointer; transition: border-color .15s ease, background-color .15s ease;
+    }
+    .opt:hover { border-color: var(--line-strong); background: var(--peach-tint); }
+    .opt:has(input:checked), .opt.is-selected { border-color: var(--orange); background: var(--peach-tint); }
+    .opt:has(input:focus-visible) { outline: 3px solid var(--purple); outline-offset: 2px; }
+    .opt input { flex: none; width: 19px; height: 19px; margin: 0; accent-color: var(--orange-deep); }
+
+    /* ============ CIERRE ============ */
+    .actions {
+      position: relative; overflow: hidden; margin-top: 8px;
+      padding: 44px 40px; border-radius: var(--radius-lg); background: var(--orange);
+    }
+    .actions-arc {
+      position: absolute; right: -70px; bottom: -100px;
+      width: 240px; height: 240px; border-radius: 50%;
+      background: rgba(57,1,85,.14); pointer-events: none;
+    }
+    .actions-inner {
+      position: relative; z-index: 2; display: flex; align-items: center;
+      gap: 22px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 60px; padding: 0 48px; border: 0; border-radius: 999px;
+      background: var(--purple); color: var(--white);
+      font-family: var(--font-display); font-weight: 800; font-size: 19px;
+      letter-spacing: .01em; cursor: pointer;
+      transition: background-color .18s ease, color .18s ease, transform .18s ease;
+    }
+    .btn:hover { background: var(--white); color: var(--purple); transform: translateY(-2px); }
+    .actions p { margin: 0; font-size: 15px; color: var(--purple); }
+    .form-status {
+      flex-basis: 100%; margin: 0; font-size: 16px; font-weight: 700;
+      font-family: var(--font-display); color: var(--purple);
+    }
+    .form-status:empty { display: none; }
+    .form-status[data-tipo="error"] { color: var(--purple-deep); }
+    .btn[disabled] { opacity: .6; cursor: progress; }
+    .actions .req { color: var(--purple-deep); }
+
+    /* ============ FOOTER ============ */
+    footer { margin-top: 64px; background: var(--purple); color: rgba(255,255,255,.84); padding: 40px 0 44px; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-logo img { display: block; height: 28px; width: auto; }
+    .footer-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,.84); display: inline-flex; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-legal {
+      margin-top: 26px; padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.16);
+      font-size: 14px; color: rgba(255,255,255,.72);
+    }
+    .footer-legal a { color: rgba(255,255,255,.72); }
+    .footer-legal a:hover { color: var(--yellow); }
+
+    @media (max-width: 980px) {
+      /* El panel baja debajo del texto en vez de desaparecer. El .hero
+         tiene overflow:hidden, asi que la composicion no genera scroll. */
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; justify-items: center; }
+      .hero-body { padding-bottom: 0; }
+      .hero-panel { width: 100%; max-width: 380px; margin-bottom: 56px; }
+    }
+
+    @media (max-width: 700px) {
+      :root { --pad: 20px; }
+      .cobrand-evento { display: none; }
+      .cobrand .wrap { justify-content: flex-start; min-height: 66px; }
+      .lockup { gap: 14px; }
+      .lockup-buzz img { height: 25px; }
+      .lockup-evento img { height: 22px; }
+      .hero-body { padding: 44px 0 0; }
+      .hero-panel { max-width: 320px; margin-bottom: 48px; }
+      .compo { inset: -30px -18px -30px -28px; }
+      .compo-rect { width: 148px; height: 148px; right: -8px; top: 4px; }
+      .compo-quarter { width: 92px; height: 92px; right: 64px; bottom: -4px; border-radius: 92px 0 0 0; }
+      .compo-tri { border-left-width: 52px; border-right-width: 52px; border-bottom-width: 76px; }
+      .compo-star { width: 74px; height: 74px; left: -26px; top: -14px; }
+      .panel { padding: 18px; }
+      .panel-kpi { font-size: 34px; }
+      .group { padding: 38px 0; }
+      .group h2 { font-size: 23px; }
+      .options--two { grid-template-columns: 1fr; }
+      .actions { padding: 28px 22px; }
+      .btn { width: 100%; padding: 0 20px; }
+      .footer-row { justify-content: center; text-align: center; }
+      .footer-legal { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#formulario">Ir al formulario</a>
+
+  <div class="cobrand">
+    <div class="wrap wrap--banda">
+      <div class="lockup">
+        <a class="lockup-buzz" href="https://getbuzzmonitor.com/es/" aria-label="Buzzmonitor: página principal" target="_blank" rel="noopener">
+          <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="168" height="32">
+        </a>
+        <span class="lockup-div" aria-hidden="true"></span>
+        <span class="lockup-evento">
+          <img src="assets/logo-america-digital.png" alt="América Digital" width="58" height="30">
+        </span>
+      </div>
+
+      <p class="cobrand-evento">
+        <b>11º Congreso LATAM IA, Tech &amp; Negocios</b>
+        9 y 10 de septiembre · Espacio Riesco, Santiago
+      </p>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap wrap--banda">
+      <div class="hero-grid">
+        <div class="hero-body">
+          <p class="eyebrow">Calificación BANT</p>
+          <h1>Solicita tu propuesta</h1>
+          <p class="lead">Completa los datos de la calificación BANT en el tótem, seleccionando closer, intereses, situación actual y momento de la oportunidad.</p>
+        </div>
+
+        <!-- Composicion del manual: bloques geometricos + tarjeta blanca.
+             Datos de ejemplo, no son cifras de una cuenta real. -->
+        <aside class="hero-panel" aria-hidden="true">
+          <div class="compo">
+            <span class="compo-rect"></span>
+            <span class="compo-quarter"></span>
+            <span class="compo-tri"></span>
+            <svg class="compo-star" viewBox="0 0 120 120" fill="none" focusable="false"><path d="M60.0,2.0L68.8,15.9L82.2,6.4L85.0,22.6L101.0,19.0L97.4,35.0L113.6,37.8L104.1,51.2L118.0,60.0L104.1,68.8L113.6,82.2L97.4,85.0L101.0,101.0L85.0,97.4L82.2,113.6L68.8,104.1L60.0,118.0L51.2,104.1L37.8,113.6L35.0,97.4L19.0,101.0L22.6,85.0L6.4,82.2L15.9,68.8L2.0,60.0L15.9,51.2L6.4,37.8L22.6,35.0L19.0,19.0L35.0,22.6L37.8,6.4L51.2,15.9Z"/></svg>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-title">Reporte semanal</span>
+              <span class="panel-live"><i></i> En vivo</span>
+            </div>
+
+            <span class="panel-kpi" data-conteo="128470">128.470</span>
+            <span class="panel-kpi-label">Menciones analizadas</span>
+
+            <div class="panel-bars">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <div class="panel-foot">
+              <div><b>+18%</b><span>vs. semana anterior</span></div>
+              <div><b>9</b><span>Alertas activas</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Franja de soluciones por perfil de publico -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+          <span class="chip"><i></i><b>Agencias</b> Dejas de rehacer el mismo reporte para cada cliente</span>
+          <span class="chip"><i></i><b>Social listening</b> Ves la crisis cuando se forma, no cuando estalla</span>
+          <span class="chip"><i></i><b>Atención al cliente</b> Se acabó saltar de una bandeja de entrada a otra</span>
+          <span class="chip"><i></i><b>Marketing</b> Ya no planeas el mes adivinando qué tema sube</span>
+          <span class="chip"><i></i><b>Reputación</b> Sabes si el problema es tu marca o todo el sector</span>
+          <span class="chip"><i></i><b>Analytics</b> Nadie vuelve a exportar hojas de cálculo a medianoche</span>
+          <span class="chip"><i></i><b>Publicación</b> El calendario deja de vivir en tres archivos distintos</span>
+          <span class="chip"><i></i><b>Influenciadores</b> Sabes qué creador vendió y cuál solo tuvo alcance</span>
+          <span class="chip"><i></i><b>Agencias</b> Dejas de rehacer el mismo reporte para cada cliente</span>
+          <span class="chip"><i></i><b>Social listening</b> Ves la crisis cuando se forma, no cuando estalla</span>
+          <span class="chip"><i></i><b>Atención al cliente</b> Se acabó saltar de una bandeja de entrada a otra</span>
+          <span class="chip"><i></i><b>Marketing</b> Ya no planeas el mes adivinando qué tema sube</span>
+          <span class="chip"><i></i><b>Reputación</b> Sabes si el problema es tu marca o todo el sector</span>
+          <span class="chip"><i></i><b>Analytics</b> Nadie vuelve a exportar hojas de cálculo a medianoche</span>
+          <span class="chip"><i></i><b>Publicación</b> El calendario deja de vivir en tres archivos distintos</span>
+          <span class="chip"><i></i><b>Influenciadores</b> Sabes qué creador vendió y cuál solo tuvo alcance</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap form-shell">
+      <form id="formulario" action="#" method="post" novalidate>
+        <!-- 01 -->
+        <section class="group">
+          <div class="group-head">
+            <span class="group-num" aria-hidden="true">01</span>
+            <h2>Registro</h2>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="email-deal">Correo electrónico del acuerdo</label>
+            <input type="email" id="email-deal" name="email-deal" autocomplete="email" inputmode="email">
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="closer">Closer<span class="req" aria-hidden="true">*</span></label>
+            <div class="select-wrap">
+              <select id="closer" name="closer" required>
+                <option value="">Selecciona una opción</option>
+                <option>Milagro Pantoja</option>
+                <option>Nadia Lezcano</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 -->
+        <section class="group">
+          <div class="group-head">
+            <span class="group-num" aria-hidden="true">02</span>
+            <h2>Intereses</h2>
+          </div>
+
+          <fieldset class="field">
+            <legend>Intereses demostrados durante la conversación<span class="req" aria-hidden="true">*</span></legend>
+            <span class="hint">Puedes marcar más de una opción.</span>
+            <div class="options options--two">
+              <label class="opt"><input type="checkbox" name="intereses" value="Monitoreo + Dashboards"> Monitoreo + Dashboards</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Atención + Dashboards"> Atención + Dashboards</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Tickets para Atención"> Tickets para Atención</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Chatbots"> Chatbots</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="AI Insights"> AI Insights</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Buzz Pills"> Buzz Pills</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="MCP"> MCP</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Buzzmonitor Trends"> Buzzmonitor Trends</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Analytics"> Analytics</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Programación"> Programación</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Influenciadores"> Influenciadores</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Visual Listening"> Visual Listening</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="API de Integración"> API de Integración</label>
+              <label class="opt"><input type="checkbox" name="intereses" value="Otros"> Otros</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- 03 -->
+        <section class="group">
+          <div class="group-head">
+            <span class="group-num" aria-hidden="true">03</span>
+            <h2>Situación actual</h2>
+          </div>
+
+          <fieldset class="field">
+            <legend>¿Cómo realiza la empresa estas actividades actualmente?<span class="req" aria-hidden="true">*</span></legend>
+            <div class="options">
+              <label class="opt"><input type="radio" name="situacion" value="manual" required> Proceso manual (Meta Business Suite, hojas de cálculo, etc.)</label>
+              <label class="opt"><input type="radio" name="situacion" value="plataforma" required> Usa una plataforma</label>
+            </div>
+          </fieldset>
+
+          <div class="field conditional" id="campo-plataforma">
+            <label class="field-label" for="plataforma">¿Qué plataforma usa actualmente?</label>
+            <div class="select-wrap">
+              <select id="plataforma" name="plataforma">
+                <option value="">Selecciona una opción</option>
+                <option>AgoraPulse</option>
+                <option>Brandwatch</option>
+                <option>Emplifi</option>
+                <option>Etus</option>
+                <option>Hi Platform</option>
+                <option>Hootsuite</option>
+                <option>HugMe</option>
+                <option>Keepcon</option>
+                <option>Knewin</option>
+                <option>mLabs</option>
+                <option>Meltwater</option>
+                <option>Mention</option>
+                <option>Plusoft/iCustomer</option>
+                <option>Reportei</option>
+                <option>Sprinklr</option>
+                <option>Sprout Social</option>
+                <option>Stilingue</option>
+                <option>Torabit</option>
+                <option>V-Tracker</option>
+                <option>YouScan</option>
+                <option>Zeeng</option>
+                <option>Zendesk</option>
+                <option>Otros</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 -->
+        <section class="group">
+          <div class="group-head">
+            <span class="group-num" aria-hidden="true">04</span>
+            <h2>Oportunidad</h2>
+          </div>
+
+          <fieldset class="field">
+            <legend>Momento del proyecto<span class="req" aria-hidden="true">*</span></legend>
+            <div class="options">
+              <label class="opt"><input type="radio" name="momento" value="ahora" required> Busca una solución ahora</label>
+              <label class="opt"><input type="radio" name="momento" value="cambio" required> Evaluando cambiar la plataforma actual</label>
+              <label class="opt"><input type="radio" name="momento" value="3-meses" required> Proyecto para los próximos 3 meses</label>
+              <label class="opt"><input type="radio" name="momento" value="6-meses" required> Proyecto para los próximos 6 meses</label>
+              <label class="opt"><input type="radio" name="momento" value="mercado" required> Solo conociendo el mercado</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Temperatura de la oportunidad<span class="req" aria-hidden="true">*</span></legend>
+            <div class="options options--two">
+              <label class="opt"><input type="radio" name="temperatura" value="caliente" required> Caliente</label>
+              <label class="opt"><input type="radio" name="temperatura" value="tibia" required> Tibia</label>
+              <label class="opt"><input type="radio" name="temperatura" value="fria" required> Fría</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="field-label" for="insights">Principales insights de la conversación</label>
+            <textarea id="insights" name="insights" rows="4"></textarea>
+          </div>
+        </section>
+
+        <div class="actions">
+          <div class="actions-arc" aria-hidden="true"></div>
+          <div class="actions-inner">
+            <button type="submit" class="btn">Enviar</button>
+            <p>Los campos con <span class="req" aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+            <p class="form-status" id="estado-envio" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </form>    </div>
+  </main>
+
+  <footer>
+    <div class="wrap wrap--banda">
+      <div class="footer-row">
+        <a href="https://getbuzzmonitor.com/es/" class="footer-logo" aria-label="Buzzmonitor: página principal" target="_blank" rel="noopener">
+          <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" width="147" height="28">
+        </a>
+
+        <nav class="footer-links" aria-label="Redes sociales de Buzzmonitor">
+          <a href="https://www.instagram.com/getbuzzmonitor.es/" target="_blank" rel="noopener" aria-label="Instagram de Buzzmonitor">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.89 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5ZM17.4 6.6a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0Z"/></svg>
+          </a>
+          <a href="https://twitter.com/Buzzmonitor_ES" target="_blank" rel="noopener" aria-label="X (Twitter) de Buzzmonitor">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.9 2h3.1l-6.77 7.73L23.2 22h-6.23l-4.88-6.39L6.5 22H3.4l7.24-8.27L2 2h6.38l4.4 5.84L18.9 2Zm-1.09 18h1.72L7.28 3.9H5.43L17.81 20Z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/Buzzmonitorespanol" target="_blank" rel="noopener" aria-label="Facebook de Buzzmonitor">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.55l.38-2.96h-2.93V8.53c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.3 4.3c-2.26 0-3.8 1.38-3.8 3.9v2.24H8v2.96h2.5V21h3Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/buzzmonitor/" target="_blank" rel="noopener" aria-label="LinkedIn de Buzzmonitor">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-6.02c0-1.44-.03-3.28-2-3.28-2.01 0-2.32 1.57-2.32 3.18V20H9.38V8.5h3.24v1.57h.05c.45-.86 1.55-1.77 3.2-1.77 3.42 0 4.57 2.25 4.57 5.17V20Z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@getbuzzmonitor_es" target="_blank" rel="noopener" aria-label="YouTube de Buzzmonitor">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 7.2s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1.01C17 3.5 12 3.5 12 3.5h-.01s-5 0-8.19.33c-.46.06-1.46.06-2.36 1.01C.73 5.56.5 7.2.5 7.2S.27 9.12.27 11.04v1.8c0 1.92.23 3.84.23 3.84s.23 1.64.94 2.36c.9.95 2.08.92 2.6 1.02 1.9.18 8.06.33 8.06.33s5 0 8.19-.33c.46-.06 1.46-.06 2.36-1.01.71-.72.94-2.36.94-2.36s.23-1.92.23-3.84v-1.8c0-1.92-.23-3.84-.23-3.84ZM9.7 14.9V8.6l6 3.15-6 3.15Z"/></svg>
+          </a>
+        </nav>
+      </div>
+
+      <div class="footer-legal">
+        &copy; <span id="year">2026</span> Buzzmonitor. <a href="https://getbuzzmonitor.com/es/privacidad/" target="_blank" rel="noopener">Política de Privacidad y uso de Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // ==========================================================
+      // Pega aqui la URL /exec de la implementacion del Apps Script
+      // (ver apps-script.gs en esta misma carpeta). Mientras este
+      // vacio, el formulario valida pero no envia a ningun lado.
+      var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzjtihg6lbZC8IVEzNY3-iDELDp6T80Ke87lhtLj8ZpkXbmohZ80oeWqYXvnMKbIMxt8Q/exec';
+      var EVENTO = 'America Digital 2026';
+      // ==========================================================
+
+      var form = document.getElementById('formulario');
+      var boton = form.querySelector('.btn');
+      var estado = document.getElementById('estado-envio');
+      var campoPlataforma = document.getElementById('campo-plataforma');
+      var tiles = form.querySelectorAll('.opt');
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ---- campo condicional de plataforma ----
+      function sincronizarPlataforma() {
+        var usa = form.querySelector('input[name="situacion"][value="plataforma"]').checked;
+        campoPlataforma.hidden = !usa;
+        if (!usa) form.querySelector('#plataforma').selectedIndex = 0;
+      }
+
+      // ---- respaldo de :has(input:checked) en el resaltado de tiles ----
+      function pintarSeleccion() {
+        tiles.forEach(function (tile) {
+          var input = tile.querySelector('input');
+          tile.classList.toggle('is-selected', !!input && input.checked);
+        });
+      }
+
+      form.addEventListener('change', function () {
+        sincronizarPlataforma();
+        pintarSeleccion();
+      });
+
+      // ---- lectura de valores legibles (etiqueta, no el value tecnico) ----
+      function textoDe(input) {
+        var l = input.closest('label');
+        return l ? l.textContent.trim() : input.value;
+      }
+      function marcado(nombre) {
+        var el = form.querySelector('input[name="' + nombre + '"]:checked');
+        return el ? textoDe(el) : '';
+      }
+      function elegido(id) {
+        var sel = form.querySelector(id);
+        return sel && sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].text : '';
+      }
+
+      function recolectar() {
+        var intereses = Array.prototype.slice
+          .call(form.querySelectorAll('input[name="intereses"]:checked'))
+          .map(textoDe);
+
+        return {
+          evento: EVENTO,
+          correo: form.querySelector('#email-deal').value.trim(),
+          closer: elegido('#closer'),
+          intereses: intereses, // arreglo: el script marca una columna por interes
+          situacion: marcado('situacion'),
+          plataforma: campoPlataforma.hidden ? '' : elegido('#plataforma'),
+          momento: marcado('momento'),
+          temperatura: marcado('temperatura'),
+          insights: form.querySelector('#insights').value.trim()
+        };
+      }
+
+      function avisar(texto, tipo) {
+        estado.textContent = texto;
+        estado.setAttribute('data-tipo', tipo || 'ok');
+      }
+
+      // Los intereses no llevan `required` nativo (es un grupo de checkboxes),
+      // asi que ese minimo se valida a mano.
+      function validar() {
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return false;
+        }
+        if (!form.querySelector('input[name="intereses"]:checked')) {
+          avisar('Marca al menos un interes demostrado durante la conversacion.', 'error');
+          form.querySelector('input[name="intereses"]').focus();
+          return false;
+        }
+        return true;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        avisar('');
+        if (!validar()) return;
+
+        var datos = recolectar();
+
+        if (!ENDPOINT) {
+          avisar('Falta conectar la planilla: pega la URL del Apps Script en ENDPOINT.', 'error');
+          console.warn('Formulario sin ENDPOINT. Datos que se enviarian:', datos);
+          return;
+        }
+
+        boton.disabled = true;
+        avisar('Enviando...');
+
+        fetch(ENDPOINT, {
+          method: 'POST',
+          // text/plain evita el preflight CORS, que Apps Script no responde.
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(datos)
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (r) {
+            if (!r || !r.ok) throw new Error(r && r.error ? r.error : 'Respuesta invalida');
+            form.reset();
+            sincronizarPlataforma();
+            pintarSeleccion();
+            avisar('Registro enviado a la planilla.');
+          })
+          .catch(function (err) {
+            console.error('Fallo el envio:', err);
+            avisar('No se pudo enviar. Revisa la conexion y vuelve a intentar.', 'error');
+          })
+          .then(function () { boton.disabled = false; });
+      });
+
+      // ---- cuenta ascendente del KPI decorativo ----
+      (function () {
+        var el = document.querySelector('[data-conteo]');
+        if (!el || !window.requestAnimationFrame) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var meta = Number(el.getAttribute('data-conteo'));
+        var inicio = null;
+        var duracion = 1700;
+
+        function formato(n) {
+          return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+        function paso(t) {
+          var avance = Math.min((t - inicio) / duracion, 1);
+          var suave = 1 - Math.pow(1 - avance, 3);
+          el.textContent = formato(Math.round(meta * suave));
+          if (avance < 1) requestAnimationFrame(paso);
+        }
+
+        requestAnimationFrame(function (t) {
+          inicio = t;
+          el.textContent = formato(0);
+          requestAnimationFrame(paso);
+        });
+        setTimeout(function () { el.textContent = formato(meta); }, duracion + 2500);
+      })();
+
+      sincronizarPlataforma();
+      pintarSeleccion();
+    })();
+  </script>
+</body>
+</html>

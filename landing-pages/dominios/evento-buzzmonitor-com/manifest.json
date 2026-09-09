@@ -6,6 +6,11 @@
   "vercel_json": "landing-pages/dominios/evento-buzzmonitor-com/vercel.json",
   "lps": [
     {
+      "slug": "bant-america-digital-2026",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/bant-america-digital-2026"
+    },
+    {
       "slug": "buzzmonitor-connect-julio-2026-latam",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/buzzmonitor-connect-julio-2026-latam"

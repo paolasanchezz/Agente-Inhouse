@@ -1,0 +1,95 @@
+LP: bant-america-digital-2026 (Buzzmonitor · LATAM · ES-419)
+Origen: réplica traducida de https://conteudo.buzzmonitor.com.br/bant-agradecimento-forum-e-commerce-2026
+Naturaleza: formulario interno de calificación BANT, llenado por el closer en el tótem del stand. No es una LP pública de captación.
+
+---
+
+[TITLE]
+Solicita tu propuesta
+
+[META DESCRIPTION]
+Solicita tu propuesta comercial y descubre los beneficios de Buzzmonitor para marcas de retail.
+
+[AVISO / INSTRUCCIÓN]
+Completa los datos de la calificación BANT en el tótem, seleccionando closer, intereses, situación actual y momento de la oportunidad.
+
+[HERO / PANEL DECORATIVO]
+Tarjeta animada "Reporte semanal" con KPI, barras y pie de indicadores.
+Datos de ejemplo, aria-hidden. No son cifras de una cuenta real.
+
+[HERO / FRANJA DE SOLUCIONES]
+Píldoras en movimiento. Cada una nombra el dolor de un perfil y lo resuelve
+(regla de oro de fundamentos-copy.md: el dolor abre, la solución responde).
+Fuente de los dolores: BRANDBOOK (público-alvo + módulos) y pesquisa/atual/dor-semana.md.
+
+- Agencias · Dejas de rehacer el mismo reporte para cada cliente
+- Social listening · Ves la crisis cuando se forma, no cuando estalla
+- Atención al cliente · Se acabó saltar de una bandeja de entrada a otra
+- Marketing · Ya no planeas el mes adivinando qué tema sube
+- Reputación · Sabes si el problema es tu marca o todo el sector
+- Analytics · Nadie vuelve a exportar hojas de cálculo a medianoche
+- Publicación · El calendario deja de vivir en tres archivos distintos
+- Influenciadores · Sabes qué creador vendió y cuál solo tuvo alcance
+
+---
+
+[CAMPO 1] Correo electrónico del acuerdo
+Tipo: email · opcional
+
+[CAMPO 2] Closer *
+Tipo: select · obligatorio
+Placeholder: Selecciona una opción
+Opciones: Milagro Pantoja · Nadia Lezcano (equipo de LATAM para América Digital)
+
+[CAMPO 3] Intereses demostrados durante la conversación *
+Tipo: checkbox múltiple · obligatorio
+- Monitoreo + Dashboards
+- Atención + Dashboards
+- Tickets para Atención
+- Chatbots
+- AI Insights
+- Buzz Pills
+- MCP
+- Buzzmonitor Trends
+- Analytics
+- Programación
+- Influenciadores
+- Visual Listening
+- API de Integración
+- Otros
+
+[CAMPO 4] ¿Cómo realiza la empresa estas actividades actualmente? *
+Tipo: radio · obligatorio
+- Proceso manual (Meta Business Suite, hojas de cálculo, etc.)
+- Usa una plataforma
+
+[CAMPO 5] ¿Qué plataforma usa actualmente?
+Tipo: select · opcional · aparece solo si el campo 4 es "Usa una plataforma"
+Opciones: nombres propios de competidores (lista heredada de Brasil, pendiente de revisar para LATAM)
+
+[CAMPO 6] Momento del proyecto *
+Tipo: radio · obligatorio
+- Busca una solución ahora
+- Evaluando cambiar la plataforma actual
+- Proyecto para los próximos 3 meses
+- Proyecto para los próximos 6 meses
+- Solo conociendo el mercado
+
+[CAMPO 7] Temperatura de la oportunidad *
+Tipo: radio · obligatorio
+- Caliente
+- Tibia
+- Fría
+
+[CAMPO 8] Principales insights de la conversación
+Tipo: textarea · opcional
+
+[CTA]
+Enviar
+
+---
+
+[FOOTER]
+© 2026 Buzzmonitor. Todos los derechos reservados.
+Política de Privacidad y uso de Cookies
+Redes: Instagram / X / Facebook / LinkedIn / YouTube (perfiles en español)
