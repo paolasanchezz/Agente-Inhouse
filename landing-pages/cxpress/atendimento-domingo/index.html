@@ -416,6 +416,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .campo input,.campo select{ font-size:17px; }
   .campo-check{ font-size:16px; }
   }
+    /* ----- Jotform embed wrapper (canonico) -----
+       Sem padding/background/border: o provedor ja vem com card proprio. */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -794,50 +797,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </p>
           </div>
 
-          <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
-            <div class="campo">
-              <label for="nome">Seu nome<span class="req" aria-hidden="true">*</span></label>
-              <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
-            </div>
-            <div class="campo">
-              <label for="email">Seu e-mail de trabalho<span class="req" aria-hidden="true">*</span></label>
-              <input id="email" name="email" type="email" placeholder="seunome@suaempresa.com.br" autocomplete="email" required>
-            </div>
-            <div class="campo">
-              <label for="whats">WhatsApp<span class="req" aria-hidden="true">*</span></label>
-              <input id="whats" name="whatsapp" type="tel" placeholder="DDD + número" autocomplete="tel" required>
-            </div>
-            <div class="campo">
-              <label for="empresa">Nome da empresa onde você trabalha<span class="req" aria-hidden="true">*</span></label>
-              <input id="empresa" name="empresa" type="text" placeholder="Empresa" autocomplete="organization" required>
-            </div>
-            <div class="campo">
-              <label for="investimento">Quanto pretende investir no seu atendimento?<span class="req" aria-hidden="true">*</span></label>
-              <select id="investimento" name="investimento" required>
-                <option value="" disabled selected>Selecione</option>
-                <option>Até R$ 1.750</option>
-                <option>R$ 1.750 a R$ 3.500</option>
-                <option>R$ 3.500 a R$ 7.000</option>
-                <option>Acima de R$ 7.000</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="time">Qual o tamanho do seu time de atendimento?<span class="req" aria-hidden="true">*</span></label>
-              <select id="time" name="time" required>
-                <option value="" disabled selected>Selecione</option>
-                <option>1 a 5</option>
-                <option>6 a 15</option>
-                <option>16 a 50</option>
-                <option>Mais de 50</option>
-              </select>
-            </div>
-            <label class="campo-check">
-              <input type="checkbox" name="optout">
-              <span>Não desejo receber a newsletter e as novidades da Cxpress</span>
-            </label>
-            <button class="btn" type="submit">Enviar</button>
-            <p class="form__nota">Sem compromisso. Resposta em até 1 dia útil.</p>
-          </form>
+          <div class="jotform-embed reveal">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+          </div>
         </div>
       </div>
     </section>
