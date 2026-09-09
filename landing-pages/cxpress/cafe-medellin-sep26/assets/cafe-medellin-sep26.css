@@ -92,7 +92,6 @@ h1,h2,h3,
 .ch-name,.q-item p,.cq-intro,
 .spk-name,.spk-role,
 .reach-addr .a1,.reach-addr .a2,.cb-lab,
-.clients-title,
 .cta p,.trust-item{
   text-wrap:balance;
 }
@@ -380,30 +379,6 @@ h1,h2,h3,
 .about-copy p{font-size:18px;color:var(--muted-dark);max-width:52em}
 .about-copy p+p{margin-top:16px}
 
-/* ============ 14b. CLIENTES (seccion clara) ============
-   Los logos son PNG opacos con fondo claro (0% de transparencia): sobre el navy
-   se verian como rectangulos blancos. Por eso viven en su propia seccion blanca,
-   igual que en content.cxpress.io/whatsapp-business, de donde vienen los archivos. */
-.clients{background:var(--white);color:var(--n900);padding:64px 0 72px;border-top:1px solid #e6e9f5}
-.clients-title{
-  text-align:center;font-family:var(--font-body);font-weight:400;
-  font-size:clamp(18px,1.6vw,20px);color:var(--n700);
-  max-width:40ch;margin:0 auto;
-}
-.clients-marquee{
-  margin-top:32px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-}
-.clients-track{display:flex;width:max-content}
-.clients-group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
-.clients-group img{
-  flex:0 0 auto;width:auto;max-width:170px;min-height:0;
-  height:clamp(30px,3.4vw,42px);object-fit:contain;
-  opacity:.72;filter:saturate(.9);
-  transition:opacity .25s var(--ease),filter .25s var(--ease);
-}
-.clients-group img:hover{opacity:1;filter:none}
 
 /* ============ 15. CTA FINAL ============ */
 .cta{
@@ -436,7 +411,6 @@ h1,h2,h3,
 /* ============ 17. KEYFRAMES ============ */
 @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.85;transform:scale(1.12)}}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes ringPulse{0%{transform:scale(.9);opacity:.5}80%{opacity:0}100%{transform:scale(2.3);opacity:0}}
 
 @media (prefers-reduced-motion:no-preference){
@@ -444,8 +418,6 @@ h1,h2,h3,
   .glow-b{animation:breathe 11s var(--ease) infinite reverse}
   .glow-c{animation:breathe 13s var(--ease) infinite}
   .hero-focus .arw-focus{animation:nudge 1.6s var(--ease) infinite}
-  .clients-track{animation:marquee 64s linear infinite}
-  .clients-marquee:hover .clients-track{animation-play-state:paused}
   .spk-rings span{animation:ringPulse 3.2s cubic-bezier(.22,.8,.22,1) infinite}
   .spk-rings span:nth-child(2){animation-delay:1.07s}
   .spk-rings span:nth-child(3){animation-delay:2.13s}

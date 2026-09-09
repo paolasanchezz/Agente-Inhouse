@@ -20,7 +20,6 @@ assets/cafe-medellin-sep26.js         JS vanilla (reveal on scroll + countdown)
 assets/laura-rodriguez.jpg            foto da ponente (400×400)
 assets/og-cafe-medellin-sep26.png     OG image (1200×630)
 assets/og-template.html               template que gera a OG (Chrome headless)
-assets/clientes/cliente-01..22.png    logos de clientes (marquee, 160 KB)
 ```
 
 **Regerar a OG** depois de mudar data, local ou ponente:
@@ -64,13 +63,11 @@ O `--force-device-scale-factor=1` não é opcional: sem ele a tela em HiDPI rend
 | 6 | Favicon | `brand/cxpress/assets/logos/logo-icon.png` | 13 KB | ✅ do brand |
 | 7 | Mapa | iframe Google Maps | — | ✅ endereço real já apontado |
 
-**Prova social:** marquee de logos de clientes, na seção branca `.clients` entre a ponente e o bloco Sobre Cxpress. Os 22 PNGs vêm de `../whatsapp-business/assets/clientes/` (mesmos arquivos servidos em `content.cxpress.io/whatsapp-business`), copiados pra cá porque o `build_umbrella.py` resolve asset de LP só em `brand/{marca}/assets/` ou na pasta da própria LP. Mesmo padrão de `banimento-de-whatsapp`, `evite-banimento-whatsapp` e `plataforma`, que também têm a própria cópia.
-
-**Por que os logos não ficaram na seção navy:** são PNG opacos com fundo claro (0% de transparência). Sobre o navy virariam retângulos brancos. Por isso ganharam seção branca própria, como na LP de origem. Efeito colateral bom: melhora o ritmo claro/escuro (antes `about` e `cta` eram dois escuros seguidos).
+**Sem bloco de prova social de clientes.** Passou por duas versões (marquee de nomes, depois marquee de 22 logos da `whatsapp-business`) e o Victor pediu para tirar em 09/09/2026. A seção `.clients`, os 22 PNGs, o `@keyframes marquee` e as regras de animação foram removidos junto: nada de CSS ou asset órfão. Se um dia voltar, o histórico do git tem as duas versões prontas, e a nota que importa é que aqueles logos são PNG opacos com fundo claro (0% de transparência), então precisam de seção clara, não da navy.
 
 ## Decisões de estrutura
 
-- **Bloco de números (`.stats`) da LP de referência foi removido.** A referência abre a seção escura com 4 métricas em count-up ("1.000+ marcas", etc.). Não há métrica Cxpress verificada em `brand/cxpress/BRANDBOOK.md`, e inventar número em LP pública não é opção. A prova social ficou sendo o marquee de logos de clientes. Se o Victor passar os números, o slot entra ali e o count-up volta.
+- **Bloco de números (`.stats`) da LP de referência foi removido.** A referência abre a seção escura com 4 métricas em count-up ("1.000+ marcas", etc.). Não há métrica Cxpress verificada em `brand/cxpress/BRANDBOOK.md`, e inventar número em LP pública não é opção. A LP fecha sem bloco de prova social numérica nem de clientes. Se o Victor passar os números, o slot entra na seção `.about` e o count-up volta.
 - **Formulário no hero (§1), não na 2ª seção.** É o que a LP de referência faz e o tráfego é ToFu (evento gratuito, lead frio), onde GUIDELINES §10 pede form alto. O CTA do header e o do fecho rolam pro mesmo `#signup`.
 - **Três seções escuras** (hero, "¿Cómo llegar?", "Sobre Cxpress" + CTA final) em vez de uma só, como sugere GUIDELINES §1. Override consciente: a LP de referência é dark-dominante e foi ela que o briefing mandou replicar. Não é colcha de retalhos, é o mesmo navy nas três, com o miolo claro (evento, caso, ponente) no meio.
 - **Countdown com `aria-hidden="true"`** e sem `aria-live` (GUIDELINES §7): a data já está na copy do hero, no bloco de endereço e no JSON-LD.
