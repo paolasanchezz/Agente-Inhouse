@@ -151,6 +151,41 @@ O desvio de contraste que **continua ativo** e o do titulo da Oferta (`#EB7C2E` 
 
 ---
 
+### v2.8 (2026-09-09): segundo desvio de contraste decidido pelo Victor
+
+**A primeira frase do H1 do hero passa a ser branca sobre `#EB7C2E`. Isso da 2,82:1.**
+(2,82 e o valor medido no DOM; 2,84 e o mesmo par calculado a partir dos hex nominais — a
+diferenca e arredondamento, e as duas leituras reprovam.)
+
+| Requisito | Piso | branco sobre `#EB7C2E` | Situacao |
+|---|---|---|---|
+| WCAG AA, texto normal | 4,5:1 | 2,82:1 | reprova |
+| WCAG AA, texto grande (>=24px ou >=18,66px bold) | 3:1 | 2,82:1 | **reprova tambem** |
+
+O H1 e texto grande em qualquer breakpoint (36px no mobile, ate 62px no desktop, peso 900),
+entao o piso aplicavel e o de 3:1 — e nem esse fecha. Eu apontei o numero; o Victor pediu a
+mudanca de qualquer forma. E o mesmo tipo de decisao da v2.6 e vale a mesma leitura: reprova
+a medicao formal, mas o texto e enorme, bold, e a frase seguinte (branco sobre roxo, 16,04:1)
+carrega a informacao que importa para a conversao.
+
+**Reversao, 1 linha:** em `.hero__h1-a`, trocar `color: #ffffff` por `color: var(--ink)`.
+Volta aos 5,70:1 e o H1 fica todo roxo, como na v2.7.
+
+**O que a v2.8 melhorou:** o CTA do hero saiu de branco com texto roxo (5,70:1) para roxo com
+texto branco (**16,04:1**). Contraste do botao mais que dobrou.
+
+Resumo dos desvios ativos depois da v2.8 — os dois pedidos pelo Victor, os dois com reversao
+de 1 linha documentada:
+
+| Desvio | Medida | Onde | Versao |
+|---|---|---|---|
+| Titulo da Oferta em `#EB7C2E` sobre branco | 2,84:1 | `.block--paper h2` | v2.6 |
+| 1a frase do H1 em branco sobre `#EB7C2E` | 2,82:1 | `.hero__h1-a` | v2.8 |
+
+Nenhum outro texto da LP fica abaixo de AA.
+
+---
+
 ## Criticos aplicados (v1, historico)
 
 | # | Achado | Fix |

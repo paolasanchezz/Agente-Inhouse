@@ -305,7 +305,11 @@
       margin-block: 30px 0;
       color: var(--ink);
     }
-    .hero__h1-a { display: block; }
+    /* Pedido do Victor: a primeira frase do H1 vai em branco. Sobre o laranja
+       #EB7C2E o branco fecha 2,84:1, abaixo do piso de 3:1 de texto grande.
+       Desvio aceito pelo Victor, do mesmo tipo do titulo laranja do bloco da
+       oferta. Reversao: trocar o color por var(--ink) (5,70:1). */
+    .hero__h1-a { display: block; color: #ffffff; }
     /* O realce inverte o bloco: fundo roxo (o mesmo que o hero tinha antes) com
        texto branco, que fecha 15:1. box-decoration-break: clone faz o realce
        acompanhar cada linha em vez de virar um retangulo unico. */
@@ -916,15 +920,21 @@
     .block--ink .card-form .btn--primary:hover { background: var(--ink-hover); }
 
     /* Bloco laranja. Sobre #EB7C2E o branco da 2,84:1 e o lilas 2,17:1: os dois
-       reprovam. Entao TODO o texto deste bloco e roxo #390155, que fecha 5,70:1.
-       O botao primario fica branco com texto roxo, que le como o elemento mais
-       forte do bloco. */
+       reprovam. Entao o texto deste bloco e roxo #390155, que fecha 5,70:1 (a
+       excecao pedida pelo Victor e a primeira frase do H1, em branco). Botao
+       branco com texto roxo e o default do bloco; o CTA do hero e roxo. */
     .block--sun { background: var(--accent); color: var(--ink); }
     .block--sun h1, .block--sun h2, .block--sun h3 { color: var(--ink); }
     .block--sun .btn--primary { background: #ffffff; color: var(--ink); }
     .block--sun .btn--primary:hover { background: #F2D8FF; }
     .block--sun .card-form .btn--primary { background: var(--ink); color: #ffffff; }
     .block--sun .card-form .btn--primary:hover { background: var(--ink-hover); }
+    /* O CTA do hero e o unico botao do bloco que era branco. Em roxo com texto
+       branco ele fecha 15:1 e casa com o realce do H1 e com o CTA do header.
+       Precisa vir depois da regra .block--sun .btn--primary acima: as duas tem
+       a mesma especificidade e quem ganha e a ultima do arquivo. */
+    .block--sun .hero__cta .btn--primary { background: var(--ink); color: #ffffff; }
+    .block--sun .hero__cta .btn--primary:hover { background: var(--ink-hover); }
 
     /* Bloco branco com titulo laranja e conteudo preto.
        O titulo NAO usa o laranja vivo #EB7C2E: sobre branco ele da 2,84:1 e reprova

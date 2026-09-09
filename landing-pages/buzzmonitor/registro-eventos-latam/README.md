@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (revertida) · **Hero laranja:** v2.7 (2026-09-09, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (revertida) · **Hero laranja:** v2.7 · **H1 em branco e CTA roxo:** v2.8 (2026-09-09, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -557,7 +557,7 @@ funcionam:
 | Eyebrow e seu ponto | branco / amarelo | **roxo** | **5,69:1** |
 | Sunburst | amarelo | **roxo** | decorativo |
 | Reticula halftone | branca a 30% | branca a **38%** | decorativo |
-| CTA primario | branco com texto roxo | igual (segue sendo o elemento mais forte) | |
+| CTA primario | branco com texto roxo | igual na v2.7; **roxo com texto branco na v2.8** | 16,04:1 |
 
 Por que nada ficou branco: branco sobre `#EB7C2E` da **2,84:1** e o lilas `#F2D8FF` da
 **2,17:1**. Os dois reprovam AA. O amarelo em cima do laranja e pior ainda (1,7:1), por isso os
@@ -575,12 +575,55 @@ laranja (hero) -> branco (Oferta) -> branco -> magenta (costo) -> branco -> off-
 (o CTA final), o que volta a bater com a `GUIDELINES §1` — o desvio das duas secoes escuras que a
 v2.4 tinha introduzido deixou de existir.
 
+## v2.8 — primeira frase do H1 em branco e CTA do hero em roxo
+
+Dois ajustes pedidos pelo Victor depois de ver a v2.7 no ar.
+
+### 1. `Los datos no solo sirven para explicar el pasado.` em branco
+
+A frase de abertura do H1 (`.hero__h1-a`) sai do roxo e vai para **branco**. Com isso o H1 passa a
+ter tres niveis de leitura no mesmo bloco laranja: branco na dor, fundo roxo com texto branco na
+virada (`Sirven para construir tu proximo movimiento.`) e roxo no resto do bloco (sub, flags,
+eyebrow).
+
+**Desvio de contraste consciente.** Branco sobre `#EB7C2E` mede **2,82:1** (medido no ar com
+`getComputedStyle`, calculo de luminancia relativa da WCAG). Isso reprova AA para texto normal
+(4,5:1) e reprova tambem o piso de 3:1 de texto grande, mesmo no corpo do H1 (36px no mobile,
+ate 62px no desktop). O Victor pediu a mudanca sabendo do numero — e o mesmo tipo de desvio que
+ele ja aceitou para o titulo laranja do bloco da Oferta na v2.6. Fica registrado em `REVISAO.md`
+com a reversao de 1 linha.
+
+Reversao: em `.hero__h1-a`, trocar `color: #ffffff` por `color: var(--ink)` (volta aos 5,70:1).
+
+### 2. CTA do hero em roxo
+
+O botao `Quiero mis 15 dias gratis` do hero era o unico botao roxo da pagina que estava branco (o
+default de `.block--sun`). Agora ele e **roxo `#390155` com texto branco, 16,04:1** — mesmo
+tratamento do CTA do header, do submit do formulario e do realce do H1. O contraste **melhorou**
+com a mudanca: branco com texto roxo dava 5,70:1.
+
+A regra entra como `.block--sun .hero__cta .btn--primary`, colocada **depois** de
+`.block--sun .btn--primary` no mesmo arquivo. As duas tem especificidade parecida e, no empate,
+quem ganha e a ultima — foi exatamente esse detalhe que quebrou o titulo do formulario na v2.2 e
+o submit na v2.4, entao a ordem esta comentada no CSS.
+
+O `.block--sun .btn--primary` branco continua valendo como default do bloco: se um segundo botao
+entrar no hero fora do `.hero__cta`, ele nasce branco.
+
+### Gates depois da v2.8
+
+em-dash 0 no HTML e no `copy.txt` · `check_gtm_region.py` 1 OK / 0 bloqueios ·
+`bump_mobile_type.py --dry-run` 0 pendencias · `build_umbrella.py` do
+`content-buzzmonitor-com` gera a rota `registro-eventos-latam` com as duas regras novas ·
+`document.scrollWidth == 375` a 375px, sem scroll horizontal · copy intacta (o diff toca **so**
+CSS e comentario, nenhuma tag de conteudo).
+
 ## Historico de versoes
 
 | Versao | O que era | Estado |
 |---|---|---|
 | v1 | Primeiro redesenho minimalista da LP legada do GreatPages. Paleta de 3 cores, botao laranja, marquee de logos, halo no hero, barra de progresso. | substituida |
-| **v2** | Restyle premium quase monocromo (Apple / Vercel). Roxo como tinta, laranja como faisca, hairline em vez de sombra, raio pequeno, grade estatica de logos. | **vigente** |
+| v2 | Restyle premium quase monocromo (Apple / Vercel). Roxo como tinta, laranja como faisca, hairline em vez de sombra, raio pequeno, grade estatica de logos. | base do sistema visual atual |
 | v3 | Tentativa de reforcar a marca: geometria do brandbook, painel animado de social listening (contadores, sparkline, donut, barras), numeros de cases, H2 curtos orientados a dor, CTA fixo no mobile. | **revertida** a pedido do Victor em 2026-09-08 ("nao sinto o estilo premium"). A copy voltou junto. |
 | v2.1 | v2 + camada halftone em 4 momentos e plaquetas de cor por card. | substituida (as plaquetas sairam na v2.2, o halftone ficou) |
 | v2.2 | v2.1 + sistema de bloco de cor do "Manual de Active Campaign": 3 blocos saturados, sunburst, formas planas e reticula em grade. | substituida |
@@ -588,7 +631,8 @@ v2.4 tinha introduzido deixou de existir.
 | v2.4 | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. | substituida |
 | v2.5 | Oferta volta pro branco com titulo laranja e conteudo preto. Restam 3 blocos de cor: hero (roxo), costo (magenta) e CTA final (roxo). | substituida |
 | v2.6 | Titulo da Oferta no `#EB7C2E`; realce laranja atras da 2a frase do H1; overline encurtado; menos ar no hero; 8 chips de metrica animados. | parcialmente revertida (os chips sairam na v2.7) |
-| **v2.7** | Metricas animadas removidas; hero passa de roxo para laranja `#EB7C2E` com todo o texto em roxo; realce do H1 inverte para fundo roxo com texto branco. | **vigente** |
+| v2.7 | Metricas animadas removidas; hero passa de roxo para laranja `#EB7C2E` com todo o texto em roxo; realce do H1 inverte para fundo roxo com texto branco. | substituida |
+| **v2.8** | Primeira frase do H1 em branco (desvio de contraste aceito pelo Victor, 2,82:1) e CTA do hero de branco para roxo com texto branco (16,04:1). | **vigente** |
 
 O revert da v3 foi validado por comparacao pixel a pixel contra o render da v2: **0 pixels de
 diferenca** em 1440x10400. A `copy.txt` voltou do backup tirado antes da reescrita.
