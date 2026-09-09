@@ -498,26 +498,6 @@
     }
     .program-title { font-size: 19px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; color: var(--primary-dark); }
     .program-body { font-size: 15px; line-height: 1.6; color: var(--neutral-700); }
-    .program-prompt {
-      margin-top: 18px;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--primary-dark);
-      background: var(--primary-lighter);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: 12px 14px;
-    }
-    .program-prompt-label {
-      display: block;
-      font-family: var(--font-accent);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
 
     @media (max-width: 860px) {
       .program-grid { grid-template-columns: 1fr; }
@@ -564,6 +544,33 @@
 
     @media (max-width: 720px) {
       .audience-list { grid-template-columns: 1fr; }
+    }
+
+    /* ============ DE LA TEORIA A LA PRACTICA ============ */
+    .practice-section { background: var(--neutral-0); }
+    .practice-header { max-width: 760px; margin-bottom: 24px; }
+    .practice-h2 { font-size:clamp(28px, 3vw, 36px); font-weight: 800; }
+    .practice-intro { font-size: 16.5px; color: var(--neutral-700); line-height: 1.6; max-width: 700px; margin-bottom: 28px; }
+    .practice-list { display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin-bottom: 32px; }
+    .practice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--neutral-100);
+      border-radius: var(--radius-lg);
+      font-size: 15.5px;
+      color: var(--primary-dark);
+      line-height: 1.5;
+    }
+    .practice-item svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+    .practice-closing {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--neutral-700);
+      max-width: 700px;
+      margin-bottom: 32px;
     }
 
     /* ============ SPEAKERS ============ */
@@ -669,8 +676,10 @@
   .form-field input[type="text"],.form-field input[type="email"]{ font-size:17px; }
   .form-checkbox label{ font-size:15px; }
   .program-body{ font-size:17px; }
-  .program-prompt{ font-size:15px; }
   .audience-item{ font-size:16px; }
+  .practice-intro{ font-size:17px; }
+  .practice-item{ font-size:16px; }
+  .practice-closing{ font-size:17px; }
   .speakers-body{ font-size:17px; }
   .speaker-badge{ font-size:13px; }
   .speaker-role{ font-size:15px; }
@@ -776,11 +785,11 @@
     <section class="problem-section reveal" id="problema-form" aria-labelledby="problem-title">
       <div class="container problem-grid">
         <div>
-          <h2 id="problem-title" class="problem-h2">Tu clínica debería estar atendiendo pacientes, no persiguiendo mensajes.</h2>
+          <h2 id="problem-title" class="problem-h2">¿Tu equipo dedica demasiado tiempo a gestionar mensajes?</h2>
           <div class="problem-body">
-            <p>A medida que aumentan los mensajes, responder a tiempo se vuelve cada vez más difícil.</p>
-            <p>En muchas clínicas, el equipo dedica gran parte de su jornada a confirmar citas, reprogramar horarios y responder las mismas preguntas, mientras nuevos pacientes esperan atención.</p>
-            <p>El resultado: una operación sobrecargada, pacientes insatisfechos y oportunidades que se pierden cada día.</p>
+            <p>Confirmar citas, responder preguntas frecuentes, reprogramar horarios y hacer seguimiento puede consumir gran parte del día.</p>
+            <p>Cuando la atención no está organizada, los mensajes se acumulan y el equipo pierde tiempo en tareas repetitivas.</p>
+            <p>En este webinar te mostraremos cómo mejorar estos procesos y organizar la atención de tu clínica.</p>
           </div>
         </div>
         <div class="jotform-embed">
@@ -799,30 +808,18 @@
         <div class="program-grid">
           <article class="program-card">
             <span class="program-number" aria-hidden="true">01</span>
-            <h3 class="program-title">Centralización de canales</h3>
-            <p class="program-body">Cxpress conecta WhatsApp, Instagram, chat y demás canales de tu clínica en un mismo panel, con el historial completo de cada paciente sin importar por dónde escribió.</p>
-            <div class="program-prompt">
-              <span class="program-prompt-label">Qué vas a ver</span>
-              El panel de canales centralizado y el historial de un paciente que pasó de WhatsApp a Instagram sin perder el contexto.
-            </div>
+            <h3 class="program-title">Centraliza tus canales</h3>
+            <p class="program-body">Conecta WhatsApp, Instagram, chat y otros canales en un mismo lugar, con el historial completo de cada paciente.</p>
           </article>
           <article class="program-card">
             <span class="program-number" aria-hidden="true">02</span>
-            <h3 class="program-title">Automatización con IA</h3>
-            <p class="program-body">La IA responde preguntas frecuentes y confirma la asistencia a citas, sin que tu equipo tenga que escribir el mismo mensaje una y otra vez.</p>
-            <div class="program-prompt">
-              <span class="program-prompt-label">Qué vas a ver</span>
-              Una conversación respondida automáticamente y el envío de una confirmación de cita en tiempo real.
-            </div>
+            <h3 class="program-title">Automatiza tareas con IA</h3>
+            <p class="program-body">Responde preguntas frecuentes, gestiona solicitudes y automatiza confirmaciones para reducir el trabajo manual del equipo.</p>
           </article>
           <article class="program-card">
             <span class="program-number" aria-hidden="true">03</span>
-            <h3 class="program-title">Distribución inteligente y visibilidad</h3>
-            <p class="program-body">Cada consulta llega directo a la persona correcta del equipo, y los dashboards muestran el volumen de mensajes y el tiempo de respuesta para detectar problemas antes de que crezcan.</p>
-            <div class="program-prompt">
-              <span class="program-prompt-label">Qué vas a ver</span>
-              El panel de distribución de solicitudes y el dashboard con los indicadores de atención de una clínica real.
-            </div>
+            <h3 class="program-title">Distribuye y mide la atención</h3>
+            <p class="program-body">Organiza las solicitudes entre tu equipo y utiliza indicadores para conocer el volumen de mensajes y los tiempos de respuesta.</p>
           </article>
         </div>
       </div>
@@ -838,29 +835,68 @@
       <div class="container">
         <div class="audience-header">
           <span class="section-label">Para quién es</span>
-          <h2 id="audience-title" class="audience-h2">Este webinar es ideal para:</h2>
+          <h2 id="audience-title" class="audience-h2">Este webinar es para ti si...</h2>
         </div>
         <ul class="audience-list">
           <li class="audience-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Dueños y administradores de clínicas médicas</span>
+            <span>Gestionas una clínica y quieres mejorar la experiencia de tus pacientes.</span>
           </li>
           <li class="audience-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Responsables de recepción y atención al paciente</span>
+            <span>Tu equipo recibe consultas constantemente por WhatsApp y otros canales.</span>
           </li>
           <li class="audience-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Clínicas que buscan organizar WhatsApp y otros canales de comunicación</span>
+            <span>Dedicas demasiado tiempo a confirmar citas, responder preguntas o hacer seguimiento.</span>
           </li>
           <li class="audience-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Equipos que quieren atender más rápido y optimizar el tiempo de su equipo</span>
+            <span>Quieres automatizar parte de la atención sin perder el contacto humano.</span>
+          </li>
+          <li class="audience-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Necesitas saber qué está pasando con la atención y medir los tiempos de respuesta.</span>
           </li>
         </ul>
         <div class="audience-cta">
           <a href="#problema-form" class="btn btn-primary">¡Quiero inscribirme!</a>
         </div>
+      </div>
+    </section>
+
+    <!-- DE LA TEORIA A LA PRACTICA -->
+    <section class="practice-section reveal" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="practice-header">
+          <span class="section-label">De la teoría a la práctica</span>
+          <h2 id="practice-title" class="practice-h2">Mira cómo se organiza la atención de una clínica en la práctica.</h2>
+        </div>
+        <p class="practice-intro">Además de conocer las estrategias, durante el webinar veremos una demostración en vivo de cómo organizar una operación de atención:</p>
+        <ul class="practice-list">
+          <li class="practice-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Cómo entra una consulta por WhatsApp.</span>
+          </li>
+          <li class="practice-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Cómo se distribuye al equipo.</span>
+          </li>
+          <li class="practice-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Qué tareas pueden automatizarse con IA.</span>
+          </li>
+          <li class="practice-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Cómo se gestionan las confirmaciones de citas.</span>
+          </li>
+          <li class="practice-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Y qué indicadores permiten saber si la atención está funcionando.</span>
+          </li>
+        </ul>
+        <p class="practice-closing">Una sesión práctica y en vivo para que puedas identificar qué procesos de tu propia clínica puedes mejorar.</p>
+        <a href="#problema-form" class="btn btn-primary">¡Quiero inscribirme!</a>
       </div>
     </section>
 
