@@ -562,7 +562,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .video .btn{margin-top:40px}
 
   /* ---- Prova (números NBER / McKinsey) ---- */
-  .proof{background:var(--neutral-100);border-top:1px solid var(--rule)}
+  /* Respiro mais curto que o --pad-sec da pagina (128px): a secao e compacta —
+     titulo + 4 cards — e 256px de padding somavam 32% da altura dela. */
+  .proof{background:var(--neutral-100);border-top:1px solid var(--rule);padding:88px 0 80px}
   /* Cabecalho e icones da secao de resultados. O grid, a cascata do reveal, o
      count-up e o tratamento de card ja existiam — ver .proof__grid/.proof__item
      e o runCount() no fim do body. */
@@ -595,8 +597,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .proof__n b{font-weight:inherit}
   .proof__n .proof__pct{color:var(--accent-text);font-size:.52em;margin-left:1px;letter-spacing:-.01em}
   .proof__t{margin-top:18px;font-size:17px;color:var(--neutral-700);line-height:1.45}
-  .proof__notes{margin-top:40px;display:flex;flex-direction:column;gap:8px}
-  .proof__note{font-size:13px;line-height:1.55;color:var(--neutral-500)}
+  /* As notas agora vivem na .cta, que tem fundo navy: --neutral-500 daria 2.54:1.
+     Branco a 62% da 6.15:1, e fica abaixo do .cta-lead (82%) na hierarquia. */
+  .proof__notes{margin-top:36px;display:flex;flex-direction:column;gap:8px;text-align:left}
+  .proof__note{font-size:13px;line-height:1.55;color:rgba(255,255,255,.62)}
 
   /* ---- Camadas animadas sobre a tela (2 features, nao as 5) ----
      Pausam fora da tela via .is-idle, e somem sob prefers-reduced-motion. */
@@ -923,6 +927,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-visual::after{display:none}
     .hero h1,.hero-body,.sec-head{max-width:none}
     .why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .proof{padding:80px 0 72px}
     .proof__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
   @media (max-width:640px){
@@ -941,6 +946,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .why-grid{grid-template-columns:1fr;margin-top:40px}
     .why-card{padding:30px 24px}
     .video__frame{margin-top:36px;border-radius:14px}
+    .proof{padding:80px 0}   /* piso da GUIDELINES 2 no mobile */
     .proof__grid{grid-template-columns:1fr;gap:16px}
     .proof__head{margin-bottom:30px}
     .proof__icon{width:44px;height:44px;margin-bottom:14px}
@@ -1154,10 +1160,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="proof__t">Aumento da produtividade com IA generativa.**</p>
         </div>
       </div>
-      <div class="proof__notes reveal">
-        <p class="proof__note">*Pesquisa realizada pelo National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente, sobre os resultados da aplicação de inteligência artificial generativa aos processos de suporte das empresas.</p>
-        <p class="proof__note">**Estimativas da McKinsey, consultoria empresarial norte-americana.</p>
-      </div>
     </div>
   </section>
 
@@ -1338,6 +1340,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="jotform-embed reveal" id="jotHost" data-jotform="261034073026647">
         <noscript><iframe src="https://form.jotform.com/261034073026647" title="Fale com um especialista da Cxpress" style="width:100%;height:800px;border:0"></iframe></noscript>
+      </div>
+      <div class="proof__notes reveal">
+        <p class="proof__note">*Pesquisa realizada pelo National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente, sobre os resultados da aplicação de inteligência artificial generativa aos processos de suporte das empresas.</p>
+        <p class="proof__note">**Estimativas da McKinsey, consultoria empresarial norte-americana.</p>
       </div>
     </div>
   </section>
