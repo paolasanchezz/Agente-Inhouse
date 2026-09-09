@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ width:1200px; height:630px; overflow:hidden; }
+  /* Navy da LP, não o royal: o laranja do título dá 4,7:1 aqui e só 2,7:1
+     sobre o royal #4A69BD (abaixo do mínimo de 3:1 para texto grande).
+     O royal entra como glow decorativo no .deco, não como fundo do texto. */
+  .og{ position:relative; width:1200px; height:630px; overflow:hidden;
+    background:linear-gradient(150deg,#2b3470 0%,#232960 48%,#171c45 100%);
+    font-family:"Source Sans 3",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .deco{ position:absolute; inset:0; z-index:0; }
+
+  .content{ position:absolute; z-index:2; left:80px; top:0; height:100%;
+    display:flex; flex-direction:column; justify-content:center; max-width:660px; }
+  .badge{ display:inline-flex; align-self:flex-start; align-items:center; gap:10px;
+    background:#EF863C; color:#232960; font-family:"Open Sans",sans-serif; font-weight:800;
+    font-size:18px; letter-spacing:.09em; text-transform:uppercase;
+    padding:10px 22px; border-radius:9999px; margin-bottom:26px; }
+  .kicker{ font-family:"Bitter",Georgia,serif; font-weight:600; font-size:20px;
+    letter-spacing:.1em; text-transform:uppercase; color:#EF863C; margin-bottom:14px; }
+  .title{ font-family:"Open Sans",sans-serif; font-weight:800; font-size:70px;
+    line-height:1.02; letter-spacing:-.03em; color:#fff; }
+  .title span{ color:#EF863C; }
+  .sub{ margin-top:24px; font-size:27px; line-height:1.35; color:rgba(255,255,255,.9);
+    font-weight:500; max-width:620px; }
+  .pill{ margin-top:34px; display:inline-flex; align-self:flex-start; align-items:center; gap:14px;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); border-radius:9999px;
+    padding:14px 30px; color:#fff; font-family:"Open Sans",sans-serif; font-weight:700; font-size:22px; }
+  .pill .sep{ width:6px; height:6px; background:#EF863C; border-radius:50%; }
+
+  .spk{ position:absolute; z-index:2; right:96px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:center; }
+  .spk img{ width:250px; height:250px; border-radius:50%; object-fit:cover;
+    border:6px solid #EF863C; display:block; }
+  .spk .name{ margin-top:18px; font-family:"Open Sans",sans-serif; font-weight:700;
+    font-size:25px; color:#fff; }
+  .spk .role{ margin-top:5px; font-size:18px; color:rgba(255,255,255,.75); }
+
+  .logo{ position:absolute; z-index:2; right:70px; top:48px; height:38px; }
+</style>
+</head>
+<body>
+<div class="og">
+  <svg class="deco" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="1080" cy="90" r="300" fill="rgba(74,105,189,.42)"/>
+    <circle cx="1160" cy="600" r="210" fill="rgba(74,105,189,.28)"/>
+    <rect x="1108" y="392" width="120" height="330" rx="60" fill="rgba(255,255,255,.07)"/>
+    <rect x="18" y="-70" width="90" height="250" rx="45" fill="rgba(239,134,60,.16)"/>
+    <rect x="80" y="556" width="300" height="12" rx="6" fill="rgba(239,134,60,.5)"/>
+  </svg>
+
+  <div class="content">
+    <span class="badge">Evento presencial &middot; Gratis</span>
+    <div class="title">Atenci&oacute;n digital <span>desorganizada</span></div>
+    <div class="sub">Dise&ntilde;a agentes de IA que resuelven, escalan solo cuando hace falta y funcionan en todos tus canales.</div>
+    <div class="pill">24 de septiembre <span class="sep"></span> 4:00 p.m. <span class="sep"></span> Medell&iacute;n</div>
+  </div>
+
+  <div class="spk">
+    <img src="./laura-rodriguez.jpg" alt="Laura Rodr&iacute;guez">
+    <div class="name">Laura Rodr&iacute;guez</div>
+    <div class="role">B2B Sales &amp; Customer Success</div>
+  </div>
+
+  <img class="logo" src="../../../../brand/cxpress/assets/logos/logo-reversed.png" alt="Cxpress">
+</div>
+</body>
+</html>
