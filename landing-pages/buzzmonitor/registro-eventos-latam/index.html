@@ -104,7 +104,6 @@
       --body: #55505E;         /* corpo (7,6:1) */
       --muted: #6F6A7A;        /* apoio (5,05:1 no branco / 4,76:1 no surface) */
       --peach: #FFD5C3;        /* marcador na secao escura (12,2:1) */
-      --gradient: linear-gradient(120deg, #390155 0%, #EB7C2E 165%);
       --radius: 14px;
       --radius-sm: 10px;
       --header-h: 68px;
@@ -300,17 +299,28 @@
       align-items: start;
     }
     .hero__h1 {
-      font-size:clamp(36px, 3.7vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -0.038em;
+      font-size:clamp(38px, 4.4vw, 62px);   /* o maior tipo da pagina */
+      line-height: 1.06;                    /* espaco pro sublinhado do <em> respirar */
+      letter-spacing: -0.04em;
       margin-block: 30px 0;
-      color: var(--ink-2);
+      color: #ffffff;
     }
-    .hero__h1 em { font-style: normal; color: var(--ink); display: block; }
+    /* o desfecho da headline ganha sublinhado amarelo: separa as duas frases sem
+       precisar de uma segunda cor de texto (no roxo, so o branco fecha AA) */
+    .hero__h1 em {
+      font-style: normal;
+      color: #ffffff;
+      display: block;
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 5px;
+      text-underline-offset: 9px;
+      text-decoration-skip-ink: none;
+    }
     .hero__sub {
       font-size: clamp(18px, 1.7vw, 21px);
       line-height: 1.55;
-      color: var(--muted);
+      color: #F2D8FF;                        /* lilas da marca: 12,4:1 sobre o roxo */
       max-width: 32em;
       margin-top: 28px;
       text-wrap: pretty;
@@ -321,15 +331,18 @@
       gap: 12px 28px;
       margin-top: 34px;
       padding-top: 30px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255, 255, 255, .22);
     }
     .hero__flags li {
       display: flex;
       align-items: flex-start;
       gap: 9px;
       font-size: 15px;
-      color: var(--ink);
+      color: #ffffff;
     }
+    .hero__flags .mk { color: var(--yellow); }        /* 9,7:1 sobre o roxo */
+    .hero .eyebrow { color: #ffffff; }
+    .hero .eyebrow::before { background: var(--yellow); }
     .hero__flags .mk { width: 16px; height: 16px; margin-top: 3px; }
     .hero__cta { margin-top: 36px; }
 
@@ -339,7 +352,7 @@
       border: 1px solid var(--line-2);
       border-radius: var(--radius);
       padding: clamp(28px, 2.6vw, 38px);
-      box-shadow: 0 1px 2px rgba(57, 1, 85, .04), 0 12px 32px -22px rgba(57, 1, 85, .18);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .10), 0 30px 60px -28px rgba(0, 0, 0, .45);
       scroll-margin-top: calc(var(--header-h) + 24px);
     }
     .card-form h3 { font-size:clamp(26px, 2vw, 30px); }
@@ -457,10 +470,12 @@
     .center-cta { margin-top: clamp(48px, 5vw, 68px); }
 
     /* ---------- Costo de no actuar: UNICA secao escura ---------- */
+    /* magenta: registro de alerta pra secao de dor. Deixou de ser roxo pra o hero
+       ficar sendo o unico bloco roxo do topo (o CTA final fecha em roxo). */
     .dark {
       position: relative;
-      background: var(--ink);
-      color: rgba(255, 255, 255, .88);
+      background: var(--magenta);
+      color: #ffffff;
       overflow: hidden;
     }
     .dark::after {
@@ -484,7 +499,9 @@
     }
     .tag {
       display: inline-block;
-      background: var(--accent);
+      /* amarelo, nao laranja: sobre o magenta o laranja separa so 1,7:1 e a tag
+         carrega informacao, precisa destacar. Texto roxo sobre amarelo da 9,7:1. */
+      background: var(--yellow);
       color: var(--ink);
       font-size: 14px;
       font-weight: 700;
@@ -504,7 +521,7 @@
       border-top: 1px solid rgba(255, 255, 255, .13);
       font-size: 17px;
       line-height: 1.55;
-      color: rgba(255, 255, 255, .9);
+      color: #ffffff;
     }
     .losses { border-bottom: 1px solid rgba(255, 255, 255, .13); }
     .dark__foot {
@@ -680,7 +697,7 @@
     }
     .logos li:hover img { filter: none; opacity: 1; }
 
-    /* ---------- CTA final: UNICO gradiente ---------- */
+    /* ---------- CTA final: bloco roxo, fechando no mesmo tom do hero ---------- */
     .final { text-align: center; color: #ffffff; }
     .final .eyebrow { color: #ffffff; }
     .final .eyebrow::before { background: var(--white); }
@@ -824,8 +841,8 @@
       right: -170px;
       width: clamp(340px, 54vw, 780px);
       height: clamp(340px, 54vw, 780px);
-      color: var(--accent);
-      opacity: .55;
+      color: #ffffff;
+      opacity: .3;
       -webkit-mask-image: radial-gradient(circle at 72% 26%, #000 0%, rgba(0,0,0,.55) 38%, transparent 68%);
       mask-image: radial-gradient(circle at 72% 26%, #000 0%, rgba(0,0,0,.55) 38%, transparent 68%);
     }
@@ -842,7 +859,7 @@
       mask-image: radial-gradient(circle at 26% 78%, #000 0%, rgba(0,0,0,.5) 40%, transparent 70%);
     }
 
-    /* CTA final: retícula branca dando textura ao gradiente */
+    /* CTA final: retícula branca dando textura ao bloco de cor */
     .ht--final {
       inset: 0;
       color: #ffffff;
@@ -882,6 +899,20 @@
 
     /* SDR do manual = laranja. Texto roxo, porque branco sobre
        laranja da 2,84:1 e reprova AA (o manual usa branco ali). */
+    /* roxo: o bloco mais dominante da pagina. Branco sobre #390155 da 15:1,
+       o que libera o tipo mais pesado e maior de toda a LP. */
+    .block--ink { background: var(--ink); color: #ffffff; }
+    .block--ink h1, .block--ink h2, .block--ink h3 { color: #ffffff; }
+    .block--ink .btn--primary { background: #ffffff; color: var(--ink); }
+    .block--ink .btn--primary:hover { background: #F2D8FF; }
+
+    /* O card de formulario e branco DENTRO do bloco roxo, entao precisa reverter as
+       heranças do .block--ink. Tem que vir depois dele: a especificidade empata
+       (.card-form h3 vs .block--ink h3) e quem ganha e a regra mais abaixo. */
+    .block--ink .card-form h3 { color: var(--ink); }
+    .block--ink .card-form .btn--primary { background: var(--ink); color: #ffffff; }
+    .block--ink .card-form .btn--primary:hover { background: var(--ink-hover); }
+
     .block--orange { background: var(--accent); color: var(--ink-on-orange); }
     .block--orange h2, .block--orange h3 { color: var(--ink-on-orange); }
     .block--orange .rule { background: var(--ink-on-orange); }
@@ -952,22 +983,22 @@
 
     /* ---------- Secao escura: ganha a composicao do manual ---------- */
     .compo--dark { left: 5%; bottom: 0; width: clamp(200px, 26vw, 330px); height: clamp(160px, 20vw, 260px); }
-    .compo--dark .b1 { left: 0; bottom: 0; width: 124px; height: 62px; background: var(--magenta); }
+    .compo--dark .b1 { left: 0; bottom: 0; width: 124px; height: 62px; background: var(--ink); }
     .compo--dark .b2 { left: 140px; bottom: 0; width: 92px; height: 92px; background: var(--teal); }
     .burst--dark { top: 12%; right: -52px; width: clamp(110px, 13vw, 190px); color: var(--accent); opacity: .9; }
 
     /* ---------- CTA final: magenta chapado, no lugar do gradiente ---------- */
-    .final { background: var(--magenta); }
-    .final .btn--light { background: #ffffff; color: var(--magenta); }
-    .final .btn--light:hover { background: #FFF0F3; }
+    .final { background: var(--ink); }
+    .final .btn--light { background: #ffffff; color: var(--ink); }
+    .final .btn--light:hover { background: #F2D8FF; }
     .burst--final { top: 8%; left: 6%; width: clamp(90px, 10vw, 140px); color: var(--yellow); }
-    .burst--final2 { bottom: 6%; right: 7%; width: clamp(70px, 8vw, 110px); color: var(--ink); }
+    .burst--final2 { bottom: 6%; right: 7%; width: clamp(70px, 8vw, 110px); color: var(--magenta); }
     .compo--final { left: -40px; bottom: 0; width: clamp(180px, 22vw, 300px); height: clamp(90px, 11vw, 150px); }
-    .compo--final .b1 { left: 0; bottom: 0; width: 150px; height: 74px; background: var(--ink); }
+    .compo--final .b1 { left: 0; bottom: 0; width: 150px; height: 74px; background: var(--magenta); }
     .compo--final .b2 { left: 168px; bottom: 0; width: 92px; height: 92px; background: var(--teal); }
 
     /* ---------- Hero: um sunburst discreto como assinatura ---------- */
-    .burst--hero { top: 8%; right: 3%; width: clamp(74px, 8vw, 112px); color: var(--yellow); z-index: 0; }
+    .burst--hero { top: 6%; right: -2%; width: clamp(78px, 9vw, 124px); color: var(--yellow); z-index: 0; }
 
     @media (max-width: 980px) {
       .compo--offer, .compo--dark, .compo--final { display: none; }
@@ -1005,7 +1036,7 @@
   <main id="main">
 
     <!-- 1. HERO -->
-    <section class="hero has-ht">
+    <section class="hero has-ht block block--ink">
       <div class="ht ht--hero" aria-hidden="true"></div>
       <svg class="burst burst--hero burst--spin" viewBox="0 0 100 100" aria-hidden="true"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>
       <div class="wrap hero__grid">
@@ -1431,7 +1462,7 @@
     </section>
 
     <!-- 9. CTA FINAL (unico gradiente) -->
-    <section class="final has-ht block block--magenta">
+    <section class="final has-ht block block--ink">
       <div class="ht ht--final" aria-hidden="true"></div>
       <svg class="burst burst--final burst--spin" viewBox="0 0 100 100" aria-hidden="true"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>
       <svg class="burst burst--final2" viewBox="0 0 100 100" aria-hidden="true"><path d="M50.00,0.00 L55.09,11.33 L62.94,1.70 L64.92,13.97 L75.00,6.70 L73.74,19.06 L85.36,14.64 L80.94,26.26 L93.30,25.00 L86.03,35.08 L98.30,37.06 L88.67,44.91 L100.00,50.00 L88.67,55.09 L98.30,62.94 L86.03,64.92 L93.30,75.00 L80.94,73.74 L85.36,85.36 L73.74,80.94 L75.00,93.30 L64.92,86.03 L62.94,98.30 L55.09,88.67 L50.00,100.00 L44.91,88.67 L37.06,98.30 L35.08,86.03 L25.00,93.30 L26.26,80.94 L14.64,85.36 L19.06,73.74 L6.70,75.00 L13.97,64.92 L1.70,62.94 L11.33,55.09 L0.00,50.00 L11.33,44.91 L1.70,37.06 L13.97,35.08 L6.70,25.00 L19.06,26.26 L14.64,14.64 L26.26,19.06 L25.00,6.70 L35.08,13.97 L37.06,1.70 L44.91,11.33 Z"/></svg>

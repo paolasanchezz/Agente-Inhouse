@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 (2026-09-08, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 (2026-09-09, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -20,15 +20,15 @@ A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem red
 
 | # | Secao | Blocos | Fundo |
 |---|---|---|---|
-| 1 | Hero + formulario | overline, H1, sub, 3 flags, CTA · card com 4 campos | branco |
+| 1 | Hero + formulario | overline, H1, sub, 3 flags, CTA · card com 4 campos | **roxo** (`#390155`) |
 | 2 | Oferta | 3 cards + linha de reforco | off-white |
 | 3 | Lo que te llevas | 5 itens (grid 3+2) + CTA outline | branco |
-| 4 | Costo de no actuar | tag rotacionada, H2, 3 itens, fecho, CTA | **escuro** (`#390155`) |
+| 4 | Costo de no actuar | tag rotacionada, H2, 3 itens, fecho, CTA | **magenta** (`#DE2451`) |
 | 5 | Plataforma | H2, sub, 4 itens (secao de pausa) | branco |
 | 6 | Soluciones | 7 itens + fecho + CTA | off-white |
 | 7 | Modulos por plan | tabela 8 linhas × 2 planos + accordion de 8 grupos | branco |
 | 8 | Prueba social | H2 + grade estatica de 12 logos | branco (hairline) |
-| 9 | CTA final | label, H2, body, CTA | **gradiente** (unico da LP) |
+| 9 | CTA final | label, H2, body, CTA | **roxo** (`#390155`) |
 | 10 | Footer | logo, contato, legal | branco (hairline) |
 
 ## Decisoes de design (sistema v2 — premium / quase monocromo)
@@ -350,6 +350,61 @@ Outros dois ajustes de contraste desta rodada:
 
 **Copy: intacta.** Nada mudou no `copy.txt` desde a v2. Diff de fidelidade: 0 textos fora da copy.
 
+## v2.4 — o hero passa a ser bloco de cor
+
+Pedido do Victor: "usar um estilo como o dos blocos coloridos para o bloco do hero. Quero que
+esse bloco seja o mais destacado de todos."
+
+### Por que isso obrigou a remexer a cor dos outros blocos
+
+Sao 4 blocos de cor e 3 cores de marca disponiveis, entao **uma cor repete, sem escapatoria**. A
+escolha foi feita pra (a) o hero ser o mais dominante e (b) nenhum bloco saturado encostar em
+outro do mesmo tom:
+
+| Bloco | Antes | Agora | Por que |
+|---|---|---|---|
+| Hero | branco | **roxo `#390155`** | E o primario da marca e o tom mais escuro da paleta. Branco sobre ele da **15:1**, o que libera o tipo maior e mais pesado de toda a pagina (H1 subiu de 52px pra 62px). O card branco do formulario tambem flutua com mais forca sobre o fundo mais escuro |
+| Oferta | laranja | laranja (inalterado) | Roxo -> laranja e transicao limpa de escuro pra quente. Magenta -> laranja vibraria |
+| Costo de no actuar | roxo | **magenta `#DE2451`** | Precisava sair do roxo pro hero ficar sendo o unico bloco roxo do topo. Magenta ainda cai bem no registro de alerta da secao de dor |
+| CTA final | magenta | **roxo `#390155`** | Fecha a pagina no mesmo tom que abre. Hero e CTA final viram os dois extremos do mesmo bloco |
+
+Resultado: roxo nas pontas, laranja e magenta no meio, nenhuma adjacencia do mesmo tom.
+
+**Desvio consciente da `GUIDELINES §1`:** a regra pede "uma unica secao escura". Aqui sao duas
+(hero e CTA final), de proposito, como abre-e-fecha. O que a §1 quer evitar e colcha de retalhos,
+e continua valendo: 3 cores fortes, cada uma com papel fixo, e 6 das 10 secoes seguem brancas.
+
+### Detalhes do hero
+
+- **H1 branco, 62px no maximo** (era 52px e vinha em dois tons de roxo). No roxo so o branco
+  fecha AA, entao a separacao entre as duas frases passou a ser **sublinhado amarelo** no `<em>`
+  (`text-decoration` com `skip-ink: none`), que e decoracao e nao precisa de contraste.
+- Subtitulo em **`#F2D8FF`** (o lilas da marca): 12,4:1 sobre o roxo. `--muted` nao serviria.
+- Flags em branco com check **amarelo** (9,7:1). Ponto do eyebrow tambem amarelo.
+- CTA primario do hero virou **branco com texto roxo** (o botao roxo desapareceria no fundo roxo).
+- Sombra do card de formulario reforcada, porque agora ele flutua sobre cor e nao sobre branco.
+- Halftone do hero passou de laranja/55% pra **branco/30%**.
+
+### Dois bugs que apareceram no caminho
+
+1. **`.block--ink h3` e `.block--ink .btn--primary` vazaram pra dentro do card de formulario.**
+   O card e branco, entao o titulo "Activa tu acceso" ficou branco no branco e o botao de submit
+   perdeu o preenchimento. Corrigido com override explicito, que **tem que vir depois** da regra
+   do bloco: a especificidade empata (`.card-form h3` vs `.block--ink h3`) e quem ganha e a regra
+   mais abaixo na folha. Na primeira tentativa coloquei antes e nao surtiu efeito.
+2. **Formas que sumiram no proprio fundo.** O retangulo magenta da composicao da secao de dor
+   ficou invisivel quando a secao virou magenta (passou a roxo); o sunburst e o retangulo roxos
+   do CTA final sumiram quando ele virou roxo (passaram a magenta). Sempre que um bloco troca de
+   cor, vale conferir as formas planas que vivem nele.
+
+### Limpeza
+
+- A tag da secao de dor passou de laranja pra **amarelo**: sobre o magenta o laranja separava so
+  1,7:1, e a tag carrega informacao. Texto roxo sobre amarelo da 9,7:1.
+- A variavel `--gradient` virou codigo morto quando o CTA final passou a cor plana na v2.2.
+  Removida, junto com dois comentarios que ainda falavam de gradiente. **A LP nao tem mais nenhum
+  `linear-gradient`** (os `radial-gradient` que sobraram sao o halftone e os brilhos).
+
 ## Historico de versoes
 
 | Versao | O que era | Estado |
@@ -358,7 +413,9 @@ Outros dois ajustes de contraste desta rodada:
 | **v2** | Restyle premium quase monocromo (Apple / Vercel). Roxo como tinta, laranja como faisca, hairline em vez de sombra, raio pequeno, grade estatica de logos. | **vigente** |
 | v3 | Tentativa de reforcar a marca: geometria do brandbook, painel animado de social listening (contadores, sparkline, donut, barras), numeros de cases, H2 curtos orientados a dor, CTA fixo no mobile. | **revertida** a pedido do Victor em 2026-09-08 ("nao sinto o estilo premium"). A copy voltou junto. |
 | v2.1 | v2 + camada halftone em 4 momentos e plaquetas de cor por card. | substituida (as plaquetas sairam na v2.2, o halftone ficou) |
-| **v2.2** | v2.1 + sistema de bloco de cor do "Manual de Active Campaign": 3 blocos saturados, sunburst, formas planas e reticula em grade. Copy da v2 intacta. | **vigente** |
+| v2.2 | v2.1 + sistema de bloco de cor do "Manual de Active Campaign": 3 blocos saturados, sunburst, formas planas e reticula em grade. | substituida |
+| v2.3 | Troca de "webinar" por "evento" em toda a copy publica (9 no HTML, 4 no `copy.txt`). | incorporada |
+| **v2.4** | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. Copy inalterada. | **vigente** |
 
 O revert da v3 foi validado por comparacao pixel a pixel contra o render da v2: **0 pixels de
 diferenca** em 1440x10400. A `copy.txt` voltou do backup tirado antes da reescrita.
