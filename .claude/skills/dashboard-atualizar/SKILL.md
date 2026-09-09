@@ -1,9 +1,9 @@
 ---
 name: dashboard-atualizar
-description: Atualiza as dashboards CM dinamica-estaticas servidas no guarda-chuva unico do Vercel — Buzzmonitor Brasil, Cxpress Brasil, Buzzmonitor LATAM e Buzzcreators Brasil, todas atras de um unico login em dashboards-elife.vercel.app. Roda o exportador Python (Supabase -> JSON de dados), monta a dist do guarda-chuva com build_umbrella.py, deploya na Vercel via CLI e valida (senha + noindex + as 4 rotas servidas). Manual-trigger.
-argument-hint: "[buzz-br|cxpress|latam|buzzcreators|todas] (sem arg = pergunta com chips)"
+description: Atualiza as dashboards CM dinamica-estaticas servidas no guarda-chuva unico do Vercel — Brasil (Buzzmonitor, Cxpress, Buzzcreators), LATAM e Portugal (Buzzmonitor, Cxpress, Elife), todas atras de um unico login em dashboards-elife.vercel.app. Roda o exportador Python (Supabase -> JSON de dados), monta a dist do guarda-chuva com build_umbrella.py, deploya na Vercel via CLI e valida (senha + noindex + as 7 rotas servidas). Manual-trigger.
+argument-hint: "[buzz-br|cxpress|latam|buzzcreators|bm-pt|cxpress-pt|elife-pt|pt|todas] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 4.0.0
+version: 4.1.0
 ---
 
 # Skill: Atualizar Dashboards CM (guarda-chuva unico)
@@ -18,12 +18,19 @@ Desde 2026-09-09 elas nao sao mais 4 projetos Vercel soltos: vivem num **guarda-
 | **cxpress** | `/cxpress/` | `dashboard-cxpress-vercel/` | PT-BR / BRL |
 | **latam** | `/latam/` | `dashboard-latam-vercel/` | ES / USD |
 | **buzzcreators** | `/buzzcreators/` | `dashboard-buzzcreators-vercel/` | PT-BR / BRL |
+| **bm-pt** | `/bm-pt/` | `dashboard-pt-vercel/` | PT-PT / EUR |
+| **cxpress-pt** | `/cxpress-pt/` | `dashboard-pt-vercel/` | PT-PT / EUR |
+| **elife-pt** | `/elife-pt/` | `dashboard-pt-vercel/` | PT-PT / EUR |
 
 Hub com os cards na raiz (`/`). Projeto: **`dashboards-elife`** · URL: **dashboards-elife.vercel.app**.
 
+**As 3 de Portugal dividem uma fonte só.** Mesmo ActiveCampaign, mesmo schema de 84 colunas, mesmo dicionário de etapas — então `dashboard-pt-vercel/` tem UM `index.html` (que descobre a marca pelo path da rota), UM `motor.js`, UM `render.js` e um exportador com `--marca`. Não replique arquivo por marca: foi justamente a divergência entre BR/LATAM/Cxpress que criou o problema de sincronia manual. A lógica é fonte única em `dashboard/queries_portugal.py`.
+
+**PT tem um modelo diferente do BR/LATAM** e isso é deliberado, não falta de acabamento: em Portugal nenhum marco de funil tem data (não há data de reunião, de proposta nem de fecho, e não existe histórico de etapa), então o período define uma **coorte por data de criação** e o painel mostra a **distribuição de etapa atual** — nunca conversão entre etapas. CM é **classificação** (`cm` / `nao_cm` / `sem_rastreio`), não filtro, porque 21% a 50% dos deals não têm rastreio nenhum. Evidências e decisões em `dashboard/AUDITORIA-PORTUGAL.md`.
+
 **Regra inegociavel:** deploy NUNCA sai da pasta-fonte no repo. Sempre da **dist/sibling** fora do repo, montada pelo `dashboards-umbrella/build_umbrella.py` (que escreve `middleware.js` + `vercel.json` + `robots.txt` + `package.json`). Mesmo padrao do `lp-publicar`. Incidente 2026-05-25 (404 publico por deploy sem middleware) em `dashboard/DEPLOY.md`.
 
-**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). Credencial em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`); o build a injeta no middleware. Um login cobre as 4.
+**Seguranca:** o dominio publico e protegido por **senha forte** (Basic Auth no middleware) — o Vercel SSO Standard so cobre URLs internas de deploy, nao o dominio principal ([[reference_vercel_deployment_protection]]). Credencial em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`); o build a injeta no middleware. Um login cobre as 7.
 
 **O guarda-chuva deploya inteiro, sempre.** Nao existe deploy de uma rota so. Atualizar uma dashboard = exportar o JSON dela e rebuildar tudo; os JSONs das outras vem das pastas-fonte (ou, se faltarem, o build reusa o que ja esta na dist e **avisa** — nunca em silencio).
 
@@ -36,8 +43,12 @@ Hub com os cards na raiz (`/`). Projeto: **`dashboards-elife`** · URL: **dashbo
    - `cxpress`, `cx`, `cxpress-brasil` → **cxpress**
    - `latam`, `lat`, `buzz-latam` → **latam**
    - `buzzcreators`, `creators`, `bc`, `buzzcreators-brasil` → **buzzcreators**
-   - `todas`, `all`, `tudo` → **as 4** (export sequencial; leva 6-12min)
-2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM` / `Buzzcreators Brasil` / `Todas` (multiSelect ligado).
+   - `bm-pt`, `buzz-pt`, `buzzmonitor-portugal` → **bm-pt**
+   - `cxpress-pt`, `cx-pt`, `cxpress-portugal` → **cxpress-pt**
+   - `elife-pt`, `elife`, `elife-portugal` → **elife-pt**
+   - `pt`, `portugal` → **as 3 de Portugal** (um unico export cobre as 3)
+   - `todas`, `all`, `tudo` → **as 7** (export sequencial; leva 8-15min)
+2. Se ausente ou nao reconhecido, use **AskUserQuestion** (header "Dashboard") com: `Buzzmonitor Brasil` / `Cxpress Brasil` / `Buzzmonitor LATAM` / `Buzzcreators Brasil` / `Portugal (as 3)` / `Todas` (multiSelect ligado).
 
 Fixe a lista resolvida em `$DASHES` (separada por espaco) e rode o bloco de config:
 
@@ -47,16 +58,21 @@ SCOPE=team_nC991VqUuSU2jXZN152xqqEg
 PROJ=dashboards-elife
 URL=dashboards-elife.vercel.app
 
-# config por dashboard: SRC | JSON | chave principal | marcador do motor | audita 3 superficies
+# config por dashboard: SRC | JSON | chave principal | marcador do motor | audita 3 superficies | args do exportador
 cfg() {
   case "$1" in
-    buzz-br)      echo "dashboard-buzz-br-vercel dados-2026.json leads MotorCM 1" ;;
-    cxpress)      echo "dashboard-cxpress-vercel dados-cxpress.json deals MotorCxpress 0" ;;
-    latam)        echo "dashboard-latam-vercel dados-latam.json leads MotorLatam 0" ;;
-    buzzcreators) echo "dashboard-buzzcreators-vercel dados-buzzcreators.json deals MotorBuzzcreators 0" ;;
+    buzz-br)      echo "dashboard-buzz-br-vercel dados-2026.json leads MotorCM 1 -" ;;
+    cxpress)      echo "dashboard-cxpress-vercel dados-cxpress.json deals MotorCxpress 0 -" ;;
+    latam)        echo "dashboard-latam-vercel dados-latam.json leads MotorLatam 0 -" ;;
+    buzzcreators) echo "dashboard-buzzcreators-vercel dados-buzzcreators.json deals MotorBuzzcreators 0 -" ;;
+    bm-pt)        echo "dashboard-pt-vercel dados-pt-bm.json deals MotorPT 0 --marca=bm" ;;
+    cxpress-pt)   echo "dashboard-pt-vercel dados-pt-cxpress.json deals MotorPT 0 --marca=cxpress" ;;
+    elife-pt)     echo "dashboard-pt-vercel dados-pt-elife.json deals MotorPT 0 --marca=elife" ;;
     *) echo ""; return 1 ;;
   esac
 }
+# Atalho: `pt` exporta as 3 de Portugal numa passagem so (um exportador, 3 JSONs).
+[ "$DASHES" = "pt" ] && DASHES="bm-pt cxpress-pt elife-pt"
 for D in $DASHES; do cfg "$D" >/dev/null || { echo "ERRO: dashboard invalido: '$D'"; exit 1; }; done
 echo "Vou exportar: $DASHES · projeto: $PROJ · url: $URL"
 ```
@@ -131,9 +147,10 @@ O build le a mesma fonte, entao aqui nao existe mais o risco de `.env.local` div
 
 ```bash
 for D in $DASHES; do
-  set -- $(cfg "$D"); SRC=$1; JSON=$2; MAIN=$3
+  set -- $(cfg "$D"); SRC=$1; JSON=$2; MAIN=$3; ARGS=$6
+  [ "$ARGS" = "-" ] && ARGS=""
   echo "=== exportando $D"
-  uv run --python 3.12 --with "psycopg[binary]" python "$SRC/exportar_dados.py" 2>&1 | tee "tmp/dash-$D-export-$TODAY.log"
+  uv run --python 3.12 --with "psycopg[binary]" python "$SRC/exportar_dados.py" $ARGS 2>&1 | tee "tmp/dash-$D-export-$TODAY.log"
   [ "${PIPESTATUS[0]}" = "0" ] || { echo "ERRO no export de $D"; exit 1; }
   uv run --python 3.12 python -c "
 import json,os
@@ -157,6 +174,9 @@ O motor JS so bate com a dash local se `motor.js`/`render.js`/as queries nao div
 ```bash
 for D in $DASHES; do
   set -- $(cfg "$D"); SRC=$1
+  # Portugal nao tem harness de paridade: nao existe dash local PT com que comparar,
+  # e a logica toda mora em queries_portugal.py (o motor.js so agrega a coorte).
+  [ -f "$SRC/paridade_gerar_esperado.py" ] || { echo "$D: sem harness de paridade — pulando"; continue; }
   uv run --python 3.12 --with "psycopg[binary]" python "$SRC/paridade_gerar_esperado.py" && node "$SRC/paridade_check.mjs"
 done
 ```
@@ -201,8 +221,8 @@ echo "nav.js  (espera 200):     $(curl -s -u "$A" -o /dev/null -w '%{http_code} 
 echo -n "senha fraca antiga (espera 401): "; curl -s -u "inhouse:inhouse@77" -o /dev/null -w '%{http_code}\n' "$B/"
 curl -s -D - -o /dev/null -u "$A" "$B/" | grep -i 'x-robots-tag'
 
-# as 4 rotas: 308 sem barra, 200 com barra, motor certo, JSON servido
-for D in buzz-br cxpress latam buzzcreators; do
+# as 7 rotas: 308 sem barra, 200 com barra, motor certo, JSON servido
+for D in buzz-br cxpress latam buzzcreators bm-pt cxpress-pt elife-pt; do
   set -- $(cfg "$D"); JSON=$2; MARKER=$4
   R=$(curl -s -u "$A" -o /dev/null -w '%{http_code}' "$B/$D")
   H=$(curl -s -u "$A" -o "tmp/v-$D.html" -w '%{http_code}' "$B/$D/")
@@ -231,8 +251,8 @@ Dashboards CM — guarda-chuva atualizado
 Hub:        https://dashboards-elife.vercel.app/  (login: inhouse + senha do .env.local)
 Deploy ID:  $NEW_DPL_ID · READY
 Exportadas: $DASHES
-No ar:      /buzz-br/ · /cxpress/ · /latam/ · /buzzcreators/  (datas dos dados no hub)
-Navegacao:  barra no topo de todas as paginas; um unico login cobre as 4.
+No ar:      /buzz-br/ · /cxpress/ · /latam/ · /buzzcreators/ · /bm-pt/ · /cxpress-pt/ · /elife-pt/
+Navegacao:  barra no topo de todas as paginas; um unico login cobre as 7.
 
 Rollback rapido: npx vercel rollback <dpl_anterior> --cwd "$SIBLING" --scope="$SCOPE"
 Pra commitar mudancas de codigo (se houve): /commit
@@ -244,8 +264,12 @@ Pra commitar mudancas de codigo (se houve): /commit
 - **Credencial Basic Auth** vive so em `.env.local` (`DASHBOARD_BASIC_AUTH_USER`/`_PASS`, gitignored). O `build_umbrella.py` a injeta no `middleware.js` da dist. Trocar a senha = editar o `.env.local` + rebuildar + deployar. Nunca hardcodar nesta skill nem no repo.
 - **Nunca** rodar `vercel deploy` da pasta-fonte no repo (sem middleware = 404/exposto). So da dist.
 - **Nunca** copiar arquivo pra dist a mao — o build e a unica porta de entrada, e ele remove o que nao esta no manifesto.
-- **Dados gitignored:** `dados-*.json` (PII de leads + valores) e `paridade_esperado.json` sao regeneraveis e ficam fora do git; so o codigo versiona. Num clone novo, exporte as 4 antes do primeiro build.
+- **Dados gitignored:** `dados-*.json` (PII de leads + valores) e `paridade_esperado.json` sao regeneraveis e ficam fora do git; so o codigo versiona. Num clone novo, exporte todas antes do primeiro build (`--marca todas` cobre as 3 de Portugal de uma vez).
 - **Projetos antigos** (`dashboard-buzzmonitor-brasil`, `dashboard-cxpress-brasil`, `dashboard-buzzmonitor-latam`, `dashboard-buzzcreators-brasil`) viraram **redirect 308** pro guarda-chuva — os links antigos continuam funcionando. Nao deployar dashboard neles.
 - **Paridade dos numeros:** garantida por a logica CM viver no Python (o exportador reusa as `queries_*.py`); o `motor.js` so agrega. Rodar via `uv`, nao `python` direto (no Windows o `python` do PATH e o shim da Store, exit 49; o `uv` provisiona Python 3.12 com wheels de C-extension).
 - **Escopo 2026:** os exportadores cobrem 2026 + cauda p/ as series 12m. Virar 2027: ajustar `ANO_INI`/cutoff nos `exportar_dados.py`.
+- **Portugal:** as 3 rotas PT saem de `dashboard-pt-vercel/` (fonte compartilhada) e da logica unica
+  em `dashboard/queries_portugal.py`. Modelo proprio — coorte por data de criacao, distribuicao de
+  etapa atual (nao conversao), CM como classificacao. O porque esta em `dashboard/AUDITORIA-PORTUGAL.md`;
+  nao "corrigir" isso pra parecer com o BR sem antes reler a auditoria.
 - **Diferencas por dashboard:** buzz-br = funil 7 KPIs, filtro em 3 superficies (auditar 0.2b), CSS inline. cxpress = funil 7 KPIs PT-BR, superficie unica. latam = funil 5 fases ES/USD, leads de inbound∪outbound + fechamentos de contratos, superficie unica. buzzcreators = funil 5 KPIs (Lead/Agend./Reuniao/Fech./Perdidos — **sem Proposta**), fonte Pipedrive com **UTM recuperada por join com o contato** (o deal nao tem UTM), superficie unica. Runbooks: `dashboard/DEPLOY.md` (buzz-br) · `dashboard/DEPLOY-cxpress.md` · `dashboard/DEPLOY-latam.md` · `dashboard/DEPLOY-buzzcreators.md`.

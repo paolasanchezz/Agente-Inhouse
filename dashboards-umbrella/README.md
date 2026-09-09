@@ -8,8 +8,14 @@ dashboards-elife.vercel.app
 ├── /buzz-br/       ← dashboard-buzz-br-vercel/
 ├── /cxpress/       ← dashboard-cxpress-vercel/
 ├── /latam/         ← dashboard-latam-vercel/
-└── /buzzcreators/  ← dashboard-buzzcreators-vercel/
+├── /buzzcreators/  ← dashboard-buzzcreators-vercel/
+├── /bm-pt/         ┐
+├── /cxpress-pt/    ├ dashboard-pt-vercel/  (fonte compartilhada, 1 JSON por marca)
+└── /elife-pt/      ┘
 ```
+
+As 3 de Portugal saíram juntas em 09/09/2026, depois de uma auditoria do dado
+(`dashboard/AUDITORIA-PORTUGAL.md`).
 
 ## Por quê
 
@@ -44,6 +50,8 @@ Na prática, quem chama isso é a skill **`/dashboard-atualizar`** (exportar →
 **O deploy é sempre do guarda-chuva inteiro.** Não existe deploy de uma rota só. Atualizar uma dashboard significa exportar o JSON dela e rebuildar tudo — os JSONs das outras vêm das pastas-fonte. Se um JSON faltar na fonte e já existir na dist, o build **reusa e avisa** (`REUSADO`), para nunca apagar os dados de uma dashboard ao deployar outra. Um `REUSADO` inesperado quer dizer que aquela dashboard vai ao ar com dados antigos.
 
 **Dashboard nova** = uma entrada no `manifest.json` + uma entrada na `cfg()` do Passo A da skill. Rota, card no hub e item no seletor saem sozinhos.
+
+**Duas rotas podem dividir a mesma fonte.** É o caso de Portugal: os 3 slugs apontam para `dashboard-pt-vercel/` e diferem só no `dados`. O `index.html` descobre a marca pelo primeiro segmento do path (`/cxpress-pt/` → `dados-pt-cxpress.json`), então o mesmo ficheiro serve as três e elas não conseguem divergir. Quando marcas compartilham schema, prefira isto a duplicar a pasta — foi a duplicação entre BR, LATAM e Cxpress que criou o problema de sincronia manual que o repo carrega até hoje.
 
 **Os 4 projetos antigos** (`dashboard-buzzmonitor-brasil`, `dashboard-cxpress-brasil`, `dashboard-buzzmonitor-latam`, `dashboard-buzzcreators-brasil`) viraram **308** para a rota correspondente — os links antigos continuam funcionando. As stubs de redirect vivem em `$DASHBOARD_SIBLING_BASE/redirects-dashboards/`. Não deployar dashboard neles.
 

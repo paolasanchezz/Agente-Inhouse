@@ -16,7 +16,11 @@
       "moeda": "BRL",
       "fonte": "dashboard-buzz-br-vercel",
       "dados": "dados-2026.json",
-      "arquivos": ["index.html", "motor.js", "dados-2026.json"],
+      "arquivos": [
+        "index.html",
+        "motor.js",
+        "dados-2026.json"
+      ],
       "legado": "dashboard-buzzmonitor-brasil",
       "resumo": "Funil de leads, deals e fechamentos de Content Marketing no Brasil."
     },
@@ -31,7 +35,13 @@
       "moeda": "BRL",
       "fonte": "dashboard-cxpress-vercel",
       "dados": "dados-cxpress.json",
-      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-cxpress.json"],
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-cxpress.json"
+      ],
       "legado": "dashboard-cxpress-brasil",
       "resumo": "Funil de 7 KPIs da Cxpress no Brasil, com atribuição por utm_creative."
     },
@@ -46,7 +56,13 @@
       "moeda": "USD",
       "fonte": "dashboard-latam-vercel",
       "dados": "dados-latam.json",
-      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-latam.json"],
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-latam.json"
+      ],
       "legado": "dashboard-buzzmonitor-latam",
       "resumo": "Embudo de 5 fases del Content Marketing en LATAM, en español y USD."
     },
@@ -61,9 +77,78 @@
       "moeda": "BRL",
       "fonte": "dashboard-buzzcreators-vercel",
       "dados": "dados-buzzcreators.json",
-      "arquivos": ["index.html", "estilo.css", "motor.js", "render.js", "dados-buzzcreators.json"],
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-buzzcreators.json"
+      ],
       "legado": "dashboard-buzzcreators-brasil",
       "resumo": "Funil de 5 KPIs vindo do Pipedrive, com atribuição recuperada pelo contato."
+    },
+    {
+      "slug": "bm-pt",
+      "cor": "#6D28D9",
+      "nome": "Buzzmonitor Portugal",
+      "curto": "Buzz PT",
+      "marca": "buzzmonitor",
+      "regiao": "Portugal",
+      "idioma": "pt-PT",
+      "moeda": "EUR",
+      "fonte": "dashboard-pt-vercel",
+      "dados": "dados-pt-bm.json",
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-pt-bm.json"
+      ],
+      "legado": null,
+      "resumo": "Coorte de deals do Buzzmonitor em Portugal, por data de criação."
+    },
+    {
+      "slug": "cxpress-pt",
+      "cor": "#0891B2",
+      "nome": "Cxpress Portugal",
+      "curto": "Cxpress PT",
+      "marca": "cxpress",
+      "regiao": "Portugal",
+      "idioma": "pt-PT",
+      "moeda": "EUR",
+      "fonte": "dashboard-pt-vercel",
+      "dados": "dados-pt-cxpress.json",
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-pt-cxpress.json"
+      ],
+      "legado": null,
+      "resumo": "Coorte de deals da Cxpress em Portugal, por data de criação."
+    },
+    {
+      "slug": "elife-pt",
+      "cor": "#334155",
+      "nome": "Elife Portugal",
+      "curto": "Elife PT",
+      "marca": "elife",
+      "regiao": "Portugal",
+      "idioma": "pt-PT",
+      "moeda": "EUR",
+      "fonte": "dashboard-pt-vercel",
+      "dados": "dados-pt-elife.json",
+      "arquivos": [
+        "index.html",
+        "estilo.css",
+        "motor.js",
+        "render.js",
+        "dados-pt-elife.json"
+      ],
+      "legado": null,
+      "resumo": "Coorte de deals da Elife em Portugal — sobretudo captura de material rico."
     }
   ]
 }

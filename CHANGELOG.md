@@ -12,6 +12,50 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM de Portugal (Buzzmonitor, Cxpress e Elife)
+### 2026-09-09 — skill `dashboard-atualizar` (4.0.0 → 4.1.0) + `dashboard-pt-vercel/` + `queries_portugal.py`
+
+O guarda-chuva passa de 4 para **7 rotas**: `/bm-pt/`, `/cxpress-pt/` e `/elife-pt/`.
+
+**Antes de construir, auditoria do dado** (`dashboard/AUDITORIA-PORTUGAL.md`). O que ela achou mudou
+o desenho das três:
+
+- **O rastreio está melhor do que o do Brasil.** Em 2026, deals sem UTM **e** sem `url_conversao`:
+  21,5% no Buzzmonitor PT e 13,2% no Elife PT, contra 40-54% de baseline no BR. Cxpress PT (49,8%)
+  fica no teto. Dá para rodar filtro CM em PT.
+- **Nenhum marco de funil tem data.** Não existe campo de data de reunião nem de proposta no schema
+  PT (a LATAM tem `fecha_de_reunion`; PT não herdou), `data_de_fecho_do_negocio` está preenchido em
+  4 dos 669 deals de 2026, `deals_bm_contratos_portugal` está vazia, e não há histórico de mudança de
+  etapa. As notas também não salvam: são captura automática de formulário (em 246 notas de 2026,
+  1 menciona reunião).
+
+Daí as **três decisões de modelo** que separam PT de BR/LATAM, e que não devem ser "corrigidas" sem
+reler a auditoria:
+
+1. **Coorte por data de criação** — única data 100% preenchida. O período filtra os deals criados
+   nele. Coortes recentes parecem piores porque ainda não amadureceram, e a página diz isso.
+2. **Distribuição de etapa atual, nunca conversão entre etapas.** Sem histórico, não dá para afirmar
+   que um deal hoje em "Perdidos" passou por "Reunião".
+3. **CM é classificação (`cm` / `nao_cm` / `sem_rastreio`), não filtro.** Filtrar esconderia metade da
+   base da Cxpress PT sem avisar.
+
+**Uma fonte para as três.** Mesmo ActiveCampaign, mesmas 84 colunas, mesmo dicionário de etapas —
+então `dashboard-pt-vercel/` tem UM `index.html` (descobre a marca pelo path da rota), UM `motor.js`,
+UM `render.js` e um exportador com `--marca`; a lógica é fonte única em `dashboard/queries_portugal.py`.
+Foi a duplicação entre BR, LATAM e Cxpress que criou o problema de sincronia manual que o repo carrega
+até hoje; aqui não se repete. O `build_umbrella.py` já suportava dois slugs apontando para a mesma
+fonte — não precisou mudar.
+
+Detalhes que custaram depuração: `deals.stage` é TEXT e `dim_stages_portugal.id` é bigint (cast do
+lado da dimensão); as 66 etapas se espalham por 9 pipelines com nomes repetidos ("Iniciar Contato" é
+id 1, 4, 29, 43, 52 e 55), então o mapa é por `title_normalized`, nunca por id — 100% das etapas de
+2026 caem no mapa. `utm_source` traz lixo que o normalizador derruba (`{utm_source}` e
+`{{site_source_name}}` não substituídos, `test_Source`, timestamps) e `meta`/`fb`/`ig` viram uma fonte só.
+
+Os `dados-pt-*.json` entram no `.gitignore` como os outros (nome de deal + valores em EUR).
+
+---
+
 ## Dashboards CM unificadas num guarda-chuva único
 ### 2026-09-09 — skill `dashboard-atualizar` (3.1.1 → 4.0.0) + `dashboards-umbrella/`
 

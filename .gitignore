@@ -18,6 +18,8 @@ dashboard-latam-vercel/dados-latam.json
 dashboard-latam-vercel/paridade_esperado.json
 dashboard-buzzcreators-vercel/dados-buzzcreators.json
 dashboard-buzzcreators-vercel/paridade_esperado.json
+# Portugal: um exportador, 3 JSONs (nome de deal + valores em EUR).
+dashboard-pt-vercel/dados-pt-*.json
 
 # Auditoria de deals CM (PII: emails + ids de deals). Outputs regeneraveis via /auditar-deals-cm.
 # Preserva a pasta via .gitkeep; ignora os relatorios/CSVs.
