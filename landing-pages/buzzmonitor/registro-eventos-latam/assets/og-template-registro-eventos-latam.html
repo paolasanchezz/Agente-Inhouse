@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+  <meta charset="UTF-8">
+  <title>OG · registro-eventos-latam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #390155;
+      font-family: Lato, Arial, sans-serif;
+      color: #fff;
+    }
+    .card {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      padding: 66px 76px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(120deg, #390155 0%, #EB7C2E 165%);
+      overflow: hidden;
+    }
+    .halo {
+      position: absolute;
+      right: -180px;
+      top: -220px;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(235, 124, 46, .3), rgba(235, 124, 46, 0) 68%);
+    }
+    .top { position: relative; display: flex; align-items: center; justify-content: space-between; }
+    .logo { height: 42px; width: auto; display: block; }
+    .pill {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .4);
+      border-radius: 8px;
+      padding: 12px 22px;
+      white-space: nowrap;
+    }
+    .main { position: relative; }
+    h1 {
+      font-family: "League Spartan", Impact, sans-serif;
+      font-weight: 900;
+      font-size: 100px;
+      line-height: .96;
+      letter-spacing: -0.038em;
+      max-width: 17ch;
+    }
+    .rule { width: 84px; height: 5px; background: #EB7C2E; border-radius: 999px; margin-bottom: 34px; }
+    .foot { position: relative; display: flex; gap: 46px; font-size: 25px; font-weight: 700; }
+    .foot span { display: flex; align-items: center; gap: 13px; }
+    .foot svg { width: 26px; height: 26px; color: #EB7C2E; flex: 0 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="halo"></div>
+    <div class="top">
+      <img class="logo" src="../../../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor">
+      <span class="pill">Oferta exclusiva</span>
+    </div>
+    <div class="main">
+      <div class="rule"></div>
+      <h1>15 días gratis de Buzzmonitor</h1>
+    </div>
+    <div class="foot">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
+        Soporte consultivo con especialistas
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
+        Tu primer dashboard listo
+      </span>
+    </div>
+  </div>
+</body>
+</html>

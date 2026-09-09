@@ -1,0 +1,200 @@
+=== HERO ===
+OVERLINE: Oferta exclusiva · Participantes del webinar
+H1: Los datos no solo sirven para explicar el pasado. Sirven para construir tu próximo movimiento.
+SUB: Ya viste el método en el webinar. Activa ahora tus 15 días gratis en Buzzmonitor, con especialistas al lado y tu primer dashboard armado por nuestro equipo.
+LABEL: Sin tarjeta de crédito
+LABEL: Acceso completo
+LABEL: Descuento exclusivo al final
+CTA: Quiero mis 15 días gratis
+
+=== FORMULARIO ===
+H3: Activa tu acceso
+SUB: Completa tus datos y un especialista te contacta para dejar todo listo.
+LABEL: Nombre completo
+LABEL: E-mail profesional
+LABEL: Teléfono
+LABEL: Empresa
+CTA: Quiero mis 15 días gratis
+
+=== OFERTA ===
+H2: Y para comenzar a monitorear a tu competencia, ganaste:
+H3: 15 días gratis de Buzzmonitor
+BODY: Acceso completo a la plataforma.
+H3: Soporte consultivo con especialistas
+BODY: No es un test solitario, es implementación guiada.
+H3: Tu primer dashboard listo
+BODY: Creado por nuestro equipo con base en tu escenario.
+BODY: Y además: al finalizar el período gratuito, obtienes un descuento exclusivo nunca antes ofrecido.
+
+=== LO QUE TE LLEVAS ===
+H2: Estás obteniendo mucho más que acceso a Buzzmonitor. Estás obteniendo:
+LIST ITEM: Mayor visibilidad sobre tu marca y tu mercado
+LIST ITEM: Previsibilidad estratégica
+LIST ITEM: Inteligencia de datos para tomar decisiones
+LIST ITEM: Velocidad para actuar
+LIST ITEM: Productividad con IA
+CTA: Quiero ponerlo en práctica ahora
+
+=== COSTO DE NO ACTUAR ===
+LABEL: El costo de no hacer nada
+H2: Si regresas a tu rutina sin aplicar lo que acabas de aprender…
+LIST ITEM: Seguirás descubriendo tendencias después que tu competencia.
+LIST ITEM: Seguirás reaccionando cuando podrías estar tomando la delantera.
+LIST ITEM: Y seguirás perdiendo tiempo intentando reunir datos dispersos para entender lo que ya ocurrió.
+BODY: El mercado cambia rápido. Y los líderes no son quienes reaccionan más rápido, sino quienes ven oportunidades antes que los demás.
+# [SUGESTAO anti-IA] Terceira instancia da familia "antitese-por-negacao" na LP (as outras: "Los datos no solo sirven para explicar el pasado. Sirven para..." e "No es un test solitario, es implementación guiada"). Limite do repo e 2 por peca. Alternativa para esta linha: "El mercado cambia rápido. Los líderes ven la oportunidad mientras los demás todavía leen el reporte de ayer." Decisao de quem aprova a copy.
+CTA: Aprovecha la oferta
+
+=== PLATAFORMA ===
+H2: Aquí es donde entra Buzzmonitor
+SUB: La plataforma te permite poner en práctica todo lo que aprendiste en el webinar.
+LIST ITEM: Entiende el share of voice y el sentimiento de tu público en redes sociales
+LIST ITEM: Haz benchmarking y convierte las comparativas en objetivos reales
+LIST ITEM: Identifica oportunidades antes que tu competencia y toma la delantera
+LIST ITEM: Monitorea a tus competidores y tu mercado
+
+=== SOLUCIONES ===
+H2: Accede a todas las soluciones de Buzzmonitor
+LIST ITEM: Más de 50 métricas para medir tu performance
+LIST ITEM: Análisis de tu competencia y tu mercado
+LIST ITEM: Monitoreo integral de redes sociales
+LIST ITEM: Programación y gestión de publicaciones
+LIST ITEM: Dashboards en tiempo real y reportes con IA
+LIST ITEM: Atención multicanal centralizada
+LIST ITEM: IA para automatizar el análisis de sentimiento y la categorización de temas
+SUB: Comprueba cómo los datos y la IA pueden transformar tu contenido en resultados y ventas.
+CTA: Aprovecha la oferta exclusiva
+
+=== MODULOS POR PLAN ===
+H2: Conoce los módulos de Buzzmonitor disponibles por plan
+LABEL: Profesional
+LABEL: Enterprise
+LIST ITEM: Social Listening | Profesional: sí | Enterprise: sí
+LIST ITEM: Atención al cliente | Profesional: sí | Enterprise: sí
+LIST ITEM: Analytics de Redes Sociales | Profesional: sí | Enterprise: sí
+LIST ITEM: Análisis de competidores | Profesional: sí | Enterprise: sí
+LIST ITEM: Dashboards ilimitados | Profesional: sí | Enterprise: sí
+LIST ITEM: Monitoreo de tendencias en la base de datos | Profesional: sí | Enterprise: sí
+LIST ITEM: IA para análisis de contenido | Profesional: sí | Enterprise: sí
+LIST ITEM: Buzz Pills: reportes con recomendaciones e insights generados por IA y enviados por email | Profesional: no | Enterprise: sí
+
+=== TODOS LOS PLANES INCLUYEN ===
+H3: Todos los planes incluyen las siguientes funcionalidades
+LABEL: Social Listening
+LIST ITEM: Insights cualitativos con IA
+LIST ITEM: Búsqueda ilimitada por keywords
+LIST ITEM: Reportes ilimitados y personalizados
+LIST ITEM: Monitoreo de competidores
+LIST ITEM: Triggers (reglas/alertas)
+LIST ITEM: Clasificación automática de sentimiento
+LIST ITEM: Descarga en múltiples formatos
+LABEL: Analytics
+LIST ITEM: Performance de varias redes sociales
+LIST ITEM: Performance de competidores
+LIST ITEM: Análisis de stories y reels
+LIST ITEM: Análisis de posts orgánicos y patrocinados
+LIST ITEM: Benchmark
+LIST ITEM: Personalización de reportes
+LIST ITEM: Filtros por proyecto, fecha y red social
+LABEL: Programación
+LIST ITEM: Publicaciones ilimitadas
+LIST ITEM: Programación en varias redes sociales
+LIST ITEM: ChatGPT para crear contenidos
+LIST ITEM: ChatGPT para generar imágenes
+LIST ITEM: Acortamiento de links
+LIST ITEM: Historial de publicaciones
+LIST ITEM: Flujo de trabajo y aprobación
+LIST ITEM: Calendario de contenidos
+LABEL: Atención al cliente
+LIST ITEM: Atención multicanal en una sola plataforma
+LIST ITEM: KPIs de tu atención y tu equipo
+LIST ITEM: Templates de respuestas predefinidas
+LIST ITEM: IA para sugerir respuestas
+LIST ITEM: ChatGPT para mejorar respuestas
+LIST ITEM: Atención al cliente con Tickets
+LIST ITEM: Triggers (reglas/alertas)
+LABEL: Flexibilidad de planes
+LIST ITEM: Herramienta 100% configurable
+LIST ITEM: Plataforma disponible en ES/PT/EN
+LIST ITEM: Cambios ilimitados de proyecto y perfil
+LABEL: Universidade do Buzz
+LIST ITEM: Formación online de Buzzmonitor
+LIST ITEM: Cursos gratuitos de marketing
+LIST ITEM: Certificación de Buzzmonitor
+LABEL: Accesos y seguridad
+LIST ITEM: Acceso de usuarios personalizados
+LIST ITEM: Inicio de Sesión Único (SSO)
+LIST ITEM: Integración de API gratuita
+LIST ITEM: Partner Oficial de Facebook e Instagram
+LABEL: Customer Success
+LIST ITEM: Set up inicial incluido (con base en un Brief)
+LIST ITEM: Onboarding y formación
+LIST ITEM: Customer Success en ES/PT/EN
+LIST ITEM: Soporte por email, videollamada y chat
+
+=== PRUEBA SOCIAL ===
+H2: Empresas que ya confían en Buzzmonitor
+
+=== CTA FINAL ===
+LABEL: Comienza ahora
+H2: Comienza a transformar señales en estrategia hoy.
+BODY: Obtén 15 días gratis en Buzzmonitor, soporte consultivo y descuento exclusivo para los participantes del webinar.
+CTA: Aprovecha la oferta
+
+=== FOOTER ===
+BODY: ¿Tienes alguna duda sobre el evento? Escríbenos.
+LABEL: rrss@getbuzzmonitor.com
+FOOTER: © Buzzmonitor 2026
+FOOTER: Política de Privacidad y uso de Cookies
+
+# ===================================================================
+# REVISION LINGUISTICA + ANTI-IA (fonte: contenido.getbuzzmonitor.com/registro-eventos)
+# Idioma detectado: ES-LATAM. Base: conhecimento/linguistico/es-latam/padrao-linguistico.md
+#                              + conhecimento/editorial/regras-anti-ia.md (Anexo ES-LATAM)
+# ===================================================================
+#
+# [CRITICO ES-LATAM] Vocabulario de Espanha na pagina original, corrigido aqui:
+#   1. "informes" -> "reportes" (padrao ES-LATAM: relatorio = reporte, NUNCA informe).
+#      Ocorrencias: "Dashboards en tiempo real e informes con IA", "Personalización de informes",
+#      "Informes ilimitados y personalizados", "BuzzPills: Informes con recomendaciones...".
+#   2. "Monitorización de tendencias" / "Monitorización de competidores" -> "Monitoreo de..."
+#      (monitorizacion e Espanha; LATAM usa monitoreo). A propria pagina ja usa "monitoreo"
+#      em outras secoes, entao havia inconsistencia interna.
+#
+# [CRITICO ES-LATAM] Lusismo (residuo de PT) na pagina original, corrigido aqui:
+#   3. "Entra en contacto con nosotros via e-mail" -> "Escríbenos" (calco de "entre em contato").
+#      Nativo ES-LATAM: "Escríbenos" / "Contáctanos".
+#   4. "Onboarding & Formación" -> "Onboarding y formación" (o "&" entre palavras nao e uso ES).
+#
+# [FIX ortografico] "Templates de respuestas predefinicas" -> "predefinidas" (typo no original).
+#
+# [FIX exclamacoes] regras-anti-ia.md: max 2 exclamacoes por peca; padrao ES-LATAM regra 7
+#   proibe excesso de signos. O original tem 5 ("¡ENVIAR AHORA!", "¡...descuento exclusivo!",
+#   "¡Aquí es donde entra Buzzmonitor!", "¡Accede a todas las soluciones...!",
+#   "¡Comprueba cómo...!"). Mantidas 0 nos titulos: a enfase agora e visual (tipografia, cor),
+#   nao pontuacao. Nenhum beneficio foi cortado, so o signo.
+#
+# [FIX CTA] "¡ENVIAR AHORA!" -> "Quiero mis 15 días gratis" (padrao ES-LATAM regra 5:
+#   CTA de alta conversao em 1a pessoa). Os outros CTAs do original ja seguiam o padrao
+#   ("Quiero ponerlo en práctica ahora") e foram preservados literalmente.
+#
+# [SUGESTAO H1] fundamentos-copy.md §0 + GUIDELINES §3: o H1 deve carregar a dor, nao o ganho.
+#   O H1 atual ("Los datos no solo sirven para explicar el pasado...") abre pelo ganho.
+#   Mantido literal porque o publico e BoFu quente (participante que acabou de sair do webinar),
+#   caso em que §0 permite abrir pelo ganho. Se quiser testar a versao com dor explicita:
+#   H1: "Terminó el webinar y tu competencia sigue viendo lo que tú todavía no ves."
+#   H2: "Los datos no solo explican el pasado. Activa tus 15 días gratis y construye tu próximo movimiento."
+#   Decisao de quem aprova a copy (A/B).
+#
+# [SUGESTAO anti-IA] 3 instancias de antitese-por-negacao (limite do repo: 2). Marcada inline
+#   na secao COSTO DE NO ACTUAR com alternativa.
+#
+# [OBSERVACAO] "Universidade do Buzz" ficou literal (esta assim no original e parece ser nome
+#   proprio do produto). Nao consta no BRANDBOOK.md como grafia oficial. Se for so falta de
+#   traducao, o nativo seria "Universidad del Buzz". Confirmar com produto.
+#
+# [OBSERVACAO fora do escopo desta LP] O banner de cookies da pagina original esta em PORTUGUES
+#   numa pagina ES ("Ao navegar nesse site, você está ciente do nosso Aviso de Privacidade").
+#   E do GreatPages, nao da copy, mas vale corrigir la.
+#
+# Em-dash: 0 ocorrencias na copy (varredura por em-dash e por entidade HTML: zero).
