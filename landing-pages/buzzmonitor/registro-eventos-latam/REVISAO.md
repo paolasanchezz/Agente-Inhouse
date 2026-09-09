@@ -51,6 +51,35 @@ mobile) foi **revertida integralmente** a pedido do Victor. Conferencia do rever
   pendencias · overflow a 375px so o skip-link · JSON-LD valido · 10 og + 4 twitter · h1-h2-h3 ·
   4 labels / 4 inputs · fidelidade de copy 100%.
 
+### Publicacao (2026-09-09)
+
+Publicada pelo fluxo CI (`content.buzzmonitor.com` esta em `MIGRADOS.json`, entao **nao** houve
+sibling nem deploy manual): manifesto + PR #540 -> merge-bot auto-mergeou (diff so tocava
+conteudo) -> `lp-deploy.yml` run 34316747294 verde.
+
+Gates rodados antes de commitar, como manda o fluxo:
+
+- `build_umbrella.py` no manifesto inteiro: exit 0, 28 LPs. Os 6 avisos de OG ausente sao de
+  **outras** LPs, pre-existentes; a nossa saiu sem aviso.
+- `check_gtm_region.py` no manifesto: 24 OK, 4 avisos pre-existentes, **0 bloqueios**.
+- Conferido no `dist` local antes do commit: 0 placeholders `{{...}}` sobrando, 0 path relativo
+  vazando, OG e logos resolvidos pra `/assets/buzzmonitor/...`.
+- CSP do dominio conferido **antes** de subir: `connect-src` libera `contenido.getbuzzmonitor.com`,
+  senao o POST do formulario morreria bloqueado e cada lead se perderia em silencio.
+
+Validado no live: 200 (82.322 bytes, igual ao dist) · 7/7 headers · GTM 3/3 tokens · cert
+Let's Encrypt ate 19/10/2026 · OG, favicon e os 12 logos de cliente todos 200 · 3 vizinhas
+amostradas 200 (o smoke do CI cobre as 28) · LCP 624 ms · CLS 0.
+
+**Nota sobre `form-action`:** o CSP do guarda-chuva nao lista `contenido.getbuzzmonitor.com` em
+`form-action`, so em `connect-src`. Consequencia: o `fetch` (caminho normal) funciona; o submit
+nativo do `<form>` — que so aconteceria com JS desligado — seria bloqueado pelo CSP. O `<noscript>`
+da LP cobre esse caso mandando o usuario pro e-mail. Nao ampliei o `form-action` de proposito:
+esse `vercel.json` e compartilhado pelas 28 LPs do dominio.
+
+PageSpeed Insights nao rodou (API publica devolveu 429 em 4 tentativas). Substituido por medicao
+real de Navigation Timing no live; comando pra tentar de novo esta no `README.md`.
+
 ---
 
 ## Criticos aplicados (v1, historico)

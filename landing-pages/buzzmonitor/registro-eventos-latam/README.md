@@ -3,7 +3,7 @@
 **Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 (2026-09-08, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
-**Dominio sugerido:** `content.buzzmonitor.com` (subdominio guarda-chuva de conteudo ES-LATAM)
+**Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
 
 ## O que e
 
@@ -13,7 +13,8 @@ zero item cortado. O ganho e de densidade: a pagina legada empilha ~60 bullets
 visiveis; aqui a lista completa de funcionalidades por modulo vive num `<details>`
 fechado por padrao (progressive disclosure).
 
-A LP legada continua no ar. Esta versao nao foi publicada.
+**No ar desde 2026-09-09** em `content.buzzmonitor.com/registro-eventos-latam`.
+A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem redirecionada).
 
 ## Estrutura (ordem e contagem ditadas pela copy, GUIDELINES §9)
 
@@ -91,9 +92,83 @@ tirar cor e sombra da pagina e deixar tipografia, hairline e respiro fazerem o t
 - [x] OG image 1200×630 → `assets/og-registro-eventos-latam.png` (321 KB, arquivo unico, na paleta v2)
 - [x] Gates locais: `check_gtm_region.py` OK · `bump_mobile_type.py` 0 pendencias · em-dash 0
 - [x] Auditoria de acessibilidade (Web Interface Guidelines) — ver `REVISAO.md`
-- [ ] Copy publicada no Notion — **nao rodou**, MCP do Notion nao esta conectado nesta sessao
-- [ ] Formulario real integrado — rodar `/lp-integrar-form buzzmonitor/registro-eventos-latam "snippet"`
-- [ ] Publicado — rodar `/lp-publicar buzzmonitor registro-eventos-latam content.buzzmonitor.com`
+- [x] Formulario real integrado (replica do endpoint GreatPages, ver "Formulario" abaixo)
+- [x] **Publicado** via fluxo CI: PR #540 -> merge-bot -> `lp-deploy.yml` run 34316747294
+- [ ] Copy publicada no Notion — **nao rodou**, MCP do Notion nao estava conectado na sessao
+- [ ] **1 submit de validacao no ActiveCampaign** — obrigatorio antes de mandar trafego (ver Pendencias 7)
+
+## Formulario
+
+Nao e embed. E **replica do envio do form GreatPages da propria pagina de origem**, mesmo padrao
+que ja roda em producao em `landing-pages/buzzmonitor/agencias-es` (page id 293578):
+
+| Item | Valor |
+|---|---|
+| Endpoint | `POST https://contenido.getbuzzmonitor.com/conversion` (cross-origin, `keepalive`) |
+| `elemento` | `e_3619832_1_17848365766a6271e05fa7e373119784` |
+| ids dos campos | herdados da page **3588766** (o form e reaproveitado entre paginas GreatPages) |
+| Pagina de obrigado | `contenido.getbuzzmonitor.com/muchas-gracias` |
+| Campos enviados | nome, e-mail, telefone, empresa + `input_referral_source`, `input_mobile`, `input_uri` |
+| CSP | `connect-src` do `content-buzzmonitor-com/vercel.json` ja libera `contenido.getbuzzmonitor.com` |
+
+O payload foi conferido interceptando o `fetch` na LP local (formato `{campos:{0:{id,titulo,valor}…}, elemento, eid, enav, eclid, euser}`), **sem enviar nada pra rede** e sem criar lead de teste.
+
+`/lp-integrar-form` nao foi usada de proposito: ela troca o mock por **embed** (Jotform/RD/HubSpot).
+Aqui o form e nativo com endpoint proprio, caso que a skill nao cobre e para o qual `agencias-es`
+e o precedente do repo.
+
+### O que esta fragil nisso (nao e opiniao, esta documentado)
+
+`integracoes/activecampaign/ESTUDO-form-api-vs-greatpages.md` §1.1 registra os riscos deste
+transporte, e eles valem igual aqui:
+
+1. **Sem confirmacao de entrega.** O `/conversion` nao expoe `Access-Control-Allow-Origin` na
+   resposta do POST, entao o browser entrega mas nao consegue LER o resultado. O codigo conclui
+   no `.then` e no `.catch`. Se o GreatPages devolver 500, **o usuario ve sucesso do mesmo jeito**
+   e o lead se perde em silencio.
+2. **Acoplamento a pagina de terceiro.** Se alguem editar o form nas pages 3619832 / 3588766, os
+   ids mudam e a LP para de gerar lead sem erro visivel.
+3. **Sem UTM propria.** O form de origem nao tem campos de UTM, entao a atribuicao viaja dentro
+   do `input_uri` (que leva a query string inteira). Combinado com o §4.1 do estudo (o filtro CM
+   LATAM so reconhece URL com `getbuzzmonitor.com`, e esta LP esta em `content.buzzmonitor.com`),
+   lead sem `utm_source` da whitelist tende a ficar **fora da dashboard CM LATAM**.
+
+A recomendacao do estudo segue valendo: migrar pra webhook n8n -> API do AC (Opcao A, faseado).
+Esta LP nao piora o quadro, mas **e a terceira** LP acoplada ao GreatPages.
+
+## Publicacao
+
+| Item | Valor |
+|---|---|
+| URL | https://content.buzzmonitor.com/registro-eventos-latam |
+| Fluxo | CI (dominio em `MIGRADOS.json`): manifesto + PR -> merge-bot -> `lp-deploy.yml` |
+| PR | #540 (auto-mergeado pelo bot: diff so tocava conteudo) |
+| Run do deploy | 34316747294 (verde; smoke de todas as URLs + rollback automatico armado) |
+| HTTP | 200, 82.322 bytes (bate byte-a-byte com o `dist` local) |
+| Headers | 7/7 presentes (CSP, HSTS, nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP) |
+| GTM | `GTM-MKQBX2MG` servido, 3/3 tokens (`gtm.js`, `ns.html`, container id) |
+| Certificado | Let's Encrypt, valido ate 19/10/2026 |
+| Vizinhas | intactas (o smoke do CI valida as 28 LPs do guarda-chuva) |
+
+Metricas reais do live (Navigation Timing + PerformanceObserver, mobile-agnostico):
+
+| Metrica | Valor |
+|---|---|
+| TTFB | 63 ms |
+| FCP | 540 ms |
+| **LCP** | **624 ms** (bom: < 2,5 s) |
+| **CLS** | **0** (bom: < 0,1) |
+| DOMContentLoaded | 485 ms |
+| Load | 1,23 s |
+| Requests | 8 (1 CSS, 4 scripts, 1 img, 2 fetch) |
+| Transferido | 297 KB (HTML 17 KB comprimido) |
+
+PageSpeed Insights nao rodou: a API publica devolveu **429** em 4 tentativas (precisa de API key
+pra uso sustentado). Pra tentar de novo:
+
+```
+https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Fcontent.buzzmonitor.com%2Fregistro-eventos-latam&strategy=mobile&category=performance&category=accessibility&category=seo&category=best-practices
+```
 
 ## Assets referenciados
 
@@ -120,6 +195,13 @@ tirar cor e sombra da pagina e deixar tipografia, hairline e respiro fazerem o t
    o texto para `var(--ink)`. Se o Victor quiser A/B de cor de CTA, e aqui.
 5. Regerar a OG image: subir um servidor local na raiz do repo e rodar Chrome headless
    `--window-size=1200,630 --screenshot` contra `assets/og-template-registro-eventos-latam.html`.
+7. **Validar o formulario no ActiveCampaign antes de mandar trafego.** Fazer 1 submit real com
+   e-mail identificavel e conferir na conta do AC: (a) o contato nasceu, (b) os 4 campos cairam
+   nos campos certos, (c) a automacao que cria o negocio disparou, (d) o `input_uri` chegou com a
+   query string. Enquanto isso nao for conferido, **nao se sabe** se o lead esta chegando: o
+   transporte nao confirma entrega (ver "O que esta fragil nisso").
+8. **Desligar ou redirecionar a LP legada do GreatPages** (`contenido.getbuzzmonitor.com/registro-eventos`)
+   quando esta assumir. Hoje as duas estao no ar, competindo por indexacao com a mesma oferta.
 
 ## v2.1 — camada halftone
 
