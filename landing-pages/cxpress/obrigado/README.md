@@ -4,8 +4,9 @@ Thanks page. Recriação, dentro do nosso pipeline (`content.cxpress.io/obrigado
 `home.cxpress.io/obrigado` — hoje no site institucional em GreatPages, fora do pipeline de LPs.
 
 **Gerada em:** 2026-09-09
-**Copy-fonte:** transcrição literal de `home.cxpress.io/obrigado` (hero) + rodapé de
-`content.cxpress.io/institucional`. Ver `copy.txt`.
+**Copy-fonte:** transcrição literal de `home.cxpress.io/obrigado` (hero). Rodapé: o padrão do
+domínio, copiado da `escolha-a-cxpress` (trocado em 2026-09-09; antes vinha da `institucional`).
+Ver `copy.txt`.
 **Domínio:** `content.cxpress.io` (guarda-chuva migrado pro CI — deploy só via `lp-publicar`)
 
 ## O que foi pedido
@@ -13,29 +14,40 @@ Thanks page. Recriação, dentro do nosso pipeline (`content.cxpress.io/obrigado
 1. Conteúdo **igual** ao de `home.cxpress.io/obrigado` (hero completo, incluindo o botão de WhatsApp).
 2. Rodapé da LP `institucional`, com duas mudanças: **tirar o bloco de CTA** e **jogar o contato pra lá**.
 3. Usar os assets enviados (mascote, pattern de fundo, ícone de ligação).
+4. Depois da publicação: **rodapé igual ao de `content.cxpress.io/escolha-a-cxpress`** (substitui o
+   item 2 — ver seção abaixo).
 
 ## Estrutura
 
 - HERO (logo + H1 + CTA WhatsApp + lead + nota de horário + card "Escolheu receber uma ligação?" + mascote)
-- FOOTER (importado da `institucional`, sem o CTA, com Contatos no topo)
+- FOOTER (padrão do domínio: logo + linha legal + 4 redes)
 
 Nenhum bloco de texto novo: a página-fonte tem 1 seção, a LP tem 1 seção (GUIDELINES §9).
 
-## Rodapé — o que mudou em relação ao da `institucional`
+## Rodapé — trocado em 2026-09-09 (pós-publicação)
 
-| Item | `institucional` | aqui |
-|---|---|---|
-| `.k2x-top` | logo + botão "Falar com um especialista" (âncora `#proposta`) | logo + bloco **Contatos** |
-| `.k2x-grid` | 2 colunas (texto + Contatos) | 1 coluna (texto + "Canais integrados") |
-| `.k2x-btn` | gradiente royal, shimmer no hover | **removido** (CSS inclusive) |
-| `.k2x-logo` | `<img>` solto | envolvido em link pra home da marca, nova aba (GUIDELINES §17) |
-| `.k2x-contato-tel` | sem CSS (telefone e ícone caíam como inline) | `flex` com `gap`, ícone alinhado ao número |
-| `.k2x-title` ("Contatos") | `#8a8a8a` (≈4,0:1 no fundo escuro, reprova AA) | `#B9BDCC` (6,9:1) |
-| `.k2x-social`, `.k2x-row`, `.k2x-wibix` | declarados | removidos (CSS morto — não existem neste rodapé) |
-| `.fade-in` | reveal próprio da `institucional` | rodapé sem animação; o reveal é só do hero |
+A primeira versão importava o rodapé pesado da LP `institucional` (gradiente radial escuro, bloco de
+Contatos, "Canais integrados", texto legal com CNPJ e endereço), com o CTA removido e o contato
+movido pro topo. A pedido do Bruno, passou a usar o **rodapé padrão das LPs Cxpress do domínio**,
+tomando `escolha-a-cxpress` como referência: faixa navy, logo à esquerda, linha legal ao centro,
+4 ícones de rede à direita; empilhado e centrado abaixo de 720px.
 
-A remoção do CTA não é cosmética: a âncora `#proposta` aponta pro formulário da `institucional`,
-que não existe aqui. Mantê-lo seria link quebrado no rodapé.
+Copiado 1:1 de `landing-pages/cxpress/escolha-a-cxpress` (versão da `origin/main`, que é a que está
+no ar — conferida contra o live). Só os nomes de variável mudaram, para os tokens que esta LP já
+declara: `var(--navy)` → `var(--primary-dark)` (mesmo `#232960`), `var(--lilac)` →
+`var(--primary-lighter)` (mesmo `#D7E2FF`), `var(--wrap)` → `1180px` literal.
+
+Conferência de paridade contra o live da `escolha-a-cxpress` (Playwright, 1440): background,
+`padding`, `border-top`, altura (137px), largura e padding do `.footer__inner`, colunas do grid
+(425,25 / 217,5 / 425,25), `gap`, cor/tamanho/`line-height`/`text-wrap` do parágrafo, logo 150×34 e
+os 4 botões de 44×44 com a mesma cor, borda e raio — **todos idênticos**.
+
+O que saiu junto:
+
+- **3 assets órfãos apagados** (só serviam ao rodapé antigo): o logo PNG do institucional, o
+  `Cxpress_icons_social-scaled.png` e o `whatsapp-icon.png`. 141 KB a menos no repo.
+- **Inter saiu do carregamento de fontes.** Era usada só pelo rodapé antigo (`.k2x-title`,
+  `.k2x-copy`, o `+` dos divisores). Uma família a menos na request.
 
 ## Decisões de design
 
@@ -47,9 +59,13 @@ que não existe aqui. Mantê-lo seria link quebrado no rodapé.
   no celular).
 - **Card branco no bloco da ligação** em vez de texto solto sobre o pattern: separa o "plano B"
   (ligação) do caminho principal (WhatsApp) sem inventar seção nova.
-- **Tipografia Open Sans + Inter**, o mesmo par que a `institucional` carrega — o rodapé importado
-  depende de Inter (`.k2x-title`, `.k2x-copy`, o `+` dos divisores) e Open Sans no corpo. Evita
-  carregar uma terceira família só pro hero.
+- **Tipografia: par do brand — Open Sans nos títulos, Source Sans 3 no corpo.** A primeira versão
+  usava Open Sans no corpo + Inter, porque era disso que o rodapé importado da `institucional`
+  dependia. Com a troca do rodapé (2026-09-09) os dois motivos caíram, e o texto do rodapé da
+  `escolha-a-cxpress` é Source Sans 3 — era a única diferença de medida que sobrava na paridade
+  (Source Sans 3 é mais estreita que Open Sans, então a coluna do meio do grid dava 217,5px lá e
+  247,4px aqui). Adotar o par do brand fechou a paridade e alinhou a LP com `brand/cxpress/tokens.json`
+  e com as LPs irmãs do domínio.
 - **Nota de horário em 15px** (a fonte usa 9px, ilegível no celular; piso de label da §20 é 14px).
 - Mascote e pattern entram como `<picture>` / `image-set()` **WebP com fallback PNG**: os assets
   enviados são WebP (é o formato que a página-fonte serve, mesmo com extensão `.png`), e a §3.6 pede
@@ -77,8 +93,8 @@ de referência. O empilhado deixou de ser uma versão estreita do desktop e viro
   inteiro na vertical e as diagonais da base dele caíam exatamente sobre o texto da ligação. Um véu
   da própria cor de fundo (66%) por cima mantém a textura e devolve o contraste do texto.
 
-Medições depois do ajuste (desequilíbrio de linha, §21): CTA 0% (1440 e 390), H1 6% no desktop,
-parágrafo do rodapé caiu de 62% para 21% em 390. Zero overflow horizontal em 1440/1200/980/820/600/375.
+Medições depois do ajuste (desequilíbrio de linha, §21): CTA 0% (1440 e 390), H1 6% no desktop.
+Zero overflow horizontal em 1440/1200/980/820/600/390/375.
 
 ## Estado
 
@@ -89,11 +105,12 @@ parágrafo do rodapé caiu de 62% para 21% em 390. Zero overflow horizontal em 1
 - [x] `bump_mobile_type.py --dry-run`: 0 clamps a ajustar (H1 34px, corpo 17px, mínimo 15px no mobile)
 - [x] `build_umbrella.py` com manifesto de teste: 0 aviso, 0 path relativo sobrando, 10 assets copiados
 - [x] Publicada — https://content.cxpress.io/obrigado (2026-09-09, PR #566, deploy CI run 34394978336)
+- [x] Rodapé trocado pelo padrão do domínio (referência `escolha-a-cxpress`) + par tipográfico do brand — 2026-09-09
 - [ ] Revisão (`lp-revisar`) — opcional, a LP não passou por auditoria de design/a11y automatizada
 
-Validações do live: hash idêntico ao do dist (`5a72875999637ce20c95a1e2705d57aa`), 10/10 assets 200,
-7/7 headers de segurança, GTM 3/3 tokens, vizinhas intactas (smoke do CI nas 68 URLs do manifesto).
-PageSpeed não rodou na entrega (API devolveu 429, quota do dia) — pendente.
+Validações do live em cada entrega: hash do servido idêntico ao do dist, todos os assets 200,
+7/7 headers de segurança, GTM 3/3 tokens, vizinhas intactas (smoke do CI nas URLs do manifesto).
+PageSpeed não rodou (API devolveu 429, quota do dia) — pendente.
 Relatório: Notion, `Entregas > Entrega LP · Cxpress · obrigado · 2026-09-09`.
 
 ## Exceções deliberadas às GUIDELINES (precedente: cadastro-realizado / video-atendimento-obrigado)
@@ -134,9 +151,8 @@ Ou seja: depois de publicar, o pipeline terá duas thanks pages para a mesma ori
 | `./assets/hero-pattern.webp` + `.png` | pattern de fundo enviado pelo usuário (1440×900) |
 | `./assets/mascot/samir-apontando.webp` + `.png` | mascote enviado pelo usuário (470×439) |
 | `./assets/icon-ligacao.svg` | ícone de ligação enviado pelo usuário |
-| `./assets/imgi_1_3433378_1_176476463169302bd7a5301467666886-1.png` | logo do rodapé, copiado da `institucional` |
-| `./assets/Cxpress_icons_social-scaled.png` | "Canais integrados", copiado da `institucional` |
-| `./assets/whatsapp-icon.png` | ícone do rodapé, copiado da `institucional` |
+| `../../brand/cxpress/assets/logos/logo-reversed.svg` | brand (logo do rodapé) |
 
-Os três últimos são byte-a-byte iguais aos da `institucional`, então convivem no mesmo
-`/assets/cxpress/` do guarda-chuva sem colisão de conteúdo.
+Os ícones de rede do rodapé são SVG inline, não arquivo (igual à `escolha-a-cxpress`). Os 3 assets
+do rodapé antigo (logo PNG do institucional, `Cxpress_icons_social-scaled.png`, `whatsapp-icon.png`)
+foram apagados na troca de 2026-09-09.

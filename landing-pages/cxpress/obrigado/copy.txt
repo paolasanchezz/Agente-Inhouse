@@ -15,27 +15,18 @@ BODY: Fique de olho no telefone. Um especialista do nosso time entrará em conta
 MASCOTE: Samir apontando para cima (asset enviado pelo usuário, mesmo da página-fonte)
 FUNDO: pattern de linhas arredondadas azul/laranja/amarelo (asset enviado pelo usuário)
 
-=== FOOTER (importado da LP institucional) ===
+=== FOOTER (padrao do dominio, copiado da escolha-a-cxpress) ===
 LOGO: Cxpress reversed (link para home.cxpress.io, nova aba)
-CONTATOS:
-  Contatos
-  (11) 5039-5028  + ícone de WhatsApp (wa.me/551150395028)
-  comercial@gocxpress.com.br
-TEXTO: A **Cxpress** é uma plataforma construída com foco em integração total dos canais e sistemas,
-       permitindo que diferentes produtos e tecnologias operem de forma unificada dentro do mesmo ambiente.
-SUB: Canais integrados:
-ICONES: Cxpress_icons_social-scaled.png
-LEGAL: Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07.
-       Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 -Torre 1, 14º Andar - Sala 1401 -
-       Alphaville Industrial, Barueri - SP, 06455-000, Brasil.
-COPY: © 2026 Cxpress®. Todos os direitos reservados
+LEGAL: Cxpress e um produto Elife. (c) 2026
+REDES: Facebook, Instagram, LinkedIn, YouTube (icones SVG inline)
 
 # Copy-fonte do hero: transcricao literal de https://home.cxpress.io/obrigado (site institucional
 # GreatPages, fora do pipeline de LPs), a pedido do usuario: "o conteudo todo esta em
 # home.cxpress.io/obrigado exatamente igual". Nenhum bloco de texto foi adicionado, removido ou
 # reescrito (GUIDELINES 9: copy dita estrutura).
-# Copy-fonte do rodape: transcricao literal do rodape de https://content.cxpress.io/institucional
-# (LP do nosso pipeline, `landing-pages/cxpress/institucional`), a pedido do usuario, com duas
-# alteracoes pedidas: (1) o bloco de CTA ("Falar com um especialista", ancora #proposta) saiu;
-# (2) o bloco de Contatos subiu pra linha do topo, no lugar que o CTA ocupava.
-# Revisao anti-IA: nao aplicavel — copy 100% preservada das duas fontes (nenhuma escrita nova).
+# Copy-fonte do rodape: 2026-09-09, a pedido do Bruno ("ajustar o rodape para ficar igual ao de
+# https://content.cxpress.io/escolha-a-cxpress"), o rodape passou a ser o padrao do dominio,
+# copiado 1:1 da `escolha-a-cxpress` (versao da origin/main, conferida contra o live). Antes vinha
+# da LP `institucional`, com o CTA removido e o contato movido pro topo. Esse bloco saiu inteiro,
+# junto com Contatos, "Canais integrados" e o texto legal de CNPJ/endereco.
+# Revisao anti-IA: nao aplicavel: copy 100% preservada das duas fontes (nenhuma escrita nova).
