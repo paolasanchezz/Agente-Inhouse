@@ -7,19 +7,6 @@ LABEL: Acceso completo
 LABEL: Descuento exclusivo al final
 CTA: Quiero mis 15 días gratis
 
-=== METRICAS ANIMADAS (decorativo, rotulos de UI, datos de ejemplo) ===
-LABEL: Menciones
-LABEL: 12.480
-LABEL: +18%
-LABEL: Share of voice
-LABEL: 38%
-LABEL: Positivo
-LABEL: 62%
-LABEL: Alertas
-LABEL: 5
-LABEL: Temas nuevos
-LABEL: 12
-
 === FORMULARIO ===
 H3: Activa tu acceso
 SUB: Completa tus datos y un especialista te contacta para dejar todo listo.

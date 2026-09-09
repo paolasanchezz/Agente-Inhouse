@@ -120,6 +120,35 @@ com outro conteudo, pede mecanismo de pausar/parar/ocultar. A LP cobre hoje so a
 (`prefers-reduced-motion`). Nao ha botao de pausa porque o pedido foi movimento continuo.
 Decisao do Victor se entra.
 
+### v2.7 (2026-09-09): hero laranja e a pendencia de 2.2.2 fechada
+
+**A pendencia de WCAG 2.2.2 da v2.6 esta resolvida.** As metricas animadas foram removidas a
+pedido do Victor ("nao se apreciam o suficiente e se tapam com o texto"), entao nao existe mais
+movimento automatico continuo e a regra deixa de se aplicar. Nao ficou nenhum residuo: 0
+ocorrencias de `.metrics`, `.m__*`, `@keyframes cross-*`, `will-change` e do bloco
+`=== METRICAS ANIMADAS ===` no `copy.txt`.
+
+**Inversao de contraste do hero.** O fundo virou `#EB7C2E`, e sobre laranja o esquema anterior
+inteiro reprovava:
+
+| Cor de texto | Sobre `#EB7C2E` | Situacao |
+|---|---|---|
+| branco `#ffffff` | 2,84:1 | reprova AA e o piso de 3:1 |
+| lilas `#F2D8FF` | 2,17:1 | reprova |
+| amarelo `#FCBD4F` | 1,70:1 | reprova (era a cor dos checks e do sunburst) |
+| **roxo `#390155`** | **5,69:1** | **passa AA** |
+
+Entao todo o texto do bloco foi para roxo, incluindo checks, ponto do eyebrow e sunburst.
+Medido no DOM com `getComputedStyle` + calculo de luminancia relativa, nao estimado: H1, sub,
+flags e eyebrow todos em **5,69:1**; realce do H1 (branco sobre roxo) em **16,04:1**.
+
+**Ganho estrutural:** com o hero em laranja, sobrou **uma unica secao escura** na pagina (o CTA
+final). O desvio da `GUIDELINES §1` que a v2.4 introduziu (duas secoes escuras como abre-e-fecha)
+deixou de existir.
+
+O desvio de contraste que **continua ativo** e o do titulo da Oferta (`#EB7C2E` sobre branco,
+2,84:1), decidido pelo Victor na v2.6 e documentado acima.
+
 ---
 
 ## Criticos aplicados (v1, historico)

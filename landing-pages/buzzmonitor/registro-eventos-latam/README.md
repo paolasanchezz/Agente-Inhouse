@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (2026-09-09, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (revertida) · **Hero laranja:** v2.7 (2026-09-09, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -20,7 +20,7 @@ A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem red
 
 | # | Secao | Blocos | Fundo |
 |---|---|---|---|
-| 1 | Hero + formulario | overline, H1 (realce laranja), sub, 3 flags, CTA · card com 4 campos · **8 chips de metrica animados** | **roxo** (`#390155`) |
+| 1 | Hero + formulario | overline, H1 (realce roxo), sub, 3 flags, CTA · card com 4 campos | **laranja** (`#EB7C2E`) |
 | 2 | Oferta | 3 cards + linha de reforco | **branco** (titulo `#EB7C2E`, conteudo preto) |
 | 3 | Lo que te llevas | 5 itens (grid 3+2) + CTA outline | branco |
 | 4 | Costo de no actuar | tag rotacionada, H2, 3 itens, fecho, CTA | **magenta** (`#DE2451`) |
@@ -529,6 +529,52 @@ do hero (`top: 40%..72%`) com opacidade abrindo em 10%.
   continuo. Fechar isso e um botao discreto de pausa, como o que a v1 teve no marquee. **Decisao
   do Victor.**
 
+## v2.7 — hero laranja, realce invertido e fim das metricas animadas
+
+Tres pedidos do Victor.
+
+### 1. As metricas animadas sairam
+
+Motivo dele: "nao se apreciam o suficiente e se tapam com o texto". Removidas por completo:
+CSS (`.metrics`, `.m*`, os tres `@keyframes cross-*`), HTML e o bloco `=== METRICAS ANIMADAS ===`
+do `copy.txt`. Varredura confirma 0 residuos.
+
+**Efeito colateral bom:** isso **fecha a pendencia de WCAG 2.2.2** que a v2.6 tinha deixado
+aberta (movimento automatico >5s sem mecanismo de pausar). Sem movimento continuo, a regra
+deixa de se aplicar.
+
+### 2. Hero passou de roxo para laranja `#EB7C2E`
+
+Isso **inverteu todo o esquema de cor do bloco**, porque sobre laranja nem o branco nem o lilas
+funcionam:
+
+| Elemento | Antes (bloco roxo) | Agora (bloco laranja) | Contraste medido |
+|---|---|---|---|
+| Fundo | `#390155` | `#EB7C2E` | |
+| H1 | branco | **roxo `#390155`** | **5,69:1** |
+| Sub | lilas `#F2D8FF` | **roxo** | **5,69:1** |
+| Flags e checks | branco / amarelo | **roxo** | **5,69:1** |
+| Eyebrow e seu ponto | branco / amarelo | **roxo** | **5,69:1** |
+| Sunburst | amarelo | **roxo** | decorativo |
+| Reticula halftone | branca a 30% | branca a **38%** | decorativo |
+| CTA primario | branco com texto roxo | igual (segue sendo o elemento mais forte) | |
+
+Por que nada ficou branco: branco sobre `#EB7C2E` da **2,84:1** e o lilas `#F2D8FF` da
+**2,17:1**. Os dois reprovam AA. O amarelo em cima do laranja e pior ainda (1,7:1), por isso os
+checks, o ponto do eyebrow e o sunburst tambem viraram roxo.
+
+### 3. O realce do H1 inverteu
+
+Antes: fundo laranja com texto roxo. Agora: **fundo roxo `#390155` com texto branco**, que fecha
+**16,04:1**. O realce virou o inverso do bloco, o que da mais peso ainda a frase de desfecho.
+
+### Como fica a sequencia de cores da pagina
+
+laranja (hero) -> branco (Oferta) -> branco -> magenta (costo) -> branco -> off-white -> branco
+-> branco -> roxo (CTA final). Nenhuma adjacencia do mesmo tom, e agora so **uma** secao escura
+(o CTA final), o que volta a bater com a `GUIDELINES §1` — o desvio das duas secoes escuras que a
+v2.4 tinha introduzido deixou de existir.
+
 ## Historico de versoes
 
 | Versao | O que era | Estado |
@@ -541,7 +587,8 @@ do hero (`top: 40%..72%`) com opacidade abrindo em 10%.
 | v2.3 | Troca de "webinar" por "evento" em toda a copy publica (9 no HTML, 4 no `copy.txt`). | incorporada |
 | v2.4 | Hero passa a ser bloco de cor (roxo) e vira o bloco mais destacado; costo vai pra magenta e CTA final pra roxo. | substituida |
 | v2.5 | Oferta volta pro branco com titulo laranja e conteudo preto. Restam 3 blocos de cor: hero (roxo), costo (magenta) e CTA final (roxo). | substituida |
-| **v2.6** | Titulo da Oferta no `#EB7C2E`; realce laranja atras da 2a frase do H1; overline encurtado; menos ar no hero; 8 chips de metrica animados em volta do formulario (5 no mobile). | **vigente** |
+| v2.6 | Titulo da Oferta no `#EB7C2E`; realce laranja atras da 2a frase do H1; overline encurtado; menos ar no hero; 8 chips de metrica animados. | parcialmente revertida (os chips sairam na v2.7) |
+| **v2.7** | Metricas animadas removidas; hero passa de roxo para laranja `#EB7C2E` com todo o texto em roxo; realce do H1 inverte para fundo roxo com texto branco. | **vigente** |
 
 O revert da v3 foi validado por comparacao pixel a pixel contra o render da v2: **0 pixels de
 diferenca** em 1440x10400. A `copy.txt` voltou do backup tirado antes da reescrita.
