@@ -384,6 +384,19 @@ py landing-pages/build/check_gtm_region.py <lp_dir> --grandfather   # aceita est
 
 Incidente que motivou (reaberto pelo caminho sem-skill): **2026-04-20** (§7.2) — a correção só na skill não bastou; por isso o gate vive no CI. Grandfathered nesta leva: `buzzmonitor/webinar-territorios-marca-mundial-junho-2026` (declara `pt-PT`, dispara o container LATAM `MKQBX2MG`) — decisão de conteúdo pendente.
 
+### 5.5 Convenção de UTM em CTA de LP
+
+Fonte canônica: **[`conhecimento/config/convencao-utm.md`](../conhecimento/config/convencao-utm.md)** — ler antes de montar qualquer link de conversão. Resumo operacional:
+
+- Todo CTA que sai de uma página nossa pra uma **LP de captação** leva `utm_source` + `utm_content`. Os dois, sempre.
+- `utm_source` = **a fonte do lead** (`webinar`, `email`, `newsletter`, `blog`, `material`, `evento`, `social`, `assinatura`, `lp`). Não é o formato nem a marca — a marca sai do domínio de destino.
+- `utm_content` = **qual conteúdo e qual tipo de página** geraram o lead, no formato `{tipo-de-pagina}-{conteudo}`. Página de agradecimento de perpétuo: `agradecimento-perpetuo-{tema}`.
+- `utm_medium` / `utm_campaign` são opcionais, só pra separar veículos ou campanhas dentro da mesma fonte. Nunca substituem `source`/`content`.
+- Kebab-case, minúsculas, sem acento, sem underscore. UTM já publicada não se renomeia sem motivo (quebra a série histórica do relatório).
+- Link de navegação interna (logo → home, âncora na própria página) **não** leva UTM.
+
+Lead sem `utm_source` **e** sem `url_conversao` desaparece do filtro das dashboards de CM (§2.7) — por isso os dois parâmetros são obrigatórios, não recomendação.
+
 ---
 
 ## 6. Troubleshooting (sintoma → causa → solução)
@@ -494,6 +507,7 @@ Antes de chamar `lp-publicar`, conferir:
 
 - **`landing-pages/GUIDELINES.md`** — regras de design (§1 paleta, §3 hero, §10 posicionamento do form, §11 integração tardia, §12 favicon, etc.)
 - **`landing-pages/GUIA-webinar-perpetuo-destino.md`** — snippet e mecânica do form de **"LP Aula" / webinar perpétuo**: como **um mesmo Jotform serve N LPs**, cada uma com a sua página de agradecimento (a Thank You Page do Jotform é fixa por formulário). Inclui o que foi testado e **não** funciona: POST direto no `submit.jotform.com` cai em captcha, e `submission-started`/`submission-completed` não atravessam para um parent cross-origin. Decisão "qual form usar" fica no §2.7 deste doc.
+- **`conhecimento/config/convencao-utm.md`** — convenção de UTM (fonte única): `utm_source` = fonte do lead, `utm_content` = conteúdo + tipo de página. Aplicação em CTA de LP no §5.5 deste doc.
 - **`.claude/skills/lp-preparar/CONTEXT.md`** — convenções de marca, IDs do Notion, formato de `tracking.json`
 - **`.claude/skills/lp-publicar/vercel.template.json`** — headers de segurança + CSP padrão (Jotform, RD Station, HubSpot, GTM, Google Fonts, YouTube, Vimeo)
 - **`brand/{marca}/`** — `tokens.json`, `generation-rules.json`, `brand-manifest.json`, `tracking.json`, `assets/`

@@ -89,6 +89,8 @@ Ajustáveis aqui sem mexer no SKILL.md.
 
 ## Convenção UTM
 
+> Regra geral (source = fonte do lead, content = qual conteúdo e tipo de página): `conhecimento/config/convencao-utm.md`. O padrão abaixo é a aplicação dela no blog.
+
 ```
 {LP_URL}?utm_source=blog&utm_campaign={campaign}&utm_content={slug-do-post}
 ```
