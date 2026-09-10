@@ -188,6 +188,10 @@ h1,h2,h3,
   margin:18px 0 20px;
 }
 .hero h1 .hl{color:var(--orange)}
+/* "WhatsApp Business" no se parte entre lineas (GUIDELINES 21). Debajo de
+   380px no cabe entero con el piso de 34px del H1 (GUIDELINES 20), asi que
+   ahi se deja quebrar en vez de desbordar. */
+@media (min-width:380px){.hero h1 .hl{white-space:nowrap}}
 .hero-lead{
   font-size:clamp(18px,2vw,20px);line-height:1.55;
   color:var(--muted-dark);margin-bottom:24px;max-width:34em;

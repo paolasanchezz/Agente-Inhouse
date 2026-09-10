@@ -91,7 +91,7 @@ O `--force-device-scale-factor=1` não é opcional: sem ele a tela em HiDPI rend
 | Overflow horizontal em 1280px | `scrollWidth` = 1265 |
 | Grids | 375px: 1 coluna em tudo · 1280px: hero 2col, aprendizados 3col, perguntas 2col, mapa 2col |
 | Pisos de tipografia mobile (§20) | H1 34px, H2 seção 28px, corpo/itens/botão 17px, labels 14px |
-| Quebra equilibrada (§21) | H2 "Las empresas que liderarán…" 36% → **13%** (`.section-head` de 720 pra 860px) · "Convertimos el criterio…" 30% → **0%** (1 linha) · "Reserva tu lugar en Medellín" 29% → **0%** (teto do `.cta h2` de 48 pra 42px) |
+| Quebra equilibrada (§21) | H1 "Cómo automatizar WhatsApp Business con IA": `white-space:nowrap` no `.hl` a partir de 380px pra não partir o nome da marca, e `con&nbsp;IA` pra não deixar "IA" órfã — 3 linhas limpas de 380px a 1920px; abaixo de 380px o nome parte de propósito (não cabe inteiro com o piso de 34px do §20) · H2 "Las empresas que liderarán…" 36% → **13%** (`.section-head` de 720 pra 860px) · "Convertimos el criterio…" 30% → **0%** (1 linha) · "Reserva tu lugar en Medellín" 29% → **0%** (teto do `.cta h2` de 48 pra 42px) |
 | Contraste | Laranja só como preenchimento; botão laranja com texto navy (5,2:1); eyebrow em fundo claro usa `#a94d07` (5,6:1); botão royal com texto branco (5,1:1) |
 | Countdown | 15 dias / 02h para 24/09 às 16:00 COT, conferido em 09/09/2026 |
 | JSON-LD | parseia, 3 nós |
@@ -107,12 +107,18 @@ Nenhum dos dois quebra a captura de lead. O `parentURL` é transmitido pelo embe
 
 ## Pendência de copy (não corrigida de propósito)
 
-A copy herdada de Bogotá tem **4 antíteses-por-negação** ("responden pero no saben decidir", "no se diseña escribiendo respuestas: se diseña definiendo…", "No será una demostración: será una construcción en vivo", "Un cliente no piensa en canales. Piensa en soluciones"). `conhecimento/editorial/regras-anti-ia.md` limita a 2 por peça de até 500 palavras. Como é copy aprovada pelo cliente e GUIDELINES §5 manda não reescrever o tom em silêncio, fica **sinalizado como sugestão** para quem aprova a copy decidir.
+A copy herdada de Bogotá tinha **4 antíteses-por-negação**; com o hero novo (10/09/2026) restam **3** ("no se diseña escribiendo respuestas: se diseña definiendo…", "No será una demostración: será una construcción en vivo", "Un cliente no piensa en canales. Piensa en soluciones") — a quarta ("responden pero no saben decidir") saiu junto com o lead antigo. `conhecimento/editorial/regras-anti-ia.md` limita a 2 por peça de até 500 palavras. Como é copy aprovada pelo cliente e GUIDELINES §5 manda não reescrever o tom em silêncio, fica **sinalizado como sugestão** para quem aprova a copy decidir.
 
 ## Publicação
 
-⚠️ **Não publicada.** Quando for pro ar: guarda-chuva `content.cxpress.io` (migrado pro CI). O fluxo é `/lp-publicar cxpress cafe-medellin-sep26 content.cxpress.io`, que registra o slug no `landing-pages/dominios/content-cxpress-io/manifest.json` e deixa o GitHub Actions deployar. **Nunca** `vercel deploy` na mão.
+✅ **No ar** em https://content.cxpress.io/cafe-medellin-sep26 (slug registrado no `landing-pages/dominios/content-cxpress-io/manifest.json`). Guarda-chuva migrado pro CI: toda alteração vai por `/lp-publicar cxpress cafe-medellin-sep26 content.cxpress.io`, que commita a fonte e deixa o GitHub Actions deployar. **Nunca** `vercel deploy` na mão.
 
 **Todos os itens de conteúdo estão fechados.** O `build_umbrella.py` roda com `avisos: []` (dry-run em 09/09/2026), com os 8 arquivos resolvendo no `dist`. Falta só a decisão de negócio: publicar, e antes disso resolver (ou aceitar) os 2 pontos do Jotform acima.
 
 **Reverter o form pro mock**, se precisar: trocar o `<div class="jotform-embed">` por um `<form action="#" onsubmit="event.preventDefault()">`. O CSS dos campos (`.field`, `.form-row`) foi removido junto com o mock, então precisa voltar também. Está no histórico do git.
+
+## Alterações depois de publicada
+
+| Data | O que mudou | Por quê |
+|---|---|---|
+| 10/09/2026 | **Hero.** H1 "Atención digital desorganizada" → "Cómo automatizar **WhatsApp Business** con IA". Lead longo (custo + antítese) → "Descubre cómo diseñar agentes de IA que entienden el contexto, toman decisiones y resuelven conversaciones." | Pedido do time: headline direta no que o workshop entrega (automação de WhatsApp Business com IA) em vez de nomear a dor. Sem tocar em `<title>`, OG ou JSON-LD — continuam no eixo "diseña agentes de IA que resuelven", que o lead novo mantém. Quebra de linha medida ao vivo de 320 a 1920px (§21) |
