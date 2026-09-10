@@ -390,6 +390,43 @@
 
   <script>
     (function(){
+      /* Mensagem do CTA personalizada pela query string: /obrigado?nome=Bruno&empresa=Cxpress
+         (o JotForm passa os dois campos no redirect).
+
+         Aqui a pagina e HTML estatico e o botao e um <a href> real, entao basta reescrever
+         o href. Nao ha necessidade de interceptar o clique em fase de captura nem de
+         window.open: aquilo era preciso no GreatPages, onde o framework reescrevia o href
+         no momento do clique. Reescrever o href tambem preserva clique do meio, "copiar
+         link" e long-press no mobile, e nao depende de popup nao ser bloqueado.
+
+         Sem os parametros na URL (acesso direto, form sem os campos), o href generico que
+         ja esta no HTML fica como esta. O mesmo vale se o JS nao rodar. */
+      var TEL = '551150395028';
+      var LIMITE = 80;  /* corta valor absurdo vindo da URL sem estourar o link */
+
+      function limpar(v){
+        /* \s+ cobre tab e quebra de linha vindas da URL, que virariam %0A no texto */
+        return (v || '').replace(/\s+/g, ' ').trim().slice(0, LIMITE);
+      }
+
+      function mensagem(nome, empresa){
+        var fim = 'acabei de preencher o formulário e gostaria de continuar meu atendimento com a equipe Cxpress.';
+        var Fim = fim.charAt(0).toUpperCase() + fim.slice(1);
+        if (nome && empresa) return 'Olá, me chamo ' + nome + '! Falo da empresa ' + empresa + ', ' + fim;
+        if (nome)            return 'Olá, me chamo ' + nome + '! ' + Fim;
+        if (empresa)         return 'Olá! Falo da empresa ' + empresa + ', ' + fim;
+        return null;
+      }
+
+      var btn = document.querySelector('a.btn-whats');
+      if (!btn || !window.URLSearchParams) return;
+
+      var q = new URLSearchParams(window.location.search);
+      var msg = mensagem(limpar(q.get('nome')), limpar(q.get('empresa')));
+      if (msg) btn.href = 'https://api.whatsapp.com/send?phone=' + TEL + '&text=' + encodeURIComponent(msg);
+    })();
+
+    (function(){
       // Reveal on scroll com tres camadas de fallback (GUIDELINES 4: texto essencial nunca
       // fica invisivel esperando animacao): (1) <noscript> no <head> se JS nao roda;
       // (2) reveal imediato sem IntersectionObserver; (3) failsafe por timeout se o IO

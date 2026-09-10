@@ -96,6 +96,62 @@ de referência. O empilhado deixou de ser uma versão estreita do desktop e viro
 Medições depois do ajuste (desequilíbrio de linha, §21): CTA 0% (1440 e 390), H1 6% no desktop.
 Zero overflow horizontal em 1440/1200/980/820/600/390/375.
 
+## Mensagem personalizada no CTA (query string) — 2026-09-10
+
+O CTA do WhatsApp monta a mensagem com o nome e a empresa que o JotForm passa no redirect:
+
+```
+https://content.cxpress.io/obrigado?nome=Bruno%20Silva&empresa=Cxpress
+```
+
+Mensagem resultante: "Olá, me chamo Bruno Silva! Falo da empresa Cxpress, acabei de preencher o
+formulário e gostaria de continuar meu atendimento com a equipe Cxpress."
+
+### Por que reescreve o `href` em vez de interceptar o clique
+
+A especificação que veio do GreatPages usa `addEventListener('click', ..., true)` +
+`preventDefault` + `window.open`, porque **naquela plataforma** o framework reescrevia o `href` no
+momento do clique. Aqui a página é HTML estático e o botão é um `<a href>` de verdade, então basta
+reescrever o `href` no load. Isso é estritamente melhor neste contexto:
+
+- preserva clique do meio, "copiar endereço do link" e long-press no mobile (com `window.open` esses
+  gestos abriam a mensagem genérica, ou nada);
+- não depende de o popup não ser bloqueado;
+- se o JS falhar, o botão continua funcionando com a mensagem genérica que já está no HTML.
+
+A própria especificação condiciona a interceptação a "se o botão não for um link simples `<a href>`".
+Não é o caso.
+
+### Ausência de parâmetro é tratada
+
+Se a página for aberta direto, ou o form não mandar um dos campos, a frase precisa continuar
+gramatical. Quatro caminhos:
+
+| URL | Mensagem |
+|---|---|
+| `?nome=X&empresa=Y` | "Olá, me chamo X! Falo da empresa Y, acabei de preencher o formulário e..." |
+| `?nome=X` | "Olá, me chamo X! Acabei de preencher o formulário e..." |
+| `?empresa=Y` | "Olá! Falo da empresa Y, acabei de preencher o formulário e..." |
+| sem parâmetro (ou vazios) | mensagem genérica que já está no `href` do HTML, intocada |
+
+### Tratamento do valor vindo da URL
+
+O valor é entrada não confiável. Ele **só** entra no `text=` do link, via `encodeURIComponent`, e
+nunca no DOM como HTML, então não há vetor de injeção. Além disso: `\s+` colapsado (tab e quebra de
+linha na URL virariam `%0A` no meio da frase), `trim()` e corte em 80 caracteres por campo, para um
+valor absurdo não estourar o link.
+
+Testado no Chromium nos 9 casos (Playwright, `landing-pages/cxpress/obrigado` servida local): sem
+parâmetro, só nome, só empresa, parâmetros vazios, espaços e quebra de linha, acentos + apóstrofo +
+`&` + emoji, valor de 200 caracteres, e tentativa de injeção. Zero erro de console. O caso do `&`
+("Açúcar & Cia") é o que mais pega implementação ingênua: sem `encodeURIComponent` ele cortaria a
+query string do WhatsApp.
+
+### Pendência fora do repo
+
+O JotForm ainda redireciona para `lp.cxpress.io/obrigado`. Precisa apontar para
+`content.cxpress.io/obrigado`, **mantendo os parâmetros `nome` e `empresa`**. O Bruno faz essa troca.
+
 ## Estado
 
 - [x] HTML gerado
@@ -106,6 +162,7 @@ Zero overflow horizontal em 1440/1200/980/820/600/390/375.
 - [x] `build_umbrella.py` com manifesto de teste: 0 aviso, 0 path relativo sobrando, 10 assets copiados
 - [x] Publicada — https://content.cxpress.io/obrigado (2026-09-09, PR #566, deploy CI run 34394978336)
 - [x] Rodapé trocado pelo padrão do domínio (referência `escolha-a-cxpress`) + par tipográfico do brand — 2026-09-09
+- [x] Mensagem do CTA personalizada por `?nome=` e `?empresa=` — 2026-09-10
 - [ ] Revisão (`lp-revisar`) — opcional, a LP não passou por auditoria de design/a11y automatizada
 
 Validações do live em cada entrega: hash do servido idêntico ao do dist, todos os assets 200,

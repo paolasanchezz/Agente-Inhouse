@@ -2,7 +2,10 @@
 LOGO: Cxpress (link para home.cxpress.io, nova aba)
 H1: Suas informações foram recebidas com sucesso
 CTA: Continue a conversa pelo WhatsApp
-  → https://api.whatsapp.com/send?phone=551150395028&text=Olá! Acabei de preencher o formulário e gostaria de continuar meu atendimento com a equipe Cxpress
+  -> com ?nome= e ?empresa= na URL: "Olá, me chamo {nome}! Falo da empresa {empresa}, acabei de
+     preencher o formulário e gostaria de continuar meu atendimento com a equipe Cxpress."
+  -> sem os parâmetros: "Olá! Acabei de preencher o formulário e gostaria de continuar meu
+     atendimento com a equipe Cxpress." (variantes só-nome e só-empresa no README)
 LEAD: Um especialista do nosso time vai falar com você.
 NOTA: (Nossa equipe atende de segunda a sexta das 9h às 18h.)
 
