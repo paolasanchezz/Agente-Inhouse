@@ -21,6 +21,24 @@ As duas serverless functions vivem em [`landing-pages/buzzmonitor/_clickmeeting-
 >
 > Entre 2026-08-12 e 2026-08-26 a captura era um **mock** que redirecionava certo mas não gravava lead nenhum — todo mundo que preencheu nessa janela foi perdido.
 
+## CTA comercial da thank-you (2026-09-10)
+
+Os dois CTAs "Teste a Buzzmonitor" da thank-you (header + bloco final) apontam pra
+`content.buzzmonitor.com/monitoramento-com-ia` com
+`utm_source=webinar&utm_medium=lp-webinar-perpetuo&utm_campaign=perpetuo-monitoramento&utm_content=agradecimento-perpetuo-monitoramento`.
+O `utm_content` entrou em 2026-09-10 — antes o link ia sem ele, então o lead chegava no CRM sem
+dizer **qual** página de agradecimento o gerou. Convenção em
+[`conhecimento/config/convencao-utm.md`](../../../conhecimento/config/convencao-utm.md)
+(`utm_source` = fonte do lead, `utm_content` = `{tipo-de-pagina}-{conteudo}`).
+
+O bloco final também trocou de copy na mesma data: "Quer adiantar o começo? / Abra sua conta e
+chegue na sessão com a plataforma já na mão" virou "Quer começar a monitorar agora? / Teste a
+plataforma grátis por 14 dias e chegue na sessão com o seu concorrente já no radar" — headline
+ancorada na solução do webinar (monitorar concorrente) em vez de na logística da sessão.
+
+**Divergência a resolver:** as outras 6 thank-you de perpétuo usam `utm_source=perpetuo` e só 2
+parâmetros. Esta usa `webinar` + `medium` + `campaign`. Ver §5 do doc de convenção.
+
 ## Fonte da copy (2026-08-12)
 
 Briefing da Catharina: título "como construir um monitoramento de concorrentes", promessa "montar um monitoramento de concorrente que avisa antes do cliente avisar", e o objetivo do webinar (criar tema dedicado ao concorrente com variações de grafia, comparar marca x concorrente num dashboard de benchmarking competitivo, configurar AI Insights + Buzz Pills pra avisar quando o concorrente se mexer). Cards em **nível teaser** (sem catálogo de feature), igual ao par social-listening. Sem stat inventada.
