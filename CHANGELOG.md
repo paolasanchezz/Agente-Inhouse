@@ -12,6 +12,57 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## CSP dos guarda-chuvas — liberar o enriquecimento de IPv6 do pixel do TikTok
+### 2026-09-11 — `vercel.template.json` + vercel.json dos 5 domínios (lp-publicar 5.1.3 → 5.1.4, PATCH)
+
+A v3.7.0 liberou o pixel do TikTok com `analytics.tiktok.com` e `ads.tiktok.com`, mas o SDK também
+fala com um host **fora de `tiktok.com`**: `analytics-ipv6.tiktokw.us`. O `connect-src` não cobria,
+então o navegador bloqueava em runtime:
+
+```
+Connecting to 'https://analytics-ipv6.tiktokw.us/ipv6/enrich_ipv6' violates the following
+Content Security Policy directive: connect-src ... The action has been blocked.
+```
+
+Achado ao validar `content.buzzmonitor.com/encontrar-creators`. Como o pixel entra por GTM e todo
+`vercel.json` de guarda-chuva sai do mesmo template, o buraco existia nos **5 domínios e no
+template** — toda LP servida por eles.
+
+**O que estava sendo perdido (e o que não estava).** Medido na LP no ar, não inferido: `ttq`
+inicializa, `i18n/pixel/events.js` + `main.*.js` + `identify_*.js` carregam, e os beacons de evento
+**saem normalmente** para `analytics.tiktok.com/api/v2/pixel` e `/api/v2/pixel/act`. **Nenhum evento
+de conversão foi perdido.** Lendo o SDK (`main.*.js`, constante `eU` + classe `EnrichIpv6`), o que o
+CSP barrava é uma **cópia de um evento já entregue** — `buildEnrichIpv6Data` reenvia o mesmo payload
+com `event: "EnrichIpv6"`, `trigger_event` = nome do evento real e o mesmo `message_id` sufixado com
+`#source=1` — por um host que resolve em IPv6, só para o TikTok observar o IPv6 do visitante e
+costurar no `message_id` original. É sinal de **Event Match Quality / atribuição**, não o evento em
+si: dispara no máximo 1x por sessão, na primeira página (`pageIndex.index === 0` + flag em
+`sessionStorage`), e a falha morre num `try/catch`.
+
+Logo: não era só ruído de console (perde-se o IPv6 no match — o que pesa em operadora móvel BR, onde
+IPv6 é a regra), mas também não era perda de conversão. Correção de segunda ordem + limpeza de um
+`[error]` que aparecia no primeiro pageview de toda LP e podia mascarar erro real em QA.
+
+**Mudança:** `https://analytics-ipv6.tiktokw.us` no `connect-src` do template e dos 5
+`landing-pages/dominios/*/vercel.json`. Uma linha por arquivo, puramente aditiva — nenhuma outra
+directive ou host mexido, as customizações por domínio ficaram intactas.
+
+Auditamos o SDK inteiro (`events.js` + `main.*.js` + `identify_*.js`) atrás de outros hosts: ele
+referencia exatamente **três** — `analytics.tiktok.com`, `ads.tiktok.com` (ambos já liberados) e
+`analytics-ipv6.tiktokw.us`. Por isso o host exato em vez de `https://*.tiktokw.us`: é o único
+`tiktokw.us` que o SDK usa, e vale manter o mínimo privilégio. Só `connect-src` — nenhum script vem
+desse host, e `img-src` já era `https:`.
+
+**Drift pré-existente encontrado de passagem, NÃO corrigido aqui** (fora do escopo; o
+`csp_drift_check.py` acusa DRIFT em 4 dos 5 domínios por causa disso):
+
+- `form-action` sem `https://*.list-manage.com` (Mailchimp) em `content.buzzmonitor.com`,
+  `evento.`, `material.` e `webinar.` — o template tem. Latente: só morde se alguma LP usar form do
+  Mailchimp.
+- `connect-src` com `https://*.google-analytics.com` em vez do `https://www.google-analytics.com` do
+  template, em `content.buzzmonitor.com` e `material.buzzmonitor.com`. Falso positivo do
+  comparador — o wildcard cobre o host do template; sem impacto em runtime.
+
 ## Dashboards CM de Portugal (Buzzmonitor, Cxpress e Elife)
 ### 2026-09-09 — skill `dashboard-atualizar` (4.0.0 → 4.1.0) + `dashboard-pt-vercel/` + `queries_portugal.py`
 
