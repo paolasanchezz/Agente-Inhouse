@@ -1,0 +1,91 @@
+=== HERO ===
+OVERLINE: Buzzmonitor MCP · Conector para Claude
+H1: Armar el reporte toma más tiempo que entenderlo.
+SUB: Conecta tu proyecto de Buzzmonitor con Claude y lleva tu social listening a la conversación. Tú preguntas, los datos responden.
+CTA: Conectar ahora
+CTA: Agendar una demo
+LABEL: Configuración en 2 minutos · Sin instalar nada
+
+=== CONEXION ===
+OVERLINE: Paso a paso
+H2: Conecta Buzzmonitor con Claude en 3 pasos
+SUB: Antes de empezar, necesitas un proyecto de monitoreo activo en Buzzmonitor. Si todavía no tienes cuenta, crea tu prueba gratuita y arma tu primer proyecto.
+LIST ITEM: 01 · En Claude, entra a Personalizar › Conectores › Agregar › Agregar conector personalizado.
+LIST ITEM: 02 · Escribe Buzzmonitor en el campo Nombre.
+LIST ITEM: 03 · Pega esta dirección en el campo del servidor MCP remoto.
+LABEL: https://mcp.buzzmonitor.com.br/sse
+CTA: Copiar enlace
+CTA: Crear cuenta gratis
+
+=== VALOR ===
+OVERLINE: Qué cambia en tu rutina
+H2: Menos trabajo manual. Más inteligencia.
+SUB: Para quien vive entre dashboards, menciones, campañas y reportes.
+BODY: Los datos de tus proyectos alimentan el análisis y tú te quedas con la parte que importa: entender qué está pasando y decidir qué hacer después.
+H3: Entrega reportes más rápido
+BODY: Convierte los datos de tus proyectos en punto de partida para análisis y presentaciones, sin empezar de cero.
+H3: Detecta oportunidades antes
+BODY: Explora tendencias, temas y giros en la conversación para encontrar señales que se vuelven decisiones.
+H3: Entiende qué mueve la conversación
+BODY: Profundiza en grandes volúmenes de menciones y encuentra los temas que merecen atención.
+H3: Compara marcas y competidores
+BODY: Usa tus proyectos para investigar diferencias de conversación, percepción y desempeño.
+H3: Llega antes a las señales
+BODY: Sigue menciones y cambios relevantes para que tu equipo actúe con más contexto.
+H3: Rinde más con el mismo equipo
+BODY: Reduce el tiempo operativo en análisis repetitivos y enfoca a tu equipo en estrategia, creatividad e insights.
+
+=== CONVERSACION ===
+OVERLINE: Así se ve en la práctica
+H2: Tú preguntas. Buzzmonitor pone los datos.
+SUB: Se acabó el "déjame revisar y te confirmo".
+BODY: Una vez conectado, explora tus proyectos conversando. Pregunta, analiza, profundiza y vuelve a preguntar.
+QUOTE: ¿Cuáles fueron los principales temas de conversación sobre mi marca esta semana?
+QUOTE: Resume los insights principales y organízalos para una presentación ejecutiva.
+QUOTE: ¿Qué diferencias hay entre la conversación sobre mi marca y la de mi competencia?
+QUOTE: Arma un resumen de sentimiento y destaca los temas que merecen atención.
+
+=== PRUEBA ===
+LABEL: 50% OFF
+OVERLINE: Prueba primero, decide después
+H2: Crea tu proyecto, conecta el MCP y mira cómo cambia tu análisis
+BODY: Buzzmonitor pone los datos y Claude te ayuda a trabajarlos. La decisión viene después, con la prueba ya hecha.
+H3: en tus primeros 2 meses
+BODY: Al terminar tu periodo de prueba, si decides contratar Buzzmonitor, puedes acceder a esta oferta especial para nuevas contrataciones elegibles.
+CTA: Probar gratis
+CTA: Hablar con ventas
+BODY: Aplican términos y condiciones.
+
+=== EQUIPOS ===
+OVERLINE: Para equipos que quieren ir más allá
+H2: ¿Quieres llevar esto a todo tu equipo?
+BODY: Si gestionas varias marcas, clientes o grandes volúmenes de conversación, cuéntanos cómo trabaja tu equipo. Te mostramos cómo construir una operación de social listening más ágil y estratégica.
+LIST ITEM: Evalúa Buzzmonitor según tus necesidades
+LIST ITEM: Descubre cómo aplicarlo a tus marcas o clientes
+LIST ITEM: Resuelve dudas con nuestro equipo comercial
+LIST ITEM: Conoce la mejor opción para tu operación
+H3: Hablemos de tu operación
+BODY: Déjanos tus datos y nuestro equipo se pone en contacto contigo.
+LABEL: Nombre
+LABEL: Correo corporativo
+LABEL: Empresa
+LABEL: ¿Cuál es tu perfil?
+CTA: Quiero hablar con el equipo
+
+=== CTA-FINAL ===
+H2: Empieza por el MCP. Quédate por todo lo demás.
+BODY: Prueba Buzzmonitor, conecta Claude y convierte las conversaciones digitales en insights, más rápido.
+CTA: Conectar el MCP
+CTA: Probar gratis
+CTA: Hablar con ventas
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos los derechos reservados
+FOOTER: Política de Privacidad
+
+# Revisión anti-IA: em-dash 0 · sin frases-tipo de IA · fillers ("realmente") eliminados · emojis decorativos (👀 🚀 👋) retirados · 0 exclamaciones · antítesis-por-negación 0 · listas de 3, 4 y 6 ítems (sin patrón de 3 repetido).
+# Fidelidad ES-LATAM: tuteo consistente, sin "vosotros" · "reportes" (no "informes") · "monitoreo" (no "monitorización") · "correo corporativo" · "enlace" · "desempeño" (no "performance") · "gestionas" (neutro LATAM).
+# [CAMBIO vs. copy original] H1 pasó de "¿Listo para crear reportes en segundos con Claude?" (lidera con la solución) a la dor del público (fundamentos-copy §0 / GUIDELINES §5). La promesa y el mecanismo bajaron al SUB.
+# [CAMBIO vs. copy original] Orden de bloques ajustado al funnel del brief (MCP → valor → prueba → intención comercial): la oferta de 50% OFF pasó de 2.º bloque a 5.º, después de valor y ejemplos. Antes la prueba llegaba antes de justificar el valor.
+# [CAMBIO vs. copy original] Los 3 pasos de conexión salieron del hero y ganaron bloque propio (§2), para que el H1 cargue la dor y no la instrucción.
+# [CAMBIO vs. copy original] "Menos 'déjame revisar'. Más 'aquí está el insight'." reescrito como "Se acabó el 'déjame revisar y te confirmo'." para no repetir el molde "Menos X. Más Y." del bloque VALOR (refrán mecánico).

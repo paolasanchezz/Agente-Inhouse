@@ -1,0 +1,106 @@
+# v3: copy del brief de Ulises + ajustes pedidos por el (titulares de PRUEBA, VALOR y CONVERSACION,
+# bloque TICKER nuevo, CTA del hero reorganizado, redes en el footer). v2 congelada en versions/v2/.
+
+=== HERO ===
+OVERLINE: Buzzmonitor MCP · Conector para Claude
+H1: ¿Listo para crear reportes en segundos con Claude?
+H2: Entonces, ¡comencemos!
+BODY: Conecta tu proyecto de Buzzmonitor con Claude y lleva tu Social Listening directo a la conversación.
+LIST ITEM: 1. Ve a Claude → Personalizar → Conectores → Agregar → Agregar conector personalizado
+LIST ITEM: 2. Escribe Buzzmonitor en el campo de Nombre.
+LIST ITEM: 3. Copia este enlace y pégalo en el campo de URL del servidor MCP remoto:
+LABEL: https://mcp.buzzmonitor.com.br/sse
+CTA: COPIAR ENLACE
+BODY: Paso 0: configura tu proyecto de monitoreo en Buzzmonitor. Si aún no tienes una cuenta, crea una prueba gratuita y arma tu primer proyecto.
+CTA: CREAR CUENTA GRATIS →
+
+=== TICKER ===
+LIST ITEM: Analiza miles de menciones
+LIST ITEM: Resume la conversación en segundos
+LIST ITEM: Compara tu marca con la competencia
+LIST ITEM: Detecta cambios de sentimiento
+LIST ITEM: Automatiza tus reportes
+LIST ITEM: Explora tendencias de tu nicho
+LIST ITEM: Pregunta en lenguaje natural
+LIST ITEM: Convierte datos en presentaciones
+
+=== PRUEBA ===
+H2: Prueba su potencial ahora. Decide después. 👀
+BODY: Crea tu proyecto, conecta el MCP y descubre cómo cambia tu forma de analizar conversaciones cuando Buzzmonitor pone los datos y Claude te ayuda a trabajarlos.
+LABEL: 50% OFF
+H3: en tus primeros 2 meses 🚀
+BODY: Después de tu periodo de prueba, si decides contratar Buzzmonitor, puedes acceder a esta oferta especial para nuevas contrataciones elegibles.
+CTA: PROBAR GRATIS →
+CTA: HABLAR CON VENTAS
+BODY: Aplican términos y condiciones.
+
+=== VALOR ===
+H2: Reportes más rápidos y análisis más precisos. Menos trabajo manual.
+H3: Social Listening + Claude.
+H3: Ahora sí se puso interesante.
+BODY: Para quienes viven entre dashboards, conversaciones, campañas y reportes.
+BODY: Usa los datos de Buzzmonitor para acelerar el análisis y dedicar más tiempo a lo que realmente importa: entender qué está pasando y qué hacer después.
+H3: Entrega reportes más rápido
+BODY: Convierte los datos de tus proyectos en un punto de partida para análisis y presentaciones sin comenzar desde cero.
+H3: Detecta oportunidades antes
+BODY: Explora tendencias, temas y cambios en la conversación para encontrar señales que pueden convertirse en decisiones.
+H3: Entiende qué mueve la conversación
+BODY: Profundiza en grandes volúmenes de menciones y encuentra los temas que realmente merecen atención.
+H3: Compara marcas y competidores
+BODY: Usa tus proyectos para investigar diferencias en conversación, percepción y performance.
+H3: Llega antes a las señales
+BODY: Monitorea menciones y cambios relevantes para que tu equipo tenga más contexto al momento de actuar.
+H3: Haz más con tu equipo
+BODY: Reduce tiempo operativo en análisis repetitivos y enfoca a tu equipo en estrategia, creatividad e insights.
+
+=== CONVERSACION ===
+H2: Buzzmonitor extrae los datos.
+H2: Claude te da los insights
+BODY: Una vez conectado, explora tus proyectos de forma conversacional. Pregunta, analiza, profundiza y vuelve a preguntar.
+QUOTE: “¿Cuáles fueron los principales temas de conversación sobre mi marca esta semana?”
+QUOTE: “Resume los principales insights y organízalos para una presentación ejecutiva.”
+QUOTE: “¿Qué diferencias aparecen entre la conversación sobre mi marca y la competencia?”
+QUOTE: “Crea un resumen de sentimiento y destaca los temas que merecen atención.”
+
+=== EQUIPOS ===
+H2: Para equipos que quieren ir más allá
+H3: ¿Quieres llevar esto a todo tu equipo?
+BODY: Si gestionas varias marcas, clientes o grandes volúmenes de conversaciones, cuéntanos cómo trabaja tu equipo.
+BODY: Te mostramos cómo Buzzmonitor puede ayudarte a construir una operación de Social Listening más ágil y estratégica.
+LIST ITEM: Evalúa Buzzmonitor según tus necesidades
+LIST ITEM: Descubre cómo aplicarlo a tus marcas o clientes
+LIST ITEM: Resuelve dudas con nuestro equipo comercial
+LIST ITEM: Conoce la mejor opción para tu operación
+CTA: AGENDAR UNA REUNIÓN →
+H3: Hablemos de tu operación 👋
+BODY: Déjanos tus datos y nuestro equipo se pondrá en contacto contigo.
+LABEL: Nombre
+LABEL: Email profesional
+LABEL: Empresa
+LABEL: ¿Cuál es tu perfil?
+CTA: QUIERO HABLAR CON EL EQUIPO →
+
+=== CIERRE ===
+H2: Empieza por el MCP.
+H2: Quédate por todo lo demás.
+BODY: Prueba Buzzmonitor, conecta Claude y descubre una forma más rápida de convertir conversaciones digitales en insights.
+CTA: CONECTAR MCP →
+CTA: PROBAR GRATIS
+CTA: HABLAR CON VENTAS →
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos los derechos reservados
+FOOTER: Política de Privacidad
+FOOTER: Instagram
+FOOTER: X
+FOOTER: Facebook
+FOOTER: LinkedIn
+FOOTER: YouTube
+
+# Revision anti-IA: em-dash 0 · sin frases-tipo de IA · 3 emojis (👀 🚀 👋), dentro del limite de 2-3 por pieza · 1 exclamacion.
+# [NOTA v3] El bloque TICKER es copy NUEVA (no venia del brief). Son capacidades que el resto de la LP ya afirma
+# (reportes, menciones, tendencias, competencia, sentimiento, presentaciones). NO incluí "crea dashboards a medida
+# en segundos" del ejemplo de Ulises: la copy de esta LP no afirma que el MCP genere dashboards y no pude
+# confirmarlo contra el producto. Si el MCP sí los genera, se agrega en una linea.
+# [NOTA] Copy del brief, sin optimizar. El H1 abre por la solucion, no por la dor (fundamentos-copy §0 / GUIDELINES §5). Fue senalado en v1 y Ulises eligio su version. La alternativa que abria por la dor sigue en versions/v1/copy.txt por si se quiere testear A/B.
+# [NOTA] "performance" (bloque VALOR) es anglicismo; el estandar ES-LATAM prefiere "desempeno". Se mantiene literal por pedido.
