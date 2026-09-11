@@ -1,0 +1,165 @@
+=== NOTA DE ESCOPO (não vai pro HTML) ===
+# Fonte: "Buzzcreators | Briefing e prompt da LP, Creators para sua marca" (PDF do CMO, 9 páginas).
+# Marca: Buzzcreators · Região: Brasil (PT-BR) · Domínio previsto: content.buzzmonitor.com/encontrar-creators
+# MODO DESTA VERSÃO: PRÉ-LANÇAMENTO (decisão do Victor, 2026-09-11).
+#   O serviço de busca no Buzz Trends ainda não existe pra LP consumir. O briefing (Jornada funcional,
+#   "Implementar dois modos de entrega") manda, nesse caso, mostrar claramente o aviso de lançamento e captar
+#   apenas essa intenção. Busca simulada publicada como funcional é proibida pelo briefing.
+#   Os blocos marcados [MODO CONECTADO] ficam codados no HTML mas desligados por flag de config.
+# SELO "Descoberta inicial gratuita": NÃO aplicado nesta versão (gratuidade e limite ainda não confirmados).
+
+=== HERO ===
+OVERLINE: Descoberta de creators para marcas e agências
+H1: Encontre creators no universo da sua marca
+# [SUGESTÃO copy] GUIDELINES §5 + fundamentos-copy §0: o H1 abre pela solução ("encontre"), não pela dor.
+# Alternativa que lidera com a dor, mantendo a linha do briefing no H2:
+#   H1: "Escolher creator por número de seguidores é um chute caro"
+#   H2: "Encontre creators no universo da sua marca e veja o que conecta cada perfil ao seu contexto"
+# Não aplicada: o H1 é prescrito literalmente no briefing (Seção 1). Decisão de quem aprova a copy.
+SUB: Conte qual marca, tema ou campanha você quer trabalhar e explore sugestões de creators com base nos conteúdos disponíveis na base da Buzzmonitor.
+CTA: Encontrar creators
+BODY: Veja sugestões iniciais e entenda o que conecta cada perfil ao seu contexto.
+LABEL: Uma solução Buzzmonitor
+LABEL: Exemplo de interface
+# Rótulo obrigatório no visual do hero: o briefing (Seção 1) exige identificar como exemplo qualquer
+# interface de busca que não venha de uma consulta real. O visual não exibe nome, @ nem métrica de
+# creator: só a estrutura do card, sem dado inventado.
+
+=== DECISÃO (recorte Challenger) ===
+# Bloco curto derivado da instrução explícita do briefing em "Princípio de copy e posicionamento":
+# apresentar um problema de decisão concreto antes de propor o próximo passo. Uma faixa, sem CTA.
+H2: Número de seguidores não diz se o conteúdo combina com a sua campanha
+BODY: A escolha de creator costuma começar pelo alcance e terminar em dúvida. O perfil publica sobre o que a marca quer falar? O formato combina? A conversa dele tem a ver com a campanha? Um ponto de partida com evidência resolve mais do que uma lista grande.
+
+=== O QUE A CONSULTA ENTREGA ===
+H2: Um ponto de partida para sua seleção de creators
+H3: Perfis relacionados ao seu contexto
+BODY: Explore creators que publicam sobre temas ligados à sua marca ou campanha.
+H3: Motivos para considerar cada perfil
+BODY: Entenda a relação entre o conteúdo encontrado e o que você procura.
+H3: Evidências para continuar a análise
+BODY: Consulte os conteúdos disponíveis e avalie quais perfis merecem entrar na sua seleção.
+BODY: As sugestões refletem os dados disponíveis na consulta. Você avalia a adequação final antes de avançar.
+
+=== COMO FUNCIONA ===
+H2: Da ideia de campanha aos primeiros perfis
+LABEL: Passo 1
+H3: Descreva seu contexto
+BODY: Informe a marca e o tema que deseja explorar.
+LABEL: Passo 2
+H3: Explore as sugestões
+BODY: Veja os perfis encontrados e os motivos que os conectam à busca.
+LABEL: Passo 3
+H3: Avance para sua campanha
+BODY: Conheça como o Buzzcreators pode ajudar sua equipe a organizar a operação.
+CTA: Encontrar creators
+
+=== FORMULÁRIO ===
+LABEL: A busca ainda não está aberta ao público
+BODY: Deixe o contexto da sua marca e o seu contato. Avisamos assim que a consulta estiver disponível.
+# [MODO PRÉ-LANÇAMENTO] O aviso acima é obrigatório enquanto o serviço do Trends não estiver ligado.
+# No modo conectado ele sai e o envio passa a consultar de verdade.
+H2: Qual universo sua marca quer explorar?
+LABEL: Etapa 1 de 2 · Contexto
+LABEL: Marca ou projeto
+BODY: Exemplo: Marca de cuidados com a pele
+LABEL: Segmento ou tema
+BODY: Exemplo: Skincare, proteção solar e rotina ao ar livre
+LABEL: Website ou perfil da marca (opcional)
+LABEL: Objetivo da campanha (opcional)
+CTA: Continuar
+LABEL: Etapa 2 de 2 · Identificação
+H3: Complete seus dados para consultar os perfis
+LABEL: Seu nome
+LABEL: Email de trabalho
+LABEL: Você representa uma marca ou agência?
+LABEL: Nome da agência
+CTA: Avise-me quando a busca abrir
+# [MODO CONECTADO] CTA de envio passa a ser: "Consultar creators"
+BODY: Registramos seu contexto. Avisamos por email assim que a consulta estiver disponível.
+# Confirmacao do modo pre-lancamento. So aparece depois que a captura for salva de verdade
+# (briefing: confirmar o registro somente apos ele ser salvo). Com form mock, nunca aparece.
+BODY: Usaremos seus dados para processar esta solicitação. Saiba como na Política de Privacidade.
+LABEL: Quero receber conteúdos do Buzzcreators por email (opcional)
+# Checkbox desmarcada por padrão e nunca requisito de consulta (briefing, Seção 4).
+BODY: Revise este campo para continuar.
+BODY: Informe um email válido.
+# Campo "Região de interesse" NÃO entra: o briefing proíbe exibir filtro que a fonte não consiga cumprir,
+# e a cobertura por região do Trends ainda não foi confirmada por Produto.
+
+=== RESULTADO DA BUSCA [MODO CONECTADO] ===
+# Toda esta seção fica no HTML, desligada por flag, até o serviço do Trends existir.
+BODY: Buscando creators relacionados ao seu contexto&hellip;
+H2: Creators para explorar na sua próxima campanha
+BODY: Encontramos estes perfis com relação ao tema informado. Veja o contexto de cada sugestão antes de avançar.
+LABEL: Por que apareceu
+LABEL: Evidência
+CTA: Ver perfil
+CTA: Ver conteúdo
+CTA: Ajustar minha busca
+CTA: Quero organizar minha campanha
+BODY: A sugestão não confirma disponibilidade, interesse ou vínculo do creator com o Buzzcreators.
+H3: Encontramos uma sugestão com evidência para este contexto
+BODY: Você pode ampliar os temas para explorar outros perfis.
+H3: Ainda não encontramos perfis suficientes para este recorte na base consultada
+BODY: Experimente ampliar o tema ou ajustar os filtros.
+CTA: Ajustar busca
+CTA: Conversar sobre minha campanha
+H3: Não foi possível concluir a consulta agora
+BODY: Tente novamente.
+
+=== ORIENTAÇÃO DE SELEÇÃO ===
+H2: O contexto ajuda a escolher melhor
+BODY: Uma lista de perfis é o começo. Ao avaliar creators, observe os temas que abordam, a forma como criam conteúdo e a relação com o objetivo da campanha. As evidências da consulta ajudam sua equipe a decidir quem merece uma análise mais próxima.
+LIST ITEM: O conteúdo se conecta ao que queremos comunicar?
+LIST ITEM: O formato combina com a campanha?
+LIST ITEM: O que ainda precisamos validar antes do convite?
+
+=== CONEXÃO COM O BUZZCREATORS ===
+H2: Transforme sua seleção em uma operação organizada
+BODY: Depois de identificar perfis, sua equipe precisa organizar briefing, convites, aprovações, acompanhamento e pagamentos. Conheça como o Buzzcreators apoia a gestão de campanhas com micro e nano creators.
+LIST ITEM: Centralize o andamento da campanha
+LIST ITEM: Acompanhe conteúdos e métricas disponíveis
+LIST ITEM: Organize a relação com os creators e os pagamentos
+CTA: Quero organizar minha campanha
+BODY: Converse com nosso time sobre seu contexto e conheça a plataforma.
+BODY: O Buzzcreators é uma plataforma para sua equipe gerir campanhas. A consulta inicial apoia a descoberta; a contratação e a operação dependem das próximas etapas.
+# Captura atual do produto ou vídeo aprovado: PENDENTE (não há material aprovado em mãos). Até chegar,
+# a seção usa composição gráfica neutra, sem screenshot inventado.
+
+=== CONFIANÇA ===
+LABEL: Buzzcreators, uma solução Buzzmonitor
+# [MODO CONECTADO] Acrescentar a linha: "Descoberta conectada à base do Buzz Trends e uma plataforma para
+# apoiar sua operação de marketing de influência." O briefing proíbe publicar essa frase fora do modo conectado.
+# Prova social (depoimento, case, logo): PENDENTE de material aprovado. Sem material, só a assinatura institucional.
+
+=== FAQ ===
+H2: Perguntas frequentes
+H3: Os creators precisam já ter mencionado minha marca?
+BODY: Não. A consulta considera temas e conteúdos relacionados ao universo informado. Uma menção à marca pode acrescentar contexto, quando disponível.
+H3: Os perfis já estão cadastrados no Buzzcreators?
+BODY: A descoberta utiliza a base consultada do Buzz Trends. Aparecer na lista não confirma cadastro no Buzzcreators, disponibilidade ou interesse em uma parceria.
+H3: A ferramenta encontra todos os creators?
+BODY: Os resultados dependem da cobertura da base, do período disponível e do contexto pesquisado.
+H3: Preciso já ter uma campanha pronta?
+BODY: Não. Você pode começar com a marca e um tema. Um contexto mais claro ajuda a orientar a busca.
+H3: O Buzzcreators executa a campanha por mim?
+BODY: A plataforma apoia a equipe da marca ou agência na gestão. O escopo de contratação é definido com o time comercial.
+H3: Posso usar os resultados para contratar um creator?
+BODY: Use as sugestões para iniciar sua avaliação. Valide adequação, condições e interesse diretamente nas etapas seguintes.
+
+=== ENCERRAMENTO ===
+H2: Comece pelo universo da sua marca
+BODY: Informe seu contexto e explore os primeiros perfis para sua seleção.
+CTA: Encontrar creators
+# [MODO CONECTADO] Para quem já recebeu resultado, este CTA vira "Quero organizar minha campanha".
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzcreators · Buzzmonitor
+FOOTER: Política de Privacidade
+FOOTER: buzzcreators.com.br
+
+# Revisão anti-IA: sem achados (em-dash: 0; filler: 0; antítese-por-negação: 0; exclamação: 0).
+# Idioma: PT-BR (região brasil). Nenhuma verificação de fidelidade nativa necessária.
+# Grafia de marca conferida: "Buzzcreators" (masculino: o/do/ao Buzzcreators), "Buzzmonitor" (feminino: a/da
+# Buzzmonitor), "Buzz Trends" com espaço, conforme briefing e brand-manifest.

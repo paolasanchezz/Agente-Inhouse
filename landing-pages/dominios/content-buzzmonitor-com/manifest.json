@@ -42,6 +42,11 @@
       "source": "landing-pages/buzzmonitor/buzztalk-gestao-multimarcas-para-agencias"
     },
     {
+      "slug": "encontrar-creators",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/encontrar-creators"
+    },
+    {
       "slug": "ia-para-social-listening",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/ia-para-social-listening"
