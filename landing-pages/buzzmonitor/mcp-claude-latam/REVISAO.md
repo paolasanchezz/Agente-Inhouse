@@ -112,3 +112,15 @@ Um `str.replace` meu casou um fecho de `div` ambiguo e **duplicou o hero inteiro
   **Acessibilidade:** 21 px de altura fica abaixo do minimo de 24x24 do WCAG 2.5.8 (AA), entao o alvo de toque real e mantido em 156x45 por um `::after` transparente (`inset:-12px -10px`). Isso exige `overflow:visible`, o que desliga a varredura do hover nesse botao no mobile, onde nao ha hover mesmo.
 
 **Revalidado:** em-dash 0, JSON-LD parseia, GTM ok, 0 ancoras quebradas, 0 ids duplicados, arvore intacta, 0 erro de JS, sem scroll horizontal em 1440 nem em 390, e tudo visivel sem JS e com reduced-motion.
+
+---
+
+## Correcao pos-publicacao (2026-09-11)
+
+- [x] **Letra branca no hover do CTA da nav.** Ao reestruturar o botao (link = alvo de toque, `<span>` = pilula visual),
+  copiei junto um `color:#fff` no hover. A varredura do `.btn` e **branca**, entao era branco no branco: o texto sumia.
+  Agora a pilula mantem `#0A0507` no hover.
+  **Varredura em todos os botoes:** so este estava errado. Medido o contraste texto x varredura em cada variante
+  usada na LP (`.btn` 4x, `.btn--ghost` 3x, pilula da nav): **20,24:1** em todas apos o fix. O `.copy-btn` nao tem
+  varredura (fundo em degradado fixo, texto quase preto, ~7:1). `.btn--solid` e `.btn--light` continuam definidos
+  no CSS mas nao sao usados por nenhum elemento.
