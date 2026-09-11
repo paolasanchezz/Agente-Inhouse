@@ -195,7 +195,7 @@ Ou seja: depois de publicar, o pipeline terá duas thanks pages para a mesma ori
 
 ## Notas
 
-- GTM: `GTM-T4XDWHL3` (região brasil, mesmo container das demais LPs Cxpress BR).
+- GTM: `GTM-KN8BPFG` (container de Google Ads — mesmo das LPs de banimento de WhatsApp; atualizado em 2026-09-11 a pedido do time).
 - O formulário que hoje redireciona para `home.cxpress.io/obrigado` precisa ser reapontado para
   `content.cxpress.io/obrigado` — a troca é fora do repo, no site institucional.
 

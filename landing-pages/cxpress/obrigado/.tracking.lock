@@ -1,0 +1,12 @@
+{
+  "regiao": "brasil",
+  "expected_gtm": "GTM-T4XDWHL3",
+  "found_gtm": [
+    "GTM-KN8BPFG"
+  ],
+  "fingerprint": "1b72ebbdd5041c63",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-09-11",
+  "note": "estado pre-existente aceito — GTM diverge da regiao, aguardando correção; não bloqueia deploy até o fingerprint mudar"
+}
