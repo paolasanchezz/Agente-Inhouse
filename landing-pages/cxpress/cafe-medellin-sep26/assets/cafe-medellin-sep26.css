@@ -188,10 +188,15 @@ h1,h2,h3,
   margin:18px 0 20px;
 }
 .hero h1 .hl{color:var(--orange)}
-/* "WhatsApp Business" no se parte entre lineas (GUIDELINES 21). Debajo de
-   380px no cabe entero con el piso de 34px del H1 (GUIDELINES 20), asi que
-   ahi se deja quebrar en vez de desbordar. */
-@media (min-width:380px){.hero h1 .hl{white-space:nowrap}}
+/* "WhatsApp Business" no se parte entre lineas (GUIDELINES 21), pero solo
+   donde sobra ancho de verdad. Entre 380 y 459px el H1 se queda en su piso de
+   34px mientras el ancho util apenas supera el largo de la palabra: con la
+   fuente de respaldo (Arial, mientras carga o si falla Google Fonts) mide
+   ~368px contra 340-419px utiles, se desborda y, como html/body llevan
+   overflow-x:hidden, el titulo se recorta sin aviso. Eso cae justo en los
+   anchos de telefono mas comunes (iPhone 12-16: 390-430px). Por debajo de
+   480px se deja quebrar en dos lineas. */
+@media (min-width:480px){.hero h1 .hl{white-space:nowrap}}
 .hero-lead{
   font-size:clamp(18px,2vw,20px);line-height:1.55;
   color:var(--muted-dark);margin-bottom:24px;max-width:34em;
