@@ -1,0 +1,53 @@
+=== HERO ===
+H1: ¿Tu atención al cliente está siguiendo el ritmo de tus clientes?
+SUB: Descubre en menos de 1 minuto qué podría estar complicando tu operación y conversa con un especialista sobre tu caso.
+CTA: Comenzar el diagnóstico
+# [QUIZ MOCK] Roteiro de quiz abaixo (2 passos + resultado) e exemplo ilustrativo pedido pelo usuario para prototipar visualmente a secao antes da integracao real via Jotform (o quiz sera a propria captura de lead, sem form adicional na LP). Perguntas e opcoes sao rascunho, validar com o time antes de publicar em producao. Interacao construida como mock local (troca de passo via JS, sem submissao real), mesma logica de form mock da GUIDELINES §11.
+
+=== QUIZ-PASO-1 ===
+LABEL: Paso 1 de 2
+H3: ¿Qué situación afecta más tu atención hoy?
+SUB: Elige hasta 2 opciones.
+LIST ITEM (checkbox, titulo): Atender en varios canales sobrecarga nuestra operación
+LIST ITEM (checkbox, descripcion): WhatsApp, teléfono y redes sociales terminan dejando la información dispersa.
+LIST ITEM (checkbox, titulo): No siempre logramos responder a tiempo
+LIST ITEM (checkbox, descripcion): En picos de demanda o fuera del horario de atención, algunos mensajes quedan esperando.
+LIST ITEM (checkbox, titulo): Es difícil darle seguimiento a nuestros resultados
+LIST ITEM (checkbox, descripcion): Los datos están dispersos y cuesta entender cómo va la atención.
+LIST ITEM (checkbox, titulo): Perdemos ventas por falta de seguimiento
+LIST ITEM (checkbox, descripcion): No siempre logramos responder rápido o retomar contactos interesados.
+LIST ITEM (checkbox, titulo): Nuestra herramienta actual nos complica la rutina
+LIST ITEM (checkbox, descripcion): La inestabilidad, el soporte o las limitaciones terminan generando retrabajo.
+CTA: Continuar
+# [QUIZ MOCK] Idioma original desta pergunta (checkbox, max 2 selecoes) veio em PT-BR do usuario, traduzido/adaptado por mim para ES-LATAM (mesmo tratamento tu, mesmo vocabulario do restante da LP). Revisar com o time antes de publicar.
+
+=== QUIZ-PASO-2 ===
+LABEL: Paso 2 de 2
+H3: Habla con un especialista
+SUB: Recibe una orientación personalizada según tu caso.
+LABEL (campo): Nombre
+LABEL (campo): Correo de trabajo
+LABEL (campo): Cargo
+LABEL (campo): Teléfono
+LABEL (campo): Sitio web de la empresa
+LABEL (campo): ¿Cómo prefieres hablar con nosotros?
+LIST ITEM (opcion de contacto): WhatsApp
+LIST ITEM (opcion de contacto): Recibir una llamada
+CTA: Hablar con un especialista
+# [QUIZ MOCK] Formulario com campos reais (Nombre, Correo, Cargo, Telefono, Sitio web), mas submissao ainda mock (action="#", sem backend), GUIDELINES §11. Vira real quando o usuario integrar via /lp-integrar-form com o embed do Jotform.
+
+=== PRUEBA SOCIAL ===
+H2: Clientes que confían en Cxpress para optimizar su atención al cliente
+BODY: Empresas de distintos rubros usan Cxpress para hacer que sus operaciones de atención sean más eficientes, organizadas y estén listas para crecer.
+# [NOTA ATIVOS] Usar os logos de clientes da pagina https://content.cxpress.io/banimento-whatsapp-clinicas nesta secao (instrucao da fonte, nao e copy publica).
+
+=== RESULTADOS ===
+H2: Resultados de quienes estructuraron su atención con Cxpress
+SUB: Más capacidad de atención, más productividad para el equipo y calidad en las interacciones.
+LIST ITEM: +220% de interacciones realizadas con la misma estructura de atención.*
+LIST ITEM: Hasta 15x más productividad en las interacciones automatizadas, lo que aumenta la capacidad del equipo.*
+LIST ITEM: 98% de calidad en las respuestas automatizadas evaluadas, según los criterios definidos para cada operación.*
+BODY: *Resultados obtenidos por clientes de Cxpress en la atención a través de redes sociales, con base en el reporte interno Concierge, de 2025. Los resultados pueden variar según la operación.
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Idioma: ES-LATAM (traduzido de PT-BR, ver traducao/entregas/2026-09/quiz-atendimento-latam-es-latam.md). Tratamento: tu (tuteo). Fidelidade nativa verificada contra conhecimento/linguistico/es-latam/padrao-linguistico.md: sem brasileirismos, sem "vosotros", vocabulario LATAM (rubros, reporte, atencion al cliente).
