@@ -12,6 +12,28 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — aba das respostas achada por conteúdo, e trava contra formulário duplicado
+### 2026-09-14 — `integracoes/google/pocket-event-solicitacao.gs`
+
+Dois defeitos que só apareceram quando `criarFormulario` foi executado por engano numa
+planilha que já tinha formulário.
+
+**`aba_()` lia a aba errada em silêncio.** Ela procurava `getSheetByName('Respostas ao
+formulario 1')` — sem acento, enquanto o Google nomeia a aba com acento e no idioma da
+conta. O `getSheetByName` nunca casava e a função caía no fallback `getSheets()[0]`.
+Funcionou por acaso enquanto a aba de respostas era a primeira; assim que uma segunda
+apareceu na frente, o script passou a ler uma aba vazia sem erro nenhum — a varredura
+simplesmente não achava solicitação pendente. Agora a aba é escolhida pelo **conteúdo**:
+vale a que tiver o cabeçalho do título do encontro. Sem cabeçalho em aba nenhuma, levanta
+erro em vez de devolver vazio.
+
+**`criarFormulario` não checava se já existia formulário.** Rodá-la de novo criava um
+segundo formulário, uma segunda aba de respostas e duas versões das mesmas perguntas
+circulando. Agora ela recusa quando a planilha já tem formulário ligado, e aponta o caminho
+certo (`atualizarOpcoes`). Quem realmente quiser um segundo chama `criarFormulario(true)`.
+
+---
+
 ## `pocket-event` — 59 nichos da diretoria e módulo multisseleção
 ### 2026-09-14 — `config.json`, `render_pocket_event.py`, `pocket-event-solicitacao.gs`
 

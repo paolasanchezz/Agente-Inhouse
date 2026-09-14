@@ -100,8 +100,20 @@ var COLUNAS_CONTROLE = [COL.status, COL.url, COL.detalhe];
 // ===========================================================================
 // Criacao do formulario
 // ===========================================================================
-function criarFormulario() {
+function criarFormulario(forcar) {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Trava: rodar isto por engano com um formulario ja ligado cria um SEGUNDO
+  // formulario, uma segunda aba de respostas e duas versoes das mesmas perguntas
+  // circulando (aconteceu em 2026-09-14). Pra mudar as opcoes do formulario que
+  // ja existe, o caminho e `atualizarOpcoes`, nao este.
+  var jaTem = planilha.getFormUrl();
+  if (jaTem && !forcar) {
+    throw new Error('Esta planilha JA tem um formulario ligado (' + jaTem + '). ' +
+                    'Para trocar as opcoes, rode atualizarOpcoes. Para criar um ' +
+                    'segundo formulario mesmo assim, chame criarFormulario(true).');
+  }
+
   var form = FormApp.create('Pocket Event - solicitar LP')
     .setDescription(
       'Preencha para gerar a landing page de um Pocket Event. A pagina entra no ar ' +
@@ -320,9 +332,28 @@ function autorizado_(obj) {
   return !!esperado && !!obj && obj.token === esperado;
 }
 
+/**
+ * A aba das respostas, achada pelo CONTEUDO e nao pelo nome nem pela posicao.
+ *
+ * Procurar por nome nao funciona: o Google nomeia a aba "Respostas ao formulário 1",
+ * com acento e no idioma da conta. E cair em getSheets()[0] e pior ainda, porque a
+ * ordem das abas muda — um formulario novo ligado a mesma planilha entra na frente e
+ * o script passa a ler uma aba vazia, sem erro nenhum (foi o que aconteceu em
+ * 2026-09-14). Entao: vale a aba que tiver o cabecalho do titulo do encontro.
+ */
 function aba_() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
-  return planilha.getSheetByName('Respostas ao formulario 1') || planilha.getSheets()[0];
+  var abas = planilha.getSheets();
+  var alvo = normalizar_(COL.titulo);
+  for (var i = 0; i < abas.length; i++) {
+    if (abas[i].getLastColumn() < 1) continue;
+    var cabecalhos = abas[i].getRange(1, 1, 1, abas[i].getLastColumn()).getValues()[0];
+    for (var c = 0; c < cabecalhos.length; c++) {
+      if (normalizar_(cabecalhos[c]) === alvo) return abas[i];
+    }
+  }
+  throw new Error('nenhuma aba tem a coluna "' + COL.titulo + '". O formulario ja foi ' +
+                  'criado e ligado a esta planilha? (rodar criarFormulario)');
 }
 
 function cabecalhos_(aba) {
