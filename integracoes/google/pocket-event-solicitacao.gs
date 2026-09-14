@@ -141,13 +141,15 @@ function migrarModuloParaCheckbox_(form) {
   if (!antigo) return false;  // ja e checkbox, ou o campo nao existe
 
   var posicao = antigo.getIndex();
-  var ajuda = antigo.getHelpText();
   var obrigatorio = antigo.asListItem().isRequired();
   form.deleteItem(antigo);
 
+  // O texto de ajuda antigo NAO e preservado: ele foi escrito pra uma lista de
+  // escolha unica ("o modulo que vai ser o foco") e passa a mentir assim que o
+  // campo aceita varios.
   var novo = form.addCheckboxItem()
     .setTitle(COL.modulo)
-    .setHelpText(ajuda || 'Marque um ou mais. Aparecem na LP na ordem desta lista.')
+    .setHelpText('Marque um ou mais. Aparecem na LP na ordem desta lista.')
     .setChoiceValues(OPCOES.modulos)
     .setRequired(obrigatorio);
   form.moveItem(novo.getIndex(), posicao);
