@@ -98,7 +98,92 @@ var COL = {
 var COLUNAS_CONTROLE = [COL.status, COL.url, COL.detalhe];
 
 // ===========================================================================
-// Criacao do formulario
+// Manutencao do formulario
+//
+// `atualizarOpcoes` vem primeiro de proposito: o botao Executar do editor ja
+// vem apontado pra primeira funcao do arquivo, e a primeira funcao nao pode ser
+// a que cria coisas. Rodar `criarFormulario` sem querer, com um formulario ja
+// ligado, criava um segundo formulario e uma segunda aba de respostas (foi o
+// que aconteceu em 2026-09-14). Hoje ela tambem recusa nesse caso, mas o padrao
+// seguro vale por si.
+// ===========================================================================
+function atualizarOpcoes() {
+  var form = FormApp.openByUrl(
+    SpreadsheetApp.getActiveSpreadsheet().getFormUrl());
+  var migrou = migrarModuloParaCheckbox_(form);
+  var mapa = {};
+  mapa[COL.nicho] = OPCOES.nichos;
+  mapa[COL.modulo] = OPCOES.modulos;
+  mapa[COL.horario] = OPCOES.horarios;
+  mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
+
+  var tocados = 0;
+  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+    var novas = mapa[item.getTitle()];
+    if (novas && novas.length) { item.asListItem().setChoiceValues(novas); tocados++; }
+  });
+  // O modulo e caixa de selecao (CHECKBOX), que nao aparece no getItems(LIST).
+  form.getItems(FormApp.ItemType.CHECKBOX).forEach(function (item) {
+    var novas = mapa[item.getTitle()];
+    if (novas && novas.length) { item.asCheckboxItem().setChoiceValues(novas); tocados++; }
+  });
+  return tocados + ' campo(s) atualizado(s)' +
+    (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
+}
+
+/** Instala o gatilho de envio e garante as colunas de controle. */
+
+function migrarModuloParaCheckbox_(form) {
+  var antigo = null;
+  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+    if (item.getTitle() === COL.modulo) antigo = item;
+  });
+  if (!antigo) return false;  // ja e checkbox, ou o campo nao existe
+
+  var posicao = antigo.getIndex();
+  var ajuda = antigo.getHelpText();
+  var obrigatorio = antigo.asListItem().isRequired();
+  form.deleteItem(antigo);
+
+  var novo = form.addCheckboxItem()
+    .setTitle(COL.modulo)
+    .setHelpText(ajuda || 'Marque um ou mais. Aparecem na LP na ordem desta lista.')
+    .setChoiceValues(OPCOES.modulos)
+    .setRequired(obrigatorio);
+  form.moveItem(novo.getIndex(), posicao);
+  return true;
+}
+
+/** Re-sincroniza as listas do formulario com o OPCOES deste arquivo. */
+
+function configurar() {
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'aoEnviarFormulario') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('aoEnviarFormulario').forSpreadsheet(planilha).onFormSubmit().create();
+
+  var aba = aba_();
+  var cabecalhos = cabecalhos_(aba);
+  COLUNAS_CONTROLE.forEach(function (nome) {
+    if (cabecalhos.indexOf(nome) < 0) {
+      aba.getRange(1, aba.getLastColumn() + 1).setValue(nome).setFontWeight('bold');
+      cabecalhos.push(nome);
+    }
+  });
+  aba.setFrozenRows(1);
+
+  var faltando = ['GITHUB_TOKEN', 'GITHUB_REPO', 'POCKET_TOKEN'].filter(function (p) {
+    return !PropertiesService.getScriptProperties().getProperty(p);
+  });
+  return faltando.length
+    ? 'gatilho ok, MAS faltam propriedades do script: ' + faltando.join(', ')
+    : 'gatilho instalado e colunas de controle prontas';
+}
+
+// ===========================================================================
+// Criacao do formulario (uma vez por planilha)
 // ===========================================================================
 function criarFormulario(forcar) {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
@@ -174,78 +259,6 @@ function criarFormulario(forcar) {
  * A coluna da planilha nao se mexe (mesmo titulo), entao as respostas antigas
  * continuam onde estavam.
  */
-function migrarModuloParaCheckbox_(form) {
-  var antigo = null;
-  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
-    if (item.getTitle() === COL.modulo) antigo = item;
-  });
-  if (!antigo) return false;  // ja e checkbox, ou o campo nao existe
-
-  var posicao = antigo.getIndex();
-  var ajuda = antigo.getHelpText();
-  var obrigatorio = antigo.asListItem().isRequired();
-  form.deleteItem(antigo);
-
-  var novo = form.addCheckboxItem()
-    .setTitle(COL.modulo)
-    .setHelpText(ajuda || 'Marque um ou mais. Aparecem na LP na ordem desta lista.')
-    .setChoiceValues(OPCOES.modulos)
-    .setRequired(obrigatorio);
-  form.moveItem(novo.getIndex(), posicao);
-  return true;
-}
-
-/** Re-sincroniza as listas do formulario com o OPCOES deste arquivo. */
-function atualizarOpcoes() {
-  var form = FormApp.openByUrl(
-    SpreadsheetApp.getActiveSpreadsheet().getFormUrl());
-  var migrou = migrarModuloParaCheckbox_(form);
-  var mapa = {};
-  mapa[COL.nicho] = OPCOES.nichos;
-  mapa[COL.modulo] = OPCOES.modulos;
-  mapa[COL.horario] = OPCOES.horarios;
-  mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
-
-  var tocados = 0;
-  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
-    var novas = mapa[item.getTitle()];
-    if (novas && novas.length) { item.asListItem().setChoiceValues(novas); tocados++; }
-  });
-  // O modulo e caixa de selecao (CHECKBOX), que nao aparece no getItems(LIST).
-  form.getItems(FormApp.ItemType.CHECKBOX).forEach(function (item) {
-    var novas = mapa[item.getTitle()];
-    if (novas && novas.length) { item.asCheckboxItem().setChoiceValues(novas); tocados++; }
-  });
-  return tocados + ' campo(s) atualizado(s)' +
-    (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
-}
-
-/** Instala o gatilho de envio e garante as colunas de controle. */
-function configurar() {
-  var planilha = SpreadsheetApp.getActiveSpreadsheet();
-
-  ScriptApp.getProjectTriggers().forEach(function (t) {
-    if (t.getHandlerFunction() === 'aoEnviarFormulario') ScriptApp.deleteTrigger(t);
-  });
-  ScriptApp.newTrigger('aoEnviarFormulario').forSpreadsheet(planilha).onFormSubmit().create();
-
-  var aba = aba_();
-  var cabecalhos = cabecalhos_(aba);
-  COLUNAS_CONTROLE.forEach(function (nome) {
-    if (cabecalhos.indexOf(nome) < 0) {
-      aba.getRange(1, aba.getLastColumn() + 1).setValue(nome).setFontWeight('bold');
-      cabecalhos.push(nome);
-    }
-  });
-  aba.setFrozenRows(1);
-
-  var faltando = ['GITHUB_TOKEN', 'GITHUB_REPO', 'POCKET_TOKEN'].filter(function (p) {
-    return !PropertiesService.getScriptProperties().getProperty(p);
-  });
-  return faltando.length
-    ? 'gatilho ok, MAS faltam propriedades do script: ' + faltando.join(', ')
-    : 'gatilho instalado e colunas de controle prontas';
-}
 
 // ===========================================================================
 // Envio -> GitHub
