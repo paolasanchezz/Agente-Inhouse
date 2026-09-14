@@ -1,0 +1,38 @@
+META
+slug: pocket-alimentos-2026-09-22
+marca: buzzmonitor
+regiao: brasil
+idioma: pt-br
+tipo: evento-fechado
+formato: pocket-event (10 vagas, 1 especialista apresentando)
+origem: gerado por render_pocket_event.py (nao editar a mao — ver README.md)
+
+---
+
+SECAO: HERO
+
+LABEL: Pocket Event - Apenas 10 vagas
+H1: Gestão de crises nas redes sociais no VAREJO DE ALIMENTOS
+H2: Discussao pratica sobre alimentos e bebidas com foco em Social Listening.
+INFO: 22 de setembro - 11h - Online ao vivo
+
+TICKET_DATE: 22/09
+TICKET_SUB: terca-feira - 11h
+
+---
+
+SECAO: SPEAKER + FORM
+
+SPEAKER_NOME: Bruno Braga
+SPEAKER_CARGO: Business Developer - Buzzmonitor
+SPEAKER_BIO: None
+
+FORM: nativo -> Apps Script -> planilha unica de inscricoes
+FORM_CAMPOS: nome, email, empresa, cargo
+FORM_OCULTOS: edicao, evento, data_evento, horario, speaker, url_conversao, utm_*
+
+---
+
+SECAO: EMPRESAS QUE CONFIAM / DEPOIMENTOS / URGENCIA / FOOTER
+
+Fixas no template (iguais em toda edicao).
