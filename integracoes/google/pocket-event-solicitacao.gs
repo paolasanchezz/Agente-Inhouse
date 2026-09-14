@@ -344,16 +344,37 @@ function autorizado_(obj) {
 function aba_() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
   var abas = planilha.getSheets();
-  var alvo = normalizar_(COL.titulo);
+  var alvoTitulo = normalizar_(COL.titulo);
+  var alvoStatus = normalizar_(COL.status);
+
+  // Candidata = qualquer aba com a coluna do titulo do encontro.
+  var candidatas = [];
   for (var i = 0; i < abas.length; i++) {
     if (abas[i].getLastColumn() < 1) continue;
-    var cabecalhos = abas[i].getRange(1, 1, 1, abas[i].getLastColumn()).getValues()[0];
-    for (var c = 0; c < cabecalhos.length; c++) {
-      if (normalizar_(cabecalhos[c]) === alvo) return abas[i];
-    }
+    var cab = abas[i].getRange(1, 1, 1, abas[i].getLastColumn()).getValues()[0]
+      .map(normalizar_);
+    if (cab.indexOf(alvoTitulo) < 0) continue;
+    candidatas.push({
+      aba: abas[i],
+      temControle: cab.indexOf(alvoStatus) >= 0,  // colunas criadas por `configurar`
+      linhas: abas[i].getLastRow()
+    });
   }
-  throw new Error('nenhuma aba tem a coluna "' + COL.titulo + '". O formulario ja foi ' +
-                  'criado e ligado a esta planilha? (rodar criarFormulario)');
+  if (!candidatas.length) {
+    throw new Error('nenhuma aba tem a coluna "' + COL.titulo + '". O formulario ja foi ' +
+                    'criado e ligado a esta planilha? (rodar criarFormulario)');
+  }
+  if (candidatas.length === 1) return candidatas[0].aba;
+
+  // Mais de uma aba de respostas (um segundo formulario foi ligado a mesma
+  // planilha). Todas tem o mesmo cabecalho, entao pegar "a primeira" seria
+  // sorteio. Vale a que o automatismo de fato usa: a que tem as colunas de
+  // controle; empatando, a que tem mais linhas.
+  candidatas.sort(function (a, b) {
+    if (a.temControle !== b.temControle) return a.temControle ? -1 : 1;
+    return b.linhas - a.linhas;
+  });
+  return candidatas[0].aba;
 }
 
 function cabecalhos_(aba) {

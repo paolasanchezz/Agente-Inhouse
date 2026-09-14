@@ -12,6 +12,21 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — desempate quando há duas abas de respostas
+### 2026-09-14 — `integracoes/google/pocket-event-solicitacao.gs`
+
+Complemento do fix anterior, que ficou pela metade. Achar a aba pelo cabeçalho resolve o
+nome com acento, mas **duas abas de respostas têm cabeçalho idêntico** — foi exatamente o
+estado em que a planilha ficou depois do formulário duplicado. A primeira encontrada seria
+sorteio, e a sorteada era a vazia.
+
+Agora, havendo mais de uma candidata, vale a que tem as **colunas de controle**
+(`Status`/`URL da LP`/`Detalhe`, criadas por `configurar`) — que é, por definição, a aba que
+o automatismo usa. Empatando, a que tem mais linhas. Com uma candidata só, nada muda: uma
+instalação nova continua funcionando antes de `configurar` rodar.
+
+---
+
 ## `pocket-event` — aba das respostas achada por conteúdo, e trava contra formulário duplicado
 ### 2026-09-14 — `integracoes/google/pocket-event-solicitacao.gs`
 
