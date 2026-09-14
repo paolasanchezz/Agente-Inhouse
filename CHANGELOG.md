@@ -12,6 +12,52 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — LP de Pocket Event gerada por formulário
+### 2026-09-14 — nova skill `1.0.0` + automação (`.github/workflows/pocket-event-novo.yml`)
+
+Primeira LP do repo que entra no ar **sem ninguém escrever HTML**. BD ou SDR preenche um
+Google Form; um Apps Script dispara o workflow; `pocket_event_job.py` valida, renderiza a
+partir de `landing-pages/build/templates/pocket-event/` e inscreve o slug no manifesto de
+`evento.buzzmonitor.com`. Daí em diante é o caminho que já existia: `lp-pr.yml` auto-mergeia
+o diff de conteúdo e `lp-deploy.yml` publica com smoke e rollback.
+
+**Por que não tem modelo de linguagem em runtime:** nicho, módulo, horário e speaker vêm de
+listas fechadas; bio, cargo e foto saem de um cadastro revisado (`speakers.json`); data por
+extenso, dia da semana e slug são derivados por tabela fixa. O único texto livre é o título,
+e ele passa por validador estrito — tamanho, caracteres que quebrariam o HTML, e travessão
+(regra anti-IA de tolerância zero, checada também na copy fixa do template).
+
+**Decisões que valem registro:**
+- Sem projeto Vercel novo: cada edição é uma rota de `evento.buzzmonitor.com`.
+- Slug `pocket-{nicho}-{AAAA-MM-DD}` não inclui o título — título é texto livre e mudaria a
+  URL a cada correção de digitação.
+- Captura de lead é um endpoint único pra todas as edições (Apps Script → planilha), com
+  `url_conversao` e UTMs: lead sem os dois some do filtro das dashboards de CM.
+- OG image é uma só, discreta ("Evento Especial" + logo), sem data nem título: link de evento
+  é reencaminhado depois que a edição passou.
+- Teto de 5 LPs por execução, data entre amanhã e 180 dias, nunca edita nem remove LP existente.
+
+**Pendências de quem opera:** cadastrar os BDs em `speakers.json`, publicar os dois Apps
+Script e criar os secrets `POCKET_EVENT_PAT`, `POCKET_SHEET_URL` e `POCKET_SHEET_TOKEN`.
+Runbook em `integracoes/google/README.md`.
+
+---
+
+## `lp-deploy` — smoke test com retry (corrida com slug novo)
+### 2026-09-14 — `landing-pages/build/deploy_ci.py`
+
+O smoke rodava 1 a 3 segundos depois do deploy, uma vez só. Nesse intervalo o alias do
+domínio ainda pode servir o deploy anterior: slug novo responde 404 e slug alterado devolve
+o HTML velho (falha de hash). O rollback então promovia o deploy antigo e **derrubava uma LP
+que estava boa**, com o log dizendo "N/N URLs respondendo" — número do estado já revertido.
+
+Agora o smoke roda em tentativas com espera crescente (0s, 3s, 8s, 15s) e cada tentativa
+re-checa só o que ainda falha. Custo no caminho feliz: zero. Virou pré-requisito porque a
+automação de Pocket Events cria um slug novo em toda execução, o que fazia a corrida deixar
+de ser esporádica e virar o caso padrão.
+
+---
+
 ## CSP do `content.buzzmonitor.com` — liberar a consulta de pais por IP
 ### 2026-09-14 — `landing-pages/dominios/content-buzzmonitor-com/vercel.json` (so o dominio, sem mudanca de template)
 

@@ -1,0 +1,318 @@
+/**
+ * Pocket Event — formulario de solicitacao (BDs e SDRs) -> GitHub -> LP no ar.
+ *
+ * Este script mora na PLANILHA de respostas do formulario de solicitacao.
+ * Ele nao decide nada sobre o conteudo da LP: so empacota a linha e entrega pro
+ * workflow `pocket-event-novo.yml`, que valida e renderiza. Toda regra de
+ * conteudo vive no repo (templates/pocket-event/config.json).
+ *
+ * ┌── PRIMEIRA VEZ ─────────────────────────────────────────────────────────┐
+ * 1. Criar uma planilha nova no Drive ("Pocket Events - solicitacoes").
+ * 2. Extensoes > Apps Script. Colar este arquivo inteiro em Codigo.gs.
+ * 3. Configuracoes do projeto > Propriedades do script, criar tres:
+ *      GITHUB_TOKEN  = PAT classico com escopo `repo` (o mesmo do POCKET_EVENT_PAT)
+ *      GITHUB_REPO   = victorfmlopes/Agente-Inhouse
+ *      POCKET_TOKEN  = senha longa inventada por voce (a mesma do secret
+ *                      POCKET_SHEET_TOKEN no GitHub)
+ * 4. Rodar `criarFormulario` e aceitar as permissoes. Ele cria o Form com as
+ *    listas certas, amarra na planilha e imprime a URL de resposta no log.
+ * 5. Rodar `configurar`. Instala o gatilho de envio e cria as colunas de status.
+ * 6. Implantar > Nova implantacao > Aplicativo da Web
+ *      Executar como: Eu | Quem tem acesso: Qualquer pessoa
+ *    Colar a URL /exec no secret POCKET_SHEET_URL do GitHub.
+ * └─────────────────────────────────────────────────────────────────────────┘
+ *
+ * MUDOU O CODIGO DEPOIS DE PUBLICAR? Salvar nao basta: Implantar > Gerenciar
+ * implantacoes > editar (lapis) > Versao: "Nova versao". A URL /exec nao muda.
+ *
+ * MUDOU A LISTA DE NICHOS, MODULOS, HORARIOS OU SPEAKERS NO REPO?
+ *   py landing-pages/build/render_pocket_event.py --form-spec
+ * e colar a saida em OPCOES abaixo, depois rodar `atualizarOpcoes`.
+ * As listas TEM que bater com o config.json: valor fora da lista e recusado pelo
+ * workflow, e a LP nao e criada.
+ */
+
+// ===== Opcoes do formulario (espelho de config.json + speakers.json) ========
+// Gerado por: py landing-pages/build/render_pocket_event.py --form-spec
+var OPCOES = {
+  nichos: [
+    'Varejo e consumo', 'Alimentos e bebidas', 'Servicos financeiros',
+    'Saude e bem-estar', 'Educacao', 'Telecomunicacoes', 'Automotivo',
+    'Industria', 'Entretenimento e midia', 'Agencias', 'Turismo e hotelaria',
+    'Setor publico'
+  ],
+  modulos: [
+    'Social Listening', 'SAC 2.0', 'Dashboards e Analytics',
+    'Agendamento e Publicacao', 'Analytics Avancado', 'AI Insights',
+    'Buzz GPT', 'Buzz Pills'
+  ],
+  horarios: ['09h', '10h', '11h', '14h', '15h', '16h', '17h'],
+  // Preencher com os nomes exatos de speakers.json (sem a entrada de exemplo).
+  speakers: [],
+  titulo_max: 60,
+  dias_maximo: 180
+};
+
+// ===== Colunas ==============================================================
+var COL = {
+  carimbo: 'Carimbo de data/hora',
+  email: 'Endereco de e-mail',
+  titulo: 'Titulo do encontro',
+  nicho: 'Nicho',
+  modulo: 'Modulo Buzzmonitor',
+  data: 'Data do encontro',
+  horario: 'Horario',
+  speaker: 'Quem apresenta',
+  status: 'Status',
+  url: 'URL da LP',
+  detalhe: 'Detalhe'
+};
+var COLUNAS_CONTROLE = [COL.status, COL.url, COL.detalhe];
+
+// ===========================================================================
+// Criacao do formulario
+// ===========================================================================
+function criarFormulario() {
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  var form = FormApp.create('Pocket Event - solicitar LP')
+    .setDescription(
+      'Preencha para gerar a landing page de um Pocket Event. A pagina entra no ar ' +
+      'sozinha em poucos minutos. Tudo que nao esta aqui (bio do speaker, depoimentos, ' +
+      'social proof) ja vem pronto do modelo.')
+    .setCollectEmail(true)
+    .setRequireLogin(true);
+
+  form.addTextItem()
+    .setTitle(COL.titulo)
+    .setHelpText('Ate ' + OPCOES.titulo_max + ' caracteres. Sem ponto final, sem travessao ' +
+                 '(-) e sem aspas. Ex: Como o varejo escuta o cliente em tempo real')
+    .setRequired(true)
+    .setValidation(FormApp.createTextValidation()
+      .requireTextLengthLessThanOrEqualTo(OPCOES.titulo_max).build());
+
+  form.addListItem().setTitle(COL.nicho).setChoiceValues(OPCOES.nichos).setRequired(true);
+  form.addListItem().setTitle(COL.modulo)
+    .setHelpText('Modulo ou feature que vai ser o foco da conversa.')
+    .setChoiceValues(OPCOES.modulos).setRequired(true);
+  form.addDateItem().setTitle(COL.data)
+    .setHelpText('No maximo ' + OPCOES.dias_maximo + ' dias a frente. Data passada e recusada.')
+    .setRequired(true);
+  form.addListItem().setTitle(COL.horario)
+    .setHelpText('Horario de Brasilia.')
+    .setChoiceValues(OPCOES.horarios).setRequired(true);
+
+  if (OPCOES.speakers.length) {
+    form.addListItem().setTitle(COL.speaker)
+      .setHelpText('Cargo, bio e foto ja estao cadastrados. Nao esta na lista? Pedir ' +
+                   'o cadastro antes de solicitar a LP.')
+      .setChoiceValues(OPCOES.speakers.map(function (s) { return s.nome; }))
+      .setRequired(true);
+  } else {
+    form.addTextItem().setTitle(COL.speaker)
+      .setHelpText('ATENCAO: nenhum speaker cadastrado ainda. Cadastre em ' +
+                   'speakers.json e rode atualizarOpcoes.')
+      .setRequired(true);
+  }
+
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, planilha.getId());
+  Logger.log('Formulario criado. Link para responder:\n' + form.getPublishedUrl());
+  Logger.log('Link para editar:\n' + form.getEditUrl());
+  return form.getPublishedUrl();
+}
+
+/** Re-sincroniza as listas do formulario com o OPCOES deste arquivo. */
+function atualizarOpcoes() {
+  var form = FormApp.openByUrl(
+    SpreadsheetApp.getActiveSpreadsheet().getFormUrl());
+  var mapa = {};
+  mapa[COL.nicho] = OPCOES.nichos;
+  mapa[COL.modulo] = OPCOES.modulos;
+  mapa[COL.horario] = OPCOES.horarios;
+  mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
+
+  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+    var novas = mapa[item.getTitle()];
+    if (novas && novas.length) item.asListItem().setChoiceValues(novas);
+  });
+  return 'listas atualizadas';
+}
+
+/** Instala o gatilho de envio e garante as colunas de controle. */
+function configurar() {
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'aoEnviarFormulario') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('aoEnviarFormulario').forSpreadsheet(planilha).onFormSubmit().create();
+
+  var aba = aba_();
+  var cabecalhos = cabecalhos_(aba);
+  COLUNAS_CONTROLE.forEach(function (nome) {
+    if (cabecalhos.indexOf(nome) < 0) {
+      aba.getRange(1, aba.getLastColumn() + 1).setValue(nome).setFontWeight('bold');
+      cabecalhos.push(nome);
+    }
+  });
+  aba.setFrozenRows(1);
+
+  var faltando = ['GITHUB_TOKEN', 'GITHUB_REPO', 'POCKET_TOKEN'].filter(function (p) {
+    return !PropertiesService.getScriptProperties().getProperty(p);
+  });
+  return faltando.length
+    ? 'gatilho ok, MAS faltam propriedades do script: ' + faltando.join(', ')
+    : 'gatilho instalado e colunas de controle prontas';
+}
+
+// ===========================================================================
+// Envio -> GitHub
+// ===========================================================================
+function aoEnviarFormulario(e) {
+  var linha = e && e.range ? e.range.getRow() : aba_().getLastRow();
+  var pedido = lerLinha_(linha);
+  if (!pedido) return;
+  try {
+    dispararGitHub_([pedido]);
+    marcarLinha_(linha, 'enviada', '', 'aguardando o GitHub Actions');
+  } catch (err) {
+    // Nao marca erro: a varredura diaria pega de novo a linha sem status.
+    Logger.log('falha ao disparar o GitHub: ' + err);
+  }
+}
+
+function dispararGitHub_(solicitacoes) {
+  var props = PropertiesService.getScriptProperties();
+  var repo = props.getProperty('GITHUB_REPO');
+  var token = props.getProperty('GITHUB_TOKEN');
+  if (!repo || !token) throw new Error('GITHUB_REPO/GITHUB_TOKEN nao configurados');
+
+  var resposta = UrlFetchApp.fetch('https://api.github.com/repos/' + repo + '/dispatches', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' },
+    payload: JSON.stringify({
+      event_type: 'pocket-event',
+      client_payload: { solicitacoes: solicitacoes }
+    }),
+    muteHttpExceptions: true
+  });
+  var codigo = resposta.getResponseCode();
+  if (codigo !== 204) {
+    throw new Error('GitHub respondeu ' + codigo + ': ' + resposta.getContentText());
+  }
+}
+
+// ===========================================================================
+// Web app: varredura diaria (doGet) e escrita de volta (doPost)
+// ===========================================================================
+function doGet(e) {
+  if (!autorizado_(e && e.parameter)) return responder_({ ok: false, error: 'token invalido' });
+  if (e.parameter.acao !== 'pendentes') {
+    return responder_({ ok: true, servico: 'Pocket Event - solicitacoes' });
+  }
+  var aba = aba_();
+  var pendentes = [];
+  for (var linha = 2; linha <= aba.getLastRow(); linha++) {
+    var status = String(valor_(aba, linha, COL.status) || '').trim();
+    // 'enviada' entra de novo de proposito: o webhook pode ter disparado e o
+    // workflow ter falhado antes de criar qualquer coisa. Criar duas vezes nao
+    // e risco — o job ignora slug que ja existe.
+    if (status === '' || status === 'enviada') {
+      var pedido = lerLinha_(linha);
+      if (pedido) pendentes.push(pedido);
+    }
+  }
+  return responder_({ ok: true, solicitacoes: pendentes });
+}
+
+function doPost(e) {
+  var corpo;
+  try {
+    corpo = JSON.parse(e.postData.contents);
+  } catch (err) {
+    return responder_({ ok: false, error: 'corpo invalido' });
+  }
+  if (!autorizado_(corpo)) return responder_({ ok: false, error: 'token invalido' });
+  if (corpo.acao !== 'marcar') return responder_({ ok: false, error: 'acao desconhecida' });
+
+  (corpo.linhas || []).forEach(function (m) {
+    marcarLinha_(m.linha, m.status, m.url || '', m.motivo || '');
+  });
+  return responder_({ ok: true, marcadas: (corpo.linhas || []).length });
+}
+
+// ===========================================================================
+// Helpers
+// ===========================================================================
+function autorizado_(obj) {
+  var esperado = PropertiesService.getScriptProperties().getProperty('POCKET_TOKEN');
+  return !!esperado && !!obj && obj.token === esperado;
+}
+
+function aba_() {
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
+  return planilha.getSheetByName('Respostas ao formulario 1') || planilha.getSheets()[0];
+}
+
+function cabecalhos_(aba) {
+  return aba.getRange(1, 1, 1, Math.max(aba.getLastColumn(), 1)).getValues()[0]
+    .map(function (v) { return String(v).trim(); });
+}
+
+/** Acha a coluna pelo cabecalho, ignorando acento e caixa. */
+function coluna_(aba, nome) {
+  var alvo = normalizar_(nome);
+  var cabecalhos = cabecalhos_(aba);
+  for (var i = 0; i < cabecalhos.length; i++) {
+    if (normalizar_(cabecalhos[i]) === alvo) return i + 1;
+  }
+  return 0;
+}
+
+function normalizar_(s) {
+  return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+function valor_(aba, linha, nome) {
+  var c = coluna_(aba, nome);
+  return c ? aba.getRange(linha, c).getValue() : '';
+}
+
+/** Data pode chegar como Date (Form) ou texto. A LP so aceita AAAA-MM-DD. */
+function dataISO_(v) {
+  if (v instanceof Date) {
+    return Utilities.formatDate(v, 'America/Sao_Paulo', 'yyyy-MM-dd');
+  }
+  return String(v || '').trim();
+}
+
+function lerLinha_(linha) {
+  var aba = aba_();
+  var titulo = String(valor_(aba, linha, COL.titulo) || '').trim();
+  if (!titulo) return null;
+  return {
+    linha: linha,
+    solicitante: String(valor_(aba, linha, COL.email) || '').trim(),
+    titulo: titulo,
+    nicho: String(valor_(aba, linha, COL.nicho) || '').trim(),
+    modulo: String(valor_(aba, linha, COL.modulo) || '').trim(),
+    data: dataISO_(valor_(aba, linha, COL.data)),
+    horario: String(valor_(aba, linha, COL.horario) || '').trim(),
+    speaker: String(valor_(aba, linha, COL.speaker) || '').trim()
+  };
+}
+
+function marcarLinha_(linha, status, url, detalhe) {
+  if (!linha) return;
+  var aba = aba_();
+  var mapa = [[COL.status, status], [COL.url, url], [COL.detalhe, detalhe]];
+  mapa.forEach(function (par) {
+    var c = coluna_(aba, par[0]);
+    if (c) aba.getRange(linha, c).setValue(par[1]);
+  });
+}
+
+function responder_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}

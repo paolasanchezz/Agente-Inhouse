@@ -1,0 +1,16 @@
+{
+  "$schema": "pocket-event-speakers/v1",
+  "_leia": "Cadastro de quem pode apresentar um Pocket Event. O formulario so oferece estes nomes, e o job recusa qualquer speaker fora daqui. Bio e cargo NAO sao digitados no formulario: saem deste arquivo, uma vez por pessoa, ja revisados. Foto e opcional (sem foto, a LP usa as iniciais com o degrade da marca).",
+  "_como_adicionar": "1. Copiar um bloco abaixo e preencher. 2. Se houver foto, salvar em brand/buzzmonitor/assets/speakers/{id}.jpg (quadrada, min 336x336, rosto centralizado) e apontar em 'foto'. 3. Abrir PR (config e path protegido: passa pela revisao do Victor). 4. Rodar `py landing-pages/build/render_pocket_event.py --form-spec` e recolar a saida no Apps Script do formulario.",
+
+  "speakers": [
+    {
+      "id": "exemplo",
+      "nome": "Especialista Buzzmonitor",
+      "cargo": "Business Developer",
+      "bio": "Entrada de exemplo, usada pelo teste do renderer. Nao selecionar no formulario real.",
+      "foto": null,
+      "exemplo": true
+    }
+  ]
+}

@@ -24,6 +24,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.request
 
 import check_gtm_region  # gate GTM x regiao (modulo local, mesmo diretorio)
@@ -64,31 +65,67 @@ def norm(b):
     return b.replace(b"\r\n", b"\n")
 
 
-def smoke(manifest, dist, dominio):
-    """Valida toda LP do manifesto + redirects do vercel.json no live."""
-    falhas = []
+SMOKE_BACKOFF = (0, 3, 8, 15)  # espera (s) antes de cada tentativa do smoke
+
+
+def _check_lp(dominio, slug, dist, redirects):
+    """Valida 1 slug no live. Devolve string de erro ou None."""
+    status, loc, body = fetch(f"https://{dominio}/{slug}")
+    esperado = redirects.get(f"/{slug}")
+    if esperado:
+        if status // 100 == 3 and loc.rstrip("/") == esperado.rstrip("/"):
+            return None
+        return f"{slug}: esperava redirect p/ {esperado}, veio {status} {loc}"
+    if status != 200:
+        return f"{slug}: HTTP {status}"
+    local = open(os.path.join(dist, slug, "index.html"), "rb").read()
+    if hashlib.md5(norm(body)).hexdigest() != hashlib.md5(norm(local)).hexdigest():
+        return f"{slug}: conteudo live != build (hash normalizado)"
+    return None
+
+
+def _check_redirect(dominio, source, dest):
+    status, loc, _ = fetch(f"https://{dominio}{source}")
+    if status // 100 == 3 and loc.rstrip("/") == dest.rstrip("/"):
+        return None
+    return f"redirect {source}: esperava {dest}, veio {status} {loc}"
+
+
+def smoke(manifest, dist, dominio, backoff=SMOKE_BACKOFF):
+    """Valida toda LP do manifesto + redirects do vercel.json no live.
+
+    Roda em TENTATIVAS com espera crescente. O alias do dominio leva alguns
+    segundos pra passar a servir o deploy novo, e nesse intervalo um slug que
+    acabou de nascer responde 404 (e um slug alterado ainda devolve o HTML
+    velho, falhando o hash). Sem retry, LP nova derruba o proprio deploy: o
+    smoke falha, o rollback promove o deploy anterior e a LP some — com o log
+    dizendo "N/N URLs respondendo", que e do estado JA revertido.
+
+    Cada tentativa re-checa SO o que ainda falha; o que ja passou nao repete.
+    Devolve [] (tudo ok) ou a lista de falhas da ultima tentativa.
+    """
     vj = json.load(open(os.path.join(dist, "vercel.json"), encoding="utf-8"))
     redirects = {r["source"].rstrip("/"): r["destination"]
                  for r in vj.get("redirects", [])}
-    for lp in manifest["lps"]:
-        slug = lp["slug"]
-        status, loc, body = fetch(f"https://{dominio}/{slug}")
-        esperado = redirects.get(f"/{slug}")
-        if esperado:
-            if status // 100 == 3 and loc.rstrip("/") == esperado.rstrip("/"):
-                continue
-            falhas.append(f"{slug}: esperava redirect p/ {esperado}, veio {status} {loc}")
-            continue
-        if status != 200:
-            falhas.append(f"{slug}: HTTP {status}")
-            continue
-        local = open(os.path.join(dist, slug, "index.html"), "rb").read()
-        if hashlib.md5(norm(body)).hexdigest() != hashlib.md5(norm(local)).hexdigest():
-            falhas.append(f"{slug}: conteúdo live != build (hash normalizado)")
-    for source, dest in redirects.items():
-        status, loc, _ = fetch(f"https://{dominio}{source}")
-        if not (status // 100 == 3 and loc.rstrip("/") == dest.rstrip("/")):
-            falhas.append(f"redirect {source}: esperava {dest}, veio {status} {loc}")
+    alvos = [("lp", lp["slug"]) for lp in manifest["lps"]]
+    alvos += [("redirect", source) for source in redirects]
+
+    falhas = []
+    for espera in backoff:
+        if espera:
+            log(f"smoke: {len(alvos)} alvo(s) ainda falhando - nova tentativa em {espera}s")
+            time.sleep(espera)
+        falhas, restantes = [], []
+        for tipo, chave in alvos:
+            erro = (_check_redirect(dominio, chave, redirects[chave])
+                    if tipo == "redirect"
+                    else _check_lp(dominio, chave, dist, redirects))
+            if erro:
+                falhas.append(erro)
+                restantes.append((tipo, chave))
+        if not restantes:
+            return []
+        alvos = restantes
     return falhas
 
 

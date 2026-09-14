@@ -1,0 +1,209 @@
+# Cria LP de Pocket Event a partir do formulario de solicitacao (BDs e SDRs).
+#
+# Caminho completo, sem nenhum modelo de linguagem no meio:
+#   Google Forms -> planilha -> Apps Script -> este workflow
+#     -> pocket_event_job.py (valida + renderiza + inscreve no manifesto)
+#     -> PR -> lp-pr.yml (auto-merge de diff de conteudo) -> lp-deploy.yml (deploy + smoke)
+#
+# Tres gatilhos, mesma logica:
+#   repository_dispatch — instantaneo, disparado pelo Apps Script no envio do form;
+#   schedule            — varredura diaria de reconciliacao (pega o que o webhook perdeu);
+#   workflow_dispatch   — manual, colando o JSON da solicitacao (usado no ensaio).
+#
+# Nada e sobrescrito: slug que ja existe entra como "ignorada". Solicitacao
+# invalida nao vira PR nenhum, so e-mail com os motivos.
+name: Pocket Event - nova LP
+
+on:
+  repository_dispatch:
+    types: [pocket-event]
+  schedule:
+    # 07:23 America/Sao_Paulo (= 10:23 UTC). Minuto quebrado pelo mesmo motivo
+    # do lp-health-check: o cron do GitHub atrasa runs no comeco da hora.
+    - cron: "23 10 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      solicitacoes:
+        description: "JSON da solicitacao (objeto ou lista)"
+        required: true
+        type: string
+      dry_run:
+        description: "So validar: nao escreve arquivo nem abre PR"
+        required: false
+        type: boolean
+        default: false
+
+# Duas rodadas ao mesmo tempo disputariam o manifesto. Vira fila.
+concurrency:
+  group: pocket-event-novo
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  criar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reunir solicitacoes
+        id: coletar
+        env:
+          EVENTO: ${{ github.event_name }}
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          MANUAL: ${{ inputs.solicitacoes }}
+          SHEET_URL: ${{ secrets.POCKET_SHEET_URL }}
+          SHEET_TOKEN: ${{ secrets.POCKET_SHEET_TOKEN }}
+        run: |
+          set -euo pipefail
+          case "$EVENTO" in
+            repository_dispatch) printf '%s' "$PAYLOAD" > /tmp/solicitacoes.json ;;
+            workflow_dispatch)   printf '%s' "$MANUAL"  > /tmp/solicitacoes.json ;;
+            schedule)
+              if [ -z "${SHEET_URL:-}" ] || [ -z "${SHEET_TOKEN:-}" ]; then
+                echo "::notice::POCKET_SHEET_URL/TOKEN ausentes - varredura diaria pulada."
+                echo "vazio=true" >> "$GITHUB_OUTPUT"; exit 0
+              fi
+              # doGet do Apps Script devolve as linhas ainda sem status.
+              curl -fsSL --max-time 60 \
+                "${SHEET_URL}?token=${SHEET_TOKEN}&acao=pendentes" > /tmp/solicitacoes.json
+              ;;
+          esac
+          python -c "
+          import json
+          d = json.load(open('/tmp/solicitacoes.json', encoding='utf-8'))
+          if isinstance(d, dict):
+              d = d.get('solicitacoes', [d])
+          print('solicitacoes recebidas:', len(d))
+          json.dump(d, open('/tmp/solicitacoes.json', 'w', encoding='utf-8'), ensure_ascii=False)
+          "
+          N=$(python -c "import json;print(len(json.load(open('/tmp/solicitacoes.json',encoding='utf-8'))))")
+          [ "$N" = "0" ] && echo "vazio=true" >> "$GITHUB_OUTPUT" || true
+
+      - name: Validar, renderizar e inscrever no manifesto
+        if: steps.coletar.outputs.vazio != 'true'
+        env:
+          REPO_ROOT: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          EXTRA=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then EXTRA="--dry-run"; fi
+          python landing-pages/build/pocket_event_job.py /tmp/solicitacoes.json \
+            $EXTRA | tee /tmp/relatorio.json
+          python -c "
+          import json
+          r = json.load(open('/tmp/relatorio.json', encoding='utf-8'))
+          print('criadas=%d recusadas=%d ignoradas=%d'
+                % (len(r['criadas']), len(r['recusadas']), len(r['ignoradas'])))
+          " >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Abrir PR com as LPs novas
+        if: steps.coletar.outputs.vazio != 'true' && inputs.dry_run != true
+        id: pr
+        env:
+          # PAT e o caminho bom: PR aberto com GITHUB_TOKEN nao dispara o lp-pr.yml
+          # (regra anti-recursao do GitHub) e ficaria parado sem auto-merge.
+          GH_TOKEN: ${{ secrets.POCKET_EVENT_PAT || secrets.GITHUB_TOKEN }}
+          TEM_PAT: ${{ secrets.POCKET_EVENT_PAT != '' }}
+        run: |
+          set -euo pipefail
+          N=$(python -c "import json;print(len(json.load(open('/tmp/relatorio.json',encoding='utf-8'))['criadas']))")
+          if [ "$N" = "0" ]; then
+            echo "nenhuma LP criada - nada a commitar"; exit 0
+          fi
+
+          BRANCH="pocket-event/auto-${{ github.run_id }}"
+          git config user.name  "pocket-event-bot"
+          git config user.email "actions@github.com"
+          git checkout -b "$BRANCH"
+          git add landing-pages/buzzmonitor landing-pages/dominios
+          TITULO=$(python -c "
+          import json
+          c = json.load(open('/tmp/relatorio.json', encoding='utf-8'))['criadas']
+          print('Criar LP de Pocket Event: %s' % c[0]['titulo'] if len(c) == 1
+                else 'Criar %d LPs de Pocket Event' % len(c))
+          ")
+          git commit -m "$TITULO" -m "Gerado por pocket-event-novo.yml a partir do formulario de solicitacao."
+          git push origin "$BRANCH"
+
+          CORPO=$(python -c "
+          import json
+          r = json.load(open('/tmp/relatorio.json', encoding='utf-8'))
+          l = ['LPs geradas pelo formulario de Pocket Event (sem edicao manual):', '']
+          for c in r['criadas']:
+              l.append('- **%s**' % c['titulo'])
+              l.append('  - %s' % c['url'])
+              l.append('  - pedido por %s (linha %s)' % (c.get('solicitante','?'), c.get('linha')))
+          if r['recusadas']:
+              l += ['', 'Recusadas nesta rodada (nao entraram neste PR):']
+              l += ['- linha %s: %s' % (x.get('linha'), '; '.join(x['motivos'])) for x in r['recusadas']]
+          l += ['', 'Template: landing-pages/build/templates/pocket-event/',
+                'Workflow: .github/workflows/pocket-event-novo.yml']
+          print('\n'.join(l))
+          ")
+          gh pr create --base main --head "$BRANCH" --title "$TITULO" --body "$CORPO"
+
+          if [ "$TEM_PAT" != "true" ]; then
+            echo "::warning::PR aberto com GITHUB_TOKEN: o lp-pr.yml nao roda e o merge fica manual. Configure o secret POCKET_EVENT_PAT."
+          fi
+
+      - name: Marcar as linhas na planilha
+        if: steps.coletar.outputs.vazio != 'true' && inputs.dry_run != true
+        continue-on-error: true
+        env:
+          SHEET_URL: ${{ secrets.POCKET_SHEET_URL }}
+          SHEET_TOKEN: ${{ secrets.POCKET_SHEET_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SHEET_URL:-}" ] || [ -z "${SHEET_TOKEN:-}" ]; then
+            echo "::notice::sem POCKET_SHEET_URL/TOKEN - planilha nao atualizada."; exit 0
+          fi
+          # o token sai do ambiente dentro do Python: interpolado pelo shell, ele
+          # apareceria na linha de comando do processo.
+          python -c "
+          import json, os
+          r = json.load(open('/tmp/relatorio.json', encoding='utf-8'))
+          marcas = [{'linha': c['linha'], 'status': 'publicada', 'url': c['url'], 'slug': c['slug']}
+                    for c in r['criadas'] if c.get('linha')]
+          marcas += [{'linha': x['linha'], 'status': 'erro', 'url': '',
+                      'motivo': ' | '.join(x['motivos'])}
+                     for x in r['recusadas'] if x.get('linha')]
+          json.dump({'token': os.environ['SHEET_TOKEN'], 'acao': 'marcar', 'linhas': marcas},
+                    open('/tmp/marcar.json', 'w', encoding='utf-8'), ensure_ascii=False)
+          "
+          curl -fsSL --max-time 60 -X POST "$SHEET_URL" \
+            -H "Content-Type: text/plain;charset=utf-8" \
+            --data-binary @/tmp/marcar.json
+
+      - name: Avisar por e-mail
+        if: steps.coletar.outputs.vazio != 'true'
+        continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          POCKET_EMAIL_TO: victor.lopes@buzzmonitor.com.br
+          POCKET_EMAIL_FROM: "Pocket Events <onboarding@resend.dev>"
+        run: |
+          python landing-pages/build/pocket_event_notificar.py < /tmp/relatorio.json
+
+      - name: Falhar se houve solicitacao recusada
+        if: steps.coletar.outputs.vazio != 'true'
+        run: |
+          python -c "
+          import json, sys
+          r = json.load(open('/tmp/relatorio.json', encoding='utf-8'))
+          if r['recusadas']:
+              for x in r['recusadas']:
+                  print('::error::linha %s recusada: %s' % (x.get('linha'), '; '.join(x['motivos'])))
+              sys.exit(1)
+          print('nenhuma recusa')
+          "

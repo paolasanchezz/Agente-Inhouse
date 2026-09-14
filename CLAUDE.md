@@ -27,6 +27,7 @@ Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Blog SEO/GEO: /blog-diario [marca] [regiao] [tema?] (standalone autonomo — cluster → bake-off de volume multi-fonte → post SEO/GEO + METADADOS + CTA→LP → rascunho Notion; diario via /schedule)
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar (guarda-chuva=CI · solo=classico) | /lp-health-check (standalone — monitora prod)
+Pocket Event: Google Form -> Apps Script -> pocket-event-novo.yml -> PR -> CI (deterministico, sem LLM) | /pocket-event (mesmo caminho a mao)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
 Webinar:      /roteiro-webinar-perpetuo (standalone — roteiro com timestamps + falas + demo da plataforma + slides de abertura)
 Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consolidado 6 contas · publica Notion) — ANALISE/leitura
@@ -250,6 +251,7 @@ Aceita `[marca]` e `[slug]`. Regras de design em `landing-pages/GUIDELINES.md`; 
 | `/lp-integrar-form [marca]/[slug] "snippet"` | Troca form mock por embed real (manual-trigger) |
 | `/lp-publicar [marca] [slug] [dominio]` | Guarda-chuva (migrados): manifesto + commit + acompanha deploy CI (smoke + rollback automaticos). Solo: sibling + deploy Vercel classico. + relatorio Notion |
 | `/lp-health-check [--dry-run] [--no-drift]` | Descobre todas LPs em producao via Vercel API + HTTP check + email pra Victor se houver falha. Silenciosa quando OK. Pra rodar diariamente via `/schedule`. |
+| `/pocket-event [--dry-run] [dados]` | Gera LP de Pocket Event (10 vagas) a partir dos dados do encontro, sem escrever HTML. Mesmo caminho da automacao por Google Form (`integracoes/google/README.md`) rodado a mao. |
 
 - `[marca]`: `buzzmonitor` | `buzzcreators` | `cxpress` | `elife`
 - `[slug]`: kebab-case curto (ex: `monitoramento-maio`)

@@ -153,6 +153,20 @@ Manter o embed tem ainda um ganho que o form nativo perde: ele transmite o `pare
 
 ---
 
+### 2.8 Pocket Events — LP gerada por formulário (sem agente no meio)
+
+Único caso hoje em que uma LP entra no ar **sem ninguém escrever HTML**. BD ou SDR preenche um Google Form; um Apps Script dispara o workflow `pocket-event-novo.yml`; `pocket_event_job.py` valida, renderiza a partir de um template versionado e inscreve o slug no manifesto de `evento.buzzmonitor.com`; daí pra frente é o caminho normal (`lp-pr.yml` auto-mergeia o diff de conteúdo, `lp-deploy.yml` deploya com smoke e rollback).
+
+Nada é interpretado em tempo de execução: nicho, módulo, horário e speaker vêm de listas fechadas, bio/cargo/foto saem de um cadastro revisado, e datas e slug são derivados por regra fixa. O único texto livre é o título, que passa por um validador estrito (tamanho, caracteres proibidos, travessão).
+
+- Runbook completo (instalação, secrets, operação): [`integracoes/google/README.md`](../integracoes/google/README.md)
+- Template, opções e limites: `landing-pages/build/templates/pocket-event/`
+- Rodar à mão: `/pocket-event`
+
+**Fronteira de edição que importa:** as pastas `landing-pages/buzzmonitor/pocket-*/` são **geradas** — editar à mão se perde quando a linha é reprocessada. Mudança que vale pra toda edição vai no `index.html.tmpl` (path protegido, PR revisado); mudança de uma edição se faz na planilha.
+
+---
+
 ## 3. Convenção de assets / imagens (UNIFICADA)
 
 ### 3.1 Onde mora cada coisa

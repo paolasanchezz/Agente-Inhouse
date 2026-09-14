@@ -1,0 +1,54 @@
+{
+  "$schema": "pocket-event/v1",
+  "_leia": "Fonte unica das opcoes do formulario e dos limites do renderer. Path protegido: mexer aqui exige revisao do Victor (pr_check.py). Depois de mudar nichos/modulos/horarios/speakers, rodar `py landing-pages/build/render_pocket_event.py --form-spec` e recolar a saida no Apps Script do formulario de solicitacao.",
+
+  "marca": "buzzmonitor",
+  "regiao": "brasil",
+  "dominio": "evento.buzzmonitor.com",
+  "manifesto": "landing-pages/dominios/evento-buzzmonitor-com/manifest.json",
+  "destino_source": "landing-pages/buzzmonitor",
+  "gtm_id": "GTM-WFJVK858",
+
+  "form_endpoint": "",
+  "_form_endpoint": "URL /exec do Apps Script de inscricoes (integracoes/google/pocket-event-inscricoes.gs). Enquanto vazio, o renderer avisa e a LP valida mas nao envia.",
+
+  "limites": {
+    "titulo_max": 60,
+    "titulo_min": 12,
+    "dias_minimo": 1,
+    "dias_maximo": 180,
+    "lps_por_execucao": 5
+  },
+
+  "titulo_pagina": "{titulo} | Pocket Event Buzzmonitor",
+  "meta_description": "Mini-encontro online da Buzzmonitor sobre {nicho}, com apenas 10 vagas. {data_extenso}, {horario}, ao vivo com especialista.",
+
+  "horarios": ["09h", "10h", "11h", "14h", "15h", "16h", "17h"],
+
+  "nichos": [
+    { "valor": "Varejo e consumo",        "slug": "varejo",         "frase": "varejo e consumo" },
+    { "valor": "Alimentos e bebidas",     "slug": "alimentos",      "frase": "alimentos e bebidas" },
+    { "valor": "Servicos financeiros",    "slug": "financeiro",     "frase": "servicos financeiros" },
+    { "valor": "Saude e bem-estar",       "slug": "saude",          "frase": "saude e bem-estar" },
+    { "valor": "Educacao",                "slug": "educacao",       "frase": "educacao" },
+    { "valor": "Telecomunicacoes",        "slug": "telecom",        "frase": "telecomunicacoes" },
+    { "valor": "Automotivo",              "slug": "automotivo",     "frase": "automotivo" },
+    { "valor": "Industria",               "slug": "industria",      "frase": "industria" },
+    { "valor": "Entretenimento e midia",  "slug": "entretenimento", "frase": "entretenimento e midia" },
+    { "valor": "Agencias",                "slug": "agencias",       "frase": "agencias" },
+    { "valor": "Turismo e hotelaria",     "slug": "turismo",        "frase": "turismo e hotelaria" },
+    { "valor": "Setor publico",           "slug": "setor-publico",  "frase": "setor publico" }
+  ],
+
+  "modulos": [
+    { "valor": "Social Listening",           "frase": "Social Listening" },
+    { "valor": "SAC 2.0",                    "frase": "SAC 2.0" },
+    { "valor": "Dashboards e Analytics",     "frase": "Dashboards e Analytics" },
+    { "valor": "Agendamento e Publicacao",   "frase": "Agendamento e Publicacao" },
+    { "valor": "Analytics Avancado",         "frase": "Analytics Avancado" },
+    { "valor": "AI Insights",                "frase": "AI Insights" },
+    { "valor": "Buzz GPT",                   "frase": "Buzz GPT" },
+    { "valor": "Buzz Pills",                 "frase": "Buzz Pills" }
+  ],
+  "_modulos": "Grafias oficiais do brand/buzzmonitor/BRANDBOOK.md secao 'Features de IA (Nomes Oficiais)'. Nao editar a mao sem conferir la."
+}

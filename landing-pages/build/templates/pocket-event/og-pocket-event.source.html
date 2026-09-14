@@ -1,0 +1,47 @@
+<!doctype html>
+<!--
+  Fonte da OG image compartilhada dos Pocket Events.
+  Ela e UNICA pra todas as edicoes de proposito: discreta, sem data, sem titulo
+  e sem nome de speaker — o link do evento pode ser reencaminhado depois que a
+  edicao passou, e um card com data velha envelhece mal.
+
+  Regerar (Windows, Chrome headless — precisa escrever num path absoluto fora do
+  repo, senao da "Acesso negado", e depois copiar):
+
+    "C:/Program Files/Google/Chrome/Application/chrome.exe" --headless --disable-gpu ^
+      --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 ^
+      --virtual-time-budget=4000 --screenshot="%TEMP%/og-pocket-event.png" ^
+      "file:///<caminho absoluto>/og-pocket-event.source.html"
+    copy "%TEMP%\og-pocket-event.png" brand\buzzmonitor\assets\og-pocket-event.png
+-->
+<html lang="pt-br"><head><meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Manrope:wght@500&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; background: #fbf9f7;
+    display: grid; place-items: center; overflow: hidden; position: relative;
+    font-family: "League Spartan", Georgia, serif;
+  }
+  .glow {
+    position: absolute; width: 760px; height: 760px; border-radius: 50%;
+    top: -260px; right: -200px;
+    background: radial-gradient(circle, rgba(235,124,46,.13) 0%, rgba(222,36,81,.06) 45%, transparent 70%);
+  }
+  .card { position: relative; display: flex; flex-direction: column; align-items: center; gap: 34px; }
+  img { width: 300px; height: auto; display: block; }
+  .rule { width: 64px; height: 4px; border-radius: 2px; background: linear-gradient(120deg, #DE2451 0%, #EB7C2E 100%); }
+  h1 { font-size: 76px; font-weight: 900; letter-spacing: -.02em; color: #390155; line-height: 1; }
+  p { font-family: "Manrope", system-ui, sans-serif; font-size: 19px; font-weight: 500;
+      letter-spacing: .26em; text-transform: uppercase; color: #8a8598; }
+</style></head>
+<body>
+  <div class="glow"></div>
+  <div class="card">
+    <img src="../../../../brand/buzzmonitor/assets/logos/logo-primary.png" alt="" />
+    <div class="rule"></div>
+    <h1>Evento Especial</h1>
+    <p>Online &middot; Vagas limitadas</p>
+  </div>
+</body></html>
