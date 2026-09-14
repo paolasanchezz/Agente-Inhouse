@@ -12,6 +12,24 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — cadastro dos 21 BDs e bio opcional
+### 2026-09-14 — `speakers.json`, `render_pocket_event.py`, `index.html.tmpl`
+
+Os 21 BDs entraram no cadastro. A lista veio só com os nomes, então todos ficaram com
+`cargo: "Business Developer"` (o time foi passado como "lista de BDs") e `bio: null`.
+
+**Bio virou opcional, e o vazio não vaza pra página:** sem bio, o `<p class="sp-bio">`
+inteiro sai do HTML — nome e cargo, sem buraco de layout. Foto já era opcional (cai nas
+iniciais com o degrade da marca). A alternativa seria preencher bio com texto genérico pra
+"não ficar vazio", e um card sem bio é honesto de um jeito que um card com bio inventada
+não é.
+
+O autoteste passou a usar um cadastro sintético em vez do `speakers.json` real — o teste não
+pode quebrar (nem passar por acidente) por causa de quem entrou ou saiu do cadastro. Cobre
+os três caminhos do card: com bio, sem bio e com foto.
+
+---
+
 ## `pocket-event` — LP de Pocket Event gerada por formulário
 ### 2026-09-14 — nova skill `1.0.0` + automação (`.github/workflows/pocket-event-novo.yml`)
 

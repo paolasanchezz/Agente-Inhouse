@@ -30,7 +30,7 @@
  * Por isso o doGet devolve so contagem, nunca o conteudo da planilha.
  */
 
-var ID_PLANILHA = '';       // <- ID da planilha de inscricoes
+var ID_PLANILHA = '1PsD3TdKQiIoWP20-R8I1wWSB-RPSBV0lWUG2TMXSzrc';
 var NOME_ABA = 'Inscricoes';
 var VAGAS = 10;
 

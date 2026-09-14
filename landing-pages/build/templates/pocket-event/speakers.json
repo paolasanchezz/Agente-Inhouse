@@ -1,16 +1,156 @@
 {
   "$schema": "pocket-event-speakers/v1",
-  "_leia": "Cadastro de quem pode apresentar um Pocket Event. O formulario so oferece estes nomes, e o job recusa qualquer speaker fora daqui. Bio e cargo NAO sao digitados no formulario: saem deste arquivo, uma vez por pessoa, ja revisados. Foto e opcional (sem foto, a LP usa as iniciais com o degrade da marca).",
-  "_como_adicionar": "1. Copiar um bloco abaixo e preencher. 2. Se houver foto, salvar em brand/buzzmonitor/assets/speakers/{id}.jpg (quadrada, min 336x336, rosto centralizado) e apontar em 'foto'. 3. Abrir PR (config e path protegido: passa pela revisao do Victor). 4. Rodar `py landing-pages/build/render_pocket_event.py --form-spec` e recolar a saida no Apps Script do formulario.",
-
+  "_leia": "Cadastro de quem pode apresentar um Pocket Event. O formulario so oferece estes nomes, e o job recusa qualquer speaker fora daqui. Cargo, bio e foto NAO sao digitados no formulario: saem daqui, uma vez por pessoa, ja revisados.",
+  "_bio": "Bio e OPCIONAL e esta vazia em todo mundo (a lista veio so com os nomes). Sem bio, a LP mostra nome e cargo e omite o paragrafo - nada e inventado. Preencher com 1 a 2 linhas quando houver.",
+  "_cargo": "Todos entraram como 'Business Developer' porque a lista foi passada como 'lista de BDs'. Ajustar individualmente quem tiver outro cargo.",
+  "_como_adicionar": "1. Copiar um bloco e preencher. 2. Se houver foto, salvar em brand/buzzmonitor/assets/speakers/{id}.jpg (quadrada, min 336x336) e apontar em 'foto'. 3. Abrir PR (path protegido: passa pela revisao do Victor). 4. Rodar `py landing-pages/build/render_pocket_event.py --form-spec`, colar em OPCOES no Apps Script e rodar `atualizarOpcoes`.",
   "speakers": [
     {
-      "id": "exemplo",
-      "nome": "Especialista Buzzmonitor",
+      "id": "adriane-ferreira",
+      "nome": "Adriane Ferreira",
       "cargo": "Business Developer",
-      "bio": "Entrada de exemplo, usada pelo teste do renderer. Nao selecionar no formulario real.",
-      "foto": null,
-      "exemplo": true
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "athaide-martins",
+      "nome": "Athaide Martins",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "bruno-braga",
+      "nome": "Bruno Braga",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "daniel-jesus",
+      "nome": "Daniel Jesus",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "fatima-silana",
+      "nome": "Fatima Silana",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "guilherme-werzel",
+      "nome": "Guilherme Werzel",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "hugo-nagawa",
+      "nome": "Hugo Nagawa",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "juliana-mendonca",
+      "nome": "Juliana Mendonca",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "leandra-lira",
+      "nome": "Leandra Lira",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "leticia-mello",
+      "nome": "Leticia Mello",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "michelle-carmo",
+      "nome": "Michelle Carmo",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "nathalia-crivellaro",
+      "nome": "Nathalia Crivellaro",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "paloma-braga",
+      "nome": "Paloma Braga",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "pedro-de-morais",
+      "nome": "Pedro de Morais",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "renato-couto",
+      "nome": "Renato Couto",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "tereza-rici",
+      "nome": "Tereza Rici",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "tiago-cantu",
+      "nome": "Tiago Cantu",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "valkiria-guedes",
+      "nome": "Valkiria Guedes",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "camila-ribeiro",
+      "nome": "Camila Ribeiro",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "anna-beatriz",
+      "nome": "Anna Beatriz",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
+    },
+    {
+      "id": "jacqueline-castro",
+      "nome": "Jacqueline Castro",
+      "cargo": "Business Developer",
+      "bio": null,
+      "foto": null
     }
   ]
 }

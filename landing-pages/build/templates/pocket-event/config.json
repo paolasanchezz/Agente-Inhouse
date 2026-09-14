@@ -9,7 +9,7 @@
   "destino_source": "landing-pages/buzzmonitor",
   "gtm_id": "GTM-WFJVK858",
 
-  "form_endpoint": "",
+  "form_endpoint": "https://script.google.com/macros/s/AKfycbzRnci-7AjPutXvyWyIE0ehE9t9KrTqD8evHNETGwRtwvLVBdcN_LPPxx2QGkfHgD-oog/exec",
   "_form_endpoint": "URL /exec do Apps Script de inscricoes (integracoes/google/pocket-event-inscricoes.gs). Enquanto vazio, o renderer avisa e a LP valida mas nao envia.",
 
   "limites": {

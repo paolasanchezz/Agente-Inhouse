@@ -175,6 +175,15 @@ def foto_html(speaker):
             % html.escape(iniciais))
 
 
+def bio_html(speaker):
+    """Bio e opcional no cadastro. Sem bio, o paragrafo inteiro sai do HTML: card
+    com nome e cargo e honesto, card com bio inventada nao."""
+    bio = (speaker.get("bio") or "").strip()
+    if not bio:
+        return ""
+    return '          <p class="sp-bio">%s</p>' % html.escape(bio)
+
+
 def render(dados, config, speakers, hoje=None, permitir_exemplo=False):
     """Devolve (slug, {nome_do_arquivo: conteudo}). Levanta ValueError se invalido."""
     hoje = hoje or datetime.date.today()
@@ -207,7 +216,7 @@ def render(dados, config, speakers, hoje=None, permitir_exemplo=False):
         "SPEAKER_NOME": html.escape(speaker["nome"]),
         "SPEAKER_NOME_TEXTO": speaker["nome"],
         "SPEAKER_CARGO": html.escape(speaker["cargo"]),
-        "SPEAKER_BIO": html.escape(speaker["bio"]),
+        "SPEAKER_BIO_BLOCO": bio_html(speaker),
         "SPEAKER_FOTO": foto_html(speaker),
         "SLUG": slug,
         "ANO": str(data.year),
@@ -321,26 +330,51 @@ def form_spec(config, speakers):
 
 
 def autoteste():
-    """Fixture minima: prova que template + config + renderer batem entre si."""
-    config, speakers = carregar("config.json"), carregar("speakers.json")
+    """Fixture minima: prova que template + config + renderer batem entre si.
+
+    O cadastro de speakers e sintetico, nao o speakers.json real: o teste nao pode
+    quebrar (nem passar por acidente) por causa de quem entrou ou saiu do cadastro.
+    """
+    config = carregar("config.json")
+    speakers = {"speakers": [
+        {"id": "com-bio", "nome": "Fulana de Teste", "cargo": "Business Developer",
+         "bio": "Duas linhas de bio que existem so pra este teste.", "foto": None},
+        {"id": "sem-bio", "nome": "Beltrano de Teste", "cargo": "Business Developer",
+         "bio": None, "foto": None},
+        {"id": "com-foto", "nome": "Sicrana de Teste", "cargo": "Business Developer",
+         "bio": None, "foto": "brand/buzzmonitor/assets/speakers/sicrana.jpg"},
+        {"id": "so-exemplo", "nome": "Exemplo Exemplo", "cargo": "Business Developer",
+         "bio": None, "foto": None, "exemplo": True},
+    ]}
     hoje = datetime.date(2026, 9, 14)
     pedido = {"titulo": "Como o varejo escuta o cliente em tempo real",
               "nicho": "Varejo e consumo", "modulo": "Social Listening",
-              "data": "2026-10-08", "horario": "11h", "speaker": "exemplo"}
+              "data": "2026-10-08", "horario": "11h", "speaker": "com-bio"}
 
-    slug, arquivos = render(pedido, config, speakers, hoje, permitir_exemplo=True)
+    slug, arquivos = render(pedido, config, speakers, hoje)
     assert slug == "pocket-varejo-2026-10-08", slug
     h = arquivos["index.html"]
     for esperado in ("Como o varejo escuta o cliente em tempo real",
                      "varejo e consumo", "Social Listening", "8 de outubro",
                      "quinta-feira", "08<span", "pocket-varejo-2026-10-08",
-                     "GTM-WFJVK858"):
+                     "GTM-WFJVK858", "Duas linhas de bio", 'class="sp-bio"'):
         assert esperado in h, "faltou no HTML: %s" % esperado
     assert "{{" not in h and "[ FOTO DO SPEAKER ]" not in h
 
+    # sem bio: o paragrafo inteiro some, e nada e inventado no lugar
+    _, sem = render({**pedido, "speaker": "sem-bio"}, config, speakers, hoje)
+    assert 'class="sp-bio"' not in sem["index.html"]
+    assert "Beltrano de Teste" in sem["index.html"]
+    assert 'class="sp-initials"' in sem["index.html"]  # cai nas iniciais sem foto
+
+    # com foto: <img> com min-height:0 garantido pelo CSS do template
+    _, foto = render({**pedido, "speaker": "com-foto"}, config, speakers, hoje)
+    assert 'class="sp-img"' in foto["index.html"]
+    assert "sicrana.jpg" in foto["index.html"]
+
     casos_ruins = [
         ({**pedido, "titulo": "curto"}, "titulo curto"),
-        ({**pedido, "titulo": "Titulo com travessao " + "—" * 1 + " proibido"}, "travessao"),
+        ({**pedido, "titulo": "Titulo com travessao — proibido"}, "travessao"),
         ({**pedido, "titulo": "<script>alert(1)</script> no titulo"}, "caractere proibido"),
         ({**pedido, "nicho": "Pet shop"}, "nicho invalido"),
         ({**pedido, "modulo": "BuzzMonitor Listening"}, "modulo invalido"),
@@ -349,18 +383,25 @@ def autoteste():
         ({**pedido, "data": "2027-09-01"}, "data longe demais"),
         ({**pedido, "data": "08/10/2026"}, "data em formato errado"),
         ({**pedido, "speaker": "fulano"}, "speaker fora do cadastro"),
-        (pedido, "speaker de exemplo sem --permitir-exemplo"),
+        ({**pedido, "speaker": "so-exemplo"}, "speaker marcado como exemplo"),
     ]
     for ruim, rotulo in casos_ruins:
-        erros, _ = validar(ruim, config, speakers, hoje,
-                           permitir_exemplo=(rotulo != "speaker de exemplo sem --permitir-exemplo"))
+        erros, _ = validar(ruim, config, speakers, hoje)
         assert erros, "deveria ter recusado: %s" % rotulo
 
     # ano so aparece quando o evento cai em outro ano
     assert data_extenso(datetime.date(2026, 10, 8), hoje) == "8 de outubro"
     assert data_extenso(datetime.date(2027, 1, 20), hoje) == "20 de janeiro de 2027"
 
-    print("autoteste ok: 1 render valido + %d recusas + datas" % len(casos_ruins))
+    # o cadastro real tem que continuar carregavel e coerente
+    reais = carregar("speakers.json")["speakers"]
+    ids = [x["id"] for x in reais]
+    assert len(set(ids)) == len(ids), "id duplicado no speakers.json"
+    for x in reais:
+        assert x.get("nome") and x.get("cargo"), "speaker sem nome ou cargo: %s" % x
+
+    print("autoteste ok: 3 renders + %d recusas + datas + %d speakers no cadastro"
+          % (len(casos_ruins), len(reais)))
 
 
 def main():

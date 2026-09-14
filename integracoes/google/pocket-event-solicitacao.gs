@@ -47,8 +47,20 @@ var OPCOES = {
     'Buzz GPT', 'Buzz Pills'
   ],
   horarios: ['09h', '10h', '11h', '14h', '15h', '16h', '17h'],
-  // Preencher com os nomes exatos de speakers.json (sem a entrada de exemplo).
-  speakers: [],
+  // Espelho de speakers.json. Mudou la? Rode --form-spec e recole aqui.
+  speakers: [
+    { id: 'adriane-ferreira', nome: 'Adriane Ferreira' }, { id: 'athaide-martins', nome: 'Athaide Martins' },
+    { id: 'bruno-braga', nome: 'Bruno Braga' }, { id: 'daniel-jesus', nome: 'Daniel Jesus' },
+    { id: 'fatima-silana', nome: 'Fatima Silana' }, { id: 'guilherme-werzel', nome: 'Guilherme Werzel' },
+    { id: 'hugo-nagawa', nome: 'Hugo Nagawa' }, { id: 'juliana-mendonca', nome: 'Juliana Mendonca' },
+    { id: 'leandra-lira', nome: 'Leandra Lira' }, { id: 'leticia-mello', nome: 'Leticia Mello' },
+    { id: 'michelle-carmo', nome: 'Michelle Carmo' }, { id: 'nathalia-crivellaro', nome: 'Nathalia Crivellaro' },
+    { id: 'paloma-braga', nome: 'Paloma Braga' }, { id: 'pedro-de-morais', nome: 'Pedro de Morais' },
+    { id: 'renato-couto', nome: 'Renato Couto' }, { id: 'tereza-rici', nome: 'Tereza Rici' },
+    { id: 'tiago-cantu', nome: 'Tiago Cantu' }, { id: 'valkiria-guedes', nome: 'Valkiria Guedes' },
+    { id: 'camila-ribeiro', nome: 'Camila Ribeiro' }, { id: 'anna-beatriz', nome: 'Anna Beatriz' },
+    { id: 'jacqueline-castro', nome: 'Jacqueline Castro' }
+  ],
   titulo_max: 60,
   dias_maximo: 180
 };

@@ -43,17 +43,50 @@ O titulo e recusado se tiver menos de 12 ou mais de 60 caracteres, terminar em
 ponto, ou conter `< > " ' \ { } |` travessao | aspas curvas. Travessao e regra
 anti-IA de tolerancia zero, e o renderer recusa ate se ele vier na copy fixa.
 
+## O que ja existe (criado em 2026-09-14)
+
+As duas planilhas e os dois projetos de Apps Script ja estao criados na conta do
+Victor, com o codigo deste diretorio colado e salvo.
+
+| Peca | Onde |
+|---|---|
+| Planilha de solicitacoes | `1GoMwmtQ6I9mlacQHjNsKVV8mP4sksPJNe2j80FG2K0U` |
+| Planilha de inscricoes | `1PsD3TdKQiIoWP20-R8I1wWSB-RPSBV0lWUG2TMXSzrc` |
+| Script "Pocket Event - solicitacoes" | `1L-XlSvWnq5P-awnGEgUrpDgSgVZiMthVt0D1-eeC-MRUFRJQJFg1D-ay` |
+| Script "Pocket Event - inscricoes" | `1wwwFRJ9G8XQChuKrN3zMMnAFU2ixYag3-Kv92-VgJy0L2oKdNfQ13K52` |
+
+Editor de um script: `https://script.google.com/home/projects/{id}/edit`.
+
+Ja configurado: propriedade `GITHUB_REPO`. **Falta** (so o dono da conta consegue,
+por serem credencial ou tela de consentimento): as propriedades `GITHUB_TOKEN` e
+`POCKET_TOKEN`, as autorizacoes OAuth, e as duas implantacoes como aplicativo da Web.
+
+O passo 1 abaixo ja esta feito; os demais valem como referencia e para refazer do zero.
+
 ## Instalacao (uma vez)
 
 ### 1. Cadastrar quem apresenta
 
-Sem isso o formulario nao tem o que oferecer. Editar
-`landing-pages/build/templates/pocket-event/speakers.json`, um bloco por pessoa
-(id, nome, cargo, bio de 1 a 2 linhas). Foto e opcional: com foto, salvar em
-`brand/buzzmonitor/assets/speakers/{id}.jpg` (quadrada, minimo 336x336); sem
-foto, a LP mostra as iniciais no degrade da marca.
+Os 21 BDs ja estao em `landing-pages/build/templates/pocket-event/speakers.json`,
+**todos com `cargo: "Business Developer"` e `bio: null`** (a lista chegou so com os
+nomes). Ajustar quem tiver outro cargo.
 
-Abrir PR. Esse arquivo esta em path protegido, entao passa pela revisao do Victor.
+**Bio e foto sao opcionais e o vazio nao aparece na pagina:**
+
+| Falta | O que a LP faz |
+|---|---|
+| bio | omite o paragrafo inteiro - nome e cargo, sem buraco |
+| foto | mostra as iniciais no degrade da marca |
+
+Nunca preencher bio com texto generico so pra nao ficar vazio: o card sem bio e
+honesto, o card com bio inventada nao. Quando houver bio de verdade (1 a 2 linhas),
+e so preencher o campo.
+
+Foto: `brand/buzzmonitor/assets/speakers/{id}.jpg`, quadrada, minimo 336x336, rosto
+centralizado (ela e recortada em circulo).
+
+Cada mudanca aqui abre PR: o arquivo esta em path protegido, entao passa pela
+revisao do Victor. Depois, rodar `--form-spec` e recolar em `OPCOES` no Apps Script.
 
 ### 2. Planilha e formulario de solicitacao
 
