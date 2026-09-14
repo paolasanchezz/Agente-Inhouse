@@ -15,7 +15,7 @@ BODY: Agora, aproveite a condição especial da Cxpress para colocar essa estrat
 LABEL: Condição especial para quem participou do webinar
 LIST ITEM: Criação do primeiro agente de IA personalizado, de acordo com as necessidades da sua operação;
 LIST ITEM: Implantação em até 21 dias, tudo pronto para sua empresa aproveitar a Black Friday;
-LIST ITEM: Contrato sem multa de cancelamento.
+LIST ITEM: Contrato sem multa de cancelamento
 # [ALTERADO a pedido do usuario, 2026-09-14] Oferta trocada: era "ate 20h de configuracao + economia de R$ 4 mil + sem multa" (pacote padrao Cxpress reutilizado em outras LPs da familia oferta-*), virou "agente personalizado + implantacao em ate 21 dias + sem multa". Em-dash do texto original do usuario ("Implantacao em ate 21 dias, tudo pronto..." no original tinha em-dash no lugar da virgula) substituido por virgula (regras-anti-ia.md, tolerancia zero).
 CTA: [form mock, integrar Jotform depois do design aprovado, GUIDELINES §11]
 LABEL: Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta. (disclaimer de consentimento, generico/whitelist)
@@ -25,11 +25,7 @@ H2: Quanto da sua operação aguenta o pico da Black Friday?
 BODY: A maioria dos gestores sabe quantas mensagens chegam num dia normal.
 BODY: Poucos sabem quanto esse número multiplica na Black Friday, quanto tempo o cliente espera na fila ou quantas vendas se perdem por demora.
 
-=== CARD DESTACADO ===
-H2: A Cacau Show enfrentou o mesmo desafio nos períodos de pico
-H3: E saiu de 34% de respostas manuais para uma operação preparada para ganhar escala.
-BODY: Durante a Páscoa, apenas 34% dos comentários no Instagram e Facebook da Cacau Show eram respondidos manualmente. Com o aumento do volume e a cobertura limitada fora do horário comercial, muitas interações ficavam sem resposta.
-BODY: Com a IA assumindo parte do primeiro atendimento e a equipe atuando nos casos que exigiam atenção humana, a operação passou a responder mais, com mais agilidade, mesmo nos picos sazonais.
+# [REMOVIDO a pedido do usuario, 2026-09-14] Secao CARD DESTACADO (case Cacau Show) removida da LP. Conteudo original preservado no historico do arquivo (git) e no BRANDBOOK.md caso precise voltar.
 
 === DEPOIS DA VIRADA ===
 H2: O que muda quando a operação está preparada para o pico
