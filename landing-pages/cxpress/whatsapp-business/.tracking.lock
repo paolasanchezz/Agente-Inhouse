@@ -2,10 +2,11 @@
   "regiao": "brasil",
   "expected_gtm": "GTM-T4XDWHL3",
   "found_gtm": [
-    "GTM-T4XDWHL3"
+    "GTM-KN8BPFG"
   ],
-  "fingerprint": "4617312fd2e310d8",
-  "status": "ok",
-  "grandfathered": false,
-  "verified_at": "2026-08-28"
+  "fingerprint": "1b72ebbdd5041c63",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-09-14",
+  "note": "container de Google Ads definido explicitamente para esta LP (GTM-KN8BPFG), divergente do container BR da marca em brand/cxpress/tracking.json (GTM-T4XDWHL3). Todo o trafego desta LP e Google Ads search, e o container BR padrao nao dispara nenhuma tag de conversao (gtag undefined, zero AW-, zero GA4) — a LP recebia clique pago sem devolver sinal. O GTM-KN8BPFG ja carrega a conversao AW-11013611389 e o GA4 G-V4Q4HNVWLW, entao a troca de container basta: nao ha tag hardcoded no head. Mesma escolha das LPs irmas /banimento-de-whatsapp e /evite-banimento-whatsapp. Nao e heranca de traducao nem estado pre-existente por erro. Se GTM-KN8BPFG virar o padrao de Cxpress BR, atualizar o tracking.json e regravar este selo com --write-stamp. Qualquer troca de GTM muda o fingerprint e re-abre o gate."
 }
