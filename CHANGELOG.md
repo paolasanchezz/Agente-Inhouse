@@ -12,6 +12,25 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## CSP do `content.buzzmonitor.com` — liberar a consulta de pais por IP
+### 2026-09-14 — `landing-pages/dominios/content-buzzmonitor-com/vercel.json` (so o dominio, sem mudanca de template)
+
+A LP `buzz-digital-experience` troca o "Mexico" fixo pelo pais de quem visita, consultando
+`https://ipwho.is` com `https://get.geojs.io` de reserva. O codigo entrou na main pelos PRs #486 e
+#487, mas **o `connect-src` do dominio nao foi junto** — o PR que carregava a mudanca de CSP (#478)
+ficou aberto e conflitando. Resultado: a consulta era bloqueada em runtime e **todo visitante via o
+fallback "Mexico"**, inclusive fora do Mexico.
+
+**Por que so neste dominio e nao no template:** os dois hosts servem uma LP especifica, nao o
+pipeline. Guarda-chuva que nao precise disso nao deve carregar a liberacao.
+
+**Em aberto, para quem cuida do Termly:** `content.buzzmonitor.com` roda gestor de consentimento
+(`app.termly.io` ja esta no CSP), e a consulta de IP a terceiro dispara no load, aparentemente fora
+do fluxo de consentimento. IP e dado pessoal sob LGPD e GDPR. O fallback "Mexico" ja esta
+implementado, entao condicionar a chamada ao aceite e mudar o gatilho, nao reescrever a logica.
+
+---
+
 ## CSP dos guarda-chuvas — liberar o Meta Pixel no `form-action`
 ### 2026-09-14 — `vercel.template.json` + vercel.json dos 5 domínios (lp-publicar 5.1.4 → 5.1.5, PATCH)
 
