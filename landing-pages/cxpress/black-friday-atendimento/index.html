@@ -400,6 +400,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .requisito{ font-size:16px; }
   .campo input,.campo select{ font-size:17px; }
   }
+
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: o provedor ja vem com card proprio. */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -749,26 +753,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </p>
           </div>
 
-          <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
-            <div class="campo">
-              <label for="nome">Seu nome<span class="req" aria-hidden="true">*</span></label>
-              <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
-            </div>
-            <div class="campo">
-              <label for="email">Seu e-mail<span class="req" aria-hidden="true">*</span></label>
-              <input id="email" name="email" type="email" placeholder="seunome@suaempresa.com.br" autocomplete="email" required>
-            </div>
-            <div class="campo">
-              <label for="whats">WhatsApp<span class="req" aria-hidden="true">*</span></label>
-              <input id="whats" name="whatsapp" type="tel" placeholder="DDD + número" autocomplete="tel" required>
-            </div>
-            <div class="campo">
-              <label for="empresa">Empresa onde você trabalha<span class="req" aria-hidden="true">*</span></label>
-              <input id="empresa" name="empresa" type="text" placeholder="Empresa" autocomplete="organization" required>
-            </div>
-            <button class="btn" type="submit">Quero garantir minha vaga</button>
-            <p class="form__nota">Vaga gratuita. Sua inscrição é confirmada na hora.</p>
-          </form>
+          <div class="jotform-embed reveal">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+          </div>
         </div>
       </div>
     </section>
