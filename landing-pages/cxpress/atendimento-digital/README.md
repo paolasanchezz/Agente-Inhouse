@@ -22,3 +22,40 @@ com "A partir de R$ 1.750 por mes, com 5 acessos de operador". Alteracao aplicad
 
 As LPs LATAM (`USD 260/mes`) e PT-PT (`295 EUR/mes`) **nao** foram alteradas: os valores oficiais
 em USD/EUR ainda nao foram definidos e seguem defasados em relacao ao minimo BR.
+
+## Padronizacao com as LPs irmas — 2026-09-14
+
+Alinhamento com `whatsapp-business`, `chatbot-whatsapp`, `escolha-a-cxpress` e
+`banimento-de-whatsapp`. Nenhuma copy foi alterada.
+
+| O que | De | Para |
+|---|---|---|
+| Menu | `rgba(255,255,255,.94)` + `blur(8px)` | vidro padrao: `.80` + `blur(5px)` + borda `#e2e8f0`, com fallback `@supports` |
+| Tela do hero | `mockup-plataforma-laptop.png` (PNG recortado) | `tela-canais.svg` na moldura `.frame`, a mesma tela do bloco "Organize seu atendimento de forma integrada" da `whatsapp-business` |
+| Clientes | imagem estatica `clientes-cxpress.png` | esteira `.ticker` com os 14 logos, identica a da `chatbot-whatsapp` |
+| Rodape | logo + 2 linhas de texto | rodape padrao: logo, credito e nav de redes sociais (alvo de 44px, anel de 1px) |
+| Selo do quem-somos | glifo do WhatsApp consumidor | marca WhatsApp Business (`<symbol id="ico-wab">`) |
+| Jotform | `<script src>` inline, parser-blocking | carregamento diferido por `IntersectionObserver` + pre-carga por intencao + rede de seguranca em 3 degraus |
+
+### Contraste
+
+Adotada a escala tonal navy da `whatsapp-business`. O ganho nao e "texto mais
+escuro" — e a separacao entre titulo e corpo, que sobe de **1.52:1** para
+**1.84:1** sem tocar em nenhuma cor de marca.
+
+- `--neutral-700` `#4a4a4a` -> `#4B5670` (corpo: 7.33:1 no branco, 6.60:1 no tint)
+- `--neutral-500` `#606B88` (novo; apoio: 5.31:1 no branco)
+- `--neutral-100` `#f5f5f5` -> `#EDF1FA` (fundo das secoes com tinta)
+- `--neutral-300` `#d1d1d1` -> `#C6D0E4`, `--rule` `#DCE4F2` (filete de limite de secao)
+- `.qs-badge` saiu do cinza fora da paleta `#6b7280` (4.83:1) para `--neutral-500` (6.05:1)
+
+Os usos de `--neutral-100` como **borda** foram remapeados para `--neutral-300`
+(cards, FAQ, midia de feature) e `--rule` (limites de secao): o novo valor e um
+fundo, e como borda daria 1.05:1.
+
+### Pendencias conhecidas
+
+- `assets/plataforma/` (5,3 MB) nao e referenciado pelo HTML — as imagens vem de
+  `../../brand/cxpress/assets/plataforma/`. Ja estava assim antes desta passagem.
+- O README acima cita o form `261027639617663`, mas o HTML embeda o
+  `261045149477663`. Conferir qual e o correto.
