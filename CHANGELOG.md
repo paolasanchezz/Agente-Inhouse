@@ -12,6 +12,37 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## CSP dos guarda-chuvas — liberar o Meta Pixel no `form-action`
+### 2026-09-14 — `vercel.template.json` + vercel.json dos 5 domínios (lp-publicar 5.1.4 → 5.1.5, PATCH)
+
+A v3.2.0 liberou o Facebook no `script-src` e no `connect-src`, mas **deixou o `form-action` de
+fora**. O beacon de conversão do pixel sai por submissão de formulário para
+`https://www.facebook.com/tr/`, então continuava barrado em runtime:
+
+```
+Sending form data to 'https://www.facebook.com/tr/' violates the following
+Content Security Policy directive: "form-action 'self' https://*.jotform.com
+https://*.rdstation.com.br https://*.hubspot.com https://*.list-manage.com"
+```
+
+Achado por @brunosilva-prog durante a publicação da LP `whatsapp-business`, olhando o console do
+live e não só o header — o `connect-src` já tinha o Facebook desde a v3.2.0, o que faz o header
+"parecer" certo numa inspeção rápida.
+
+**Diferença para o caso do TikTok IPv6 (#582): aqui há perda de evento.** O `/tr/` é o beacon de
+conversão em si, não uma cópia de enriquecimento. Enquanto o `form-action` não cobriu o host, as
+conversões do pixel não estavam sendo registradas nas LPs dos guarda-chuvas.
+
+**Por que o host inteiro e não só `/tr/`:** `form-action` não aceita path de forma confiável entre
+navegadores. Liberar `https://www.facebook.com` é o único caminho prático — não tentar "apertar" a
+diretiva depois, sob pena de quebrar o pixel de novo.
+
+**Escopo:** o PR original (#516) corrigia só `content.cxpress.io`. Estendido para os **5 domínios
+migrados + o template**, como nos precedentes #215 (Google Ads) e #582 (TikTok IPv6): todo
+`vercel.json` de guarda-chuva sai do mesmo template, então o buraco existia em todos.
+
+---
+
 ## CSP dos guarda-chuvas — liberar o enriquecimento de IPv6 do pixel do TikTok
 ### 2026-09-11 — `vercel.template.json` + vercel.json dos 5 domínios (lp-publicar 5.1.3 → 5.1.4, PATCH)
 
