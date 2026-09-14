@@ -20,10 +20,15 @@ LIST ITEM: Contrato sem multa de cancelamento
 CTA: [form mock, integrar Jotform depois do design aprovado, GUIDELINES §11]
 LABEL: Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta. (disclaimer de consentimento, generico/whitelist)
 
+=== MARCAS ===
+LABEL: Marcas que atendem com a Cxpress
+BODY: [PROVA SOCIAL, adicionado a pedido do usuario, 2026-09-14] Marquee de logos de clientes, mesma estrutura e mesmos 42 assets (assets/clientes/cliente-01.png a cliente-42.png) da secao "Clientes" da LP-irma landing-pages/cxpress/black-friday-atendimento. Aria-label da faixa: "Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit". Decorativo (alt="" em cada logo), sem texto novo alem do LABEL acima.
+
 === IMPACTO ===
 H2: Quanto da sua operação aguenta o pico da Black Friday?
 BODY: A maioria dos gestores sabe quantas mensagens chegam num dia normal.
 BODY: Poucos sabem quanto esse número multiplica na Black Friday, quanto tempo o cliente espera na fila ou quantas vendas se perdem por demora.
+# [ALTERADO a pedido do usuario, 2026-09-14] H2 e paragrafos desta secao e da secao DEPOIS DA VIRADA centralizados (text-align:center, max-width com margin:0 auto), mesmo padrao do .sec-head da LP-referencia black-friday-atendimento.
 
 # [REMOVIDO a pedido do usuario, 2026-09-14] Secao CARD DESTACADO (case Cacau Show) removida da LP. Conteudo original preservado no historico do arquivo (git) e no BRANDBOOK.md caso precise voltar.
 
@@ -35,6 +40,7 @@ LIST ITEM: Equipe focada nos clientes e situações que mais precisam de atenç�
 LIST ITEM: Mais capacidade para absorver os picos sem perder qualidade no atendimento
 BODY: Menos clientes esperando na fila. Mais controle sobre o atendimento nos momentos que mais importam para a venda.
 CTA: Garantir oferta
+# [ALTERADO a pedido do usuario, 2026-09-14] Fundo desta secao mudado de branco para cinza claro (var(--neutral-100)), pra distinguir da secao IMPACTO (branca) logo acima.
 
 === FOOTER ===
 FOOTER: Cxpress é um produto Elife. (c) 2026. Condições gerais de uso da Cxpress. Políticas de privacidade.
