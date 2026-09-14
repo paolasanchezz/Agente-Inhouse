@@ -392,6 +392,57 @@ Pra sweep em muitas LPs, rode o `check_mobile_type.py` **antes e depois** (`--js
 
 Histórico: 2026-08-25, Victor reportou a LP `monitoramento-com-ia` (corpo 16px / H1 30px no mobile) e pediu revisão nas outras. 118 LPs ajustadas de uma vez; 8 acusaram overflow novo por pílula com `nowrap` — daí a exceção acima.
 
+## 21. Quebra de linha equilibrada — `text-wrap` em todo bloco curto
+
+Frase que quebra **linha cheia + órfã de duas palavras** desequilibra o peso do bloco. É a quebra que o navegador faz por padrão (algoritmo guloso: enche a linha, joga o resto embaixo) e aparece mais em texto centralizado. Havendo largura sobrando, as linhas têm que sair com pesos parecidos.
+
+**Regra:**
+
+| Tipo de bloco | Valor | Por quê |
+|---|---|---|
+| Bloco curto, até ~4 linhas — H1, H2, H3, subtítulo, kicker, nota, label, item de card, pergunta de FAQ, célula de tabela | `text-wrap: balance` | redistribui as palavras entre as linhas |
+| Parágrafo longo de corpo (5+ linhas), rodapé, resposta de FAQ | `text-wrap: pretty` | não reequilibra tudo (custo de layout e atrapalha o ritmo de leitura), só evita a órfã |
+
+Declarar num bloco único no `<style>` do `<head>`, listando os seletores — não espalhar `text-wrap` por regra de componente. Degradação é graciosa: navegador sem suporte quebra normal.
+
+**Ganho medido** na `cxpress/planos` (desequilíbrio = `1 − linha_menor / linha_maior`, desktop 1440):
+
+| Bloco | Sem | Com |
+|---|---|---|
+| `.pk-hero-sub` | 38% | 6% |
+| `.pk-plans-sub` | 53% | 8% |
+| `.pk-card-desc` (Enterprise) | 53% | 2% |
+| `.pk-note` | 66% | 6% |
+| `.pk-clients-title` | 48% | 7% |
+| item de card "Integração entre a IA…" | 69% | 2% |
+
+**Quatro ressalvas que custaram tempo:**
+
+1. **Célula de tabela o Chrome não balanceia** — nem com wrapper `display:block` ou `inline-block`, nem forçando `width:100%` (testado). Dentro de table layout o algoritmo é ignorado. Valor de célula que quebraria feio tem que **caber em uma linha por copy** (foi por isso que "Agentes adicionais por canal" virou "Adicionais por canal"). Manter `td` na lista de `balance` ainda vale: no mobile a tabela vira cards (`display:block`) e aí pega.
+2. **`<br>` manual briga com o balance.** `<br>` só quando a quebra é semântica (`"Duas formas de contratar.<br> Uma plataforma completa."`) e **sempre** com `.classe br{ display:none }` no breakpoint móvel — senão o `balance` não consegue redistribuir e sobra órfã de uma palavra. Sem o `display:none`, o título ia pra 4 linhas com órfã de 139px; com, cai pra 3 sem órfã.
+
+3. **`text-wrap` não age em elemento inline.** O algoritmo pertence ao bloco que forma as linhas, não ao `<span>` que está dentro dele. `.stat__label` (um `<span>`) tinha `text-wrap:balance` computado e mesmo assim quebrava com 69% de desequilíbrio; `display:block` no mesmo span resolveu (36%). Antes de culpar o Chrome, checar se o alvo é bloco.
+4. **Copy mais longa às vezes precisa de um teto de fonte menor, não só de `balance`.** O `balance` reequilibra dentro do número de linhas que a largura permite — ele nunca junta linhas. Em `cxpress/evite-banimento-whatsapp`, o H2 do fecho em 48px caía em 3 linhas (35%); baixar o teto para 44px fez cair em 2 (14%). O H2 do form em 42px quebrava em 237px + 475px; em 38px cabe numa linha só. Vale medir com 2 ou 3 tetos antes de aceitar o desequilíbrio como inevitável.
+
+`max-width` no bloco de texto continua valendo: `balance` reequilibra **dentro** da largura que existe, não escolhe medida de linha.
+
+**Como medir** (Range sobre o conteúdo + `getClientRects()`; contar altura ÷ line-height dá errado porque soma padding). **Agrupar os rects por `top`**: quando o conteúdo tem mais de um text run — ou está no meio de uma transição de `opacity`/`transform` — o Chrome devolve um rect por *palavra*, não por linha, e a medição sai fantasiosa. Somar as larguras que compartilham o mesmo `top` resolve nos dois casos:
+
+```js
+const r = document.createRange(); r.selectNodeContents(el);
+const porLinha = new Map();
+for (const b of r.getClientRects()) {
+  if (b.width < .5) continue;
+  const y = Math.round(b.top);
+  porLinha.set(y, (porLinha.get(y) || 0) + b.width);
+}
+const linhas = [...porLinha.values()];
+```
+
+Medir com a página **visível**: em aba de preview escondida o `innerWidth` vira 0, o layout degenera e todo número sai errado.
+
+Histórico: 2026-08-28, Victor apontou na `cxpress/planos` a nota do fim dos cards quebrando em linha cheia + linha curta ("…serviços adicionais / são cotados junto com o time comercial") havendo espaço pra equilibrar, e pediu que a regra valesse pras construções futuras. 2026-08-30, o pedido voltou na `cxpress/evite-banimento-whatsapp` ("evite diagramação com palavras órfãs na linha e desequilibradas no peso das linhas") e rendeu as ressalvas 3 e 4 e a correção do método de medição.
+
 ---
 
 Este arquivo é vivo. Adicionar regra aqui sempre que um aprendizado novo vier de uma review.
