@@ -88,7 +88,12 @@ def enviar(api_key, de, para, titulo, texto):
         data=json.dumps({"from": de, "to": para, "subject": titulo,
                          "text": texto}).encode("utf-8"),
         headers={"Authorization": "Bearer %s" % api_key,
-                 "Content-Type": "application/json"})
+                 "Content-Type": "application/json",
+                 # Resend fica atras de Cloudflare, que bloqueia o UA padrao do
+                 # urllib ("Python-urllib/3.x") com 403 code 1010. Mesmo ajuste ja
+                 # feito no notify.py do lp-health-check.
+                 "User-Agent": "pocket-event/1.0",
+                 "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             return True, json.load(r).get("id", "")

@@ -24,8 +24,8 @@ on:
   workflow_dispatch:
     inputs:
       solicitacoes:
-        description: "JSON da solicitacao (objeto ou lista)"
-        required: true
+        description: "JSON da solicitacao (objeto ou lista). Vazio = reler a planilha"
+        required: false
         type: string
       dry_run:
         description: "So validar: nao escreve arquivo nem abre PR"
@@ -66,17 +66,24 @@ jobs:
           SHEET_TOKEN: ${{ secrets.POCKET_SHEET_TOKEN }}
         run: |
           set -euo pipefail
+          # Le da planilha as linhas ainda sem status (doGet do Apps Script).
+          varrer_planilha() {
+            if [ -z "${SHEET_URL:-}" ] || [ -z "${SHEET_TOKEN:-}" ]; then
+              echo "::notice::POCKET_SHEET_URL/TOKEN ausentes - varredura pulada."
+              echo "vazio=true" >> "$GITHUB_OUTPUT"; exit 0
+            fi
+            curl -fsSL --max-time 60 \
+              "${SHEET_URL}?token=${SHEET_TOKEN}&acao=pendentes" > /tmp/solicitacoes.json
+          }
+
           case "$EVENTO" in
             repository_dispatch) printf '%s' "$PAYLOAD" > /tmp/solicitacoes.json ;;
-            workflow_dispatch)   printf '%s' "$MANUAL"  > /tmp/solicitacoes.json ;;
-            schedule)
-              if [ -z "${SHEET_URL:-}" ] || [ -z "${SHEET_TOKEN:-}" ]; then
-                echo "::notice::POCKET_SHEET_URL/TOKEN ausentes - varredura diaria pulada."
-                echo "vazio=true" >> "$GITHUB_OUTPUT"; exit 0
-              fi
-              # doGet do Apps Script devolve as linhas ainda sem status.
-              curl -fsSL --max-time 60 \
-                "${SHEET_URL}?token=${SHEET_TOKEN}&acao=pendentes" > /tmp/solicitacoes.json
+            schedule)            varrer_planilha ;;
+            workflow_dispatch)
+              # Sem JSON colado, o run manual faz o mesmo que a varredura diaria.
+              # E o caminho de recuperacao: apagar o Status da linha e re-rodar.
+              if [ -z "${MANUAL:-}" ]; then varrer_planilha
+              else printf '%s' "$MANUAL" > /tmp/solicitacoes.json; fi
               ;;
           esac
           python -c "
@@ -181,7 +188,10 @@ jobs:
           json.dump({'token': os.environ['SHEET_TOKEN'], 'acao': 'marcar', 'linhas': marcas},
                     open('/tmp/marcar.json', 'w', encoding='utf-8'), ensure_ascii=False)
           "
-          curl -fsSL --max-time 60 -X POST "$SHEET_URL" \
+          # Sem -X POST de proposito: o /exec responde 302 pro googleusercontent e
+          # -X forcaria POST tambem no destino do redirect, que recusa (405/411).
+          # --data-binary ja implica POST na primeira requisicao, que e a que importa.
+          curl -fsSL --max-time 60 "$SHEET_URL" \
             -H "Content-Type: text/plain;charset=utf-8" \
             --data-binary @/tmp/marcar.json
 

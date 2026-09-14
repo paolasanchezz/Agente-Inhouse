@@ -163,6 +163,18 @@ remover slug do manifesto nunca auto-mergeia, por desenho).
 motivo em `Detalhe`), depois Actions > "Pocket Event - nova LP", depois
 "Deploy LPs".
 
+## Decisao consciente: o token da varredura vai na query string
+
+A varredura diaria chama `GET {POCKET_SHEET_URL}?token=...&acao=pendentes`: o
+`POCKET_SHEET_TOKEN` viaja na URL e entra nos logs de servidor do Google. Segredo em query
+string e pratica ruim, e a alternativa (POST com o token no corpo, como a escrita de volta
+ja faz) seria simples.
+
+**Mantido assim por decisao do Victor em 2026-09-14**, depois de apontado: o que o token da
+acesso e modesto (ler linhas pendentes e marcar status na propria planilha). Nao "consertar"
+por conta propria. Se um dia mudar, lembrar que o Apps Script precisa de **Nova versao** na
+implantacao, senao o /exec continua rodando o codigo velho.
+
 ## Limites que o automatismo respeita
 
 - no maximo 5 LPs por execucao (planilha com defeito nao vira enxurrada de deploy);
