@@ -59,3 +59,45 @@ fundo, e como borda daria 1.05:1.
   `../../brand/cxpress/assets/plataforma/`. Ja estava assim antes desta passagem.
 - O README acima cita o form `261027639617663`, mas o HTML embeda o
   `261045149477663`. Conferir qual e o correto.
+
+## Hero: conversa simulada no lugar da tela — 2026-09-14 (2a passagem)
+
+A imagem da primeira secao saiu. Onde havia a `tela-canais.svg` na moldura
+`.frame`, entra uma **conversa de WhatsApp simulada**.
+
+O bloco `.chat` nao foi inventado aqui: e o mesmo de `atendimento-domingo` e
+`black-friday-atendimento`, cujo CSS e byte-a-byte identico entre as duas.
+Tres adaptacoes, porque nessas duas o hero e navy e aqui e branco:
+
+| Ajuste | Motivo |
+|---|---|
+| card ganha `border:1px solid var(--neutral-300)` | branco sobre branco nao tem aresta |
+| sombra de `rgba(6,10,38,.45)` para uma equivalente no claro | a original foi calibrada pra fundo escuro; no claro vira mancha |
+| ponto de status usa `--wa-ink` `#15884D` em vez de `--green` `#21CC78` | o verde da marca da **2.11:1** no branco e reprova o minimo de 3:1 de elemento grafico (WCAG 1.4.11). `#15884D` da 4.51:1 — mesmo aprendizado ja registrado nas LPs irmas |
+| bolha de entrada fixada em `#F2F3F5` | nas LPs de origem ela usa `--neutral-100`, que la vale `#f5f5f5`. Aqui o token foi reaproveitado como fundo de secao (`#EDF1FA`) e puxava a bolha pro azul. O cinza tambem e o que o WhatsApp usa na mensagem recebida |
+
+Tambem: `.chat__head` passou a `align-items:flex-start` com `margin-top:6px` no
+ponto. O cabecalho daqui e mais longo que o das LPs de origem e quebra em duas
+linhas no mobile — com `center` o ponto boiava entre as linhas. Em uma linha so
+o resultado e identico ao de antes.
+
+A conversa carrega os tres beneficios da propria LP: distribuicao automatica
+(no divisor), IA no primeiro nivel (no selo) e tempo de resposta medido (no
+cabecalho e nos horarios).
+
+### Sairam junto
+
+- CSS `.frame` / `.frame__bar` / `.frame__dot` / `.hero__frame` (ficariam orfaos)
+- `assets/telas/tela-canais.svg` (130 KB). O arquivo original segue em
+  `whatsapp-business/assets/telas/` — esta LP so tinha uma copia.
+
+### Efeito colateral bom
+
+O elemento de LCP do hero deixa de ser um SVG de 130 KB e passa a ser texto.
+
+### Pilulas decorativas
+
+Foram reposicionadas: estavam calibradas pra moldura larga da tela e, com o card
+da conversa (mais estreito e mais alto), a do canto inferior esquerdo ficava ao
+**lado** do card em vez de atras e lia como forma solta. Agora o anel laranja e
+deitado, como o `f2` do fecho, e abraca o canto.

@@ -85,6 +85,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          branco, entao existe uma versao escura pro dia que virar texto. */
       --accent-text:#A85207;
       --warning:#F1A908;
+      /* Ponto de status da conversa. O verde da marca (#21CC78) da 2.11:1 no
+         branco e reprova o minimo de 3:1 de elemento grafico (WCAG 1.4.11).
+         Nas LPs irmas o card fica sobre navy e o #21CC78 passa; aqui o hero e
+         branco, entao vale a versao escura, a mesma ja usada nas outras LPs. */
+      --wa-ink:#15884D;
       /* ---- Escala tonal (padrao whatsapp-business) ----
          titulo #232960 -> corpo -> apoio. O ganho nao e texto mais escuro:
          e a separacao titulo/corpo, que sobe de 1.52:1 (o antigo #4a4a4a)
@@ -224,28 +229,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__visual{margin-right:calc(-1 * clamp(0px, (100vw - 1200px) / 2 - 4px, 46px))}
     .hero__pills{position:absolute;inset:0;pointer-events:none}
     .hero__pills span{position:absolute;border-radius:9999px;display:block}
-    .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-56px;right:4%}
-    .hero__pills .p2{width:46px;height:150px;border:3px solid var(--accent);bottom:-52px;left:-18px;background:transparent}
-    .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:24px;right:-46px;opacity:.9}
-    /* Moldura de tela do produto (padrao whatsapp-business) */
-    .frame{
-      position:relative;border-radius:14px;overflow:hidden;background:#fff;
-      border:1px solid rgba(35,41,96,.1);
-      box-shadow:0 30px 62px -20px rgba(35,41,96,.45),0 4px 12px rgba(35,41,96,.1);
+    .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-58px;right:5%}
+    .hero__pills .p2{width:132px;height:48px;border:3px solid var(--accent);bottom:-26px;left:-30px;background:transparent}
+    .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:96px;right:-44px;opacity:.9}
+    /* ---- Conversa simulada (padrao atendimento-domingo / black-friday-atendimento) ----
+       Nas duas LPs de origem o card branco fica sobre hero navy. Aqui o hero e
+       branco: o card ganha borda e a sombra vem mais leve, porque a de la
+       (rgba(6,10,38,.45)) foi calibrada pra fundo escuro e no claro vira mancha. */
+    .chat{
+      position:relative;z-index:1;width:100%;max-width:560px;
+      background:var(--white);border-radius:20px;padding:22px 22px 26px;
+      border:1px solid var(--neutral-300);
+      box-shadow:0 30px 70px -24px rgba(35,41,96,.34),0 4px 12px rgba(35,41,96,.08);
+      color:var(--primary-dark);
     }
-    .frame__bar{
-      display:flex;align-items:center;gap:8px;
-      padding:11px 15px;background:#E4EAF7;border-bottom:1px solid rgba(35,41,96,.12);
+    .chat__head{display:flex;align-items:flex-start;gap:9px;padding-bottom:16px;border-bottom:1px solid var(--rule);font-size:14px;color:var(--neutral-700)}
+    .chat__dot{width:9px;height:9px;border-radius:50%;background:var(--wa-ink);flex:none;margin-top:6px}
+    .chat__head b{color:var(--primary-dark);font-weight:700}
+    .msg{margin-top:16px;display:flex}
+    .msg--me{justify-content:flex-end}
+    .msg__col{max-width:82%}
+    .bubble{
+      font-size:15.5px;line-height:1.55;padding:12px 15px;border-radius:14px;
+      background:#F2F3F5;border-top-left-radius:4px;
     }
-    .frame__dot{width:10px;height:10px;border-radius:50%;background:#CBD3E8}
-    .frame__dot:first-child{background:#E8B0A0}
-    .frame__dot:nth-child(2){background:#EBD3A2}
-    .frame img{display:block;width:100%;height:auto;min-height:0}
-    .hero__frame{
-      position:relative;z-index:1;width:100%;max-width:600px;
-      transform:rotate(-.7deg);
-      box-shadow:0 40px 80px -26px rgba(35,41,96,.42),0 8px 20px rgba(35,41,96,.1);
+    .msg--me .bubble{background:#E4F8EE;border-top-left-radius:14px;border-top-right-radius:4px}
+    .msg__meta{margin-top:6px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--neutral-700)}
+    .msg--me .msg__meta{justify-content:flex-end}
+    .tag-ia{background:var(--primary-lighter);color:var(--primary-dark);font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+    .chat__gap{
+      margin:18px 0 2px;text-align:center;font-size:12.5px;letter-spacing:.05em;color:var(--neutral-700);
+      display:flex;align-items:center;gap:12px;
     }
+    .chat__gap::before,.chat__gap::after{content:"";flex:1;height:1px;background:var(--rule)}
 
     /* hero load-in */
     .hero__content > *{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards}
@@ -547,6 +563,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .agendar__req{ font-size:15px; }
   .footer p{ font-size:16px; }
   .clientes__label{ font-size:16px; }
+  .chat__head{ font-size:15px; }
+  .bubble{ font-size:17px; }
+  .msg__meta{ font-size:13px; }
+  .tag-ia{ font-size:12px; }
+  .chat__gap{ font-size:13px; }
   }
 </style>
 </head>
@@ -593,11 +614,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <div class="frame hero__frame">
-            <div class="frame__bar" aria-hidden="true">
-              <span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span>
+          <div class="chat">
+            <div class="chat__head">
+              <span class="chat__dot" aria-hidden="true"></span>
+              <span><b>Ticket #4812</b> · Suporte · primeira resposta em 12s</span>
             </div>
-            <img src="./assets/telas/tela-canais.svg" fetchpriority="high" alt="Tela da plataforma Cxpress com os canais WhatsApp, Facebook, Instagram, e-mail, telefone e webchat integrados no mesmo painel" width="1400" height="900">
+            <div class="msg">
+              <div class="msg__col">
+                <div class="bubble">Boa tarde! Meu pedido aparece como entregue e não chegou aqui. Dá pra verificar?</div>
+                <div class="msg__meta"><span>14:02</span></div>
+              </div>
+            </div>
+            <p class="chat__gap">distribuído para o Suporte em 8 segundos</p>
+            <div class="msg msg--me">
+              <div class="msg__col">
+                <div class="bubble">Boa tarde! Achei o pedido aqui: a transportadora registrou a entrega no endereço errado. Já abri a ocorrência e te retorno hoje com o novo prazo.</div>
+                <div class="msg__meta"><span class="tag-ia">Respondido pela IA</span><span>14:02</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="msg__col">
+                <div class="bubble">Combinado, obrigada!</div>
+                <div class="msg__meta"><span>14:03</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
