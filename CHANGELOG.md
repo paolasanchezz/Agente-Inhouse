@@ -12,6 +12,28 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — 59 nichos da diretoria e módulo multisseleção
+### 2026-09-14 — `config.json`, `render_pocket_event.py`, `pocket-event-solicitacao.gs`
+
+A lista de 12 nichos que eu tinha inventado deu lugar aos **59 da diretoria**, na ordem
+exata em que foram passados. E o módulo virou **caixa de seleção**: um Pocket Event pode
+cobrir mais de um.
+
+**Três campos por nicho, com papéis separados:** `valor` é o texto exato do formulário (a
+categorização da diretoria, não se mexe), `slug` entra na URL, `frase` é como o nicho é lido
+na LP. É o que permite o formulário mostrar "Alimentos (varejo)" e a página ler "discussão
+prática sobre varejo de alimentos" sem que uma coisa force a outra.
+
+**Multisseleção sem tratamento especial no formulário:** o Google Forms entrega as caixas
+marcadas como `"A, B, C"` numa célula só, então o validador separa por vírgula e aceita
+também lista JSON. A frase junta com vírgula e "e"; módulo marcado duas vezes não duplica.
+O autoteste cobre 1, 2 e 3 módulos, repetido, vazio e inválido dentro de uma lista válida.
+
+O autoteste passou a checar também que nenhum slug de nicho se repete — dois slugs iguais
+fariam duas edições na mesma data colidirem na mesma URL.
+
+---
+
 ## `pocket-event` — cadastro dos 21 BDs e bio opcional
 ### 2026-09-14 — `speakers.json`, `render_pocket_event.py`, `index.html.tmpl`
 

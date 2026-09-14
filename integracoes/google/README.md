@@ -63,6 +63,35 @@ por serem credencial ou tela de consentimento): as propriedades `GITHUB_TOKEN` e
 
 O passo 1 abaixo ja esta feito; os demais valem como referencia e para refazer do zero.
 
+## Nichos e modulos
+
+A lista de nichos (59 itens) foi definida pela diretoria em 2026-09-14 e vive em
+`config.json`. Cada nicho tem tres campos com papeis diferentes:
+
+| Campo | Para que serve | Pode mudar? |
+|---|---|---|
+| `valor` | texto exato que aparece no formulario | so combinando com quem definiu a lista |
+| `slug` | entra na URL da LP (`pocket-{slug}-{data}`) | evitar: muda a URL de edicoes futuras |
+| `frase` | como o nicho e lido na LP ("discussao pratica sobre {frase}") | livre |
+
+`valor` e `frase` sao separados de proposito: o formulario mostra "Alimentos (varejo)",
+que e como a diretoria categoriza, e a LP le "varejo de alimentos", que e como a frase
+funciona. Mudar a `frase` nao mexe em formulario nem em URL.
+
+**Modulo e caixa de selecao**: o encontro pode cobrir mais de um. A planilha recebe as
+marcadas como `"A, B, C"` numa celula so e o validador separa por virgula; a LP junta na
+frase com virgula e "e" ("Social Listening, AI Insights e Buzz Pills"). Marcar o mesmo
+modulo duas vezes nao duplica.
+
+Depois de mexer em qualquer uma das listas: `--form-spec`, colar em `OPCOES` no Apps
+Script, rodar `atualizarOpcoes` e **publicar Nova versao** na implantacao.
+
+`atualizarOpcoes` tambem **converte** o campo de modulo de lista para caixa de selecao, se
+ele ainda for lista. Isso e necessario porque `setChoiceValues` so troca as opcoes de um
+campo, nunca o tipo: sem a conversao, um formulario criado antes da multisselecao
+continuaria aceitando um modulo so, sem avisar ninguem. A coluna da planilha nao muda de
+nome, entao as respostas antigas ficam onde estao.
+
 ## Instalacao (uma vez)
 
 ### 1. Cadastrar quem apresenta

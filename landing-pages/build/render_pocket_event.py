@@ -110,11 +110,24 @@ def validar(dados, config, speakers, hoje=None, permitir_exemplo=False):
                      % (dados["nicho"], ", ".join(n["valor"] for n in config["nichos"])))
     norm["nicho"] = nicho
 
-    modulo = por_valor(config["modulos"], str(dados["modulo"]).strip())
-    if modulo is None:
-        erros.append("modulo fora da lista: %r (validos: %s)"
-                     % (dados["modulo"], ", ".join(m["valor"] for m in config["modulos"])))
-    norm["modulo"] = modulo
+    # Modulo e multipla escolha: um encontro pode cobrir mais de um. O Google Forms
+    # entrega as caixas marcadas como "A, B, C" numa celula so; aceitamos tambem
+    # lista, pra quem chamar o job direto com JSON.
+    pedidos = dados["modulo"]
+    if not isinstance(pedidos, (list, tuple)):
+        pedidos = [p.strip() for p in str(pedidos).split(",")]
+    pedidos = [p for p in (str(p).strip() for p in pedidos) if p]
+    if not pedidos:
+        erros.append("nenhum modulo informado")
+    modulos = []
+    for p in pedidos:
+        achado = por_valor(config["modulos"], p)
+        if achado is None:
+            erros.append("modulo fora da lista: %r (validos: %s)"
+                         % (p, ", ".join(m["valor"] for m in config["modulos"])))
+        elif achado not in modulos:  # marcar duas vezes nao duplica na frase
+            modulos.append(achado)
+    norm["modulos"] = modulos
 
     horario = str(dados["horario"]).strip()
     if horario not in config["horarios"]:
@@ -175,6 +188,13 @@ def foto_html(speaker):
             % html.escape(iniciais))
 
 
+def juntar(itens):
+    """['A'] -> 'A' | ['A','B'] -> 'A e B' | ['A','B','C'] -> 'A, B e C'."""
+    if len(itens) == 1:
+        return itens[0]
+    return "%s e %s" % (", ".join(itens[:-1]), itens[-1])
+
+
 def bio_html(speaker):
     """Bio e opcional no cadastro. Sem bio, o paragrafo inteiro sai do HTML: card
     com nome e cargo e honesto, card com bio inventada nao."""
@@ -205,7 +225,7 @@ def render(dados, config, speakers, hoje=None, permitir_exemplo=False):
         "TITULO_PAGINA": html.escape(titulo_pagina, quote=True),
         "META_DESCRIPTION": html.escape(meta, quote=True),
         "NICHO": html.escape(norm["nicho"]["frase"]),
-        "MODULO": html.escape(norm["modulo"]["frase"]),
+        "MODULO": html.escape(juntar([m["frase"] for m in norm["modulos"]])),
         "DATA_EXTENSO": html.escape(extenso),
         "DATA_ISO": data.isoformat(),
         "HORARIO": html.escape(norm["horario"]),
@@ -285,7 +305,8 @@ FORM_OCULTOS: edicao, evento, data_evento, horario, speaker, url_conversao, utm_
 SECAO: EMPRESAS QUE CONFIAM / DEPOIMENTOS / URGENCIA / FOOTER
 
 Fixas no template (iguais em toda edicao).
-""" % (slug, norm["titulo"], norm["nicho"]["frase"], norm["modulo"]["frase"],
+""" % (slug, norm["titulo"], norm["nicho"]["frase"],
+       juntar([m["frase"] for m in norm["modulos"]]),
        extenso, norm["horario"], v["DD"], v["MM"], v["DIA_SEMANA"], norm["horario"],
        speaker["nome"], speaker["cargo"], speaker["bio"])
 
@@ -312,7 +333,8 @@ Pra mudar esta edicao: corrigir a linha na planilha e reprocessar.
 | Form | Apps Script (planilha unica de inscricoes) |
 | GTM | %s |
 """ % (norm["titulo"], slug, config["dominio"], slug, norm["titulo"],
-       norm["nicho"]["valor"], norm["modulo"]["valor"], extenso, norm["horario"],
+       norm["nicho"]["valor"], ", ".join(m["valor"] for m in norm["modulos"]),
+       extenso, norm["horario"],
        speaker["nome"], speaker["cargo"], config["gtm_id"])
 
 
@@ -348,18 +370,30 @@ def autoteste():
     ]}
     hoje = datetime.date(2026, 9, 14)
     pedido = {"titulo": "Como o varejo escuta o cliente em tempo real",
-              "nicho": "Varejo e consumo", "modulo": "Social Listening",
+              "nicho": "Alimentos (varejo)", "modulo": "Social Listening",
               "data": "2026-10-08", "horario": "11h", "speaker": "com-bio"}
 
     slug, arquivos = render(pedido, config, speakers, hoje)
-    assert slug == "pocket-varejo-2026-10-08", slug
+    assert slug == "pocket-alimentos-varejo-2026-10-08", slug
     h = arquivos["index.html"]
     for esperado in ("Como o varejo escuta o cliente em tempo real",
-                     "varejo e consumo", "Social Listening", "8 de outubro",
-                     "quinta-feira", "08<span", "pocket-varejo-2026-10-08",
+                     "varejo de alimentos", "Social Listening", "8 de outubro",
+                     "quinta-feira", "08<span", "pocket-alimentos-varejo-2026-10-08",
                      "GTM-WFJVK858", "Duas linhas de bio", 'class="sp-bio"'):
         assert esperado in h, "faltou no HTML: %s" % esperado
     assert "{{" not in h and "[ FOTO DO SPEAKER ]" not in h
+
+    # multiplos modulos: a frase junta com virgula e "e"
+    _, dois = render({**pedido, "modulo": "Social Listening, AI Insights"},
+                     config, speakers, hoje)
+    assert "Social Listening e AI Insights" in dois["index.html"]
+    _, tres = render({**pedido, "modulo": ["Social Listening", "AI Insights", "Buzz GPT"]},
+                     config, speakers, hoje)
+    assert "Social Listening, AI Insights e Buzz GPT" in tres["index.html"]
+    # marcar o mesmo modulo duas vezes nao duplica na frase
+    _, rep = render({**pedido, "modulo": "AI Insights, AI Insights"}, config, speakers, hoje)
+    assert rep["index.html"].count("AI Insights") >= 1
+    assert "AI Insights e AI Insights" not in rep["index.html"]
 
     # sem bio: o paragrafo inteiro some, e nada e inventado no lugar
     _, sem = render({**pedido, "speaker": "sem-bio"}, config, speakers, hoje)
@@ -378,6 +412,8 @@ def autoteste():
         ({**pedido, "titulo": "<script>alert(1)</script> no titulo"}, "caractere proibido"),
         ({**pedido, "nicho": "Pet shop"}, "nicho invalido"),
         ({**pedido, "modulo": "BuzzMonitor Listening"}, "modulo invalido"),
+        ({**pedido, "modulo": "Social Listening, Nao Existe"}, "um modulo invalido na lista"),
+        ({**pedido, "modulo": ""}, "nenhum modulo"),
         ({**pedido, "horario": "23h"}, "horario invalido"),
         ({**pedido, "data": "2026-09-01"}, "data no passado"),
         ({**pedido, "data": "2027-09-01"}, "data longe demais"),
@@ -400,8 +436,14 @@ def autoteste():
     for x in reais:
         assert x.get("nome") and x.get("cargo"), "speaker sem nome ou cargo: %s" % x
 
-    print("autoteste ok: 3 renders + %d recusas + datas + %d speakers no cadastro"
-          % (len(casos_ruins), len(reais)))
+    # nichos: slug unico (slug repetido faria duas edicoes colidirem na mesma URL)
+    slugs = [n["slug"] for n in config["nichos"]]
+    assert len(set(slugs)) == len(slugs), "slug de nicho duplicado no config.json"
+    for n in config["nichos"]:
+        assert n["valor"] and n["slug"] and n["frase"], "nicho incompleto: %s" % n
+
+    print("autoteste ok: %d renders + %d recusas + %d nichos + %d speakers"
+          % (7, len(casos_ruins), len(config["nichos"]), len(reais)))
 
 
 def main():

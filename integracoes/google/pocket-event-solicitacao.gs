@@ -36,10 +36,26 @@
 // Gerado por: py landing-pages/build/render_pocket_event.py --form-spec
 var OPCOES = {
   nichos: [
-    'Varejo e consumo', 'Alimentos e bebidas', 'Servicos financeiros',
-    'Saude e bem-estar', 'Educacao', 'Telecomunicacoes', 'Automotivo',
-    'Industria', 'Entretenimento e midia', 'Agencias', 'Turismo e hotelaria',
-    'Setor publico'
+    'Agência', 'Agronegócios', 'Alimentos (produtos)',
+    'Alimentos (varejo)', 'Bebidas alcoólicas', 'Bebidas (produtos)',
+    'Bebidas (varejo)', 'Consultoria', 'Pets',
+    'Roupas, Calçados e Acessórios', 'Artigos esportivos', 'Times Esportivos',
+    'Jogos e brinquedos', 'E-commerce', 'Comércio (atacado e varejo)',
+    'Comunicação', 'Gráfica', 'Financeiro',
+    'Administração', 'Advocacia', 'Contabilidade',
+    'RH', 'Seguros', 'Holding',
+    'Educação', 'Cultura', 'Eventos',
+    'Atividades físicas', 'Shoppings', 'Lazer',
+    'Turismo', 'Transportes', 'Transportadora e Logística',
+    'Distribuidoras', 'Drogarias', 'Farmacêuticas',
+    'Serviços estéticos', 'Higiene e beleza', 'Saúde',
+    'Limpeza', 'Indústria química', 'Tabaco',
+    'Metalurgia', 'Ferramentas e Maquinários', 'Automotivo',
+    'Engenharia e Construção', 'Imóveis', 'Materiais de construção',
+    'Móveis e decorações', 'Entidades e federações', 'Política',
+    'Órgãos Públicos', 'ONGs', 'Eletroeletrônicos',
+    'Plataformas', 'Tecnologia', 'Telecom',
+    'Serviços Básicos e Energia', 'Petróleo e Gás'
   ],
   modulos: [
     'Social Listening', 'SAC 2.0', 'Dashboards e Analytics',
@@ -103,8 +119,11 @@ function criarFormulario() {
       .requireTextLengthLessThanOrEqualTo(OPCOES.titulo_max).build());
 
   form.addListItem().setTitle(COL.nicho).setChoiceValues(OPCOES.nichos).setRequired(true);
-  form.addListItem().setTitle(COL.modulo)
-    .setHelpText('Modulo ou feature que vai ser o foco da conversa.')
+  // Caixa de selecao, nao lista: um encontro pode cobrir mais de um modulo.
+  // A planilha recebe as marcadas como "A, B, C" numa celula so, e o validador
+  // do repo separa por virgula.
+  form.addCheckboxItem().setTitle(COL.modulo)
+    .setHelpText('Marque um ou mais. Aparecem na LP na ordem desta lista.')
     .setChoiceValues(OPCOES.modulos).setRequired(true);
   form.addDateItem().setTitle(COL.data)
     .setHelpText('No maximo ' + OPCOES.dias_maximo + ' dias a frente. Data passada e recusada.')
@@ -132,21 +151,61 @@ function criarFormulario() {
   return form.getPublishedUrl();
 }
 
+/**
+ * Converte o campo de modulo de lista (1 escolha) para caixa de selecao (N
+ * escolhas), preservando titulo, ajuda, obrigatoriedade e posicao.
+ *
+ * Existe porque `setChoiceValues` so troca as opcoes de um campo: nao muda o
+ * TIPO dele. Um formulario criado antes da multisselecao continuaria aceitando
+ * um modulo so, em silencio. Roda sozinha dentro de `atualizarOpcoes`.
+ *
+ * A coluna da planilha nao se mexe (mesmo titulo), entao as respostas antigas
+ * continuam onde estavam.
+ */
+function migrarModuloParaCheckbox_(form) {
+  var antigo = null;
+  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+    if (item.getTitle() === COL.modulo) antigo = item;
+  });
+  if (!antigo) return false;  // ja e checkbox, ou o campo nao existe
+
+  var posicao = antigo.getIndex();
+  var ajuda = antigo.getHelpText();
+  var obrigatorio = antigo.asListItem().isRequired();
+  form.deleteItem(antigo);
+
+  var novo = form.addCheckboxItem()
+    .setTitle(COL.modulo)
+    .setHelpText(ajuda || 'Marque um ou mais. Aparecem na LP na ordem desta lista.')
+    .setChoiceValues(OPCOES.modulos)
+    .setRequired(obrigatorio);
+  form.moveItem(novo.getIndex(), posicao);
+  return true;
+}
+
 /** Re-sincroniza as listas do formulario com o OPCOES deste arquivo. */
 function atualizarOpcoes() {
   var form = FormApp.openByUrl(
     SpreadsheetApp.getActiveSpreadsheet().getFormUrl());
+  var migrou = migrarModuloParaCheckbox_(form);
   var mapa = {};
   mapa[COL.nicho] = OPCOES.nichos;
   mapa[COL.modulo] = OPCOES.modulos;
   mapa[COL.horario] = OPCOES.horarios;
   mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
 
+  var tocados = 0;
   form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
     var novas = mapa[item.getTitle()];
-    if (novas && novas.length) item.asListItem().setChoiceValues(novas);
+    if (novas && novas.length) { item.asListItem().setChoiceValues(novas); tocados++; }
   });
-  return 'listas atualizadas';
+  // O modulo e caixa de selecao (CHECKBOX), que nao aparece no getItems(LIST).
+  form.getItems(FormApp.ItemType.CHECKBOX).forEach(function (item) {
+    var novas = mapa[item.getTitle()];
+    if (novas && novas.length) { item.asCheckboxItem().setChoiceValues(novas); tocados++; }
+  });
+  return tocados + ' campo(s) atualizado(s)' +
+    (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
 }
 
 /** Instala o gatilho de envio e garante as colunas de controle. */
