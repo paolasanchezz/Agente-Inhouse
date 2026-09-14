@@ -117,15 +117,28 @@ function atualizarOpcoes() {
   mapa[COL.horario] = OPCOES.horarios;
   mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
 
+  // O texto de ajuda tambem e sincronizado: um campo que muda de natureza (lista
+  // -> caixa de selecao) fica com a ajuda antiga mentindo pra quem preenche, e
+  // essa correcao nao chega em quem ja tinha o formulario criado.
+  var ajudas = {};
+  ajudas[COL.modulo] = 'Marque um ou mais. Aparecem na LP na ordem desta lista.';
+
   var tocados = 0;
-  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+  function sincronizar(item, asItem) {
     var novas = mapa[item.getTitle()];
-    if (novas && novas.length) { item.asListItem().setChoiceValues(novas); tocados++; }
+    if (!novas || !novas.length) return;
+    asItem.setChoiceValues(novas);
+    var ajuda = ajudas[item.getTitle()];
+    if (ajuda && item.getHelpText() !== ajuda) item.setHelpText(ajuda);
+    tocados++;
+  }
+
+  form.getItems(FormApp.ItemType.LIST).forEach(function (item) {
+    sincronizar(item, item.asListItem());
   });
   // O modulo e caixa de selecao (CHECKBOX), que nao aparece no getItems(LIST).
   form.getItems(FormApp.ItemType.CHECKBOX).forEach(function (item) {
-    var novas = mapa[item.getTitle()];
-    if (novas && novas.length) { item.asCheckboxItem().setChoiceValues(novas); tocados++; }
+    sincronizar(item, item.asCheckboxItem());
   });
   return tocados + ' campo(s) atualizado(s)' +
     (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
