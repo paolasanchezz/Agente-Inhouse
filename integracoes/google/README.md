@@ -86,6 +86,17 @@ modulo duas vezes nao duplica.
 Depois de mexer em qualquer uma das listas: `--form-spec`, colar em `OPCOES` no Apps
 Script, rodar `atualizarOpcoes` e **publicar Nova versao** na implantacao.
 
+Da pra rodar `atualizarOpcoes` **sem abrir o editor**, POSTando no proprio web app:
+
+```bash
+curl -sSL "$POCKET_SHEET_URL" -H "Content-Type: text/plain;charset=utf-8"   -d '{"token":"'"$POCKET_SHEET_TOKEN"'","acao":"atualizar_opcoes"}'
+```
+
+Isso evita o seletor de funcao do editor, que reverte pra ultima funcao usada e ja fez
+`criarFormulario` rodar por engano. A URL `/exec` roda a versao publicada: depois de mudar o
+codigo, publicar Nova versao antes de chamar. Durante o desenvolvimento, a URL `/dev` do
+mesmo script roda sempre o codigo salvo (so o dono acessa).
+
 `atualizarOpcoes` tambem **converte** o campo de modulo de lista para caixa de selecao, se
 ele ainda for lista. Isso e necessario porque `setChoiceValues` so troca as opcoes de um
 campo, nunca o tipo: sem a conversao, um formulario criado antes da multisselecao

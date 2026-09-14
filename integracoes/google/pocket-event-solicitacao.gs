@@ -329,6 +329,19 @@ function doPost(e) {
     return responder_({ ok: false, error: 'corpo invalido' });
   }
   if (!autorizado_(corpo)) return responder_({ ok: false, error: 'token invalido' });
+
+  // Re-sincroniza o formulario com o OPCOES deste arquivo, sem ninguem abrir o
+  // editor. Serve pra automatizar o passo que hoje e manual depois de mudar
+  // nichos/modulos/speakers no repo, e evita o clique errado no seletor de
+  // funcao do editor (que ja criou um formulario duplicado uma vez).
+  if (corpo.acao === 'atualizar_opcoes') {
+    try {
+      return responder_({ ok: true, resultado: atualizarOpcoes() });
+    } catch (err) {
+      return responder_({ ok: false, error: String(err) });
+    }
+  }
+
   if (corpo.acao !== 'marcar') return responder_({ ok: false, error: 'acao desconhecida' });
 
   (corpo.linhas || []).forEach(function (m) {
