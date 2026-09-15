@@ -12,6 +12,22 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — `atualizarOpcoes` passa a criar campo que ainda não existe
+### 2026-09-15 — `integracoes/google/pocket-event-solicitacao.gs`
+
+Terceira vez que o mesmo padrão morde: uma função chamada de "sincronizar" que na verdade só
+mexia no que já existia. Ela atualizava opções, e depois também o texto de ajuda — mas um
+campo **novo** não existe para ser sincronizado, tem que ser criado.
+
+O sintoma é o pior tipo: rodar a sincronização depois de adicionar o campo Vagas no repo
+devolvia `4 campo(s) atualizado(s)`, com cara de sucesso, e o campo não aparecia para
+ninguém. Só se descobre abrindo o formulário.
+
+Agora ela cria o que falta, na posição certa, e diz o que criou. Campo novo daqui pra frente
+entra na lista dentro da própria função — o comentário avisa.
+
+---
+
 ## `pocket-event` — fotos dos BDs e saída do cadastro
 ### 2026-09-14 — `brand/buzzmonitor/assets/speakers/`, `speakers.json`
 

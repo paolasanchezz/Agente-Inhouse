@@ -143,8 +143,41 @@ function atualizarOpcoes() {
   form.getItems(FormApp.ItemType.CHECKBOX).forEach(function (item) {
     sincronizar(item, item.asCheckboxItem());
   });
+
+  // Campo que nasceu depois do formulario nao existe pra ser sincronizado: tem
+  // que ser CRIADO. Sem isto, mexer no repo e rodar esta funcao devolvia "N
+  // campos atualizados" e o campo novo simplesmente nao aparecia pra ninguem.
+  // Campo novo daqui pra frente entra nesta lista.
+  var criados = [];
+  if (!acharItem_(form, COL.vagas)) {
+    var vagas = form.addListItem()
+      .setTitle(COL.vagas)
+      .setHelpText('Quantas pessoas o encontro aceita. Em branco = ' +
+                   OPCOES.vagas_padrao + '.')
+      .setChoiceValues(OPCOES.vagas)
+      .setRequired(false);
+    depoisDe_(form, vagas, COL.horario);
+    criados.push(COL.vagas);
+  }
+
   return tocados + ' campo(s) atualizado(s)' +
+    (criados.length ? ' + criado(s): ' + criados.join(', ') : '') +
     (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
+}
+
+/** O item do formulario com este titulo, de qualquer tipo, ou null. */
+function acharItem_(form, titulo) {
+  var achado = null;
+  form.getItems().forEach(function (item) {
+    if (item.getTitle() === titulo) achado = item;
+  });
+  return achado;
+}
+
+/** Move `item` pra logo depois do campo `tituloAnterior`, se ele existir. */
+function depoisDe_(form, item, tituloAnterior) {
+  var anterior = acharItem_(form, tituloAnterior);
+  if (anterior) form.moveItem(item.getIndex(), anterior.getIndex() + 1);
 }
 
 /** Instala o gatilho de envio e garante as colunas de controle. */
