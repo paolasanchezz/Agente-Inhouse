@@ -12,6 +12,46 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — fotos dos BDs e saída do cadastro
+### 2026-09-14 — `brand/buzzmonitor/assets/speakers/`, `speakers.json`
+
+17 fotos entraram, vindas do Slack (512x512, já quadradas) e re-salvas em JPG. O build só
+copia a foto de quem apresenta aquela edição, não as 17.
+
+Daniel Jesus e Hugo Nagawa entraram depois, pelos caminhos que funcionam: o primeiro tinha
+URL do Slack, o segundo veio como arquivo. Os links `blob:` do WhatsApp Web que vieram antes
+não davam — um `blob:` é referência à memória do navegador de quem abriu a conversa, não uma
+URL que se baixe de fora.
+
+**Anna Beatriz fica sem foto** por decisão do Victor. A LP mostra as iniciais dela no degradê
+da marca, e isso é um estado previsto do template, não uma pendência.
+
+**Camila Ribeiro saiu do cadastro** porque saiu da empresa. Quem sai tem que sair daqui,
+senão continua aparecendo como opção no formulário — e alguém acabaria marcando.
+
+---
+
+## `pocket-event` — concordância de gênero do speaker e vagas por edição
+### 2026-09-14 — refinamentos pedidos pela diretoria
+
+**Gênero.** A página fala do speaker antes de dizer o nome ("conduzido por um especialista",
+"encontro com o especialista"), então o masculino genérico aparecia na frente de quem lê
+mesmo quando quem apresenta é a Michelle. O cadastro ganhou `genero` (`f`/`m`) e os dois
+pontos concordam. Marcado à mão a partir dos nomes e sinalizado no arquivo para conferência
+— nome não determina gênero, e o autoteste só exige que o campo exista e seja `f` ou `m`.
+
+**Vagas por edição.** O número `10` estava escrito à mão em 6 lugares (4 na página, a meta
+description e a mensagem de lista de espera) e mais uma vez no Apps Script de inscrições —
+sete cópias que drifariam na primeira vez que alguém mudasse. Agora é padrão no `config.json`
+com escolha por edição no formulário, e a LP manda o número no payload para a planilha saber
+onde começa a lista de espera. O script de inscrições **limita o valor recebido** (1 a 50)
+antes de usar, porque ele chega do navegador de quem se inscreve.
+
+Fica pendente o terceiro pedido, que não é de código: as **fotos dos BDs**. Sem foto a LP
+mostra as iniciais no degradê da marca, então nada quebra — o card só fica mais fraco.
+
+---
+
 ## `pocket-event` — desempate quando há duas abas de respostas
 ### 2026-09-14 — `integracoes/google/pocket-event-solicitacao.gs`
 

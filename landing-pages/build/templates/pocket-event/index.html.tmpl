@@ -799,7 +799,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-copy">
         <div class="hero-eyebrow">
           <span class="rule" aria-hidden="true"></span>
-          <span class="eyebrow">Pocket Event &middot; Apenas 10 vagas</span>
+          <span class="eyebrow">Pocket Event &middot; Apenas {{VAGAS}} vagas</span>
         </div>
         <h1 id="hero-title">
           <span class="grad">{{TITULO}}</span>
@@ -808,7 +808,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Discuss&atilde;o pr&aacute;tica sobre <span class="ital">{{NICHO}}</span> com foco em <span class="ital">{{MODULO}}</span>.
         </h2>
         <p class="hero-sub">
-          Mini-encontro online <strong>fechado</strong>, conduzido por um especialista da Buzzmonitor. Formato &iacute;ntimo para quem quer aprofundar, sem audi&ecirc;ncia grande e com espa&ccedil;o real para perguntar.
+          Mini-encontro online <strong>fechado</strong>, conduzido por {{ESPECIALISTA_INDEF}} da Buzzmonitor. Formato &iacute;ntimo para quem quer aprofundar, sem audi&ecirc;ncia grande e com espa&ccedil;o real para perguntar.
         </p>
         <div class="hero-cta-row">
           <a href="#inscricao" class="btn-primary">
@@ -831,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <dl class="ticket-rows">
             <div><dt>Formato</dt><dd>Online &middot; Ao vivo</dd></div>
             <div><dt>Dura&ccedil;&atilde;o</dt><dd>~60 min</dd></div>
-            <div><dt>Vagas</dt><dd>Apenas 10</dd></div>
+            <div><dt>Vagas</dt><dd>Apenas {{VAGAS}}</dd></div>
             <div><dt>Investimento</dt><dd>Gratuito</dd></div>
           </dl>
         </aside>
@@ -844,8 +844,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap">
       <header class="sf-head reveal">
         <span class="eyebrow">Encontro com especialista</span>
-        <h2 id="sf-title">Confirme seu encontro com o especialista</h2>
-        <p class="sub">Mini-encontro fechado: apenas 10 vagas. Garanta a sua antes que esgote.</p>
+        <h2 id="sf-title">Confirme seu encontro com {{ESPECIALISTA_DEF}}</h2>
+        <p class="sub">Mini-encontro fechado: apenas {{VAGAS}} vagas. Garanta a sua antes que esgote.</p>
       </header>
 
       <div class="sf-grid">
@@ -1009,7 +1009,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="urgency reveal" aria-labelledby="urgency-title">
     <div class="wrap urgency-inner">
       <span class="eyebrow">Encontro fechado</span>
-      <h2 id="urgency-title">Reserve sua vaga antes que <em>esgote.</em> <span class="tag">10 vagas</span></h2>
+      <h2 id="urgency-title">Reserve sua vaga antes que <em>esgote.</em> <span class="tag">{{VAGAS}} vagas</span></h2>
       <p class="question">Mini-encontro online com especialista da Buzzmonitor, sem audi&ecirc;ncia grande e com espa&ccedil;o real para sua pergunta.</p>
       <div class="urgency-cta">
         <a href="#inscricao" class="btn-primary">
@@ -1087,6 +1087,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function coletar() {
       return {
         edicao: '{{SLUG}}',
+        vagas: {{VAGAS}},
         evento: '{{TITULO_TEXTO}}',
         data_evento: '{{DATA_ISO}}',
         horario: '{{HORARIO_TEXTO}}',
@@ -1125,7 +1126,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (r.duplicado) {
             recado = 'Você já estava inscrito. Até lá!';
           } else if (r.esgotado) {
-            recado = 'As 10 vagas foram preenchidas. Você entrou na lista de espera e '
+            recado = 'As {{VAGAS}} vagas foram preenchidas. Você entrou na lista de espera e '
                    + 'avisamos se abrir uma.';
           }
           avisar(recado);

@@ -10,147 +10,163 @@
       "nome": "Adriane Ferreira",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/adriane-ferreira.jpg",
+      "genero": "f"
     },
     {
       "id": "athaide-martins",
       "nome": "Athaide Martins",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/athaide-martins.jpg",
+      "genero": "m"
     },
     {
       "id": "bruno-braga",
       "nome": "Bruno Braga",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/bruno-braga.jpg",
+      "genero": "m"
     },
     {
       "id": "daniel-jesus",
       "nome": "Daniel Jesus",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/daniel-jesus.jpg",
+      "genero": "m"
     },
     {
       "id": "fatima-silana",
       "nome": "Fatima Silana",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/fatima-silana.jpg",
+      "genero": "f"
     },
     {
       "id": "guilherme-werzel",
       "nome": "Guilherme Werzel",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/guilherme-werzel.jpg",
+      "genero": "m"
     },
     {
       "id": "hugo-nagawa",
       "nome": "Hugo Nagawa",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/hugo-nagawa.jpg",
+      "genero": "m"
     },
     {
       "id": "juliana-mendonca",
       "nome": "Juliana Mendonca",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/juliana-mendonca.jpg",
+      "genero": "f"
     },
     {
       "id": "leandra-lira",
       "nome": "Leandra Lira",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/leandra-lira.jpg",
+      "genero": "f"
     },
     {
       "id": "leticia-mello",
       "nome": "Leticia Mello",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/leticia-mello.jpg",
+      "genero": "f"
     },
     {
       "id": "michelle-carmo",
       "nome": "Michelle Carmo",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/michelle-carmo.jpg",
+      "genero": "f"
     },
     {
       "id": "nathalia-crivellaro",
       "nome": "Nathalia Crivellaro",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/nathalia-crivellaro.jpg",
+      "genero": "f"
     },
     {
       "id": "paloma-braga",
       "nome": "Paloma Braga",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/paloma-braga.jpg",
+      "genero": "f"
     },
     {
       "id": "pedro-de-morais",
       "nome": "Pedro de Morais",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/pedro-de-morais.jpg",
+      "genero": "m"
     },
     {
       "id": "renato-couto",
       "nome": "Renato Couto",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/renato-couto.jpg",
+      "genero": "m"
     },
     {
       "id": "tereza-rici",
       "nome": "Tereza Rici",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/tereza-rici.jpg",
+      "genero": "f"
     },
     {
       "id": "tiago-cantu",
       "nome": "Tiago Cantu",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/tiago-cantu.jpg",
+      "genero": "m"
     },
     {
       "id": "valkiria-guedes",
       "nome": "Valkiria Guedes",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
-    },
-    {
-      "id": "camila-ribeiro",
-      "nome": "Camila Ribeiro",
-      "cargo": "Business Developer",
-      "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/valkiria-guedes.jpg",
+      "genero": "f"
     },
     {
       "id": "anna-beatriz",
       "nome": "Anna Beatriz",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": null,
+      "genero": "f"
     },
     {
       "id": "jacqueline-castro",
       "nome": "Jacqueline Castro",
       "cargo": "Business Developer",
       "bio": null,
-      "foto": null
+      "foto": "brand/buzzmonitor/assets/speakers/jacqueline-castro.jpg",
+      "genero": "f"
     }
-  ]
+  ],
+  "_genero": "'f' ou 'm'. A LP concorda o artigo com este campo ('com a especialista' x 'com o especialista'). Preenchido a mao em 2026-09-14 a partir dos nomes; CONFERIR e corrigir quem estiver errado - nome nao determina genero.",
+  "_foto": "Caminho relativo a raiz do repo. Sem foto, a LP mostra as iniciais no degrade da marca - nada quebra, o card so fica mais fraco. Adicionar uma: salvar em brand/buzzmonitor/assets/speakers/{id}.jpg, quadrada e com o rosto centralizado, e apontar aqui. Anna Beatriz fica sem foto por decisao do Victor (2026-09-15).",
+  "_saidas": "Quem sai da empresa sai deste arquivo, senao continua aparecendo como opcao no formulario. Removidos: camila-ribeiro (2026-09-14)."
 }

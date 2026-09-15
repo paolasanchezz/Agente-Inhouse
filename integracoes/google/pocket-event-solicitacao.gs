@@ -63,6 +63,8 @@ var OPCOES = {
     'Buzz GPT', 'Buzz Pills'
   ],
   horarios: ['09h', '10h', '11h', '14h', '15h', '16h', '17h'],
+  vagas: ['6', '8', '10', '12', '15'],
+  vagas_padrao: '10',
   // Espelho de speakers.json. Mudou la? Rode --form-spec e recole aqui.
   speakers: [
     { id: 'adriane-ferreira', nome: 'Adriane Ferreira' }, { id: 'athaide-martins', nome: 'Athaide Martins' },
@@ -74,8 +76,7 @@ var OPCOES = {
     { id: 'paloma-braga', nome: 'Paloma Braga' }, { id: 'pedro-de-morais', nome: 'Pedro de Morais' },
     { id: 'renato-couto', nome: 'Renato Couto' }, { id: 'tereza-rici', nome: 'Tereza Rici' },
     { id: 'tiago-cantu', nome: 'Tiago Cantu' }, { id: 'valkiria-guedes', nome: 'Valkiria Guedes' },
-    { id: 'camila-ribeiro', nome: 'Camila Ribeiro' }, { id: 'anna-beatriz', nome: 'Anna Beatriz' },
-    { id: 'jacqueline-castro', nome: 'Jacqueline Castro' }
+    { id: 'anna-beatriz', nome: 'Anna Beatriz' }, { id: 'jacqueline-castro', nome: 'Jacqueline Castro' }
   ],
   titulo_max: 60,
   dias_maximo: 180
@@ -90,6 +91,7 @@ var COL = {
   modulo: 'Modulo Buzzmonitor',
   data: 'Data do encontro',
   horario: 'Horario',
+  vagas: 'Vagas',
   speaker: 'Quem apresenta',
   status: 'Status',
   url: 'URL da LP',
@@ -115,6 +117,7 @@ function atualizarOpcoes() {
   mapa[COL.nicho] = OPCOES.nichos;
   mapa[COL.modulo] = OPCOES.modulos;
   mapa[COL.horario] = OPCOES.horarios;
+  mapa[COL.vagas] = OPCOES.vagas;
   mapa[COL.speaker] = OPCOES.speakers.map(function (s) { return s.nome; });
 
   // O texto de ajuda tambem e sincronizado: um campo que muda de natureza (lista
@@ -243,6 +246,12 @@ function criarFormulario(forcar) {
   form.addListItem().setTitle(COL.horario)
     .setHelpText('Horario de Brasilia.')
     .setChoiceValues(OPCOES.horarios).setRequired(true);
+  // Nao obrigatorio: em branco a LP usa o padrao. O numero aparece em 5 lugares
+  // da pagina e governa a lista de espera, entao nunca fica vazio de verdade.
+  form.addListItem().setTitle(COL.vagas)
+    .setHelpText('Quantas pessoas o encontro aceita. Em branco = ' +
+                 OPCOES.vagas_padrao + '.')
+    .setChoiceValues(OPCOES.vagas).setRequired(false);
 
   if (OPCOES.speakers.length) {
     form.addListItem().setTitle(COL.speaker)
@@ -462,6 +471,7 @@ function lerLinha_(linha) {
     modulo: String(valor_(aba, linha, COL.modulo) || '').trim(),
     data: dataISO_(valor_(aba, linha, COL.data)),
     horario: String(valor_(aba, linha, COL.horario) || '').trim(),
+    vagas: String(valor_(aba, linha, COL.vagas) || '').trim(),
     speaker: String(valor_(aba, linha, COL.speaker) || '').trim()
   };
 }

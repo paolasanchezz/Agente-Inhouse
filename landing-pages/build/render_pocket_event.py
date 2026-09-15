@@ -129,6 +129,21 @@ def validar(dados, config, speakers, hoje=None, permitir_exemplo=False):
             modulos.append(achado)
     norm["modulos"] = modulos
 
+    # Vagas: opcional no formulario. Vazio cai no padrao, e nao numa edicao sem
+    # numero — a LP fala do numero em 5 lugares e a lista de espera depende dele.
+    bruto_vagas = str(dados.get("vagas", "")).strip()
+    if not bruto_vagas:
+        norm["vagas"] = config["vagas"]["padrao"]
+    else:
+        try:
+            vagas = int(re.sub(r"\D", "", bruto_vagas) or "0")
+        except ValueError:
+            vagas = 0
+        if vagas not in config["vagas"]["opcoes"]:
+            erros.append("vagas fora da lista: %r (validos: %s)"
+                         % (bruto_vagas, ", ".join(str(v) for v in config["vagas"]["opcoes"])))
+        norm["vagas"] = vagas
+
     horario = str(dados["horario"]).strip()
     if horario not in config["horarios"]:
         erros.append("horario fora da lista: %r (validos: %s)"
@@ -188,6 +203,17 @@ def foto_html(speaker):
             % html.escape(iniciais))
 
 
+def artigos(speaker):
+    """Artigo definido e indefinido concordando com o genero de quem apresenta.
+
+    A pagina fala do speaker antes de dizer o nome ("conduzido por um especialista",
+    "encontro com o especialista"), entao o masculino generico aparece na frente de
+    quem le. O genero vem do cadastro, nunca de palpite sobre o nome.
+    """
+    feminino = str(speaker.get("genero", "")).strip().lower() in ("f", "feminino")
+    return ("a especialista", "uma especialista") if feminino else            ("o especialista", "um especialista")
+
+
 def juntar(itens):
     """['A'] -> 'A' | ['A','B'] -> 'A e B' | ['A','B','C'] -> 'A, B e C'."""
     if len(itens) == 1:
@@ -212,12 +238,14 @@ def render(dados, config, speakers, hoje=None, permitir_exemplo=False):
         raise ValueError("\n".join(erros))
 
     data, speaker = norm["data"], norm["speaker"]
+    art_def, art_indef = artigos(speaker)
     slug = montar_slug(norm)
     extenso = data_extenso(data, hoje)
 
     titulo_pagina = config["titulo_pagina"].format(titulo=norm["titulo"])
     meta = config["meta_description"].format(
-        nicho=norm["nicho"]["frase"], data_extenso=extenso, horario=norm["horario"])
+        nicho=norm["nicho"]["frase"], data_extenso=extenso, horario=norm["horario"],
+        vagas=norm["vagas"])
 
     valores = {
         "TITULO": html.escape(norm["titulo"]),
@@ -237,6 +265,9 @@ def render(dados, config, speakers, hoje=None, permitir_exemplo=False):
         "SPEAKER_NOME_TEXTO": speaker["nome"],
         "SPEAKER_CARGO": html.escape(speaker["cargo"]),
         "SPEAKER_BIO_BLOCO": bio_html(speaker),
+        "ESPECIALISTA_DEF": html.escape(art_def),
+        "ESPECIALISTA_INDEF": html.escape(art_indef),
+        "VAGAS": str(norm["vagas"]),
         "SPEAKER_FOTO": foto_html(speaker),
         "SLUG": slug,
         "ANO": str(data.year),
@@ -273,7 +304,7 @@ marca: buzzmonitor
 regiao: brasil
 idioma: pt-br
 tipo: evento-fechado
-formato: pocket-event (10 vagas, 1 especialista apresentando)
+formato: pocket-event (%d vagas, 1 especialista apresentando)
 origem: gerado por render_pocket_event.py (nao editar a mao — ver README.md)
 
 ---
@@ -305,7 +336,7 @@ FORM_OCULTOS: edicao, evento, data_evento, horario, speaker, url_conversao, utm_
 SECAO: EMPRESAS QUE CONFIAM / DEPOIMENTOS / URGENCIA / FOOTER
 
 Fixas no template (iguais em toda edicao).
-""" % (slug, norm["titulo"], norm["nicho"]["frase"],
+""" % (slug, norm["vagas"], norm["titulo"], norm["nicho"]["frase"],
        juntar([m["frase"] for m in norm["modulos"]]),
        extenso, norm["horario"], v["DD"], v["MM"], v["DIA_SEMANA"], norm["horario"],
        speaker["nome"], speaker["cargo"], speaker["bio"])
@@ -330,12 +361,13 @@ Pra mudar esta edicao: corrigir a linha na planilha e reprocessar.
 | Modulo | %s |
 | Data | %s (%s) |
 | Speaker | %s - %s |
+| Vagas | %d |
 | Form | Apps Script (planilha unica de inscricoes) |
 | GTM | %s |
 """ % (norm["titulo"], slug, config["dominio"], slug, norm["titulo"],
        norm["nicho"]["valor"], ", ".join(m["valor"] for m in norm["modulos"]),
        extenso, norm["horario"],
-       speaker["nome"], speaker["cargo"], config["gtm_id"])
+       speaker["nome"], speaker["cargo"], norm["vagas"], config["gtm_id"])
 
 
 def form_spec(config, speakers):
@@ -346,6 +378,7 @@ def form_spec(config, speakers):
         "horarios": list(config["horarios"]),
         "speakers": [{"id": s["id"], "nome": s["nome"], "cargo": s["cargo"]}
                      for s in speakers["speakers"] if not s.get("exemplo")],
+        "vagas": config["vagas"],
         "titulo_max": config["limites"]["titulo_max"],
         "dias_maximo": config["limites"]["dias_maximo"],
     }
@@ -365,6 +398,8 @@ def autoteste():
          "bio": None, "foto": None},
         {"id": "com-foto", "nome": "Sicrana de Teste", "cargo": "Business Developer",
          "bio": None, "foto": "brand/buzzmonitor/assets/speakers/sicrana.jpg"},
+        {"id": "ela", "nome": "Fulana Segunda", "cargo": "Business Developer",
+         "bio": None, "foto": None, "genero": "f"},
         {"id": "so-exemplo", "nome": "Exemplo Exemplo", "cargo": "Business Developer",
          "bio": None, "foto": None, "exemplo": True},
     ]}
@@ -382,6 +417,23 @@ def autoteste():
                      "GTM-WFJVK858", "Duas linhas de bio", 'class="sp-bio"'):
         assert esperado in h, "faltou no HTML: %s" % esperado
     assert "{{" not in h and "[ FOTO DO SPEAKER ]" not in h
+
+    # concordancia de genero: o cadastro manda, nao o nome
+    assert artigos({"genero": "f"}) == ("a especialista", "uma especialista")
+    assert artigos({"genero": "m"}) == ("o especialista", "um especialista")
+    assert artigos({}) == ("o especialista", "um especialista")  # sem campo, masculino
+    _, fem = render({**pedido, "speaker": "ela"}, config, speakers, hoje)
+    assert "com a especialista" in fem["index.html"]
+    assert "por uma especialista" in fem["index.html"]
+    assert "com o especialista" not in fem["index.html"]
+
+    # vagas: vazio cai no padrao; valor da lista manda na pagina inteira
+    assert ">10 vagas<" in h or "Apenas 10 vagas" in h
+    _, seis = render({**pedido, "vagas": "6"}, config, speakers, hoje)
+    assert "Apenas 6 vagas" in seis["index.html"]
+    assert "As 6 vagas foram preenchidas" in seis["index.html"]
+    assert "vagas: 6," in seis["index.html"]          # vai no payload do form
+    assert "10 vagas" not in seis["index.html"]
 
     # multiplos modulos: a frase junta com virgula e "e"
     _, dois = render({**pedido, "modulo": "Social Listening, AI Insights"},
@@ -414,6 +466,8 @@ def autoteste():
         ({**pedido, "modulo": "BuzzMonitor Listening"}, "modulo invalido"),
         ({**pedido, "modulo": "Social Listening, Nao Existe"}, "um modulo invalido na lista"),
         ({**pedido, "modulo": ""}, "nenhum modulo"),
+        ({**pedido, "vagas": "7"}, "vagas fora da lista"),
+        ({**pedido, "vagas": "abacaxi"}, "vagas nao numerica"),
         ({**pedido, "horario": "23h"}, "horario invalido"),
         ({**pedido, "data": "2026-09-01"}, "data no passado"),
         ({**pedido, "data": "2027-09-01"}, "data longe demais"),
@@ -435,6 +489,7 @@ def autoteste():
     assert len(set(ids)) == len(ids), "id duplicado no speakers.json"
     for x in reais:
         assert x.get("nome") and x.get("cargo"), "speaker sem nome ou cargo: %s" % x
+        assert x.get("genero") in ("f", "m"), "speaker sem genero f/m: %s" % x["id"]
 
     # nichos: slug unico (slug repetido faria duas edicoes colidirem na mesma URL)
     slugs = [n["slug"] for n in config["nichos"]]
@@ -443,7 +498,7 @@ def autoteste():
         assert n["valor"] and n["slug"] and n["frase"], "nicho incompleto: %s" % n
 
     print("autoteste ok: %d renders + %d recusas + %d nichos + %d speakers"
-          % (7, len(casos_ruins), len(config["nichos"]), len(reais)))
+          % (10, len(casos_ruins), len(config["nichos"]), len(reais)))
 
 
 def main():

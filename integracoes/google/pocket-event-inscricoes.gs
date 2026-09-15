@@ -8,7 +8,7 @@
  * Grava `URL de conversao` e as UTMs porque lead sem `utm_source` E sem
  * `url_conversao` some do filtro das dashboards de CM (landing-pages/CONTEXT.md 5.5).
  *
- * Pocket Event tem 10 vagas. Da 11a inscricao em diante a pessoa continua sendo
+ * Cada edicao tem seu numero de vagas (a LP manda). Passando desse numero, a
  * gravada, com `Vaga` = espera, e a LP avisa que entrou na lista de espera.
  * Ninguem e barrado em silencio.
  *
@@ -32,7 +32,12 @@
 
 var ID_PLANILHA = '1PsD3TdKQiIoWP20-R8I1wWSB-RPSBV0lWUG2TMXSzrc';
 var NOME_ABA = 'Inscricoes';
-var VAGAS = 10;
+
+// Quantas vagas a edicao tem vem da propria LP (campo oculto), porque agora varia
+// por encontro. VAGAS_PADRAO vale pra LP antiga, que ainda nao manda o campo.
+// O valor e limitado antes de usar: ele chega do navegador de quem se inscreve.
+var VAGAS_PADRAO = 10;
+var VAGAS_MAX = 50;
 
 var COLUNAS = [
   'Data e hora', 'Edicao', 'Evento', 'Data do evento', 'Horario', 'Speaker',
@@ -78,6 +83,13 @@ function situacao_(h, edicao, email) {
   return { nesta: nesta, duplicado: duplicado };
 }
 
+/** Vagas da edicao, como a LP mandou. Fora da faixa util, cai no padrao. */
+function vagas_(d) {
+  var n = parseInt(d && d.vagas, 10);
+  if (!n || n < 1 || n > VAGAS_MAX) return VAGAS_PADRAO;
+  return n;
+}
+
 function texto_(v, max) {
   return String(v == null ? '' : v).trim().slice(0, max || 300);
 }
@@ -104,10 +116,10 @@ function doPost(e) {
 
     var s = situacao_(h, edicao, email);
     if (s.duplicado) {
-      return responder_({ ok: true, duplicado: true, esgotado: s.nesta >= VAGAS });
+      return responder_({ ok: true, duplicado: true, esgotado: s.nesta >= vagas_(d) });
     }
 
-    var esgotado = s.nesta >= VAGAS;
+    var esgotado = s.nesta >= vagas_(d);
     h.appendRow([
       new Date(), edicao, texto_(d.evento, 200), texto_(d.data_evento, 20),
       texto_(d.horario, 20), texto_(d.speaker, 200),
