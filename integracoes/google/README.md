@@ -5,6 +5,9 @@ sozinha em poucos minutos. Nenhum modelo de linguagem participa: o conteudo vem
 de listas fechadas e de um template versionado, e um script Python substitui os
 tokens.
 
+> **Quem usa a ferramenta (BD e SDR) le o [PLAYBOOK-COMERCIAL.md](PLAYBOOK-COMERCIAL.md),
+> nao este arquivo.** Este aqui e a mecanica: instalacao, secrets e manutencao.
+
 ## O caminho inteiro
 
 ```
