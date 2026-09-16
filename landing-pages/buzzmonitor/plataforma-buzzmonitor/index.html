@@ -94,6 +94,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .bz-bars-foot{ font-size:13px; }
   }
 </style>
+<!-- Ajustes de 2026-09-16 (hero, secao de insights e grafismo). Override
+     inline pela mesma razao do bloco acima: a tipografia e o layout desta LP
+     vem do CSS exportado do Webflow em assets/css/ e esse arquivo nao se edita. -->
+<style>
+  /* ===== 1. hero — escala tipografica maior no desktop ===== */
+  @media (min-width:992px){
+    .bz-hero .bz-h1{ font-size:clamp(46px,3.3vw,58px); }
+    .bz-hero .bz-hero-desc{ font-size:clamp(18px,1.15vw,20px); max-width:58ch; }
+  }
+  /* GUIDELINES 21 — quebra equilibrada */
+  .bz-hero .bz-h1{ text-wrap:balance; }
+  .bz-hero .bz-hero-desc{ text-wrap:pretty; }
+
+  /* ===== 3. grafismo do hero — bleed pela borda esquerda ===== */
+  /* .bz-hero ja e position:relative + overflow:hidden (bloco "Grao + Brilho"),
+     entao o sangramento nao cria scroll horizontal. */
+  .bz-hero > .bz-container{ position:relative; z-index:1; }
+  .bz-hero-graphic{
+    position:absolute; top:0; left:clamp(-140px,-5vw,-60px);
+    z-index:0; width:auto; height:100%;
+    pointer-events:none; user-select:none;
+  }
+  /* abaixo de 1280 o container ocupa quase toda a viewport e o grafismo
+     entraria por baixo da coluna de texto — some. */
+  @media (max-width:1279px){ .bz-hero-graphic{ display:none; } }
+
+  /* ===== 2. secao "IA para Geracao de Insights" — fundo laranja ===== */
+  .bz-sec-insights{ background-color:#ff6900; padding-bottom:0; }
+  /* imagem colada no limite inferior da secao. A sombra do monitor e assada no
+     proprio .webp e vai ate a ultima linha de pixel (medido: zero alpha sobrando),
+     entao nao entra margem negativa — ela cortaria sombra de verdade. */
+  .bz-sec-insights .bz-grid2{ align-items:flex-end; }
+  .bz-sec-insights .bz-col:first-child{ padding-bottom:72px; }
+  .bz-sec-insights .bz-feature-img{ border-radius:0; margin-bottom:0; }
+  /* texto: titulos em branco; pilula vira solida; corpo longo em roxo da marca
+     porque branco sobre #ff6900 da 2,9:1 e a GUIDELINES 7 exige 4,5:1. */
+  .bz-sec-insights .bz-h2,
+  .bz-sec-insights .bz-feat-lead{ color:#fff; }
+  .bz-sec-insights .bz-body{ color:#390155; }
+  .bz-sec-insights .bz-pill{ color:#b04400; background-color:#fff; border-color:#fff; }
+
+  /* ===== 4. reveals por elemento (hero, insights e grafismo) ===== */
+  /* o atributo data-bzp so e aplicado pelo JS — sem JS o conteudo nasce
+     visivel (GUIDELINES 4). */
+  [data-bzp]{ opacity:0; transition:opacity .4s ease-out,transform .4s ease-out; }
+  [data-bzp].bz-in{ opacity:1; transform:none; }
+  [data-bzp="up"]{ transform:translateY(22px); }
+  [data-bzp="base"]{ transform:translateY(46px); transition-duration:.7s; }
+  [data-bzp="scale"]{ transform:scale(.95); transition-duration:.8s; }
+  @media (prefers-reduced-motion:reduce){
+    [data-bzp]{ opacity:1!important; transform:none!important; transition:none!important; }
+  }
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -158,6 +211,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </style>
     </div>
+    <img src="./assets/images/img-grafismos-buzzmonitor.svg" alt="" aria-hidden="true" class="bz-hero-graphic">
     <div class="bz-container bz-grid2">
       <div class="bz-col">
         <h1 class="bz-h1">Transforme a gestão das suas <span class="bz-accent">redes sociais</span> e <span class="bz-accent">CX</span> com a Buzzmonitor</h1>
@@ -192,28 +246,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="bz-lead">A Buzzmonitor reúne monitoramento, atendimento, inteligência de dados e relatórios em uma plataforma única para sua equipe acompanhar tudo com mais velocidade e clareza.</p>
         <div class="bz-benefits">
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Monitoramento em tempo real</h3>
-            <p class="bz-benefit-d">Monitore sua marca, concorrentes e temas relevantes a qualquer momento.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h1" aria-expanded="false" aria-controls="bz-acc-p1"><span>Monitoramento em tempo real</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p1" role="region" aria-labelledby="bz-acc-h1">
+              <p class="bz-benefit-d">Monitore sua marca, concorrentes e temas relevantes a qualquer momento.</p>
+            </div>
           </div>
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Insights gerados por IA</h3>
-            <p class="bz-benefit-d">Tome decisões mais assertivas com resumos qualitativos automáticos.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h2" aria-expanded="false" aria-controls="bz-acc-p2"><span>Insights gerados por IA</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p2" role="region" aria-labelledby="bz-acc-h2">
+              <p class="bz-benefit-d">Tome decisões mais assertivas com resumos qualitativos automáticos.</p>
+            </div>
           </div>
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Atendimento mais rápido</h3>
-            <p class="bz-benefit-d">Acompanhe dados de produtividade, SLA e performance da equipe de SAC.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h3" aria-expanded="false" aria-controls="bz-acc-p3"><span>Atendimento mais rápido</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p3" role="region" aria-labelledby="bz-acc-h3">
+              <p class="bz-benefit-d">Acompanhe dados de produtividade, SLA e performance da equipe de SAC.</p>
+            </div>
           </div>
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Sugestões de respostas inteligentes</h3>
-            <p class="bz-benefit-d">Responda interações e dúvidas de clientes com mais agilidade.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h4" aria-expanded="false" aria-controls="bz-acc-p4"><span>Sugestões de respostas inteligentes</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p4" role="region" aria-labelledby="bz-acc-h4">
+              <p class="bz-benefit-d">Responda interações e dúvidas de clientes com mais agilidade.</p>
+            </div>
           </div>
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Mais de 50 métricas de performance</h3>
-            <p class="bz-benefit-d">Métricas completas de engajamento, alcance, sentimento e operação.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h5" aria-expanded="false" aria-controls="bz-acc-p5"><span>Mais de 50 métricas de performance</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p5" role="region" aria-labelledby="bz-acc-h5">
+              <p class="bz-benefit-d">Métricas completas de engajamento, alcance, sentimento e operação.</p>
+            </div>
           </div>
           <div class="bz-benefit">
-            <h3 class="bz-benefit-t">Dashboards dinâmicos e ilimitados</h3>
-            <p class="bz-benefit-d">Crie visões personalizadas e ilimitadas com dados atualizados em tempo real.</p>
+            <h3 class="bz-benefit-t"><button type="button" class="bz-acc-btn" id="bz-acc-h6" aria-expanded="false" aria-controls="bz-acc-p6"><span>Dashboards dinâmicos e ilimitados</span><svg class="bz-acc-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9.5 12 15.5 18 9.5"></path></svg></button></h3>
+            <div class="bz-acc-panel" id="bz-acc-p6" role="region" aria-labelledby="bz-acc-h6">
+              <p class="bz-benefit-d">Crie visões personalizadas e ilimitadas com dados atualizados em tempo real.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -320,7 +386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </section>
-  <section class="bz-sec bz-sec-neutral">
+  <section class="bz-sec bz-sec-insights">
     <div class="bz-container bz-grid2">
       <div class="bz-col">
         <div class="bz-pill">Inteligência Generativa</div>
@@ -433,20 +499,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </section>
-  <section class="bz-news">
-    <div class="bz-container">
-      <div class="bz-news-card">
-        <div class="bz-grid2">
-          <div class="bz-col">
-            <div class="bz-eyebrow">Newsletter</div>
-            <h2 class="bz-h2">Mantenha-se atualizado!</h2>
-            <p class="bz-lead">Assine para receber notícias e tendências sobre marketing, redes sociais e inteligência artificial.</p>
-          </div>
-          <div class="bz-col bz-center"><img src="./assets/images/img-newsletter-fox.svg" loading="lazy" alt="Mascote raposa da newsletter Buzzmonitor" class="bz-news-fox-img"></div>
-        </div>
-      </div>
-    </div>
-  </section>
   <div id="depoimentos" class="bz-anchor"></div>
   <section class="bz-testi">
     <div class="bz-testi-in">
@@ -553,9 +605,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </style>
   <script>
 (function(){
-function reveal(){var els=document.querySelectorAll('.bz-trusted,.bz-sec,.bz-testi,.bz-news,.bz-footerd');els.forEach(function(e){e.setAttribute('data-bzr','');});if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('bz-in');});return;}var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('bz-in');io.unobserve(x.target);}});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});els.forEach(function(e){io.observe(e);});}
+// O reveal roda no CONTEUDO da secao, nunca na secao em si: com o empilhamento
+// (stack) a secao precisa ficar 100% opaca o tempo todo, senao a secao fixada
+// por baixo vaza atraves dela enquanto a de cima entra.
+function reveal(){var els=[];Array.prototype.forEach.call(document.querySelectorAll('.bz-trusted,.bz-sec:not(.bz-sec-insights),.bz-testi,.bz-footerd'),function(s){Array.prototype.forEach.call(s.children,function(c){var t=c.tagName;if(t==='STYLE'||t==='SCRIPT'||t==='LINK')return;els.push(c);});});els.forEach(function(e){e.setAttribute('data-bzr','');});if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('bz-in');});return;}var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('bz-in');io.unobserve(x.target);}});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});els.forEach(function(e){io.observe(e);});}
+// reveal por elemento: hero (fade-in up com stagger), grafismo (fade + escala)
+// e a secao de insights (texto progressivo, imagem subindo ancorada na base).
+// [sel, tipo, delay inicial em ms, incremento por ocorrencia]
+function parts(){var groups=[['.bz-hero .bz-h1','up',0,0],['.bz-hero .bz-hero-desc','up',90,0],['.bz-hero .bz-form-ph','up',180,0],['.bz-hero-graphic','scale',120,0],['.bz-sec-insights .bz-pill','up',0,0],['.bz-sec-insights .bz-h2','up',80,0],['.bz-sec-insights .bz-feat-lead','up',160,0],['.bz-sec-insights .bz-body','up',240,90],['.bz-sec-insights .bz-ph-mock','base',140,0]];var all=[];groups.forEach(function(g){Array.prototype.forEach.call(document.querySelectorAll(g[0]),function(el,i){el.setAttribute('data-bzp',g[1]);el.style.transitionDelay=(g[2]+i*g[3])+'ms';all.push(el);});});function showAll(){all.forEach(function(e){e.classList.add('bz-in');});}
+try{if(!('IntersectionObserver' in window)){showAll();return;}var iop=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('bz-in');iop.unobserve(x.target);}});},{threshold:0,rootMargin:'0px 0px -10% 0px'});all.forEach(function(e){iop.observe(e);});}catch(err){showAll();}}
 function marquee(){var row=document.querySelector('.bz-trusted .bz-logos-row');if(!row||row.dataset.bzMarquee)return;row.dataset.bzMarquee='1';var items=Array.prototype.slice.call(row.children);var track=document.createElement('div');track.className='bz-marquee-track';items.forEach(function(el){track.appendChild(el);});items.forEach(function(el){var c=el.cloneNode(true);c.setAttribute('aria-hidden','true');track.appendChild(c);});row.appendChild(track);}
-function init(){reveal();marquee();}
+// accordion da secao "Uma so plataforma": altura exata via scrollHeight (easing
+// certo em qualquer texto) e aria-expanded espelhando o estado.
+function accordion(){Array.prototype.forEach.call(document.querySelectorAll('.bz-benefits .bz-benefit'),function(it){var btn=it.querySelector('.bz-acc-btn'),panel=it.querySelector('.bz-acc-panel');if(!btn||!panel)return;btn.addEventListener('click',function(){var open=!it.classList.contains('is-open');it.classList.toggle('is-open',open);btn.setAttribute('aria-expanded',open?'true':'false');panel.style.maxHeight=open?panel.scrollHeight+'px':'0px';});});
+window.addEventListener('resize',function(){Array.prototype.forEach.call(document.querySelectorAll('.bz-benefit.is-open .bz-acc-panel'),function(p){p.style.maxHeight=p.scrollHeight+'px';});});}
+// empilhamento das secoes no scroll
+function stack(){var nav=document.querySelector('.bz-nav');var secs=Array.prototype.slice.call(document.querySelectorAll('body > section:not(.bz-nav)'));if(!secs.length)return;secs.forEach(function(s,i){s.classList.add('bz-stack');s.style.zIndex=String(i+1);});
+function fit(){var navH=nav?nav.offsetHeight:0,vh=window.innerHeight;secs.forEach(function(s){s.style.top=Math.min(navH,vh-s.offsetHeight)+'px';});}
+fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);
+if('ResizeObserver' in window){var ro=new ResizeObserver(fit);secs.forEach(function(s){ro.observe(s);});}}
+function init(){reveal();parts();marquee();accordion();stack();}
 if(document.readyState!=='loading'){init();}else{document.addEventListener('DOMContentLoaded',init);}
 })();
 </script>
@@ -568,17 +637,45 @@ if(document.readyState!=='loading'){init();}else{document.addEventListener('DOMC
 @media (prefers-reduced-motion: reduce){ .bz-hero .bz-pill{ animation:none; } }
 </style>
   <style>
-/* §2 — descrição some por padrão e aparece ao passar o mouse na barra */
+/* ===== "Uma so plataforma" — accordion (substitui o reveal por hover) ===== */
+.bz-benefit{padding:0 !important;overflow:hidden;}
 .bz-benefit-t{display:block !important;margin:0 !important;}
-.bz-benefit .bz-benefit-d{
-  display:block !important;
-  max-height:0;overflow:hidden;opacity:0;margin-top:0;
-  transition:max-height .35s ease,opacity .25s ease,margin-top .3s ease;
+.bz-acc-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 18px;background:none;border:0;cursor:pointer;text-align:left;
+  font:inherit;color:inherit;
 }
+.bz-acc-btn:focus-visible{outline:2px solid #ff6900;outline-offset:-2px;border-radius:10px;}
+.bz-acc-ico{
+  display:none;
+  width:18px;height:18px;flex:0 0 18px;fill:none;stroke:#ff6900;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .3s ease;
+}
+.bz-benefit.is-open .bz-acc-ico{transform:rotate(180deg);}
+/* Estado fechado so existe com JS ligado (.w-mod-js vem do proprio export do
+   Webflow, no <head>): sem JS os 6 textos nascem abertos e a seta some, em vez
+   de ficar conteudo invisivel esperando script — GUIDELINES 4.
+   Altura animada: o JS escreve o max-height exato do painel; visibility tira o
+   texto fechado do tab order e do leitor de tela. */
+.w-mod-js .bz-acc-ico{display:block;}
+.w-mod-js .bz-acc-panel{
+  max-height:0;overflow:hidden;visibility:hidden;
+  transition:max-height .32s ease,visibility 0s linear .32s;
+}
+.w-mod-js .bz-benefit.is-open .bz-acc-panel{visibility:visible;transition:max-height .32s ease,visibility 0s;}
+.bz-benefit .bz-benefit-d{display:block !important;margin:0;padding:0 18px 13px;}
 .bz-benefit .bz-benefit-d::before{content:"" !important;margin:0 !important;}
-.bz-benefit:hover .bz-benefit-d{max-height:80px;opacity:1;margin-top:6px;}
+
+/* ===== empilhamento das secoes no scroll (sticky stack) ===== */
+/* .bz-nav ja nasce sticky com z-index 50 no CSS do Webflow — as secoes recebem
+   z-index 1..N, entao passam por baixo do header e por cima da anterior.
+   O JS escreve o top de cada uma: min(altura do header, viewport - altura da
+   secao), pra que secao mais alta que a tela role inteira antes de fixar. */
+.bz-stack{position:sticky;}
+.bz-sec:not(.bz-sec-neutral):not(.bz-sec-insights){background-color:#fff;}
+
 @media (prefers-reduced-motion: reduce){
-  .bz-benefit .bz-benefit-d{transition:none;}
+  .bz-acc-ico,.bz-acc-panel{transition:none;}
 }
 </style>
 </body>
