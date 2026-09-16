@@ -135,6 +135,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .bz-sec-insights .bz-body{ color:#390155; }
   .bz-sec-insights .bz-pill{ color:#b04400; background-color:#fff; border-color:#fff; }
 
+  /* ===== CTA leva direto pro formulario ===== */
+  /* Os botoes apontam pro #agendar (topo do body), nao mais pro #formulario —
+     aquela secao e a "Comece seu teste gratuito", que nao tem formulario nenhum
+     e so repetia o mesmo CTA. O porque do alvo ser o topo esta no comentario da
+     propria ancora, no inicio do <body>. */
+  #form-demo{ scroll-margin-top:110px; }
+
   /* ===== 4. reveals por elemento (hero, insights e grafismo) ===== */
   /* o atributo data-bzp so e aplicado pelo JS — sem JS o conteudo nasce
      visivel (GUIDELINES 4). */
@@ -153,6 +160,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFJVK858"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+  <!-- Alvo dos CTAs. O formulario (#form-demo) fica no hero, ao lado do H1, mas
+       apontar direto pra ele para a pagina com o topo do form 95px atras do header
+       sticky: o smooth-scroll do Webflow intercepta a ancora e ignora scroll-margin.
+       Ancora no inicio do body = offsetTop 0, entao o clique cai no topo da pagina,
+       com H1 e formulario inteiros na tela — e funciona no scroll nativo tambem. -->
+  <div id="agendar" class="bz-anchor" aria-hidden="true"></div>
   <section class="bz-nav">
     <div class="bz-nav-in">
       <a href="#formulario" class="bz-navlogo-link w-inline-block"><img src="./assets/images/logo-buzzmonitor.svg" loading="lazy" alt="Buzzmonitor" class="bz-navlogo-lnk"></a><img src="./assets/images/logo-buzzmonitor.svg" loading="lazy" alt="Buzzmonitor" class="bz-navlogo">
@@ -162,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#depoimentos" class="bz-nav-link">Depoimentos</a>
         <a href="#planos" class="bz-nav-link">Planos</a>
       </nav>
-      <a href="#formulario" class="bz-btn bz-btn-sm">Agendar demonstração grátis</a>
+      <a href="#agendar" class="bz-btn bz-btn-sm">Agendar demonstração grátis</a>
     </div>
   </section>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;family=League+Spartan:wght@500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
@@ -323,7 +336,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li class="bz-bullet"><span class="bz-ck">✓</span> Gere insights com apoio de Inteligência Artificial</li>
           <li class="bz-bullet"><span class="bz-ck">✓</span> Acompanhe relatórios e dashboards em tempo real</li>
         </ul>
-        <a href="#form-demo" class="bz-btn">Agendar demonstração grátis</a>
+        <a href="#agendar" class="bz-btn">Agendar demonstração grátis</a>
       </div>
       <div class="bz-col">
         <div class="bz-ph bz-ph-hero"><img src="./assets/images/img-plataforma-hero.avif" loading="lazy" width="Auto" alt="" class="image"></div>
@@ -337,7 +350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="bz-h2">Descubra o que podemos fazer pela <span class="bz-accent">sua empresa</span></h2>
         <p class="bz-lead">A Buzzmonitor ajuda empresas a transformar dados dispersos em decisões mais rápidas, relatórios mais completos e uma gestão digital mais estratégica.</p>
         <div class="bz-btn-wrap">
-          <a href="#formulario" class="bz-btn">Agendar demonstração grátis</a>
+          <a href="#agendar" class="bz-btn">Agendar demonstração grátis</a>
         </div>
       </div>
       <div class="bz-col">
@@ -381,7 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="bz-body">Potencialize o monitoramento das redes sociais com relatórios mais completos e análises inteligentes.</p>
         <p class="bz-body">A Buzzmonitor permite monitorar termos, marcas, concorrentes e temas relevantes em tempo real, identificando volume de menções, sentimento do público, relação entre temas e oportunidades estratégicas para sua marca.</p>
         <div class="bz-btn-wrap">
-          <a href="#formulario" class="bz-btn">Agendar demonstração grátis</a>
+          <a href="#agendar" class="bz-btn">Agendar demonstração grátis</a>
         </div>
       </div>
     </div>
@@ -451,7 +464,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="bz-feat-lead">Dashboards inteligentes para acompanhar performance, reputação e atendimento.</p>
         <p class="bz-body">Na Buzzmonitor, sua equipe acompanha projetos de monitoramento, atendimento e performance com dashboards dinâmicos e atualizados <br>em tempo real. <br>‍<br>Crie visões para gestão de crise, lançamentos de produto, reputação da marca, produtividade do time e muito mais.</p>
         <div class="bz-btn-wrap">
-          <a href="#formulario" class="bz-btn">Agendar demonstração grátis</a>
+          <a href="#agendar" class="bz-btn">Agendar demonstração grátis</a>
         </div>
       </div>
     </div>
@@ -486,7 +499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
             <p class="bz-price">Planos a partir de <span class="bz-price-big">R$1.790,00/mês</span></p>
             <div class="bz-btn-wrap">
-              <a href="#formulario" class="bz-btn">Comece grátis</a>
+              <a href="#agendar" class="bz-btn">Comece grátis</a>
             </div>
           </div>
           <div class="bz-col">
@@ -620,7 +633,12 @@ function marquee(){var row=document.querySelector('.bz-trusted .bz-logos-row');i
 function accordion(){Array.prototype.forEach.call(document.querySelectorAll('.bz-benefits .bz-benefit'),function(it){var btn=it.querySelector('.bz-acc-btn'),panel=it.querySelector('.bz-acc-panel');if(!btn||!panel)return;btn.addEventListener('click',function(){var open=!it.classList.contains('is-open');it.classList.toggle('is-open',open);btn.setAttribute('aria-expanded',open?'true':'false');panel.style.maxHeight=open?panel.scrollHeight+'px':'0px';});});
 window.addEventListener('resize',function(){Array.prototype.forEach.call(document.querySelectorAll('.bz-benefit.is-open .bz-acc-panel'),function(p){p.style.maxHeight=p.scrollHeight+'px';});});}
 // empilhamento das secoes no scroll
-function stack(){var nav=document.querySelector('.bz-nav');var secs=Array.prototype.slice.call(document.querySelectorAll('body > section:not(.bz-nav)'));if(!secs.length)return;secs.forEach(function(s,i){s.classList.add('bz-stack');s.style.zIndex=String(i+1);});
+// O hero fica FORA do empilhamento de proposito: o formulario (#form-demo) mora
+// nele, e hero sticky deixa o alvo permanentemente "visivel" pro browser — a
+// ancora do CTA para de sair do lugar e o form fica coberto pelas secoes de cima.
+// Fora do stack, o hero rola normal, a ancora volta a funcionar nativamente e o
+// empilhamento segue valendo da segunda secao em diante.
+function stack(){var nav=document.querySelector('.bz-nav');var secs=Array.prototype.slice.call(document.querySelectorAll('body > section:not(.bz-nav):not(.bz-hero)'));if(!secs.length)return;secs.forEach(function(s,i){s.classList.add('bz-stack');s.style.zIndex=String(i+1);});
 function fit(){var navH=nav?nav.offsetHeight:0,vh=window.innerHeight;secs.forEach(function(s){s.style.top=Math.min(navH,vh-s.offsetHeight)+'px';});}
 fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);
 if('ResizeObserver' in window){var ro=new ResizeObserver(fit);secs.forEach(function(s){ro.observe(s);});}}
