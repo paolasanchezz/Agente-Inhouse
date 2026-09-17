@@ -51,15 +51,15 @@ Tipografia: Open Sans 700/800 (títulos) + Source Sans 3 400/600 (corpo). Sem Bi
 - [x] OG image 1200×630 gerada em 2026-09-17 → `assets/og-estudo-primeiro-contato-saude.png` (47 KB). Feita do `og-template.html` com o overline e o H1 literais da copy
 - [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar cxpress/estudo-primeiro-contato-saude`
 - [x] Formulário integrado em 2026-09-17 — **mas com o form ERRADO, e isso está no ar.** Entrou o embed do Jotform `262104279010647`, mas esse form é da LP irmã `../video-atendimento/`: título "ASSISTA AGORA", botão "▶ Assistir agora", 5 campos (Nome, Empresa, E-mail corporativo, Cargo, WhatsApp), checkbox de **opt-out** e, em Configurações > Após o envio, redirect para `https://content.cxpress.io/video-atendimento-obrigado`. Ou seja: quem preencher na LP do estudo cai no vídeo e nunca recebe o PDF. Mudar o texto do botão no builder conserta aqui e **quebra** a `video-atendimento`. O certo é duplicar o form no Jotform (ID novo) com 3 campos, opt-in, botão "Baixar o estudo" e redirect para `content.cxpress.io/estudo-primeiro-contato-saude-confirmado`. Publicado assim por decisão explícita do Bruno em 2026-09-17, que vai mandar o ID novo em seguida; a troca é 1 linha no `<script src>` do embed + novo PR
-- [ ] Página de obrigado — copy já preparada em `../estudo-primeiro-contato-saude-confirmado/copy.txt`, falta gerar o HTML
+- [x] Página de obrigado publicada em 2026-09-17 → `content.cxpress.io/estudo-primeiro-contato-saude-confirmado`. O PDF do estudo é servido pelo próprio domínio em `/assets/cxpress/estudo-primeiro-contato-saude.pdf`
 - [x] Publicado em 2026-09-17 via fluxo CI (manifesto de `content.cxpress.io` + PR + `lp-deploy.yml`)
 
 ## Pendências herdadas da copy
 
-- Conferir o número de páginas do PDF (17 é estimativa e aparece no hero)
+> Conferidas em 2026-09-17: o PDF tem **17 páginas**, então o "17 páginas" do hero está correto, e o botão "Abrir o estudo" da tks já aponta para o arquivo hospedado.
+
 - Links primários dos benchmarks no PDF (a LP promete "com fonte em cada número")
 - UTMs do CTA do e-mail apontando para esta URL
-- Link direto do PDF no botão "Abrir o estudo" da página de obrigado
 
 ## Assets referenciados
 
