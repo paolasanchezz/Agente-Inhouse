@@ -1,11 +1,11 @@
 === HERO ===
-H1: Pronto. Seu estudo está aqui.
-SUB: O PDF abre no botão abaixo. Também enviamos uma cópia para o seu e-mail.
+H1: Pronto, o estudo é seu.
+SUB: Abre no botão abaixo. Uma cópia também foi para o seu e-mail.
 CTA: Abrir o estudo
 
-=== DIAGNOSTICO ===
-H2: Quer olhar a sua operação com esses números na mão?
-BODY: A gente faz um diagnóstico gratuito do seu primeiro nível de atendimento: quantos contatos chegam por dia, quanto chega fora do horário, e quais assuntos mais se repetem.
+=== LIMITE ===
+H2: O que este estudo não faz
+BODY: Ele mostra como o primeiro contato se comporta em quatro operadoras de saúde e em 23 operações que a Cxpress analisou. Não mostra a sua. Se quiser esse número, a gente levanta junto: quantos contatos chegam por dia, quanto chega fora do horário e quais assuntos mais se repetem.
 CTA: Falar com a nossa equipe
 
 === FOOTER ===
@@ -13,6 +13,12 @@ FOOTER: Um estudo Cxpress, com dados de social listening da Buzzmonitor.
 FOOTER: Cxpress e Buzzmonitor são produtos do Grupo Elife. Mais de 800 clientes no Brasil, Latam e Portugal.
 
 # Pagina de obrigado do par. LP de captura: landing-pages/cxpress/estudo-primeiro-contato-saude/.
-# Revisao anti-IA: sem achados (em-dash: 0).
-# O botao "Abrir o estudo" precisa do link direto do PDF; o botao secundario aponta para o fluxo de diagnostico (agendamento / fale com especialista).
-# Rodape replicado da LP de captura (a copy-fonte nao traz rodape proprio para a pagina de obrigado).
+# Versao 2 (2026-09-17): substitui a copy do §9 do documento-fonte pela "opcao C — super sinceridade",
+# escolhida pelo Bruno. O bloco secundario deixa de ser oferta solta e passa a nascer do limite
+# declarado do estudo, no mesmo tom da secao METODOLOGIA da LP de captura.
+# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 1, "Nao mostra a sua.").
+# Numeros citados conferem com a copy da LP de captura: 4 operadoras de saude, 23 operacoes analisadas.
+# [PENDENTE] "Uma copia tambem foi para o seu e-mail" so e verdade se a automacao enviar o PDF por e-mail.
+# Conferir ao trocar o formulario; se nao houver envio, trocar a frase.
+# O botao "Abrir o estudo" aponta para ./assets/estudo-primeiro-contato-saude.pdf (hospedado no dominio).
+# O botao secundario usa o WhatsApp padrao da marca (wa.me/551150395028), convencao das outras LPs Cxpress.

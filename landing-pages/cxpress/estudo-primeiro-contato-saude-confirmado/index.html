@@ -11,9 +11,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
 <!-- End Google Tag Manager -->
-<title>Pronto. Seu estudo está aqui. | Cxpress</title>
+<title>Pronto, o estudo é seu. | Cxpress</title>
 <link rel="canonical" href="https://{{DOMAIN}}/estudo-primeiro-contato-saude-confirmado">
-<meta name="description" content="Seu estudo sobre o primeiro contato na operação de saúde está pronto para abrir. Também enviamos uma cópia para o seu e-mail.">
+<meta name="description" content="Seu estudo sobre o primeiro contato na operação de saúde está pronto para abrir. Uma cópia também foi para o seu e-mail.">
 <meta name="robots" content="noindex, follow">
 <meta name="author" content="Cxpress">
 <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
@@ -52,6 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:600;font-size:17px;text-decoration:none;cursor:pointer;border:none;padding:16px 30px;border-radius:999px;background:var(--royal);color:#fff;box-shadow:0 14px 30px rgba(74,105,189,.34);transition:transform .25s ease,box-shadow .25s ease,background .3s ease}
   .btn svg{width:18px;height:18px;flex:0 0 auto;transition:transform .25s ease}
   .btn:hover{background:var(--navy);transform:translateY(-3px);box-shadow:0 20px 40px rgba(35,41,96,.3)}
+  .btn:hover svg{transform:translateY(2px)}
   .btn--ghost{background:#fff;color:var(--navy);box-shadow:0 14px 30px rgba(35,41,96,.22)}
   .btn--ghost:hover{background:var(--navy);color:#fff}
 
@@ -64,22 +65,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;overflow:hidden;background:var(--tint-hero);padding:120px 0 128px;text-align:center}
+  .hero{position:relative;overflow:hidden;background:var(--tint-hero);padding:96px 0 104px}
   .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
-  .hero::before{width:420px;height:420px;background:var(--azul-claro);opacity:.5;filter:blur(10px);top:-210px;right:-130px}
+  .hero::before{width:420px;height:420px;background:var(--azul-claro);opacity:.5;filter:blur(10px);top:-200px;right:-130px}
   .hero::after{width:250px;height:250px;background:var(--pessego);opacity:.45;filter:blur(14px);bottom:-140px;left:-90px}
-  .hero .wrap{position:relative;z-index:2;max-width:760px}
-  .check{width:72px;height:72px;border-radius:50%;background:var(--royal);display:flex;align-items:center;justify-content:center;margin:0 auto 30px}
-  .check svg{width:36px;height:36px;color:#fff}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
   .hero h1{font-size:clamp(34px,4.4vw,54px);margin-bottom:20px}
-  .hero__sub{font-size:clamp(18px,1.5vw,21px);color:var(--tinta2);max-width:46ch;margin:0 auto 36px}
+  .hero__sub{font-size:clamp(18px,1.5vw,21px);color:var(--tinta2);max-width:40ch;margin-bottom:34px}
 
-  /* ---------- DIAGNOSTICO ---------- */
-  .diag{background:var(--grad);color:#fff;padding:110px 0;position:relative;overflow:hidden}
-  .diag__arc{position:absolute;left:-150px;top:-170px;width:460px;height:460px;border-radius:50%;border:58px solid #fff;opacity:.09;pointer-events:none}
-  .diag .wrap{position:relative;z-index:2;max-width:820px;text-align:center}
-  .diag h2{color:#fff;font-size:clamp(28px,3.2vw,40px);margin-bottom:22px}
-  .diag .lead{font-size:clamp(17px,1.25vw,19px);color:#E4EAF8;max-width:62ch;margin:0 auto 36px}
+  /* capa + selo de confirmacao */
+  .hero__figure{position:relative;width:100%;max-width:470px;margin-inline:auto}
+  .hero__capa{width:100%;height:auto;min-height:0;display:block;position:relative;z-index:2}
+  .selo{position:absolute;left:-16px;top:6%;width:92px;height:92px;border-radius:50%;background:var(--royal);display:grid;place-items:center;box-shadow:0 18px 40px rgba(35,41,96,.32);z-index:5}
+  .selo svg{width:44px;height:44px;color:#fff}
+  .selo__risco{stroke-dasharray:22;stroke-dashoffset:22}
+  .selo__anel{position:absolute;inset:0;border-radius:50%;border:3px solid var(--royal);opacity:0}
+
+  @keyframes seloEntra{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.09);opacity:1}100%{transform:scale(1);opacity:1}}
+  @keyframes riscoDesenha{to{stroke-dashoffset:0}}
+  @keyframes anelPulsa{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.55);opacity:0}}
+  .selo{animation:seloEntra .5s cubic-bezier(.34,1.56,.64,1) .2s both}
+  .selo__risco{animation:riscoDesenha .45s ease-out .6s forwards}
+  .selo__anel{animation:anelPulsa 1s ease-out .7s 1 forwards}
+
+  @media(prefers-reduced-motion:reduce){
+    .selo{animation:none;opacity:1;transform:none}
+    .selo__risco{animation:none;stroke-dashoffset:0}
+    .selo__anel{animation:none;opacity:0}
+  }
+
+  /* ---------- LIMITE ---------- */
+  .limite{background:var(--grad);color:#fff;padding:110px 0;position:relative;overflow:hidden}
+  .limite__arc{position:absolute;left:-150px;top:-170px;width:460px;height:460px;border-radius:50%;border:58px solid #fff;opacity:.09;pointer-events:none}
+  .limite .wrap{position:relative;z-index:2;max-width:820px;text-align:center}
+  .limite h2{color:#fff;font-size:clamp(28px,3.2vw,40px);margin-bottom:22px}
+  .limite .lead{font-size:clamp(17px,1.25vw,19px);color:#E4EAF8;max-width:62ch;margin:0 auto 36px}
 
   /* ---------- FOOTER ---------- */
   .footer{background:var(--navy);color:#C6D0EE;padding:52px 0}
@@ -87,11 +107,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .footer__logo img{height:34px;width:auto}
   .footer__meta{font-size:15px;line-height:1.6;max-width:56ch}
 
+  @media(max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;gap:44px}
+    .hero__sub{max-width:none}
+    .hero__figure{max-width:380px;margin-top:4px}
+  }
   @media(max-width:820px){
-    .hero{padding:80px 0 88px}
-    .diag{padding:80px 0}
+    .hero{padding:72px 0 80px}
+    .limite{padding:80px 0}
   }
   @media(max-width:640px){
+    .selo{width:74px;height:74px;left:-10px}
+    .selo svg{width:36px;height:36px}
     .footer .wrap{flex-direction:column;align-items:flex-start}
     .btn{width:100%;justify-content:center}
   }
@@ -117,19 +144,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="hero">
     <div class="wrap">
-      <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <h1>Pronto. Seu estudo está aqui.</h1>
-      <p class="hero__sub">O PDF abre no botão abaixo. Também enviamos uma cópia para o seu e-mail.</p>
-      <a class="btn" href="./assets/estudo-primeiro-contato-saude.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Abrir o estudo</a>
+      <div class="hero__content">
+        <h1>Pronto, o estudo é seu.</h1>
+        <p class="hero__sub">Abre no botão abaixo. Uma cópia também foi para o seu e-mail.</p>
+        <a class="btn" href="./assets/estudo-primeiro-contato-saude.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Abrir o estudo</a>
+      </div>
+
+      <div class="hero__figure">
+        <img class="hero__capa" src="./assets/capa-estudo.webp" alt="Capa do estudo exibida na tela de um tablet" width="900" height="1042" fetchpriority="high">
+        <span class="selo" aria-hidden="true">
+          <span class="selo__anel"></span>
+          <svg viewBox="0 0 24 24" fill="none"><path class="selo__risco" d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
     </div>
   </section>
 
-  <section class="diag">
-    <span class="diag__arc" aria-hidden="true"></span>
+  <section class="limite">
+    <span class="limite__arc" aria-hidden="true"></span>
     <div class="wrap">
       <div class="reveal">
-        <h2>Quer olhar a sua operação com esses números na mão?</h2>
-        <p class="lead">A gente faz um diagnóstico gratuito do seu primeiro nível de atendimento: quantos contatos chegam por dia, quanto chega fora do horário, e quais assuntos mais se repetem.</p>
+        <h2>O que este estudo não faz</h2>
+        <p class="lead">Ele mostra como o primeiro contato se comporta em quatro operadoras de saúde e em 23 operações que a Cxpress analisou. Não mostra a sua. Se quiser esse número, a gente levanta junto: quantos contatos chegam por dia, quanto chega fora do horário e quais assuntos mais se repetem.</p>
         <a class="btn btn--ghost" href="https://wa.me/551150395028?text=Ol%C3%A1%21%20Acabei%20de%20baixar%20o%20estudo%20sobre%20o%20primeiro%20contato%20na%20opera%C3%A7%C3%A3o%20de%20sa%C3%BAde%20e%20gostaria%20do%20diagn%C3%B3stico%20gratuito." target="_blank" rel="noopener">Falar com a nossa equipe</a>
       </div>
     </div>
