@@ -1,0 +1,85 @@
+=== HERO ===
+OVERLINE: ESTUDO CXPRESS · 2026
+H1: O primeiro contato na operação de saúde
+SUB: O que acontece antes de alguém atender. Um estudo sobre o primeiro nível de atendimento em clínicas, laboratórios, redes e operadoras, com dados de mercado e um levantamento inédito de 1.932 interações no Brasil.
+CTA: Baixar o estudo
+LABEL: Gratuito · 17 páginas · PDF
+# [SUGESTAO GUIDELINES §5/§3] O H1 é descritivo: nomeia o tema, não a dor. A própria copy-fonte traz a alternativa que lidera pela dor: "O paciente já contou isso. Em outro canal." Decisão de quem aprova a copy; não alterei.
+# [PENDENTE] "17 páginas" precisa ser conferido na versão final do PDF (apontado pelo autor da copy).
+
+=== NUMEROS ===
+H3: 92% contra 61%
+BODY: das empresas na América Latina acham que o cliente está satisfeito com o atendimento automatizado. Só 61% dos clientes concordam.
+H3: 16%
+BODY: tiveram um transbordo fluido, em que a pessoa continua de onde a IA parou sem repetir tudo.
+H3: 3x
+BODY: mais interações na segunda-feira do que no domingo. O volume não desaparece no fim de semana, ele acumula.
+
+=== TESE ===
+H2: O problema não é falta de IA. É IA sem transbordo.
+BODY: Quase toda operação de saúde já automatizou alguma parte do atendimento. Ainda assim, o paciente continua repetindo a mesma informação em cada canal.
+BODY: Este estudo mostra por quê: a automação não falha na resposta, falha na passagem. Quando a conversa sai da IA e chega em uma pessoa, o contexto não vai junto. E o paciente conta a história pela terceira vez.
+BODY: Os cases de IA no atendimento que circulam no mercado são de operações com mais de 500 unidades e mais de um milhão de atendimentos por mês. Este estudo fala com a outra operação: a que tem quatro unidades, uma recepção e uma agenda cheia.
+
+=== O QUE VOCE VAI ENCONTRAR ===
+H2: O que você vai encontrar
+H3: Por quantos canais um paciente pode chegar até você
+BODY: Treze pontos de entrada mapeados, e o que acontece quando cada um guarda o próprio registro.
+H3: A fila da segunda-feira, medida
+BODY: Levantamento próprio de 1.932 interações a quatro operadoras de saúde, entre 25/07 e 24/08/2026. O volume por dia da semana, hora a hora.
+H3: A conta que não entra na planilha
+BODY: Faltas não notificadas, turnover de recepção, tempo de pré-atendimento e retrabalho de digitação, com fonte em cada número.
+H3: Onde exatamente a automação quebra
+BODY: O dado que explica por que o paciente ainda repete tudo, mesmo em operação automatizada.
+H3: O que a IA faz e o que ela não faz
+BODY: O limite honesto: onde ela resolve, e onde a decisão continua sendo da equipe.
+H3: Antes e depois, sem promessa de percentual
+BODY: O que muda na rotina da recepção quando o histórico existe em um lugar só.
+
+=== METODOLOGIA ===
+H2: Como este estudo foi feito
+BODY: Três fontes, com limitação declarada em cada uma.
+H3: Social listening
+BODY: 1.932 menções a quatro operadoras de saúde, entre 25 de julho e 24 de agosto de 2026, coletadas via Buzzmonitor. Redes sociais apenas. Não inclui WhatsApp, telefone nem e-mail.
+H3: Diagnósticos comerciais
+BODY: 23 operações de saúde analisadas pela Cxpress, com dados informados pelos próprios gestores. Amostra qualitativa, não estatística.
+H3: Benchmarks internacionais
+BODY: Estudos citados com fonte. Predominantemente Estados Unidos e centrados em telefonia, usados como referência de mercado e não como retrato do Brasil.
+
+=== PARA QUEM ===
+H2: Feito para quem responde pela operação
+BODY: Gerentes e coordenadores de atendimento, recepção e relacionamento com o paciente. Diretores de operações e administrativos. Gestores de TI e sistemas em clínicas, laboratórios, medicina diagnóstica, redes de unidades e operadoras de saúde.
+BODY: Se a sua operação tem entre três e quinze pessoas atendendo e o WhatsApp é o canal principal, o estudo foi escrito pensando em você.
+
+=== FORM ===
+H2: Preencha para receber o estudo
+LABEL: Nome
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Quero receber os próximos conteúdos da Cxpress sobre operação de atendimento.
+CTA: Baixar o estudo
+BODY: Seus dados são usados para enviar o estudo e, se você autorizar acima, os próximos conteúdos. Você pode cancelar quando quiser.
+# Placeholders dos campos (copy-fonte): Nome = "Como podemos te chamar" · E-mail corporativo = "seunome@suaempresa.com.br" · Empresa = "Nome da sua empresa".
+# O checkbox é opt-in ativo (marcar autoriza). O autor da copy registrou que isso inverte o comportamento atual (hoje quem NÃO marca entra na newsletter) e sugeriu passar pelo jurídico por causa de LGPD. Manter o opt-in ativo ao integrar o form real.
+# [SUGESTAO GUIDELINES §10] Material rico de tráfego frio (ToFu) tem default de formulário na 2ª seção, logo após o hero. A copy-fonte coloca o form na 7ª. Não reordenei (copy dita estrutura, §9); se o objetivo for volume, vale mover o bloco FORM para depois de NUMEROS e deixar o CTA do hero rolando até ele.
+
+=== FOOTER ===
+FOOTER: Um estudo Cxpress, com dados de social listening da Buzzmonitor.
+FOOTER: Cxpress e Buzzmonitor são produtos do Grupo Elife. Mais de 800 clientes no Brasil, Latam e Portugal.
+
+# Revisao anti-IA: 4 em-dashes corrigidos (hero SUB, TESE, "conta que não entra na planilha", METODOLOGIA/social listening); em-dash final: 0.
+# Antitese-por-negacao: 2 instancias ("O problema não é falta de IA. É IA sem transbordo." e "Amostra qualitativa, não estatística."). Dentro do limite de 2; a primeira é arquétipo canônico da marca (diagnóstico direto, BRANDBOOK §1).
+# Filler words, frases tipicas de IA, transicoes mecanicas, metaforas aquaticas, exclamacoes: nenhuma ocorrencia.
+# Grafias: "Cxpress" e "Buzzmonitor" corretas; artigo feminino ("pela Cxpress", "da Cxpress") correto.
+
+# SEO (da copy-fonte, para o lp-gerar):
+# title: Estudo: o primeiro contato na operação de saúde | Cxpress
+# meta description: Dados de 1.932 interações e benchmarks internacionais sobre o primeiro nível de atendimento em clínicas, laboratórios e operadoras. Baixe gratuitamente.
+# slug: estudo-primeiro-contato-saude (URL sugerida: content.cxpress.io/estudo-primeiro-contato-saude)
+
+# Pendencias herdadas da copy-fonte (nao sao copy, sao tarefas):
+# - Conferir o numero de paginas do PDF (17 e estimativa).
+# - Previa visual: 2 ou 3 paginas do PDF em mockup no hero.
+# - Links primarios dos benchmarks precisam existir no PDF (a LP promete "com fonte em cada numero").
+# - UTMs do CTA do e-mail apontando para esta URL.
+# - Pagina de obrigado em landing-pages/cxpress/estudo-primeiro-contato-saude-confirmado/copy.txt.
