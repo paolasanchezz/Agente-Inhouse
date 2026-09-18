@@ -79,6 +79,7 @@
   td{padding:18px 16px 18px 0; border-bottom:1px solid var(--linha); vertical-align:top}
   tbody tr:last-child td{border-bottom:none}
   .nome{font-weight:700; color:var(--tinta); display:block}
+  .nota{display:block; margin-top:5px; font-size:13px; color:var(--tinta-suave)}
   .hora{font-family:"League Spartan",sans-serif; font-weight:700; font-size:19px; white-space:nowrap}
   .hora-br{color:var(--roxo)}
   .hora-mx{color:var(--tinta-suave)}
@@ -135,6 +136,7 @@
   .atualizado{ font-size:14px; }
   .aviso{ font-size:16px; }
   table{ font-size:16px; }
+  .nota{ font-size:14px; }
   .regiao{ font-size:14px; }
   footer{ font-size:15px; }
   /* header nao acompanha: linha unica sem folga */
@@ -148,13 +150,13 @@
 <header>
   <span class="marca">Grupo Elife</span>
   <h1>Webinars perpétuos</h1>
-  <p class="sub">Oito webinars que rodam automaticamente <strong>todos os dias</strong>, inclusive fim de semana. Cada link abre a landing page de inscrição, que sempre mostra a próxima sessão disponível.</p>
-  <span class="atualizado"><span class="ponto"></span>Atualizado em 2 de setembro de 2026</span>
+  <p class="sub">Nove webinars que rodam automaticamente <strong>todos os dias</strong>, inclusive fim de semana. Cada link abre a landing page de inscrição, que sempre mostra a próxima sessão disponível.</p>
+  <span class="atualizado"><span class="ponto"></span>Atualizado em 18 de setembro de 2026</span>
 </header>
 
-<p class="aviso"><strong>Região:</strong> indica o público de cada webinar — <strong>BR</strong> (português do Brasil), <strong>PT</strong> (português de Portugal) e <strong>LATAM</strong> (espanhol). Hoje a grade tem dois webinars para o Brasil e seis para a LATAM.</p>
+<p class="aviso"><strong>Região:</strong> indica o público de cada webinar — <strong>BR</strong> (português do Brasil), <strong>PT</strong> (português de Portugal) e <strong>LATAM</strong> (espanhol). Hoje a grade tem dois webinars para o Brasil, um para Portugal e seis para a LATAM.</p>
 
-<p class="aviso"><strong>Fuso:</strong> Brasília está sempre 3 horas à frente da Cidade do México — nenhum dos dois tem horário de verão, então a diferença vale o ano inteiro. Nos webinars em português o horário foi escolhido pensando no Brasil: a coluna de México está ali só como referência, e por isso cai bem cedo.</p>
+<p class="aviso"><strong>Fuso:</strong> Brasília está sempre 3 horas à frente da Cidade do México — nenhum dos dois tem horário de verão, então a diferença vale o ano inteiro. Nos webinars em português do Brasil o horário foi escolhido pensando no Brasil: a coluna de México está ali só como referência, e por isso cai bem cedo. O de Portugal roda às 10:05 de Lisboa — por isso abre a tabela, em 06:05 de Brasília — e é o único cujo fuso vira: a partir de <strong>25/10/2026</strong> as mesmas 10:05 passam a cair às 07:05 no Brasil e às 04:05 no México.</p>
 
 <div class="tabela-wrap">
 <table>
@@ -170,6 +172,14 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td data-rotulo="Webinar"><span class="nome">Como criar uma monitorização de concorrentes</span><span class="nota">10:05 em Lisboa</span></td>
+      <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>
+      <td data-rotulo="Região"><span class="regiao"><span class="bandeira" role="img" aria-label="PT">🇵🇹</span>PT</span></td>
+      <td data-rotulo="Horário BR" class="hora hora-br">06:05</td>
+      <td data-rotulo="Horário MX" class="hora hora-mx">03:05</td>
+      <td data-rotulo="Landing page"><a class="lp" href="https://webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes-pt">webinar.buzzmonitor.com/perpetuo-monitoramento-concorrentes-pt</a></td>
+    </tr>
     <tr>
       <td data-rotulo="Webinar"><span class="nome">Como construir um monitoramento de concorrentes</span></td>
       <td data-rotulo="Marca"><span class="tag tag-buzzmonitor">Buzzmonitor</span></td>

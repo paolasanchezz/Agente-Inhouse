@@ -32,20 +32,28 @@ Quando entrar webinar novo, mudar horário ou uma série for encerrada:
 
 ## Estado registrado nesta versão
 
-Última verificação: **02/09/2026** — 8 séries ativas, todas rodando diariamente (inclusive
-fim de semana). Duas mudanças nesse dia:
+Última verificação: **18/09/2026** — 9 séries ativas, todas rodando diariamente (inclusive
+fim de semana). Entrou **18086** "Como criar uma monitorização de concorrentes Portugal"
+(PT-PT, 10:05 hora de Lisboa, tz `Europe/Lisbon`, LP `/perpetuo-monitoramento-concorrentes-pt`).
+A série já existia no mapa `SERIES` desde antes, mas nunca tinha entrado na tabela — era a
+lacuna apontada em 18/09.
 
-- Entrou **18043** "Como construir um monitoramento de concorrentes" (PT-BR, 09:00 BRT,
-  sessão de 25 min) — primeira linha da tabela, que é ordenada pelo horário BR.
-- **17727** (Case Buzzcreators) esgotou as sessões e foi recriada como **18050**, que roda
-  **10:20 BRT** — era 09:40.
+A linha PT abre a tabela porque a ordenação é pelo horário BR e 10:05 de Lisboa dá 06:05 em
+Brasília. Esse é o único webinar da grade cujo fuso tem horário de verão: a partir de
+**25/10/2026** (último domingo de outubro, Lisboa volta pra WET/UTC+0) as mesmas 10:05 passam
+a cair às 07:05 no Brasil e às 04:05 no México — as colunas BR e MX dessa linha precisam ser
+corrigidas nessa data, e de novo na virada pra WEST no fim de março. As duas ressalvas estão
+escritas na própria página, no aviso "Fuso".
 
-Nos dois webinars em português o horário foi escolhido para o Brasil, então a coluna de
+Histórico anterior:
+
+- **02/09/2026** — entrou **18043** "Como construir um monitoramento de concorrentes" (PT-BR,
+  09:00 BRT, sessão de 25 min) e **17727** (Case Buzzcreators) esgotou as sessões, sendo
+  recriada como **18050**, que roda **10:20 BRT** — era 09:40.
+- **04/09/2026** — a coluna de idioma ("Português" / "Espanhol · LATAM") saiu e entrou a coluna
+  **Região**, com bandeira: 🇧🇷 BR, 🇵🇹 PT e 🌎 LATAM (globo porque LATAM não é um país).
+- **19/08/2026** — as três séries em português que existiam antes (17671 Vozxpress, 17689
+  Conheça a Cxpress, 17601 Buzzmonitor MCP) foram encerradas e não constam na tabela.
+
+Nos webinars em português do Brasil o horário foi escolhido para o Brasil, então a coluna de
 México cai bem cedo (06:00 e 07:20) de propósito — está ali só como referência de fuso.
-
-Em **04/09/2026** a coluna de idioma ("Português" / "Espanhol · LATAM") saiu e entrou a coluna
-**Região**, com bandeira: 🇧🇷 BR, 🇵🇹 PT e 🌎 LATAM (globo porque LATAM não é um país). Pela
-inferência das LPs, a grade atual tem 2 webinars BR e 6 LATAM — nenhum PT-PT.
-
-As três séries em português que existiam antes (17671 Vozxpress, 17689 Conheça a Cxpress,
-17601 Buzzmonitor MCP) foram encerradas em 19/08/2026 e não constam na tabela.
