@@ -103,6 +103,7 @@ fbq('track', 'PageView');
   :root{
     /* Cxpress (brand/cxpress/tokens.json) */
     --navy:#232960;
+    --navy-deep:#171B47;   /* hero e CTA: o marinho da marca puxado pra baixo */
     --royal:#4A69BD;
     --royal-deep:#3B569E;
     --lilac:#C1C7FF;
@@ -143,8 +144,11 @@ fbq('track', 'PageView');
   h1,h2,h3{font-family:var(--display);color:var(--navy);margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.02}
 
   .wrap{max-width:1240px;margin:0 auto;padding-inline:28px}
-  section{padding:88px 0}
-  @media (min-width:960px){section{padding:136px 0}}
+  /* Respiro entre blocos: 136px em cima + 136 embaixo davam 272px de vazio
+     entre uma secao e a seguinte — lia como buraco, nao como ritmo. 92+92=184
+     ainda separa com folga e cabe mais conteudo na tela. */
+  section{padding:62px 0}
+  @media (min-width:960px){section{padding:92px 0}}
 
   /* kicker editorial em Bitter (fonte de personalidade da marca) */
   .kicker{
@@ -178,9 +182,56 @@ fbq('track', 'PageView');
   .nav .btn{display:none;padding:13px 24px;font-size:15px}
   @media (min-width:800px){.nav .btn{display:inline-flex}}
 
+  /* ---- menu do header ----
+     Os rotulos sao os MESMOS kickers que cada secao ja usa ("Qué hace por ti",
+     "Para quién es", "La prueba", "La diferencia") — nenhum texto novo foi
+     inventado. scroll-margin-top existe porque o header e sticky: sem ele a
+     ancora para debaixo dele e o titulo some. */
+  html{scroll-behavior:smooth}
+  #que-hace,#para-quien,#la-prueba,#la-diferencia,#cta-final{scroll-margin-top:86px}
+  .nav__menu{
+    display:none;list-style:none;margin:0 auto 0 8px;padding:0;gap:26px;
+  }
+  .nav__menu a{
+    position:relative;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;
+    padding:6px 0;white-space:nowrap;transition:color .25s ease;
+  }
+  .nav__menu a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;
+    background:var(--orange);transform:scaleX(0);transform-origin:0 50%;
+    transition:transform .3s cubic-bezier(.2,.9,.3,1);
+  }
+  .nav__menu a:hover{color:var(--royal)}
+  .nav__menu a:hover::after,.nav__menu a[aria-current="true"]::after{transform:scaleX(1)}
+  .nav__menu a[aria-current="true"]{color:var(--royal)}
+  @media (min-width:1040px){.nav__menu{display:flex}}
+
+  .nav__burger{
+    display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
+    width:42px;height:42px;padding:0 10px;margin-left:auto;
+    background:var(--white);border:1px solid var(--line);border-radius:12px;cursor:pointer;
+  }
+  .nav__burger span{display:block;height:2px;border-radius:2px;background:var(--navy);
+    transition:transform .3s cubic-bezier(.2,.9,.3,1),opacity .2s ease}
+  .nav__burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav__burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav__burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media (min-width:1040px){.nav__burger{display:none}}
+
+  /* aberto no mobile: o menu vira painel abaixo do header */
+  @media (max-width:1039px){
+    .nav{flex-wrap:wrap}
+    .nav__menu.is-open{
+      display:flex;flex-direction:column;gap:2px;order:9;width:100%;margin:10px 0 4px;
+      padding:8px 0 4px;border-top:1px solid var(--line);
+    }
+    .nav__menu.is-open a{display:block;padding:12px 4px;font-size:16px}
+    .nav__menu.is-open a::after{display:none}
+  }
+
   /* ---------- HERO ---------- */
-  .hero{position:relative;overflow:hidden;padding:52px 0 76px}
-  @media (min-width:960px){.hero{padding:84px 0 120px}}
+  .hero{position:relative;overflow:hidden;padding:52px 0 58px}
+  @media (min-width:960px){.hero{padding:84px 0 86px}}
   .hero__mesh{
     position:absolute;z-index:0;pointer-events:none;
     width:920px;height:920px;right:-320px;top:-460px;border-radius:50%;
@@ -197,7 +248,7 @@ fbq('track', 'PageView');
   @media (max-width:900px){.res__pill,.cta__pill--orange{display:none}}
 
   .hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-  @media (min-width:960px){.hero__grid{grid-template-columns:1.05fr .95fr;gap:56px}}
+  @media (min-width:960px){.hero__grid{grid-template-columns:1fr 1.06fr;gap:48px}}
   .hero__copy{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
   .eyebrow{
     display:inline-flex;align-items:center;gap:10px;
@@ -222,123 +273,155 @@ fbq('track', 'PageView');
      cantos arredondados. O arco canonico segue na secao de publico e no CTA final.
      A imagem e 1200x1320 (mesma proporcao da moldura), entao o cover nao corta nada. */
   .hero__art{position:relative}
-  .kvframe{
-    position:relative;width:100%;max-width:452px;margin-inline:auto;z-index:2;
-    border-radius:var(--card);
-    background:var(--lilac-soft);padding:16px;box-shadow:var(--sh-3);
+  /* A cena: o Samir ocupa a largura toda e os tres cartoes pousam em volta da
+     laptop — um em cima a esquerda, dois na coluna livre em cima a direita.
+     Todos nascem na borda da tampa e ficam ATRAS dele. */
+  /* --- laco entre a frase destacada e o Samir ---
+     A H1 diz "asistente personalizado" e o destaque agora cai ai. Pra o leitor
+     ligar a frase ao personagem em vez de ler duas coisas soltas: um traco
+     pontilhado sai do fim do destaque apontando pra direita, e no ombro dele fica
+     a etiqueta com o nome e o icone oficial da marca. Os dois usam o MESMO pessego
+     do destaque — e a rima de cor que fecha o laco, mais que o traco. */
+  .hero__copy{position:relative;z-index:3}   /* a seta estava passando por tras do Samir */
+  .hero h1{position:relative;z-index:3}
+  @media (min-width:960px){
+    .hero h1 .mark{position:relative}
+    .hero h1 .mark::after{
+      content:"";position:absolute;left:100%;bottom:.04em;width:60px;height:52px;margin-left:12px;
+      background:no-repeat center/contain
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 52" fill="none"><path d="M4 10C24 12 40 22 44.8 30.8" stroke="%23EF863C" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8"/><path d="M52 44L39.9 35.2L51.2 29.1Z" fill="%23EF863C"/></svg>');
+      opacity:0;animation:markArrow .7s 1.35s ease both;pointer-events:none;z-index:3;
+    }
   }
-  .kvframe__in{
-    background:var(--white);border-radius:calc(var(--card) - 8px);
-    padding:18px 16px;display:flex;flex-direction:column;gap:12px;
+  /* Abaixo de 960px a seta NAO existe. A coluna empilha e o Samir fica ~1000px
+     mais embaixo: nao ha para onde apontar que signifique alguma coisa. Uma seta
+     pra baixo ali diz "continua rolando", nao "o Samir e esse assistente" — e o
+     laco fica por conta da etiqueta com o nome dele e da rima de cor. */
+  .kvname{
+    position:absolute;z-index:3;left:2%;top:60%;
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--white);border:1px solid var(--line);border-radius:999px;
+    padding:5px 14px 5px 5px;font:700 15px/1 inherit;color:var(--ink);
+    box-shadow:0 10px 24px rgba(35,41,96,.16);
+    opacity:0;animation:nameIn .6s 1.5s cubic-bezier(.2,.9,.3,1) both;
+  }
+  .kvname__t{background-image:linear-gradient(var(--peach),var(--peach));background-repeat:no-repeat;
+    background-position:0 96%;background-size:100% .22em}
+  .kvname__ic{width:34px;height:34px;border-radius:50%;background:var(--lilac-soft);
+    object-fit:contain;padding:4px;flex:0 0 auto}
+  @media (max-width:699px){.kvname{left:3%;top:54%}
   }
 
-  /* ---- cena: o Concierge respondendo comentario e mandando DM ---- */
-  .cc__nets{display:flex;align-items:center;gap:8px;padding-bottom:2px}
-  /* Cada rede usa a propria cor de marca quando esta ativa. Sao marcas de terceiros
-     dentro de um mock das suas interfaces, entao ficam fora da paleta Cxpress de
-     proposito; o resto da cena (moldura, tipografia, selo) segue a marca. */
-  .cc__net{
-    width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
-    color:#9AA3C4;background:transparent;flex-shrink:0;
-    animation:netOn 12s ease-in-out infinite both;
+  .kvscene{position:relative;width:100%;max-width:620px;margin-inline:auto;padding-top:82px}
+
+  /* ---- Samir: o render oficial deformado como MALHA continua ----
+     Desde a v15 a textura e o recorte que o Victor mandou, com alpha de verdade —
+     acabou o matting feito por mim, e com ele toda a familia de defeito de recorte.
+     A imagem nunca e cortada. E uma folha de 82x72 vertices que se estica: o dedo
+     desce esticando a pele que o liga a mao, a cabeca vira esticando o pescoco, a
+     palpebra fecha porque a pele da testa desliza por cima do olho. Por isso nao
+     existe borda de recorte pra aparecer — o defeito que perseguiu as v1-v13
+     ("montado por partes") deixa de ser possivel por construcao.
+     E por isso a PISCADA finalmente sai: nao preciso de arte de olho fechado, a
+     propria malha traz a pele da palpebra por cima.
+     Sem WebGL (ou com prefers-reduced-motion) fica o still — o mesmo render. */
+  .samir-in{position:relative;z-index:2;width:100%}
+  .samir{
+    position:relative;display:block;width:100%;aspect-ratio:889/835;
+    filter:drop-shadow(0 18px 26px rgba(35,41,96,.13));
   }
-  .cc__net--ig{--b:#C13584;--bt:rgba(193,53,132,.12)}
-  .cc__net--tt{--b:#111827;--bt:rgba(17,24,39,.10)}
-  .cc__net--fb{--b:#1877F2;--bt:rgba(24,119,242,.12)}
-  .cc__net--gm{--b:#1A73E8;--bt:rgba(26,115,232,.12)}
-  .cc__net svg{width:18px;height:18px}
-  .cc__net:nth-child(1){animation-delay:0s}
-  .cc__net:nth-child(2){animation-delay:-9s}
-  .cc__net:nth-child(3){animation-delay:-6s}
-  .cc__net:nth-child(4){animation-delay:-3s}
-  .cc__nets span:last-child{
-    margin-left:auto;font-family:var(--accent);font-style:italic;font-size:12.5px;color:var(--ink);
-    animation:none;width:auto;height:auto;background:none;
+  /* O render nasceu sobre um marrom solido (#C48158). O halo tem a FORMA da
+     silhueta (alpha dilatado e borrado, pintado com esse tom), entao a borda do
+     pelo compoe sobre o mesmo fundo contra o qual foi renderizada e o resto de
+     recorte some por aritmetica. Oval generico nao servia: na borda ja tinha
+     caido pra ~40% e continuava quase branco. */
+  .samir__still,.samir__gl{
+    position:absolute;inset:0;display:block;
+    width:100%;height:100%;min-height:0;object-fit:contain;
+  }
+  .samir__gl{opacity:0;transition:opacity .35s ease}
+  .samir.is-live .samir__gl{opacity:1}
+  .samir.is-live .samir__still{opacity:0}
+
+  /* ---- cartoes em volta da laptop ---- */
+  .bub{position:absolute;z-index:1;display:grid}
+  .bub>*{grid-area:1/1;opacity:0;will-change:transform,opacity}
+  .bub>*:nth-child(1){animation-delay:0s}
+  .bub>*:nth-child(2){animation-delay:-21s}
+  .bub>*:nth-child(3){animation-delay:-14s}
+  .bub>*:nth-child(4){animation-delay:-7s}
+  /* --fx/--fy: deslocamento ate a borda de cima da tampa, de onde cada um sai */
+  .bub--in {left:0;  top:0;  width:52%;  --fx:96%;  --fy:352px}
+  .bub--out{right:0; top:9%; width:41%;  --fx:-6%;  --fy:272px}
+  .bub--act{right:-3%;top:31%;width:39%; --fx:-10%; --fy:168px}
+  .bub--in >*{animation:bubIn  28s cubic-bezier(.45,.03,.28,1) infinite both}
+  .bub--out>*{animation:bubOut 28s cubic-bezier(.45,.03,.28,1) infinite both}
+  .bub--act>*{animation:bubAct 28s cubic-bezier(.45,.03,.28,1) infinite both}
+
+  /* abaixo de 700px a coluna nao comporta os cartoes em volta: empilha em cima */
+  @media (max-width:699px){
+    .kvscene{padding-top:0;display:flex;flex-direction:column;gap:10px}
+    .bub{position:static;width:100%!important;--fx:0%!important;--fy:40px!important}
+    .bub--out,.bub--act{right:auto;top:auto}
+    .samir-in{order:9;margin-top:6px}
   }
 
-  /* ---- mockup do formato nativo de cada rede (post, reel, publicacao, resena) ---- */
-  /* Switcher: os 4 variantes ocupam a MESMA celula do grid, entao o container
-     ganha a altura do mais alto sozinho (sem height fixo, que cortava no mobile). */
-  .sw{display:grid}
-  .sw>*{grid-area:1/1;animation:ctxOn 12s ease-in-out infinite both}
-  /* Dentro da janela de ~2,6s de cada rede, a conversa se monta em 3 tempos:
-     pergunta, resposta e acao. Todas terminam juntas, antes da rede trocar. */
-  .cc__cmt>*{animation-name:swPergunta}
-  .cc__rep>*{animation-name:swResposta}
-  .cc__dm>*{animation-name:swAcao}
-  .sw>*:nth-child(1){animation-delay:0s}
-  .sw>*:nth-child(2){animation-delay:-9s}
-  .sw>*:nth-child(3){animation-delay:-6s}
-  .sw>*:nth-child(4){animation-delay:-3s}
-  .mk{display:flex;align-items:center;gap:12px}
-  .mk__v{position:relative;flex-shrink:0;border-radius:10px;overflow:hidden;display:grid;place-items:center}
-  .mk__t{min-width:0}
-  .mk__t b{display:block;font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--navy);line-height:1.3}
-  .mk__t span{display:block;font-size:11.5px;color:var(--ink);line-height:1.35}
-  .mk__ico{display:flex;gap:9px;margin-top:6px;color:var(--ink)}
-  .mk__ico svg{width:14px;height:14px}
-
-  /* Instagram: post quadrado */
-  .mk--ig .mk__v{width:80px;height:80px;background:linear-gradient(135deg,#FDE7F3 0%,#E7ECFF 55%,#FFF1E3 100%)}
-  .mk--ig .mk__v svg{width:26px;height:26px;color:#C13584;opacity:.55}
-  /* TikTok: reel vertical */
-  .mk--tt .mk__v{width:52px;height:88px;background:linear-gradient(160deg,#2B3245 0%,#111827 100%)}
-  .mk--tt .mk__v svg{width:22px;height:22px;color:#fff;opacity:.9}
-  /* Facebook: publicacao no feed */
-  .mk--fb .mk__v{width:96px;height:72px;background:linear-gradient(135deg,#E3EDFB 0%,#EEF3FF 100%)}
-  .mk--fb .mk__v svg{width:24px;height:24px;color:#1877F2;opacity:.6}
-  /* Google My Business: resena com estrelas */
-  .mk--gm .mk__v{width:56px;height:56px;border-radius:50%;background:var(--off);color:#1558B0}
-  .mk--gm .mk__v svg{width:24px;height:24px}
-  .mk__stars{display:flex;gap:2px;margin-bottom:3px}
-  .mk__stars svg{width:13px;height:13px;color:#F2A600}
-  .mk__stars svg.off{color:#D9DEEA}
-
-  .cc__post{display:flex;align-items:center;gap:9px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-  .cc__av{width:30px;height:30px;border-radius:50%;background:var(--royal);color:var(--white);
-    display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:12px;flex-shrink:0}
-  .cc__who{display:block;font-family:var(--display);font-weight:800;font-size:13.5px;color:var(--navy);line-height:1.2}
-  /* a linha sob o nome da marca troca conforme a rede ativa */
-  .cc__ctxi{
-    display:flex;align-items:center;gap:5px;
-    font-size:11.5px;line-height:1.3;color:var(--ink);white-space:nowrap;
+  .card{
+    display:flex;gap:10px;align-items:flex-start;
+    background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:12px 14px;box-shadow:0 14px 34px rgba(35,41,96,.13);
   }
-  .cc__ctxi svg{width:12px;height:12px;flex-shrink:0}
-  .cc__ctxi b{font-weight:700;color:var(--net)}
-  .cc__ctxi:nth-child(1){--net:#C13584}
-  .cc__ctxi:nth-child(2){--net:#111827}
-  /* texto usa o tom mais escuro da marca (>=4.5:1 no branco); o icone fica no tom
-     original, que so precisa de 3:1 por nao ser texto */
-  .cc__ctxi:nth-child(3){--net:#1565D8}
-  .cc__ctxi:nth-child(4){--net:#1558B0}
+  .card--out{background:var(--white);border-color:#D9E2FB;box-shadow:0 16px 40px rgba(74,105,189,.20)}
+  .card__av{width:30px;height:30px;border-radius:50%;flex-shrink:0;background:var(--off);
+    display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:11px;color:var(--royal)}
+  .card--out .card__av{background:var(--royal);color:var(--white)}
+  .card__bd{display:block;min-width:0;flex:1}
+  .card__top{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .card__nm{font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--navy);line-height:1.3}
+  .card__net{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;line-height:1.2;
+    color:var(--net,#6B7699);background:var(--netbg,#F1F4FD);border-radius:999px;padding:3px 7px;font-weight:700}
+  .card__net svg{width:11px;height:11px}
+  .card__tx{display:block;font-size:13px;color:var(--ink);line-height:1.5;margin-top:3px;position:relative}
+  .card--ig{--net:#C13584;--netbg:rgba(193,53,132,.10)}
+  .card--tt{--net:#111827;--netbg:rgba(17,24,39,.08)}
+  .card--fb{--net:#1565D8;--netbg:rgba(24,119,242,.10)}
+  .card--gm{--net:#1558B0;--netbg:rgba(26,115,232,.10)}
+  .act{display:flex;align-items:center;gap:8px;background:var(--white);
+    border:1px solid var(--line);border-radius:14px;padding:10px 12px;
+    box-shadow:0 12px 30px rgba(35,41,96,.12)}
+  .act>svg{width:17px;height:17px;color:var(--royal);flex-shrink:0}
+  .act__bd{display:block;min-width:0;flex:1}
+  .act__bd b{display:block;font-family:var(--display);font-weight:800;font-size:12px;color:var(--navy);line-height:1.3}
+  .act__bd span{display:block;font-size:10.5px;color:var(--ink);line-height:1.35}
+  .act__ok{margin-left:auto;flex-shrink:0;color:var(--wa)}
+  .act__ok svg{width:16px;height:16px}
+  .card__tag{display:inline-flex;align-items:center;gap:5px;background:#E1F7EC;color:#126B41;
+    font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;
+    border-radius:999px;padding:4px 9px;margin-top:8px;opacity:0;animation:twTag 7s ease-out infinite both}
+  .card__tag svg{width:11px;height:11px}
 
-  .cv{display:flex;gap:9px;align-items:flex-start}
-  .cc__rep .cv{padding-left:22px}
-  .cc__dot{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--off);
-    display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:10px;color:var(--royal)}
-  .cc__rep .cc__dot{background:var(--royal);color:var(--white)}
-  .cc__bd{display:block;min-width:0}
-  /* sem isto o bloco encolhe ate a largura de 'tu.marca' e a linha da rede,
-     que e absoluta, fica sem espaco (a de Google My Business e a mais longa) */
-  .cc__post .cc__bd{flex:1}
-  .cc__nm{display:block;font-family:var(--display);font-weight:800;font-size:12px;color:var(--navy);line-height:1.3}
-  .cc__tx{display:block;font-size:13px;color:var(--ink);line-height:1.45}
-  .cc__tag{display:inline-flex;align-items:center;gap:5px;background:#E1F7EC;color:#126B41;
-    border-radius:var(--pill);padding:3px 9px;font-family:var(--display);font-weight:800;
-    font-size:9px;letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
+  /* resposta que se escreve em blocos, com "digitando" antes */
+  .tw>i{font-style:normal;opacity:0}
+  /* --- resposta escrita letra a letra (montado por JS; sem JS ou com
+         prefers-reduced-motion ficam os blocos <i> originais) --- */
+  .tw__s{white-space:pre-wrap}
+  .tw__c{display:none;width:2px;height:1.02em;margin-left:1px;background:currentColor;
+         vertical-align:-.16em;border-radius:1px}
+  .tw.is-typing .tw__c{display:inline-block;animation:twCaret .9s steps(1,end) infinite}
 
-  /* o cartao de acao agora e o variante (.cv--dm), nao o container (.cc__dm e o switcher) */
-  .cv--dm{
-    display:flex;align-items:center;gap:10px;background:var(--off);border:1px solid var(--line);
-    border-radius:14px;padding:10px 12px;
+  .tw>i:nth-of-type(1){animation:twA 7s linear infinite both}
+  .tw>i:nth-of-type(2){animation:twB 7s linear infinite both}
+  .tw>i:nth-of-type(3){animation:twC 7s linear infinite both}
+  .tw__d{position:absolute;left:0;top:5px;display:flex;gap:4px;font-weight:400;opacity:0;
+    animation:twD 7s linear infinite both}
+  .tw__d i{width:5px;height:5px;border-radius:50%;background:#C3CBE8;animation:twBounce .95s ease-in-out infinite}
+  .tw__d i:nth-child(2){animation-delay:.16s}
+  .tw__d i:nth-child(3){animation-delay:.32s}
+
+  @media (max-width:559px){
+
+    .card__tx{font-size:12.5px}
   }
-  .cv--dm>svg{width:17px;height:17px;color:var(--royal);flex-shrink:0}
-  .cv--dm b{font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--navy);display:block;line-height:1.3}
-  .cv--dm>span{display:block;min-width:0}
-  .cv--dm span span{display:block;font-size:11.5px;color:var(--ink);line-height:1.3}
-  .cc__ok{margin-left:auto;color:var(--wa);flex-shrink:0}
-  .cc__ok svg{width:16px;height:16px;color:var(--wa)}
-
 
   /* ---------- clientes ---------- */
   .clients{padding:0 0 12px;border-top:1px solid var(--line)}
@@ -353,25 +436,50 @@ fbq('track', 'PageView');
   .ticker:hover .ticker__logo{filter:none;opacity:1}
 
   /* ---------- beneficios (bento) ---------- */
-  .bento{display:grid;grid-template-columns:1fr;gap:18px;margin-top:52px}
+  .bento{display:grid;grid-template-columns:1fr;gap:18px;margin-top:38px}
   @media (min-width:900px){.bento{grid-template-columns:repeat(3,1fr);gap:22px}.bento__hero{grid-column:span 3}}
   .tile{
     position:relative;overflow:hidden;background:var(--white);border:1px solid var(--line);
     border-radius:var(--card);padding:34px 30px;
     transition:transform .3s cubic-bezier(.2,.9,.3,1),box-shadow .3s,border-color .3s;
   }
-  .tile:hover{transform:translateY(-7px);box-shadow:var(--sh-2);border-color:var(--lilac)}
+  /* ---- glow do card no hover ----
+     Duas camadas. O halo de FORA e box-shadow, nao pseudo-elemento: o .tile tem
+     overflow:hidden, entao qualquer filho com inset negativo seria recortado —
+     box-shadow nao e. O foco de DENTRO e um ::before que segue o cursor por duas
+     variaveis CSS; esse sim pode ser recortado, e ate melhor que seja. */
+  /* A cor do hover mora numa variavel so: trocar laranja <-> azul e mudar
+     --glow (e --glow2, a sombra de apoio). Nada mais precisa ser tocado.
+        laranja: 239,134,60  / apoio 239,134,60
+        azul   :  74,105,189 / apoio  35, 41,96   */
+  .tile{--glow:239,134,60; --glow2:214,106,36}
+  .tile:hover{
+    transform:translateY(-7px);border-color:rgba(var(--glow),.55);
+    box-shadow:0 0 0 1px rgba(var(--glow),.28),
+               0 18px 44px -14px rgba(var(--glow),.42),
+               0 30px 70px -30px rgba(var(--glow2),.34);
+  }
+  .tile::before{
+    content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:0;
+    background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),
+      rgba(var(--glow),.20) 0%, rgba(var(--glow),.10) 40%, rgba(var(--glow),0) 70%);
+    opacity:0;transition:opacity .35s ease;
+  }
+  .tile:hover::before{opacity:1}
+  .tile>*{position:relative;z-index:1}   /* o texto fica ACIMA dos dois brilhos */
   .tile__n{font-family:var(--accent);font-style:italic;font-weight:600;font-size:15px;color:var(--royal);display:block;margin-bottom:14px}
   .tile p{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.6vw,23px);line-height:1.26;letter-spacing:-.018em}
-  .tile::after{content:"";position:absolute;right:-46px;bottom:-46px;width:120px;height:120px;border-radius:var(--pill);background:var(--lilac-soft);opacity:0;transition:opacity .35s,transform .35s;transform:scale(.6)}
-  .tile:hover::after{opacity:.7;transform:scale(1)}
+  /* O brilho fixo do canto inferior direito saiu (era o antigo circulo lilas, que
+     eu tinha suavizado). Sobrou so o foco que SEGUE o cursor — duas luzes no mesmo
+     card competiam, e a parada nao dizia nada: acendia sempre no mesmo lugar. */
   .bento__hero{
     background:linear-gradient(120deg,var(--lilac-soft) 0%,#EAF0FF 55%,var(--white) 100%);
     display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:34px 30px;
   }
   @media (min-width:720px){.bento__hero{grid-template-columns:1.35fr .65fr;padding:42px 44px}}
   .bento__hero p{font-size:clamp(23px,2.5vw,34px);line-height:1.15;max-width:26ch}
-  .bento__hero::after{display:none}
+  /* no card ele aparece com a cauda inteira (no hero ela sai). Mesmo recorte
+     limpo do Victor; so o logo da Apple foi removido. */
   .mascot{width:min(250px,86%);height:auto;margin-inline:auto;filter:drop-shadow(0 24px 34px rgba(35,41,96,.24))}
 
   /* ---------- publico (editorial) ---------- */
@@ -399,7 +507,7 @@ fbq('track', 'PageView');
   .res .wrap{position:relative;z-index:1}
   .res__head{max-width:760px}
   .res h2{font-size:clamp(31px,3.9vw,50px)}
-  .stats{display:grid;grid-template-columns:1fr;gap:8px;margin:56px 0 30px}
+  .stats{display:grid;grid-template-columns:1fr;gap:8px;margin:40px 0 26px}
   @media (min-width:820px){.stats{grid-template-columns:repeat(3,1fr);gap:0}}
   .stat{padding:8px 4px 26px}
   @media (min-width:820px){.stat{padding:8px 34px 26px;border-left:1px solid var(--line)}.stat:first-child{border-left:0;padding-left:0}}
@@ -409,7 +517,7 @@ fbq('track', 'PageView');
   .note{font-size:14px;color:var(--ink);max-width:760px;line-height:1.6}
 
   /* ---------- por que (linha de argumentos, vocabulario proprio) ---------- */
-  .why__head{max-width:820px;margin-bottom:56px}
+  .why__head{max-width:820px;margin-bottom:40px}
   .why h2{font-size:clamp(30px,3.7vw,48px)}
   .why__grid{display:grid;grid-template-columns:1fr;gap:34px}
   @media (min-width:720px){.why__grid{grid-template-columns:repeat(2,1fr);gap:40px 44px}}
@@ -424,7 +532,7 @@ fbq('track', 'PageView');
   .why__item p{font-size:17px;color:var(--ink);line-height:1.55}
 
   /* ---------- CTA final (borda superior em arco) ---------- */
-  .cta{position:relative;background:var(--navy);color:var(--white);border-radius:clamp(40px,7vw,90px) clamp(40px,7vw,90px) 0 0;overflow:hidden;margin-top:-1px}
+  .cta{position:relative;background:var(--navy-deep);color:var(--white);border-radius:clamp(40px,7vw,90px) clamp(40px,7vw,90px) 0 0;overflow:hidden;margin-top:-1px}
   .cta__glow{position:absolute;width:700px;height:700px;border-radius:50%;top:-330px;left:-190px;background:radial-gradient(circle,rgba(74,105,189,.6) 0%,rgba(74,105,189,0) 68%)}
   .cta__pill{position:absolute;width:88px;height:290px;border-radius:var(--pill);background:rgba(193,199,255,.1);bottom:-130px;right:8%}
   .cta__pill--orange{position:absolute;width:74px;height:240px;border-radius:var(--pill);border:6px solid var(--orange);background:none;bottom:-104px;left:7%;opacity:.3}
@@ -463,17 +571,64 @@ fbq('track', 'PageView');
   @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
   @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @keyframes netOn{0%,20%{background:var(--bt);color:var(--b)}25%,100%{background:transparent;color:#9AA3C4}}
-  @keyframes ctxOn{0%,22%{opacity:1}25%,100%{opacity:0}}
-  @keyframes swPergunta{0%{opacity:0;transform:translateY(6px)}4%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
-  @keyframes swResposta{0%,7%{opacity:0;transform:translateY(6px)}11%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
-  @keyframes swAcao{0%,14%{opacity:0;transform:translateY(6px)}18%,22%{opacity:1;transform:none}25%,100%{opacity:0}}
+  /* Ciclo de 28s = 4 mensagens de 7s. Dentro de cada batida:
+     0,30s o comentario sai de dentro da laptop e sobe -> 1,20s o Samir comeca a
+     teclar -> 1,25s a resposta sai da laptop com o "digitando" -> 2,35/2,85/3,35s
+     o texto se escreve -> 3,70s o selo -> 3,80s as maos param -> os dois cartoes
+     sobem e somem -> proxima mensagem. */
+  /* Ciclo de 28s = 4 mensagens de 7s. Dentro de cada batida:
+     0,35s a pergunta sai de tras da laptop e desliza pro lado -> 1,30s a resposta
+     aparece E o Samir comeca a "escrever" (balanco dos ombros) -> 2,55/3,05/3,55s
+     o texto se escreve -> 3,90s o selo -> 4,05s o balanco para -> os dois cartoes
+     recolhem. O balanco comeca no mesmo instante que a resposta, de proposito. */
+  /* Ciclo de 28s = 4 mensagens de 7s. Dentro de cada batida:
+     0,30s o comentario sai da tampa -> 1,20s os dedos comecam -> 1,25s a resposta
+     sai -> 2,75/3,25/3,75s o texto se escreve -> 4,05s sai o aviso de DM ->
+     4,25s os dedos param -> os tres cartoes recolhem. */
+  /* as maos batem alternadas dentro da janela 17,1%-60,7% da batida de 7s;
+     fora dela ficam exatamente em repouso */
+  /* cada grupo de dedos bate na sua vez, dentro de 17,1%-60,7% da batida de 7s */
+  /* Um dedo por camada. Ciclo de 28s (nao 7s) de proposito: cada uma das 4
+     mensagens tem seu proprio ritmo de teclas, entao a digitacao nao se repete
+     identica a cada batida. */
+  @keyframes bubIn{
+    0%,1.07%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.42) rotate(4deg)}
+    2.2%{opacity:.55}
+    5.18%,21.6%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}
+    24.2%{opacity:0;transform:translate(0,-30px) scale(.96)}
+    24.6%,100%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.42) rotate(4deg)}}
+  @keyframes bubOut{
+    0%,4.46%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.42) rotate(-4deg)}
+    5.6%{opacity:.55}
+    8.21%,21.6%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}
+    24.2%{opacity:0;transform:translate(0,-34px) scale(.96)}
+    24.6%,100%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.42) rotate(-4deg)}}
+  @keyframes bubAct{
+    0%,14.46%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.5) rotate(-3deg)}
+    15.2%{opacity:.6}
+    16.25%,21.6%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}
+    24.2%{opacity:0;transform:translate(0,-26px) scale(.96)}
+    24.6%,100%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.5) rotate(-3deg)}}
+  /* texto da resposta em blocos (ciclo de 7s; 28 = 4x7, sempre em fase) */
+  @keyframes twD{0%,26%{opacity:0}28%,31%{opacity:1}33%,100%{opacity:0}}
+  @keyframes twA{0%,38%{opacity:0}40%,96%{opacity:1}97%,100%{opacity:0}}
+  @keyframes twB{0%,45%{opacity:0}47%,96%{opacity:1}97%,100%{opacity:0}}
+  @keyframes twC{0%,52%{opacity:0}54%,96%{opacity:1}97%,100%{opacity:0}}
+  @keyframes twTag{0%,57%{opacity:0;transform:scale(.9)}59.5%,96%{opacity:1;transform:none}97%,100%{opacity:0}}
+  @keyframes markArrow{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+  @keyframes nameIn{from{opacity:0;transform:translateY(8px) scale(.94)}to{opacity:1;transform:none}}
+  @keyframes twCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes twBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-3px);opacity:1}}
+  /* balanco lento do conjunto: inclina pra frente ao comecar a digitar e volta */
+  /* tremor curto, ~4 Hz, so na janela em que ele digita — le como esforco, nao
+     como deslocamento, e como e o conjunto inteiro nao ha nada que possa duplicar */
+  /* pisca duas vezes por batida: ao parar de digitar e no meio da espera */
 
   .anim{opacity:0;animation:rise .8s cubic-bezier(.2,.9,.3,1) both}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
   .d4{animation-delay:.35s}.d5{animation-delay:.45s}
 
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.9,.3,1)}
+  .reveal{opacity:0;transform:translate(13.5px,30.0px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.9,.3,1)}
   .reveal.on{opacity:1;transform:none}
   .bento .reveal:nth-child(2){transition-delay:.08s}
   .bento .reveal:nth-child(3){transition-delay:.16s}
@@ -486,17 +641,136 @@ fbq('track', 'PageView');
   .stats .reveal:nth-child(2){transition-delay:.12s}
   .stats .reveal:nth-child(3){transition-delay:.24s}
 
+  /* ================= hero em azul marinho =================
+     O fundo passou a ser o --navy da marca. Duas consequencias que mandaram no
+     resto: (1) o moletom do Samir e quase esse mesmo azul, entao ele sumiria no
+     fundo — por isso o halo claro atras dele, que devolve a silhueta; (2) o texto
+     inverte, e o unico jeito de "asistente personalizado" continuar sendo o ponto
+     mais forte da tela e ele ficar BRANCO com o sublinhado laranja, enquanto o
+     resto da H1 fica em lilas. */
+  .hero{background:var(--navy-deep);color:var(--white)}
+  .hero__mesh{
+    width:1040px;height:1040px;right:-340px;top:-500px;
+    background:radial-gradient(circle,rgba(74,105,189,.55) 0%,rgba(74,105,189,.22) 44%,rgba(35,41,96,0) 70%);
+  }
+  /* segundo foco de luz, atras do Samir: sem ele o moletom marinho encosta no
+     fundo marinho e a silhueta some */
+  .hero__glow{
+    position:absolute;z-index:0;pointer-events:none;
+    width:760px;height:760px;right:-60px;bottom:-190px;border-radius:50%;
+    background:radial-gradient(circle,rgba(215,226,255,.20) 0%,rgba(193,199,255,.10) 42%,rgba(35,41,96,0) 70%);
+  }
+  .hero .shape--pill{background:rgba(215,226,255,.16)}
+  .hero .shape--ring{border-color:rgba(239,134,60,.62)}
+  .hero .shape--orange{opacity:.5}
+  .hero .eyebrow{background:rgba(255,255,255,.10);color:var(--lilac);border:1px solid rgba(255,255,255,.16)}
+  .hero h1{color:var(--lilac)}
+  .hero .eyebrow i{background:var(--orange)}
+  .hero h1 .mark{color:var(--white);
+    background-image:linear-gradient(var(--orange),var(--orange));background-position:0 94%}
+  .hero .hero__lead{color:rgba(255,255,255,.80)}
+  .hero .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--white);
+    box-shadow:none;backdrop-filter:blur(2px)}
+  .hero .chip svg [stroke]{stroke:var(--lilac)!important}
+  .hero .chip svg [fill]:not([fill="none"]){fill:var(--lilac)!important}
+  .hero .kvname{background:var(--white);color:var(--navy)}
+
+
+
+  /* ---- cursor fluido -------------------------------------------------
+     Mecanica copiada da referencia (nexstudio.tech, inspecionada no DOM): um
+     elemento fixo que (1) persegue o ponteiro com atraso, (2) ROTACIONA pro lado
+     pra onde voce esta indo e (3) ESTICA proporcional a velocidade. O cursor
+     nativo fica escondido.
+     Duas diferencas deliberadas: a forma e uma gota laranja da marca em vez do
+     simbolo deles, e nao uso mix-blend-mode:difference — sobre a nossa paleta o
+     difference devolve cores estranhas (o marinho vira amarelo palido). O laranja
+     ja tem contraste nos dois fundos, entao nao precisa de truque.
+     Campo de texto e excecao: ali o cursor do sistema volta, senao voce perde o
+     caret e nao sabe onde vai escrever. */
+  @media (hover:hover) and (pointer:fine){
+    body{cursor:none}
+    a,button,summary,[role="button"],.tile,.aud__item{cursor:none}
+    input,textarea,select,[contenteditable]{cursor:auto}
+    .fcur{
+      position:fixed;left:0;top:0;width:0;height:0;z-index:2000;pointer-events:none;
+      opacity:0;transition:opacity .25s ease;will-change:transform;
+      color:var(--navy-deep);                 /* bloco claro */
+    }
+    .fcur[data-dark="true"]{color:var(--orange)}   /* bloco azul */
+    .fcur svg path{transition:fill .22s ease}
+    .fcur[data-on="true"]{opacity:1}
+    .fcur__b{
+      position:absolute;display:block;width:32px;height:23px;
+      transform:translate(-94%,-50%);transform-origin:94% 50%;
+      transition:width .22s cubic-bezier(.2,.9,.3,1),height .22s cubic-bezier(.2,.9,.3,1);
+    }
+    .fcur[data-hot="true"] .fcur__b{width:44px;height:32px}
+    .fcur__b svg{display:block;width:100%;height:100%}
+  }
+
+  /* ================= movimento de apoio =================
+     Regra que segui: nada disso pode competir com o hero. Sao ciclos longos
+     (11s a 26s), amplitudes de poucos pixels e so em transform/opacity — tudo
+     composto na GPU, zero layout por frame. Periodos primos entre si de
+     proposito: se batessem, as formas pulsariam juntas e viraria "pagina que
+     respira", que e o oposto de discreto. */
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-22px,0) rotate(2.5deg)}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(14px,16px,0) rotate(-3deg)}}
+  @keyframes floatC{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-10px,-14px,0) scale(1.07)}}
+  @keyframes driftRing{0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+                        50%{transform:translate3d(-16px,-20px,0) rotate(-8deg) scale(1.05)}}
+  @keyframes glowPulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.045)}}
+  @keyframes sheen{0%{transform:translateX(-140%) skewX(-18deg)}55%,100%{transform:translateX(320%) skewX(-18deg)}}
+
+  .shape--pill  {animation:floatA 17s ease-in-out infinite}
+  .shape--ring  {animation:driftRing 23s ease-in-out infinite}
+  .shape--dot   {animation:floatC 11s ease-in-out infinite}
+  .shape--orange{animation:floatB 19s ease-in-out infinite}
+  .res__pill    {animation:floatA 21s ease-in-out infinite}
+  .cta__pill    {animation:floatB 26s ease-in-out infinite}
+  .cta__pill--orange{animation:driftRing 18s ease-in-out infinite}
+  .hero__mesh   {animation:glowPulse 14s ease-in-out infinite}
+  .hero__glow   {animation:glowPulse 19s ease-in-out infinite reverse}
+
+  /* brilho que atravessa o botao principal de tempos em tempos — o CTA e o
+     ponto focal da pagina e era o unico elemento sem nenhum movimento proprio */
+  .btn--wa{position:relative;overflow:hidden}
+  .btn--wa::after{
+    content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:38%;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));
+    animation:sheen 6.5s 2s cubic-bezier(.3,0,.2,1) infinite;pointer-events:none}
+  .btn--wa:hover::after{animation-play-state:paused}
+
+  /* numero do tile: sobe um pouco quando o cartao entra na tela */
+  .tile__n{transition:transform .6s cubic-bezier(.2,.9,.3,1),color .6s ease}
+  .tile.on .tile__n{transform:translateY(-3px)}
+  .tile:hover .tile__n{color:var(--orange)}
+
+  /* o numero das estatisticas ganha o sublinhado da marca ao entrar */
+  .stat__n{background-image:linear-gradient(var(--peach),var(--peach));background-repeat:no-repeat;
+    background-position:0 88%;background-size:0% .12em;transition:background-size .9s .25s cubic-bezier(.2,.9,.3,1)}
+  .stat.on .stat__n,.reveal.on .stat__n{background-size:100% .12em}
+
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
+    .nav__menu a::after,.nav__burger span{transition:none}
     .anim,.reveal{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
     .hero h1 .mark{animation:none!important;background-size:100% .18em}
+    .hero h1 .mark::after,.kvname{animation:none!important;opacity:1;transform:none}
     .ticker__track,.eyebrow i,.dots i{animation:none!important}
-    .cc__net{animation:none!important}
-    .cc__net:nth-child(1){background:var(--bt);color:var(--b)}
-    /* sem movimento: mostra so o 1o variante de cada switcher (Instagram) */
-    .sw>*{animation:none!important;opacity:0}
-    .sw>*:nth-child(1){opacity:1}
+    .shape,.res__pill,.cta__pill,.cta__pill--orange,.hero__mesh,.hero__glow,.btn--wa::after{animation:none!important}
+    .stat__n{background-size:100% .12em}
+    /* sem movimento: a cena vira um still — 1a variante (Instagram), conversa completa */
+    .bub>*{animation:none!important;opacity:0;transform:none!important}
+    .bub>*:nth-child(1){opacity:1}
+    .tw>i,.tw__d,.card__tag{animation:none!important}
+    .tw>i{opacity:1}.tw__d{opacity:0}.card__tag{opacity:1;transform:none}
+    body,a,button,.tile,.aud__item{cursor:auto}
+    .fcur{display:none}
+    .samir__gl{display:none}
     .btn:hover,.tile:hover,.aud__item:hover{transform:none;padding-left:6px}
+    .tile::before{display:none}
   }
 
   /* pisos tipograficos mobile (GUIDELINES parag. 20) */
@@ -529,24 +803,35 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
     <a class="nav__logo" href="https://home.cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
       <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="Cxpress" width="140" height="34">
     </a>
-    <a class="btn btn--wa" href="#cta-final">Agenda una demostración gratuita</a>
+    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__menu" id="navmenu">
+      <li><a href="#que-hace">Qué hace por ti</a></li>
+      <li><a href="#para-quien">Para quién es</a></li>
+      <li><a href="#la-prueba">La prueba</a></li>
+      <li><a href="#la-diferencia">La diferencia</a></li>
+    </ul>
+    <a class="btn btn--wa" href="#cta-final">Agenda una demo</a>
   </nav>
 </header>
 
 <main id="main">
 
   <!-- HERO -->
+  <div class="fcur" data-on="false" data-hot="false" aria-hidden="true"><span class="fcur__b"><svg viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg"><path d="M39.44 15.22 Q41.50 16.00 39.44 16.78 L5.90 29.50 Q3.00 30.60 4.82 28.09 L12.60 17.38 Q13.60 16.00 12.60 14.62 L4.82 3.91 Q3.00 1.40 5.90 2.50 Z" fill="currentColor" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round" paint-order="stroke"/></svg></span></div>
   <section class="hero" aria-labelledby="hero-title">
     <span class="hero__mesh" aria-hidden="true"></span>
     <span class="shape shape--pill" data-par="0.16" aria-hidden="true"></span>
     <span class="shape shape--ring" data-par="-0.12" aria-hidden="true"></span>
     <span class="shape shape--dot" data-par="0.22" aria-hidden="true"></span>
     <span class="shape shape--orange" data-par="-0.1" aria-hidden="true"></span>
+    <span class="hero__glow" aria-hidden="true"></span>
 
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <span class="eyebrow anim d1"><i aria-hidden="true"></i>Agente para Engagement</span>
-        <h1 id="hero-title" class="anim d2">Tu asistente personalizado de <span class="mark">atención al cliente</span></h1>
+        <h1 id="hero-title" class="anim d2">Tu <span class="mark">asistente personalizado</span> de atención al cliente</h1>
         <p class="hero__lead anim d3">Conecta con tu comunidad y transforma engagement en ventas: el agente responde comentarios y mensajes en Instagram, TikTok, Facebook y Google My Business.</p>
         <a class="btn btn--wa anim d4" href="#cta-final">
           Agenda una demo
@@ -561,58 +846,36 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
       </div>
 
       <div class="hero__art">
-        <div class="kvframe anim d3">
-          <div class="kvframe__in" role="img" aria-label="El Agente Concierge responde un comentario en la publicación de una marca y le envía un mensaje directo, en Instagram, TikTok, Facebook y Google My Business">
-            <div class="cc__nets" aria-hidden="true">
-              <span class="cc__net cc__net--ig"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg></span>
-              <span class="cc__net cc__net--tt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4c.6 2.4 2.2 3.8 4.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="cc__net cc__net--fb"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 3h-3a5 5 0 0 0-5 5v3H6v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="cc__net cc__net--gm"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5 5.6 5h12.8L20 9.5" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M4 9.5a2.6 2.6 0 0 0 5.3 0 2.6 2.6 0 0 0 5.4 0 2.6 2.6 0 0 0 5.3 0" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M5.6 11.8V19h12.8v-7.2M9.6 19v-4.2h4.8V19" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></span>
-              <span>respuestas automáticas</span>
-            </div>
+       <div class="kvscene anim d3" role="img" aria-label="Samir, el agente de Cxpress, responde desde su laptop los comentarios y mensajes que llegan de Instagram, TikTok, Facebook y Google My Business: entra la pregunta de una persona, sale la respuesta automática de la marca y se confirma el mensaje directo enviado">
 
-            <div class="cc__post" aria-hidden="true">
-              <span class="cc__av">M</span>
-              <span class="cc__bd">
-                <span class="cc__who">tu.marca</span>
-                <span class="cc__ctx sw">
-                  <span class="cc__ctxi"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg><b>Instagram</b> · Publicación</span>
-                  <span class="cc__ctxi"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4c.6 2.4 2.2 3.8 4.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>TikTok</b> · Video</span>
-                  <span class="cc__ctxi"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 3h-3a5 5 0 0 0-5 5v3H6v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Facebook</b> · Publicación</span>
-                  <span class="cc__ctxi"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5 5.6 5h12.8L20 9.5" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M4 9.5a2.6 2.6 0 0 0 5.3 0 2.6 2.6 0 0 0 5.4 0 2.6 2.6 0 0 0 5.3 0" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M5.6 11.8V19h12.8v-7.2M9.6 19v-4.2h4.8V19" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><b>Google My Business</b> · Reseña</span>
-                </span>
-              </span>
-            </div>
-
-            <div class="cc__media sw" aria-hidden="true">
-              <div class="mk mk--ig"><span class="mk__v"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="1.8" fill="currentColor"/><path d="m4 18 5-4.5 4 3.2 3-2.4 4 3.7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mk__t"><b>Publicación en el feed</b><span>1.248 me gusta &middot; 96 comentarios</span><span class="mk__ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M20 12a7 7 0 0 1-7 7H8l-4 3v-4.6A7 7 0 0 1 8 5h5a7 7 0 0 1 7 7Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M21 4 3 11l7 2.5L13 21l8-17Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></span></span></div>
-              <div class="mk mk--tt"><span class="mk__v"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6.5 18 12l-9 5.5z" fill="currentColor"/></svg></span><span class="mk__t"><b>Reel de 18 segundos</b><span>12,4 mil reproducciones</span><span class="mk__ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M20 12a7 7 0 0 1-7 7H8l-4 3v-4.6A7 7 0 0 1 8 5h5a7 7 0 0 1 7 7Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M21 4 3 11l7 2.5L13 21l8-17Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></span></span></div>
-              <div class="mk mk--fb"><span class="mk__v"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="1.8" fill="currentColor"/><path d="m4 18 5-4.5 4 3.2 3-2.4 4 3.7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mk__t"><b>Publicación en la página</b><span>320 reacciones &middot; 41 comentarios</span><span class="mk__ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M20 12a7 7 0 0 1-7 7H8l-4 3v-4.6A7 7 0 0 1 8 5h5a7 7 0 0 1 7 7Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><svg viewBox="0 0 24 24" fill="none"><path d="M21 4 3 11l7 2.5L13 21l8-17Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></span></span></div>
-              <div class="mk mk--gm"><span class="mk__v"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5 5.6 5h12.8L20 9.5" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M4 9.5a2.6 2.6 0 0 0 5.3 0 2.6 2.6 0 0 0 5.4 0 2.6 2.6 0 0 0 5.3 0" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M5.6 11.8V19h12.8v-7.2M9.6 19v-4.2h4.8V19" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></span><span class="mk__t"><span class="mk__stars"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.6 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7L6.9 19l1-5.6-4-4 5.6-.8z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.6 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7L6.9 19l1-5.6-4-4 5.6-.8z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.6 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7L6.9 19l1-5.6-4-4 5.6-.8z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.6 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7L6.9 19l1-5.6-4-4 5.6-.8z"/></svg><svg class="off" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.6 2.5 5.1 5.6.8-4 4 1 5.6-5.1-2.7L6.9 19l1-5.6-4-4 5.6-.8z"/></svg></span><b>4,8 de 5 &middot; 214 reseñas</b><span>Perfil de la empresa</span></span></div>
-            </div>
-
-            <div class="cc__cmt sw" aria-hidden="true">
-              <div class="cv"><span class="cc__dot">L</span><span class="cc__bd"><span class="cc__nm">lucia.mrn</span><span class="cc__tx">¿Hacen envíos a todo el país?</span></span></div>
-              <div class="cv"><span class="cc__dot">A</span><span class="cc__bd"><span class="cc__nm">andrea.gz</span><span class="cc__tx">¿Dónde compro lo que sale en el video?</span></span></div>
-              <div class="cv"><span class="cc__dot">C</span><span class="cc__bd"><span class="cc__nm">carlos.rm</span><span class="cc__tx">¿Les queda stock del modelo azul?</span></span></div>
-              <div class="cv"><span class="cc__dot">L</span><span class="cc__bd"><span class="cc__nm">Lucía M.</span><span class="cc__tx">Buena atención, me resolvieron al momento.</span></span></div>
-            </div>
-
-            <div class="cc__rep sw" aria-hidden="true">
-              <div class="cv"><span class="cc__dot">C</span><span class="cc__bd"><span class="cc__nm">tu.marca</span><span class="cc__tx">Sí, a todo el país. Te paso los costos por privado.</span><span class="cc__tag">Respuesta automática</span></span></div>
-              <div class="cv"><span class="cc__dot">C</span><span class="cc__bd"><span class="cc__nm">tu.marca</span><span class="cc__tx">Está disponible en la tienda. Te mando el enlace.</span><span class="cc__tag">Respuesta automática</span></span></div>
-              <div class="cv"><span class="cc__dot">C</span><span class="cc__bd"><span class="cc__nm">tu.marca</span><span class="cc__tx">Sí, quedan unidades. Te escribo para reservarlo.</span><span class="cc__tag">Respuesta automática</span></span></div>
-              <div class="cv"><span class="cc__dot">C</span><span class="cc__bd"><span class="cc__nm">tu.marca</span><span class="cc__tx">¡Gracias por tu reseña, Lucía! Un gusto ayudarte.</span><span class="cc__tag">Respuesta automática</span></span></div>
-            </div>
-
-            <div class="cc__dm sw" aria-hidden="true">
-              <div class="cv cv--dm"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span><b>Mensaje directo enviado</b><span>Con los costos de envío y el catálogo</span></span><span class="cc__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-              <div class="cv cv--dm"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span><b>Mensaje directo enviado</b><span>Con el enlace al producto del video</span></span><span class="cc__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-              <div class="cv cv--dm"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span><b>Mensaje directo enviado</b><span>Con la reserva y las formas de pago</span></span><span class="cc__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-              <div class="cv cv--dm"><svg viewBox="0 0 24 24" fill="none"><path d="M9 7 4 12l5 5M4 12h9a7 7 0 0 1 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Respuesta publicada</b><span>Visible en el perfil de la empresa</span></span><span class="cc__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-            </div>
-          </div>
+        <div class="bub bub--in" aria-hidden="true">
+            <div class="card card--ig"><span class="card__av">L</span><span class="card__bd"><span class="card__top"><span class="card__nm">lucia.mrn</span><span class="card__net"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>Instagram</span></span><span class="card__tx">¿Hacen envíos a todo el país?</span></span></div>
+            <div class="card card--tt"><span class="card__av">A</span><span class="card__bd"><span class="card__top"><span class="card__nm">andrea.gz</span><span class="card__net"><svg viewBox="0 0 24 24" fill="none"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4c.6 2.4 2.2 3.8 4.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>TikTok</span></span><span class="card__tx">¿Dónde compro lo que sale en el video?</span></span></div>
+            <div class="card card--fb"><span class="card__av">C</span><span class="card__bd"><span class="card__top"><span class="card__nm">carlos.rm</span><span class="card__net"><svg viewBox="0 0 24 24" fill="none"><path d="M17 3h-3a5 5 0 0 0-5 5v3H6v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Facebook</span></span><span class="card__tx">¿Les queda stock del modelo azul?</span></span></div>
+            <div class="card card--gm"><span class="card__av">L</span><span class="card__bd"><span class="card__top"><span class="card__nm">Lucía M.</span><span class="card__net"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9.5 5.6 5h12.8L20 9.5" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M4 9.5a2.6 2.6 0 0 0 5.3 0 2.6 2.6 0 0 0 5.4 0 2.6 2.6 0 0 0 5.3 0" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M5.6 11.8V19h12.8v-7.2M9.6 19v-4.2h4.8V19" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>Google My Business</span></span><span class="card__tx">Buena atención, me resolvieron al momento.</span></span></div>
         </div>
+        <div class="bub bub--out" aria-hidden="true">
+            <div class="card card--out card--ig"><span class="card__av">C</span><span class="card__bd"><span class="card__top"><span class="card__nm">tu.marca</span></span><span class="card__tx tw"><b class="tw__d" aria-hidden="true"><i></i><i></i><i></i></b><i>Sí, a todo el país.</i> <i>Te paso los costos</i> <i>por privado.</i></span><span class="card__tag"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Respuesta automática</span></span></div>
+            <div class="card card--out card--tt"><span class="card__av">C</span><span class="card__bd"><span class="card__top"><span class="card__nm">tu.marca</span></span><span class="card__tx tw"><b class="tw__d" aria-hidden="true"><i></i><i></i><i></i></b><i>Está disponible</i> <i>en la tienda.</i> <i>Te mando el enlace.</i></span><span class="card__tag"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Respuesta automática</span></span></div>
+            <div class="card card--out card--fb"><span class="card__av">C</span><span class="card__bd"><span class="card__top"><span class="card__nm">tu.marca</span></span><span class="card__tx tw"><b class="tw__d" aria-hidden="true"><i></i><i></i><i></i></b><i>Sí, quedan unidades.</i> <i>Te escribo</i> <i>para reservarlo.</i></span><span class="card__tag"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Respuesta automática</span></span></div>
+            <div class="card card--out card--gm"><span class="card__av">C</span><span class="card__bd"><span class="card__top"><span class="card__nm">tu.marca</span></span><span class="card__tx tw"><b class="tw__d" aria-hidden="true"><i></i><i></i><i></i></b><i>¡Gracias por tu reseña, Lucía!</i> <i>Un gusto</i> <i>ayudarte.</i></span><span class="card__tag"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Respuesta automática</span></span></div>
+        </div>
+        <div class="bub bub--act" aria-hidden="true">
+            <div class="act"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="act__bd"><b>Mensaje directo enviado</b><span>Con los costos de envío y el catálogo</span></span><span class="act__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="act"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="act__bd"><b>Mensaje directo enviado</b><span>Con el enlace al producto del video</span></span><span class="act__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="act"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="act__bd"><b>Mensaje directo enviado</b><span>Con la reserva y las formas de pago</span></span><span class="act__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="act"><svg viewBox="0 0 24 24" fill="none"><path d="M9 7 4 12l5 5M4 12h9a7 7 0 0 1 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="act__bd"><b>Respuesta publicada</b><span>Visible en el perfil de la empresa</span></span><span class="act__ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        </div>
+
+        <div class="samir-in" aria-hidden="true">
+         <span class="kvname" aria-hidden="true"><img class="kvname__ic" src="./assets/samir/samir-face.webp" alt="" width="132" height="132" decoding="async"><b class="kvname__t">Samir</b></span>
+         <div class="samir" id="samirScene">
+          <img class="samir__still" src="./assets/samir/samir-hero.webp" alt="" width="889" height="835" decoding="sync" fetchpriority="high">
+          <canvas class="samir__gl" id="samirGL" width="1778" height="1670"></canvas>
+         </div>
+        </div>
+        </div>
+       </div>
       </div>
     </div>
   </section>
@@ -661,7 +924,7 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
   </div>
 
   <!-- BENEFICIOS -->
-  <section class="benefits">
+  <section class="benefits" id="que-hace">
     <div class="wrap">
       <div class="reveal" style="max-width:720px">
         <span class="kicker">Qué hace por ti</span>
@@ -673,7 +936,7 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
             <span class="tile__n">01</span>
             <p>Identifica intención de compra, nutre la relación con tus clientes y aumenta tus ventas</p>
           </div>
-          <img class="mascot" src="./assets/samir-laptop.png" alt="" aria-hidden="true" width="620" height="473" loading="lazy">
+          <img class="mascot" src="./assets/samir/samir-card.webp" alt="" aria-hidden="true" width="1087" height="832" loading="lazy">
         </article>
         <article class="tile reveal">
           <span class="tile__n">02</span>
@@ -692,7 +955,7 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
   </section>
 
   <!-- PARA QUIEN -->
-  <section class="aud">
+  <section class="aud" id="para-quien">
     <span class="aud__arc" aria-hidden="true"></span>
     <div class="wrap aud__grid">
       <div class="reveal">
@@ -711,7 +974,7 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
   </section>
 
   <!-- RESULTADOS -->
-  <section class="res">
+  <section class="res" id="la-prueba">
     <span class="res__ring" aria-hidden="true"></span>
     <span class="res__pill" aria-hidden="true"></span>
     <div class="wrap">
@@ -741,7 +1004,7 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
   </section>
 
   <!-- POR QUE -->
-  <section class="why">
+  <section class="why" id="la-diferencia">
     <div class="wrap">
       <div class="why__head reveal">
         <span class="kicker">La diferencia</span>
@@ -814,6 +1077,421 @@ src="https://www.facebook.com/tr?id=1484678896147110&amp;ev=PageView&amp;noscrip
 <script>
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+
+
+
+
+
+    /* Cursor fluido. A rotacao vem do vetor de ATRASO (alvo - posicao atual), que
+       e proporcional a velocidade: e o mesmo vetor que da a direcao e a forca da
+       esticada, entao nao preciso derivar velocidade por tempo nem suavizar ruido
+       de ponteiro. Angulo so atualiza acima de um limiar, senao o cursor gira
+       sozinho quando voce para. */
+    (function(){
+      var cur=document.querySelector('.fcur');
+      if(!cur||reduce||!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+      var body=cur.querySelector('.fcur__b');
+      var tx=0,ty=0,x=0,y=0,ang=0,on=false,down=false,started=false,lastDark=null;
+      function frame(){
+        requestAnimationFrame(frame);
+        var dx=tx-x, dy=ty-y;
+        x+=dx*0.19; y+=dy*0.19;
+        var sp=Math.sqrt(dx*dx+dy*dy);
+        if(sp>1.1) ang=Math.atan2(dy,dx)*180/Math.PI;
+        /* sem esticada: a proporcao nunca muda. Fica o atraso (que da a sensacao
+           de peso) e a rotacao (que da a direcao). O unico scale que sobrou e o do
+           clique, e e UNIFORME — nao deforma. */
+        cur.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+ang.toFixed(1)+'deg)';
+        body.style.transform='translate(-94%,-50%) scale('+(down?0.84:1)+')';
+      }
+      document.addEventListener('pointermove',function(e){
+        if(e.pointerType==='touch') return;
+        tx=e.clientX; ty=e.clientY;
+        if(!started){ started=true; x=tx; y=ty; frame(); }
+        var el=e.target;
+        var field=!!(el&&el.closest&&el.closest('input,textarea,select,[contenteditable]'));
+        var hot=!field&&!!(el&&el.closest&&el.closest('a,button,summary,[role="button"],.tile,.aud__item'));
+        var want=!field;
+        if(want!==on){ on=want; cur.dataset.on=on?'true':'false'; }
+        cur.dataset.hot=hot?'true':'false';
+        /* laranja sobre bloco azul, marinho sobre claro — quem decide e o
+           elemento embaixo do ponteiro, nao o scroll */
+        var dk=!!(el&&el.closest&&el.closest('.hero,.cta'));
+        if(dk!==lastDark){ lastDark=dk; cur.dataset.dark=dk?'true':'false'; }
+      },{passive:true});
+      document.addEventListener('pointerdown',function(){ down=true; },{passive:true});
+      document.addEventListener('pointerup',function(){ down=false; },{passive:true});
+      document.addEventListener('pointerleave',function(){ cur.dataset.on='false'; on=false; });
+      window.addEventListener('blur',function(){ cur.dataset.on='false'; on=false; });
+    })();
+
+
+
+    /* ---- menu do header ----
+       Duas coisas: o painel no mobile (com Escape, clique fora e fechar ao
+       escolher) e o scroll-spy, que marca a secao em que voce esta. O spy usa
+       IntersectionObserver com rootMargin puxando o topo pra baixo da altura do
+       header — senao a secao "entra" atras dele e a marcacao adianta. */
+    (function(){
+      var burger=document.querySelector('.nav__burger');
+      var menu=document.getElementById('navmenu');
+      if(!burger||!menu) return;
+      function setOpen(v){
+        burger.setAttribute('aria-expanded', v?'true':'false');
+        burger.setAttribute('aria-label', v?'Cerrar menú':'Abrir menú');
+        menu.classList.toggle('is-open', v);
+      }
+      burger.addEventListener('click',function(){
+        setOpen(burger.getAttribute('aria-expanded')!=='true');
+      });
+      menu.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'&&burger.getAttribute('aria-expanded')==='true'){ setOpen(false); burger.focus(); }
+      });
+      document.addEventListener('click',function(e){
+        if(burger.getAttribute('aria-expanded')!=='true') return;
+        if(!e.target.closest('#navmenu')&&!e.target.closest('.nav__burger')) setOpen(false);
+      });
+      window.addEventListener('resize',function(){ if(window.innerWidth>=1040) setOpen(false); });
+
+      var links=[].slice.call(menu.querySelectorAll('a'));
+      var map={};
+      var secs=links.map(function(a){
+        var el=document.querySelector(a.getAttribute('href'));
+        if(el) map[el.id]=a;
+        return el;
+      }).filter(Boolean);
+      if(!secs.length||!('IntersectionObserver' in window)) return;
+      var vis={};
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(en){ vis[en.target.id]=en.isIntersecting?en.intersectionRatio:0; });
+        var best=null,bv=0;
+        Object.keys(vis).forEach(function(k){ if(vis[k]>bv){ bv=vis[k]; best=k; } });
+        links.forEach(function(a){ a.removeAttribute('aria-current'); });
+        if(best&&map[best]) map[best].setAttribute('aria-current','true');
+      },{rootMargin:'-86px 0px -55% 0px', threshold:[0,.15,.35,.6,1]});
+      secs.forEach(function(el){ io.observe(el); });
+    })();
+
+    /* foco do card segue o cursor: so escreve duas variaveis CSS no proprio card */
+    (function(){
+      var tiles=[].slice.call(document.querySelectorAll('.tile'));
+      if(!tiles.length||reduce) return;
+      tiles.forEach(function(t){
+        t.addEventListener('pointermove',function(e){
+          var r=t.getBoundingClientRect();
+          t.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+          t.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+        },{passive:true});
+      });
+    })();
+
+    /* ============ resposta escrita letra a letra + som de tecla ==============
+       Antes o texto aparecia em 3 blocos. Agora sai caractere a caractere na
+       MESMA janela em que os dedos do Samir digitam (2,35s a 4,15s do beat de
+       7s), no mesmo relogio dos cartoes — document.timeline.
+       Se o JS nao roda, ou com prefers-reduced-motion, o markup original de
+       blocos <i> fica intacto e a animacao antiga continua valendo. */
+    (function(){
+      if (reduce) return;
+      var scene = document.querySelector('.kvscene');
+      var tws = [].slice.call(document.querySelectorAll('.bub--out .tw'));
+      if (!scene || tws.length !== 4) return;
+
+      var T0 = 2.35, T1 = 4.15, BEAT = 7, CYC = 28;
+      var items = tws.map(function(tw){
+        var txt = [].slice.call(tw.children)
+                    .filter(function(n){ return n.tagName === 'I'; })
+                    .map(function(i){ return i.textContent.trim(); })
+                    .filter(Boolean).join(' ');
+        var dots = tw.querySelector('.tw__d');
+        tw.innerHTML = '';
+        if (dots) tw.appendChild(dots);
+        var sp = document.createElement('span'); sp.className = 'tw__s';
+        var ca = document.createElement('b');    ca.className = 'tw__c';
+        tw.appendChild(sp); tw.appendChild(ca);
+        return { el: tw, span: sp, text: txt, n: -1 };
+      });
+
+      var visible = true;
+      if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ visible = es[0].isIntersecting; },
+          {threshold:0.01}).observe(scene);
+      }
+
+      function tick(){
+        requestAnimationFrame(tick);
+        if (!visible || document.hidden) return;
+        var t = (document.timeline && document.timeline.currentTime || performance.now())/1000;
+        var tc = ((t % CYC) + CYC) % CYC;
+        for (var i=0; i<items.length; i++){
+          var it = items[i], local = tc - i*BEAT, n;
+          if (local < 0 || local >= BEAT)      n = 0;
+          else if (local < T0)                 n = 0;
+          else if (local >= T1)                n = it.text.length;
+          else n = Math.round((local - T0)/(T1 - T0) * it.text.length);
+          it.el.classList.toggle('is-typing', local >= T0 - 0.15 && local < T1 + 0.5);
+          if (n === it.n) continue;
+          it.n = n;
+          it.span.textContent = it.text.slice(0, n);
+        }
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    /* ================= Samir: malha deformavel sobre o render oficial =========
+       A textura nunca e cortada — e uma folha continua que se estica. Por isso
+       nao ha borda de recorte possivel, e a palpebra fecha de verdade (a pele da
+       testa desliza por cima do olho em vez de precisar de arte de olho fechado).
+       Relogio: document.timeline, o MESMO que move os cartoes em CSS — beat de
+       7s, ciclo de 28s (4 mensagens). 28 = 4x7, entao nada sai de fase. */
+    (function(){
+      var cv = document.getElementById('samirGL');
+      var scene = document.getElementById('samirScene');
+      if (!cv || !scene || reduce) return;
+      var gl = null;
+      try { gl = cv.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:true}); } catch(e){}
+      if (!gl) return;                                  // fica o still
+
+      var NX = 82, NY = 72;
+      function sh(t, src){ var o = gl.createShader(t); gl.shaderSource(o, src); gl.compileShader(o);
+        return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; }
+      var vs = sh(gl.VERTEX_SHADER,
+        'attribute vec2 a_pos;attribute vec2 a_uv;varying vec2 v_uv;' +
+        'void main(){v_uv=a_uv;gl_Position=vec4(a_pos*vec2(2.0,-2.0)+vec2(-1.0,1.0),0.0,1.0);}');
+      var fs = sh(gl.FRAGMENT_SHADER,
+        'precision mediump float;uniform sampler2D u_tex;varying vec2 v_uv;' +
+        'void main(){gl_FragColor=texture2D(u_tex,v_uv);}');
+      if (!vs || !fs) return;
+      var prog = gl.createProgram();
+      gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+      gl.useProgram(prog);
+
+      var n = NX*NY, base = new Float32Array(n*2), uv = new Float32Array(n*2), pos = new Float32Array(n*2);
+      for (var j=0; j<NY; j++) for (var i=0; i<NX; i++){
+        var k=(j*NX+i)*2; base[k]=uv[k]=i/(NX-1); base[k+1]=uv[k+1]=j/(NY-1);
+      }
+      var idx=[];
+      for (var j2=0; j2<NY-1; j2++) for (var i2=0; i2<NX-1; i2++){
+        var a=j2*NX+i2; idx.push(a,a+1,a+NX, a+1,a+NX+1,a+NX);
+      }
+      var bUv=gl.createBuffer(), bPos=gl.createBuffer(), bIdx=gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER,bUv); gl.bufferData(gl.ARRAY_BUFFER,uv,gl.STATIC_DRAW);
+      var lUv=gl.getAttribLocation(prog,'a_uv'); gl.enableVertexAttribArray(lUv);
+      gl.vertexAttribPointer(lUv,2,gl.FLOAT,false,0,0);
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,bIdx);
+      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(idx),gl.STATIC_DRAW);
+      var lPos=gl.getAttribLocation(prog,'a_pos');
+      gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+      var tex=gl.createTexture(), ready=false;
+      gl.bindTexture(gl.TEXTURE_2D,tex);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+      var img=new Image();
+      img.onload=function(){
+        gl.bindTexture(gl.TEXTURE_2D,tex);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+        ready=true; scene.classList.add('is-live');
+      };
+      img.src=scene.querySelector('.samir__still').getAttribute('src');
+
+      /* --- anatomia, em 0..1 da textura (medida no render oficial) --- */
+      /* Anatomia remedida sobre o recorte novo (1080x1080 do Victor, ja com alpha
+         de verdade). Coordenadas 0..1 da textura de 889x835. */
+      var A={ neck:{x:0.409,y:0.60},
+              head:{x:0.40,y:0.28,rx:0.40,ry:0.34,soft:0.62},
+              face:{x:0.44,y:0.34,rx:0.21,ry:0.23,soft:0.55},
+              eyes:[{x:0.3566,y:0.3341,rx:0.0506,ry:0.0515},
+                    {x:0.5118,y:0.3365,rx:0.0416,ry:0.0467}],
+              fings:[{kx:0.3037,ky:0.8479,tx:0.3408,ty:0.9246},
+                     {kx:0.3329,ky:0.8407,tx:0.3734,ty:0.9222},
+                     {kx:0.3712,ky:0.8359,tx:0.4117,ty:0.9078},
+                     {kx:0.5197,ky:0.8383,tx:0.4859,ty:0.8647},
+                     {kx:0.5310,ky:0.8096,tx:0.5388,ty:0.9006},
+                     {kx:0.5692,ky:0.8072,tx:0.5838,ty:0.8778}] };
+      /* pulso: pivo onde o punho sai da manga, e a elipse da mao que balanca */
+      A.wrists=[{px:0.3375,py:0.8263, cx:0.3712,cy:0.8683, rx:0.0956,ry:0.0719, ph:0.0},
+                {px:0.5793,py:0.7964, cx:0.5624,cy:0.8503, rx:0.0844,ry:0.0719, ph:2.1}];
+      var TW=889, TH=835, FR=16;   /* dimensoes da textura e raio do dedo, em px */
+      function sm(t){ t = t<0?0 : t>1?1 : t; return t*t*(3-2*t); }
+      function fo(x,y,cx,cy,rx,ry,soft){
+        var dx=(x-cx)/rx, dy=(y-cy)/ry, d=Math.sqrt(dx*dx+dy*dy);
+        return 1-sm((d-(1-soft))/soft);
+      }
+
+      /* rajadas de tecla e piscadas: sorteadas uma vez, deterministicas */
+      var seed=7; function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+      var TAPS=[];
+      for (var f=0; f<6; f++){
+        var arr=[];
+        for (var b=0; b<4; b++){
+          var cnt=2+Math.floor(rnd()*2);
+          for (var q=0; q<cnt; q++) arr.push({t:b*7+1.20+rnd()*3.05, a:0.0060+rnd()*0.0030});
+        }
+        TAPS.push(arr);
+      }
+      var BLINKS=[0.55,2.35,5.10,7.60,9.90,12.25,14.58,16.05,19.30,21.70,23.40,26.15];
+
+      function pose(time){
+        var tc=((time%28)+28)%28, tb=((time%7)+7)%7;
+        /* giro removido a pedido do Victor (2026-09-18): mesmo com amplitude baixa
+           a deformacao do pescoco continuava aparecendo. Numa arte chapada o giro
+           so existe como esticada — sem arte de perfil nao ha como escondê-la. */
+        var look=0;
+        var bl=0;
+        for (var i=0;i<BLINKS.length;i++){
+          var d=tc-BLINKS[i];
+          if (d>-0.10 && d<0.22) bl=Math.max(bl, Math.min(sm((d+0.10)/0.09), 1-sm((d-0.06)/0.14)));
+        }
+        var fing=[0,0,0,0,0,0];
+        for (var g=0; g<6; g++){
+          var v=0, L=TAPS[g];
+          for (var h=0; h<L.length; h++){
+            var dd=tc-L[h].t;
+            if (dd>-0.17 && dd<0.32) v=Math.max(v, L[h].a*Math.min(sm((dd+0.17)/0.16), 1-sm((dd-0.09)/0.22)));
+          }
+          fing[g]=v;
+        }
+        var D2R=Math.PI/180;
+        var wr=[0,0];
+        for (var wj=0; wj<2; wj++){
+          var per=wj?3.1:2.6, sway=0.85*Math.sin(time/per*Math.PI*2+A.wrists[wj].ph);
+          var act=Math.max(fing[wj*3],fing[wj*3+1],fing[wj*3+2])/0.009;  /* 0..1 */
+          wr[wj]=(sway+0.55*act)*D2R;                 /* mergulha junto com a yema */
+        }
+        return { rot:-3.5*look, dx:-0.029*look, dy:-0.006*look, squash:-0.085*look,
+                 blink:bl, fing:fing, wrist:wr, breathe:0.0032*Math.sin(time/3.8*Math.PI*2) };
+      }
+
+      function deform(P){
+        pos.set(base);
+        var ang=P.rot*Math.PI/180, ca=Math.cos(ang), sa=Math.sin(ang), k, x, y;
+        /* cabeca: gira no pescoco. Os tracos do rosto deslizam um pouco mais que o
+           contorno do cranio — e o truque que faz uma arte chapada ler como VIRAR
+           em vez de so inclinar. */
+        if (P.rot || P.dx){
+          for (k=0; k<pos.length; k+=2){
+            x=base[k]; y=base[k+1];
+            var wh=fo(x,y,A.head.x,A.head.y,A.head.rx,A.head.ry,A.head.soft);
+            if (wh<=0.001) continue;
+            var wf=fo(x,y,A.face.x,A.face.y,A.face.rx,A.face.ry,A.face.soft);
+            var ox=x-A.neck.x, oy=y-A.neck.y;
+            var rx=A.neck.x+ox*ca-oy*sa, ry=A.neck.y+ox*sa+oy*ca;
+            pos[k]   = x+(rx-x)*wh + P.dx*wh + P.dx*0.26*wf + (x-A.face.x)*P.squash*wf;
+            pos[k+1] = y+(ry-y)*wh + P.dy*wh;
+          }
+        }
+        /* palpebra: queda assimetrica. A pele da testa desliza pra baixo e ESTICA
+           por cima do olho; a bochecha sobe pouco. Simetrico dava olho revirado —
+           comprimia a esclerotica em vez de cobri-la. */
+        if (P.blink>0.001){
+          for (var e=0; e<2; e++){
+            var E=A.eyes[e], tgt=E.y+E.ry*0.82;
+            var Dup=tgt-(E.y-E.ry), Ddn=tgt-(E.y+E.ry);
+            for (k=0; k<pos.length; k+=2){
+              x=base[k]; y=base[k+1];
+              /* uma queda ELIPTICA unica. Separar horizontal de vertical deixava
+                 uma caixa visivel no focinho: a bochecha dentro da faixa do olho
+                 subia e a de fora nao. */
+              var ex=(x-E.x)/(E.rx*2.15), ey=(y-E.y)/(E.ry*2.15);
+              var w2=1-sm((Math.sqrt(ex*ex+ey*ey)-0.52)/0.48);
+              if (w2<=0.001) continue;
+              var u=(E.y-y)/E.ry, dy2;
+              if (u>1)       dy2=Dup*(1-sm((u-1)/0.85));
+              else if (u>-1) dy2=tgt-y;
+              else           dy2=Ddn*(1-sm((-u-1)/0.7));
+              pos[k+1]+=dy2*P.blink*w2;
+            }
+          }
+        }
+        /* dedo: desce empurrando a folha. A juncao com a mao se estica em vez de
+           abrir fresta — que era o artefato das versoes recortadas. */
+        for (var t=0; t<6; t++){
+          var amp=P.fing[t]; if (amp<=0.001) continue;
+          var F=A.fings[t];
+          var kxp=F.kx*TW, kyp=F.ky*TH, axp=(F.tx-F.kx)*TW, ayp=(F.ty-F.ky)*TH;
+          var L2=axp*axp+ayp*ayp, L=Math.sqrt(L2);
+          for (k=0; k<pos.length; k+=2){
+            x=base[k]*TW; y=base[k+1]*TH;
+            var sN=((x-kxp)*axp+(y-kyp)*ayp)/L2;          /* 0 no no, 1 na ponta */
+            var px=x-(kxp+axp*sN), py=y-(kyp+ayp*sN);
+            var dperp=Math.sqrt(px*px+py*py)/FR;
+            var wp=1-sm((dperp-0.9)/0.32); if (wp<=0.001) continue;
+            /* So a PONTA desce. Antes o dedo inteiro andava como bloco, e seis
+               blocos sobrepostos numa massa continua e o que produzia a onda na
+               mao. Agora o peso e 0 no no, sobe ao longo do dedo e chega a 1 na
+               yema — o dedo DOBRA em vez de deslizar, que e o que a mao faz. */
+            var wl=sm((sN-0.34)/0.58)*(1-sm((sN-0.96)/0.20));
+            var w2=wp*wl; if (w2<=0.001) continue;
+            pos[k]  +=amp*(axp/L)*w2*(TH/TW);
+            pos[k+1]+=amp*(ayp/L)*w2;
+          }
+        }
+        /* Pulso: cada mao balanca de leve no PROPRIO pulso, em contratempo com os
+           toques. Amplitude minuscula (~1 grau) — serve pra ligar a yema ao braco,
+           nao pra se ver sozinha. Girar mais que isso volta a arrastar a borda da
+           laptop, que fica encostada na mao. */
+        for (var wI=0; wI<2; wI++){
+          var ang2=P.wrist[wI];
+          if (Math.abs(ang2)<0.0004) continue;
+          var Wr=A.wrists[wI], c2=Math.cos(ang2), s2=Math.sin(ang2);
+          for (k=0; k<pos.length; k+=2){
+            x=base[k]; y=base[k+1];
+            var w3=fo(x,y,Wr.cx,Wr.cy,Wr.rx,Wr.ry,0.66);
+            if (w3<=0.001) continue;
+            var ox2=(x-Wr.px)*TW, oy2=(y-Wr.py)*TH;
+            pos[k]  += ((ox2*c2-oy2*s2-ox2)/TW)*w3;
+            pos[k+1] += ((ox2*s2+oy2*c2-oy2)/TH)*w3;
+          }
+        }
+        if (P.breathe){
+          /* So o PEITO respira. Com uma faixa em y a laptop e as maos subiam e
+             desciam junto — e era isso que fazia o tecleio parecer grande, mais
+             que o curso do dedo. Agora e uma elipse no torso que morre antes das
+             maos (y>0,80) e antes da laptop (x>0,60). */
+          for (k=0; k<pos.length; k+=2){
+            x=base[k]; y=base[k+1];
+            var wb=fo(x,y,0.35,0.63,0.27,0.135,0.70);
+            if (wb<=0.001) continue;
+            pos[k+1]-=P.breathe*wb;
+          }
+        }
+      }
+
+      function draw(time){
+        if (!ready) return;
+        deform(pose(time));
+        gl.bindBuffer(gl.ARRAY_BUFFER,bPos);
+        gl.bufferData(gl.ARRAY_BUFFER,pos,gl.DYNAMIC_DRAW);
+        gl.enableVertexAttribArray(lPos); gl.vertexAttribPointer(lPos,2,gl.FLOAT,false,0,0);
+        gl.viewport(0,0,cv.width,cv.height);
+        gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+      }
+
+      var running=false, raf=0;
+      function loop(){
+        raf=requestAnimationFrame(loop);
+        draw((document.timeline && document.timeline.currentTime || performance.now())/1000);
+      }
+      function start(){ if (!running){ running=true; loop(); } }
+      function stop(){ if (running){ running=false; cancelAnimationFrame(raf); } }
+      if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ es[0].isIntersecting ? start() : stop(); },
+          {threshold:0.01}).observe(scene);
+      } else { start(); }
+      document.addEventListener('visibilitychange', function(){
+        document.hidden ? stop() : (scene.getBoundingClientRect().bottom>0 && start());
+      });
+    })();
+
 
     var hdr = document.getElementById('hdr');
     var shapes = [].slice.call(document.querySelectorAll('[data-par]'));
