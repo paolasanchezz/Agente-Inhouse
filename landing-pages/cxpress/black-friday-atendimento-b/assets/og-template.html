@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ width:1200px; height:630px; overflow:hidden; }
+  .og{ position:relative; width:1200px; height:630px; overflow:hidden; background:#ffffff;
+    font-family:"Source Sans 3",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .bar{ position:absolute; left:0; right:0; top:0; height:10px; background:#2B5CE6; z-index:3; }
+  .deco{ position:absolute; inset:0; z-index:0; }
+  .content{ position:absolute; z-index:2; left:80px; top:0; height:100%;
+    display:flex; flex-direction:column; justify-content:center; max-width:790px; }
+  .badge{ display:inline-flex; align-items:center; gap:10px; align-self:flex-start;
+    background:#EAF0FF; color:#173FA8; font-family:"Open Sans",sans-serif; font-weight:800;
+    font-size:20px; letter-spacing:.08em; text-transform:uppercase; padding:11px 22px; border-radius:9999px; margin-bottom:30px; }
+  .title{ font-family:"Open Sans",sans-serif; font-weight:800; font-size:64px; line-height:1.08; letter-spacing:-.035em; color:#0E1116; }
+  .title mark{ background:none; color:#2B5CE6; }
+  .sub{ margin-top:26px; font-size:27px; line-height:1.38; color:#3D4450; font-weight:500; max-width:740px; }
+  .pill{ margin-top:36px; display:inline-flex; align-self:flex-start; align-items:center; gap:16px;
+    background:#0E1116; border-radius:9999px;
+    padding:14px 30px; color:#fff; font-family:"Open Sans",sans-serif; font-weight:700; font-size:24px; }
+  .pill .sep{ width:6px; height:6px; background:#7AA0FF; border-radius:50%; }
+  .logo{ position:absolute; z-index:2; right:70px; bottom:52px; height:42px; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="bar"></div>
+  <svg class="deco" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="1060" cy="176" r="318" fill="#F2F6FF"/>
+    <rect x="886" y="280" width="270" height="132" rx="18" fill="#ffffff" stroke="#E4E7EC" stroke-width="2"/>
+    <path d="M916 382 l40 -36 l38 20 l46 -44 l42 24" stroke="#2B5CE6" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1082" cy="346" r="9" fill="#2B5CE6"/>
+  </svg>
+  <div class="content">
+    <span class="badge">Aula online e gratuita</span>
+    <div class="title">Gestão de atendimento<br>em datas comerciais<br>e <mark>alto volume</mark></div>
+    <div class="sub">Como a Cacau Show responde mais de 160 mil comentários com agentes de IA e processos organizados.</div>
+    <div class="pill">02 de outubro <span class="sep"></span> 11h <span class="sep"></span> Online</div>
+  </div>
+  <img class="logo" src="../../../../brand/cxpress/assets/logos/logo-primary.png" alt="Cxpress">
+</div>
+</body>
+</html>

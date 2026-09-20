@@ -61,6 +61,11 @@
       "source": "landing-pages/cxpress/black-friday-atendimento"
     },
     {
+      "slug": "black-friday-atendimento-b",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/black-friday-atendimento-b"
+    },
+    {
       "slug": "banimento-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/banimento-whatsapp"

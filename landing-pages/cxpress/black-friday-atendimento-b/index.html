@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
+  <!-- End Google Tag Manager -->
+  <title>Gestão de atendimento em datas comerciais | Aula gratuita com o caso Cacau Show</title>
+  <link rel="canonical" href="https://{{DOMAIN}}/black-friday-atendimento-b">
+
+  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
+
+  <meta name="description" content="Aula online e gratuita da Cxpress, 02 de outubro às 11h. Estudo de caso da Cacau Show: como a marca responde mais de 160 mil comentários em datas comerciais, com agentes de IA e processos organizados.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Cxpress">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cxpress">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://{{DOMAIN}}/black-friday-atendimento-b">
+  <meta property="og:title" content="Gestão de atendimento em datas comerciais e alto volume | Aula gratuita Cxpress">
+  <meta property="og:description" content="Estudo de caso aberto: como a Cacau Show responde mais de 160 mil comentários usando agentes de IA e processos organizados. 02 de outubro, 11h, online e gratuita.">
+  <meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Aula gratuita da Cxpress sobre gestão de atendimento em datas comerciais, com o caso da Cacau Show, 02 de outubro às 11h">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gestão de atendimento em datas comerciais e alto volume | Aula Cxpress">
+  <meta name="twitter:description" content="Como a Cacau Show responde mais de 160 mil comentários com agentes de IA e processos organizados. 02 de outubro, 11h, gratuita.">
+  <meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/cxpress", "https://www.instagram.com/cxpress.io/"] },
+      { "@type": "WebPage", "@id": "https://{{DOMAIN}}/black-friday-atendimento-b#webpage", "url": "https://{{DOMAIN}}/black-friday-atendimento-b", "name": "Gestão de atendimento em datas comerciais | Aula gratuita com o caso Cacau Show", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "Aula online e gratuita da Cxpress sobre gestão de atendimento em datas comerciais e alto volume, com o estudo de caso da Cacau Show." },
+      { "@type": "Event", "name": "Aula Cxpress · Gestão de atendimento em datas comerciais e alto volume", "startDate": "2026-10-02T11:00:00-03:00", "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "inLanguage": "pt-BR", "location": { "@type": "VirtualLocation", "url": "https://{{DOMAIN}}/black-friday-atendimento-b" }, "image": "https://{{DOMAIN}}/{{OG_IMAGE_PATH}}", "description": "Estudo de caso sobre como a Cacau Show responde mais de 160 mil comentários em datas comerciais, com agentes de IA e processos organizados.", "organizer": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "url": "https://{{DOMAIN}}/black-friday-atendimento-b" } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap">
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+  <style>
+    :root{
+      /* Paleta da LP: 2 cores (preto + azul vibrante) + neutros */
+      --ink:#0E1116;
+      --ink-soft:#3D4450;
+      --ink-mute:#697280;
+      --blue:#2B5CE6;
+      --blue-deep:#173FA8;
+      --blue-dark:#1E46C0;
+      --blue-tint:#EAF0FF;
+      --blue-on-dark:#7AA0FF;
+      --danger:#C0392F;
+      --paper:#ffffff;
+      --off:#F6F7F9;
+      --rule:#E4E7EC;
+
+      --maxw:1160px;
+      --radius-btn:10px;
+      --radius-card:16px;
+      --font-display:'Open Sans',sans-serif;
+      --font-body:'Source Sans 3',sans-serif;
+      --shadow-soft:0 10px 30px rgba(14,17,22,.07);
+      --shadow-lift:0 18px 44px rgba(14,17,22,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--paper);color:var(--ink-soft);
+      font-family:var(--font-body);font-size:18px;line-height:1.7;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;margin:0;color:var(--ink);line-height:1.12}
+    p{margin:0}
+    a{color:var(--blue-deep)}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+    section{padding:120px 0}
+    .off{background:var(--off)}
+    .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:12px 18px;z-index:100;border-radius:0 0 8px 0}
+    .skip:focus{left:0}
+    :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+    /* Quebra de linha equilibrada (GUIDELINES 21) */
+    h1,h2,h3,.lead,.kicker,.sec-head p,.dor p,.ver__item p,.num__t,.ficha__v,
+    .spk__role,.spk__bio,.clientes__label,.fecho h2,.form-side p,.note{text-wrap:balance}
+    .note--long,.footer p{text-wrap:pretty}
+
+    /* entrada no scroll */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.is-in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}html{scroll-behavior:auto}}
+
+    /* ===== Botoes ===== */
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:var(--font-display);font-weight:700;font-size:17px;line-height:1.2;
+      background:var(--blue);color:#fff;text-decoration:none;
+      padding:17px 30px;border-radius:var(--radius-btn);border:0;cursor:pointer;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+      box-shadow:0 8px 20px rgba(43,92,230,.22);
+    }
+    .btn:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(43,92,230,.28)}
+    .btn--ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);box-shadow:none}
+    .btn--ghost:hover{background:var(--ink);color:#fff}
+    .btn--light{background:#fff;color:var(--ink);box-shadow:none}
+    .btn--light:hover{background:var(--blue-tint);color:var(--ink)}
+
+    .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px 22px;margin-top:40px}
+    .cta-row--center{justify-content:center}
+    .cta-note{font-size:16px;color:var(--ink-mute)}
+
+    .eyebrow{
+      display:inline-block;font-family:var(--font-display);font-weight:700;
+      font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--blue-deep);
+    }
+    .eyebrow--pill{
+      background:var(--blue-tint);padding:8px 16px;border-radius:9999px;
+      white-space:nowrap;font-size:14px;letter-spacing:.08em;
+    }
+
+    /* ===== Header ===== */
+    header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+    .hd{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:26px}
+    .hd__logo{display:flex;align-items:center}
+    .hd__logo img{height:32px;width:auto}
+    .hd__nav{margin-left:auto;display:flex;gap:26px}
+    .hd__nav a{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink-soft);text-decoration:none}
+    .hd__nav a:hover{color:var(--blue-deep)}
+    .hd__cta{
+      font-family:var(--font-display);font-weight:700;font-size:15px;white-space:nowrap;
+      background:var(--blue);color:#fff;text-decoration:none;padding:11px 20px;border-radius:9px;
+      transition:background .2s ease;
+    }
+    .hd__cta:hover{background:var(--blue-dark)}
+
+    /* ===== Hero ===== */
+    .hero{padding:92px 0 96px;background:var(--paper)}
+    .hero__inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.06fr .94fr;gap:64px;align-items:center}
+    .hero__inner>*{min-width:0}
+    .hero h1{font-size:clamp(36px,4.9vw,58px);margin:22px 0 0}
+    .hero h1 b{color:var(--blue);font-weight:800}
+    .lead{font-size:clamp(19px,1.9vw,23px);line-height:1.5;color:var(--ink-soft);margin-top:22px;max-width:36ch}
+    .hero__proof{
+      margin-top:30px;display:flex;gap:11px;align-items:flex-start;
+      font-size:17px;color:var(--ink-mute);max-width:46ch;line-height:1.55;
+    }
+    .hero__proof svg{flex:none;margin-top:5px}
+
+    /* Ficha da aula (visual do hero) */
+    .ficha{
+      background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius-card);
+      box-shadow:var(--shadow-lift);padding:34px 34px 28px;position:relative;overflow:hidden;
+    }
+    .ficha::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--blue)}
+    .ficha__label{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-deep)}
+    .ficha__title{font-family:var(--font-display);font-weight:800;font-size:clamp(23px,2.3vw,27px);color:var(--ink);line-height:1.2;margin-top:10px;letter-spacing:-.02em}
+    .ficha__rows{margin-top:26px;display:flex;flex-direction:column}
+    .ficha__row{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:15px 0;border-top:1px solid var(--rule)}
+    .ficha__k{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);padding-top:3px}
+    .ficha__v{font-size:17px;color:var(--ink);line-height:1.45}
+    .ficha__v a{color:var(--blue-deep);text-decoration:underline;text-underline-offset:3px}
+
+    /* ===== Big number (secao escura) ===== */
+    .bignum{background:var(--ink);color:#fff;padding:112px 0}
+    .bignum h2{color:#fff;font-size:clamp(34px,3.5vw, 44px)}
+    .bignum .eyebrow{color:var(--blue-on-dark)}
+    .bignum__head{max-width:740px;margin:0 auto 64px;text-align:center}
+    .bignum__head p{margin-top:16px;color:rgba(255,255,255,.72);font-size:clamp(18px,1.8vw,20px)}
+    .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .num{padding:34px 28px;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-card);background:rgba(255,255,255,.035)}
+    .num__n{display:block;font-family:var(--font-display);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(46px,5.6vw,70px);color:var(--blue-on-dark)}
+    .num__t{display:block;margin-top:16px;font-size:17px;line-height:1.5;color:rgba(255,255,255,.82)}
+    .bignum__foot{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+    .note{font-size:15px;color:rgba(255,255,255,.6);max-width:72ch}
+    .note a{color:rgba(255,255,255,.88);text-decoration:underline;text-underline-offset:3px}
+    .bignum__chip{background:#fff;border-radius:12px;padding:10px 18px;display:inline-grid;place-items:center}
+    .bignum__chip img{height:46px;width:auto}
+
+    /* ===== Cabecalho de secao ===== */
+    .sec-head{max-width:760px;margin:0 auto 60px;text-align:center}
+    .sec-head .eyebrow{margin-bottom:16px}
+    .sec-head h2{font-size:clamp(30px,3.5vw,42px)}
+    .sec-head p{font-size:clamp(18px,1.9vw,21px);color:var(--ink-soft);margin-top:18px}
+
+    /* ===== Problema (lista + X) ===== */
+    .dores{max-width:840px;margin:0 auto;display:flex;flex-direction:column}
+    .dor{display:flex;gap:18px;padding:28px 0;border-bottom:1px solid var(--rule)}
+    .dor:last-child{border-bottom:0}
+    .dor__x{flex:none;width:30px;height:30px;border-radius:50%;background:#FBECEA;color:var(--danger);display:grid;place-items:center;margin-top:4px}
+    .dor h3{font-size:clamp(22px,2.2vw,24px)}
+    .dor p{margin-top:9px;color:var(--ink-soft);font-size:17.5px;line-height:1.6}
+
+    /* ===== O que voce vai ver ===== */
+    .ver{display:grid;grid-template-columns:.88fr 1.12fr;gap:64px;align-items:start}
+    .ver__fig{margin:0;position:sticky;top:96px}
+    .ver__shot{
+      display:grid;place-items:center;overflow:hidden;
+      border:1px solid var(--rule);border-radius:var(--radius-card);
+      background:#fff;box-shadow:var(--shadow-soft);
+    }
+    .ver__shot img{width:100%;height:auto;min-height:0}
+    .ver__cap{margin-top:16px;font-size:15.5px;line-height:1.55;color:var(--ink-mute)}
+    .ver__list{display:flex;flex-direction:column;gap:6px}
+    .ver__item{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--rule)}
+    .ver__item:last-child{border-bottom:0}
+    .ver__ck{flex:none;width:30px;height:30px;border-radius:50%;background:var(--blue-tint);color:var(--blue-deep);display:grid;place-items:center;margin-top:3px}
+    .ver__item h3{font-size:clamp(21px,2vw,23px)}
+    .ver__item p{margin-top:8px;color:var(--ink-soft);font-size:17px;line-height:1.6}
+
+    /* ===== Inscricao ===== */
+    .inscricao{background:var(--ink);color:#fff}
+    .inscricao h2{color:#fff;font-size:clamp(30px,3.4vw,42px)}
+    .inscricao .eyebrow{color:var(--blue-on-dark)}
+    .insc__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .form-side .kicker{margin-top:18px;font-family:var(--font-display);font-weight:700;font-size:clamp(19px,1.9vw,21px);color:var(--blue-on-dark)}
+    .form-side p.sub{margin-top:16px;font-size:18px;color:rgba(255,255,255,.76);line-height:1.6}
+    .requisito{margin-top:26px;display:flex;gap:11px;align-items:flex-start;font-size:16.5px;color:rgba(255,255,255,.7)}
+    .requisito svg{flex:none;margin-top:5px}
+    .form-card{background:#fff;border-radius:var(--radius-card);padding:12px;box-shadow:var(--shadow-lift)}
+
+    /* ===== Palestrantes ===== */
+    .spks{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;max-width:880px;margin:0 auto}
+    .spk{display:flex;gap:22px;align-items:flex-start;padding:30px;border:1px solid var(--rule);border-radius:var(--radius-card);background:var(--paper)}
+    .spk__ph{
+      flex:none;width:84px;height:84px;border-radius:50%;background:var(--blue-tint);
+      color:var(--blue-deep);display:grid;place-items:center;
+    }
+    .spk__name{font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.02em}
+    .spk__role{margin-top:5px;font-size:16px;color:var(--blue-deep);font-weight:600}
+    .spk__bio{margin-top:12px;font-size:16.5px;color:var(--ink-mute);line-height:1.55}
+
+    /* ===== Fecho + clientes ===== */
+    .fecho{padding:104px 0 0;background:var(--paper);text-align:center}
+    .fecho h2{font-size:clamp(34px,3.5vw, 44px);max-width:20ch;margin:0 auto}
+    .fecho p{margin-top:18px;font-size:clamp(18px,1.9vw,20px);color:var(--ink-soft);max-width:54ch;margin-inline:auto}
+    .clientes{padding:84px 0 92px}
+    .clientes__label{display:block;text-align:center;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;font-family:var(--font-display)}
+    .clientes__marquee{
+      margin-top:28px;overflow:hidden;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+      mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+    }
+    .clientes__track{display:flex;width:max-content;animation:clientesMarquee 64s linear infinite}
+    .clientes__group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
+    .clientes__group img{
+      flex:0 0 auto;width:auto;max-width:170px;height:clamp(30px,3.4vw,42px);object-fit:contain;
+      opacity:.72;filter:saturate(0);transition:opacity .25s ease,filter .25s ease;
+    }
+    .clientes__group img:hover{opacity:1;filter:none}
+    @keyframes clientesMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .clientes__marquee:hover .clientes__track{animation-play-state:paused}
+    @media (prefers-reduced-motion:reduce){.clientes__track{animation:none}}
+
+    /* ===== Footer ===== */
+    .footer{background:var(--ink);color:rgba(255,255,255,.62);padding:52px 0}
+    .footer__inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:22px 40px;align-items:center;justify-content:space-between}
+    .footer__logo img{height:30px;width:auto}
+    .footer p{font-size:15px;line-height:1.6}
+
+    /* ===== Responsivo ===== */
+    @media (max-width:1000px){
+      .hero__inner{grid-template-columns:1fr;gap:44px}
+      .lead{max-width:none}
+      .ver{grid-template-columns:1fr;gap:40px}
+      .ver__fig{position:static;max-width:460px;margin-inline:auto}
+      .insc__grid{grid-template-columns:1fr;gap:44px}
+      .nums{grid-template-columns:1fr;gap:18px}
+      .spks{grid-template-columns:1fr}
+      .hd__nav{display:none}
+      .hd__cta{margin-left:auto}
+    }
+    @media (max-width:640px){
+      body{font-size:18px}
+      section{padding:84px 0}
+      .wrap,.hero__inner,.hd,.footer__inner{padding-inline:20px}
+      .hero{padding:64px 0 72px}
+      .bignum{padding:84px 0}
+      .fecho{padding-top:80px}
+      .clientes{padding:64px 0 72px}
+      .sec-head{margin-bottom:44px}
+      .btn{width:100%;justify-content:center;font-size:18px;padding:18px 24px}
+      .cta-row{margin-top:32px;gap:14px}
+      .cta-note{font-size:16px;text-align:center;width:100%}
+      .eyebrow--pill{font-size:13px;letter-spacing:.06em;padding:8px 14px}
+      .ficha{padding:26px 22px 20px}
+      .ficha__row{grid-template-columns:1fr;gap:4px;padding:14px 0}
+      .ficha__k{padding-top:0}
+      .ficha__v{font-size:17.5px}
+      .num{padding:28px 24px}
+      .num__t{font-size:17.5px}
+      .dor{padding:24px 0;gap:14px}
+      .dor p{font-size:17.5px}
+      .ver__item{padding:20px 0;gap:14px}
+      .ver__item p{font-size:17.5px}
+      .hero__proof{font-size:17px;max-width:none}
+      .spk{flex-direction:column;gap:16px;padding:26px 24px}
+      .spk__ph{width:66px;height:66px}
+      .form-card{padding:8px}
+      .footer__inner{flex-direction:column;align-items:flex-start;text-align:left}
+    }
+
+    /* ----- Jotform embed wrapper (canonico) -----
+       Sem padding/background/border: o provedor ja vem com card proprio. */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .eyebrow{ font-size:14px; }
+  .hd__nav a{ font-size:16px; }
+  .ficha__label{ font-size:14px; }
+  .ficha__k{ font-size:15px; }
+  .note{ font-size:16px; }
+  .ver__cap{ font-size:17px; }
+  .requisito{ font-size:17px; }
+  .spk__role{ font-size:17px; }
+  .spk__bio{ font-size:17px; }
+  .clientes__label{ font-size:15px; }
+  .footer p{ font-size:16px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4XDWHL3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header>
+    <div class="hd">
+      <a href="https://home.cxpress.io" class="hd__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="" width="150" height="32">
+      </a>
+      <nav class="hd__nav" aria-label="Seções da página">
+        <a href="#caso">O caso</a>
+        <a href="#problema">O problema</a>
+        <a href="#aula">O que você vai ver</a>
+        <a href="#palestrantes">Quem apresenta</a>
+      </nav>
+      <a class="hd__cta" href="#inscricao">Reservar vaga</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- 1. HERO -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow eyebrow--pill">Aula online e gratuita</span>
+          <h1>Gestão de atendimento em datas comerciais e <b>alto volume</b>.</h1>
+          <p class="lead">Como a Cacau Show consegue responder mais de 160 mil comentários utilizando agentes de IA e processos organizados.</p>
+          <div class="cta-row">
+            <a class="btn" href="#inscricao">Reservar minha vaga
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <span class="cta-note">02 de outubro, 11h (Brasília). Online e ao vivo.</span>
+          </div>
+          <p class="hero__proof">
+            <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="#2B5CE6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Uma aula aberta sobre um caso real: os números da operação, o processo por trás deles e o que dá para levar para o seu time.
+          </p>
+        </div>
+
+        <div class="hero__visual">
+          <div class="ficha reveal">
+            <span class="ficha__label">A aula</span>
+            <p class="ficha__title">Estudo de caso: a operação de atendimento da Cacau Show</p>
+            <div class="ficha__rows">
+              <div class="ficha__row">
+                <span class="ficha__k">Quando</span>
+                <span class="ficha__v">02 de outubro, 11h (horário de Brasília)</span>
+              </div>
+              <div class="ficha__row">
+                <span class="ficha__k">Formato</span>
+                <span class="ficha__v">Online e ao vivo, cerca de 1 hora com espaço para perguntas</span>
+              </div>
+              <div class="ficha__row">
+                <span class="ficha__k">Para quem</span>
+                <span class="ficha__v">Quem lidera atendimento, CX ou operação e atravessa picos sazonais</span>
+              </div>
+              <div class="ficha__row">
+                <span class="ficha__k">Base</span>
+                <span class="ficha__v"><a href="https://blog.cxpress.io/atendimento-com-ia-case-cacau-show/" target="_blank" rel="noopener">O estudo de caso publicado no blog da Cxpress</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. BIG NUMBER: CASE CACAU SHOW -->
+    <section class="bignum" id="caso">
+      <div class="wrap">
+        <div class="bignum__head reveal">
+          <span class="eyebrow">O caso em números</span>
+          <h2>A Páscoa de 2026 da Cacau Show, em três números</h2>
+          <p>O mesmo período que costuma quebrar a operação de atendimento virou o melhor resultado da marca.</p>
+        </div>
+        <div class="nums">
+          <div class="num reveal">
+            <span class="num__n">223 mil</span>
+            <span class="num__t">interações recebidas no Facebook, no Instagram, no Google e no TikTok durante o período.</span>
+          </div>
+          <div class="num reveal">
+            <span class="num__n">163 mil</span>
+            <span class="num__t">respostas entregues, com agentes de IA no primeiro contato e o time humano nos casos sensíveis.</span>
+          </div>
+          <div class="num reveal">
+            <span class="num__n">72%</span>
+            <span class="num__t">de taxa de atendimento no pico, contra 34% na mesma operação em 2024.</span>
+          </div>
+        </div>
+        <div class="bignum__foot reveal">
+          <span class="bignum__chip"><img src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy"></span>
+          <p class="note note--long">Números do estudo de caso publicado no blog da Cxpress. <a href="https://blog.cxpress.io/atendimento-com-ia-case-cacau-show/" target="_blank" rel="noopener">Ler o caso completo</a>.</p>
+        </div>
+        <div class="cta-row cta-row--center">
+          <a class="btn btn--light" href="#inscricao">Ver como isso foi feito, na aula
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. O PROBLEMA -->
+    <section id="problema">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O problema</span>
+          <h2>A data comercial entra no calendário, e o atendimento é o primeiro a sentir</h2>
+          <p>O padrão se repete na Páscoa, no Dia das Mães, na Black Friday e no Natal.</p>
+        </div>
+        <div class="dores">
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>O volume sobe antes da estrutura</h3>
+              <p>A campanha entra no ar e a fila de mensagens cresce num ritmo que o time não acompanha.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Quem comprou fica sem resposta</h3>
+              <p>A dúvida do pós-compra vira reclamação pública no dia em que mais gente está olhando para a marca.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Fora do horário comercial, ninguém responde</h3>
+              <p>A pergunta das 23h espera até amanhã. A decisão de compra, não.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Cada canal numa tela diferente</h3>
+              <p>Comentário, direct, e-mail e telefone vivem em sistemas separados, e o histórico do cliente se perde no caminho.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cta-row cta-row--center reveal">
+          <a class="btn" href="#inscricao">Reservar minha vaga na aula
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. O QUE VOCE VAI VER -->
+    <section class="off" id="aula">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O que você vai ver</span>
+          <h2>Uma hora para entender o processo por trás do número</h2>
+          <p>A aula vai do diagnóstico à execução, usando a operação da Cacau Show como estudo de caso.</p>
+        </div>
+
+        <div class="ver">
+          <figure class="ver__fig reveal">
+            <div class="ver__shot">
+              <img src="./assets/comentario-respondido.jpg" alt="Publicação da Cacau Show no Instagram com o comentário de uma cliente e a resposta da marca logo abaixo, no mesmo tom da publicação" width="880" height="1099" loading="lazy">
+            </div>
+            <figcaption class="ver__cap">O resultado prático da aula: comentário respondido em público, na voz da marca, sem o cliente esperar o horário comercial.</figcaption>
+          </figure>
+
+          <div class="ver__list">
+            <div class="ver__item reveal">
+              <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <h3>Como medir o tamanho do seu pico</h3>
+                <p>Volume por canal, por horário e por tipo de dúvida, para saber quanto do seu atendimento é repetitivo.</p>
+              </div>
+            </div>
+            <div class="ver__item reveal">
+              <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <h3>Onde o agente de IA entra primeiro</h3>
+                <p>Quais perguntas ele assume já no primeiro dia e quais continuam com o time humano.</p>
+              </div>
+            </div>
+            <div class="ver__item reveal">
+              <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <h3>Como treinar a IA na linguagem da marca</h3>
+                <p>Base oficial, tom de voz e regras de transbordo, do jeito que a Cacau Show montou a operação dela.</p>
+              </div>
+            </div>
+            <div class="ver__item reveal">
+              <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <h3>Que processo sustenta o volume</h3>
+                <p>Filas, prioridades e SLA combinados antes da data, para o pico não virar improviso.</p>
+              </div>
+            </div>
+            <div class="ver__item reveal">
+              <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <h3>O que acompanhar durante a data</h3>
+                <p>Os indicadores que mostram o gargalo enquanto ainda dá tempo de corrigir a rota.</p>
+              </div>
+            </div>
+            <div class="cta-row reveal">
+              <a class="btn" href="#inscricao">Quero assistir à aula
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. RESERVE SUA VAGA -->
+    <section class="inscricao" id="inscricao">
+      <div class="wrap">
+        <div class="insc__grid">
+          <div class="form-side reveal">
+            <span class="eyebrow">Inscrição</span>
+            <h2>Reserve sua vaga</h2>
+            <p class="kicker">02 de outubro, 11h (Brasília). Online, ao vivo e gratuita.</p>
+            <p class="sub">Preencha os dados e receba o link de acesso por e-mail e WhatsApp antes da aula.</p>
+            <p class="requisito">
+              <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="#7AA0FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A inscrição é gratuita e leva menos de um minuto.
+            </p>
+          </div>
+
+          <div class="form-card reveal">
+            <div class="jotform-embed">
+              <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PALESTRANTES (PLACEHOLDER) -->
+    <!-- PLACEHOLDER: trocar nome, cargo, mini bio e foto de cada palestrante quando o time confirmar.
+         Para colocar a foto, guardar o arquivo na pasta assets desta LP e trocar o
+         span.spk__ph por uma img.spk__ph (84x84, loading lazy) apontando pra ele. -->
+    <section id="palestrantes">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Quem apresenta</span>
+          <h2>Quem conduz a aula</h2>
+          <p>Quem acompanhou a operação de perto e vai abrir o processo passo a passo.</p>
+        </div>
+        <div class="spks">
+          <div class="spk reveal">
+            <span class="spk__ph" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.9" stroke="currentColor" stroke-width="1.6"/><path d="M4.6 20c.6-3.8 3.7-6.1 7.4-6.1s6.8 2.3 7.4 6.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <p class="spk__name">Nome do palestrante</p>
+              <p class="spk__role">Cargo, Cxpress</p>
+              <p class="spk__bio">Mini bio em uma ou duas linhas, com o que essa pessoa faz e por que ela conhece o caso por dentro.</p>
+            </div>
+          </div>
+          <div class="spk reveal">
+            <span class="spk__ph" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.9" stroke="currentColor" stroke-width="1.6"/><path d="M4.6 20c.6-3.8 3.7-6.1 7.4-6.1s6.8 2.3 7.4 6.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <p class="spk__name">Nome do palestrante</p>
+              <p class="spk__role">Cargo, Cxpress</p>
+              <p class="spk__bio">Mini bio em uma ou duas linhas, com o que essa pessoa faz e por que ela conhece o caso por dentro.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cta-row cta-row--center reveal">
+          <a class="btn" href="#inscricao">Reservar minha vaga
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FECHO + MARCAS QUE ATENDEM COM A CXPRESS -->
+    <section class="fecho">
+      <div class="wrap">
+        <div class="reveal">
+          <h2>A próxima data comercial já está no calendário.</h2>
+          <p>Dá para chegar nela com o atendimento preparado. A aula mostra como uma marca grande fez isso.</p>
+          <div class="cta-row cta-row--center">
+            <a class="btn" href="#inscricao">Reservar minha vaga
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="clientes">
+        <div class="wrap">
+          <span class="clientes__label">Marcas que atendem com a Cxpress</span>
+          <div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+            <div class="clientes__track">
+              <div class="clientes__group">
+                <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+                <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+                <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+                <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+                <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+                <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+                <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+                <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+                <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+                <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+                <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+                <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+                <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+                <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+                <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+                <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+                <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+                <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+                <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+                <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+                <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+                <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+                <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+                <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+                <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+                <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+                <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+                <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+                <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+                <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+                <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+                <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+                <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+                <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+              </div>
+              <div class="clientes__group" aria-hidden="true">
+                <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84" loading="lazy">
+                <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+                <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+                <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+                <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+                <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+                <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+                <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+                <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+                <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+                <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+                <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+                <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+                <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+                <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+                <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+                <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+                <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+                <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+                <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+                <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+                <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+                <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+                <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+                <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+                <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+                <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+                <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+                <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+                <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+                <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+                <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+                <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+                <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+                <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="https://home.cxpress.io" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="30">
+      </a>
+      <p>Cxpress é um produto Elife. © 2026<br>Condições gerais de uso da Cxpress · Políticas de privacidade</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+      if(!('IntersectionObserver' in window)){ showAll(); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+      els.forEach(function(el){ io.observe(el); });
+      setTimeout(showAll, 2500);
+    })();
+  </script>
+</body>
+</html>
