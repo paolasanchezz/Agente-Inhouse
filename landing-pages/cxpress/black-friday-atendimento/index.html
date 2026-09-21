@@ -381,6 +381,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       *{animation:none!important;transition:none!important}
     }
 
+  /* ===== Palestrantes ===== */
+  .spks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:880px;margin:0 auto}
+  .spk{display:flex;gap:20px;align-items:flex-start;background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow)}
+  .spk__ph{flex:none;width:84px;height:84px;border-radius:50%;background:var(--primary-lighter);color:var(--primary-dark);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-.02em;overflow:hidden}
+  .spk__ph img{width:100%;height:100%;object-fit:cover}
+  .spk__name{font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--primary-dark);letter-spacing:-.02em}
+  .spk__role{margin-top:5px;font-size:16px;color:var(--primary);font-weight:700}
+  .spk__bio{margin-top:12px;font-size:16.5px;color:var(--neutral-700);line-height:1.55}
+  @media (max-width:980px){.spks{grid-template-columns:minmax(0,1fr)}}
+
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
   .cta-note{ font-size:16px; }
@@ -424,6 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#programa">O que você vai ver</a>
         <a href="#case">Case</a>
         <a href="#quem">Para quem é</a>
+        <a href="#palestrantes">Palestrantes</a>
       </nav>
       <a class="hd__cta" href="#inscricao">Garantir minha vaga</a>
     </div>
@@ -733,6 +744,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="troca reveal">
             <span class="troca__n" aria-hidden="true">4</span>
             <div><h3>Quer usar IA no atendimento</h3><p>Sem entregar um robô que irrita o cliente.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PALESTRANTES -->
+    <section id="palestrantes">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Quem apresenta</span>
+          <h2>Quem vai conduzir o webinar</h2>
+        </div>
+        <div class="spks">
+          <div class="spk reveal">
+            <span class="spk__ph" aria-hidden="true">LF</span>
+            <div>
+              <p class="spk__name">Luiz Fantini</p>
+              <p class="spk__role">New business, Cxpress</p>
+              <p class="spk__bio">Apresenta o case da Cacau Show e o passo a passo por trás dos números.</p>
+            </div>
+          </div>
+          <div class="spk reveal">
+            <span class="spk__ph" aria-hidden="true">EC</span>
+            <div>
+              <p class="spk__name">Enrico Chiari</p>
+              <p class="spk__role">New business e sales coordinator, Cxpress</p>
+              <p class="spk__bio">Conduz a conversa sobre como preparar o atendimento para o pico de vendas.</p>
+            </div>
           </div>
         </div>
       </div>
