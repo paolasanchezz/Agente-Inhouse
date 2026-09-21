@@ -1,0 +1,191 @@
+/* =====================================================================
+   Cxpress · Jotform "Ofertas Cxpress LATAM" (261525344798871)
+   Estilo de la LP oferta-webinar-clinicas-septiembre-2026 aplicado al form.
+
+   DONDE VA: editor de Jotform > Form Designer (pincel) > pestana "Styles"
+   > "Inject Custom CSS". No va en el HTML de la LP: el embed es un iframe
+   cross-origin y el CSS del padre no entra.
+
+   OJO: este form es COMPARTIDO. Hoy tambien lo usa la LP
+   landing-pages/cxpress/webinar-tecnologia-maio2026-oferta-latam.
+   Cualquier cambio aca se ve en las dos.
+
+   Tokens: brand/cxpress/tokens.json
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap');
+
+/* ---------- 1. Contenedor: transparente, sin card propia ----------
+   La LP ya envuelve el form en una tarjeta blanca con sombra. Sin esto
+   queda card dentro de card. */
+.jotform-form,
+.form-all {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-family: 'Source Sans 3', system-ui, sans-serif !important;
+}
+
+.form-section { padding: 0 !important; }
+
+/* ---------- 2. Ritmo vertical ---------- */
+.form-line {
+  padding: 0 0 16px 0 !important;
+  margin: 0 !important;
+}
+.form-line:last-of-type { padding-bottom: 0 !important; }
+
+/* Ancho de campo: el form trae un ancho fijo de 242px en `.form-input-wide`,
+   asi que dentro de la tarjeta de la LP los campos quedaban cortos y sin
+   llegar al borde. Se sueltan a ancho completo. */
+.form-input,
+.form-input-wide,
+.form-sub-label-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Nombre y Apellidos son columnas (form-col-1 / form-col-2). En un ancho de
+   tarjeta se apilan igual, pero Jotform le deja a la segunda un padding
+   lateral que la desalinea de las demas. */
+.form-line-column.form-col-1,
+.form-line-column.form-col-2 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ---------- 3. Labels ----------
+   Hoy los campos de este form no tienen texto de label (solo el asterisco
+   de obligatorio) y se apoyan en el placeholder. Estas reglas dejan el
+   label listo por si le agregas texto en el editor: micro-label en
+   mayusculas, como en la LP. Si no le pones texto, no ocupa espacio. */
+.form-label,
+.form-label-top {
+  font-family: 'Open Sans', system-ui, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: .09em !important;
+  text-transform: uppercase !important;
+  color: #232960 !important;
+  margin-bottom: 7px !important;
+  line-height: 1.3 !important;
+}
+.form-label:empty { margin-bottom: 0 !important; }
+.form-required { color: #EF863C !important; }
+
+/* ---------- 4. Inputs y selects ---------- */
+.form-textbox,
+.form-dropdown,
+.form-textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-family: 'Source Sans 3', system-ui, sans-serif !important;
+  font-size: 17px !important;
+  line-height: 1.4 !important;
+  color: #1a1a1a !important;
+  padding: 14px 16px !important;
+  height: auto !important;
+  background: #f5f6fb !important;
+  border: 1.5px solid #e3e6f2 !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  transition: border-color .18s ease, background .18s ease !important;
+}
+
+.form-textbox::placeholder,
+.form-textarea::placeholder { color: #6f7688 !important; opacity: 1 !important; }
+
+/* El select de Pais arranca en gris hasta que se elige algo */
+.form-dropdown { appearance: none !important; padding-right: 40px !important; }
+
+.form-textbox:hover,
+.form-dropdown:hover { border-color: #c9d2ea !important; }
+
+.form-textbox:focus,
+.form-dropdown:focus,
+.form-textarea:focus {
+  border-color: #4A69BD !important;
+  background: #ffffff !important;
+  outline: 3px solid #EF863C !important;
+  outline-offset: 2px !important;
+}
+
+/* ---------- 5. Checkbox del newsletter ---------- */
+.form-checkbox-item label,
+.form-radio-item label {
+  font-family: 'Source Sans 3', system-ui, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #4a4a4a !important;
+}
+.form-checkbox:focus + label::before { outline: 3px solid #EF863C !important; }
+
+/* ---------- 6. Boton ----------
+   Mismo boton de la LP: naranja de marca con texto azul marino (5.3:1,
+   pasa AA). El naranja por defecto de Jotform es mas saturado y se pelea
+   con la paleta. */
+.form-submit-button,
+.form-submit-button.submit-button {
+  display: block !important;
+  width: 100% !important;
+  font-family: 'Open Sans', system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #232960 !important;
+  background: #EF863C !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  padding: 20px 24px !important;
+  margin: 8px 0 0 0 !important;
+  box-shadow: 0 10px 24px rgba(239,134,60,.28) !important;
+  cursor: pointer !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+.form-submit-button:hover {
+  background: #e0762c !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 30px rgba(239,134,60,.36) !important;
+}
+.form-submit-button:active { transform: translateY(0) !important; }
+.form-submit-button:focus-visible { outline: 3px solid #232960 !important; outline-offset: 3px !important; }
+
+.form-buttons-wrapper,
+.form-line-buttons { padding: 0 !important; margin: 0 !important; text-align: left !important; }
+
+/* ---------- 7. Errores ---------- */
+.form-line-error { background: transparent !important; }
+.form-line-error .form-textbox,
+.form-line-error .form-dropdown { border-color: #C0392F !important; background: #fdf3f2 !important; }
+.form-error-message {
+  font-family: 'Source Sans 3', system-ui, sans-serif !important;
+  font-size: 14px !important;
+  background: #C0392F !important;
+  border-radius: 6px !important;
+}
+
+/* ---------- 8. Campo de telefono (widget) ----------
+   El interior del widget vive en un iframe aparte (widgets.jotform.io) y
+   no se puede estilar desde aca. Lo unico que se arregla es el ancho, que
+   venia topado en 250px inline. Queda con fondo blanco, esquinas rectas y
+   40px de alto, contra los ~51px del resto. Para igualarlo del todo habria
+   que cambiarlo en el editor por un campo de telefono nativo de Jotform, y
+   eso cambia el formato del dato que llega al CRM. Decision tuya. */
+#cid_34 iframe.custom-field-frame {
+  width: 100% !important;
+  max-width: 100% !important;   /* el widget se autolimita a 250px inline */
+}
+
+/* ---------- 9. Nota de verificacion ----------
+   Este CSS se probo inyectado sobre el form real (2026-09-21): inputs en
+   #f5f6fb con radio de 9px, boton #EF863C con texto #232960, y los seis
+   campos alineados a ancho completo. Lo unico que queda distinto es el
+   widget de telefono descrito arriba. */

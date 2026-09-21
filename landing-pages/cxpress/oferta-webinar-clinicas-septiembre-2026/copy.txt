@@ -1,0 +1,118 @@
+# Copy estructurada: Oferta webinar clínicas (ES-LATAM)
+
+FUENTE: copy literal visible en https://www.cxpress.ai/oferta-webinar-clinicas-septiembre-2026
+(página construida en GreatPages). Ningún texto fue reescrito: el rediseño reordena y
+formatea, no cambia el mensaje aprobado.
+
+---
+
+## §1 HERO (fondo azul marino)
+
+OVERLINE: OFERTA EXCLUSIVA
+
+H1: Organiza tu atención al cliente antes de que se vuelva un caos
+
+BODY: Aprovecha este beneficio exclusivo para asistentes a nuestro webinar y empieza a ver
+resultados desde las primeras semanas.
+
+LISTA-OFERTA (4 ítems):
+- 15 días gratis de Cxpress para probarlo sin condiciones
+- 50% de descuento en tus primeras dos mensualidades
+- Hasta 20 horas de configuración con nuestros especialistas
+- Configuración de canales y flujos adaptada a tu operación
+
+FORM (tarjeta blanca, 4 campos):
+- Nombre completo
+- E-mail profesional
+- Teléfono
+- Empresa
+CTA: ¡Enviar ahora!
+LEGAL: Oferta válida por solo 7 días. Al registrarte, aceptas recibir comunicaciones de
+Cxpress sobre esta oferta.
+
+---
+
+## §2 PROBLEMA + CAPACIDADES (fondo blanco)
+
+H2: La atención creció, pero los procesos no siguieron el ritmo
+
+BODY: Más canales, más clientes, más conversaciones. Pero sin visibilidad centralizada, el
+equipo trabaja con información incompleta, los tiempos de respuesta se alargan y los
+clientes lo notan.
+
+SUBTÍTULO LISTA: Con Cxpress, tu equipo puede:
+
+LISTA (6 ítems):
+- responder preguntas frecuentes sobre el producto, planes, acceso o funcionalidades desde un solo lugar
+- orientar a los clientes en las etapas iniciales de soporte sin perder el contexto
+- recopilar información antes de derivar al especialista correcto
+- reducir filas en los horarios de mayor volumen sin ampliar el equipo
+- mantener al cliente informado en cada paso mientras se organiza el ticket
+- estandarizar respuestas sin perder el tono ni el contexto de la operación
+
+CTA: Aprovechar oferta
+
+---
+
+## §3 URGENCIA (fondo azul marino, sello rotado)
+
+SELLO: OFERTA VÁLIDA SOLO POR 7 DÍAS
+
+H2: ¡Beneficio exclusivo para inscritos al webinar!
+
+CTA: Aprovechar oferta
+
+---
+
+## §4 DASHBOARDS (fondo off-white)
+
+H2: Lo que hoy es un punto ciego, mañana es un dato accionable
+
+BODY: Con los dashboards de Cxpress, los gestores de soporte tienen respuesta inmediata a
+preguntas como:
+
+GRID (6 preguntas):
+- ¿Cuántas conversaciones están activas ahora mismo por canal?
+- ¿Cuáles son las consultas que más se repiten y podrían automatizarse?
+- ¿Cuáles son los principales cuellos de botella?
+- ¿Qué tickets llevan más tiempo sin respuesta?
+- ¿Dónde se está generando la mayor carga para el equipo?
+- ¿Cómo está distribuida la carga entre los agentes?
+
+CTA: Aprovechar oferta
+
+---
+
+## §5 PLATAFORMA (fondo blanco, lista numerada 01-06)
+
+H2: Todo lo que necesitas para ordenar tu operación de atención al cliente
+
+LISTA NUMERADA:
+01. centralización de WhatsApp, correo electrónico y otros canales en un solo entorno
+02. historial completo del cliente para mantener el contexto en cada interacción
+03. colas organizadas por área, prioridad o responsable
+04. gestión de tickets con mayor claridad sobre lo que está abierto, en curso o resuelto
+05. dashboards para monitorear volumen, tiempos de respuesta y productividad del equipo
+06. uso de la API oficial de WhatsApp con mayor seguridad y estabilidad operativa
+
+---
+
+## §6 CTA FINAL (fondo azul marino)
+
+H2: Organiza tu atención al cliente antes de que se vuelva un caos
+
+MICROCOPY TARJETA: Tu oferta incluye (repite los 4 ítems del hero)
+
+CTA: Aprovechar oferta
+
+LEGAL: Oferta válida por solo 7 días.
+
+---
+
+## FOOTER
+
+© 2026 Elife Group
+Todos los derechos reservados
+
+Redes: Instagram (cxpress.es) · LinkedIn (company/cxpress) · Facebook (Cxpress España y LATAM)
+Sitio: https://cxpress.ai/
