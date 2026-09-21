@@ -1,0 +1,121 @@
+# Copy: Oferta Café con Cxpress, Medellín (ES-LATAM)
+
+PÚBLICO: asistentes al evento presencial "Café con Cxpress", Hotel Dann Carlton,
+Medellín, 24/09/2026. Público caliente: ya vieron el workshop de agentes de IA.
+TRATAMIENTO: tuteo (Colombia). Cxpress sin artículo en español.
+FUNIL: BoFu. Plataforma primero, oferta al cierre (formulario en la última sección).
+
+FUENTES DE PRODUCTO: brand/cxpress/BRANDBOOK.md §2 (módulos y features confirmadas).
+Sin cases ni métricas: el brandbook las marca como pendientes de validación interna
+("Nao inventar cases"). Ninguna cifra de resultado aparece en esta copy.
+
+---
+
+## §1 HERO (fondo azul marino)
+
+OVERLINE: Café con Cxpress · Medellín
+
+H1: Tu chatbot responde. Tus clientes siguen esperando a un humano.
+
+BODY: En el café hablamos de agentes de IA que deciden en lugar de solo contestar.
+Cxpress es la plataforma donde eso funciona todos los días: WhatsApp, correo, redes y
+voz en un mismo panel, con IA que resuelve el primer nivel y pasa a tu equipo lo que
+de verdad necesita una persona.
+
+CTA: Quiero mi oferta
+
+DATO DE PIE: Beneficio exclusivo para quienes estuvieron en Medellín.
+
+---
+
+## §2 PROBLEMA (fondo blanco)
+
+EYEBROW: El diagnóstico
+
+H2: El problema no es el volumen. Es que cada canal vive por su lado.
+
+BODY: Cuando WhatsApp, el correo y las redes se atienden en pestañas distintas, nadie
+tiene la conversación completa. El cliente repite su caso, el agente improvisa con la
+mitad de la información y el tiempo de respuesta se estira sin que nadie sepa por qué.
+
+LISTA DE DOLORES (5, con marca de error):
+- el cliente cuenta lo mismo tres veces porque cada canal empieza de cero
+- el equipo copia y pega entre herramientas para reconstruir el historial
+- las horas pico desbordan al equipo y la fila crece sin control
+- nadie sabe qué conversaciones están abiertas ni hace cuánto
+- el bot contesta preguntas sueltas, pero no resuelve ni escala bien
+
+---
+
+## §3 LA PLATAFORMA (fondo off-white)
+
+EYEBROW: Qué hace Cxpress
+
+H2: Toda la atención de tu empresa en un solo lugar
+
+BODY: Cxpress reúne los canales, el historial y la automatización en un mismo entorno,
+para que tu equipo trabaje con la conversación completa a la vista.
+
+GRID (6 módulos, del BRANDBOOK §2):
+1. Centralización de canales. WhatsApp con API oficial, correo electrónico, Facebook,
+   Instagram, teléfono y chat del sitio en un único panel.
+2. Historial unificado. La jornada completa de cada cliente, sin importar por dónde
+   entró ni cuántas veces volvió.
+3. Automatización con IA. ChatGPT integrado atiende el primer nivel en lenguaje
+   natural, 24/7.
+4. Gestión de tickets. Distribución automática o manual por área y agente, con las
+   filas organizadas.
+5. Dashboards analíticos. Paneles que reemplazan las planillas y muestran qué está
+   abierto, qué demora y dónde está la carga.
+6. Atención por voz. Telefonía en la nube en el mismo ambiente, con transcripción
+   automática de las llamadas.
+
+---
+
+## §4 WHATSAPP + IA (fondo azul marino)
+
+EYEBROW: El canal donde todo pasa
+
+H2: Tu WhatsApp Business, con IA que resuelve y sabe cuándo ceder el turno
+
+BODY: La diferencia entre un bot y un agente útil no está en cuánto responde, sino en
+cuándo decide que el caso ya no es suyo.
+
+PASOS (3):
+01. La IA atiende el primer contacto. Responde en lenguaje natural las preguntas
+    frecuentes sobre producto, planes, acceso o estado de un caso, a cualquier hora.
+02. Reúne el contexto antes de escalar. Pregunta lo que falta y arma el caso, en vez
+    de pasar a un humano una conversación en blanco.
+03. Entrega el caso completo a tu equipo. El agente recibe el historial y el contexto
+    ya cargados, y sigue la conversación donde la IA la dejó.
+
+DIFERENCIAL: Con la API oficial de WhatsApp, no con WhatsApp Web: más estabilidad y
+una cuenta que no depende de un celular prendido.
+
+---
+
+## §5 OFERTA + FORMULARIO (fondo azul marino, cierre)
+
+SELLO: Oferta válida por solo 7 días
+
+H2: Tu condición especial por haber estado en Medellín
+
+LISTA-OFERTA (4):
+- 15 días gratis de Cxpress para probarlo sin condiciones
+- 50% de descuento en tus primeras dos mensualidades
+- Hasta 20 horas de configuración con nuestros especialistas
+- Configuración de canales y flujos adaptada a tu operación
+
+FORM: Jotform "Ofertas Cxpress LATAM" (261525344798871)
+TÍTULO DEL FORM: Reclama tu oferta
+SUBTÍTULO: Déjanos tus datos y un especialista te contacta para activarla.
+
+LEGAL: Oferta válida por solo 7 días. Al registrarte, aceptas recibir comunicaciones de
+Cxpress sobre esta oferta.
+
+---
+
+## FOOTER
+
+© 2026 Elife Group · Todos los derechos reservados
+Redes: Instagram (cxpress.es) · LinkedIn (company/cxpress) · Facebook (Cxpress España y LATAM)

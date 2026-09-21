@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#232960; --royal:#4A69BD; --lilac:#C1C7FF; --accent:#EF863C; --warning:#F1A908; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;position:relative;
+    background:var(--navy); color:#fff;
+    font-family:'Open Sans',Arial,sans-serif;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 84px;
+  }
+  .sh{position:absolute;border-radius:9999px}
+  .s1{width:150px;height:400px;background:rgba(74,105,189,.5);left:-70px;top:90px}
+  .s2{width:470px;height:470px;border:2px solid rgba(193,199,255,.22);border-radius:50% 50% 0 0;right:-150px;top:-120px}
+  .s3{width:78px;height:210px;background:var(--accent);right:7%;bottom:-70px}
+  .overline{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:21px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--navy);background:#FFDCC3;border-radius:9999px;padding:13px 28px;
+    width:fit-content;margin-bottom:34px;position:relative;z-index:2;
+  }
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--accent)}
+  h1{font-size:62px;font-weight:800;line-height:1.1;max-width:880px;letter-spacing:-1px;position:relative;z-index:2}
+  h1 em{font-style:normal;color:var(--warning)}
+  .perks{
+    margin-top:34px;display:flex;gap:30px;font-family:'Source Sans 3',Arial,sans-serif;
+    font-size:23px;color:var(--lilac);position:relative;z-index:2;
+  }
+  .perks b{color:#fff;font-weight:600}
+  .brand{position:absolute;bottom:44px;left:84px;z-index:2}
+  .brand img{height:44px;width:auto}
+</style>
+</head>
+<body>
+  <span class="sh s1"></span><span class="sh s2"></span><span class="sh s3"></span>
+  <span class="overline"><span class="dot"></span>Café con Cxpress · Medellín</span>
+  <h1>Tu chatbot responde. Tus clientes siguen esperando a un <em>humano</em>.</h1>
+  <div class="perks">
+    <span><b>WhatsApp, correo, redes y voz</b></span>
+    <span><b>IA que resuelve el primer nivel</b></span>
+    <span><b>15 días gratis + 50% off</b></span>
+  </div>
+  <div class="brand"><img src="../../../brand/cxpress/assets/logos/logo-reversed.png" alt=""></div>
+</body>
+</html>
