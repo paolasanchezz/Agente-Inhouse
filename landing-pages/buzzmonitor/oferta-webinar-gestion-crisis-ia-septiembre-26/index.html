@@ -192,9 +192,15 @@ p,.body-long,.footer-legal,.form-note{text-wrap:pretty}
 .pill::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--yellow);flex:none}
 
 /* ---------- hero ---------- */
-.hero{background:var(--cream);padding:112px 0 124px;position:relative;overflow:hidden}
+.hero{
+  background:var(--cream);position:relative;overflow:hidden;
+  padding:104px 0 112px;
+  display:flex;align-items:center;
+  min-height:min(680px,86vh);
+}
 .hero .dots{width:420px;height:420px;top:-120px;left:-140px}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:72px;align-items:center}
+.hero-grid{width:100%}
+.hero-content{max-width:clamp(420px,46vw,640px)}
 .badge{
   display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:#fff;
   font-family:"League Spartan",sans-serif;font-weight:800;font-size:14px;
@@ -208,8 +214,14 @@ p,.body-long,.footer-legal,.form-note{text-wrap:pretty}
 .lead{font-family:"Lato",sans-serif;font-weight:400;font-size:clamp(18px,2vw,21px);line-height:1.6;color:var(--ink-soft);max-width:38ch}
 .hero-actions{margin-top:40px}
 
-.hero-visual{position:relative;overflow:hidden;display:grid;place-items:center}
-.hero-visual picture{display:block;width:100%;max-width:520px}
+/* visual colado no canto inferior direito da secao: a arte ja sangra em cima,
+   a direita e embaixo, entao ancorar nesses dois lados nao deixa borda. */
+.hero-visual{
+  position:absolute;right:0;bottom:0;z-index:0;
+  width:clamp(360px,43vw,740px);
+  pointer-events:none;
+}
+.hero-visual picture{display:block;width:100%}
 /* GUIDELINES §14: min-height 0 obrigatorio em <img> dentro de grid item (Safari iOS) */
 .hero-visual img{width:100%;height:auto;max-width:100%;min-height:0;display:block}
 
@@ -373,8 +385,9 @@ p,.body-long,.footer-legal,.form-note{text-wrap:pretty}
 /* ---------- responsive ---------- */
 @media (max-width:980px){
   :root{--pad-y:100px}
-  .hero{padding:76px 0 92px}
-  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero{display:block;padding:76px 0 0;min-height:0}
+  .hero-content{max-width:none}
+  .hero-visual{position:static;width:100%;margin-top:44px}
   .offer-cards{grid-template-columns:1fr}
   .benefit-grid{grid-template-columns:repeat(2,1fr)}
   .module-grid{grid-template-columns:1fr;gap:44px}
@@ -439,7 +452,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a class="btn btn-primary" href="#form-section">Quiero aprovechar la oferta</a>
         </div>
       </div>
-      <div class="hero-visual">
+    </div>
+    <div class="hero-visual">
         <picture>
           <source srcset="./assets/hero-actividad-competencia.webp" type="image/webp">
           <img src="./assets/hero-actividad-competencia.png"
@@ -447,7 +461,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                alt="Portátil que muestra un panel de actividad de la competencia con menciones por período, alcance y engagement, y una lupa que amplía las publicaciones recientes de tres competidores."
                fetchpriority="high" decoding="async">
         </picture>
-      </div>
     </div>
   </section>
 

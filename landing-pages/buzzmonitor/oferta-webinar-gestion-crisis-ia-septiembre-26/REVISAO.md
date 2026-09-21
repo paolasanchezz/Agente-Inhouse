@@ -185,3 +185,25 @@ O novo texto foi registrado num bloco `=== HEADER ===` no `copy.txt`, pra sobrev
 Meio-termo se algum dos dois incomodar depois: manter a fonte em 14px e tirar os 20% so do `padding`. O botao encolhe visivelmente e os dois pisos sobrevivem.
 
 Contraste nao mudou: branco sobre roxo `#390155`, 16:1.
+
+---
+
+## Hero sangrado no canto inferior direito (2026-09-21)
+
+O usuario reportou sobra de fundo creme a direita e abaixo da imagem, visivel sobretudo com zoom de 100-110% (viewport efetivo ~1070 px). Causa: a imagem era uma coluna do grid dentro do `.shell` (max-width 1200 + padding 28), entao sempre sobrava o padding do shell a direita e o padding da secao embaixo.
+
+O que mudou:
+
+- **`.hero-visual` saiu do `.shell`** e virou filho direto de `.hero`, depois do `.shell` no DOM. Fora do shell, pode ancorar no proprio limite da secao; e depois do texto no DOM, continua empilhando abaixo dele no mobile (GUIDELINES §3, headline sempre primeiro, sem `order`).
+- **Ancorada em `right:0; bottom:0`** com `width: clamp(360px, 43vw, 740px)`. Encosta nos dois lados em qualquer largura, e como escala por `vw`, acompanha qualquer nivel de zoom sem precisar de regra especial.
+- **`.hero` virou flex com `min-height: min(680px, 86vh)`** e alinhamento central, pra o texto ficar verticalmente centrado com a arte.
+- **Coluna de texto limitada** a `clamp(420px, 46vw, 640px)`, pra nao correr por baixo da imagem. Como efeito colateral bom, o H1 fecha em 4 linhas em vez de 5 nas larguras grandes.
+- **Mobile**: imagem full-bleed (`width:100%`) abaixo do texto, com `padding-bottom:0` no hero, colada na base da secao.
+
+Por que ancorar exatamente nesses dois lados: a arte ja sangra em cima, a direita e embaixo (o notebook e cortado no topo e na direita, a lupa e a trama de pontos alcancam a base). Medindo o canal alfa do PNG, a coluna da direita tem 91% de cobertura e a linha da base 46%. Colar em `right/bottom` aproveita esse sangramento; colar na esquerda exporia a area transparente da arte.
+
+Medido no navegador a 1440: folga a direita **0 px**, folga abaixo **0 px**, folga entre o bloco de texto e a imagem 25 px (a arte comeca bem depois disso, entao a respiracao visual e maior).
+
+Conferido em 1024, 1070, 1280, 1440, 1680 e 375: sem borda sobrando, sem sobreposicao de texto e sem scroll horizontal (`scrollWidth == clientWidth`).
+
+Revalidacao: 0 falhas AA, pisos tipograficos §20 sem pendencias, GTM `ok`, em-dash 0, `build_umbrella.py` sem avisos para esta LP.
