@@ -43,3 +43,29 @@ en navy `#232960`, nunca en royal (la advertencia de `GUIDELINES.md` §7).
       comparten formulario).
 - [ ] Confirmar que la oferta (15 días + 50% + 20 h) sigue vigente para este evento en la
       fecha de publicación. Fue confirmada por el usuario el 2026-09-21.
+
+## Móvil: formas decorativas por debajo del texto (corregido 2026-09-22)
+
+El usuario reportó elementos superpuestos en móvil. Medido con un script que compara cajas
+(recortando por cada ancestro con `overflow:hidden`), a 375 px había casos de forma
+decorativa por debajo de texto. Los peores:
+
+| Forma | Encima de | Cobertura |
+|---|---|---|
+| arco del hero | H1 | 78% |
+| arco de la sección de IA | H2 de WhatsApp | alto |
+| arco del cierre | H2 final | 63% |
+
+**Causa raíz: un problema de especificidad CSS, no de posición.** Existía la regla
+`.h3s,.h4s,.i2,.o1,.o2{ display:none }` dentro del `@media (max-width:640px)`, pero nunca
+se aplicó: `.deco span` tiene especificidad (0,1,1) y le gana a `.h3s` (0,1,0). O sea que
+el `display:block` del contenedor ganaba siempre y las formas seguían visibles en móvil.
+
+**Arreglo:** ocultar los **contenedores** (`.deco`) en vez
+de los spans. Ocultar el padre no compite en especificidad con la regla de los hijos. Se movió
+además al breakpoint de 980 px, que es donde el layout colapsa a una sola columna: las formas
+se compusieron apoyadas en los márgenes de la grilla de 2 columnas, y sin esos márgenes no
+tienen dónde vivir sin pisar el contenido.
+
+**Verificado después del arreglo** a 320, 375 y 768 px: 0 formas sobre texto, 0 solapes de
+texto contra texto, 0 desborde horizontal.

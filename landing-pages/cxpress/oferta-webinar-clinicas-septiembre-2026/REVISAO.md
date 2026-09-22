@@ -51,3 +51,30 @@ La advertencia de `GUIDELINES.md` §7 (royal sobre lila reprueba con ≈4.0:1) n
 - [ ] Confirmar a dónde redirige el Jotform al enviar (Thank You Page): es configuración del formulario, no de la LP.
 - [ ] Confirmar dominio destino: `content.cxpress.io` (paraguas, deploy por CI) o reemplazo de la página en `cxpress.ai` (GreatPages, decisión aparte).
 - [ ] Validar el placeholder de teléfono (`+57 300 000 0000`, Colombia) contra el público real de la campaña.
+
+## Móvil: formas decorativas por debajo del texto (corregido 2026-09-22)
+
+El usuario reportó elementos superpuestos en móvil. Medido con un script que compara cajas
+(recortando por cada ancestro con `overflow:hidden`), a 375 px había 8 casos de forma
+decorativa por debajo de texto. Los peores:
+
+| Forma | Encima de | Cobertura |
+|---|---|---|
+| arco del hero | H1 | 78% |
+| arco del hero | eyebrow "Oferta exclusiva" | 64% |
+| arco de urgencia | sello de 7 días | 90% |
+| arco del cierre | H2 final | 63% |
+
+**Causa raíz: un problema de especificidad CSS, no de posición.** Existía la regla
+`.d3,.d4,.d5,.u3,.f1,.f2{ display:none }` dentro del `@media (max-width:640px)`, pero nunca
+se aplicó: `.hero__deco span` tiene especificidad (0,1,1) y le gana a `.d3` (0,1,0). O sea que
+el `display:block` del contenedor ganaba siempre y las formas seguían visibles en móvil.
+
+**Arreglo:** ocultar los **contenedores** (`.hero__deco, .urgency__deco, .final__deco`) en vez
+de los spans. Ocultar el padre no compite en especificidad con la regla de los hijos. Se movió
+además al breakpoint de 980 px, que es donde el layout colapsa a una sola columna: las formas
+se compusieron apoyadas en los márgenes de la grilla de 2 columnas, y sin esos márgenes no
+tienen dónde vivir sin pisar el contenido.
+
+**Verificado después del arreglo** a 320, 375 y 768 px: 0 formas sobre texto, 0 solapes de
+texto contra texto, 0 desborde horizontal.

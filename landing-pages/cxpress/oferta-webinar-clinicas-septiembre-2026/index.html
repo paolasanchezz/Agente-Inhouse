@@ -410,6 +410,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---------- responsive ---------- */
   @media (max-width:980px){
     body{ font-size:17px; }
+    /* Las formas decorativas se compusieron para el layout de 2 columnas: viven en los
+       margenes. Al colapsar a una sola columna el contenido ocupa todo el ancho y las
+       formas quedan por debajo de titulares, sello y CTA. Se ocultan los contenedores
+       (no los spans): ocultar el padre gana sin pelear especificidad con `.hero__deco span`. */
+    .hero__deco, .urgency__deco, .final__deco{ display:none; }
     .hero{ padding:64px 0 88px; }
     .hero__grid{ grid-template-columns:1fr; gap:44px; }
     .hero h1{ max-width:100%; }
@@ -443,7 +448,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .final{ padding:78px 0; }
     .btn{ width:100%; padding:18px 22px; font-size:16.5px; }
     .footer__inner{ flex-direction:column; align-items:flex-start; gap:22px; }
-    .d3,.d4,.d5,.u3,.f1,.f2{ display:none; }
     .seal{ font-size:12px; letter-spacing:.07em; padding:11px 17px; }
   }
 </style>
