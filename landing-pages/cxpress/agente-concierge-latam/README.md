@@ -1630,3 +1630,28 @@ Mesma troca aplicada na LP `telefonia-ia-latam` no mesmo PR.
 
 **Nao e so destas duas:** 51 das 75 LPs Cxpress do repo ainda apontam pro `home.cxpress.io`. So
 as duas pedidas foram trocadas; a varredura nas outras 49 fica pra decisao do Victor.
+
+### A etiqueta do Samir passa a usar o retrato (2026-09-22)
+
+Pedido do Ulises: usar aqui a mesma "foto de perfil" da etiqueta da LP `telefonia-ia-latam`.
+
+Antes a etiqueta trazia `samir-face.webp`, que era o **icone chapado da marca** (o sagui do
+logo, em azul), nao o personagem. Agora traz `samir-voz-face.webp`, o recorte do rosto do
+render 3D, o mesmo arquivo da outra LP (md5 identico). As duas LPs servem o asset no mesmo
+caminho do deploy, `/assets/cxpress/samir/samir-voz-face.webp`.
+
+Junto saiu o `padding:4px` do `.kvname__ic`: ele existia pra dar respiro ao icone chapado, e
+com um retrato deixava a foto encolhida no meio do circulo. Sem ele o rosto preenche o circulo,
+igual a telefonia.
+
+O `samir-face.webp` foi removido da pasta: nenhuma outra LP o referenciava.
+
+| | Antes | Depois |
+|---|---|---|
+| arquivo | `samir-face.webp` (icone da marca, 132x132) | **`samir-voz-face.webp`** (retrato 3D, 264x264) |
+| `.kvname__ic` padding | `4px` | **0** |
+
+**Observacao:** o retrato e o do Samir **com headset**, porque nasceu pra LP de telefonia. No
+hero desta LP ele aparece sem headset, digitando. Foi decisao do Ulises usar o mesmo retrato nas
+duas; se algum dia quiser um retrato sem headset pra ca, e recortar o rosto de `samir-hero.webp`
+com o mesmo enquadramento.
