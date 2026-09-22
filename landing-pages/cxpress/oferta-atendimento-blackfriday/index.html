@@ -52,35 +52,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --primary: #4A69BD;
-    --primary-dark: #232960;
-    --primary-darker: #171b47;
-    --primary-light: #C1C7FF;
-    --primary-lighter: #D7E2FF;
-    --accent: #EF863C;
-    --accent-light: #FFDCC3;
-    --warning: #F1A908;
-    --green: #21CC78;
-    --green-dark: #1AAE63;
-    --neutral-900: #1a1a1a;
-    --neutral-700: #4a4a4a;
-    --neutral-300: #d1d1d1;
-    --neutral-100: #f6f7fb;
-    --neutral-0: #ffffff;
+    /* Paleta da LP: 2 cores (preto + azul vibrante) + neutros, alinhada com black-friday-atendimento-b */
+    --ink: #0E1116;
+    --ink-soft: #3D4450;
+    --ink-mute: #697280;
+    --blue: #2B5CE6;
+    --blue-deep: #173FA8;
+    --blue-dark: #1E46C0;
+    --blue-tint: #EAF0FF;
+    --blue-on-dark: #7AA0FF;
     --danger: #C0392F;
-    --success: #1f9d63;
-    --radius-btn: 9px;
+    --paper: #ffffff;
+    --off: #F6F7F9;
+    --rule: #E4E7EC;
+    --radius-btn: 10px;
     --radius-pill: 9999px;
+    --radius-card: 16px;
     --font-heading: 'Open Sans', sans-serif;
     --font-body: 'Source Sans 3', sans-serif;
-    --font-accent: 'Bitter', serif;
-    --shadow-md: 0 12px 32px rgba(35,41,96,0.10);
-    --shadow-lg: 0 24px 60px rgba(35,41,96,0.16);
-    --shadow-deep: 0 30px 70px rgba(6,10,38,0.45);
+    --shadow-soft: 0 10px 30px rgba(14,17,22,.07);
+    --shadow-lift: 0 18px 44px rgba(14,17,22,.10);
   }
 
   * { box-sizing: border-box; }
@@ -88,36 +83,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   body {
     margin: 0;
     font-family: var(--font-body);
-    color: var(--neutral-900);
-    background: var(--neutral-0);
+    color: var(--ink-soft);
+    background: var(--paper);
     font-size: 18px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.02em; color: var(--primary-dark); margin: 0; line-height: 1.15; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin: 0; line-height: 1.15; text-wrap: balance; }
   p { margin: 0; }
   ul { margin: 0; padding: 0; list-style: none; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  ::selection { background: var(--primary-dark); color: var(--neutral-0); }
+  ::selection { background: var(--ink); color: var(--paper); }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
   /* Skip link */
   .skip-link {
     position: absolute; left: -9999px; top: 0; z-index: 1000;
-    background: var(--primary-dark); color: var(--neutral-0);
+    background: var(--ink); color: var(--paper);
     padding: 12px 20px; border-radius: 0 0 var(--radius-btn) 0;
     font-family: var(--font-heading); font-weight: 700;
   }
   .skip-link:focus { left: 0; }
 
-  :focus-visible { outline: 3px solid var(--warning); outline-offset: 2px; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 
   /* ============ HEADER ============ */
   .header {
     padding: 20px 0;
-    border-bottom: 1px solid var(--neutral-300);
+    border-bottom: 1px solid var(--rule);
   }
   .header .container { display: flex; align-items: center; justify-content: space-between; }
   .header-logo { height: 34px; width: auto; }
@@ -131,8 +126,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
   .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: var(--green); color: var(--neutral-0); box-shadow: var(--shadow-md); }
-  .btn-primary:hover { background: var(--green-dark); box-shadow: 0 10px 24px rgba(33,204,120,.28); }
+  .btn-primary { background: var(--blue); color: var(--paper); box-shadow: 0 8px 20px rgba(43,92,230,.22); }
+  .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 12px 26px rgba(43,92,230,.28); }
   .btn-block { width: 100%; }
   .btn .arrow { transition: transform .15s ease; }
   .btn:hover .arrow { transform: translateX(4px); }
@@ -145,45 +140,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* ============ HERO + FORM (secao 1 combinada) ============ */
-  .hero { padding: 72px 0 96px; background: var(--primary-dark); color: var(--neutral-0); position: relative; overflow: hidden; }
-  .hero::before {
-    content: ""; position: absolute; top: -120px; right: -120px; width: 340px; height: 340px;
-    border-radius: var(--radius-pill); background: var(--primary-lighter); opacity: .14; z-index: 0;
-  }
-  .hero::after {
-    content: ""; position: absolute; bottom: -160px; left: -80px; width: 220px; height: 420px;
-    border-radius: var(--radius-pill); background: var(--accent-light); opacity: .12; z-index: 0;
-  }
+  .hero { padding: 72px 0 96px; background: var(--paper); position: relative; }
   .hero .container { position: relative; z-index: 1; }
   .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
   .hero-content { padding-top: 12px; }
   .hero-kicker {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-heading); font-weight: 700; font-size: 13px; letter-spacing: .06em;
-    text-transform: uppercase; color: var(--warning);
+    font-family: var(--font-heading); font-weight: 700; font-size: 14px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--blue-deep);
+    background: var(--blue-tint); padding: 8px 16px; border-radius: var(--radius-pill);
     white-space: nowrap; margin-bottom: 24px;
   }
-  .hero-kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warning); flex-shrink: 0; }
-  .hero h1 { font-size:clamp(34px, 4vw, 46px); letter-spacing: -0.02em; color: var(--neutral-0); }
-  .hero-body { font-size: 19px; color: var(--primary-lighter); margin-top: 22px; line-height: 1.65; max-width: 48ch; }
+  .hero-kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .hero h1 { font-size:clamp(34px, 4vw, 46px); letter-spacing: -0.02em; }
+  .hero-body { font-size: 19px; color: var(--ink-soft); margin-top: 22px; line-height: 1.65; max-width: 48ch; }
 
   .hero-form-wrap {
-    background: var(--neutral-0); border-radius: 20px; box-shadow: var(--shadow-deep);
-    border: 1px solid var(--neutral-300); padding: 32px;
+    background: var(--paper); border-radius: var(--radius-card); box-shadow: var(--shadow-lift);
+    border: 1px solid var(--rule); padding: 32px;
   }
   .form-heading {
     font-family: var(--font-heading); font-weight: 700; font-size: 15px;
-    text-transform: uppercase; letter-spacing: .04em; color: var(--primary); margin-bottom: 16px;
+    text-transform: uppercase; letter-spacing: .04em; color: var(--blue-deep); margin-bottom: 16px;
   }
-  .form-bullets { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; padding-bottom: 26px; border-bottom: 1px dashed var(--neutral-300); }
-  .form-bullets li { display: flex; align-items: flex-start; gap: 12px; font-size: 15.5px; color: var(--neutral-900); line-height: 1.45; }
+  .form-bullets { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; padding-bottom: 26px; border-bottom: 1px dashed var(--rule); }
+  .form-bullets li { display: flex; align-items: flex-start; gap: 12px; font-size: 15.5px; color: var(--ink); line-height: 1.45; }
   .form-bullets .check {
-    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--green);
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--blue);
     display: flex; align-items: center; justify-content: center; margin-top: 1px;
   }
-  .form-bullets .check svg { width: 12px; height: 12px; stroke: var(--neutral-0); }
+  .form-bullets .check svg { width: 12px; height: 12px; stroke: var(--paper); }
 
-  .form-note { font-size: 12.5px; color: var(--neutral-700); margin-top: 14px; line-height: 1.5; }
+  .form-note { font-size: 12.5px; color: var(--ink-mute); margin-top: 14px; line-height: 1.5; }
 
   /* ----- Jotform embed wrapper (canonico) -----
      Sem padding/background/border: o provedor ja vem com card proprio.
@@ -198,11 +186,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* ============ MARCAS (marquee de clientes) ============ */
-  .clientes { background: var(--neutral-0); padding: 64px 0 40px; }
+  .clientes { background: var(--paper); padding: 64px 0 40px; }
   .clientes__label {
     display: block; text-align: center; font-family: var(--font-heading);
     font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--neutral-700); font-weight: 600;
+    color: var(--ink-mute); font-weight: 600;
   }
   .clientes__marquee {
     margin-top: 26px; overflow: hidden;
@@ -226,30 +214,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   section.block { padding: 120px 0; }
   @media (max-width: 720px) { section.block { padding: 80px 0; } }
   .section-h2 { font-size:clamp(28px, 3.4vw, 38px); max-width: 22ch; margin-left: auto; margin-right: auto; text-align: center; }
-  .section-lede { font-size: 18px; color: var(--neutral-700); margin-top: 18px; max-width: 60ch; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.65; }
+  .section-lede { font-size: 18px; color: var(--ink-soft); margin-top: 18px; max-width: 60ch; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.65; }
 
-  /* ============ BENEFICIO (grid, check primary) ============ */
+  /* ============ BENEFICIO (grid, check azul) ============ */
   .benefit-card {
-    display: flex; align-items: flex-start; gap: 16px; background: var(--neutral-100);
-    border-radius: 14px; padding: 22px; border: 1px solid var(--neutral-300);
+    display: flex; align-items: flex-start; gap: 16px; background: var(--off);
+    border-radius: 14px; padding: 22px; border: 1px solid var(--rule);
   }
   .benefit-card .check {
-    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--green);
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--blue);
     display: flex; align-items: center; justify-content: center; margin-top: 1px;
   }
-  .benefit-card .check svg { width: 14px; height: 14px; stroke: var(--neutral-0); }
-  .benefit-card p { font-size: 16.5px; color: var(--neutral-900); line-height: 1.5; }
+  .benefit-card .check svg { width: 14px; height: 14px; stroke: var(--paper); }
+  .benefit-card p { font-size: 16.5px; color: var(--ink); line-height: 1.5; }
 
   .depois-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 40px; }
   @media (max-width: 720px) { .depois-grid { grid-template-columns: 1fr; } }
   .depois-closer {
-    margin-top: 36px; font-size: 21px; font-weight: 700; color: var(--primary-dark);
-    padding-top: 28px; border-top: 1px solid var(--neutral-300);
+    margin-top: 36px; font-family: var(--font-heading); font-size: 21px; font-weight: 700; color: var(--ink);
+    padding-top: 28px; border-top: 1px solid var(--rule);
   }
   .depois-cta { margin-top: 32px; }
 
   /* ============ FOOTER ============ */
-  .footer { background: var(--primary-dark); padding: 48px 0; }
+  .footer { background: var(--ink); padding: 48px 0; }
   .footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
   .footer-logo { height: 30px; width: auto; }
   .footer-text { color: rgba(255,255,255,.7); font-size: 14px; text-align: right; line-height: 1.6; }
@@ -433,23 +421,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ DEPOIS DA VIRADA (beneficio: grid, check primary) ============ -->
-  <section class="block reveal" style="background: var(--neutral-100);">
+  <section class="block reveal" style="background: var(--off);">
     <div class="container">
       <h2 class="section-h2">O que muda quando a operação está preparada para o pico</h2>
       <div class="depois-grid">
-        <div class="benefit-card" style="background:var(--neutral-0);">
+        <div class="benefit-card" style="background:var(--paper);">
           <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg></span>
           <p>Fila organizada por prioridade, não apenas por ordem de chegada</p>
         </div>
-        <div class="benefit-card" style="background:var(--neutral-0);">
+        <div class="benefit-card" style="background:var(--paper);">
           <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg></span>
           <p>Dúvidas repetidas respondidas pela IA, sem deixar o cliente esperando</p>
         </div>
-        <div class="benefit-card" style="background:var(--neutral-0);">
+        <div class="benefit-card" style="background:var(--paper);">
           <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg></span>
           <p>Equipe focada nos clientes e situações que mais precisam de atenção</p>
         </div>
-        <div class="benefit-card" style="background:var(--neutral-0);">
+        <div class="benefit-card" style="background:var(--paper);">
           <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg></span>
           <p>Mais capacidade para absorver os picos sem perder qualidade no atendimento</p>
         </div>
