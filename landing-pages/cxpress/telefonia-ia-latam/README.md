@@ -38,6 +38,11 @@ Hero → clientes → telefonia (Cxpress.voz, 6 blocos) → faixa de diagnostico
 - **Elementos decorativos laranja:** pills e arcos, as duas formas canonicas do brandbook
   (secao "Elementos Decorativos"). Maximo de 5 por composicao.
 
+- **Link do logo (header e rodape):** aponta pra `https://www.cxpress.ai/`, nao pro
+  `home.cxpress.io`, que serve o site em portugues. Esta LP e ES-LATAM: quem clicava no logo
+  saia pra um site em outro idioma. Trocado em 2026-09-21 a pedido do Ulises, junto com a
+  `agente-concierge-latam`. Os links de Instagram e LinkedIn do rodape nao mudaram.
+
 ## Reforma visual (2026-09-18): mesmo sistema da LP agente-concierge-latam
 
 Pedido do Ulises: aplicar aqui o sistema grafico da `agente-concierge-latam` e somar uma

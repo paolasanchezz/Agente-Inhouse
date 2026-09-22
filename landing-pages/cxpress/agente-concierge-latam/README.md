@@ -1611,3 +1611,22 @@ vazio entre uma secao e a seguinte. A essa distancia o olho nao le pausa, le **b
 **~520px** no desktop (5.590 -> 5.067) sem tirar conteudo nenhum.
 
 **Verificado:** 0 overflow em 390/700/960/1040/1280/1536, canvas vivo, console limpo.
+
+### Link do logo: home.cxpress.io sai, entra www.cxpress.ai (2026-09-21)
+
+Reportado pelo Ulises: clicar no logo do header mandava pro home do Brasil. O `home.cxpress.io`
+serve o site em portugues, e esta LP e ES-LATAM, entao o leitor saia da LP e caia num site em
+outro idioma.
+
+Os **dois** links de logo da pagina (header e rodape) passaram a apontar pra
+`https://www.cxpress.ai/`. Os links de Instagram e LinkedIn do rodape nao mudaram.
+
+| Onde | Antes | Depois |
+|---|---|---|
+| `.nav__logo` (header) | `https://home.cxpress.io` | **`https://www.cxpress.ai/`** |
+| logo do rodape | `https://home.cxpress.io` | **`https://www.cxpress.ai/`** |
+
+Mesma troca aplicada na LP `telefonia-ia-latam` no mesmo PR.
+
+**Nao e so destas duas:** 51 das 75 LPs Cxpress do repo ainda apontam pro `home.cxpress.io`. So
+as duas pedidas foram trocadas; a varredura nas outras 49 fica pra decisao do Victor.
