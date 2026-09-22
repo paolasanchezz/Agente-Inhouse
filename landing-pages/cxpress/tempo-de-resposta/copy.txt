@@ -1,0 +1,96 @@
+=== HERO ===
+OVERLINE: Tempo de primeira resposta
+H1: Seu cliente esperou 1h45 por uma resposta. Ele não vai esperar de novo.
+SUB: Entre a mensagem chegar e alguém responder existe um intervalo. É nele que o cliente desiste e procura quem responde.
+CTA: Encurtar o tempo de resposta
+BODY: 30 minutos, com os seus canais e o seu volume.
+BODY: WhatsApp, Instagram, Facebook e chat do site, num painel só.
+
+=== A CONTA DA ESPERA ===
+H2: O intervalo que ninguém mede
+BODY: A mensagem chega no fim do expediente, no meio de outras quarenta, no canal que menos gente acompanha. Ninguém do seu time está errado. O volume que chega hoje é maior que a operação que atende.
+LIST ITEM: A mensagem entra na fila e ninguém é avisado
+LIST ITEM: Quem abre não é quem resolve, e reencaminha
+LIST ITEM: O cliente repete a história para a segunda pessoa
+LIST ITEM: A conversa some no meio das outras do dia
+LIST ITEM: Quando alguém responde, ele já perguntou em outro lugar
+LABEL: E você só descobre quando o cliente reclama
+CTA: Ver isso na sua operação
+
+=== O QUE A IA ASSUME ===
+H2: O primeiro contato deixa de esperar
+BODY: A Cxpress não substitui atendente. Ela tira o atendente do começo da fila.
+H3: Resposta em segundos
+BODY: O Agente de IA responde o primeiro contato por texto e por áudio, 24 horas por dia, no WhatsApp, na DM do Instagram, no Facebook e no chat do site.
+H3: Triagem antes do ticket
+BODY: A IA lê a mensagem, identifica o assunto e encaminha para o setor certo antes de alguém abrir o ticket.
+H3: Transbordo com histórico
+BODY: Quando a conversa exige gente, o atendente recebe o histórico inteiro. O cliente não repete o que já contou.
+H3: Tempo de resposta por atendente
+BODY: O painel mostra o tempo de primeira resposta de cada pessoa, a fila de cada canal e quem está sobrecarregado agora. Nenhuma planilha.
+
+=== CASE ===
+OVERLINE: Case · Cacau Show
+H2: De 8 horas para 26 minutos de primeira resposta
+BODY: Na Páscoa de 2024, a Cacau Show recebia uma enxurrada diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, apenas 34% das interações conseguiam resposta. O resto virava dúvida sem retorno no pico comercial do ano.
+BODY: Um agente de IA treinado na linguagem e na base oficial da marca passou a cuidar de engajamento e dúvidas, com regras claras de transbordo. Casos sensíveis vão direto para pessoas.
+LABEL: 8h para 26 min · tempo de primeira resposta
+LABEL: 34% · era o que se respondia antes
+LABEL: Zero · contratações para o pico
+CTA: Quero esse tempo de resposta
+
+=== O QUE SOBRA PRO TIME ===
+H2: A mesma equipe, atendendo mais
+BODY: Com o primeiro contato fora do caminho, o turno do atendente vira a conversa que fecha venda e a conversa que salva cliente. As duas exigem julgamento e contexto, e nenhuma das duas cabe numa fila de mensagem repetida.
+
+=== AGENDAR ===
+OVERLINE: Próximo passo
+H2: Agende a sua demonstração gratuita
+SUB: Veja o tempo de resposta da sua operação
+BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quanto tempo a IA tira da sua fila.
+LABEL: R$ 1.750 · planos a partir de / mês
+BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Seu nome
+LABEL: Seu e-mail de trabalho
+LABEL: WhatsApp
+LABEL: Nome da empresa onde você trabalha
+LABEL: Quanto pretende investir no seu atendimento?
+LABEL: Qual o tamanho do seu time de atendimento?
+CTA: Enviar
+BODY: Sem compromisso. Resposta em até 1 dia útil.
+
+=== FECHO ===
+H2: Enquanto ele espera, alguém já respondeu.
+CTA: Agendar demonstração gratuita
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Contagens: em-dash 0 | frase de IA 0 | filler 0 | metafora aquatica 0 | exclamacao 0
+#   | antitese-por-negacao 1 | 4 CTAs de rolagem + botao do formulario.
+#   A unica antitese e "A Cxpress nao substitui atendente. Ela tira o atendente do comeco
+#   da fila." Ela responde a objecao numero 1 do cargo (vao demitir meu time), entao e tese
+#   central e nao ornamento. Limite da regra sao 2 por 500 palavras.
+#   As 2 interrogacoes sao rotulos de campo do formulario, nao pergunta retorica.
+#
+# PENDENCIAS PARA QUEM REVISA
+# 1. O "1h45" do H1 vem da cena do criativo SMB 08 (print de WhatsApp, 19h04 as 20h49).
+#    E cena ilustrativa, nao metrica de mercado. Nao transformar em dado ("o tempo medio
+#    de resposta no Brasil e 1h45") em nenhuma revisao futura.
+# 2. Case Cacau Show e os numeros 8h para 26 min, 34% e zero contratacoes: autorizados
+#    nominalmente pela Marielle a partir do PDF "Case Cacau Show & Elife". NAO misturar com
+#    os numeros do relatorio Sentinela em conhecimento/produto/cxpress/cases.md (+220%, 15x,
+#    60% de FTE, 98%, 86%, 67%), que sao de cliente anonimo e nao podem ser nomeados nem
+#    combinados com outro case.
+# 3. O "94%" que aparece no criativo INST 01 NAO entrou na LP. Ele e derivado do 8h para
+#    26 min e so se sustenta atribuido a Cacau Show. Como capacidade do produto seria
+#    promessa. A LP usa o par 8h/26min com o dono do resultado ao lado.
+# 4. Preco R$ 1.750 confirmado pela Marielle em 10/09/2026.
+# 5. H1 carrega a dor com numero especifico (GUIDELINES §3 + fundamentos-copy §0 + o padrao
+#    de criativo fechado no benchmark de 18/09).
+# 6. 4 CTAs de rolagem, um por secao, com verbo sobre a dor do leitor. So o ultimo fala em
+#    agendar. Form na ultima secao antes do fecho (GUIDELINES §10, BoFu).
+#    Mock ate rodar /lp-integrar-form com o Jotform 261045149477663 (GUIDELINES §11).
+# 7. GTM brasil: GTM-T4XDWHL3 (brand/cxpress/tracking.json).

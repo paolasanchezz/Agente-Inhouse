@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
+  <!-- End Google Tag Manager -->
+  <title>Tempo de primeira resposta no atendimento | Cxpress</title>
+  <link rel="canonical" href="https://{{DOMAIN}}/tempo-de-resposta">
+
+  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
+
+  <meta name="description" content="Entre a mensagem chegar e alguém responder, o cliente desiste. Veja como o Agente de IA da Cxpress assume o primeiro contato e encurta a fila do seu time.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Cxpress">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cxpress">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://{{DOMAIN}}/tempo-de-resposta">
+  <meta property="og:title" content="Tempo de primeira resposta no atendimento | Cxpress">
+  <meta property="og:description" content="Entre a mensagem chegar e alguém responder, o cliente desiste. Veja como a IA assume o primeiro contato e encurta a fila do seu time.">
+  <meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tempo de primeira resposta no atendimento, da Cxpress">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tempo de primeira resposta no atendimento | Cxpress">
+  <meta name="twitter:description" content="Entre a mensagem chegar e alguém responder, o cliente desiste. Veja como a IA assume o primeiro contato.">
+  <meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/cxpress", "https://www.instagram.com/cxpress.io/"] },
+      { "@type": "WebPage", "@id": "https://{{DOMAIN}}/tempo-de-resposta#webpage", "url": "https://{{DOMAIN}}/tempo-de-resposta", "name": "Tempo de primeira resposta no atendimento | Cxpress", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "O intervalo entre a mensagem do cliente chegar e alguém responder, e o que a IA da Cxpress assume nesse intervalo." },
+      { "@type": "SoftwareApplication", "name": "Cxpress", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://home.cxpress.io", "inLanguage": "pt-BR", "publisher": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "1750", "priceCurrency": "BRL" } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&family=Bitter:ital,wght@1,500&display=swap">
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+  <style>
+    :root{
+      --primary:#4A69BD;
+      --primary-dark:#232960;
+      --primary-lighter:#D7E2FF;
+      --accent:#EF863C;
+      --warning:#F1A908;
+      --green:#21CC78;
+      --green-dark:#1AAE63;
+      --danger:#C0392F;
+      --neutral-700:#4a4a4a;
+      --neutral-300:#d1d1d1;
+      --neutral-100:#f5f5f5;
+      --white:#ffffff;
+
+      --rule:#e6e6ec;
+      --maxw:1160px;
+      --radius-btn:9px;
+      --radius-card:16px;
+      --font-display:'Open Sans',sans-serif;
+      --font-body:'Source Sans 3',sans-serif;
+      --font-accent:'Bitter',serif;
+      --shadow:0 4px 6px rgba(0,0,0,.05);
+      --shadow-lift:0 14px 28px rgba(35,41,96,.10);
+      --shadow-float:0 24px 60px rgba(35,41,96,.14);
+      --shadow-deep:0 30px 70px rgba(6,10,38,.45);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--white);color:var(--primary-dark);
+      font-family:var(--font-body);font-size:18px;line-height:1.7;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;margin:0;color:var(--primary-dark);text-wrap:balance;line-height:1.15}
+    p{margin:0}
+    a{color:var(--primary)}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+    section{padding:120px 0}
+    .off{background:var(--neutral-100)}
+    .skip{position:absolute;left:-9999px;top:0;background:var(--primary-dark);color:#fff;padding:12px 18px;z-index:100;border-radius:0 0 8px 0}
+    .skip:focus{left:0}
+    /* anel de foco com 3:1 contra o fundo (WCAG 1.4.11): navy no claro, amarelo no escuro */
+    :focus-visible{outline:3px solid var(--primary-dark);outline-offset:3px;border-radius:4px}
+    header :focus-visible,.hero :focus-visible,.fecho :focus-visible,.total :focus-visible,.footer :focus-visible{outline-color:var(--warning)}
+
+    .eyebrow{
+      display:inline-block;font-family:var(--font-display);font-weight:700;
+      font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
+    }
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.is-in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+    @keyframes floatY{from{transform:translateY(0)}to{transform:translateY(-16px)}}
+    @keyframes floatTilt{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-13px) rotate(2deg)}}
+    @keyframes glowDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(-4%,3%) scale(1.07)}}
+
+    /* ===== Botoes ===== */
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:var(--font-display);font-weight:700;font-size:17px;
+      background:var(--green);color:#fff;text-decoration:none;
+      padding:16px 28px;border-radius:var(--radius-btn);border:0;cursor:pointer;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .btn:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
+    .btn svg{flex:none}
+    .cta-row{margin-top:48px;text-align:center}
+
+    /* ===== Header ===== */
+    header{
+      position:sticky;top:0;z-index:50;padding:16px 0;
+      background:rgba(35,41,96,.94);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(215,226,255,.16);
+    }
+    .hd{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .hd__logo img{height:34px;width:auto}
+    .hd__nav{display:flex;gap:28px;font-size:15px;font-weight:600}
+    .hd__nav a{color:var(--primary-lighter);text-decoration:none;white-space:nowrap}
+    .hd__nav a:hover{color:#fff}
+    .hd__cta{
+      font-family:var(--font-display);font-weight:700;font-size:15px;
+      background:var(--green);color:#fff;text-decoration:none;
+      padding:11px 20px;border-radius:var(--radius-btn);white-space:nowrap;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .hd__cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
+    @media (max-width:1040px){.hd__nav{display:none}}
+    @media (max-width:760px){.hd__cta{display:none}.hd{justify-content:flex-start}}
+
+    /* ===== Hero ===== */
+    .hero{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:0}
+    .hero::before{
+      content:"";position:absolute;width:900px;height:700px;top:-24%;right:-8%;
+      background:radial-gradient(ellipse 900px 500px at 70% 30%, #333C86 0%, transparent 62%);
+      animation:glowDrift 18s ease-in-out infinite alternate;pointer-events:none;
+    }
+    .hero::after{
+      content:"";position:absolute;width:520px;height:520px;left:-14%;bottom:-24%;border-radius:50%;
+      background:radial-gradient(circle, rgba(192,57,47,.20) 0%, transparent 70%);
+      animation:glowDrift 24s ease-in-out infinite alternate-reverse;pointer-events:none;
+    }
+    .hero__inner{
+      position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:84px 32px 96px;
+      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:56px;align-items:center;
+    }
+    .hero__content{min-width:0}
+    .hero .eyebrow{color:var(--warning);margin-bottom:18px}
+    .hero h1{font-size:clamp(34px,4.4vw,50px);color:#fff;max-width:20ch}
+    .hero h1 mark{background:none;color:var(--warning)}
+    .hero__lead{margin-top:22px;font-size:clamp(18px,2vw,20px);line-height:1.6;color:var(--primary-lighter);max-width:50ch}
+    .hero__ctas{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+    .hero__note{font-size:15px;color:var(--primary-lighter)}
+    .hero__proof{margin-top:26px;display:flex;align-items:center;gap:9px;font-size:15px;color:var(--primary-lighter)}
+
+    /* elemento visual do hero: a espera */
+    .hero__visual{position:relative;min-width:0}
+    .espera{
+      background:var(--white);border-radius:20px;padding:28px 26px 30px;
+      box-shadow:var(--shadow-deep);position:relative;z-index:2;
+    }
+    .espera__bar{display:flex;flex-direction:column;gap:14px}
+    .bolha{height:16px;border-radius:999px;background:#EDF0F7}
+    .bolha--a{width:62%}
+    .bolha--b{width:48%}
+    .bolha--c{width:70%}
+    .bolha--d{width:40%}
+    .espera__conta{
+      margin-top:26px;padding-top:24px;border-top:1px solid var(--rule);text-align:center;
+    }
+    .espera__num{
+      display:block;font-family:var(--font-display);font-weight:800;
+      font-size:clamp(46px,6.4vw,68px);line-height:1;letter-spacing:-.04em;color:var(--danger);
+    }
+    .espera__linha{
+      margin-top:16px;height:8px;border-radius:999px;background:#F6E2E0;overflow:hidden;
+    }
+    .espera__linha span{display:block;height:100%;width:78%;border-radius:999px;background:var(--danger)}
+    .hero__samir{
+      position:absolute;z-index:3;left:-92px;bottom:-72px;width:176px;height:auto;min-height:0;
+      filter:drop-shadow(0 18px 34px rgba(6,10,38,.5));
+      animation:floatY 5.5s ease-in-out infinite alternate;
+    }
+    @media (prefers-reduced-motion:reduce){
+      .hero::before,.hero::after,.hero__samir,.fecho__samir{animation:none}
+    }
+
+    /* ===== Clientes ===== */
+    .clientes{background:var(--white);padding:64px 0 40px}
+    .clientes__label{display:block;text-align:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--neutral-700);font-weight:600}
+    .clientes__marquee{
+      margin-top:26px;overflow:hidden;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+      mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
+    }
+    .clientes__track{display:flex;width:max-content;animation:clientesMarquee 64s linear infinite}
+    .clientes__group{display:flex;align-items:center;gap:clamp(30px,4vw,54px);padding-inline:clamp(15px,2vw,27px)}
+    .clientes__group img{
+      flex:0 0 auto;width:auto;max-width:170px;height:clamp(30px,3.4vw,42px);object-fit:contain;
+      opacity:.72;filter:saturate(.9);transition:opacity .25s ease,filter .25s ease;
+    }
+    .clientes__group img:hover{opacity:1;filter:none}
+    @keyframes clientesMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .clientes__marquee:hover .clientes__track{animation-play-state:paused}
+
+    /* ===== Cabecalho de secao ===== */
+    .sec-head{max-width:760px;margin:0 auto 64px;text-align:center}
+    .sec-head .eyebrow{color:var(--primary);margin-bottom:16px}
+    .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+    .sec-head p{font-size:clamp(18px,2vw,20px);color:var(--neutral-700);margin-top:16px}
+
+    /* ===== A conta da espera (lista vertical + X vermelho) ===== */
+    .conta{max-width:820px;margin:0 auto}
+    .etapa{display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid var(--rule)}
+    .etapa__x{
+      flex:none;width:30px;height:30px;border-radius:50%;
+      background:#FBECEA;color:var(--danger);display:grid;place-items:center;
+    }
+    .etapa p{font-family:var(--font-display);font-weight:700;font-size:clamp(19px,2vw,21px);color:var(--primary-dark);letter-spacing:-.01em;line-height:1.3}
+    .total{
+      margin-top:34px;display:flex;align-items:center;gap:18px;
+      background:var(--primary-dark);border-radius:var(--radius-card);
+      padding:26px 30px;box-shadow:var(--shadow-lift);
+    }
+    .total__pill{flex:none;width:44px;height:16px;border-radius:9999px;background:var(--danger)}
+    .total p{font-family:var(--font-display);font-weight:800;letter-spacing:-.01em;font-size:clamp(20px,2.4vw,26px);line-height:1.2;color:#fff}
+
+    /* ===== O que a IA assume (grid + check verde) ===== */
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .card{
+      background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);
+      padding:32px 28px;box-shadow:var(--shadow);
+      transition:transform .25s ease,box-shadow .25s ease;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+    .card__check{
+      width:34px;height:34px;border-radius:50%;background:#E4F8EE;color:var(--green-dark);
+      display:grid;place-items:center;margin-bottom:20px;
+    }
+    .card h3{font-size:clamp(22px,2.2vw,23px)}
+    .card p{margin-top:12px;color:var(--neutral-700);font-size:17px}
+
+    /* ===== Case ===== */
+    .case{
+      background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);
+      padding:56px 48px;box-shadow:var(--shadow-float);
+    }
+    .case__head{text-align:center;margin-bottom:34px}
+    .case__logo{display:block;height:62px;width:auto;margin:0 auto 24px}
+    .case__head .eyebrow{color:var(--primary);display:block;margin-bottom:14px}
+    .case__head h2{font-size:clamp(28px,3.2vw,34px);max-width:26ch;margin:0 auto}
+    .case__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
+    .case__cols p{color:var(--neutral-700);font-size:17px}
+    .case__cols p b{color:var(--primary-dark);font-weight:600}
+    .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px;margin-top:40px;padding-top:34px;border-top:1px solid var(--rule)}
+    .nums .v{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(28px,3.2vw,34px);color:var(--primary);line-height:1;letter-spacing:-.03em}
+    .nums .l{display:block;margin-top:9px;font-size:16px;color:var(--neutral-700)}
+
+    /* ===== Pausa ===== */
+    .sobra{text-align:center}
+    .sobra h2{font-size:clamp(28px,3.8vw,42px);max-width:24ch;margin:0 auto}
+    .sobra p{margin:26px auto 0;font-size:clamp(18px,2.1vw,21px);color:var(--neutral-700);max-width:62ch}
+
+    /* ===== Agendar ===== */
+    .agendar__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:56px;align-items:start}
+    .agendar .eyebrow{color:var(--primary)}
+    .agendar h2{font-size:clamp(28px,3.4vw,38px);margin-top:16px}
+    .agendar__kicker{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,2vw,20px);color:var(--accent);margin-top:12px}
+    .agendar__sub{font-size:18px;color:var(--neutral-700);margin-top:16px;max-width:48ch}
+    .preco{
+      margin-top:28px;display:inline-flex;flex-direction:column;
+      background:var(--primary-lighter);border-radius:var(--radius-card);padding:20px 26px;
+    }
+    .preco__v{font-family:var(--font-display);font-weight:800;font-size:clamp(26px,3vw,32px);color:var(--primary-dark);line-height:1;letter-spacing:-.02em}
+    .preco__l{margin-top:8px;font-size:15px;color:var(--primary-dark);font-weight:600}
+    .requisito{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:15px;color:var(--neutral-700)}
+    .requisito svg{flex:none;color:var(--primary);margin-top:3px}
+
+    .form{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:34px;box-shadow:var(--shadow-float)}
+    .campo{margin-bottom:18px}
+    .campo label{display:block;font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:7px}
+    .campo .req{color:var(--danger);margin-left:2px}
+    .campo input,.campo select{
+      width:100%;font-family:var(--font-body);font-size:16px;color:var(--primary-dark);
+      padding:13px 14px;border:1px solid var(--neutral-300);border-radius:var(--radius-btn);background:var(--white);
+    }
+    .campo input:focus,.campo select:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(74,105,189,.16)}
+    .campo-check{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--neutral-700);margin:6px 0 20px}
+    .campo-check input{margin-top:5px;flex:none}
+    .form .btn{width:100%;justify-content:center;font-size:18px}
+    .form__nota{margin-top:14px;font-size:14px;color:var(--neutral-700);text-align:center}
+
+    /* ===== Fecho ===== */
+    .fecho{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:104px 0}
+    .fecho::before{
+      content:"";position:absolute;width:620px;height:620px;right:-12%;top:-40%;border-radius:50%;
+      background:radial-gradient(circle, rgba(144,158,234,.24) 0%, transparent 70%);
+      animation:glowDrift 21s ease-in-out infinite alternate;pointer-events:none;
+    }
+    .fecho__inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:48px}
+    .fecho__samir{
+      flex:none;width:180px;height:auto;min-height:0;
+      filter:drop-shadow(0 18px 34px rgba(6,10,38,.5));
+      animation:floatTilt 6s ease-in-out infinite alternate;
+    }
+    .fecho h2{
+      font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;
+      font-size:clamp(28px,3.6vw,40px);line-height:1.2;color:#fff;max-width:26ch;
+    }
+    .fecho .btn{margin-top:32px}
+
+    /* ===== Footer ===== */
+    .footer{background:#1B2050;padding:52px 0}
+    .footer__inner{
+      max-width:var(--maxw);margin:0 auto;padding:0 32px;
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;
+    }
+    .footer__logo img{height:32px;width:auto}
+    .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
+
+    /* ===== Responsivo ===== */
+    @media (max-width:980px){
+      .hero__inner{grid-template-columns:minmax(0,1fr);gap:64px;padding:56px 24px 84px}
+      .hero h1,.hero__lead{max-width:none}
+      .hero__samir{left:auto;right:-18px;bottom:-40px;width:150px}
+      .case__cols,.agendar__grid{grid-template-columns:minmax(0,1fr);gap:32px}
+      .fecho__inner{flex-direction:column;align-items:flex-start;gap:28px}
+    }
+    @media (max-width:640px){
+      body{font-size:17px}
+      section{padding:80px 0}
+      .wrap,.hd,.footer__inner,.fecho__inner{padding-left:24px;padding-right:24px}
+      .hero__inner{padding:44px 24px 76px}
+      .hero__ctas{gap:14px}
+      .hero__ctas .btn,.fecho .btn,.cta-row .btn{width:100%;justify-content:center;text-align:center}
+      .hero__ctas .btn svg,.fecho .btn svg,.cta-row .btn svg{display:none}
+      .fecho{padding:80px 0}
+      .grid-2{grid-template-columns:minmax(0,1fr)}
+      .hero .eyebrow{white-space:normal;line-height:1.5}
+      .sec-head{margin-bottom:44px}
+      .espera{padding:24px 20px 26px}
+      .etapa{align-items:flex-start;gap:14px}
+      .total{padding:22px;gap:14px}
+      .case{padding:34px 22px}
+      .case__logo{height:52px}
+      .form{padding:24px}
+      .hero__samir{width:124px;right:-10px;bottom:-32px}
+      .fecho__samir{width:140px}
+      .clientes__marquee{margin-left:-24px;margin-right:-24px}
+      .clientes__group{gap:24px;padding-inline:12px}
+      .clientes__group img{height:28px;max-width:132px}
+      .clientes__track{animation-duration:46s}
+      .card p,.case__cols p{font-size:17px}
+      .footer p,.form__nota,.campo label{font-size:14px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *{animation:none!important;transition:none!important}
+    }
+
+    /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+    @media (max-width:640px){
+      .hd__nav{font-size:16px}
+      .hero__note{font-size:16px}
+      .hero__proof{font-size:16px}
+      .clientes__label{font-size:14px}
+      .nums .l{font-size:17px}
+      .preco__l{font-size:16px}
+      .requisito{font-size:16px}
+      .campo input,.campo select{font-size:17px}
+      .campo-check{font-size:16px}
+    }
+  
+    /* ----- Jotform embed wrapper (canonico, mesmo das LPs irmas) ----- */
+    .agendar__formcol{min-width:0}
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4XDWHL3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header>
+    <div class="hd">
+      <a href="https://home.cxpress.io" class="hd__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
+      </a>
+      <nav class="hd__nav" aria-label="Seções da página">
+        <a href="#a-conta">A conta da espera</a>
+        <a href="#ia-assume">O que a IA assume</a>
+        <a href="#case">Case</a>
+      </nav>
+      <a class="hd__cta" href="#agendar">Agendar demonstração gratuita</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow">Tempo de primeira resposta</span>
+          <h1>Seu cliente esperou <mark>1h45</mark> por uma resposta. Ele não vai esperar de novo.</h1>
+          <p class="hero__lead">Entre a mensagem chegar e alguém responder existe um intervalo. É nele que o cliente desiste e procura quem responde.</p>
+          <div class="hero__ctas">
+            <a class="btn" href="#agendar">Encurtar o tempo de resposta
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <span class="hero__note">30 minutos, com os seus canais e o seu volume.</span>
+          </div>
+          <p class="hero__proof">
+            <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="#21CC78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            WhatsApp, Instagram, Facebook e chat do site, num painel só.
+          </p>
+        </div>
+
+        <div class="hero__visual">
+          <div class="espera" role="img" aria-label="Uma conversa sem resposta e o tempo de espera acumulando até 1h45">
+            <div class="espera__bar" aria-hidden="true">
+              <span class="bolha bolha--a"></span>
+              <span class="bolha bolha--b"></span>
+              <span class="bolha bolha--c"></span>
+              <span class="bolha bolha--d"></span>
+            </div>
+            <div class="espera__conta">
+              <span class="espera__num">1h45</span>
+              <span class="espera__linha" aria-hidden="true"><span></span></span>
+            </div>
+          </div>
+          <img class="hero__samir" src="../../brand/cxpress/assets/mascot/samir-laptop.png" alt="Samir, mascote da Cxpress, com headset atendendo no laptop" width="1536" height="1024">
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <div class="clientes">
+      <div class="wrap">
+        <span class="clientes__label">Marcas que atendem com a Cxpress</span>
+        <div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+          <div class="clientes__track">
+            <div class="clientes__group">
+              <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
+              <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
+              <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
+              <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
+              <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
+              <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
+              <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+              <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+              <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+              <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+              <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+              <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+              <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+              <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+              <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+              <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+              <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+              <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+              <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+              <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+              <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+              <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+              <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+              <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+              <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+              <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+              <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+              <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+              <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+              <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+              <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+              <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+              <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+              <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+            </div>
+            <div class="clientes__group" aria-hidden="true">
+              <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-02.png" alt="" aria-hidden="true" width="85" height="84">
+              <img src="./assets/clientes/cliente-03.png" alt="" aria-hidden="true" width="199" height="84">
+              <img src="./assets/clientes/cliente-04.png" alt="" aria-hidden="true" width="301" height="84">
+              <img src="./assets/clientes/cliente-05.png" alt="" aria-hidden="true" width="324" height="84">
+              <img src="./assets/clientes/cliente-06.png" alt="" aria-hidden="true" width="172" height="84">
+              <img src="./assets/clientes/cliente-07.png" alt="" aria-hidden="true" width="93" height="84">
+              <img src="./assets/clientes/cliente-08.png" alt="" aria-hidden="true" width="86" height="84">
+              <img src="./assets/clientes/cliente-09.png" loading="lazy" alt="" aria-hidden="true" width="127" height="84">
+              <img src="./assets/clientes/cliente-10.png" loading="lazy" alt="" aria-hidden="true" width="437" height="84">
+              <img src="./assets/clientes/cliente-11.png" loading="lazy" alt="" aria-hidden="true" width="195" height="84">
+              <img src="./assets/clientes/cliente-12.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-13.png" loading="lazy" alt="" aria-hidden="true" width="325" height="84">
+              <img src="./assets/clientes/cliente-14.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-15.png" loading="lazy" alt="" aria-hidden="true" width="66" height="84">
+              <img src="./assets/clientes/cliente-16.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-17.png" loading="lazy" alt="" aria-hidden="true" width="162" height="84">
+              <img src="./assets/clientes/cliente-18.png" loading="lazy" alt="" aria-hidden="true" width="272" height="84">
+              <img src="./assets/clientes/cliente-19.png" loading="lazy" alt="" aria-hidden="true" width="192" height="84">
+              <img src="./assets/clientes/cliente-20.png" loading="lazy" alt="" aria-hidden="true" width="147" height="84">
+              <img src="./assets/clientes/cliente-21.png" loading="lazy" alt="" aria-hidden="true" width="168" height="84">
+              <img src="./assets/clientes/cliente-22.png" loading="lazy" alt="" aria-hidden="true" width="96" height="84">
+              <img src="./assets/clientes/cliente-23.png" loading="lazy" alt="" aria-hidden="true" width="179" height="84">
+              <img src="./assets/clientes/cliente-24.png" loading="lazy" alt="" aria-hidden="true" width="357" height="84">
+              <img src="./assets/clientes/cliente-25.png" loading="lazy" alt="" aria-hidden="true" width="83" height="84">
+              <img src="./assets/clientes/cliente-26.png" loading="lazy" alt="" aria-hidden="true" width="260" height="84">
+              <img src="./assets/clientes/cliente-27.png" loading="lazy" alt="" aria-hidden="true" width="205" height="84">
+              <img src="./assets/clientes/cliente-28.png" loading="lazy" alt="" aria-hidden="true" width="134" height="84">
+              <img src="./assets/clientes/cliente-29.png" loading="lazy" alt="" aria-hidden="true" width="218" height="84">
+              <img src="./assets/clientes/cliente-30.png" loading="lazy" alt="" aria-hidden="true" width="450" height="84">
+              <img src="./assets/clientes/cliente-31.png" loading="lazy" alt="" aria-hidden="true" width="234" height="84">
+              <img src="./assets/clientes/cliente-32.png" loading="lazy" alt="" aria-hidden="true" width="206" height="84">
+              <img src="./assets/clientes/cliente-33.png" loading="lazy" alt="" aria-hidden="true" width="321" height="84">
+              <img src="./assets/clientes/cliente-34.png" loading="lazy" alt="" aria-hidden="true" width="152" height="84">
+              <img src="./assets/clientes/cliente-35.png" loading="lazy" alt="" aria-hidden="true" width="84" height="84">
+              <img src="./assets/clientes/cliente-36.png" loading="lazy" alt="" aria-hidden="true" width="103" height="84">
+              <img src="./assets/clientes/cliente-37.png" loading="lazy" alt="" aria-hidden="true" width="89" height="84">
+              <img src="./assets/clientes/cliente-38.png" loading="lazy" alt="" aria-hidden="true" width="131" height="84">
+              <img src="./assets/clientes/cliente-39.png" loading="lazy" alt="" aria-hidden="true" width="358" height="84">
+              <img src="./assets/clientes/cliente-40.png" loading="lazy" alt="" aria-hidden="true" width="289" height="84">
+              <img src="./assets/clientes/cliente-41.png" loading="lazy" alt="" aria-hidden="true" width="250" height="84">
+              <img src="./assets/clientes/cliente-42.png" loading="lazy" alt="" aria-hidden="true" width="328" height="84">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A CONTA DA ESPERA -->
+    <section id="a-conta">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>O intervalo que ninguém mede</h2>
+          <p>A mensagem chega no fim do expediente, no meio de outras quarenta, no canal que menos gente acompanha. Ninguém do seu time está errado. O volume que chega hoje é maior que a operação que atende.</p>
+        </div>
+        <div class="conta">
+          <div class="etapa reveal">
+            <span class="etapa__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <p>A mensagem entra na fila e ninguém é avisado</p>
+          </div>
+          <div class="etapa reveal">
+            <span class="etapa__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <p>Quem abre não é quem resolve, e reencaminha</p>
+          </div>
+          <div class="etapa reveal">
+            <span class="etapa__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <p>O cliente repete a história para a segunda pessoa</p>
+          </div>
+          <div class="etapa reveal">
+            <span class="etapa__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <p>A conversa some no meio das outras do dia</p>
+          </div>
+          <div class="etapa reveal">
+            <span class="etapa__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <p>Quando alguém responde, ele já perguntou em outro lugar</p>
+          </div>
+
+          <div class="total reveal">
+            <span class="total__pill" aria-hidden="true"></span>
+            <p>E você só descobre quando o cliente reclama</p>
+          </div>
+
+          <div class="cta-row reveal">
+            <a class="btn" href="#agendar">Ver isso na sua operação
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE A IA ASSUME -->
+    <section class="off" id="ia-assume">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>O primeiro contato deixa de esperar</h2>
+          <p>A Cxpress não substitui atendente. Ela tira o atendente do começo da fila.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card reveal">
+            <span class="card__check" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Resposta em segundos</h3>
+            <p>O Agente de IA responde o primeiro contato por texto e por áudio, 24 horas por dia, no WhatsApp, na DM do Instagram, no Facebook e no chat do site.</p>
+          </div>
+          <div class="card reveal">
+            <span class="card__check" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Triagem antes do ticket</h3>
+            <p>A IA lê a mensagem, identifica o assunto e encaminha para o setor certo antes de alguém abrir o ticket.</p>
+          </div>
+          <div class="card reveal">
+            <span class="card__check" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Transbordo com histórico</h3>
+            <p>Quando a conversa exige gente, o atendente recebe o histórico inteiro. O cliente não repete o que já contou.</p>
+          </div>
+          <div class="card reveal">
+            <span class="card__check" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Tempo de resposta por atendente</h3>
+            <p>O painel mostra o tempo de primeira resposta de cada pessoa, a fila de cada canal e quem está sobrecarregado agora. Nenhuma planilha.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE -->
+    <section id="case">
+      <div class="wrap">
+        <div class="case reveal">
+          <div class="case__head">
+            <img class="case__logo" src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy">
+            <span class="eyebrow">Case · Cacau Show</span>
+            <h2>De 8 horas para 26 minutos de primeira resposta</h2>
+          </div>
+          <div class="case__cols">
+            <p>Na Páscoa de 2024, a Cacau Show recebia uma enxurrada diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, <b>apenas 34% das interações conseguiam resposta</b>. O resto virava dúvida sem retorno no pico comercial do ano.</p>
+            <p>Um agente de IA treinado na linguagem e na base oficial da marca passou a cuidar de engajamento e dúvidas, com regras claras de transbordo. Casos sensíveis vão direto para pessoas.</p>
+          </div>
+          <div class="nums">
+            <div><span class="v">8h para 26 min</span><span class="l">tempo de primeira resposta</span></div>
+            <div><span class="v">34%</span><span class="l">era o que se respondia antes</span></div>
+            <div><span class="v">Zero</span><span class="l">contratações para o pico</span></div>
+          </div>
+        </div>
+        <div class="cta-row reveal">
+          <a class="btn" href="#agendar">Quero esse tempo de resposta
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE SOBRA PRO TIME -->
+    <section class="off sobra">
+      <div class="wrap">
+        <h2 class="reveal">A mesma equipe, atendendo mais</h2>
+        <p class="reveal">Com o primeiro contato fora do caminho, o turno do atendente vira a conversa que fecha venda e a conversa que salva cliente. As duas exigem julgamento e contexto, e nenhuma das duas cabe numa fila de mensagem repetida.</p>
+      </div>
+    </section>
+
+    <!-- AGENDAR -->
+    <section class="agendar" id="agendar">
+      <div class="wrap">
+        <div class="agendar__grid">
+          <div class="reveal">
+            <span class="eyebrow">Próximo passo</span>
+            <h2 id="agendar-titulo">Agende a sua demonstração gratuita</h2>
+            <p class="agendar__kicker">Veja o tempo de resposta da sua operação</p>
+            <p class="agendar__sub">Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quanto tempo a IA tira da sua fila.</p>
+            <p class="preco">
+              <span class="preco__v">R$ 1.750</span>
+              <span class="preco__l">planos a partir de / mês</span>
+            </p>
+            <p class="requisito">
+              <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1.5 13.5 4v4.2c0 4-2.6 6.3-6 7.3-3.4-1-6-3.3-6-7.3V4l6-2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+            </p>
+          </div>
+
+          <div class="agendar__formcol reveal">
+            <div class="jotform-embed" id="jotHost" data-jotform="261045149477663">
+              <noscript><iframe src="https://form.jotform.com/261045149477663" title="Formulário de agendamento de demonstração" style="width:100%;height:900px;border:0"></iframe></noscript>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FECHO -->
+    <section class="fecho">
+      <div class="fecho__inner">
+        <img class="fecho__samir" src="../../brand/cxpress/assets/mascot/samir-joinha.png" alt="" aria-hidden="true" width="1536" height="1024" loading="lazy">
+        <div>
+          <h2>Enquanto ele espera, alguém já respondeu.</h2>
+          <a class="btn" href="#agendar">Agendar demonstração gratuita
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="https://home.cxpress.io" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="32">
+      </a>
+      <p>Cxpress é um produto Elife. © 2026<br>Condições gerais de uso da Cxpress · Políticas de privacidade</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+      if(!('IntersectionObserver' in window)){ showAll(); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+      els.forEach(function(el){ io.observe(el); });
+      setTimeout(showAll, 2500);
+    })();
+  </script>
+
+<script>
+  /* Jotform diferido (padrao das LPs irmas). O <script src> do jsform era
+     parser-blocking no meio do HTML: segurava o DOMContentLoaded ate o
+     provedor responder. Agora carrega por proximidade, com pre-carga por
+     intencao pros CTAs que saltam direto pra ca. */
+  (function(){
+    var jotHost = document.getElementById('jotHost');
+    if (!jotHost) return;
+    var carregaJot = function(){
+      if (jotHost.dataset.carregado) return;
+      jotHost.dataset.carregado = '1';
+      var sc = document.createElement('script');
+      sc.type = 'text/javascript';
+      sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
+      sc.onerror = contingencia;
+      jotHost.appendChild(sc);
+      setTimeout(function(){ if (!jotHost.querySelector("iframe")) contingencia(); }, 6000);
+    };
+    /* Rede de seguranca: se o script do jsform nao executar (bloqueador, shield,
+       proxy, falha de rede), sem isso o host fica em 0px pra sempre - sem iframe,
+       sem aviso e sem retentativa. Degrau 1: iframe simples, que nao depende do
+       jsform. Degrau 2: link pra abrir o formulario em nova aba. */
+    var contingencia = function(){
+      if (jotHost.querySelector("iframe")) return;
+      var ns = jotHost.querySelector("noscript");
+      if (ns && ns.textContent.indexOf("<iframe") > -1) {
+        jotHost.insertAdjacentHTML("beforeend", ns.textContent);
+      } else {
+        var f = document.createElement("iframe");
+        f.src = "https://form.jotform.com/" + jotHost.dataset.jotform;
+        f.title = "Formulário de contato";
+        f.style.cssText = "width:100%;height:900px;border:0;display:block";
+        jotHost.appendChild(f);
+      }
+      /* Nao da pra saber se um iframe cross-origin renderizou: o evento load
+         dispara tambem na pagina de erro do navegador. Como aqui ja estamos em
+         caminho degradado, o link de escape vai junto com o iframe. */
+      ultimoRecurso();
+    };
+    var ultimoRecurso = function(){
+      if (jotHost.dataset.recurso) return;
+      jotHost.dataset.recurso = "1";
+      var url = "https://form.jotform.com/" + jotHost.dataset.jotform;
+      jotHost.insertAdjacentHTML("beforeend",
+        '<p style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
+        '<a href="' + url + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
+    };
+    /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
+       caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
+       secao sai do proprio DOM, sem hardcode. */
+    var sec = jotHost.closest ? jotHost.closest('section[id]') : null;
+    if (sec && sec.id) {
+      var atalhos = document.querySelectorAll('a[href="#' + sec.id + '"]');
+      Array.prototype.forEach.call(atalhos, function(a){
+        ['pointerenter', 'touchstart', 'click'].forEach(function(ev){
+          a.addEventListener(ev, carregaJot, {once: true, passive: true});
+        });
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      var ioJot = new IntersectionObserver(function(en){
+        en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });
+      }, {rootMargin: '600px 0px'});
+      ioJot.observe(jotHost);
+    } else {
+      carregaJot();
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+=== HERO ===
+OVERLINE: Gestão de atendimento
+H1: Sua equipe gasta 4 horas por dia em trabalho que não precisa de gente
+SUB: Triagem, resposta repetitiva, reencaminhamento, follow-up, relatório e organização de fila. Some tudo e dá meio turno de cada atendente, todos os dias.
+CTA: Ver essas horas na minha operação
+BODY: 30 minutos, com os seus canais e o seu volume.
+BODY: Do WhatsApp ao telefone, com um histórico só por cliente.
+
+=== A CONTA ===
+H2: Onde o turno vai embora
+BODY: As seis tarefas abaixo são as que mais consomem tempo numa operação de atendimento. Os tempos são estimativa por atendente, por dia. Faça a conta com os números da sua operação.
+LIST ITEM: Triagem manual · cerca de 45 minutos
+LIST ITEM: Respostas repetitivas · cerca de 50 minutos
+LIST ITEM: Reencaminhamentos entre setores · cerca de 30 minutos
+LIST ITEM: Follow-ups manuais · cerca de 40 minutos
+LIST ITEM: Relatórios feitos na mão · cerca de 1 hora
+LIST ITEM: Organização de filas · cerca de 25 minutos
+LABEL: 4 horas e 10 minutos por atendente, por dia
+BODY: Num time de cinco pessoas, é uma pessoa inteira por dia em trabalho que não exige ninguém. Num time de dez, são duas.
+CTA: Fazer essa conta na minha operação
+
+=== O QUE A IA ASSUME ===
+H2: O que sai da mão do seu time
+BODY: A Cxpress não substitui atendente. Ela tira do atendente as seis tarefas de cima.
+H3: Triagem
+BODY: A IA lê a mensagem, identifica o assunto e encaminha para o setor certo antes de alguém abrir o ticket.
+H3: Primeiro contato
+BODY: Responde em segundos, por texto e por áudio, 24 horas por dia. Prazo, status de pedido e as perguntas que repetem quarenta vezes ao dia.
+H3: Follow-up
+BODY: A cobrança de retorno sai automática, sem ninguém precisar lembrar de quem ficou sem resposta.
+H3: Relatório
+BODY: Painel em tempo real com tickets abertos, tempo de primeira resposta por atendente e fila de cada canal. Nenhuma planilha.
+H3: Fila
+BODY: Distribuição por disponibilidade e por histórico do cliente, em vez de quem viu primeiro.
+H3: Transbordo
+BODY: Quando a conversa exige gente, o atendente recebe o histórico inteiro. O cliente não repete o que já contou.
+
+=== CASE ===
+OVERLINE: Case · Cacau Show
+H2: SLA de 8 horas para 26 minutos na maior operação sazonal do ano
+BODY: Na Páscoa de 2024, a Cacau Show recebia uma explosão diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, apenas 34% das interações conseguiam ser respondidas. O resto virava dúvida sem retorno, venda perdida e risco de imagem no pico comercial do ano.
+BODY: Um agente de IA treinado na linguagem e na base oficial da marca passou a cuidar de engajamento e dúvidas, com regras claras de transbordo. Casos sensíveis vão direto para pessoas.
+LABEL: 8h para 26 min · SLA de primeira resposta
+LABEL: 34% · era o que se respondia antes
+LABEL: Zero · contratações para o pico
+QUOTE: A IA cuida do volume. A equipe cuida do que precisa de gente.
+CTA: Quero essas horas de volta
+
+=== O QUE SOBRA PRO TIME ===
+H2: O que a sua equipe passa a fazer
+BODY: Com as seis tarefas fora do caminho, o turno do atendente vira duas coisas: a conversa que fecha venda e a conversa que salva cliente. As duas exigem julgamento, contexto e paciência, e nenhuma das duas é o que ele faz hoje na maior parte do dia.
+
+=== AGENDAR ===
+OVERLINE: Próximo passo
+H2: Agende a sua demonstração gratuita
+SUB: Veja a conta com os números da sua operação
+BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quantas horas por semana a IA assume no seu caso.
+LABEL: R$ 1.750 · planos a partir de / mês
+BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Seu nome
+LABEL: Seu e-mail de trabalho
+LABEL: WhatsApp
+LABEL: Nome da empresa onde você trabalha
+LABEL: Quanto pretende investir no seu atendimento?
+LABEL: Qual o tamanho do seu time de atendimento?
+CTA: Enviar
+BODY: Sem compromisso. Resposta em até 1 dia útil.
+
+=== FECHO ===
+H2: As quatro horas de amanhã já estão na fila de hoje.
+CTA: Agendar demonstração gratuita
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: sem achados (em-dash: 0).
+# Contagens: em-dash 0 | frase de IA 0 | filler 0 | metafora aquatica 0 | exclamacao 0
+#   | antitese-por-negacao 0 | 651 palavras de copy.
+#   As 2 interrogacoes sao rotulos de campo do formulario, nao pergunta retorica.
+#
+# PENDENCIAS PARA QUEM REVISA
+# 1. Os tempos das seis tarefas vem da arte do anuncio ad_07_estatico, ja no ar, com prefixo
+#    "~" (aproximado). Aqui estao rotulados como ESTIMATIVA de proposito, porque nao ha case
+#    verificado que os meca. Se o time de produto tiver a fonte, trocar o rotulo e citar.
+#    Regra aplicada: cases.md, "evitar afirmar resultados quantitativos sem case verificado".
+# 2. Case Cacau Show e os numeros 8h para 26 min e 34%: autorizados nominalmente pela
+#    Marielle a partir do PDF "Case Cacau Show & Elife".
+# 3. Preco R$ 1.750 confirmado pela Marielle em 10/09/2026.
+# 4. H1 carrega a dor, nao a solucao (GUIDELINES §3 + fundamentos-copy §0).
+# 5. 4 CTAs de rolagem, um por secao, com verbo sobre a dor do leitor; so o ultimo fala em
+#    agendar. Padrao fechado com a Marielle em 18/09 (benchmark ASAAS/RD/G4/Digisac/Salvy) e
+#    aplicado aqui em 22/09 — a versao de 10/09 tinha so 2. Form na ultima secao (GUIDELINES §10, BoFu).
+#    Mock ate rodar /lp-integrar-form (GUIDELINES §11).
+# 6. GTM brasil: GTM-T4XDWHL3 (brand/cxpress/tracking.json).

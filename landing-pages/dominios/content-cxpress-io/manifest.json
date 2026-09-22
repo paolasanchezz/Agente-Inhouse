@@ -141,6 +141,11 @@
       "source": "landing-pages/elife/consumidores-sinteticos-evento"
     },
     {
+      "slug": "custo-atendimento-manual",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/custo-atendimento-manual"
+    },
+    {
       "slug": "cxpress-na-pratica",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/cxpress-na-pratica"
@@ -269,6 +274,11 @@
       "slug": "telefonia-ia-latam",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/telefonia-ia-latam"
+    },
+    {
+      "slug": "tempo-de-resposta",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/tempo-de-resposta"
     },
     {
       "slug": "video-atendimento",
