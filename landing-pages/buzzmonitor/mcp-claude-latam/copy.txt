@@ -1,6 +1,13 @@
 # v3: copy del brief de Ulises + ajustes pedidos por el (titulares de PRUEBA, VALOR y CONVERSACION,
 # bloque TICKER nuevo, CTA del hero reorganizado, redes en el footer). v2 congelada en versions/v2/.
 
+=== NAV ===
+LABEL: Cómo conectar
+LABEL: Beneficios
+LABEL: Ejemplos
+LABEL: Para equipos
+CTA: QUIERO SABER MÁS →
+
 === HERO ===
 OVERLINE: Buzzmonitor MCP · Conector para Claude
 H1: ¿Listo para crear reportes en segundos con Claude?
@@ -71,7 +78,7 @@ LIST ITEM: Evalúa Buzzmonitor según tus necesidades
 LIST ITEM: Descubre cómo aplicarlo a tus marcas o clientes
 LIST ITEM: Resuelve dudas con nuestro equipo comercial
 LIST ITEM: Conoce la mejor opción para tu operación
-CTA: AGENDAR UNA REUNIÓN →
+CTA: QUIERO SABER MÁS →
 H3: Hablemos de tu operación 👋
 BODY: Déjanos tus datos y nuestro equipo se pondrá en contacto contigo.
 LABEL: Nombre
@@ -104,3 +111,8 @@ FOOTER: YouTube
 # confirmarlo contra el producto. Si el MCP sí los genera, se agrega en una linea.
 # [NOTA] Copy del brief, sin optimizar. El H1 abre por la solucion, no por la dor (fundamentos-copy §0 / GUIDELINES §5). Fue senalado en v1 y Ulises eligio su version. La alternativa que abria por la dor sigue en versions/v1/copy.txt por si se quiere testear A/B.
 # [NOTA] "performance" (bloque VALOR) es anglicismo; el estandar ES-LATAM prefiere "desempeno". Se mantiene literal por pedido.
+# [NOTA 2026-09-21] "AGENDAR UNA REUNIÓN" virou "QUIERO SABER MÁS" nos dois CTAs que levavam ao form
+# (header e bloco EQUIPOS), a pedido do Ulises. CTA em 1.a pessoa e o padrao recomendado pelo
+# padrao-linguistico ES-LATAM (Regra de Ouro 5: "Quiero recibir", "Quiero empezar").
+# [NOTA 2026-09-21] Bloco NAV novo: rotulos do menu de secoes do header. Sao navegacao funcional
+# (whitelist "nav meta minimal"), nao copy de venda.

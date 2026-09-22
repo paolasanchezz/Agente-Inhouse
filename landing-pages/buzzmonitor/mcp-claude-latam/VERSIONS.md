@@ -85,3 +85,12 @@ Segunda tanda de ajustes de Ulises, aplicada sobre la propia v3 (no se abrió v4
 
 - **El carrusel ya no pasa por detrás del Paso 0.** Termina 26 px antes del borde de la tarjeta (medido igual a 1024, 1200 y 1440 px) y ahora tiene fundido en las dos puntas, no solo en la izquierda.
 - **Botón del header:** 136x21 px en móvil (el logo mide 114x23) y 171x26 px en desktop, es decir ~25 % más grande. En móvil el botón se ve de 21 px pero el blanco de toque real es de 156x45 px, resuelto con un `::after` transparente para no romper la accesibilidad.
+
+### Quinto update de la v3 (2026-09-21)
+
+- **CTAs al formulario:** "Agendar una reunión" y "Agendar reunión" pasaron a **"Quiero saber más"** (header y bloque de equipos). CTA en primera persona, que es lo que recomienda el estándar ES-LATAM del repo.
+- **Menú de secciones en el header:** Cómo conectar, Beneficios, Ejemplos y Para equipos.
+- **Botón del header ~20% más grande de caja** (mismo tamaño de letra): 26 a 31 px en desktop.
+- **Navegación móvil sin hamburguesa.** La primera versión abría un panel desde arriba que tapaba el H1 y dejaba todo en los primeros 60 px de pantalla, la peor zona para el pulgar. Se reemplazó por: chips de sección deslizables horizontalmente en el header (siempre visibles, sin tap, con la sección activa resaltada según el scroll) y el CTA como barra fija abajo, que se esconde sola cuando el formulario ya está en pantalla.
+
+- **El video del MacBook se ve completo.** En móvil tenía un zoom de 1.22x (puesto antes para que el texto de Claude se leyera mejor) que recortaba el 18% de cada eje. Se quitó, y el `object-fit` pasó de `cover` a `contain` sobre fondo negro: si algún día la caja cambia de proporción, aparece tarja negra en vez de recortar en silencio.

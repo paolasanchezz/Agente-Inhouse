@@ -124,3 +124,25 @@ Um `str.replace` meu casou um fecho de `div` ambiguo e **duplicou o hero inteiro
   usada na LP (`.btn` 4x, `.btn--ghost` 3x, pilula da nav): **20,24:1** em todas apos o fix. O `.copy-btn` nao tem
   varredura (fundo em degradado fixo, texto quase preto, ~7:1). `.btn--solid` e `.btn--light` continuam definidos
   no CSS mas nao sao usados por nenhum elemento.
+
+---
+
+## Quinto update da v3 (2026-09-21)
+
+- [x] **CTAs de reuniao -> "Quiero saber más"** nos dois botoes que levam ao form (header e bloco EQUIPOS). CTA em 1.a pessoa e o padrao do `padrao-linguistico.md` ES-LATAM (Regra de Ouro 5).
+- [x] **Menu de secoes no header** com 4 ancoras (`#instrucciones`, `#valor`, `#conversacion`, `#equipos`). Medido pos-clique: as 4 caem abaixo do header, nenhuma fica tapada.
+- [x] **Botao do header +20% de caixa** (texto igual): 26 -> 31 px no desktop.
+- [x] **Navegacao mobile refeita.** A 1a versao (hamburguer + painel) foi descartada apos medir num iPhone 14: hamburguer e CTA centrados em y=37 de uma tela de 844 px (pior zona pro polegar), painel ocupando 250 px (30% da tela) e **cobrindo o H1 inteiro** (borda inferior em 332, H1 comecando em 175), com o header apertado (114+44+150 = 308 dos 390 px).
+  Trocado por: **chips de secao com rolagem horizontal** no header (sempre visiveis, zero tap, chip ativo acompanhando o scroll e auto-scroll da faixa) e **CTA como barra fixa no rodape**, que se esconde sozinha quando o bloco do form entra na tela (o CTA aponta pra la, entao so atrapalharia).
+
+### Armadilhas de cascata desta rodada (3)
+
+1. `.nav .nav__cta-pill` do fim da folha (≤640) ainda dimensionava o botao como pilula inline e anulava o tamanho de barra. Reescrito pro novo papel.
+2. `.nav.stuck .nav__in` do bloco ≤640 mantinha `margin:8px auto`, entao o header descolava do topo ao rolar e o conteudo aparecia na fresta. Zerado no mobile.
+3. `.nav.stuck .nav__in` da folha base (0,3,0) reimpunha `background:rgba(16,9,11,.72)` por cima do `.nav__in` (0,1,0) do bloco mobile. Com header de 2 linhas o texto de tras vazava. **Medido por pixel** antes de concluir: (22,17,19) onde deveria ser (12,7,9), ou seja 4% de vazamento. Fundo passou a opaco (`#0C0709`) nos dois estados.
+
+**Revalidado:** em-dash 0, SEO completo, JSON-LD parseia, GTM LATAM ok, 0 ancoras quebradas, 0 ids duplicados, arvore intacta, build do guarda-chuva OK (31 LPs, 0 aviso da nossa), 0 erro de JS, sem scroll horizontal em 390/768/1440, nenhum alvo de toque abaixo de 24 px, rodape nao coberto pela barra, e tudo visivel sem JS e com reduced-motion. Desktop intacto (CTA segue estatico no header).
+
+- [x] **Video do hero cortado no mobile.** Medido em 390/768/1440 com a tampa forcada aberta: a proporcao da tela do MacBook bate com a do video (1.600 vs 1.602), entao o container nunca cortou nada. O corte vinha de um `transform:scale(1.22)` que eu mesmo tinha posto no bloco ≤640 pra dar legibilidade ao texto do Claude, e que deixava de fora 18% de cada eixo. Zoom removido e `object-fit` de `cover` pra `contain` com fundo preto, como o Ulises sugeriu: agora o quadro nunca e recortado, e a tarja so apareceria se a caixa mudasse de proporcao. Medido depois: **100% x 100% visivel** nos tres breakpoints.
+  **Contrapartida assumida:** sem o zoom, a UI do Claude no celular fica menor. Os 3 passos em texto logo abaixo continuam sendo a fonte legivel; o video e demonstracao.
+  **Nota de metodo:** a primeira medicao saiu errada (AR 6.5) porque o `getBoundingClientRect` de um elemento com `rotateX` devolve a caixa projetada, nao a de layout. Foi preciso forcar a tampa aberta antes de medir.
