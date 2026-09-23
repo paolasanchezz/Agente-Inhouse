@@ -247,9 +247,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .prova__notes{max-width:720px;margin:0 auto 48px;text-align:center}
     .prova__notes p{font-size:14px;color:var(--primary-lighter);line-height:1.6;opacity:.85}
 
-    .clientes{background:var(--white);padding:96px 0}
+    .clientes{background:var(--white);padding:0 0 48px;border-top:1px solid var(--neutral-100)}
     .clientes__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-    .clientes .section-title{text-align:center;margin:0 auto 40px;max-width:640px;font-size:clamp(22px,2.2vw,28px);color:var(--neutral-700);font-weight:700}
+    .clientes__row{display:grid;grid-template-columns:1fr;gap:14px;align-items:center;padding-top:40px}
+    @media (min-width:900px){.clientes__row{grid-template-columns:auto 1fr;gap:34px}}
+    .clientes__label{font-family:var(--font-accent);font-style:italic;font-size:16px;color:var(--primary-dark)}
+    @media (min-width:900px){.clientes__label{max-width:28ch}}
     .ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
     .ticker__track{display:flex;width:max-content;animation:slide 42s linear infinite}
     .ticker:hover .ticker__track{animation-play-state:paused}
@@ -369,7 +372,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .agendar{padding:64px 0}
       .agendar__card{grid-template-columns:1fr;gap:36px;padding:36px 24px}
       .agendar__formcol{border-left:0;padding-left:0;border-top:1px solid var(--neutral-300);padding-top:36px}
-      .clientes{padding:64px 0}
+      .clientes{padding:0 0 32px}
+      .clientes__row{padding-top:28px}
       .ticker__row{gap:36px;padding:12px 20px}
       .ticker__logo{height:26px}
       .quem-somos{padding:64px 0}
@@ -479,8 +483,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- CLIENTES -->
     <section class="clientes" aria-labelledby="clientes-title">
-      <div class="clientes__inner">
-        <h2 id="clientes-title" class="section-title reveal">Empresas que ya confían en Cxpress para gestionar su atención</h2>
+      <div class="clientes__inner clientes__row">
+        <p id="clientes-title" class="clientes__label reveal">Clientes que confían en Cxpress para optimizar la atención al cliente</p>
         <div class="ticker reveal">
           <div class="ticker__track">
             <div class="ticker__row">
