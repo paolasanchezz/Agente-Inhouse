@@ -1,0 +1,111 @@
+# Copy LP · Buzzmonitor · workshop-reportes-ia-octubre-2026-latam
+# v2 (2026-09-23): reenfocada no tema "Como automatizar Reports de Social Media com IA" (pedido do Victor).
+# Fuente original: "Copy LP - WORKSHOP 7 ANALISTAS, 1 SOLO CHAT.pdf" (6 paginas), recortada.
+# Idioma: ES-LATAM (evento en Bogota, CO) · Funil: ToFu (evento gratuito) · form en la 2.a seccion (GUIDELINES §10)
+
+=== HERO ===
+LABEL: Workshop presencial y gratuito · Bogotá
+OVERLINE: 7 analistas, 1 solo chat
+H1: Cómo automatizar reportes de Social Media con IA
+SUB: Pide el reporte en lenguaje natural y recibe el análisis de campañas, crisis, competencia y tendencias con Claude y las Skills de Buzzmonitor. Sin escribir un solo prompt.
+CTA: Reservar mi lugar
+LABEL: Cupos limitados
+LABEL: Miércoles 7 de octubre · 16:00 h
+LABEL: Tinkko Coworking, Bogotá
+LABEL: Gratis · Trae tu computador
+# Visual del hero (mock de chat -> reporte)
+LABEL: Claude + Buzzmonitor
+QUOTE: Genera el reporte de septiembre de mi marca en Instagram.
+LABEL: Reporte listo
+LABEL: Menciones
+LABEL: Sentimiento
+LABEL: Recomendaciones
+
+=== REGISTRO ===
+H2: Reserva tu lugar
+BODY: Es presencial, gratuito y hands-on. Los cupos son limitados.
+LIST ITEM: Miércoles 7 de octubre, 16:00 h
+LIST ITEM: Tinkko Coworking & Flex Office – Edificio Ecotek, Calle 99 #10-57, Bogotá
+LIST ITEM: Trae tu computador cargado para las actividades prácticas
+
+=== PROBLEMA ===
+H2: El reporte de Social Media todavía se arma a mano
+LIST ITEM: Exportas los datos de cada red y los juntas en una hoja de cálculo.
+LIST ITEM: Le pides un resumen a la IA y recibes algo genérico.
+LIST ITEM: Corriges el periodo, el formato y las prioridades, una y otra vez.
+LIST ITEM: El mes siguiente, con otra marca o campaña, empiezas de cero.
+BODY: Sin acceso a datos reales, la IA entrega análisis genéricos o que solo parecen correctos.
+
+=== SKILLS ===
+H2: Una Skill es un especialista, no un prompt
+BODY: Las Skills de Buzzmonitor son capacidades de análisis ya entrenadas dentro de la conexión entre Buzzmonitor y Claude. Cada una sabe qué datos buscar, cómo analizarlos y cómo presentar el reporte.
+H3: 1. Elige la Skill
+BODY: Indica qué reporte necesitas o describe la situación.
+H3: 2. Da el contexto
+BODY: La marca, el periodo, la región o el tema.
+H3: 3. Recibe el reporte
+BODY: Datos, interpretación y recomendaciones accionables.
+BODY: Sin código. Sin prompts técnicos. Sin empezar desde cero.
+
+=== ANALISTAS ===
+H2: Conoce a tus 7 analistas
+SUB: Cada Skill entrega un tipo de reporte.
+H3: Campañas
+BODY: Mide qué parte de la conversación generó tu campaña, su alcance y qué provocó reacciones positivas o negativas.
+H3: Crisis
+BODY: Dónde está la crisis, cómo llegó hasta ahí y qué priorizar, del diagnóstico ejecutivo al plan de mitigación.
+H3: Listening
+BODY: El panorama de tu marca a partir de los datos, comparada con sus competidores y con un plan de acción.
+H3: Tendencias
+BODY: Detecta temas antes que el mercado y separa una señal emergente de una moda pasajera.
+H3: Filtro de Región
+BODY: Analiza una región por la forma en que la gente habla, más allá de la geolocalización declarada.
+H3: Exploring
+BODY: Explora los datos sin hipótesis previas, a partir de lo que las personas dijeron.
+H3: Frecuencia de Marcas
+BODY: Descubre qué marcas y temas son los más mencionados en una conversación.
+CTA: Quiero participar
+
+=== DINAMICA ===
+H2: No vienes solo a escuchar. Vienes a hacerlo.
+SUB: En equipo, sobre marcas reales, vas a armar un reporte con Claude y una Skill de Buzzmonitor y encontrar un hallazgo que los demás no vieron.
+H3: Ronda 1 · Diagnóstico
+BODY: Ejecuta la Skill asignada sobre una marca y pide el reporte en lenguaje natural.
+H3: Ronda 2 · Refinamiento
+BODY: Ajusta el reporte sin rehacer la pregunta.
+QUOTE: “Ahora analiza solo Instagram.”
+QUOTE: “Enfócate en las menciones negativas.”
+QUOTE: “Compáralo con el periodo anterior.”
+H3: Presentación final
+BODY: Cada equipo presenta su reporte: un insight, una oportunidad accionable y una recomendación basada en los datos.
+
+=== SPEAKER ===
+OVERLINE: Quién te acompañará
+H3: Juan Diego Forero
+LABEL: Business Development Representative · Buzzmonitor
+BODY: Trabaja con equipos de marketing, comunicación y agencias de LATAM y España. En los últimos cinco años acompañó a más de 130 empresas a convertir conversaciones digitales en decisiones concretas.
+
+=== PARA QUIEN ===
+H2: ¿Para quién es?
+LIST ITEM: Marketing
+LIST ITEM: Comunicación
+LIST ITEM: Social Media
+LIST ITEM: Customer Experience
+LIST ITEM: Reputación Digital
+LIST ITEM: Inteligencia de Mercado
+LIST ITEM: Agencias y consultorías
+BODY: No necesitas saber programar. Solo trae tu computador y ganas de aprender haciendo.
+
+=== CIERRE ===
+LABEL: Cupos limitados
+H2: Automatiza tu próximo reporte el 7 de octubre
+BODY: Deja de armar reportes a mano. Ven a Bogotá a ver las 7 Skills de Buzzmonitor funcionando sobre datos reales.
+CTA: Reservar mi lugar
+
+=== FOOTER ===
+BODY: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Revision anti-IA (em-dash: 0)
+# - Antitesis-por-negacion: 2 ("especialista, no un prompt" / "No vienes solo a escuchar") = limite. OK.
+# - "reportes" (no "informes") y "computador" (Colombia) segun padrao-linguistico ES-LATAM.
