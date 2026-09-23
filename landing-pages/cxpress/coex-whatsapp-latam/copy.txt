@@ -1,0 +1,226 @@
+<!-- copy.txt · coex-whatsapp-latam | ES-LATAM | actualizado 2026-09-23 (v4, aprobada por Paola) -->
+<!-- Idioma alvo: ES-LATAM (tuteo, vocabulario LATAM, zero brasilerismo) -->
+
+## Meta
+
+TITLE: Atención profesional en WhatsApp sin cambiar de número | Cxpress
+DESCRIPTION: WhatsApp CoEx en Cxpress: el mismo número de tu empresa en la app y en la API oficial al mismo tiempo. Estructura la atención sin migración. Agenda una demostración.
+CANONICAL: https://content.cxpress.io/coex-whatsapp-latam
+OG:LOCALE: es_LA
+
+
+## Navbar
+
+CTA: Quiero agendar mi demo gratis (corto: Quiero mi demo)
+
+
+## Hero (recortado: la v3 tenia demasiado texto para un header principal)
+
+OVERLINE: WhatsApp CoEx · disponible en Cxpress
+H1: Atiende WhatsApp con varios agentes sin cambiar de número
+SUB: Mantén tu WhatsApp Business y conecta el mismo número a Cxpress para gestionar conversaciones, distribuir atenciones, automatizar consultas con IA y tener control de toda la operación desde una sola plataforma.
+TAGLINE: Mismo número. Más agentes. Más control.
+CTA: Quiero agendar mi demo gratis (scroll a la seccion de formulario)
+VISUAL: mockup-plataforma-laptop.png (existente)
+
+NOTA v5: se elimino la linea COEX_LINEA del hero ("WhatsApp CoEx permite que el mismo numero...")
+a pedido de Paola, era demasiado texto para la parte superior. El mecanismo de CoEx sigue
+explicado en la FAQ.
+
+NOTA DE PROTOCOLO: el kicker "WhatsApp CoEx" y el H1 solucion-primero (no dolor-primero) siguen
+siendo una desviacion explicita del default de GUIDELINES.md §3/§10 y de fundamentos-copy.md §0.
+Senalado como sugerencia; Paola confirmo esta version de todos modos (decision de quien aprueba
+la copy, GUIDELINES.md §5).
+
+
+## Clientes (justo despues del hero)
+
+H2: Empresas que ya confían en Cxpress para gestionar su atención
+
+
+## Solución (beneficios, grid + check verde, GUIDELINES.md §8)
+
+H2: Tu WhatsApp sigue siendo el mismo. La forma de atender cambia.
+BODY: Con WhatsApp CoEx + Cxpress, no necesitas abandonar el número que tus clientes ya conocen. Tu equipo puede seguir utilizando WhatsApp Business mientras también gestiona la atención desde Cxpress, con más estructura, automatización y visibilidad.
+
+01 · Varios agentes en un mismo número
+BODY: Distribuye conversaciones entre personas, equipos y áreas sin depender de un único celular.
+
+02 · Tickets y distribución de conversaciones
+BODY: Organiza cada atención, acompaña los casos pendientes y define quién debe responder cada conversación.
+
+03 · Automatización con IA
+BODY: Automatiza consultas frecuentes y las primeras etapas de la atención. Cuando sea necesario, el equipo humano continúa la conversación.
+
+04 · Dashboards y control de la operación
+BODY: Acompaña volumen de atención, tickets, tiempos de respuesta, espera y desempeño del equipo.
+
+05 · Todos tus canales en una plataforma
+BODY: Integra WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat en un único entorno.
+
+CTA: Quiero automatizar mi atención
+
+
+## Comparativo (Antes / Con Cxpress)
+
+H2: De atender conversaciones a gestionar una operación
+BODY: Cuando el volumen aumenta, trabajar solamente desde WhatsApp Business puede dificultar el control de la atención. Con Cxpress, tu equipo gana una estructura creada para operaciones que necesitan atender más sin perder organización.
+
+ANTES: Conversaciones distribuidas entre diferentes personas · Dificultad para saber qué casos siguen pendientes · Poca visibilidad sobre tiempos y volumen de atención · Procesos manuales para organizar el equipo · Dificultad para automatizar sin alterar la operación actual
+CON_CXPRESS: Varios agentes atendiendo el mismo número · Conversaciones organizadas por tickets y colas · Distribución por agentes y áreas · Automatización con IA · Historial centralizado · Dashboards para acompañar la operación
+
+
+## Mira Cxpress funcionando (features con GIF)
+
+H2: Mira Cxpress funcionando
+
+H3: Organiza agentes, equipos y conversaciones
+BODY: Visualiza las conversaciones de tu operación y distribuye cada atención para el agente o área correspondiente.
+(sin GIF propio, bloque de texto)
+
+H3: Automatiza consultas con IA
+BODY: Configura automatizaciones para responder consultas, recopilar información y resolver las primeras etapas de la atención. El equipo humano entra cuando la conversación necesita una persona.
+GIF: plataforma-chatbot-ia.gif
+
+H3: Integra todos los canales
+BODY: WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat pueden formar parte de una misma operación.
+GIF: plataforma-canais.gif
+
+H3: Acompaña lo que pasa en tiempo real
+BODY: Visualiza indicadores de atención y acompaña el desempeño de tu equipo mediante dashboards.
+GIF: plataforma-dashboard.gif
+
+
+## Resultados
+
+H2: Resultados de operaciones que estructuraron su atención con Cxpress
+
+STAT: +220% — de interacciones realizadas sin aumentar el equipo.*
+STAT: 15x — más productividad de la IA frente a una atención 100% humana.*
+STAT: 98% — de calidad evaluada de la IA.*
+STAT: 10 → 4 personas — en una operación que redujo el equipo mientras aumentó su capacidad de atención.*
+
+LABEL: *Resultados observados en clientes de Cxpress en operaciones de atención al cliente (reporte interno Sentinela, 2025). Los resultados pueden variar según cada operación.
+
+NOTA: el borrador que Paola aprobo trajo de vuelta "atencion a redes sociales" en el disclaimer.
+Se mantuvo la version corregida ("operaciones de atencion al cliente") porque es un descalce de
+canal real (issue de credibilidad, no de estilo), una de las pequeñas mejoras que se pidio
+explicitamente mantener.
+
+
+## Cxpress está hecho para operaciones que necesitan más control (autocalificacion)
+
+H2: Cxpress está hecho para operaciones que necesitan más control
+LABEL: Puede ser una buena opción para tu empresa si necesitas:
+LISTA:
+- Varios agentes atendiendo WhatsApp
+- Mantener el número que tus clientes ya conocen
+- Saber qué conversaciones siguen pendientes
+- Organizar la atención entre equipos y áreas
+- Automatizar consultas con IA
+- Acompañar métricas y tiempos de respuesta
+- Integrar WhatsApp con otros canales
+
+
+## Formulario (seccion dedicada, antes del FAQ)
+
+H2: Mira cómo funcionaría con tu WhatsApp
+BODY: En una demostración de 30 minutos, un especialista de Cxpress te muestra cómo organizar tu atención utilizando el número que tu empresa ya tiene.
+H3: Podrás ver en la práctica cómo funcionan:
+BODY: varios agentes · tickets · distribución · IA · dashboards · WhatsApp + otros canales
+MICROCOPY: Sin necesidad de cambiar tu número de WhatsApp Business.
+REQ: Tener un sitio web activo es uno de los requisitos para ser cliente de Cxpress.
+FORM: embed real de Jotform (form.jotform.com/jsform/252398149653872)
+
+NOTA v6: esta LP ya esta activa en produccion (no es una LP nueva en fase de diseno), asi que la
+regla de "mock durante diseno" de GUIDELINES.md §11 no aplica igual aca. Paola confirmo que el
+embed real de Jotform (el mismo que ya estaba antes de esta sesion) se mantiene sin pasar por
+mock. Se restauro el embed y se borro el form mock + su CSS.
+
+
+## Preguntas frecuentes
+
+H2: Preguntas frecuentes
+
+Q: ¿Voy a perder mi número de WhatsApp Business?
+A: No. Con WhatsApp CoEx, el mismo número puede seguir funcionando en WhatsApp Business y también conectarse a Cxpress mediante la API oficial.
+
+Q: ¿Mi equipo puede seguir utilizando WhatsApp Business?
+A: Sí. El equipo puede continuar utilizando la aplicación mientras el número también está conectado a Cxpress.
+
+Q: ¿Qué es WhatsApp CoEx?
+A: CoEx significa coexistencia. Permite que un mismo número funcione en WhatsApp Business y, al mismo tiempo, en una plataforma conectada mediante la API oficial.
+
+Q: ¿Puedo tener varios agentes atendiendo el mismo número?
+A: Sí. Cxpress permite distribuir las conversaciones entre diferentes agentes, equipos y áreas.
+
+Q: ¿Puedo automatizar la atención?
+A: Sí. Cxpress permite automatizar etapas de la atención con IA y transferir la conversación al equipo humano cuando sea necesario.
+
+Q: ¿Puedo conectar más de un número?
+A: Sí. Es posible trabajar con varios números dentro de una misma operación.
+
+Q: ¿Qué otros canales puedo integrar?
+A: Cxpress también permite integrar Instagram, Facebook, correo electrónico, teléfono y webchat.
+
+
+## Cierre
+
+H2: Mantén tu número. Gana control sobre toda la atención.
+BODY: No necesitas empezar de cero para profesionalizar tu operación. Conecta el WhatsApp que tus clientes ya conocen a Cxpress y permite que tu equipo atienda con más organización, automatización y visibilidad.
+CTA: Agenda tu demostración gratuita
+TAGLINE: WhatsApp Business + Cxpress
+Mismo número. Más agentes. Más control.
+
+
+## Quiénes somos (al final de la pagina, pedido explicito de Paola, antes del footer)
+
+H2: Quiénes somos
+BODY: Cxpress es una plataforma en la nube que unifica y automatiza los canales de atención de tu empresa. WhatsApp, redes sociales, correo electrónico y teléfono juntos ofrecen una visión única y simplificada de la interacción con el cliente, desde el primer contacto hasta la resolución del caso. La Inteligencia Artificial de Cxpress automatiza las primeras interacciones en lenguaje natural y gestiona las colas, lo que optimiza la productividad de los equipos de atención.
+BADGES: API oficial de WhatsApp · API oficial de ChatGPT · Un producto Elife
+
+
+## Footer
+
+FOOTER: Cxpress es un producto Elife. © 2026
+FOOTER: Condiciones generales de uso de Cxpress · Políticas de privacidad
+
+
+## Secciones que no estan en esta version (retiradas o nunca incluidas en el borrador aprobado)
+
+- Bloque de dolores dedicado (4 items con icono X): el volumen crece / se pierde el control
+  quedo condensado en la intro del Comparativo, no como bloque propio
+- Diferenciales ("Por qué Cxpress")
+- Manejo de objeción dedicado
+- Cómo funciona en pasos numerados (01-05)
+
+Historial completo de estas secciones queda en el historial de git de este archivo, por si se
+quieren recuperar en una proxima iteracion.
+
+
+## Ajustes visuales v5 (portados de telefonia-ia-latam, a pedido de Paola)
+
+- Menu clickeable en el header: logo + 4 links a secciones (Solucion, Como funciona, Es para
+  vos, Preguntas) + burger para mobile. Antes solo tenia logo + CTA.
+- Clientes: paso de imagen estatica compuesta a ticker animado con los mismos 14 logos (assets
+  copiados de telefonia-ia-latam/assets/clientes/, mismo set de clientes que ya se listaba en el
+  alt del composite anterior).
+- Cursor decorativo (.fcur): persigue el mouse en desktop, solo dentro de
+  @media (hover:hover) and (pointer:fine). Se agrego la regla base ".fcur{display:none}" que
+  faltaba en telefonia-ia-latam y causaba el bug real de la flecha gigante tapando el hero en
+  mobile (encontrado durante el analisis de esa LP). Con esta base, el bug no puede repetirse aca.
+- 2 secciones pasaron a fondo azul oscuro (var(--primary-dark)) con formas decorativas (pill/ring,
+  mismo patron que telefonia-ia-latam): Resultados y "Cxpress esta hecho para operaciones que
+  necesitan mas control". Sumado al Cierre (que ya era oscuro), quedan 3 bloques oscuros
+  intercalados con las secciones claras/blancas.
+- Botones: pasaron de navy rectangular a pildora verde WhatsApp (var(--wa) #21CC78, mismo token
+  que usa telefonia-ia-latam para su CTA) en toda la pagina, no solo en el header.
+
+
+## 5 Principales Sustituciones Vocabulares
+
+1. atendimento → atención
+2. fila → cola (queue en contexto de tickets)
+3. atendente → agente
+4. planilhas → planillas
+5. demonstração → demostración

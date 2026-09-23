@@ -1,0 +1,11 @@
+{
+  "regiao": "latam",
+  "expected_gtm": "GTM-WRQ47B9R",
+  "found_gtm": [
+    "GTM-WRQ47B9R"
+  ],
+  "fingerprint": "37e749bd0531f88f",
+  "status": "ok",
+  "grandfathered": false,
+  "verified_at": "2026-09-23"
+}

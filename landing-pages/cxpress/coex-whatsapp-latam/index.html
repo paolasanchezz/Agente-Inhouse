@@ -85,7 +85,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --neutral-300:#d1d1d1;
       --neutral-100:#f5f5f5;
       --white:#ffffff;
-      --radius-btn:9px;
+      --danger:#D64545;
+      --wa:#21CC78;
+      --wa-dark:#1AAE63;
+      --radius-btn:9999px;
       --radius-card:16px;
       --font-display:'Open Sans',sans-serif;
       --font-body:'Source Sans 3',sans-serif;
@@ -120,24 +123,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 
     .navbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--neutral-100)}
-    .navbar__inner{max-width:var(--maxw);margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .navbar__logo img{display:block;height:38px;width:auto}
-    .navbar__cta{font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--primary-dark);color:var(--white);padding:11px 22px;border-radius:var(--radius-btn);text-decoration:none;white-space:nowrap;transition:background .2s ease,transform .2s ease}
-    .navbar__cta:hover{background:var(--primary);transform:translateY(-1px)}
+    .nav{max-width:var(--maxw);margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:28px}
+    .nav__logo{margin-right:auto}
+    .nav__logo img{display:block;height:34px;width:auto}
+    .nav__menu{list-style:none;display:none;align-items:center;gap:28px}
+    .nav__menu a{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--primary-dark);text-decoration:none;white-space:nowrap;transition:color .2s ease}
+    .nav__menu a:hover{color:var(--primary)}
+    @media (min-width:900px){.nav__menu{display:flex}}
+    .nav__burger{display:grid;gap:4px;width:34px;height:34px;place-items:center;background:none;border:0;cursor:pointer;padding:0}
+    .nav__burger span{display:block;width:20px;height:2px;border-radius:2px;background:var(--primary-dark);transition:transform .2s ease,opacity .2s ease}
+    .nav__burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .nav__burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nav__burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+    @media (min-width:900px){.nav__burger{display:none}}
+    @media (max-width:899px){
+      .nav__menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--white);border-bottom:1px solid var(--neutral-100);padding:0 24px;max-height:0;overflow:hidden;transition:max-height .25s ease}
+      .nav__menu.is-open{max-height:280px;padding:12px 24px 20px}
+      .nav__menu a{display:block;padding:10px 0;width:100%}
+    }
+    .navbar__cta{font-family:var(--font-display);font-weight:700;font-size:15px;padding:11px 22px;white-space:nowrap;flex-shrink:0}
     .navbar__cta-short{display:none}
     @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 
     .hero{background:var(--white);overflow:hidden;position:relative;padding:0}
-    .hero__inner{max-width:var(--maxw);margin:0 auto;padding:40px 32px 88px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:center}
-    .hero__overline{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-dark);background:var(--primary-lighter);border-radius:9999px;padding:8px 18px;white-space:nowrap;margin-bottom:28px}
-    .hero__overline::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
+    .hero__inner{max-width:var(--maxw);margin:0 auto;padding:40px 32px 88px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start}
+    .hero__overline{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-dark);background:var(--primary-lighter);border-radius:9999px;padding:6px 16px;white-space:nowrap;margin-bottom:24px}
+    .hero__overline::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-    .hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,4.6vw,58px);line-height:1.12;letter-spacing:-.015em;color:var(--primary-dark);margin-bottom:24px}
-    .hero__sub{font-size:20px;line-height:1.65;color:var(--neutral-700);max-width:54ch;margin-bottom:36px}
-    .btn{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:17px;background:var(--primary-dark);color:var(--white);padding:16px 34px;border-radius:var(--radius-btn);text-decoration:none;border:none;cursor:pointer;transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
-    .btn:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,41,96,.22)}
-    .btn--light{background:var(--white);color:var(--primary-dark)}
-    .btn--light:hover{background:var(--primary-lighter);color:var(--primary-dark)}
+    .hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.2vw,52px);line-height:1.16;letter-spacing:-.015em;color:var(--primary-dark);margin-bottom:22px}
+    .hero__sub{font-size:19px;line-height:1.65;color:var(--neutral-700);max-width:56ch;margin-bottom:20px}
+    .hero__tagline{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--primary-dark);margin:28px 0 10px}
+    .btn{display:inline-block;font-family:var(--font-display);font-weight:800;font-size:17px;letter-spacing:-.01em;background:var(--wa);color:var(--white);padding:16px 34px;border-radius:var(--radius-btn);text-decoration:none;border:none;cursor:pointer;box-shadow:0 12px 26px -12px rgba(33,204,120,.85);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+    .btn:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(33,204,120,.9)}
+
+    /* ---- cursor decorativo ----
+       Solo en pantallas con mouse real (hover:hover + pointer:fine). Fuera de esa
+       media query el elemento queda display:none. Sin esto, en touch/mobile el
+       navegador renderiza el div+SVG en su tamano intrinseco (bug real que
+       encontramos en telefonia-ia-latam: flecha gigante tapando el hero). */
+    .fcur{display:none}
+    @media (hover:hover) and (pointer:fine){
+      body{cursor:none}
+      a,button,summary,[role="button"],.btn,details{cursor:none}
+      input,textarea,select,[contenteditable]{cursor:auto}
+      .fcur{display:block;position:fixed;left:0;top:0;width:0;height:0;z-index:2000;pointer-events:none;opacity:0;transition:opacity .25s ease;will-change:transform;color:var(--primary-dark)}
+      .fcur[data-dark="true"]{color:var(--accent)}
+      .fcur[data-on="true"]{opacity:1}
+      .fcur__b{position:absolute;display:block;width:32px;height:23px;transform:translate(-94%,-50%);transform-origin:94% 50%;transition:width .22s cubic-bezier(.2,.9,.3,1),height .22s cubic-bezier(.2,.9,.3,1)}
+      .fcur[data-hot="true"] .fcur__b{width:44px;height:32px}
+      .fcur__b svg{display:block;width:100%;height:100%}
+    }
+    @media (prefers-reduced-motion: reduce){.fcur{display:none!important}body,a,button,summary,[role="button"],.btn,details{cursor:auto!important}}
+
     .hero__visual{position:relative;display:grid;place-items:center;min-height:0}
     .hero__pills{position:absolute;inset:0;pointer-events:none}
     .hero__pills span{position:absolute;border-radius:9999px;display:block}
@@ -148,44 +185,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .hero__content > *{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards}
     .hero__content > *:nth-child(1){animation-delay:.05s}
-    .hero__content > *:nth-child(2){animation-delay:.15s}
-    .hero__content > *:nth-child(3){animation-delay:.25s}
-    .hero__content > *:nth-child(4){animation-delay:.35s}
+    .hero__content > *:nth-child(2){animation-delay:.11s}
+    .hero__content > *:nth-child(3){animation-delay:.17s}
+    .hero__content > *:nth-child(4){animation-delay:.23s}
+    .hero__content > *:nth-child(5){animation-delay:.29s}
+    .hero__content > *:nth-child(6){animation-delay:.35s}
+    .hero__content > *:nth-child(7){animation-delay:.41s}
     .hero__visual{opacity:0;animation:rise .8s ease .3s forwards}
     @keyframes rise{to{opacity:1;transform:translateY(0)}}
     @media (prefers-reduced-motion: reduce){.hero__content > *,.hero__visual{opacity:1;transform:none;animation:none}}
 
+    section[id]{scroll-margin-top:76px}
     section{padding:130px 0}
     @media (max-width:980px){section{padding:88px 0}}
     .section-title{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.2;letter-spacing:-.01em;color:var(--primary-dark)}
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
     .reveal.is-visible{opacity:1;transform:none}
 
-    .beneficios .section-title{text-align:center;max-width:680px;margin:0 auto 64px}
-    .beneficios__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-    .card{background:var(--white);border:1px solid var(--neutral-100);border-radius:var(--radius-card);padding:40px 32px;box-shadow:0 4px 6px rgba(0,0,0,.04);transition:transform .25s ease,box-shadow .25s ease}
-    .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(35,41,96,.10)}
-    .card__pill{width:44px;height:16px;border-radius:9999px;background:var(--primary);margin-bottom:24px}
-    .card:nth-child(2) .card__pill{background:var(--accent)}
-    .card:nth-child(3) .card__pill{background:var(--warning)}
-    .card h3{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--primary-dark);margin-bottom:14px;line-height:1.3}
-    .card p{font-size:17px;line-height:1.65;color:var(--neutral-700)}
-
-    .prova{background:var(--neutral-100)}
-    .prova .section-title{text-align:center;max-width:720px;margin:0 auto 64px}
+    .prova{background:var(--primary-dark);position:relative;overflow:hidden}
+    .prova__shapes span{position:absolute;border-radius:9999px;display:block;pointer-events:none}
+    .prova__shapes .s1{width:60px;height:200px;background:var(--primary);opacity:.5;top:-50px;left:6%}
+    .prova__shapes .s2{width:130px;height:50px;border:3px solid var(--accent);bottom:-16px;right:6%;background:transparent;opacity:.85}
+    .prova .container{position:relative;z-index:1}
+    .prova .section-title{text-align:center;max-width:720px;margin:0 auto 64px;color:var(--white)}
     .prova__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:36px}
-    .stat{background:var(--white);border-radius:var(--radius-card);padding:36px 26px;text-align:center;border-top:5px solid var(--accent);box-shadow:0 4px 6px rgba(0,0,0,.04)}
-    .stat__num{font-family:var(--font-display);font-weight:800;font-size:clamp(40px,4vw,56px);line-height:1;color:var(--primary-dark);display:block;margin-bottom:14px}
-    .stat__label{font-size:16px;line-height:1.5;color:var(--neutral-700)}
+    .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-card);padding:36px 26px;text-align:center;border-top:5px solid var(--accent)}
+    .stat__num{font-family:var(--font-display);font-weight:800;font-size:clamp(40px,4vw,56px);line-height:1;color:var(--white);display:block;margin-bottom:14px}
+    .stat__label{font-size:16px;line-height:1.5;color:var(--primary-lighter)}
     .prova__notes{max-width:720px;margin:0 auto 48px;text-align:center}
-    .prova__notes p{font-size:14px;color:var(--neutral-700);line-height:1.6}
-    .prova__cta{text-align:center}
+    .prova__notes p{font-size:14px;color:var(--primary-lighter);line-height:1.6;opacity:.85}
 
-    .clientes{background:var(--white);padding:104px 0}
-    .clientes__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,2.1fr);gap:48px;align-items:center}
-    .clientes .section-title{text-align:left;margin:0;font-size:clamp(26px,2.5vw, 32px)}
-    .clientes__grid{border-left:1px solid var(--neutral-300);padding-left:48px}
-    .clientes__grid img{width:100%;height:auto;display:block}
+    .clientes{background:var(--white);padding:96px 0}
+    .clientes__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+    .clientes .section-title{text-align:center;margin:0 auto 40px;max-width:640px;font-size:clamp(22px,2.2vw,28px);color:var(--neutral-700);font-weight:700}
+    .ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+    .ticker__track{display:flex;width:max-content;animation:slide 42s linear infinite}
+    .ticker:hover .ticker__track{animation-play-state:paused}
+    .ticker__row{display:flex;align-items:center;gap:52px;padding:14px 26px}
+    .ticker__logo{height:32px;width:auto;flex-shrink:0;filter:grayscale(1);opacity:.72;transition:filter .3s,opacity .3s}
+    .ticker:hover .ticker__logo{filter:none;opacity:1}
+    @keyframes slide{to{transform:translateX(-50%)}}
 
     .quem-somos{background:var(--white);padding:104px 0;border-top:1px solid var(--neutral-100)}
     .quem-somos__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:56px;align-items:center}
@@ -209,6 +248,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .feature--textonly h3{margin-bottom:10px}
     .feature--textonly p{max-width:62ch}
 
+    /* ---------- bloque solucion (beneficios) ---------- */
+    .solucion .section-title{text-align:center;max-width:640px;margin:0 auto 14px}
+    .solucion__body{text-align:center;max-width:620px;margin:0 auto 56px;font-size:18px;color:var(--neutral-700)}
+    .beneficios__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+    .beneficio{background:var(--white);border-radius:var(--radius-card);padding:28px 30px;border:1px solid var(--neutral-100);box-shadow:0 4px 6px rgba(0,0,0,.04);display:flex;gap:16px;align-items:flex-start}
+    .beneficio__ico{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:rgba(239,134,60,.14);color:var(--accent);display:grid;place-items:center;font-size:15px;font-weight:800;margin-top:2px}
+    .beneficio h3{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--primary-dark);margin-bottom:6px;line-height:1.3}
+    .beneficio p{font-size:15px;line-height:1.55;color:var(--neutral-700)}
+    .solucion__cta{text-align:center;margin-top:20px}
+
+    /* ---------- comparativo (antes/con cxpress) ---------- */
+    .comparacion .section-title{text-align:center;max-width:640px;margin:0 auto 14px}
+    .comparativo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+    .comparativo__col{border-radius:var(--radius-card);padding:36px 32px}
+    .comparativo__col--antes{background:var(--neutral-100);border:1px solid var(--neutral-300)}
+    .comparativo__col--con{background:var(--primary-dark);color:var(--white)}
+    .comparativo__col h3{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+    .comparativo__col--antes h3{color:var(--neutral-700)}
+    .comparativo__col--con h3{color:var(--primary-lighter)}
+    .comparativo__col ul{list-style:none}
+    .comparativo__col li{position:relative;padding-left:26px;margin-bottom:12px;font-size:16px;line-height:1.5}
+    .comparativo__col--antes li{color:var(--neutral-700)}
+    .comparativo__col--con li{color:var(--primary-lighter)}
+    .comparativo__col--antes li::before{content:"–";position:absolute;left:0;color:#9AA3C4;font-weight:700}
+    .comparativo__col--con li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+    /* ---------- cxpress tiene sentido para tu operacion ---------- */
+    .fit{background:var(--primary-dark);position:relative;overflow:hidden}
+    .fit__shapes span{position:absolute;border-radius:9999px;display:block;pointer-events:none}
+    .fit__shapes .s1{width:150px;height:56px;border:3px solid var(--warning);opacity:.8;top:-24px;right:8%;background:transparent}
+    .fit__shapes .s2{width:50px;height:170px;background:var(--primary);opacity:.5;bottom:-40px;left:5%}
+    .fit__inner{max-width:820px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+    .fit .section-title{text-align:center;margin-bottom:20px;color:var(--white)}
+    .fit__label{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--primary-lighter);text-align:center;margin-bottom:24px}
+    .fit__list{list-style:none;display:grid;gap:14px;max-width:520px;margin:0 auto}
+    .fit__list li{position:relative;padding-left:30px;font-size:17px;line-height:1.5;color:var(--white)}
+    .fit__list li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+
     .faq{background:var(--neutral-100)}
     .faq__inner{max-width:820px;margin:0 auto;padding:0 32px}
     .faq .section-title{margin-bottom:48px;text-align:center}
@@ -226,7 +303,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .fecho__inner{max-width:900px;margin:0 auto;padding:0 32px;text-align:center;position:relative;z-index:1}
     .fecho h2{font-family:var(--font-accent);font-style:italic;font-weight:500;font-size:clamp(34px,4vw, 48px);line-height:1.3;color:var(--white);letter-spacing:-.005em}
     .fecho h2 .linha2{color:var(--primary-lighter)}
+    .fecho__body{font-size:18px;line-height:1.7;color:var(--primary-lighter);max-width:60ch;margin:20px auto 0}
     .fecho .btn{margin-top:40px}
+    .fecho__tagline{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.6;color:var(--primary-lighter);opacity:.8;margin-top:28px}
 
     .agendar{background:var(--neutral-100);padding:104px 0}
     .agendar__card{max-width:var(--maxw);margin:0 auto;background:var(--white);border-radius:24px;box-shadow:0 24px 60px rgba(35,41,96,.12);padding:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
@@ -235,6 +314,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .agendar__body{font-size:18px;line-height:1.7;color:var(--neutral-700);max-width:46ch;margin-bottom:24px}
     .agendar__req{font-size:14px;line-height:1.5;color:var(--neutral-700);margin-bottom:24px}
     .agendar__formcol{border-left:1px solid var(--neutral-300);padding-left:48px}
+    .jotform-embed iframe{width:100% !important;max-width:100% !important;border:0;display:block}
 
     .footer{background:var(--primary-dark);padding:56px 0}
     .footer__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
@@ -242,11 +322,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
 
     @media (max-width:980px){
-      .hero__inner{grid-template-columns:1fr;padding:36px 24px 72px;gap:48px}
+      .hero__inner{grid-template-columns:1fr;padding:36px 24px 72px;gap:40px}
       .hero__sub{font-size:18px}
       .hero__pills .p1{display:none}
       .container{padding:0 24px}
-      .beneficios__grid{grid-template-columns:1fr;gap:20px}
       .prova__grid{grid-template-columns:repeat(2,1fr);gap:16px}
       .feature{grid-template-columns:1fr;gap:28px;padding:28px 0}
       .feature:nth-of-type(even) .feature__media{order:0}
@@ -255,19 +334,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .agendar__card{grid-template-columns:1fr;gap:36px;padding:36px 24px}
       .agendar__formcol{border-left:0;padding-left:0;border-top:1px solid var(--neutral-300);padding-top:36px}
       .clientes{padding:64px 0}
-      .clientes__inner{grid-template-columns:1fr;gap:32px}
-      .clientes .section-title{text-align:center}
-      .clientes__grid{border-left:0;padding-left:0}
+      .ticker__row{gap:36px;padding:12px 20px}
+      .ticker__logo{height:26px}
       .quem-somos{padding:64px 0}
       .quem-somos__inner{grid-template-columns:1fr;gap:32px}
       .quem-somos__foto{order:2}
       .quem-somos__badges{gap:24px}
       .navbar__cta{font-size:13px;padding:9px 14px}
       .navbar__logo img{height:30px}
+      .comparativo{grid-template-columns:1fr}
+      .beneficios__grid{grid-template-columns:1fr}
+      .fit__inner{padding:0 24px}
     }
     @media (max-width:520px){.prova__grid{grid-template-columns:1fr}.hero__overline{white-space:normal}}
-
-    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
@@ -287,25 +366,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <a class="skip-link" href="#conteudo">Saltar al contenido</a>
 
-  <header class="navbar">
-    <div class="navbar__inner">
-      <a href="https://cxpress.ai/" class="navbar__logo" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
-        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="" width="160" height="38">
+  <header class="navbar" id="hdr">
+    <nav class="nav" aria-label="Principal">
+      <a href="https://cxpress.ai/" class="nav__logo" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
+        <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="" width="140" height="34">
       </a>
-      <a href="#agendar" class="navbar__cta"><span class="navbar__cta-full">Agenda tu demostración gratuita</span><span class="navbar__cta-short">Agendar demo</span></a>
-    </div>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navmenu">
+        <li><a href="#solucion">Solución</a></li>
+        <li><a href="#plataforma">Cómo funciona</a></li>
+        <li><a href="#fit">¿Es para vos?</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+      </ul>
+      <a href="#agendar" class="btn navbar__cta"><span class="navbar__cta-full">Quiero agendar mi demo gratis</span><span class="navbar__cta-short">Quiero mi demo</span></a>
+    </nav>
   </header>
 
   <main id="conteudo">
+
+    <!-- CURSOR DECORATIVO (solo desktop con mouse, ver guard en CSS y JS) -->
+    <div class="fcur" data-on="false" data-hot="false" aria-hidden="true"><span class="fcur__b"><svg viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg"><path d="M39.44 15.22 Q41.50 16.00 39.44 16.78 L5.90 29.50 Q3.00 30.60 4.82 28.09 L12.60 17.38 Q13.60 16.00 12.60 14.62 L4.82 3.91 Q3.00 1.40 5.90 2.50 Z" fill="currentColor" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round" paint-order="stroke"/></svg></span></div>
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__inner">
         <div class="hero__content">
           <span class="hero__overline">WhatsApp CoEx · disponible en Cxpress</span>
-          <h1 id="hero-title">Profesionaliza la atención en WhatsApp sin cambiar de número</h1>
-          <p class="hero__sub">Con WhatsApp CoEx, el mismo número de tu empresa funciona en la aplicación y en la API oficial al mismo tiempo. Tu equipo mantiene la rutina que ya conoce y gana estructura de plataforma profesional en paralelo. En Cxpress, esto ya puede activarse.</p>
-          <a href="#agendar" class="btn">Agenda tu demostración gratuita</a>
+          <h1 id="hero-title">Atiende WhatsApp con varios agentes sin cambiar de número</h1>
+          <p class="hero__sub">Mantén tu WhatsApp Business y conecta el mismo número a Cxpress para gestionar conversaciones, distribuir atenciones, automatizar consultas con IA y tener control de toda la operación desde una sola plataforma.</p>
+          <p class="hero__tagline">Mismo número. Más agentes. Más control.</p>
+          <a href="#agendar" class="btn">Quiero agendar mi demo gratis</a>
         </div>
         <div class="hero__visual">
           <div class="hero__pills" aria-hidden="true">
@@ -313,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <img class="hero__mockup" src="../../brand/cxpress/assets/plataforma/mockup-plataforma-laptop.png" alt="Laptop mostrando la plataforma Cxpress con la cola de tickets y una conversación de atención abierta" width="465" height="270" loading="eager">
+          <img class="hero__mockup" src="../../brand/cxpress/assets/plataforma/mockup-plataforma-laptop.png" alt="Laptop mostrando la plataforma Cxpress con una conversación de WhatsApp, varios agentes y la cola de tickets" width="465" height="270" loading="eager">
         </div>
       </div>
     </section>
@@ -321,10 +413,190 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- CLIENTES -->
     <section class="clientes" aria-labelledby="clientes-title">
       <div class="clientes__inner">
-        <h2 id="clientes-title" class="section-title reveal">Clientes que confían en Cxpress para optimizar su atención</h2>
-        <div class="clientes__grid reveal">
-          <img src="../../brand/cxpress/assets/plataforma/clientes-cxpress.png" alt="Logos de clientes que usan Cxpress, entre ellos Koin, Advanta, Mondial, Vivo, Sephora, Smartfit, ThermoFisher, J&amp;T Express, Eletrobras y Cacau Show" width="1886" height="906" loading="lazy">
+        <h2 id="clientes-title" class="section-title reveal">Empresas que ya confían en Cxpress para gestionar su atención</h2>
+        <div class="ticker reveal">
+          <div class="ticker__track">
+            <div class="ticker__row">
+              <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="Thermo Fisher Scientific" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="Sephora" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="Smart Fit" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="Diversey" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="J&amp;T Express" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="Ticket" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="Advanta" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="Pagsmile" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="Vivo" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="Cacau Show" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="Koin" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="Oi" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="Eletrobras" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="Mondial" loading="lazy">
+            </div>
+            <div class="ticker__row" aria-hidden="true">
+              <img class="ticker__logo" src="./assets/clientes/cliente-33.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-30.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-32.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-17.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-13.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-07.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-03.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-38.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-31.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-40.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-01.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-22.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-28.png" alt="" loading="lazy">
+              <img class="ticker__logo" src="./assets/clientes/cliente-10.png" alt="" loading="lazy">
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- SOLUCION -->
+    <section class="solucion" id="solucion" aria-labelledby="solucion-title">
+      <div class="container">
+        <h2 id="solucion-title" class="section-title reveal">Tu WhatsApp sigue siendo el mismo. La forma de atender cambia.</h2>
+        <p class="solucion__body reveal">Con WhatsApp CoEx + Cxpress, no necesitas abandonar el número que tus clientes ya conocen. Tu equipo puede seguir utilizando WhatsApp Business mientras también gestiona la atención desde Cxpress, con más estructura, automatización y visibilidad.</p>
+        <div class="beneficios__grid">
+          <article class="beneficio reveal">
+            <span class="beneficio__ico" aria-hidden="true">✓</span>
+            <div><h3>Varios agentes en un mismo número</h3>
+            <p>Distribuye conversaciones entre personas, equipos y áreas sin depender de un único celular.</p></div>
+          </article>
+          <article class="beneficio reveal">
+            <span class="beneficio__ico" aria-hidden="true">✓</span>
+            <div><h3>Tickets y distribución de conversaciones</h3>
+            <p>Organiza cada atención, acompaña los casos pendientes y define quién debe responder cada conversación.</p></div>
+          </article>
+          <article class="beneficio reveal">
+            <span class="beneficio__ico" aria-hidden="true">✓</span>
+            <div><h3>Automatización con IA</h3>
+            <p>Automatiza consultas frecuentes y las primeras etapas de la atención. Cuando sea necesario, el equipo humano continúa la conversación.</p></div>
+          </article>
+          <article class="beneficio reveal">
+            <span class="beneficio__ico" aria-hidden="true">✓</span>
+            <div><h3>Dashboards y control de la operación</h3>
+            <p>Acompaña volumen de atención, tickets, tiempos de respuesta, espera y desempeño del equipo.</p></div>
+          </article>
+          <article class="beneficio reveal">
+            <span class="beneficio__ico" aria-hidden="true">✓</span>
+            <div><h3>Todos tus canales en una plataforma</h3>
+            <p>Integra WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat en un único entorno.</p></div>
+          </article>
+        </div>
+        <div class="solucion__cta reveal"><a href="#agendar" class="btn">Quiero automatizar mi atención</a></div>
+      </div>
+    </section>
+
+    <!-- COMPARATIVO -->
+    <section class="comparacion" aria-labelledby="comp-title">
+      <div class="container">
+        <h2 id="comp-title" class="section-title reveal">De atender conversaciones a gestionar una operación</h2>
+        <p class="solucion__body reveal">Cuando el volumen aumenta, trabajar solamente desde WhatsApp Business puede dificultar el control de la atención. Con Cxpress, tu equipo gana una estructura creada para operaciones que necesitan atender más sin perder organización.</p>
+        <div class="comparativo reveal">
+          <div class="comparativo__col comparativo__col--antes">
+            <h3>Antes</h3>
+            <ul>
+              <li>Conversaciones distribuidas entre diferentes personas</li>
+              <li>Dificultad para saber qué casos siguen pendientes</li>
+              <li>Poca visibilidad sobre tiempos y volumen de atención</li>
+              <li>Procesos manuales para organizar el equipo</li>
+              <li>Dificultad para automatizar sin alterar la operación actual</li>
+            </ul>
+          </div>
+          <div class="comparativo__col comparativo__col--con">
+            <h3>Con Cxpress</h3>
+            <ul>
+              <li>Varios agentes atendiendo el mismo número</li>
+              <li>Conversaciones organizadas por tickets y colas</li>
+              <li>Distribución por agentes y áreas</li>
+              <li>Automatización con IA</li>
+              <li>Historial centralizado</li>
+              <li>Dashboards para acompañar la operación</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATAFORMA -->
+    <section class="plataforma" id="plataforma" aria-labelledby="plataforma-title">
+      <div class="container">
+        <h2 id="plataforma-title" class="section-title reveal">Mira Cxpress funcionando</h2>
+
+        <div class="feature feature--textonly reveal">
+          <div class="feature__text">
+            <h3>Organiza agentes, equipos y conversaciones</h3>
+            <p>Visualiza las conversaciones de tu operación y distribuye cada atención para el agente o área correspondiente.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif" alt="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial" width="786" height="442" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Automatiza consultas con IA</h3>
+            <p>Configura automatizaciones para responder consultas, recopilar información y resolver las primeras etapas de la atención. El equipo humano entra cuando la conversación necesita una persona.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel" width="566" height="318" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Integra todos los canales</h3>
+            <p>WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat pueden formar parte de una misma operación.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono" width="816" height="458" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Acompaña lo que pasa en tiempo real</h3>
+            <p>Visualiza indicadores de atención y acompaña el desempeño de tu equipo mediante dashboards.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRUEBA SOCIAL -->
+    <section class="prova" aria-labelledby="prova-title">
+      <div class="prova__shapes" aria-hidden="true"><span class="s1"></span><span class="s2"></span></div>
+      <div class="container">
+        <h2 id="prova-title" class="section-title reveal">Resultados de operaciones que estructuraron su atención con Cxpress</h2>
+        <ul class="prova__grid" style="list-style:none">
+          <li class="stat reveal"><span class="stat__num">+220%</span><span class="stat__label">de interacciones realizadas sin aumentar el equipo.*</span></li>
+          <li class="stat reveal"><span class="stat__num">15x</span><span class="stat__label">más productividad de la IA frente a una atención 100% humana.*</span></li>
+          <li class="stat reveal"><span class="stat__num">98%</span><span class="stat__label">de calidad evaluada de la IA.*</span></li>
+          <li class="stat reveal"><span class="stat__num">10 → 4</span><span class="stat__label">personas: una operación que redujo el equipo mientras aumentó su capacidad de atención.*</span></li>
+        </ul>
+        <div class="prova__notes reveal">
+          <p>*Resultados observados en clientes de Cxpress en operaciones de atención al cliente (reporte interno Sentinela, 2025). Los resultados pueden variar según cada operación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CXPRESS ESTA HECHO PARA -->
+    <section class="fit" id="fit" aria-labelledby="fit-title">
+      <div class="fit__shapes" aria-hidden="true"><span class="s1"></span><span class="s2"></span></div>
+      <div class="fit__inner">
+        <h2 id="fit-title" class="section-title reveal">Cxpress está hecho para operaciones que necesitan más control</h2>
+        <p class="fit__label reveal">Puede ser una buena opción para tu empresa si necesitas:</p>
+        <ul class="fit__list reveal">
+          <li>Varios agentes atendiendo WhatsApp</li>
+          <li>Mantener el número que tus clientes ya conocen</li>
+          <li>Saber qué conversaciones siguen pendientes</li>
+          <li>Organizar la atención entre equipos y áreas</li>
+          <li>Automatizar consultas con IA</li>
+          <li>Acompañar métricas y tiempos de respuesta</li>
+          <li>Integrar WhatsApp con otros canales</li>
+        </ul>
       </div>
     </section>
 
@@ -332,9 +604,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="agendar" id="agendar" aria-labelledby="agendar-title">
       <div class="agendar__card">
         <div class="agendar__content reveal">
-          <h2 id="agendar-title" class="section-title">Agenda tu demostración gratuita</h2>
-          <h3>Mira el CoEx funcionando en tu operación</h3>
-          <p class="agendar__body">En 30 minutos, un especialista te muestra la plataforma con tu escenario: el número que ya usas, los canales que ya atiendes y lo que cambia con el CoEx activo.</p>
+          <h2 id="agendar-title" class="section-title">Mira cómo funcionaría con tu WhatsApp</h2>
+          <p class="agendar__body">En una demostración de 30 minutos, un especialista de Cxpress te muestra cómo organizar tu atención utilizando el número que tu empresa ya tiene.</p>
+          <h3>Podrás ver en la práctica cómo funcionan:</h3>
+          <p class="agendar__body">varios agentes · tickets · distribución · IA · dashboards · WhatsApp + otros canales</p>
+          <p class="agendar__req">Sin necesidad de cambiar tu número de WhatsApp Business.</p>
           <p class="agendar__req">Tener un sitio web activo es uno de los requisitos para ser cliente de Cxpress.</p>
         </div>
         <div class="agendar__formcol reveal">
@@ -345,136 +619,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- BENEFICIOS -->
-    <section class="beneficios" aria-labelledby="beneficios-title">
-      <div class="container">
-        <h2 id="beneficios-title" class="section-title reveal">Lo que cambia en tu operación con el CoEx activo</h2>
-        <div class="beneficios__grid">
-          <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Mismo número, dos entornos</h3>
-            <p>El número que está en Google, en la tarjeta, en el sitio y en la rutina del cliente sigue en la aplicación y pasa a operar también en la plataforma.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Sin migración, sin ruptura</h3>
-            <p>El equipo mantiene la app que ya usa en el día a día. La estructura profesional (múltiples agentes, cola, historial unificado y reportes) entra en paralelo, sin pausa en la operación.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>API oficial de WhatsApp</h3>
-            <p>Recursos de la plataforma oficial de Meta: automatizaciones personalizadas, apoyo de IA en el primer nivel y visibilidad completa para el gerente.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRUEBA SOCIAL -->
-    <section class="prova" aria-labelledby="prova-title">
-      <div class="container">
-        <h2 id="prova-title" class="section-title reveal">Resultados de quienes estructuraron la atención con Cxpress</h2>
-        <ul class="prova__grid" style="list-style:none">
-          <li class="stat reveal"><span class="stat__num">+220%</span><span class="stat__label">de interacciones realizadas sin aumentar el equipo.*</span></li>
-          <li class="stat reveal"><span class="stat__num">15x</span><span class="stat__label">más productividad de la IA frente a la atención 100% humana.*</span></li>
-          <li class="stat reveal"><span class="stat__num">-60%</span><span class="stat__label">en el tamaño del equipo atendiendo más (de 10 a 4 personas).*</span></li>
-          <li class="stat reveal"><span class="stat__num">98%</span><span class="stat__label">de calidad evaluada de la IA (referencia humana: 80%).*</span></li>
-        </ul>
-        <div class="prova__notes reveal">
-          <p>*Resultados de clientes de Cxpress en atención a redes sociales (reporte interno Sentinela, 2025). Los números varían según la operación.</p>
-        </div>
-        <div class="prova__cta reveal">
-          <a href="#agendar" class="btn">Agenda tu demostración gratuita</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PLATAFORMA -->
-    <section class="plataforma" aria-labelledby="plataforma-title">
-      <div class="container">
-        <h2 id="plataforma-title" class="section-title reveal">La estructura que tu número gana en la plataforma</h2>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel" width="566" height="318" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Todos los canales en el mismo panel</h3>
-            <p>WhatsApp, correo electrónico, redes sociales, teléfono y chat del sitio, con historial unificado por cliente, sin importar el canal usado.</p>
-          </div>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif" alt="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial" width="786" height="442" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Atención 24/7 con apoyo de IA</h3>
-            <p>Amplía la atención a 24/7 con apoyo de IA en el primer nivel. El equipo humano entra en los casos que requieren personas.</p>
-          </div>
-        </div>
-
-        <div class="feature feature--textonly reveal">
-          <div class="feature__text">
-            <h3>Gestión de tickets con cola y distribución</h3>
-            <p>Distribuye atenciones automáticamente o de forma manual a áreas y agentes específicos, con visión completa de la cola.</p>
-          </div>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono" width="816" height="458" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Dashboards en lugar de planillas</h3>
-            <p>Convierte las estadísticas de atención en paneles intuitivos, con los indicadores que el gerente realmente sigue.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
     <!-- FAQ -->
-    <section class="faq" aria-labelledby="faq-title">
+    <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="faq__inner">
         <h2 id="faq-title" class="section-title reveal">Preguntas frecuentes</h2>
         <details class="reveal">
-          <summary>¿Voy a perder mi número al usar Cxpress?</summary>
-          <p>No. Con WhatsApp CoEx, el mismo número sigue funcionando en la aplicación y pasa a operar también en la plataforma.</p>
+          <summary>¿Voy a perder mi número de WhatsApp Business?</summary>
+          <p>No. Con WhatsApp CoEx, el mismo número puede seguir funcionando en WhatsApp Business y también conectarse a Cxpress mediante la API oficial.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Mi equipo puede seguir utilizando WhatsApp Business?</summary>
+          <p>Sí. El equipo puede continuar utilizando la aplicación mientras el número también está conectado a Cxpress.</p>
         </details>
         <details class="reveal">
           <summary>¿Qué es WhatsApp CoEx?</summary>
-          <p>CoEx significa coexistencia. Es una actualización de Meta que permite que un mismo número corra simultáneamente en la app WhatsApp Business y en la API oficial conectada a una plataforma de atención. Antes era uno u otro; ahora son los dos.</p>
+          <p>CoEx significa coexistencia. Permite que un mismo número funcione en WhatsApp Business y, al mismo tiempo, en una plataforma conectada mediante la API oficial.</p>
         </details>
         <details class="reveal">
-          <summary>¿Mi equipo puede seguir usando la aplicación en el celular?</summary>
-          <p>Sí. La rutina del equipo en la app se preserva. La plataforma entra en paralelo, con cola, historial y visibilidad para el gerente.</p>
+          <summary>¿Puedo tener varios agentes atendiendo el mismo número?</summary>
+          <p>Sí. Cxpress permite distribuir las conversaciones entre diferentes agentes, equipos y áreas.</p>
         </details>
         <details class="reveal">
-          <summary>¿Puedo conectar más de un número a Cxpress?</summary>
-          <p>Sí, es posible conectar más de un número en la misma operación.</p>
+          <summary>¿Puedo automatizar la atención?</summary>
+          <p>Sí. Cxpress permite automatizar etapas de la atención con IA y transferir la conversación al equipo humano cuando sea necesario.</p>
         </details>
         <details class="reveal">
-          <summary>¿Qué canales pueden integrarse?</summary>
-          <p>Se pueden integrar de forma nativa WhatsApp, correo electrónico, redes sociales (Facebook, Instagram), teléfono y chat del sitio.</p>
+          <summary>¿Puedo conectar más de un número?</summary>
+          <p>Sí. Es posible trabajar con varios números dentro de una misma operación.</p>
         </details>
-      </div>
-    </section>
-
-    <!-- QUIÉNES SOMOS -->
-    <section class="quem-somos" aria-labelledby="qs-title">
-      <div class="quem-somos__inner">
-        <div class="quem-somos__foto reveal">
-          <img src="../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg" alt="Equipo de atención de Cxpress trabajando con auriculares" width="399" height="349" loading="lazy">
-        </div>
-        <div class="quem-somos__texto reveal">
-          <h2 id="qs-title">Quiénes somos</h2>
-          <p>Cxpress es una plataforma en la nube que unifica y automatiza los canales de atención de tu empresa. WhatsApp, Redes Sociales, Correo electrónico y Teléfono juntos ofrecen una visión única y simplificada de la interacción con el cliente, desde el primer contacto hasta la resolución del caso. El uso de la Inteligencia Artificial de Cxpress para la automatización de las primeras interacciones en lenguaje natural y la gestión de colas optimizan la productividad de los equipos de atención.</p>
-          <div class="quem-somos__badges">
-            <span class="qs-badge"><svg viewBox="0 0 24 24" fill="#6b7280" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> API oficial de<br>WhatsApp</span>
-            <span class="qs-badge"><svg viewBox="0 0 24 24" fill="#6b7280" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zM13.2599 22.43a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zM3.5993 17.7818a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615l-4.8303 2.7866a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997z"/></svg> API oficial de<br>ChatGPT</span>
-            <span class="qs-badge">Un producto <img src="../../brand/cxpress/assets/plataforma/elife-logo.png" alt="Elife"></span>
-          </div>
-        </div>
+        <details class="reveal">
+          <summary>¿Qué otros canales puedo integrar?</summary>
+          <p>Cxpress también permite integrar Instagram, Facebook, correo electrónico, teléfono y webchat.</p>
+        </details>
       </div>
     </section>
 
@@ -485,8 +661,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="f2"></span>
       </div>
       <div class="fecho__inner">
-        <h2 id="fecho-title" class="reveal">Tu número puede seguir siendo el mismo. <span class="linha2">Tu operación no tiene que seguir igual.</span></h2>
-        <a href="#agendar" class="btn btn--light reveal">Agenda tu demostración gratuita</a>
+        <h2 id="fecho-title" class="reveal">Mantén tu número. <span class="linha2">Gana control sobre toda la atención.</span></h2>
+        <p class="fecho__body reveal">No necesitas empezar de cero para profesionalizar tu operación. Conecta el WhatsApp que tus clientes ya conocen a Cxpress y permite que tu equipo atienda con más organización, automatización y visibilidad.</p>
+        <a href="#agendar" class="btn reveal">Agenda tu demostración gratuita</a>
+        <p class="fecho__tagline reveal">WhatsApp Business + Cxpress<br>Mismo número. Más agentes. Más control.</p>
+      </div>
+    </section>
+
+    <!-- QUIÉNES SOMOS (al final, pedido explicito) -->
+    <section class="quem-somos" aria-labelledby="qs-title">
+      <div class="quem-somos__inner">
+        <div class="quem-somos__foto reveal">
+          <img src="../../brand/cxpress/assets/plataforma/quem-somos-foto.jpg" alt="Equipo de atención de Cxpress trabajando con auriculares" width="399" height="349" loading="lazy">
+        </div>
+        <div class="quem-somos__texto reveal">
+          <h2 id="qs-title">Quiénes somos</h2>
+          <p>Cxpress es una plataforma en la nube que unifica y automatiza los canales de atención de tu empresa. WhatsApp, redes sociales, correo electrónico y teléfono juntos ofrecen una visión única y simplificada de la interacción con el cliente, desde el primer contacto hasta la resolución del caso. La Inteligencia Artificial de Cxpress automatiza las primeras interacciones en lenguaje natural y gestiona las colas, lo que optimiza la productividad de los equipos de atención.</p>
+          <div class="quem-somos__badges">
+            <span class="qs-badge"><svg viewBox="0 0 24 24" fill="#6b7280" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> API oficial de<br>WhatsApp</span>
+            <span class="qs-badge"><svg viewBox="0 0 24 24" fill="#6b7280" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zM13.2599 22.43a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zM3.5993 17.7818a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615l-4.8303 2.7866a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997z"/></svg> API oficial de<br>ChatGPT</span>
+            <span class="qs-badge">Un producto <img src="../../brand/cxpress/assets/plataforma/elife-logo.png" alt="Elife"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -517,6 +713,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
       els.forEach(function(el){io.observe(el)});
+    })();
+
+    /* cursor decorativo: persigue el mouse con retraso, solo desktop con pointer fino */
+    (function(){
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var cur = document.querySelector('.fcur');
+      if(!cur || reduce || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+      var body = cur.querySelector('.fcur__b');
+      var tx=0, ty=0, x=0, y=0, ang=0, on=false, down=false, started=false, lastDark=null;
+      function frame(){
+        requestAnimationFrame(frame);
+        var dx=tx-x, dy=ty-y;
+        x+=dx*0.19; y+=dy*0.19;
+        var sp=Math.sqrt(dx*dx+dy*dy);
+        if(sp>1.1) ang=Math.atan2(dy,dx)*180/Math.PI;
+        cur.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+ang.toFixed(1)+'deg)';
+        body.style.transform='translate(-94%,-50%) scale('+(down?0.84:1)+')';
+      }
+      document.addEventListener('pointermove',function(e){
+        if(e.pointerType==='touch') return;
+        tx=e.clientX; ty=e.clientY;
+        if(!started){ started=true; x=tx; y=ty; frame(); }
+        var el=e.target;
+        var field=!!(el&&el.closest&&el.closest('input,textarea,select,[contenteditable]'));
+        var hot=!field&&!!(el&&el.closest&&el.closest('a,button,summary,[role="button"],.btn'));
+        var want=!field;
+        if(want!==on){ on=want; cur.dataset.on=on?'true':'false'; }
+        cur.dataset.hot=hot?'true':'false';
+        var dk=!!(el&&el.closest&&el.closest('.fecho,.prova--dark,.fit'));
+        if(dk!==lastDark){ lastDark=dk; cur.dataset.dark=dk?'true':'false'; }
+      },{passive:true});
+      document.addEventListener('pointerdown',function(){ down=true; },{passive:true});
+      document.addEventListener('pointerup',function(){ down=false; },{passive:true});
+      document.addEventListener('pointerleave',function(){ cur.dataset.on='false'; on=false; });
+      window.addEventListener('blur',function(){ cur.dataset.on='false'; on=false; });
+    })();
+
+    /* menu del header: panel mobile con Escape, clic afuera y cierre al elegir */
+    (function(){
+      var burger=document.querySelector('.nav__burger');
+      var menu=document.getElementById('navmenu');
+      if(!burger||!menu) return;
+      function setOpen(v){
+        burger.setAttribute('aria-expanded', v?'true':'false');
+        burger.setAttribute('aria-label', v?'Cerrar menú':'Abrir menú');
+        menu.classList.toggle('is-open', v);
+      }
+      burger.addEventListener('click',function(){
+        setOpen(burger.getAttribute('aria-expanded')!=='true');
+      });
+      menu.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'&&burger.getAttribute('aria-expanded')==='true'){ setOpen(false); burger.focus(); }
+      });
+      document.addEventListener('click',function(e){
+        if(burger.getAttribute('aria-expanded')!=='true') return;
+        if(!e.target.closest('#navmenu')&&!e.target.closest('.nav__burger')) setOpen(false);
+      });
+      window.addEventListener('resize',function(){ if(window.innerWidth>=900) setOpen(false); });
     })();
   </script>
 </body>
