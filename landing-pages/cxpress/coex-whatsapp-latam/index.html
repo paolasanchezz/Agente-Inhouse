@@ -146,7 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 
     .hero{background:var(--white);overflow:hidden;position:relative;padding:0}
-    .hero__inner{max-width:var(--maxw);margin:0 auto;padding:40px 32px 88px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start}
+    .hero__inner{max-width:var(--maxw);margin:0 auto;padding:40px 32px 88px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:center}
     .hero__overline{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-dark);background:var(--primary-lighter);border-radius:9999px;padding:6px 16px;white-space:nowrap;margin-bottom:24px}
     .hero__overline::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -181,13 +181,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-30px;right:8%}
     .hero__pills .p2{width:46px;height:150px;border:3px solid var(--accent);bottom:-26px;left:4%;background:transparent}
     .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:18px;right:-12px;opacity:.9}
-    /* ---- laptop animado del hero ---- */
-    .laptop{position:relative;z-index:1;width:100%;max-width:480px;filter:drop-shadow(0 24px 48px rgba(35,41,96,.18))}
+    /* ---- laptop animado del hero ----
+       La tapa (.laptop__lid) arranca "cerrada" (rotateX -100deg, mirando al techo,
+       apoyada sobre la base) y se levanta una vez al cargar la pagina hasta quedar
+       de frente. El contenido de adentro (wa-card) recien empieza su secuencia
+       cuando la tapa ya termino de abrirse, para que se entienda el orden: primero
+       abre la compu, despues aparece el ticket de WhatsApp. */
+    .laptop{position:relative;z-index:1;width:100%;max-width:480px}
+    .laptop__stage{perspective:1400px}
+    .laptop__lid{transform-origin:50% 100%;transform:rotateX(-100deg);animation:lidopen 1.1s .4s cubic-bezier(.2,.8,.3,1) forwards;filter:drop-shadow(0 24px 48px rgba(35,41,96,.18))}
+    @keyframes lidopen{to{transform:rotateX(0deg)}}
     .laptop__screen{background:var(--primary-dark);border-radius:14px;padding:10px 10px 0}
     .laptop__bar{display:flex;gap:6px;padding:4px 4px 10px}
     .laptop__bar span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
-    .laptop__base{height:14px;background:linear-gradient(var(--neutral-300),var(--neutral-100));border-radius:0 0 10px 10px;position:relative}
+    .laptop__base{height:14px;background:linear-gradient(var(--neutral-300),var(--neutral-100));border-radius:0 0 10px 10px;position:relative;filter:drop-shadow(0 10px 18px rgba(35,41,96,.14))}
     .laptop__base::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:64px;height:4px;background:var(--neutral-300);border-radius:0 0 6px 6px}
+    @media (prefers-reduced-motion: reduce){.laptop__lid{animation:none!important;transform:rotateX(0deg)!important}}
     .wa-card{background:var(--white);border-radius:10px 10px 0 0;padding:22px;min-height:270px}
     .wa-head{display:flex;align-items:center;gap:10px}
     .wa-av{width:36px;height:36px;border-radius:50%;background:var(--wa);color:var(--white);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:14px;flex-shrink:0}
@@ -431,23 +440,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p3"></span>
           </div>
           <div class="laptop" role="img" aria-label="Simulación de la plataforma Cxpress: llega un mensaje de WhatsApp, se asigna al sector correcto y queda con historial y agente asignado">
-            <div class="laptop__screen">
-              <div class="laptop__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <div class="wa-card">
-                <div class="wa-head anim-seq" style="animation-delay:0s">
-                  <span class="wa-av">D</span>
-                  <span>
-                    <span class="wa-name">Daniela Rodríguez</span>
-                    <span class="wa-meta">WhatsApp · +52 55 1234 5678</span>
-                  </span>
-                  <span class="wa-dot" aria-hidden="true"></span>
+            <div class="laptop__stage">
+              <div class="laptop__lid">
+                <div class="laptop__screen">
+                  <div class="laptop__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="wa-card">
+                    <div class="wa-head anim-seq" style="animation-delay:1.6s">
+                      <span class="wa-av">D</span>
+                      <span>
+                        <span class="wa-name">Daniela Rodríguez</span>
+                        <span class="wa-meta">WhatsApp · +52 55 1234 5678</span>
+                      </span>
+                      <span class="wa-dot" aria-hidden="true"></span>
+                    </div>
+                    <div class="wa-msg anim-seq" style="animation-delay:2.5s">Hola, quiero saber el estado de mi pedido</div>
+                    <div class="wa-fields anim-seq" style="animation-delay:3.5s">
+                      <div class="wa-field"><span>Sector</span><strong>Ventas</strong></div>
+                      <div class="wa-field"><span>Asignado</span><strong>Agente 02</strong></div>
+                    </div>
+                    <div class="wa-tag anim-seq" style="animation-delay:4.7s">✓ Asignado automáticamente</div>
+                  </div>
                 </div>
-                <div class="wa-msg anim-seq" style="animation-delay:.9s">Hola, quiero saber el estado de mi pedido</div>
-                <div class="wa-fields anim-seq" style="animation-delay:1.9s">
-                  <div class="wa-field"><span>Sector</span><strong>Ventas</strong></div>
-                  <div class="wa-field"><span>Asignado</span><strong>Agente 02</strong></div>
-                </div>
-                <div class="wa-tag anim-seq" style="animation-delay:3.1s">✓ Asignado automáticamente</div>
               </div>
             </div>
             <div class="laptop__base"></div>
