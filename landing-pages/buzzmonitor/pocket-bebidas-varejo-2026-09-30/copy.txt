@@ -1,0 +1,38 @@
+META
+slug: pocket-bebidas-varejo-2026-09-30
+marca: buzzmonitor
+regiao: brasil
+idioma: pt-br
+tipo: evento-fechado
+formato: pocket-event (encontro exclusivo online, 1 especialista apresentando)
+origem: gerado por render_pocket_event.py (nao editar a mao — ver README.md)
+
+---
+
+SECAO: HERO
+
+LABEL: Pocket Event - Encontro exclusivo online
+H1: Encontro de Teste - Publicação
+H2: Discussao pratica sobre varejo de bebidas com foco em Agendamento e Publicação.
+INFO: 30 de setembro - 14h - Online ao vivo
+
+TICKET_DATE: 30/09
+TICKET_SUB: quarta-feira - 14h
+
+---
+
+SECAO: SPEAKER + FORM
+
+SPEAKER_NOME: Juliana Mendonca
+SPEAKER_CARGO: Business Developer - Buzzmonitor
+SPEAKER_BIO: None
+
+FORM: nativo -> Apps Script -> planilha unica de inscricoes
+FORM_CAMPOS: nome, email, empresa, cargo
+FORM_OCULTOS: edicao, evento, data_evento, horario, speaker, url_conversao, utm_*
+
+---
+
+SECAO: EMPRESAS QUE CONFIAM / DEPOIMENTOS / URGENCIA / FOOTER
+
+Fixas no template (iguais em toda edicao).
