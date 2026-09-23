@@ -12,6 +12,21 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — sincronizar passa a garantir as colunas de controle
+### 2026-09-22 — `integracoes/google/pocket-event-solicitacao.gs`
+
+A aba de respostas pode nascer de novo a qualquer momento: basta religar o destino do
+formulário, que foi exatamente o que a recuperação de hoje exigiu. A aba nova vem só com as
+colunas do formulário, e sem `Status` / `URL da LP` / `Detalhe` o automatismo grava status em
+lugar nenhum **sem erro nenhum** — `marcarLinha_` não acha a coluna e desiste em silêncio.
+
+A criação dessas colunas estava presa dentro de `configurar`, que só se roda à mão na
+instalação. Virou `garantirColunasControle_`, chamada também pelo `atualizarOpcoes`: uma
+função só, idempotente, que converge formulário e planilha para o que está no repo, e que
+diz o que criou.
+
+---
+
 ## `pocket-event` — sem quantidade de vagas, acento nos módulos e destino da planilha
 ### 2026-09-22 — pedidos do Victor
 

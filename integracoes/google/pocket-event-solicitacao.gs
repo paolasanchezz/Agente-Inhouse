@@ -156,8 +156,13 @@ function atualizarOpcoes() {
     if (item) { form.deleteItem(item); removidos.push(titulo); }
   });
 
+  // A aba de respostas pode ter nascido de novo desde a ultima vez; sem as colunas
+  // de controle o automatismo grava status em lugar nenhum, sem erro nenhum.
+  var colunas = garantirColunasControle_();
+
   return tocados + ' campo(s) atualizado(s)' +
     (criados.length ? ' + criado(s): ' + criados.join(', ') : '') +
+    (colunas.length ? ' + coluna(s) de controle: ' + colunas.join(', ') : '') +
     (removidos.length ? ' + removido(s): ' + removidos.join(', ') : '') +
     (migrou ? ' + modulo convertido de lista para caixa de selecao' : '');
 }
@@ -212,22 +217,39 @@ function configurar() {
   });
   ScriptApp.newTrigger('aoEnviarFormulario').forSpreadsheet(planilha).onFormSubmit().create();
 
-  var aba = aba_();
-  var cabecalhos = cabecalhos_(aba);
-  COLUNAS_CONTROLE.forEach(function (nome) {
-    if (cabecalhos.indexOf(nome) < 0) {
-      aba.getRange(1, aba.getLastColumn() + 1).setValue(nome).setFontWeight('bold');
-      cabecalhos.push(nome);
-    }
-  });
-  aba.setFrozenRows(1);
+  var criadas = garantirColunasControle_();
 
   var faltando = ['GITHUB_TOKEN', 'GITHUB_REPO', 'POCKET_TOKEN'].filter(function (p) {
     return !PropertiesService.getScriptProperties().getProperty(p);
   });
-  return faltando.length
+  return (faltando.length
     ? 'gatilho ok, MAS faltam propriedades do script: ' + faltando.join(', ')
-    : 'gatilho instalado e colunas de controle prontas';
+    : 'gatilho instalado') +
+    (criadas.length ? ' + coluna(s) criada(s): ' + criadas.join(', ') : '');
+}
+
+/**
+ * Garante Status / URL da LP / Detalhe na aba de respostas. Devolve o que criou.
+ *
+ * Fica separado e roda tambem no `atualizarOpcoes` porque a aba de respostas pode
+ * nascer de novo a qualquer momento: basta religar o destino do formulario (foi
+ * o que aconteceu em 2026-09-22, depois que a aba original sumiu). A aba nova vem
+ * so com as colunas do formulario, e sem estas tres o automatismo grava status em
+ * lugar nenhum, em silencio: `marcarLinha_` nao acha a coluna e desiste.
+ */
+function garantirColunasControle_() {
+  var aba = aba_();
+  var cabecalhos = cabecalhos_(aba);
+  var criadas = [];
+  COLUNAS_CONTROLE.forEach(function (nome) {
+    if (cabecalhos.indexOf(nome) < 0) {
+      aba.getRange(1, aba.getLastColumn() + 1).setValue(nome).setFontWeight('bold');
+      cabecalhos.push(nome);
+      criadas.push(nome);
+    }
+  });
+  aba.setFrozenRows(1);
+  return criadas;
 }
 
 // ===========================================================================
