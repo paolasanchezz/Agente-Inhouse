@@ -168,29 +168,6 @@
       max-width:30em;
     }
 
-    /* ============ BLOCO DA LIGACAO ============ */
-    .callback{
-      display:flex;
-      align-items:flex-start;
-      gap:16px;
-      margin-top:clamp(26px,3.4vw,38px);
-      padding:20px 24px;
-      max-width:34em;
-      background:var(--neutral-0);
-      border-radius:16px;
-      box-shadow:0 14px 34px rgba(35,41,96,.1);
-    }
-    .callback__icon{width:48px;height:48px;flex:none}
-    .callback__title{
-      font-family:var(--font-heading);
-      font-weight:700;
-      font-size:clamp(18px,1.4vw,20px);
-      line-height:1.35;
-      color:var(--primary-dark);
-      margin-bottom:4px;
-    }
-    .callback__text{font-size:17px;line-height:1.55;color:var(--neutral-700)}
-
     /* ============ MASCOTE ============ */
     .hero__visual{display:flex;justify-content:center;align-items:center}
     .hero__visual img{
@@ -246,20 +223,6 @@
       .hero__visual img{max-width:210px}
       .hero h1{margin:clamp(18px,3.4vw,26px) auto clamp(20px,3vw,28px);max-width:14em}
       .hero__lead,.hero__nota{margin-left:auto;margin-right:auto}
-      /* Sem a caixa branca no empilhado: icone centralizado acima do titulo */
-      .callback{
-        flex-direction:column;
-        align-items:center;
-        max-width:32em;
-        margin-left:auto;
-        margin-right:auto;
-        padding:0;
-        gap:10px;
-        background:none;
-        box-shadow:none;
-        border-radius:0;
-      }
-      .callback__icon{width:44px;height:44px}
     }
     @media (max-width:600px){
       .hero{background-size:cover}
@@ -305,7 +268,7 @@
     .footer__social svg{ width:20px; height:20px; display:block; }
 
     /* ===== GUIDELINES 21 - quebra de linha equilibrada ===== */
-    h1,.hero__lead,.hero__nota,.btn-whats__label,.callback__title,.callback__text{text-wrap:balance}
+    h1,.hero__lead,.hero__nota,.btn-whats__label{text-wrap:balance}
     .footer p{text-wrap:pretty}
 
     /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
@@ -342,14 +305,6 @@
 
           <p class="hero__lead reveal reveal-delay-2">Um especialista do nosso time vai falar com você.</p>
           <p class="hero__nota reveal reveal-delay-2">(Nossa equipe atende de segunda a sexta das 9h às 18h.)</p>
-
-          <div class="callback reveal reveal-delay-3">
-            <img class="callback__icon" src="./assets/icon-ligacao.svg" alt="" width="48" height="48" loading="lazy" decoding="async">
-            <div>
-              <p class="callback__title">Escolheu receber uma ligação?</p>
-              <p class="callback__text">Fique de olho no telefone. Um especialista do nosso time entrará em contato.</p>
-            </div>
-          </div>
         </div>
 
         <div class="hero__visual reveal reveal-delay-1">

@@ -19,7 +19,7 @@ Ver `copy.txt`.
 
 ## Estrutura
 
-- HERO (logo + H1 + CTA WhatsApp + lead + nota de horário + card "Escolheu receber uma ligação?" + mascote)
+- HERO (logo + H1 + CTA WhatsApp + lead + nota de horário + mascote)
 - FOOTER (padrão do domínio: logo + linha legal + 4 redes)
 
 Nenhum bloco de texto novo: a página-fonte tem 1 seção, a LP tem 1 seção (GUIDELINES §9).
@@ -198,6 +198,8 @@ Ou seja: depois de publicar, o pipeline terá duas thanks pages para a mesma ori
 - GTM: `GTM-KN8BPFG` (container de Google Ads — mesmo das LPs de banimento de WhatsApp; atualizado em 2026-09-11 a pedido do time).
 - O formulário que hoje redireciona para `home.cxpress.io/obrigado` precisa ser reapontado para
   `content.cxpress.io/obrigado` — a troca é fora do repo, no site institucional.
+- **2026-09-23:** removido o card "Escolheu receber uma ligação?" (icone + título + texto) do hero
+  a pedido do Bruno. HTML, CSS (`.callback*`) e o asset `icon-ligacao.svg` foram retirados.
 
 ## Assets referenciados
 
@@ -207,7 +209,6 @@ Ou seja: depois de publicar, o pipeline terá duas thanks pages para a mesma ori
 | `../../brand/cxpress/assets/logos/logo-primary.svg` | brand (logo do hero) |
 | `./assets/hero-pattern.webp` + `.png` | pattern de fundo enviado pelo usuário (1440×900) |
 | `./assets/mascot/samir-apontando.webp` + `.png` | mascote enviado pelo usuário (470×439) |
-| `./assets/icon-ligacao.svg` | ícone de ligação enviado pelo usuário |
 | `../../brand/cxpress/assets/logos/logo-reversed.svg` | brand (logo do rodapé) |
 
 Os ícones de rede do rodapé são SVG inline, não arquivo (igual à `escolha-a-cxpress`). Os 3 assets
