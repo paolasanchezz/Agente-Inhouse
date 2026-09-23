@@ -661,11 +661,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      128px padrao da secao ficavam pesados demais em cima de um titulo curto e
      centralizado — sem isso o olho lia "vazio" antes do titulo. */
   .platform{background:var(--white);overflow-x:clip;border-top:1px solid var(--rule);padding-top:96px}
-  .sec-head{max-width:640px;margin:0 auto;text-align:center}
-  /* Sem cap em ch: o max-width:640px do .sec-head ja e o limite. Um cap em ch
-     fixo quebrava o titulo em 3 linhas em vez de 2 (measured: 19ch = 3 linhas,
-     >=28ch bate no teto do container e vira "Descubra tudo o que e possivel /
-     fazer com a plataforma Cxpress!", 2 linhas balanceadas). */
+  /* 700px, nao 640px: o h2 usa clamp(28px,3vw,40px), e em qualquer viewport
+     >=1333px (a maioria dos monitores — 1366/1440/1536/1920) o font-size bate
+     no teto de 40px. Nesse tamanho, 640px so cabe o titulo em 3 linhas; 700px
+     e o minimo medido pra 2 linhas balanceadas em toda a faixa 760-1920px. */
+  .sec-head{max-width:700px;margin:0 auto;text-align:center}
+  /* Sem cap em ch: o max-width do .sec-head acima ja e o limite. */
   .sec-head h2{font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.015em;margin-inline:auto}
   /* Respiro entre funcionalidades: 96px -> 128px. O pedido citou "5rem a 6rem"
      (80-96px), mas isso e MENOS do que ja havia aqui; o que apertava era o
