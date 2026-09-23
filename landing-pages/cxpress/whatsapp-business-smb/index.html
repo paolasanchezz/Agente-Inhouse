@@ -834,11 +834,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       });
     }
-    if ('IntersectionObserver' in window) {
+    /* O host nasce com altura 0 (so tem o <noscript>), e IntersectionObserver
+       nao dispara em elemento sem area: observar o host direto deixava o
+       formulario sem carregar pra quem apenas rolava ate a secao, sem passar
+       o mouse em nenhum CTA. Observamos a secao, que tem altura real. */
+    if ('IntersectionObserver' in window && sec) {
       var ioJot = new IntersectionObserver(function(en){
         en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });
       }, {rootMargin: '600px 0px'});
-      ioJot.observe(jotHost);
+      ioJot.observe(sec);
     } else {
       carregaJot();
     }

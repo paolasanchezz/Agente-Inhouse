@@ -469,7 +469,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__spotwrap,.hero__typing{display:none}
   }
 
-  /* ===== Clientes (esteira padrao — referencia: chatbot-whatsapp) ===== */
+  /* ===== Clientes (esteira padrao - referencia: chatbot-whatsapp) ===== */
   .clientes{background:var(--white);padding:56px 0 64px}
   .clientes__row{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}
   .clientes__label{font-family:var(--font-body);font-style:italic;font-size:17px;color:var(--neutral-700);text-align:center}
@@ -531,7 +531,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Vídeo ---- */
   .video{background:var(--white);border-top:1px solid var(--rule);text-align:center;position:relative;overflow:hidden}
-  /* Grafismos decorativos na base da secao — mesma arte e mesmos valores da LP
+  /* Grafismos decorativos na base da secao - mesma arte e mesmos valores da LP
      irma chatbot-whatsapp. A arte ja vem cortada pelo proprio viewBox (os paths
      passam de 520), entao bottom:0 encosta os arcos no fim da secao, e os offsets
      negativos sangram pras extremidades (o excedente e cortado pelo overflow).
@@ -562,11 +562,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .video .btn{margin-top:40px}
 
   /* ---- Prova (números NBER / McKinsey) ---- */
-  /* Respiro mais curto que o --pad-sec da pagina (128px): a secao e compacta —
-     titulo + 4 cards — e 256px de padding somavam 32% da altura dela. */
+  /* Respiro mais curto que o --pad-sec da pagina (128px): a secao e compacta -
+     titulo + 4 cards - e 256px de padding somavam 32% da altura dela. */
   .proof{background:var(--neutral-100);border-top:1px solid var(--rule);padding:88px 0 80px}
   /* Cabecalho e icones da secao de resultados. O grid, a cascata do reveal, o
-     count-up e o tratamento de card ja existiam — ver .proof__grid/.proof__item
+     count-up e o tratamento de card ja existiam - ver .proof__grid/.proof__item
      e o runCount() no fim do body. */
   .proof__head{text-align:center;margin-bottom:44px}
   /* Mesma escala dos outros H2 de secao da pagina (.sec-head h2, .faq h2):
@@ -1474,7 +1474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setTimeout(function(){ if (!jotHost.querySelector("iframe")) contingencia(); }, 6000);
     };
     /* Rede de seguranca: se o script do jsform nao executar (bloqueador, shield,
-       proxy, falha de rede), sem isso o host fica em 0px pra sempre — sem iframe,
+       proxy, falha de rede), sem isso o host fica em 0px pra sempre - sem iframe,
        sem aviso e sem retentativa. Degrau 1: iframe simples, que nao depende do
        jsform. Degrau 2: link pra abrir o formulario em nova aba. */
     var contingencia = function(){
@@ -1514,11 +1514,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       });
     }
-    if ('IntersectionObserver' in window) {
+    /* O host nasce com altura 0 (so tem o <noscript>), e IntersectionObserver
+       nao dispara em elemento sem area: observar o host direto deixava o
+       formulario sem carregar pra quem apenas rolava ate a secao, sem passar
+       o mouse em nenhum CTA. Observamos a secao, que tem altura real. */
+    if ('IntersectionObserver' in window && sec) {
       var ioJot = new IntersectionObserver(function(en){
         en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });
       }, {rootMargin: '600px 0px'});
-      ioJot.observe(jotHost);
+      ioJot.observe(sec);
     } else {
       carregaJot();
     }
