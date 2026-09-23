@@ -185,6 +185,11 @@ jobs:
           marcas += [{'linha': x['linha'], 'status': 'erro', 'url': '',
                       'motivo': ' | '.join(x['motivos'])}
                      for x in r['recusadas'] if x.get('linha')]
+          # 'ignorada' e slug que ja esta no ar: pra quem pediu, isso e 'publicada'.
+          # Sem marcar, a linha fica sem status pra sempre e volta em toda varredura.
+          marcas += [{'linha': i['linha'], 'status': 'publicada', 'url': i['url'],
+                      'slug': i['slug']}
+                     for i in r['ignoradas'] if i.get('linha')]
           json.dump({'token': os.environ['SHEET_TOKEN'], 'acao': 'marcar', 'linhas': marcas},
                     open('/tmp/marcar.json', 'w', encoding='utf-8'), ensure_ascii=False)
           "

@@ -224,6 +224,17 @@ remover slug do manifesto nunca auto-mergeia, por desenho).
 motivo em `Detalhe`), depois Actions > "Pocket Event - nova LP", depois
 "Deploy LPs".
 
+**Nunca religue o destino do formulario** (Respostas > Selecionar destino). O Google
+nao deixa apontar pra uma aba existente: ele cria uma aba NOVA ("Respostas ao
+formulário 2", "3"...) e deixa a antiga parada na planilha. A partir dai o formulario
+escreve numa aba e o automatismo pode ler a outra, sem erro nenhum em lugar nenhum -
+o sintoma e "preenchi o formulario e nao apareceu nada" com o Actions respondendo
+`0 pendentes` (aconteceu em 2026-09-22). O `aba_()` hoje escolhe pelo `getFormUrl()`,
+entao ele acompanha o religamento; o que nao se recupera sozinho e o **status** das
+linhas antigas, que fica pra tras na aba abandonada. Se acontecer: renomear a aba velha
+pra `arquivo (nao usar)` e deixar a varredura remarcar as linhas na aba nova - quem ja
+esta no ar volta como `publicada` (via `ignoradas`), sem republicar nada.
+
 ## Decisao consciente: o token da varredura vai na query string
 
 A varredura diaria chama `GET {POCKET_SHEET_URL}?token=...&acao=pendentes`: o

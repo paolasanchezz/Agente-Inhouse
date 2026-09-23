@@ -436,6 +436,14 @@ function autorizado_(obj) {
  * ordem das abas muda — um formulario novo ligado a mesma planilha entra na frente e
  * o script passa a ler uma aba vazia, sem erro nenhum (foi o que aconteceu em
  * 2026-09-14). Entao: vale a aba que tiver o cabecalho do titulo do encontro.
+ *
+ * Havendo mais de uma, quem decide e getFormUrl(): so a aba que o formulario alimenta
+ * de fato devolve URL. Desempatar por "tem colunas de controle" parecia seguro e nao
+ * e — religar o destino do formulario cria uma aba NOVA (sem as colunas) e deixa a
+ * antiga (com elas) pra tras, entao o criterio escolhia justamente a aba que parou de
+ * receber resposta: o formulario escrevia num lugar e o automatismo lia outro, sem
+ * erro nenhum (2026-09-22). Controle e linhas ficam so como desempate final, pro caso
+ * de nenhuma candidata estar ligada a formulario algum.
  */
 function aba_() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
@@ -452,6 +460,7 @@ function aba_() {
     if (cab.indexOf(alvoTitulo) < 0) continue;
     candidatas.push({
       aba: abas[i],
+      ligada: ehDestinoDeFormulario_(abas[i]),   // a aba que o Forms alimenta hoje
       temControle: cab.indexOf(alvoStatus) >= 0,  // colunas criadas por `configurar`
       linhas: abas[i].getLastRow()
     });
@@ -462,15 +471,25 @@ function aba_() {
   }
   if (candidatas.length === 1) return candidatas[0].aba;
 
-  // Mais de uma aba de respostas (um segundo formulario foi ligado a mesma
-  // planilha). Todas tem o mesmo cabecalho, entao pegar "a primeira" seria
-  // sorteio. Vale a que o automatismo de fato usa: a que tem as colunas de
-  // controle; empatando, a que tem mais linhas.
+  // Mais de uma aba de respostas (segundo formulario ligado a mesma planilha, ou
+  // destino religado). Todas tem o mesmo cabecalho, entao pegar "a primeira" seria
+  // sorteio. Vale a que esta ligada ao formulario; so se nenhuma estiver e que
+  // entram os desempates fracos (colunas de controle, depois mais linhas).
   candidatas.sort(function (a, b) {
+    if (a.ligada !== b.ligada) return a.ligada ? -1 : 1;
     if (a.temControle !== b.temControle) return a.temControle ? -1 : 1;
     return b.linhas - a.linhas;
   });
   return candidatas[0].aba;
+}
+
+/** A aba recebe respostas do formulario? Nunca deixa a excecao derrubar a escolha. */
+function ehDestinoDeFormulario_(aba) {
+  try {
+    return !!aba.getFormUrl();
+  } catch (e) {
+    return false;
+  }
 }
 
 function cabecalhos_(aba) {
