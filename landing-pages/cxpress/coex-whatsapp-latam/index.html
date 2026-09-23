@@ -282,6 +282,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ---------- bloque solucion (beneficios) ---------- */
     .solucion .section-title{text-align:center;max-width:640px;margin:0 auto 14px}
+    .solucion-title{font-size:clamp(32px,4.4vw,48px);max-width:740px!important}
+    @media (max-width:640px){.solucion-title__break{display:none}}
     .solucion__body{text-align:center;max-width:620px;margin:0 auto 56px;font-size:18px;color:var(--neutral-700)}
     .beneficios__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
     .beneficio{background:var(--white);border-radius:var(--radius-card);padding:28px 30px;border:1px solid var(--neutral-100);box-shadow:0 4px 6px rgba(0,0,0,.04);display:flex;gap:16px;align-items:flex-start}
@@ -412,9 +414,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </button>
       <ul class="nav__menu" id="navmenu">
         <li><a href="#solucion">Solución</a></li>
-        <li><a href="#comparacion">Cómo funciona</a></li>
+        <li><a href="#comparacion">Antes y después</a></li>
         <li><a href="#fit">Por qué Cxpress</a></li>
-        <li><a href="#faq">Preguntas</a></li>
+        <li><a href="#faq">Antes de empezar</a></li>
       </ul>
       <a href="#agendar" class="btn navbar__cta"><span class="navbar__cta-full">Quiero agendar mi demo gratis</span><span class="navbar__cta-short">Quiero mi demo</span></a>
     </nav>
@@ -521,7 +523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SOLUCION -->
     <section class="solucion" id="solucion" aria-labelledby="solucion-title">
       <div class="container">
-        <h2 id="solucion-title" class="section-title reveal">Tu WhatsApp sigue siendo el mismo. La forma de atender cambia.</h2>
+        <h2 id="solucion-title" class="section-title solucion-title reveal">Tu WhatsApp sigue siendo el mismo.<br class="solucion-title__break"> La forma de atender cambia.</h2>
         <p class="solucion__body reveal">Con WhatsApp CoEx + Cxpress, no necesitas abandonar el número que tus clientes ya conocen. Tu equipo puede seguir utilizando WhatsApp Business mientras también gestiona la atención desde Cxpress, con más estructura, automatización y visibilidad.</p>
         <div class="beneficios__grid">
           <article class="beneficio reveal">
