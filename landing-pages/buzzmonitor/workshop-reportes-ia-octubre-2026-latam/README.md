@@ -1,6 +1,6 @@
 # LP Buzzmonitor · workshop-reportes-ia-octubre-2026-latam
 
-**Evento:** Workshop "Cómo automatizar reportes de Social Media con IA" (7 analistas, 1 solo chat) · presencial y gratuito · miércoles 7 de octubre de 2026, 16:00 h (Bogotá, UTC-5)
+**Evento:** Workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" (7 analistas, 1 solo chat) · presencial y gratuito · miércoles 7 de octubre de 2026, 16:00 h (Bogotá, UTC-5)
 **Local:** Tinkko Coworking & Flex Office – Edificio Ecotek · Calle 99 #10-57, Bogotá, Colombia
 **Speaker:** Juan Diego Forero, Business Development Representative (foto reaproveitada de `buzzmonitor-connect-julio-2026-latam`)
 **Regiao:** LATAM (es-419) · GTM `GTM-MKQBX2MG`
@@ -20,7 +20,7 @@
 
 | # | Secao | Fundo |
 |---|---|---|
-| 1 | Hero: badge presencial/gratuito, H1 "Cómo automatizar reportes de Social Media con IA", CTA, linha de fatos (data, local, gratis) + mock chat→reporte | branco |
+| 1 | Hero: badge presencial/gratuito, H1 "Cómo automatizar reportes de crisis, competencia y tendencias con IA", H2 + sub do Victor, CTA, linha de fatos (data, local, gratis) + mock chat→reporte | branco |
 | 2 | Registro + Jotform (ToFu → form na 2.a secao, GUIDELINES §10) | off-white |
 | 3 | Problema (4 X vermelhos) | branco |
 | 4 | Skills: 3 passos | off-white |

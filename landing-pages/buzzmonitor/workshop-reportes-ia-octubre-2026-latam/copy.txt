@@ -1,13 +1,15 @@
 # Copy LP · Buzzmonitor · workshop-reportes-ia-octubre-2026-latam
 # v2 (2026-09-23): reenfocada no tema "Como automatizar Reports de Social Media com IA" (pedido do Victor).
+# v3 (2026-09-23): H1 ampliado p/ crisis, competencia y tendencias + H2 e sub do hero escritos pelo Victor.
 # Fuente original: "Copy LP - WORKSHOP 7 ANALISTAS, 1 SOLO CHAT.pdf" (6 paginas), recortada.
 # Idioma: ES-LATAM (evento en Bogota, CO) · Funil: ToFu (evento gratuito) · form en la 2.a seccion (GUIDELINES §10)
 
 === HERO ===
 LABEL: Workshop presencial y gratuito · Bogotá
 OVERLINE: 7 analistas, 1 solo chat
-H1: Cómo automatizar reportes de Social Media con IA
-SUB: Pide el reporte en lenguaje natural y recibe el análisis de campañas, crisis, competencia y tendencias con Claude y las Skills de Buzzmonitor. Sin escribir un solo prompt.
+H1: Cómo automatizar reportes de crisis, competencia y tendencias con IA
+H2: El reporte que te toma una tarde, hazlo frente a todos en lo que dura un café.
+SUB: Nada de teoría ni de diapositivas: te sientas, le preguntas, y el análisis de crisis, competencia y tendencias aparece armado. Con Claude y las Skills de Buzzmonitor.
 CTA: Reservar mi lugar
 LABEL: Cupos limitados
 LABEL: Miércoles 7 de octubre · 16:00 h
@@ -15,7 +17,7 @@ LABEL: Tinkko Coworking, Bogotá
 LABEL: Gratis · Trae tu computador
 # Visual del hero (mock de chat -> reporte)
 LABEL: Claude + Buzzmonitor
-QUOTE: Genera el reporte de septiembre de mi marca en Instagram.
+QUOTE: Genera el reporte de crisis de mi marca de esta semana.
 LABEL: Reporte listo
 LABEL: Menciones
 LABEL: Sentimiento
@@ -29,7 +31,7 @@ LIST ITEM: Tinkko Coworking & Flex Office – Edificio Ecotek, Calle 99 #10-57, 
 LIST ITEM: Trae tu computador cargado para las actividades prácticas
 
 === PROBLEMA ===
-H2: El reporte de Social Media todavía se arma a mano
+H2: Tus reportes todavía se arman a mano
 LIST ITEM: Exportas los datos de cada red y los juntas en una hoja de cálculo.
 LIST ITEM: Le pides un resumen a la IA y recibes algo genérico.
 LIST ITEM: Corriges el periodo, el formato y las prioridades, una y otra vez.
@@ -107,5 +109,5 @@ BODY: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com
 FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
 
 # Revision anti-IA (em-dash: 0)
-# - Antitesis-por-negacion: 2 ("especialista, no un prompt" / "No vienes solo a escuchar") = limite. OK.
+# - Antitesis-por-negacion: 3 com "Nada de teoria ni de diapositivas" (texto do Victor, mantido literal) = 1 acima do limite de 2. Opcional: trocar "Una Skill es un especialista, no un prompt".
 # - "reportes" (no "informes") y "computador" (Colombia) segun padrao-linguistico ES-LATAM.
