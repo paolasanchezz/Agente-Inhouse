@@ -243,6 +243,16 @@ quieren recuperar en una proxima iteracion.
   atención con la orientación de nuestros especialistas." Se quito el sub-bloque "Podras ver en la
   practica..." con la lista de bullets, para no duplicar mensaje.
 
+Ajustes v7 (2026-09-23, a pedido de Paola):
+- **Nav "Cómo funciona" renombrado a "Antes y después"**: el link apuntaba a la seccion de
+  comparativo (id #comparacion), no a un paso a paso de "como funciona" - el nombre anterior no
+  describia el bloque al que llevaba.
+- **Nav "Preguntas" renombrado a "Antes de empezar"** (id #faq, sin cambio de destino).
+- **Titulo H2 de la seccion Solucion agrandado y forzado a 2 lineas** (antes ocupaba 3 lineas en
+  desktop): font-size subio a clamp(32px,4.4vw,48px) y se agrego un <br> manual entre las dos
+  oraciones ("Tu WhatsApp sigue siendo el mismo." / "La forma de atender cambia."), oculto en mobile
+  (<640px) para dejar el wrap natural.
+
 
 ## 5 Principales Sustituciones Vocabulares
 
