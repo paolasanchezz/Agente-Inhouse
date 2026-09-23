@@ -64,6 +64,28 @@ mesmo aqui no domínio da Buzzmonitor.
 sessão só nasce ~10 min depois desta terminar; filtrando pelo início, o formulário de todas as
 LPs ficava fora do ar ~30-40 min por dia.
 
+## Campos de inscricao (`clickmeeting-register.js`)
+
+| ClickMeeting | Payload da LP | Obrigatorio |
+|---|---|---|
+| `registration[1]` Nome | `first_name` | sim |
+| `registration[2]` Sobrenome | `last_name` | sim na LP (a sala nao tem o campo 2; a API ignora campo que a sala nao tem) |
+| `registration[3]` E-mail | `email` | sim (e-mail corporativo, regra da conta) |
+| `registration[10]` Empresa | `company` | sim, na sala e na LP |
+| `registration[11]` Telefone | `phone` | sim na LP desde 2026-09-23 |
+
+**Telefone:** vai **so com digitos, DDI + numero, sem `+`** (`5511987654321`). Quem monta e o
+componente `landing-pages/_componentes/campo-telefone/` (bandeira + DDI na LP); a function
+refaz a limpeza e exige 8 a 15 digitos (E.164). A API do ClickMeeting **nao valida** o formato
+do telefone (sondado em 2026-09-23), entao essa checagem e a unica.
+
+**Serie nova:** no painel do ClickMeeting, o formulario de inscricao precisa ter o campo
+**Telefone** (id 11). Conferir sem criar lead: `curl -sL https://elifegroup.clickmeeting.com/{slug}/register`
+e procurar `"11":{"id":11,...,"type":"phoneNumber"` no HTML. Se o campo estiver marcado como
+obrigatorio na sala e a LP nao mandar, a API devolve 422 e a inscricao se perde (o que
+aconteceu com Empresa em 2026-08-25). Ordem segura: sala com o campo opcional, LP enviando,
+so depois obrigatorio na sala.
+
 ## Como deployar uma mudanca nas functions
 
 Desde a migracao pro CI (2026-07-15) estes arquivos sobem **junto com o guarda-chuva**: a

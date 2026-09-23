@@ -16,23 +16,25 @@ const SERIES_LANG = { 'bloqueo-whatsapp': 'es' };
 const MESSAGES = {
   br: {
     invalid_payload: 'Dados inv\u00e1lidos. Recarregue a p\u00e1gina e tente de novo.',
-    missing_fields: 'Preencha nome, sobrenome, e-mail e empresa.',
+    missing_fields: 'Preencha nome, sobrenome, e-mail, empresa e telefone.',
+    invalid_phone: 'Telefone inv\u00e1lido. Confira o n\u00famero.',
     invalid_email: 'E-mail inv\u00e1lido.',
     no_webinar: 'Nenhum webinar dispon\u00edvel no momento. Tente novamente em alguns minutos.',
     resolve_failed: 'N\u00e3o foi poss\u00edvel concluir sua inscri\u00e7\u00e3o agora. Tente novamente em instantes.',
     cm_unreachable: 'N\u00e3o foi poss\u00edvel concluir sua inscri\u00e7\u00e3o agora. Tente novamente em instantes.',
-    validation_error: 'Confira os dados: nome, sobrenome, e-mail e empresa s\u00e3o obrigat\u00f3rios.',
+    validation_error: 'Confira os dados: nome, sobrenome, e-mail, empresa e telefone s\u00e3o obrigat\u00f3rios.',
     already_registered: 'Este e-mail j\u00e1 est\u00e1 inscrito neste webinar.',
     cm_failed: 'N\u00e3o foi poss\u00edvel concluir sua inscri\u00e7\u00e3o. Tente novamente.',
   },
   es: {
     invalid_payload: 'Datos inv\u00e1lidos. Recarga la p\u00e1gina e int\u00e9ntalo de nuevo.',
-    missing_fields: 'Completa nombre, apellido, correo y empresa.',
+    missing_fields: 'Completa nombre, apellido, correo, empresa y tel\u00e9fono.',
+    invalid_phone: 'Tel\u00e9fono inv\u00e1lido. Revisa el n\u00famero.',
     invalid_email: 'Correo inv\u00e1lido.',
     no_webinar: 'No hay ninguna sesi\u00f3n disponible en este momento. Int\u00e9ntalo de nuevo en unos minutos.',
     resolve_failed: 'No pudimos completar tu registro ahora. Int\u00e9ntalo de nuevo en un momento.',
     cm_unreachable: 'No pudimos completar tu registro ahora. Int\u00e9ntalo de nuevo en un momento.',
-    validation_error: 'Revisa los datos: nombre, apellido, correo y empresa son obligatorios.',
+    validation_error: 'Revisa los datos: nombre, apellido, correo, empresa y tel\u00e9fono son obligatorios.',
     already_registered: 'Este correo ya est\u00e1 registrado en este webinar.',
     cm_failed: 'No pudimos completar tu registro. Int\u00e9ntalo de nuevo.',
   },
@@ -45,6 +47,17 @@ function msg(series, key) {
 
 function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+// Telefone chega da LP ja no formato do ClickMeeting (DDI + numero, so digitos). O servidor
+// refaz a limpeza e confere o tamanho E.164 (8 a 15 digitos) pra nao gravar lixo no campo 11.
+function normalizePhone(value) {
+  if (typeof value !== 'string') return '';
+  return value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 20);
+}
+
+function isValidPhone(value) {
+  return /^\d{8,15}$/.test(value);
 }
 
 function normalize(value, max) {
@@ -106,6 +119,7 @@ module.exports = async (req, res) => {
   const email = normalize(body.email, 200).toLowerCase();
   const company = normalize(body.company, 200);
   const series = normalize(body.series, 40);
+  const phone = normalizePhone(body.phone);
 
   // Honeypot depois das constantes: ate 2026-08-25 este bloco lia `series` antes do
   // `const series`, o que estoura ReferenceError (TDZ) em vez de devolver o 200 falso.
@@ -114,15 +128,21 @@ module.exports = async (req, res) => {
     return res.json({ ok: true, redirect_url: SERIES_THANK_YOU[series] || FALLBACK_THANK_YOU });
   }
 
-  // Empresa e obrigatoria: o formulario de registro das 7 series exige o campo 10 (Company)
+  // Empresa e obrigatoria: o formulario de registro das series exige o campo 10 (Company)
   // no ClickMeeting. Sem ele a API devolve 422 e a inscricao NAO acontece.
-  if (!firstName || !lastName || !email || !company) {
+  // Telefone (campo 11) e obrigatorio na LP desde 2026-09-23.
+  if (!firstName || !lastName || !email || !company || !phone) {
     res.statusCode = 400;
     return res.json({ ok: false, error: 'missing_fields', message: msg(series, 'missing_fields') });
   }
   if (!isValidEmail(email)) {
     res.statusCode = 400;
     return res.json({ ok: false, error: 'invalid_email', message: msg(series, 'invalid_email') });
+  }
+
+  if (!isValidPhone(phone)) {
+    res.statusCode = 400;
+    return res.json({ ok: false, error: 'invalid_phone', message: msg(series, 'invalid_phone') });
   }
 
   const room = await resolveRoomId(req, series);
@@ -141,6 +161,7 @@ module.exports = async (req, res) => {
   params.append('registration[2]', lastName);
   params.append('registration[3]', email);
   params.append('registration[10]', company);
+  params.append('registration[11]', phone);
   params.append('confirmation_email[enabled]', '1');
   params.append('confirmation_email[lang]', SERIES_LANG[series] || 'br');
 

@@ -1,0 +1,39 @@
+/* campo-telefone v1 — fonte: landing-pages/_componentes/campo-telefone/ (nao editar na LP).
+   O input herda o visual do form da LP (.cm-field input / .field input). Aqui so entram o
+   prefixo de pais por cima do input e a lista de paises. */
+.pf-box { position: relative; }
+.pf-box input[type="tel"] { width: 100%; }
+.pf-box input[aria-invalid="true"] { border-color: #d93025 !important; }
+.pf-btn {
+  position: absolute; top: 2px; bottom: 2px; left: 2px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0 8px 0 10px; margin: 0;
+  font: inherit; font-size: 15px; line-height: 1; color: inherit;
+  background: transparent; border: 0; border-right: 1px solid rgba(0, 0, 0, .12);
+  border-radius: 8px 0 0 8px; cursor: pointer;
+}
+.pf-btn:hover { background: rgba(0, 0, 0, .04); }
+.pf-btn:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+.pf-flag { display: block; width: 20px; height: 14px; flex: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .12); object-fit: cover; }
+.pf-dial { font-variant-numeric: tabular-nums; }
+.pf-chev { flex: none; opacity: .6; transition: transform 160ms ease; }
+.pf-open .pf-chev { transform: rotate(180deg); }
+.pf-list {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 60;
+  width: min(320px, 100%); max-height: 264px; overflow-y: auto; overscroll-behavior: contain;
+  margin: 0; padding: 4px; list-style: none; text-align: left;
+  background: #fff; color: #1d1d24;
+  border: 1px solid rgba(0, 0, 0, .12); border-radius: 10px;
+  box-shadow: 0 12px 32px -8px rgba(20, 20, 40, .28);
+}
+.pf-list[hidden] { display: none; }
+.pf-list:focus { outline: none; }
+.pf-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border-radius: 6px; cursor: pointer;
+  font-size: 14px; line-height: 1.2; letter-spacing: normal; text-transform: none;
+}
+.pf-list li.is-active, .pf-list li:hover { background: #f1f0f5; }
+.pf-list li[aria-selected="true"] { font-weight: 700; }
+.pf-li-name { flex: 1; min-width: 0; }
+.pf-li-dial { color: #6b6b76; font-variant-numeric: tabular-nums; }
