@@ -657,9 +657,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* ---- Plataforma / features ---- */
-  .platform{background:var(--white);overflow-x:clip;border-top:1px solid var(--rule)}
+  /* Respiro proprio (96px, o mesmo valor do --pad-sec no tablet) no topo: os
+     128px padrao da secao ficavam pesados demais em cima de um titulo curto e
+     centralizado — sem isso o olho lia "vazio" antes do titulo. */
+  .platform{background:var(--white);overflow-x:clip;border-top:1px solid var(--rule);padding-top:96px}
   .sec-head{max-width:640px;margin:0 auto;text-align:center}
-  .sec-head h2{font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.015em;max-width:19ch;margin-inline:auto}
+  /* Sem cap em ch: o max-width:640px do .sec-head ja e o limite. Um cap em ch
+     fixo quebrava o titulo em 3 linhas em vez de 2 (measured: 19ch = 3 linhas,
+     >=28ch bate no teto do container e vira "Descubra tudo o que e possivel /
+     fazer com a plataforma Cxpress!", 2 linhas balanceadas). */
+  .sec-head h2{font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.015em;margin-inline:auto}
   /* Respiro entre funcionalidades: 96px -> 128px. O pedido citou "5rem a 6rem"
      (80-96px), mas isso e MENOS do que ja havia aqui; o que apertava era o
      intervalo entre um par texto/tela e o proximo, nao o padding da seccao
