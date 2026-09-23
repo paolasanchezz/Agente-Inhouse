@@ -181,35 +181,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-30px;right:8%}
     .hero__pills .p2{width:46px;height:150px;border:3px solid var(--accent);bottom:-26px;left:4%;background:transparent}
     .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:18px;right:-12px;opacity:.9}
-    /* ---- laptop animado del hero ----
-       La tapa (.laptop__lid) arranca "cerrada" (rotateX -100deg, mirando al techo,
-       apoyada sobre la base) y se levanta una vez al cargar la pagina hasta quedar
-       de frente. El contenido de adentro (wa-card) recien empieza su secuencia
-       cuando la tapa ya termino de abrirse, para que se entienda el orden: primero
-       abre la compu, despues aparece el ticket de WhatsApp. */
-    .laptop{position:relative;z-index:1;width:100%;max-width:460px}
-    .laptop__stage{perspective:1600px}
-    .laptop__lid{transform-origin:50% 100%;transform:rotateX(-100deg);animation:lidopen 1.1s .4s cubic-bezier(.2,.8,.3,1) forwards;filter:drop-shadow(0 26px 40px rgba(20,23,46,.35))}
-    @keyframes lidopen{to{transform:rotateX(0deg)}}
-    .laptop__screen{background:#15172c;border:1px solid #2a2d4d;border-radius:20px 20px 8px 8px;padding:20px 16px 16px;position:relative}
-    .laptop__screen::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:#3a3d5c;box-shadow:0 0 0 3px rgba(255,255,255,.03)}
-    .laptop__inner{background:var(--white);border-radius:8px;overflow:hidden}
-    .laptop__base{height:28px;background:linear-gradient(#eef0f3,#d6d9de);border-radius:0 0 16px 16px;position:relative;filter:drop-shadow(0 14px 22px rgba(20,23,46,.2))}
-    .laptop__base::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(rgba(20,23,46,.18),transparent)}
-    .laptop__base::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:10px;background:#d6d9de;border-radius:0 0 10px 10px;box-shadow:inset 0 3px 4px rgba(20,23,46,.14)}
-    @media (prefers-reduced-motion: reduce){.laptop__lid{animation:none!important;transform:rotateX(0deg)!important}}
-    .wa-card{background:var(--white);padding:22px;min-height:260px}
-    .wa-head{display:flex;align-items:center;gap:10px}
-    .wa-av{width:36px;height:36px;border-radius:50%;background:var(--wa);color:var(--white);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:14px;flex-shrink:0}
+    /* ---- laptop animado del hero (chasis ".mac" portado de
+       content.buzzmonitor.com/mcp-claude-latam a pedido de Paola: mismas clases y
+       proporciones, cambiando solo el contenido de la pantalla: en vez de un
+       <video>, el ticket de WhatsApp armado en HTML/CSS propio) ---- */
+    .mac{position:relative;z-index:1;width:100%;max-width:460px}
+    .mac__stage{perspective:1600px}
+    .mac__hinge{--open:0;transform-style:preserve-3d;transform-origin:50% 100%;transform:rotateX(-100deg);animation:macopen 1.1s .4s cubic-bezier(.2,.8,.3,1) forwards}
+    @keyframes macopen{to{transform:rotateX(0deg)}}
+    .mac__lid{position:relative;border-radius:clamp(12px,1.6vw,20px);padding:clamp(8px,1vw,13px);background:linear-gradient(158deg,#46474c,#17181b 42%,#2e2f34);box-shadow:0 50px 110px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08) inset,0 0 120px rgba(235,124,46,.16)}
+    .mac__screen{position:relative;border-radius:clamp(6px,.8vw,10px);overflow:hidden;background:#000;aspect-ratio:1024/720}
+    .mac__screen .wa-card{width:100%;height:100%;min-height:0;overflow:hidden}
+    .mac__cam{position:absolute;left:50%;top:5px;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#3a3b40;z-index:2}
+    .mac__glare{position:absolute;inset:0;pointer-events:none;background:linear-gradient(122deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 34%)}
+    .mac__scrim{position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;background:linear-gradient(#241a18,#0b0709);opacity:calc(1 - var(--open));animation:macscrim 1.1s .4s cubic-bezier(.2,.8,.3,1) forwards}
+    @keyframes macscrim{to{opacity:0}}
+    .mac__base{position:relative;left:-6.5%;width:113%;height:clamp(9px,1.1vw,14px);background:linear-gradient(#d3d6db,#82858b 52%,#35373c);clip-path:polygon(0 0,100% 0,97.6% 100%,2.4% 100%);box-shadow:0 26px 46px rgba(0,0,0,.62)}
+    .mac__base::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:13%;height:42%;border-radius:0 0 8px 8px;background:rgba(0,0,0,.32)}
+    @media (prefers-reduced-motion: reduce){.mac__hinge{animation:none!important;transform:rotateX(0deg)!important}.mac__scrim{animation:none!important;opacity:0!important}}
+    .wa-card{background:var(--white);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+    .wa-head{display:flex;align-items:center;gap:8px}
+    .wa-av{width:30px;height:30px;border-radius:50%;background:var(--wa);color:var(--white);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:12px;flex-shrink:0}
     .wa-head span{display:block}
-    .wa-name{font-family:var(--font-display);font-weight:800;font-size:14px;color:var(--primary-dark)}
-    .wa-meta{display:block;font-size:11px;color:var(--neutral-700)}
-    .wa-dot{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--wa);flex-shrink:0;animation:pulse 1.8s ease-in-out infinite}
-    .wa-msg{margin-top:16px;background:#DCF8C6;border-radius:4px 12px 12px 12px;padding:10px 14px;font-size:13px;color:#075E54;max-width:88%}
-    .wa-fields{margin-top:16px;display:grid;gap:8px}
-    .wa-field{display:flex;align-items:center;justify-content:space-between;background:var(--neutral-100);border-radius:8px;padding:9px 13px;font-size:12px;color:var(--neutral-700)}
-    .wa-field strong{color:var(--primary-dark);font-family:var(--font-display)}
-    .wa-tag{display:inline-flex;margin-top:16px;background:rgba(33,204,120,.12);color:var(--wa-dark);padding:7px 14px;border-radius:9999px;font-size:12px;font-weight:800;font-family:var(--font-display)}
+    .wa-name{font-family:var(--font-display);font-weight:800;font-size:13px;color:var(--primary-dark)}
+    .wa-meta{display:block;font-size:10px;color:var(--neutral-700)}
+    .wa-dot{margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--wa);flex-shrink:0;animation:pulse 1.8s ease-in-out infinite}
+    .wa-msg{background:#DCF8C6;border-radius:4px 12px 12px 12px;padding:8px 12px;font-size:12px;color:#075E54;max-width:88%}
+    .wa-fields{display:flex;gap:8px}
+    .wa-field{flex:1;display:flex;flex-direction:column;gap:2px;background:var(--neutral-100);border-radius:8px;padding:7px 11px;font-size:10px;color:var(--neutral-700)}
+    .wa-field strong{color:var(--primary-dark);font-family:var(--font-display);font-size:12px}
+    .wa-tag{display:inline-flex;align-self:flex-start;background:rgba(33,204,120,.12);color:var(--wa-dark);padding:6px 12px;border-radius:9999px;font-size:11px;font-weight:800;font-family:var(--font-display)}
     .anim-seq{opacity:0;transform:translateY(8px);animation:seqin 8s cubic-bezier(.2,.9,.3,1) infinite both}
     @keyframes seqin{0%{opacity:0;transform:translateY(8px)}8%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
     @media (prefers-reduced-motion: reduce){.anim-seq{animation:none!important;opacity:1!important;transform:none!important}.wa-dot{animation:none!important}}
@@ -440,11 +441,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <div class="laptop" role="img" aria-label="Simulación de la plataforma Cxpress: llega un mensaje de WhatsApp, se asigna al sector correcto y queda con historial y agente asignado">
-            <div class="laptop__stage">
-              <div class="laptop__lid">
-                <div class="laptop__screen">
-                  <div class="laptop__inner">
+          <div class="mac" role="img" aria-label="Simulación de la plataforma Cxpress: llega un mensaje de WhatsApp, se asigna al sector correcto y queda con historial y agente asignado">
+            <div class="mac__stage">
+              <div class="mac__hinge">
+                <div class="mac__lid">
+                  <div class="mac__screen">
+                    <span class="mac__cam" aria-hidden="true"></span>
                     <div class="wa-card">
                       <div class="wa-head anim-seq" style="animation-delay:1.6s">
                         <span class="wa-av">D</span>
@@ -461,11 +463,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </div>
                       <div class="wa-tag anim-seq" style="animation-delay:4.7s">✓ Asignado automáticamente</div>
                     </div>
+                    <span class="mac__glare" aria-hidden="true"></span>
+                    <span class="mac__scrim" aria-hidden="true"></span>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="laptop__base"></div>
+            <div class="mac__base" aria-hidden="true"></div>
           </div>
         </div>
       </div>
