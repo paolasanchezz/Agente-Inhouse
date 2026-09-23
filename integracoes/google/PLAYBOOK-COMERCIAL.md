@@ -1,7 +1,7 @@
 # Pocket Event: como criar a sua página
 
-Um Pocket Event é um mini-encontro online de 10 vagas, você apresentando para um
-grupo pequeno. Esta ferramenta cria a página de inscrição do seu encontro sozinha:
+Um Pocket Event é um encontro exclusivo, online e ao vivo, você apresentando para
+um grupo pequeno. Esta ferramenta cria a página de inscrição do seu encontro sozinha:
 você preenche um formulário e, alguns minutos depois, tem um link para mandar
 para os seus prospects.
 
@@ -15,7 +15,7 @@ Você não precisa pedir a página para o marketing nem esperar por ninguém.
 
 **[Solicitar um Pocket Event](https://docs.google.com/forms/d/e/1FAIpQLSftrBhJrlyic8wiIDYkG9JxLQqsKzaoJsyEn1IaqCAdkOc0hw/viewform)**
 
-São 7 campos e leva menos de um minuto. Só um deles você digita. O resto é escolher de uma lista.
+São 6 campos e leva menos de um minuto. Só um deles você digita. O resto é escolher de uma lista.
 
 | Campo | O que colocar |
 |---|---|
@@ -24,7 +24,6 @@ São 7 campos e leva menos de um minuto. Só um deles você digita. O resto é e
 | **Módulo Buzzmonitor** | O que você vai mostrar. **Pode marcar mais de um.** |
 | **Data** | Do dia seguinte até 6 meses à frente. |
 | **Horário** | Horário de Brasília. |
-| **Vagas** | Deixe em branco para 10, que é o padrão. |
 | **Quem apresenta** | Seu nome. Sua foto e seu cargo já estão cadastrados. |
 
 **Sobre o título:** é a frase que decide se a pessoa se inscreve ou fecha a aba.
@@ -68,8 +67,8 @@ uma linha por pessoa, com nome, e-mail, empresa e cargo.
 Filtre pela coluna **Edição** para ver só o seu encontro, porque todos os Pocket
 Events dividem a mesma planilha.
 
-A coluna **Vaga** diz `confirmada` para quem pegou lugar e `espera` para quem
-chegou depois de lotar. Quem entra na espera é avisado disso na hora.
+Não há limite de inscrições: o encontro é divulgado como exclusivo, sem número de
+vagas na página. Todo mundo entra como `confirmada`.
 
 ### 5. Convide e lembre, no dia
 
@@ -86,10 +85,10 @@ que já existe, em vez de criar outro.
 
 ## Duas coisas que valem saber
 
-**Apareceram só duas pessoas? É o formato funcionando.** São 10 vagas de
-propósito: grupo pequeno, todo mundo à vontade para perguntar. Se aparecerem duas,
-diga isso com naturalidade: o encontro foi desenhado para ser íntimo, e depois
-você aprofunda individualmente com cada uma.
+**Apareceram só duas pessoas? É o formato funcionando.** O grupo é pequeno de
+propósito: todo mundo à vontade para perguntar. Se aparecerem duas, diga isso com
+naturalidade: o encontro foi desenhado para ser íntimo, e depois você aprofunda
+individualmente com cada uma.
 
 **Errou a data depois de divulgar?** Preencha o formulário de novo com a data
 certa. Sai uma página nova; a antiga continua no ar até alguém tirar. Avise o

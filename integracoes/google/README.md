@@ -37,7 +37,6 @@ ja existe, rodar duas vezes nao cria nada duas vezes.
 | Titulo (H1) | unico campo de texto livre do formulario |
 | Nicho, modulo, horario | listas fechadas (`config.json`) |
 | Nome, cargo, bio, foto e genero do speaker | cadastro `speakers.json`, nunca digitados |
-| Vagas | campo opcional do formulario; em branco usa o padrao do `config.json` |
 | Data por extenso, dia da semana, DD/MM | derivados da data por tabela fixa |
 | Slug e URL | `pocket-{nicho}-{AAAA-MM-DD}` |
 | Title, meta description, OG | montados por modelo em `config.json` |
@@ -107,7 +106,7 @@ campo, nunca o tipo: sem a conversao, um formulario criado antes da multisseleca
 continuaria aceitando um modulo so, sem avisar ninguem. A coluna da planilha nao muda de
 nome, entao as respostas antigas ficam onde estao.
 
-## Concordancia de genero e vagas
+## Concordancia de genero, vagas e acento
 
 **Genero.** A pagina fala do speaker antes de dizer o nome ("conduzido por um especialista",
 "encontro com o especialista"). Com `genero` no cadastro (`f` ou `m`), esses dois pontos
@@ -115,12 +114,15 @@ concordam: "conduzido por **uma** especialista", "encontro com **a** especialist
 e do cadastro, nunca inferido do nome — nome nao determina genero, e a lista dos 21 BDs foi
 marcada a mao em 2026-09-14: **conferir e corrigir quem estiver errado**.
 
-**Vagas.** O numero aparece em 6 lugares (4 na pagina, a meta description e a mensagem de
-lista de espera) e ainda governa quem entra como `confirmada` ou `espera` na planilha de
-inscricoes. Vive em dois lugares so: o padrao no `config.json` e a escolha por edicao no
-formulario (em branco = padrao). A LP manda o numero no campo oculto `vagas`, e o script de
-inscricoes limita o que recebe (1 a 50) antes de usar — o valor vem do navegador de quem se
-inscreve.
+**Sem quantidade de vagas.** A pagina fala em "encontro exclusivo" e deixa claro que e
+online, sem numero nenhum (decisao da diretoria, 2026-09-22). Nao ha limite de inscricao:
+toda inscricao entra como `confirmada`. A coluna `Vaga` continua na planilha porque ja tem
+historico (houve lista de espera ate essa data) e apagar coluna e destrutivo.
+
+**Acento nas listas.** `por_valor` casa primeiro pelo texto exato e depois ignorando acento
+e caixa. E o que permite corrigir a grafia de uma opcao no repo ("Publicacao" ->
+"Publicacao" com cedilha) sem recusar linha ja respondida com a grafia antiga. O formulario
+mostra a grafia corrigida a partir do proximo `atualizarOpcoes`.
 
 ## Instalacao (uma vez)
 

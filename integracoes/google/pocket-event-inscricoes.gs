@@ -8,9 +8,9 @@
  * Grava `URL de conversao` e as UTMs porque lead sem `utm_source` E sem
  * `url_conversao` some do filtro das dashboards de CM (landing-pages/CONTEXT.md 5.5).
  *
- * Cada edicao tem seu numero de vagas (a LP manda). Passando desse numero, a
- * gravada, com `Vaga` = espera, e a LP avisa que entrou na lista de espera.
- * Ninguem e barrado em silencio.
+ * Nao ha limite de vagas: o encontro e divulgado como exclusivo, sem numero.
+ * Toda inscricao entra como `confirmada`. A coluna `Vaga` fica porque ja tem
+ * historico (houve lista de espera ate 2026-09-22) e apagar coluna e destrutivo.
  *
  * ┌── PRIMEIRA VEZ ─────────────────────────────────────────────────────────┐
  * 1. Criar a planilha "Pocket Events - inscricoes" e anotar o ID da URL.
@@ -32,12 +32,6 @@
 
 var ID_PLANILHA = '1PsD3TdKQiIoWP20-R8I1wWSB-RPSBV0lWUG2TMXSzrc';
 var NOME_ABA = 'Inscricoes';
-
-// Quantas vagas a edicao tem vem da propria LP (campo oculto), porque agora varia
-// por encontro. VAGAS_PADRAO vale pra LP antiga, que ainda nao manda o campo.
-// O valor e limitado antes de usar: ele chega do navegador de quem se inscreve.
-var VAGAS_PADRAO = 10;
-var VAGAS_MAX = 50;
 
 var COLUNAS = [
   'Data e hora', 'Edicao', 'Evento', 'Data do evento', 'Horario', 'Speaker',
@@ -83,13 +77,6 @@ function situacao_(h, edicao, email) {
   return { nesta: nesta, duplicado: duplicado };
 }
 
-/** Vagas da edicao, como a LP mandou. Fora da faixa util, cai no padrao. */
-function vagas_(d) {
-  var n = parseInt(d && d.vagas, 10);
-  if (!n || n < 1 || n > VAGAS_MAX) return VAGAS_PADRAO;
-  return n;
-}
-
 function texto_(v, max) {
   return String(v == null ? '' : v).trim().slice(0, max || 300);
 }
@@ -115,22 +102,19 @@ function doPost(e) {
     if (h.getLastRow() === 0) prepararCabecalhos();
 
     var s = situacao_(h, edicao, email);
-    if (s.duplicado) {
-      return responder_({ ok: true, duplicado: true, esgotado: s.nesta >= vagas_(d) });
-    }
+    if (s.duplicado) return responder_({ ok: true, duplicado: true });
 
-    var esgotado = s.nesta >= vagas_(d);
     h.appendRow([
       new Date(), edicao, texto_(d.evento, 200), texto_(d.data_evento, 20),
       texto_(d.horario, 20), texto_(d.speaker, 200),
       texto_(d.nome, 200), email, texto_(d.empresa, 200), texto_(d.cargo, 200),
-      esgotado ? 'espera' : 'confirmada',
+      'confirmada',
       texto_(d.url_conversao, 500), texto_(d.utm_source, 120),
       texto_(d.utm_medium, 120), texto_(d.utm_campaign, 120), texto_(d.utm_content, 120),
       email + '|' + edicao
     ]);
 
-    return responder_({ ok: true, duplicado: false, esgotado: esgotado });
+    return responder_({ ok: true, duplicado: false });
   } catch (err) {
     return responder_({ ok: false, error: String(err) });
   }

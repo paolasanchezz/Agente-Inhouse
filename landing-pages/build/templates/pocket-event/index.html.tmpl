@@ -799,7 +799,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-copy">
         <div class="hero-eyebrow">
           <span class="rule" aria-hidden="true"></span>
-          <span class="eyebrow">Pocket Event &middot; Apenas {{VAGAS}} vagas</span>
+          <span class="eyebrow">Pocket Event &middot; Encontro exclusivo online</span>
         </div>
         <h1 id="hero-title">
           <span class="grad">{{TITULO}}</span>
@@ -808,7 +808,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Discuss&atilde;o pr&aacute;tica sobre <span class="ital">{{NICHO}}</span> com foco em <span class="ital">{{MODULO}}</span>.
         </h2>
         <p class="hero-sub">
-          Mini-encontro online <strong>fechado</strong>, conduzido por {{ESPECIALISTA_INDEF}} da Buzzmonitor. Formato &iacute;ntimo para quem quer aprofundar, sem audi&ecirc;ncia grande e com espa&ccedil;o real para perguntar.
+          Mini-encontro online e ao vivo, conduzido por {{ESPECIALISTA_INDEF}} da Buzzmonitor. Formato &iacute;ntimo para quem quer aprofundar, sem audi&ecirc;ncia grande e com espa&ccedil;o real para perguntar.
         </p>
         <div class="hero-cta-row">
           <a href="#inscricao" class="btn-primary">
@@ -831,7 +831,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <dl class="ticket-rows">
             <div><dt>Formato</dt><dd>Online &middot; Ao vivo</dd></div>
             <div><dt>Dura&ccedil;&atilde;o</dt><dd>~60 min</dd></div>
-            <div><dt>Vagas</dt><dd>Apenas {{VAGAS}}</dd></div>
             <div><dt>Investimento</dt><dd>Gratuito</dd></div>
           </dl>
         </aside>
@@ -845,7 +844,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <header class="sf-head reveal">
         <span class="eyebrow">Encontro com especialista</span>
         <h2 id="sf-title">Confirme seu encontro com {{ESPECIALISTA_DEF}}</h2>
-        <p class="sub">Mini-encontro fechado: apenas {{VAGAS}} vagas. Garanta a sua antes que esgote.</p>
+        <p class="sub">Encontro exclusivo, online e ao vivo. Garanta a sua antes que esgote.</p>
       </header>
 
       <div class="sf-grid">
@@ -1008,8 +1007,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== URG&Ecirc;NCIA - dark roxo ===== -->
   <section class="urgency reveal" aria-labelledby="urgency-title">
     <div class="wrap urgency-inner">
-      <span class="eyebrow">Encontro fechado</span>
-      <h2 id="urgency-title">Reserve sua vaga antes que <em>esgote.</em> <span class="tag">{{VAGAS}} vagas</span></h2>
+      <span class="eyebrow">Encontro exclusivo</span>
+      <h2 id="urgency-title">Reserve sua vaga neste <em>encontro exclusivo.</em> <span class="tag">Online</span></h2>
       <p class="question">Mini-encontro online com especialista da Buzzmonitor, sem audi&ecirc;ncia grande e com espa&ccedil;o real para sua pergunta.</p>
       <div class="urgency-cta">
         <a href="#inscricao" class="btn-primary">
@@ -1087,7 +1086,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function coletar() {
       return {
         edicao: '{{SLUG}}',
-        vagas: {{VAGAS}},
         evento: '{{TITULO_TEXTO}}',
         data_evento: '{{DATA_ISO}}',
         horario: '{{HORARIO_TEXTO}}',
@@ -1122,14 +1120,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         .then(function (r) {
           if (!r || !r.ok) throw new Error(r && r.error ? r.error : 'Resposta invalida');
           form.reset();
-          var recado = 'Vaga confirmada. Você recebe os detalhes por e-mail.';
-          if (r.duplicado) {
-            recado = 'Você já estava inscrito. Até lá!';
-          } else if (r.esgotado) {
-            recado = 'As {{VAGAS}} vagas foram preenchidas. Você entrou na lista de espera e '
-                   + 'avisamos se abrir uma.';
-          }
-          avisar(recado);
+          avisar(r.duplicado
+            ? 'Você já estava inscrito. Até lá!'
+            : 'Vaga confirmada. Você recebe os detalhes por e-mail.');
           if (window.dataLayer) {
             window.dataLayer.push({ event: 'pocket_event_inscricao', edicao: dados.edicao });
           }

@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — sem quantidade de vagas, acento nos módulos e destino da planilha
+### 2026-09-22 — pedidos do Victor
+
+**Vagas saem da página.** A LP passa a dizer "encontro exclusivo" e a deixar explícito que é
+online, sem número em lugar nenhum (decisão da diretoria). Saíram: a sobrancelha do hero, a
+linha do ticket, o subtítulo do formulário, a tag do CTA final, a meta description e a
+mensagem de lista de espera. O campo Vagas sai do formulário e o script de inscrições para
+de calcular espera: toda inscrição é `confirmada`. A coluna `Vaga` fica na planilha porque
+já tem histórico, e apagar coluna é destrutivo.
+
+**Acento nos módulos.** `Agendamento e Publicacao` e `Analytics Avancado` estavam sem
+cedilha e sem til, e iam assim para a página. Agora a grafia correta vale no formulário e na
+LP. Para não recusar linha já respondida com a grafia antiga, `por_valor` passou a casar
+também ignorando acento e caixa: a célula diz "Publicacao" e a página sai "Publicação".
+
+**`atualizarOpcoes` aprendeu a remover campo.** Ela já criava o que faltava; agora também
+apaga o que saiu do repo, senão o formulário ficaria com um campo que o validador não
+conhece mais. A coluna da planilha não é apagada junto.
+
+**A aba de respostas tinha sumido.** A planilha de solicitações ficou sem a aba de destino
+(restou só a aba vazia do formulário duplicado), então envio de formulário não chegava a
+lugar nenhum e a varredura não achava pendência. O formulário guarda as respostas por conta
+própria, então religar o destino recriou a aba com as 2 respostas intactas. O `aba_()` já
+escolhe a aba pelo conteúdo, então a aba órfã não atrapalha.
+
+---
+
 ## `pocket-event` — `atualizarOpcoes` passa a criar campo que ainda não existe
 ### 2026-09-15 — `integracoes/google/pocket-event-solicitacao.gs`
 

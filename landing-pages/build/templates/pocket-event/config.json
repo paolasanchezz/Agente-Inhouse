@@ -17,7 +17,7 @@
     "lps_por_execucao": 5
   },
   "titulo_pagina": "{titulo} | Pocket Event Buzzmonitor",
-  "meta_description": "Mini-encontro online da Buzzmonitor sobre {nicho}, com apenas {vagas} vagas. {data_extenso}, {horario}, ao vivo com especialista.",
+  "meta_description": "Encontro exclusivo e online da Buzzmonitor sobre {nicho}. {data_extenso}, {horario}, ao vivo com especialista.",
   "horarios": [
     "09h",
     "10h",
@@ -338,12 +338,12 @@
       "frase": "Dashboards e Analytics"
     },
     {
-      "valor": "Agendamento e Publicacao",
-      "frase": "Agendamento e Publicacao"
+      "valor": "Agendamento e Publicação",
+      "frase": "Agendamento e Publicação"
     },
     {
-      "valor": "Analytics Avancado",
-      "frase": "Analytics Avancado"
+      "valor": "Analytics Avançado",
+      "frase": "Analytics Avançado"
     },
     {
       "valor": "AI Insights",
@@ -359,16 +359,5 @@
     }
   ],
   "_modulos": "Grafias oficiais do brand/buzzmonitor/BRANDBOOK.md secao 'Features de IA (Nomes Oficiais)'. Nao editar a mao sem conferir la. O formulario aceita MAIS DE UM modulo por encontro (caixa de selecao).",
-  "_nichos": "Lista definida pela diretoria (2026-09-14). 'valor' e o texto exato do formulario e nao se mexe sem combinar; 'slug' entra na URL; 'frase' e como o nicho e lido na LP e pode ser ajustado sem quebrar nada.",
-  "vagas": {
-    "padrao": 10,
-    "opcoes": [
-      6,
-      8,
-      10,
-      12,
-      15
-    ]
-  },
-  "_vagas": "Quantas pessoas a edicao aceita. O numero aparece em 5 lugares da LP e governa a lista de espera na planilha de inscricoes, entao vive so aqui e no formulario. Vazio na solicitacao = padrao."
+  "_nichos": "Lista definida pela diretoria (2026-09-14). 'valor' e o texto exato do formulario e nao se mexe sem combinar; 'slug' entra na URL; 'frase' e como o nicho e lido na LP e pode ser ajustado sem quebrar nada."
 }
