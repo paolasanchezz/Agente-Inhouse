@@ -185,6 +185,24 @@ def validar(dados, config, speakers, hoje=None, permitir_exemplo=False):
     return erros, norm
 
 
+def slug_previsto(dados, config):
+    """Slug que a solicitacao geraria, calculado SO de nicho + data, sem validar o
+    resto. None se nao der pra derivar (nicho fora da lista, data ilegivel).
+
+    Existe pra checar "ja esta no ar?" antes da validacao completa: uma linha ja
+    publicada pode ter ficado invalida depois (data que passou, campo que sumiu
+    num religamento de destino do formulario) e nao pode derrubar o job.
+    """
+    nicho = por_valor(config["nichos"], str(dados.get("nicho", "")).strip())
+    try:
+        data = datetime.date.fromisoformat(str(dados.get("data", "")).strip()[:10])
+    except ValueError:
+        return None
+    if nicho is None:
+        return None
+    return montar_slug({"nicho": nicho, "data": data})
+
+
 def montar_slug(norm):
     """pocket-{nicho}-{AAAA-MM-DD}. Sem titulo: titulo e texto livre e mudaria a
     URL a cada correcao de digitacao."""
@@ -407,6 +425,12 @@ def autoteste():
 
     slug, arquivos = render(pedido, config, speakers, hoje)
     assert slug == "pocket-alimentos-varejo-2026-10-08", slug
+    # slug previsto bate com o render e sobrevive a linha que ficou invalida
+    assert slug_previsto(pedido, config) == slug
+    assert slug_previsto(dict(pedido, modulo="", data="2020-01-02"), config) \
+        == "pocket-alimentos-varejo-2020-01-02"
+    assert slug_previsto(dict(pedido, nicho="nao existe"), config) is None
+    assert slug_previsto(dict(pedido, data="ontem"), config) is None
     h = arquivos["index.html"]
     for esperado in ("Como o varejo escuta o cliente em tempo real",
                      "varejo de alimentos", "Social Listening", "8 de outubro",

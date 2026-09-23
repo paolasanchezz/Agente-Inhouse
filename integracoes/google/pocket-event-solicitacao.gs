@@ -327,7 +327,11 @@ function criarFormulario(forcar) {
  * um modulo so, em silencio. Roda sozinha dentro de `atualizarOpcoes`.
  *
  * A coluna da planilha nao se mexe (mesmo titulo), entao as respostas antigas
- * continuam onde estavam.
+ * continuam onde estavam - MAS so nesta aba. O campo antigo e apagado do
+ * formulario junto com as respostas dele: se o destino for religado depois, a
+ * aba nova recopia as respostas do formulario e essas linhas vem com o modulo
+ * vazio (foi o que aconteceu em 2026-09-23). O job do GitHub reconhece a LP que
+ * ja esta no ar antes de validar, entao isso nao derruba mais o workflow.
  */
 
 // ===========================================================================

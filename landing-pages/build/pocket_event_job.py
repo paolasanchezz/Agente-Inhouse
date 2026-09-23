@@ -45,6 +45,46 @@ def salvar_manifesto(caminho, manifesto):
         json.dumps(manifesto, ensure_ascii=False, indent=2) + "\n")
 
 
+def ja_existe(repo, config, existentes, slug):
+    destino = os.path.join(repo, config["destino_source"].replace("/", os.sep), slug)
+    return slug in existentes or os.path.isdir(destino)
+
+
+def publicada_antes(repo, config, pedido):
+    """Slug de uma LP ja gerada com a MESMA data e o MESMO titulo, ou None.
+
+    Rede de seguranca pro caso em que o slug nao da mais pra recalcular: o nicho
+    da linha saiu da lista (a lista da diretoria trocou em 2026-09-14, e a LP
+    pocket-alimentos-2026-09-22 foi gerada com um nicho que nao existe mais).
+    Titulo + data identificam a edicao; o titulo sai do README gerado pelo
+    proprio renderer, nunca de arquivo editado a mao.
+    """
+    data = str(pedido.get("data", "")).strip()[:10]
+    titulo = " ".join(str(pedido.get("titulo", "")).split())
+    if len(data) != 10 or not titulo:
+        return None
+    base = os.path.join(repo, config["destino_source"].replace("/", os.sep))
+    if not os.path.isdir(base):
+        return None
+    alvo = "| Titulo | %s |" % titulo
+    for nome in sorted(os.listdir(base)):
+        if not (nome.startswith("pocket-") and nome.endswith("-" + data)):
+            continue
+        readme = os.path.join(base, nome, "README.md")
+        if not os.path.isfile(readme):
+            continue
+        linhas = io.open(readme, encoding="utf-8").read().splitlines()
+        if any(l.strip() == alvo for l in linhas):
+            return nome
+    return None
+
+
+def ignorada(config, slug, linha):
+    return {"slug": slug, "linha": linha,
+            "url": "https://%s/%s" % (config["dominio"], slug),
+            "motivo": "ja existe (no manifesto ou em disco)"}
+
+
 def processar(repo, solicitacoes, config, speakers, dry_run=False,
               permitir_exemplo=False):
     caminho_manifesto, manifesto = carregar_manifesto(repo, config)
@@ -65,6 +105,18 @@ def processar(repo, solicitacoes, config, speakers, dry_run=False,
                             "fica pra proxima rodada" % teto]})
             continue
 
+        # Idempotencia: reprocessar a mesma linha (retry do webhook, varredura
+        # diaria depois do webhook) nao pode recriar nem sobrescrever nada. Checa
+        # ANTES de validar: uma LP ja no ar pode ter ficado invalida depois (data
+        # que passou, modulo que sumiu num religamento do formulario, 2026-09-23)
+        # e recusa-la derrubaria o job por uma linha que ja esta resolvida.
+        previsto = rpe.slug_previsto(pedido, config)
+        if not (previsto and ja_existe(repo, config, existentes, previsto)):
+            previsto = publicada_antes(repo, config, pedido)
+        if previsto:
+            relatorio["ignoradas"].append(ignorada(config, previsto, linha))
+            continue
+
         try:
             slug, arquivos = rpe.render(pedido, config, speakers,
                                         permitir_exemplo=permitir_exemplo)
@@ -78,13 +130,8 @@ def processar(repo, solicitacoes, config, speakers, dry_run=False,
         destino_rel = "%s/%s" % (config["destino_source"], slug)
         destino_abs = os.path.join(repo, destino_rel.replace("/", os.sep))
 
-        # Idempotencia: reprocessar a mesma linha (retry do webhook, varredura
-        # diaria depois do webhook) nao pode recriar nem sobrescrever nada.
-        if slug in existentes or os.path.isdir(destino_abs):
-            relatorio["ignoradas"].append({
-                "slug": slug, "linha": linha,
-                "url": "https://%s/%s" % (config["dominio"], slug),
-                "motivo": "ja existe (no manifesto ou em disco)"})
+        if ja_existe(repo, config, existentes, slug):
+            relatorio["ignoradas"].append(ignorada(config, slug, linha))
             continue
 
         if not dry_run:

@@ -12,6 +12,23 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `pocket-event` — linha que já está no ar não derruba mais o workflow
+### 2026-09-23 — `landing-pages/build/pocket_event_job.py` + `render_pocket_event.py`
+
+O run agendado de 2026-09-23 falhou com `linha 2 recusada: campo obrigatorio ausente ou vazio:
+modulo`. A linha era o pedido que já tinha virado `pocket-alimentos-2026-09-22` (PR #602). Com o
+religamento do destino do formulário, a aba nova recopiou as respostas, mas o módulo daquela
+linha tinha sido respondido no campo de lista, que foi apagado quando virou caixa de seleção.
+Então a linha voltou sem módulo e sem status. Como a validação rodava ANTES da checagem de
+"já existe", a LP que estava no ar foi recusada e o job caiu.
+
+- O job agora checa se a LP já existe antes de validar. Primeiro pelo slug previsto (nicho + data,
+  função nova `slug_previsto`). Se não achar, procura uma LP gerada com a mesma data e o mesmo título
+  (pelo README gerado). Esse segundo caminho cobre linhas cujo nicho saiu da lista, como a de hoje.
+- Uma linha já publicada vira `ignorada`, e o workflow a marca como `publicada` com a URL (PR #648).
+  Com isso ela sai da fila de vez, mesmo que tenha ficado inválida depois (data que passou, campo vazio).
+- Autoteste cobre `slug_previsto`. Comentário da migração do módulo no Apps Script corrigido.
+
 ## `pocket-event` — sincronizar passa a garantir as colunas de controle
 ### 2026-09-22 — `integracoes/google/pocket-event-solicitacao.gs`
 
