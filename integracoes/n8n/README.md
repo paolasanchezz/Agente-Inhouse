@@ -22,8 +22,14 @@ e mantém tudo atualizado sozinho (roda a cada 2h).
 5. Monta **1 linha por inscrição** (pessoa × sessão) e grava na Leads-global em modo
    **Append or Update** com chave **`Chave` = email|salaId** — re-runs nunca duplicam.
 
-### Colunas (13)
-`Data inscrição · Nome · Email · Empresa · País · Cidade · Marca/Sala · Série · Sessão · Origem · Link de acesso · Participou? · Chave`
+### Colunas (14)
+`Data inscrição · Nome · Email · Empresa · País · Cidade · Marca/Sala · Série · Sessão · Origem · Link de acesso · Participou? · Chave · Telefone`
+
+- **Telefone** (desde 2026-09-23) = campo 11 do formulário da sala, que as LPs de perpétuo
+  mandam obrigatório: só dígitos, DDI + número, sem `+` (`5511987654321`). A chave em `fields`
+  vem como `Phone`; o nó procura por nome (`phone|telefon|teléfono`) e limpa pra dígitos.
+  Inscrição anterior a essa data fica vazia. Coluna nova no fim, depois de `Chave`, pra não
+  deslocar fórmula que usa posição.
 
 - **Sessão** = `starts_at` real da ocorrência (ISO com offset). Não é mais o `session_id`
   opaco do ClickMeeting (que vinha `null` pra sessão futura — bug do modelo antigo).
@@ -96,7 +102,7 @@ sobre aba já populada, trocar a operação do nó Sheets pra `appendOrUpdate` (
 
 | Sintoma | Causa provável | Fix |
 |---|---|---|
-| Erro "Missing columns … Column to Match On" | Aba sem linha de cabeçalho | Rodar o backfill (append cria headers) ou colar os 13 cabeçalhos na linha 1 |
+| Erro "Missing columns … Column to Match On" | Aba sem linha de cabeçalho | Rodar o backfill (append cria headers) ou colar os 14 cabeçalhos na linha 1 |
 | Linhas duplicadas | Alguém rodou o backfill (append) sobre aba já populada | Dedup na planilha por `Chave`; re-rodar backfill só com appendOrUpdate |
 | `Participou?` vazio em sessão passada | Presença indisponível no run (erro pontual na API) | Aguardar próximo run dentro da janela de 7d; senão, backfill |
 | Sala sumiu da varredura | `starts_at` fora da janela de 7d (inativa antiga) | Normal — linhas dela já estão gravadas |
