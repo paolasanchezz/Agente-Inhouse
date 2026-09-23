@@ -181,7 +181,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-30px;right:8%}
     .hero__pills .p2{width:46px;height:150px;border:3px solid var(--accent);bottom:-26px;left:4%;background:transparent}
     .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:18px;right:-12px;opacity:.9}
-    .hero__mockup{position:relative;z-index:1;width:100%;max-width:540px;height:auto;min-height:0;filter:drop-shadow(0 24px 48px rgba(35,41,96,.18))}
+    /* ---- laptop animado del hero ---- */
+    .laptop{position:relative;z-index:1;width:100%;max-width:480px;filter:drop-shadow(0 24px 48px rgba(35,41,96,.18))}
+    .laptop__screen{background:var(--primary-dark);border-radius:14px;padding:10px 10px 0}
+    .laptop__bar{display:flex;gap:6px;padding:4px 4px 10px}
+    .laptop__bar span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
+    .laptop__base{height:14px;background:linear-gradient(var(--neutral-300),var(--neutral-100));border-radius:0 0 10px 10px;position:relative}
+    .laptop__base::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:64px;height:4px;background:var(--neutral-300);border-radius:0 0 6px 6px}
+    .wa-card{background:var(--white);border-radius:10px 10px 0 0;padding:22px;min-height:270px}
+    .wa-head{display:flex;align-items:center;gap:10px}
+    .wa-av{width:36px;height:36px;border-radius:50%;background:var(--wa);color:var(--white);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:14px;flex-shrink:0}
+    .wa-head span{display:block}
+    .wa-name{font-family:var(--font-display);font-weight:800;font-size:14px;color:var(--primary-dark)}
+    .wa-meta{display:block;font-size:11px;color:var(--neutral-700)}
+    .wa-dot{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--wa);flex-shrink:0;animation:pulse 1.8s ease-in-out infinite}
+    .wa-msg{margin-top:16px;background:#DCF8C6;border-radius:4px 12px 12px 12px;padding:10px 14px;font-size:13px;color:#075E54;max-width:88%}
+    .wa-fields{margin-top:16px;display:grid;gap:8px}
+    .wa-field{display:flex;align-items:center;justify-content:space-between;background:var(--neutral-100);border-radius:8px;padding:9px 13px;font-size:12px;color:var(--neutral-700)}
+    .wa-field strong{color:var(--primary-dark);font-family:var(--font-display)}
+    .wa-tag{display:inline-flex;margin-top:16px;background:rgba(33,204,120,.12);color:var(--wa-dark);padding:7px 14px;border-radius:9999px;font-size:12px;font-weight:800;font-family:var(--font-display)}
+    .anim-seq{opacity:0;transform:translateY(8px);animation:seqin 8s cubic-bezier(.2,.9,.3,1) infinite both}
+    @keyframes seqin{0%{opacity:0;transform:translateY(8px)}8%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+    @media (prefers-reduced-motion: reduce){.anim-seq{animation:none!important;opacity:1!important;transform:none!important}.wa-dot{animation:none!important}}
 
     .hero__content > *{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards}
     .hero__content > *:nth-child(1){animation-delay:.05s}
@@ -274,17 +295,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .comparativo__col--antes li::before{content:"–";position:absolute;left:0;color:#9AA3C4;font-weight:700}
     .comparativo__col--con li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
 
-    /* ---------- cxpress tiene sentido para tu operacion ---------- */
-    .fit{background:var(--primary-dark);position:relative;overflow:hidden}
-    .fit__shapes span{position:absolute;border-radius:9999px;display:block;pointer-events:none}
-    .fit__shapes .s1{width:150px;height:56px;border:3px solid var(--warning);opacity:.8;top:-24px;right:8%;background:transparent}
-    .fit__shapes .s2{width:50px;height:170px;background:var(--primary);opacity:.5;bottom:-40px;left:5%}
-    .fit__inner{max-width:820px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-    .fit .section-title{text-align:center;margin-bottom:20px;color:var(--white)}
-    .fit__label{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--primary-lighter);text-align:center;margin-bottom:24px}
-    .fit__list{list-style:none;display:grid;gap:14px;max-width:520px;margin:0 auto}
-    .fit__list li{position:relative;padding-left:30px;font-size:17px;line-height:1.5;color:var(--white)}
-    .fit__list li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+    /* ---------- por que cxpress (diferenciales) ---------- */
+    .fit{background:var(--white)}
+    .fit__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+    .fit__kicker{display:flex;align-items:center;gap:14px;justify-content:center;font-family:var(--font-accent);font-style:italic;font-weight:500;font-size:18px;color:var(--accent);margin-bottom:14px}
+    .fit__kicker::before{content:"";width:32px;height:2px;background:var(--accent);flex-shrink:0}
+    .fit .section-title{text-align:center;margin:0 auto 64px;max-width:640px}
+    .fit__grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .fit__item{padding:0 28px;border-left:1px solid var(--neutral-100)}
+    .fit__item:first-child{border-left:0;padding-left:0}
+    .fit__ico{width:48px;height:48px;border-radius:12px;background:var(--primary-lighter);color:var(--primary);display:grid;place-items:center;margin-bottom:18px}
+    .fit__ico svg{width:22px;height:22px}
+    .fit__item h3{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--primary-dark);margin-bottom:10px;line-height:1.3}
+    .fit__item p{font-size:15px;line-height:1.6;color:var(--neutral-700)}
 
     .faq{background:var(--neutral-100)}
     .faq__inner{max-width:820px;margin:0 auto;padding:0 32px}
@@ -344,7 +367,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .navbar__logo img{height:30px}
       .comparativo{grid-template-columns:1fr}
       .beneficios__grid{grid-template-columns:1fr}
-      .fit__inner{padding:0 24px}
+      .fit__grid{grid-template-columns:1fr;gap:32px}
+      .fit__item{border-left:0;border-top:1px solid var(--neutral-100);padding:28px 0 0}
+      .fit__item:first-child{border-top:0;padding-top:0}
     }
     @media (max-width:520px){.prova__grid{grid-template-columns:1fr}.hero__overline{white-space:normal}}
 
@@ -377,7 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul class="nav__menu" id="navmenu">
         <li><a href="#solucion">Solución</a></li>
         <li><a href="#plataforma">Cómo funciona</a></li>
-        <li><a href="#fit">¿Es para vos?</a></li>
+        <li><a href="#fit">Por qué Cxpress</a></li>
         <li><a href="#faq">Preguntas</a></li>
       </ul>
       <a href="#agendar" class="btn navbar__cta"><span class="navbar__cta-full">Quiero agendar mi demo gratis</span><span class="navbar__cta-short">Quiero mi demo</span></a>
@@ -405,7 +430,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <img class="hero__mockup" src="../../brand/cxpress/assets/plataforma/mockup-plataforma-laptop.png" alt="Laptop mostrando la plataforma Cxpress con una conversación de WhatsApp, varios agentes y la cola de tickets" width="465" height="270" loading="eager">
+          <div class="laptop" role="img" aria-label="Simulación de la plataforma Cxpress: llega un mensaje de WhatsApp, se asigna al sector correcto y queda con historial y agente asignado">
+            <div class="laptop__screen">
+              <div class="laptop__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="wa-card">
+                <div class="wa-head anim-seq" style="animation-delay:0s">
+                  <span class="wa-av">D</span>
+                  <span>
+                    <span class="wa-name">Daniela Rodríguez</span>
+                    <span class="wa-meta">WhatsApp · +52 55 1234 5678</span>
+                  </span>
+                  <span class="wa-dot" aria-hidden="true"></span>
+                </div>
+                <div class="wa-msg anim-seq" style="animation-delay:.9s">Hola, quiero saber el estado de mi pedido</div>
+                <div class="wa-fields anim-seq" style="animation-delay:1.9s">
+                  <div class="wa-field"><span>Sector</span><strong>Ventas</strong></div>
+                  <div class="wa-field"><span>Asignado</span><strong>Agente 02</strong></div>
+                </div>
+                <div class="wa-tag anim-seq" style="animation-delay:3.1s">✓ Asignado automáticamente</div>
+              </div>
+            </div>
+            <div class="laptop__base"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -520,51 +566,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- PLATAFORMA -->
-    <section class="plataforma" id="plataforma" aria-labelledby="plataforma-title">
-      <div class="container">
-        <h2 id="plataforma-title" class="section-title reveal">Mira Cxpress funcionando</h2>
-
-        <div class="feature feature--textonly reveal">
-          <div class="feature__text">
-            <h3>Organiza agentes, equipos y conversaciones</h3>
-            <p>Visualiza las conversaciones de tu operación y distribuye cada atención para el agente o área correspondiente.</p>
-          </div>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif" alt="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial" width="786" height="442" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Automatiza consultas con IA</h3>
-            <p>Configura automatizaciones para responder consultas, recopilar información y resolver las primeras etapas de la atención. El equipo humano entra cuando la conversación necesita una persona.</p>
-          </div>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel" width="566" height="318" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Integra todos los canales</h3>
-            <p>WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat pueden formar parte de una misma operación.</p>
-          </div>
-        </div>
-
-        <div class="feature reveal">
-          <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono" width="816" height="458" loading="lazy">
-          </div>
-          <div class="feature__text">
-            <h3>Acompaña lo que pasa en tiempo real</h3>
-            <p>Visualiza indicadores de atención y acompaña el desempeño de tu equipo mediante dashboards.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
     <!-- PRUEBA SOCIAL -->
     <section class="prova" aria-labelledby="prova-title">
       <div class="prova__shapes" aria-hidden="true"><span class="s1"></span><span class="s2"></span></div>
@@ -582,21 +583,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- CXPRESS ESTA HECHO PARA -->
+    <!-- POR QUE CXPRESS -->
     <section class="fit" id="fit" aria-labelledby="fit-title">
-      <div class="fit__shapes" aria-hidden="true"><span class="s1"></span><span class="s2"></span></div>
       <div class="fit__inner">
-        <h2 id="fit-title" class="section-title reveal">Cxpress está hecho para operaciones que necesitan más control</h2>
-        <p class="fit__label reveal">Puede ser una buena opción para tu empresa si necesitas:</p>
-        <ul class="fit__list reveal">
-          <li>Varios agentes atendiendo WhatsApp</li>
-          <li>Mantener el número que tus clientes ya conocen</li>
-          <li>Saber qué conversaciones siguen pendientes</li>
-          <li>Organizar la atención entre equipos y áreas</li>
-          <li>Automatizar consultas con IA</li>
-          <li>Acompañar métricas y tiempos de respuesta</li>
-          <li>Integrar WhatsApp con otros canales</li>
-        </ul>
+        <p class="fit__kicker reveal">Por qué Cxpress</p>
+        <h2 id="fit-title" class="section-title reveal">Lo que no viene en cualquier plataforma</h2>
+        <div class="fit__grid">
+          <article class="fit__item reveal">
+            <span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H8l-4 4V4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 10.5l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>API oficial de WhatsApp</h3>
+            <p>Integración certificada, no WhatsApp Web. Tu número trabaja con las reglas de Meta a favor.</p>
+          </article>
+          <article class="fit__item reveal">
+            <span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <h3>Un historial por cliente, no por canal</h3>
+            <p>Quien atiende ve todo lo anterior, sin importar si el contacto llegó por WhatsApp, teléfono o correo.</p>
+          </article>
+          <article class="fit__item reveal">
+            <span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-7 4 14 2-9 2 2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>La IA sabe cuándo ceder el turno</h3>
+            <p>Cuando el caso se complica, la conversación pasa a una persona con el contexto completo.</p>
+          </article>
+          <article class="fit__item reveal">
+            <span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9h14v-9" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <h3>Pensada para empresas sin área de TI</h3>
+            <p>Implementación simple, sin el peso ni el precio de una solución enterprise.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -604,10 +617,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="agendar" id="agendar" aria-labelledby="agendar-title">
       <div class="agendar__card">
         <div class="agendar__content reveal">
-          <h2 id="agendar-title" class="section-title">Mira cómo funcionaría con tu WhatsApp</h2>
-          <p class="agendar__body">En una demostración de 30 minutos, un especialista de Cxpress te muestra cómo organizar tu atención utilizando el número que tu empresa ya tiene.</p>
-          <h3>Podrás ver en la práctica cómo funcionan:</h3>
-          <p class="agendar__body">varios agentes · tickets · distribución · IA · dashboards · WhatsApp + otros canales</p>
+          <h2 id="agendar-title" class="section-title">¿Quieres saber más? Habla con nosotros</h2>
+          <p class="agendar__body">Explora nuestra plataforma en la práctica y obtén una evaluación gratuita de tu operación de atención con la orientación de nuestros especialistas.</p>
           <p class="agendar__req">Sin necesidad de cambiar tu número de WhatsApp Business.</p>
           <p class="agendar__req">Tener un sitio web activo es uno de los requisitos para ser cliente de Cxpress.</p>
         </div>
@@ -665,6 +676,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="fecho__body reveal">No necesitas empezar de cero para profesionalizar tu operación. Conecta el WhatsApp que tus clientes ya conocen a Cxpress y permite que tu equipo atienda con más organización, automatización y visibilidad.</p>
         <a href="#agendar" class="btn reveal">Agenda tu demostración gratuita</a>
         <p class="fecho__tagline reveal">WhatsApp Business + Cxpress<br>Mismo número. Más agentes. Más control.</p>
+      </div>
+    </section>
+
+    <!-- PLATAFORMA (movida al final, justo antes de Quienes somos) -->
+    <section class="plataforma" id="plataforma" aria-labelledby="plataforma-title">
+      <div class="container">
+        <h2 id="plataforma-title" class="section-title reveal">Mira Cxpress funcionando</h2>
+
+        <div class="feature feature--textonly reveal">
+          <div class="feature__text">
+            <h3>Organiza agentes, equipos y conversaciones</h3>
+            <p>Visualiza las conversaciones de tu operación y distribuye cada atención para el agente o área correspondiente.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif" alt="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial" width="786" height="442" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Automatiza consultas con IA</h3>
+            <p>Configura automatizaciones para responder consultas, recopilar información y resolver las primeras etapas de la atención. El equipo humano entra cuando la conversación necesita una persona.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel" width="566" height="318" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Integra todos los canales</h3>
+            <p>WhatsApp, Instagram, Facebook, correo electrónico, teléfono y webchat pueden formar parte de una misma operación.</p>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature__media">
+            <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono" width="816" height="458" loading="lazy">
+          </div>
+          <div class="feature__text">
+            <h3>Acompaña lo que pasa en tiempo real</h3>
+            <p>Visualiza indicadores de atención y acompaña el desempeño de tu equipo mediante dashboards.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -741,7 +797,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var want=!field;
         if(want!==on){ on=want; cur.dataset.on=on?'true':'false'; }
         cur.dataset.hot=hot?'true':'false';
-        var dk=!!(el&&el.closest&&el.closest('.fecho,.prova--dark,.fit'));
+        var dk=!!(el&&el.closest&&el.closest('.fecho,.prova'));
         if(dk!==lastDark){ lastDark=dk; cur.dataset.dark=dk?'true':'false'; }
       },{passive:true});
       document.addEventListener('pointerdown',function(){ down=true; },{passive:true});

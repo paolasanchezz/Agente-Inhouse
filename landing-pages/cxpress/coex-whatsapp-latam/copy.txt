@@ -217,6 +217,33 @@ quieren recuperar en una proxima iteracion.
   que usa telefonia-ia-latam para su CTA) en toda la pagina, no solo en el header.
 
 
+## Ajustes v7 (post-publicacion, a pedido de Paola)
+
+- **Mockup del hero reemplazado por escena animada propia.** El PNG estatico
+  (mockup-plataforma-laptop.png) mostraba la interfaz de Cxpress en PORTUGUES (bug real, no
+  reportado antes: "Todos os tickets", "Consumidores", "Configuracoes", etc. en una LP en
+  espanol). Se elimino la referencia y se construyo un laptop animado en CSS/HTML propio (clases
+  .laptop / .wa-card) mostrando un ticket de WhatsApp en espanol con reveal secuencial en loop
+  (mensaje entra, se asigna sector/agente, aparece tag de "Asignado automaticamente") - inspirado
+  en la animacion de content.buzzmonitor.com/mcp-claude-latam y en el patron .uicard de
+  telefonia-ia-latam. Con esto, el bug de idioma queda resuelto de paso.
+- **Nav "¿Es para vos?" renombrado a "Por qué Cxpress"** - "vos" es voseo argentino, no se usa en
+  copy general LATAM (regla ya establecida en conhecimento/linguistico/es-latam).
+- **Seccion "Cxpress esta hecho para operaciones que necesitan mas control" (id #fit) rediseñada**
+  como "Por qué Cxpress / Lo que no viene en cualquier plataforma": paso de fondo oscuro + checklist
+  a fondo blanco + kicker italico + grid de 4 columnas con icono, titulo y cuerpo, separadas por
+  lineas finas. Contenido: los mismos 4 diferenciales que ya se habian escrito antes (API oficial de
+  WhatsApp, historial por cliente, IA cede el turno, sin area de TI) - encajan perfecto con el
+  formato de tarjetas.
+- **"Mira Cxpress funcionando" (features con GIF) movida al final**, justo antes de "Quienes somos"
+  (antes iba despues de Comparativo). Nuevo orden: Hero > Clientes > Solucion > Comparativo >
+  Resultados > Por que Cxpress > Formulario > FAQ > Cierre > Mira Cxpress funcionando > Quienes somos.
+- **Copy del formulario simplificado**: H2 "¿Quieres saber más? Habla con nosotros" + body
+  "Explora nuestra plataforma en la práctica y obtén una evaluación gratuita de tu operación de
+  atención con la orientación de nuestros especialistas." Se quito el sub-bloque "Podras ver en la
+  practica..." con la lista de bullets, para no duplicar mensaje.
+
+
 ## 5 Principales Sustituciones Vocabulares
 
 1. atendimento → atención
