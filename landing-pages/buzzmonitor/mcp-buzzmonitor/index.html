@@ -360,8 +360,9 @@
     .section--void h2 { color: var(--neutral-0); }
     .section--void .np-copy > p { color: rgba(255,255,255,.72); }
 
-    .np-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .np-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; }
     .np-copy { display: flex; flex-direction: column; gap: 18px; }
+    .np-side { display: flex; flex-direction: column; gap: 28px; }
 
     /* lista de prompts inspirada em content.buzzmonitor.com/mcp-claude-latam:
        rail de progresso + cartoes que ganham foco (opacidade/blur/escala) conforme o scroll */
@@ -392,7 +393,7 @@
     .prompt-card:nth-of-type(2n) { margin-left: auto; max-width: min(94%, 520px); }
     .prompt-card:nth-of-type(2n+1) { max-width: min(94%, 520px); }
 
-    .section--void .eyebrow-label { font-weight: 700; color: var(--neutral-0); margin-bottom: 8px; }
+    .section--void .eyebrow-label { font-weight: 700; color: var(--neutral-0); }
 
     /* typewriter (heading que digita ao entrar na viewport) */
     .tw__caret {
@@ -403,7 +404,7 @@
     @media (prefers-reduced-motion: no-preference) { .tw__caret { animation: caretBlink 1.05s steps(2) infinite; } }
     [data-typewriter].done .tw__caret { opacity: .5; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 8px; }
+    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .section--void .source-card {
       background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.14);
       border-radius: var(--radius-lg); padding: 26px 22px;
@@ -412,7 +413,7 @@
     .source-card__icon { font-size: 30px; }
     .section--void .source-card h3 { font-size: 18px; color: var(--neutral-0); }
     .section--void .source-card p { color: rgba(255,255,255,.68); font-size: 15px; line-height: 1.5; }
-    .np-cta { margin-top: 8px; }
+    .np-cta { margin-top: auto; padding-top: 12px; }
 
     /* ===== SKILLS ===== */
     .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 8px; }
@@ -467,6 +468,7 @@
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
     .form-copy { display: flex; flex-direction: column; gap: 24px; }
     .form-copy h2 { font-size: clamp(26px, 3.4vw, 38px); }
+    .form-title { text-wrap: normal; }
     .form-copy__demo { width: 100%; max-width: 480px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
     .form-card {
       background: var(--neutral-0); border: 1px solid var(--neutral-300);
@@ -611,7 +613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="reveal">A IA consulta os dados da Buzzmonitor e ajuda voc&ecirc; a resumir, comparar, explorar e transformar essas informa&ccedil;&otilde;es em insights, em segundos.</p>
       </div>
-      <div>
+      <div class="np-side">
         <p class="reveal eyebrow-label">Voc&ecirc; pode acessar:</p>
         <div class="source-grid">
           <div class="source-card reveal reveal-stagger" style="--i:0">
@@ -744,7 +746,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section id="form" class="section--white" aria-labelledby="form-title">
     <div class="container form-grid">
       <div class="form-copy">
-        <h2 id="form-title" class="reveal">Pergunte. A Buzzmonitor busca os dados.<br>A IA transforma em an&aacute;lise.</h2>
+        <h2 id="form-title" class="reveal form-title">Pergunte.<br>A Buzzmonitor busca os dados.<br>A IA transforma em an&aacute;lise.</h2>
         <img class="form-copy__demo reveal" src="assets/demo-analise.gif" alt="Anima&ccedil;&atilde;o mostrando um prompt sendo enviado no Claude e a Buzzmonitor respondendo com um dashboard de campanha pronto" width="640" height="400">
       </div>
       <div class="jotform-embed reveal">
