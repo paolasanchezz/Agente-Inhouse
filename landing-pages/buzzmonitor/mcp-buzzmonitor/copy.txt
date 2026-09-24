@@ -1,0 +1,77 @@
+=== HERO ===
+H1: Leve os dados da Buzzmonitor para o Claude ou ChatGPT. E converse com eles.
+BODY: Conecte a Buzzmonitor à IA que você já usa e transforme dados de social listening e atendimento em análises, relatórios e dashboards usando linguagem natural.
+BODY: Sem exportar planilhas, sem programar, sem precisar começar uma análise do zero.
+CTA: Quero usar o MCP da Buzzmonitor
+LABEL: Teste agora com dados públicos do Trends
+
+=== VIDEO-DEMO ===
+OVERLINE: Potencialize seu social listening com o poder analítico da IA
+H2: Veja como o MCP da Buzzmonitor funciona em apenas 3 minutos
+BODY: [PLACEHOLDER DE VÍDEO: demonstração do Breno Soutto. Ainda não subiu no YouTube; usar placeholder de player no HTML até o link chegar.]
+CTA: Agendar uma demonstração gratuita
+
+=== NA-PRATICA ===
+H2: Na prática, o que é o MCP da Buzzmonitor?
+BODY: O MCP é a ponte que conecta o Claude ou ChatGPT aos dados da Buzzmonitor.
+BODY: Você cria todos os seus projetos de monitoramento na plataforma e, depois de conectar o MCP, você pode simplesmente conversar com a IA:
+QUOTE: O que estão falando sobre minha marca esta semana?
+QUOTE: Compare minha marca com dois concorrentes nos últimos 30 dias.
+QUOTE: Quais foram as menções mais engajadas da minha campanha?
+QUOTE: Existe algum aumento de buzz negativo que merece atenção?
+BODY: A IA consulta os dados da Buzzmonitor e ajuda você a resumir, comparar, explorar e transformar essas informações em insights, em segundos.
+# [OBSERVAÇÃO] Fonte original dizia "transformar essas informações em insights, sem segundos" (tratado aqui como typo de "em segundos"). Confirmar antes de publicar.
+BODY: Você pode acessar:
+LIST ITEM: Buzzmonitor Trends · Dados públicos sobre marcas, concorrentes, produtos e temas.
+LIST ITEM: Seus projetos de monitoramento · As menções que sua conta já acompanha na Buzzmonitor.
+LIST ITEM: Seu CRM · Dados das contas e canais conectados à plataforma.
+CTA: Fale com um especialista
+
+=== SKILLS ===
+H2: E você nem precisa começar do zero. O MCP já chega com um time de análises prontas.
+BODY: Além de conectar seus dados à IA, a Buzzmonitor já disponibiliza Skills prontas para executar análises específicas. Cada uma resolve uma tarefa que hoje toma um fuso inteiro do analista.
+BODY: Pense nas Skills como habilidades especializadas: em vez de montar todo o raciocínio, filtros e estrutura de um relatório manualmente, você pede a análise e a IA aplica a Skill aos dados.
+LABEL: Por exemplo:
+LIST ITEM: Dashboard de Campanha · Entenda repercussão, evolução, impacto, percepção e principais comentários de uma campanha.
+LIST ITEM: Report de Crise · Analise o buzz negativo, a evolução de uma crise, principais detratores e possíveis caminhos de mitigação.
+LIST ITEM: Marca x Concorrentes · Compare sua marca com concorrentes e encontre diferenças e oportunidades nos dados.
+LIST ITEM: Tendências de Categoria · Identifique movimentos do seu segmento e entenda em que estágio cada tendência está.
+LIST ITEM: Filtro de Região · Separe publicações por região antes de aprofundar sua análise.
+LIST ITEM: Exploring · Encontre as marcas mais citadas em um conjunto de posts e transforme o resultado em um dashboard interativo.
+BODY: Tem mais no chat. Pergunte "quais skills a Buzzmonitor oferece?" e o Claude lista o que está disponível pra sua conta.
+
+=== EXEMPLOS-CHAT ===
+OVERLINE: Do prompt ao insight em uma conversa
+BODY: [NOTA DE PRODUÇÃO do autor da copy: evitar screenshots demais. 3 ou 4 prompts grandes, visualmente parecidos com mensagens de chat, explicam o produto melhor que parágrafos.]
+QUOTE: Tem alguma crise envolvendo minha marca nos últimos 3 dias?
+BODY: Buzzmonitor + IA: consulta as menções, identifica mudanças no buzz e ajuda a organizar os principais sinais da crise.
+QUOTE: Compare minha marca e meus dois principais concorrentes no último mês.
+BODY: Buzzmonitor + IA: cruza as conversas encontradas e ajuda a visualizar volume, temas e diferenças entre as marcas.
+QUOTE: Analise minha campanha e gere um dashboard.
+BODY: Buzzmonitor + Skill: aplica uma análise estruturada aos posts e transforma os resultados em um dashboard visual.
+QUOTE: Quais tendências estão crescendo na minha categoria?
+BODY: Buzzmonitor + Skill: busca as conversas e organiza os movimentos encontrados para facilitar sua leitura estratégica.
+CTA: Quero potencializar o listening com IA
+
+=== BENEFICIO-TEMPO ===
+H2: Menos tempo procurando dados. Mais tempo usando os dados.
+BODY: A Buzzmonitor conecta monitoramento e atendimento ao Claude e ChatGPT, para que sua equipe possa investigar dados, responder perguntas e transformar informação em análise dentro da própria conversa.
+BODY: E com as Skills da Buzzmonitor, algumas das análises mais importantes do dia a dia já começam com a metodologia pronta.
+CTA: Quero conhecer o MCP da Buzzmonitor
+LABEL: Já é cliente Buzzmonitor? Conecte sua conta e comece a explorar.
+LABEL: Ainda não é cliente? Conheça a Buzzmonitor e veja o MCP funcionando na prática.
+
+=== FORM ===
+H2: Pergunte. A Buzzmonitor busca os dados. A IA transforma em análise.
+CTA: Converse com um especialista e veja na prática
+BODY: [Formulário ao lado do bloco, conforme pedido do autor da copy. Mock durante o design; integração real via lp-integrar-form apos aprovação.]
+
+=== SEGURANCA ===
+LABEL: Seus dados continuam protegidos.
+BODY: O MCP realiza as consultas em tempo real pela API da Buzzmonitor e não armazena as publicações ou menções consultadas. A integração da conta utiliza autenticação segura.
+# [NOTA] Autor pediu explicitamente: faixa curta antes do rodapé, não seção inteira.
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor · Todos os direitos reservados
+
+# Revisao anti-IA: sem achados de linguagem de IA (frases tipicas, filler words, transicoes mecanicas). Em-dash: 0 (os travessoes da fonte eram divisores estruturais entre os 4 cards de EXEMPLOS-CHAT, convertidos em blocos QUOTE/BODY separados, nao preservados como pontuacao). 1 observacao de typo marcada (NA-PRATICA). CTAs mantidos distintos por secao conforme pedido explicito do autor (nao unificar).
