@@ -94,6 +94,19 @@
 - **Subtópicos existentes no blog:** Marketing de influência para restaurantes e delivery (`marketing-de-influencia-para-restaurantes`)
 - **Subtópicos a criar:** turismo/hotelaria (guia brand-side — lacuna confirmada 2026-07-21); ⚠️ farma/saúde FORA (esbarra em compliance — escopo proibido)
 
+## Cluster 9 — Creators e busca por IA (GEO/AEO) — aberto em 2026-09-25
+- **Origem:** guia da Later "Marketer's Guide: How to Win AI Search with Creators" (set/2026) + classificação YOUPIX (alcance × ressonância × relevância) + diferencial de produto "descoberta em mar aberto por perfis semelhantes" (BRANDBOOK §2, módulo 2).
+- **Papel no funil:** Topo→Meio (autoridade temática + captura de GEO; CTA para descoberta de creators)
+- **Prioridade:** Alta (lacuna total no blog em 2026-09-25; termo "o que é geo" tem volume real no BR com sentido de generative engine optimization, SERP dominada por Conta Azul/Alura/Exame/Locaweb sem ângulo de creators)
+- **Categoria de menu:** Busca por IA
+- **Pillar page:** `geo-com-influenciadores` (publicado 2026-09-25)
+- **Palavras-chave principais:** o que é geo (4.400) · geo (12.100, amplo/ambíguo) · aeo (1.000, misturado com "operador econômico autorizado") · generative engine optimization (480) · geo seo (390) · seo para ia (260) · answer engine optimization (170) · como aparecer no chatgpt (50) · share of model (30)
+- **Subtópicos existentes no blog:** geo-com-influenciadores (pillar) · micro-e-nano-creators-na-busca-por-ia · influenciador-de-autoridade · briefing-de-creators-para-busca-por-ia · onde-publicar-conteudo-de-creator-para-ia · creators-no-linkedin-marketing-b2b · (seção YOUPIX acrescentada em tipos-de-influenciadores)
+- **Subtópicos a criar:** share of model: como medir se a marca aparece nas respostas da IA (ponte com Buzzmonitor) · creators no YouTube para GEO (canal que mais correlaciona com visibilidade em IA, Ahrefs 2026) · Reddit e comunidades para marcas no Brasil · como corrigir informação errada da IA sobre a marca com creators
+- **Regra de produto:** CTA padrão → LP `encontrar-influenciadores` (descoberta por perfis semelhantes). Não prometer medição de share of model pelo Buzzcreators (não é recurso da plataforma).
+
+---
+
 ## Cluster 6 — Creator economy e UGC
 - **Papel no funil:** Topo (tráfego + thought leadership; porta de entrada de criadores)
 - **Prioridade:** Média-Alta (maior volume adjacente disponível; forte para GEO e para captação de creators)

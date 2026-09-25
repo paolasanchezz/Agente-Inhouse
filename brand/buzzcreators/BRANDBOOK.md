@@ -72,6 +72,7 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 - Plataforma de conexao entre marcas/agencias e micro/nanoinfluenciadores
 - Criadores encontram campanhas relevantes ao seu perfil sem intermediarios
 - Briefings claros e padronizados entregues diretamente ao criador
+- **Descoberta em mar aberto por perfis semelhantes:** algoritmo proprietario que encontra creators a partir de perfis semelhantes a um perfil de referencia (ex.: um creator que ja funciona para a marca, ou que a IA ja cita na categoria), sem se limitar a uma base fechada de cadastrados (informado pelo Victor, 2026-09-25). No site aparece como "Busca Inteligente com IA" (/encontrar-influenciadores). Nome comercial oficial da funcionalidade: a confirmar; em copy, descrever ("descoberta em mar aberto a partir de perfis semelhantes"), sem inventar nome proprio.
 
 #### 3. Contratos e Compliance
 - Gestao de contratos centralizados
@@ -96,6 +97,7 @@ Plataforma que centraliza todo o ciclo de uma campanha de influenciadores — do
 | Pagamento automatizado | Liberacao de pagamento ao criador apos aprovacao sem processo manual |
 | Dados oficiais das redes | Metricas coletadas automaticamente das APIs oficiais das redes sociais (Instagram, TikTok, etc.), atualizadas diariamente sem captura manual |
 | Integracao Buzzmonitor | Combina dados de social listening com gestao de influencia (diferencial do grupo) |
+| Busca Inteligente com IA | Sugestoes de influenciadores alinhados a marca, nicho e objetivos; algoritmo proprietario de descoberta em mar aberto por perfis semelhantes (ver modulo 2) |
 
 > **IMPORTANTE — o Buzzcreators NAO expoe uma API para clientes (esclarecido pelo Victor, 2026-07-21).** A plataforma **coleta** as metricas automaticamente pelas **APIs oficiais das redes sociais** (Instagram, TikTok, YouTube, etc.), entregando dados oficiais e atualizados sem captura manual. Em copy, blog, LP ou qualquer material: **nunca** escrever "API do Buzzcreators", "API de dados" ou "nossa API" como se fosse um produto/recurso acessivel ao cliente. Descrever sempre como "dados coletados via APIs oficiais das redes" (ou equivalente). O valor a comunicar e o **dado oficial, automatico e sem captura manual** — nao uma API exposta.
 

@@ -4,7 +4,7 @@
 > Disciplina **append-only**: nunca deletar entrada; só acrescentar e atualizar "Última verificação".
 > A skill `/blog-diario` adiciona aqui os posts que cria, marcados `status: draft-notion` (troca para `publicado` + URL viva quando o time sobe no CMS).
 
-**Blog:** https://blog.buzzcreators.com.br · **Última verificação:** 2026-08-26
+**Blog:** https://blog.buzzcreators.com.br · **Última verificação:** 2026-09-25
 
 ---
 
@@ -69,8 +69,15 @@
 | 2026-07-21 | Novidades da plataforma Buzzcreators em julho de 2026 | novidades-plataforma-julho-2026 | Novidades (changelog) | — | — (não-SEO) | publicado | https://blog.buzzcreators.com.br/blog/novidades-plataforma-julho-2026 |
 | 2026-07-28 | Como trabalhar com micro e nano influenciadores em escala | como-trabalhar-com-micro-e-nano-influenciadores | C2 Micro & Nano (ponte C3) | MoFu→BoFu | como trabalhar com micro e nano influenciadores | publicado | https://blog.buzzcreators.com.br/blog/como-trabalhar-com-micro-e-nano-influenciadores |
 | 2026-08-26 | Plataformas de influenciadores: quais existem e como escolher | plataformas-de-influenciadores-como-escolher | C3 Gestão (ponte C4) | MoFu→BoFu | plataformas de influenciadores | publicado | https://blog.buzzcreators.com.br/blog/plataformas-de-influenciadores-como-escolher |
+| 2026-09-25 | GEO com influenciadores: por que sua marca some das respostas da IA | geo-com-influenciadores | C9 Busca por IA (pillar) | ToFu→MoFu | o que é geo / geo com influenciadores | publicado | https://blog.buzzcreators.com.br/blog/geo-com-influenciadores |
+| 2026-09-25 | Seguidores não garantem citação: micro e nano creators na busca por IA | micro-e-nano-creators-na-busca-por-ia | C9 Busca por IA (ponte C2) | MoFu | micro influenciadores + busca por IA | publicado | https://blog.buzzcreators.com.br/blog/micro-e-nano-creators-na-busca-por-ia |
+| 2026-09-25 | Influenciador de autoridade: o que é e por que a IA prefere especialistas | influenciador-de-autoridade | C9 Busca por IA (ponte C1/C4) | MoFu | influenciador de autoridade | publicado | https://blog.buzzcreators.com.br/blog/influenciador-de-autoridade |
+| 2026-09-25 | Briefing de influenciadores para a busca por IA: o que incluir | briefing-de-creators-para-busca-por-ia | C9 Busca por IA (ponte C3) | MoFu | briefing para influenciadores + IA | publicado | https://blog.buzzcreators.com.br/blog/briefing-de-creators-para-busca-por-ia |
+| 2026-09-25 | Onde o conteúdo de creator precisa estar para a IA conseguir ler | onde-publicar-conteudo-de-creator-para-ia | C9 Busca por IA | MoFu | youtube seo / conteúdo de creator para IA | publicado | https://blog.buzzcreators.com.br/blog/onde-publicar-conteudo-de-creator-para-ia |
+| 2026-09-25 | Creators no LinkedIn: marketing de influência B2B que a IA também lê | creators-no-linkedin-marketing-b2b | C9 Busca por IA (ponte C6) | MoFu | marketing de influência B2B / thought leadership | publicado | https://blog.buzzcreators.com.br/blog/creators-no-linkedin-marketing-b2b |
 
 > Plano da 1ª leva (histórico): `conhecimento/produto/buzzcreators/seo/plano-editorial-20-artigos.md`
 > Arquitetura de clusters (fonte de temas): `conhecimento/produto/buzzcreators/seo/clusters-brasil.md`
+> **C9 Busca por IA** = cluster "Creators e busca por IA (GEO/AEO)", aberto em 2026-09-25 a partir do guia da Later + classificação YOUPIX. `tipos-de-influenciadores` ganhou seção YOUPIX (updatedDate 2026-09-25).
 > **C7 Formatos** = série "Formatos de Campanha" (2ª leva, 2026-07-21): hub + 1 post por tipo de campanha com creators. **Setores** = verticais por indústria (expansível: turismo, beleza…).
 > Status `repo` = arquivo pronto em `blog/buzzcreators/src/content/blog/`, entra no ar no próximo `/blog-publicar` (trocar para `publicado` ao confirmar no sitemap). **Reconciliação 2026-07-28:** a 2ª leva (20 posts que estavam `repo`) foi confirmada viva no `sitemap-0.xml` e marcada `publicado`. Novos rascunhos gerados pelo `/blog-diario` entram como `draft-notion` (URL = Notion) até subirem no CMS.
