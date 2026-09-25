@@ -1055,6 +1055,15 @@ Extensão da convenção `$PYBIN` (criada hoje em `lp-publicar` Passo 0.4 — ve
 - PATCH em todas (portabilidade; sem mudança de interface). **Não tocados de propósito:** docstrings internas dos `.py` (usage genérico), a doc legada `bunzzai/AUDITORIA-vs-meta-ads.md` (scripts `meta-ads/` arquivados) e o probe de detecção do `setup-agencia` (`python --version` — precisa de tratamento próprio: preferir `py` no Windows; fica pra passe separado).
 
 ## blog-publicar
+### 2026-09-25 — v1.4.0 — URL sem barra final: fim da indexação duplicada
+
+O Google estava indexando cada post duas vezes, com e sem barra final (ex.: `/blog/geo-com-influenciadores` e `/blog/geo-com-influenciadores/`). O canonical, o sitemap e os links internos já saíam sem barra, mas o Vercel respondia 200 nas duas versões (o `index.html` da pasta atende as duas), e o RSS e o `llms.txt` publicavam os links COM barra, o que ensinava a versão errada ao Google.
+
+- `src/pages/rss.xml.js`: link sem barra + `trailingSlash: false` (o `@astrojs/rss` acrescenta a barra por padrão).
+- `src/pages/llms.txt.ts`: URLs sem barra.
+- `vercel.json`: `trailingSlash: false` (308 de `/x/` para `/x`) e redirect 308 do host `buzzcreators-blog.vercel.app` para `blog.buzzcreators.com.br`, que servia uma cópia inteira e indexável do blog.
+- Passo 3 ganha a checagem: versão com barra deve dar 308 e rss/llms/sitemap não podem ter URL com barra. Nota na Configuração: o fallback `.vercel.app` do Passo 0.3 deixa de ser alternativa enquanto o redirect existir. MINOR.
+
 ### 2026-07-28 — v1.3.0 — Capa Pexels on-theme: prioriza resultado real (alt) + modo `--candidates`
 
 Corrige a capa que saía **fora do tema**. O `search_photo_ids` extraía IDs com um regex sobre **todo** o HTML da página de busca, então capturava thumbnails **decorativas** (trending/relacionadas/promo) que o Pexels injeta **antes** da grade real de resultados — e essas costumam vir com `alt` **vazio**. A 1ª foto baixada era, na prática, uma dessas: publicando `como-trabalhar-com-micro-e-nano-influenciadores` (2026-07-28), as duas primeiras queries devolveram "homem sentado no mar" e "pegadas na areia"; só resolveu forçando `--id` de uma foto vetada à mão.

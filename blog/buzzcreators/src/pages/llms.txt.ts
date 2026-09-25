@@ -18,7 +18,8 @@ export const GET: APIRoute = async (context) => {
     '',
     '## Artigos',
     ...posts.map((p) => {
-      const url = new URL(`/blog/${p.id}/`, context.site).toString();
+      // Sem barra final: mesma URL do canonical e do sitemap.
+      const url = new URL(`/blog/${p.id}`, context.site).toString();
       return `- [${p.data.title}](${url}): ${p.data.description}`;
     }),
     '',

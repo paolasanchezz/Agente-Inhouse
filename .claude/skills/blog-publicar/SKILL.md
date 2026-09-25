@@ -3,7 +3,7 @@ name: blog-publicar
 description: Publica o blog Astro estatico da marca (hoje Buzzcreators) no Vercel — valida o build (schema de meta tags), builda com env de producao (indexavel), deploya no projeto Vercel correto, valida a versao no ar (posts, noindex OFF, sitemap/rss/llms) e reporta. Manual-trigger. Contexto sancionado para a trava de deploy Vercel (guard_vercel_deploy.py).
 argument-hint: "[marca]  — default buzzcreators (unica com blog hoje)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Skill: Publicar blog (Astro estatico) no Vercel
@@ -23,6 +23,8 @@ Você publica o blog **estatico** da marca — hoje `blog/buzzcreators/` (Astro 
 | `buzzcreators` | `blog/buzzcreators` | `buzzcreators-blog` · `prj_0LHFECIs21P0yJwUvCpB2Wi675YA` | `elife-group` · `team_nC991VqUuSU2jXZN152xqqEg` | `https://blog.buzzcreators.com.br` (fallback: `https://buzzcreators-blog.vercel.app`) |
 
 > Só Buzzcreators tem blog hoje. Ao criar o blog de outra marca (Astro no mesmo molde), acrescentar a linha aqui e nada mais muda.
+>
+> **URL canônica = SEM barra final** (`/blog/{slug}`). Desde 2026-09-25 o `vercel.json` do blog tem `trailingSlash: false` (308 de `/x/` para `/x`) e redireciona o host `buzzcreators-blog.vercel.app` para o domínio próprio (308), porque o Google indexava as duas versões de cada post. Consequência: o fallback `.vercel.app` do Passo 0.3 **não serve mais como alternativa** enquanto o redirect existir; se o domínio próprio cair, o problema é de DNS/domínio, não de deploy.
 
 Env de produção do Astro (lidas no build — ver `astro.config.mjs` e `src/consts.ts`):
 - `PUBLIC_SITE_URL` = domínio de produção (define `site`, canonical, sitemap, RSS).
@@ -150,6 +152,10 @@ echo "post $SLUG: $(curl -s -o /dev/null -w '%{http_code}' "$PROD_URL/blog/$SLUG
 echo "sitemap:   $(curl -s -o /dev/null -w '%{http_code}' "$PROD_URL/sitemap-index.xml")"
 echo "rss:       $(curl -s -o /dev/null -w '%{http_code}' "$PROD_URL/rss.xml")"
 echo "llms.txt:  $(curl -s -o /dev/null -w '%{http_code}' "$PROD_URL/llms.txt")"
+echo "-- barra final (URL canonica e SEM barra; a versao com barra deve dar 308) --"
+echo "com barra: $(curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}' "$PROD_URL/blog/$SLUG/")"
+N_SLASH=$(curl -s "$PROD_URL/rss.xml" "$PROD_URL/llms.txt" "$PROD_URL/sitemap-0.xml" | grep -oE "$PROD_URL/[a-z0-9/-]+/[<)\"]" | wc -l | tr -d ' ')
+echo "URLs com barra final em rss+llms+sitemap: $N_SLASH (esperado 0)"
 echo "-- indexacao (produção deve estar SEM noindex) --"
 if curl -s "$PROD_URL/" | grep -iq 'name="robots"[^>]*noindex'; then
   echo "ERRO: home com noindex em producao — PUBLIC_NOINDEX nao pegou. Rever build-env e re-deployar."
@@ -157,7 +163,7 @@ else
   echo "OK: sem noindex (indexavel)"
 fi
 ```
-Esperado: **200** em home, post, sitemap, rss, llms.txt · **sem** `noindex` na home. Qualquer 4xx/5xx ou noindex presente → investigar antes de considerar publicado.
+Esperado: **200** em home, post, sitemap, rss, llms.txt · **308** na versão do post com barra final, apontando para a URL sem barra · **0** URLs com barra final em rss/llms/sitemap · **sem** `noindex` na home. Qualquer 4xx/5xx ou noindex presente → investigar antes de considerar publicado.
 
 ---
 
