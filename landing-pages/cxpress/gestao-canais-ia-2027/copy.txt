@@ -1,0 +1,82 @@
+=== SEO ===
+LABEL: TITLE: Gestão de canais de atendimento com IA em 2027 | Evento presencial Cxpress
+LABEL: META DESCRIPTION: Evento presencial gratuito em São Paulo, 12/11, das 9h às 12h. Gestão de canais com IA na prática e as novidades da plataforma Cxpress. Vagas limitadas.
+
+=== HERO ===
+OVERLINE: EVENTO PRESENCIAL · SÃO PAULO · 12 DE NOVEMBRO
+H1: Gestão de canais de atendimento com IA em 2027
+SUB: Uma manhã com casos práticos de empresas que centralizaram seus canais e agilizaram o suporte com IA, sem aumentar o time nem embarcar num projeto de meses. E quem estiver na sala ainda confere as novidades da plataforma Cxpress, divulgadas no próprio evento.
+LABEL: 12/11 · 9h às 12h · São Paulo - SP
+CTA: Garantir minha vaga
+
+=== POR-QUE-IR ===
+H2: Atendimento em 2027 não é mais sobre responder rápido.
+BODY: É sobre responder no canal certo, com contexto, sem o cliente repetir a mesma história três vezes.
+BODY: Quem resolveu isso não contratou mais gente. Organizou os canais num painel só e colocou IA pra trabalhar onde dói.
+BODY: Neste encontro a gente abre a operação real: o que funcionou, o que deu errado e os números por trás de quem já unificou WhatsApp, e-mail, redes e chat.
+
+=== NOVIDADES ===
+OVERLINE: NOVIDADES DA PLATAFORMA
+H2: O que vem por aí na Cxpress
+BODY: No evento, a gente divulga as novidades da plataforma Cxpress e mostra cada uma funcionando para quem estiver presente.
+BODY: Você vê na prática o que muda no dia a dia do atendimento, tira dúvidas com o nosso time e já sai sabendo como aplicar na sua operação.
+
+=== DETALHES ===
+H2: Como chegar?
+LABEL: DATA
+BODY: 12 de novembro, das 9h às 12h
+LABEL: LOCAL
+BODY: Espaço Eureka · Av. Paulista, 688 · São Paulo/SP
+LABEL: CONTAGEM REGRESSIVA
+BODY: [COUNTDOWN até 12/11/2026 09:00 · dias / horas / minutos / segundos]
+BODY: [MAPA · Google Maps embed do endereço Av. Paulista, 688, São Paulo]
+
+=== APRENDIZADOS ===
+H2: O que você leva deste encontro
+LIST ITEM: Como empresas centralizaram WhatsApp, e-mail, redes e chat numa operação só
+LIST ITEM: Onde a IA reduz o tempo de resposta de verdade, e onde ela só atrapalha
+LIST ITEM: Os números por trás da mudança: demandas resolvidas por hora, tempo médio, gargalos
+LIST ITEM: Um caminho claro pra organizar seus canais sem aumentar o time
+LIST ITEM: As novidades da plataforma Cxpress, divulgadas e demonstradas ao vivo
+LIST ITEM: Troca direta com especialistas e com gente que vive o mesmo problema
+
+=== PROGRAMACAO ===
+H2: Como vai ser a manhã
+LIST ITEM: 09h00 · Recepção e coffee
+LIST ITEM: 09h30 · Boas-vindas e abertura
+LIST ITEM: 09h40 · Cenário da gestão de canais com IA em 2027 (dados de mercado e tendências)
+LIST ITEM: 10h05 · Centralização de canais e IA na prática
+LIST ITEM: 10h45 · Perguntas
+LIST ITEM: 11h00 · Coffee break e networking
+LIST ITEM: 11h20 · Bate-papo com cliente
+LIST ITEM: 11h45 · Perguntas e encerramento
+
+=== PALESTRANTES ===
+H2: Quem vai estar no palco
+H3: Enrico Chiari
+LABEL: New Business & Sales Manager
+H3: Palestrante convidado
+LABEL: Em breve
+
+=== SOBRE-CXPRESS ===
+H2: Sobre a Cxpress
+BODY: A Cxpress centraliza WhatsApp, e-mail, redes sociais e chat num único painel, com IA que sugere respostas, classifica e prioriza atendimentos. Mais conversas resolvidas com o mesmo time, sem trocar de ferramenta o dia inteiro.
+LABEL: Clientes que confiam na Cxpress
+
+=== INSCRICAO ===
+H2: Garanta sua vaga
+SUB: Inscrição gratuita. Vagas limitadas.
+LABEL: Nome completo
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Cargo
+LABEL: WhatsApp
+CTA: Quero participar
+
+=== FOOTER ===
+FOOTER: Evento gratuito · Vagas limitadas · Espaço Eureka, São Paulo/SP
+FOOTER: © 2026 Cxpress. Produto do Grupo Elife.
+
+# Referencia visual/estrutural: landing-pages/cxpress/gestao-canais-ia-2026/index.html
+# (mesmo layout; nova secao NOVIDADES entre POR-QUE-IR e DETALHES; palestrantes = so Enrico; sem ribbon "Vagas esgotadas").
+# Revisao anti-IA: sem achados (em-dash: 0). Antitese-por-negacao: 2 instancias (H2 por-que-ir + "nao contratou mais gente"), no limite.
