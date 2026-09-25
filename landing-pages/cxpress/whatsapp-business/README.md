@@ -58,6 +58,10 @@ Pedido do Bruno a partir de uma LP de referência. Nenhuma palavra de copy nova:
 
 **Por que `#25D366` e não `#00E676`.** Os dois passam como preenchimento com texto navy (6,8:1 e 8,0:1). O `#25D366` já era o verde desta página (botão flutuante, pílula do fecho) e é o verde oficial do WhatsApp, tema da LP. Adotar o `#00E676` somaria um segundo verde quase idêntico, contra a GUIDELINES §1.
 
+## 6ª rodada (2026-09-25): cards de recursos no ritmo da Buffer
+
+A seção "Descubra tudo o que é possível fazer" trocou o zigue-zague texto/tela (5 blocos de ~600px cada) por uma grade de cartões: 2×2 com painel colorido em cima segurando a tela e texto embaixo, e o 5º (Dashboards) deitado na linha inteira. Referência só de estrutura: buffer.com/pt, seção "Recursos principais". As telas ancoram no topo do painel e sangram pela base (são mais altas que o 16:10). Cada cartão ganhou rótulo (`01 Canais`...) e link "Fale com um especialista →" para `#contato`; o reveal em Z saiu (não faz sentido em grade). Selos de canal e holofote seguem nos cartões 01 e 03.
+
 ## Estrutura (10 seções)
 
 | # | Seção | Layout | Fundo |

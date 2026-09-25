@@ -148,16 +148,28 @@ Saíram a borda, a sombra e o fundo branco do `.feature__media`. Ficou só o `bo
 
 Nos três GIFs o retângulo está **dentro do arquivo**, não no CSS — nenhuma regra de estilo tira aquilo. Para sumir de verdade seria preciso reexportar os GIFs com fundo transparente, e no caso do dashboard isso quebraria a legibilidade: os cards dele são claros e existem justamente por contraste com o fundo escuro. Por isso o raio de canto ficou: é o que o CSS ainda pode fazer para o bloco de cor não parecer um retângulo duro.
 
+## 7ª rodada (2026-09-25, CRO com referência de estrutura da Buffer)
+
+Pedido do Bruno (`Alterações no projeto - Chatbot Wha.md`): corrigir respiro do form e das imagens, trocar as imagens de Tickets/Dashboards e modernizar a página com foco em conversão, usando buffer.com/pt só como referência de estrutura, hierarquia e ritmo.
+
+- **Form.** O Jotform `261034073026647` desenha ~36px vazios acima do 1º campo dentro do iframe; somado aos 20px de padding do cartão dava ~56px em cima. O cartão corta 20px do topo do iframe (`overflow:hidden` + `margin-top:-20px`) e ficou com 12px de padding: 1º campo a 28px da borda, botão a 36px da base (medido com o Jotform carregado, 1440 e 390px). Seção 96/88 → 80/64.
+- **Imagens sem vão em cima.** O zigue-zague texto/imagem virou grade de cartões (2×2 + um cartão largo), com a tela centrada num painel colorido. O PNG de canais perdeu os 63px transparentes do topo; o GIF do chatbot, cujo conteúdo fica na faixa central, é exibido recortado em 786×300.
+- **Tickets/Dashboards.** A animação de dashboard subiu para "Otimize a gestão de tickets"; "Gerencie com eficiência por meio de dashboards" usa agora a `tela-dashboard.svg` da `whatsapp-business`. `plataforma-canais.gif` e `painel-atendimento.webp` saíram (sem uso).
+- **Hero.** Tela real do produto (`tela-principal.svg`, nítida, no lugar do WebP de 604px esticado para 860px) com 3 cartões em sequência contando o caminho da conversa (mensagem no WhatsApp → triagem da IA → ticket no setor). Selos dos canais flutuando nas laterais no lugar dos clusters de pílulas, CTA secundário "Ver o chatbot em ação" e linha de confiança (API Oficial · Diagnóstico gratuito · Sem fidelidade, tirados da própria copy do form).
+- **Novos blocos** (estrutura da referência, texto próprio): faixa "Todos os canais do seu atendimento numa só tela" e demo `#demo` com uma conversa de WhatsApp que se escreve sozinha (IntersectionObserver, pausa fora de vista, estática sob `prefers-reduced-motion`) + CTA para o form e botão que abre o modal do WhatsApp.
+- **Cards "Sistema de atendimento"**: emoji → ícones SVG, filete de cor que preenche no hover.
+- **Sugestão (não aplicada):** o H1 abre pela solução ("Plataforma de automação...") e a GUIDELINES §3 pede dor no H1. Decisão de copy fica com quem aprova.
+
 ## Assets
 
 | Arquivo | Onde aparece |
 |---|---|
-| `painel-atendimento.webp` | hero |
-| `atendimento-integrado.png` | plataforma, bloco 1 |
-| `plataforma/plataforma-chatbot-ia.gif` | plataforma, bloco 2 |
-| `cadastros-clientes.webp` | plataforma, bloco 3 |
-| `plataforma/plataforma-canais.gif` | plataforma, bloco 4 |
-| `plataforma/plataforma-dashboard.gif` | plataforma, bloco 5 |
+| `telas/tela-principal.svg` | hero (copiada da `whatsapp-business`) |
+| `atendimento-integrado.png` | recursos, cartão 1 (recortada em 870×637, sem a margem transparente de 63px do topo) |
+| `plataforma/plataforma-chatbot-ia.gif` | recursos, cartão 2 (exibida recortada na faixa central) |
+| `cadastros-clientes.webp` | recursos, cartão 3 |
+| `plataforma/plataforma-dashboard.gif` | recursos, cartão 4 (Tickets) |
+| `telas/tela-dashboard.svg` | recursos, cartão 5 (Dashboards; copiada da `whatsapp-business`) |
 | `especialista-atendimento.webp` | faixa "Fale com um especialista no WhatsApp" |
 | `clientes/cliente-*.png` (14) | esteira de clientes |
 | `og-chatbot-whatsapp.png` | Open Graph / Twitter Card |
