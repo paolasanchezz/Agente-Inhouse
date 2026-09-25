@@ -306,7 +306,8 @@
     .hero {
       background: var(--paper);
       overflow: hidden;
-      padding-block: clamp(48px, 5vw, 84px) clamp(64px, 7vw, 104px);
+      --hero-pb: clamp(40px, 3.6vw, 56px);  /* o Tami usa o mesmo valor para pisar no piso do bloco */
+      padding-block: clamp(28px, 2.6vw, 44px) var(--hero-pb);
     }
     /* quarto de circulo laranja: a assinatura geometrica do manual */
     .hero__sun {
@@ -335,12 +336,12 @@
       gap: clamp(44px, 6vw, 104px);
       align-items: start;
     }
-    .hero-content { padding-top: clamp(8px, 2vw, 32px); }
+    .hero-content { padding-top: clamp(4px, 1vw, 16px); }
     .hero__h1 {
       font-size: clamp(38px, 4vw, 58px);
       line-height: 1.0;
       letter-spacing: -0.04em;
-      margin-top: 26px;
+      margin-top: 20px;
     }
     .hero__h1-a { display: block; }
     .hero__h1 em {
@@ -355,14 +356,14 @@
       font-size: clamp(18px, 1.5vw, 20px);
       line-height: 1.6;
       color: var(--body);
-      margin-top: 30px;
+      margin-top: 22px;
       max-width: 50ch;
     }
     .hero__flags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 32px;
+      margin-top: 24px;
     }
     .hero__flags li {
       display: inline-flex;
@@ -377,15 +378,15 @@
       padding: 9px 16px 9px 12px;
     }
     .hero__flags .ico { width: 16px; height: 16px; color: var(--accent-ink); }
-    .hero__cta { margin-top: 40px; }
+    .hero__cta { margin-top: 30px; }
 
     /* Tami em pe no piso do bloco, inteiro e na frente, encostado no canto do card */
     .hero-visual { position: relative; align-self: stretch; }
     .hero-tami {
       position: absolute;
       z-index: 2;
-      right: calc(100% - 36px);
-      bottom: calc(-1 * clamp(64px, 7vw, 104px));
+      right: calc(100% - 22px);
+      bottom: calc(-1 * var(--hero-pb));
       display: block;
       height: clamp(210px, 18vw, 262px);
       aspect-ratio: 797 / 972;
@@ -405,13 +406,13 @@
       z-index: 1;
       background: var(--white);
       border-radius: 24px;
-      padding: clamp(28px, 2.8vw, 42px);
+      padding: clamp(24px, 2.2vw, 34px);
       box-shadow: 0 1px 0 rgba(57, 1, 85, .06), 0 40px 80px -36px rgba(57, 1, 85, .42);
       scroll-margin-top: calc(var(--header-h) + 24px);
     }
     .card-form h3 { font-size: clamp(26px, 2.1vw, 32px); }
     .card-form__sub { font-size: 17px; line-height: 1.5; color: var(--muted); margin-top: 12px; }
-    .field { margin-top: 20px; }
+    .field { margin-top: 14px; }
     .field label {
       display: block;
       font-size: 14px;
@@ -428,7 +429,7 @@
       background: var(--paper);
       border: 1px solid transparent;
       border-radius: var(--radius-sm);
-      padding: 15px 16px;
+      padding: 13px 16px;
       transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
     }
     .field input:hover { border-color: var(--line-2); }
@@ -438,7 +439,7 @@
       box-shadow: 0 0 0 4px rgba(57, 1, 85, .1);
       outline: none;
     }
-    .card-form .btn { margin-top: 28px; }
+    .card-form .btn { margin-top: 22px; }
     .form-msg {
       margin-top: 14px;
       font-size: 15px;
