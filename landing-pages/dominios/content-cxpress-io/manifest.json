@@ -394,6 +394,21 @@
       "slug": "whatsapp-smb",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/whatsapp-smb"
+    },
+    {
+      "slug": "help-desk",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/help-desk"
+    },
+    {
+      "slug": "sistema-de-atendimento",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sistema-de-atendimento"
+    },
+    {
+      "slug": "sistema-de-chamados",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sistema-de-chamados"
     }
   ],
   "extra_files": {

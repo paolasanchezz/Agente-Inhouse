@@ -1,0 +1,12 @@
+{
+  "regiao": "brasil",
+  "expected_gtm": "GTM-T4XDWHL3",
+  "found_gtm": [
+    "GTM-KN8BPFG"
+  ],
+  "fingerprint": "1b72ebbdd5041c63",
+  "status": "wrong",
+  "grandfathered": true,
+  "verified_at": "2026-09-25",
+  "note": "container de Google Ads GTM-KN8BPFG, divergente do container BR da marca em brand/cxpress/tracking.json (GTM-T4XDWHL3). Mesma escolha das LPs irmas usadas como referencia desta construcao (escolha-a-cxpress, chatbot-whatsapp, whatsapp-business), pedida pelo Bruno Silva em 2026-09-25: o container BR padrao nao dispara tag de conversao nem GA4, e o GTM-KN8BPFG ja carrega a conversao AW-11013611389 e o GA4 G-V4Q4HNVWLW. Se GTM-KN8BPFG virar o padrao de Cxpress BR, atualizar o tracking.json e regravar este selo com --write-stamp."
+}
