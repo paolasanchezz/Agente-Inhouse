@@ -28,7 +28,7 @@ const siteUrl = conversionUrl('/', utmContentFromPath(Astro.url.pathname), 'inst
     <nav class="footer-col" aria-label="Categorias">
       <p class="overline footer-col-title">Categorias</p>
       {categories.map((c) => (
-        <a href={`/categoria/${c.slug}`}>{c.label}</a>
+        <a href={c.href}>{c.label}</a>
       ))}
     </nav>
   </div>

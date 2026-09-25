@@ -14,7 +14,8 @@
 #   metaTitle     título de SEO alternativo (até 65 chars) se quiser diferente do title
 #   updatedDate   data da última atualização (AAAA-MM-DD)
 #   author        default: "Equipe Buzzcreators"
-#   category      rótulo principal (aparece no card e na trilha)
+#   category      rótulo principal (aparece no card e na trilha).
+#                 Case de cliente: use 'Cases' (entra na seção /cases do menu)
 #   faq           perguntas e respostas (vira FAQ na página + FAQPage schema)
 #   cover         /assets/algum-arquivo.png (1200x630). Sem capa, usa o OG padrão.
 #   coverAlt      texto alternativo da capa (obrigatório se houver cover)

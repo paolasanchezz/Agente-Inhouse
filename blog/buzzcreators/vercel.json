@@ -12,6 +12,11 @@
       ],
       "destination": "https://blog.buzzcreators.com.br/$1",
       "permanent": true
+    },
+    {
+      "source": "/categoria/cases",
+      "destination": "/cases",
+      "permanent": true
     }
   ],
   "headers": [

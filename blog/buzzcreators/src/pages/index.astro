@@ -24,7 +24,7 @@ const categories = await getCategories();
   <nav class="container cat-nav" aria-label="Categorias">
     <ul class="cat-chips">
       {categories.map((c) => (
-        <li><a href={`/categoria/${c.slug}`}>{c.label}</a></li>
+        <li><a href={c.href}>{c.label}</a></li>
       ))}
     </ul>
   </nav>

@@ -32,5 +32,6 @@ export const NOINDEX = (import.meta.env.PUBLIC_NOINDEX ?? 'true') !== 'false';
 // Navegação principal do blog
 export const NAV_LINKS = [
   { href: '/', label: 'Início' },
+  { href: '/cases', label: 'Cases' },
   { href: '/sobre', label: 'Sobre' },
 ];

@@ -6,6 +6,7 @@ import Tldr from '../components/Tldr.astro';
 import Faq from '../components/Faq.astro';
 import { blogPosting, breadcrumb, faqPage } from '../lib/schema';
 import { slugify } from '../lib/slug';
+import { categoryHref } from '../lib/taxonomy';
 import { OG_DEFAULT, SITE_TITLE } from '../consts';
 import '../styles/prose.css';
 
@@ -21,7 +22,7 @@ const image = new URL(d.cover ?? OG_DEFAULT, site);
 const metaTitle = d.metaTitle ?? `${d.title} | ${SITE_TITLE}`;
 const primaryLabel = d.category ?? d.tags[0];
 const primaryHref = d.category
-  ? `/categoria/${slugify(d.category)}`
+  ? categoryHref(d.category)
   : `/tag/${slugify(d.tags[0])}`;
 
 const schemas: Record<string, unknown>[] = [
@@ -39,7 +40,7 @@ const schemas: Record<string, unknown>[] = [
   breadcrumb([
     { name: 'Blog', url: site.toString() },
     ...(d.category
-      ? [{ name: d.category, url: new URL(`/categoria/${slugify(d.category)}`, site).toString() }]
+      ? [{ name: d.category, url: new URL(categoryHref(d.category), site).toString() }]
       : []),
     { name: d.title, url: url.toString() },
   ]),

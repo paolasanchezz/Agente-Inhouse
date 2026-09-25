@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { slugify } from '../lib/slug';
+import { SITE_TITLE } from '../consts';
+
+// Seção de cases de clientes (menu principal). Entra aqui todo post com
+// category: 'Cases' no frontmatter; a /categoria/cases redireciona pra cá.
+const posts = (
+  await getCollection(
+    'blog',
+    ({ data }) => !data.draft && !!data.category && slugify(data.category) === 'cases'
+  )
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title={`Cases de clientes | ${SITE_TITLE}`}
+  description="Cases de clientes do Buzzcreators: como marcas estruturam e escalam o marketing de influência, e os resultados de cada operação."
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Trilha de navegação">
+        <a href="/">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>Cases</span>
+      </nav>
+      <p class="overline">Cases</p>
+      <h1>Cases de clientes</h1>
+      <p class="hero-sub">
+        Como marcas estruturam e escalam o marketing de influência com o Buzzcreators, e os
+        resultados de cada operação.
+      </p>
+    </div>
+  </section>
+
+  <section class="container posts">
+    <div class="post-grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--c-ink-soft);
+    margin-bottom: var(--space-md);
+  }
+  .crumbs a {
+    color: var(--c-ink-soft);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--c-purple);
+  }
+  .posts {
+    padding-bottom: var(--space-2xl);
+  }
+</style>
