@@ -5,7 +5,7 @@ LABEL: META DESCRIPTION: Evento presencial gratuito em São Paulo, 12/11, das 9h
 === HERO ===
 OVERLINE: EVENTO PRESENCIAL · SÃO PAULO · 12 DE NOVEMBRO
 H1: Gestão de canais de atendimento com IA em 2027
-SUB: Uma manhã com casos práticos de empresas que centralizaram seus canais e agilizaram o suporte com IA, sem aumentar o time nem embarcar num projeto de meses. E quem estiver na sala ainda confere as novidades da plataforma Cxpress, divulgadas no próprio evento.
+SUB: Uma manhã com casos práticos de empresas que centralizaram seus canais e agilizaram o suporte e vendas com IA, sem aumentar o time nem embarcar num projeto de meses. E quem estiver na sala ainda confere as novidades da plataforma Cxpress, divulgadas no próprio evento.
 LABEL: 12/11 · 9h às 12h · São Paulo - SP
 CTA: Garantir minha vaga
 
