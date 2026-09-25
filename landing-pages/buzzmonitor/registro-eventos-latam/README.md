@@ -1,6 +1,6 @@
 # LP Buzzmonitor — registro-eventos-latam
 
-**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (revertida) · **Hero laranja:** v2.7 · **H1 em branco e CTA roxo:** v2.8 (2026-09-09, vigente)
+**Gerado em:** 2026-09-08 (v1) · **Restyle premium:** v2 · **Camada halftone:** v2.1 · **Sistema de bloco de cor do manual:** v2.2 · **Hero como bloco de cor:** v2.4 · **Oferta em branco:** v2.5 · **Hero com metricas animadas:** v2.6 (revertida) · **Hero laranja:** v2.7 · **H1 em branco e CTA roxo:** v2.8 (2026-09-09) · **Redesenho editorial calido + Tami no hero:** v3 (2026-09-25, vigente)
 **Copy-fonte:** `copy.txt` (output de `/lp-preparar`, fonte = LP legada `https://contenido.getbuzzmonitor.com/registro-eventos`)
 **Regiao:** LATAM (ES-419) · GTM `GTM-MKQBX2MG`
 **Publicada em:** https://content.buzzmonitor.com/registro-eventos-latam (2026-09-09)
@@ -31,7 +31,35 @@ A LP legada do GreatPages continua no ar em paralelo (nao foi desligada, nem red
 | 9 | CTA final | label, H2, body, CTA | **roxo** (`#390155`) |
 | 10 | Footer | logo, contato, legal | branco (hairline) |
 
-## Decisoes de design (sistema v2 — premium / quase monocromo)
+## Sistema v3 (2026-09-25, vigente): editorial calido / minimalista
+
+Pedido do Ulises: redesenhar a LP inteira mantendo a copy, com visual "atrativo, mas minimalista,
+sem perder a identidade Buzzmonitor". Copy, ordem e contagem de blocos intactas: diff automatico
+dos textos visiveis v2.8 x v3 = **146/146 strings identicas**. Head (SEO, GTM, JSON-LD, OG) e o
+script do formulario (endpoint GreatPages, ids de campo, `generate_lead`) foram copiados sem alteracao.
+
+- **Paleta:** roxo `#390155` (tinta), laranja `#EB7C2E` (faisca) e papel morno `#FBF7F2` no lugar
+  do branco puro em hero/secoes alternadas. Texto laranja em fundo claro segue `#B85210`.
+- **Identidade pelas formas do manual, em dose unica:** quarto de circulo laranja no canto do hero,
+  sunburst roxo girando devagar (60s, desligado em reduced-motion), sunburst laranja como marcador
+  de secao e sunburst fantasma (3,5%) no CTA final. Sai o halftone e as composicoes de blocos da v2.2.
+- **Tami no hero:** recorte da arte 3D (`assets/tami.webp` + `tami.png` fallback de 640px de altura),
+  inteiro e na frente, em pe no piso do bloco e encostado no canto inferior esquerdo do card.
+  Empilhado (<=980px) fica em pe sobre o canto direito do card. A captura cortava a laptop na borda:
+  a cunha que faltava do tampo foi reconstruida no recorte (bordas prolongadas em perspectiva, textura e aro amostrados do proprio tampo), por isso o asset tem 797x972. Fonte: captura de um flyer externo (750px de largura), sem arquivo original;
+  se aparecer o original, trocar.
+- **H1:** 2a frase com realce de marcador pessego (`#FFD5C3`) atras do texto roxo, em vez de bloco de cor.
+- **Componentes:** botoes pilula; cards da oferta em papel, sem borda; "Lo que te llevas" em coluna
+  editorial (titulo sticky a esquerda, lista grande a direita); soluciones em chips; coluna
+  Enterprise da tabela com cabecalho roxo e fundo lilas; accordion em cartao de papel; logos em
+  tiles de papel.
+- **Ritmo:** papel, branco, papel, **roxo (unica secao escura)**, branco (pausa), papel, branco,
+  branco com hairline, **gradiente (unico)**.
+- **Icones:** sprite SVG unico (`<symbol>` + `<use>`), o HTML caiu de 1692 para ~1470 linhas.
+- **Gates:** em-dash 0 · JSON-LD valido · `check_gtm_region.py` OK · `bump_mobile_type.py` aplicado
+  (4 clamps + 6 regras mobile) · sem scroll horizontal em 390/1024/1280/1440.
+
+## Decisoes de design (historico: sistema v2 — premium / quase monocromo)
 
 Referencia pedida pelo Victor: Apple, Vercel, ManyChat. O que isso significou na pratica:
 tirar cor e sombra da pagina e deixar tipografia, hairline e respiro fazerem o trabalho.
