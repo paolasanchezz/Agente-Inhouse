@@ -13,7 +13,7 @@ CTA: Garantir minha vaga
 H2: Atendimento em 2027 não é mais sobre responder rápido.
 BODY: É sobre responder no canal certo, com contexto, sem o cliente repetir a mesma história três vezes.
 BODY: Quem resolveu isso não contratou mais gente. Organizou os canais num painel só e colocou IA pra trabalhar onde dói.
-BODY: Neste encontro a gente abre a operação real: o que funcionou, o que deu errado e os números por trás de quem já unificou WhatsApp, e-mail, redes e chat.
+BODY: Neste encontro a gente abre a operação real: o que funcionou, o que deu errado e os números por trás de quem já unificou WhatsApp, e-mail, redes e webchat.
 
 === NOVIDADES ===
 OVERLINE: NOVIDADES DA PLATAFORMA
@@ -33,7 +33,7 @@ BODY: [MAPA · Google Maps embed do endereço Av. Paulista, 688, São Paulo]
 
 === APRENDIZADOS ===
 H2: O que você leva deste encontro
-LIST ITEM: Como empresas centralizaram WhatsApp, e-mail, redes e chat numa operação só
+LIST ITEM: Como empresas centralizaram WhatsApp, e-mail, redes, webchat e telefonia numa operação só
 LIST ITEM: Onde a IA reduz o tempo de resposta de verdade, e onde ela só atrapalha
 LIST ITEM: Os números por trás da mudança: demandas resolvidas por hora, tempo médio, gargalos
 LIST ITEM: Um caminho claro pra organizar seus canais sem aumentar o time
@@ -60,7 +60,7 @@ LABEL: Em breve
 
 === SOBRE-CXPRESS ===
 H2: Sobre a Cxpress
-BODY: A Cxpress centraliza WhatsApp, e-mail, redes sociais e chat num único painel, com IA que sugere respostas, classifica e prioriza atendimentos. Mais conversas resolvidas com o mesmo time, sem trocar de ferramenta o dia inteiro.
+BODY: A Cxpress centraliza WhatsApp, e-mail, redes sociais, webchat e telefonia num único painel, com IA que sugere respostas, classifica e prioriza atendimentos. Mais conversas resolvidas com o mesmo time, sem trocar de ferramenta o dia inteiro.
 LABEL: Clientes que confiam na Cxpress
 
 === INSCRICAO ===
