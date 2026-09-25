@@ -46,6 +46,12 @@ Nova edição da série de eventos presenciais exclusivos para clientes Buzzmoni
   2. Versão final: o selo saiu do header e o texto virou parte do chip já existente no topo do Hero — `"Buzzconnect - Evento exclusivo para clientes Buzzmonitor"` (hífen normal, não em-dash) no lugar do texto antigo do chip. Header voltou ao normal (só logo + CTA), sem risco de colisão.
 - `copy.txt` atualizado com os dados confirmados dos palestrantes (substitui a marcação `[PENDENTE]` anterior).
 
+**Ajuste 2026-09-25 (inscrições encerradas, evento lotado):**
+- Embed Jotform (`250493444653662`) removido da seção `#form` e trocado por um cartão "Inscrições encerradas" (selo "Evento lotado" + aviso de vagas preenchidas), no mesmo estilo sticker da página (borda tinta + sombra sólida laranja).
+- Todos os botões "Quero participar" (header, hero, Aprendizados, Urgência) viraram "Inscrições encerradas", com borda tracejada e sem o pulso de CTA (`.btn--closed` / `.btn--closed-ondark`). Continuam apontando pra `#form`, onde fica o aviso.
+- CTA fixo do mobile (`#mobileCta`) removido.
+- Header no mobile (≤520px): botão e logo um pouco menores, porque o texto novo é mais comprido e passava da borda da tela em 375px.
+
 ## Estrutura
 
 - HERO — chip de evento, H1 (com destaque em gradiente na cauda do texto), contexto (3 parágrafos), card-ticket "sticker" (data/horário/local + selo de data + contador regressivo, JS, alvo 01/10/2026 14h BRT, fallback noscript)

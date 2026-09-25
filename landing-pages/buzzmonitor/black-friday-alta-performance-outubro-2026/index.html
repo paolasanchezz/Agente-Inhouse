@@ -177,6 +177,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .site-header.is-scrolled{ background:rgba(255,255,255,.78); border-bottom-color:var(--c-border); box-shadow:0 8px 24px -18px rgba(18,18,18,.35) }
   .navbar{ display:flex; align-items:center; justify-content:space-between; padding-block:18px }
   .navbar__logo img{ height:32px; width:auto }
+  @media (max-width:520px){ .navbar{ gap:12px } .navbar__logo img{ height:26px } .navbar .btn{ font-size:14px; padding:10px 16px } }
 
   /* ============ HERO ============ */
   .hero{ position:relative; background:var(--c-cream); overflow:hidden; scroll-margin-top:88px; padding-block:0 }
@@ -345,8 +346,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-final__sub{ font-family:var(--ff-sub); font-weight:500; font-size:clamp(19px,2vw,22px); margin-top:18px; color:var(--c-orange) }
   .cta-final__body{ margin-top:16px; color:rgba(255,255,255,.88); max-width:52ch; font-size:18px }
 
-  /* Jotform embed wrapper (canonico), sem padding/background/border: o provedor ja vem com card proprio */
-  .jotform-embed iframe{ width:100% !important; max-width:100% !important; border:0; display:block }
+  /* Inscricoes encerradas (substitui o embed Jotform — evento lotado) */
+  .closed-card{ background:var(--c-cream); color:var(--c-ink); border:2.5px solid var(--c-ink); border-radius:var(--radius-lg); box-shadow:8px 8px 0 var(--c-orange); padding:40px 32px; text-align:center }
+  .closed-card__badge{ display:inline-flex; align-items:center; gap:8px; font-family:var(--ff-sub); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; background:var(--c-orange); color:var(--c-ink); border:2px solid var(--c-ink); padding:6px 14px; border-radius:999px; transform:rotate(-3deg) }
+  .closed-card__title{ font-family:var(--ff-display); font-weight:900; font-size:clamp(30px,3.4vw,40px); line-height:1.05; margin-top:22px; color:var(--c-ink) }
+  .closed-card__text{ margin-top:14px; font-size:18px; color:var(--c-ink-soft) }
+  .btn--closed{ background:transparent; color:var(--c-ink); border:1.5px dashed var(--c-ink); animation:none; box-shadow:none }
+  .btn--closed:hover{ background:var(--c-ink); color:#fff; transform:none }
+  .btn--closed-ondark{ background:transparent; color:#fff; border:1.5px dashed rgba(255,255,255,.7); animation:none }
+  .btn--closed-ondark:hover{ background:#fff; color:var(--c-ink) }
 
   /* ============ CONTATO ============ */
   .contato{ background:var(--c-cream); text-align:center }
@@ -403,7 +411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://buzzmonitor.com/" class="navbar__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
       <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="150" height="32">
     </a>
-    <a href="#form" class="btn btn--ghost">Quero participar</a>
+    <a href="#form" class="btn btn--closed">Inscrições encerradas</a>
   </div>
 </header>
 
@@ -424,7 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p>Neste encontro exclusivo para clientes, vamos mostrar, na prática, como utilizar a Buzzmonitor para preparar sua operação para a Black Friday.</p>
           <p>Vamos abordar boas práticas para monitorar campanhas e a repercussão da marca, organizar o atendimento no pré e no pós-venda, acompanhar indicadores e identificar rapidamente sinais de possíveis crises.</p>
         </div>
-        <a href="#form" class="btn btn--primary">Quero participar</a>
+        <a href="#form" class="btn btn--closed">Inscrições encerradas</a>
       </div>
 
       <div class="hero-card-wrap reveal">
@@ -513,7 +521,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>A Black Friday acontece em poucas horas, mas a preparação começa muito antes.</p>
       </div>
       <p class="learn-outro reveal">Participe do encontro e descubra como usar a Buzzmonitor para transformar dados, monitoramento e atendimento em uma operação mais preparada para a Black Friday.</p>
-      <div class="learn-cta reveal"><a href="#form" class="btn btn--ghost">Quero participar</a></div>
+      <div class="learn-cta reveal"><a href="#form" class="btn btn--closed">Inscrições encerradas</a></div>
     </div>
   </section>
 
@@ -545,7 +553,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="urgencia__lead">Não espere a Black Friday começar para descobrir onde estão os riscos.</p>
       <p class="urgencia__body">Prepare sua marca para antecipar demandas, responder mais rápido, tomar decisões baseadas em dados e entregar uma experiência melhor em todos os pontos da jornada.</p>
       <h3 class="urgencia__cta-line">Participe do evento e prepare sua estratégia para a Black Friday.</h3>
-      <div class="urgencia__actions"><a href="#form" class="btn btn--ghost-ondark">Quero participar</a></div>
+      <div class="urgencia__actions"><a href="#form" class="btn btn--closed-ondark">Inscrições encerradas</a></div>
     </div>
   </section>
 
@@ -669,8 +677,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="cta-final__sub">Campanhas fortes atraem consumidores. Experiências consistentes fazem eles voltarem.</p>
         <p class="cta-final__body">Prepare sua marca para lidar com o maior volume de conversas, interações e oportunidades do ano.</p>
       </div>
-      <div class="jotform-embed reveal">
-        <script type="text/javascript" src="https://form.jotform.com/jsform/250493444653662"></script>
+      <div class="closed-card reveal" role="status">
+        <span class="closed-card__badge">Evento lotado</span>
+        <p class="closed-card__title">Inscrições encerradas</p>
+        <p class="closed-card__text">Todas as vagas deste encontro foram preenchidas. Obrigado pelo interesse!</p>
       </div>
     </div>
   </section>
@@ -709,10 +719,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer__bottom"><span>© 2026 Buzzmonitor. Todos os direitos reservados.</span></div>
   </div>
 </footer>
-
-<div class="mobile-cta" id="mobileCta" aria-hidden="true">
-  <a href="#form" class="btn btn--primary">Quero participar</a>
-</div>
 
 <script>
 (function(){
