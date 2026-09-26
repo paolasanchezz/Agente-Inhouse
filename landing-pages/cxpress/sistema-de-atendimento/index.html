@@ -89,6 +89,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"></noscript>
 
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <!-- Formulario: source do Jotform 261034073026647 hospedado na LP (versao aprovada pelo Bruno em 2026-09-25) -->
+  <script src="./assets/form-cxpress.js" defer></script>
 
   <style>
   /* Base visual, tokens, navbar, formulario, botao flutuante e rodape: mesmos
@@ -1246,11 +1248,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var carregaJot = function(){
       if (jotHost.dataset.carregado) return;
       jotHost.dataset.carregado = '1';
-      var sc = document.createElement('script');
-      sc.type = 'text/javascript';
-      sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
-      sc.onerror = contingencia;
-      jotHost.appendChild(sc);
+      /* O formulario vem do assets/form-cxpress.js (source aprovado do Jotform
+         num iframe isolado, altura por postMessage). Sem ele, contingencia. */
+      if (window.cxMountForm) { window.cxMountForm(jotHost); } else { contingencia(); }
       setTimeout(function(){ if (!jotHost.querySelector('iframe')) contingencia(); }, 6000);
     };
     /* Rede de seguranca: se o jsform nao executar (bloqueador, rede), cai para
@@ -1339,7 +1339,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     modal.hidden = false;
     fab.setAttribute('aria-expanded','true');
     document.body.classList.add('wa-lock');
-    if(!frame.getAttribute('src')){ frame.setAttribute('src', frame.getAttribute('data-src')); }
+    /* Mesmo source aprovado da secao de contato; sem o script, cai no Jotform publico. */
+    if(!frame.getAttribute('src') && !frame.hasAttribute('srcdoc')){
+      if(window.cxFillFrame){ window.cxFillFrame(frame); } else { frame.setAttribute('src', frame.getAttribute('data-src')); }
+    }
     fechaBtn.focus();
   }
   function fechar(){

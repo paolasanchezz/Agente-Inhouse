@@ -141,6 +141,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"></noscript>
 
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <!-- Formulario: source do Jotform 261034073026647 hospedado na LP (versao aprovada pelo Bruno em 2026-09-25) -->
+  <script src="./assets/form-cxpress.js" defer></script>
 
   <style>
   /* Base visual, tokens, navbar, formulario, botao flutuante e rodape: mesmos
@@ -869,6 +871,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .kb__head em{font-size:13px}
   }
 
+  /* ===== Hero centrado (LP de chamados, referencia Albato) ===== */
+  .hero--c{padding:64px 0 0;background-color:#F6F8FD;
+    background-image:linear-gradient(rgba(35,41,96,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(35,41,96,.055) 1px,transparent 1px);
+    background-size:80px 80px;background-position:center top}
+  .hero--c::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,#fff);pointer-events:none}
+  .hc{position:relative;z-index:2;text-align:center}
+  .hc__switch{display:inline-flex;align-items:center;gap:6px;padding:6px;margin:0;border:1px solid var(--rule);border-radius:14px;background:#fff;box-shadow:0 10px 24px -18px rgba(35,41,96,.5);font-family:var(--font-display);font-weight:700;font-size:14px;line-height:1.2}
+  .hc__switch span{padding:8px 14px;border-radius:9px;color:var(--neutral-700)}
+  .hc__switch .is-on{background:var(--primary-dark);color:#fff}
+  .hc h1{margin:30px auto 0;font-size:clamp(34px,4.1vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.08;max-width:none;text-wrap:initial}
+  .hc .hero-body{margin:24px auto 0;max-width:62ch;text-align:center}
+  .hc .hero-actions{justify-content:center;margin-top:30px}
+  .hc .hero-trust{justify-content:center;margin-top:20px;font-size:14px;color:var(--neutral-500)}
+  .hc__fly{position:absolute;z-index:3;display:grid;place-items:center;border-radius:50%;background:#fff;box-shadow:0 20px 40px -20px rgba(35,41,96,.45),0 0 0 1px rgba(35,41,96,.05);animation:uiFloat 6.5s ease-in-out infinite}
+  .hc__fly svg{width:46%;height:46%}
+  .hc__fly--1{width:92px;height:92px;left:0;top:92px}
+  .hc__fly--2{width:62px;height:62px;left:96px;top:236px;animation-delay:1.3s}
+  .hc__fly--3{width:64px;height:64px;right:10px;top:120px;animation-delay:2.1s}
+  .hc__fly--4{width:88px;height:88px;right:70px;top:250px;animation-delay:.7s}
+  .hc__visual{max-width:920px;margin:56px auto 0;text-align:left;padding-bottom:88px}
+  .hc__visual .lc{bottom:36px}
+  @media (max-width:1180px){.hc__fly{display:none}}
+  @media (max-width:640px){
+    .hero--c{padding-top:44px;background-size:56px 56px}
+    .hc__switch{font-size:12.5px;gap:4px;padding:5px}
+    .hc__switch span{padding:7px 10px}
+    .hc h1{font-size:34px;margin-top:24px}
+    .hc__br{display:none}
+    .hc .hero-body{text-align:left}
+    .hc .hero-actions .btn{width:100%}
+    .hc .hero-trust{justify-content:flex-start;text-align:left}
+    .hc__visual{margin-top:40px;padding-bottom:56px}
+  }
+
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
   .skip-link{ font-size:16px; }
@@ -1414,11 +1450,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var carregaJot = function(){
       if (jotHost.dataset.carregado) return;
       jotHost.dataset.carregado = '1';
-      var sc = document.createElement('script');
-      sc.type = 'text/javascript';
-      sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
-      sc.onerror = contingencia;
-      jotHost.appendChild(sc);
+      /* O formulario vem do assets/form-cxpress.js (source aprovado do Jotform
+         num iframe isolado, altura por postMessage). Sem ele, contingencia. */
+      if (window.cxMountForm) { window.cxMountForm(jotHost); } else { contingencia(); }
       setTimeout(function(){ if (!jotHost.querySelector('iframe')) contingencia(); }, 6000);
     };
     /* Rede de seguranca: se o jsform nao executar (bloqueador, rede), cai para
@@ -1528,7 +1562,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     modal.hidden = false;
     fab.setAttribute('aria-expanded','true');
     document.body.classList.add('wa-lock');
-    if(!frame.getAttribute('src')){ frame.setAttribute('src', frame.getAttribute('data-src')); }
+    /* Mesmo source aprovado da secao de contato; sem o script, cai no Jotform publico. */
+    if(!frame.getAttribute('src') && !frame.hasAttribute('srcdoc')){
+      if(window.cxFillFrame){ window.cxFillFrame(frame); } else { frame.setAttribute('src', frame.getAttribute('data-src')); }
+    }
     fechaBtn.focus();
   }
   function fechar(){

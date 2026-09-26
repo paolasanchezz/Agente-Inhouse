@@ -53,3 +53,12 @@ Títulos, subtítulos e textos são os da copy-fonte, sem reescrita. As notas de
 - 1440px e 390px: sem scroll horizontal; H1 a 34px no mobile (piso §20)
 - `bump_mobile_type.py` aplicado; `check_mobile_type.py`: só o skip-link fora da tela (intencional)
 - `check_gtm_region.py`: aviso (selo grandfathered), sem bloqueio
+
+## 2026-09-26 — formulário trocado pelo HTML aprovado
+
+A pedido do Bruno, o formulário (Jotform `261034073026647`) passou a ser o HTML que ele enviou: Seu nome, E-mail corporativo, Sua empresa, Qual seu cargo? (dropdown), Seu WhatsApp, checkbox de newsletter e botão Enviar, com labels ocultos e campos arredondados. Antes a LP carregava o `jsform` público, que estava numa versão diferente (sem o campo de cargo).
+
+- O source fica em `assets/form-cxpress.js` e é montado num iframe `srcdoc` isolado (mesmo mecanismo do `form-cxpress-v3.js` das LPs irmãs na Leadpages), com a altura informada por `postMessage`. Serve a seção de contato e o modal do botão flutuante (`cxFillFrame`).
+- Removida do HTML enviado só a linha `JotForm.ownerView=true`, que veio da sessão logada no Jotform.
+- Plano B: só troca para `form.jotform.com/261034073026647` se o formulário não carregou dentro do iframe em 12 s. Antes (v3) trocava após 6 s sem mensagem de altura, o que numa aba em segundo plano levava o visitante para a versão antiga do form.
+- Na Leadpages, o mesmo arquivo está na biblioteca da org como `form-cxpress-v5.js` (`/api/library/pc6qqsnx4bcxrggnxvta0aqz`).
