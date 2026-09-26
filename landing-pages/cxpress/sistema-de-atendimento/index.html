@@ -225,11 +225,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     -webkit-mask-composite:source-in;mask-composite:intersect}
   .hero:hover .hero__dots{opacity:.95}
   @media (hover:none),(pointer:coarse){.hero__dots{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 66%);mask-image:linear-gradient(90deg,#000 0%,#000 40%,transparent 66%);opacity:.3}}
-  .hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:48px;align-items:center}
-  .hero h1{font-size:clamp(36px,3.2vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.1}
-  .hero h1 .mark{color:#3556A8;background-image:linear-gradient(var(--warning),var(--warning));background-repeat:no-repeat;background-position:0 92%;background-size:100% .12em}
-  @media (prefers-reduced-motion:no-preference){.hero h1 .mark{animation:markDraw .9s var(--ease-out) .35s both}}
-  @keyframes markDraw{from{background-size:0% .12em}}
+  .hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;max-width:1320px}
+  .hero h1{font-size:clamp(36px,3vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.1}
+  .hero h1 .mark{color:#3556A8}
   .hero-body{font-size:clamp(18px,1.35vw, 19px);margin-top:24px;max-width:50ch}
   .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px;align-items:center}
   .hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--primary-dark)}
@@ -238,7 +236,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Cena do hero: fila de tickets (tela) + painel de canais + tickets novos
      chegando de cada canal. Copy pedia "fila de atendimento + canais + tickets". */
-  .hv{position:relative;padding:36px 0 44px 64px}
+  .hv{position:relative;padding:40px 8px 48px 40px}
   .hv::before{content:"";position:absolute;inset:-6% -14% -10% 4%;z-index:0;border-radius:40px;
     background:radial-gradient(46% 46% at 60% 40%,rgba(74,105,189,.30) 0%,rgba(74,105,189,0) 70%),radial-gradient(40% 40% at 30% 75%,rgba(241,169,8,.22) 0%,rgba(241,169,8,0) 70%);filter:blur(6px)}
   .hv .frame{position:relative;z-index:1;transform:rotate(-.6deg)}
