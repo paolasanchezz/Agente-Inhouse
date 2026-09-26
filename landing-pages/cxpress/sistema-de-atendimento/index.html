@@ -303,6 +303,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .soft__visual .frame{transform:rotate(.5deg)}
   .soft__recent{position:absolute;z-index:3;right:-22px;bottom:0;width:48%;max-width:280px;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 24px 44px -18px rgba(35,41,96,.45),0 0 0 1px rgba(35,41,96,.06)}
   .soft__recent img{display:block;width:100%;height:auto}
+  /* Bento: tela num bloco grande + recursos em cards que fecham o retangulo */
+  .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:56px}
+  .bento__screen{position:relative;grid-column:1/3;grid-row:1/3;min-height:430px;border-radius:24px;overflow:hidden;isolation:isolate;background:radial-gradient(120% 90% at 0% 0%,#DCE5FF 0%,#EEF2FF 45%,#F7F9FF 100%);border:1px solid rgba(74,105,189,.14)}
+  .bento__screen::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(74,105,189,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(74,105,189,.07) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:linear-gradient(160deg,#000 20%,transparent 75%);mask-image:linear-gradient(160deg,#000 20%,transparent 75%)}
+  .bento__screen .frame{position:absolute;left:34px;top:34px;width:128%;transition:transform .6s var(--ease-out)}
+  .bento__screen:hover .frame{transform:translate(-10px,-6px)}
+  .bento__screen .soft__recent{left:22px;right:auto;bottom:22px;width:46%;max-width:260px}
+  .bento__card{position:relative;display:flex;flex-direction:column;gap:14px;padding:26px 24px;border-radius:22px;background:#fff;border:1px solid rgba(35,41,96,.1);box-shadow:0 1px 2px rgba(35,41,96,.04);transition:transform .35s var(--ease-out),box-shadow .35s ease,border-color .35s ease}
+  .bento__card:hover{transform:translateY(-4px);border-color:rgba(74,105,189,.4);box-shadow:0 22px 40px -22px rgba(35,41,96,.35)}
+  .bento__card h3{font-size:19px;font-weight:700}
+  .bento__card p{margin-top:6px;font-size:16.5px;line-height:1.55}
+  .bento__ico{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--primary-tint);color:var(--primary);transition:background .25s ease,color .25s ease,transform .35s var(--ease-out)}
+  .bento__ico svg{width:22px;height:22px}
+  .bento__card:hover .bento__ico{background:var(--primary);color:#fff;transform:rotate(-6deg) scale(1.06)}
+  .bento__card--wide{grid-column:span 2;flex-direction:row;align-items:center;gap:20px}
+  .bento__card--warm{background:linear-gradient(120deg,#FFF3E8 0%,#FFFFFF 70%);border-color:rgba(239,134,60,.22)}
+  .bento__card--warm .bento__ico{background:#FFE3CC;color:#C4600F}
+  .bento__card--warm:hover{border-color:rgba(239,134,60,.55)}
+  .bento__card--warm:hover .bento__ico{background:#EF863C;color:#232960}
+  .bento__card--cool{background:linear-gradient(120deg,#EAF0FF 0%,#FFFFFF 70%);border-color:rgba(74,105,189,.2)}
+  .bento__card--cool .bento__ico{background:#fff;box-shadow:0 0 0 1px rgba(74,105,189,.18)}
   /* Holofote sequencial sobre a tela (fila -> conversa -> historico) */
   .spot-wrap{position:absolute;left:0;right:0;bottom:0;top:38px;overflow:hidden;pointer-events:none;z-index:2}
   .spot{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:0 0;border-radius:26px;background:rgba(74,105,189,.06);box-shadow:0 0 0 9999px rgba(20,26,66,.30);animation:spotMove 12s cubic-bezier(.6,0,.2,1) infinite}
@@ -618,6 +639,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .ba{grid-template-columns:1fr}
     .ba__arrow{transform:rotate(90deg);justify-self:center}
     .chan__visual{display:none}
+    .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .bento__screen{grid-column:1/-1;grid-row:auto;min-height:0;aspect-ratio:16/10}
   }
   @media (max-width:640px){
     :root{--pad-sec:80px}
@@ -636,6 +659,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .pillars{gap:40px}
     .pillars::before{display:none}
     .soft__recent{right:-6px;width:58%}
+    .bento{grid-template-columns:1fr;gap:14px;margin-top:40px}
+    .bento__card--wide{grid-column:auto;flex-direction:column;align-items:flex-start;gap:14px}
+    .bento__screen{aspect-ratio:auto;padding:18px 18px 64px}
+    .bento__screen .frame{position:relative;left:0;top:0;width:100%}
+    .bento__screen .soft__recent{left:12px;bottom:12px;width:58%}
+    .bento__card{padding:22px 20px}
     .spot-wrap{display:none}
     .flow{padding:24px 16px}
     .flow__chans{grid-template-columns:repeat(2,1fr)}
@@ -673,6 +702,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chan-card__badge{ font-size:13px; }
   .chan-card p{ font-size:17px; }
   .feat-item p{ font-size:17px; }
+  .bento__card p{ font-size:17px; }
   .flow__client{ font-size:16px; }
   .flow__chan{ font-size:14px; }
   .hist__head{ font-size:15px; }
@@ -884,32 +914,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= 3. SOFTWARE ================= -->
   <section class="sec--white" aria-labelledby="soft-title">
-    <div class="wrap split">
-      <div class="soft__visual reveal" data-fx>
-        <div class="frame">
-          <div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <img src="./assets/telas/tela-principal.svg" alt="Tela de atendimento da Cxpress com a fila de tickets, a conversa aberta e os dados do cliente ao lado" width="1925" height="1148" loading="lazy">
-          <div class="spot-wrap" aria-hidden="true"><span class="spot"></span></div>
-        </div>
-        <div class="soft__recent ui-float" aria-hidden="true">
-          <img src="./assets/ui/card-tickets-recentes.webp" alt="" width="620" height="418" loading="lazy">
-        </div>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Software de atendimento</span>
+        <h2 id="soft-title">Software de Atendimento ao Cliente para Organizar toda a Operação</h2>
+        <p class="sec-lead">Organize filas, distribua atendimentos entre agentes e setores e acompanhe cada solicitação até sua resolução. Em vez de gerenciar conversas isoladas em diferentes canais, sua equipe passa a trabalhar em uma operação centralizada.</p>
       </div>
-      <div class="sec-copy">
-        <div class="reveal">
-          <span class="eyebrow">Software de atendimento</span>
-          <h2 id="soft-title">Software de Atendimento ao Cliente para Organizar toda a Operação</h2>
-          <p style="margin-top:18px">Organize filas, distribua atendimentos entre agentes e setores e acompanhe cada solicitação até sua resolução.</p>
-          <p>Em vez de gerenciar conversas isoladas em diferentes canais, sua equipe passa a trabalhar em uma operação centralizada.</p>
+      <div class="bento stagger">
+        <div class="bento__screen reveal" data-fx>
+          <div class="frame">
+            <div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="./assets/telas/tela-principal.svg" alt="Tela de atendimento da Cxpress com a fila de tickets, a conversa aberta e os dados do cliente ao lado" width="1925" height="1148" loading="lazy">
+            <div class="spot-wrap" aria-hidden="true"><span class="spot"></span></div>
+          </div>
+          <div class="soft__recent ui-float" aria-hidden="true">
+            <img src="./assets/ui/card-tickets-recentes.webp" alt="" width="620" height="418" loading="lazy">
+          </div>
         </div>
-        <div class="feat-grid stagger">
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-inbox"/></svg></span><h3>Fila única de atendimento</h3><p>Visualize as solicitações recebidas em diferentes canais em um único ambiente.</p></div>
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-route"/></svg></span><h3>Distribuição automática</h3><p>Encaminhe atendimentos automaticamente para equipes e agentes.</p></div>
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-ticket"/></svg></span><h3>Tickets</h3><p>Organize cada solicitação e acompanhe seu status.</p></div>
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-history"/></svg></span><h3>Histórico do cliente</h3><p>Mantenha as interações anteriores acessíveis para sua equipe.</p></div>
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-tag"/></svg></span><h3>Tags e classificações</h3><p>Organize e categorize os atendimentos.</p></div>
-          <div class="feat-item reveal"><span class="feat-item__ico" aria-hidden="true"><svg><use href="#ico-reply"/></svg></span><h3>Respostas salvas</h3><p>Agilize respostas para situações recorrentes.</p></div>
-        </div>
+        <div class="bento__card reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-inbox"/></svg></span><div><h3>Fila única de atendimento</h3><p>Visualize as solicitações recebidas em diferentes canais em um único ambiente.</p></div></div>
+        <div class="bento__card reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-route"/></svg></span><div><h3>Distribuição automática</h3><p>Encaminhe atendimentos automaticamente para equipes e agentes.</p></div></div>
+        <div class="bento__card reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-ticket"/></svg></span><div><h3>Tickets</h3><p>Organize cada solicitação e acompanhe seu status.</p></div></div>
+        <div class="bento__card reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-history"/></svg></span><div><h3>Histórico do cliente</h3><p>Mantenha as interações anteriores acessíveis para sua equipe.</p></div></div>
+        <div class="bento__card bento__card--wide bento__card--warm reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-tag"/></svg></span><div><h3>Tags e classificações</h3><p>Organize e categorize os atendimentos.</p></div></div>
+        <div class="bento__card bento__card--wide bento__card--cool reveal"><span class="bento__ico" aria-hidden="true"><svg><use href="#ico-reply"/></svg></span><div><h3>Respostas salvas</h3><p>Agilize respostas para situações recorrentes.</p></div></div>
       </div>
     </div>
   </section>
