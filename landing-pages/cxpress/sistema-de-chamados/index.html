@@ -876,7 +876,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hc__fly--4{width:88px;height:88px;right:70px;top:250px;animation-delay:.7s}
   .hc__visual{max-width:920px;margin:56px auto 0;text-align:left;padding-bottom:88px}
   .hc__visual .lc{bottom:36px}
-  @media (max-width:1180px){.hc__fly{display:none}}
+  /* Avatares de clientes abrindo chamado (referencia Albato): mesma moldura
+     dos selos de canal + selo de ticket no canto */
+  .hc__av{position:absolute;z-index:3;padding:4px;border-radius:50%;background:#fff;box-shadow:0 20px 40px -20px rgba(35,41,96,.45),0 0 0 1px rgba(35,41,96,.05);animation:uiFloat 6.5s ease-in-out infinite}
+  .hc__av>svg{display:block;width:100%;height:100%;border-radius:50%}
+  .hc__av i{position:absolute;right:-5px;bottom:-3px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--primary);color:#fff;box-shadow:0 0 0 3px #fff}
+  .hc__av i svg{width:14px;height:14px}
+  .hc__av--1{width:66px;height:66px;left:170px;top:6px;animation-delay:.4s}
+  .hc__av--2{width:60px;height:60px;right:170px;top:18px;animation-delay:1.8s}
+  .hc__av--3{width:58px;height:58px;right:0;top:352px;animation-delay:2.6s}
+  .hc__av--3 i{background:var(--wa-ink)}
+  @media (max-width:1180px){.hc__fly,.hc__av{display:none}}
   @media (max-width:640px){
     .hero--c{padding-top:44px;background-size:56px 56px}
     .hc__switch{font-size:12.5px;gap:4px;padding:5px}
@@ -995,6 +1005,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="hc__fly hc__fly--2" aria-hidden="true" style="color:#C13584"><svg><use href="#ico-ig"/></svg></span>
       <span class="hc__fly hc__fly--3" aria-hidden="true" style="color:#4A69BD"><svg><use href="#ico-mail"/></svg></span>
       <span class="hc__fly hc__fly--4" aria-hidden="true" style="color:#A85207"><svg><use href="#ico-phone"/></svg></span>
+      <span class="hc__av hc__av--1" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#FDE7D2"/><path d="M14 64c1-11 8-17 18-17s17 6 18 17z" fill="#4A69BD"/><path d="M27 41h10v8a5 5 0 0 1-10 0z" fill="#C98A5E"/><circle cx="32" cy="30" r="12" fill="#D9A07A"/><path d="M19 31c-1-10 5-17 13-17s14 6 13 16c-3-5-8-8-14-8-5 0-9 3-12 9z" fill="#3B2418"/><circle cx="27.5" cy="31" r="1.4" fill="#232960"/><circle cx="36.5" cy="31" r="1.4" fill="#232960"/><path d="M28.5 36.5c2 1.6 5 1.6 7 0" stroke="#232960" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg><i><svg><use href="#ico-ticket"/></svg></i></span>
+      <span class="hc__av hc__av--2" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#DCE5FF"/><path d="M17 26c0-9 7-15 15-15s15 6 15 15v22H17z" fill="#8A4B2A"/><path d="M13 64c1-11 8-17 19-17s18 6 19 17z" fill="#EF863C"/><path d="M27 40h10v8a5 5 0 0 1-10 0z" fill="#E8B48E"/><circle cx="32" cy="29" r="11.5" fill="#F2C4A0"/><path d="M20.5 28c1-8 6-12 11.5-12 6 0 11 4 11.5 11-5 0-10-2-13-6-2 4-6 6-10 7z" fill="#8A4B2A"/><circle cx="27.5" cy="30" r="1.4" fill="#232960"/><circle cx="36.5" cy="30" r="1.4" fill="#232960"/><path d="M28.5 35c2 1.6 5 1.6 7 0" stroke="#232960" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg><i><svg><use href="#ico-ticket"/></svg></i></span>
+      <span class="hc__av hc__av--3" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#D8F3E3"/><path d="M13 64c1-11 8-17 19-17s18 6 19 17z" fill="#232960"/><path d="M27 40h10v8a5 5 0 0 1-10 0z" fill="#7A4A2E"/><circle cx="32" cy="29" r="12" fill="#8F5A3A"/><path d="M20 28c0-8 5-13 12-13s12 5 12 13c-2-3-4-5-6-5-3 2-9 2-12 0-3 0-5 2-6 5z" fill="#1E1410"/><circle cx="27.5" cy="30" r="1.4" fill="#1E1410"/><circle cx="36.5" cy="30" r="1.4" fill="#1E1410"/><path d="M28.5 35.2c2 1.6 5 1.6 7 0" stroke="#1E1410" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg><i><svg><use href="#ico-check"/></svg></i></span>
       <p class="hc__switch"><span>Tickets, filas e SLA</span><span class="is-on">Sistema de chamados</span></p>
       <h1 id="hero-title">Sistema de Chamados e Tickets<br class="hc__br"> para Organizar seu Atendimento</h1>
       <p class="hero-body">Centralize solicitações, distribua tickets entre equipes e acompanhe cada chamado do primeiro contato até a resolução.</p>
