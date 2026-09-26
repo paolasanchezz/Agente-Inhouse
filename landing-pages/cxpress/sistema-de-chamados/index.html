@@ -139,6 +139,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --cta-green:#25D366;
     --cta-green-hover:#1EB855;
     --cta-ink:#232960;
+    /* CTA laranja da marca em degrade (pedido do Bruno, 2026-09-26). Texto navy:
+       5.2:1 sobre #EF863C e 7.3:1 sobre #F1A908. Texto branco reprovaria (2.6:1). */
+    --cta-grad:linear-gradient(135deg,#F1A908 0%,#EF863C 55%,#E8702A 100%);
     --danger:#C0392B;
     --success-text:#12703E;
     --neutral-700:#4B5670;
@@ -208,8 +211,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Botoes ---- */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:17px;padding:16px 27px;border-radius:var(--radius-btn);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
-  .btn--primary{background:var(--cta-green);color:var(--cta-ink);box-shadow:0 10px 26px rgba(20,120,60,.34)}
-  .btn--primary:hover{background:var(--cta-green-hover);color:var(--cta-ink);transform:translateY(-2px) scale(1.04);box-shadow:0 16px 34px rgba(20,120,60,.4)}
+  /* Pulinho com quique a cada 3,6 s + brilho que atravessa o botao. Para no
+     hover/foco e some sob prefers-reduced-motion. */
+  .btn--primary{position:relative;overflow:hidden;isolation:isolate;background:var(--cta-grad);color:var(--cta-ink);box-shadow:0 10px 24px -8px rgba(239,134,60,.55);animation:ctaHop 3.6s cubic-bezier(.3,1.5,.5,1) infinite}
+  .btn--primary::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:ctaShine 3.6s ease-in-out infinite;pointer-events:none}
+  .btn--primary:hover,.btn--primary:focus-visible{animation:none;color:var(--cta-ink);transform:translateY(-3px) scale(1.04);box-shadow:0 16px 30px -8px rgba(239,134,60,.65)}
+  @keyframes ctaHop{0%,72%,100%{transform:translateY(0)}78%{transform:translateY(-6px)}84%{transform:translateY(0)}89%{transform:translateY(-2px)}94%{transform:translateY(0)}}
+  @keyframes ctaShine{0%,70%{transform:translateX(-120%)}90%,100%{transform:translateX(120%)}}
   .btn-row{margin-top:36px}
   .link-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--primary-dark);text-decoration:none}
   .link-arrow svg{width:18px;height:18px;transition:transform .25s ease}
@@ -219,8 +227,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .navbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.80);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border-bottom:1px solid #e2e8f0}
   .navbar__inner{max-width:var(--maxw);margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
   .navbar__logo img{display:block;height:38px;width:auto}
-  .navbar__cta{font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--cta-green);color:var(--cta-ink);padding:11px 24px;border-radius:var(--radius-btn);text-decoration:none;white-space:nowrap;box-shadow:0 2px 12px rgba(20,120,60,.3);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
-  .navbar__cta:hover{background:var(--cta-green-hover);color:var(--cta-ink);transform:translateY(-1px) scale(1.04)}
+  .navbar__cta{font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--cta-grad);color:var(--cta-ink);padding:11px 24px;border-radius:var(--radius-btn);text-decoration:none;white-space:nowrap;box-shadow:0 4px 14px -4px rgba(239,134,60,.55);transition:transform .2s ease,box-shadow .2s ease}
+  .navbar__cta:hover{color:var(--cta-ink);transform:translateY(-1px) scale(1.04);box-shadow:0 10px 22px -6px rgba(239,134,60,.65)}
   .navbar__cta-short{display:none}
   @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 

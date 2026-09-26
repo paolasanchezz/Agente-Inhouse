@@ -58,3 +58,7 @@ A pedido do Bruno, o formulário (Jotform `261034073026647`) passou a ser o HTML
 ## 2026-09-26 — hero no modelo da Albato
 
 Pedido do Bruno, com a página da Albato (`albato.com/br/automate`) como referência de H1: hero centralizado com pílula segmentada acima do título ("Tickets, filas e SLA" | "Sistema de chamados"), H1 em duas linhas com quebra manual (`<br class="hc__br">`, some no mobile), selos circulares de WhatsApp, Instagram, e-mail e telefone flutuando nas laterais (somem abaixo de 1180 px), fundo em grade e a cena do chamado #3107 grande logo abaixo. Classes `.hero--c` / `.hc*`.
+
+## 2026-09-26 — CTAs em laranja degradê
+
+Pedido do Bruno: tirar o verde dos CTAs. Entre o azul da escolha-a-cxpress e o laranja da marca, ele escolheu o laranja. Todos os `.btn--primary` e o CTA da navbar agora usam o degradê `#F1A908 → #EF863C → #E8702A` com texto navy (5,2:1 sobre `#EF863C`; branco reprovaria com 2,6:1). Nos botões do corpo da página há um pulinho com quique a cada 3,6 s e um brilho atravessando o botão; a animação para no hover/foco e some com `prefers-reduced-motion`. A navbar, que fica fixa no topo, recebe só o degradê, sem o pulinho. O botão flutuante do WhatsApp continua verde, porque ali a cor é da marca WhatsApp.

@@ -62,3 +62,7 @@ A pedido do Bruno, o formulário (Jotform `261034073026647`) passou a ser o HTML
 - Removida do HTML enviado só a linha `JotForm.ownerView=true`, que veio da sessão logada no Jotform.
 - Plano B: só troca para `form.jotform.com/261034073026647` se o formulário não carregou dentro do iframe em 12 s. Antes (v3) trocava após 6 s sem mensagem de altura, o que numa aba em segundo plano levava o visitante para a versão antiga do form.
 - Na Leadpages, o mesmo arquivo está na biblioteca da org como `form-cxpress-v5.js` (`/api/library/pc6qqsnx4bcxrggnxvta0aqz`).
+
+## 2026-09-26 — CTAs em laranja degradê
+
+Pedido do Bruno: tirar o verde dos CTAs. Entre o azul da escolha-a-cxpress e o laranja da marca, ele escolheu o laranja. Todos os `.btn--primary` e o CTA da navbar agora usam o degradê `#F1A908 → #EF863C → #E8702A` com texto navy (5,2:1 sobre `#EF863C`; branco reprovaria com 2,6:1). Nos botões do corpo da página há um pulinho com quique a cada 3,6 s e um brilho atravessando o botão; a animação para no hover/foco e some com `prefers-reduced-motion`. A navbar, que fica fixa no topo, recebe só o degradê, sem o pulinho. O botão flutuante do WhatsApp continua verde, porque ali a cor é da marca WhatsApp.
