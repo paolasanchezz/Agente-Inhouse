@@ -734,7 +734,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Checklist em 2 colunas */
   .chk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 22px;margin-top:28px}
   .chk li{display:flex;align-items:flex-start;gap:10px;font-size:16.5px;line-height:1.45;color:var(--primary-dark);font-weight:600}
-  .chk svg{flex:0 0 auto;width:20px;height:20px;margin-top:1px;color:var(--wa-ink)}
+  .chk svg{flex:0 0 auto;width:20px;height:20px;margin-top:1px;margin-top:calc((1lh - 20px) / 2);color:var(--wa-ink)}
 
   /* Kanban: um ticket anda de Novo -> Em andamento -> Resolvido */
   .kb{position:relative;background:#fff;border:1px solid var(--rule);border-radius:28px;padding:22px;box-shadow:0 24px 50px -30px rgba(35,41,96,.45)}
@@ -1200,13 +1200,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="margin-top:18px">Cada nova solicitação pode ser registrada, encaminhada e acompanhada até sua resolução.</p>
         <ul class="chk">
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Distribuição automática ou manual de tickets</li>
+          <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Acompanhamento do status dos tickets</li>
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Filas por equipe ou departamento</li>
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Tags e classificação de atendimentos</li>
-          <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Respostas salvas</li>
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Histórico de conversas</li>
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Transferência entre agentes</li>
-          <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Acompanhamento do status dos tickets</li>
           <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Controle de atendimentos não lidos</li>
+          <li><svg aria-hidden="true"><use href="#ico-check"/></svg>Respostas salvas</li>
         </ul>
         <div class="btn-row"><a href="#contato" class="btn btn--primary">Veja como funciona</a></div>
       </div>
