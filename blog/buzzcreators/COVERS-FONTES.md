@@ -56,6 +56,8 @@ Cada capa foi baixada já recortada em 1200×630 via CDN do Pexels (`?w=1200&h=6
 | onde-publicar-conteudo-de-creator-para-ia | https://www.pexels.com/photo/4144975/ |
 | creators-no-linkedin-marketing-b2b | https://www.pexels.com/photo/6893890/ |
 | case-eskala-gestao-de-influenciadores | https://www.pexels.com/photo/7679476/ |
+| case-apsen-colaboradores-creators | https://www.pexels.com/photo/8370422/ |
+| case-buzzmonitor-creators-linkedin-cpl | https://www.pexels.com/photo/36766661/ |
 
 ## Posts novos
 
