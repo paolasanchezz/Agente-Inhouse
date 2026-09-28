@@ -735,6 +735,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 22px;margin-top:28px}
   .chk li{display:flex;align-items:flex-start;gap:10px;font-size:16.5px;line-height:1.45;color:var(--primary-dark);font-weight:600}
   .chk svg{flex:0 0 auto;width:20px;height:20px;margin-top:1px;margin-top:calc((1lh - 20px) / 2);color:var(--wa-ink)}
+  @media (min-width:1001px){.chk{grid-template-columns:minmax(0,1fr)}}
 
   /* Kanban: um ticket anda de Novo -> Em andamento -> Resolvido */
   .kb{position:relative;background:#fff;border:1px solid var(--rule);border-radius:28px;padding:22px;box-shadow:0 24px 50px -30px rgba(35,41,96,.45)}
