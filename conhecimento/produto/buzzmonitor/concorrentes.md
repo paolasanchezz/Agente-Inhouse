@@ -16,7 +16,7 @@ A Buzzmonitor vende 5 modulos (social listening, SAC 2.0, dashboards/analytics, 
 
 | Tier | Significa | Como usar em copy |
 |---|---|---|
-| **1 — Direto** | Disputa o mesmo deal. Cobre listening (o nosso core) e vende pro mesmo comprador. | E contra estes que vale construir diferenciacao. |
+| **1 — Direto** | Cobre listening (o nosso core) e vende pro mesmo comprador. Dividido em **1a** (o comercial enfrenta em deal no Brasil) e **1b** (overlap funcional, raro em deal local). | E contra estes que vale construir diferenciacao, a comecar pelo 1a. |
 | **2 — Overlap parcial** | Compete por **um** modulo, nao pela plataforma. Comprador as vezes e outro. | Cuidado: ganhar deles num modulo nao e ganhar o deal. |
 | **3 — Nao e concorrente** | Aparece em relatorio de SEO por trafego ou keyword, mas vende outra coisa. | **Nao usar em comparativo.** Nao citar como concorrente em material interno nem em pitch. |
 
@@ -28,21 +28,33 @@ A Buzzmonitor vende 5 modulos (social listening, SAC 2.0, dashboards/analytics, 
 
 Plataformas que cobrem social listening e disputam o mesmo comprador.
 
+### Tier 1a — Disputa real de deal no Brasil (confirmada pelo comercial)
+
+Os concorrentes diretos do Playbook Comercial. E contra estes que o time de vendas prepara objecao.
+
 | Concorrente | Foco Principal | Diferencial da Buzzmonitor |
 |---|---|---|
 | **Stilingue (by Blip)** | IA para analise de conversas em portugues. O concorrente local mais parecido com a Buzzmonitor. Adquirida pela Blip em 2022 — hoje vendida dentro da stack conversacional. | Buzzmonitor e plataforma independente e completa (listening + SAC + analytics); a Stilingue hoje entra como modulo de um ecossistema de chatbot |
 | **Sprinklr** | CXM enterprise (30+ canais); o maior overlap funcional de todos — listening + care + publicacao | Buzzmonitor e mais agil, menos complexa de implementar, focada em LATAM |
 | **Sprout Social** | Listening + publicacao + analytics | Buzzmonitor tem melhor adaptacao para PT-BR/ES e preco mais acessivel para LATAM |
 | **Brandwatch** | Listening em escala (500M+ posts/dia) | Buzzmonitor integra atendimento + listening; Brandwatch foca so em listening |
-| **Emplifi** | Social marketing + commerce + care — cobre marketing e atendimento, como nos | Buzzmonitor oferece IA nativa mais avancada para o mercado latino |
+| **Emplifi** (ex-Socialbakers) | Social marketing + commerce + care — cobre marketing e atendimento, como nos | Buzzmonitor oferece IA nativa mais avancada para o mercado latino |
+| **Torabit** (ex-Scup) | Listening + analytics + SAC, 100% brasileira. Assumiu a plataforma Scup em nov/2020 | Buzzmonitor inclui dashboards no plano (no Torabit sao cobrados a parte) e tem suporte dedicado em portugues (o do Torabit e por e-mail e tutoriais) |
+| **V-Tracker** | Listening + SAC (BR), com agendamento e triggers. Semantica muito parecida com a da Buzzmonitor | Buzzmonitor permite criar relatorios e dashboards novos (no V-Tracker so da pra editar os prontos) e faz analytics de concorrentes (o V-Tracker gera insight so de marcas proprias) |
+
+### Tier 1b — Overlap funcional, raro em deal no Brasil
+
+Cobrem listening, mas nao aparecem no Playbook Comercial: entraram no mapa pelo relatorio de SEO. Servem pra comparativo de categoria ("ferramentas de social listening"), nao pra preparar objecao de deal.
+
+| Concorrente | Foco Principal | Diferencial da Buzzmonitor |
+|---|---|---|
 | **YouScan** | Listening com analise de imagem, forte em midia visual | Buzzmonitor integra atendimento ao listening; YouScan nao atua no SAC |
 | **Brand24** | Listening acessivel, self-service, entrada por preco | Buzzmonitor entrega profundidade em PT-BR/ES e atendimento integrado, nao so alerta de mencao |
 | **Meltwater** | Media intelligence (imprensa + social) | Buzzmonitor foca na conversa social com SAC integrado |
 | **Khoros** | Engajamento, comunidade e social care enterprise | Overlap funcional real, mas presenca residual no Brasil hoje — disputa pouco provavel em deal local |
 | **Mentionlytics** | Listening multi-idioma, self-service | Buzzmonitor tem adaptacao nativa a PT-BR/ES e suite completa |
 | **Bunker DB** | Analytics e listening para agencias LATAM | Buzzmonitor tem IA nativa mais avancada e cobertura de atendimento |
-| **Seekr** | Social listening (BR) | Sem presenca organica detectavel — **validar se segue operando** antes de citar |
-| **V-Tracker** | Monitoramento de redes sociais (BR) | Sem presenca organica detectavel — **validar se segue operando** antes de citar |
+| **Seekr** | Social listening (BR) | Sem presenca organica detectavel e fora do playbook comercial — **validar se segue operando** antes de citar |
 
 ---
 
@@ -55,7 +67,7 @@ Ganham ou perdem num pedaco da plataforma. Nao substituem a Buzzmonitor inteira.
 | Concorrente | Foco Principal | Leitura |
 |---|---|---|
 | **Zendesk** | Help desk e ticketing omnichannel, incluindo canais sociais | Pode aparecer numa avaliacao de SAC. Nao faz social listening — quem compra Zendesk resolve ticket, nao inteligencia de marca |
-| **Hi Platform** | Atendimento digital e CX | Buzzmonitor tem social listening como pilar, nao apenas atendimento |
+| **Hi Platform** | Atendimento digital e CX, com foco forte em SAC. Social media existe, mas nao e o foco. Atende as mesmas redes que a Buzzmonitor no atendimento | **O comercial trata como concorrente direto:** em deal de SAC puro, a disputa e de frente. Fica no Tier 2 pelo criterio deste mapa (nao cobre listening). Buzzmonitor tem social listening como pilar, nao apenas atendimento |
 | **Plusoft** | CRM e atendimento omnichannel | Buzzmonitor foca em inteligencia de redes sociais, nao apenas CRM |
 | **Keepcon** | Classificacao e gestao de interacoes | Buzzmonitor e plataforma completa, nao apenas classificacao |
 | **iCustomer** | Atendimento em redes sociais | Buzzmonitor tem analytics e dashboards muito mais avancados |
@@ -65,11 +77,10 @@ Ganham ou perdem num pedaco da plataforma. Nao substituem a Buzzmonitor inteira.
 
 | Concorrente | Foco Principal | Leitura |
 |---|---|---|
-| **mLabs** | Agendamento e analytics multi-plataforma; lider absoluto de busca organica em PT-BR no segmento | Nao disputa listening. Disputa a **atencao de topo de funil** de quem procura "ferramenta de redes sociais" |
+| **mLabs** | Agendamento e analytics multi-plataforma; lider absoluto de busca organica em PT-BR no segmento. Comprou a DashGoo em 2021 (hoje mLabs Analytics, ver analytics abaixo) | Nao disputa listening. Disputa a **atencao de topo de funil** de quem procura "ferramenta de redes sociais" |
 | **Agorapulse** | Gestao social all-in-one, inbox unificada | Buzzmonitor entrega inteligencia de dados, nao so caixa de entrada |
 | **Hootsuite** | Plataforma all-in-one de social media | Buzzmonitor tem listening e analytics mais profundos, especialmente em portugues |
-| **Etus** | Gestao de redes sociais (BR) | Buzzmonitor oferece inteligencia de dados, nao apenas gestao operacional |
-| **Torabit** | Social analytics (BR) | Buzzmonitor oferece suite completa (listening + SAC + analytics) |
+| **Etus** | Gestao de redes sociais (BR), foco em agendamento. Tem gerador de LP, captacao de leads e banco de imagens | Buzzmonitor oferece inteligencia de dados, nao apenas gestao operacional |
 | **Statusbrew, Kontentino, Iconosquare** | Gestao social internacional, conteudo em ingles | Sem disputa relevante em PT-BR hoje; monitorar se traduzem conteudo |
 
 ### Contra o modulo de analytics e monitoramento de midia
@@ -77,6 +88,7 @@ Ganham ou perdem num pedaco da plataforma. Nao substituem a Buzzmonitor inteira.
 | Concorrente | Foco Principal | Leitura |
 |---|---|---|
 | **Zeeng** | Analytics e inteligencia digital (BR) | Buzzmonitor integra atendimento ao cliente, nao apenas analytics |
+| **mLabs Analytics** (ex-DashGoo) | Relatorios e dashboards de redes sociais e ads, self-service, entrada barata. Da mLabs desde ago/2021; renomeado em abr/2025 | Comprador e outro (quem quer relatorio barato de perfil proprio). Disputa o modulo de dashboards, nao listening |
 | **Knewin** | Monitoramento de noticias e imprensa (clipping) | Territorio de PR, nao de conversa social. Pode conviver com a Buzzmonitor no mesmo cliente |
 
 ---
@@ -132,7 +144,7 @@ A Blip nao e concorrente da Buzzmonitor: quem compra Blip esta comprando bot con
 | Emplifi | 1 | 700 | -5,9% | 235 |
 | Kontentino | 2 | 658 | +56,3% | 705 |
 | Iconosquare | 2 | 506 | -2,3% | 64 |
-| Torabit | 2 | 297 | +80,0% | 56 |
+| Torabit | **1** | 297 | +80,0% | 56 |
 | Bunker DB | 1 | 39 | +25,8% | 31 |
 | Mentionlytics | 1 | 29 | +480,0% | 145 |
 | Khoros | 1 | 2 | -77,8% | 9 |
@@ -143,7 +155,9 @@ A Blip nao e concorrente da Buzzmonitor: quem compra Blip esta comprando bot con
 
 Linhas **(+)** foram levantadas por nos, fora do relatorio de origem. Harmo riscada de proposito: o numero nao pertence a este mercado.
 
-**Entre os Tier 1 no Brasil, a Buzzmonitor e a 3a em trafego organico** (atras de Sprout Social e YouScan) e **a 1a entre as brasileiras**.
+**Entre os Tier 1 no Brasil, a Buzzmonitor e a 4a em trafego organico** (atras de Sprout Social, YouScan e Sprinklr). **No Tier 1a, e a 3a** (atras de Sprout Social e Sprinklr) e **a 1a entre as brasileiras** (Stilingue 3,0k, Torabit 297).
+
+mLabs Analytics (ex-DashGoo) nao tem linha propria: virou produto da mLabs.
 
 ---
 
@@ -153,14 +167,21 @@ Linhas **(+)** foram levantadas por nos, fora do relatorio de origem. Harmo risc
 |---|---|
 | Fonte | Semrush, banco `br` — trafego organico estimado |
 | Mes de referencia | Agosto 2026 (comparado a julho 2026) |
-| Atualizado em | 2026-09-14 |
+| Atualizado em | 2026-09-28 |
 | Base | Relatorio "Concorrentes SEO — Setembro 2026" (26 dominios) + checagem direta no Semrush de 8 dominios fora do monitoramento + reclassificacao por proximidade competitiva |
+| Validacao comercial | Playbook Comercial > Concorrentes (Google Sites interno do time de vendas), lido em 2026-09-28. O playbook divide em diretos, indiretos e complementares; aqui isso virou Tier 1a / Tier 2 |
 | Cobertura | **So Brasil.** LATAM e Portugal ainda nao levantados |
 
 **Correcoes aplicadas ao relatorio de origem** (nao repetir os erros):
 - **Stilingue nao esta inativa.** O relatorio checou `stilingue.com` (dominio errado, zerado). O real e `stilingue.com.br`: **3.023 de trafego / 184 keywords** em agosto. Adquirida pela **Blip em marco de 2022** (nao pela Cortex); plataforma ativa como "Stilingue by Blip". Era o unico Tier 1 brasileiro dado como morto.
 - **mLabs, Hi Platform, Zeeng, Plusoft, Etus e Keepcon** nao estavam no monitoramento.
 - **Agendor, Blip, Zenvia e Harmo estavam listados como concorrentes e nao sao** — ver Tier 3.
+
+**Correcoes aplicadas pelo cruzamento com o playbook comercial (2026-09-28):**
+- **Torabit estava no Tier 2** como ferramenta de publicacao/analytics. E listening + SAC (assumiu a plataforma Scup em nov/2020) — subiu pro Tier 1a.
+- **V-Tracker estava marcado "validar se segue operando".** O comercial enfrenta em deal — nota removida. Segue sem presenca organica no Semrush.
+- **mLabs Analytics (ex-DashGoo) nao constava.** O playbook ainda chama de DashGoo; o produto e da mLabs desde 2021.
+- **A frase de ranking do Tier 1 omitia a Sprinklr** (6,3k, acima dos 4,3k da Buzzmonitor). A Buzzmonitor e a 4a, nao a 3a.
 
 ---
 
@@ -190,6 +211,24 @@ Linhas **(+)** foram levantadas por nos, fora do relatorio de origem. Harmo risc
 
 ---
 
+## Precos e modelo de cobranca — uso interno
+
+> **Nunca em copy publica. Nunca em comparativo com prospect sem checar com o comercial.** Fonte: Playbook Comercial, que nao registra quando cada preco foi levantado. Preco de concorrente muda sem aviso.
+
+| Concorrente | Tier | Entrada | Modelo de cobranca |
+|---|---|---|---|
+| V-Tracker | 1a | R$ 1.800 (10 mil mencoes) | Pacotes fechados ate 70 mil mencoes |
+| Torabit | 1a | nao informado | Planos a partir de 25 mil mencoes; dashboards cobrados a parte |
+| Brandwatch | 1a | nao informado ("valor alto") | Em dolar e a vista; foco em quem tem 25 mil+ mencoes/mes |
+| Sprinklr | 1a | nao informado | Em dolar |
+| Sprout Social | 1a | nao informado | Em dolar |
+| Stilingue | 1a | nao informado | SAC e analytics cobrados por URL; sem flexibilidade de tempo de contrato |
+| Hi Platform | 2 | R$ 1.107 (25 mil mencoes) | Por volume de mencoes |
+| Etus | 2 | Gratis ou R$ 14,90/mes | Self-service |
+| mLabs Analytics (ex-DashGoo) | 2 | R$ 14/mes (preco da epoca DashGoo) | Self-service |
+
+---
+
 ## Tendencias do Mercado (2025-2026)
 - Mercado de social listening avaliado em US$ 9,62B em 2025, projecao de US$ 20,51B ate 2031 (CAGR 13,45%)
 - 30% dos profissionais de marketing planejam usar IA para analytics preditivo em 2026
@@ -207,7 +246,9 @@ Linhas **(+)** foram levantadas por nos, fora do relatorio de origem. Harmo risc
 |---|---|
 | **LATAM** | O relatorio de origem tem aba LATAM, mas o PDF recebido so trouxe Brasil. Sem dados por concorrente em ES. |
 | **Portugal** | Idem — aba existe, dados nao vieram. |
-| **Seekr e V-Tracker** | Sem presenca organica no Semrush. Nao da pra concluir que fecharam — validar por outra via antes de tirar do mapa. |
-| **Precos** | Nenhum dado de pricing dos concorrentes neste mapa. |
+| **Seekr** | Sem presenca organica no Semrush e fora do playbook comercial. Nao da pra concluir que fechou — validar por outra via antes de tirar do mapa. |
+| **Precos** | Parcial — ver secao de precos (playbook comercial, sem data). Faltam valores de Sprinklr, Sprout, Brandwatch, Stilingue, Emplifi e de todo o Tier 1b. |
 | **iCustomer** | Consta no mapa historico, nao foi checado no Semrush nesta rodada. |
-| **Tiers nao validados com o comercial** | A classificacao foi feita por analise de produto e mercado. Vale confirmar com vendas quem de fato aparece nos deals. |
+| **Tiers validados so em parte** | Cruzados com o Playbook Comercial em 2026-09-28. Divergencia em aberto: **Hi Platform** (comercial = direto; este mapa = Tier 2, porque nao cobre listening). O Tier 1b inteiro nao aparece no playbook. |
+| **Planilha Concorrentes do comercial** | O playbook aponta uma planilha que SDRs e BDs atualizam no dia a dia. Nao foi localizada no Drive — cruzar quando tiver o link. |
+| **Playbook comercial desatualizado** | Stilingue: analise completa de 30/08/2023 e cita "Take Blip" (hoje Blip). DashGoo: virou mLabs Analytics em abr/2025. Nenhuma secao tem data. Avisar o comercial. |
