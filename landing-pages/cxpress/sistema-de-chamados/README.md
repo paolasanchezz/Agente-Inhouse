@@ -32,6 +32,7 @@ Mesma base das LPs irmãs `sistema-de-atendimento` e `help-desk`, que seguem `es
 | `assets/telas/tela-tickets.svg`, `tela-dashboard.svg` | telas da plataforma já usadas em `whatsapp-business` |
 | `assets/ui/painel-canais.webp`, `card-canais-ativos.webp` | recortes com transparência enviados pelo Bruno (`D:\Elife\174 - LP ClaudeCode\Imagens`, set/2026) |
 | `assets/ui/card-tickets-hora.webp` | idem, sobre card branco em CSS |
+| `assets/pessoas/pessoa-1..3.webp` | avatares do hero, Unsplash (licença livre, uso comercial): `SJvDxw0azqw`, `AR9mvykzSOA`, `MQ2xYBHImKM` — crop 256×256 no rosto |
 | `assets/og-sistema-de-chamados.png` | `assets/render_og.py` + `assets/og-template.html` |
 
 Os cards de contador enviados como imagem ("8 Todos os tickets", "1 Tickets não atendidos"...) foram recriados em HTML no mesmo desenho, para os números poderem contar. Os valores são ilustrativos de interface, no papel dos prints da plataforma.
