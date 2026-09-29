@@ -6,6 +6,22 @@ CTA: Ver essas horas na minha operação
 BODY: 30 minutos, com os seus canais e o seu volume.
 BODY: Do WhatsApp ao telefone, com um histórico só por cliente.
 
+=== AGENDAR ===
+OVERLINE: Próximo passo
+H2: Agende a sua demonstração gratuita
+SUB: Veja a conta com os números da sua operação
+BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quantas horas por semana a IA assume no seu caso.
+LABEL: R$ 1.750 · planos a partir de / mês
+BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Seu nome
+LABEL: Seu e-mail de trabalho
+LABEL: WhatsApp
+LABEL: Nome da empresa onde você trabalha
+LABEL: Quanto pretende investir no seu atendimento?
+LABEL: Qual o tamanho do seu time de atendimento?
+CTA: Enviar
+BODY: Sem compromisso. Resposta em até 1 dia útil.
+
 === A CONTA ===
 H2: Onde o turno vai embora
 BODY: As seis tarefas abaixo são as que mais consomem tempo numa operação de atendimento. Os tempos são estimativa por atendente, por dia. Faça a conta com os números da sua operação.
@@ -50,21 +66,25 @@ CTA: Quero essas horas de volta
 H2: O que a sua equipe passa a fazer
 BODY: Com as seis tarefas fora do caminho, o turno do atendente vira duas coisas: a conversa que fecha venda e a conversa que salva cliente. As duas exigem julgamento, contexto e paciência, e nenhuma das duas é o que ele faz hoje na maior parte do dia.
 
-=== AGENDAR ===
-OVERLINE: Próximo passo
-H2: Agende a sua demonstração gratuita
-SUB: Veja a conta com os números da sua operação
-BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quantas horas por semana a IA assume no seu caso.
-LABEL: R$ 1.750 · planos a partir de / mês
-BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
-LABEL: Seu nome
-LABEL: Seu e-mail de trabalho
-LABEL: WhatsApp
-LABEL: Nome da empresa onde você trabalha
-LABEL: Quanto pretende investir no seu atendimento?
-LABEL: Qual o tamanho do seu time de atendimento?
-CTA: Enviar
-BODY: Sem compromisso. Resposta em até 1 dia útil.
+=== FAQ ===
+H2: Dúvidas frequentes
+LABEL: A IA substitui a minha equipe?
+BODY: Não. Ela tira do atendente as seis tarefas de cima. O que sobra é a conversa que fecha venda e a que salva cliente, que exigem julgamento e contexto.
+LABEL: De onde vêm os tempos das seis tarefas?
+BODY: São estimativa por atendente, por dia, não medição de um cliente específico. Servem para você fazer a conta com os números da sua operação, que é o que o especialista faz na demonstração.
+LABEL: A IA responde por áudio também?
+BODY: Sim. Ela responde o primeiro contato por texto e por áudio, 24 horas por dia, nos canais que você já atende.
+LABEL: O que acontece quando a IA não sabe responder?
+BODY: A conversa é transferida para um atendente com o histórico inteiro junto. O cliente não precisa repetir o que já contou.
+LABEL: Quais canais podem ser integrados?
+BODY: Integram nativamente o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+LABEL: API Oficial do WhatsApp
+LABEL: API Oficial do ChatGPT
+LABEL: Um produto Elife
 
 === FECHO ===
 H2: As quatro horas de amanhã já estão na fila de hoje.
@@ -93,3 +113,18 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 #    aplicado aqui em 22/09 — a versao de 10/09 tinha so 2. Form na ultima secao (GUIDELINES §10, BoFu).
 #    Mock ate rodar /lp-integrar-form (GUIDELINES §11).
 # 6. GTM brasil: GTM-T4XDWHL3 (brand/cxpress/tracking.json).
+#
+# ALTERACAO 2026-09-29 — mesmas mudancas aplicadas na tempo-de-resposta (PR #707)
+# Motivacao: a tempo-de-resposta rodou 20 a 28/09 com 154 visitas e 5 leads (3,2%) contra
+# 20,0% da banimento-whatsapp, com o MESMO Jotform. A diferenca era estrutural. Esta LP
+# tinha exatamente os mesmos problemas, entao recebeu as mesmas correcoes antes de receber
+# trafego:
+# a. Bloco AGENDAR movido do fim para logo apos a esteira de clientes (era 8,5 telas de
+#    scroll no celular, 82% da pagina). Desvio consciente da GUIDELINES §10.
+# b. FAQ com 5 perguntas. A 2a ("De onde vem os tempos das seis tarefas?") resolve a
+#    pendencia 1 deste arquivo: os tempos sao estimativa e agora a pagina diz isso.
+# c. Bloco Quem somos, igual ao das LPs irmas.
+# d. Jotform inline, como na banimento-whatsapp.
+# e. PRECO MANTIDO por decisao da Marielle em 29/09. Registro: em 03/09 o time removeu
+#    preco de 12 LPs Cxpress (PR #493) e o antes/depois dos mesmos 13 anuncios deu
+#    3,6% -> 10,1%.
