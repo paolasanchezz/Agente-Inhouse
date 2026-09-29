@@ -5,21 +5,21 @@ CTA: Acceder a la oferta
 
 
 === HERO ===
-BADGE: Oferta exclusiva del webinar
+BADGE: Oferta exclusiva del workshop
 H1: De la primera señal a la respuesta correcta, en tiempo real.
-SUB: Esta oferta es solo para quienes estuvieron en el webinar Gestión de Crisis con IA y quieren llevar el método a la práctica.
+SUB: Esta oferta es solo para quienes estuvieron en el workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" y quieren llevar el método a la práctica.
 CTA: Quiero aprovechar la oferta
 
 
 === OFERTA ===
 EYEBROW: La oferta exclusiva
 DESTAQUE: 15 días gratis de Buzzmonitor
-BODY: Para los participantes del webinar "Gestión de Crisis con IA" preparamos una condición especial: acceso completo a la plataforma y acompañamiento de un especialista para montar el monitoreo que avisa antes de que la crisis llegue a los titulares.
+BODY: Para los participantes del workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" preparamos una condición especial: acceso completo a la plataforma y acompañamiento de un especialista para montar el monitoreo que avisa antes de que la crisis llegue a los titulares.
 LIST ITEM: 15 días gratis con acceso completo a la plataforma
 LIST ITEM: Soporte consultivo con especialistas durante toda la prueba
 LIST ITEM: Tu primer panel configurado por nuestro equipo, con las alertas de tu marca
 BONUS: Y hay algo más: al terminar los 15 días, recibes un descuento exclusivo para seguir con Buzzmonitor.
-LABEL: válida hasta el 30 de septiembre
+LABEL: válida hasta el 14 de octubre
 CTA: Quiero aprovechar la oferta
 
 
@@ -69,8 +69,8 @@ NOTA: y más de 1.000 marcas en Brasil, Latinoamérica y Portugal
 
 === URGENCIA ===
 LABEL: oferta por tiempo limitado
-H2: Esta condición vale solo para quienes participaron en el webinar.
-BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 30 de septiembre.
+H2: Esta condición vale solo para quienes participaron en el workshop.
+BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 14 de octubre.
 CTA: Aprovechar la oferta exclusiva
 
 
@@ -93,3 +93,5 @@ FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados. | Política de Priva
 # Idioma: ES-LATAM. Tuteo, "monitoreo" (no "monitorización"), "reportes" (no "informes"), Buzzmonitor sin articulo.
 # Revision anti-IA: sin hallazgos (em-dash: 0; exclamaciones: 0; antitesis-por-negacion: 0).
 # [2026-09-21] Fecha limite definida por el usuario: 30 de septiembre. Aplicada en OFERTA (LABEL) y en el BODY de URGENCIA. El sello de URGENCIA se deja generico ("oferta por tiempo limitado") para no repetir la fecha tres veces en la misma pantalla.
+
+# [2026-09-28] Copia para el workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" (Bogotá): nombre del evento webinar -> workshop y fecha límite 30/09 -> 14/10, a pedido del usuario. Resto de la copy (tema crisis) sin cambios.
