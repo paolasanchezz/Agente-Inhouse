@@ -6,6 +6,22 @@ CTA: Encurtar o tempo de resposta
 BODY: 30 minutos, com os seus canais e o seu volume.
 BODY: WhatsApp, Instagram, Facebook e chat do site, num painel só.
 
+=== AGENDAR ===
+OVERLINE: Próximo passo
+H2: Agende a sua demonstração gratuita
+SUB: Veja o tempo de resposta da sua operação
+BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quanto tempo a IA tira da sua fila.
+LABEL: R$ 1.750 · planos a partir de / mês
+BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
+LABEL: Seu nome
+LABEL: Seu e-mail de trabalho
+LABEL: WhatsApp
+LABEL: Nome da empresa onde você trabalha
+LABEL: Quanto pretende investir no seu atendimento?
+LABEL: Qual o tamanho do seu time de atendimento?
+CTA: Enviar
+BODY: Sem compromisso. Resposta em até 1 dia útil.
+
 === A CONTA DA ESPERA ===
 H2: O intervalo que ninguém mede
 BODY: A mensagem chega no fim do expediente, no meio de outras quarenta, no canal que menos gente acompanha. Ninguém do seu time está errado. O volume que chega hoje é maior que a operação que atende.
@@ -43,21 +59,25 @@ CTA: Quero esse tempo de resposta
 H2: A mesma equipe, atendendo mais
 BODY: Com o primeiro contato fora do caminho, o turno do atendente vira a conversa que fecha venda e a conversa que salva cliente. As duas exigem julgamento e contexto, e nenhuma das duas cabe numa fila de mensagem repetida.
 
-=== AGENDAR ===
-OVERLINE: Próximo passo
-H2: Agende a sua demonstração gratuita
-SUB: Veja o tempo de resposta da sua operação
-BODY: Em 30 minutos, um especialista abre a plataforma com os canais que você já atende e o volume que chega hoje. No fim da call você sai com a estimativa de quanto tempo a IA tira da sua fila.
-LABEL: R$ 1.750 · planos a partir de / mês
-BODY: Ter um site ativo é um dos requisitos para se tornar cliente da Cxpress.
-LABEL: Seu nome
-LABEL: Seu e-mail de trabalho
-LABEL: WhatsApp
-LABEL: Nome da empresa onde você trabalha
-LABEL: Quanto pretende investir no seu atendimento?
-LABEL: Qual o tamanho do seu time de atendimento?
-CTA: Enviar
-BODY: Sem compromisso. Resposta em até 1 dia útil.
+=== FAQ ===
+H2: Dúvidas frequentes
+LABEL: A IA responde no lugar da minha equipe?
+BODY: Não. Ela atende o começo da fila, que é o primeiro contato e a pergunta que repete todo dia. Quando a conversa exige julgamento, ela passa para uma pessoa.
+LABEL: A IA responde por áudio também?
+BODY: Sim. O Agente de IA responde o primeiro contato por texto e por áudio, 24 horas por dia, no WhatsApp, na DM do Instagram, no Facebook e no chat do site.
+LABEL: O que acontece quando a IA não sabe responder?
+BODY: A conversa é transferida para um atendente com o histórico inteiro junto. O cliente não precisa repetir o que já contou.
+LABEL: Consigo ver o tempo de resposta de cada atendente?
+BODY: Sim. O painel mostra o tempo de primeira resposta de cada pessoa, a fila de cada canal e quem está sobrecarregado agora. Sem planilha.
+LABEL: Quais canais podem ser integrados?
+BODY: Integram nativamente o WhatsApp, e-mail, redes sociais (Facebook, Instagram), telefone e chat do site.
+
+=== QUEM SOMOS ===
+H2: Quem somos
+BODY: A Cxpress é uma plataforma na nuvem que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, Redes Sociais, E-mail e Telefone juntos oferecem uma visão única e simplificada da interação com o cliente, desde o primeiro contato até a resolução do caso. O uso da Inteligência Artificial da Cxpress para automação das primeiras interações em linguagem natural e a gestão de filas otimizam a produtividade das equipes de atendimento.
+LABEL: API Oficial do WhatsApp
+LABEL: API Oficial do ChatGPT
+LABEL: Um produto Elife
 
 === FECHO ===
 H2: Enquanto ele espera, alguém já respondeu.
@@ -94,3 +114,26 @@ FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 #    agendar. Form na ultima secao antes do fecho (GUIDELINES §10, BoFu).
 #    Mock ate rodar /lp-integrar-form com o Jotform 261045149477663 (GUIDELINES §11).
 # 7. GTM brasil: GTM-T4XDWHL3 (brand/cxpress/tracking.json).
+#
+# ALTERACAO 2026-09-29 (pos-dados de campanha)
+# A pagina rodou de 20 a 28/09 com 154 visitas e 5 leads (3,2%), contra 20,0% da
+# banimento-whatsapp no mesmo periodo e com o MESMO Jotform. As mudancas abaixo saem
+# da comparacao seccao a seccao entre as duas:
+# a. Bloco AGENDAR movido do fim para logo apos a esteira de clientes. No celular o
+#    formulario saiu de 7,9 telas de scroll (89% da pagina) para 1,5 (13%), que e a
+#    posicao da banimento-whatsapp (1,9). Desvio consciente da GUIDELINES §10, que manda
+#    form na 4a ou ultima secao para BoFu. O argumento inteiro continua abaixo do form,
+#    exatamente como na LP que converte.
+# b. FAQ com 5 perguntas: a pagina nao respondia nenhuma objecao. Todas as respostas saem
+#    de claims que ja estavam nesta copy ou do FAQ verificado da banimento-whatsapp.
+#    NAO entrou prazo de implantacao: o "15 a 21 dias" que circula em legenda nao tem
+#    fonte em conhecimento/produto/cxpress/.
+# c. Bloco Quem somos, igual ao das LPs irmas.
+# d. Jotform voltou a carregar inline, como na banimento-whatsapp. O carregador diferido
+#    saiu porque nao foi possivel testar se o IntersectionObserver dispara para o usuario
+#    real (as duas janelas de teste disponiveis rodam com a aba oculta, onde o Chrome nao
+#    executa o ciclo de renderizacao). Com o form perto do topo, diferir rendia pouco.
+# e. O PRECO FOI MANTIDO por decisao da Marielle em 29/09, contra a recomendacao. Fica o
+#    registro: em 03/09 o time removeu preco de 12 LPs Cxpress (PR #493) e o antes/depois
+#    dos mesmos 13 anuncios nas mesmas LPs deu 3,6% -> 10,1%. Esta LP e a custo-atendimento-manual
+#    sao 2 das 4 LPs Cxpress (de 76) que ainda exibem preco.
