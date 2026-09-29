@@ -6,10 +6,6 @@
       "env": {
         "DATABASE_URI": "${SUPABASE_PG_URL}"
       }
-    },
-    "mcp-brasil": {
-      "command": "uvx",
-      "args": ["--python", "3.12", "--from", "mcp-brasil", "python", "-m", "mcp_brasil.server"]
     }
   }
 }
