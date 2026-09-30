@@ -272,7 +272,24 @@ position:relative;width:100vw;margin-left:calc(50% - 50vw);font-family:var(--fb)
 .bz-skip:focus{top:12px}
 .bz-light :focus-visible,.bz-clients :focus-visible,.bz-form :focus-visible{outline-color:var(--purple)}
 .bz-pt__panel .bz-pt__eyebrow{font-size:14px;font-weight:700;color:#6B6274;margin-bottom:14px}
-.bz-pt__pill{background:#EDE4F7;box-shadow:inset 0 0 0 1px rgba(57,1,85,.16)}
+.bz-pt{flex-direction:column;align-items:center;gap:14px}
+.bz-pt__wrap{position:relative;max-width:100%}
+.bz-pt__bar{padding:7px;border:1px solid rgba(57,1,85,.12);background:linear-gradient(180deg,#fff,#FAF7FD);box-shadow:0 1px 0 #fff inset,0 2px 6px rgba(57,1,85,.08),0 22px 48px -18px rgba(57,1,85,.42)}
+.bz-pt__btn{transition:color .3s,background .3s}
+.bz-pt__btn:hover{background:rgba(57,1,85,.06)}
+.bz-pt__btn[aria-selected="true"]:hover{background:transparent}
+.bz-pt__btn[aria-selected="true"]{color:#fff}
+.bz-pt__pill{top:7px;bottom:7px;background:linear-gradient(135deg,#7B2CBF,#390155);box-shadow:0 10px 22px -6px rgba(57,1,85,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+.bz-pt__nav{position:absolute;top:0;bottom:0;z-index:2;width:56px;display:none;align-items:center;border:0;padding:0;cursor:pointer;color:var(--purple);opacity:0;pointer-events:none;transition:opacity .25s}
+.bz-pt__nav svg{width:30px;height:30px;padding:7px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(57,1,85,.3);fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.bz-pt__nav--l{left:1px;justify-content:flex-start;padding-left:7px;border-radius:999px 0 0 999px;background:linear-gradient(90deg,#fff 45%,rgba(255,255,255,0))}
+.bz-pt__nav--r{right:1px;justify-content:flex-end;padding-right:7px;border-radius:0 999px 999px 0;background:linear-gradient(270deg,#fff 45%,rgba(255,255,255,0))}
+.bz-pt__nav--r svg{animation:bzNudge 1.6s ease-in-out infinite}
+.bz-pt__wrap.can-l .bz-pt__nav--l,.bz-pt__wrap.can-r .bz-pt__nav--r{opacity:1;pointer-events:auto}
+.bz-pt__hint{display:none;font-size:13px;font-weight:700;color:#6B6274;letter-spacing:.01em}
+.bz-pt__wrap.is-scroll .bz-pt__nav{display:flex}
+.bz-pt__wrap.is-scroll+.bz-pt__hint{display:block}
+@keyframes bzNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
 .bzm .bz-mctl{position:fixed;left:16px;bottom:16px;z-index:998;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(11,1,18,.9);border:1px solid rgba(255,255,255,.28);color:#fff;font:700 13px/1 var(--fb);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .bzm .bz-mctl:hover{border-color:var(--orange)}
 .bzm .bz-mctl svg{width:14px;height:14px;fill:currentColor}
@@ -484,6 +501,7 @@ position:relative;width:100vw;margin-left:calc(50% - 50vw);font-family:var(--fb)
 <section class="bz-sec bz-light bz-feat" id="recursos" style="padding-top:20px">
 <div class="bz-wrap">
 <div class="bz-pt bz-rv">
+<div class="bz-pt__wrap">
 <div class="bz-pt__bar" role="tablist" aria-label="Recursos de atendimento">
 <span class="bz-pt__pill" aria-hidden="true"></span>
 <button type="button" class="bz-pt__btn" role="tab" id="tab-1" aria-controls="pn-1" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg>ChatGPT</button>
@@ -492,6 +510,10 @@ position:relative;width:100vw;margin-left:calc(50% - 50vw);font-family:var(--fb)
 <button type="button" class="bz-pt__btn" role="tab" id="tab-4" aria-controls="pn-4" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>Sentimentos</button>
 <button type="button" class="bz-pt__btn" role="tab" id="tab-5" aria-controls="pn-5" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Automatização</button>
 </div>
+<button type="button" class="bz-pt__nav bz-pt__nav--l" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button type="button" class="bz-pt__nav bz-pt__nav--r" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<p class="bz-pt__hint" aria-hidden="true">Deslize para ver os 5 recursos</p>
 </div>
 <div class="bz-pt__stage">
 <div class="bz-pt__panel is-on" id="pn-1" role="tabpanel" aria-labelledby="tab-1">
@@ -749,8 +771,18 @@ position:relative;width:100vw;margin-left:calc(50% - 50vw);font-family:var(--fb)
       e.preventDefault();pick(n,true);
     });
   });
-  place(sel());addEventListener('resize',function(){place(sel())});
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place(sel())});
+  var wrapEl=q('.bz-pt__wrap')[0],navL=q('.bz-pt__nav--l')[0],navR=q('.bz-pt__nav--r')[0];
+  function edges(){
+    var o=barEl.scrollWidth>barEl.clientWidth+2;
+    wrapEl.classList.toggle('is-scroll',o);
+    wrapEl.classList.toggle('can-l',o&&barEl.scrollLeft>4);
+    wrapEl.classList.toggle('can-r',o&&barEl.scrollLeft<barEl.scrollWidth-barEl.clientWidth-4);
+  }
+  barEl.addEventListener('scroll',edges,{passive:true});
+  navL.addEventListener('click',function(){barEl.scrollBy({left:-180,behavior:reduce?'auto':'smooth'})});
+  navR.addEventListener('click',function(){barEl.scrollBy({left:180,behavior:reduce?'auto':'smooth'})});
+  place(sel());edges();addEventListener('resize',function(){place(sel());edges()});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place(sel());edges()});
 
   // formulario Jotform (fonte anexado) em iframe srcdoc; plano B: iframe publico do Jotform
   var fr=q('#JotFormIFrame-250074757320049')[0];
