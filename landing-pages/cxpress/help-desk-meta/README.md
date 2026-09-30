@@ -28,6 +28,7 @@ a atribuição de cada canal isolada e não mexe nas páginas de SEO do Bruno.
 | `canonical` | ela mesma | aponta para **`/help-desk`** |
 | `og:url` e JSON-LD | `/help-desk` | `/help-desk-meta` |
 | Como o form renderiza | `assets/form-cxpress.js` (source do Jotform de Google hospedado em `srcdoc`) | `jsform` padrão do Jotform de Meta |
+| Posição do formulário | última seção | **logo após a esteira de clientes** |
 
 **O texto visível é byte a byte igual ao da original** (verificado na criação). A única diferença
 de mecânica é a última linha da tabela, e ela era inevitável: o `form-cxpress.js` da versão de
@@ -60,10 +61,20 @@ Para conferir se dessincronizou, comparar o texto visível das duas. Diferença 
 - [x] No manifesto de `content.cxpress.io`
 - [ ] Campanha Meta no ar (roteiros e legendas em `conhecimento/copywriting/criacao/cxpress/2026-09-30/campanha-help-desk-meta.md`)
 
-## Pendência aberta
+## Formulário no topo (aplicado em 30/09)
 
-O formulário fica na última seção, como na original. Para tráfego de Meta isso é o padrão que
-mediu pior nesta conta: a `tempo-de-resposta` convertia 3,2% com o form a 7,9 telas de scroll no
-celular, contra 20,0% da `banimento-whatsapp` com o form a 1,9 tela e o mesmo Jotform. Subir o
-form aqui é uma decisão em aberto, e seria a primeira divergência consciente em relação à versão
-de busca.
+O bloco `.cta#contato` saiu da última seção e entrou logo depois da esteira de clientes. Todo o
+argumento continua abaixo dele, que é o padrão da `banimento-whatsapp`.
+
+Motivo: nesta conta, form fundo de página mediu 3,2% de conversão (`tempo-de-resposta`, form a 7,9
+telas de scroll no celular) contra 20,0% (`banimento-whatsapp`, form a 1,9 tela), com o mesmo
+Jotform e os mesmos campos. A GUIDELINES §10 manda form na 4ª ou última seção para BoFu, como
+filtro de intenção; o dado desta conta aponta o contrário para tráfego de Meta. Desvio consciente,
+e só no espelho: a versão de busca não foi tocada.
+
+**Nenhum texto mudou.** A seção foi movida inteira, com o H2 e a lead que já tinha.
+
+Efeito colateral: a página agora termina no FAQ, sem seção de fechamento. Os 3 a 5 CTAs internos
+continuam apontando para `#contato` (agora rolando para cima) e o botão flutuante de WhatsApp
+segue fixo na tela. Criar um fechamento novo exigiria escrever copy que não existe no original,
+o que quebraria a paridade entre as duas versões.
