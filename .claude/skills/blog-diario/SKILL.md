@@ -3,7 +3,7 @@ name: blog-diario
 description: Gera 1 blogpost SEO/GEO por execucao, de forma autonoma, a partir dos clusters de tema da marca. Faz bake-off de volume de busca multi-fonte (Semrush + fontes gratis), evita duplicar posts existentes, escreve no idioma nativo da regiao, monta bloco METADADOS completo (slug, title, meta description, keywords) e CTA pra modulo+LP em conteudo de meio/fundo de funil, e publica rascunho no Notion. Multi-marca. Pensada pra rodar diariamente via /schedule.
 argument-hint: "[marca] [regiao] [tema?]  — ex: cxpress brasil | cxpress brasil \"chatbot whatsapp pequenas empresas\""
 allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-fetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-search, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-create-pages, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-update-page, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__get_report_schema, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__execute_report, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__keyword_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__organic_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__trends_research
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Skill: Blogpost SEO/GEO diário (autônomo, multi-marca)
@@ -102,7 +102,7 @@ Estágio de funil vem do cluster ("papel no funil" + intenção da keyword):
 - **MoFu** → 1 CTA inline após H2 relevante + CTA final, ambos LP + UTM.
 - **BoFu** → CTA inline mais direto + CTA final direto, LP + UTM.
 
-Escolha **1 módulo** (grafia exata do BRANDBOOK §2) que resolve a dor do tema. Escolha a **LP** do catálogo por (dor↔cluster) + (estágio↔intenção); sem LP compatível → CTA suave + **flag** no relatório. Monte a UTM: `{LP_URL}?utm_source=blog-{marca}&utm_campaign={campaign}&utm_content={slug}`. Respeite o gênero gramatical da marca ("a Cxpress").
+Escolha **1 módulo** (grafia exata do BRANDBOOK §2) que resolve a dor do tema. Escolha a **LP** do catálogo por (dor↔cluster) + (estágio↔intenção); sem LP compatível → CTA suave + **flag** no relatório. Monte a UTM: `{LP_URL}?utm_source=blog&utm_campaign={campaign}&utm_content={slug}` (`utm_source=blog` pra todas as marcas; regra em `CONTEXT.md` §Convenção UTM). Respeite o gênero gramatical da marca ("a Cxpress").
 
 ## Passo 7 — Escreve o artigo
 

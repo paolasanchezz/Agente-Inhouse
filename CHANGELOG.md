@@ -1124,6 +1124,14 @@ Reforço de segurança da dashboard CM Buzzmonitor BR no Vercel (pedido do Victo
 - Sem mudança de args nem de fluxo. Bump MINOR pela nova dependência de env (`.env.local`).
 
 ## blog-diario
+### 2026-09-30 — v1.0.2 — Fórmula de UTM do CTA alinhada ao CONTEXT (`utm_source=blog`)
+
+O Passo 7 do `SKILL.md` ainda montava `utm_source=blog-{marca}`, contradizendo o `CONTEXT.md` §Convenção UTM e a fonte única `conhecimento/config/convencao-utm.md` §2/§3, que desde 2026-07-07 usam `utm_source=blog` para todas as marcas (a marca sai do domínio de destino). O `CONTEXT.md` foi atualizado na época e o `SKILL.md` ficou para trás. Os filtros de CM das dashboards (`dashboard/queries.py`, `dashboard/queries_cxpress.py`) casam `utm_source` por igualdade exata. Por isso, um lead vindo de `blog-cxpress`/`blog-buzzmonitor`/`blog-buzzcreators` só entra na dashboard se a URL de conversão o resgatar.
+
+- Fórmula agora é `{LP_URL}?utm_source=blog&utm_campaign={campaign}&utm_content={slug}`, igual ao CONTEXT, com ponteiro pra regra.
+- Artefatos antigos com `utm_source=blog-` (4 posts de 2026-06-30 em `blog-seo/buzzmonitor/brasil/` e `blog-seo/cxpress/brasil/`) **não** foram reescritos neste PR: dependem de confirmação do Victor. Os posts Buzzcreators (jul/ago) já saíram com `utm_source=blog`.
+- PATCH: a skill passa a seguir a regra que já estava documentada.
+
 ### 2026-07-07 — v1.0.1 — Nota no Passo 8: artefato sem `cover`/`coverAlt` (capa entra na publicação)
 
 O frontmatter Astro-ready do artefato local fica **sem** `cover`/`coverAlt` de propósito: a capa (foto Pexels) é gerada na publicação pelo Passo 0.6 da `blog-publicar` (`pexels_cover.py`), que só atua em post sem `cover:`. Detalhes na entrada blog-publicar v1.2.0 desta mesma data. PATCH — só documentação do contrato entre as duas skills.
