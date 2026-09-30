@@ -401,14 +401,29 @@
       "source": "landing-pages/cxpress/help-desk"
     },
     {
+      "slug": "help-desk-meta",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/help-desk-meta"
+    },
+    {
       "slug": "sistema-de-atendimento",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/sistema-de-atendimento"
     },
     {
+      "slug": "sistema-de-atendimento-meta",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sistema-de-atendimento-meta"
+    },
+    {
       "slug": "sistema-de-chamados",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/sistema-de-chamados"
+    },
+    {
+      "slug": "sistema-de-chamados-meta",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/sistema-de-chamados-meta"
     }
   ],
   "extra_files": {
