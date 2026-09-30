@@ -501,6 +501,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ================= 8. GESTAO ================= */
   .dash{position:relative;margin:56px auto 0;max-width:860px;padding:0 60px 70px 0}
   .dash__chart{position:absolute;z-index:3;right:0;bottom:0;width:44%;max-width:400px;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 26px 48px -18px rgba(35,41,96,.45),0 0 0 1px rgba(35,41,96,.06)}
+
+  /* fotos humanizadas (Unsplash) */
+  .ph{margin:0;border-radius:22px;overflow:hidden;box-shadow:0 26px 48px -18px rgba(35,41,96,.45),0 0 0 1px rgba(35,41,96,.06);background:#fff}
+  .ph img{display:block;width:100%;height:100%;object-fit:cover}
+  .dist-vis{position:relative}
+  .dist-vis .ph{aspect-ratio:16/10;width:72%}
+  .dist-vis .ph img{object-position:70% 22%}
+  .dist-vis .qboard{position:relative;z-index:2;width:88%;margin:-72px 0 0 auto}
+  .ph--dash{position:absolute;z-index:3;left:-28px;bottom:0;width:34%;max-width:290px;aspect-ratio:16/10;border:4px solid #fff}
+  @media (max-width:640px){.dist-vis .ph{width:100%}.dist-vis .qboard{width:94%;margin-top:-44px}.ph--dash{left:-4px;width:46%}}
   .dash__chart img{display:block;width:100%;height:auto}
   .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:40px}
   .kpi{position:relative;background:#fff;border:1px solid var(--neutral-300);border-radius:20px;padding:22px 18px 20px;overflow:hidden;transition:translate .35s var(--ease-out),box-shadow .3s ease}
@@ -1110,7 +1120,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ================= 3. TICKETS E DISTRIBUICAO ================= -->
   <section class="sec--white" aria-labelledby="dist-title">
     <div class="wrap split">
-      <div class="qboard reveal" data-fx role="img" aria-label="Exemplo de distribuição automática: chamados de WhatsApp, Instagram e e-mail entram e seguem para as filas Suporte técnico, Comercial e Financeiro">
+      <div class="dist-vis reveal"><figure class="ph"><img src="./assets/fotos/atendente-desktop.webp" alt="Atendente sorrindo enquanto trabalha no computador em um escritório" width="1100" height="1100" loading="lazy"></figure>
+      <div class="qboard" data-fx role="img" aria-label="Exemplo de distribuição automática: chamados de WhatsApp, Instagram e e-mail entram e seguem para as filas Suporte técnico, Comercial e Financeiro">
         <div class="qboard__head" aria-hidden="true">Distribuição de chamados <em>ao vivo</em></div>
         <div class="qbody" aria-hidden="true">
           <div class="qin"><svg><use href="#ico-inbox"/></svg>Novos chamados</div>
@@ -1123,6 +1134,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="qtk qtk--2"><svg style="color:#C13584"><use href="#ico-ig"/></svg>#3109 novo plano</span>
           <span class="qtk qtk--3"><svg style="color:#4A69BD"><use href="#ico-mail"/></svg>#3110 reembolso</span>
         </div>
+      </div>
       </div>
       <div class="sec-copy reveal">
         <span class="eyebrow">Tickets e distribuição</span>
@@ -1158,6 +1170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
           <img src="./assets/telas/tela-dashboard.svg" alt="Dashboard real da Cxpress com total de tickets, tickets em andamento, tickets novos, tempo médio do ticket, tempo médio de espera e taxa de desistência" width="1500" height="1160" loading="lazy">
         </div>
+        <figure class="ph ph--dash"><img src="./assets/fotos/atendente-equipe.webp" alt="Analista de atendimento trabalhando no notebook com a equipe ao fundo" width="1100" height="619" loading="lazy"></figure>
         <div class="dash__chart ui-float" aria-hidden="true"><img src="./assets/ui/card-tickets-hora.webp" alt="" width="620" height="265" loading="lazy"></div>
       </div>
     </div>
