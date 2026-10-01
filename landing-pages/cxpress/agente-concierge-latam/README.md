@@ -1655,3 +1655,35 @@ O `samir-face.webp` foi removido da pasta: nenhuma outra LP o referenciava.
 hero desta LP ele aparece sem headset, digitando. Foi decisao do Ulises usar o mesmo retrato nas
 duas; se algum dia quiser um retrato sem headset pra ca, e recortar o rosto de `samir-hero.webp`
 com o mesmo enquadramento.
+
+### Correcao: a seta gigante no movil (2026-10-01)
+
+Reportado pelo Ulises: no telefone aparecia uma seta enorme entre o header e o hero, como se
+fosse um bloco proprio.
+
+Era o **cursor fluido**. Todo o CSS do `.fcur` vive dentro de
+`@media (hover:hover) and (pointer:fine)`. Num telefone (`pointer:coarse`) essa media query nao
+casa, entao o elemento nao recebia **regra nenhuma**: virava um `<div>` block normal no fluxo, e
+o `<svg>` inline dentro dele, que nao tem `width`/`height` (so `viewBox`), caia no tamanho
+padrao de elemento substituido e esticava pra largura toda.
+
+Medido no ar antes da correcao, em 375px: `.fcur` ocupava **375x281px** e empurrava o hero de
+y=74 pra y=355.
+
+A correcao e uma linha, fora da media query:
+
+```css
+.fcur{display:none}
+@media (hover:hover) and (pointer:fine){
+  .fcur{ display:block; position:fixed; ... }
+}
+```
+
+O `display:block` dentro da media query e necessario porque a regra base agora e `none`.
+
+**Licao:** elemento cujo estilo inteiro mora dentro de uma media query precisa de estado base
+fora dela. Sem isso o fallback nao e "invisivel", e "sem estilo", que pra um SVG inline
+significa 300x150px. A mesma falha estava na `telefonia-ia-latam`, que herdou o bloco daqui.
+
+**Verificado:** 320/360/390/430px sem overflow e sem a seta; no desktop o cursor volta
+(`display:block`, segue o ponteiro, laranja no hero azul e marinho nos cards claros).

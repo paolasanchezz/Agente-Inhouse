@@ -696,11 +696,18 @@ fbq('track', 'PageView');
      rotaciona pro lado pra onde voce esta indo. Sem esticada: a proporcao nunca
      muda. Campo de texto e excecao, ali o cursor do sistema volta, senao voce
      perde o caret e nao sabe onde vai escrever. */
+  /* Fora do @media abaixo o cursor nao existe. Esta linha e obrigatoria: num
+     telefone (pointer:coarse) a media query nao casa, o .fcur nao recebe regra
+     nenhuma, e um <svg> inline sem width/height cai no tamanho padrao de
+     elemento substituido. Resultado: uma seta gigante ocupando a largura toda
+     entre o header e o hero. Estava assim no ar ate 2026-10-01. */
+  .fcur{display:none}
   @media (hover:hover) and (pointer:fine){
     body{cursor:none}
     a,button,summary,[role="button"],.tile,.plat__item{cursor:none}
     input,textarea,select,[contenteditable]{cursor:auto}
     .fcur{
+      display:block;
       position:fixed;left:0;top:0;width:0;height:0;z-index:2000;pointer-events:none;
       opacity:0;transition:opacity .25s ease;will-change:transform;
       color:var(--navy);                       /* bloco claro */

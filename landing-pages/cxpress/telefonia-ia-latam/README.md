@@ -113,3 +113,15 @@ a atribuicao a um **agente humano**, tudo confirmado no brandbook. Nenhum cartao
 ## Como atualizar
 
 Editar `index.html` aqui e rodar `/lp-publicar cxpress telefonia-ia-latam content.cxpress.io`.
+
+### Correcao: a seta gigante no movil (2026-10-01)
+
+Mesma falha da `agente-concierge-latam`, herdada junto com o bloco do cursor: o CSS do `.fcur`
+vive todo dentro de `@media (hover:hover) and (pointer:fine)`, entao no telefone o elemento
+ficava **sem estilo nenhum** e o `<svg>` inline sem `width`/`height` esticava pra 375x281px,
+entre o header e o hero.
+
+Corrigido com `.fcur{display:none}` como estado base, fora da media query, e `display:block`
+dentro dela. Racional completo no README da `agente-concierge-latam`.
+
+**Verificado:** 320/360/390/430px sem overflow e sem a seta; desktop com o cursor intacto.
