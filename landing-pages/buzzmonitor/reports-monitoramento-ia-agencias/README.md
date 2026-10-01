@@ -25,6 +25,7 @@ A pedido da Catharina, o HTML foi reconstruído para reaproveitar literalmente o
 3. Contexto de mercado (estatística "92%" em destaque + fonte citada, ver Notas)
 4. Problema (5 itens em grid 2 colunas, cards com X vermelho circular, 5º card ocupa a linha inteira) + punchline em gradiente, tamanho reduzido (H3+BODY da seção Diferencial da copy) + CTA
 5. Programa (grid 2 colunas, 4 itens com check roxo + 5º item em destaque roxo "Demonstração ao vivo")
+5b. Especialistas — "Especialistas em Inteligência Digital para Agências" (2 cards: Tereza Rici, palestrante Buzzmonitor + Barbara Gomes, speaker convidada Ana Couto)
 6. Para quem (lista numerada 01-04 + ilustração SVG decorativa reaproveitada do template)
 7. Prova social (grid de estatísticas, 4 métricas, números animados contando + gradiente roxo)
 8. Perguntas frequentes (acordeão, fundo laranja em gradiente, 5 objeções reais de calls comerciais com agências, ver Notas)
@@ -51,6 +52,8 @@ A pedido da Catharina, o HTML foi reconstruído para reaproveitar literalmente o
 - Punchline (Diferencial): fonte reduzida de `clamp(44px,7.4vw,92px)` pra `clamp(26px,3.6vw,44px)` — texto muito grande pra uma frase longa (8 palavras), mais próximo de um H2/H3 forte do que de um "momento gigante".
 - Seção Clientes (mural de logos) **removida por completo** — CSS, HTML e as imagens `mural-1.jpeg`/`mural-2.jpeg` foram deletadas da pasta `assets/logos/`.
 - FAQ: fundo trocado de roxo sólido (`--c-primary`) pra gradiente laranja sólido, depois pra **`var(--grad-hot)`** (rosa→laranja, o mesmo gradiente usado no destaque "IA" do H1 e no punchline) — a pedido explícito da Catharina, pra reaproveitar o mesmo degradê já usado nas letras. Orbs decorativos ajustados pra contrastar com o novo fundo (orb 1 branco translúcido, orb 2 roxo `--c-primary`).
+
+**Atualização 2026-10-01:** adicionada seção de especialistas logo após "O que você vai levar deste webinar", replicando os cards de palestrante/convidada da LP `buzztalk-gestao-multimarcas-para-agencias` (mesmas fotos, cargos e logos, efeito de ondas no hover), com título "Especialistas em Inteligência Digital para Agências". Assets copiados para `assets/` (`palestrante-tereza-rici.jpg`, `convidada-barbara-gomes.jpg`, `anacouto-logo.png`). CSS adaptado aos tokens desta LP (`--grad-hot` no anel, `--c-teal` no rótulo). Isso substitui a nota anterior "Sem seção de speakers".
 
 ## Estado
 
