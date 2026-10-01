@@ -52,6 +52,7 @@ CM_UTM_SOURCES: list[str] = [
     'Instagram_Reels',  # posicionamento Meta, mesma familia de Feed/Stories (Victor, 2026-08-31)
     'insta-bio',  # link da bio do Instagram (Victor confirmou CM, 2026-07-01)
     'instabio',  # Instabio (link na bio), variante sem hifen (Victor confirmou CM, 2026-07-27)
+    'webinar-perpetuo', 'perpetuo',  # webinar perpetuo (Victor, 2026-10-01)
 ]
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
