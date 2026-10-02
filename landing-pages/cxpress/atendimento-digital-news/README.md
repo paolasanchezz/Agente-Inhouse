@@ -17,3 +17,9 @@ LP do guarda-chuva **content.cxpress.io** — variante enxuta de [`atendimento-d
 - **Assets novos (copia de `planos/assets/`):** `Group-1707478254.png` (check), `icon-footer-1.png`, `imgi_1_...-1.png` (logo do rodape), `Cxpress_icons_social-scaled.png`. Mesmo nome e mesmos bytes da LP-mae no namespace `/assets/cxpress/`.
 - **Script do FAQ:** acordeao de /planos (uma pergunta aberta por vez). Reveal usa a classe `.reveal` desta LP (as `.fade-in` coladas foram renomeadas).
 - No mobile o CTA do hero agora quebra linha (`white-space:normal`): em caixa-alta, o texto longo com `nowrap` alargava a coluna e cortava o hero.
+
+## Formulario — 2026-10-02
+
+- **Form provider:** Jotform `261027639617663` ("LPs - Proposta", o form unificado das LPs de proposta BR). Antes: `261045149477663`, herdado da LP-mae.
+- Troca so do ID em `data-jotform` + `<noscript>`: o carregador diferido da LP monta `https://form.jotform.com/jsform/{id}`, que e o mesmo snippet enviado. Testado: iframe do `261027639617663` carrega ao rolar, sem erro de JS.
+- Campos, texto do botao ("Inscrever-se") e pagina de agradecimento sao configuracao do proprio Jotform, nao da LP.
