@@ -202,21 +202,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       white-space:nowrap;
       margin-bottom:28px;
     }
-    .hero__overline::before{
-      content:"";width:8px;height:8px;border-radius:50%;
-      background:var(--primary);
-      animation:pulse 2.4s ease-in-out infinite;
-    }
+    .hero__overline::before{content:none}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
     .hero h1{
-      font-family:var(--font-display);font-weight:600;
-      font-size:clamp(34px,4.6vw,60px);line-height:1.08;
-      letter-spacing:-.035em;color:#4c4848;
+      /* Mesmo tratamento dos titulos das secoes seguintes (.section-title,
+         .pk-plans-title): Open Sans 700, navy, sem tracking negativo. */
+      font-family:var(--font-display);font-weight:700;
+      font-size:clamp(32px,4.2vw,52px);line-height:1.18;
+      color:var(--primary-dark);
       margin-bottom:24px;
     }
-    .hero h1 span{color:var(--primary)}
     .hero__sub{
-      font-size:20px;line-height:1.65;color:#0a0a0a;
+      font-size:20px;line-height:32px;color:var(--neutral-700);
       max-width:54ch;margin-bottom:36px;
     }
     /* Botao no padrao .pk-btn de /planos: pilula azul, caixa-alta, brilho no hover */
@@ -420,7 +417,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         grid-template-columns:1fr;
         padding:32px 24px 40px;gap:28px;
       }
-      .hero__sub{font-size:18px}
+      .hero__sub{font-size:18px;line-height:29px}
       .hero__pills .p1{display:none}
       .container{padding:0 24px}
       .beneficios__grid{grid-template-columns:1fr;gap:20px}
@@ -486,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero__inner">
         <div class="hero__content">
           <span class="hero__overline">Gestão do Atendimento Digital · Cxpress</span>
-          <h1 id="hero-title">Sua empresa mede tudo. <span>Menos o atendimento.</span></h1>
+          <h1 id="hero-title">Sua empresa mede tudo. Menos o atendimento.</h1>
           <p class="hero__sub">Quando chega um cliente no WhatsApp e quem responde é "quem pegar primeiro", a operação está rodando sem gestão. A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.</p>
           <a href="#agendar" class="btn">Começar a medir o meu atendimento</a>
         </div>
