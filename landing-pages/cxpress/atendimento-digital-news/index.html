@@ -340,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .prova{background:var(--neutral-100)}
     .prova .section-title{text-align:center;max-width:720px;margin:0 auto 64px}
     .prova__grid{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
       margin-bottom:36px;
     }
     .stat{
@@ -351,7 +351,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .stat__num{
       font-family:var(--font-display);font-weight:800;
-      font-size:clamp(40px,4vw,56px);line-height:1;
+      /* 3 cards com titulo de ate 2 linhas ("Ate 15x mais produtividade") */
+      font-size:clamp(30px,2.8vw,40px);line-height:1.15;text-wrap:balance;
       color:var(--primary-dark);display:block;margin-bottom:14px;
     }
     .stat__label{font-size:16px;line-height:1.5;color:var(--neutral-700)}
@@ -421,7 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .hero__pills .p1{display:none}
       .container{padding:0 24px}
       .beneficios__grid{grid-template-columns:1fr;gap:20px}
-      .prova__grid{grid-template-columns:repeat(2,1fr);gap:16px}
+      .prova__grid{grid-template-columns:1fr;gap:16px;max-width:560px;margin-left:auto;margin-right:auto}
       .agendar{padding:60px 24px}
       .agendar__card{grid-template-columns:1fr;gap:28px;padding:32px 22px}
       .agendar__formcol{order:1;padding:24px}
@@ -611,13 +612,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="container">
         <h2 id="prova-title" class="section-title reveal">Resultados de quem estruturou o atendimento com a Cxpress</h2>
         <ul class="prova__grid" style="list-style:none">
-          <li class="stat reveal"><span class="stat__num">+220%</span><span class="stat__label">de interações realizadas sem aumentar a equipe.*</span></li>
-          <li class="stat reveal"><span class="stat__num">15x</span><span class="stat__label">mais produtividade da IA frente ao atendimento 100% humano.*</span></li>
-          <li class="stat reveal"><span class="stat__num">-60%</span><span class="stat__label">no tamanho da equipe atendendo mais (de 10 para 4 pessoas).*</span></li>
-          <li class="stat reveal"><span class="stat__num">98%</span><span class="stat__label">de qualidade avaliada da IA (referência humana: 80%).*</span></li>
+          <li class="stat reveal"><span class="stat__num">+220%</span><span class="stat__label">de interações realizadas com a mesma estrutura de atendimento.*</span></li>
+          <li class="stat reveal"><span class="stat__num">Até 15x mais produtividade</span><span class="stat__label">nas interações automatizadas por IA, aumentando a capacidade da equipe.*</span></li>
+          <li class="stat reveal"><span class="stat__num">98% de qualidade</span><span class="stat__label">nas respostas automatizadas avaliadas, de acordo com os critérios definidos para cada operação.*</span></li>
         </ul>
         <div class="prova__notes reveal">
-          <p>*Resultados de clientes Cxpress em atendimento a redes sociais (relatório interno Sentinela, 2025). Os números variam conforme a operação.</p>
+          <p>*Resultados obtidos por clientes Cxpress no atendimento através das redes sociais, com base no relatório interno Concierge, de 2025. Os resultados podem variar conforme a operação.</p>
         </div>
         <div class="prova__cta reveal">
           <a href="#agendar" class="btn">Quero esses números na minha operação</a>
