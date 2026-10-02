@@ -69,7 +69,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Source+Sans+3:wght@400;600&family=Bitter:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
@@ -94,21 +94,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          titulo #232960 -> corpo -> apoio. O ganho nao e texto mais escuro:
          e a separacao titulo/corpo, que sobe de 1.52:1 (o antigo #4a4a4a)
          para 1.84:1 sem tocar em nenhuma cor de marca. */
-      --neutral-700:#4B5670;   /* corpo:  7.33:1 no branco, 6.60:1 no tint */
+      --neutral-700:#4a4a4a;   /* corpo (planos): 8.86:1 no branco */
       --neutral-500:#606B88;   /* apoio:  5.31:1 no branco, 4.78:1 no tint */
       --neutral-300:#C6D0E4;   /* borda de card */
       --border-strong:#AEBBD6;
-      --neutral-100:#EDF1FA;   /* fundo das secoes com tinta */
+      --neutral-100:#f9f9f9;   /* fundo das secoes com tinta (planos) */
       /* Filete de limite de secao. O preenchimento nao pode escurecer mais
          que isto: --primary (#4A69BD) cai para 4.51:1 em #EBEFF9 e reprova
          abaixo disso. Por isso o limite e filete + respiro, nao cor. */
       --rule:#DCE4F2;
       --white:#ffffff;
-      --radius-btn:9px;
-      --radius-card:16px;
+      --radius-btn:50px;
+      --radius-card:15px;
       --font-display:'Open Sans',sans-serif;
-      --font-body:'Source Sans 3',sans-serif;
-      --font-accent:'Bitter',serif;
+      /* Tipografia e paleta alinhadas a /planos (2026-10-02): Open Sans em tudo,
+         Inter so no rodape, corpo #4a4a4a, azul #4a69bd, navy #232960. */
+      --font-body:'Open Sans',sans-serif;
       --maxw:1200px;
     }
 
@@ -124,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-family:var(--font-body);
       font-size:18px;
       line-height:1.7;
-      color:var(--primary-dark);
+      color:var(--neutral-700);
       background:var(--white);
       -webkit-font-smoothing:antialiased;
     }
@@ -138,12 +139,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .skip-link:focus{left:0}
 
     :focus-visible{
-      outline:3px solid var(--accent);
+      outline:3px solid var(--primary-dark);
       outline-offset:3px;
       border-radius:4px;
     }
 
     .container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+    /* Resets que as secoes vindas de /planos pressupoem (la sao globais) */
+    .pk-plans ul,.pk-faq ul{list-style:none}
+    .pk-plans a,.pk-cmp a,.k2x-footer a{text-decoration:none}
+    .pk-plans img,.pk-cmp img,.k2x-footer img{max-width:100%}
+    .pk-plans,.pk-cmp,.pk-faq,.k2x-footer{line-height:normal}
+    .k2x-footer :focus-visible{outline-color:#fff}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
     /* ===== Header ===== */
     /* Menu de vidro (padrao das LPs irmas): translucido + blur, para o
@@ -165,13 +174,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .navbar__logo img{display:block;height:38px;width:auto}
     .navbar__cta{
-      font-family:var(--font-display);font-weight:700;font-size:15px;
-      background:var(--primary-dark);color:var(--white);
-      padding:11px 22px;border-radius:var(--radius-btn);
+      font-family:var(--font-display);font-weight:600;font-size:14px;
+      letter-spacing:1px;text-transform:uppercase;
+      background:var(--primary);color:var(--white);
+      padding:12px 24px;border-radius:var(--radius-btn);
       text-decoration:none;white-space:nowrap;
       transition:background .2s ease,transform .2s ease;
     }
-    .navbar__cta:hover{background:var(--primary);transform:translateY(-1px)}
+    .navbar__cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
     .navbar__cta-short{display:none}
     @media (max-width:600px){.navbar__cta-full{display:none}.navbar__cta-short{display:inline}}
 
@@ -184,8 +194,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hero__overline{
       display:inline-flex;align-items:center;gap:10px;
-      font-family:var(--font-display);font-weight:700;font-size:14px;
-      letter-spacing:.04em;text-transform:uppercase;
+      font-family:var(--font-display);font-weight:700;font-size:15px;
+      letter-spacing:1.2px;text-transform:uppercase;
       color:var(--primary-dark);
       background:var(--primary-lighter);
       border-radius:9999px;padding:8px 18px;
@@ -194,32 +204,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hero__overline::before{
       content:"";width:8px;height:8px;border-radius:50%;
-      background:var(--accent);
+      background:var(--primary);
       animation:pulse 2.4s ease-in-out infinite;
     }
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
     .hero h1{
-      font-family:var(--font-display);font-weight:800;
-      font-size:clamp(36px,4.6vw,58px);line-height:1.12;
-      letter-spacing:-.015em;color:var(--primary-dark);
+      font-family:var(--font-display);font-weight:600;
+      font-size:clamp(34px,4.6vw,60px);line-height:1.08;
+      letter-spacing:-.035em;color:#4c4848;
       margin-bottom:24px;
     }
+    .hero h1 span{color:var(--primary)}
     .hero__sub{
-      font-size:20px;line-height:1.65;color:var(--neutral-700);
+      font-size:20px;line-height:1.65;color:#0a0a0a;
       max-width:54ch;margin-bottom:36px;
     }
+    /* Botao no padrao .pk-btn de /planos: pilula azul, caixa-alta, brilho no hover */
     .btn{
-      display:inline-block;
-      font-family:var(--font-display);font-weight:700;font-size:17px;
-      background:var(--primary-dark);color:var(--white);
-      padding:16px 34px;border-radius:var(--radius-btn);
+      position:relative;overflow:hidden;
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:55px;padding:0 32px;
+      font-family:var(--font-display);font-weight:600;font-size:16px;
+      letter-spacing:1px;text-transform:uppercase;
+      background:var(--primary);color:var(--white);
+      border-radius:var(--radius-btn);
       text-decoration:none;border:none;cursor:pointer;
-      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+      transition:all .3s ease;
     }
-    .btn:hover{
-      background:var(--primary);transform:translateY(-2px);
-      box-shadow:0 10px 24px rgba(35,41,96,.22);
+    .btn:before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+      transform:translateX(-100%);transition:transform .6s ease;
     }
+    .btn:hover:before{transform:translateX(100%)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(74,105,189,.35)}
     .btn--light{background:var(--white);color:var(--primary-dark)}
     .btn--light:hover{background:var(--primary-lighter);color:var(--primary-dark)}
     .hero__visual{position:relative;display:grid;place-items:center;min-height:0}
@@ -230,8 +248,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__pills{position:absolute;inset:0;pointer-events:none}
     .hero__pills span{position:absolute;border-radius:9999px;display:block}
     .hero__pills .p1{width:64px;height:210px;background:var(--primary-lighter);top:-58px;right:5%}
-    .hero__pills .p2{width:132px;height:48px;border:3px solid var(--accent);bottom:-26px;left:-30px;background:transparent}
-    .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:96px;right:-44px;opacity:.9}
+    .hero__pills .p2{width:132px;height:48px;border:3px solid var(--primary);bottom:-26px;left:-30px;background:transparent}
+    .hero__pills .p3{width:120px;height:46px;background:var(--primary-dark);bottom:96px;right:-44px;opacity:.9}
     /* ---- Conversa simulada (padrao atendimento-domingo / black-friday-atendimento) ----
        Nas duas LPs de origem o card branco fica sobre hero navy. Aqui o hero e
        branco: o card ganha borda e a sombra vem mais leve, porque a de la
@@ -278,13 +296,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     noscript ~ * .hero__content > *{opacity:1}
 
     /* ===== Secoes base ===== */
-    section{padding:130px 0}
-    @media (max-width:980px){section{padding:64px 0}}
+    section{padding:80px 0}
+    @media (max-width:1000px){section{padding:60px 0}}
+    @media (max-width:600px){section{padding:40px 0}}
 
     .section-title{
       font-family:var(--font-display);font-weight:700;
-      font-size:clamp(28px,3.4vw,42px);line-height:1.2;
-      letter-spacing:-.01em;color:var(--primary-dark);
+      font-size:clamp(28px,3.6vw,45px);line-height:1.2;
+      color:var(--primary-dark);
     }
     /* Anti-orfao: equilibra titulos e evita palavra sozinha na ultima linha dos paragrafos */
     h1,h2,h3,.section-title,.hero__overline{text-wrap:balance}
@@ -301,27 +320,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .card{
       background:var(--white);
-      border:1px solid var(--neutral-300);
+      border:2px solid var(--primary);
       border-radius:var(--radius-card);
-      padding:40px 32px;
+      padding:40px 35px;
       box-shadow:0 4px 6px rgba(0,0,0,.04);
       transition:transform .25s ease,box-shadow .25s ease;
     }
-    .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(35,41,96,.10)}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(35,41,96,.18)}
     .card__pill{
       width:44px;height:16px;border-radius:9999px;
       background:var(--primary);margin-bottom:24px;
     }
-    .card:nth-child(2) .card__pill{background:var(--accent)}
-    .card:nth-child(3) .card__pill{background:var(--warning)}
+    .card:nth-child(2) .card__pill{background:var(--primary-dark)}
+    .card:nth-child(3) .card__pill{background:var(--primary-lighter)}
     .card h3{
-      font-family:var(--font-display);font-weight:700;font-size:22px;
-      color:var(--primary-dark);margin-bottom:14px;line-height:1.3;
+      font-family:var(--font-display);font-weight:700;font-size:24px;
+      color:var(--primary-dark);margin-bottom:14px;line-height:1.25;
     }
     .card p{font-size:17px;line-height:1.65;color:var(--neutral-700)}
 
     /* ===== Prova (stats) ===== */
-    .prova{background:var(--neutral-100);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+    .prova{background:var(--neutral-100)}
     .prova .section-title{text-align:center;max-width:720px;margin:0 auto 64px}
     .prova__grid{
       display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
@@ -330,7 +349,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .stat{
       background:var(--white);border-radius:var(--radius-card);
       padding:36px 26px;text-align:center;
-      border-top:5px solid var(--accent);
+      border:1px solid #e2e6f0;border-top:5px solid var(--primary);
       box-shadow:0 4px 6px rgba(0,0,0,.04);
     }
     .stat__num{
@@ -348,7 +367,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ===== Clientes (esteira padrao - referencia: chatbot-whatsapp) ===== */
     .clientes{background:var(--white);padding:56px 0 64px}
     .clientes__row{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr;gap:14px;align-items:center}
-    .clientes__label{font-family:var(--font-body);font-style:italic;font-size:17px;color:var(--neutral-700);text-align:center}
+    .clientes__label{font-family:var(--font-body);font-size:17px;font-weight:600;color:var(--neutral-700);text-align:center}
     .ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
     .ticker__track{display:flex;width:max-content;animation:clientesSlide 46s linear infinite}
     .ticker:hover .ticker__track{animation-play-state:paused}
@@ -360,11 +379,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:560px){.ticker__row{gap:36px;padding:12px 18px}.ticker__logo{height:28px}}
 
     /* ===== Form (CTA final) ===== */
-    .agendar{background:var(--neutral-100);padding:104px 0;scroll-margin-top:88px}
+    .agendar{background:linear-gradient(150deg,#232960,#4a69bd);padding:80px 40px;scroll-margin-top:88px}
     .agendar__card{
       max-width:var(--maxw);margin:0 auto;
-      background:var(--white);border-radius:24px;
-      box-shadow:0 24px 60px rgba(35,41,96,.12);
+      background:var(--white);border-radius:var(--radius-card);
+      box-shadow:0 20px 45px rgba(0,0,0,.25);
       padding:60px;
       display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
       gap:56px;align-items:start;
@@ -382,7 +401,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .agendar__formcol{
       background:var(--primary-lighter);
       border:1px solid rgba(74,105,189,.28);
-      border-top:4px solid var(--accent);
+      border-top:4px solid var(--primary);
       border-radius:var(--radius-card);
       padding:32px;
       box-shadow:0 8px 24px rgba(35,41,96,.10);
@@ -392,41 +411,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .agendar__formcol:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(35,41,96,.18);animation:none}
     @keyframes formPulse{
       0%,100%{box-shadow:0 8px 24px rgba(35,41,96,.10)}
-      50%{box-shadow:0 10px 30px rgba(239,134,60,.26)}
+      50%{box-shadow:0 10px 30px rgba(74,105,189,.30)}
     }
-
-    /* ===== Footer (padrao das LPs irmas) ===== */
-    .footer{background:var(--primary-dark);padding:44px 0 48px;border-top:1px solid rgba(255,255,255,.10)}
-    .footer__inner{
-      max-width:var(--maxw);margin:0 auto;padding:0 32px;
-      display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;
-    }
-    @media (min-width:720px){
-      .footer__inner{
-        display:grid;grid-template-columns:1fr auto 1fr;
-        align-items:center;gap:24px;text-align:left;
-      }
-      .footer__logo{justify-self:start}
-      .footer__inner>p{justify-self:center;text-align:center}
-      .footer__social{justify-self:end}
-    }
-    .footer__logo img{display:block;height:34px;width:auto}
-    .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
-    .footer__social{display:flex;align-items:center;gap:8px}
-    /* 44px de alvo de toque (GUIDELINES); o anel de 1px cumpre o 3:1 de
-       limite de controle sem precisar de fundo */
-    .footer__social a{
-      width:44px;height:44px;border-radius:50%;
-      display:grid;place-items:center;
-      color:var(--primary-lighter);
-      border:1px solid rgba(255,255,255,.16);
-      transition:color .22s ease,border-color .22s ease,background-color .22s ease,transform .22s ease;
-    }
-    .footer__social a:hover{
-      color:var(--primary-dark);background:var(--white);
-      border-color:var(--white);transform:translateY(-2px);
-    }
-    .footer__social svg{width:20px;height:20px;display:block}
 
     /* ===== Responsivo ===== */
     @media (max-width:980px){
@@ -439,7 +425,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .container{padding:0 24px}
       .beneficios__grid{grid-template-columns:1fr;gap:20px}
       .prova__grid{grid-template-columns:repeat(2,1fr);gap:16px}
-      .agendar{padding:64px 0}
+      .agendar{padding:60px 24px}
       .agendar__card{grid-template-columns:1fr;gap:28px;padding:32px 22px}
       .agendar__formcol{order:1;padding:24px}
       .agendar__content{order:2;border-top:1px solid var(--border-strong);padding-top:28px}
@@ -449,7 +435,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (max-width:600px){
       /* CTAs padronizados no mobile: bloco full-width, 1 linha, mesma altura/raio */
-      .btn{display:block;width:100%;text-align:center;white-space:nowrap;font-size:16px;padding:15px 18px}
+      .btn{display:flex;width:100%;text-align:center;white-space:normal;font-size:15px;letter-spacing:.5px;line-height:1.3;min-height:52px;padding:12px 18px}
     }
     @media (max-width:520px){
       .prova__grid{grid-template-columns:1fr}
@@ -467,7 +453,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .stat__label{ font-size:17px; }
   .prova__notes p{ font-size:15px; }
   .agendar__req{ font-size:15px; }
-  .footer p{ font-size:16px; }
   .clientes__label{ font-size:16px; }
   .chat__head{ font-size:15px; }
   .bubble{ font-size:17px; }
@@ -501,7 +486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero__inner">
         <div class="hero__content">
           <span class="hero__overline">Gestão do Atendimento Digital · Cxpress</span>
-          <h1 id="hero-title">Sua empresa mede tudo. Menos o atendimento.</h1>
+          <h1 id="hero-title">Sua empresa mede tudo. <span>Menos o atendimento.</span></h1>
           <p class="hero__sub">Quando chega um cliente no WhatsApp e quem responde é "quem pegar primeiro", a operação está rodando sem gestão. A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.</p>
           <a href="#agendar" class="btn">Começar a medir o meu atendimento</a>
         </div>
@@ -643,30 +628,638 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+
+    <!-- PLANOS (secoes copiadas de /planos) -->
+<section class="pk-plans" id="planos">
+	<div class="pk-plans-container">
+		<div class="pk-plans-head reveal">
+			<h2 class="pk-plans-title">Duas formas de contratar.<br> Uma plataforma completa.</h2>
+			<p class="pk-plans-sub">Comece com o Basic, utilizando toda a tecnologia da Cxpress com sua própria equipe, ou escolha o Enterprise para uma solução personalizada, combinando canais, agentes de IA e especialistas dedicados à sua operação.</p>
+		</div>
+
+		<div class="pk-grid">
+
+			<article class="pk-card pk-card-basic reveal">
+				<p class="pk-tag">Mais contratado</p>
+				<h3 class="pk-card-name">Basic</h3>
+				<p class="pk-card-desc">Toda a plataforma Cxpress pronta para operar, com 5 acessos de operador humano.</p>
+				<p class="pk-price">A partir de R$ 1.750 <span>por mês</span></p>
+				<a href="#agendar" class="pk-btn pk-card-btn">Falar com um especialista</a>
+
+				<ul class="pk-list">
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">WhatsApp com API Oficial da Meta</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Instagram, Facebook, Webchat e e-mail</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Telefone com URA inteligente para encaminhamento de chamados</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">1 Agente de IA privado para WhatsApp, Instagram, Facebook e Webchat</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">5 acessos de operador humano</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Histórico unificado, independente do canal em que o cliente falou</li>
+				</ul>
+				<a href="#comparativo" class="pk-more"><span>Ver a lista completa</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+				<p class="pk-more-note">E muito mais recursos para organizar, acompanhar e evoluir toda a sua operação.</p>
+				<p class="pk-addon">Acesso adicional de operador humano: R$ 120,00 por mês.</p>
+			</article>
+
+			<article class="pk-card pk-card-ent reveal">
+				<p class="pk-tag pk-tag-light">Sob demanda</p>
+				<h3 class="pk-card-name">Enterprise</h3>
+				<p class="pk-card-desc">Tudo do Basic, mais os recursos e a equipe que a sua operação pedir. Cada item entra conforme o desenho da operação, por isso o valor é montado caso a caso.</p>
+				<p class="pk-price pk-price-ent">Precificação sob demanda</p>
+				<a href="#agendar" class="pk-btn pk-card-btn pk-btn-invert">Pedir proposta</a>
+
+				<ul class="pk-list pk-list-light pk-list-all">
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><strong>Tudo o que está no Basic</strong></li>
+				</ul>
+				<ul class="pk-list pk-list-light">
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Números adicionais de WhatsApp com API Oficial da Meta</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">TikTok e Google Meu Negócio</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Agentes de IA privados adicionais, por canal</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Agente Concierge: a IA que responde comentários públicos no Instagram, Facebook, Google Meu Negócio e TikTok</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Voice Agent: a IA de telefonia</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Integração entre a IA da Cxpress e sistemas de terceiros, para consultar e enviar dados</li>
+					<li><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async">Equipe humana especializada para atender junto com você</li>
+				</ul>
+				<a href="#comparativo" class="pk-more pk-more-light"><span>Ver a lista completa</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+			</article>
+
+		</div>
+
+		<p class="pk-note reveal">O valor do Basic corresponde ao pacote com 5 acessos de operador. Acessos, canais, agentes de IA e serviços adicionais são cotados junto com o time comercial.</p>
+	</div>
+</section>
+<style>
+/* .pk-btn vem do hero de /planos (que nao entrou nesta LP) */
+.pk-btn{
+	position:relative; display:inline-flex; align-items:center; justify-content:center;
+	padding:0 32px; height:55px; background:#4a69bd; border-radius:50px;
+	font-family:"Open Sans",sans-serif; font-weight:600; font-size:16px; letter-spacing:1px;
+	text-transform:uppercase; color:#fff!important; text-decoration:none;
+	overflow:hidden; transition:all .3s ease;
+}
+.pk-btn:before{
+	content:""; position:absolute; inset:0;
+	background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+	transform:translateX(-100%); transition:transform .6s ease;
+}
+.pk-btn:hover:before{ transform:translateX(100%); }
+.pk-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 25px rgba(74,105,189,.35); }
+@media(max-width:600px){
+.pk-btn{ width:100%; height:52px; font-size:15px; padding:0 18px; }
+}
+.pk-card-ent :focus-visible{ outline-color:#fff; }
+.pk-plans{ width:100%; background:#d7e2ff; padding:80px 40px; }
+.pk-plans-container{ max-width:1280px; margin:0 auto; }
+.pk-plans-head{ text-align:center; margin-bottom:50px; }
+.pk-plans-title{
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:48px; line-height:1.18;
+	color:#232960; margin:0 0 18px;
+}
+.pk-plans-sub{
+	font-family:"Open Sans",sans-serif; font-size:20px; line-height:32px;
+	color:#232960; max-width:830px; margin:0 auto;
+}
+.pk-grid{ display:grid; grid-template-columns:1fr 1fr; gap:25px; align-items:stretch; }
+.pk-card{
+	border-radius:15px; padding:40px 35px;
+	display:flex; flex-direction:column;
+	transition:transform .3s ease, box-shadow .3s ease;
+}
+.pk-card-basic{ background:#fff; border:2px solid #4a69bd; }
+.pk-card-ent{ background:linear-gradient(150deg,#232960,#4a69bd); color:#fff; }
+.pk-card:hover{ transform:translateY(-6px); box-shadow:0 18px 35px rgba(35,41,96,.18); }
+
+.pk-tag{
+	display:inline-block; background:#4a69bd; color:#fff;
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:14px;
+	letter-spacing:1.1px; text-transform:uppercase; padding:7px 16px; border-radius:50px;
+	margin:0 0 18px; white-space:nowrap; align-self:flex-start;
+}
+.pk-tag-light{ background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.45); }
+.pk-card-name{
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:34px; line-height:1.1;
+	color:#232960; margin:0 0 12px;
+}
+.pk-card-ent .pk-card-name{ color:#fff; }
+.pk-card-desc{
+	font-family:"Open Sans",sans-serif; font-size:18px; line-height:28px;
+	color:#4a4a4a; margin:0 0 26px;
+}
+.pk-card-ent .pk-card-desc{ color:#e6ebff; }
+.pk-price{
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:32px; line-height:1.2;
+	color:#232960; margin:0 0 26px; padding-bottom:26px; border-bottom:1px solid #d1d1d1;
+}
+.pk-price span{ display:block; font-weight:400; font-size:18px; color:#4a4a4a; margin-top:6px; }
+.pk-price-ent{ color:#fff; font-size:28px; border-bottom-color:rgba(255,255,255,.3); }
+.pk-price-ent span{ color:#e6ebff; }
+.pk-card-btn{ width:100%; margin-bottom:30px; }
+.pk-btn-invert{ background:#fff; color:#232960!important; }
+.pk-btn-invert:hover{ box-shadow:0 10px 25px rgba(0,0,0,.3); }
+
+/* Listas abaixo do CTA: itens separados por filete de baixa opacidade. O respiro
+   vem do padding do <li>, nao de gap, pra que o filete caia no meio do intervalo
+   entre um item e outro. */
+/* "Ver a lista completa": botao outline, nao link de texto. Precisa de peso
+   suficiente pra ser visto antes de o olho descer pra tabela, mas menos que o
+   CTA principal (que e solido e caixa-alta) pra nao competir com a conversao.
+   Seta pra baixo porque o destino esta abaixo, na mesma pagina. */
+.pk-more{
+	display:inline-flex; align-items:center; gap:10px;
+	margin-top:auto; align-self:flex-start;
+	padding:13px 22px; border:2px solid #4a69bd; border-radius:var(--r, 50px);
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:17px;
+	color:#4a69bd!important; text-decoration:none;
+	transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+.pk-more svg{ flex-shrink:0; transition:transform .25s ease; }
+.pk-more:hover{ background:#4a69bd; color:#fff!important; }
+.pk-more:hover svg{ transform:translateY(3px); }
+.pk-more-light{ border-color:rgba(255,255,255,.55); color:#fff!important; }
+.pk-more-light:hover{ background:#fff; color:#232960!important; border-color:#fff; }
+.pk-list{ display:flex; flex-direction:column; gap:0; }
+.pk-list li{
+	display:flex; gap:12px; align-items:flex-start;
+	font-family:"Open Sans",sans-serif; font-weight:400; font-size:16px; line-height:1.7;
+	color:#4a4a4a; padding:13px 0; border-bottom:1px solid rgba(35,41,96,.08);
+}
+.pk-list li:last-child{ border-bottom:0; padding-bottom:0; }
+.pk-list + .pk-more{ margin-top:26px; }
+.pk-list img{ width:20px; height:20px; flex-shrink:0; margin-top:4px; }
+.pk-list-light li{ color:rgba(255,255,255,.88); border-bottom-color:rgba(255,255,255,.14); }
+.pk-list-all li{ font-size:16px; color:#fff; padding-bottom:13px;
+	border-bottom:1px solid rgba(255,255,255,.14); }
+.pk-addon{
+	font-family:"Open Sans",sans-serif; font-size:17px; line-height:1.6; font-weight:600;
+	color:#232960; background:#d7e2ff; border-radius:10px; padding:14px 16px;
+	margin:30px 0 0;
+}
+.pk-more-note{
+	font-family:"Open Sans",sans-serif; font-size:16px; line-height:1.65; font-weight:400;
+	color:#4a4a4a; margin:20px 0 0;
+}
+.pk-note{
+	font-family:"Open Sans",sans-serif; font-size:16px; line-height:26px; color:#232960;
+	max-width:900px; margin:40px auto 0; text-align:center;
+}
+@media(max-width:1000px){
+.pk-plans{ padding:60px 40px; }
+.pk-grid{ grid-template-columns:1fr; }
+.pk-plans-title{ font-size:38px; }
+}
+@media(max-width:768px){
+.pk-plans-sub{ font-size:18px; line-height:29px; }
+.pk-more-note{ font-size:17px; }
+.pk-card-desc{ font-size:17px; line-height:27px; }
+.pk-list li{ font-size:17px; line-height:1.7; }
+.pk-list-all li{ font-size:17px; }
+}
+@media(max-width:600px){
+.pk-plans{ padding:40px 20px; }
+.pk-plans-head{ margin-bottom:32px; }
+.pk-plans-title{ font-size:28px; }
+.pk-plans-title br{ display:none; }
+.pk-plans-sub{ font-size:17px; line-height:27px; }
+.pk-card{ padding:30px 22px; }
+.pk-card-name{ font-size:26px; }
+.pk-price{ font-size:26px; }
+.pk-price span{ font-size:17px; }
+.pk-note{ font-size:15px; margin-top:28px; }
+}
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+</style>
+
+<section class="pk-cmp" id="comparativo">
+	<div class="pk-cmp-container">
+		<div class="pk-cmp-head reveal">
+			<h2 class="pk-cmp-title">O que entra em cada plano</h2>
+			<p class="pk-cmp-sub">A lista completa, item por item, para comparar antes de falar com a gente.</p>
+		</div>
+
+		<div class="pk-table-wrap reveal">
+			<table class="pk-table" role="table">
+				<caption class="sr-only">Comparativo de recursos entre os planos Basic e Enterprise</caption>
+				<thead role="rowgroup">
+					<tr role="row">
+						<th scope="col" role="columnheader">Recurso</th>
+						<th scope="col" role="columnheader">Basic</th>
+						<th scope="col" role="columnheader">Enterprise</th>
+					</tr>
+				</thead>
+				<tbody role="rowgroup">
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Canais</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">WhatsApp com API Oficial da Meta</th>
+						<td role="cell" data-plan="Basic">1 número</td>
+						<td role="cell" data-plan="Enterprise">Números adicionais</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Instagram, Facebook, Webchat e e-mail</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Telefone com URA inteligente</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">TikTok</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Google Meu Negócio</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">IA e automação</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Agente de IA privado (WhatsApp, Instagram, Facebook e Webchat)</th>
+						<td role="cell" data-plan="Basic">1 agente</td>
+						<td role="cell" data-plan="Enterprise">Adicionais por canal</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Agente Concierge, para comentários públicos</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Voice Agent, IA de telefonia</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Organização automatizada de tickets</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Smart replies</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Agendamento de mensagens ativas no WhatsApp</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Sumarização de tickets por IA</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">API pública e webhooks</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Dados e CRM</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Timeline inteligente da jornada do consumidor</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Histórico unificado por cliente</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">CRM customizável</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Integração com sistemas de terceiros</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Gestão e operação</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Acessos de operador humano</th>
+						<td role="cell" data-plan="Basic">5 incluídos</td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Métricas e dashboards com análise da IA</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Ambiente de comunicação interna</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Aplicativo mobile</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Serviços gerenciados, com a Elife</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Criação e gestão dos Agentes de IA</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Gestão da qualidade do atendimento com IA</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Equipe humana especializada de atendimento</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Social listening, monitoramento de mercado e relatórios executivos</th>
+						<td role="cell" data-plan="Basic"><span class="pk-dash" aria-hidden="true"></span><span class="sr-only">Não incluído</span></td>
+						<td role="cell" data-plan="Enterprise">Sob demanda</td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Suporte</th></tr>
+					<tr class="pk-row" role="row">
+						<th scope="row" role="rowheader">Customer Success e onboarding</th>
+						<td role="cell" data-plan="Basic"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+						<td role="cell" data-plan="Enterprise"><img src="./assets/Group-1707478254.png" alt="" aria-hidden="true" width="26" height="26" loading="lazy" decoding="async"><span class="sr-only">Incluído</span></td>
+					</tr>
+
+					<tr class="pk-grp" role="row"><th colspan="3" scope="colgroup" role="columnheader">Investimento</th></tr>
+					<tr class="pk-row pk-row-last" role="row">
+						<th scope="row" role="rowheader">Valor mensal</th>
+						<td role="cell" data-plan="Basic"><strong>A partir de R$ 1.750</strong></td>
+						<td role="cell" data-plan="Enterprise"><a href="#agendar" class="pk-cell-cta">Falar com especialista</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<p class="pk-cmp-note reveal">Além dos itens desta lista, a plataforma traz outros recursos de atendimento, gestão e produtividade, que o time comercial apresenta na demonstração.</p>
+	</div>
+</section>
+<style>
+.pk-cmp{ width:100%; background:#f9f9f9; padding:80px 40px; }
+.pk-cmp-container{ max-width:1100px; margin:0 auto; }
+.pk-cmp-head{ text-align:center; margin-bottom:45px; }
+.pk-cmp-title{
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:45px; line-height:1.2;
+	color:#232960; margin:0 0 16px;
+}
+.pk-cmp-sub{
+	font-family:"Open Sans",sans-serif; font-size:20px; line-height:32px; color:#4a4a4a;
+	max-width:700px; margin:0 auto;
+}
+.pk-cmp-note{
+	font-family:"Open Sans",sans-serif; font-size:17px; line-height:28px; color:#4a4a4a;
+	max-width:780px; margin:32px auto 0; text-align:center;
+}
+.pk-table-wrap{ background:#fff; border:1px solid #e2e6f0; border-radius:15px; overflow:hidden; }
+.pk-table{ width:100%; border-collapse:collapse; font-family:"Open Sans",sans-serif; }
+.pk-table thead th{
+	background:#232960; color:#fff; font-weight:700; font-size:17px; text-align:left;
+	padding:18px 20px;
+}
+.pk-table thead th:nth-child(2), .pk-table thead th:nth-child(3){ width:22%; text-align:center; }
+.pk-grp th{
+	background:#d7e2ff; color:#232960; font-family:"Open Sans",sans-serif; font-weight:700;
+	font-size:14px; letter-spacing:1.1px; text-transform:uppercase; text-align:left;
+	padding:13px 20px;
+}
+.pk-row th{
+	font-weight:400; font-size:18px; line-height:27px; color:#0a0a0a; text-align:left;
+	padding:16px 20px; border-top:1px solid #eef1f7;
+}
+.pk-row td{
+	font-size:17px; line-height:25px; color:#232960; text-align:center; padding:16px 12px;
+	border-top:1px solid #eef1f7;
+}
+.pk-row td img{ width:24px; height:24px; display:inline-block; vertical-align:middle; }
+.pk-dash{ display:inline-block; width:16px; height:3px; border-radius:2px; background:#c4c8d4; vertical-align:middle; }
+.pk-cell-cta{ font-weight:700; color:#4a69bd!important; text-decoration:underline; text-underline-offset:3px; transition:color .3s ease; }
+.pk-cell-cta:hover{ color:#232960!important; }
+@media(max-width:1000px){
+.pk-cmp{ padding:60px 40px; }
+.pk-cmp-title{ font-size:36px; }
+}
+@media(max-width:768px){
+.pk-cmp-sub{ font-size:18px; line-height:29px; }
+.pk-table-wrap{ background:transparent; border:0; border-radius:0; overflow:visible; }
+.pk-table, .pk-table tbody, .pk-table tr, .pk-table td, .pk-table th{ display:block; width:100%; }
+.pk-table thead{ display:none; }
+.pk-grp th{ border-radius:8px; margin:22px 0 12px; padding:11px 14px; }
+.pk-row{ background:#fff; border:1px solid #e2e6f0; border-radius:12px; padding:16px 16px 10px; margin-bottom:12px; }
+.pk-row th{ font-size:17px; line-height:26px; font-weight:600; padding:0 0 12px; border-top:0; }
+.pk-row td{
+	display:flex; align-items:center; justify-content:space-between; gap:14px;
+	text-align:right; font-size:17px; padding:10px 0; border-top:1px solid #eef1f7;
+}
+.pk-row td::before{
+	content:attr(data-plan); font-weight:700; font-size:14px; letter-spacing:1px;
+	text-transform:uppercase; color:#4a69bd; text-align:left;
+}
+}
+@media(max-width:600px){
+.pk-cmp{ padding:40px 20px; }
+.pk-cmp-head{ margin-bottom:30px; }
+.pk-cmp-title{ font-size:28px; }
+.pk-cmp-sub{ font-size:17px; line-height:27px; }
+}
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .pk-grp th{ font-size:15px; }
+  }
+</style>
+
+
+<section class="pk-faq">
+	<div class="pk-faq-container">
+		<h2 class="pk-faq-title reveal">Perguntas frequentes</h2>
+		<div class="pk-faq-list reveal">
+			<details class="pk-faq-item">
+				<summary><h3>O que conta como acesso de operador?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>Cada pessoa do seu time que atende dentro da plataforma usa um acesso. O Basic vem com 5, e acessos adicionais entram como incremento.</p></div>
+			</details>
+			<details class="pk-faq-item">
+				<summary><h3>Qual a diferença entre Agente de IA e Agente Concierge?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>O Agente de IA atende conversa privada: WhatsApp, DM do Instagram, Facebook e webchat. O Agente Concierge responde em ambiente público, nos comentários do Instagram, Facebook, Google Meu Negócio e TikTok.</p></div>
+			</details>
+			<details class="pk-faq-item">
+				<summary><h3>O Basic tem telefonia?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>Tem o canal de telefone com URA inteligente, que recebe a ligação e encaminha o chamado. A IA que conversa por voz é o Voice Agent, e ele entra no Enterprise.</p></div>
+			</details>
+			<details class="pk-faq-item">
+				<summary><h3>Preciso de mais de um número de WhatsApp. É possível?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>Sim. O Basic inclui 1 número com API Oficial da Meta, e números adicionais entram sob demanda no Enterprise.</p></div>
+			</details>
+			<details class="pk-faq-item">
+				<summary><h3>Posso começar no Basic e crescer depois?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>Sim. Os incrementos entram sobre a mesma plataforma e a mesma base de histórico, sem migração e sem recomeçar a operação.</p></div>
+			</details>
+			<details class="pk-faq-item">
+				<summary><h3>Como funciona a precificação do Enterprise?</h3><span class="pk-faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></span></summary>
+				<div class="pk-faq-body"><p>Depende do que a sua operação usa: quantos canais, quantos agentes de IA, quantos operadores e quais serviços da Elife entram. O time comercial monta a proposta a partir desse desenho.</p></div>
+			</details>
+		</div>
+	</div>
+</section>
+<style>
+.pk-faq{ width:100%; background:#f9f9f9; padding:80px 40px; }
+.pk-faq-container{ max-width:900px; margin:0 auto; }
+.pk-faq-title{
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:45px; line-height:1.2;
+	color:#232960; margin:0 0 40px; text-align:center;
+}
+.pk-faq-list{ border-top:1px solid #d8ddea; }
+.pk-faq-item{ border-bottom:1px solid #d8ddea; }
+.pk-faq-item summary{
+	display:flex; align-items:center; gap:20px;
+	cursor:pointer; list-style:none; padding:22px 0;
+	font-family:"Open Sans",sans-serif; font-weight:700; font-size:20px; line-height:29px;
+	color:#232960; transition:color .2s ease;
+}
+.pk-faq-item summary h3{ font:inherit; color:inherit; margin:0; flex:1; }
+.pk-faq-item summary::-webkit-details-marker{ display:none; }
+.pk-faq-item summary::marker{ content:""; }
+.pk-faq-item summary:hover,
+.pk-faq-item[open] summary{ color:#4a69bd; }
+.pk-faq-icon{
+	flex-shrink:0; display:inline-flex; color:#8c93ad;
+	transition:transform .3s ease, color .2s ease;
+}
+.pk-faq-item summary:hover .pk-faq-icon,
+.pk-faq-item[open] .pk-faq-icon{ color:#4a69bd; }
+.pk-faq-item[open] .pk-faq-icon{ transform:rotate(45deg); }
+.pk-faq-body{ overflow:hidden; }
+.pk-faq-item p{
+	font-family:"Open Sans",sans-serif; font-size:18px; line-height:29px; color:#4a4a4a;
+	margin:0; padding:0 0 28px;
+}
+@media(max-width:1000px){
+.pk-faq{ padding:60px 40px; }
+.pk-faq-title{ font-size:36px; }
+}
+@media(max-width:768px){
+.pk-faq-item summary{ font-size:18px; line-height:27px; gap:14px; }
+.pk-faq-item p{ font-size:17px; line-height:28px; }
+}
+@media(max-width:600px){
+.pk-faq{ padding:40px 20px; }
+.pk-faq-title{ font-size:28px; margin-bottom:26px; }
+}
+</style>
+
+
   </main>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <a href="https://home.cxpress.io" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
-        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
-      </a>
-      <p class="foot-note">Cxpress é um produto Elife. &copy; 2026</p>
-      <nav class="footer__social" aria-label="Redes sociais da Cxpress">
-      <a href="https://www.facebook.com/cxpress.io" target="_blank" rel="noopener" aria-label="Cxpress no Facebook">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 3h-3a5 5 0 0 0-5 5v3H6v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="https://www.instagram.com/cxpress.io/" target="_blank" rel="noopener" aria-label="Cxpress no Instagram">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/company/cxpress/" target="_blank" rel="noopener" aria-label="Cxpress no LinkedIn">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10v6.5M7.5 7.2v.1M11.5 16.5V13a2 2 0 0 1 4 0v3.5M11.5 10v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="https://www.youtube.com/@cxpress_io" target="_blank" rel="noopener" aria-label="Cxpress no YouTube">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg>
-      </a>
-      </nav>
-    </div>
-  </footer>
+	<footer class="k2x-footer">
+		<div class="k2x-container">
+			<div class="k2x-top">
+				<a href="https://home.cxpress.io" class="k2x-logolink" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+					<img class="k2x-logo" src="./assets/imgi_1_3433378_1_176476463169302bd7a5301467666886-1.png" alt="" width="262" height="63" loading="lazy" decoding="async">
+				</a>
+				<a href="#agendar" class="k2x-btn">
+					Falar com um especialista
+					<img src="./assets/icon-footer-1.png" alt="" aria-hidden="true" width="16" height="16" loading="lazy" decoding="async">
+				</a>
+			</div>
+			<div class="k2x-line"></div>
+			<div class="k2x-grid">
+				<div class="k2x-col">
+					<p class="k2x-text">A <strong>Cxpress</strong> é uma plataforma construída com foco em integração total dos canais e sistemas, permitindo que diferentes produtos e tecnologias operem de forma unificada dentro do mesmo ambiente.</p>
+					<span class="k2x-sub">Canais integrados:</span>
+					<img class="k2x-icons" src="./assets/Cxpress_icons_social-scaled.png" alt="Canais integrados da plataforma Cxpress" width="2560" height="333" loading="lazy" decoding="async">
+				</div>
+				<div class="k2x-col">
+					<nav class="k2x-legal-links" aria-label="Documentos legais">
+						<a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso da Cxpress</a>
+						<span aria-hidden="true">·</span>
+						<a href="https://blog.cxpress.io/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="k2x-container">
+			<div class="k2x-legal-wrap">
+				<p class="k2x-legal">Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Endereço: Edifício Empresarial CEA - Alameda Araguaia, 2044 -Torre 1, 14º Andar - Sala 1401 - Alphaville Industrial, Barueri - SP, 06455-000, Brasil.</p>
+			</div>
+		</div>
+		<div class="k2x-container">
+			<div class="k2x-line2"></div>
+			<div class="k2x-copy">
+				<span>&copy; 2026 Cxpress&reg;. Todos os direitos reservados</span>
+			</div>
+		</div>
+	</footer>
+	<style>
+		.k2x-footer{width:100%;padding:90px 40px 40px;background:radial-gradient(55% 90% at 38% 100%,#142F64 0%,#0A0B12 100%);color:#fff}
+		.k2x-container{max-width:1380px;margin:0 auto}
+		.k2x-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:50px}
+		.k2x-logo{width:260px;height:auto}
+		.k2x-btn{display:flex;align-items:center;gap:10px;padding:14px 26px;border-radius:50px;background:linear-gradient(120deg,#4A69BD,#3a56a5);color:#fff;text-decoration:none;font-family:"Inter",sans-serif;font-size:18px;position:relative;overflow:hidden;transition:.4s}
+		.k2x-btn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
+		.k2x-btn:hover::before{left:100%}
+		.k2x-btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.4)}
+		.k2x-line{position:relative;height:1px;background:#3f3f3f;margin:40px 0}
+		.k2x-line::after{content:"+";position:absolute;left:50%;top:0;transform:translate(-50%,-50%);font-size:14px;color:#3f3f3f;font-family:"Inter",sans-serif}
+		.k2x-line2{position:relative;height:1px;background:#434D94;margin:40px 0}
+		.k2x-line2::after{content:"+";position:absolute;left:50%;top:0;transform:translate(-50%,-50%);font-size:14px;color:#434D94;font-family:"Inter",sans-serif}
+		.k2x-grid{display:grid;grid-template-columns:2.2fr 1.4fr;gap:60px;align-items:start}
+		.k2x-col{display:flex;flex-direction:column;gap:30px}
+		.k2x-text{font-family:"Open Sans",sans-serif;font-size:20px;line-height:33px}
+		.k2x-sub{font-family:"Open Sans",sans-serif;font-size:16px}
+		.k2x-icons{width:340px;height:auto}
+		.k2x-title{font-family:"Inter",sans-serif;font-size:14px;color:#b3b3b3;margin-bottom:8px}
+		.k2x-block{display:flex;flex-direction:column;gap:8px}
+		.k2x-block a{font-family:"Open Sans",sans-serif;font-size:16px;line-height:22px;color:#fff;text-decoration:none;transition:.3s}
+		.k2x-block a:hover{color:#C1C7FF}
+		.k2x-link{text-decoration:underline}
+		.k2x-contato-tel{display:flex;align-items:center;gap:14px}
+		.k2x-whats img{width:26px;height:auto}
+		/* Links legais no lugar do bloco de contatos: a LP ja tem CTA e WhatsApp no corpo,
+		   e o rodape passa a carregar o que e obrigatorio por lei. */
+		.k2x-legal-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:"Open Sans",sans-serif;font-size:16px;line-height:22px}
+		.k2x-legal-links a{color:#fff;text-decoration:underline;text-underline-offset:3px;transition:.3s}
+		.k2x-legal-links a:hover{color:#C1C7FF}
+		.k2x-legal-links span{color:#8f96c4}
+		.k2x-legal-wrap{display:flex;justify-content:flex-end}
+		.k2x-legal{max-width:925px;margin-top:30px;font-family:"Open Sans",sans-serif;font-size:16px;line-height:1.35;text-align:right}
+		.k2x-copy{display:flex;justify-content:center;font-family:"Inter",sans-serif;font-size:16px}
+		@media(max-width:1400px){
+		.k2x-footer{padding:60px 30px 60px 30px;}
+		}
+		@media(max-width:1200px){
+		.k2x-grid{grid-template-columns:1fr 1fr}
+		}
+		@media(max-width:768px){
+		.k2x-top{flex-direction:column;align-items:flex-start;gap:20px}
+		.k2x-grid{grid-template-columns:1fr}
+		.k2x-copy{flex-direction:column;gap:10px}
+		.k2x-legal{text-align:left}
+		.k2x-footer{padding:50px 40px 50px 40px;}
+		}
+		@media(max-width:600px){
+		.k2x-footer{padding:34px 20px 30px 20px;}
+		.k2x-grid, .k2x-col {gap: 20px;}
+		.k2x-text{font-size:17px;line-height:28px}
+		.k2x-legal{font-size:14px}
+		.k2x-copy{font-size:14px}
+		}
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .k2x-line::after{ font-size:15px; }
+  .k2x-line2::after{ font-size:15px; }
+  .k2x-sub{ font-size:17px; }
+  .k2x-title{ font-size:15px; }
+  .k2x-block a{ font-size:17px; }
+  }
+</style>
+
 
   <script>
     (function(){
@@ -758,6 +1351,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     } else {
       carregaJot();
     }
+  })();
+  </script>
+
+  <script>
+  (function(){
+  "use strict";
+  // FAQ: abertura deslizando, uma pergunta por vez (padrao da referencia
+  // elifeportugal.com/agentes-de-ia). O <details> nativo continua sendo a base,
+  // entao sem JS a pergunta ainda abre e fecha, so sem animacao.
+  var faqItems = document.querySelectorAll(".pk-faq-item");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function faqClose(item, animate){
+    var body = item.querySelector(".pk-faq-body");
+    if (!body){ item.removeAttribute("open"); return; }
+    if (!animate){ item.removeAttribute("open"); body.style.height = ""; return; }
+    body.style.height = body.scrollHeight + "px";
+    requestAnimationFrame(function(){
+      body.style.transition = "height .4s ease";
+      body.style.height = "0px";
+    });
+    window.setTimeout(function(){
+      item.removeAttribute("open");
+      body.style.transition = "";
+      body.style.height = "";
+    }, 400);
+  }
+
+  function faqOpen(item, animate){
+    var body = item.querySelector(".pk-faq-body");
+    item.setAttribute("open", "");
+    if (!body || !animate){ return; }
+    var target = body.scrollHeight;
+    body.style.height = "0px";
+    requestAnimationFrame(function(){
+      body.style.transition = "height .4s ease";
+      body.style.height = target + "px";
+    });
+    window.setTimeout(function(){
+      body.style.transition = "";
+      body.style.height = "";
+    }, 400);
+  }
+
+  for (var q = 0; q < faqItems.length; q++){
+    (function(item){
+      var sum = item.querySelector("summary");
+      if (!sum){ return; }
+      sum.addEventListener("click", function(ev){
+        ev.preventDefault();
+        var animate = !reduceMotion;
+        if (item.hasAttribute("open")){ faqClose(item, animate); return; }
+        for (var o = 0; o < faqItems.length; o++){
+          if (faqItems[o] !== item && faqItems[o].hasAttribute("open")){
+            faqClose(faqItems[o], animate);
+          }
+        }
+        faqOpen(item, animate);
+      });
+    })(faqItems[q]);
+  }
+
+
   })();
   </script>
 </body>

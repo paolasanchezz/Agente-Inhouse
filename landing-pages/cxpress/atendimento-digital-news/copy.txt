@@ -43,7 +43,10 @@ BODY: *Pesquisa do National Bureau of Economic Research (NBER), com mais de 5 mi
 BODY: **Estimativas da McKinsey, consultoria empresarial norte-americana.
 CTA: Agendar demonstração gratuita
 
-=== FOOTER ===
+=== PLANOS / COMPARATIVO / FAQ / RODAPE ===
+BODY: copiados verbatim de landing-pages/cxpress/planos/copy.txt (secoes PLANOS, COMPARATIVO, FAQ e FOOTER). Fonte unica: editar la e replicar aqui.
+
+=== FOOTER (substituido pelo de /planos) ===
 FOOTER: Cxpress é um produto Elife. © 2026
 FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
 
