@@ -1,0 +1,58 @@
+=== HERO ===
+OVERLINE: Gestão do Atendimento Digital · Cxpress
+H1: Sua empresa mede tudo. Menos o atendimento.
+SUB: Quando chega um cliente no WhatsApp e quem responde é "quem pegar primeiro", a operação está rodando sem gestão. A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.
+CTA: Agendar demonstração gratuita
+
+=== FORM (segunda dobra) ===
+H2: Agende sua demonstração gratuita
+H3: Veja as métricas e a fila funcionando na sua operação
+BODY: Em 30 minutos, um especialista mostra a plataforma com o seu cenário: os canais que você já atende, o volume que chega e os indicadores que passam a ficar visíveis.
+LABEL: Nome
+LABEL: E-mail de trabalho
+LABEL: Telefone
+LABEL: Nome da empresa
+LABEL: Cargo
+CTA: Agendar demonstração gratuita
+
+=== CLIENTES (prova social) ===
+H2: Clientes que confiam na Cxpress
+BODY: [grade de logos — ../../brand/cxpress/assets/plataforma/clientes-cxpress.png]
+
+=== CONTEXTO ===
+H2: Atender bem não depende só de esforço.
+BODY: Se chegar um cliente no WhatsApp do seu atendimento agora, qual atendente assume o caso? Se a resposta for "quem pegar primeiro", tem algo errado. Atendimento no WhatsApp Web, sem distribuição de tickets e sem métrica de tempo de resposta cresce no escuro: a empresa perde velocidade, a equipe perde clareza e o cliente frustrado sai falando mal da marca.
+BODY: Com a Cxpress, o fluxo ganha dono: os tickets são distribuídos automaticamente para setores e agentes, os indicadores ficam visíveis num painel e a integração é a oficial do WhatsApp, dentro dos termos da Meta. A gestão decide com base no que a operação mostra.
+
+=== BENEFICIOS ===
+H2: O que muda na sua operação com gestão de verdade
+H3: Distribuição automática de tickets
+BODY: Cada atendimento chega com dono definido: por setor, por agente ou por fila. Acabou o "quem pegar primeiro".
+H3: Métricas que o gestor acompanha
+BODY: Tempo de resposta, volume por canal, tickets em andamento e gargalos visíveis num painel, sem planilha manual.
+H3: Integração oficial do WhatsApp
+BODY: A operação roda na API oficial da Meta, com vários atendentes no mesmo número e sem depender de ferramenta que viola os termos de uso.
+
+=== PROVA ===
+H2: Resultados de quem estruturou o atendimento com a Cxpress
+LIST ITEM: 14% de aumento de demandas resolvidas por hora.*
+LIST ITEM: 9% de redução do tempo médio de resolução via chat.*
+LIST ITEM: 25% de redução do desgaste dos atendentes com alto volume de solicitações.
+LIST ITEM: 45% de aumento da produtividade com IA generativa.**
+BODY: *Pesquisa do National Bureau of Economic Research (NBER), com mais de 5 mil agentes de atendimento ao cliente.
+BODY: **Estimativas da McKinsey, consultoria empresarial norte-americana.
+CTA: Agendar demonstração gratuita
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# Revisao anti-IA: em-dash 0; antitese-por-negacao: 2 (H1 e fecho, dentro do limite, ambas estruturais da peca).
+# Message match: Roteiros 7 e 8 (gestao com metricas + WhatsApp organizado). Hooks espelhados:
+# "Sua empresa mede vendas, marketing... mas mede o atendimento?" -> H1; "qual atendente vai assumir
+# o caso? quem pegar primeiro" -> SUB + CONTEXTO; "sem risco de banimento, integracao oficial" -> beneficio 3.
+# Indicadores do FAQ verificados contra a UI real do produto (GIF do dashboard: tempo medio, espera,
+# tickets, mensagens trocadas, taxa de desistencia).
+# Assets compartilhados via brand/cxpress/assets/plataforma/. Form Jotform 261033482583658 na 2a dobra.
+# Variante atendimento-digital-news (2026-10-02): copia de atendimento-digital SEM as secoes
+# Plataforma, FAQ, Quem somos e Fecho. Copy das secoes mantidas identica a LP-mae.

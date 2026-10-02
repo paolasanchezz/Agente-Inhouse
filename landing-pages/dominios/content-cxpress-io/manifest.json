@@ -41,6 +41,11 @@
       "source": "landing-pages/cxpress/atendimento-digital"
     },
     {
+      "slug": "atendimento-digital-news",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/atendimento-digital-news"
+    },
+    {
       "slug": "atendimento-domingo",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/atendimento-domingo"
