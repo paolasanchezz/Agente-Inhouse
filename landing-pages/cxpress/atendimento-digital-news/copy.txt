@@ -1,7 +1,7 @@
 === HERO ===
 OVERLINE: Gestão do Atendimento Digital · Cxpress
 H1: Sua empresa mede tudo. Menos o atendimento.
-SUB: Quando chega um cliente no WhatsApp e quem responde é "quem pegar primeiro", a operação está rodando sem gestão. A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.
+SUB: A Cxpress organiza o atendimento digital com distribuição automática de tickets, métricas de tempo de resposta e integração oficial do WhatsApp.
 CTA: Agendar demonstração gratuita
 
 === FORM (segunda dobra) ===
