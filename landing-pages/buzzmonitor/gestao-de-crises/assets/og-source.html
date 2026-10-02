@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- Fonte da OG image (1200x630) desta LP. Renderizar com Chrome headless / Playwright e salvar como assets/og-gestao-de-crises.png (GUIDELINES §18). -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1200px;height:630px;overflow:hidden;position:relative;font-family:'Lato',sans-serif;color:#1a1a1a;
+    background:#fff radial-gradient(rgba(57,1,85,.08) 1.5px,transparent 1.5px) 0 0/26px 26px}
+  .band{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(90deg,#EB7C2E,#DE2451)}
+  .left{position:absolute;left:72px;top:70px;width:610px}
+  .overline{display:inline-flex;align-items:center;gap:10px;font-size:18px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0a7472;background:rgba(14,157,155,.1);border:1.5px solid rgba(14,157,155,.3);padding:9px 20px;border-radius:999px;margin-bottom:28px}
+  .overline i{width:11px;height:11px;border-radius:50%;background:#DE2451}
+  h1{font-family:'League Spartan',sans-serif;font-weight:900;font-size:62px;line-height:1.06}
+  h1 span{color:#EB7C2E}
+  .logo{position:absolute;left:72px;bottom:56px;width:270px;height:auto}
+  .orbit{position:absolute;border-radius:50%;border:2px dashed rgba(222,36,81,.22)}
+  .card{position:absolute;right:70px;top:150px;width:400px;background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(57,1,85,.25);overflow:hidden;border:1px solid #e8e8e8}
+  .card__top{display:flex;align-items:center;gap:12px;padding:18px 22px;background:linear-gradient(135deg,#eb7c2e,#e91a4d);color:#fff;font-weight:700;font-size:20px}
+  .card__top svg{width:26px;height:26px}
+  .card__body{padding:22px}
+  .card__line{font-family:'League Spartan',sans-serif;font-weight:700;font-size:25px;margin-bottom:16px}
+  .bars{display:flex;gap:6px;align-items:flex-end;height:80px;margin-bottom:18px}
+  .bars span{flex:1;background:rgba(14,157,155,.35);border-radius:3px 3px 0 0}
+  .bars span.s{background:#e91a4d}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{border:1.5px solid #e8e8e8;border-radius:999px;padding:5px 15px;font-size:16px}
+  .chip.w{background:rgba(233,26,77,.08);border-color:rgba(233,26,77,.3);color:#b3123a}
+</style>
+</head>
+<body>
+  <div class="orbit" style="width:560px;height:560px;right:-10px;top:30px"></div>
+  <div class="orbit" style="width:400px;height:400px;right:70px;top:110px"></div>
+  <div class="left">
+    <div class="overline"><i></i>Alertas de crise em tempo real</div>
+    <h1>Quem avisa você da <span>crise</span> primeiro: seu painel ou o WhatsApp?</h1>
+  </div>
+  <img class="logo" src="../../../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="">
+  <div class="card">
+    <div class="card__top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Alerta Buzzmonitor</div>
+    <div class="card__body">
+      <p class="card__line">Termo sensível detectado</p>
+      <div class="bars"><span style="height:24%"></span><span style="height:30%"></span><span style="height:22%"></span><span style="height:36%"></span><span style="height:28%"></span><span style="height:40%"></span><span class="s" style="height:100%"></span><span class="s" style="height:82%"></span></div>
+      <div class="chips"><span class="chip">Procon</span><span class="chip">boicote</span><span class="chip w">atraso</span><span class="chip w">estragado</span></div>
+    </div>
+  </div>
+  <div class="band"></div>
+</body>
+</html>

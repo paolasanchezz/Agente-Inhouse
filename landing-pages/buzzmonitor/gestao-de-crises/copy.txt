@@ -1,0 +1,141 @@
+# Copy LP · Buzzmonitor · gestao-de-crises · Dor 4 (antecipação de crises / crises e avaliações negativas chegando tarde) · PT-BR
+# Fonte: criada em 2026-10-02 via /copy-criar (variação 01 "Quem avisa primeiro", ver conhecimento/copywriting/criacao/buzzmonitor/2026-10-02/) + estruturada via /lp-preparar.
+# Campanha: "Campanha MOFU: 4 dores dos clientes" (Notion > Buzzmonitor 🇧🇷). Feature: Triggers / Alertas em tempo real. Termo-âncora: "saiba da crise antes do seu cliente".
+# FORMATO (pedido explícito do usuário): estrutura e visual espelhando promo.buzzmonitor.com/monitoramento-com-ia (fonte local: landing-pages/buzzmonitor/monitoramento-com-ia/), NÃO o modelo das LPs irmãs das dores 1-3. Ordem de seções = ordem da LP de referência:
+#   hero → benefícios (checklist) → prova social numérica + logos + formulário → seção IA → seção vídeo → audiovisual → seção crise com mock (aqui: case E-CLIK) → [NOVO, round 2] MCP para crises + prova social MCP → WhatsApp → oferta 14 dias → depoimentos → footer.
+# Round 4 (2026-10-02, pedido no chat): faixa de logos maior e sem buracos; números da prova social em laranja; big numbers do MCP em degradê laranja→rosa com os logos reais; grafias conferidas pelos logos ("Tech & Soul", "Design bridge and partners"); cases do MCP AUTORIZADOS pela usuária; tablet com o report real da Skill de Crise rolando + 3 destaques; benefício "e-mail e/ou WhatsApp"; OG image gerada.
+# Round 3 (2026-10-02, pedido no chat, pós /lp-gerar): SUB do hero reescrito pela usuária; faixa de logos movida para logo abaixo do hero (full-bleed); "Crises não começam do nada" com texto novo e termos "atraso"/"estragado"; seção dos passos com título "antes da diretoria" + SUB; MCP antes do case E-CLIK, visual com 1 balão + resposta + mockup de tablet; seção WhatsApp removida; formulário = Jotform 252995108251662 das LPs das dores. Typo corrigido: "enquando" → "enquanto".
+# Round 2 (2026-10-02, pedido no chat): incluído o MCP da Buzzmonitor (Skill "Report de Crise") + bloco de prova social do MCP com big numbers de 2 cases AINDA NÃO PUBLICADOS (Tech and Soul, Design Bridge and Partners), dados informados pela usuária. Claims do MCP vêm da copy aprovada de landing-pages/buzzmonitor/mcp-buzzmonitor/copy.txt.
+# Override de GUIDELINES §10 (form MoFu na 4ª seção ou na última): o form fica na 3ª seção, como na LP de referência. Justificativa: pedido explícito de replicar o formato da referência.
+# Dados verificados: case E-CLIK (BRANDBOOK §Cases + post do blog buzzmonitor.com/blog/e-clik-atendimento-digital-prevencao-crises-insights/, lido em 2026-10-02); números de prova social, preço "a partir de R$ 1.790,00/mês", 14 dias grátis e os 3 depoimentos copiados literalmente da LP de referência no ar (promo.buzzmonitor.com/monitoramento-com-ia, lida em 2026-10-02). Termos-exemplo de trigger ("Procon", "boicote", "denúncia", "reclamação") vêm da mesma LP.
+
+=== HERO ===
+OVERLINE: ALERTAS DE CRISE EM TEMPO REAL
+H1: Quem avisa você da crise primeiro: seu painel ou o WhatsApp?
+SUB: Quando a crise chega por print, ela já é um grande problema. Com a Buzzmonitor, você recebe alertas de termos sensíveis em tempo real, picos de menções e sentimento negativo, para agir com rapidez enquanto o problema ainda é um comentário isolado. Conecte seus dados de monitoramento à IA e consulte dados de crise ao vivo a partir de uma pergunta.
+CTA: Agendar demonstração grátis
+# [NOTA DE GERACAO, nao e copy visivel] Hero no formato da referência (fundo branco com pattern de bolinhas, palavra-chave do H1 em laranja: destacar "crise"). No lugar do vídeo da plataforma, usar um mock de notificação de alerta (card de e-mail "Alerta Buzzmonitor · termo sensível detectado") OU o vídeo/gif da tela de triggers, se o usuário enviar. Sem asset, o mock em HTML é o default.
+
+=== FAIXA DE LOGOS ===
+LABEL: Empresas que já confiam na Buzzmonitor
+# [NOTA DE GERACAO] Faixa full-bleed (ponta a ponta), logos de 90px, tiras recortadas sem respiro lateral (assets/clientes-1..4.webp), espaçamento uniforme.
+
+=== BENEFICIOS ===
+H2: Antecipe, monitore e responda antes que a crise ganhe escala
+CTA: Agendar demonstração grátis
+LIST ITEM: Receba alertas no e-mail e/ou WhatsApp assim que um termo sensível for citado
+LIST ITEM: Identifique picos de menções e de sentimento negativo em tempo real
+LIST ITEM: Veja avaliações negativas no Google, nas lojas de aplicativos e no Reclame Aqui antes que elas se acumulem
+LIST ITEM: Descubra quais perfis e influenciadores estão puxando a conversa
+LIST ITEM: Acompanhe a evolução da crise em dashboards atualizados ao vivo
+LIST ITEM: Leve o relatório para a diretoria antes que ela receba o print
+LIST ITEM: Peça o report da crise ao Claude ou ChatGPT, com os dados da Buzzmonitor
+
+=== PROVA SOCIAL ===
+H2: Junte-se a empresas que já protegem a reputação da marca em tempo real
+# [NOTA DE GERACAO] Números em laranja #d4691a (3,36:1, AA para texto grande; ajuste da revisão).
+LABEL (número): 1.000+
+LABEL (legenda): clientes em todo o mundo
+LABEL (número): 300+
+LABEL (legenda): clientes enterprise
+LABEL (número): 10k
+LABEL (legenda): usuários
+LABEL (número): 500+
+LABEL (legenda): agências
+
+=== FORMULARIO ===
+H3: Experimente agora
+LABEL (badge flutuante): 10k+ usuários ativos
+LABEL (badge flutuante): 500+ agências
+# [NOTA DE GERACAO] Jotform 252995108251662 (o mesmo das LPs das dores 1 a 3), em card branco com contorno preto. Botão de envio é do próprio Jotform. Título "Experimente agora" dentro do card, acima do Jotform (melhoria da revisão).
+
+=== SINAIS DE CRISE ===
+OVERLINE: IA + TRIGGERS
+H2: Crises não começam do nada
+SUB: Elas começam com um comentário negativo, um post, um sinal que quase ninguém está olhando.
+BODY: Na Buzzmonitor, você configura alertas para os termos que mais preocupam a sua marca, como "Procon", "boicote", "atraso" ou "estragado", e a IA classifica o sentimento de cada menção automaticamente. Quando algo foge do padrão, o alerta chega via e-mail ou WhatsApp com o link do post e o contexto da conversa.
+CTA: Veja na prática
+
+=== DO SINAL A RESPOSTA ===
+H2: Saiba da crise antes da diretoria
+SUB: E seja você a apresentar dados e plano de mitigação em minutos
+LIST ITEM: Termo sensível detectado
+LIST ITEM: Alerta no e-mail e/ou WhatsApp
+LIST ITEM: Contexto analisado por IA
+LIST ITEM: Resposta antes da repercussão
+CTA: Agendar demonstração grátis
+# [NOTA DE GERACAO] Equivale à seção de vídeo da referência ("A Inteligência Artificial muda tudo" + bullets). Mídia: vídeo/gif da configuração de um trigger e do alerta chegando, se o usuário enviar; sem asset, os 4 itens viram uma sequência visual (passo 1 → 4) com ícones.
+
+=== AUDIOVISUAL ===
+H2: A crise também começa em vídeo
+SUB: Nem toda menção negativa está escrita.
+BODY: Muita reclamação hoje aparece em Reels, stories e vídeos curtos, com a marca citada na fala e fora da legenda. A IA da Buzzmonitor detecta, transcreve e analisa menções em vídeos, áudios e imagens, e envia alertas automáticos quando o conteúdo é negativo. Seu time fica sabendo sem precisar assistir a tudo.
+CTA: Agendar demonstração grátis
+LABEL (chip do visual): REELS
+LABEL (chip do visual): ÁUDIO
+# [NOTA DE GERACAO] Reaproveitar o visual img-monitoramento-audiovisual.webp da referência.
+
+=== MCP PARA CRISES ===
+OVERLINE: MCP DA BUZZMONITOR
+H2: No meio da crise, pergunte. A IA monta o report.
+SUB: Conecte a Buzzmonitor ao Claude ou ChatGPT e use a Skill Report de Crise para entender o buzz negativo em uma conversa.
+BODY: Durante uma crise, o time costuma perder horas exportando menções, cruzando planilhas e montando slides enquanto o assunto continua crescendo. Com o MCP da Buzzmonitor, você pergunta em linguagem natural e a IA consulta os seus dados de monitoramento para mostrar a evolução da crise, os principais detratores e os possíveis caminhos de mitigação.
+QUOTE (prompt de chat): Como está a reputação da marca hoje?
+BODY: Sem exportar planilhas, sem programar e sem começar a análise do zero. O MCP faz as consultas em tempo real pela API da Buzzmonitor e não armazena as publicações consultadas.
+CTA: Quero conhecer o MCP da Buzzmonitor
+# [NOTA DE GERACAO] Rótulos de mock (whitelist, aria-hidden): "Buzzmonitor + IA" no cabeçalho do chat (vem da copy da LP mcp-buzzmonitor) e "Alerta via e-mail ou WhatsApp" no mock da seção Sinais de Crise (derivado do BODY).
+# [NOTA DE GERACAO] Visual: 1 balão enviado ("Como está a reputação da marca hoje?") + card de resposta "Report de Crise" + mockup de tablet na horizontal com o report real gerado pela Skill de Crise (PDF enviado pela usuária, rodapé Elife Portugal cortado) rolando devagar; 3 seções do report saltam para frente em sequência (números do caso, descrição da crise, plano de mitigação). Assets: mcp-report.webp, hl-kpis.webp, hl-descricao.webp, hl-plano.webp.
+
+=== PROVA SOCIAL MCP ===
+H3: Quem já usa o MCP na gestão de crises
+LABEL (case): Tech & Soul
+LABEL (número): De 2 dias para poucos minutos
+LABEL (legenda): para montar o report mensal de cada cliente, com alertas de crise em tempo real.
+LABEL (case): Design bridge and partners
+LABEL (número): De 6h para 2h por dia
+LABEL (legenda): dedicadas a analisar dados durante uma crise em andamento. O resto do tempo agora vai para estratégias de mitigação.
+# [NOTA DE GERACAO] Cases autorizados pela usuária em 2026-10-02. Logos reais em assets/logo-tech-and-soul.png e assets/logo-design-bridge-and-partners.png (grafia conferida pelos logos). Big numbers em degradê laranja→rosa.
+
+=== CASE E-CLIK ===
+OVERLINE: CASE E-CLIK
+H2: Uma crise viral contida em menos de 1 hora
+SUB: Como a E-CLIK, dona da CRM Bonus, resolveu um vídeo negativo antes de ele virar manchete.
+BODY: Uma cliente publicou um vídeo contando que o entregador arremessou por cima do muro a TV que ela tinha comprado. O vídeo começou a circular e, como quase sempre acontece, a conta caiu na marca, mesmo com a transportadora sendo a responsável.
+BODY: A E-CLIK já tinha um trigger configurado na Buzzmonitor. O alerta chegou na hora e, em menos de uma hora, o caso estava sendo tratado: a cliente recebeu um produto novo, a empresa abriu um processo interno para responsabilizar a transportadora e a narrativa negativa foi contida antes de ganhar proporção.
+LABEL (número): <1h
+LABEL (legenda): para tratar a crise depois do alerta
+LABEL (número): 28
+LABEL (legenda): melhorias de produto geradas a partir da voz do cliente
+CTA: Agendar demonstração grátis
+# [NOTA DE GERACAO] Equivale à seção "Gestão de Crises em tempo real" da referência (colunas invertidas + mock visual). Mock à direita no mesmo estilo da referência: card "MONITORAMENTO DE CRISES EM TEMPO REAL" com chips de termos (Procon · boicote · atraso · estragado) + notificação "Trigger acionado · vídeo · sentimento negativo · agora". Mock é ilustração de interface: sem números de sentimento inventados apresentados como dado do case. Logo E-CLIK/CRM Bonus disponível em landing-pages/buzzmonitor/plataforma-completa-atendimento/assets/.
+
+=== OFERTA ===
+H2: Experimente grátis por 14 dias
+LABEL: Planos a partir de
+LABEL (preço): R$ 1.790,00/mês
+BODY: Monitoramento, alertas de crise e atendimento em uma única plataforma, com IA em todo o fluxo.
+LIST ITEM: Alertas de termos sensíveis e de picos de menções
+LIST ITEM: Monitoramento de redes sociais com análise de sentimento por IA
+LIST ITEM: Atendimento multicanal para responder rápido durante a crise
+LIST ITEM: Relatórios de reputação da sua marca e dos concorrentes
+LIST ITEM: MCP da Buzzmonitor com a Skill Report de Crise
+LIST ITEM: E muito mais
+BODY (callback do H1): Da próxima vez, quem avisa é o seu painel.
+CTA: Agendar demonstração grátis
+
+=== DEPOIMENTOS ===
+LABEL: Ainda não está convencido?
+H2: Leia o feedback de quem já utiliza a Buzzmonitor
+QUOTE: Conseguimos montar projetos de grande porte, do local ao global, com resultados muito valiosos e insights.
+LABEL (autor): Pablo Ferrer, Head of Social Media na McCann
+QUOTE: É muito completa, tanto para a área de análise, estratégia e reporting quanto no atendimento aos nossos clientes.
+LABEL (autor): Leticia Saori Morita, Especialista em conteúdo na TotalPass
+QUOTE: A Buzzmonitor nos ajuda a gerenciar toda a informação que recebemos dos nossos consumidores e a responder com relevância.
+LABEL (autor): Sérgio Leal, Diretor de Marketing e Comunicação na McDonald’s
+# [NOTA DE GERACAO] 3 depoimentos literais da LP de referência (mesmos assets de logo/aspas). Opcional: um 4º depoimento da E-CLIK, já publicado no case do blog ("O suporte nos dá um norte. A Ana pega na nossa mão e orienta tudo. Esse suporte vale ouro."), mas só com autorização, já que o blog não diz quem é o autor.
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+FOOTER: Política de Privacidade e uso de Cookies
+
+# Revisao anti-IA: sem achados (em-dash: 0). Contagens: exclamações 2 (ambas no mock de chat do WhatsApp, "Oi!" / "Olá!", tom de conversa) · perguntas 3 (H1; mock de chat; "Ainda não está convencido?" literal da referência), no máximo 1 por seção · antítese-por-negação 1, incluindo o round 2 do MCP ("Crises não começam do nada / Elas começam com sinais…") · "Além disso" 0 · filler words 0.

@@ -47,6 +47,11 @@
       "source": "landing-pages/buzzcreators/encontrar-creators"
     },
     {
+      "slug": "gestao-de-crises",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/gestao-de-crises"
+    },
+    {
       "slug": "ia-para-social-listening",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/ia-para-social-listening"
