@@ -31,6 +31,7 @@ from lib.queries import (  # noqa: E402
     EMAIL_BLACKLIST, EMAIL_WHITELIST, COLUNA_EVENTO,
     filtro_cm, filtro_inbound, _sem_outbound, _atrib_cm_90d, cte_conversoes_cm,
     predicado_evento, predicado_fechamento, _sql_email_list, _cdate_efetivo, fonte_deals_funil,
+    _fora_blacklist,
     q_serie_temporal_12m, q_proporcao_sources_12m,
 )
 from lib.render import serie_temporal_12m, proporcao_sources, jsonify  # noqa: E402
@@ -80,8 +81,7 @@ SELECT d.id, d.title AS deal, d.email_contato_principal_bd_sdr AS email,
        d.cdate::date AS cdate_cru
 FROM {fonte_deals_funil()} d
 WHERE {cde}::date BETWEEN '{ini}' AND '{fim}'
-  AND d.email_contato_principal_bd_sdr IS NOT NULL
-  AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND {_fora_blacklist('d')}
   AND (lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl) OR {f})
   AND {_sem_outbound('d')}
 """
@@ -144,10 +144,9 @@ SELECT d.id, d.title AS deal, d.email_contato_principal_bd_sdr AS email,
        d.cdate::date AS cdate
 FROM deals_comercial_prod d
 WHERE d.cdate::date BETWEEN '{ini}' AND '{fim}'
-  AND d.email_contato_principal_bd_sdr IS NOT NULL
   AND d.data_negocio_perdido_auto IS NOT NULL
   AND d.motivo_perda_bd_sdr IS NOT NULL
-  AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND {_fora_blacklist('d')}
   AND (lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl) OR {f})
   AND {_sem_outbound('d')}
 """

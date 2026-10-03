@@ -121,6 +121,35 @@ def _sem_outbound(alias: str = '') -> str:
         f"OR lower(trim({p}email_contato_principal_bd_sdr)) IN (SELECT email FROM wl))"
     )
 
+
+def _chave_lead(alias: str = '') -> str:
+    """Chave de dedup das queries leads-style (Leads e Perdidos).
+
+    Email normalizado; deal SEM email (ou com email vazio) vira lead proprio,
+    chaveado pelo id. Ate 2026-10-02 essas queries exigiam email preenchido e
+    o deal CM sem contato principal sumia de Deals gerados enquanto aparecia
+    nas Reunioes (o ramo de auto-atribuicao dos eventos nao precisa de email).
+    Caso Viapol, deal 197059 (webinar-perpetuo). Decisao Victor 2026-10-02.
+    Espelhado em motor.js::_chaveLead.
+    """
+    p = f"{alias}." if alias else ""
+    return (
+        f"COALESCE(NULLIF(lower(trim({p}email_contato_principal_bd_sdr)), ''), "
+        f"'id:' || {p}id::text)"
+    )
+
+
+def _fora_blacklist(alias: str = '') -> str:
+    """Predicado leads-style de blacklist, NULL-safe: deal sem email nao esta
+    na blacklist (sem o IS NULL, `NULL NOT IN (...)` = NULL e o WHERE descarta
+    o deal em silencio). Referencia a CTE `bl` ja presente nessas queries.
+    """
+    p = f"{alias}." if alias else ""
+    return (
+        f"({p}email_contato_principal_bd_sdr IS NULL "
+        f"OR lower(trim({p}email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl))"
+    )
+
 # Override manual (overrides §2 do mapeamento)
 EMAIL_WHITELIST: list[str] = [
     'jessica.rua@wealthmoney.com.br',     # Wealth — converteu via blog, tracking nao preservou
@@ -633,6 +662,7 @@ def q_count_leads(ini: date, fim: date) -> str:
     """Count de Leads CM unicos por email no periodo.
 
     Dedupe por email: mesmo email criado em 2 deals no mesmo periodo conta 1 vez.
+    Deal sem email conta como lead proprio, pelo id (_chave_lead, 2026-10-02).
     """
     f = filtro_cm()
     wl = _sql_email_list(EMAIL_WHITELIST)
@@ -640,11 +670,10 @@ def q_count_leads(ini: date, fim: date) -> str:
     cde = _cdate_efetivo()
     return f"""
 WITH wl AS ({wl}), bl AS ({bl})
-SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
+SELECT COUNT(DISTINCT {_chave_lead()}) AS n
 FROM {fonte_deals_funil()} dcp
 WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND email_contato_principal_bd_sdr IS NOT NULL
-  AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND {_fora_blacklist()}
   AND (
     lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR {f}
@@ -680,13 +709,12 @@ def q_count_perdidos(ini: date, fim: date) -> str:
     bl = _sql_email_list(EMAIL_BLACKLIST)
     return f"""
 WITH wl AS ({wl}), bl AS ({bl})
-SELECT COUNT(DISTINCT lower(trim(email_contato_principal_bd_sdr))) AS n
+SELECT COUNT(DISTINCT {_chave_lead()}) AS n
 FROM deals_comercial_prod
 WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-  AND email_contato_principal_bd_sdr IS NOT NULL
   AND data_negocio_perdido_auto IS NOT NULL
   AND motivo_perda_bd_sdr IS NOT NULL
-  AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+  AND {_fora_blacklist()}
   AND (
     lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
     OR {f}
@@ -727,7 +755,7 @@ def q_lista_leads(ini: date, fim: date) -> str:
     return f"""
 WITH wl AS ({wl}), bl AS ({bl}),
 filtrados AS (
-  SELECT DISTINCT ON (lower(trim(d.email_contato_principal_bd_sdr)))
+  SELECT DISTINCT ON ({_chave_lead('d')})
     d.id, d.title AS deal,
     d.email_contato_principal_bd_sdr AS email,
     d.utm_source, d.utm_content,
@@ -736,14 +764,13 @@ filtrados AS (
     {cde} AS cdate
   FROM {fonte_deals_funil()} d
   WHERE {cde}::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-    AND d.email_contato_principal_bd_sdr IS NOT NULL
-    AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND {_fora_blacklist('d')}
     AND (
       lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
     AND {_sem_outbound('d')}
-  ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.cdate DESC
+  ORDER BY {_chave_lead('d')}, d.cdate DESC
 )
 SELECT id, deal, email, utm_source, utm_content, data_conversao, bd
 FROM filtrados
@@ -829,7 +856,7 @@ def q_lista_perdidos(ini: date, fim: date) -> str:
     return f"""
 WITH wl AS ({wl}), bl AS ({bl}),
 filtrados AS (
-  SELECT DISTINCT ON (lower(trim(d.email_contato_principal_bd_sdr)))
+  SELECT DISTINCT ON ({_chave_lead('d')})
     d.id, d.title AS deal,
     d.email_contato_principal_bd_sdr AS email,
     d.utm_source, d.utm_content,
@@ -841,16 +868,15 @@ filtrados AS (
     d.data_negocio_perdido_auto::date AS data_perda
   FROM deals_comercial_prod d
   WHERE d.cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-    AND d.email_contato_principal_bd_sdr IS NOT NULL
     AND d.data_negocio_perdido_auto IS NOT NULL
     AND d.motivo_perda_bd_sdr IS NOT NULL
-    AND lower(trim(d.email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND {_fora_blacklist('d')}
     AND (
       lower(trim(d.email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
     )
     AND {_sem_outbound('d')}
-  ORDER BY lower(trim(d.email_contato_principal_bd_sdr)), d.data_negocio_perdido_auto DESC
+  ORDER BY {_chave_lead('d')}, d.data_negocio_perdido_auto DESC
 )
 SELECT id, deal, email, utm_source, utm_content, ultima_conversao, motivo, data_perda
 FROM filtrados
@@ -884,8 +910,7 @@ leads_p AS (
   SELECT {dim} AS dim, COUNT(*) AS leads
   FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{d1}' AND '{d2}'
-    AND email_contato_principal_bd_sdr IS NOT NULL
-    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND {_fora_blacklist()}
     AND (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
@@ -975,8 +1000,7 @@ ranked AS (
     ROW_NUMBER() OVER (PARTITION BY utm_content ORDER BY COUNT(*) DESC) AS rn
   FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{ini.isoformat()}' AND '{fim.isoformat()}'
-    AND email_contato_principal_bd_sdr IS NOT NULL
-    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND {_fora_blacklist()}
     AND (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}
@@ -1019,8 +1043,7 @@ eventos AS (
   SELECT date_trunc('week', cdate)::date AS semana, 'leads' AS metrica
   FROM {fonte_deals_funil()} dcp
   WHERE cdate::date BETWEEN '{janela_12m_inicio}' AND '{hoje_iso}'
-    AND email_contato_principal_bd_sdr IS NOT NULL
-    AND lower(trim(email_contato_principal_bd_sdr)) NOT IN (SELECT email FROM bl)
+    AND {_fora_blacklist()}
     AND (
       lower(trim(email_contato_principal_bd_sdr)) IN (SELECT email FROM wl)
       OR {f}

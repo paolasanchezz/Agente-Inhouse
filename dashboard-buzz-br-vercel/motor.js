@@ -24,6 +24,8 @@
   function _diffDays(a, b) { return Math.round((_d(a) - _d(b)) / 86400000); } // a - b
   function _inRange(dt, ini, fim) { return dt != null && dt >= ini && dt <= fim; }
   function _email(e) { return (e || '').trim().toLowerCase(); }
+  // Chave de dedup de Leads/Perdidos — espelha queries.py::_chave_lead: deal sem email vira lead proprio pelo id.
+  function _chaveLead(r) { return _email(r.email) || ('id:' + r.id); }
 
   // Espelha lib/datas.py::calcular_periodos
   function calcularPeriodos(ini, fim, hoje) {
@@ -47,10 +49,10 @@
   // ---------- KPIs (espelha q_count_*) ----------
   function contarKpis(D, ini, fim) {
     const leadEmails = new Set();
-    for (const r of D.leads) if (_inRange(r.data, ini, fim)) leadEmails.add(_email(r.email)); // distinct email, cdate efetivo
+    for (const r of D.leads) if (_inRange(r.data, ini, fim)) leadEmails.add(_chaveLead(r)); // distinct email (sem email: id), cdate efetivo
     const cnt = (arr) => { let n = 0; for (const r of arr) if (_inRange(r.data, ini, fim)) n++; return n; };
     const perdEmails = new Set();
-    for (const r of D.perdidos) if (_inRange(r.cdate, ini, fim)) perdEmails.add(_email(r.email)); // coorte por cdate
+    for (const r of D.perdidos) if (_inRange(r.cdate, ini, fim)) perdEmails.add(_chaveLead(r)); // coorte por cdate
     return {
       leads: leadEmails.size,
       ce: cnt(D.ce), ra: cnt(D.ra), rr: cnt(D.rr), prop: cnt(D.prop), fech: cnt(D.fech),
@@ -64,7 +66,7 @@
     const byEmail = new Map();
     for (const r of D.leads) {
       if (!_inRange(r.data, ini, fim)) continue;
-      const e = _email(r.email);
+      const e = _chaveLead(r);
       const cur = byEmail.get(e);
       if (!cur || r.cdate_cru > cur.cdate_cru) byEmail.set(e, r);
     }
@@ -85,7 +87,7 @@
     const byEmail = new Map();
     for (const r of D.perdidos) {
       if (!_inRange(r.cdate, ini, fim)) continue;
-      const e = _email(r.email);
+      const e = _chaveLead(r);
       const cur = byEmail.get(e);
       if (!cur || r.data_perda > cur.data_perda) byEmail.set(e, r);
     }
