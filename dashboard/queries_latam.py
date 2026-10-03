@@ -158,7 +158,8 @@ DEALS_TESTE_EXCLUIR_LATAM: set[int] = {
 _LEAD_COLS = (
     "id, title, cdate, mdate, status, pais, utm_source, utm_medium, utm_campaign, utm_content, "
     "url_conversao, evento_conversao, contenido_conversao, "
-    "sdr, closer, fecha_de_primer_contacto, fecha_y_hora_de_primer_contacto, fecha_de_reunion"
+    "sdr, closer, fecha_de_primer_contacto, fecha_y_hora_de_primer_contacto, fecha_de_reunion, "
+    "motivos_de_perdida"
 )
 
 # Colunas de atribuicao que o enriquecimento por contratos preenche quando o lead vem cego

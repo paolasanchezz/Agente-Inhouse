@@ -140,6 +140,27 @@
     return map;
   }
 
+  // ---------- motivos de perda (graficos de pizza) ----------
+  // Top 8 motivos + "Outros"; deal sem motivo vira categoria propria (nao some do total).
+  const MOTIVOS_TOP = 8;
+  function agruparMotivos(lista) {
+    const acc = new Map();
+    for (const r of lista) {
+      const m = (r.motivo != null && String(r.motivo).trim()) || '(sem motivo)';
+      acc.set(m, (acc.get(m) || 0) + 1);
+    }
+    const rows = [...acc.entries()].map(([motivo, n]) => ({ motivo, n }))
+      .sort((a, b) => b.n - a.n || (a.motivo < b.motivo ? -1 : 1));
+    if (rows.length <= MOTIVOS_TOP + 1) return rows;
+    const resto = rows.slice(MOTIVOS_TOP);
+    return rows.slice(0, MOTIVOS_TOP).concat([{ motivo: `Outros (${resto.length})`, n: resto.reduce((t, r) => t + r.n, 0) }]);
+  }
+  // Janela fixa do grafico de tendencia: 52 semanas fechadas na segunda (== colher_serie do export) ate hoje.
+  function janelaSerie(hoje) {
+    const dow = (_d(hoje).getUTCDay() + 6) % 7; // 0 = segunda
+    return [_addDays(hoje, -dow - 51 * 7), hoje];
+  }
+
   // ---------- montar o objeto `d` do render ----------
   function montar(D, ini, fim, hoje, periodoNome) {
     const p = calcularPeriodos(ini, fim, hoje || D.gerado_em, periodoNome);
@@ -162,8 +183,10 @@
       d['rk_ct_' + key] = ranking(deals, 'utm_content', per[key][0], per[key][1]);
     }
     d.src_map = srcMap(deals, p.ytd_ini, p.ytd_fim);
+    d.janela_12m = janelaSerie(p.hoje);
+    d.motivos_periodo = agruparMotivos(d.perdidos_periodo);
+    d.motivos_12m = agruparMotivos(listaPerdidos(deals, d.janela_12m[0], d.janela_12m[1]));
     d.serie = D.serie;
-    d.proporcao = D.proporcao;
     return d;
   }
 

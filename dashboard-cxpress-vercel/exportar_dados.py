@@ -8,7 +8,7 @@ Espelha dashboard-buzz-br-vercel/exportar_dados.py, adaptado ao modelo de dados 
 
 A logica CM (filtro_cm calibrado, escopo) continua sendo fonte unica em dashboard/queries_cxpress.py
 — aqui so mudamos a PROJECAO: em vez de contar por periodo, listamos as linhas cruas.
-Series de 12m e proporcao de sources sao FIXAS (nao dependem do range) => pre-computadas aqui.
+A serie de 12m e FIXA (nao depende do range) => pre-computada aqui.
 
 Uso:
     uv run --python 3.12 --with "psycopg[binary]" python dashboard-cxpress-vercel/exportar_dados.py
@@ -29,7 +29,6 @@ import psycopg  # noqa: E402
 
 import queries_cxpress as Q  # noqa: E402
 from gerar_relatorio_cxpress import load_url, colher_serie, fetch_all  # noqa: E402
-from render_helpers_cxpress import render_proporcao_sources  # noqa: E402
 
 HOJE = date.today()
 OUT_PATH = ROOT / "dados-cxpress.json"
@@ -75,19 +74,16 @@ def main() -> None:
 
     with psycopg.connect(url, autocommit=True) as conn, conn.cursor() as cur:
         cur.execute("SET statement_timeout = '300s'")
-        print("  [1/3] deals (escopo CM, todas as datas)...", flush=True)
+        print("  [1/2] deals (escopo CM, todas as datas)...", flush=True)
         deals = fetch_all(cur, q_deals_raw())
-        print("  [2/3] serie 12m...", flush=True)
+        print("  [2/2] serie 12m...", flush=True)
         serie = colher_serie(cur, HOJE)
-        print("  [3/3] proporcao sources 12m...", flush=True)
-        prop = render_proporcao_sources(fetch_all(cur, Q.q_proporcao_12m(HOJE)))
 
     out = {
         "gerado_em": HOJE.isoformat(),
         "escopo": {"ini": date(2026, 1, 1).isoformat(), "fim": HOJE.isoformat()},
         "deals": [_jsonify(r) for r in deals],
         "serie": serie,
-        "proporcao": prop,
     }
 
     OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, default=str), encoding="utf-8")

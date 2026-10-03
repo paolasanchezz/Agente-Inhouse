@@ -83,26 +83,26 @@
     return `<tr><td>${dealCell(d)}</td><td>${badgeSource(d.utm_source)}</td>`
       + `<td class="dim">${escapeHtml(d.utm_content || '—')}</td>`
       + `<td class="dim">${escapeHtml(d.pais || '—')}</td>`
-      + `<td class="dim">${fmtFecha(d.data_conversao)}</td><td>${resp(d)}</td></tr>`;
+      + `<td class="dim" data-sort="${d.data_conversao || ''}">${fmtFecha(d.data_conversao)}</td><td>${resp(d)}</td></tr>`;
   }
   function rowReunion(d) {
     return `<tr><td>${dealCell(d)}</td><td>${resp(d)}</td><td>${badgeSource(d.utm_source)}</td>`
       + `<td class="dim">${escapeHtml(d.utm_content || '—')}</td>`
       + `<td class="dim">${escapeHtml(d.pais || '—')}</td>`
-      + `<td class="dim">${fmtFecha(d.data_evento)}</td></tr>`;
+      + `<td class="dim" data-sort="${d.data_evento || ''}">${fmtFecha(d.data_evento)}</td></tr>`;
   }
   function rowCierre(d) {
     const v = d.valor;
     const valorHtml = (v && Number(v) > 0) ? `<b>${fmtUsd(v)}</b>` : '—';
     return `<tr><td>${dealCell(d)}</td><td>${resp(d)}</td><td>${badgeSource(d.utm_source)}</td>`
       + `<td class="dim">${escapeHtml(d.pais || '—')}</td>`
-      + `<td class="dim">${fmtFecha(d.data_fech)}</td><td class="num">${valorHtml}</td></tr>`;
+      + `<td class="dim" data-sort="${d.data_fech || ''}">${fmtFecha(d.data_fech)}</td><td class="num">${valorHtml}</td></tr>`;
   }
   function rowPerda(d) {
     return `<tr><td>${dealCell(d)}</td><td>${badgeSource(d.utm_source)}</td>`
       + `<td class="dim">${escapeHtml(d.utm_content || '—')}</td>`
       + `<td class="dim">${escapeHtml(d.pais || '—')}</td>`
-      + `<td class="dim">${fmtFecha(d.data_evento)}</td></tr>`;
+      + `<td class="dim" data-sort="${d.data_evento || ''}">${fmtFecha(d.data_evento)}</td></tr>`;
   }
 
   // ---------- RANKINGS ----------
@@ -291,17 +291,23 @@
       + `<div class="two-col">${ctTbl('mtd')}${ctTbl('ytd')}</div>`
       + '</section>';
 
+    // ---- bloco 5 (tendencia) ----
     const bloco5 = '<section><div class="section-head"><div class="icon">5</div>'
       + '<h2>Tendencias · Últimos 12 meses</h2><span class="tag">52 semanas</span></div>'
       + '<div class="chart-wrap"><div class="chart-head">'
-      + '<h3>Serie temporal semanal · Embudo + Tx Primer contacto</h3>'
-      + '<span class="ctx">52 semanas · clic en la leyenda para ocultar series</span></div>'
+      + '<h3>Reuniones por semana · Tx de conversión</h3>'
+      + '<span class="ctx">Tx = Reuniones ÷ Deals creados en la semana · clic en la leyenda para ocultar series</span></div>'
       + '<div class="chart-canvas"><canvas id="chartTimeseries"></canvas></div></div>'
-      + '<div class="chart-wrap"><div class="chart-head">'
-      + '<h3>Primer contacto y Reuniones por fuente · 12 meses</h3>'
-      + '<span class="ctx">PC = Primer contacto · Reu = Reuniones</span></div>'
-      + '<div class="chart-canvas chart-canvas-tall"><canvas id="chartSourceShare"></canvas></div></div>'
       + '</section>';
+
+    // ---- bloco 6 (motivos de perda) ----
+    const j = d.janela_12m;
+    const bloco6 = '<section><div class="section-head"><div class="icon">6</div>'
+      + '<h2>Motivos de Pérdida</h2><span class="tag">status = Perdido · por fecha de última modificación</span></div>'
+      + '<div class="two-col">'
+      + pieWrap('chartMotivosPeriodo', pn === 'Período' ? 'Período seleccionado' : `Período seleccionado · ${pn}`, `${totalMotivos(d.motivos_periodo)} perdidos · ${`${fmtFecha(p.ini_atual)}–${fmtFecha(fa)} ${faY.getFullYear()}`}`, d.motivos_periodo)
+      + pieWrap('chartMotivos12m', 'Últimos 12 meses', `${totalMotivos(d.motivos_12m)} perdidos · ${`${fmtFecha(j[0])}/${j[0].slice(0, 4)}–${fmtFecha(j[1])}/${j[1].slice(0, 4)}`} · misma ventana del gráfico de tendencia`, d.motivos_12m)
+      + '</div></section>';
 
     const nota = '<div class="sources" style="margin-top:18px">⚠️ <b>Datos sobre tablas staging.</b> '
       + 'Solo se sincronizan los pipelines <b>Inbound</b> y <b>Outbound</b> Latam: los leads marcados como Perdidos '
@@ -315,65 +321,108 @@
       + `MtD ${fmtFecha(p.mtd_ini)}-${fmtFecha(p.mtd_fim)} · YtD Ene-${MESES_C[faY.getMonth()]} ${faY.getFullYear()}<br>`
       + 'Reuniones y Cierres contabilizados por fecha del evento · Buzzmonitor LATAM · uso interno</footer>';
 
-    return header + bloco1 + bloco2 + bloco3 + bloco4 + bloco5 + nota + footer;
+    return header + bloco1 + bloco2 + bloco3 + bloco4 + bloco5 + bloco6 + nota + footer;
   }
 
   // ---------- CHARTS ----------
-  let _charts = { ts: null, ss: null };
-  function montarCharts(d) {
-    if (typeof Chart === 'undefined') return;
-    const s = d.serie;
-    const leads = s.leads, pc = s.pc, reunion = s.reunion, cierres = s.cierres;
-    const txPC = leads.map((l, i) => l ? Math.round((pc[i] / l) * 100) : 0);
+  const PIE_CORES = ['#0B63FF', '#F59E0B', '#16A34A', '#DC2626', '#7C3AED', '#0E9D9B', '#DB2777', '#92400E', '#94A3B8'];
+  const FONTE = { family: 'Inter', size: 12 };
+  let _charts = { ts: null, pp: null, p12: null };
 
-    if (_charts.ts) _charts.ts.destroy();
-    _charts.ts = new Chart(document.getElementById('chartTimeseries').getContext('2d'), {
-      type: 'line',
+  function totalMotivos(rows) { return (rows || []).reduce((t, r) => t + r.n, 0); }
+  function pieWrap(id, titulo, ctx, rows) {
+    const corpo = (rows && rows.length)
+      ? `<div class="chart-canvas chart-canvas-pie"><canvas id="${id}"></canvas></div>`
+      : '<div class="dim center chart-vazio">(sin pérdidas en el intervalo)</div>';
+    return `<div class="chart-wrap"><div class="chart-head"><h3>${titulo}</h3><span class="ctx">${ctx}</span></div>${corpo}</div>`;
+  }
+
+  // Linhas solidas = reuniones de la semana; linha tracejada (eixo %) = reuniones / deals creados en la semana. Sin línea de Propuestas: el embudo LATAM no tiene esa etapa.
+  function chartTendencia(s) {
+    const agend = s.reunion, leads = s.leads; 
+    const tx = leads.map((l, i) => (l ? Math.round((agend[i] / l) * 100) : null));
+    return new Chart(document.getElementById('chartTimeseries').getContext('2d'), {
       data: {
         labels: s.labels, datasets: [
-          { label: 'Leads', data: leads, borderColor: '#1F2937', borderWidth: 2.6, tension: .35, pointRadius: 0, pointHoverRadius: 5, yAxisID: 'y' },
-          { label: 'Primer contacto', data: pc, borderColor: '#0B63FF', borderWidth: 2.2, tension: .35, pointRadius: 0, pointHoverRadius: 5, yAxisID: 'y' },
-          { label: 'Tx Primer contacto (%)', data: txPC, borderColor: '#6EA7FF', borderWidth: 2, borderDash: [6, 3], tension: .35, pointRadius: 0, yAxisID: 'yPct' },
-          { label: 'Reuniones', data: reunion, borderColor: '#6B7280', borderWidth: 1.8, borderDash: [3, 3], tension: .35, pointRadius: 0, yAxisID: 'y' },
-          { label: 'Cierres', data: cierres, borderColor: '#16A34A', backgroundColor: 'rgba(22,163,74,0.1)', borderWidth: 2.5, tension: .2, pointRadius: 3, pointHoverRadius: 5, yAxisID: 'y' },
+          { type: 'line', label: 'Tx de conversión (%)', data: tx, borderColor: '#16A34A', backgroundColor: '#16A34A', borderWidth: 2, borderDash: [6, 3], cubicInterpolationMode: 'monotone', pointRadius: 2, pointHoverRadius: 5, spanGaps: true, yAxisID: 'yPct', order: 1 },
+          { type: 'line', label: 'Reuniones', data: agend, borderColor: '#0B63FF', backgroundColor: '#0B63FF', borderWidth: 2.4, cubicInterpolationMode: 'monotone', pointRadius: 2, pointHoverRadius: 5, yAxisID: 'y', order: 2 },
         ],
       },
       options: {
         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         plugins: {
           legend: { position: 'top', align: 'end', labels: { font: { family: 'Inter', size: 13 }, color: '#374151', usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
-          tooltip: { backgroundColor: '#1F2937', padding: 12, cornerRadius: 8, callbacks: { label: (c) => c.dataset.yAxisID === 'yPct' ? `${c.dataset.label}: ${c.parsed.y}%` : `${c.dataset.label}: ${c.parsed.y}` } },
+          tooltip: {
+            backgroundColor: '#1F2937', padding: 12, cornerRadius: 8,
+            callbacks: {
+              label: (c) => c.dataset.yAxisID === 'yPct'
+                ? `${c.dataset.label}: ${c.parsed.y == null ? '—' : c.parsed.y + '%'} (${agend[c.dataIndex]} de ${leads[c.dataIndex]} deals)`
+                : `${c.dataset.label}: ${c.parsed.y}`,
+            },
+          },
         },
         scales: {
           x: { ticks: { font: { family: 'Inter', size: 11 }, color: '#6B7280', maxRotation: 0, autoSkip: true, maxTicksLimit: 13 }, grid: { display: false } },
-          y: { type: 'linear', position: 'left', beginAtZero: true, title: { display: true, text: 'Volúmenes (Leads · PC · Reu · Cierres)', font: { family: 'Inter', size: 12, weight: '600' }, color: '#4B5563' }, ticks: { font: { family: 'Inter', size: 12 }, color: '#6B7280' }, grid: { color: '#F1F5F9' } },
-          yPct: { type: 'linear', position: 'right', beginAtZero: true, max: 100, title: { display: true, text: 'Tx Primer contacto (%)', font: { family: 'Inter', size: 12, weight: '600' }, color: '#0B63FF' }, ticks: { callback: (v) => v + '%', font: { family: 'Inter', size: 12 }, color: '#0B63FF' }, grid: { display: false } },
-        },
-      },
-    });
-
-    if (_charts.ss) _charts.ss.destroy();
-    _charts.ss = new Chart(document.getElementById('chartSourceShare').getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: ['Primer contacto (12m)', 'Reuniones (12m)'],
-        datasets: (d.proporcao || []).map((x) => ({ label: x.label, data: [x.PC, x.RE], backgroundColor: x.color, borderWidth: 0, borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.7 })),
-      },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top', align: 'start', labels: { font: { family: 'Inter', size: 12 }, color: '#374151', usePointStyle: true, pointStyle: 'rectRounded', padding: 14, boxWidth: 14 } },
-          tooltip: { backgroundColor: '#1F2937', padding: 12, cornerRadius: 8, callbacks: { label: (c) => { const t = c.chart.data.datasets.reduce((s2, ds) => s2 + ds.data[c.dataIndex], 0); const v = c.parsed.x; return `${c.dataset.label}: ${v} (${t ? ((v / t) * 100).toFixed(1) : 0}%)`; } } },
-        },
-        scales: {
-          x: { stacked: true, beginAtZero: true, ticks: { font: { family: 'Inter', size: 12 }, color: '#6B7280' }, grid: { color: '#F1F5F9' } },
-          y: { stacked: true, ticks: { font: { family: 'Inter', size: 13, weight: '600' }, color: '#374151' }, grid: { display: false } },
+          y: { type: 'linear', position: 'left', beginAtZero: true, title: { display: true, text: 'Reuniones', font: { ...FONTE, weight: '600' }, color: '#4B5563' }, ticks: { font: FONTE, color: '#6B7280', precision: 0 }, grid: { color: '#F1F5F9' } },
+          yPct: { type: 'linear', position: 'right', beginAtZero: true, suggestedMax: 100, title: { display: true, text: 'Tx de conversión (%)', font: { ...FONTE, weight: '600' }, color: '#16A34A' }, ticks: { callback: (v) => v + '%', font: FONTE, color: '#16A34A' }, grid: { display: false } },
         },
       },
     });
   }
 
+  function chartMotivos(id, rows) {
+    const el = document.getElementById(id);
+    if (!el || !rows || !rows.length) return null;
+    const total = totalMotivos(rows);
+    const pct = (n) => `${Math.round((100 * n) / total)}%`;
+    return new Chart(el.getContext('2d'), {
+      type: 'doughnut',
+      data: { labels: rows.map((r) => r.motivo), datasets: [{ data: rows.map((r) => r.n), backgroundColor: rows.map((_, i) => PIE_CORES[i % PIE_CORES.length]), borderColor: '#fff', borderWidth: 2 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '52%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: FONTE, color: '#374151', usePointStyle: true, pointStyle: 'rectRounded', padding: 10,
+              generateLabels: (ch) => Chart.overrides.doughnut.plugins.legend.labels.generateLabels(ch)
+                .map((l, i) => Object.assign(l, { text: `${rows[i].motivo} · ${rows[i].n} (${pct(rows[i].n)})` })),
+            },
+          },
+          tooltip: { backgroundColor: '#1F2937', padding: 12, cornerRadius: 8, callbacks: { label: (c) => ` ${c.label}: ${c.parsed} (${pct(c.parsed)})` } },
+        },
+      },
+    });
+  }
+
+  function montarCharts(d) {
+    if (typeof Chart === 'undefined') return;
+    Object.values(_charts).forEach((c) => c && c.destroy());
+    _charts = {
+      ts: chartTendencia(d.serie),
+      pp: chartMotivos('chartMotivosPeriodo', d.motivos_periodo),
+      p12: chartMotivos('chartMotivos12m', d.motivos_12m),
+    };
+  }
+
   // ---------- SORTABLE ----------
+  // Fecha en la celda viene como DD/MM: ordenar por el texto tomaba solo el dia ("03/10" -> 3).
+  // Celda de fecha lleva data-sort=ISO; badge con fecha (✓ 03/10) cae en el parse DD/MM.
+  function chaveCelula(td) {
+    const t = (td?.innerText || '').trim();
+    if (td && td.dataset.sort !== undefined) return { data: td.dataset.sort, t };
+    const dm = t.match(/^(?:✓\s*)?(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?$/);
+    if (dm) return { data: `${dm[3] || '0000'}-${dm[2].padStart(2, '0')}-${dm[1].padStart(2, '0')}`, t };
+    return { data: null, t };
+  }
+  function compararCelulas(tdA, tdB, locale) {
+    const a = chaveCelula(tdA), b = chaveCelula(tdB);
+    if (a.data !== null && b.data !== null) return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
+    const num = (s) => { const m = (s || '').match(/-?[\d.,]+/); return m ? parseFloat(m[0].replace(/\./g, '').replace(',', '.')) : NaN; };
+    const na = num(a.t), nb = num(b.t);
+    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+    return a.t.localeCompare(b.t, locale, { numeric: true, sensitivity: 'base' });
+  }
   function makeSortable(table) {
     if (table.dataset.sortable === '1') return;
     const ths = table.querySelectorAll('thead th');
@@ -390,11 +439,8 @@
         ths.forEach((t) => { t.classList.remove('sort-asc', 'sort-desc'); const i = t.querySelector('.sort-ind'); if (i) i.textContent = '⇅'; });
         th.classList.add(dir === 'asc' ? 'sort-asc' : 'sort-desc');
         const ind = th.querySelector('.sort-ind'); if (ind) ind.textContent = dir === 'asc' ? '▲' : '▼';
-        const num = (str) => { const m = (str || '').match(/-?[\d.,]+/); return m ? parseFloat(m[0].replace(/\./g, '').replace(',', '.')) : NaN; };
         rows.sort((a, b) => {
-          const sa = (a.children[idx]?.innerText || '').trim(), sb = (b.children[idx]?.innerText || '').trim();
-          const na = num(sa), nb = num(sb); let c;
-          if (!isNaN(na) && !isNaN(nb)) c = na - nb; else c = sa.localeCompare(sb, 'es', { numeric: true, sensitivity: 'base' });
+          const c = compararCelulas(a.children[idx], b.children[idx], 'es');
           return dir === 'asc' ? c : -c;
         });
         rows.forEach((r) => tbody.appendChild(r));

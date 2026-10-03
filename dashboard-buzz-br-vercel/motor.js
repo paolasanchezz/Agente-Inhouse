@@ -138,12 +138,34 @@
     return rows;
   }
 
+  // ---------- motivos de perda (graficos de pizza) ----------
+  // Top 8 motivos + "Outros"; deal sem motivo vira categoria propria (nao some do total).
+  const MOTIVOS_TOP = 8;
+  function agruparMotivos(lista) {
+    const acc = new Map();
+    for (const r of lista) {
+      const m = (r.motivo != null && String(r.motivo).trim()) || '(sem motivo)';
+      acc.set(m, (acc.get(m) || 0) + 1);
+    }
+    const rows = [...acc.entries()].map(([motivo, n]) => ({ motivo, n }))
+      .sort((a, b) => b.n - a.n || (a.motivo < b.motivo ? -1 : 1));
+    if (rows.length <= MOTIVOS_TOP + 1) return rows;
+    const resto = rows.slice(MOTIVOS_TOP);
+    return rows.slice(0, MOTIVOS_TOP).concat([{ motivo: `Outros (${resto.length})`, n: resto.reduce((t, r) => t + r.n, 0) }]);
+  }
+  // Janela fixa do grafico de tendencia: 52 semanas fechadas na segunda (== colher_serie do export) ate hoje.
+  function janelaSerie(hoje) {
+    const dow = (_d(hoje).getUTCDay() + 6) % 7; // 0 = segunda
+    return [_addDays(hoje, -dow - 51 * 7), hoje];
+  }
+
   // ---------- montar o objeto `data` do render() ----------
   function montarData(D, ini, fim) {
     const p = calcularPeriodos(ini, fim, D.gerado_em);
     const per = { atual: [p.ini_atual, p.fim_atual], ant: [p.ini_ant, p.fim_ant], mtd: [p.mtd_ini, p.mtd_fim], ytd: [p.ytd_ini, p.ytd_fim] };
     const kpis = {}, rSource = {}, rContent = {};
     const sm = srcMap(D, p.ytd_ini, p.ytd_fim);
+    const j12 = janelaSerie(p.hoje);
     for (const k in per) {
       kpis[k] = contarKpis(D, per[k][0], per[k][1]);
       rSource[k] = ranking(D, 'utm_source', per[k][0], per[k][1], null);
@@ -161,8 +183,10 @@
         perdidos_mtd: listaPerdidos(D, p.ini_atual, p.fim_atual), // segue o periodo do filtro (nao so o MtD) — Victor 2026-07-01
       },
       rankings: { source: rSource, content: rContent },
+      janela_12m: j12,
+      motivos_periodo: agruparMotivos(listaPerdidos(D, p.ini_atual, p.fim_atual)),
+      motivos_12m: agruparMotivos(listaPerdidos(D, j12[0], j12[1])),
       serie_12m: D.serie_12m,
-      proporcao_sources: D.proporcao_sources,
       _meta: { estatico: true, gerado_em: D.gerado_em },
     };
   }

@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import os
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 # Reusa a lib da dash local (fonte unica da logica CM).
@@ -32,14 +32,18 @@ from lib.queries import (  # noqa: E402
     filtro_cm, filtro_inbound, _sem_outbound, _atrib_cm_90d, cte_conversoes_cm,
     predicado_evento, predicado_fechamento, _sql_email_list, _cdate_efetivo, fonte_deals_funil,
     _fora_blacklist,
-    q_serie_temporal_12m, q_proporcao_sources_12m,
+    q_serie_temporal_12m,
 )
-from lib.render import serie_temporal_12m, proporcao_sources, jsonify  # noqa: E402
+from lib.render import serie_temporal_12m, jsonify  # noqa: E402
 
 ANO_INI = date(2026, 1, 1)
 HOJE = date.today()
 FIM = HOJE
 OUT_PATH = ROOT / "dados-2026.json"
+# Perdidos cobrem tambem a janela do grafico de tendencia (52 semanas fechadas na segunda),
+# que comeca no ano anterior: a pizza "motivos de perda · 12 meses" usa o mesmo intervalo.
+SERIE_INI = HOJE - timedelta(days=HOJE.weekday()) - timedelta(weeks=51)
+PERDIDOS_INI = min(ANO_INI, SERIE_INI)
 
 
 # ---------- conexao ----------
@@ -161,24 +165,22 @@ def main() -> None:
 
     with psycopg.connect(url, autocommit=True) as conn, conn.cursor() as cur:
         cur.execute("SET statement_timeout = '120s'")
-        print("  [1/9] leads...", flush=True)
+        print("  [1/8] leads...", flush=True)
         leads = fetch_dict(cur, q_leads_raw(ANO_INI, FIM))
-        print("  [2/9] ce...", flush=True)
+        print("  [2/8] ce...", flush=True)
         ce = fetch_dict(cur, q_evento_raw("ce", ANO_INI, FIM))
-        print("  [3/9] ra...", flush=True)
+        print("  [3/8] ra...", flush=True)
         ra = fetch_dict(cur, q_evento_raw("ra", ANO_INI, FIM))
-        print("  [4/9] rr...", flush=True)
+        print("  [4/8] rr...", flush=True)
         rr = fetch_dict(cur, q_evento_raw("rr", ANO_INI, FIM))
-        print("  [5/9] prop...", flush=True)
+        print("  [5/8] prop...", flush=True)
         prop = fetch_dict(cur, q_evento_raw("prop", ANO_INI, FIM))
-        print("  [6/9] fech...", flush=True)
+        print("  [6/8] fech...", flush=True)
         fech = fetch_dict(cur, q_fech_raw(ANO_INI, FIM))
-        print("  [7/9] perdidos...", flush=True)
-        perdidos = fetch_dict(cur, q_perdidos_raw(ANO_INI, FIM))
-        print("  [8/9] serie 12m...", flush=True)
+        print("  [7/8] perdidos...", flush=True)
+        perdidos = fetch_dict(cur, q_perdidos_raw(PERDIDOS_INI, FIM))
+        print("  [8/8] serie 12m...", flush=True)
         serie = serie_temporal_12m(fetch_dict(cur, q_serie_temporal_12m(HOJE)), HOJE)
-        print("  [9/9] proporcao sources...", flush=True)
-        prop_src = proporcao_sources(fetch_dict(cur, q_proporcao_sources_12m(HOJE)))
 
     out = {
         "gerado_em": HOJE.isoformat(),
@@ -191,7 +193,6 @@ def main() -> None:
         "fech": jsonify(fech),
         "perdidos": jsonify(perdidos),
         "serie_12m": serie,
-        "proporcao_sources": prop_src,
     }
 
     OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, default=str), encoding="utf-8")

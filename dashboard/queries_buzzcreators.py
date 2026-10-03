@@ -123,12 +123,25 @@ D_LOST = 'd.lost_time::date'
 
 # ============ ATRIBUICAO (join deal -> person -> contato AC) ============
 
+# Fallback no contato do ActiveCampaign so vale pra deal criado ANTES desta data. A partir de
+# mar/2026 o Pipedrive passou a ser a fonte unica da Buzzcreators (o contato ja nasce com os
+# campos [AUTO] preenchidos: 181/259 deals de marco, contra 68/221 em fevereiro). Depois disso o
+# toque do AC e de OUTRA marca e nao pode creditar CM aqui — caso FIAP, deal 6828: nada no
+# Pipedrive, 'organic/direct' + buzzmonitor.com/pricing vindos do AC (decisao Victor 2026-10-03).
+CORTE_FALLBACK_AC = '2026-03-01'
+
+
 def join_atribuicao() -> str:
-    """FROM + JOINs que trazem a UTM recuperada. Aliases: d (deal), p (person), c (contato AC)."""
+    """FROM + JOINs que trazem a UTM recuperada. Aliases: d (deal), p (person), c (contato AC).
+
+    O contato AC so entra pra deal criado antes de CORTE_FALLBACK_AC; depois disso c.* fica NULL
+    e a atribuicao vem so do contato no Pipedrive.
+    """
     return f"""{TABELA} d
   LEFT JOIN {TABELA_PERSONS} p ON p.id = d.person_id
   LEFT JOIN {TABELA_CONTACTS} c
-         ON lower(nullif(trim(coalesce(p.email, d.person_email)), '')) = lower(nullif(trim(c.email), ''))"""
+         ON lower(nullif(trim(coalesce(p.email, d.person_email)), '')) = lower(nullif(trim(c.email), ''))
+        AND {D_LEAD} < '{CORTE_FALLBACK_AC}'::date"""
 
 
 # Hierarquia de fallback: contato Pipedrive -> contato AC (utm_source_auto -> utm_source_origem_auto).
