@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Elife//Lancamento livro Alessandro//PT-BR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:lancamento-o-buzz-nosso-de-cada-dia-20261028@elife.com.br
+DTSTAMP:20261006T120000Z
+DTSTART:20261028T213000Z
+DTEND:20261029T003000Z
+SUMMARY:Lançamento do livro O Buzz Nosso de Cada Dia\, de Alessandro Barbo
+ sa Lima
+LOCATION:Livraria da Vila\, Avenida Paulista\, 1063\, São Paulo - SP
+DESCRIPTION:Noite de autógrafos de O Buzz Nosso de Cada Dia (Matrix Editor
+ a). Das 18h30 às 21h30. Não precisa confirmar presença. https://content
+ .buzzmonitor.com/o-buzz-nosso-de-cada-dia
+URL:https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lançamento do livro de Alessandro Barbosa Lima em 2 horas
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
