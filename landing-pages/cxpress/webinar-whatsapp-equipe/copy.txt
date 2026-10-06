@@ -1,0 +1,171 @@
+=== HERO ===
+OVERLINE: Webinar online e gratuito · 27 de outubro, 11h
+H1: WhatsApp comercial bloqueado. Começa quando a equipe inteira atende pelo mesmo número.
+SUB: O WhatsApp Business foi desenhado para uma pessoa. Quando três, seis ou dez atendem pelo mesmo aparelho, a Meta lê como uso irregular e o bloqueio chega sem aviso. Neste webinar, o caminho para levar a equipe inteira para o ambiente oficial sem trocar o número que seus clientes já têm salvo.
+CTA: Reservar minha vaga
+LABEL: QUANDO · 27 de outubro, terça-feira, 11h (horário de Brasília)
+LABEL: FORMATO · Online, cerca de 40 minutos
+LABEL: PARA QUEM · Quem lidera atendimento numa operação com três ou mais pessoas no mesmo número
+BODY: Mais de 800 empresas atendem pela API oficial com a Cxpress.
+
+=== O PROBLEMA ===
+H2: O número não cai por azar. Cai porque a operação cresceu e o aplicativo não.
+BODY: O WhatsApp Business comum foi desenhado para uma pessoa, num aparelho. A empresa contrata o segundo atendente, depois o terceiro. Todo mundo passa a usar o mesmo celular, ou a mesma conta num aplicativo de multiatendimento que a Meta não autoriza.
+BODY: Do lado de fora, isso parece organização. Do lado da Meta, parece uso irregular. E o bloqueio chega sem aviso, no dia em que a operação menos pode parar.
+LIST ITEM: Vários atendentes no mesmo aparelho
+LIST ITEM: Ferramenta não oficial de multiatendimento
+LIST ITEM: Disparo para base fria, fora das regras
+LABEL: As três práticas que mais derrubam número de empresa
+CTA: Reservar minha vaga
+
+=== O QUE VOCÊ VAI VER ===
+H2: Quarenta minutos sobre operar com equipe sem derrubar o número
+BODY: Quatro pontos, cada um com uma resposta que você aplica na semana seguinte.
+H3: Por que operação com equipe aciona o alerta da Meta
+BODY: O que o aplicativo comum enxerga quando seis pessoas usam o mesmo número.
+H3: Qual das três a sua operação faz hoje
+BODY: Você sai sabendo apontar, entre as três, a que a sua operação pratica sem perceber.
+H3: O que muda na API oficial para quem tem time
+BODY: Fila por setor, distribuição entre atendentes, histórico por cliente e a titularidade do número no CNPJ da empresa.
+H3: Como migrar sem trocar o número
+BODY: O caminho para levar a operação inteira para o ambiente oficial mantendo o contato que os seus clientes já têm salvo.
+
+=== PARA QUEM ===
+H2: Para quem é este webinar
+LIST ITEM: Você tem três ou mais pessoas atendendo clientes pelo mesmo número
+LIST ITEM: O atendimento é parte da operação, não um canal a mais
+LIST ITEM: Você responde por tempo de resposta, fila ou satisfação de cliente
+LIST ITEM: A empresa tem CNPJ e o número está no nome dela
+H2: Para quem este webinar não serve
+LIST ITEM: Você atende sozinho, ou é você e mais uma pessoa
+LIST ITEM: O número é pessoal e também é usado para vender
+LIST ITEM: Você quer recuperar um número que já foi banido. Aqui o assunto é prevenção e migração
+LIST ITEM: Você procura uma ferramenta não oficial de multiatendimento. O caminho apresentado é a API oficial
+BODY: Dizer para quem não serve economiza o seu tempo e o nosso. Se você se reconheceu na segunda lista, o conteúdo não vai responder a sua pergunta.
+
+=== INSCRIÇÃO ===
+OVERLINE: Vaga gratuita
+H2: Reserve sua vaga
+SUB: 27 de outubro, terça-feira, 11h
+BODY: Você recebe o link de acesso por e-mail logo após a inscrição e um lembrete no dia.
+LABEL: Nome
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Cargo
+LABEL: WhatsApp
+LABEL: Quantas pessoas atendem clientes na sua empresa?
+CTA: Reservar minha vaga
+BODY: Gratuito. Sem compromisso.
+
+=== QUEM APRESENTA ===
+H2: Quem conduz
+LABEL: Karen Marcelino · Sucesso do Cliente, Cxpress
+LABEL: Luiz Fantini · New business, Cxpress
+CTA: Reservar minha vaga
+
+=== FECHO ===
+H2: O número levou anos para entrar na agenda do cliente. A migração leva dias.
+CTA: Reservar minha vaga
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# ================================================================
+# NOTAS PARA QUEM GERA O HTML E PARA QUEM REVISA
+# ================================================================
+#
+# ORIGEM
+# Reformulação da copy da LP whatsapp-comercial-bloqueado, que e do webinar que ja rolou.
+# A gravacao sera reaproveitada na sessao de 27/10. Pedido da Marielle em 06/10: trazer
+# publico mais selecionado e qualificado.
+#
+# O QUE MUDOU EM RELACAO A LP ANTIGA, E POR QUE
+# 1. Saiu o "Para empresas de qualquer porte", que estava no hero e na meta description da
+#    pagina antiga. Era a frase mais permissiva possivel num material cuja funcao e selecionar.
+# 2. O eixo saiu de "seu numero pode ser banido" (medo universal, dói igual no MEI e no gerente
+#    de central) para "sua operacao tem time e o aplicativo nao foi feito pra isso" (sintoma que
+#    so o ICP tem). O filtro ja estava dentro da gravacao: o banimento acontece justamente
+#    porque varias pessoas atendem pelo mesmo aparelho. A copy e que vendia medo generico.
+# 3. Entrou a secao "Para quem este webinar NAO serve". E o filtro mais forte da pagina e
+#    quase nenhuma LP usa. Quem se reconhece ali sai antes de preencher, que e o resultado
+#    desejado.
+# 4. Entrou formulario. A pagina antiga nao tem nenhum: o CTA "Assistir agora" rola ate um
+#    video do YouTube. A campanha [meta][fundo][conversao][banimento] gastou R$ 1.008,09,
+#    levou 47 pessoas a pagina e gerou ZERO Novo Lead, porque nao havia onde converter.
+# 5. O campo "Quantas pessoas atendem clientes na sua empresa?" e o qualificador. Quem
+#    responde 1 e audiencia, nao lead. Vale segmentar na automacao em vez de mandar pro
+#    comercial.
+#
+# ESPERADO: MENOS INSCRITOS
+# Formulario mais filtro explicito reduz volume de proposito. Se a meta virar volume de topo
+# de funil, esta copy e a direcao errada.
+#
+#
+# DECISOES DE 06/10 (Marielle)
+#
+# H1. A Marielle preferiu a forca do H1 antigo ("WhatsApp Comercial Bloqueado: como impedir
+# banimento no numero da sua empresa"). Ele abre com tres palavras concretas e alarmantes antes
+# de qualquer explicacao, e isso e o que o novo nao tinha. O que ele nao faz e filtrar ninguem.
+# A versao adotada mantem a abertura dele e move o filtro para a segunda frase:
+#
+#   "WhatsApp comercial bloqueado. Comeca quando a equipe inteira passa a atender pelo mesmo numero."
+#
+# O ponto no lugar dos dois pontos cria duas batidas: o alarme, depois a qualificacao.
+# "Comeca quando" e preciso: aparelho compartilhado e uma das tres causas, nao a unica, entao
+# a frase nao afirma que e sempre por isso.
+#
+# Alternativas descartadas, se quiser trocar:
+#   a) "WhatsApp comercial bloqueado: o que muda quando tres ou mais pessoas atendem pelo mesmo numero"
+#   b) "WhatsApp comercial bloqueado: como manter o numero quando a operacao tem time"
+#   c) O antigo na integra, sem filtro no H1. Funciona se o filtro ficar todo na secao
+#      "Para quem este webinar nao serve" e no campo de tamanho de time do formulario. Custa
+#      mais trafego desqualificado no topo, ganha alcance.
+#
+# REPRISE. Confirmado que e reprise da gravacao, e a pagina nao vai dizer isso.
+# O que a pagina TAMBEM nao vai dizer: "ao vivo", "perguntas ao vivo", "tire suas duvidas
+# com o palestrante". Afirmar presenca ao vivo numa reprise e falso, nao e omissao.
+# A LP antiga (whatsapp-comercial-bloqueado) tem "Webinar ao vivo" no overline do hero.
+# NAO herdar essa linha. O overline aqui e "Webinar online e gratuito".
+# Pelo mesmo motivo nao entrou secao de palestrantes nem promessa de Q&A.
+#
+# Risco operacional registrado: quem entra esperando ao vivo e encontra gravacao percebe, e isso
+# aparece na conversa com o comercial depois. Decisao da Marielle, registrada aqui.
+#
+#
+# APRESENTADORES (06/10)
+# Karen Marcelino (Sucesso do Cliente) e Luiz Fantini (New business), confirmados pela Marielle.
+# Cargo da Karen veio do deck conhecimento/copywriting/criacao/cxpress/2026-08-04/.
+# Foto do Luiz reaproveitada da black-friday-atendimento-b. Foto da Karen PENDENTE: por ora
+# avatar com as iniciais, mesmo padrao que a LP irma usou enquanto esperava as fotos.
+# Nao escrevi bio de nenhum dos dois: eu nao sei como a gravacao divide os assuntos entre eles,
+# e bio inventada e claim. Se a Marielle mandar uma linha de cada, entra em <p class="spk__bio">.
+# Creditar quem apresenta NAO contradiz a decisao de nao dizer que e ao vivo: eles apresentaram
+# a gravacao.
+#
+# PENDENCIA UNICA
+# DURACAO. "Cerca de 40 minutos" veio da estimativa da gravacao antiga. Confirmar o tempo real
+# do video antes de publicar.
+#
+# TECNICO
+# - Form: Jotform 261033482583658 (o mesmo de inscricao de webinar, ja usado na versao antiga
+#   desta LP e na black-friday-atendimento-b). NAO usar o 261045149477663, que e o de demo.
+# - GTM: GTM-T4XDWHL3 (brasil).
+# - Conversao esperada: Conversao Webinar (1099190376613999), nao Novo Lead.
+# - Estrutura de referencia: black-friday-atendimento-b (hero com card QUANDO/FORMATO/PARA QUEM,
+#   CTAs ancorados em #inscricao, formulario na secao de inscricao).
+# - Formulario alto na pagina: webinar e ToFu, e a GUIDELINES §10 manda form na 2a secao nesse
+#   caso. Com o filtro explicito logo acima, o atrito de qualificacao ja esta na copy.
+#
+# FATOS E FONTES
+# - "Mais de 800 empresas" ja e usado nas LPs irmas Cxpress.
+# - As tres praticas que derrubam numero (aparelho compartilhado, ferramenta nao oficial,
+#   disparo fora das regras) vem do FAQ verificado da banimento-whatsapp.
+# - Titularidade do numero no CNPJ na API oficial: mesma fonte.
+# - NAO entrou nenhum percentual de banimento nem case nomeado: nao ha fonte em
+#   conhecimento/produto/cxpress/ para nenhum dos dois.
+#
+# ANTI-IA
+# em-dash 0 | filler 0 | frase de IA 0 | exclamacao 0 | metafora aquatica 0
+# antitese-por-negacao 2 ("nao cai por azar", "nao e um canal a mais"), dentro do limite
+# pergunta retorica 0 (a interrogacao e rotulo de campo de formulario)

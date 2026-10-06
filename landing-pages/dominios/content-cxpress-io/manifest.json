@@ -306,6 +306,11 @@
       "source": "landing-pages/cxpress/vsl-atendimento-ia"
     },
     {
+      "slug": "webinar-whatsapp-equipe",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-whatsapp-equipe"
+    },
+    {
       "slug": "webinar-bloqueo-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-bloqueo-whatsapp"
