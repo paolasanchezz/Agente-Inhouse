@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt`
 **Destino:** `content.cxpress.io/institucional` (guarda-chuva, deploy via CI)
 **Região:** brasil · `<html lang="pt-BR">` · GTM `GTM-T4XDWHL3`
-**Formulário:** Jotform `261034073026647` (mantido da versão anterior)
+**Formulário:** Jotform `261045149477663` (form de Meta, trocado em 2026-10-06; antes `261034073026647`, o de Google Ads)
 
 ## Por que foi reconstruída
 
@@ -101,7 +101,7 @@ pedido). A `black-friday-atendimento-b` está limpa, porque o pill dela é curto
 | Pacote SEO §15 | title 1 · canonical 1 · robots 1 · og 10 · twitter 4 |
 | JSON-LD | parseia; Organization + WebPage + SoftwareApplication |
 | GTM | `GTM-T4XDWHL3` no head e no noscript |
-| Jotform | `261034073026647`, um único embed |
+| Jotform | `261045149477663`, um único embed |
 | em-dash / exclamação | 0 / 0 |
 | Filler ("de forma", "de maneira", "realmente"...) | 0 |
 | `<img>` sem `alt` | 0 de 86 |
@@ -116,11 +116,9 @@ pedido). A `black-friday-atendimento-b` está limpa, porque o pill dela é curto
 
 ## Pendências e decisões em aberto
 
-1. **O Jotform é o de Google Ads.** O `261034073026647` é o form que as LPs de Google Ads
-   usam. Esta página roda `GTM-T4XDWHL3` (container de Meta) e hoje recebe **só tráfego de
-   Meta** (INSTT 1 a 4). Não troquei porque a página de agradecimento pós-submit é config do
-   próprio Jotform e acompanha o form. Decisão de vocês: manter, ou trocar pelo
-   `261045149477663` (o de Meta) e reconfigurar o thank-you. A troca é 1 linha.
+1. ~~**O Jotform é o de Google Ads.**~~ Resolvido em 2026-10-06: trocado pelo `261045149477663`
+   (o de Meta), coerente com o container `GTM-T4XDWHL3` e o tráfego INSTT. A página de
+   agradecimento pós-submit passa a ser a configurada nesse form, no painel do Jotform.
 2. **O botão "Enviar" do Jotform é verde-água** e briga com a paleta azul da página. É tema
    do Jotform, não dá para estilizar daqui (iframe cross-origin). Ajuste no painel do Jotform.
 3. **OG image:** `assets/og-institucional.png` foi mantida da versão anterior. Vale regerar
