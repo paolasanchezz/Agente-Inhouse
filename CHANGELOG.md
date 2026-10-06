@@ -269,6 +269,21 @@ implementado, entao condicionar a chamada ao aceite e mudar o gatilho, nao reesc
 
 ---
 
+## Guarda-chuva novo — registrar o domínio também no `lp-deploy.yml`
+### 2026-10-06 — `lp-deploy.yml` + `lp-publicar` 5.1.5 → 5.1.6 (PATCH)
+
+O `content.elife.com.br` entrou em `MIGRADOS.json` (PR #739) e o primeiro deploy passou porque o
+merge manual dispara o deploy de todos os domínios. No PR seguinte (#741), quem mesclou foi o
+merge-bot, que dispara o `lp-deploy.yml` domínio por domínio via `workflow_dispatch`. Como o input
+`dominio` é uma lista fechada e não tinha o domínio novo, o GitHub recusou com HTTP 422 e só o
+`content.buzzmonitor.com` foi deployado.
+
+- `lp-deploy.yml`: `content.elife.com.br` adicionado às `options` do input `dominio`.
+- `lp-publicar` (fluxo "guarda-chuva novo"): passo explícito de adicionar o domínio a essa lista,
+  junto do `MIGRADOS.json`.
+
+---
+
 ## CSP dos guarda-chuvas — liberar o Meta Pixel no `form-action`
 ### 2026-09-14 — `vercel.template.json` + vercel.json dos 5 domínios (lp-publicar 5.1.4 → 5.1.5, PATCH)
 

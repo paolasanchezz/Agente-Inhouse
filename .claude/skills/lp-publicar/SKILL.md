@@ -3,7 +3,7 @@ name: lp-publicar
 description: Publica landing page. Guarda-chuvas (todos migrados pro CI) — conduz o fluxo Git+GitHub Actions (manifesto + commit + acompanhar deploy com smoke e rollback automaticos). Modo solo (1 projeto = 1 LP) — fluxo classico via sibling. Valida, publica relatorio Notion, zero vazamento do repo interno.
 argument-hint: "[marca] [slug-ou-slugs-CSV] [dominio-opcional] — ex: buzzcreators vendendo-com-creators evento.buzzmonitor.com OU buzzmonitor mcp,mcp-es,mcp-pt material.buzzmonitor.com"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Skill, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-update-page
-version: 5.1.5
+version: 5.1.6
 ---
 
 # Skill: Publicar Landing Page
@@ -32,8 +32,11 @@ A regra de roteamento e:
 - **Guarda-chuva novo que ainda nao existe** (ex: 1a LP Elife em `content.elife.com`) →
   **NAO crie sibling.** Guarda-chuva novo ja nasce no CI: crie `landing-pages/dominios/{dom}/`
   (manifest.json com a 1a LP + vercel.json copiado de `.claude/skills/lp-publicar/vercel.template.json`),
-  adicione o dominio ao MIGRADOS.json (path protegido — o PR espera o Victor), crie o projeto
-  Vercel + atribua o dominio via API, e o push deploya. Em duvida, pergunte ao Victor.
+  adicione o dominio ao MIGRADOS.json (path protegido — o PR espera o Victor) **e na lista
+  `options` do input `dominio` em `.github/workflows/lp-deploy.yml`** (o merge-bot dispara o
+  deploy por dominio via `workflow_dispatch`; dominio fora da lista = HTTP 422 e o deploy dele
+  nao roda — incidente 2026-10-06, `content.elife.com.br`), crie o projeto Vercel + atribua o
+  dominio via API, e o push deploya. Em duvida, pergunte ao Victor.
 - Se o Passo 0.5 do fluxo classico detectar guarda-chuva existente → volte pra ca (gate).
 
 Racional e historico: `landing-pages/PLANO-MIGRACAO-CI.md`. O fluxo classico de guarda-chuva
