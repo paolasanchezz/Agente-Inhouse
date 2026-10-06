@@ -10,5 +10,8 @@
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/o-buzz-nosso-de-cada-dia"
     }
-  ]
+  ],
+  "extra_files": {
+    "assets/dominio/favicon.png": "brand/elife/assets/logos/logo-icon.png"
+  }
 }
