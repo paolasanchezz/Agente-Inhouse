@@ -1,0 +1,80 @@
+=== HERO ===
+BODY: Ferramenta de redes sociais para monitorar sua marca, atender clientes e analisar resultados em um só lugar! Monitore menções e concorrentes, centralize o atendimento de todos os canais, visualize métricas completas e programe seus posts nas redes sociais!
+H1: A melhor plataforma de gestão de redes sociais com IA para sua marca
+CTA: Comece grátis
+LABEL: 500+
+LABEL: agências
+LABEL: 1.000+
+LABEL: clientes em todo o mundo
+
+=== SOLUCAO COMPLETA ===
+H2: A solução completa para seu dia a dia
+SUB: Monitoramento, atendimento multicanal e análises em tempo real.
+CTA: Acompanhe os melhores insights da sua marca
+LIST ITEM: Acabe com ferramentas separadas
+LIST ITEM: Monitore todas as redes em um só painel
+LIST ITEM: Responda clientes com mais eficiência
+LIST ITEM: Tenha relatórios claros e automáticos
+LIST ITEM: Entenda tendências e oportunidades
+LIST ITEM: Programe posts sem complicação
+
+=== MONITORAMENTO ===
+H2: Monitoramento de Redes Sociais
+CTA: Agendar demonstração grátis
+BODY: Entenda o que seu público acha da sua empresa, o que ele espera do seu mercado e como você pode ajudá-lo em todas as redes sociais. Monitore termos e menções, identifique oportunidades e previna crises de imagem.
+BODY: Conte também com o AI Insights da Buzzmonitor para receber análises resumidas dos seus relatórios de monitoramento. Você economiza tempo e energia e acessa os principais insights rapidamente.
+BODY: A IA faz o trabalho duro e a sua marca ganha produtividade e inteligência de dados!
+
+=== RELACIONAMENTO MULTICANAL ===
+H2: Relacionamento Multicanal
+SUB: Aumente a satisfação dos clientes, melhore a reputação e venda mais.
+BODY: Centralize o atendimento de todas as redes sociais e canais digitais da sua marca em uma única tela e responda clientes até 3x mais rápido com a IA da Buzzmonitor.
+BODY: Usando a primeira plataforma de atendimento com ChatGPT integrado, você também consegue melhorar as respostas e corrigir erros em segundos. Classificação, sentimentalização e alertas ficam automatizados por IA.
+CTA: Agendar demonstração grátis
+
+=== ANALYTICS ===
+H2: Crie análises comparativas e entenda como está o mercado
+SUB: Acompanhe o engajamento da sua marca e dos concorrentes
+BODY: Com o Analytics Pro, você acompanha o crescimento nas redes sociais, as interações, o engajamento, os top posts dos seus concorrentes, e muito mais em gráficos de evolução em tempo real.
+BODY: Saiba quais são as estratégias de conteúdo utilizadas por eles e use a análise de dados mais assertiva para superá-los em performance.
+CTA: Veja na prática
+CTA: Comece grátis
+H2: Compare resultados lado a lado
+
+=== PLANOS ===
+H2: Experimente grátis por 14 dias
+BODY: Planos a partir de R$ 1.790,00 /mês
+# [NOTA fidelidade] Na pagina, "R$", "1.790" e ",00" sao 3 elementos separados; a leitura e "R$ 1.790,00". "1.790" aparece de novo como titulo do card do plano.
+BODY: Tenha várias soluções digitais em uma única plataforma, líder no uso de IA, para impulsionar seus resultados e te ajudar a vender mais.
+CTA: Agendar demonstração grátis
+H3: 1.790
+LIST ITEM: Monitoramento de redes sociais e análises geradas por IA
+LIST ITEM: Atendimento multicanal otimizado por IA
+LIST ITEM: Relatórios de performance da marca e concorrentes
+LIST ITEM: Otimização de processos e mais produtividade com IA
+LIST ITEM: E muito mais…
+
+=== PROVA SOCIAL ===
+H2: Ainda não está convencido?
+SUB: Leia o feedback de quem já utiliza a Buzzmonitor
+LABEL: clientes em todo o mundo
+LABEL: 1.000+
+LABEL: agências
+LABEL: 500+
+LABEL: usuários
+LABEL: 10k
+LABEL: clientes enterprise
+LABEL: 300+
+# [NOTA fidelidade] Na pagina o rotulo vem antes do numero nesta faixa (ao contrario do hero). Depoimentos e logos de empresas sao imagens, sem texto extraivel.
+
+=== EMPRESAS ===
+H2: Empresas que já confiam na Buzzmonitor
+
+=== FOOTER ===
+LABEL: @buzzmonitorbr
+LABEL: @buzzmonitor
+LABEL: /buzzmonitorbr
+LABEL: @buzzmonitorbrasil
+LABEL: /buzzmonitorbr
+FOOTER: Política de Privacidade e uso de Cookies
+FOOTER: © Buzzmonitor 2025
