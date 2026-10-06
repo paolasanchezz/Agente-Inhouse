@@ -27,8 +27,8 @@ mais selecionado e qualificado.
 
 | | `whatsapp-comercial-bloqueado` | esta LP |
 |---|---|---|
-| Eixo | medo de perder o número (universal) | operação com equipe (sintoma do ICP) |
-| Público declarado | **"Para empresas de qualquer porte"** | três ou mais pessoas no mesmo número |
+| Eixo | medo de perder o número (universal) | teto técnico do aplicativo e o improviso para passar dele |
+| Público declarado | **"Para empresas de qualquer porte"** | operação que já passou, ou está perto de passar, dos dispositivos que o app conecta |
 | Filtro negativo | não tinha | seção "Para quem este webinar não serve" |
 | Formulário | **nenhum** (CTA rolava até vídeo do YouTube) | Jotform na 2ª seção |
 | Overline | "Webinar ao vivo" | "Webinar online e gratuito" |
@@ -55,8 +55,37 @@ contra 20,0% da `banimento-whatsapp` com form a 1,9 tela e o mesmo provedor. A p
 desta LP tinha o form a 6 telas e foi corrigida antes de publicar.
 
 **O filtro continua funcionando acima do formulário**, mesmo com ele no alto: o H1 nomeia a
-equipe, a ficha do hero diz "três ou mais pessoas no mesmo número" e o próprio formulário pergunta
+teto do aplicativo, a ficha do hero diz para quem é e o próprio formulário pergunta
 o tamanho do time. A seção "para quem não serve" reforça para quem rola.
+
+
+## ⛔ Correção factual de 06/10 (PR #744)
+
+A primeira versão desta LP, publicada no PR #743, afirmava que **"o WhatsApp Business foi
+desenhado para uma pessoa"** e que **três, seis ou dez atendentes no mesmo número configuram
+"uso irregular"** aos olhos da Meta.
+
+**As duas afirmações são falsas.** O WhatsApp Business conecta **até quatro dispositivos**, e
+**até dez em alguns planos do Meta Verified**, com atribuição de conversa. A própria Central de
+Ajuda posiciona isso como vários funcionários respondendo clientes. O que a Meta sinaliza como
+risco de bloqueio temporário ou permanente é o **uso de aplicativos e sites não oficiais**.
+
+Erro de quem escreveu a copy, apontado pela Marielle. A premissa sustentava o hero, a seção do
+problema, dois dos quatro módulos e o primeiro item do "para quem". Tudo foi reescrito.
+
+**Título atual, definido pela Marielle:** "WhatsApp Business em escala: como proteger sua
+operação de bloqueios."
+
+**De onde veio o erro, e o que não foi corrigido.** A afirmação foi copiada do FAQ da
+`banimento-whatsapp`, que lista *"várias pessoas atendendo pelo aplicativo num celular
+compartilhado"* como causa de banimento. Esse FAQ segue em produção, e a mesma frase está na
+legenda do anúncio `SMB03_Mesmo celular entre atendentes`, que roda hoje. **A Marielle decidiu
+em 06/10 corrigir apenas esta LP.** Fica o registro: quem for escrever a partir daquele FAQ vai
+reproduzir o erro.
+
+**Para qualquer edição futura desta página:** não voltar a tratar número de atendentes como causa
+de banimento. O eixo correto é o teto de dispositivos do aplicativo e o improviso usado para
+passar dele.
 
 ## Sistema de design
 
