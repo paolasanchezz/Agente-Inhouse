@@ -1,0 +1,144 @@
+=== HERO ===
+OVERLINE: Plataforma de atendimento digital
+H1: Todo o atendimento da sua empresa em uma tela só
+SUB: WhatsApp, Instagram, telefonia, e-mail e mais quatro canais numa fila única, com o histórico do cliente junto de cada conversa.
+SUB: A IA responde o que é simples 24 horas por dia, no tom de voz que você definir, e os dashboards mostram em tempo real o que está acontecendo na operação.
+CTA: Agendar demonstração
+BODY: Um especialista mostra a plataforma com os seus canais
+BODY: Mais de 800 empresas no Brasil, LATAM e Portugal atendem com a Cxpress.
+LABEL: Canais integrados
+LABEL: Oito canais numa fila única
+LABEL: Mensagens · WhatsApp (API oficial da Meta), Instagram e Facebook
+LABEL: Voz · Telefonia com atendimento por IA
+LABEL: Web · Webchat e e-mail
+LABEL: Descoberta · TikTok e Google Meu Negócio
+
+=== DEMONSTRAÇÃO ===
+H2: Agende uma demonstração da Cxpress
+KICKER: Online, com um especialista
+SUB: Preencha o formulário e um especialista mostra a plataforma funcionando com os canais que a sua operação já usa.
+LIST ITEM: Demonstração guiada, sem compromisso
+LIST ITEM: Diagnóstico dos seus canais de atendimento hoje
+LIST ITEM: Proposta com o plano adequado ao seu volume
+
+=== AS TRÊS PERGUNTAS ===
+OVERLINE: O que você quer resolver
+H2: Três perguntas que a gente ouve toda semana
+H3: Quero unir todo o atendimento num lugar só
+BODY: Os oito canais caem na mesma fila gerencial. Cada ticket vai para o setor ou o agente certo, automaticamente por palavra-chave ou direcionado pela equipe. O histórico do cliente acompanha a conversa, não importa por onde ela começou.
+H3: Quero automatizar, mas com o tom de voz da minha marca
+BODY: O agente de IA é treinado com a sua base de conhecimento e responde por texto, áudio ou ligação, em linguagem natural. Você define como ele fala em cada canal. O que ele não resolve sobe para o time humano com o contexto junto.
+H3: Meus clientes reclamam e eu não tenho visibilidade
+BODY: Os dashboards mostram a operação em tempo real: fila, tempo de resposta e SLA por agente e por canal. Dá para enxergar onde o atendimento está travando antes de o cliente reclamar.
+CTA: Agendar demonstração
+
+=== A PLATAFORMA EM NÚMEROS ===
+OVERLINE: A plataforma em números
+H2: O que muda na operação
+NUM: 80%
+BODY: dos seus tickets podem ser resolvidos automaticamente pela IA da Cxpress.
+NUM: 50%
+BODY: é quanto nossos clientes reduzem, em média, do tempo médio de atendimento.
+NUM: 8
+BODY: canais integrados numa fila única, do WhatsApp à telefonia.
+CTA: Ver a plataforma funcionando
+
+=== SEM CXPRESS × COM CXPRESS ===
+H2: Atendimento sem Cxpress e com Cxpress
+H3: Sem Cxpress
+LIST ITEM: WhatsApp bagunçado e sem fila
+LIST ITEM: Várias abas abertas, uma para cada canal
+LIST ITEM: Clientes reclamando de demora no atendimento
+LIST ITEM: Sem histórico de clientes
+LIST ITEM: Tickets sem organização
+LIST ITEM: Cliente só respondido em horário comercial
+LIST ITEM: Apenas atendimento humano
+LIST ITEM: Sem métricas de atendimento
+H3: Com Cxpress
+LIST ITEM: WhatsApp e demais canais organizados numa única tela
+LIST ITEM: Tickets distribuídos automaticamente ou pela equipe
+LIST ITEM: Clientes atendidos rapidamente
+LIST ITEM: Registro de histórico e tags personalizadas
+LIST ITEM: Atendimento com IA disponível até de madrugada
+LIST ITEM: Métricas completas e dashboards em tempo real
+
+=== PARA QUEM ===
+H2: Para quem é a Cxpress
+BODY: A plataforma atende operações de setores e portes variados. Entre elas:
+LIST ITEM: Clínicas e hospitais
+LIST ITEM: Varejo
+LIST ITEM: E-commerce
+LIST ITEM: SaaS
+LIST ITEM: Imobiliárias
+LIST ITEM: Serviços em geral
+BODY: E negócios que precisam de um atendimento profissional sem aumentar o time.
+
+=== FECHO ===
+H2: Veja a plataforma funcionando com os seus canais
+BODY: Um especialista conduz a demonstração, olha como o seu atendimento está hoje e monta a proposta pelo volume da sua operação.
+CTA: Agendar demonstração
+LABEL: Marcas que atendem com a Cxpress
+
+=== FOOTER ===
+FOOTER: (11) 5039-5028 · comercial@gocxpress.com.br
+FOOTER: Cxpress é um produto da Elife Monitor Estudos de Mercado Ltda. CNPJ: 06.301.219/0001-07. Edifício Empresarial CEA, Alameda Araguaia, 2044, Torre 1, 14º andar, sala 1401, Alphaville Industrial, Barueri, SP, 06455-000, Brasil.
+FOOTER: © 2026 Cxpress®. Todos os direitos reservados.
+
+# ================================================================
+# HISTORICO
+# ================================================================
+#
+# 06/10 — pagina reconstruida. A anterior era portada do WordPress de home.cxpress.io
+# (captura de 26/08) e nunca passou pelo sistema de design das LPs Cxpress.
+#
+# POR QUE MUDOU
+# Os 3 videos novos da campanha [conversao][institucional] (INSTT 2, 3 e 4) apontam pra ca.
+# Sao demos do Enrico, cada uma abrindo com uma pergunta da Marielle:
+#   1. "Enrico, eu quero automatizar todo o atendimento da minha empresa e quero um tom de voz
+#      em cada [canal]"
+#   2. "Enrico, todos os meus clientes estao reclamando do atendimento da minha empresa e eu
+#      nao tenho visibilidade. Como a Cxpress me ajuda?"
+#   3. "Me mostra como a Cxpress consegue unir todo o atendimento"
+# A pagina antiga abria com posicionamento generico. Quem clicava depois de ouvir a propria
+# dor nao reencontrava ela em lugar nenhum.
+#
+# A SECAO "AS TRES PERGUNTAS" E O CASAMENTO COM O ANUNCIO
+# As 3 perguntas da secao sao as 3 perguntas dos videos, em primeira pessoa, na mesma ordem
+# de peso. Quem vem do anuncio 2 le a propria frase na pagina. Isso nao e enfeite: nesta
+# conta o casamento anuncio-LP e a variavel que mais mexe em conversao (banimento-whatsapp
+# converteu 20,0% contra 3,2% da tempo-de-resposta, mesmo Jotform, mesmos campos).
+#
+# FORMULARIO NA 2a SECAO
+# Estava na 8a de 8, a 75% do arquivo. Subiu pra logo depois do hero, mesmo motivo acima.
+#
+# NUMEROS: O QUE PODE E O QUE NAO PODE
+# Os 3 big numbers (80% / 50% SLA / 8 canais) sao claims publicos da propria marca, herdados
+# da pagina anterior, que veio do site institucional. Mantidos literais.
+# NAO usei os numeros de conhecimento/produto/cxpress/bignumbers-paginas.md (94% resolvido
+# por IA, -60% de equipe, 15x produtividade). O alerta 1 daquele arquivo e explicito: sao
+# cases de servico da Elife com o Agente Sentinela, nao da plataforma Cxpress, e so podem
+# aparecer em pagina de produto se o Victor confirmar o enquadramento.
+#
+# O QUE SAIU DA PAGINA ANTIGA
+# - As 42 imagens do WordPress (icones soltos, mockups, grupos). O sistema de design novo usa
+#   SVG inline e tipografia, nao sprite de icone. Assets continuam na pasta, nao referenciados.
+# - A secao de abas "Solucoes integradas" (Agentes inteligentes / Seguranca / CRM / Gestao).
+#   Os 4 paragrafos eram institucionais e genericos, sem nada concreto. O conteudo util deles
+#   (IA, CRM com historico, gestao com dashboards) foi reaproveitado nas 3 perguntas.
+# - "crie uma comunidade de clientes fidelizados!" (unica exclamacao da pagina).
+# - "Tickets distribuidos de forma automatica ou manual": "de forma X" e filler proibido pelo
+#   regras-anti-ia.md. Virou "distribuidos automaticamente ou pela equipe".
+#
+# TECNICO
+# Form: Jotform 261034073026647 (o mesmo da versao anterior, definido pelo Victor em 26/08).
+# GTM: GTM-T4XDWHL3. Sistema de design herdado da black-friday-atendimento-b.
+#
+# ⚠️ PONTO EM ABERTO: o 261034073026647 e o form que as LPs de Google Ads usam. Esta pagina
+# roda GTM-T4XDWHL3, que e o container de Meta, e hoje recebe so trafego de Meta (INSTT 1 a 4).
+# Nao troquei porque a pagina de agradecimento pos-submit e config do proprio Jotform e
+# acompanha o form. Decisao do Victor/Marielle: manter, ou trocar pelo 261045149477663 (o de
+# Meta) e reconfigurar o thank-you. Troca = 1 linha.
+#
+# ANTI-IA
+# em-dash 0 | exclamacao 0 | filler 0 | frase de IA 0 | metafora aquatica 0
+# antitese-por-negacao 0 | listas de 3/3/8/6/6, comprimento variado

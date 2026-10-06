@@ -1,100 +1,148 @@
-# institucional
+# LP Cxpress — institucional
 
-LP do guarda-chuva **content.cxpress.io** (projeto Vercel `cxpress-lp-playbook-whatsapp2026`).
-URL final: `https://content.cxpress.io/institucional`.
+**Reconstruída em:** 2026-10-06
+**Copy-fonte:** `copy.txt`
+**Destino:** `content.cxpress.io/institucional` (guarda-chuva, deploy via CI)
+**Região:** brasil · `<html lang="pt-BR">` · GTM `GTM-T4XDWHL3`
+**Formulário:** Jotform `261034073026647` (mantido da versão anterior)
 
-Portada do site institucional proprio da marca (`https://home.cxpress.io/`, WordPress) para
-uma LP estatica de conversao unica. Origem capturada em 2026-08-26.
+## Por que foi reconstruída
 
-- **lang:** `pt-BR`
-- **GTM:** `GTM-T4XDWHL3` (brasil, via `brand/cxpress/tracking.json`)
-- **Formulario:** Jotform `261034073026647`, definido pelo Victor em 2026-08-26. Nao e o
-  `261027639617663` da unificacao do PR #374: esta LP usa form proprio. A pagina de
-  agradecimento pos-submit e config do Jotform, nao do embed, entao ela acompanha este form.
-  Trocar = 1 linha no embed (`/lp-integrar-form`).
+A versão anterior era uma **portada do WordPress** de `home.cxpress.io`, capturada em 26/08.
+Nunca passou pelo sistema de design das LPs Cxpress: trazia 42 imagens do WP, CSS herdado do
+tema e, principalmente, **nenhuma declaração de `font-family` no `body`**, o que jogava 46
+elementos para Times New Roman no navegador. Era a causa do "por que ela está tão feia".
 
-## O que foi removido da origem
+O gatilho foi a campanha: os 3 vídeos novos de `[conversao][institucional]` (INSTT 2, 3 e 4)
+apontam para cá. São demos do Enrico, cada uma abrindo com uma pergunta:
+
+| Vídeo | Pergunta que abre |
+|---|---|
+| 1 | "Enrico, eu quero automatizar todo o atendimento da minha empresa e quero um tom de voz em cada [canal]" |
+| 2 | "Enrico, todos os meus clientes estão reclamando do atendimento da minha empresa e eu não tenho visibilidade. Como a Cxpress me ajuda?" |
+| 3 | "Me mostra como a Cxpress consegue unir todo o atendimento" |
+
+A página antiga abria com posicionamento genérico. Quem clicava depois de ouvir a própria dor
+não reencontrava ela em lugar nenhum.
+
+## Estrutura
+
+| # | Seção | Fundo |
+|---|---|---|
+| 1 | Hero + ficha "Oito canais numa fila única" | claro |
+| 2 | **Demonstração** (Jotform) | escuro |
+| 3 | As três perguntas | off |
+| 4 | A plataforma em números (80% / 50% / 8) | escuro |
+| 5 | Sem Cxpress e com Cxpress | claro |
+| 6 | Para quem é | off |
+| 7 | Fecho + esteira de 42 logos | claro |
+
+### A seção "As três perguntas"
+
+São as 3 perguntas dos vídeos, em primeira pessoa, na mesma ordem de peso. Quem vem do
+anúncio 2 lê a própria frase na página.
+
+Não é enfeite: nesta conta o casamento anúncio-LP é a variável que mais mexe em conversão.
+`banimento-whatsapp` converteu **20,0%** (115 visitas) contra **3,2%** da `tempo-de-resposta`
+(154 visitas), mesmo Jotform e mesmos campos.
+
+### Formulário na 2ª seção
+
+Estava na **8ª de 8**, a 75% do arquivo. Subiu para logo depois do hero.
+
+Medido com emulação 375×812: **1,89 tela de scroll, 19% da página**. A `banimento-whatsapp`,
+a que mais converte na conta, tem o form a 1,9 tela.
+
+## Números: o que pode e o que não pode
+
+Os 3 big numbers (**80%** dos tickets por IA, **50%** de redução no tempo médio de
+atendimento, **8 canais**) são claims públicos da própria marca, herdados da página anterior,
+que veio do site institucional. Mantidos literais.
+
+⛔ **Não usei** os números de `conhecimento/produto/cxpress/bignumbers-paginas.md` (94%
+resolvido por IA, -60% de equipe, 15x produtividade). O alerta 1 daquele arquivo é explícito:
+são cases de serviço da Elife com o Agente Sentinela, **não da plataforma Cxpress**, e só
+podem aparecer em página de produto se o Victor confirmar o enquadramento.
+
+## O que saiu
 
 | Removido | Motivo |
 |---|---|
-| `<header class="k92hf-header">` + menu mobile | pedido: LP sem menu |
-| Coluna de navegacao do rodape (Navegacao / Funcionalidades / Recursos) | pedido: sem paginas alternativas |
-| Blocos "Termos e Politicas" do rodape | eram `href="#"` (links mortos) |
-| Icones sociais do rodape | eram `href="#"` (links mortos) |
-| Secao Newsletter (Mailchimp, `y7h2k-sec`) | segundo formulario competindo com o de proposta numa LP de conversao unica |
-| Credito "Criado por Wibix" | credito do build WordPress, nao se aplica a esta LP |
-| Scripts/estilos de plugin WordPress (emoji, handl-utm-grabber, oEmbed, feeds) | sem funcao fora do WP |
-| Imagem flutuante `Group-1707478248.png` (`.z9p2x-float`) na secao de comparativo | pedido do Victor (2026-08-26). Era o badge com o mascote, achatado ~30% na vertical porque declarava `120x300` num arquivo `130x467`. Removida junto com a regra CSS e o asset |
+| As 42 imagens do WordPress (2,51 MB) | o sistema de design usa SVG inline e tipografia, não sprite de ícone. Ficaram órfãs e saíram do deploy. `planos` tem cópias próprias, não quebrou nada |
+| Seção de abas "Soluções integradas" | 4 parágrafos institucionais sem nada concreto. O conteúdo útil (IA, CRM com histórico, gestão com dashboards) virou as 3 perguntas |
+| "crie uma comunidade de clientes fidelizados!" | única exclamação da página |
+| "Tickets distribuídos **de forma** automática ou manual" | "de forma X" é filler proibido pelo `regras-anti-ia.md`. Virou "distribuídos automaticamente ou pela equipe" |
 
-Todos os CTAs (`Agendar demonstracao`, `Falar com um especialista`) agora apontam para a
-ancora `#proposta`. Nao sobrou nenhum link para `home.cxpress.io` ou `blog.cxpress.io`.
+## Correção de overflow (vale para as LPs irmãs)
 
-## Diferencas tecnicas em relacao a origem
+O `.eyebrow--pill` do sistema tem **`white-space:nowrap`**. Eyebrow comprido estoura o
+viewport no celular e empurra a página inteira para o lado.
 
-- **jQuery eliminado.** Os 4 snippets do WordPress (carrossel do hero, contadores, abas de
-  solucoes, reveal on scroll) foram portados para JS puro. Zero dependencia externa de script.
-- **Fontes via Google Fonts.** A origem servia 12 TTFs (~3 MB) do `wp-content/uploads`, dos
-  quais so Open Sans e Inter eram usados. Trocado por Google Fonts.
-- **`box-sizing: border-box` explicito.** A origem herdava isso das folhas globais do
-  WordPress, que nao foram portadas. Sem essa regra as secoes (`width:100%` + padding)
-  estouravam 40px no mobile.
-- **Reveal on scroll redundante.** `IntersectionObserver` mais checador por scroll/load, os
-  dois idempotentes. O iframe do Jotform desloca o layout depois do load; com o mecanismo
-  unico da origem, um elemento acima da dobra podia ficar presa em `opacity:0` ate o
-  primeiro scroll.
+Aqui o pill media 418px numa tela de 375. Corrigido de duas formas, de propósito:
 
-## Assets
+1. Texto encurtado para "Plataforma de atendimento digital" (o "· Cxpress" era redundante, a
+   logo está no header).
+2. Rede de segurança no CSS, para não depender de contagem de caractere:
+   ```css
+   @media (max-width:640px){ .eyebrow--pill{white-space:normal;text-align:center;line-height:1.45} }
+   ```
 
-`assets/` tem 42 imagens LP-local (portadas de `home.cxpress.io/wp-content/uploads`,
-referenciadas como `./assets/X`). OG image gerada por `assets/render_og.py` a partir de
-`assets/og-template.html` (mesmo padrao das demais LPs Cxpress).
+⚠️ **A `webinar-whatsapp-equipe` tem o mesmo defeito, e pior.** Medido com emulação 375×812:
+pill de **722px**, `scrollWidth` 742 contra `clientWidth` 375. A página inteira rola de lado
+no celular. O README dela afirma "Overflow horizontal a 375px: nenhum", o que está errado,
+provavelmente por medição sem emulação mobile de verdade. **Não corrigi** (fora do escopo
+pedido). A `black-friday-atendimento-b` está limpa, porque o pill dela é curto.
 
-`icon-facebook.png` e o unico asset que **nao** vem do WordPress: foi montado a partir do
-icone canonico do Buzzmonitor (`landing-pages/buzzmonitor/*/assets/icon-facebook.webp`,
-circulo 40x40 com ratio 1.000), recolado num tile 50x50 arredondado para bater com a
-ocupacao dos vizinhos da fileira (~80%). O circulo entra em resolucao nativa, sem reescala.
+## Validações rodadas
 
-## Proporcao das imagens (defeito herdado do WordPress)
+| Checagem | Resultado |
+|---|---|
+| Tags balanceadas | section 7/7 · main 1/1 · body 1/1 · script 4/4 · ul 2/2 |
+| Pacote SEO §15 | title 1 · canonical 1 · robots 1 · og 10 · twitter 4 |
+| JSON-LD | parseia; Organization + WebPage + SoftwareApplication |
+| GTM | `GTM-T4XDWHL3` no head e no noscript |
+| Jotform | `261034073026647`, um único embed |
+| em-dash / exclamação | 0 / 0 |
+| Filler ("de forma", "de maneira", "realmente"...) | 0 |
+| `<img>` sem `alt` | 0 de 86 |
+| Assets quebrados | 0 |
+| Logo web-safe §19 | `logo-primary.svg` e `logo-reversed.svg`: 0 `<text>` |
+| `href="/"` na logo | 0 (aponta para `home.cxpress.io`, target `_blank`) |
+| Âncoras mortas | 0 |
+| Overflow horizontal a 375px | nenhum (medido com emulação, não com `--window-size`) |
+| Times New Roman | 0 elementos (era 46) |
+| `build_umbrella.py` | OK, 73 LPs, 0 aviso para este slug |
+| `check_gtm_region.py` | 65 OK, 0 bloqueio |
 
-Os atributos `width`/`height` de `<img>` sao *presentational hints*: fixam as duas dimensoes
-e **distorcem** a imagem quando divergem do arquivo real. A origem trazia 12 imagens com
-desvio acima de 5% (o pior caso, 44%, achatava o mascote da Cxpress em ~30% na vertical).
-Todos os atributos foram alinhados aos pixels reais do arquivo.
+## Pendências e decisões em aberto
 
-**Pegadinha ao corrigir isso** (aconteceu aqui em 2026-08-26): alinhar os atributos ao
-arquivo, sozinho, PIORA a imagem cujo CSS fixa apenas `width`. A largura passa a vir do CSS
-e a altura do atributo, e as duas brigam. Foi o caso da faixa de canais do rodape
-(`.k2x-icons`): saiu de 6% de desvio para 87%, renderizando 340x333 em vez de 340x44.
-A correcao e emparelhada: atributos reais **e** `height: auto` em toda regra que fixa so a
-largura. As 5 regras nesta LP (`.h9s2a-card img`, `.k2m8s-head img`, `.z9p2x-head img`,
-`.z9p2x-list img`, `.k2x-icons`) ja levam `height: auto`.
+1. **O Jotform é o de Google Ads.** O `261034073026647` é o form que as LPs de Google Ads
+   usam. Esta página roda `GTM-T4XDWHL3` (container de Meta) e hoje recebe **só tráfego de
+   Meta** (INSTT 1 a 4). Não troquei porque a página de agradecimento pós-submit é config do
+   próprio Jotform e acompanha o form. Decisão de vocês: manter, ou trocar pelo
+   `261045149477663` (o de Meta) e reconfigurar o thank-you. A troca é 1 linha.
+2. **O botão "Enviar" do Jotform é verde-água** e briga com a paleta azul da página. É tema
+   do Jotform, não dá para estilizar daqui (iframe cross-origin). Ajuste no painel do Jotform.
+3. **OG image:** `assets/og-institucional.png` foi mantida da versão anterior. Vale regerar
+   com o título novo (`assets/og-template.html` + `assets/render_og.py`).
 
-Ao adicionar imagem nesta LP, declarar `width`/`height` com a dimensao real do arquivo, ou
-omitir os dois; e se o CSS fixar so a largura, garantir `height: auto`. Auditoria rapida
-(vale rodar no navegador, que e onde o conflito CSS-vs-atributo aparece):
+## Estado
 
-```bash
-py -c "
-import re,os
-from PIL import Image
-h=open('index.html',encoding='utf-8').read()
-for m in re.finditer(r'<img[^>]*>',h):
-    t=m.group(0)
-    s=re.search(r'src=\"\./assets/([^\"]+)\"',t); w=re.search(r'width=\"(\d+)\"',t); v=re.search(r'height=\"(\d+)\"',t)
-    if not(s and w and v) or not os.path.exists('assets/'+s.group(1)): continue
-    iw,ih=Image.open('assets/'+s.group(1)).size
-    d=abs(int(w.group(1))/int(v.group(1))-iw/ih)/(iw/ih)*100
-    if d>5: print('%-44s %sx%s vs %dx%d (%.0f%%)'%(s.group(1),w.group(1),v.group(1),iw,ih,d))
-"
-```
+- [x] HTML gerado no sistema de design
+- [x] Formulário integrado e reposicionado
+- [x] Validações e gates do repo
+- [ ] Publicado — `/lp-publicar cxpress institucional content.cxpress.io`
 
-A fileira de canais (`.h9s2a-float img`) tambem usa `object-fit: contain` numa caixa fixa de
-45x45, para os arquivos de origem (50x50, 51x50, 150x150) coexistirem sem distorcer.
+⚠️ **A publicação precisa de worktree a partir de `origin/main`.** O tree local está em
+`claude/lp-bf-ordem`, branch de outra tarefa e dezenas de commits atrás; editar o manifesto
+daqui apagaria LPs que estão no ar.
 
-## Validacao
+## Sistema de design
 
-- `build_umbrella.py`: OK, sem avisos para este slug
-- `check_gtm_region.py`: 1 OK, 0 bloqueios
-- `check_mobile_type.py`: h1=28 corpo=16 min=14, sem overflow real
-  (`document.scrollWidth == clientWidth` a 375px; os 4 achados do medidor sao os slides
-  fora de tela do carrossel, recortados por `overflow:hidden` no wrapper)
+Herdado da `black-friday-atendimento-b` (CSS idêntico): paleta de 2 cores (preto `#0E1116` +
+azul `#2B5CE6`) mais neutros. Componentes reaproveitados: `hero` + `ficha`, `inscricao` /
+`insc__grid` / `form-card`, `dores` + `ver__ck`, `bignum` / `nums`, `fecho`, esteira de
+clientes, `header` / `footer`.
+
+Dois componentes novos, escritos no mesmo vocabulário: `.comp` (comparativo sem/com, duas
+colunas, a da direita no preto da marca) e `.setores` (chips de segmento).
