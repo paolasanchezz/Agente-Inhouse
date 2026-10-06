@@ -459,6 +459,67 @@ p,.body-long,.footer-legal,.form-note{text-wrap:pretty}
   .mural img:nth-child(2){display:none}
 }
 </style>
+
+<style>
+/* =====================================================================
+   Variante "hero blanco" (2026-10-06, aprovada no preview local):
+   hero branco com o degrade 3 do brand no TEXTO ("SEÑAL" e "en tiempo real.")
+   em vez do fundo; CTA do hero laranja; bloco do form em creme; metricas em
+   laranja; redes LATAM no footer. O degrade de texto termina em #E86A36
+   (3.2:1 sobre branco) porque o laranja puro #EB7C2E da 2.8:1 e reprova AA
+   pra texto grande. Regras abaixo sobrescrevem as do bloco principal.
+   ===================================================================== */
+/* -- hero blanco + degradado en el texto + CTA naranja -- */
+.hero{background:#fff;color:var(--ink)}
+@media (max-width:980px){.hero{background:#fff}}
+.hero .dots{background-image:radial-gradient(var(--coral) 1.7px,transparent 1.8px);opacity:.35}
+.kicker{color:var(--purple)}
+.h1-pre,.h1-post{color:var(--ink)}
+.lead{color:var(--ink-soft)}
+/* degradado 3 del brand (rosa -> naranja) en SEÑAL y en "en tiempo real." */
+.h1-big,.h1-post .swash{
+  background:linear-gradient(100deg,#DE2451 0%,#E86A36 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#DE2451;
+}
+/* text-shadow no convive con texto recortado: la sombra dura pasa a drop-shadow */
+/* la tilde de la Ñ sobresale de la caja de linea (line-height .84): padding arriba para que el degradado la cubra, compensado en el margen */
+.h1-big{text-shadow:none;filter:drop-shadow(.045em .045em 0 var(--purple-deep));padding-top:.3em;margin-top:0}
+.h1-post .swash svg path{stroke:var(--purple)}
+/* CTA naranja (texto morado oscuro: blanco sobre naranja da 2.8:1 y no pasa AA) */
+.btn-white{background:var(--orange);color:var(--purple-deep);box-shadow:6px 6px 0 var(--purple-deep)}
+.btn-white:hover{background:var(--purple);color:#fff}
+.hero-arrow path{stroke:var(--orange)}
+
+/* -- bloque del formulario en crema, a tono con hero y clientes -- */
+.final{background:var(--cream);color:var(--ink)}
+.final .dots{width:440px;height:440px;bottom:-170px;left:-160px;opacity:.4}
+.final h2{color:var(--ink)}
+.final p{color:var(--ink-soft)}
+.grad-text{
+  background:linear-gradient(100deg,#DE2451 0%,#E86A36 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#DE2451;
+  padding-bottom:.08em;
+}
+.jotform-embed{
+  background:#fff;border:2px solid var(--purple);border-radius:24px;
+  box-shadow:10px 10px 0 var(--purple-deep);
+}
+@media (max-width:640px){.jotform-embed{box-shadow:6px 6px 0 var(--purple-deep)}}
+
+/* -- metricas en naranja + redes LATAM en el footer -- */
+.metric{border-left-color:var(--orange)}
+.metric-num{color:var(--orange)}
+.footer-social{display:flex;gap:12px;flex-wrap:wrap}
+.footer-social a{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  color:#fff;border:1.5px solid rgba(255,255,255,.35);
+  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;
+}
+.footer-social a:hover{background:var(--orange);border-color:var(--orange);color:var(--purple-deep);transform:translateY(-2px)}
+@media (max-width:640px){.footer-in{flex-direction:column;align-items:flex-start}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -665,9 +726,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- CTA FINAL -->
   <section class="section final" id="form-section">
+    <span class="dots" aria-hidden="true"></span>
     <div class="shell final-grid">
       <div>
-        <h2 class="reveal">Empieza ahora. Sin compromiso.</h2>
+        <h2 class="reveal">Empieza ahora. <span class="grad-text">Sin compromiso.</span></h2>
         <p class="reveal">15 días para montar el monitoreo de crisis de tu marca, con el acompañamiento de quien conoce tu escenario.</p>
       </div>
       <div class="jotform-embed reveal">
@@ -683,6 +745,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="footer-logo" href="https://getbuzzmonitor.com/es/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página principal">
       <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="160" height="32" loading="lazy">
     </a>
+    <nav class="footer-social" aria-label="Redes sociales de Buzzmonitor">
+        <a href="https://www.instagram.com/getbuzzmonitor.es/" target="_blank" rel="noopener" aria-label="Instagram de Buzzmonitor">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.89 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5ZM17.4 6.6a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0Z"/></svg>
+        </a>
+        <a href="https://twitter.com/Buzzmonitor_ES" target="_blank" rel="noopener" aria-label="X (Twitter) de Buzzmonitor">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.9 2h3.1l-6.77 7.73L23.2 22h-6.23l-4.88-6.39L6.5 22H3.4l7.24-8.27L2 2h6.38l4.4 5.84L18.9 2Zm-1.09 18h1.72L7.28 3.9H5.43L17.81 20Z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/Buzzmonitorespanol" target="_blank" rel="noopener" aria-label="Facebook de Buzzmonitor">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.55l.38-2.96h-2.93V8.53c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.3 4.3c-2.26 0-3.8 1.38-3.8 3.9v2.24H8v2.96h2.5V21h3Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/buzzmonitor/" target="_blank" rel="noopener" aria-label="LinkedIn de Buzzmonitor">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-6.02c0-1.44-.03-3.28-2-3.28-2.01 0-2.32 1.57-2.32 3.18V20H9.38V8.5h3.24v1.57h.05c.45-.86 1.55-1.77 3.2-1.77 3.42 0 4.57 2.25 4.57 5.17V20Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@getbuzzmonitor_es" target="_blank" rel="noopener" aria-label="YouTube de Buzzmonitor">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 7.2s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1.01C17 3.5 12 3.5 12 3.5h-.01s-5 0-8.19.33c-.46.06-1.46.06-2.36 1.01C.73 5.56.5 7.2.5 7.2S.27 9.12.27 11.04v1.8c0 1.92.23 3.84.23 3.84s.23 1.64.94 2.36c.9.95 2.08.92 2.6 1.02 1.9.18 8.06.33 8.06.33s5 0 8.19-.33c.46-.06 1.46-.06 2.36-1.01.71-.72.94-2.36.94-2.36s.23-1.92.23-3.84v-1.8c0-1.92-.23-3.84-.23-3.84ZM9.7 14.9V8.6l6 3.15-6 3.15Z"/></svg>
+        </a>
+      </nav>
     <p class="footer-legal">&copy; 2026 Buzzmonitor. Todos los derechos reservados. | <a href="https://buzzmonitor.com/es/privacidad" target="_blank" rel="noopener">Política de Privacidad</a></p>
   </div>
 </footer>
