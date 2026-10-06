@@ -1,6 +1,6 @@
 # Lançamento "O Buzz Nosso de Cada Dia": e-mails e post social
 
-LP: https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia
+LP: https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia (base Buzzmonitor) · https://content.elife.com.br/o-buzz-nosso-de-cada-dia (base Elife)
 Remetente: albali@elife.com.br. Texto puro, sem imagem, sem botão.
 O corpo é o mesmo nas duas bases; muda o assunto do e-mail 1 e o `utm_source` do link.
 
@@ -11,14 +11,14 @@ O corpo é o mesmo nas duas bases; muda o assunto do e-mail 1 e o `utm_source` d
 **Assunto (base Elife):** Elife convida / 28/10 @ São Paulo
 **Assunto (base Buzzmonitor):** Buzzmonitor convida / 28/10 @ São Paulo
 
-**Link base Elife:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=convite
+**Link base Elife:** https://content.elife.com.br/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=convite
 **Link base Buzzmonitor:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=buzzmonitor&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=convite
 
 Olá, [NOME],
 
-Escrevi um livro. Ele se chama "O Buzz Nosso de Cada Dia" e conta como o boca-a-boca que acontece nas redes sociais deu origem a uma indústria bilionária.
+Quero te convidar para o lançamento do meu novo livro. Ele se chama "O Buzz Nosso de Cada Dia" e conta como o boca-a-boca que acontece nas redes sociais deu origem a uma indústria bilionária. Nele, conto os bastidores da criação da Elife e da Buzzmonitor, incluindo os tropeços de quem começou cedo demais.
 
-Quero te convidar para o evento de lançamento do livro na Livraria da Vila, em São Paulo. Vai ser uma noite de autógrafos, e eu gostaria muito de ter você lá.
+O lançamento será na Livraria da Vila, em São Paulo. Vai ser uma noite de autógrafos e muitos reencontros. E gostaria muito de ter você presente.
 
 Quarta-feira, 28 de outubro
 Das 18h30 às 21h30
@@ -29,7 +29,7 @@ Não precisa confirmar presença. Chegue no horário que for melhor para você.
 Os detalhes e um botão para salvar o evento na sua agenda estão aqui:
 {LINK DA BASE}
 
-Vai ser muito bom te encontrar por lá.
+Espero te encontrar no dia 28.
 
 Alessandro
 
@@ -41,7 +41,7 @@ Alessandro
 
 **Assunto (as duas bases):** Lembrete: Lançamento de O Buzz Nosso de Cada Dia
 
-**Link base Elife:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete
+**Link base Elife:** https://content.elife.com.br/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete
 **Link base Buzzmonitor:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=buzzmonitor&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete
 
 Olá, [NOME],
@@ -65,7 +65,7 @@ Alessandro
 
 **Assunto (as duas bases):** É hoje: Lançamento de O Buzz Nosso de Cada Dia
 
-**Link base Elife:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete-final
+**Link base Elife:** https://content.elife.com.br/o-buzz-nosso-de-cada-dia?utm_source=elife&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete-final
 **Link base Buzzmonitor:** https://content.buzzmonitor.com/o-buzz-nosso-de-cada-dia?utm_source=buzzmonitor&utm_medium=email&utm_campaign=lancamento-livro-alessandro&utm_content=lembrete-final
 
 Bom dia, [NOME],
@@ -86,11 +86,11 @@ Alessandro
 ## Post para LinkedIn e redes sociais (Elife e Buzzmonitor)
 
 > Na página da Elife, trocar a 1ª linha por "fundador da Elife e da Buzzmonitor".
-> Link com UTM por rede: trocar `utm_source=linkedin` por `instagram`, `facebook` etc.
+> Link com UTM por rede: trocar `utm_source=linkedin` por `instagram`, `facebook` etc. Nas páginas da Elife, trocar o domínio por `content.elife.com.br`.
 
-O Alessandro Barbosa Lima, fundador da Buzzmonitor e da Elife, está lançando um livro.
+O Alessandro Barbosa Lima, fundador da Buzzmonitor e da Elife, está lançando seu novo livro.
 
-"O Buzz Nosso de Cada Dia" conta como a opinião que a gente publica nas redes sociais deu origem a uma indústria bilionária. É uma história que ele acompanhou por dentro e que tem muito do dia a dia de quem trabalha com redes sociais e reputação de marca.
+"O Buzz Nosso de Cada Dia" conta como a opinião que a gente publica nas redes sociais deu origem a uma indústria bilionária. No livro, ele abre os bastidores da criação da Buzzmonitor e da Elife, com lições práticas sobre inovação, métricas, gestão de crises e atendimento.
 
 O lançamento é numa noite de autógrafos em São Paulo, e fica o convite:
 

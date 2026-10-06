@@ -1,0 +1,14 @@
+{
+  "dominio": "content.elife.com.br",
+  "projeto_vercel": "elife-content",
+  "projeto_vercel_id": "prj_Vtig0Tb7tRYZMoucIddpBubwQSam",
+  "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
+  "vercel_json": "landing-pages/dominios/content-elife-com-br/vercel.json",
+  "lps": [
+    {
+      "slug": "o-buzz-nosso-de-cada-dia",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/o-buzz-nosso-de-cada-dia"
+    }
+  ]
+}

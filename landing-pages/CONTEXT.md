@@ -263,6 +263,7 @@ Sibling: a do projeto existente (`${SIBLING_BASE}/{nome-detectado}/`). LP nova �
 | `content.buzzmonitor.com` | Conteúdo Buzzmonitor — BR e ES-LATAM (**único subdomínio de conteúdo Buzzmonitor na Vercel**) | `buzzmonitor-content` | 6 LPs — ver `dominios/content-buzzmonitor-com/manifest.json` (fonte de verdade) |
 | `webinar.buzzmonitor.com` | Eventos online Buzzmonitor (legacy) | `buzzmonitor-lp-monitoramento-concorrentes` | BR + PT |
 | `content.cxpress.io` | Material rico Cxpress (subdomínio único, qualquer tipo) | `cxpress-lp-playbook-whatsapp2026` | `playbook-whatsapp2026` |
+| `content.elife.com.br` | Conteúdo Elife (guarda-chuva CI desde 2026-10-06; DNS no Route 53 já em CNAME `cname.vercel-dns-0.com`) | `elife-content` (`prj_Vtig0Tb7tRYZMoucIddpBubwQSam`) | `o-buzz-nosso-de-cada-dia` (mesmo source da LP em `content.buzzmonitor.com`) — ver `dominios/content-elife-com-br/manifest.json` |
 | `content.elife.com` | **Reservado para LPs da marca Elife** (ainda sem deploy) | (a criar quando 1ª LP Elife sair) | — |
 
 LPs novas devem priorizar o subdomínio mais específico (ex: evento presencial Buzzmonitor → `evento.*`, não `webinar.*`). Convenção completa em [`.claude/skills/lp-preparar/CONTEXT.md`](../.claude/skills/lp-preparar/CONTEXT.md).
