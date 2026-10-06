@@ -1,7 +1,8 @@
 === HERO ===
 OVERLINE: Webinar online e gratuito · 27 de outubro, 11h
 H1: WhatsApp Business em escala: como proteger sua operação de bloqueios.
-SUB: O aplicativo conecta até quatro dispositivos, e até dez em alguns planos do Meta Verified. Operação que passa disso começa a improvisar, e é no improviso que mora o risco de bloqueio. Neste webinar, o que de fato coloca o número na mira e o caminho para escalar pela API oficial sem trocar o número que seus clientes já têm salvo.
+SUB: O WhatsApp Business conecta até quatro dispositivos, chegando a dez em alguns planos do Meta Verified. Quando a operação cresce além disso, improvisar pode colocar o número em risco.
+SUB: Neste webinar, veja o que realmente causa bloqueios e como escalar pela API Oficial sem trocar o número que seus clientes já conhecem.
 CTA: Reservar minha vaga
 LABEL: QUANDO · 27 de outubro, terça-feira, 11h (horário de Brasília)
 LABEL: FORMATO · Online, cerca de 40 minutos
