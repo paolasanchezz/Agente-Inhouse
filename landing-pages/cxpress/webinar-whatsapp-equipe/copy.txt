@@ -1,38 +1,38 @@
 === HERO ===
 OVERLINE: Webinar online e gratuito · 27 de outubro, 11h
-H1: WhatsApp comercial bloqueado. Começa quando a equipe inteira atende pelo mesmo número.
-SUB: O WhatsApp Business foi desenhado para uma pessoa. Quando três, seis ou dez atendem pelo mesmo aparelho, a Meta lê como uso irregular e o bloqueio chega sem aviso. Neste webinar, o caminho para levar a equipe inteira para o ambiente oficial sem trocar o número que seus clientes já têm salvo.
+H1: WhatsApp Business em escala: como proteger sua operação de bloqueios.
+SUB: O aplicativo conecta até quatro dispositivos, e até dez em alguns planos do Meta Verified. Operação que passa disso começa a improvisar, e é no improviso que mora o risco de bloqueio. Neste webinar, o que de fato coloca o número na mira e o caminho para escalar pela API oficial sem trocar o número que seus clientes já têm salvo.
 CTA: Reservar minha vaga
 LABEL: QUANDO · 27 de outubro, terça-feira, 11h (horário de Brasília)
 LABEL: FORMATO · Online, cerca de 40 minutos
-LABEL: PARA QUEM · Quem lidera atendimento numa operação com três ou mais pessoas no mesmo número
+LABEL: PARA QUEM · Quem lidera atendimento e precisa escalar o WhatsApp sem colocar o número em risco
 BODY: Mais de 800 empresas atendem pela API oficial com a Cxpress.
 
 === O PROBLEMA ===
-H2: O número não cai por azar. Cai porque a operação cresceu e o aplicativo não.
-BODY: O WhatsApp Business comum foi desenhado para uma pessoa, num aparelho. A empresa contrata o segundo atendente, depois o terceiro. Todo mundo passa a usar o mesmo celular, ou a mesma conta num aplicativo de multiatendimento que a Meta não autoriza.
-BODY: Do lado de fora, isso parece organização. Do lado da Meta, parece uso irregular. E o bloqueio chega sem aviso, no dia em que a operação menos pode parar.
-LIST ITEM: Vários atendentes no mesmo aparelho
-LIST ITEM: Ferramenta não oficial de multiatendimento
-LIST ITEM: Disparo para base fria, fora das regras
-LABEL: As três práticas que mais derrubam número de empresa
+H2: O que coloca o número na mira é o atalho que a operação usa para crescer.
+BODY: O WhatsApp Business conecta até quatro dispositivos, e até dez em alguns planos do Meta Verified, com atribuição de conversa. Isso dá conta de um time pequeno. Quando a operação passa desse teto, ou passa a precisar de fila, SLA e relatório, começa o improviso.
+BODY: O improviso resolve por um tempo e cobra depois. O bloqueio chega sem aviso, no dia em que a operação menos pode parar.
+LIST ITEM: Aplicativo ou site não oficial para atender em vários
+LIST ITEM: Disparo em massa para quem não pediu contato
+LIST ITEM: Crescer no improviso em vez de migrar para o caminho oficial
+LABEL: A própria Meta aponta o uso de aplicativos e sites não oficiais como caminho para bloqueio temporário ou permanente
 CTA: Reservar minha vaga
 
 === O QUE VOCÊ VAI VER ===
-H2: Quarenta minutos sobre operar com equipe sem derrubar o número
+H2: Quarenta minutos sobre escalar o WhatsApp sem colocar o número em risco
 BODY: Quatro pontos, cada um com uma resposta que você aplica na semana seguinte.
-H3: Por que operação com equipe aciona o alerta da Meta
-BODY: O que o aplicativo comum enxerga quando seis pessoas usam o mesmo número.
-H3: Qual das três a sua operação faz hoje
-BODY: Você sai sabendo apontar, entre as três, a que a sua operação pratica sem perceber.
-H3: O que muda na API oficial para quem tem time
+H3: Até onde o WhatsApp Business aguenta
+BODY: Quantos dispositivos o aplicativo conecta, o que muda com o Meta Verified e onde fica o teto real da sua operação.
+H3: O que de fato coloca o número na mira
+BODY: Aplicativo não oficial, disparo fora das regras e os sinais que a Meta trata como risco. Você sai sabendo qual deles a sua operação pratica sem perceber.
+H3: O que muda na API oficial quando a operação cresce
 BODY: Fila por setor, distribuição entre atendentes, histórico por cliente e a titularidade do número no CNPJ da empresa.
 H3: Como migrar sem trocar o número
 BODY: O caminho para levar a operação inteira para o ambiente oficial mantendo o contato que os seus clientes já têm salvo.
 
 === PARA QUEM ===
 H2: Para quem é este webinar
-LIST ITEM: Você tem três ou mais pessoas atendendo clientes pelo mesmo número
+LIST ITEM: Sua operação já passou, ou está perto de passar, dos dispositivos que o aplicativo conecta
 LIST ITEM: O atendimento é parte da operação, não um canal a mais
 LIST ITEM: Você responde por tempo de resposta, fila ou satisfação de cliente
 LIST ITEM: A empresa tem CNPJ e o número está no nome dela
