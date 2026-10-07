@@ -82,6 +82,11 @@
       "source": "landing-pages/buzzmonitor/mcp-buzzmonitor"
     },
     {
+      "slug": "mcp-buzzmonitor-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/mcp-buzzmonitor-pt"
+    },
+    {
       "slug": "mcp-claude-latam",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/mcp-claude-latam"

@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- Fonte da OG image (1200x630) da LP mcp-buzzmonitor-pt. Replica o visual da OG da LP irma mcp-buzzmonitor (BR).
+     Render: Playwright/Chromium headless, viewport 1200x630 -> assets/og-mcp-buzzmonitor-pt.png -->
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@800&family=Lato:wght@700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(520px 300px at 700px 110px, rgba(235,124,46,.38), transparent 70%),
+      radial-gradient(700px 420px at 640px 160px, rgba(140,24,60,.30), transparent 72%),
+      radial-gradient(420px 260px at 120px 620px, rgba(140,24,60,.22), transparent 70%),
+      #0b0607;
+    font-family: 'League Spartan', sans-serif;
+    position: relative;
+  }
+  .eyebrow {
+    position: absolute; left: 92px; top: 216px;
+    font-family: 'Lato', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .06em;
+    color: #F4A46B; display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #EB7C2E; }
+  h1 {
+    position: absolute; left: 90px; top: 262px; margin: 0; width: 1040px;
+    font-weight: 800; font-size: 64px; line-height: 1.12; color: #fff; letter-spacing: -.005em;
+  }
+  .hl { color: #F9A86B; text-shadow: 0 0 18px rgba(235,124,46,.75); }
+  .logo { position: absolute; left: 92px; top: 534px; height: 38px; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">BUZZMONITOR MCP</div>
+  <h1>MCP da Buzzmonitor: os seus<br>dados no <span class="hl">Claude</span> e no <span class="hl">ChatGPT</span></h1>
+  <img class="logo" src="../../../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="">
+</body>
+</html>
