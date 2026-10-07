@@ -3,7 +3,9 @@
 **Gerado em:** 2026-09-01
 **Reconstruído em:** 2026-09-01 (para seguir o padrão visual das demais LPs de webinar Buzzmonitor)
 **Copy-fonte:** `copy.txt` (output de /lp-preparar)
-**Webinar:** Reports e Monitoramento com IA para Agências — 6 de outubro de 2026, 11h, online e ao vivo
+**Webinar:** Reports e Monitoramento com IA para Agências — realizado em 6 de outubro de 2026, 11h, online e ao vivo. **Status: pós-webinar (replay).**
+
+**Atualização 2026-10-07 — conversão pós-webinar:** seguindo o padrão de `social-listening-julho-2026-brasil` / `crescer-marca-influenciadores-setembro-2026`: nav "Replay disponível", hero com card "Evento encerrado" (play-orb) no lugar do ticket + contador, seção de replay logo após o hero (embed YouTube `jINpNrR5kbc`) com CTA para a oferta em `webinar.buzzmonitor.com/reports-monitoramento-ia-agencias-oferta`, formulário Jotform e script do contador removidos, CTAs internos trocados para "Assistir ao replay", e seção recolhida "Assista também" com as gravações de Influenciadores (15/09) e Social Listening (14/07). Sem bloco "Próximo webinar": não há webinar futuro no repositório nesta data. As seções "Estrutura" e "Nota sobre o JotForm" abaixo descrevem a fase pré-webinar.
 **Domínio-alvo:** webinar.buzzmonitor.com (guarda-chuva migrado pro CI)
 
 ## Nota sobre o JotForm (2026-09-01)
