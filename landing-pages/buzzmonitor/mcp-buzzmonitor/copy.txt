@@ -1,5 +1,5 @@
 === HERO ===
-H1: Leve os dados da Buzzmonitor para o Claude ou ChatGPT. E converse com eles.
+H1: Leve seus dados de Social Listening para o Claude ou ChatGPT. E converse com eles.
 BODY: Conecte a Buzzmonitor à IA que você já usa e transforme dados de social listening e atendimento em análises, relatórios e dashboards usando linguagem natural.
 BODY: Sem exportar planilhas, sem programar, sem precisar começar uma análise do zero.
 CTA: Quero usar o MCP da Buzzmonitor
