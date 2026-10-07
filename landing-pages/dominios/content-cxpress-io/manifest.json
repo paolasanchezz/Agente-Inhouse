@@ -206,6 +206,11 @@
       "source": "landing-pages/cxpress/institucional"
     },
     {
+      "slug": "institucional-background",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/institucional-background"
+    },
+    {
       "slug": "latam-webinar-atencionalcliente",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/latam-webinar-atencionalcliente"
