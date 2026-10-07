@@ -1,0 +1,122 @@
+# Copy LP · Buzzcreators · assistente-tami · 2026-10-07
+# Fonte: PDF "Tami, MVP multi-agente de Real-Time Marketing" (9 p.) + brand/buzzcreators/assistente-tami/BRANDBOOK.md (beta)
+# Idioma: PT-BR · Funil: MoFu (produto em beta, captacao de interesse qualificado) · Form na ultima secao (GUIDELINES §10)
+# Hero lidera pela OFERTA, nao pela dor (override da GUIDELINES §3 pedido pelo Victor em 2026-10-07). A dor abre a secao PROBLEMA.
+
+=== HERO ===
+OVERLINE: Novo no Buzzcreators · Agentes de IA
+H1: O assistente de marketing em tempo real que trabalha 24/7 para a sua marca.
+SUB: O Tami encontra quem está falando bem da sua marca nas redes, seleciona os creators com potencial, faz o contato e negocia o valor dentro do seu budget. Seu time aprova o conteúdo e libera o pagamento.
+CTA: Quero testar o Tami
+CTA: Ver como funciona
+LABEL: Exemplo ilustrativo
+LABEL: @autora.exemplo · Instagram · há 4 min
+BODY: Não tem tarde ruim que esse chocolate não resolva. #amochocolate
+LABEL: Escuta · post captado
+LABEL: Triagem · aprovada, score 86
+LABEL: Contato · mensagem enviada citando o post
+LABEL: Negociação · proposta dentro do teto
+
+=== FAIXA-FLUXO ===
+LABEL: Buzzmonitor
+LABEL: Triagem
+LABEL: Contato
+LABEL: Negociação
+LABEL: Buzzcreators
+LABEL: 24 horas por dia, 7 dias por semana
+
+=== PROBLEMA ===
+OVERLINE: O problema
+H2: A conversa sobre a sua marca acontece em horas. Contratar quem puxou essa conversa leva dias.
+LIST ITEM: Você descobre o post quando ele já saiu do feed.
+LIST ITEM: A triagem do perfil é feita no olho, um por um: alcance, histórico, se é bot, se já falou mal da marca.
+LIST ITEM: A DM fica sem resposta e o e-mail cai no spam, porque ninguém achou o canal certo.
+LIST ITEM: A negociação vira um vai e vem de mensagens, sem teto de budget combinado.
+LIST ITEM: Quando o contrato sai, o assunto esfriou e o creator já postou para outra marca.
+BODY: Os agentes cuidam de tudo que vem antes. Seu time decide o que vai ao ar e o que é pago.
+
+=== COMO-FUNCIONA ===
+OVERLINE: Como funciona
+H2: Do post ao contrato, em cinco etapas
+SUB: Quatro agentes trabalham em sequência, sem pausa. Na quinta etapa, o creator entra no fluxo da campanha no Buzzcreators e uma pessoa do seu time revisa tudo antes de publicar e pagar.
+
+LABEL: 1 · Escuta · Buzzmonitor
+H3: Capta os posts em tempo real
+BODY: Você define hashtags, menções e termos da marca e da categoria. A busca começa enxuta e cresce conforme a triagem mostra quais termos trazem bons autores.
+LABEL: Exemplo de busca
+LABEL: #amochocolate
+LABEL: #chocolate
+LABEL: #chocolatra
+LABEL: @suamarca
+
+LABEL: 2 · Triagem · Agente
+H3: Só passa quem tem potencial para a marca
+BODY: Cada autor recebe um score e a justificativa da decisão, a partir de quatro perguntas.
+LIST ITEM: Afinidade: fala bem da categoria ou da marca?
+LIST ITEM: Alcance: audiência e engajamento no patamar da campanha?
+LIST ITEM: Autenticidade: é uma pessoa real, sem ser bot nem concorrente?
+LIST ITEM: Brand safety: o histórico combina com a imagem da marca?
+
+LABEL: 3 · Contato · Agente
+H3: Acha o caminho mais direto até o autor
+BODY: Enriquece o perfil e escolhe o canal disponível: e-mail, DM, WhatsApp, telefone público ou, em último caso, um comentário no próprio post. A primeira mensagem cita o post que originou o contato e leva o autor para o webchat ou o WhatsApp.
+LABEL: E-mail
+LABEL: DM
+LABEL: WhatsApp
+LABEL: Telefone
+LABEL: Comentário
+
+LABEL: 4 · Negociação · Agente
+H3: Fecha o valor dentro do seu budget
+BODY: Você define o teto por post, a faixa por formato (post, tweet, reel) e a margem de concessão. O agente faz a proposta, responde à contraproposta e nunca passa do teto. Sem acordo, encerra com cordialidade e registra o motivo.
+LABEL: Proposta
+LABEL: Contraproposta
+LABEL: Teto por post
+
+LABEL: 5 · Buzzcreators · Humano no loop
+H3: O creator entra no fluxo da campanha
+BODY: Recebe o convite para a campanha da sua marca, aceita os termos e produz o conteúdo. Seu time aprova antes de ir ao ar e libera o pagamento depois da conferência.
+LABEL: Convite · Agente
+LABEL: Aceite · Creator
+LABEL: Aprovação · Humano
+LABEL: Publicação · Creator
+LABEL: Pagamento · Humano
+
+LABEL: Automático: etapas 1 a 4
+LABEL: Humano no loop: etapa 5
+
+=== GUARDRAILS ===
+OVERLINE: Guardrails
+H2: Agentes autônomos, com limites que você define
+H3: Teto de budget
+BODY: O negociador trabalha dentro do teto por post e da margem de concessão que você aprovou. O teto nunca é ultrapassado.
+H3: LGPD e consentimento
+BODY: Só dados públicos. Se o autor pedir para não ser contatado, o pedido vale a partir da primeira resposta.
+H3: Frequência de contato
+BODY: Limite de tentativas por autor e por canal, configurado com você.
+H3: Tom de voz da marca
+BODY: Os agentes de contato e de negociação seguem o guia de comunicação da sua marca.
+H3: Auditoria
+BODY: Toda decisão e toda conversa ficam registradas e podem ser revisadas.
+H3: Humano no loop
+BODY: Seu time aprova o conteúdo antes da publicação e libera cada pagamento.
+LABEL: Depois do beta
+BODY: Pagamento automático de posts, tweets e reels. Um agente confirma que o conteúdo foi ao ar como combinado e libera o pagamento quando os critérios da campanha batem.
+
+=== BETA-FORM ===
+OVERLINE: Beta
+H2: Coloque o Tami para escutar a sua categoria
+BODY: O Tami está em fase beta. Conte qual marca e qual categoria você quer escutar, e o time do Buzzcreators entra em contato para configurar a busca e o budget com você.
+H3: Faz sentido para você se:
+LIST ITEM: Sua marca tem conversa espontânea nas redes, como alimentos, beleza, moda, varejo ou entretenimento.
+LIST ITEM: Você quer trabalhar com micro e nanocreators que já gostam do produto.
+LIST ITEM: Seu time não tem braço para monitorar, abordar e negociar todos os dias.
+LIST ITEM: Você precisa de controle de budget e do registro de cada conversa.
+CTA: Quero testar o Tami
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzcreators · Grupo Elife
+FOOTER: comercial@buzzcreators.com.br
+FOOTER: Escuta em tempo real com Buzzmonitor
+
+# Revisao anti-IA (lp-preparar Passo 4): em-dash 0 · antitese-por-negacao 1 ("pessoa real, sem ser bot nem concorrente", literal do PDF) · exclamacao 0 · pergunta retorica fora de criterio 0 · listas com 5, 4, 6 e 4 itens (sem trinca automatica).
