@@ -4,7 +4,6 @@
 # Hero lidera pela OFERTA, nao pela dor (override da GUIDELINES §3 pedido pelo Victor em 2026-10-07). A dor abre a secao PROBLEMA.
 
 === HERO ===
-OVERLINE: Novo no Buzzcreators · Agentes de IA
 H1: O assistente de marketing em tempo real que trabalha 24/7 para a sua marca.
 SUB: O Tami encontra quem está falando bem da sua marca nas redes, seleciona os creators com potencial, faz o contato e negocia o valor dentro do seu budget. Seu time aprova o conteúdo e libera o pagamento.
 CTA: Quero testar o Tami

@@ -33,7 +33,7 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 | # | Seção | Blocos | Fundo |
 |---|---|---|---|
-| 1 | Hero | overline de vidro com ponto ao vivo, H1 de oferta (2ª metade em degradê quente), lead com o que o Tami faz, 2 CTAs (botão branco + link) · Tami direto sobre a aurora + card "Exemplo ilustrativo" com o log de 4 etapas | **painel aurora** |
+| 1 | Hero | H1 de oferta (sem overline desde 2026-10-07, pedido do Victor) (2ª metade em degradê quente), lead com o que o Tami faz, 2 CTAs (botão branco + link) · Tami direto sobre a aurora + card "Exemplo ilustrativo" com o log de 4 etapas | **painel aurora** |
 | n/a | Faixa de fluxo | pílula branca sobre a borda do hero: Buzzmonitor → Triagem → Contato → Negociação → Buzzcreators + "24 horas por dia, 7 dias por semana" | branco |
 | 2 | Problema | H2 sticky (2ª frase em degradê) + 5 dores em cartões com X vermelho (§8) + frase de fecho com barra em degradê | branco |
 | 3 | Como funciona | H2 + linha do tempo com trilho em degradê que acende na rolagem + 1 artefato por etapa (chips de busca, 4 critérios, canais, medidor de teto, handoff de 5 passos) + legenda | off-white com brilhos desfocados |
@@ -55,6 +55,7 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 ## Configuração
 
+- **Âncoras sem `#` na URL** (pedido do Victor, 2026-10-07): os botões e o skip-link são `<a href="#secao">`, mas um script intercepta o clique, rola até a seção (suave, ou direto com reduced motion) e move o foco para ela sem gravar o `#` no endereço. O `href` fica no HTML de propósito, para funcionar sem JavaScript e no clique do meio.
 - **GTM:** `GTM-WFJVK858`, o container aprovado para `content.buzzmonitor.com`, o mesmo da `encontrar-creators`. `brand/buzzcreators/tracking.json` continua `null`. O gate do CI só avisa e não bloqueia.
 - **Form:** mock (`action="#"`) com os campos nome, e-mail corporativo, empresa, cargo, marca/categoria e budget mensal (select). Integrar via `/lp-integrar-form buzzcreators/assistente-tami "<snippet>"` depois de aprovado.
 - **SEO:**
