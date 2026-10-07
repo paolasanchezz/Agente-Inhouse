@@ -1,0 +1,24 @@
+{
+  "ultima_atualizacao": "2026-08-31",
+  "regiao": "latam",
+  "idioma": "es-latam",
+  "total_artigos": 1,
+  "itens": [
+    {
+      "numero": "01",
+      "titulo": "WhatsApp bloqueado por spam: por qué ocurre y cómo recuperar tu cuenta",
+      "cluster": "WhatsApp para Empresas",
+      "slug": "whatsapp-bloqueado-por-spam",
+      "title_seo": "WhatsApp bloqueado por spam: qué hacer ahora",
+      "meta_descricao": "¿WhatsApp bloqueado por spam? Descubre por qué ocurre, qué hacer si tu cuenta ya fue baneada y cómo la API Oficial evita que esto vuelva a repetirse.",
+      "palavra_chave": "whatsapp bloqueado por spam",
+      "keyword_candidatas": [
+        {"termo": "whatsapp bloqueado por spam", "volume": null, "dificuldade": null, "database": "mx", "nota": "NAO validada no Semrush - API sem saldo em 2026-08-31, traduzida da keyword BR ja validada por instrucao explicita da Barbara"}
+      ],
+      "url_notion": "https://app.notion.com/p/3cd3934026fd81e4b930cbe6ddcf413f",
+      "caminho_local": "conteudo-blog/cxpress/artigos-latam/01-whatsapp-bloqueado-por-spam.md",
+      "pendencias": "validar a keyword no Semrush (banco mx) assim que a API tiver saldo novamente",
+      "data": "2026-08-31"
+    }
+  ]
+}

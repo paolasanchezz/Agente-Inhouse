@@ -34,6 +34,8 @@ Meta Ads:     /bunzzai [conta] (1 conta · drill-down) | /bunzzai-geral (consoli
 Meta criar:   /meta-campanha [acao] [marca] (cria·edita campanha/adset/ad via MCP oficial Meta — ESCRITA; tudo PAUSADO; ativar/orcamento via hook)
 Calibracao:   /trad-calibrar (atualiza padroes linguisticos)
 Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copies em lote → (pausa) → /social-canva
+SEO:          /seo-report [contexto?] (dashboard multi-marca) | /seo-competitors [regiao?] (concorrentes, mensal)
+Video SEO:    /video-seo-plan [mes] → (pausa: aprovar tema) → /video-seo-roteiro "Marca Regiao"
 ```
 
 ### Diretorios
@@ -48,6 +50,8 @@ Redes Sociais: /social-pipeline → /social-analytics → /social-plan → copie
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `social-media/` | Planejamentos editoriais de redes sociais por marca (`social-media/{marca}/YYYY-MM/`) |
 | `criativos/` | Criativos gerados por marca/regiao (`criativos/{marca}/{regiao}/{slug}/`) + `GUIDELINES.md` universal. Outputs **gitignored** (PNGs pesados, upload manual); só o GUIDELINES versiona |
+| `conteudo-blog/` | Artigos de blog e briefings por marca (`conteudo-blog/{marca}/artigos[-latam\|-pt]/`) + `_state*.json` de controle |
+| `conteudo-video/` | Cronograma e roteiros-base de video SEO por mes (`conteudo-video/YYYY-MM/`), gerados por `/video-seo-plan` e `/video-seo-roteiro` |
 | `meta-ads/` | Enxuto — so `benchmarks.json` (usado pelo /bunzzai). Pipeline antigo arquivado em `meta-ads-legacy/` |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
 | `.claude/skills-desativadas/` | Skills tiradas de circulacao (ex: pipeline `meta-ads-*` substituido por /bunzzai em 2026-06-22) |
@@ -294,15 +298,18 @@ Dashboards internas de Content Marketing — KPIs do funil de leads + fechamento
 
 Fonte por dashboard: `dashboard-buzz-br-vercel/` · `dashboard-cxpress-vercel/` · `dashboard-latam-vercel/` · `dashboard-buzzcreators-vercel/` (exportador + motor.js + render/index; reusam as `queries_*` da dash local como fonte unica; paridade numero-a-numero valida). **Buzzcreators e a excecao:** fonte Pipedrive, deal **sem UTM** — a atribuicao e recuperada por join com o contato (`dim_pipedrive_persons` -> `dim_contacts`), o funil tem 5 KPIs (sem Proposta) e o gate de paridade compara SQL x motor.js (nao existe dash local). Deploy: dist do guarda-chuva em `{DASHBOARD_SIBLING_BASE}/dashboards-elife/`, montada pelo build (fora do repo — evita PII no git; `dados-*.json` gitignored). Deploy sai sempre inteiro: atualizar 1 dashboard rebuilda as 7. **Portugal e a excecao de modelo:** as 3 rotas PT saem de uma fonte unica (`dashboard-pt-vercel/` + `dashboard/queries_portugal.py`) e usam **coorte por data de criacao** com **distribuicao de etapa atual** (nao conversao entre etapas), porque em PT nenhum marco de funil tem data — CM la e classificacao, nao filtro. Racional e evidencias em `dashboard/AUDITORIA-PORTUGAL.md`. Runbooks: `dashboard/DEPLOY.md` (BR) · `DEPLOY-cxpress.md` · `DEPLOY-latam.md` · `DEPLOY-buzzcreators.md` (+ `MAPEAMENTO-CAMPOS-buzzcreators.md`). Auditoria de UTM (so BR): `dashboard/AUDITORIA-DEALS-CM.md`.
 
-### Dashboard SEO (Buzzmonitor Brasil)
+### SEO (dashboard, concorrentes e video)
 
-Dashboard de SEO on-demand — KPIs de GSC + GA4 + Semrush num HTML visual. Single-purpose (Buzzmonitor BR). **Sem chave de API no repo:** Semrush via MCP; Google via OAuth com credenciais locais por usuario (`~/.seo-report-buzzmonitor/`, gitignored).
+Dashboard de SEO on-demand multi-marca e multi-regiao (Buzzmonitor, Cxpress e Elife x BR/LATAM/PT): Semrush, GSC + GA4 onde houver acesso e artigos que mais convertem (Supabase, so BR). **Sem chave de API no repo:** Semrush via MCP; Google via OAuth com credenciais locais por usuario (`~/.seo-report-buzzmonitor/`, gitignored); Supabase read-only via `dashboard/.env`.
 
 | Comando | O que faz |
 |---|---|
-| `/seo-report [data?]` | Coleta GSC+GA4 (script Python OAuth) + Semrush (MCP), gera dashboard HTML e abre no navegador. Sem args, coleta na hora; aceita caminho de um `seo_data.json` ja gerado. Manual-trigger. |
+| `/seo-report [contexto?]` | Coleta e gera o dashboard HTML com uma aba por contexto (`buzzmonitor-br` ... `elife-pt`; default todos). Sob pedido, relatorio executivo no Notion pra diretoria. Manual-trigger. |
+| `/seo-competitors [regiao?]` | Analise mensal do trafego organico dos concorrentes da Buzzmonitor (Semrush), publicada como Artifact. |
+| `/video-seo-plan [mes]` | Fase 1 do video SEO/GEO: escolhe 1 tema por marca x regiao e grava `conteudo-video/YYYY-MM/cronograma.md` + Notion. |
+| `/video-seo-roteiro "Marca Regiao"` | Fase 2, so com o tema aprovado: roteiro-base de SEO/GEO em `conteudo-video/YYYY-MM/roteiros/` + Notion. |
 
-Fonte: `.claude/skills/seo-report/` (SKILL.md + `seo_report_buzzmonitor.py`). Requer Python + libs Google (`/setup-agencia` cobre Python) e o MCP Semrush conectado.
+Fonte: `.claude/skills/seo-report/` (SKILL.md + `seo_report_google.py` + `seo_report_conversoes.py`; contextos GSC/GA4 em `CONTEXTS`). Requer Python + libs Google + `psycopg` (`/setup-agencia` cobre Python), o MCP Semrush e, pro item de conversao, o `dashboard/.env`.
 
 ### Meta Ads — via Bunzzai (SOMENTE LEITURA)
 

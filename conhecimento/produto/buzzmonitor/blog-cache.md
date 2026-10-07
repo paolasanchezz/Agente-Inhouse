@@ -188,3 +188,66 @@
 - **Tags**: social listening, e-commerce, varejo
 - **Status**: draft-notion (gerado por /blog-diario)
 - **Última verificação**: 2026-06-30
+
+## 21 métricas para analisar e comparar a performance da sua marca no Instagram
+- **URL**: https://buzzmonitor.com/blog/21-metricas-para-analisar-e-comparar-a-performance-da-sua-marca-no-instagram/
+- **Snippet**: lista extensa de métricas específicas do Instagram
+- **Dores cobertas**: métricas & analytics (angulo Instagram-especifico)
+- **Tags**: métricas, Instagram, performance
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Quais as 3 métricas mais importantes para medir o sucesso no Instagram
+- **URL**: https://buzzmonitor.com/blog/quais-as-3-metricas-mais-importantes-para-medir-o-sucesso-no-instagram/
+- **Snippet**: seleção enxuta de métricas-chave do Instagram
+- **Dores cobertas**: métricas & analytics (angulo Instagram-especifico)
+- **Tags**: métricas, Instagram, performance
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## 8 métricas para analisar a performance de uma marca no Twitter
+- **URL**: https://buzzmonitor.com/blog/8-metricas-para-analisar-a-performance-de-uma-marca-no-twitter/
+- **Snippet**: métricas específicas da rede X/Twitter
+- **Dores cobertas**: métricas & analytics (angulo Twitter/X-especifico)
+- **Tags**: métricas, Twitter, X, performance
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Métricas de vaidade: por que comentários não medem sucesso real nas redes sociais
+- **URL**: https://buzzmonitor.com/blog/metricas-de-vaidade-por-que-comentarios-nao-medem-sucesso-real-nas-redes-sociais/
+- **Snippet**: contraponto às métricas de vaidade (likes/comentários) vs métricas de negócio
+- **Dores cobertas**: métricas & analytics (angulo vanity metrics)
+- **Tags**: métricas, vanity metrics, ROI
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Instagram Analytics: estratégias, ferramentas e KPIs essenciais para profissionais de marketing
+- **URL**: https://buzzmonitor.com/blog/instagram-analytics-estrategias-ferramentas-e-kpis-essenciais-para-profissionais-de-marketing/
+- **Snippet**: guia de KPIs e ferramentas de analytics, escopo Instagram
+- **Dores cobertas**: métricas & analytics (angulo Instagram-especifico, KPIs)
+- **Tags**: métricas, Instagram, KPI, ferramentas
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Como calcular o engajamento para cada rede social nos relatórios de monitoramento
+- **URL**: https://buzzmonitor.com/blog/como-calcular-o-engajamento-para-cada-rede-social-nos-relatorios-de-monitoramento/
+- **Snippet**: fórmula de cálculo de engajamento por rede, aplicada a relatórios
+- **Dores cobertas**: métricas & analytics (cálculo de engajamento)
+- **Tags**: métricas, engajamento, relatório, fórmula
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Como comparar períodos dos seus relatórios nos dashboards em apenas 1 clique
+- **URL**: https://buzzmonitor.com/blog/como-comparar-periodos-dos-seus-relatorios-nos-dashboards-em-apenas-1-clique/
+- **Snippet**: tutorial de funcionalidade da plataforma (comparação de período no dashboard)
+- **Dores cobertas**: tutorial de plataforma (Buzzmonitor na Prática, não SEO evergreen)
+- **Tags**: dashboard, relatório, tutorial-plataforma
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Como mudar o visual de seus relatórios com Dashboards em Dark Mode
+- **URL**: https://buzzmonitor.com/blog/como-mudar-o-visual-de-seus-relatorios-com-dashboards-em-dark-mode/
+- **Snippet**: tutorial de funcionalidade da plataforma (dark mode)
+- **Dores cobertas**: tutorial de plataforma (Buzzmonitor na Prática, não SEO evergreen)
+- **Tags**: dashboard, relatório, tutorial-plataforma
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)
+
+## Domine os gráficos e extraia o máximo da sua marca no Buzzmonitor
+- **URL**: https://buzzmonitor.com/blog/domine-os-graficos-e-extraia-o-maximo-da-sua-marca-no-buzzmonitor/
+- **Snippet**: tutorial de funcionalidade da plataforma (gráficos)
+- **Dores cobertas**: tutorial de plataforma (Buzzmonitor na Prática, não SEO evergreen)
+- **Tags**: gráficos, relatório, tutorial-plataforma
+- **Última verificação**: 2026-07-24 (crawl ao vivo via blog-criar-artigo)

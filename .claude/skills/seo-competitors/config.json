@@ -1,0 +1,82 @@
+{
+  "buzzmonitor": {
+    "br":   { "domain": "buzzmonitor.com",           "label": "Buzzmonitor BR",   "db": "br" },
+    "latam": { "domain": "getbuzzmonitor.com/es/",   "label": "Buzzmonitor LATAM", "db": "mx" },
+    "pt":   { "domain": "getbuzzmonitor.com/pt/",    "label": "Buzzmonitor PT",   "db": "pt" }
+  },
+
+  "competitors": {
+    "br": [
+      { "domain": "brandwatch.com",    "name": "Brandwatch",    "category": "social_listening",      "priority": 1 },
+      { "domain": "sprinklr.com",      "name": "Sprinklr",      "category": "social_listening",      "priority": 1 },
+      { "domain": "meltwater.com",     "name": "Meltwater",     "category": "social_listening",      "priority": 1 },
+      { "domain": "stilingue.com",     "name": "Stilingue",     "category": "social_listening",      "priority": 1 },
+      { "domain": "harmo.me",          "name": "Harmo",         "category": "social_listening",      "priority": 1 },
+      { "domain": "youscan.io",        "name": "YouScan",       "category": "social_listening",      "priority": 1 },
+      { "domain": "seekr.com.br",      "name": "Seekr",         "category": "social_listening",      "priority": 1 },
+      { "domain": "knewin.com",        "name": "Knewin",        "category": "social_listening",      "priority": 1 },
+      { "domain": "sproutsocial.com",  "name": "Sprout Social", "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "hootsuite.com",     "name": "Hootsuite",     "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "brand24.com",       "name": "Brand24",       "category": "social_listening",      "priority": 2 },
+      { "domain": "v-tracker.com.br",  "name": "V-Tracker",     "category": "social_listening",      "priority": 2 },
+      { "domain": "bunkerdb.com",      "name": "Bunker DB",     "category": "social_listening",      "priority": 2 },
+      { "domain": "mentionlytics.com", "name": "Mentionlytics", "category": "social_listening",      "priority": 2 },
+      { "domain": "emplifi.io",        "name": "Emplifi",       "category": "engagement_crm",        "priority": 2 },
+      { "domain": "khoros.com",        "name": "Khoros",        "category": "engagement_crm",        "priority": 2 },
+      { "domain": "zendesk.com",       "name": "Zendesk",       "category": "engagement_crm",        "priority": 2 },
+      { "domain": "zenvia.com",        "name": "Zenvia",        "category": "engagement_crm",        "priority": 2 },
+      { "domain": "blip.ai",           "name": "Blip",          "category": "engagement_crm",        "priority": 2 },
+      { "domain": "multi360.com.br",   "name": "Multi360",      "category": "engagement_crm",        "priority": 2 },
+      { "domain": "torabit.com.br",    "name": "Torabit",       "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "agendor.com.br",    "name": "Agendor",       "category": "engagement_crm",        "priority": 2 },
+      { "domain": "agorapulse.com",    "name": "Agorapulse",    "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "iconosquare.com",   "name": "Iconosquare",   "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "statusbrew.com",    "name": "Statusbrew",    "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "kontentino.com",    "name": "Kontentino",    "category": "social_media_mgmt",     "priority": 2 }
+    ],
+
+    "latam": [
+      { "domain": "brandwatch.com",    "name": "Brandwatch",    "category": "social_listening",      "priority": 1 },
+      { "domain": "sprinklr.com",      "name": "Sprinklr",      "category": "social_listening",      "priority": 1 },
+      { "domain": "meltwater.com",     "name": "Meltwater",     "category": "social_listening",      "priority": 1 },
+      { "domain": "sproutsocial.com",  "name": "Sprout Social", "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "hootsuite.com",     "name": "Hootsuite",     "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "talkwalker.com",    "name": "Talkwalker",    "category": "social_listening",      "priority": 1 },
+      { "domain": "youscan.io",        "name": "YouScan",       "category": "social_listening",      "priority": 1 },
+      { "domain": "brand24.com",       "name": "Brand24",       "category": "social_listening",      "priority": 1 },
+      { "domain": "buzzsumo.com",      "name": "BuzzSumo",      "category": "social_listening",      "priority": 2 },
+      { "domain": "digimind.com",      "name": "Digimind",      "category": "social_listening",      "priority": 2 },
+      { "domain": "emplifi.io",        "name": "Emplifi",       "category": "engagement_crm",        "priority": 2 },
+      { "domain": "agorapulse.com",    "name": "Agorapulse",    "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "statusbrew.com",    "name": "Statusbrew",    "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "audiense.com",      "name": "Audiense",      "category": "social_listening",      "priority": 2 },
+      { "domain": "fanpagekarma.com",  "name": "Fanpage Karma", "category": "social_listening",      "priority": 2 },
+      { "domain": "onclusive.com",     "name": "Onclusive",     "category": "social_listening",      "priority": 2 },
+      { "domain": "brandmentions.com", "name": "BrandMentions", "category": "social_listening",      "priority": 2 },
+      { "domain": "later.com",         "name": "Later",         "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "kontentino.com",    "name": "Kontentino",    "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "gosocialsuite.com", "name": "Go Social Suite","category": "social_media_mgmt",    "priority": 2 },
+      { "domain": "stilingue.com",     "name": "Stilingue",     "category": "social_listening",      "priority": 2 },
+      { "domain": "predis.ai",         "name": "Predis.ai",     "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "viralmoment.com",   "name": "ViralMoment",   "category": "social_listening",      "priority": 2 }
+    ],
+
+    "pt": [
+      { "domain": "brandwatch.com",    "name": "Brandwatch",    "category": "social_listening",      "priority": 1 },
+      { "domain": "sprinklr.com",      "name": "Sprinklr",      "category": "social_listening",      "priority": 1 },
+      { "domain": "hootsuite.com",     "name": "Hootsuite",     "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "swonkie.com",       "name": "Swonkie",       "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "agorapulse.com",    "name": "Agorapulse",    "category": "social_media_mgmt",     "priority": 1 },
+      { "domain": "buffer.com",        "name": "Buffer",        "category": "social_media_mgmt",     "priority": 2 },
+      { "domain": "brand24.com",       "name": "Brand24",       "category": "social_listening",      "priority": 2 },
+      { "domain": "youscan.io",        "name": "YouScan",       "category": "social_listening",      "priority": 2 },
+      { "domain": "meltwater.com",     "name": "Meltwater",     "category": "social_listening",      "priority": 2 }
+    ]
+  },
+
+  "categories": {
+    "social_listening":  "Social Listening",
+    "social_media_mgmt": "Gestão de Redes Sociais",
+    "engagement_crm":    "Engajamento / CRM"
+  }
+}

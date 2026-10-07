@@ -1,74 +1,81 @@
 # Clusters de conteúdo — Buzzmonitor · Brasil (PT-BR)
 
-> Store local dos temas que orientam a skill `/blog-diario`. **Fonte de verdade dos temas** — a skill escolhe SÓ daqui.
-> Origem: slide do time "BR · Artigos Prioritários — Foco: Converter" (junho 2026). Diferente do formato Cxpress
-> (arquitetura de clusters): aqui é uma **lista de artigos prioritários** por categoria, com foco em conversão.
-> Mantido pelo time (Victor envia atualizações; o agente transcreve). Reabastecer ao esgotar.
+> Lido por `/blog-criar-artigo` (consumidor principal desde 2026-07-24) e, historicamente, por `/blog-diario`. **Fonte de verdade dos temas/clusters da marca.**
+> Atualizado em 2026-07-24 com o mapa de clusters mais completo da Barbara (dados de SERP/competitivos, CTR, formato esperado por cluster). Mantido pelo time — reabastecer/atualizar quando houver dado novo.
 >
-> **Blog:** https://buzzmonitor.com/blog/ · **Foco do lote atual:** Converter (maioria intenção Comercial).
-> **Schema por cluster:** nome · papel no funil · prioridade · categoria de menu · pillar page · subtópicos existentes · subtópicos a criar · palavras-chave principais.
+> **Blog:** https://buzzmonitor.com/blog/
+> **Schema por cluster:** nome · papel no funil · prioridade · observações de SERP/competitivas · foco/formato esperado.
 
 ---
 
-## Lista prioritária original (referência fiel do slide)
+## Nota sobre uso por skill
 
-| Categoria | Keyword / Tema | Intenção | Observação |
-|---|---|---|---|
-| Social Listening | social listening para e-commerce | Comercial | Fundo de funil. Gap no GSC (impressões sem clique). Comparativo de ferramentas. |
-| Social Listening | melhores ferramentas de social listening 2026 | Comercial | Top page Semrush (pos. 1). **Atualizar artigo existente** com dados 2026. |
-| Métricas & Analytics | como medir ROI de social media | Comercial | Decisão de compra. Guia com metodologia + CTA para trial. |
-| Atendimento ao Cliente | como reduzir SLA no atendimento digital | Comercial | Cases Turbi (97%) e Youse (36h→3h). Forte prova social. |
-| IA | IA para atendimento ao cliente: guia completo | Comercial | AI Overview presente. Conteúdo técnico com dados próprios da Buzzmonitor. |
-| Estratégia Social Media | benchmarking de social media: como fazer | Informacional | Meio de funil. Keyword com volume sem artigo correspondente. |
+- **`/blog-criar-artigo`** (ativa): quando a Barbara pedir "escolhe você o tema", a skill escolhe entre os clusters **em rotação** (abaixo), cruzando com `blog-cache.md` + crawl do sitemap real + histórico de clusters já usados no `_state.json` — pra não repetir o mesmo cluster sequencialmente. Também aceita tema trazido diretamente pela Barbara, dentro ou fora dos clusters listados aqui.
+- **`/blog-diario`**: decisão de 2026-07-23 (Barbara) — não usar mais para Buzzmonitor BR; a `/blog-criar-artigo` cobre esse papel agora. Este arquivo permanece como registro/schema caso a `/blog-diario` volte a servir Cxpress/Buzzcreators (marcas onde ela continua ativa, sem alteração).
 
-> **Fora de escopo do blog diário (decisão do Victor):** "Cases de Sucesso" e "Buzzmonitor na Prática" são pontuais (case nominal / tutorial de plataforma), não temas de cadência diária — removidos da rotação. Se um dia quiser produzir um case ou tutorial, é peça avulsa (via `[tema]` no comando), não pela seleção automática.
+## Clusters fora de rotação (nunca escolher automaticamente, em nenhuma skill)
 
-> **Flags para a skill:**
-> - **Cases Turbi (97%) / Youse (36h→3h):** citados pelo time como prova social. A regra do projeto manda citar case nominal **só** se estiver em `brand/buzzmonitor/BRANDBOOK.md` § Cases verificados. Se não estiverem lá, **não citar nominalmente** (usar qualitativo) e sinalizar no relatório que o Victor deve adicioná-los ao BRANDBOOK.
-> - **"Atualizar artigo existente"** (melhores ferramentas...): a skill deve tratar como `JÁ_COBERTO` → sugestão "atualizar/otimizar post existente", não criar duplicata.
-> - **CTA para trial:** vários itens pedem CTA de trial. Definir a URL do trial/demo em `landing-pages/catalogo/lps-buzzmonitor.md` (hoje stub) — sem ela, a skill roda CTA suave.
+Feitos por outro time — só entram como peça avulsa se a Barbara trouxer o tema/case específico diretamente, nunca por seleção automática.
+
+- **Cases de Sucesso** — prioridade máxima de conversão (50% de conversão de leads orgânicos justifica o investimento). Formato padronizado: problema → solução → resultado com números.
+- **Buzzmonitor na Prática** — tutoriais e how-tos da plataforma, pra resolver sub-utilização (4 posts identificados). CTA direto para trial — conteúdo de ativação/retenção, não de aquisição orgânica.
+
+## Cluster: Institucional
+- **Papel no funil:** N/A — não é conteúdo de aquisição orgânica
+- **Prioridade:** Baixa — não priorizado para SEO orgânico
+- **Foco:** novidades de produto e marca; público-alvo é a base de clientes existente e CRM, não busca orgânica
+- Disponível se a Barbara trouxer o tema diretamente. A skill não deve escolher este cluster sozinha quando pedido "escolhe você" — não serve o objetivo de SEO da skill.
 
 ---
 
 ## Cluster 1 — Social Listening
-- **Papel no funil:** Fundo (comercial)
-- **Prioridade:** Alta
-- **Categoria de menu:** Social Listening
-- **Pillar page:** (a definir pelo time)
-- **Palavras-chave principais:** social listening para e-commerce · melhores ferramentas de social listening 2026
-- **Subtópicos existentes no blog:**
-  - melhores ferramentas de social listening 2026 (ranqueia pos. 1 no Semrush — **ATUALIZAR com dados 2026**, não recriar)
-- **Subtópicos a criar:**
-  - social listening para e-commerce — Comercial / BoFu. Gap no GSC (impressões sem clique); formato comparativo de ferramentas.
-
-## Cluster 2 — Métricas & Analytics
 - **Papel no funil:** Fundo (decisão de compra)
-- **Prioridade:** Alta
-- **Categoria de menu:** Métricas & Analytics
-- **Palavras-chave principais:** como medir ROI de social media
-- **Subtópicos a criar:**
-  - como medir ROI de social media — Comercial / MoFu→BoFu. Guia com metodologia + CTA para trial.
+- **Prioridade:** Alta — maior cluster de tráfego
+- **Keywords comerciais:** "ferramentas de social listening" (#1 no Semrush), "melhores ferramentas [de social listening]"
+- **Foco/formato esperado:** conteúdo de decisão de compra (comparativos, "melhor ferramenta de X")
+- **Subtópico já existente no blog:** "melhores ferramentas de social listening 2026" (ranqueia pos. 1 no Semrush) — **atualizar com dados novos, não recriar**. Tratar como JÁ_COBERTO → sugerir atualização do post existente, nunca duplicata.
+
+## Cluster 2 — Inteligência Artificial
+- **Papel no funil:** Meio (comercial)
+- **Prioridade:** Alta — AI Overview presente em várias SERPs estratégicas
+- **Foco:** IA aplicada a resultado de negócio (SLA, produtividade, automação)
+- **Tom:** técnico
+- **Observação:** boa oportunidade de GEO (AI Overview já aparece nessas buscas) — usar dados próprios da Buzzmonitor quando possível
 
 ## Cluster 3 — Atendimento ao Cliente
 - **Papel no funil:** Meio (comercial)
-- **Prioridade:** Alta
-- **Categoria de menu:** Atendimento ao Cliente
-- **Palavras-chave principais:** como reduzir SLA no atendimento digital
-- **Subtópicos a criar:**
-  - como reduzir SLA no atendimento digital — Comercial / MoFu. Prova social: cases Turbi (97%) e Youse (36h→3h) — **só citar nominalmente se no BRANDBOOK**.
+- **Prioridade:** Alta — "SAC 2.0" rankeia #1
+- **Foco/formato esperado:** conteúdo orientado a decisão — comparativos de ferramentas, guias de implementação
+- **Prova social:** cases com dados duros — **só citar case nominal se estiver em `brand/buzzmonitor/BRANDBOOK.md` § Cases Verificados**; senão, usar qualitativo e sinalizar a pendência no relatório
 
-## Cluster 4 — IA
-- **Papel no funil:** Meio (comercial)
-- **Prioridade:** Alta
-- **Categoria de menu:** IA
-- **Palavras-chave principais:** IA para atendimento ao cliente: guia completo
-- **Subtópicos a criar:**
-  - IA para atendimento ao cliente: guia completo — Comercial / MoFu. AI Overview presente (oportunidade GEO forte); usar dados próprios da Buzzmonitor.
+## Cluster 4 — Métricas & Analytics
+- **Papel no funil:** Fundo (decisão de compra)
+- **Prioridade:** Alta — CTR médio-alto
+- **Foco:** engajamento + dashboards + relatórios
+- **Foco/formato esperado:** "como medir X" e "quais métricas acompanhar"
 
-## Cluster 5 — Estratégia Social Media
+## Cluster 5 — Estratégia de Social Media
 - **Papel no funil:** Meio
-- **Prioridade:** Alta
-- **Categoria de menu:** Estratégia Social Media
-- **Palavras-chave principais:** benchmarking de social media: como fazer
-- **Subtópicos a criar:**
-  - benchmarking de social media: como fazer — Informacional / ToFu→MoFu. Keyword com volume e sem artigo correspondente.
+- **Prioridade:** Alta — absorve o catch-all de "Análises e insights"
+- **Foco:** planejamento estratégico, benchmarking e tomada de decisão com dados
+
+---
+
+## Histórico — lote de junho/2026 (já executado, referência apenas — não é fila viva)
+
+Os itens abaixo vieram do slide "BR · Artigos Prioritários — Foco: Converter" (junho 2026) e já foram escritos e publicados como draft pela `/blog-criar-artigo` (dentro do briefing `2026-07-artigos-prioritarios-br.md`, hoje encerrado — ver nota em `.claude/skills/blog-criar-artigo/CONTEXT.md`).
+
+| Categoria | Keyword / Tema | Intenção | Status |
+|---|---|---|---|
+| Social Listening | social listening para e-commerce | Comercial | Escrito (item 01) |
+| Social Listening | melhores ferramentas de social listening 2026 | Comercial | Não escrito — tratar como "atualizar existente" (ver Cluster 1), não criar |
+| Métricas & Analytics | como medir ROI de social media | Comercial | Escrito (item 03) |
+| Atendimento ao Cliente | como reduzir SLA no atendimento digital | Comercial | Escrito (item 05) |
+| IA | IA para atendimento ao cliente: guia completo | Comercial | Escrito (item 08) |
+| Estratégia Social Media | benchmarking de social media: como fazer | Informacional | Escrito (item 16) |
+
+## Flags gerais (válidas pra qualquer skill que ler este arquivo)
+
+- **Cases nominais (Turbi, Youse, etc.):** citar número exato só se verificado em `brand/buzzmonitor/BRANDBOOK.md` § Cases Verificados. Se não estiver lá, usar qualitativo e sinalizar a pendência no relatório final.
+- **"Atualizar artigo existente"** (ex: melhores ferramentas de social listening): tratar como `JÁ_COBERTO` → sugestão de atualização do post existente, nunca criar duplicata.
+- **CTA de trial:** confirmar a URL do trial/demo em `landing-pages/catalogo/lps-buzzmonitor.md` antes de usar como CTA — se ainda for stub, usar CTA suave.

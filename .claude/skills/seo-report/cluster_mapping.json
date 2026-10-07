@@ -1,0 +1,65 @@
+{
+  "_readme": "Mapeamento best-effort utm_content -> cluster, usado só pelo item (e) do /seo-report (artigos que mais convertem). Gerado a partir de conhecimento/produto/{marca}/seo/clusters-brasil.md — mesma fonte que a skill /blog-diario usa pra escolher tema. Fuzzy match (slugify + contains) contra utm_content; posts sem match caem em 'Sem cluster mapeado'. Revisar manualmente ao atualizar os arquivos de cluster (Victor mantém a lista original).",
+  "buzzmonitor": [
+    {
+      "cluster": "Social Listening",
+      "keywords": ["social listening para e-commerce", "melhores ferramentas de social listening"]
+    },
+    {
+      "cluster": "Métricas & Analytics",
+      "keywords": ["como medir roi de social media"]
+    },
+    {
+      "cluster": "Atendimento ao Cliente",
+      "keywords": ["como reduzir sla no atendimento digital"]
+    },
+    {
+      "cluster": "IA",
+      "keywords": ["ia para atendimento ao cliente"]
+    },
+    {
+      "cluster": "Estratégia Social Media",
+      "keywords": ["benchmarking de social media"]
+    }
+  ],
+  "cxpress": [
+    {
+      "cluster": "WhatsApp empresarial",
+      "keywords": [
+        "whatsapp empresarial", "whatsapp business api", "sistema whatsapp empresas",
+        "whatsapp business vs api oficial", "suite whatsapp empresarial",
+        "whatsapp com multiplos usuarios", "como proteger seu whatsapp business",
+        "preco da whatsapp business api", "como ativar a api oficial do whatsapp",
+        "whatsapp business para pequenas empresas", "whatsapp no nordeste"
+      ]
+    },
+    {
+      "cluster": "Atendimento ao cliente via WhatsApp",
+      "keywords": [
+        "atendimento whatsapp", "como atender clientes pelo whatsapp", "multiatendimento whatsapp",
+        "mensagens de saudacao whatsapp", "frases prontas para atendimento whatsapp",
+        "como finalizar um atendimento", "como organizar fila de atendimento no whatsapp",
+        "script de atendimento para whatsapp", "resposta automatica whatsapp",
+        "dicas de atendimento no whatsapp", "como montar uma equipe de atendimento no whatsapp"
+      ]
+    },
+    {
+      "cluster": "Chatbot e automação no WhatsApp",
+      "keywords": [
+        "chatbot whatsapp", "chatbot para whatsapp", "como criar chatbot whatsapp",
+        "como fazer bot no whatsapp com ia", "chatbots no whatsapp", "automacao whatsapp",
+        "ia para atendimento ao cliente", "agentes inteligentes no atendimento",
+        "melhor chatbot para whatsapp", "como automatizar vendas pelo whatsapp",
+        "chatbot whatsapp para pequenas empresas", "whatsapp e ia"
+      ]
+    },
+    {
+      "cluster": "CRM e gestão da experiência do cliente",
+      "keywords": [
+        "crm para pequenas empresas", "sistema crm pme", "gestao de clientes whatsapp",
+        "crm x cxm", "gestao da experiencia do cliente", "omnicanal", "engajamento omnicanal",
+        "crm com whatsapp integrado", "como escolher um crm para pme", "centralizacao de atendimento"
+      ]
+    }
+  ]
+}

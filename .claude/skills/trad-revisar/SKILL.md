@@ -3,7 +3,7 @@ name: trad-revisar
 description: Revisa traduções como especialista nativo em copywriting, corrigindo naturalidade, precisão e comprimento, e publica o resultado final no Notion (pasta Entregas).
 argument-hint: "[caminho-traducao] [pt-pt|es-latam]  — ex: traducao/entregas/2026-04/newsletter-pt-pt.md pt-pt"
 allowed-tools: Read, Write, Edit, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-create-pages
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Revisar Tradução
@@ -93,9 +93,17 @@ Para cada problema encontrado: corrija diretamente. Se uma informação foi perd
 ## Passada 3: Comprimento e Fluxo
 
 ### Controle de Comprimento
-Compare word count da tradução vs. original:
+Compare word count da tradução vs. original. A regra depende do tipo de conteúdo (mesma divisão do Passo 6 de `/trad-traduzir`):
+
+**Peças com espaço limitado** (criativo estático ou carrossel, anúncio, legenda, assunto/preheader de e-mail, título, subtítulo e CTA de landing page):
 - Se **mais de 10% maior**: identifique frases redundantes, repetições e qualificadores desnecessários — corte priorizando: contexto genérico > explicações óbvias > qualificadores excessivos. NUNCA corte: gancho, dados concretos, CTAs.
 - Se **mais de 10% menor**: verifique se conteúdo foi perdido na Passada 2.
+
+**Texto corrido** (blogpost, newsletter, novidades de produto, corpo de e-mail, texto de página):
+- Tradução maior que o original é **esperada** — línguas diferentes têm estruturas diferentes, e em blogpost a tradução também adapta o texto para a busca da região. **Não corte conteúdo por diferença de tamanho.** Corte apenas repetição óbvia que não existia no original, e qualquer dado, número ou afirmação que não esteja no original.
+- Se **mais de 15% menor**: verifique se algum parágrafo, frase ou dado foi omitido e reinsira com adaptação adequada.
+
+Na dúvida sobre o tipo, trate como peça com espaço limitado.
 
 ### Fluxo e Ritmo
 1. O texto flui naturalmente de parágrafo em parágrafo?
@@ -166,7 +174,7 @@ Determine o diretório do arquivo de tradução e crie `[nome]-revisao-log.md` n
 **Observações**: [notas para o usuário, se houver]
 ```
 
-**APROVADO**: zero expressões que soam como tradução, zero vocabulário da variante errada, nenhuma informação perdida, comprimento dentro de ±10%, CTAs naturais e eficazes.
+**APROVADO**: zero expressões que soam como tradução, zero vocabulário da variante errada, nenhuma informação perdida, comprimento dentro da regra do tipo (±10% em peça com espaço limitado; em texto corrido, sem teto e sem perda de conteúdo), CTAs naturais e eficazes.
 
 **REQUER ATENÇÃO**: termos técnicos específicos sem equivalente claro, decisões de tom que precisam confirmação do usuário, referências culturais do original que não funcionam na língua alvo e precisam de adaptação criativa.
 

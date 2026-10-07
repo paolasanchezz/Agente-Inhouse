@@ -3,7 +3,7 @@ name: trad-traduzir
 description: Traduz copy de marketing em português brasileiro para Português Europeu (PT-PT) ou Espanhol Latino-Americano (ES-LATAM), soando como texto nativo — não como tradução.
 argument-hint: "[caminho-da-copy] [pt-pt|es-latam]  — ex: meu-texto.md pt-pt"
 allowed-tools: Read, Write, mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-fetch
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Skill: Traduzir Copy de Marketing
@@ -104,11 +104,18 @@ Após traduzir, releia o texto completo respondendo mentalmente a cada pergunta:
 
 ---
 
-## Passo 6: Controle de Comprimento
+## Passo 6: Comprimento e Completude
 
-Compare a contagem de palavras da tradução com o original:
-- Se a tradução for **mais de 10% maior**: identifique frases redundantes, qualificadores desnecessários ou explicações óbvias e corte — priorizando manter o gancho, os dados concretos e os CTAs
+Compare a contagem de palavras da tradução com o original. A regra depende do tipo de conteúdo identificado no Passo 3:
+
+**Peças com espaço limitado** (criativo estático ou carrossel, anúncio, legenda, assunto/preheader de e-mail, título, subtítulo e CTA de landing page): o layout foi desenhado para o tamanho do original.
+- Se a tradução for **mais de 10% maior**: corte frases redundantes, qualificadores desnecessários e explicações óbvias, mantendo o gancho, os dados concretos e os CTAs
 - Se a tradução for **mais de 10% menor**: verifique se alguma informação foi perdida e reinsira com adaptação adequada
+
+**Texto corrido** (blogpost, newsletter, novidades de produto, corpo de e-mail, texto de página): a diferença pode passar de 10%. **Não corte conteúdo por diferença de tamanho** — línguas diferentes têm estruturas diferentes, e em blogpost a tradução também adapta o texto para a busca da região (termos, exemplos e formulações que o público do país-alvo pesquisa), o que pode pedir trechos reescritos ou mais longos. Nunca acrescente dado, número ou afirmação que não esteja no original.
+- Se a tradução for **mais de 15% menor**: verifique se algum parágrafo, frase ou dado foi omitido e reinsira com adaptação adequada
+
+Na dúvida sobre o tipo, trate como peça com espaço limitado.
 
 ---
 

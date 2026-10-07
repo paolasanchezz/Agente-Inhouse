@@ -1,0 +1,29 @@
+{
+  "ultima_atualizacao": "2026-08-31",
+  "regiao": "br",
+  "idioma": "pt-br",
+  "total_artigos": 1,
+  "itens": [
+    {
+      "numero": "01",
+      "titulo": "WhatsApp bloqueado por spam: por que acontece e como recuperar sua conta",
+      "cluster": "WhatsApp para Empresas",
+      "slug": "whatsapp-bloqueado-por-spam",
+      "title_seo": "WhatsApp bloqueado por spam: o que fazer agora",
+      "meta_descricao": "WhatsApp bloqueado por spam? Veja por que acontece, o que fazer se sua conta já foi banida e como a API Oficial evita que isso se repita na empresa.",
+      "palavra_chave": "whatsapp bloqueado por spam",
+      "keyword_candidatas": [
+        {"termo": "whatsapp bloqueado por spam", "volume": 4400, "dificuldade": 30, "database": "br"},
+        {"termo": "essa conta não pode mais usar o whatsapp", "volume": 1600, "dificuldade": 35, "database": "br"},
+        {"termo": "whatsapp bloqueado o que fazer", "volume": 590, "dificuldade": 18, "database": "br"},
+        {"termo": "whatsapp banido por spam", "volume": 210, "dificuldade": 38, "database": "br"},
+        {"termo": "conta do whatsapp banida", "volume": 210, "dificuldade": 19, "database": "br"},
+        {"termo": "numero banido no whatsapp", "volume": 20, "dificuldade": 0, "database": "br"}
+      ],
+      "url_notion": "https://app.notion.com/p/3cd3934026fd81849751d04083136ee4",
+      "caminho_local": "conteudo-blog/cxpress/artigos-br/01-whatsapp-bloqueado-por-spam.md",
+      "pendencias": "nenhuma",
+      "data": "2026-08-31"
+    }
+  ]
+}

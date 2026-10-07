@@ -12,6 +12,57 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `seo-report` — multi-marca, conversão por artigo e relatório executivo
+### 2026-10-07 — 1.0.1 → 2.6.1 (MAJOR, PR #754 + ajustes da revisão)
+
+- **Quebra de interface:** o argumento deixou de ser o caminho de um `seo_data.json` (`[data?]`) e
+  virou `[contexto?]` (`buzzmonitor-br` … `elife-pt`, ou `todos`).
+- `seo_report_buzzmonitor.py` sai. Entram `seo_report_google.py` (GSC + GA4 de 8 contextos
+  marca × região, configurados em `CONTEXTS`) e `seo_report_conversoes.py` (artigos que mais
+  convertem, só Buzzmonitor BR e Cxpress BR, reaproveitando as queries das dashboards CM via
+  `dashboard/.env` read-only). `cluster_mapping.json` liga post a cluster.
+- Semrush ampliado: histórico de keywords, Top3/Top5/Top10 com dedupe por keyword, branded ×
+  non-branded, ganho e perda de posição, páginas que mais ranqueiam, interesse de marca por país
+  (BM LATAM) e AI Overview (código `52`, com cross-check obrigatório a cada mês).
+- Relatório executivo no Notion (Passos 8 e 9): pirâmide invertida, tabelas transpostas e evolução
+  dos últimos 3 meses.
+- **Ajustes da revisão:** a tendência de leads só conta contrato fechado a partir da criação do
+  lead (antes valia qualquer contrato do mesmo e-mail, até de anos antes; nenhum número de abr–set/26
+  mudou, a correção é preventiva). Saiu o caminho por lista de URLs (`blog_urls_intl.json`), sem uso
+  desde a migração de LATAM/PT para `buzzmonitor.com/es/` e `/pt-pt/`. Tabela de cobertura corrigida
+  (GA4 de LATAM/PT = `347502824`, filtro PT = `/pt-pt/`).
+
+## `seo-competitors` — nova skill
+### 2026-10-07 — `1.1.0` (PR #754)
+
+`/seo-competitors [regiao?]`: análise mensal do tráfego orgânico dos concorrentes da Buzzmonitor
+via Semrush (BR, LATAM, PT), publicada como Artifact com ranking, tendências de keywords e insights
+pro comercial. Lista de concorrentes em `config.json`.
+
+## `video-seo-plan` + `video-seo-roteiro` — novas skills de vídeo SEO/GEO
+### 2026-10-07 — `1.0.0` (PR #754)
+
+- `/video-seo-plan [mês]` (fase 1): cruza oportunidade no Semrush (keyword gap e perguntas) com dados
+  de performance colados pela usuária e escolhe 1 tema por marca × região. Grava
+  `conteudo-video/{YYYY-MM}/cronograma.md` e publica no Notion.
+- `/video-seo-roteiro "Marca Região"` (fase 2, só depois do tema aprovado): roteiro-base de SEO/GEO
+  (títulos, abertura com a keyword, tópicos, descrição pro YouTube, corte pra Shorts/Reel) em
+  `conteudo-video/{YYYY-MM}/roteiros/` e no Notion.
+- Ajuste da revisão: Notion (e `AskUserQuestion`, na fase 1) entraram no `allowed-tools`.
+
+## `trad-traduzir` + `trad-revisar` — teto de comprimento só onde o espaço é limitado
+### 2026-10-07 — 1.1.0 → 1.2.0 (MINOR)
+
+- Criativo, anúncio, legenda, assunto/preheader de e-mail e título, subtítulo e CTA de LP mantêm o
+  ±10%: o layout foi feito pro tamanho do original.
+- Texto corrido (blogpost, newsletter, novidades, corpo de e-mail) pode passar de 10%. Em blogpost a
+  tradução também adapta o texto pra busca da região. Continua valendo checar omissão (mais de 15%
+  menor) e não acrescentar dado que não está no original.
+- Critério de APROVADO do `/trad-revisar` alinhado com a regra nova. Na dúvida, vale a regra da peça
+  com espaço limitado.
+
+---
+
 ## `pocket-event` — linha que já está no ar não derruba mais o workflow
 ### 2026-09-23 — `landing-pages/build/pocket_event_job.py` + `render_pocket_event.py`
 
