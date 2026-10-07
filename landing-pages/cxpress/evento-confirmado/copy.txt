@@ -1,0 +1,33 @@
+=== CONFIRMACAO ===
+LABEL: Inscrição confirmada
+H1: Fique de olho no seu e-mail.
+SUB: Enviamos a data, o horário e o endereço do encontro para o e-mail que você cadastrou. Se não aparecer na caixa de entrada, confira o spam.
+
+=== QUEM SOMOS ===
+OVERLINE: Enquanto o encontro não chega
+H2: Prazer, somos a Cxpress
+BODY: A Cxpress reúne WhatsApp, Instagram, Facebook, webchat, e-mail e telefone num só painel, com o histórico de cada cliente no mesmo lugar. A IA responde ao primeiro contato e passa a conversa para a sua equipe quando o caso pede uma pessoa.
+LABEL: API Oficial do WhatsApp
+LABEL: API Oficial do ChatGPT
+LABEL: Um produto Elife
+CTA: Conhecer a Cxpress (link para home.cxpress.io, nova aba)
+VISUAL: quem-somos-foto.jpg (brand/cxpress/assets/plataforma)
+
+=== CLIENTES ===
+H2: Mais de 800 empresas no Brasil, LATAM e Portugal confiam na Cxpress para seu atendimento
+LOGOS: clientes-cxpress.png (brand/cxpress/assets/plataforma; Koin, Advanta, Mondial, Vivo, Sephora, Smart Fit, ThermoFisher, J&T Express, Eletrobras, Cacau Show e outros)
+
+=== FOOTER (padrao do dominio, copiado da escolha-a-cxpress) ===
+FOOTER: Cxpress é um produto Elife. © 2026
+
+# Copy-fonte: escrita pelo agente a pedido do usuario (2026-10-06). Briefing: confirmacao padrao
+# de inscricao em EVENTO PRESENCIAL da Cxpress Brasil, exibida logo apos o form de inscricao.
+# Texto fixo e generico (sem nome/data do evento), reutilizavel por todos os eventos presenciais.
+# v2 (2026-10-06, pedido do usuario): saiu o H1 "Sua vaga esta garantida." (novo H1 pede pra
+# ficar de olho no e-mail cadastrado); saiu a secao "O que fazer agora"; entraram QUEM SOMOS e
+# CLIENTES. Fatos reaproveitados de copy ja publicada: "Mais de 800 empresas no Brasil, LATAM e
+# Portugal..." (escolha-a-cxpress, literal), canais (FAQ da escolha-a-cxpress), badges API
+# Oficial WhatsApp/ChatGPT + Elife (quem-somos da atendimento-clinicas), logos de clientes
+# (mesmo asset das LPs Cxpress BR).
+# Regra "H1 = dor" (fundamentos-copy §0) nao se aplica: pagina pos-conversao.
+# Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0; exclamacao: 0; filler: 0).

@@ -181,6 +181,11 @@
       "source": "landing-pages/cxpress/estudo-primeiro-contato-saude-confirmado"
     },
     {
+      "slug": "evento-confirmado",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/evento-confirmado"
+    },
+    {
       "slug": "evite-banimento-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/evite-banimento-whatsapp"
