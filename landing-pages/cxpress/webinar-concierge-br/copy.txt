@@ -1,0 +1,95 @@
+=== HERO ===
+OVERLINE: Webinar · Caso real · Cxpress
+H1: Como a Cacau Show reduziu o SLA de 8 horas para 26 minutos
+SUB: Veja como a operação ganhou escala no atendimento das redes sociais sem aumentar a equipe humana, com agentes de IA no primeiro contato e as pessoas entrando quando fazem diferença.
+BODY: [VIDEO] Vídeo do webinar · em breve
+LABEL: Apresentado por Luiz Fantini, New Business da Cxpress
+CTA: Agendar uma demonstração gratuita
+LABEL: Mais volume, sem aumentar a equipe.
+
+=== FAIXA ===
+LIST ITEM: Caso real da Cacau Show
+LIST ITEM: SLA de 8h para 26min
+LIST ITEM: IA no primeiro contato
+LIST ITEM: Humano quando é necessário
+
+=== O-WEBINAR ===
+OVERLINE: O webinar
+H2: O que você vai ver neste webinar
+H3: Onde a operação travava
+BODY: Por que um volume alto de comentários, uma equipe sobrecarregada e os picos de Páscoa levaram o SLA a 8 horas.
+H3: As três mudanças que derrubaram o SLA
+BODY: IA no primeiro contato, IA preparada para cada contexto e humano quando é necessário. O que mudou em cada etapa da jornada.
+H3: Onde a Cxpress entra
+BODY: Como canais, agentes de IA, atendimento humano e gestão em tempo real passam a funcionar no mesmo painel.
+
+=== O-DESAFIO ===
+OVERLINE: O desafio
+H2: Na Páscoa de 2024, só 34% das interações recebiam resposta
+SUB: Foram mais de 100 mil comentários no Instagram e no Facebook. A equipe conseguiu responder manualmente pouco mais de um terço.
+LABEL: Volume
+H3: Comentários em explosão
+BODY: Comentários públicos chegando todos os dias, com picos que a equipe não conseguia acompanhar.
+LABEL: Equipe
+H3: Gente presa no repetitivo
+BODY: Time sobrecarregado e preso em tarefas operacionais, sem cobertura 24/7.
+LABEL: Negócio
+H3: Vendas que ficavam para trás
+BODY: Dúvidas de clientes sem retorno, dificuldade em manter o tom de voz e tempo de resposta alto nos momentos críticos.
+BODY: O gargalo não estava na velocidade das pessoas. Estava no caminho que cada conversa fazia dentro da operação.
+
+=== AS-MUDANCAS ===
+OVERLINE: O que mudou
+H2: Três mudanças conectadas na jornada de atendimento
+SUB: Automatizar o previsível. Preservar o humano onde ele gera mais valor.
+H3: IA no primeiro contato
+BODY: Agentes de IA assumem o primeiro atendimento e respondem as dúvidas recorrentes na hora. A equipe deixa de receber tudo o que chega.
+H3: IA preparada para cada contexto
+BODY: Os agentes recebem o conhecimento e a linguagem da marca, regras de atuação e critérios claros sobre o que podem ou não resolver.
+H3: Humano quando é necessário
+BODY: A IA identifica quando não deve continuar e passa o caso complexo para a equipe, sem quebrar a jornada do cliente.
+H3: Tudo num painel só
+BODY: Na Cxpress, os canais ficam no mesmo lugar, com o histórico de cada cliente e SLA, fila e desempenho por agente em tempo real.
+LABEL: WhatsApp
+LABEL: Instagram
+LABEL: E-mail
+LABEL: Telefone
+
+=== RESULTADO ===
+OVERLINE: O resultado
+H2: Mais volume, respostas mais rápidas
+LABEL: 8h → 26min
+BODY: SLA de atendimento
+LABEL: 72%
+BODY: Taxa de resposta na Páscoa de 2026 (era 34% em 2024)
+LABEL: 163 mil+
+BODY: Respostas para mais de 223 mil comentários
+LABEL: 4 canais
+BODY: Na operação: Facebook, Instagram, Google e TikTok
+BODY: A Cacau Show saiu de uma operação reativa para uma gestão mais ágil, centralizada e controlada.
+
+=== INSCRICAO ===
+OVERLINE: Próximo passo
+H2: Agende uma demonstração gratuita da Cxpress
+SUB: Canais, agentes de IA e gestão em tempo real
+BODY: Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.
+LIST ITEM: Mais volume, sem aumentar a equipe.
+LABEL: Formulário provisório. Vai ser substituído pelo formulário real (com redirecionamento para a página de obrigado).
+LABEL: Nome
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Celular / WhatsApp
+CTA: Agendar demonstração gratuita
+BODY: Seus dados servem apenas para agendar a demonstração.
+
+=== FECHO ===
+QUOTE: Prepare sua operação para crescer sem deixar o SLA sair do controle.
+SUB: Assista ao webinar e agende sua demonstração gratuita da Cxpress.
+CTA: Agendar uma demonstração gratuita
+
+=== FOOTER ===
+FOOTER: A Cxpress é um produto Elife. © 2026
+FOOTER: Termos de uso · Política de privacidade
+
+# Revisao anti-IA: sem achados (em-dash: 0). Antitese-por-negacao: 1 instancia ("O gargalo nao estava... Estava..."), dentro do limite de 2.
+# Notas de fonte: todos os numeros vem do deck (slides 3, 9 e 11). "4 canais" do slide 9 = Facebook, Instagram, Google, TikTok (icones da Pascoa 2026). Duracao do webinar nao consta no deck, por isso nao aparece na copy.

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
+  <!-- End Google Tag Manager -->
+  <title>Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress</title>
+  <link rel="canonical" href="https://{{DOMAIN}}/webinar-concierge-br">
+
+  <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
+
+  <meta name="description" content="Webinar com caso real: como a Cacau Show levou o SLA de 8 horas para 26 minutos com agentes de IA no primeiro contato, sem aumentar a equipe humana.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Cxpress">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cxpress">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://{{DOMAIN}}/webinar-concierge-br">
+  <meta property="og:title" content="Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress">
+  <meta property="og:description" content="Caso real Cacau Show: SLA de 8 horas para 26 minutos com IA no primeiro contato e humano quando é necessário.">
+  <meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webinar Cxpress: como a Cacau Show reduziu o SLA de 8 horas para 26 minutos">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress">
+  <meta name="twitter:description" content="Caso real Cacau Show: SLA de 8 horas para 26 minutos com IA no primeiro contato e humano quando é necessário.">
+  <meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/cxpress", "https://www.instagram.com/cxpress.io/"] },
+      { "@type": "WebPage", "@id": "https://{{DOMAIN}}/webinar-concierge-br#webpage", "url": "https://{{DOMAIN}}/webinar-concierge-br", "name": "Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "Webinar com caso real: como a Cacau Show levou o SLA de 8 horas para 26 minutos com agentes de IA no primeiro contato, sem aumentar a equipe humana." },
+      { "@type": "VideoObject", "name": "Como reduzimos o SLA de 8 horas para 26 minutos", "description": "Caso real da Cacau Show: como a operação ganhou escala no atendimento das redes sociais sem aumentar a equipe humana.", "inLanguage": "pt-BR", "url": "https://{{DOMAIN}}/webinar-concierge-br", "publisher": { "@id": "https://home.cxpress.io#organization" } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&family=Bitter:ital,wght@1,500&display=swap">
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+  <style>
+    :root{
+      --primary:#4A69BD;
+      --primary-dark:#232960;
+      --primary-lighter:#D7E2FF;
+      --accent:#EF863C;
+      --warning:#F1A908;
+      --green:#21CC78;
+      --green-dark:#1AAE63;
+      --danger:#C0392F;
+      --neutral-700:#4a4a4a;
+      --neutral-300:#d1d1d1;
+      --neutral-100:#f5f5f5;
+      --white:#ffffff;
+
+      --rule:#e6e6ec;
+      --maxw:1160px;
+      --radius-btn:9px;
+      --radius-card:16px;
+      --font-display:'Open Sans',sans-serif;
+      --font-body:'Source Sans 3',sans-serif;
+      --font-accent:'Bitter',serif;
+      --shadow:0 4px 6px rgba(0,0,0,.05);
+      --shadow-lift:0 14px 28px rgba(35,41,96,.10);
+      --shadow-float:0 24px 60px rgba(35,41,96,.14);
+      --shadow-deep:0 30px 70px rgba(6,10,38,.45);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--white);color:var(--primary-dark);
+      font-family:var(--font-body);font-size:18px;line-height:1.7;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;margin:0;color:var(--primary-dark);text-wrap:balance;line-height:1.15}
+    p{margin:0}
+    a{color:var(--primary)}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+    section{padding:112px 0}
+    .off{background:var(--neutral-100)}
+    .skip{position:absolute;left:-9999px;top:0;background:var(--primary-dark);color:#fff;padding:12px 18px;z-index:100;border-radius:0 0 8px 0}
+    .skip:focus{left:0}
+    :focus-visible{outline:3px solid var(--warning);outline-offset:3px;border-radius:4px}
+
+    .eyebrow{
+      display:inline-block;font-family:var(--font-display);font-weight:700;
+      font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    }
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.is-in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+    @keyframes floatTilt{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-13px) rotate(2deg)}}
+    @keyframes glowDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(-4%,3%) scale(1.07)}}
+
+    /* ===== Botoes ===== */
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:var(--font-display);font-weight:700;font-size:17px;
+      background:var(--green);color:#fff;text-decoration:none;
+      padding:16px 28px;border-radius:var(--radius-btn);border:0;cursor:pointer;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .btn:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
+    .btn svg{flex:none}
+
+    /* ===== Header ===== */
+    header{
+      position:sticky;top:0;z-index:50;padding:16px 0;
+      background:rgba(35,41,96,.94);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(215,226,255,.16);
+    }
+    .hd{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .hd__logo img{height:34px;width:auto}
+    .hd__cta{
+      font-family:var(--font-display);font-weight:700;font-size:15px;
+      background:var(--green);color:#fff;text-decoration:none;
+      padding:11px 20px;border-radius:var(--radius-btn);white-space:nowrap;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .hd__cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
+
+    /* ===== Hero (VSL, centrado) ===== */
+    .hero{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:0}
+    .hero::before{
+      content:"";position:absolute;width:900px;height:700px;top:-24%;right:-8%;
+      background:radial-gradient(ellipse 900px 500px at 70% 30%, #333C86 0%, transparent 62%);
+      animation:glowDrift 18s ease-in-out infinite alternate;pointer-events:none;
+    }
+    .hero::after{
+      content:"";position:absolute;width:520px;height:520px;left:-14%;bottom:-24%;border-radius:50%;
+      background:radial-gradient(circle, rgba(241,169,8,.16) 0%, transparent 70%);
+      animation:glowDrift 24s ease-in-out infinite alternate-reverse;pointer-events:none;
+    }
+    .hero__inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:72px 32px 84px;text-align:center}
+    .hero .eyebrow{color:var(--warning);margin-bottom:18px}
+    .hero h1{font-size:clamp(30px,4.4vw,50px);color:#fff;max-width:20ch;margin:0 auto}
+    .hero h1 mark{background:none;color:var(--warning)}
+    .hero__lead{margin:22px auto 0;font-size:clamp(18px,2vw,20px);line-height:1.6;color:var(--primary-lighter);max-width:56ch}
+    .hero__ctas{margin-top:30px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center}
+    .hero__note{font-size:15px;color:var(--primary-lighter)}
+    @media (prefers-reduced-motion:reduce){.hero::before,.hero::after,.fecho::before{animation:none}}
+
+    /* ===== Video (placeholder swappable) ===== */
+    .vsl-video{
+      position:relative;max-width:780px;margin:34px auto 0;aspect-ratio:16/9;
+      border-radius:16px;overflow:hidden;background:#000;box-shadow:var(--shadow-deep);
+    }
+    .vsl-video iframe,.vsl-video video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+    .vsl-video__ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(150deg,#333C86,#232960)}
+    .vsl-video__play{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:grid;place-items:center}
+    .vsl-video__play svg{margin-left:4px}
+    .vsl-video__txt{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary-lighter)}
+    .vsl-byline{margin-top:18px;font-size:16px;color:var(--primary-lighter)}
+    .vsl-byline strong{color:#fff;font-weight:700}
+
+    /* ===== Faixa ===== */
+    .strip{background:#1B2050;padding:24px 0;border-top:1px solid rgba(215,226,255,.12)}
+    .strip__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px}
+    .strip__item{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--primary-lighter)}
+    .strip__item svg{color:var(--warning);flex:none}
+
+    /* ===== Cabecalho de secao ===== */
+    .sec-head{max-width:760px;margin:0 auto 60px;text-align:center}
+    .sec-head .eyebrow{color:var(--primary);margin-bottom:16px}
+    .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+    .sec-head p{font-size:clamp(18px,2vw,20px);color:var(--neutral-700);margin-top:16px}
+
+    /* ===== Grid de cards ===== */
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+    .card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+    .card__pill{width:44px;height:16px;border-radius:9999px;background:var(--primary);margin-bottom:22px}
+    .card:nth-child(3n+2) .card__pill{background:var(--accent)}
+    .card:nth-child(3n+3) .card__pill{background:var(--warning)}
+    .card h3{font-size:clamp(21px,2.1vw,23px)}
+    .card p{margin-top:12px;color:var(--neutral-700);font-size:17px}
+    .card--risco .card__pill{background:var(--danger)!important}
+    .card__k{display:block;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--danger);margin-bottom:10px}
+
+    .sec-fecho{max-width:760px;margin:52px auto 0;text-align:center;font-family:var(--font-accent);font-style:italic;font-weight:500;font-size:clamp(19px,2.1vw,22px);color:var(--primary-dark)}
+
+    /* ===== A saida (numerado) ===== */
+    .trocas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:960px;margin:0 auto}
+    .troca{display:flex;gap:18px;background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow)}
+    .troca__n{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:17px;background:var(--primary-lighter);color:var(--primary-dark)}
+    .troca h3{font-size:clamp(21px,2.1vw,23px)}
+    .troca p{margin-top:9px;color:var(--neutral-700);font-size:17px}
+    .canais{margin-top:14px;display:flex;gap:9px;flex-wrap:wrap}
+    .canal{font-size:12.5px;font-weight:700;letter-spacing:.03em;background:var(--primary-lighter);color:var(--primary-dark);padding:6px 12px;border-radius:999px}
+
+    /* ===== Inscricao ===== */
+    .agendar{background:var(--neutral-100)}
+    .agendar__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:56px;align-items:start}
+    .agendar .eyebrow{color:var(--primary)}
+    .agendar h2{font-size:clamp(28px,3.4vw,38px);margin-top:16px}
+    .agendar__kicker{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--accent);margin-top:12px}
+    .agendar__sub{font-size:18px;color:var(--neutral-700);margin-top:16px;max-width:46ch}
+    .requisito{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:15px;color:var(--neutral-700)}
+    .requisito svg{flex:none;color:var(--primary);margin-top:3px}
+
+    .form{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:34px;box-shadow:var(--shadow-float)}
+    .campo{margin-bottom:18px}
+    .campo label{display:block;font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:7px}
+    .campo .req{color:var(--danger);margin-left:2px}
+    .campo input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--primary-dark);padding:13px 14px;border:1px solid var(--neutral-300);border-radius:var(--radius-btn);background:var(--white)}
+    .campo input:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(74,105,189,.16)}
+    .form .btn{width:100%;justify-content:center;font-size:18px}
+    .form__nota{margin-top:14px;font-size:14px;color:var(--neutral-700);text-align:center}
+    .form__ph{border:1px dashed var(--neutral-300);border-radius:10px;padding:10px 12px;margin-bottom:16px;font-size:13px;color:var(--neutral-700);background:var(--neutral-100)}
+
+    /* ===== Fecho ===== */
+    .fecho{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:100px 0}
+    .fecho::before{content:"";position:absolute;width:620px;height:620px;right:-12%;top:-40%;border-radius:50%;background:radial-gradient(circle, rgba(144,158,234,.24) 0%, transparent 70%);animation:glowDrift 21s ease-in-out infinite alternate;pointer-events:none}
+    .fecho__inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 32px;text-align:center}
+    .fecho blockquote{margin:0 auto;font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(26px,3.4vw,38px);line-height:1.2;color:#fff;max-width:24ch}
+    .fecho__sub{margin-top:16px;color:var(--primary-lighter);font-size:18px}
+    .fecho .btn{margin-top:30px}
+
+    /* ===== Footer ===== */
+    .footer{background:#1B2050;padding:48px 0}
+    .footer__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px}
+    .footer__logo img{height:32px;width:auto}
+    .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
+
+    /* ===== Responsivo ===== */
+    @media (max-width:980px){
+      .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .trocas,.agendar__grid{grid-template-columns:minmax(0,1fr);gap:32px}
+    }
+    @media (max-width:640px){
+      body{font-size:17px}
+      section{padding:76px 0}
+      .wrap,.hd,.footer__inner,.fecho__inner,.strip__inner{padding-left:24px;padding-right:24px}
+      .hero__inner{padding:52px 24px 68px}
+      .fecho{padding:76px 0}
+      .grid-3{grid-template-columns:minmax(0,1fr)}
+      .hero .eyebrow{line-height:1.5}
+      .sec-head{margin-bottom:44px}
+      .form{padding:24px}
+      .card p,.troca p{font-size:17px}
+      .footer p,.form__nota,.campo label{font-size:14px}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+  /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+  .hero__note{ font-size:16px; }
+  .vsl-byline{ font-size:16px; }
+  .vsl-video__txt{ font-size:13px; }
+  .strip__item{ font-size:16px; }
+  .card__k{ font-size:14px; }
+  .canal{ font-size:13px; }
+  .requisito{ font-size:16px; }
+  .campo input{ font-size:17px; }
+  .form__ph{ font-size:14px; }
+  }
+
+    /* ===== Resultado (stats) ===== */
+    .resultado{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden}
+    .resultado::before{content:"";position:absolute;width:640px;height:640px;left:-14%;top:-30%;border-radius:50%;background:radial-gradient(circle, rgba(241,169,8,.14) 0%, transparent 70%);animation:glowDrift 22s ease-in-out infinite alternate;pointer-events:none}
+    .resultado .wrap{position:relative;z-index:1}
+    .resultado .sec-head .eyebrow{color:var(--warning)}
+    .resultado .sec-head h2{color:#fff}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+    .stat{background:rgba(255,255,255,.06);border:1px solid rgba(215,226,255,.16);border-left:4px solid var(--warning);border-radius:var(--radius-card);padding:28px 24px}
+    .stat:nth-child(2){border-left-color:var(--accent)}
+    .stat:nth-child(3){border-left-color:var(--green)}
+    .stat:nth-child(4){border-left-color:var(--primary-lighter)}
+    .stat__n{display:block;font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(28px,2.6vw,34px);line-height:1.1;color:#fff}
+    .stat__l{display:block;margin-top:10px;font-size:16px;line-height:1.5;color:var(--primary-lighter)}
+    .resultado .sec-fecho{color:#fff}
+    @media (max-width:980px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.stats{grid-template-columns:minmax(0,1fr)}}
+    @media (prefers-reduced-motion:reduce){.resultado::before{animation:none}}
+    @media (max-width:480px){.hd__logo img{height:28px}.hd__cta{white-space:normal;max-width:170px;text-align:center;line-height:1.25;font-size:14px;padding:9px 14px}}
+</style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4XDWHL3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header>
+    <div class="hd">
+      <a href="https://home.cxpress.io" class="hd__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
+      </a>
+      <a class="hd__cta" href="#inscricao">Agendar demonstração gratuita</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- HERO VSL -->
+    <section class="hero">
+      <div class="hero__inner">
+        <span class="eyebrow">Webinar · Caso real · Cxpress</span>
+        <h1>Como a Cacau Show reduziu o SLA de 8 horas para <mark>26&nbsp;minutos</mark></h1>
+        <p class="hero__lead">Veja como a operação ganhou escala no atendimento das redes sociais sem aumentar a equipe humana, com agentes de IA no primeiro contato e as pessoas entrando quando fazem diferença.</p>
+
+        <!-- VIDEO PLACEHOLDER: substituir o div.vsl-video__ph inteiro pelo embed real (16:9).
+             Ex.: <iframe src="https://www.youtube.com/embed/XXXXXXXX" title="Webinar Cxpress" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
+        <div class="vsl-video reveal">
+          <div class="vsl-video__ph">
+            <span class="vsl-video__play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="vsl-video__txt">Vídeo do webinar · em breve</span>
+          </div>
+        </div>
+
+        <p class="vsl-byline">Apresentado por <strong>Luiz Fantini</strong>, New Business da Cxpress</p>
+
+        <div class="hero__ctas">
+          <a class="btn" href="#inscricao">Agendar uma demonstração gratuita
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <span class="hero__note">Mais volume, sem aumentar a equipe.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAIXA -->
+    <div class="strip">
+      <div class="strip__inner">
+        <div class="strip__item"><svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 15.5V8.5M7 15.5V5M11 15.5V9.5M15 15.5V3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Caso real da Cacau Show</div>
+        <div class="strip__item"><svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.2" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.2V9l2.8 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> SLA de 8h para 26min</div>
+        <div class="strip__item"><svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="12" height="9" rx="2.2" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5V3M7 10h.01M11 10h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> IA no primeiro contato</div>
+        <div class="strip__item"><svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 15.5c.8-2.8 3-4.2 5.5-4.2s4.7 1.4 5.5 4.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Humano quando é necessário</div>
+      </div>
+    </div>
+
+    <!-- O WEBINAR -->
+    <section id="webinar">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O webinar</span>
+          <h2>O que você vai ver neste webinar</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Onde a operação travava</h3>
+            <p>Por que um volume alto de comentários, uma equipe sobrecarregada e os picos de Páscoa levaram o SLA a 8 horas.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>As três mudanças que derrubaram o SLA</h3>
+            <p>IA no primeiro contato, IA preparada para cada contexto e humano quando é necessário. O que mudou em cada etapa da jornada.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Onde a Cxpress entra</h3>
+            <p>Como canais, agentes de IA, atendimento humano e gestão em tempo real passam a funcionar no mesmo painel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- O DESAFIO -->
+    <section class="off" id="desafio">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O desafio</span>
+          <h2>Na Páscoa de 2024, só 34% das interações recebiam resposta</h2>
+          <p>Foram mais de 100 mil comentários no Instagram e no Facebook. A equipe conseguiu responder manualmente pouco mais de um terço.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card card--risco reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <span class="card__k">Volume</span>
+            <h3>Comentários em explosão</h3>
+            <p>Comentários públicos chegando todos os dias, com picos que a equipe não conseguia acompanhar.</p>
+          </div>
+          <div class="card card--risco reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <span class="card__k">Equipe</span>
+            <h3>Gente presa no repetitivo</h3>
+            <p>Time sobrecarregado e preso em tarefas operacionais, sem cobertura 24/7.</p>
+          </div>
+          <div class="card card--risco reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <span class="card__k">Negócio</span>
+            <h3>Vendas que ficavam para trás</h3>
+            <p>Dúvidas de clientes sem retorno, dificuldade em manter o tom de voz e tempo de resposta alto nos momentos críticos.</p>
+          </div>
+        </div>
+        <p class="sec-fecho reveal">O gargalo não estava na velocidade das pessoas. Estava no caminho que cada conversa fazia dentro da operação.</p>
+      </div>
+    </section>
+
+    <!-- AS MUDANCAS -->
+    <section id="mudancas">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O que mudou</span>
+          <h2>Três mudanças conectadas na jornada de atendimento</h2>
+          <p>Automatizar o previsível. Preservar o humano onde ele gera mais valor.</p>
+        </div>
+        <div class="trocas">
+          <div class="troca reveal">
+            <span class="troca__n" aria-hidden="true">1</span>
+            <div><h3>IA no primeiro contato</h3><p>Agentes de IA assumem o primeiro atendimento e respondem as dúvidas recorrentes na hora. A equipe deixa de receber tudo o que chega.</p></div>
+          </div>
+          <div class="troca reveal">
+            <span class="troca__n" aria-hidden="true">2</span>
+            <div><h3>IA preparada para cada contexto</h3><p>Os agentes recebem o conhecimento e a linguagem da marca, regras de atuação e critérios claros sobre o que podem ou não resolver.</p></div>
+          </div>
+          <div class="troca reveal">
+            <span class="troca__n" aria-hidden="true">3</span>
+            <div><h3>Humano quando é necessário</h3><p>A IA identifica quando não deve continuar e passa o caso complexo para a equipe, sem quebrar a jornada do cliente.</p></div>
+          </div>
+          <div class="troca reveal">
+            <span class="troca__n" aria-hidden="true">4</span>
+            <div><h3>Tudo num painel só</h3><p>Na Cxpress, os canais ficam no mesmo lugar, com o histórico de cada cliente e SLA, fila e desempenho por agente em tempo real.</p>
+              <div class="canais">
+                <span class="canal">WhatsApp</span>
+                <span class="canal">Instagram</span>
+                <span class="canal">E-mail</span>
+                <span class="canal">Telefone</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADO -->
+    <section class="resultado" id="resultado">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O resultado</span>
+          <h2>Mais volume, respostas mais rápidas</h2>
+        </div>
+        <div class="stats">
+          <div class="stat reveal"><span class="stat__n">8h → 26min</span><span class="stat__l">SLA de atendimento</span></div>
+          <div class="stat reveal"><span class="stat__n">72%</span><span class="stat__l">Taxa de resposta na Páscoa de 2026 (era 34% em 2024)</span></div>
+          <div class="stat reveal"><span class="stat__n">163 mil+</span><span class="stat__l">Respostas para mais de 223 mil comentários</span></div>
+          <div class="stat reveal"><span class="stat__n">4 canais</span><span class="stat__l">Na operação: Facebook, Instagram, Google e TikTok</span></div>
+        </div>
+        <p class="sec-fecho reveal">A Cacau Show saiu de uma operação reativa para uma gestão mais ágil, centralizada e controlada.</p>
+      </div>
+    </section>
+
+    <!-- INSCRICAO (form placeholder) -->
+    <section class="agendar" id="inscricao">
+      <div class="wrap">
+        <div class="agendar__grid">
+          <div class="reveal">
+            <span class="eyebrow">Próximo passo</span>
+            <h2>Agende uma demonstração gratuita da Cxpress</h2>
+            <p class="agendar__kicker">Canais, agentes de IA e gestão em tempo real</p>
+            <p class="agendar__sub">Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.</p>
+            <p class="requisito">
+              <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Mais volume, sem aumentar a equipe.
+            </p>
+          </div>
+
+          <!-- FORM PLACEHOLDER: substituir este form mock pelo embed real (Jotform/RD Station) via /lp-integrar-form.
+               Configurar no formulário o redirect pós-envio para a página de obrigado (a definir). -->
+          <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
+            <p class="form__ph">Formulário provisório. Vai ser substituído pelo formulário real (com redirecionamento para a página de obrigado).</p>
+            <div class="campo">
+              <label for="nome">Nome<span class="req" aria-hidden="true">*</span></label>
+              <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
+            </div>
+            <div class="campo">
+              <label for="email">E-mail corporativo<span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" placeholder="nome@suaempresa.com.br" autocomplete="email" required>
+            </div>
+            <div class="campo">
+              <label for="empresa">Empresa<span class="req" aria-hidden="true">*</span></label>
+              <input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" autocomplete="organization" required>
+            </div>
+            <div class="campo">
+              <label for="celular">Celular / WhatsApp<span class="req" aria-hidden="true">*</span></label>
+              <input id="celular" name="celular" type="tel" placeholder="DDD + número" autocomplete="tel" required>
+            </div>
+            <button class="btn" type="submit">Agendar demonstração gratuita</button>
+            <p class="form__nota">Seus dados servem apenas para agendar a demonstração.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FECHO -->
+    <section class="fecho">
+      <div class="fecho__inner">
+        <blockquote>Prepare sua operação para crescer sem deixar o SLA sair do controle.</blockquote>
+        <p class="fecho__sub">Assista ao webinar e agende sua demonstração gratuita da Cxpress.</p>
+        <a class="btn" href="#inscricao">Agendar uma demonstração gratuita
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="https://home.cxpress.io" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
+        <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="32">
+      </a>
+      <p>A Cxpress é um produto Elife. © 2026<br>Termos de uso · Política de privacidade</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+      if(!('IntersectionObserver' in window)){ showAll(); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+      els.forEach(function(el){ io.observe(el); });
+      setTimeout(showAll, 2500);
+    })();
+  </script>
+</body>
+</html>
