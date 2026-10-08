@@ -2,6 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/assistente-tami",
+      "destination": "/agente-tami",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

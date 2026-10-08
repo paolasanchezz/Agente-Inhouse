@@ -294,7 +294,7 @@ Em espanhol, marcas tecnologicas LATAM geralmente vao **sem artigo**: "Buzzcreat
 - Aplicar o gradiente em areas pequenas (perde a transicao e vira borrao)
 - Texto pequeno em laranja sobre branco (contraste insuficiente — usar so em texto bold large)
 - Combinar as 4 cores principais como blocos grandes simultaneos — manter 2-3 por composicao
-- Misturar a paleta com a identidade do Buzzmonitor
+- Misturar a paleta com a identidade do Buzzmonitor (excecao autorizada: sub-marca Tami, ver `agente-tami/BRANDBOOK.md` §9)
 - Omitir a tagline em materiais oficiais (exceto favicon/avatar/app icon)
 - Distorcer, recortar ou separar o simbolo do papagaio do wordmark
 - Substituir DM Sans/HK Grotesk por outras fontes geometricas "parecidas" (Poppins, Montserrat, etc.)
@@ -303,6 +303,7 @@ Em espanhol, marcas tecnologicas LATAM geralmente vao **sem artigo**: "Buzzcreat
 
 ## Referencia Cruzada
 
+- **Sub-marca Tami (BETA)**: agente de real-time marketing com escuta do Buzzmonitor: `brand/buzzcreators/agente-tami/BRANDBOOK.md`
 - Tokens de design (machine-readable): `brand/buzzcreators/tokens.json`
 - Regras de composicao para AI: `brand/buzzcreators/generation-rules.json`
 - Manifest de marca (identidade estruturada): `brand/buzzcreators/brand-manifest.json`

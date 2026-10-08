@@ -1,14 +1,22 @@
-# LP Buzzcreators: assistente-tami
+# LP Buzzcreators: agente-tami
 
 **Gerado em:** 2026-10-07
 **Copy-fonte:** `copy.txt` (estruturada no padrão `/lp-preparar`)
-**Briefing-fonte:** PDF "Tami, MVP multi-agente de Real-Time Marketing" (9 p.) + `brand/buzzcreators/assistente-tami/BRANDBOOK.md` (BETA)
-**Região:** brasil (PT-BR) · **Domínio previsto:** `content.buzzmonitor.com/assistente-tami` (guarda-chuva migrado para o CI, mesmo destino da `encontrar-creators`)
+**Briefing-fonte:** PDF "Tami, MVP multi-agente de Real-Time Marketing" (9 p.) + `brand/buzzcreators/agente-tami/BRANDBOOK.md` (BETA)
+**Região:** brasil (PT-BR) · **Domínio:** `content.buzzmonitor.com/agente-tami` (guarda-chuva migrado para o CI, mesmo destino da `encontrar-creators`). A URL antiga `/assistente-tami` responde 308 para a nova.
 **Funil:** MoFu (produto em beta, captação de interesse qualificado). Formulário na última seção (GUIDELINES §10), com CTA do hero rolando até ele.
+
+## Renomeação: "assistente" → "agente" (2026-10-08)
+
+Pedido do Victor: o descritor do produto passou de "assistente" para "agente" na LP e na base de conhecimento (BRANDBOOK do Tami e pesquisa de mercado). Mudaram junto:
+
+- **Slug:** `assistente-tami` → `agente-tami` (pasta, manifesto do guarda-chuva e URLs de canonical, OG e JSON-LD).
+- **Redirect:** `/assistente-tami` → `/agente-tami` com 308 permanente, no `redirects` de `landing-pages/dominios/content-buzzmonitor-com/vercel.json`. Link que já circulou continua funcionando, com a query string (UTMs) preservada.
+- **OG:** `assets/og-agente-tami.png`, regerada do `og-template-agente-tami.html` com o texto novo.
 
 ## Identidade: sistema "Aurora" (v2, 2026-10-07)
 
-Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, laranja e vermelho, mantendo o Tami com notebook. A versão anterior (editorial clara, "Sinal ao vivo") ficou guardada fora do repo e pode ser recuperada se precisar. Regras completas em `brand/buzzcreators/assistente-tami/BRANDBOOK.md` §9.
+Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, laranja e vermelho, mantendo o Tami com notebook. A versão anterior (editorial clara, "Sinal ao vivo") ficou guardada fora do repo e pode ser recuperada se precisar. Regras completas em `brand/buzzcreators/agente-tami/BRANDBOOK.md` §9.
 
 - **Aurora (v3, sem círculos):** roxo `#3a1652`/`#6a3895`, laranja `#ff8119` e vermelho `#F05A28`/`#D2401C` sobre a base `#1d0a2b`, em duas camadas:
   - uma malha de faixas diagonais que desliza;
@@ -43,7 +51,7 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 ## Decisões de copy
 
-- **Hero pela oferta (override da GUIDELINES §3, pedido do Victor em 2026-10-07):** H1 "O assistente de marketing em tempo real que trabalha 24/7 para a sua marca." O lead descreve o que o Tami faz (encontra, seleciona, contata, negocia; o time aprova e libera o pagamento). A dor abre a seção 2 ("O problema"). O H1 anterior, que abria pela dor, ficou registrado no BRANDBOOK como abertura para anúncio ToFu.
+- **Hero pela oferta (override da GUIDELINES §3, pedido do Victor em 2026-10-07):** H1 "O agente de marketing em tempo real que trabalha 24/7 para a sua marca." O lead descreve o que o Tami faz (encontra, seleciona, contata, negocia; o time aprova e libera o pagamento). A dor abre a seção 2 ("O problema"). O H1 anterior, que abria pela dor, ficou registrado no BRANDBOOK como abertura para anúncio ToFu.
 - **Bordão:** "Do post ao contrato", tirado do próprio PDF (p. 2). É H2 da seção 3 e headline da OG.
 - **Hero mock:** a linha "Contato · mensagem enviada citando o post" deixou de dizer "DM enviada" de propósito. Pela API oficial da Meta, empresa não inicia DM no Instagram nem manda WhatsApp sem opt-in (BRANDBOOK do Tami §10, P1). A etapa 3 continua listando os canais do PDF; **revisar se o produto mudar os canais**.
 - **Anti-IA:**
@@ -57,12 +65,12 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 - **Âncoras sem `#` na URL** (pedido do Victor, 2026-10-07): os botões e o skip-link são `<a href="#secao">`, mas um script intercepta o clique, rola até a seção (suave, ou direto com reduced motion) e move o foco para ela sem gravar o `#` no endereço. O `href` fica no HTML de propósito, para funcionar sem JavaScript e no clique do meio.
 - **GTM:** `GTM-WFJVK858`, o container aprovado para `content.buzzmonitor.com`, o mesmo da `encontrar-creators`. `brand/buzzcreators/tracking.json` continua `null`. O gate do CI só avisa e não bloqueia.
-- **Form:** mock (`action="#"`) com os campos nome, e-mail corporativo, empresa, cargo, marca/categoria e budget mensal (select). Integrar via `/lp-integrar-form buzzcreators/assistente-tami "<snippet>"` depois de aprovado.
+- **Form:** mock (`action="#"`) com os campos nome, e-mail corporativo, empresa, cargo, marca/categoria e budget mensal (select). Integrar via `/lp-integrar-form buzzcreators/agente-tami "<snippet>"` depois de aprovado.
 - **SEO:**
   - description (153 caracteres), 10 tags OG, 4 de Twitter.
   - JSON-LD com Organization + WebPage + SoftwareApplication "Tami".
   - Placeholders `{{DOMAIN}}` e `{{OG_IMAGE_PATH}}` são resolvidos no build.
-- **OG:** `assets/og-assistente-tami.png` (1200×630), gerada de `og-template-assistente-tami.html` com Playwright, já no visual aurora.
+- **OG:** `assets/og-agente-tami.png` (1200×630), gerada de `og-template-agente-tami.html` com Playwright, já no visual aurora.
 
 ## Validações (2026-10-07)
 
@@ -80,10 +88,10 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 - [x] Copy estruturada (`copy.txt`)
 - [x] HTML gerado e revisado localmente
-- [x] OG image 1200×630 → `assets/og-assistente-tami.png`
+- [x] OG image 1200×630 → `assets/og-agente-tami.png`
 - [ ] Validar pendência P1 (canais do 1º contato) com Produto e Jurídico **antes de publicar**
-- [ ] Formulário real: `/lp-integrar-form buzzcreators/assistente-tami "<snippet>"`
-- [ ] Publicar: `/lp-publicar buzzcreators assistente-tami content.buzzmonitor.com` (entra no `manifest.json` do guarda-chuva via PR; o CI deploya)
+- [ ] Formulário real: `/lp-integrar-form buzzcreators/agente-tami "<snippet>"`
+- [x] Publicada em `content.buzzmonitor.com` (2026-10-07 como `/assistente-tami`; desde 2026-10-08 em `/agente-tami`, com 308 da URL antiga)
 
 ## Assets referenciados
 
@@ -91,4 +99,4 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 - `../../brand/buzzcreators/assets/logos/logo-color.png` (header ao rolar e footer)
 - `../../brand/buzzcreators/assets/logos/logo-icon.png` (favicon)
 - `./assets/tami.webp` + `./assets/tami.png` (hero e seção Beta)
-- `./assets/og-assistente-tami.png` (OG)
+- `./assets/og-agente-tami.png` (OG)
