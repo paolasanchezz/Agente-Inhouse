@@ -40,8 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/cxpress", "https://www.instagram.com/cxpress.io/"] },
-      { "@type": "WebPage", "@id": "https://{{DOMAIN}}/webinar-concierge-br#webpage", "url": "https://{{DOMAIN}}/webinar-concierge-br", "name": "Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "Webinar com caso real: como a Cacau Show levou o SLA de 8 horas para 26 minutos com agentes de IA no primeiro contato." },
-      { "@type": "VideoObject", "name": "Como reduzimos o SLA de 8 horas para 26 minutos", "description": "Caso real da Cacau Show: como a operação ganhou escala no atendimento das redes sociais.", "inLanguage": "pt-BR", "url": "https://{{DOMAIN}}/webinar-concierge-br", "embedUrl": "https://www.youtube.com/embed/4U8bxjeUzDk", "thumbnailUrl": "https://i.ytimg.com/vi/4U8bxjeUzDk/hqdefault.jpg", "publisher": { "@id": "https://home.cxpress.io#organization" } }
+      { "@type": "WebPage", "@id": "https://{{DOMAIN}}/webinar-concierge-br#webpage", "url": "https://{{DOMAIN}}/webinar-concierge-br", "name": "Como reduzimos o SLA de 8 horas para 26 minutos | Webinar Cxpress", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "Webinar com caso real: como a Cacau Show levou o SLA de 8 horas para 26 minutos com agentes de IA no primeiro contato." }
     ]
   }
   </script>
@@ -136,39 +135,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hd__cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(33,204,120,.28)}
 
-    /* ===== Hero (VSL, centrado) ===== */
-    .hero{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:0}
-    .hero::before{
-      content:"";position:absolute;width:900px;height:700px;top:-24%;right:-8%;
-      background:radial-gradient(ellipse 900px 500px at 70% 30%, #333C86 0%, transparent 62%);
-      animation:glowDrift 18s ease-in-out infinite alternate;pointer-events:none;
+    /* ===== Hero (2 colunas, formato webinar-canales-unificados) ===== */
+    .hero{position:relative;overflow:hidden;background:var(--white);padding:64px 0 112px}
+    .hero__grid{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1.08fr .92fr;gap:72px;align-items:center}
+    .hero__kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.01em;color:#fff;background:var(--primary-dark);padding:8px 16px;border-radius:9999px;margin-bottom:28px}
+    .hero__kicker .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0;animation:pulse 2.4s cubic-bezier(.4,0,.6,1) infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+    .hero h1{font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:-.03em;margin-bottom:22px;isolation:isolate}
+    .hero h1 .mark{position:relative;display:inline-block}
+    .hero h1 .mark::after{content:"";position:absolute;left:-2px;right:-2px;bottom:4px;height:14px;background:var(--accent);opacity:.3;z-index:-1;border-radius:3px}
+    .hero__body{font-size:19px;color:var(--neutral-700);max-width:580px;margin-bottom:24px;line-height:1.6}
+    .hero__meta{font-size:15px;color:var(--neutral-700);margin-bottom:28px}
+    .hero__meta strong{color:var(--primary-dark);font-weight:700}
+    .btn--dark{background:var(--primary-dark);font-size:15px;letter-spacing:.06em;text-transform:uppercase;padding:17px 30px}
+    .btn--dark:hover{background:#171b40;box-shadow:0 16px 32px -8px rgba(35,41,96,.4)}
+    .hero__visual{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+    .hero__media{position:relative;z-index:2;width:100%;max-width:340px;padding:12px 0}
+    .hero__media img{width:100%;height:auto}
+    .decor{position:absolute;border-radius:9999px;z-index:0}
+    .decor-1{width:110px;height:260px;background:var(--primary-lighter);top:10px;left:-10px;transform:rotate(-14deg)}
+    .decor-2{width:56px;height:170px;background:var(--accent);top:-30px;right:30px;transform:rotate(20deg)}
+    .decor-3{width:32px;height:96px;background:var(--primary);bottom:40px;right:-6px;transform:rotate(-8deg)}
+    .hero__form{position:relative;z-index:2;width:100%;max-width:420px;background:#fff;border-radius:20px;padding:28px 26px 22px;border:1px solid rgba(35,41,96,.06);box-shadow:0 1px 2px rgba(35,41,96,.05),0 30px 60px -10px rgba(35,41,96,.18),0 50px 100px -20px rgba(35,41,96,.12);scroll-margin-top:96px}
+    .hero__form-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid #ececec}
+    .hero__form-title{font-size:22px;letter-spacing:-.015em;line-height:1.18}
+    .hero__form-badge{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);background:rgba(239,134,60,.12);padding:6px 12px;border-radius:9999px;white-space:nowrap;flex-shrink:0}
+    @media (max-width:920px){
+      .hero{padding:48px 0 80px}
+      .hero__grid{grid-template-columns:minmax(0,1fr);gap:40px}
+      .hero__form{max-width:100%;padding:24px 20px 20px}
+      .hero__form-title{font-size:20px}
+      .decor-1,.decor-2,.decor-3{display:none}
     }
-    .hero::after{
-      content:"";position:absolute;width:520px;height:520px;left:-14%;bottom:-24%;border-radius:50%;
-      background:radial-gradient(circle, rgba(241,169,8,.16) 0%, transparent 70%);
-      animation:glowDrift 24s ease-in-out infinite alternate-reverse;pointer-events:none;
-    }
-    .hero__inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:72px 32px 84px;text-align:center}
-    .hero .eyebrow{color:var(--warning);margin-bottom:18px}
-    .hero h1{font-size:clamp(30px,4.4vw,50px);color:#fff;max-width:20ch;margin:0 auto}
-    .hero h1 mark{background:none;color:var(--warning)}
-    .hero__lead{margin:22px auto 0;font-size:clamp(18px,2vw,20px);line-height:1.6;color:var(--primary-lighter);max-width:56ch}
-    .hero__ctas{margin-top:30px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center}
-    .hero__note{font-size:15px;color:var(--primary-lighter)}
-    @media (prefers-reduced-motion:reduce){.hero::before,.hero::after,.fecho::before{animation:none}}
-
-    /* ===== Video (placeholder swappable) ===== */
-    .vsl-video{
-      position:relative;max-width:780px;margin:34px auto 0;aspect-ratio:16/9;
-      border-radius:16px;overflow:hidden;background:#000;box-shadow:var(--shadow-deep);
-    }
-    .vsl-video iframe,.vsl-video video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-    .vsl-video__ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(150deg,#333C86,#232960)}
-    .vsl-video__play{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:grid;place-items:center}
-    .vsl-video__play svg{margin-left:4px}
-    .vsl-video__txt{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary-lighter)}
-    .vsl-byline{margin-top:18px;font-size:16px;color:var(--primary-lighter)}
-    .vsl-byline strong{color:#fff;font-weight:700}
+    @media (max-width:520px){.btn--dark{font-size:14px;padding:15px 22px}}
+    @media (prefers-reduced-motion:reduce){.hero__kicker .dot,.fecho::before{animation:none}}
 
     /* ===== Faixa ===== */
     .strip{background:#1B2050;padding:24px 0;border-top:1px solid rgba(215,226,255,.12)}
@@ -207,6 +207,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ===== Inscricao ===== */
     .agendar{background:var(--neutral-100)}
+    .agendar__grid--solo{grid-template-columns:minmax(0,1fr)!important;max-width:760px}
+    .agendar .btn{margin-top:28px}
     .agendar__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:56px;align-items:start}
     .agendar .eyebrow{color:var(--primary)}
     .agendar h2{font-size:clamp(28px,3.4vw,38px);margin-top:16px}
@@ -247,11 +249,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:640px){
       body{font-size:17px}
       section{padding:76px 0}
-      .wrap,.hd,.footer__inner,.fecho__inner,.strip__inner{padding-left:24px;padding-right:24px}
-      .hero__inner{padding:52px 24px 68px}
+      .wrap,.hd,.footer__inner,.fecho__inner,.strip__inner,.hero__grid{padding-left:24px;padding-right:24px}
       .fecho{padding:76px 0}
       .grid-3{grid-template-columns:minmax(0,1fr)}
-      .hero .eyebrow{line-height:1.5}
       .sec-head{margin-bottom:44px}
       .form{padding:24px}
       .card p,.troca p{font-size:17px}
@@ -261,9 +261,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
-  .hero__note{ font-size:16px; }
-  .vsl-byline{ font-size:16px; }
-  .vsl-video__txt{ font-size:13px; }
   .strip__item{ font-size:16px; }
   .card__k{ font-size:14px; }
   .canal{ font-size:13px; }
@@ -311,29 +308,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://home.cxpress.io" class="hd__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
         <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
       </a>
-      <a class="hd__cta" href="#inscricao">Agendar demonstração gratuita</a>
+      <a class="hd__cta" href="#form">Agendar demonstração gratuita</a>
     </div>
   </header>
 
   <main id="conteudo">
 
-    <!-- HERO VSL -->
-    <section class="hero">
-      <div class="hero__inner">
-        <span class="eyebrow">Webinar · Caso real · Cxpress</span>
-        <h1>Como a Cacau Show reduziu o SLA de 8 horas para <mark>26&nbsp;minutos</mark></h1>
-        <p class="hero__lead">Veja como a operação ganhou escala no atendimento das redes sociais.</p>
-
-        <div class="vsl-video reveal">
-          <iframe src="https://www.youtube.com/embed/4U8bxjeUzDk?rel=0" title="Como reduzimos o SLA de 8 horas para 26 minutos · Webinar Cxpress" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-        </div>
-
-        <p class="vsl-byline">Apresentado por <strong>Luiz Fantini</strong>, Cxpress</p>
-
-        <div class="hero__ctas">
-          <a class="btn" href="#inscricao">Agendar uma demonstração gratuita
+    <!-- HERO (formato webinar-canales-unificados) -->
+    <section class="hero" id="top">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <span class="hero__kicker"><span class="dot" aria-hidden="true"></span>Webinar · Caso real · Cxpress</span>
+          <h1>Como a Cacau Show reduziu o SLA de 8 horas para <span class="mark">26&nbsp;minutos</span></h1>
+          <p class="hero__body">Veja como a operação ganhou escala no atendimento das redes sociais.</p>
+          <p class="hero__meta">Apresentado por <strong>Luiz Fantini</strong>, Cxpress</p>
+          <a class="btn btn--dark" href="#form">Agendar uma demonstração gratuita
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
+        </div>
+
+        <div class="hero__visual">
+          <span class="decor decor-1" aria-hidden="true"></span>
+          <span class="decor decor-2" aria-hidden="true"></span>
+          <span class="decor decor-3" aria-hidden="true"></span>
+          <div class="hero__media">
+            <img src="./assets/canais-icones.png" alt="Ícones dos canais de atendimento: telefone, Facebook, WhatsApp, Instagram, e-mail e Messenger" width="1822" height="272" loading="eager">
+          </div>
+          <aside class="hero__form" id="form" aria-label="Formulário para agendar uma demonstração">
+            <div class="hero__form-head">
+              <h2 class="hero__form-title">Agende uma demonstração</h2>
+              <span class="hero__form-badge">Gratuita</span>
+            </div>
+            <div class="jotform-embed">
+              <script type="text/javascript" src="https://form.jotform.com/jsform/261027639617663"></script>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -461,20 +470,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- INSCRICAO (form placeholder) -->
+    <!-- INSCRICAO (o form fica no hero, #form) -->
     <section class="agendar" id="inscricao">
       <div class="wrap">
-        <div class="agendar__grid">
+        <div class="agendar__grid agendar__grid--solo">
           <div class="reveal">
             <span class="eyebrow">Próximo passo</span>
             <h2>Agende uma demonstração gratuita da Cxpress</h2>
             <p class="agendar__kicker">Canais, agentes de IA e gestão em tempo real</p>
             <p class="agendar__sub">Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.</p>
+            <a class="btn" href="#form">Agendar uma demonstração gratuita
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
 
-          <div class="jotform-embed reveal">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/261027639617663"></script>
-          </div>
         </div>
       </div>
     </section>
@@ -484,7 +493,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="fecho__inner">
         <blockquote>Prepare sua operação para crescer sem deixar o SLA sair do controle.</blockquote>
         <p class="fecho__sub">Assista ao webinar e agende sua demonstração gratuita da Cxpress.</p>
-        <a class="btn" href="#inscricao">Agendar uma demonstração gratuita
+        <a class="btn" href="#form">Agendar uma demonstração gratuita
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
