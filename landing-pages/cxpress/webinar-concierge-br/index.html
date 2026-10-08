@@ -290,6 +290,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:640px){.stats{grid-template-columns:minmax(0,1fr)}}
     @media (prefers-reduced-motion:reduce){.resultado::before{animation:none}}
     @media (max-width:480px){.hd__logo img{height:28px}.hd__cta{white-space:normal;max-width:170px;text-align:center;line-height:1.25;font-size:14px;padding:9px 14px}}
+
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: o provedor ja vem com card proprio.
+     A regra do iframe garante que, se o provedor renderizar via iframe, ele
+     ocupa 100% da largura sem borda. */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -466,29 +472,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="agendar__sub">Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.</p>
           </div>
 
-          <!-- FORM PLACEHOLDER: substituir este form mock pelo embed real (Jotform/RD Station) via /lp-integrar-form.
-               Configurar no formulário o redirect pós-envio para a página de obrigado (a definir). -->
-          <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
-            <p class="form__ph">Formulário provisório. Vai ser substituído pelo formulário real (com redirecionamento para a página de obrigado).</p>
-            <div class="campo">
-              <label for="nome">Nome<span class="req" aria-hidden="true">*</span></label>
-              <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
-            </div>
-            <div class="campo">
-              <label for="email">E-mail corporativo<span class="req" aria-hidden="true">*</span></label>
-              <input id="email" name="email" type="email" placeholder="nome@suaempresa.com.br" autocomplete="email" required>
-            </div>
-            <div class="campo">
-              <label for="empresa">Empresa<span class="req" aria-hidden="true">*</span></label>
-              <input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" autocomplete="organization" required>
-            </div>
-            <div class="campo">
-              <label for="celular">Celular / WhatsApp<span class="req" aria-hidden="true">*</span></label>
-              <input id="celular" name="celular" type="tel" placeholder="DDD + número" autocomplete="tel" required>
-            </div>
-            <button class="btn" type="submit">Agendar demonstração gratuita</button>
-            <p class="form__nota">Seus dados servem apenas para agendar a demonstração.</p>
-          </form>
+          <div class="jotform-embed reveal">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+          </div>
         </div>
       </div>
     </section>

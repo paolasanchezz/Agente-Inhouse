@@ -4,6 +4,7 @@
 **Copy-fonte:** `copy.txt` (output de /lp-preparar, a partir do deck "Webinar perpétuo · Como reduzimos o SLA de 8 horas para 26 minutos")
 **Base de design:** clone visual de `landing-pages/cxpress/webinar-whatsapp-ia-pt` (VSL centrado), adaptado para PT-BR + secao Resultado nova.
 **Apresentador:** Luiz Fantini, New Business da Cxpress
+**Form provider:** Jotform 261033482583658 (2026-10-08)
 **Regiao:** brasil (pt-BR) · GTM `GTM-T4XDWHL3`
 
 ## Estrutura
@@ -24,8 +25,8 @@
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-webinar-concierge-br.png` (template `assets/og-template.html`, render `assets/render_og.py`)
 - [x] Revisao — ver `REVISAO.md`
-- [ ] Video do webinar — trocar o `div.vsl-video__ph` pelo embed real
-- [ ] Formulario integrado — rodar `/lp-integrar-form cxpress/webinar-concierge-br [snippet]` (redirect pos-envio: pagina de obrigado a definir)
+- [x] Video do webinar (YouTube 4U8bxjeUzDk)
+- [x] Formulario integrado
 - [ ] Publicado — rodar `/lp-publicar cxpress webinar-concierge-br content.cxpress.io`
 
 ## Assets referenciados
