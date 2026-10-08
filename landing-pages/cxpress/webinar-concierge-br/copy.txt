@@ -2,7 +2,7 @@
 OVERLINE: Webinar · Caso real · Cxpress
 H1: Como a Cacau Show reduziu o SLA de 8 horas para 26 minutos
 SUB: Veja como a operação ganhou escala no atendimento das redes sociais.
-BODY: [VIDEO] Vídeo do webinar · em breve
+BODY: [VIDEO] https://youtu.be/4U8bxjeUzDk
 LABEL: Apresentado por Luiz Fantini, Cxpress
 CTA: Agendar uma demonstração gratuita
 
