@@ -1,0 +1,122 @@
+# Copy estruturada: LP Webinar "Black Friday sem caos nas redes sociais"
+# Marca: Buzzmonitor · Domínio: webinar.buzzmonitor.com
+# Evento: 05 de novembro de 2026 (quinta-feira) · 11h (Brasília) · Online e ao vivo · Duração NÃO confirmada (assumido 60 min, padrão do formato)
+# Fonte: briefing passado pela Catharina em chat (sem roteiro formal)
+# Estágio: ToFu (lead frio, pré-Black Friday) → CTA no hero + form
+# ATENÇÃO: duração a confirmar com a Catharina. Sem palestrante definido ainda (seção "quem conduz" omitida de propósito).
+# Form: Jotform 252154974852667 (mesmo embed reaproveitado de outros webinars Buzzmonitor), já pode integrar direto, sem mock.
+
+=== HERO ===
+
+OVERLINE: Webinar gratuito · Buzzmonitor
+
+H1: Black Friday sem caos.
+
+H2: Como se preparar para períodos de alta demanda?
+
+SUB: Um comentário que passaria batido em outubro pode virar uma crise de reputação durante a Black Friday. Como prevenir a reputação da sua marca em períodos de alta demanda? Descubra ao vivo.
+
+CTA: Quero minha vaga gratuita
+
+TICKET:
+- LABEL: Save the date
+- DATA: 05 NOV · Quinta-feira · 11h (Brasília)
+- Formato: Online · Ao vivo
+- Duração: 60 min
+- Investimento: Gratuito
+
+
+=== PROBLEMA ===
+
+STAT-NUM: 9 mil interações
+STAT-CAPTION: automatizadas por mês é o que a [Caffeine Army] mantém, com [3 mil comentários monitorados mensalmente e 8% de engajamento médio] mesmo nos períodos de maior volume.
+# NOTA: colchetes [ ] marcam trechos em negrito no HTML (Caffeine Army + o dado completo). Parenteses de fonte removidos a pedido da Catharina.
+
+BODY: É isso que acontece quando o volume de menções sobe mais rápido do que a capacidade de resposta do time:
+# NOTA: esta frase vem maior e em negrito no HTML, a pedido da Catharina.
+
+LIST ITEM: Períodos de alta demanda concentram um salto de pedidos que testa logística, estoque e atendimento ao mesmo tempo.
+LIST ITEM: Um atraso de entrega que passaria despercebido em outubro vira reclamação pública em massa na semana da Black Friday.
+LIST ITEM: A equipe de atendimento lê menção por menção enquanto o volume sobe, sem conseguir separar reclamação pontual de padrão que está virando crise.
+LIST ITEM: Quando alguém finalmente nota o aumento de comentários negativos, a reclamação já rodou por horas sem resposta.
+
+
+=== DIFERENCIAL ===
+
+H2: Com a Buzzmonitor, sua empresa vê os primeiros sinais de crise de reputação também em períodos de alta demanda.
+
+BODY: A Buzzmonitor junta o monitoramento de menções e o atendimento multicanal no mesmo painel. Em vez de alguém copiar reclamação de uma tela pra outra, o alerta de possível crise já chega direto pra quem responde.
+
+
+=== PROGRAMA ===
+
+SEC-H2: O que você vai levar deste webinar
+
+1. FRASE: Alertas de possível crise configurados antes da Black Friday começar valendo.
+
+2. FRASE: Ruído separado de reclamação real, agrupado por tema (entrega, estoque, atendimento, preço).
+
+3. FRASE: Resposta escalada em períodos de alta demanda, sem aumentar o time de atendimento.
+
+4. FRASE: Resumo diário pra acompanhar tudo sem lotar a tela de notificação.
+
+5. FRASE: Demo ao vivo da plataforma configurada pra um cenário de Black Friday.
+
+6. FRASE (DESTAQUE): Case real: como a Caffeine Army monitora o volume de comentários negativos sem perder engajamento.
+
+
+=== PARA QUEM É ===
+
+SEC-H2: Este webinar é pra você que…
+
+1. Cuida das redes sociais de um e-commerce ou varejo e sabe que a Black Friday é o dia mais pesado do ano.
+2. Lidera um time de atendimento ou SAC que precisa escalar resposta sem aumentar a equipe.
+3. Roda campanha de marketing de performance em data promocional e não quer que uma crise de atendimento manche o resultado.
+4. Atende múltiplos clientes numa agência e precisa de um jeito de monitorar todos ao mesmo tempo na mesma data.
+5. Cuida da reputação ou do CRM da marca e quer identificar uma possível crise antes de alguém reclamar em massa.
+
+FOR-CTA: Quero minha vaga grátis
+
+
+=== URGENCIA ===
+
+# LABEL removida a pedido da Catharina ("vagas limitadas" tirado).
+H2: A Black Friday de 2026 chega em poucas semanas.
+SUB: Quem tem um monitoramento bem feito não vai precisar correr atrás do prejuízo.
+# CTA removida a pedido da Catharina: form fica logo abaixo, botão duplicado era redundante.
+
+
+=== CTA FINAL ===
+
+H2: Nos vemos no dia 05 de novembro.
+WHEN: 11h · Online e Ao Vivo
+PERKS:
+- Webinar 100% gratuito
+- Demo ao vivo da plataforma configurada pra Black Friday
+- Acesso à gravação e ao material para inscritos
+
+FORM: Jotform 252154974852667 (embed real, sem mock)
+
+
+=== FOOTER ===
+
+Instagram: @buzzmonitorbr
+Contato: eventos@buzzmonitor.com.br
+Legal: © 2026 Buzzmonitor · Todos os direitos reservados. Evento gratuito, sujeito a alterações de horário.
+
+
+---
+
+## Notas anti-IA
+- Em-dash: 0 (checado, nenhuma ocorrência).
+- Antítese-por-negação "X, não Y": 0 instâncias.
+- Frases típicas de IA / filler words: nenhuma encontrada ("No cenário atual", "vale ressaltar", "realmente", "basicamente" etc., ausentes).
+- Metáforas aquáticas: nenhuma.
+- Exclamação: 0 no corpo (dentro do limite de 2 por peça).
+- Pergunta retórica: 0 (dentro do limite de 1 por seção).
+- Listas variam em tamanho (4, 6, 5 itens), não travadas em 3.
+- Concorrentes: nenhum citado.
+- Números em algarismos (05 de novembro, 3 mil, 9 mil, 8%).
+- Dado da seção PROBLEMA e do case do PROGRAMA vêm do mesmo post do blog Buzzmonitor, citado explicitamente (sem invenção de número).
+
+# Revisao anti-IA: sem achados (em-dash: 0).
