@@ -338,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hero__form-head">
               <h2 class="hero__form-title">Inscreva-se para assistir ao conteúdo</h2>
             </div>
-            <div class="jotform-embed">
+            <div class="jotform-embed" data-perpetuo-next="/webinar-concierge-br-video">
               <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
             </div>
           </aside>
@@ -478,6 +478,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <script>
+    (function(){
+      // Destino pos-envio desta LP (landing-pages/GUIA-webinar-perpetuo-destino.md §2.1)
+      var slot = document.querySelector('[data-perpetuo-next]');
+      if (slot) {
+        try {
+          sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({ to: slot.getAttribute('data-perpetuo-next'), at: Date.now() }));
+        } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
+      }
+    })();
     (function(){
       var els = document.querySelectorAll('.reveal');
       function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }

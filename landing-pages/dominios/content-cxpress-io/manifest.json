@@ -321,6 +321,11 @@
       "source": "landing-pages/cxpress/webinar-concierge-br"
     },
     {
+      "slug": "webinar-concierge-br-video",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-concierge-br-video"
+    },
+    {
       "slug": "webinar-whatsapp-equipe",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-whatsapp-equipe"
