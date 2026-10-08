@@ -3,7 +3,8 @@ OVERLINE: Webinar · Caso real · Cxpress
 H1: Como a Cacau Show reduziu o SLA de 8 horas para 26 minutos
 SUB: Veja como a operação ganhou escala no atendimento das redes sociais.
 LABEL: Apresentado por Luiz Fantini, Cxpress
-CTA: Agendar uma demonstração gratuita
+LABEL: [FORM] Inscreva-se para assistir ao conteúdo (Jotform 261033482583658)
+CTA: Inscreva-se
 
 === FAIXA ===
 LIST ITEM: Caso real da Cacau Show
@@ -45,15 +46,6 @@ H3: IA preparada para cada contexto
 BODY: Os agentes recebem o conhecimento e a linguagem da marca, regras de atuação e critérios claros sobre o que podem ou não resolver.
 H3: Humano quando é necessário
 BODY: A IA identifica quando não deve continuar e passa o caso complexo para a equipe, sem quebrar a jornada do cliente.
-H3: Tudo num painel só
-BODY: Na Cxpress, os canais ficam no mesmo lugar, com o histórico de cada cliente e SLA, fila e desempenho por agente em tempo real.
-LABEL: WhatsApp
-LABEL: Instagram
-LABEL: E-mail
-LABEL: Telefone
-LABEL: Google My Business
-LABEL: Facebook
-LABEL: TikTok
 
 === RESULTADO ===
 OVERLINE: O resultado
@@ -67,23 +59,10 @@ BODY: Respostas para mais de 223 mil comentários
 LABEL: 4 canais
 BODY: Na operação: Facebook, Instagram, Google e TikTok
 
-=== INSCRICAO ===
-OVERLINE: Próximo passo
-H2: Agende uma demonstração gratuita da Cxpress
-SUB: Canais, agentes de IA e gestão em tempo real
-BODY: Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.
-LABEL: Formulário provisório. Vai ser substituído pelo formulário real (com redirecionamento para a página de obrigado).
-LABEL: Nome
-LABEL: E-mail corporativo
-LABEL: Empresa
-LABEL: Celular / WhatsApp
-CTA: Agendar demonstração gratuita
-BODY: Seus dados servem apenas para agendar a demonstração.
-
 === FECHO ===
 QUOTE: Prepare sua operação para crescer sem deixar o SLA sair do controle.
 SUB: Assista ao webinar e agende sua demonstração gratuita da Cxpress.
-CTA: Agendar uma demonstração gratuita
+CTA: Inscreva-se
 
 === FOOTER ===
 FOOTER: A Cxpress é um produto Elife. © 2026

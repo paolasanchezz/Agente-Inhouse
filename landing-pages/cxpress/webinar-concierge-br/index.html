@@ -197,7 +197,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .sec-fecho{max-width:760px;margin:52px auto 0;text-align:center;font-family:var(--font-accent);font-style:italic;font-weight:500;font-size:clamp(19px,2.1vw,22px);color:var(--primary-dark)}
 
     /* ===== A saida (numerado) ===== */
-    .trocas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:960px;margin:0 auto}
+    .trocas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:var(--maxw);margin:0 auto}
     .troca{display:flex;gap:18px;background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow)}
     .troca__n{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:17px;background:var(--primary-lighter);color:var(--primary-dark)}
     .troca h3{font-size:clamp(21px,2.1vw,23px)}
@@ -228,7 +228,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .form__ph{border:1px dashed var(--neutral-300);border-radius:10px;padding:10px 12px;margin-bottom:16px;font-size:13px;color:var(--neutral-700);background:var(--neutral-100)}
 
     /* ===== Fecho ===== */
-    .fecho{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:100px 0}
+    .fecho{border-top:1px solid rgba(215,226,255,.14);background:var(--primary-dark);color:#fff;position:relative;overflow:hidden;padding:100px 0}
     .fecho::before{content:"";position:absolute;width:620px;height:620px;right:-12%;top:-40%;border-radius:50%;background:radial-gradient(circle, rgba(144,158,234,.24) 0%, transparent 70%);animation:glowDrift 21s ease-in-out infinite alternate;pointer-events:none}
     .fecho__inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 32px;text-align:center}
     .fecho blockquote{margin:0 auto;font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(26px,3.4vw,38px);line-height:1.2;color:#fff;max-width:24ch}
@@ -308,7 +308,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://home.cxpress.io" class="hd__logo" target="_blank" rel="noopener" aria-label="Cxpress: página inicial">
         <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
       </a>
-      <a class="hd__cta" href="#form">Agendar demonstração gratuita</a>
+      <a class="hd__cta" href="#form">Inscreva-se</a>
     </div>
   </header>
 
@@ -322,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h1>Como a Cacau Show reduziu o SLA de 8 horas para <span class="mark">26&nbsp;minutos</span></h1>
           <p class="hero__body">Veja como a operação ganhou escala no atendimento das redes sociais.</p>
           <p class="hero__meta">Apresentado por <strong>Luiz Fantini</strong>, Cxpress</p>
-          <a class="btn btn--dark" href="#form">Agendar uma demonstração gratuita
+          <a class="btn btn--dark" href="#form">Inscreva-se
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -334,13 +334,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="hero__media">
             <img src="./assets/canais-icones.png" alt="Ícones dos canais de atendimento: telefone, Facebook, WhatsApp, Instagram, e-mail e Messenger" width="1822" height="272" loading="eager">
           </div>
-          <aside class="hero__form" id="form" aria-label="Formulário para agendar uma demonstração">
+          <aside class="hero__form" id="form" aria-label="Formulário de inscrição para assistir ao conteúdo">
             <div class="hero__form-head">
-              <h2 class="hero__form-title">Agende uma demonstração</h2>
-              <span class="hero__form-badge">Gratuita</span>
+              <h2 class="hero__form-title">Inscreva-se para assistir ao conteúdo</h2>
             </div>
             <div class="jotform-embed">
-              <script type="text/javascript" src="https://form.jotform.com/jsform/261027639617663"></script>
+              <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
             </div>
           </aside>
         </div>
@@ -436,20 +435,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="troca__n" aria-hidden="true">3</span>
             <div><h3>Humano quando é necessário</h3><p>A IA identifica quando não deve continuar e passa o caso complexo para a equipe, sem quebrar a jornada do cliente.</p></div>
           </div>
-          <div class="troca reveal">
-            <span class="troca__n" aria-hidden="true">4</span>
-            <div><h3>Tudo num painel só</h3><p>Na Cxpress, os canais ficam no mesmo lugar, com o histórico de cada cliente e SLA, fila e desempenho por agente em tempo real.</p>
-              <div class="canais">
-                <span class="canal">WhatsApp</span>
-                <span class="canal">Instagram</span>
-                <span class="canal">E-mail</span>
-                <span class="canal">Telefone</span>
-                <span class="canal">Google My Business</span>
-                <span class="canal">Facebook</span>
-                <span class="canal">TikTok</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -470,30 +455,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- INSCRICAO (o form fica no hero, #form) -->
-    <section class="agendar" id="inscricao">
-      <div class="wrap">
-        <div class="agendar__grid agendar__grid--solo">
-          <div class="reveal">
-            <span class="eyebrow">Próximo passo</span>
-            <h2>Agende uma demonstração gratuita da Cxpress</h2>
-            <p class="agendar__kicker">Canais, agentes de IA e gestão em tempo real</p>
-            <p class="agendar__sub">Se o volume de atendimento dobrasse amanhã, o seu SLA continuaria sob controle? Deixe seus dados e a nossa equipe entra em contato para mostrar como aplicar esse modelo na sua operação.</p>
-            <a class="btn" href="#form">Agendar uma demonstração gratuita
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- FECHO -->
     <section class="fecho">
       <div class="fecho__inner">
         <blockquote>Prepare sua operação para crescer sem deixar o SLA sair do controle.</blockquote>
         <p class="fecho__sub">Assista ao webinar e agende sua demonstração gratuita da Cxpress.</p>
-        <a class="btn" href="#form">Agendar uma demonstração gratuita
+        <a class="btn" href="#form">Inscreva-se
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
