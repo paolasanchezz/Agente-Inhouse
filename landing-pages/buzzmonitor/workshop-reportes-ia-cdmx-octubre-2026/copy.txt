@@ -1,0 +1,113 @@
+# Copy LP · Buzzmonitor · workshop-reportes-ia-cdmx-octubre-2026
+# v9 (2026-10-07): dados nao confirmados = "Por definir" (data, hora, local, speaker) para publicar (pedido do Ulises).
+# v8 (2026-10-07): secao PROBLEMA ("Así se te va la tarde") removida a pedido do Ulises.
+# v7 (2026-10-07): hero escrito pelo Ulises (literal): nome do evento em gradiente, H1 "Automatiza tus reportes con Claude y Buzzmonitor", sub "crisis, competencia y tendencias", body novo com "workshop presencial" em negrito (tambem no badge).
+# v6 (2026-10-07): H1 grande = "Crea reportes estrategicos con IA en minutos: ...", "7 analistas, 1 solo chat" vira label menor acima (pedido do Ulises).
+# v5 (2026-10-07): H1 = nome do evento "7 analistas, 1 solo chat" + H2 = subtitulo (decisao do Ulises), substitui "Deja de armar reportes. Empieza a pedirlos." O cierre mantem "deja de armar reportes".
+# v4 (2026-10-07): copy reescrita para ser mas atractiva (pedido do Ulises). H1 lidera com a dor (fundamentos-copy §0):
+#   "Deja de armar reportes. Empieza a pedirlos." Nome do evento (v5): "7 analistas, 1 solo chat" + subtitulo "Crea reportes estratégicos con IA en minutos: crisis, competencia y tendencias" (decisao do Ulises, 2026-10-07).
+#   Versao anterior (v3, H1/H2/sub do Victor) arquivada no historico do chat.
+# Idioma: ES-LATAM, variante MX (tu, "computadora", "junta", "apartar") · Funil: ToFu (evento gratuito) · form na 2.a secao (GUIDELINES §10)
+
+=== HERO ===
+LABEL: **Workshop presencial** y gratuito · CDMX
+LABEL (nombre del evento, 1 linea, gradiente rojo→naranja): 7 analistas, 1 solo chat
+H1: Automatiza tus reportes con Claude y Buzzmonitor
+SUB (complementario al H1): crisis, competencia y tendencias
+BODY: En este **workshop presencial** aprenderás a utilizar 7 Skills para Claude, diseñadas por Buzzmonitor para aprovechar todo el poder de los datos de tus redes sociales. Tú haces la pregunta y el reporte se arma solo con datos reales.
+CTA: Reservar mi lugar
+LABEL: Cupos limitados
+LABEL: Fecha y hora por definir
+LABEL: Lugar por definir, CDMX
+LABEL: Gratis · Trae tu computadora
+# Visual del hero (mock estilo Claude -> artifact con dashboard)
+LABEL: Claude + Buzzmonitor
+QUOTE: Genera el reporte de crisis de mi marca de esta semana.
+LABEL: Buzzmonitor
+LABEL: Reporte listo
+LABEL: Menciones
+LABEL: Sentimiento
+LABEL: Recomendaciones
+
+=== REGISTRO ===
+H2: Aparta tu lugar
+BODY: Es presencial, gratis y con las manos en el teclado. Hay pocos cupos.
+LIST ITEM: Fecha y hora por definir
+LIST ITEM: Lugar por definir, Ciudad de México
+LIST ITEM: Trae tu computadora cargada para las actividades prácticas
+
+=== SKILLS ===
+H2: Una Skill es un analista que ya sabe qué buscar
+BODY: Las Skills de Buzzmonitor son análisis ya entrenados dentro de la conexión entre Buzzmonitor y Claude. Cada una sabe qué datos traer, cómo leerlos y cómo presentar el reporte.
+H3: Elige la Skill
+BODY: Dile qué reporte necesitas o cuéntale la situación.
+H3: Da el contexto
+BODY: La marca, el periodo, la región o el tema.
+H3: Recibe el reporte
+BODY: Datos, interpretación y recomendaciones que puedes llevar a la junta.
+BODY: Sin código. Sin prompts técnicos. Sin empezar desde cero.
+
+=== ANALISTAS ===
+H2: Tu nuevo equipo: 7 analistas
+SUB: Cada Skill entrega un tipo de reporte. Tú eliges a quién llamar.
+H3: Campañas
+BODY: Mide qué parte de la conversación generó tu campaña, su alcance y qué provocó reacciones positivas o negativas.
+H3: Crisis
+BODY: Dónde está la crisis, cómo llegó hasta ahí y qué priorizar, del diagnóstico ejecutivo al plan de mitigación.
+H3: Listening
+BODY: El panorama de tu marca a partir de los datos, comparada con sus competidores y con un plan de acción.
+H3: Tendencias
+BODY: Detecta temas antes que el mercado y separa una señal emergente de una moda pasajera.
+H3: Filtro de Región
+BODY: Analiza una región por la forma en que la gente habla, más allá de la geolocalización declarada.
+H3: Exploring
+BODY: Explora los datos sin hipótesis previas, a partir de lo que las personas dijeron.
+H3: Frecuencia de Marcas
+BODY: Descubre qué marcas y temas son los más mencionados en una conversación.
+CTA: Quiero conocerlos
+
+=== DINAMICA ===
+H2: No vienes solo a escuchar. Vienes a hacerlo.
+SUB: En equipo y sobre marcas reales, armas un reporte con Claude y una Skill de Buzzmonitor. La meta: encontrar el hallazgo que nadie más vio.
+H3: Ronda 1 · Diagnóstico
+BODY: Ejecuta la Skill asignada sobre una marca y pide el reporte en lenguaje natural.
+H3: Ronda 2 · Refinamiento
+BODY: Ajusta el reporte sin rehacer la pregunta.
+QUOTE: “Ahora analiza solo Instagram.”
+QUOTE: “Enfócate en las menciones negativas.”
+QUOTE: “Compáralo con el periodo anterior.”
+H3: Presentación final
+BODY: Cada equipo presenta su reporte: un insight, una oportunidad y una recomendación respaldada por datos.
+
+=== SPEAKER ===
+OVERLINE: Quién te acompaña
+H3: Por definir
+LABEL: Buzzmonitor
+
+=== PARA QUIEN ===
+H2: ¿Es para ti?
+LIST ITEM: Marketing
+LIST ITEM: Comunicación
+LIST ITEM: Social Media
+LIST ITEM: Customer Experience
+LIST ITEM: Reputación Digital
+LIST ITEM: Inteligencia de Mercado
+LIST ITEM: Agencias y consultorías
+BODY: No necesitas saber programar. Trae tu computadora y ganas de meter las manos en los datos.
+
+=== CIERRE ===
+LABEL: Cupos limitados
+H2: Deja de armar reportes.
+BODY: Ven a la Ciudad de México a ver las 7 Skills de Buzzmonitor trabajando sobre datos reales. Te vas sabiendo pedir tu próximo reporte en un solo chat.
+CTA: Reservar mi lugar
+
+=== FOOTER ===
+BODY: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Revision anti-IA (v4)
+# - em-dash: 0
+# - Antitesis-por-negacion: 1 ("No vienes solo a escuchar. Vienes a hacerlo.", mantida da v3). Limite 2.
+# - "Deja de X. Empieza a Y." = contraste antes/depois, nao negacao. Callback do H1 no cierre (fundamentos §4.2).
+# - Sem filler (realmente, simplemente...), sem "de forma X", sem metafora aquatica, 0 exclamacoes.
+# - Vocabulario MX: computadora, junta, apartar, tu (sem voseo). "reportes" (nao "informes").
