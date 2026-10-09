@@ -325,7 +325,7 @@
         </div>
 
         <div class="form-card reveal reveal-delay-1">
-          <div class="jotform-embed">
+          <div class="jotform-embed" data-perpetuo-next="/video-atendimento-obrigado">
             <script type="text/javascript" src="https://form.jotform.com/jsform/262104279010647"></script>
           </div>
         </div>
@@ -343,6 +343,15 @@
   </footer>
 
   <script>
+    (function () {
+      // Destino pos-envio desta LP (landing-pages/GUIA-webinar-perpetuo-destino.md §2.1)
+      var slot = document.querySelector('[data-perpetuo-next]');
+      if (slot) {
+        try {
+          sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({ to: slot.getAttribute('data-perpetuo-next'), at: Date.now() }));
+        } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
+      }
+    })();
     (function () {
       // Reveal on scroll. Tres camadas de fallback (GUIDELINES §4: texto essencial nunca
       // fica invisivel esperando animacao): (1) <noscript> no <head> se JS nao roda;

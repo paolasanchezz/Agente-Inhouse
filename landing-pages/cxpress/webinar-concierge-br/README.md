@@ -4,7 +4,7 @@
 **Copy-fonte:** `copy.txt` (output de /lp-preparar, a partir do deck "Webinar perpétuo · Como reduzimos o SLA de 8 horas para 26 minutos")
 **Base de design:** clone visual de `landing-pages/cxpress/webinar-whatsapp-ia-pt` (VSL centrado), adaptado para PT-BR + secao Resultado nova.
 **Apresentador:** Luiz Fantini, New Business da Cxpress
-**Form provider:** Jotform 261033482583658 (2026-10-08)
+**Form provider:** Jotform 262104279010647 (2026-10-09) · destino pos-envio via despachante em video-atendimento-obrigado
 **Regiao:** brasil (pt-BR) · GTM `GTM-T4XDWHL3`
 
 ## Estrutura

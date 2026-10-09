@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Despachante do Jotform 262104279010647 (landing-pages/GUIA-webinar-perpetuo-destino.md §2.2):
+       o form aterrissa aqui; se a LP de origem registrou outro destino, encaminha pra ele. -->
+  <script>
+    (function () {
+      try {
+        var raw = sessionStorage.getItem('bmPerpetuoNext');
+        if (!raw) return;
+        sessionStorage.removeItem('bmPerpetuoNext');
+        var d = JSON.parse(raw);
+        if (!d || typeof d.to !== 'string') return;
+        if (d.to.charAt(0) !== '/' || d.to.charAt(1) === '/') return;  // so caminho interno
+        if (Date.now() - (d.at || 0) > 1800000) return;                // vale 30 min
+        var norm = function (p) { return p.replace(/\/+$/, ''); };
+        if (norm(d.to) === norm(location.pathname)) return;            // ja e aqui
+        location.replace(d.to);
+      } catch (e) { /* sem sessionStorage: segue nesta pagina */ }
+    })();
+  </script>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

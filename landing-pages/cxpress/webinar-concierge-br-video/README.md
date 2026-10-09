@@ -10,12 +10,12 @@
 
 ## Como a pessoa chega aqui
 
-A LP de captura `webinar-concierge-br` usa o Jotform `261033482583658`, compartilhado com outras LPs
-(ex: `webinar-whatsapp-equipe`). Por isso o destino pos-envio NAO e configurado no Jotform: a LP grava
+A LP de captura `webinar-concierge-br` usa o Jotform `262104279010647`, compartilhado com a `video-atendimento`
+(o Jotform redireciona para `content.cxpress.io/video-atendimento-obrigado`). Por isso o destino pos-envio NAO e configurado no Jotform: a LP grava
 `data-perpetuo-next="/webinar-concierge-br-video"` em `sessionStorage` (`GUIA-webinar-perpetuo-destino.md` §2.1)
 e a pagina onde o Jotform aterrissa encaminha pra ca (§2.2).
 
 ## Estado
 
 - [x] Pagina gerada e publicada
-- [ ] Despachante (§2.2) na pagina de agradecimento configurada no Jotform `261033482583658` — pendente de confirmar qual e essa URL
+- [x] Despachante (§2.2) em `video-atendimento-obrigado` (2026-10-09); `video-atendimento` registra o proprio destino
