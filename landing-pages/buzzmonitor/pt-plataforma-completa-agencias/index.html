@@ -751,6 +751,10 @@
 
     /* Stats + marquee */
     .clients-proof { background: #f8fafc; padding: 76px 0; }
+    /* Titulo "Empresas que ja confiam na Buzzmonitor" em 1 linha a partir de 640px.
+       MAX 43 = "H2 grande" da GUIDELINES §20 (piso mobile 28px); em 375-414px fica em 2 linhas. */
+    .clients-proof .section-title { max-width: none; }
+    .clients-proof .section-title h2 { font-size: clamp(28px, 3.2vw, 43px); }
 
     .stats-row {
       display: flex;
