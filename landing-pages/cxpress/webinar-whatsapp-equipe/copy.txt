@@ -1,6 +1,6 @@
 === HERO ===
 OVERLINE: Webinar gratuito para líderes de atendimento e operações · 27 de outubro · 11h
-H1: WhatsApp Business em escala: como proteger sua operação de bloqueios
+H1: WhatsApp Business em Escala: Proteja a sua operação de bloqueios
 SUB: Quando o WhatsApp se torna parte importante da operação, a estrutura usada para atender precisa acompanhar esse crescimento.
 SUB: Entenda quais práticas podem levar a restrições e como escalar o atendimento pela API Oficial mantendo o número que seus clientes já conhecem.
 CTA: Garantir minha vaga

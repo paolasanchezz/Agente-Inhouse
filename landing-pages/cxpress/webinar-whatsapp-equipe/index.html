@@ -10,7 +10,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T4XDWHL3');</script>
   <!-- End Google Tag Manager -->
-  <title>WhatsApp Business em escala: como proteger sua operação de bloqueios | 27 de outubro | Cxpress</title>
+  <title>WhatsApp Business em Escala: Proteja a sua operação de bloqueios | 27 de outubro | Cxpress</title>
   <link rel="canonical" href="https://{{DOMAIN}}/webinar-whatsapp-equipe">
 
   <link rel="icon" type="image/png" href="../../brand/cxpress/assets/logos/logo-icon.png" />
@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "@graph": [
       { "@type": "Organization", "@id": "https://home.cxpress.io#organization", "name": "Cxpress", "url": "https://home.cxpress.io", "logo": "https://{{DOMAIN}}/{{BRAND_LOGO_PNG_PATH}}", "sameAs": ["https://www.linkedin.com/company/cxpress", "https://www.instagram.com/cxpress.io/"] },
       { "@type": "WebPage", "@id": "https://{{DOMAIN}}/webinar-whatsapp-equipe#webpage", "url": "https://{{DOMAIN}}/webinar-whatsapp-equipe", "name": "Webinar WhatsApp comercial bloqueado | 27 de outubro, 11h | Cxpress", "inLanguage": "pt-BR", "isPartOf": { "@id": "https://home.cxpress.io#organization" }, "description": "27 de outubro, 11h. Até onde o WhatsApp Business aguenta, o que coloca o número em risco e como escalar pela API oficial sem trocar de número." },
-      { "@type": "Event", "name": "Webinar Cxpress: WhatsApp Business em escala, como proteger a operação de bloqueios", "startDate": "2026-10-27T11:00:00-03:00", "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "inLanguage": "pt-BR", "location": { "@type": "VirtualLocation", "url": "https://{{DOMAIN}}/webinar-whatsapp-equipe" }, "image": "https://{{DOMAIN}}/{{OG_IMAGE_PATH}}", "description": "27 de outubro, 11h. Até onde o WhatsApp Business aguenta, o que coloca o número em risco e como escalar pela API oficial sem trocar de número.", "organizer": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "url": "https://{{DOMAIN}}/webinar-whatsapp-equipe" } }
+      { "@type": "Event", "name": "Webinar Cxpress: WhatsApp Business em Escala, proteja a sua operação de bloqueios", "startDate": "2026-10-27T11:00:00-03:00", "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "inLanguage": "pt-BR", "location": { "@type": "VirtualLocation", "url": "https://{{DOMAIN}}/webinar-whatsapp-equipe" }, "image": "https://{{DOMAIN}}/{{OG_IMAGE_PATH}}", "description": "27 de outubro, 11h. Até onde o WhatsApp Business aguenta, o que coloca o número em risco e como escalar pela API oficial sem trocar de número.", "organizer": { "@id": "https://home.cxpress.io#organization" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "url": "https://{{DOMAIN}}/webinar-whatsapp-equipe" } }
     ]
   }
   </script>
@@ -50,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap">
 
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <noscript><style>.hero h1 .mark{animation:none;background-size:100% 7px}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
   <style>
     :root{
@@ -332,7 +332,89 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .clientes__label{ font-size:15px; }
   .footer p{ font-size:16px; }
   }
-</style>
+
+    /* ===== Camada visual (08/10), referencia: promo.cxpress.io ===== */
+
+    /* lavagem de gradiente no hero, no lugar do branco chapado */
+    .hero{
+      position:relative;
+      background:
+        radial-gradient(1150px 560px at 82% -12%, var(--blue-tint) 0%, rgba(234,240,255,0) 62%),
+        radial-gradient(760px 420px at -8% 112%, #F3F6FF 0%, rgba(243,246,255,0) 70%),
+        var(--paper);
+    }
+
+    /* marcador que risca sob a frase de destaque do H1 */
+    .hero h1 .mark{
+      background-image:linear-gradient(var(--blue),var(--blue));
+      background-repeat:no-repeat;
+      background-position:0 94%;
+      background-size:0% 7px;
+      -webkit-box-decoration-break:clone;box-decoration-break:clone;
+      animation:markDraw .85s cubic-bezier(.22,.78,.3,1) .45s forwards;
+    }
+    @keyframes markDraw{to{background-size:100% 7px}}
+    .hero h1 .h1-resto{color:var(--ink-soft);font-weight:700}
+
+    /* entrada escalonada dos blocos do hero */
+    .hero__content>*{animation:sobe .6s cubic-bezier(.22,.78,.3,1) both}
+    .hero__content>*:nth-child(1){animation-delay:.02s}
+    .hero__content>*:nth-child(2){animation-delay:.10s}
+    .hero__content>*:nth-child(3){animation-delay:.18s}
+    .hero__content>*:nth-child(4){animation-delay:.26s}
+    .hero__content>*:nth-child(5){animation-delay:.34s}
+    .hero__content>*:nth-child(6){animation-delay:.42s}
+    .hero__visual .ficha{animation:sobe .7s cubic-bezier(.22,.78,.3,1) .3s both}
+    @keyframes sobe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+    /* faixa de clientes logo abaixo do hero: fina, discreta, separada por regua */
+    .clientes--faixa{
+      padding:30px 0 34px;background:var(--paper);
+      border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    }
+    .clientes--faixa .clientes__label{font-size:13px;color:var(--ink-mute)}
+    .clientes--faixa .clientes__marquee{margin-top:18px}
+    .clientes--faixa .clientes__group img{height:clamp(24px,2.5vw,32px);max-width:130px}
+    .clientes--faixa .clientes__group{gap:clamp(24px,3vw,42px)}
+
+    /* o fecho perdeu a esteira: fecha com respiro proprio */
+    .fecho{padding:104px 0 112px}
+
+    @media (max-width:640px){
+      .clientes--faixa{padding:22px 0 26px}
+      .hero h1 .mark{background-size:0% 5px}
+      @keyframes markDraw{to{background-size:100% 5px}}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .hero h1 .mark{animation:none;background-size:100% 7px}
+      .hero__content>*,.hero__visual .ficha{animation:none}
+    }
+
+  
+    /* coluna de texto do hero mais larga: o H1 corre em 3 linhas, nao em 5,
+       que e o "o texto continuar na linha" pedido em 08/10 */
+    .hero__inner{grid-template-columns:1.18fr .82fr;gap:56px;align-items:center}
+    .hero h1{font-size:clamp(34px,4.1vw,50px);max-width:21ch}
+    .hero .lead{max-width:52ch}
+    .hero__proof{max-width:52ch}
+
+    /* contador: largura estavel, senao a linha reflui enquanto conta */
+    .odo{font-variant-numeric:tabular-nums;display:inline-block;min-width:3ch;text-align:right}
+
+    @media (max-width:1000px){
+      .hero__inner{grid-template-columns:1fr;gap:40px}
+      .hero h1{max-width:none}
+    }
+
+  
+    /* O .eyebrow--pill do sistema tem white-space:nowrap. Com eyebrow comprido
+       (este tem 722px) a pagina inteira rola de lado no celular. Guarda: */
+    @media (max-width:640px){
+      .eyebrow--pill{white-space:normal;text-align:center;line-height:1.45}
+    }
+
+  </style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -346,10 +428,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="../../brand/cxpress/assets/logos/logo-primary.svg" alt="" width="150" height="32">
       </a>
       <nav class="hd__nav" aria-label="Seções da página">
+        <a href="#palestrantes">Quem apresenta</a>
         <a href="#problema">O problema</a>
         <a href="#aula">O que você vai ver</a>
         <a href="#para-quem">Para quem</a>
-        <a href="#palestrantes">Quem apresenta</a>
       </nav>
       <a class="hd__cta" href="#inscricao">Garantir vaga</a>
     </div>
@@ -362,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero__inner">
         <div class="hero__content">
           <span class="eyebrow eyebrow--pill">Webinar gratuito para líderes de atendimento e operações &middot; 27 de outubro &middot; 11h</span>
-          <h1>WhatsApp Business em escala: como proteger sua operação de <b>bloqueios</b></h1>
+          <h1><span class="mark">WhatsApp Business em Escala</span>: <span class="h1-resto">Proteja a sua operação de <b>bloqueios</b></span></h1>
           <p class="lead">Quando o WhatsApp se torna parte importante da operação, a estrutura usada para atender precisa acompanhar esse crescimento.</p>
           <p class="lead">Entenda quais práticas podem levar a restrições e como escalar o atendimento pela API Oficial mantendo o número que seus clientes já conhecem.</p>
           <div class="cta-row">
@@ -373,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <p class="hero__proof">
             <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="#2B5CE6" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Mais de 800 empresas atendem pela API Oficial com a Cxpress.
+            <span>Mais de <span class="odo" data-alvo="800">800</span> empresas atendem pela API Oficial com a Cxpress.</span>
           </p>
         </div>
         <div class="hero__visual">
@@ -403,187 +485,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- 5. INSCRICAO -->
-    <section class="inscricao" id="inscricao">
-      <div class="wrap">
-        <div class="insc__grid">
-          <div class="form-side reveal">
-            <h2>Garantir minha vaga</h2>
-            <p class="kicker">27 de outubro, terça-feira, às 11h</p>
-            <p class="sub">Você recebe o link por e-mail após a inscrição e um lembrete no dia.</p>
-          </div>
-          <div class="form-card reveal">
-            <div class="jotform-embed">
-              <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. O PROBLEMA -->
-    <section class="off" id="problema">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow">O problema</span>
-          <h2>Crescer no WhatsApp exige uma estrutura preparada para a operação</h2>
-          <p>O WhatsApp Business permite conectar até quatro dispositivos, com limites maiores em alguns planos do Meta Verified. Para equipes menores, essa estrutura pode atender bem à rotina.</p>
-          <p>Com o crescimento da operação, surgem novas necessidades, como mais atendentes, filas, SLA, relatórios e integrações. Algumas soluções adotadas para contornar essas limitações podem aumentar o risco de restrições na conta.</p>
-        </div>
-        <div class="dores">
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>Apps ou sites não oficiais para multiatendimento</h3>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>Disparos e automações fora das regras do WhatsApp</h3>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>Mensagens para contatos que não autorizaram a comunicação</h3>
-            </div>
-          </div>
-        </div>
-        <div class="cta-row cta-row--center" style="margin-top:40px">
-          <a class="btn" href="#inscricao">Garantir minha vaga
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. O QUE VOCE VAI VER -->
-    <section id="aula">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <h2>Entenda quando sua operação precisa de uma estrutura mais completa</h2>
-        </div>
-        <div class="dores">
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Até onde o WhatsApp Business acompanha sua operação</h3>
-              <p>Limites de dispositivos, recursos do Meta Verified e sinais de que sua equipe precisa de uma estrutura mais robusta.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>O que pode colocar seu número em risco</h3>
-              <p>Apps não oficiais, disparos fora das regras, consentimento e outras práticas que podem levar a restrições.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Como funciona o atendimento pela API Oficial</h3>
-              <p>Filas, distribuição entre atendentes, histórico por cliente e gestão da operação em um ambiente centralizado.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Como manter o número durante a migração</h3>
-              <p>Conheça o caminho para levar a operação para a API Oficial usando o número que seus clientes já conhecem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. PARA QUEM -->
-    <section class="off" id="para-quem">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <h2>Para quem já tem uma operação de atendimento no WhatsApp</h2>
-        </div>
-        <div class="dores">
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Você lidera atendimento, CX, suporte, vendas ou operações</h3>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Existe uma equipe atendendo clientes pelo WhatsApp</h3>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>Você precisa acompanhar fila, SLA, histórico ou desempenho</h3>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div>
-              <h3>O WhatsApp é um canal importante para vendas, suporte ou relacionamento</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="sec-head reveal" style="margin-top:88px">
-          <h2>Este webinar é indicado para empresas que querem estruturar o atendimento pelo WhatsApp</h2>
-        </div>
-        <p class="note note--long" style="max-width:66ch;margin:0 auto">O conteúdo foi pensado para operações com equipes e volume de atendimento que exigem mais controle e organização.</p>
-        <p class="note note--long" style="max-width:66ch;margin:18px auto 0">Empresas que utilizam o WhatsApp individualmente ou buscam apenas a recuperação de um número bloqueado podem encontrar conteúdos mais adequados para essas necessidades.</p>
-        <p class="note note--long" style="max-width:66ch;margin:18px auto 0">O foco deste webinar é prevenção, estrutura e escala pela API Oficial.</p>
-      </div>
-    </section>
-
-
-    <!-- 6. QUEM APRESENTA -->
-    <section id="palestrantes">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <h2>Quem conduz</h2>
-        </div>
-        <div class="spks">
-          <div class="spk reveal">
-            <img class="spk__ph" src="./assets/palestrante-karen.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
-            <div>
-              <p class="spk__name">Karen Marcelino</p>
-              <p class="spk__role">Sucesso do Cliente &middot; Cxpress</p>
-            </div>
-          </div>
-          <div class="spk reveal">
-            <img class="spk__ph" src="./assets/palestrante-luiz.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
-            <div>
-              <p class="spk__name">Luiz Fantini</p>
-              <p class="spk__role">New Business &middot; Cxpress</p>
-            </div>
-          </div>
-        </div>
-        <div class="cta-row cta-row--center reveal">
-          <a class="btn" href="#inscricao">Garantir minha vaga
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. FECHO -->
-    <section class="fecho">
-      <div class="wrap">
-        <div class="reveal">
-          <h2>Leve sua operação para uma estrutura preparada para crescer</h2>
-          <p class="note note--long" style="max-width:60ch;margin:18px auto 0">Use a API Oficial para organizar o atendimento da equipe e continuar usando o número que seus clientes já conhecem.</p>
-          <div class="cta-row cta-row--center">
-            <a class="btn" href="#inscricao">Garantir minha vaga
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="clientes">
+    <!-- 2. FAIXA DE CLIENTES -->
+    <section class="clientes clientes--faixa" aria-label="Clientes da Cxpress">
         <div class="wrap">
           <span class="clientes__label">Marcas que atendem com a Cxpress</span>
           <div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
@@ -679,6 +582,186 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
         </div>
+      </section>
+
+    <!-- 3. INSCRICAO -->
+    <section class="inscricao" id="inscricao">
+      <div class="wrap">
+        <div class="insc__grid">
+          <div class="form-side reveal">
+            <h2>Garantir minha vaga</h2>
+            <p class="kicker">27 de outubro, terça-feira, às 11h</p>
+            <p class="sub">Você recebe o link por e-mail após a inscrição e um lembrete no dia.</p>
+          </div>
+          <div class="form-card reveal">
+            <div class="jotform-embed">
+              <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. QUEM APRESENTA -->
+    <section id="palestrantes">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>Quem conduz</h2>
+        </div>
+        <div class="spks">
+          <div class="spk reveal">
+            <img class="spk__ph" src="./assets/palestrante-karen.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
+            <div>
+              <p class="spk__name">Karen Marcelino</p>
+              <p class="spk__role">Sucesso do Cliente &middot; Cxpress</p>
+            </div>
+          </div>
+          <div class="spk reveal">
+            <img class="spk__ph" src="./assets/palestrante-luiz.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
+            <div>
+              <p class="spk__name">Luiz Fantini</p>
+              <p class="spk__role">New Business &middot; Cxpress</p>
+            </div>
+          </div>
+        </div>
+        <div class="cta-row cta-row--center reveal">
+          <a class="btn" href="#inscricao">Garantir minha vaga
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. O PROBLEMA -->
+    <section class="off" id="problema">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">O problema</span>
+          <h2>Crescer no WhatsApp exige uma estrutura preparada para a operação</h2>
+          <p>O WhatsApp Business permite conectar até quatro dispositivos, com limites maiores em alguns planos do Meta Verified. Para equipes menores, essa estrutura pode atender bem à rotina.</p>
+          <p>Com o crescimento da operação, surgem novas necessidades, como mais atendentes, filas, SLA, relatórios e integrações. Algumas soluções adotadas para contornar essas limitações podem aumentar o risco de restrições na conta.</p>
+        </div>
+        <div class="dores">
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Apps ou sites não oficiais para multiatendimento</h3>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Disparos e automações fora das regras do WhatsApp</h3>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Mensagens para contatos que não autorizaram a comunicação</h3>
+            </div>
+          </div>
+        </div>
+        <div class="cta-row cta-row--center" style="margin-top:40px">
+          <a class="btn" href="#inscricao">Garantir minha vaga
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. O QUE VOCE VAI VER -->
+    <section id="aula">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>Entenda quando sua operação precisa de uma estrutura mais completa</h2>
+        </div>
+        <div class="dores">
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Até onde o WhatsApp Business acompanha sua operação</h3>
+              <p>Limites de dispositivos, recursos do Meta Verified e sinais de que sua equipe precisa de uma estrutura mais robusta.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>O que pode colocar seu número em risco</h3>
+              <p>Apps não oficiais, disparos fora das regras, consentimento e outras práticas que podem levar a restrições.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Como funciona o atendimento pela API Oficial</h3>
+              <p>Filas, distribuição entre atendentes, histórico por cliente e gestão da operação em um ambiente centralizado.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Como manter o número durante a migração</h3>
+              <p>Conheça o caminho para levar a operação para a API Oficial usando o número que seus clientes já conhecem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PARA QUEM -->
+    <section class="off" id="para-quem">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2>Para quem já tem uma operação de atendimento no WhatsApp</h2>
+        </div>
+        <div class="dores">
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Você lidera atendimento, CX, suporte, vendas ou operações</h3>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Existe uma equipe atendendo clientes pelo WhatsApp</h3>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>Você precisa acompanhar fila, SLA, histórico ou desempenho</h3>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="ver__ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.7l3.2 3.2L12.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <h3>O WhatsApp é um canal importante para vendas, suporte ou relacionamento</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-head reveal" style="margin-top:88px">
+          <h2>Este webinar é indicado para empresas que querem estruturar o atendimento pelo WhatsApp</h2>
+        </div>
+        <p class="note note--long" style="max-width:66ch;margin:0 auto">O conteúdo foi pensado para operações com equipes e volume de atendimento que exigem mais controle e organização.</p>
+        <p class="note note--long" style="max-width:66ch;margin:18px auto 0">Empresas que utilizam o WhatsApp individualmente ou buscam apenas a recuperação de um número bloqueado podem encontrar conteúdos mais adequados para essas necessidades.</p>
+        <p class="note note--long" style="max-width:66ch;margin:18px auto 0">O foco deste webinar é prevenção, estrutura e escala pela API Oficial.</p>
+      </div>
+    </section>
+
+    <!-- 8. FECHO -->
+    <section class="fecho">
+      <div class="wrap">
+        <div class="reveal">
+          <h2>Leve sua operação para uma estrutura preparada para crescer</h2>
+          <p class="note note--long" style="max-width:60ch;margin:18px auto 0">Use a API Oficial para organizar o atendimento da equipe e continuar usando o número que seus clientes já conhecem.</p>
+          <div class="cta-row cta-row--center">
+            <a class="btn" href="#inscricao">Garantir minha vaga
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -705,6 +788,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
       els.forEach(function(el){ io.observe(el); });
       setTimeout(showAll, 2500);
+    })();
+  </script>
+
+  <script>
+    // contador do numero de empresas: so anima se o elemento aparecer e o usuario
+    // nao tiver pedido menos movimento. Valor final ja esta no HTML, entao sem JS
+    // ou com JS falhando o numero continua correto.
+    (function(){
+      var el = document.querySelector('.odo');
+      if(!el) return;
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      var alvo = parseInt(el.dataset.alvo, 10);
+      if(!alvo) return;
+      var rodou = false;
+      function anima(){
+        if(rodou) return; rodou = true;
+        var t0 = null, dur = 1100;
+        function passo(ts){
+          if(!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+          if(p < 1) requestAnimationFrame(passo);
+        }
+        requestAnimationFrame(passo);
+      }
+      setTimeout(anima, 900);
     })();
   </script>
 </body>
