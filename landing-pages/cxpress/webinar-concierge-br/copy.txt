@@ -4,7 +4,7 @@ H1: Como a Cacau Show reduziu o SLA de 8 horas para 26 minutos
 SUB: Veja como a operação ganhou escala no atendimento das redes sociais.
 LABEL: Apresentado por Luiz Fantini, Cxpress
 LABEL: [FORM] Jotform 262104279010647 (o titulo "Inscreva-se para assistir ao conteúdo" vem do proprio form)
-CTA: Inscreva-se
+CTA: Assistir agora
 
 === FAIXA ===
 LIST ITEM: Caso real da Cacau Show
@@ -62,7 +62,7 @@ BODY: Na operação: Facebook, Instagram, Google e TikTok
 === FECHO ===
 QUOTE: Prepare sua operação para crescer sem deixar o SLA sair do controle.
 SUB: Assista ao webinar e agende sua demonstração gratuita da Cxpress.
-CTA: Inscreva-se
+CTA: Assistir agora
 
 === FOOTER ===
 FOOTER: A Cxpress é um produto Elife. © 2026
