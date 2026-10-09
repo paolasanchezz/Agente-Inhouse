@@ -36,8 +36,10 @@ Em vez de regerar via `frontend-design`, o HTML de referencia foi adaptado a nov
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-gestao-canais-ia-2027.png`
 - [x] Revisao — ver `REVISAO.md`
-- [ ] Formulario integrado — rodar `/lp-integrar-form cxpress/gestao-canais-ia-2027 "snippet"`
-- [ ] Publicado — rodar `/lp-publicar cxpress gestao-canais-ia-2027 content.cxpress.io`
+- [x] Formulario integrado — Jotform `261033482583658` (2026-10-09)
+
+**Form provider:** Jotform — script `https://form.jotform.com/jsform/261033482583658` (integrado em 2026-10-09)
+- [x] Publicado — https://content.cxpress.io/gestao-canais-ia-2027 (PR #680; form real em 2026-10-09)
 
 ## Assets referenciados
 
