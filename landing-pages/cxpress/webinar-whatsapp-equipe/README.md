@@ -96,6 +96,17 @@ negativa, `ver__ck` para lista positiva, `insc__grid`, `fecho`, esteira de clien
 Desvio consciente da GUIDELINES §8: o check das listas positivas é **azul**, não verde, porque
 esta LP roda a paleta de 2 cores da família. Trocar por verde introduziria uma terceira cor.
 
+## Camada de movimento v3 (10/10)
+
+Pedido do Bruno: usar o aprendizado das LPs Cxpress da Leadpages (`chatbot-whatsapp`) para dar mais movimento e foco em conversão, **sem alterar a copy** (texto da página idêntico; só entrou o micro-texto da conversa simulada, ilustrativo e `aria-hidden`).
+
+- **Conversa simulada de WhatsApp** na seção "Entenda quando..." (coluna fixa ao lado dos tópicos): mensagens entram uma a uma com "digitando" e chips "Conversa distribuída / Histórico salvo", que ecoam tópicos da própria copy (filas, distribuição, histórico). O loop só roda em vista; sem JS ou com `prefers-reduced-motion` aparece inteira. Sem "ao vivo", exclamação ou travessão. Para tirar a simulação, remova o `<figure class="ver__fig">`.
+- **Logo WhatsApp Business** (`#ico-wab`, o mesmo do chatbot-whatsapp): ícones flutuando na ficha do hero, ponto "online" pulsante no eyebrow, marca d'água na inscrição e no fecho.
+- **Inscrição**: brilhos de fundo e borda de gradiente girando no painel do form (`@property`, com fallback sem animação).
+- **CTA**: brilho no hover, pulso suave no CTA do hero e **barra fixa "Garantir minha vaga" no celular**, que aparece depois do CTA do hero e some quando o form está na tela.
+- Tópicos: X e checks "estalam" com escalonamento e trilha ligando os 4 tópicos; o fecho acende palavra a palavra com a rolagem; luz que segue o mouse na ficha e nos palestrantes.
+- **Não levado das LPs Leadpages, de propósito:** botão flutuante de WhatsApp (abre outro formulário e competiria com a inscrição). Hero com a mesma altura de antes (846px em 1440): o form não desceu.
+
 ## Validações rodadas
 
 | Checagem | Resultado |
