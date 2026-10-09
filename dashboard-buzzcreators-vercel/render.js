@@ -384,7 +384,7 @@
       + '<h2>Tendências · Últimos 12 meses</h2><span class="tag">52 semanas</span></div>'
       + '<div class="chart-wrap"><div class="chart-head">'
       + '<h3>Agendamentos por semana · Tx de conversão</h3>'
-      + '<span class="ctx">Tx = Agendamentos ÷ Deals criados na semana · clique na legenda para ocultar séries</span></div>'
+      + '<span class="ctx">Tx = Agendamentos ÷ Deals criados na semana · Média 4 sem. = média móvel das últimas 4 semanas · clique na legenda para ocultar séries</span></div>'
       + '<div class="chart-canvas"><canvas id="chartTimeseries"></canvas></div></div>'
       + '</section>';
 
@@ -440,11 +440,13 @@
   function chartTendencia(s) {
     const agend = s.agendamento, leads = s.leads; 
     const tx = leads.map((l, i) => (l ? Math.round((agend[i] / l) * 100) : null));
+    const mm4 = agend.map((_, i) => (i < 3 ? null : agend.slice(i - 3, i + 1).reduce((a, b) => a + b, 0) / 4)); // media movel 4 semanas (inclui a semana corrente)
     return new Chart(document.getElementById('chartTimeseries').getContext('2d'), {
       data: {
         labels: s.labels, datasets: [
           { type: 'line', label: 'Tx de conversão (%)', data: tx, borderColor: '#16A34A', backgroundColor: '#16A34A', borderWidth: 2, borderDash: [6, 3], cubicInterpolationMode: 'monotone', pointRadius: 2, pointHoverRadius: 5, spanGaps: true, yAxisID: 'yPct', order: 1 },
           { type: 'line', label: 'Agendamentos', data: agend, borderColor: '#0B63FF', backgroundColor: '#0B63FF', borderWidth: 2.4, cubicInterpolationMode: 'monotone', pointRadius: 2, pointHoverRadius: 5, yAxisID: 'y', order: 2 },
+          { type: 'line', label: 'Agendamentos · média 4 sem.', data: mm4, borderColor: '#1E3A8A', backgroundColor: '#1E3A8A', borderWidth: 3, cubicInterpolationMode: 'monotone', pointRadius: 0, pointHoverRadius: 4, yAxisID: 'y', order: 2 },
         ],
       },
       options: {
@@ -456,7 +458,7 @@
             callbacks: {
               label: (c) => c.dataset.yAxisID === 'yPct'
                 ? `${c.dataset.label}: ${c.parsed.y == null ? '—' : c.parsed.y + '%'} (${agend[c.dataIndex]} de ${leads[c.dataIndex]} deals)`
-                : `${c.dataset.label}: ${c.parsed.y}`,
+                : `${c.dataset.label}: ${c.dataset.data === mm4 ? fDec(c.parsed.y) : c.parsed.y}`,
             },
           },
         },
