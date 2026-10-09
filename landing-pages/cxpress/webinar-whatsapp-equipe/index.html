@@ -553,6 +553,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .sticky-cta{transition:none}
     }
 
+
+    /* ===== v4 (10/10): data em formato de calendario + speakers no padrao das paginas de evento da Buzzmonitor ===== */
+    .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .ficha__row--cal{align-items:center}
+    .cal{display:flex;align-items:center;gap:18px}
+    .cal__tile{flex:none;width:96px;background:#fff;border:2px solid var(--ink);border-radius:16px;overflow:hidden;text-align:center;
+      box-shadow:5px 5px 0 var(--blue);transform:rotate(-3deg);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+    .ficha:hover .cal__tile{transform:rotate(0) translate(-2px,-2px);box-shadow:8px 8px 0 var(--blue)}
+    .cal__mes{position:relative;display:block;background:var(--blue);color:#fff;font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:9px 0 7px}
+    .cal__mes::before,.cal__mes::after{content:"";position:absolute;top:4px;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85}
+    .cal__mes::before{left:14px}
+    .cal__mes::after{right:14px}
+    .cal__folha{display:block;transform-origin:50% 0;animation:calFlip .9s var(--ease) .55s both}
+    .cal__dia{display:block;font-family:var(--font-display);font-weight:800;font-size:54px;line-height:1;letter-spacing:-.05em;color:var(--ink);padding:12px 0 2px;font-variant-numeric:tabular-nums}
+    .cal__sem{display:block;font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-mute);padding:0 2px 11px;white-space:nowrap}
+    @keyframes calFlip{from{transform:perspective(380px) rotateX(-88deg);opacity:0}60%{opacity:1}to{transform:none;opacity:1}}
+    .cal__hora{display:flex;flex-direction:column;gap:2px}
+    .cal__as{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);display:flex;align-items:center;gap:7px}
+    .cal__as svg{width:16px;height:16px;color:var(--blue)}
+    .cal__as .ponteiro{transform-origin:12px 12px;animation:relogio 12s linear infinite}
+    @keyframes relogio{to{transform:rotate(360deg)}}
+    .cal__h{font-family:var(--font-display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.04em;color:var(--blue)}
+    @media (max-width:640px){
+      .cal__tile{width:92px}
+      .cal__dia{font-size:50px}
+      .cal__h{font-size:42px}
+    }
+
+    /* speakers: card centralizado, foto sobre disco em gradiente, ondas no hover */
+    .spks{max-width:820px;gap:32px}
+    .spk{position:relative;z-index:0;flex-direction:column;align-items:center;text-align:center;gap:20px;padding:44px 24px 32px;
+      box-shadow:0 20px 50px -26px rgba(14,17,22,.3);transition:transform .3s ease,box-shadow .3s ease}
+    .spk:hover{transform:translateY(-6px);box-shadow:0 28px 60px -20px rgba(14,17,22,.4)}
+    .spk__wrap{position:relative;flex:none;width:130px;height:130px}
+    .spk__blob{position:absolute;top:-14px;left:-14px;width:158px;height:158px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#25D366);transition:transform .35s var(--ease)}
+    .spk:hover .spk__blob{transform:rotate(14deg) scale(1.06)}
+    .spk__wrap::before,.spk__wrap::after{content:"";position:absolute;top:-14px;left:-14px;width:158px;height:158px;border-radius:50%;border:2px solid var(--blue);opacity:0;z-index:-1;pointer-events:none}
+    .spk__wrap::after{border-color:#25D366}
+    .spk:hover .spk__wrap::before{animation:soundwave 1.7s ease-out infinite}
+    .spk:hover .spk__wrap::after{animation:soundwave 1.7s ease-out infinite .55s}
+    @keyframes soundwave{0%{transform:scale(1);opacity:.6}70%{opacity:.18}100%{transform:scale(2.3);opacity:0}}
+    .spk .spk__ph{position:relative;z-index:1;display:block;width:130px;height:130px;border:5px solid #fff;box-shadow:0 20px 40px -14px rgba(14,17,22,.35);transition:transform .35s var(--ease)}
+    .spk:hover .spk__ph{transform:scale(1.04)}
+    .spk__name{font-size:clamp(21px,2.4vw,24px);line-height:1.15}
+    .spk__role{margin-top:7px}
+    @media (max-width:640px){.spk{padding:40px 24px 28px}}
+    @media (prefers-reduced-motion:reduce){
+      .cal__folha,.cal__as .ponteiro{animation:none}
+      .cal__tile{transition:none}
+      .spk:hover .spk__wrap::before,.spk:hover .spk__wrap::after{animation:none}
+    }
+
   </style>
 </head>
 <body>
@@ -609,9 +661,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="ficha__label">O webinar</span>
             <p class="ficha__title">WhatsApp em escala, com mais segurança e controle</p>
             <div class="ficha__rows">
-              <div class="ficha__row">
+              <div class="ficha__row ficha__row--cal">
                 <span class="ficha__k">Quando</span>
-                <span class="ficha__v">27 de outubro, terça-feira, às 11h</span>
+                <div class="ficha__v">
+                  <span class="sr">27 de outubro, terça-feira, às 11h</span>
+                  <div class="cal" aria-hidden="true">
+                    <div class="cal__tile">
+                      <span class="cal__mes">outubro</span>
+                      <span class="cal__folha"><span class="cal__dia">27</span><span class="cal__sem">terça-feira</span></span>
+                    </div>
+                    <div class="cal__hora">
+                      <span class="cal__as"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path class="ponteiro" d="M12 12V6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12l3.2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>às</span>
+                      <span class="cal__h">11h</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="ficha__row">
                 <span class="ficha__k">Formato</span>
@@ -757,14 +821,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="spks">
           <div class="spk reveal">
-            <img class="spk__ph" src="./assets/palestrante-karen.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
+            <div class="spk__wrap">
+              <span class="spk__blob" aria-hidden="true"></span>
+              <img class="spk__ph" src="./assets/palestrante-karen.jpg" alt="" width="130" height="130" loading="lazy" style="object-fit:cover">
+            </div>
             <div>
               <p class="spk__name">Karen Marcelino</p>
               <p class="spk__role">Sucesso do Cliente &middot; Cxpress</p>
             </div>
           </div>
           <div class="spk reveal">
-            <img class="spk__ph" src="./assets/palestrante-luiz.jpg" alt="" width="84" height="84" loading="lazy" style="object-fit:cover">
+            <div class="spk__wrap">
+              <span class="spk__blob" aria-hidden="true"></span>
+              <img class="spk__ph" src="./assets/palestrante-luiz.jpg" alt="" width="130" height="130" loading="lazy" style="object-fit:cover">
+            </div>
             <div>
               <p class="spk__name">Luiz Fantini</p>
               <p class="spk__role">New Business &middot; Cxpress</p>

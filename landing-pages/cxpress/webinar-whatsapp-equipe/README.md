@@ -107,6 +107,8 @@ Pedido do Bruno: usar o aprendizado das LPs Cxpress da Leadpages (`chatbot-whats
 - Tópicos: X e checks "estalam" com escalonamento e trilha ligando os 4 tópicos; o fecho acende palavra a palavra com a rolagem; luz que segue o mouse na ficha e nos palestrantes.
 - **Não levado das LPs Leadpages, de propósito:** botão flutuante de WhatsApp (abre outro formulário e competiria com a inscrição). Hero com a mesma altura de antes (846px em 1440): o form não desceu.
 
+- **v4:** na ficha do hero a data virou um **calendário** (mês, dia grande com folha que vira, dia da semana e hora com relógio), com o texto original em `sr-only` para leitores de tela. Speakers no padrão das páginas de evento da Buzzmonitor (`black-friday-alta-performance`): card centralizado, foto 130px sobre disco em gradiente azul/verde e ondas no hover. Sem rótulos novos ("Palestrante" etc.), para não alterar a copy.
+
 ## Validações rodadas
 
 | Checagem | Resultado |
