@@ -109,6 +109,8 @@ Pedido do Bruno: usar o aprendizado das LPs Cxpress da Leadpages (`chatbot-whats
 
 - **v4:** na ficha do hero a data virou um **calendário** (mês, dia grande com folha que vira, dia da semana e hora com relógio), com o texto original em `sr-only` para leitores de tela. Speakers no padrão das páginas de evento da Buzzmonitor (`black-friday-alta-performance`): card centralizado, foto 130px sobre disco em gradiente azul/verde e ondas no hover. Sem rótulos novos ("Palestrante" etc.), para não alterar a copy.
 
+- **v5 (revisao de mobile e carregamento, 10/10):** Lighthouse mobile da pagina no ar: performance 48, LCP 6,1s, TBT 970ms, acessibilidade 96. Correcoes: (1) os 3 paragrafos finais de "Para quem" estavam brancos sobre cinza (contraste 1,04:1, invisiveis) e agora usam ink-soft; (2) Google Fonts deixou de bloquear a renderizacao (preload + swap); (3) eyebrow e H1 nao esperam animacao de opacidade (LCP); (4) o script do Jotform e injetado sob demanda (perto da secao, primeira interacao ou ocioso apos o load) em vez de sincrono; (5) animacoes que repintavam a cada quadro saíram (pulso do CTA em box-shadow, relogio girando, marcas d'agua flutuando, blur grande, backdrop-filter no celular); borda girando so em desktop com mouse e pausada fora de vista; esteira de logos em camada propria; (6) celular: topo mais compacto e a conversa simulada vem depois da lista de topicos. Medido local (sem GTM/Pixel): performance 97, acessibilidade 100, boas praticas 96, SEO 100, FCP 2,0s.
+
 ## Validações rodadas
 
 | Checagem | Resultado |

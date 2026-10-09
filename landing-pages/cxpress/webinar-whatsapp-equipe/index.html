@@ -48,7 +48,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap">
+  <link rel="dns-prefetch" href="https://form.jotform.com">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Source+Sans+3:wght@400;600&display=swap"></noscript>
 
   <noscript><style>.hero h1 .mark{animation:none;background-size:100% 7px}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
@@ -98,6 +100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     h1,h2,h3,.lead,.kicker,.sec-head p,.dor p,.ver__item p,.num__t,.ficha__v,
     .spk__role,.spk__bio,.clientes__label,.fecho h2,.form-side p,.note{text-wrap:balance}
     .note--long,.footer p{text-wrap:pretty}
+    .note.note--long{color:var(--ink-soft);font-size:17px;line-height:1.65}
 
     /* entrada no scroll */
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
@@ -263,6 +266,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .clientes__group img:hover{opacity:1;filter:none}
     @keyframes clientesMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .clientes__track{will-change:transform}
+    .clientes__marquee{contain:paint}
     .clientes__marquee:hover .clientes__track{animation-play-state:paused}
     @media (prefers-reduced-motion:reduce){.clientes__track{animation:none}}
 
@@ -357,7 +362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero h1 .h1-resto{color:var(--ink-soft);font-weight:700}
 
     /* entrada escalonada dos blocos do hero */
-    .hero__content>*{animation:sobe .6s cubic-bezier(.22,.78,.3,1) both}
+    .hero__content>*:nth-child(n+3){animation:sobe .6s cubic-bezier(.22,.78,.3,1) both}
     .hero__content>*:nth-child(1){animation-delay:.02s}
     .hero__content>*:nth-child(2){animation-delay:.10s}
     .hero__content>*:nth-child(3){animation-delay:.18s}
@@ -423,8 +428,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* eyebrow com ponto de "online" */
     .eyebrow--pill{display:inline-flex;align-items:center;gap:10px}
-    .eyebrow--pill::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:wDot 2.2s ease-out infinite}
-    @keyframes wDot{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%,100%{box-shadow:0 0 0 9px rgba(37,211,102,0)}}
+    .eyebrow--pill::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--wa);animation:wDot 2.2s ease-in-out infinite}
+    @keyframes wDot{0%,100%{opacity:1}50%{opacity:.35}}
 
     /* botoes: brilho que atravessa + pulso no CTA do hero */
     .btn{position:relative;isolation:isolate;overflow:hidden}
@@ -433,8 +438,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transform:translateX(-120%);transition:transform .8s var(--ease)}
     .btn:hover::after{transform:translateX(120%)}
     .btn--ghost::after{display:none}
-    .hero .cta-row .btn{animation:ctaPulse 3.2s ease-in-out 2.2s infinite}
-    @keyframes ctaPulse{0%,100%{box-shadow:0 8px 20px rgba(43,92,230,.22),0 0 0 0 rgba(43,92,230,.38)}55%{box-shadow:0 8px 20px rgba(43,92,230,.22),0 0 0 12px rgba(43,92,230,0)}}
     .btn svg{transition:transform .3s var(--ease)}
     .btn:hover svg{transform:translateX(4px)}
 
@@ -442,7 +445,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__visual{position:relative}
     .phone{position:relative;width:min(100%,350px);margin:0 auto}
     .phone::before{content:"";position:absolute;z-index:-1;inset:6% -14% -6% -14%;border-radius:44px;
-      background:radial-gradient(52% 52% at 30% 40%,rgba(37,211,102,.20),transparent 70%),radial-gradient(52% 52% at 76% 62%,rgba(43,92,230,.20),transparent 70%);filter:blur(10px)}
+      background:radial-gradient(52% 52% at 30% 40%,rgba(37,211,102,.20),transparent 70%),radial-gradient(52% 52% at 76% 62%,rgba(43,92,230,.20),transparent 70%)}
     .ver__fig .phone{margin:0 auto}
     #aula .dores{margin:0;max-width:none}
     .wtile{position:absolute;z-index:3;width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:#fff;
@@ -496,13 +499,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     #aula .dor.is-in:not(:last-child)::before{transform:none}
     #aula .ver__ck{position:relative;z-index:1}
     @media (max-width:640px){#aula .dor:not(:last-child)::before{top:60px;bottom:-30px}}
+    @media (max-width:1000px){#aula .ver__fig{order:2}}
+
+    /* celular: ritmo vertical mais curto no topo, para o formulario chegar mais cedo */
+    @media (max-width:640px){
+      .hero{padding:40px 0 44px}
+      .hero__inner{gap:30px}
+      .hero .lead + .lead{margin-top:14px}
+      .hero .cta-row{margin-top:26px}
+      .hero__proof{margin-top:22px}
+      .ficha{padding:22px 20px 14px}
+      .ficha__rows{margin-top:18px}
+      .inscricao{padding:64px 0}
+      .insc__grid{gap:32px}
+    }
 
     /* inscricao: brilhos, marca d'agua do WhatsApp e borda girando no painel */
     .inscricao{position:relative;overflow:hidden}
     .inscricao::before{content:"";position:absolute;inset:0;pointer-events:none;
       background:radial-gradient(640px 360px at 8% 8%,rgba(43,92,230,.30),transparent 70%),radial-gradient(560px 340px at 96% 96%,rgba(37,211,102,.16),transparent 70%)}
     .inscricao .wrap{position:relative;z-index:1}
-    .insc__wm{position:absolute;z-index:0;right:-70px;top:-50px;width:380px;height:380px;color:#fff;opacity:.05;pointer-events:none;animation:tileFloat 11s ease-in-out infinite}
+    .insc__wm{position:absolute;z-index:0;right:-70px;top:-50px;width:380px;height:380px;color:#fff;opacity:.05;pointer-events:none}
     .insc__wm svg{width:100%;height:100%}
     .form-card{position:relative;isolation:isolate}
     @property --cxa{syntax:'<angle>';inherits:false;initial-value:0deg}
@@ -511,6 +528,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         background:conic-gradient(from var(--cxa),#2B5CE6,#7AA0FF,#25D366,#7AA0FF,#2B5CE6);
         -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
         animation:cxSpin 8s linear infinite}
+      @media (max-width:1000px),(hover:none){.form-card::before{animation:none;background:linear-gradient(135deg,#2B5CE6,#7AA0FF 55%,#25D366)}}
+      .form-card.fx-idle::before{animation-play-state:paused}
     }
     @keyframes cxSpin{to{--cxa:360deg}}
 
@@ -527,7 +546,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* fecho: a frase acende palavra a palavra com a rolagem + marca d'agua */
     .fecho{position:relative;overflow:hidden}
     .fecho .wrap{position:relative;z-index:1}
-    .fecho__wm{position:absolute;z-index:0;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;color:var(--wa);opacity:.06;pointer-events:none;animation:tileFloat 12s ease-in-out infinite}
+    .fecho__wm{position:absolute;z-index:0;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;color:var(--wa);opacity:.06;pointer-events:none}
     .fecho__wm svg{width:100%;height:100%}
     .fecho h2.lit .w{opacity:.22;transition:opacity .35s}
     .fecho h2.lit .w.on{opacity:1}
@@ -536,7 +555,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .sticky-cta{display:none}
     @media (max-width:1000px){
       .sticky-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-        background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--rule);
+        background:#fff;border-top:1px solid var(--rule);
         box-shadow:0 -10px 30px rgba(14,17,22,.08);transform:translateY(110%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s .35s}
       .sticky-cta.is-show{transform:none;visibility:visible;transition:transform .35s var(--ease)}
       .sticky-cta .btn{width:100%;justify-content:center;animation:none}
@@ -544,10 +563,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .wtile{display:none}
       .insc__wm{width:260px;height:260px;right:-60px;top:-40px}
     }
+    @media (max-width:1000px){header{-webkit-backdrop-filter:none;backdrop-filter:none;background:#fff}}
     @media (max-width:640px){.fecho__wm{width:340px;height:340px;margin:-170px 0 0 -170px}}
 
     @media (prefers-reduced-motion:reduce){
-      .eyebrow--pill::before,.hero .cta-row .btn,.wtile,.insc__wm,.fecho__wm,.form-card::before,.typing i{animation:none}
+      .eyebrow--pill::before,.hero .cta-row .btn,.wtile,.form-card::before,.typing i{animation:none}
       .dor.is-in .dor__x,.dor.is-in .ver__ck{animation:none}
       #aula .dor:not(:last-child)::before{transition:none}
       .sticky-cta{transition:none}
@@ -572,8 +592,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cal__hora{display:flex;flex-direction:column;gap:2px}
     .cal__as{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);display:flex;align-items:center;gap:7px}
     .cal__as svg{width:16px;height:16px;color:var(--blue)}
-    .cal__as .ponteiro{transform-origin:12px 12px;animation:relogio 12s linear infinite}
-    @keyframes relogio{to{transform:rotate(360deg)}}
     .cal__h{font-family:var(--font-display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.04em;color:var(--blue)}
     @media (max-width:640px){
       .cal__tile{width:92px}
@@ -600,7 +618,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .spk__role{margin-top:7px}
     @media (max-width:640px){.spk{padding:40px 24px 28px}}
     @media (prefers-reduced-motion:reduce){
-      .cal__folha,.cal__as .ponteiro{animation:none}
+      .cal__folha{animation:none}
       .cal__tile{transition:none}
       .spk:hover .spk__wrap::before,.spk:hover .spk__wrap::after{animation:none}
     }
@@ -699,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="clientes clientes--faixa" aria-label="Clientes da Cxpress">
         <div class="wrap">
           <span class="clientes__label">Marcas que atendem com a Cxpress</span>
-          <div class="clientes__marquee reveal" role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
+          <div class="clientes__marquee reveal" data-fx role="img" aria-label="Logos de clientes da Cxpress, entre eles Mondial, Cappta, Sephora, Vivo e Smart Fit">
             <div class="clientes__track">
               <div class="clientes__group">
                 <img src="./assets/clientes/cliente-01.png" alt="" aria-hidden="true" width="199" height="84" loading="lazy">
@@ -804,9 +822,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="kicker">27 de outubro, terça-feira, às 11h</p>
             <p class="sub">Você recebe o link por e-mail após a inscrição e um lembrete no dia.</p>
           </div>
-          <div class="form-card reveal">
-            <div class="jotform-embed">
-              <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+          <div class="form-card reveal" data-fx>
+            <div class="jotform-embed" id="jotEmbed" style="min-height:400px">
+              <noscript><iframe src="https://form.jotform.com/261033482583658" title="Inscrição no webinar" style="width:100%;height:539px;border:0"></iframe></noscript>
             </div>
           </div>
         </div>
@@ -1062,6 +1080,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <script>
+    /* Jotform: o script oficial (jsform) e injetado so perto da hora de usar. Ele acha o proprio
+       <script> e insere o iframe depois dele, entao funciona igual a tag estatica. */
+    (function(){
+      var box = document.getElementById('jotEmbed');
+      if(!box) return;
+      var feito = false;
+      function carrega(){
+        if(feito) return; feito = true;
+        var sc = document.createElement('script');
+        sc.src = 'https://form.jotform.com/jsform/261033482583658';
+        box.appendChild(sc);
+      }
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(en){ if(en[0].isIntersecting) carrega(); },{rootMargin:'900px 0px'}).observe(box);
+      }
+      ['pointerdown','keydown','touchstart'].forEach(function(t){ window.addEventListener(t, carrega, {once:true,passive:true}); });
+      window.addEventListener('load', function(){
+        if('requestIdleCallback' in window) requestIdleCallback(carrega,{timeout:4000}); else setTimeout(carrega,3000);
+      });
+    })();
+
     /* Camada de movimento v3. Nada aqui altera texto: so classes, variaveis CSS e
        o <span> por palavra do fecho. Sob prefers-reduced-motion nada anima. */
     (function(){
