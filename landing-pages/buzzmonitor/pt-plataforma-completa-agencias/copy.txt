@@ -1,0 +1,161 @@
+# Copy estruturada, LP Agencias Buzzmonitor PORTUGAL (PT-PT)
+# Fonte original: https://conteudo.buzzmonitor.com.br/plataforma-completa-agencias (GreatPages legado, PT-BR)
+# Estrutura: espelha a v3 aprovada da LP irma agencias-es (landing-pages/buzzmonitor/agencias-es),
+#   que por sua vez e a versao enxuta da mesma LP de agencias. Texto traduzido da fonte BR.
+# Regiao: portugal (pt-PT). ATENCAO: o slug tem prefixo "pt-" (pedido da Thamires, 2026-10-07),
+#   NAO sufixo, entao a cascata §5.1 nao resolve pelo slug. Regiao forcada a mao em todas as
+#   etapas: html lang="pt-PT" + GTM-NCFT22CW (Portugal) + Jotform PT 261405305585859.
+# Tratamento: "voce" (3a pessoa), sem tu. Monitoramento -> monitorizacao (padrao das LPs PT).
+#
+# DIFERENCAS vs agencias-es
+# - Depoimentos: a LP BR usa um VIDEO de depoimentos (YouTube nBMZZZKrMpI). As citacoes escritas
+#   da agencias-es sao de agencias LATAM em espanhol; traduzir fala de terceiros para PT-PT seria
+#   por palavras na boca de pessoas reais. Usado o video da fonte BR (audio PT-BR, ver pendencias).
+# - Preco: a LP BR mostra "a partir de R$ 1.790/mes" e a ES "$390 USD/Mes". Nao ha preco EUR
+#   documentado para Portugal; linha de preco OMITIDA ate decisao humana.
+# - Bloco WhatsApp da LP BR (numero brasileiro): OMITIDO.
+# - Canal "Reclame Aqui" (so Brasil) removido da caixa de canais: 14 canais.
+#
+# [ASSET] Hero: video ./assets/hero-plataforma.mp4 (origem: monitoramento-com-ia, UI da plataforma)
+# [ASSET] Prints PT (os da agencias-es tem UI em espanhol): crise-1.png, crise-2.png, insights.png (origem: monitoramento-manual-pt)
+#   + dashboard-analytics.png (origem: plataforma-completa-para-dados)
+# [ASSET] Logos: ./assets/logos-agencias/ e ./assets/logos-clientes/ (origem: agencias-es)
+# [FORM] Jotform PT 261405305585859 (o mesmo de mcp-buzzmonitor-pt e monitoramento-manual-pt)
+
+=== NAV ===
+LINK: Soluções
+LINK: IA
+LINK: Clientes
+CTA: Pedir demonstração
+
+=== 1. HERO ===
+H1: Os seus clientes não cancelam por causa do preço.
+H2: Cancelam quando a sua agência deixa de lhes dar informação estratégica.
+H3: Com a Buzzmonitor, a sua agência deteta oportunidades, riscos e sinais de mudança antes de os clientes darem por eles. Reforça a fidelização, justifica os seus preços e abre novas oportunidades de negócio.
+CTA: Pedir demonstração gratuita
+# [ASSET] video hero (autoplay muted loop + botao de pausa; reduced-motion mostra so o poster)
+
+=== 2. NUMEROS + PAREDE DE LOGOS (prova social imediata) ===
+H2: Empresas que já confiam na Buzzmonitor
+LABEL: 1.000+ clientes em todo o mundo
+LABEL: 300+ clientes enterprise
+LABEL: 10k utilizadores
+LABEL: 500+ agências
+# [ASSET] logo wall: logos-clientes/
+
+=== 3. SOLUCOES (3 splits com print) ===
+OVERLINE: Automatize processos, analise dados e potencie os seus resultados com IA
+H2: Conheça a plataforma mais completa para gerir as redes sociais da sua agência
+BODY: Faça a gestão das redes sociais e da experiência dos seus clientes numa só plataforma, líder no uso de inteligência artificial para social listening, insights, relatórios de performance e atendimento digital.
+
+H3: Monitorização de Redes Sociais
+BODY: Acompanhe a saúde da marca dos seus clientes e perceba como é vista pelos utilizadores. Monitorize termos e menções, identifique oportunidades e problemas e antecipe crises de imagem.
+LIST ITEM: Pesquisa ilimitada por palavras-chave
+LIST ITEM: Insights qualitativos com IA
+LIST ITEM: Monitorização de concorrentes
+LIST ITEM: Alertas de prevenção de crises de marca
+# [ASSET] print: crise-1.png
+
+# --- CAIXA DE CANAIS (abaixo do split de Monitorizacao, largura cheia) ---
+SUB: Redes e canais integrados
+BODY: Monitorize menções, comentários e mensagens de todos estes canais no mesmo painel.
+CTA (toggle): Ver mais / Ver menos
+# Visiveis antes do clique (5): WhatsApp, Instagram, Facebook, TikTok, YouTube
+# Atras do "Ver mais" (9): LinkedIn, Threads, Pinterest, Reddit, Bluesky, Google My Business,
+#   Google Play Store, WordPress, E-mail
+
+H3: Atendimento Centralizado
+BODY: Deixe de perder tempo a responder rede a rede para cada cliente da agência. Centralize todo o atendimento numa única plataforma e responda em todas as redes sociais dos seus clientes a partir do mesmo sítio.
+LIST ITEM: Mais de 15 canais digitais num só ecrã
+LIST ITEM: IA para sugerir respostas
+LIST ITEM: Sentimento e etiquetas automáticas com IA
+LIST ITEM: KPIs do atendimento e da equipa
+# [ASSET] print: crise-2.png
+
+H3: Dashboards em tempo real
+BODY: Personalize relatórios com as métricas e os KPIs de Social Analytics, Social Listening e Atendimento Multicanal que quiser e partilhe-os com o seu cliente em tempo real.
+LIST ITEM: Dashboards com dados de listening, atendimento e analytics
+LIST ITEM: Secções com análises resumidas feitas por IA
+LIST ITEM: Partilháveis externamente com palavra-passe
+LIST ITEM: Um para cada situação: campanhas, concorrentes, saúde da marca, etc.
+# [ASSET] print: dashboard-analytics.png
+
+CTA: Experimentar a Buzzmonitor
+
+=== 4. MODULOS RESTANTES (grade de 3) ===
+H2: Tudo isto numa só plataforma
+
+H3: Métricas de Social Media
+BODY: Mais de 50 métricas avançadas para medir a sua performance face à concorrência e revelar tendências para a sua marca.
+LIST ITEM: Performance de várias redes sociais
+LIST ITEM: Performance dos concorrentes
+LIST ITEM: Análise de stories e reels
+LIST ITEM: Personalização de relatórios
+
+H3: Agendamento e Publicação
+BODY: Planeie, agende e publique em vários canais a partir do mesmo sítio, para poupar tempo e manter a sua presença sempre ativa.
+LIST ITEM: Agendamento em várias redes sociais
+LIST ITEM: ChatGPT para criar conteúdo
+LIST ITEM: Fluxo de trabalho e aprovação
+LIST ITEM: Calendário de conteúdos
+
+H3: Gestão de Crises
+BODY: Atue da prevenção à recuperação, com dados em tempo real e IA, e saia da crise mais forte.
+LIST ITEM: Alertas de termos críticos
+LIST ITEM: Deteção de sinais antes de a crise começar
+LIST ITEM: Acompanhamento em tempo real
+LIST ITEM: Oportunidades extraídas das crises
+
+=== 5. IA (secao unica) ===
+H2: A IA muda tudo
+SUB: A Buzzmonitor foi pioneira na IA aplicada a social media e atendimento. As nossas IAs tiram trabalho manual à sua equipa: relatórios mais rápidos, insights preditivos e recomendações que apoiam decisões mais precisas.
+# [ASSET] print: insights.png
+H3: AI Insights
+BODY: Funcionalidade que faz análises e apresenta insights automaticamente, com um só clique.
+H3: Buzz Pills
+BODY: Análises geradas por IA, com insights entregues no seu e-mail.
+H3: Visual Listening com IA
+BODY: A IA da Buzzmonitor descreve automaticamente imagens e vídeos nas redes sociais. A análise de conteúdos audiovisuais fica mais simples e a escuta social mais precisa, através de palavras-chave e termos de pesquisa.
+H3: Classificação automática
+BODY: A IA define o sentimento e o tipo de mensagem e aplica etiquetas para otimizar o atendimento.
+H3: Smart Replies
+BODY: Funcionalidade que sugere opções de resposta automáticas.
+H3: ChatGPT
+BODY: Integração com a IA da OpenAI para atendimento e criação de conteúdos.
+
+=== 6. DEPOIMENTOS ===
+H2: Ainda tem dúvidas?
+SUB: Veja o que dizem as agências que já utilizam a Buzzmonitor
+# [ASSET] video YouTube nBMZZZKrMpI (o mesmo da LP BR; audio PT-BR)
+
+=== 7. CTA FINAL (oferta + FORM) ===
+H2: Experimente a Buzzmonitor gratuitamente durante 14 dias
+BODY: Tenha acesso a várias soluções digitais numa só plataforma, líder no uso de IA, para potenciar os seus resultados e vender mais.
+LIST ITEM: Monitorização de redes sociais e análises geradas por IA
+LIST ITEM: Atendimento multicanal otimizado por IA
+LIST ITEM: Relatórios de performance da marca e da concorrência
+LIST ITEM: Otimização de processos e mais produtividade com IA
+LIST ITEM: E muito mais
+H3 (card do form): Pedir demonstração
+# [FORM] Jotform PT 261405305585859
+# [PENDENTE] Linha de preco omitida (sem preco EUR documentado)
+
+=== 8. LOGOS DE AGENCIAS (fechamento) ===
+SUB: Agências que já confiam na Buzzmonitor
+# [LOGOS] Kaleidoscopio, McCann, Lead, Sube, Eureka&Co, Havas, TBWA
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+LINK: Política de Privacidade e utilização de Cookies → https://buzzmonitor.com/pt-pt/privacidade/
+
+# ---------------------------------------------------------------
+# Revisao linguistica / anti-IA (lp-preparar Passo 4)
+# Em-dash: 0. Exclamacoes: 0 (PT-PT: headlines sem exclamacao; a fonte BR/ES tinha varias).
+# Antitese-por-negacao: 1 (H1/H2 do hero, herdada da fonte). Dentro do limite.
+# "de forma X": 0 (a fonte tinha 2; reescritas em "a partir do mesmo sitio" e verbo direto).
+# Brasileirismos verificados e evitados: usuarios->utilizadores, equipe->equipa,
+#   monitoramento->monitorizacao, compartilhar->partilhar, senha->palavra-passe,
+#   tela->ecra, agendar demonstracao->pedir demonstracao, "Saiba mais"->CTA nominal,
+#   possessivos com artigo ("os seus clientes", "a sua agencia"), "antes de os clientes darem por eles".
+# [SUGESTAO anti-IA] "potenciar os seus resultados" aparece 2x (overline + CTA final). Fica a criterio.
+# Revisao anti-IA: sem outros achados.

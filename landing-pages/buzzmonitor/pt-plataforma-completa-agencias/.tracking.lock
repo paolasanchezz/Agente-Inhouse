@@ -1,0 +1,11 @@
+{
+  "regiao": "portugal",
+  "expected_gtm": "GTM-NCFT22CW",
+  "found_gtm": [
+    "GTM-NCFT22CW"
+  ],
+  "fingerprint": "b7220963c7fa03e2",
+  "status": "ok",
+  "grandfathered": false,
+  "verified_at": "2026-10-07"
+}
