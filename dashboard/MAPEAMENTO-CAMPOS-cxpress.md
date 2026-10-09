@@ -73,6 +73,7 @@ quando `filtro_inbound` virou no-op — §2.1):
 | Bucket | Decisão | Razão |
 |---|---|---|
 | `google + cpc` (Google Ads) | **fora** | tráfego pago Google, não-CM por definição |
+| `chatgptads` (ChatGPT Ads) | **fora sempre** | mídia paga; barrado mesmo em URL de conteúdo (`CM_UTM_SOURCES_EXCLUIR`). `chatgpt.com` orgânico segue dentro. Victor 2026-10-08 (caso deal 89850) |
 | `whatsapp` (qualquer medium) | **fora** | misto outbound/CM, vendedor abre conversa em muitos casos |
 | `youtube` | **fora** | volume baixo + tracking ruidoso (Victor pediu corte) |
 | `google` sem `cpc` | fora | orgânico/direto, ambíguo |

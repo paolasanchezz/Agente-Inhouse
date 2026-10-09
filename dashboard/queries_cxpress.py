@@ -115,6 +115,12 @@ CM_UTM_SOURCES: list[str] = [
     'webinar', 'qrcode-webinar-bloqueio-whatsapp',
 ]
 
+# utm_source de midia paga que NUNCA conta como CM — nem convertendo em URL de conteudo
+# (CM_URL_PATTERNS deixaria passar: caso deal 89850, utm_source='chatgptads' em
+# content.cxpress.io, out/2026). 'chatgpt.com' (referral organico/GEO) segue na whitelist.
+# Decisao Victor 2026-10-08, vale pra todas as dashboards CM.
+CM_UTM_SOURCES_EXCLUIR: list[str] = ['chatgptads']
+
 # URLs de conteudo CM que entram independente de utm_source (caso o tracking nao tenha sido preservado).
 # Atualizar conforme novas LPs/dominios de CM forem lancados.
 CM_URL_PATTERNS: list[str] = [
@@ -160,7 +166,8 @@ def filtro_cm(alias: str = '') -> str:
     """Filtro Content Marketing — calibrado contra dados reais + validacao manual Victor 2026-06-09.
 
     Regras:
-    1. Exclui Google Ads (google + cpc).
+    1. Exclui Google Ads (google + cpc) e as sources pagas de CM_UTM_SOURCES_EXCLUIR
+       (chatgptads) — esta segunda vale ate sobre CM_URL_PATTERNS.
     2. Exclui sources nao-CM (whatsapp, youtube, vtexday2026, Indicação, Ramal, ActiveCampaign, etc.)
        — implicitamente, por nao casar a whitelist nem os padroes LIKE.
     3. Inclui sources sociais/owned (CM_UTM_SOURCES) + variacoes case-insensitive com prefixos
@@ -183,6 +190,7 @@ def filtro_cm(alias: str = '') -> str:
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES)
     email_sources = ", ".join(f"'{s}'" for s in CM_SOURCES_EMAIL_PROPRIO)
+    excluir = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES_EXCLUIR)
     url_clauses = "\n        OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in CM_URL_PATTERNS)
     excl_sempre = "\n        OR ".join(
         f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in CM_URLS_EXCLUIDAS_SEMPRE
@@ -197,6 +205,7 @@ def filtro_cm(alias: str = '') -> str:
     )
     return f"""(
       NOT (LOWER(COALESCE({a}utm_source, '')) = 'google' AND LOWER(COALESCE({a}utm_medium, '')) = 'cpc')
+      AND LOWER(TRIM(COALESCE({a}utm_source, ''))) NOT IN ({excluir})
       AND NOT (
         {excl_sempre}
       )

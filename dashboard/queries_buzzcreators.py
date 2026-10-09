@@ -67,13 +67,14 @@ CM_UTM_SOURCES: list[str] = [
 
 # Sources vistos na base que NAO entram — documentados pra ninguem "redescobrir" e re-incluir.
 #   internos.......: cs, cs_buzz, cs-buzzmonitor, comercial, bds, sdr, plataforma, app-buzzmonitor
-#   midia paga.....: google (98% medium=cpc)
+#   midia paga.....: google (98% medium=cpc), chatgptads (ChatGPT Ads — 'chatgpt.com' organico
+#                    segue na whitelist; decisao Victor 2026-10-08, todas as dashboards CM)
 #   tracking quebrado: %utm_source_novo%, {{placement}}, teste_origem, null, others
 #   pendente.......: 'redes-sociais' (3 deals) — na dash BR o Victor confirmou que NAO e CM
 #                    (era CS tagueando expansao de cliente); mantido fora aqui pela mesma razao.
 #                    'thebizness' (1 deal, newsletter parceira) — fora ate o Victor confirmar.
 NAO_CM_DOCUMENTADOS: list[str] = [
-    'google', 'cs', 'cs_buzz', 'cs-buzzmonitor', 'comercial', 'bds', 'sdr',
+    'google', 'chatgptads', 'cs', 'cs_buzz', 'cs-buzzmonitor', 'comercial', 'bds', 'sdr',
     'plataforma', 'app-buzzmonitor', 'redes-sociais', 'thebizness',
     '%utm_source_novo%', '{{placement}}', 'teste_origem', 'null', 'others',
 ]

@@ -48,6 +48,12 @@ CM_UTM_SOURCES: list[str] = [
 
 INTERNOS_EXCLUIR: list[str] = ['cs', 'comercial', 'sdr', 'crm', 'google']
 
+# utm_source de midia paga que NUNCA conta como CM — nem convertendo em URL de
+# conteudo (os ramos de dominio/slug do filtro_cm deixariam passar). ChatGPT Ads
+# entrou no mix em out/2026; 'chatgpt.com' (referral organico/GEO) segue na
+# whitelist. Decisao Victor 2026-10-08, vale pra todas as dashboards CM.
+CM_UTM_SOURCES_EXCLUIR: list[str] = ['chatgptads']
+
 # Prefixos de utm_source CM (casamento por PREFIXO, case-insensitive) — 2026-08-31.
 # Motivo: entrada de LinkedIn Ads e TikTok Ads no mix de CM (deal 194056,
 # utm_source=linkedin / utm_medium=paid-social / campanha "InMail - Conversoes",
@@ -413,6 +419,7 @@ def filtro_cm(alias: str = '') -> str:
     med = f"LOWER(TRIM(COALESCE({p}utm_medium, '')))"
     sources = _sql_list(sorted({s.lower() for s in CM_UTM_SOURCES}))
     internos = _sql_list(sorted({s.lower() for s in INTERNOS_EXCLUIR}))
+    excluir = _sql_list(sorted({s.lower() for s in CM_UTM_SOURCES_EXCLUIR}))
     prefixos = "\n      OR ".join(
         f"{src} LIKE '{pref}%'" for pref in CM_UTM_SOURCE_PREFIXOS
     )
@@ -431,6 +438,7 @@ def filtro_cm(alias: str = '') -> str:
     return f"""(
     {exclusao}
     AND NOT ({src} = 'google' AND {med} = 'cpc')
+    AND {src} NOT IN ({excluir})
     AND (
       {src} IN ({sources})
       OR {prefixos}

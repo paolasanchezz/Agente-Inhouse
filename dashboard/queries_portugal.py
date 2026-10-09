@@ -135,6 +135,11 @@ CM_UTM_SOURCES = {
     "activecampaign", "newsletter", "organic", "blog", "youtube", "tiktok",
 }
 
+# utm_source que NUNCA conta como CM, nem convertendo em dominio de conteudo:
+# ChatGPT Ads (midia paga). 'chatgpt.com' (referral organico/GEO) nao e afetado.
+# Decisao Victor 2026-10-08, vale pra todas as dashboards CM.
+CM_UTM_SOURCES_EXCLUIR = {"chatgptads"}
+
 # Lixo conhecido em utm_source — nao e fonte, e falha de tagueamento.
 UTM_LIXO = {
     "{utm_source}", "{{site_source_name}}", "{{placement}}", "{campaign.name}",
@@ -206,6 +211,8 @@ def classificar(utm_source_norm, url_conv):
     """
     dom = dominio_de(url_conv)
     tem_url = bool(str(url_conv).strip()) if url_conv else False
+    if utm_source_norm in CM_UTM_SOURCES_EXCLUIR:
+        return "nao_cm"
     if dom in DOMINIOS_CONTEUDO:
         return "cm"
     if utm_source_norm in CM_UTM_SOURCES:

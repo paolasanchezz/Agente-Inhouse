@@ -95,6 +95,8 @@ Mesma filosofia do Brasil (decisão "igual ao Brasil" no tráfego Google):
 `Pamela_Sanchez`, `equipo_comercial`, `comercial`, `ActiveCampaign`, `Customer_Success_Team`
 (canais internos/SDR), e lixo de template (`{utm_source}`, `null`, `Others`, `{{placement}}`).
 
+**`chatgptads` (ChatGPT Ads) fora sempre** — barrado no wrapper externo do filtro (`CM_UTM_SOURCES_EXCLUIR_LATAM`), acima até da URL forte e do sinal de origem própria. `chatgpt.com` (orgânico/GEO) segue na whitelist. Decisão Victor 2026-10-08 (caso deal 66908).
+
 **Webinar / material rico:** na LATAM caem sob o domínio de conteúdo (`getbuzzmonitor.com`, slugs como
 `plataforma-completa`, `analytics-pro`, `ia-para-social-listening`) ou sob fontes `email`/social — já
 capturados por (a)/(b). Quando os campos `oferta_evento` / `fecha_de_evento_o_webinar...` forem

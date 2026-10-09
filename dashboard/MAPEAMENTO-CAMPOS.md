@@ -109,6 +109,7 @@ pagos contam como CM (decisao Victor 2026-08-31, deal 194056).
 **Excluídos explicitamente** (canais internos ou pagos):
 - `comercial`, `sdr`, `cs`, `crm` — distribuição interna do time (não geração CM)
 - `google` (com `utm_medium='cpc'`) — Google Ads, canal pago
+- `chatgptads` — ChatGPT Ads, canal pago. Barrado **sempre**, mesmo convertendo em URL/slug de conteúdo (`CM_UTM_SOURCES_EXCLUIR`). `chatgpt.com` (referral orgânico/GEO) segue na whitelist. Decisão Victor 2026-10-08, vale pra todas as dashboards CM.
 
 ### URLs CM (qualquer domínio próprio do conteúdo)
 

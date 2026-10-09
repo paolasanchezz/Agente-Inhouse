@@ -38,6 +38,12 @@ CM_UTM_SOURCES_LATAM: list[str] = [
     'slides', 'newsletter', 'sitio_web',
 ]
 
+# utm_source de midia paga que NUNCA conta como CM — vale no wrapper externo do filtro,
+# acima ate de URL_FORTE_CM e do sinal de origem propria (caso deal 66908, utm_source=
+# 'chatgptads' em LP de conteudo, out/2026). 'chatgpt.com' (referral organico/GEO) segue
+# na whitelist. Decisao Victor 2026-10-08, vale pra todas as dashboards CM.
+CM_UTM_SOURCES_EXCLUIR_LATAM: list[str] = ['chatgptads']
+
 # Campanhas proprias de conteudo/webinar: contam como CM pelo NOME da campanha,
 # independente do utm_source do ultimo toque. Decisao Victor 2026-08-11 a partir do
 # caso Oferta_Webinar_Social_Listening (leads que vieram do anuncio Meta -> LP do
@@ -261,6 +267,7 @@ def filtro_cm_latam(alias: str = '') -> str:
     """
     a = (alias + '.') if alias else ''
     sources = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES_LATAM)
+    excluir = ", ".join(f"'{s}'" for s in CM_UTM_SOURCES_EXCLUIR_LATAM)
     url_forte = "\n      OR ".join(f"{a}url_conversao ILIKE '{p}'" for p in URL_FORTE_CM)
     urls_excluir = ", ".join(f"'{u}'" for u in URLS_COMERCIAIS_SEM_UTM_EXCLUIR)
     url_fora = "\n        OR ".join(f"COALESCE({a}url_conversao, '') ILIKE '{p}'" for p in URLS_FORA_CM)
@@ -313,6 +320,9 @@ def filtro_cm_latam(alias: str = '') -> str:
       AND NOT (
         {campanha_presencial}
       )
+      -- (5) midia paga fora de CM sempre (ChatGPT Ads) — absoluto, acima de (1) e (1b).
+      -- 'chatgpt.com' (organico/GEO) nao e afetado. Decisao Victor 2026-10-08.
+      AND lower(trim(coalesce({a}utm_source,''))) NOT IN ({excluir})
     )"""
 
 
