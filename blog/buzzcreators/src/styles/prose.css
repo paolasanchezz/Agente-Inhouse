@@ -96,3 +96,145 @@
 .prose tbody tr:nth-child(even) {
   background: var(--c-gray-50);
 }
+
+/* Tabela comparativa em card (HTML no .md: <div class="data-table"><table>).
+   3 colunas cabem no mobile sem rolagem; a coluna .is-featured é a do
+   protagonista do case e a linha .is-highlight é o número-chave. */
+.prose .data-table {
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-md);
+  overflow-x: auto; /* fallback: em tela muito estreita rola em vez de cortar */
+  box-shadow: var(--shadow-sm);
+}
+.prose .data-table table {
+  display: table;
+  width: 100%;
+  font-size: 1rem;
+}
+.prose .data-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--c-purple-dark);
+  background: var(--c-gray-50);
+  border-bottom: 1px solid var(--c-gray-100);
+}
+.prose .data-table th,
+.prose .data-table td {
+  min-width: 0;
+  padding: 12px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--c-gray-100);
+  vertical-align: middle;
+}
+.prose .data-table tbody tr:nth-child(even) {
+  background: none;
+}
+.prose .data-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.prose .data-table thead th {
+  background: var(--c-white);
+  color: var(--c-ink-soft);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: right;
+  width: 31%;
+}
+.prose .data-table thead th:first-child {
+  text-align: left;
+  width: 38%;
+}
+.prose .data-table thead th.is-featured {
+  background: var(--c-purple-dark);
+  color: var(--c-white);
+  font-weight: 700;
+}
+.prose .data-table tbody th {
+  background: none;
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.prose .data-table td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink-soft);
+}
+.prose .data-table td.is-featured {
+  background: rgba(106, 56, 149, 0.07);
+  color: var(--c-purple-dark);
+  font-weight: 700;
+}
+.prose .data-table tr.is-highlight > * {
+  border-top: 2px solid var(--c-orange);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.prose .data-table tr.is-highlight td.is-featured {
+  font-size: 1.4rem;
+}
+@media (max-width: 480px) {
+  .prose .data-table table {
+    font-size: 0.9rem;
+  }
+  .prose .data-table th,
+  .prose .data-table td {
+    padding: 10px 8px;
+  }
+  .prose .data-table caption {
+    padding: 12px;
+  }
+  .prose .data-table thead th {
+    font-size: 0.75rem;
+  }
+  .prose .data-table tr.is-highlight > * {
+    font-size: 1rem;
+  }
+  .prose .data-table tr.is-highlight td.is-featured {
+    font-size: 1.2rem;
+  }
+}
+
+/* Destaque de número-chave do case (HTML no .md: <aside class="stat-callout">). */
+.prose .stat-callout {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  border-radius: var(--radius-lg);
+  background: var(--c-purple-dark);
+  color: var(--c-white);
+}
+.prose .stat-callout__num {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-orange);
+}
+.prose .stat-callout__text {
+  font-size: 1.1rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+.prose .stat-callout__strong {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--c-white);
+}
+@media (max-width: 480px) {
+  .prose .stat-callout {
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+  }
+  .prose .stat-callout__text {
+    font-size: 1rem;
+  }
+}
