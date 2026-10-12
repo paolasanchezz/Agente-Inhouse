@@ -280,3 +280,12 @@
 - **Tags**: CRM, WhatsApp, Centralização
 - **Status**: draft-notion (gerado por /blog-diario)
 - **Última verificação**: 2026-06-30
+
+## QR Code do WhatsApp Business: como converter clientes na loja (RASCUNHO)
+- **URL**: https://app.notion.com/p/3f33934026fd814294cfd519bad2c400
+- **Data publicação**: 2026-10-07 (rascunho Notion, toggle BR; trocar pela URL do blog ao publicar)
+- **Snippet**: caso prático de opt-in no balcão via QR Code do WhatsApp (pergunta da vendedora, mensagem pronta, cupom), políticas da Meta, onde achar o QR Code (app, Gerenciador do WhatsApp, wa.me) e CoEx na Cxpress
+- **Dores cobertas**: dor-5-whatsapp-profissional, vertical-varejo
+- **Tags**: QR Code, WhatsApp, Opt-in, Varejo
+- **Status**: draft-notion (pedido da diretoria; mesma página traz versões PT-PT e ES-LATAM)
+- **Última verificação**: 2026-10-07

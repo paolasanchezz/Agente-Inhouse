@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-06-30",
+  "ultima_atualizacao": "2026-10-07",
   "posts_criados": [
     {
       "data": "2026-06-30",
@@ -26,24 +26,183 @@
       "lp": "atendimento-digital",
       "utm_content": "crm-para-whatsapp",
       "status": "draft-notion"
+    },
+    {
+      "data": "2026-10-07",
+      "slug": "qr-code-whatsapp-business-loja",
+      "regiao": "brasil",
+      "h1": "QR Code do WhatsApp Business: como converter clientes na loja",
+      "cluster": "Cluster 1 — WhatsApp empresarial (tema pedido pela diretoria)",
+      "funil": "MoFu",
+      "primary_kw": "qr code whatsapp business",
+      "volume": 210,
+      "url_notion": "https://app.notion.com/p/3f33934026fd814294cfd519bad2c400",
+      "lp": "coex-whatsapp",
+      "utm_content": "qr-code-whatsapp-business-loja",
+      "status": "draft-notion"
+    },
+    {
+      "data": "2026-10-07",
+      "slug": "qr-code-whatsapp-loja",
+      "regiao": "portugal",
+      "h1": "QR Code do WhatsApp na loja: como fidelizar clientes ao balcão",
+      "cluster": "tema avulso (sem clusters PT)",
+      "funil": "MoFu",
+      "primary_kw": "qr code whatsapp",
+      "volume": 70,
+      "url_notion": "https://app.notion.com/p/3f33934026fd814294cfd519bad2c400",
+      "lp": "whatsapp-business-smb-pt",
+      "utm_content": "qr-code-whatsapp-loja",
+      "status": "draft-notion"
+    },
+    {
+      "data": "2026-10-07",
+      "slug": "codigo-qr-whatsapp-tienda",
+      "regiao": "latam",
+      "h1": "Código QR de WhatsApp: cómo convertir clientes en tu tienda",
+      "cluster": "tema avulso (sem clusters LATAM)",
+      "funil": "MoFu",
+      "primary_kw": "código qr whatsapp",
+      "volume": 1000,
+      "url_notion": "https://app.notion.com/p/3f33934026fd814294cfd519bad2c400",
+      "lp": "coex-whatsapp-latam",
+      "utm_content": "codigo-qr-whatsapp-tienda",
+      "status": "draft-notion"
     }
   ],
   "temas_rejeitados": [
-    { "data": "2026-06-30", "tema": "multiatendimento whatsapp", "motivo": "JÁ_COBERTO (post existente no blog)" }
+    {
+      "data": "2026-06-30",
+      "tema": "multiatendimento whatsapp",
+      "motivo": "JÁ_COBERTO (post existente no blog)"
+    }
   ],
   "clusters_cobertura": {
-    "Cluster 3 — Chatbot e automação no WhatsApp": { "posts": 1, "ultimo": "2026-06-30" },
-    "Cluster 4 — CRM e gestão da experiência do cliente": { "posts": 1, "ultimo": "2026-06-30" }
+    "Cluster 3 — Chatbot e automação no WhatsApp": {
+      "posts": 1,
+      "ultimo": "2026-06-30"
+    },
+    "Cluster 4 — CRM e gestão da experiência do cliente": {
+      "posts": 1,
+      "ultimo": "2026-06-30"
+    },
+    "Cluster 1 — WhatsApp empresarial": {
+      "posts": 1,
+      "ultimo": "2026-10-07"
+    }
   },
-  "funnel_balance": { "ToFu": 0, "MoFu": 0, "BoFu": 2 },
+  "funnel_balance": {
+    "ToFu": 0,
+    "MoFu": 1,
+    "BoFu": 2
+  },
   "volume_cache": {
-    "preço whatsapp business api": { "volume": 90, "fontes": ["semrush"], "ts": "2026-06-30" },
-    "como ativar api oficial do whatsapp": { "volume": 20, "fontes": ["semrush"], "ts": "2026-06-30" },
-    "melhor chatbot para whatsapp": { "volume": 170, "fontes": ["semrush", "websearch-serp"], "ts": "2026-06-30" },
-    "automatizar vendas pelo whatsapp": { "volume": 30, "fontes": ["semrush"], "ts": "2026-06-30" },
-    "crm com whatsapp integrado": { "volume": 140, "fontes": ["semrush"], "ts": "2026-06-30" },
-    "crm para whatsapp": { "volume": 1300, "fontes": ["semrush", "websearch-serp"], "ts": "2026-06-30" },
-    "crm para pequenas empresas": { "volume": 210, "fontes": ["semrush"], "ts": "2026-06-30" },
-    "multiatendimento whatsapp": { "volume": 210, "fontes": ["semrush"], "ts": "2026-06-30" }
+    "preço whatsapp business api": {
+      "volume": 90,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "como ativar api oficial do whatsapp": {
+      "volume": 20,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "melhor chatbot para whatsapp": {
+      "volume": 170,
+      "fontes": [
+        "semrush",
+        "websearch-serp"
+      ],
+      "ts": "2026-06-30"
+    },
+    "automatizar vendas pelo whatsapp": {
+      "volume": 30,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "crm com whatsapp integrado": {
+      "volume": 140,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "crm para whatsapp": {
+      "volume": 1300,
+      "fontes": [
+        "semrush",
+        "websearch-serp"
+      ],
+      "ts": "2026-06-30"
+    },
+    "crm para pequenas empresas": {
+      "volume": 210,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "multiatendimento whatsapp": {
+      "volume": 210,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-06-30"
+    },
+    "qr code whatsapp business": {
+      "volume": 210,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "qr code para whatsapp": {
+      "volume": 720,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "qr code whatsapp": {
+      "volume": 6600,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "whatsapp marketing": {
+      "volume": 880,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "como vender pelo whatsapp": {
+      "volume": 590,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "opt-in whatsapp": {
+      "volume": 90,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    },
+    "lista de transmissão whatsapp business": {
+      "volume": 2900,
+      "fontes": [
+        "semrush"
+      ],
+      "ts": "2026-10-07"
+    }
   }
 }
