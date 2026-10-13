@@ -38,7 +38,7 @@ Em vez de regerar via `frontend-design`, o HTML de referencia foi adaptado a nov
 - [x] Revisao — ver `REVISAO.md`
 - [x] Formulario integrado — Jotform `260995815122663` (2026-10-13; substituiu `261033482583658`, integrado em 2026-10-09)
 
-**Form provider:** Jotform — script `https://form.jotform.com/jsform/260995815122663` (integrado em 2026-10-13)
+**Form provider:** Jotform — script `https://form.jotform.com/jsform/260995815122663` (integrado em 2026-10-13). O form vem com fundo transparente e texto escuro: o wrapper `.jotform-embed` ganhou card branco para dar leitura sobre o fundo navy (exceção ao wrapper canônico sem card).
 - [x] Publicado — https://content.cxpress.io/gestao-canais-ia-2027 (PR #680; form real em 2026-10-09)
 
 ## Assets referenciados

@@ -338,9 +338,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nav-dot{animation:none}
   }
 
-  /* ----- Jotform embed wrapper (canonico) -----
-     Sem padding/background/border: o provedor ja vem com card proprio. */
-  .jotform-embed{max-width:640px;margin:0 auto}
+  /* ----- Jotform embed wrapper -----
+     Excecao ao canonico (sem card): o form 260995815122663 vem com fundo TRANSPARENTE e
+     textos escuros (#2C3344). Sobre o gradiente navy da secao, rotulos, checkbox e aviso de
+     privacidade ficavam ilegiveis. O card branco devolve o contraste (2026-10-13). */
+  .jotform-embed{max-width:640px;margin:0 auto;background:#fff;border-radius:20px;padding:6px 6px 18px;box-shadow:0 24px 60px rgba(10,14,40,.35);overflow:hidden}
   .jotform-embed iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 
   /* ===== GUIDELINES 21 - quebra de linha equilibrada ===== */
