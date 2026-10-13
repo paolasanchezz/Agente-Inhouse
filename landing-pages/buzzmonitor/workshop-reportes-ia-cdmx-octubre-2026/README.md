@@ -22,6 +22,10 @@ Buscar `[` em `index.html` e `copy.txt`: `[VENUE]`, `[DIRECCIÓN]`, `[DÍA]`, `[
 - v2: copy toda reenfocada em "automatizar reportes de Social Media con IA" (pedido do Victor, 23/09).
 - "computadora" (uso do México; a de Bogotá usa "computador").
 
+## v8 (2026-10-13) — data e local confirmados
+
+Quarta 28 de outubro, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, CDMX). Aplicado no header, hero, registro, cierre ("El 28 de octubre, deja de armar reportes."), meta descriptions, JSON-LD Event (startDate + location) e na OG (linha de data e local). Speaker segue "Por definir".
+
 ## v7 (2026-10-07) — direcao premium
 
 Pedido: menos "candy cane". Roxo dominante + laranja so como acento; sem blocos rosa nem pilulas coloridas (H1: "reportes" em laranja, "Claude y Buzzmonitor" com sublinhado fino); formas do brandbook em linha fina (1.5px) e glow suave no lugar de formas solidas; kicker = linha + ponto; ticker sem contorno; bolhas/chips/botoes em roxo; borda fina estatica no form; cierre roxo profundo (#2A0140) com glow e arcos finos, tag "Cupos limitados" em contorno. Pesos tipograficos de 900 para 800/700. Bloco CSS "PREMIUM (v7)" no fim do <style>. Versao anterior salva no scratchpad (index-candy.html).

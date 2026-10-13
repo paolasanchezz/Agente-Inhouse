@@ -1,4 +1,5 @@
 # Copy LP · Buzzmonitor · workshop-reportes-ia-cdmx-octubre-2026
+# v10 (2026-10-13): data/hora/local confirmados pelo Ulises: quarta 28/10, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Col. Centro, Cuauhtémoc). Speaker segue "Por definir".
 # v9 (2026-10-07): dados nao confirmados = "Por definir" (data, hora, local, speaker) para publicar (pedido do Ulises).
 # v8 (2026-10-07): secao PROBLEMA ("Así se te va la tarde") removida a pedido do Ulises.
 # v7 (2026-10-07): hero escrito pelo Ulises (literal): nome do evento em gradiente, H1 "Automatiza tus reportes con Claude y Buzzmonitor", sub "crisis, competencia y tendencias", body novo com "workshop presencial" em negrito (tambem no badge).
@@ -17,8 +18,8 @@ SUB (complementario al H1): crisis, competencia y tendencias
 BODY: En este **workshop presencial** aprenderás a utilizar 7 Skills para Claude, diseñadas por Buzzmonitor para aprovechar todo el poder de los datos de tus redes sociales. Tú haces la pregunta y el reporte se arma solo con datos reales.
 CTA: Reservar mi lugar
 LABEL: Cupos limitados
-LABEL: Fecha y hora por definir
-LABEL: Lugar por definir, CDMX
+LABEL: Miércoles 28 de octubre · 9:30 h
+LABEL: Hotel Fontana Reforma, CDMX
 LABEL: Gratis · Trae tu computadora
 # Visual del hero (mock estilo Claude -> artifact con dashboard)
 LABEL: Claude + Buzzmonitor
@@ -32,8 +33,8 @@ LABEL: Recomendaciones
 === REGISTRO ===
 H2: Aparta tu lugar
 BODY: Es presencial, gratis y con las manos en el teclado. Hay pocos cupos.
-LIST ITEM: Fecha y hora por definir
-LIST ITEM: Lugar por definir, Ciudad de México
+LIST ITEM: Miércoles 28 de octubre, 9:30 h
+LIST ITEM: Hotel Fontana Reforma, Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, Ciudad de México
 LIST ITEM: Trae tu computadora cargada para las actividades prácticas
 
 === SKILLS ===
@@ -97,7 +98,7 @@ BODY: No necesitas saber programar. Trae tu computadora y ganas de meter las man
 
 === CIERRE ===
 LABEL: Cupos limitados
-H2: Deja de armar reportes.
+H2: El 28 de octubre, deja de armar reportes.
 BODY: Ven a la Ciudad de México a ver las 7 Skills de Buzzmonitor trabajando sobre datos reales. Te vas sabiendo pedir tu próximo reporte en un solo chat.
 CTA: Reservar mi lugar
 
