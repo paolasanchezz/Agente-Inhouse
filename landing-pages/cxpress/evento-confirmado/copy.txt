@@ -1,7 +1,7 @@
 === CONFIRMACAO ===
-LABEL: Inscrição confirmada
-H1: Fique de olho no seu e-mail.
-SUB: Enviamos a data, o horário e o endereço do encontro para o e-mail que você cadastrou. Se não aparecer na caixa de entrada, confira o spam.
+LABEL: Inscrição recebida
+H1: Recebemos sua inscrição.
+SUB: Sua vaga será confirmada em breve. Depois da confirmação, você recebe o convite com data, horário e endereço do encontro no e-mail que cadastrou. Aguarde até 2 dias e, se não encontrar o convite na caixa de entrada, confira o spam.
 
 === QUEM SOMOS ===
 OVERLINE: Enquanto o encontro não chega
@@ -29,5 +29,7 @@ FOOTER: Cxpress é um produto Elife. © 2026
 # Portugal..." (escolha-a-cxpress, literal), canais (FAQ da escolha-a-cxpress), badges API
 # Oficial WhatsApp/ChatGPT + Elife (quem-somos da atendimento-clinicas), logos de clientes
 # (mesmo asset das LPs Cxpress BR).
+# v3 (2026-10-13, pedido do usuario): a inscricao passa por confirmacao manual. Etiqueta e H1
+# deixam de afirmar "confirmada"; SUB explica que o convite chega apos a confirmacao, em ate 2 dias.
 # Regra "H1 = dor" (fundamentos-copy §0) nao se aplica: pagina pos-conversao.
 # Revisao anti-IA: sem achados (em-dash: 0; antitese-por-negacao: 0; exclamacao: 0; filler: 0).

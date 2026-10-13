@@ -13,7 +13,7 @@ todos os eventos, basta apontar o redirect de sucesso do form para ela.
 
 ## Estrutura
 
-- CONFIRMAÇÃO (medalhão do mascote com selo de check + etiqueta "Inscrição confirmada" + H1 "Fique de olho no seu e-mail." + subtítulo)
+- CONFIRMAÇÃO (medalhão do mascote com selo de check + etiqueta "Inscrição recebida" + H1 "Recebemos sua inscrição." + subtítulo (confirmação em breve, convite em até 2 dias))
 - QUEM SOMOS (foto + overline + H2 "Prazer, somos a Cxpress" + texto + 3 selos + botão para home.cxpress.io)
 - CLIENTES (H2 "Mais de 800 empresas..." + grade de logos `clientes-cxpress.png`)
 - FOOTER (padrão do domínio: logo + linha legal + 4 redes, copiado da `obrigado` / `escolha-a-cxpress`)
@@ -53,4 +53,5 @@ sobre fundo opaco e sumia na pílula.
 
 No formulário de inscrição de cada evento presencial Cxpress BR, configurar o redirect de
 sucesso para `https://content.cxpress.io/evento-confirmado`. O e-mail de confirmação do evento
-precisa trazer data, horário e endereço (a página promete isso).
+precisa trazer data, horário e endereço (a página promete isso). Desde a v3 (2026-10-13) a página
+assume confirmação manual da vaga: o convite deve sair em até 2 dias após a inscrição.
