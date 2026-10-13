@@ -81,6 +81,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           "addressCountry": "MX"
         }
       },
+      "performer": [
+        { "@type": "Person", "name": "Lorena Rodríguez", "jobTitle": "Business Development Representative" },
+        { "@type": "Person", "name": "María José Ramírez Rincón", "jobTitle": "Business Development Representative" }
+      ],
       "organizer": { "@id": "https://getbuzzmonitor.com/es/#organization" },
       "url": "https://evento.buzzmonitor.com/workshop-reportes-ia-cdmx-octubre-2026",
       "inLanguage": "es-419"
@@ -507,6 +511,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .speaker__bio{ margin-top:18px; font-size:18px; color:var(--ink-soft); max-width:600px; }
   @media (max-width:760px){ .speaker{ grid-template-columns:1fr; gap:36px; } .speaker__photo{ width:210px; } }
 
+  /* speakers (2) */
+  .speaker-sec .section-head{ text-align:center; } .speaker-sec .kicker{ justify-content:center; } .speaker-sec .reveal .kicker i{ transform-origin:center; }
+  .speakers{ margin:52px auto 0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:40px; max-width:860px; text-align:center; }
+  .spk__photo{ position:relative; aspect-ratio:1; border-radius:28px; overflow:hidden; background:linear-gradient(180deg, #FFFFFF 0%, #FBF1EA 100%); box-shadow:inset 0 0 0 1px var(--line-2); isolation:isolate; }
+  .spk__photo::before{ content:""; position:absolute; z-index:-1; width:78%; aspect-ratio:1; left:11%; top:16%; border-radius:50%; box-shadow:inset 0 0 0 1.5px rgba(235,124,46,.45); }
+  .spk__photo img{ width:100%; height:100%; object-fit:cover; object-position:center top; min-height:0; transition:transform .8s var(--ease); }
+  .spk:hover .spk__photo img{ transform:scale(1.03); }
+  .spk h3{ margin-top:22px; font-size:clamp(24px, 2.2vw, 30px); font-weight:700; }
+  .spk__role{ margin-top:6px; font-size:17px; font-weight:700; color:var(--ink-soft); }
+  @media (max-width:640px){ .speakers{ grid-template-columns:1fr; gap:40px; } }
   /* ============ PARA QUIEN ============ */
   .quien .section-head{ text-align:center; }
   .quien .section-head h2{ margin-inline:auto; }
@@ -942,19 +956,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- 7. SPEAKER -->
-  <section class="speaker-sec section--off" id="speaker" aria-labelledby="speaker-name">
+  <!-- 7. SPEAKERS -->
+  <section class="speaker-sec section--off" id="speaker" aria-labelledby="speaker-title">
     <div class="wrap">
-      <div class="speaker reveal">
-        <div class="speaker__photo">
-          <!-- PENDIENTE: foto del speaker (img 512x512 en assets/) cuando se confirme -->
-          <div class="speaker__ph" aria-hidden="true"><svg width="96" height="96" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="4" stroke="#DDD3E4" stroke-width="1.5"/><path d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5" stroke="#DDD3E4" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-        <div>
-          <span class="speaker__over">Quién te acompaña</span>
-          <h3 id="speaker-name">Por definir</h3>
-          <p class="speaker__role">Buzzmonitor</p>
-        </div>
+      <div class="section-head reveal">
+        <span class="kicker" aria-hidden="true"><i></i><i></i><i></i></span>
+        <h2 id="speaker-title" class="speakers__title">Quiénes te acompañan</h2>
+      </div>
+      <div class="speakers stagger">
+        <article class="spk" style="--i:0">
+          <div class="spk__photo"><img src="./assets/lorena-rodriguez.png" alt="Lorena Rodríguez, Business Development Representative de Buzzmonitor" width="800" height="800" loading="lazy" /></div>
+          <h3>Lorena Rodríguez</h3>
+          <p class="spk__role">Business Development Representative · Buzzmonitor</p>
+        </article>
+        <article class="spk" style="--i:1">
+          <div class="spk__photo"><img src="./assets/maria-jose-ramirez-rincon.png" alt="María José Ramírez Rincón, Business Development Representative de Buzzmonitor" width="800" height="800" loading="lazy" /></div>
+          <h3>María José Ramírez Rincón</h3>
+          <p class="spk__role">Business Development Representative · Buzzmonitor</p>
+        </article>
       </div>
     </div>
   </section>

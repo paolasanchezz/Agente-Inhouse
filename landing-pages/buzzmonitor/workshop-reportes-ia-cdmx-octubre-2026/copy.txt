@@ -1,4 +1,5 @@
 # Copy LP · Buzzmonitor · workshop-reportes-ia-cdmx-octubre-2026
+# v11 (2026-10-13): speakers confirmadas: Lorena Rodríguez e María José Ramírez Rincón (BDR). Fotos sem fundo (Vision/macOS) + ajuste leve de nitidez.
 # v10 (2026-10-13): data/hora/local confirmados pelo Ulises: quarta 28/10, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Col. Centro, Cuauhtémoc). Speaker segue "Por definir".
 # v9 (2026-10-07): dados nao confirmados = "Por definir" (data, hora, local, speaker) para publicar (pedido do Ulises).
 # v8 (2026-10-07): secao PROBLEMA ("Así se te va la tarde") removida a pedido do Ulises.
@@ -80,10 +81,12 @@ QUOTE: “Compáralo con el periodo anterior.”
 H3: Presentación final
 BODY: Cada equipo presenta su reporte: un insight, una oportunidad y una recomendación respaldada por datos.
 
-=== SPEAKER ===
-OVERLINE: Quién te acompaña
-H3: Por definir
-LABEL: Buzzmonitor
+=== SPEAKERS ===
+H2: Quiénes te acompañan
+H3: Lorena Rodríguez
+LABEL: Business Development Representative · Buzzmonitor
+H3: María José Ramírez Rincón
+LABEL: Business Development Representative · Buzzmonitor
 
 === PARA QUIEN ===
 H2: ¿Es para ti?

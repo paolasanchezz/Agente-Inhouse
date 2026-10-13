@@ -22,6 +22,10 @@ Buscar `[` em `index.html` e `copy.txt`: `[VENUE]`, `[DIRECCIÓN]`, `[DÍA]`, `[
 - v2: copy toda reenfocada em "automatizar reportes de Social Media con IA" (pedido do Victor, 23/09).
 - "computadora" (uso do México; a de Bogotá usa "computador").
 
+## v9 (2026-10-13) — speakers confirmadas
+
+Lorena Rodríguez e María José Ramírez Rincón (Business Development Representative). Secao vira "Quiénes te acompañan" com 2 cards centrados. Fotos: fundo removido com Vision (macOS, recorte de sujeito), enquadramento de busto 800×800, reescala Lanczos + unsharp leve (sem retoque de pele). JSON-LD Event com 2 performers.
+
 ## v8 (2026-10-13) — data e local confirmados
 
 Quarta 28 de outubro, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, CDMX). Aplicado no header, hero, registro, cierre ("El 28 de octubre, deja de armar reportes."), meta descriptions, JSON-LD Event (startDate + location) e na OG (linha de data e local). Speaker segue "Por definir".
