@@ -1,7 +1,7 @@
 === CONFIRMACAO ===
 LABEL: Inscrição recebida
 H1: Recebemos sua inscrição.
-SUB: Sua vaga será confirmada em breve. Depois da confirmação, você recebe o convite com data, horário e endereço do encontro no e-mail que cadastrou. Aguarde até 2 dias e, se não encontrar o convite na caixa de entrada, confira o spam.
+SUB: Sua vaga será confirmada em breve. Depois da confirmação, você recebe o convite com data, horário e endereço do encontro no e-mail que cadastrou. Aguarde até 2 dias para a confirmação e, se não encontrar o convite na caixa de entrada, confira o spam.
 
 === QUEM SOMOS ===
 OVERLINE: Enquanto o encontro não chega
