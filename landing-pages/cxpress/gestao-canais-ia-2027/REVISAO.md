@@ -5,7 +5,7 @@
 
 ## Aplicado automaticamente (1 critico)
 
-- [x] COPY-DIVERGENCIA: o texto do Sobre no HTML (enviado e aprovado em 14/10) diferia do . Fonte unica realinhada:  atualizado com o texto aprovado. HTML nao precisou mudar.
+- [x] COPY-DIVERGENCIA: o texto do Sobre no HTML (enviado e aprovado em 14/10) diferia do copy.txt. Fonte unica realinhada: copy.txt atualizado com o texto aprovado. HTML nao precisou mudar.
 
 ## Resultado das checagens
 
