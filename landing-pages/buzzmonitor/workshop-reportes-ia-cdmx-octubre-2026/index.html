@@ -198,7 +198,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hs-semi2{ width:96px; height:48px; right:9%; bottom:0; } .hs-semi2 i{ background:var(--pink); border-radius:96px 96px 0 0; transform-origin:50% 100%; animation:hsRock 9s ease-in-out infinite reverse; }
   @media (min-width:1081px) and (max-height:820px){
     .hero{ padding-block:18px 32px; }
-    .event-name{ margin-top:14px; } .h1-sub{ margin-top:10px; } .hero__sub{ margin-top:12px; }
+    .event-name{ margin-top:14px; } .h1-sub{ margin-top:10px; } .hero__sub{ margin-top:12px; font-size:16.5px; line-height:1.55; }
+    .h1x .t1, .h1x .t2{ font-size:clamp(40px, 3.9vw, 54px); } .h1x .t3, .h1-sub{ font-size:clamp(24px, 2.2vw, 30px); }
+    .ww{ margin-top:16px; } .ww__item{ padding:11px 16px; } .hero__cta{ margin-top:18px; } .badge{ padding:7px 14px 6px; }
     .l2{ font-size:clamp(58px, 6vw, 82px); }
     .l3, .l4{ font-size:clamp(30px, 2.8vw, 40px); }
     .h1x{ margin-top:16px; }
@@ -511,6 +513,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .speaker__bio{ margin-top:18px; font-size:18px; color:var(--ink-soft); max-width:600px; }
   @media (max-width:760px){ .speaker{ grid-template-columns:1fr; gap:36px; } .speaker__photo{ width:210px; } }
 
+  /* cuando / donde destacado en el hero */
+  .ww{ margin-top:22px; display:grid; grid-template-columns:auto 1fr; border-radius:18px; background:#fff; box-shadow:inset 0 0 0 1px var(--line-2), 0 18px 40px -30px rgba(28,20,36,.35); max-width:660px; }
+  .ww__item{ display:flex; gap:12px; align-items:center; padding:14px 18px; }
+  .ww__item + .ww__item{ box-shadow:inset 1px 0 0 var(--line-2); }
+  .ww__ico{ flex:none; display:grid; place-items:center; width:40px; height:40px; border-radius:12px; background:#FBF3EC; }
+  .ww__lbl{ display:block; font-family:var(--ff-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--orange-deep); }
+  .ww strong{ display:block; margin-top:3px; font-family:var(--ff-display); font-weight:800; font-size:19px; white-space:nowrap; line-height:1.15; letter-spacing:-.01em; color:var(--purple); }
+  .ww__sub{ display:block; margin-top:2px; font-size:14px; line-height:1.4; color:var(--ink-soft); }
+  .hero__cta{ margin-top:24px; }
+  @media (max-width:1180px){ .ww strong{ white-space:normal; } }
+  @media (max-width:560px){ .ww{ grid-template-columns:1fr; } .ww__item + .ww__item{ box-shadow:inset 0 1px 0 var(--line-2); } }
   /* speakers (2) */
   .speaker-sec .section-head{ text-align:center; } .speaker-sec .kicker{ justify-content:center; } .speaker-sec .reveal .kicker i{ transform-origin:center; }
   .speakers{ margin:52px auto 0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:40px; max-width:860px; text-align:center; }
@@ -685,6 +698,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* footer */
   .footer-social a::before{ background:var(--purple); }
   @media (max-width:1080px){ .hs-circle,.pg-arcs,.pg-ring,.geo--sarcs{ display:none; } }
+  /* pantallas bajas: el hero (incl. tarjeta Cuándo/Dónde y CTA) cabe en 1366x768 */
+  @media (min-width:1081px) and (max-height:820px){
+    .hero__sub{ font-size:16px; line-height:1.5; margin-top:10px; }
+    .h1x .t1, .h1x .t2{ font-size:clamp(40px, 3.5vw, 50px); }
+    .h1x .t3, .h1-sub{ font-size:clamp(22px, 1.9vw, 26px); }
+    .event-name{ font-size:clamp(22px, 1.8vw, 26px); }
+    .ww{ margin-top:14px; } .ww__item{ padding:10px 16px; } .hero__cta{ margin-top:16px; }
+  }
 </style>
 </head>
 <body>
@@ -737,17 +758,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h1>
       <p class="h1-sub load" style="--d:6">crisis, competencia y tendencias</p>
               <p class="hero__sub load" style="--d:8">En este <strong>workshop presencial</strong> aprenderás a utilizar 7 Skills para Claude, diseñadas por Buzzmonitor para aprovechar todo el poder de los datos de tus redes sociales. Tú haces la pregunta y el reporte se arma solo con datos reales.</p>
-          <div class="hero__cta load" style="--d:9">
+          <div class="ww load" style="--d:9">
+            <div class="ww__item">
+              <span class="ww__ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="#EB7C2E" stroke-width="1.9"/><path d="M3 9.5h18M8 3v3.5M16 3v3.5" stroke="#EB7C2E" stroke-width="1.9" stroke-linecap="round"/></svg></span>
+              <div><span class="ww__lbl">Cuándo</span><strong>Miércoles 28 de octubre</strong><span class="ww__sub">9:30 h</span></div>
+            </div>
+            <div class="ww__item">
+              <span class="ww__ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.58 7-13a7 7 0 10-14 0c0 5.42 7 13 7 13z" stroke="#EB7C2E" stroke-width="1.9"/><circle cx="12" cy="9" r="2.4" stroke="#EB7C2E" stroke-width="1.9"/></svg></span>
+              <div><span class="ww__lbl">Dónde</span><strong>Hotel Fontana Reforma</strong><span class="ww__sub">Av. Paseo de la Reforma 24, Col. Centro, CDMX</span></div>
+            </div>
+          </div>
+          <div class="hero__cta load" style="--d:10">
             <a href="#registro" class="btn btn--primary magnetic">Reservar mi lugar
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <span class="hero__limited"><span class="live-dot" aria-hidden="true"></span>Cupos limitados</span>
           </div>
-          <ul class="facts load" style="--d:10">
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="#EB7C2E" stroke-width="1.9"/><path d="M3 9.5h18M8 3v3.5M16 3v3.5" stroke="#EB7C2E" stroke-width="1.9" stroke-linecap="round"/></svg>Miércoles 28 de octubre · 9:30 h</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13a7 7 0 10-14 0c0 5.42 7 13 7 13z" stroke="#EB7C2E" stroke-width="1.9"/><circle cx="12" cy="9" r="2.4" stroke="#EB7C2E" stroke-width="1.9"/></svg>Hotel Fontana Reforma, CDMX</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" stroke="#EB7C2E" stroke-width="1.9"/><path d="M1.5 20h21" stroke="#EB7C2E" stroke-width="1.9" stroke-linecap="round"/></svg>Gratis · Trae tu computadora</li>
-          </ul>
         </div>
 
         <!-- Mock: interfaz estilo Claude + artifact con dashboard Buzzmonitor (decorativo) -->
@@ -834,11 +860,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="section-head reveal">
         <span class="kicker" aria-hidden="true"><i></i><i></i><i></i></span>
         <h2 id="registro-title">Aparta tu lugar</h2>
-        <p class="lede">Es presencial, gratis y con las manos en el teclado. Hay pocos cupos.</p>
+        <p class="lede">Es presencial, gratis y práctico. Hay pocos cupos.</p>
         <ul class="reg-list">
           <li><span class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="#390155" stroke-width="1.8"/><path d="M3 9.5h18M8 3v3.5M16 3v3.5" stroke="#390155" stroke-width="1.8" stroke-linecap="round"/></svg></span>Miércoles 28 de octubre, 9:30 h</li>
           <li><span class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.58 7-13a7 7 0 10-14 0c0 5.42 7 13 7 13z" stroke="#390155" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="#390155" stroke-width="1.8"/></svg></span>Hotel Fontana Reforma, Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, Ciudad de México</li>
-          <li><span class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" stroke="#390155" stroke-width="1.8"/><path d="M1.5 20h21" stroke="#390155" stroke-width="1.8" stroke-linecap="round"/></svg></span>Trae tu computadora cargada para las actividades prácticas</li>
         </ul>
       </div>
       <div class="reveal">
@@ -994,7 +1019,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="chip" style="--i:5">Inteligencia de Mercado</li>
         <li class="chip" style="--i:6">Agencias y consultorías</li>
       </ul>
-      <p class="quien-note reveal">No necesitas saber programar. Trae tu computadora y ganas de meter las manos en los datos.</p>
+      <p class="quien-note reveal">No necesitas saber programar. Solo trae ganas de meter las manos en los datos.</p>
     </div>
   </section>
 

@@ -22,6 +22,10 @@ Buscar `[` em `index.html` e `copy.txt`: `[VENUE]`, `[DIRECCIÓN]`, `[DÍA]`, `[
 - v2: copy toda reenfocada em "automatizar reportes de Social Media con IA" (pedido do Victor, 23/09).
 - "computadora" (uso do México; a de Bogotá usa "computador").
 
+## v10 (2026-10-14) — sem computadora + Cuándo/Dónde em destaque
+
+Removida toda mencao a levar computadora (hero, registro, "Para quién"; lede do registro vira "Es presencial, gratis y práctico."). No hero, a linha de fatos vira uma tarjeta "Cuándo / Dónde" antes do CTA (data, hora, hotel e endereco). Hero continua cabendo em 1366×768 (media query de altura).
+
 ## v9 (2026-10-13) — speakers confirmadas
 
 Lorena Rodríguez e María José Ramírez Rincón (Business Development Representative). Secao vira "Quiénes te acompañan" com 2 cards centrados. Fotos: fundo removido com Vision (macOS, recorte de sujeito), enquadramento de busto 800×800, reescala Lanczos + unsharp leve (sem retoque de pele). JSON-LD Event com 2 performers.

@@ -1,4 +1,5 @@
 # Copy LP · Buzzmonitor · workshop-reportes-ia-cdmx-octubre-2026
+# v12 (2026-10-14): removida toda mencao a levar computadora (hero, registro, para quien); data e local destacados numa tarjeta Cuándo/Dónde no hero (pedido do Ulises).
 # v11 (2026-10-13): speakers confirmadas: Lorena Rodríguez e María José Ramírez Rincón (BDR). Fotos sem fundo (Vision/macOS) + ajuste leve de nitidez.
 # v10 (2026-10-13): data/hora/local confirmados pelo Ulises: quarta 28/10, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Col. Centro, Cuauhtémoc). Speaker segue "Por definir".
 # v9 (2026-10-07): dados nao confirmados = "Por definir" (data, hora, local, speaker) para publicar (pedido do Ulises).
@@ -19,9 +20,8 @@ SUB (complementario al H1): crisis, competencia y tendencias
 BODY: En este **workshop presencial** aprenderás a utilizar 7 Skills para Claude, diseñadas por Buzzmonitor para aprovechar todo el poder de los datos de tus redes sociales. Tú haces la pregunta y el reporte se arma solo con datos reales.
 CTA: Reservar mi lugar
 LABEL: Cupos limitados
-LABEL: Miércoles 28 de octubre · 9:30 h
-LABEL: Hotel Fontana Reforma, CDMX
-LABEL: Gratis · Trae tu computadora
+LABEL (tarjeta destacada antes del CTA): Cuándo · Miércoles 28 de octubre · 9:30 h
+LABEL (tarjeta destacada antes del CTA): Dónde · Hotel Fontana Reforma · Av. Paseo de la Reforma 24, Col. Centro, CDMX
 # Visual del hero (mock estilo Claude -> artifact con dashboard)
 LABEL: Claude + Buzzmonitor
 QUOTE: Genera el reporte de crisis de mi marca de esta semana.
@@ -33,10 +33,9 @@ LABEL: Recomendaciones
 
 === REGISTRO ===
 H2: Aparta tu lugar
-BODY: Es presencial, gratis y con las manos en el teclado. Hay pocos cupos.
+BODY: Es presencial, gratis y práctico. Hay pocos cupos.
 LIST ITEM: Miércoles 28 de octubre, 9:30 h
 LIST ITEM: Hotel Fontana Reforma, Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, Ciudad de México
-LIST ITEM: Trae tu computadora cargada para las actividades prácticas
 
 === SKILLS ===
 H2: Una Skill es un analista que ya sabe qué buscar
@@ -97,7 +96,7 @@ LIST ITEM: Customer Experience
 LIST ITEM: Reputación Digital
 LIST ITEM: Inteligencia de Mercado
 LIST ITEM: Agencias y consultorías
-BODY: No necesitas saber programar. Trae tu computadora y ganas de meter las manos en los datos.
+BODY: No necesitas saber programar. Solo trae ganas de meter las manos en los datos.
 
 === CIERRE ===
 LABEL: Cupos limitados
