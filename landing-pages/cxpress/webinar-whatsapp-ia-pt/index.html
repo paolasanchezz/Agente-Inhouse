@@ -113,6 +113,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .campo input:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(74,105,189,.16)}
     .form-card .btn{width:100%;margin-top:20px;font-size:18px}
     .form-card__nota{margin-top:12px;font-size:13px;color:var(--neutral-700);text-align:center}
+    /* Jotform embed wrapper (canonico): sem card extra, o provedor ja traz o seu */
+    .jotform-embed{margin-top:16px}
+    .jotform-embed iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 
     /* ===== Faixa ===== */
     .strip{background:#1B2050;padding:22px 0;border-top:1px solid rgba(215,226,255,.12)}
@@ -204,32 +207,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </ul>
         </div>
 
-        <!-- FORM PLACEHOLDER: substituir este form mock pelo embed real (Jotform/RD Station) via /lp-integrar-form.
-             Configurar no formulário o redirect pós-envio para: https://content.cxpress.io/webinar-whatsapp-ia-pt-obrigado -->
+        <!-- Formulario de captura (Jotform 250356231249857).
+             IMPORTANTE: configurar no Jotform o redirect pos-envio (Thank You Page) para:
+             https://content.cxpress.io/webinar-whatsapp-ia-pt-obrigado -->
         <div class="form-card reveal" id="form">
           <p class="form-card__t">Veja a aula gratuita de 10 minutos</p>
           <p class="form-card__s">Deixe os seus dados e receba o acesso à aula.</p>
-          <form action="#" method="post" onsubmit="event.preventDefault()">
-            <p class="form__ph">Formulário provisório. Vai ser substituído pelo formulário real (com encaminhamento para a página da aula).</p>
-            <div class="campo">
-              <label for="nome">Nome<span class="req" aria-hidden="true">*</span></label>
-              <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
-            </div>
-            <div class="campo">
-              <label for="email">E-mail<span class="req" aria-hidden="true">*</span></label>
-              <input id="email" name="email" type="email" placeholder="nome@suaempresa.pt" autocomplete="email" required>
-            </div>
-            <div class="campo">
-              <label for="empresa">Empresa<span class="req" aria-hidden="true">*</span></label>
-              <input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" autocomplete="organization" required>
-            </div>
-            <div class="campo">
-              <label for="telemovel">Telemóvel / WhatsApp<span class="req" aria-hidden="true">*</span></label>
-              <input id="telemovel" name="telemovel" type="tel" placeholder="Indicativo + número" autocomplete="tel" required>
-            </div>
-            <button class="btn" type="submit">Quero ver a aula</button>
-            <p class="form-card__nota">Os seus dados servem apenas para lhe dar acesso à aula.</p>
-          </form>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/250356231249857"></script>
+          </div>
         </div>
       </div>
     </section>
