@@ -26,5 +26,6 @@ LEGAL: Termos e Políticas · Política de privacidade · Condições gerais de 
 # para o e-mail indicado", em PT-PT. Base visual e estrutura: evento-confirmado (BR).
 # PT-PT: tratamento "voce" (3a pessoa, possessivo com artigo "a sua inscricao", "o seu atendimento"),
 # contacto, equipa, chat do site, separador, auscultadores, logotipos, "a trabalhar".
+# Rodape legal: links de Portugal (cx.elifeportugal.com/politicadeprivacidade e /condicoesgerais), mesmos do www.cxpress.pt.
 # GTM: container Portugal GTM-NW6V5KBM (brand/cxpress/tracking.json).
 # Revisao anti-IA: em-dash 0; antitese-por-negacao 0; exclamacao 0; filler 0.
