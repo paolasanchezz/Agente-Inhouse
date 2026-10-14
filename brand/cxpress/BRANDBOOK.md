@@ -238,7 +238,9 @@ Samir e um **sagui**, primata brasileiro pequeno e expressivo. E o personagem da
 
 | Arquivo | Pose | Uso ideal |
 |---|---|---|
-| `samir-laptop.png` | Sagui com headset trabalhando no laptop | Hero de LP sobre atendimento, sessao de features de ticketing |
+| `samir-laptop.png` | Sagui com headset trabalhando no laptop (fundo marrom solido) | Hero de LP sobre atendimento, sessao de features de ticketing |
+| `samir-laptop-cutout.png` | Mesmo render **ja recortado, com alpha** (1080x1080) | Preferir este sempre que o fundo nao for o marrom — evita recorte manual |
+| `icon-samir-face.png` | So o rosto do Samir, recortado (1032x631) | Avatar pequeno, chip, badge — onde o corpo inteiro nao cabe |
 | `samir-joinha.png` | Close-up com polegar para cima | Confirmacao de sucesso, pos-conversao, CTA positivo |
 | `samir-trabalhando.png` | Com headset segurando um coracao | Secao sobre relacionamento/cuidado com cliente, CSAT, depoimentos |
 | `samir-dashboard.png` | Com headset apontando para dashboard | Features analiticas, relatorios |
