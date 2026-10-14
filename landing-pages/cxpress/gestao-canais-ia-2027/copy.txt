@@ -60,7 +60,7 @@ LABEL: Em breve
 
 === SOBRE-CXPRESS ===
 H2: Sobre a Cxpress
-BODY: A Cxpress centraliza WhatsApp, e-mail, redes sociais, webchat e telefonia num único painel, com IA que sugere respostas, classifica e prioriza atendimentos. Mais conversas resolvidas com o mesmo time, sem trocar de ferramenta o dia inteiro.
+BODY: A Cxpress é uma plataforma de Gestão do Atendimento ao Cliente que conecta WhatsApp, Instagram, Facebook, E-mail e Telefonia no mesmo painel de trabalho, reunindo conversas e o histórico dos clientes em um só lugar. Com IA, responde dúvidas, resolve demandas de suporte e vendas, atende fora do horário comercial e libera a equipe para casos mais complexos. Para a gestão, mostra volumes, desempenho e indicadores em tempo real. Resultado: mais produtividade, controle, agilidade e oportunidades de venda.
 LABEL: Clientes que confiam na Cxpress
 
 === INSCRICAO ===
