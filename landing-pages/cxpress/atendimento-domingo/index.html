@@ -263,28 +263,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding:6px 12px;border-radius:999px;
     }
 
-    /* ===== Case ===== */
-    .case{
-      background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);
-      padding:56px 48px;box-shadow:var(--shadow-float);
-    }
-    .case__head{text-align:center;margin-bottom:34px}
-    .case__logo{display:block;height:62px;width:auto;margin:0 auto 24px}
-    .case__head .eyebrow{color:var(--primary);display:block;margin-bottom:14px}
-    .case__head h2{font-size:clamp(28px,3.2vw,34px);max-width:26ch;margin:0 auto}
-    .case__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
-    .case__cols h3{font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
-    .case__cols p{margin-top:12px;color:var(--neutral-700);font-size:17px}
-    .case__cols p b{color:var(--primary-dark);font-weight:600}
-    .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px;margin-top:40px;padding-top:34px;border-top:1px solid var(--rule)}
-    .nums .v{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(28px,3.2vw,34px);color:var(--primary);line-height:1;letter-spacing:-.03em}
-    .nums .l{display:block;margin-top:9px;font-size:16px;color:var(--neutral-700)}
-    .case__quote{
-      font-family:var(--font-accent);font-style:italic;font-weight:500;
-      font-size:clamp(18px,2vw,20px);color:var(--primary-dark);
-      margin-top:34px;padding-top:28px;border-top:1px solid var(--rule);max-width:46ch;
-    }
-
     /* ===== Por que trocam ===== */
     .trocas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
     .troca{display:flex;gap:18px;background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow)}
@@ -419,6 +397,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ----- Jotform embed wrapper (canonico) -----
        Sem padding/background/border: o provedor ja vem com card proprio. */
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+    /* ===== Prova social (v2, 10/14): case Cacau Show + entrevista em video + esteira de clientes ===== */
+    :root{--ease:cubic-bezier(.2,.8,.2,1)}
+    .prova{position:relative;overflow:hidden;color:#fff;padding:112px 0 120px;
+      background:linear-gradient(160deg,#2c3a86 0%,var(--primary-dark) 55%,#161a45 100%)}
+    .prova__bg{position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(640px 380px at 6% 8%,rgba(74,105,189,.5),transparent 70%),radial-gradient(560px 360px at 96% 92%,rgba(239,134,60,.22),transparent 70%)}
+    .prova .wrap{position:relative;z-index:1}
+    .prova__head{text-align:center;max-width:820px;margin:0 auto 56px}
+    .prova__head .eyebrow{color:#9fb7ff;display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:9999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+    .prova__head .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+    .prova__head h2{color:#fff;font-size:clamp(30px,4vw,44px);margin-top:20px}
+    .prova__grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:56px;align-items:center}
+
+    .pcard{position:relative;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:36px 36px 34px;
+      box-shadow:0 30px 70px rgba(6,10,38,.35)}
+    .plogo{display:inline-grid;place-items:center;background:#fff;border-radius:16px;padding:12px 22px;box-shadow:0 10px 30px rgba(6,10,38,.3)}
+    .plogo img{height:46px;width:auto}
+    .pcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:30px}
+    .pcol h3{display:flex;align-items:center;gap:12px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#9fb7ff}
+    .pcol h3 span{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+    .pcol h3 svg{width:18px;height:18px}
+    .pcol p{margin-top:14px;color:rgba(255,255,255,.84);font-size:17px;line-height:1.6}
+    .pcol p b{color:#fff;font-weight:700}
+
+    .pnums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+    .pnum:first-child{grid-column:1/-1}
+    .pnum{position:relative;background:#fff;color:var(--primary-dark);border-radius:20px;padding:22px 22px 20px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(6,10,38,.6)}
+    .pnum .v{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(26px,2.7vw,32px);line-height:1;letter-spacing:-.03em;color:var(--primary)}
+    .pnum .l{display:block;margin-top:9px;font-size:15.5px;line-height:1.35;color:var(--neutral-700)}
+    .pbars{display:grid;gap:7px;margin-top:16px}
+    .pbar{height:9px;border-radius:9px;background:var(--neutral-100);overflow:hidden}
+    .pbar i{display:block;height:100%;border-radius:9px;transform-origin:0 50%}
+    .pbar--a i{width:100%;background:linear-gradient(90deg,#e8b0a0,#C0392F)}
+    .pbar--b i{width:5.4%;min-width:9px;background:var(--green)}
+    .reveal.is-in .pbar i{animation:barGrow 1.3s var(--ease) .3s both}
+    .reveal.is-in .pbar--b i{animation-delay:.9s}
+    @keyframes barGrow{from{transform:scaleX(0)}}
+    @property --p{syntax:'<number>';inherits:false;initial-value:34}
+    .pring{display:block;width:54px;height:54px;border-radius:50%;margin-bottom:14px;position:relative;
+      background:conic-gradient(var(--accent) calc(var(--p) * 1%),var(--neutral-100) 0)}
+    .pring::after{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}
+    .reveal.is-in .pring{animation:ringFill 1.4s var(--ease) .4s both}
+    @keyframes ringFill{from{--p:0}}
+    .pzero{width:54px;height:54px;border-radius:50%;margin-bottom:14px;display:grid;place-items:center;background:#E3F8EE;color:var(--green-dark)}
+    .pzero svg{width:26px;height:26px}
+    .pquote{font-family:var(--font-accent);font-style:italic;font-weight:500;font-size:clamp(19px,2vw,22px);line-height:1.45;color:#fff;margin-top:30px;padding-left:22px;border-left:4px solid var(--accent);max-width:40ch}
+
+    /* video da entrevista: moldura de celular */
+    .pvideo{position:relative;margin:0}
+    .pvideo::before{content:"";position:absolute;z-index:0;inset:6% -16% -6% -16%;border-radius:48px;
+      background:radial-gradient(52% 52% at 30% 38%,rgba(74,105,189,.6),transparent 70%),radial-gradient(52% 52% at 74% 66%,rgba(239,134,60,.4),transparent 70%)}
+    .pframe{position:relative;z-index:1;border-radius:36px;border:8px solid #0b0e2b;background:#0b0e2b;overflow:hidden;aspect-ratio:9/16;box-shadow:0 40px 80px -24px rgba(0,0,0,.65)}
+    .pframe video{display:block;width:100%;height:100%;object-fit:cover;background:#0b0e2b}
+    .pplay{position:absolute;inset:0;z-index:2;display:grid;place-items:center;border:0;padding:0;cursor:pointer;
+      background:linear-gradient(180deg,rgba(11,14,43,.1) 40%,rgba(11,14,43,.55));transition:opacity .3s ease}
+    .pplay[hidden]{display:none}
+    .pplay__btn{position:relative;width:78px;height:78px;border-radius:50%;background:#fff;color:var(--primary-dark);display:grid;place-items:center;box-shadow:0 14px 34px rgba(0,0,0,.4);transition:transform .25s var(--ease)}
+    .pplay:hover .pplay__btn{transform:scale(1.08)}
+    .pplay__btn svg{width:30px;height:30px;margin-left:4px}
+    .pplay__btn::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #fff;animation:playPulse 2.2s ease-out infinite;pointer-events:none}
+    @keyframes playPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.65);opacity:0}}
+    .pchip{position:absolute;z-index:3;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:#fff;
+      box-shadow:0 18px 34px -12px rgba(6,10,38,.55);animation:chipFloat 7s ease-in-out infinite}
+    .pchip svg{width:26px;height:26px}
+    .pchip--ig{top:9%;left:-26px;color:#c13584}
+    .pchip--fb{bottom:15%;right:-24px;color:#1877F2;animation-delay:-3.2s}
+    @keyframes chipFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(-3deg)}}
+    .fx-idle,.fx-idle *{animation-play-state:paused!important}
+
+    /* esteira de clientes abaixo do case (mesmo padrao da LP chatbot-whatsapp: logos em forca total) */
+    .clientes{padding:56px 0 64px}
+    .clientes .wrap{display:grid;grid-template-columns:1fr;gap:14px;align-items:center}
+    .clientes__label{margin:0;text-align:center}
+    .clientes__marquee{margin-top:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+    .clientes__track{will-change:transform;animation-duration:50s}
+    .clientes__group img{opacity:1;filter:none;height:clamp(28px,3vw,36px)}
+    @media (min-width:900px){.clientes .wrap{grid-template-columns:auto minmax(0,1fr);gap:34px}.clientes__label{text-align:left;white-space:nowrap}}
+
+    @media (max-width:980px){
+      .prova__grid{grid-template-columns:minmax(0,1fr);gap:44px}
+      .pvideo{order:-1;width:min(300px,76vw);margin-inline:auto}
+      .pnums{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:700px){
+      .prova{padding:80px 0 84px}
+      .prova__head{margin-bottom:40px}
+      .pcard{padding:28px 22px}
+      .pcols{grid-template-columns:minmax(0,1fr);gap:26px}
+      .pnums{grid-template-columns:minmax(0,1fr)}
+      .pchip--ig{left:-14px}
+      .pchip--fb{right:-14px}
+      .clientes{padding:44px 0 52px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .pplay__btn::after,.pchip,.reveal.is-in .pbar i,.reveal.is-in .pring{animation:none}
+    }
 </style>
 </head>
 <body>
@@ -508,7 +583,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- CLIENTES -->
+    <!-- DESAFIOS -->
+    <section id="desafios">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Diagnóstico</span>
+          <h2>O que trava o atendimento hoje</h2>
+          <p>Nenhum desses quatro se resolve contratando mais uma pessoa.</p>
+        </div>
+        <div class="dores">
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>A mensagem chega fora do horário</h3>
+              <p>Cliente manda no domingo, na virada da noite, no feriado. Ninguém responde e ele vai procurar quem responde.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Um número, vários atendentes, risco de bloqueio</h3>
+              <p>Dois ou mais atendentes dividindo o WhatsApp Business comum viola os termos da Meta. É o motivo número um de banimento hoje.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>A mesma pergunta, quarenta vezes por dia</h3>
+              <p>Horário, preço, prazo, status do pedido. A sua equipe gasta o turno inteiro no que não exige ninguém.</p>
+            </div>
+          </div>
+          <div class="dor reveal">
+            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div>
+              <h3>Você não sabe o que está acontecendo</h3>
+              <p>Quem respondeu, em quanto tempo, quem está sobrecarregado. Sem painel, o atendimento vira caixa-preta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUCAO -->
+    <section class="off" id="solucao">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">A mudança</span>
+          <h2>O que muda na operação do seu time</h2>
+          <p>Seis coisas, e elas aparecem já no primeiro mês.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>A IA responde antes do atendente</h3>
+            <p>Pergunta repetida é resolvida por texto ou por áudio, a qualquer hora. O seu time entra só no que exige julgamento.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Mesmo número, sem risco de bloqueio</h3>
+            <p>A operação roda na API oficial da Meta, o caminho autorizado para empresas. Você mantém a titularidade do número que os seus clientes já têm salvo.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Todos os canais num painel só</h3>
+            <p>Mesma tela, histórico único por cliente.</p>
+            <div class="canais">
+              <span class="canal">WhatsApp</span>
+              <span class="canal">Instagram</span>
+              <span class="canal">E-mail</span>
+              <span class="canal">Telefone</span>
+              <span class="canal">Chat do site</span>
+            </div>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Você vê quem respondeu e em quanto tempo</h3>
+            <p>Tempo de resposta por atendente, fila por canal e volume em andamento. Você sabe quem está sobrecarregado antes de o cliente sentir.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Áudio virando texto</h3>
+            <p>A IA transcreve e responde áudio. Ninguém do time precisa parar para ouvir dois minutos de mensagem.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__pill" aria-hidden="true"></div>
+            <h3>Integração com o que você já usa</h3>
+            <p>API aberta para CRM próprio, ERP e sistema de gestão.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVA SOCIAL: case Cacau Show + entrevista em video + esteira de clientes -->
+    <section class="prova" id="case" aria-labelledby="case-title">
+      <div class="prova__bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="prova__head reveal">
+          <span class="eyebrow">Case · Cacau Show</span>
+          <h2 id="case-title">SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
+        </div>
+        <div class="prova__grid">
+          <div class="prova__main">
+            <div class="pcard reveal">
+              <span class="plogo"><img src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy"></span>
+              <div class="pcols">
+                <div class="pcol">
+                  <h3><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5H9l-4.5 3.5V17.5H4A1.5 1.5 0 012.5 16V7A1.5 1.5 0 014 5.5z"/><path d="M12 9v3.2M12 14.8h.01"/></svg></span>Contexto</h3>
+                  <p>Na Páscoa de 2024, a Cacau Show recebia uma explosão diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, <b>apenas 34% das interações conseguiam ser respondidas</b>. O resto virava dúvida sem retorno, venda perdida e risco de imagem no pico comercial do ano.</p>
+                </div>
+                <div class="pcol">
+                  <h3><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span>Solução</h3>
+                  <p>Um agente de IA Concierge treinado na linguagem e na base oficial da marca, com regras claras de transbordo para o time humano. A IA cuida de engajamento e dúvidas. Casos sensíveis vão direto para pessoas.</p>
+                </div>
+              </div>
+            </div>
+            <div class="pnums reveal">
+              <div class="pnum">
+                <span class="v">8h para 26 min</span><span class="l">SLA de primeira resposta</span>
+                <div class="pbars" aria-hidden="true"><span class="pbar pbar--a"><i></i></span><span class="pbar pbar--b"><i></i></span></div>
+              </div>
+              <div class="pnum">
+                <span class="pring" aria-hidden="true"></span>
+                <span class="v">34%</span><span class="l">era o que se respondia antes</span>
+              </div>
+              <div class="pnum">
+                <span class="pzero" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+                <span class="v">Zero</span><span class="l">contratações para o pico</span>
+              </div>
+            </div>
+            <p class="pquote reveal">&ldquo;A IA cuida do volume. A equipe cuida do que precisa de gente.&rdquo;</p>
+          </div>
+          <figure class="pvideo reveal" data-fx>
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+              <symbol id="ico-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9s.7.8.9 1.4c.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4s-.8.7-1.4.9c-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4a3.7 3.7 0 01-1.4-.9 3.7 3.7 0 01-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4s.8-.7 1.4-.9c.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6a5.9 5.9 0 00-2.1 1.4A5.9 5.9 0 00.6 4.1C.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c0 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1a5.9 5.9 0 002.1 1.4c.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6a5.9 5.9 0 002.1-1.4 5.9 5.9 0 001.4-2.1c.3-.8.5-1.6.6-2.9.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.1-.6-2.9a5.9 5.9 0 00-1.4-2.1A5.9 5.9 0 0019.9.6c-.8-.3-1.6-.5-2.9-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm7.8-10.4a1.4 1.4 0 11-2.9 0 1.4 1.4 0 012.9 0z"/></symbol>
+              <symbol id="ico-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12a12 12 0 10-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0024 12z"/></symbol>
+            </svg>
+            <span class="pchip pchip--ig" aria-hidden="true"><svg><use href="#ico-ig"/></svg></span>
+            <span class="pchip pchip--fb" aria-hidden="true"><svg><use href="#ico-fb"/></svg></span>
+            <div class="pframe">
+              <video id="casevideo" controls playsinline preload="none" poster="./assets/case-cacau-show-poster.jpg" width="576" height="1024" aria-label="Entrevista sobre o case Cacau Show">
+                <source src="./assets/case-cacau-show.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="pplay" id="caseplay" aria-label="Assistir entrevista sobre o case Cacau Show" hidden>
+                <span class="pplay__btn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+              </button>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES: esteira logo abaixo do case -->
     <div class="clientes">
       <div class="wrap">
         <span class="clientes__label">Marcas que atendem com a Cxpress</span>
@@ -606,126 +831,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </div>
-
-    <!-- DESAFIOS -->
-    <section id="desafios">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow">Diagnóstico</span>
-          <h2>O que trava o atendimento hoje</h2>
-          <p>Nenhum desses quatro se resolve contratando mais uma pessoa.</p>
-        </div>
-        <div class="dores">
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>A mensagem chega fora do horário</h3>
-              <p>Cliente manda no domingo, na virada da noite, no feriado. Ninguém responde e ele vai procurar quem responde.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>Um número, vários atendentes, risco de bloqueio</h3>
-              <p>Dois ou mais atendentes dividindo o WhatsApp Business comum viola os termos da Meta. É o motivo número um de banimento hoje.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>A mesma pergunta, quarenta vezes por dia</h3>
-              <p>Horário, preço, prazo, status do pedido. A sua equipe gasta o turno inteiro no que não exige ninguém.</p>
-            </div>
-          </div>
-          <div class="dor reveal">
-            <span class="dor__x" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <div>
-              <h3>Você não sabe o que está acontecendo</h3>
-              <p>Quem respondeu, em quanto tempo, quem está sobrecarregado. Sem painel, o atendimento vira caixa-preta.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOLUCAO -->
-    <section class="off" id="solucao">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow">A mudança</span>
-          <h2>O que muda na operação do seu time</h2>
-          <p>Seis coisas, e elas aparecem já no primeiro mês.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>A IA responde antes do atendente</h3>
-            <p>Pergunta repetida é resolvida por texto ou por áudio, a qualquer hora. O seu time entra só no que exige julgamento.</p>
-          </div>
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Mesmo número, sem risco de bloqueio</h3>
-            <p>A operação roda na API oficial da Meta, o caminho autorizado para empresas. Você mantém a titularidade do número que os seus clientes já têm salvo.</p>
-          </div>
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Todos os canais num painel só</h3>
-            <p>Mesma tela, histórico único por cliente.</p>
-            <div class="canais">
-              <span class="canal">WhatsApp</span>
-              <span class="canal">Instagram</span>
-              <span class="canal">E-mail</span>
-              <span class="canal">Telefone</span>
-              <span class="canal">Chat do site</span>
-            </div>
-          </div>
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Você vê quem respondeu e em quanto tempo</h3>
-            <p>Tempo de resposta por atendente, fila por canal e volume em andamento. Você sabe quem está sobrecarregado antes de o cliente sentir.</p>
-          </div>
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Áudio virando texto</h3>
-            <p>A IA transcreve e responde áudio. Ninguém do time precisa parar para ouvir dois minutos de mensagem.</p>
-          </div>
-          <div class="card reveal">
-            <div class="card__pill" aria-hidden="true"></div>
-            <h3>Integração com o que você já usa</h3>
-            <p>API aberta para CRM próprio, ERP e sistema de gestão.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CASE -->
-    <section id="case">
-      <div class="wrap">
-        <div class="case reveal">
-          <div class="case__head">
-            <img class="case__logo" src="./assets/logo-cacau-show.png" alt="Cacau Show" width="330" height="212" loading="lazy">
-            <span class="eyebrow">Case · Cacau Show</span>
-            <h2>SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
-          </div>
-          <div class="case__cols">
-            <div>
-              <h3>Contexto</h3>
-              <p>Na Páscoa de 2024, a Cacau Show recebia uma explosão diária de comentários e mensagens no Instagram e no Facebook. Com atendimento manual, <b>apenas 34% das interações conseguiam ser respondidas</b>. O resto virava dúvida sem retorno, venda perdida e risco de imagem no pico comercial do ano.</p>
-            </div>
-            <div>
-              <h3>Solução</h3>
-              <p>Um agente de IA Concierge treinado na linguagem e na base oficial da marca, com regras claras de transbordo para o time humano. A IA cuida de engajamento e dúvidas. Casos sensíveis vão direto para pessoas.</p>
-            </div>
-          </div>
-          <div class="nums">
-            <div><span class="v">8h para 26 min</span><span class="l">SLA de primeira resposta</span></div>
-            <div><span class="v">34%</span><span class="l">era o que se respondia antes</span></div>
-            <div><span class="v">Zero</span><span class="l">contratações para o pico</span></div>
-          </div>
-          <p class="case__quote">&ldquo;A IA cuida do volume. A equipe cuida do que precisa de gente.&rdquo;</p>
-        </div>
-      </div>
-    </section>
 
     <!-- POR QUE TROCAM -->
     <section class="off">
@@ -841,6 +946,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
       els.forEach(function(el){ io.observe(el); });
       setTimeout(showAll, 2500);
+    })();
+  </script>
+  <script>
+    (function(){
+      var v = document.getElementById('casevideo'), b = document.getElementById('caseplay');
+      if(v && b){
+        b.hidden = false; v.controls = false;
+        b.addEventListener('click', function(){
+          b.hidden = true; v.controls = true;
+          var p = v.play(); if(p && p.catch) p.catch(function(){ v.controls = true; });
+        });
+        v.addEventListener('ended', function(){ v.controls = false; v.load(); b.hidden = false; });
+      }
+      if('IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(en){
+          en.forEach(function(e){
+            e.target.classList.toggle('fx-idle', !e.isIntersecting);
+            if(!e.isIntersecting && v && !v.paused && e.target.contains(v)) v.pause();
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('[data-fx],.clientes__marquee'), function(el){ el.classList.add('fx-idle'); io.observe(el); });
+      }
     })();
   </script>
 </body>
