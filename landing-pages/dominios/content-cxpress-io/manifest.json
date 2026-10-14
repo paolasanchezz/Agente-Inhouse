@@ -186,6 +186,11 @@
       "source": "landing-pages/cxpress/evento-confirmado"
     },
     {
+      "slug": "evento-confirmado-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/evento-confirmado-pt"
+    },
+    {
       "slug": "evite-banimento-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/evite-banimento-whatsapp"

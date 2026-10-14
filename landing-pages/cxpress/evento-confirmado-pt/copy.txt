@@ -1,0 +1,30 @@
+=== CONFIRMACAO ===
+LABEL: Inscrição recebida
+H1: Obrigado pela sua inscrição.
+SUB: Em breve, vamos enviar mais informações sobre o evento para o e-mail que nos indicou. Se não o encontrar na caixa de entrada, verifique a pasta de spam ou de promoções.
+
+=== QUEM SOMOS ===
+OVERLINE: Enquanto o evento não chega
+H2: Muito prazer, somos a Cxpress
+BODY: A Cxpress reúne WhatsApp, Instagram, Facebook, chat do site, e-mail e telefone num só painel, com o histórico de cada cliente no mesmo lugar. A IA responde ao primeiro contacto e passa a conversa para a sua equipa quando o caso pede uma pessoa.
+LABEL: API Oficial do WhatsApp
+LABEL: API Oficial do ChatGPT
+LABEL: Um produto Elife
+CTA: Conhecer a Cxpress (link para www.cxpress.pt, novo separador)
+VISUAL: quem-somos-foto.jpg (brand/cxpress/assets/plataforma)
+
+=== CLIENTES ===
+H2: Mais de 800 empresas no Brasil, na América Latina e em Portugal confiam na Cxpress para o seu atendimento
+LOGOS: clientes-cxpress-pt.png (copiado de whatsapp-agencias-pt; Continente, Delta Q, Hertz, CAOA, Saúde Prime e outros)
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+LEGAL: Termos e Políticas · Política de privacidade · Condições gerais de utilização
+
+# Copy-fonte: pedido do usuario (2026-10-14): agradecimento generico para eventos Cxpress
+# Portugal, mensagem "obrigado pelo registo, em breve enviaremos mais informacoes sobre o evento
+# para o e-mail indicado", em PT-PT. Base visual e estrutura: evento-confirmado (BR).
+# PT-PT: tratamento "voce" (3a pessoa, possessivo com artigo "a sua inscricao", "o seu atendimento"),
+# contacto, equipa, chat do site, separador, auscultadores, logotipos, "a trabalhar".
+# GTM: container Portugal GTM-NW6V5KBM (brand/cxpress/tracking.json).
+# Revisao anti-IA: em-dash 0; antitese-por-negacao 0; exclamacao 0; filler 0.
