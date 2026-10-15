@@ -48,6 +48,7 @@ def exportar(cur, marca: str) -> dict:
             fonte = Q.normalizar_utm(r["utm_source"])
             url = r["url_conversao"]
             etapa = Q.MAPA_ETAPAS.get((r["etapa_titulo"] or "").strip(), "outro")
+            reuniao = Q.chegou_reuniao(etapa, r["ordem_etapa"], r["ordem_reuniao"])
             deals.append({
                 "id": r["id"],
                 "t": r["deal"],
@@ -64,6 +65,7 @@ def exportar(cur, marca: str) -> dict:
                 "dom": Q.dominio_de(url),
                 "pa": Q.caminho_de(url),
                 "c": Q.classificar(fonte, url),
+                "r": 1 if reuniao else 0,
             })
 
     deals.sort(key=lambda x: (x["d"] or "", x["id"]))
@@ -75,7 +77,8 @@ def exportar(cur, marca: str) -> dict:
         "escopo": (
             "Coorte por data de criacao do deal. Etapa e o ESTADO ATUAL (nao ha "
             "historico de etapa em PT), por isso o painel mostra distribuicao, nunca "
-            "conversao entre etapas. CM e classificacao, nao filtro."
+            "conversao entre etapas. Reuniao e fechamento tambem saem da etapa "
+            "atual, sem data. CM e classificacao, nao filtro."
         ),
         "etapas": [list(e) for e in Q.ETAPAS_CANONICAS],
         "terminais": sorted(Q.ETAPAS_TERMINAIS),
@@ -104,8 +107,13 @@ def main() -> None:
                      if d["c"] == "cm" and (d["d"] or "") >= "2026-01-01")
             sem = sum(1 for d in dados["deals"]
                       if d["c"] == "sem_rastreio" and (d["d"] or "") >= "2026-01-01")
+            reu = sum(1 for d in dados["deals"]
+                      if d["r"] and (d["d"] or "") >= "2026-01-01")
+            fec = sum(1 for d in dados["deals"]
+                      if d["e"] in Q.ETAPAS_GANHAS and (d["d"] or "") >= "2026-01-01")
             print(f"{marca:9s} -> {out.name}  {n} deals ({n26} em 2026: "
-                  f"{cm} CM, {sem} sem rastreio)  {out.stat().st_size // 1024} KB")
+                  f"{cm} CM, {sem} sem rastreio, {reu} reunioes, {fec} fechamentos)  "
+                  f"{out.stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":

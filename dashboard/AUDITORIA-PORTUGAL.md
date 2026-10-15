@@ -138,6 +138,14 @@ Buzzmonitor PT (311 deals em 2026) e Cxpress PT (267) sustentam uma dashboard. *
 
 **Datação decidida (09/09):** coorte por `cdate`. O pedido inicial era usar data de reunião ou de proposta como proxy; o §3.2 mostra que esses campos não existem em PT e que não há como derivá-los. As 3 dashboards foram construídas com esse modelo e estão no ar em `dashboards-elife.vercel.app/bm-pt/`, `/cxpress-pt/` e `/elife-pt/`.
 
+**Reuniões e Fechamento por etapa (decidido com o Victor, 15/10):** continuam sem data. São contadas pela etapa atual dentro da mesma coorte por `cdate`:
+
+- **Fechamento** = etapa atual Fecho de Negócio ou Cliente (Contrato, A formalizar contrato, Clientes). O `status` não entra. O KPI antigo "Ganhos" somava etapa **e** `status = 'Ganho'`: no Buzzmonitor PT davam 7 em 2026, sendo 3 em Fecho de Negócio, 2 em Contrato e 2 parados em Proposta com status Ganho. A página agora mostra 5 e lista à parte os deals com status Ganho fora da etapa de fecho, pra o time corrigir no CRM.
+- **Reunião** = etapa atual na Reunião ou depois dela, pelo `stage_order` do próprio pipeline. A ordem muda de pipeline para pipeline (o Follow-Up vem antes da Reunião no pipeline 1 e depois da Proposta nos pipelines 5 a 8), por isso a comparação é feita dentro do `group_id`. Etapas laterais (Perdidos, Desqualificado, Reciclagem, Stand-By, Material Rico, Curso, Churn) ficam de fora mesmo quando vêm depois da Reunião na ordem. **É um piso:** quem teve reunião e hoje está em Perdidos não aparece, porque nada registra a passagem.
+- A lista "Deals da coorte" perdeu o corte de 300 linhas. Com 338 deals no YtD do Buzzmonitor PT, o corte escondia os criados em jan/fev, e com eles 2 dos fechamentos que o KPI contava.
+
+Lógica em `queries_portugal.chegou_reuniao()` e `ETAPAS_GANHAS`.
+
 **Se um dia o dado melhorar:** basta o time PT passar a preencher `data_de_fecho_do_negocio` (e, idealmente, ganhar um campo de data de reunião no ActiveCampaign) para que a coorte possa conviver com uma série temporal de fechamento de verdade. A lógica está isolada em `dashboard/queries_portugal.py`.
 
 Scripts da auditoria ficaram no scratchpad da sessão (descartáveis) — tudo aqui é reproduzível com os `SELECT` descritos acima.

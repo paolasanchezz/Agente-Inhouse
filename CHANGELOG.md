@@ -561,6 +561,27 @@ desse host, e `img-src` já era `https:`.
   comparador — o wildcard cobre o host do template; sem impacto em runtime.
 
 ## Dashboards CM de Portugal (Buzzmonitor, Cxpress e Elife)
+### 2026-10-15 — seções Reuniões e Fechamento, contadas pela etapa (`dashboard-pt-vercel/` + `queries_portugal.py`)
+
+Ponto de partida: a dash do Buzzmonitor PT mostrava 7 "Ganhos" em 2026, e a lista de deals tinha 1 só em
+Fecho de Negócio. Eram duas causas. O KPI somava etapa **e** `status = 'Ganho'` (3 em Fecho de Negócio,
+2 em Contrato e 2 parados em Proposta com status Ganho). E a lista cortava em 300 linhas: com 338 deals
+no YtD, os criados em jan/fev ficavam de fora, e com eles 2 dos fechos.
+
+- **Seção 3 · Reuniões:** deals da coorte cuja etapa atual é Reunião ou vem depois dela no pipeline
+  (`stage_order` dentro do mesmo `group_id`, sem as etapas laterais). KPIs: total, hoje em Reunião, já
+  avançaram e via CM. Gráfico por mês de criação e lista completa. É um piso: quem teve reunião e hoje
+  está em Perdidos não entra.
+- **Seção 4 · Fechamento:** etapa atual Fecho de Negócio ou Cliente. O `status` não entra. KPIs: total,
+  valor, % das reuniões e via CM. Uma nota lista os deals com status Ganho em outra etapa, pra corrigir
+  no ActiveCampaign.
+- Na visão geral, o KPI "Ganhos" virou **"Fechamentos"** com a mesma regra, e entrou **"Reuniões"**,
+  que ocupa a 7ª coluna que estava vazia.
+- A lista "Deals da coorte" perdeu o corte de 300 linhas.
+- No mobile, a coluna Deal das tabelas ganhou largura mínima, porque o nome quebrava letra a letra.
+- Números em 2026: Buzzmonitor PT 21 reuniões / 5 fechamentos · Cxpress PT 16 / 4 · Elife PT 1 / 0.
+- Racional em `dashboard/AUDITORIA-PORTUGAL.md` §5. Nenhuma mudança na skill `dashboard-atualizar`.
+
 ### 2026-09-09 — skill `dashboard-atualizar` (4.0.0 → 4.1.0) + `dashboard-pt-vercel/` + `queries_portugal.py`
 
 O guarda-chuva passa de 4 para **7 rotas**: `/bm-pt/`, `/cxpress-pt/` e `/elife-pt/`.

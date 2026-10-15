@@ -667,6 +667,15 @@
     font-weight: 500; color: var(--text-subtle);
   }
 
+  /* Reunioes e Fechamento: linha de 4 KPIs (a da visao geral tem 7). */
+  .kpi-row.k4 { grid-template-columns: repeat(4, 1fr); }
+  .nota {
+    font-size: 13px; line-height: 1.7; color: var(--text-muted);
+    margin: 14px 2px 0;
+  }
+  .nota b { color: var(--text); font-weight: 600; }
+  .nota + .vazio { margin-top: 8px; }
+
   .quebra { word-break: break-word; max-width: 420px; }
   td.vazio, .vazio {
     text-align: center; color: var(--text-subtle);
@@ -676,5 +685,22 @@
   @media (max-width: 720px) {
     .etapa-row { grid-template-columns: 120px 1fr 74px; gap: 8px; }
     .etapa-nome { font-size: 12px; }
-    .quebra { max-width: 200px; }
+    /* min-width: sem ele o word-break espreme o nome do deal letra a letra (a
+       tabela rola na horizontal dentro do .table-wrap, entao pode alargar). */
+    .quebra { max-width: 200px; min-width: 160px; }
+  }
+
+  /* .k4 nos breakpoints: as regras genericas de .kpi-item foram escritas pra 7 itens. */
+  @media (max-width: 1280px) {
+    .kpi-row.k4 .kpi-item { border-bottom: none; }
+  }
+  @media (max-width: 960px) {
+    .kpi-row.k4 { grid-template-columns: repeat(2, 1fr); }
+    .kpi-row.k4 .kpi-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .kpi-row.k4 .kpi-item:nth-child(2n) { border-right: none; }
+  }
+  @media (max-width: 640px) {
+    .kpi-row.k4 { grid-template-columns: 1fr; }
+    .kpi-row.k4 .kpi-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .kpi-row.k4 .kpi-item:last-child { border-bottom: none; }
   }

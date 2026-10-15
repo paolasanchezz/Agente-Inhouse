@@ -16,7 +16,10 @@ Decisoes que vem da auditoria de 2026-09-09 (`dashboard/AUDITORIA-PORTUGAL.md`):
 2. **Etapa e ESTADO ATUAL, nao progressao.** Sem historico de etapa, nao da pra
    dizer que um deal hoje em "Perdidos" passou por "Reuniao". Logo o painel mostra
    a DISTRIBUICAO da coorte por etapa — nunca um funil de conversao entre etapas,
-   que seria mentira.
+   que seria mentira. As secoes Reunioes e Fechamento (2026-10-15) seguem a mesma
+   regra: fechamento = etapa atual Fecho de Negocio ou Cliente (o `status` nao
+   entra); reuniao = etapa atual na Reuniao ou depois dela no pipeline, que e um
+   piso (ver `chegou_reuniao`).
 
 3. **CM e classificacao, nao filtro.** 21% a 50% dos deals de 2026 nao tem nenhum
    rastreio. Filtrar por CM esconderia metade da base sem avisar. Cada deal e
@@ -103,8 +106,37 @@ MAPA_ETAPAS = {
 
 # Etapas que significam "saiu do jogo" — nao entram no "em aberto".
 ETAPAS_TERMINAIS = {"perdido", "desqualificado", "churn"}
-# Etapas que significam negocio fechado.
-ETAPAS_GANHAS = {"cliente"}
+# Etapas que significam negocio fechado. So a ETAPA conta: deal com `status`
+# 'Ganho' parado em Proposta nao e fechamento (decisao Victor 2026-10-15 — o KPI
+# antigo somava status e etapa e dava 7 "ganhos" com 3 deals em Fecho de Negocio).
+ETAPAS_GANHAS = {"fecho", "cliente"}
+
+# Etapas fora da linha principal do funil. Ficam de fora do "chegou a reuniao"
+# mesmo quando o `stage_order` delas e maior que o da Reuniao (no pipeline 1,
+# Perdidos, Desqualificado, Material Rico e Curso vem DEPOIS da Reuniao na ordem).
+ETAPAS_LATERAIS = {
+    "perdido", "desqualificado", "churn", "reciclagem", "stand_by",
+    "material_rico", "outro",
+}
+
+
+def chegou_reuniao(etapa, ordem_etapa, ordem_reuniao):
+    """True se a etapa ATUAL do deal fica na Reuniao ou depois dela no pipeline.
+
+    Sem historico de etapa (auditoria §3.2), a unica prova de que houve reuniao e
+    a posicao no funil: quem esta em Proposta, Negociacao ou Fecho passou pela
+    Reuniao. A ordem vem do `stage_order` do proprio pipeline, porque ela muda de
+    um pipeline pro outro — o Follow-Up vem ANTES da Reuniao no pipeline 1 e
+    DEPOIS da Proposta nos pipelines 5 a 8.
+
+    E um piso: deal que teve reuniao e hoje esta em Perdidos/Desqualificado nao
+    entra, porque nada no CRM registra que ele passou por la.
+    """
+    if etapa in ETAPAS_GANHAS:
+        return True  # inclui o pipeline 9 (pos-venda), que nao tem etapa Reuniao
+    if etapa in ETAPAS_LATERAIS or ordem_etapa is None or ordem_reuniao is None:
+        return False
+    return ordem_etapa >= ordem_reuniao
 
 # ---------------------------------------------------------------- rastreio CM
 
@@ -224,12 +256,22 @@ def classificar(utm_source_norm, url_conv):
 
 # ---------------------------------------------------------------- SQL
 
+def _titulo_sem_acento(alias: str) -> str:
+    """Titulo da etapa em minusculo e sem acento — a chave de MAPA_ETAPAS."""
+    return (f"""lower(translate(coalesce({alias}."title_normalized", {alias}."title", ''),
+             'áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ',
+             'aaaaaeeeeiiiiooooouuuucAAAAAEEEEIIIIOOOOOUUUUC'))""")
+
+
 # Colunas iguais nas 7 tabelas — projecao unica.
 def q_deals(tabela: str, origem: str) -> str:
     """Uma linha por deal, com a etapa ja resolvida pelo titulo.
 
     Sem filtro de data: o motor.js recorta a coorte por `cdate` no navegador,
     igual as outras dashboards dinamica-estaticas.
+
+    `ordem_etapa` e `ordem_reuniao` alimentam `chegou_reuniao()`: a posicao da
+    etapa atual e a da etapa Reuniao no MESMO pipeline (`group_id`).
     """
     return f"""
 SELECT d."id",
@@ -237,9 +279,11 @@ SELECT d."id",
        d."cdate"::date                            AS d_criacao,
        d."mdate"::date                            AS d_modificacao,
        '{origem}'                                 AS origem,
-       lower(translate(coalesce(s."title_normalized", s."title", ''),
-             'áàâãäéèêëíìîïóòôõöúùûüçÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ',
-             'aaaaaeeeeiiiiooooouuuucAAAAAEEEEIIIIOOOOOUUUUC'))  AS etapa_titulo,
+       {_titulo_sem_acento('s')}  AS etapa_titulo,
+       s."stage_order"                            AS ordem_etapa,
+       (SELECT min(r."stage_order") FROM public."dim_stages_portugal" r
+         WHERE r."group_id" = s."group_id"
+           AND {_titulo_sem_acento('r')} = 'reuniao')  AS ordem_reuniao,
        d."status"                                 AS status,
        d."value"                                  AS valor,
        d."currency"                               AS moeda,
