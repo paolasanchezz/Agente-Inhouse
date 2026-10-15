@@ -12,6 +12,18 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `blog-criar-artigo` — dedupe do Passo 2.5 lê o sitemap com `curl`, não com `WebFetch`
+### 2026-10-15 — 1.4.2 → 1.4.3 (PATCH)
+
+- Achado da revisão da #816: o crawl do sitemap era feito com `WebFetch`, que resume a página com um modelo e corta conteúdo grande. O sitemap tem 2.886 URLs em 3 filhos (1.157 BR, 861 ES, 867 PT-PT, 1 EN, medido em 2026-10-15), então um post BR já publicado podia não aparecer e virar artigo duplicado.
+- O Passo 2.5 agora parte de `https://buzzmonitor.com/blog/sitemap_index.xml`, segue os filhos `post-sitemap*.xml` com `curl` e descarta as outras línguas com `grep -vE '/blog/(es|pt-pt|en)/'`. Mesmo padrão da `blog-criar-artigo-intl`.
+- A lista BR vai pra um arquivo temporário e a busca é por `grep` com os termos do tema. Imprimir as 1.157 URLs também não daria certo: passa de 100 KB e a saída do Bash corta.
+- Se o sitemap falhar (timeout, 5xx, contagem 0 ou muito abaixo de ~1.150), a skill segue só com o `blog-cache.md` e registra a falha em "Pendencias".
+- Sem mudança no resto: `blog-cache.md` continua append-only (só entram os posts relevantes pro tema), veredito por intenção (JA_COBERTO / PARCIAL / LACUNA) e parada com pergunta no JA_COBERTO.
+- Snippet testado em 2026-10-15: devolveu 1.157 URLs BR; com URL inválida devolve 0.
+
+---
+
 ## `blog-criar-artigo` + `blog-criar-artigo-intl` + `blog-criar-artigo-cxpress` — chegam na main, já com a migração de domínio da Buzzmonitor LATAM/PT
 ### 2026-10-15 — intl 1.3.1 → 1.4.0 (MINOR) · BR 1.4.1 → 1.4.2 · cxpress 1.0.0 → 1.0.1 · `blog-diario` 1.0.2 → 1.0.3 (PATCH)
 

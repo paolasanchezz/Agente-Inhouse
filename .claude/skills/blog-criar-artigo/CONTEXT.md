@@ -11,7 +11,7 @@ Nasceu de um diagnostico de maturidade de publico feito pela usuaria fora deste 
 LATAM e PT tem mercados menos maduros — a abordagem editorial la e outra (mais educativa/topo de funil), nao so uma questao de idioma. Por isso essas regioes ficam **fora do escopo** desta skill. Desde 2026-07-22 existe a skill irma `blog-criar-artigo-intl` (argumento `[regiao]` = `pt`/`latam`) especificamente pra isso — ver `.claude/skills/blog-criar-artigo-intl/CONTEXT.md`.
 
 **Mudanca de modelo (2026-07-24, decisao da Barbara):** ate a v1.3.1 esta skill consumia uma fila fixa de 20 pautas pre-escritas pela Barbara (`conteudo-blog/buzzmonitor/briefings/2026-07-artigos-prioritarios-br.md`). Esse lote foi encerrado (19/20 escritos — o item 02 nunca foi gerado) e nao sera mais usado. A partir de agora a skill gera artigos **sob demanda**: a Barbara traz o tema, ou pede pra skill escolher entre os clusters de `conhecimento/produto/buzzmonitor/seo/clusters-brasil.md`. Duas capacidades novas entraram junto com essa mudanca:
-1. **Checagem ao vivo do blog real** (crawl de sitemap via `WebFetch`), alem do `blog-cache.md` local — antes o dedupe so olhava cache local + estado da `/blog-diario`.
+1. **Checagem ao vivo do blog real** (crawl de sitemap, via `WebFetch` ate a v1.4.2 e via `curl` desde a v1.4.3), alem do `blog-cache.md` local — antes o dedupe so olhava cache local + estado da `/blog-diario`.
 2. **Pesquisa de palavra-chave via Semrush (Keyword Magic Tool)** antes de fechar a keyword principal — antes a keyword vinha pronta, escrita a mao no item do briefing.
 
 O conhecimento editorial (tom, publico, anti-IA, GEO, regras de CTA/case) nao mudou nada — so a origem do tema e da keyword.
@@ -93,8 +93,24 @@ Fornecidos pela usuaria em 2026-07-20: posts do blog real que ja performam bem n
 
 Adicionado em 2026-07-23, atualizado em 2026-07-24. Fontes cruzadas antes de escrever:
 - `conhecimento/produto/buzzmonitor/blog-cache.md` — indice cumulativo local do blog real. Append-only, nunca deletar entrada.
-- **Crawl ao vivo do sitemap real** (`https://buzzmonitor.com/blog/sitemap.xml`, via `WebFetch`) — adicionado em 2026-07-24. Fonte de verdade, sempre mais atual que o cache local. Post encontrado no crawl mas ausente do cache vira entrada nova no `blog-cache.md`.
+- **Crawl ao vivo do sitemap real** — adicionado em 2026-07-24. Fonte de verdade, sempre mais atual que o cache local. Post relevante pro tema encontrado no crawl mas ausente do cache vira entrada nova no `blog-cache.md`.
 - **Filtro de idioma (2026-10-15):** com a migracao de LATAM/PT pra `buzzmonitor.com` (set/2026), o mesmo sitemap passou a listar `/blog/es/`, `/blog/pt-pt/` e `/blog/en/`. Pro BR, descartar essas URLs: elas nao contam como sobreposicao e nao entram no `blog-cache.md`.
+
+**Como fazer o crawl (via `curl`, desde a v1.4.3):**
+
+- Ate a v1.4.2 o crawl era via `WebFetch`. Ele resume a pagina com um modelo e corta conteudo grande, e o sitemap ja passa de 2.800 URLs: um post BR existente podia nao aparecer e virar artigo duplicado. Trocado por `curl` + `grep` no Bash, mesmo padrao da `blog-criar-artigo-intl`.
+- Sitemap-index: `https://buzzmonitor.com/blog/sitemap_index.xml` (o `sitemap.xml` redireciona pra ele). Siga os filhos `post-sitemap*.xml` (hoje sao 3) e agregue. Nao existe sitemap separado por idioma.
+- Volume em 2026-10-15: 2.886 URLs no total, 1.157 BR, 861 ES, 867 PT-PT e 1 EN.
+- Grave a lista BR num arquivo temporario e busque nele com `grep` pelos termos do tema. Imprimir a lista inteira nao funciona: passa de 100 KB e a saida do Bash tambem corta.
+  ```bash
+  F="${TMPDIR:-/tmp}/blog-buzzmonitor-br-urls.txt"
+  for sm in $(curl -sfL --max-time 30 https://buzzmonitor.com/blog/sitemap_index.xml | grep -oE 'https://[^<]+post-sitemap[0-9]*\.xml'); do
+    curl -sfL --max-time 30 "$sm" | grep -oE '<loc>[^<]+</loc>' | sed -E 's#</?loc>##g'
+  done | grep -vE '/blog/(es|pt-pt|en)/' > "$F"
+  wc -l < "$F"                        # ~1.150 em 2026-10-15
+  grep -iE 'termo-1|termo-2' "$F"     # termos do tema como aparecem no slug
+  ```
+- Se o sitemap falhar (timeout, 5xx, contagem 0 ou muito abaixo do esperado), siga so com o `blog-cache.md` e registre a falha em "Pendencias". Nao trave a execucao por isso.
 
 Removido em 2026-07-24: a checagem contra `blog-seo/buzzmonitor/_state.json` (estado da `/blog-diario`) — a Barbara decidiu nao usar mais `/blog-diario` para Buzzmonitor BR, entao essa fonte deixou de ser relevante pra esta skill.
 

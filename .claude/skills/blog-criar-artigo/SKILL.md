@@ -3,7 +3,7 @@ name: blog-criar-artigo
 description: Gera artigos de blog SEO/comercial sob demanda para o Buzzmonitor Brasil, a partir de um tema trazido pela usuaria ou escolhido pela propria skill entre os clusters de conteudo da marca. Consulta o Semrush (Keyword Magic Tool) pra decidir a palavra-chave por volume real, checa o blog real (cache + sitemap ao vivo) pra nao duplicar pauta, e aplica estrutura de citabilidade para LLMs (GEO) + regras anti-IA antes de publicar como draft no Notion. Usar sempre que o usuario pedir para escrever um artigo novo pro blog SEO da Buzzmonitor BR, com ou sem tema definido. So Buzzmonitor Brasil — LATAM e PT tem maturidade de publico diferente e exigem abordagem editorial propria, fora do escopo desta skill.
 argument-hint: "[tema] — opcional; texto livre descrevendo o tema/angulo do artigo. Se omitido, a skill escolhe entre os clusters de conteudo da marca"
 allowed-tools: Read, Write, Edit, Bash, Glob, WebFetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-fetch, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-create-pages, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-update-page, mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-search, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__keyword_research, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__get_report_schema, mcp__ad5dce33-9482-461f-9925-8595fad14e6a__execute_report
-version: 1.4.2
+version: 1.4.3
 ---
 
 # Skill: Criar Artigo de Blog SEO/GEO (Buzzmonitor Brasil)
@@ -57,8 +57,20 @@ Extraia do BRANDBOOK:
 Antes de seguir pra Pesquisa de Palavra-chave (Passo 3), cruze o tema/angulo escolhido contra:
 
 1. `conhecimento/produto/buzzmonitor/blog-cache.md` — indice local, rapido mas pode estar desatualizado.
-2. **Crawl ao vivo do sitemap real** (`WebFetch`): `https://buzzmonitor.com/blog/sitemap.xml` (se for sitemap-index, siga os sitemaps filhos e agregue). Esta e a fonte de verdade — sempre mais atual que o cache local. Se encontrar um post que ainda nao esta no `blog-cache.md`, adicione a entrada nova nele (disciplina append-only, igual a `/blog-diario`: nunca deletar entrada existente).
-   **Descarte as URLs de outros idiomas:** desde a migracao de set/2026 esse sitemap tambem lista os blogs de LATAM e Portugal (~860 posts em `/blog/es/` e ~870 em `/blog/pt-pt/`, alem de `/blog/en/`). So contam as URLs **sem** esses prefixos. Post de outro idioma nunca vira JA_COBERTO aqui e nunca entra no `blog-cache.md` do BR.
+2. **Crawl ao vivo do sitemap real, via `curl` no Bash.** Esta e a fonte de verdade — sempre mais atual que o cache local. **Nunca use `WebFetch` pro sitemap:** ele resume a pagina com um modelo e corta lista grande, e um post BR que ja existe pode sumir do resultado e virar artigo duplicado.
+   O sitemap-index `https://buzzmonitor.com/blog/sitemap_index.xml` aponta pros filhos `post-sitemap*.xml` (3 em 2026-10-15). Desde a migracao de set/2026 eles listam tambem os blogs de LATAM, Portugal e EN (`/blog/es/`, `/blog/pt-pt/`, `/blog/en/`). O snippet abaixo ja descarta essas URLs: post de outro idioma nunca vira JA_COBERTO aqui e nunca entra no `blog-cache.md` do BR.
+   - **Baixe a lista BR pra um arquivo temporario e confira a contagem:**
+     ```bash
+     F="${TMPDIR:-/tmp}/blog-buzzmonitor-br-urls.txt"
+     for sm in $(curl -sfL --max-time 30 https://buzzmonitor.com/blog/sitemap_index.xml | grep -oE 'https://[^<]+post-sitemap[0-9]*\.xml'); do
+       curl -sfL --max-time 30 "$sm" | grep -oE '<loc>[^<]+</loc>' | sed -E 's#</?loc>##g'
+     done | grep -vE '/blog/(es|pt-pt|en)/' > "$F"
+     wc -l < "$F"
+     ```
+     Em 2026-10-15 deu 1.157 URLs BR (de 2.886 no sitemap todo). Nao imprima o arquivo inteiro: passa de 100 KB e a saida do Bash tambem corta.
+   - **Busque no arquivo pelos termos do tema**, do jeito que aparecem no slug (sem acento, hifen no lugar de espaco): keyword candidata, sinonimos, singular/plural. Ex. pra "como definir SLA de atendimento": `grep -iE 'sla|tempo-de-resposta|tempo-medio' "${TMPDIR:-/tmp}/blog-buzzmonitor-br-urls.txt"`. Rode mais de uma busca se o tema tiver nomes diferentes. Se o slug deixar duvida sobre o angulo, abra so aquele post pra confirmar.
+   - **Se o sitemap falhar** (`curl` com timeout ou 5xx, contagem 0 ou muito abaixo de ~1.150), siga so com o `blog-cache.md` e registre em "Pendencias" (Passo 5 e Passo 8) que o crawl ao vivo falhou e o dedupe ficou parcial. Nao trave a execucao por isso.
+   - **Atualize o cache:** post relevante pro tema achado no crawl e ausente do `blog-cache.md` vira entrada nova nele (disciplina append-only, igual a `/blog-diario`: nunca deletar entrada existente). So os posts que entraram na analise do tema, nao a lista inteira.
 
 Julgue por **intencao**, nao so por match literal de palavra-chave (ex: "o que e SLA" e "como definir SLA de atendimento" podem ser o mesmo JA_COBERTO mesmo com keyword diferente, se respondem a mesma pergunta central):
 
@@ -314,7 +326,7 @@ Retorne ao usuario:
 
 ## Regras Criticas
 
-- NUNCA pular o Passo 2.5 (checagem de sobreposicao) — sempre rodar o crawl ao vivo do sitemap, mesmo que `blog-cache.md` pareca suficiente
+- NUNCA pular o Passo 2.5 (checagem de sobreposicao) — sempre rodar o crawl ao vivo do sitemap via `curl` (nunca `WebFetch`, que corta a lista), mesmo que `blog-cache.md` pareca suficiente
 - NUNCA decidir sozinho o que fazer com um tema JA_COBERTO — sempre parar e perguntar ao usuario antes de escrever
 - NUNCA fechar a palavra-chave principal sem consultar o Semrush (Passo 3) — nunca escolher keyword "de ouvido" ou so porque parece a certa
 - NUNCA escolher sozinha os clusters "Cases de Sucesso", "Buzzmonitor na Pratica" ou "Institucional" quando pedido pra escolher o tema (Passo 2B) — sao feitos por outro time ou fora do foco de SEO; so entram como peca avulsa se a usuaria trouxer o tema
