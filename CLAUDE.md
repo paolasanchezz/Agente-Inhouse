@@ -26,6 +26,7 @@ Traducao:     /trad-pipeline → /trad-traduzir → /trad-revisar
 Copywriting:  /copy-criar (standalone) | /copy-pesquisar → /copy-swipefile | /copy-revisar (standalone)
 Pauta Quente: /pauta-quente (standalone — noticia → multi-formato × multi-idioma)
 Blog SEO/GEO: /blog-diario [marca] [regiao] [tema?] (standalone autonomo — cluster → bake-off de volume multi-fonte → post SEO/GEO + METADADOS + CTA→LP → rascunho Notion; diario via /schedule)
+Blog sob demanda: /blog-criar-artigo [tema?] (Buzzmonitor BR, MoFu/BoFu) | /blog-criar-artigo-intl [pt|latam] [tema?] (Buzzmonitor PT/LATAM, topo de funil) | /blog-criar-artigo-cxpress [tema?] (Cxpress BR+PT+LATAM no mesmo run) — tema → Semrush → dedupe no sitemap → artigo GEO → draft Notion
 Landing Page: /lp-pipeline → /lp-preparar → /lp-gerar → /lp-revisar → (/lp-integrar-form) → /lp-publicar (guarda-chuva=CI · solo=classico) | /lp-health-check (standalone — monitora prod)
 Pocket Event: Google Form -> Apps Script -> pocket-event-novo.yml -> PR -> CI (deterministico, sem LLM) | /pocket-event (mesmo caminho a mao)
 Criativos:    /criativo (ponta-a-ponta — adapta copy → brand+GUIDELINES → gera [HTML|Bloom] → revisa → entrega; organico|anuncio · 1x1/4x5/9x16)
@@ -50,7 +51,7 @@ Video SEO:    /video-seo-plan [mes] → (pausa: aprovar tema) → /video-seo-rot
 | `landing-pages/` | LPs geradas por marca (`landing-pages/{marca}/{slug}/`) + `GUIDELINES.md` universal |
 | `social-media/` | Planejamentos editoriais de redes sociais por marca (`social-media/{marca}/YYYY-MM/`) |
 | `criativos/` | Criativos gerados por marca/regiao (`criativos/{marca}/{regiao}/{slug}/`) + `GUIDELINES.md` universal. Outputs **gitignored** (PNGs pesados, upload manual); só o GUIDELINES versiona |
-| `conteudo-blog/` | Artigos de blog e briefings por marca (`conteudo-blog/{marca}/artigos[-latam\|-pt]/`) + `_state*.json` de controle |
+| `conteudo-blog/` | Artigos de blog e briefings por marca (`conteudo-blog/{marca}/artigos[-latam\|-pt\|-br]/`) + `_state*.json` de controle. Gerados por `/blog-criar-artigo`, `/blog-criar-artigo-intl` e `/blog-criar-artigo-cxpress` (a `/blog-diario` grava em `blog-seo/`) |
 | `conteudo-video/` | Cronograma e roteiros-base de video SEO por mes (`conteudo-video/YYYY-MM/`), gerados por `/video-seo-plan` e `/video-seo-roteiro` |
 | `meta-ads/` | Enxuto — so `benchmarks.json` (usado pelo /bunzzai). Pipeline antigo arquivado em `meta-ads-legacy/` |
 | `.claude/skills/` | Definicoes das skills e CONTEXT.md compartilhados |
@@ -198,6 +199,21 @@ Skill standalone **autonoma** que gera 1 blogpost otimizado para SEO + GEO por e
 - `[regiao]`: `brasil` (default) | `latam` | `portugal`
 - `[tema]`: opcional, entre aspas — forca um tema/keyword e pula a selecao
 - Requer MCP Notion + Semrush conectados. Clusters da marca/regiao precisam existir (senao a skill para e pede ao Victor).
+
+### Artigos de Blog SEO sob demanda (Buzzmonitor BR, Buzzmonitor PT/LATAM e Cxpress)
+
+Tres skills irmas que geram **1 artigo por execucao, sob demanda**: a usuaria traz o tema ou pede pra skill escolher entre os clusters da marca/regiao. Todas fecham a palavra-chave pelo volume real no Semrush, checam se o tema ja existe no blog real (sitemap ao vivo) antes de escrever, aplicam a estrutura de citabilidade pra LLMs (`conhecimento/copywriting/geo-llm.md`) e publicam draft no Notion. Diferente da `/blog-diario`, nao rodam sozinhas nem fazem bake-off multi-fonte, e cobrem o que ela evita (cases nominais, tutoriais de plataforma). Regras em `.claude/skills/{skill}/CONTEXT.md`.
+
+| Comando | O que faz |
+|---|---|
+| `/blog-criar-artigo [tema?]` | **Buzzmonitor Brasil.** Meio/fundo de funil, CTA comercial, links de autoridade com UTM. Clusters em `conhecimento/produto/buzzmonitor/seo/clusters-brasil.md`; dedupe = `blog-cache.md` + sitemap (so URLs BR). Draft em `SEO > Buzzmonitor BR > Blog Post > Artigos SEO`. |
+| `/blog-criar-artigo-intl [pt\|latam] [tema?]` | **Buzzmonitor Portugal ou LATAM** (regiao obrigatoria). Topo de funil puro, tom didatico, **pilar linguistico obrigatorio** e **sem CTA comercial** (so leia-mais, ebook, estudo ou webinar). Semrush `pt` ou `mx`. Clusters em `clusters-{portugal\|latam}.md`. |
+| `/blog-criar-artigo-cxpress [tema?]` | **Cxpress**, 3 versoes no mesmo run (PT-BR base + PT-PT + ES-LATAM), MoFu/BoFu nas 3. Semrush `br`/`pt`/`mx`, dedupe nos 3 blogs (blog.cxpress.io / .pt / .ai). Clusters em `conhecimento/produto/cxpress/seo/clusters-cxpress.md`. |
+
+- Saida local em `conteudo-blog/{buzzmonitor|cxpress}/artigos[-pt|-latam|-br]/` + log em `_state*.json`.
+- **Dominios Buzzmonitor (pos-migracao de set/2026):** `getbuzzmonitor.com` nao existe mais. LATAM = `buzzmonitor.com/es/` (blog `buzzmonitor.com/blog/es/`), Portugal = `buzzmonitor.com/pt-pt/` (blog `buzzmonitor.com/blog/pt-pt/`). As tres regioes dividem o mesmo sitemap do blog, e cada skill filtra pelo prefixo da sua.
+- **Cxpress:** a migracao pra `cxpress.ai/{pt-br|es|pt-pt}/` ainda nao foi ao ar. Quando for, as URLs do CONTEXT.md da skill precisam ser trocadas.
+- Requer MCP Notion + Semrush conectados.
 
 ### Criativos (imagens estaticas / carrossel)
 

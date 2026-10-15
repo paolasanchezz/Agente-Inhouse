@@ -15,6 +15,9 @@
 | `redes-sociais` | `3603934026fd8158876dd38d432aceef` | Pagina raiz **Redes Sociais** — planejamentos editoriais mensais (skill social-plan) |
 | `redes-sociais-relatorios` | `37d3934026fd81048ee1d3749aa21851` | Subpagina **Relatórios de Performance** — arquivo historico pre-2026-07 (Maio e anteriores). A partir de junho/2026 o relatorio do mes mora dentro da propria pagina-hub do mes, nao mais aqui |
 | `seo` | `2b53934026fd8154afeecdc8b68bb0df` | Pagina raiz **SEO** — por marca: clusters, rastreio de paginas e rascunhos de blog (skill blog-diario). Rascunhos vao em `SEO > {Marca} > Conteúdos complementares`. IDs por marca/regiao em `.claude/skills/blog-diario/CONTEXT.md`. |
+| `artigos-seo-buzzmonitor-br` | `3a33934026fd80859aefd1dd88a00a2e` | Pasta **📁 Artigos SEO** (caminho: SEO > Buzzmonitor BR > Blog Post > Artigos SEO) — drafts de artigos de blog SEO/GEO gerados pela skill `blog-criar-artigo`, sob demanda a partir de `clusters-brasil.md` ou de tema trazido pela usuaria. So Buzzmonitor Brasil |
+| `artigos-blog-pt-buzzmonitor` | `3a53934026fd80b3a6b0c917e3fb2db8` | Pasta **Artigos Blog PT** — drafts de artigos de blog topo-de-funil (PT-PT) gerados pela skill `blog-criar-artigo-intl`, sob demanda a partir de `clusters-portugal.md`. So Buzzmonitor Portugal |
+| `artigos-blog-latam-buzzmonitor` | `3a53934026fd805a8810cca32f521275` | Pasta **Artigos Blog Latam** — drafts de artigos de blog topo-de-funil (ES-LATAM) gerados pela skill `blog-criar-artigo-intl`, sob demanda a partir de `clusters-latam.md`. So Buzzmonitor LATAM |
 
 ---
 
@@ -54,6 +57,9 @@ Sempre que uma skill precisar de um `parent` id para `mcp__*__notion-create-page
 | `social-plan` | `redes-sociais` (via padrao de pagina-hub por mes, ver secao acima) |
 | `social-analytics` | `redes-sociais` (relatorio vai dentro do hub do mes; `redes-sociais-relatorios` so pra consulta historica pre-2026-07) |
 | `blog-diario` | `seo` |
+| `blog-criar-artigo` | `artigos-seo-buzzmonitor-br` |
+| `blog-criar-artigo-intl` | `artigos-blog-pt-buzzmonitor` (regiao `pt`), `artigos-blog-latam-buzzmonitor` (regiao `latam`) |
+| `blog-criar-artigo-cxpress` | subpastas por cluster × regiao, IDs em `.claude/skills/blog-criar-artigo-cxpress/CONTEXT.md` |
 
 ---
 

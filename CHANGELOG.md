@@ -12,6 +12,137 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `blog-criar-artigo` + `blog-criar-artigo-intl` + `blog-criar-artigo-cxpress` — chegam na main, já com a migração de domínio da Buzzmonitor LATAM/PT
+### 2026-10-15 — intl 1.3.1 → 1.4.0 (MINOR) · BR 1.4.1 → 1.4.2 · cxpress 1.0.0 → 1.0.1 · `blog-diario` 1.0.2 → 1.0.3 (PATCH)
+
+- As três skills só existiam na branch `claude/vibrant-curie`, parada desde 2026-09-30 e mais de 100 commits atrás da main. Entram só os arquivos de que elas dependem: as 3 pastas de skill, `conhecimento/copywriting/geo-llm.md`, `clusters-latam.md`, `clusters-portugal.md`, `clusters-cxpress.md` e os `blog-cache-{br|pt|latam}.md` da Cxpress. Artigos, briefings e `_state*.json` já estavam na main (#754) e ficaram como estão. O resto da branch (traduções de julho etc.) não entra.
+- **Migração `getbuzzmonitor.com` → `buzzmonitor.com` (por volta de 2026-09-20), aplicada na `blog-criar-artigo-intl`:**
+  - 53 URLs de case (36 ES + 17 PT) trocadas de `getbuzzmonitor.com/{es|pt-pt}/{slug}/` pra `buzzmonitor.com/blog/{es|pt-pt}/{slug}/`. As de PT no domínio antigo caíam na home do BR. Exceção: o case Sube em ES ficou com o slug `sube-agencia-experiencia-buzzmonitor-2` (o sem sufixo redireciona pro PT-PT).
+  - `buzzmonitor.com/es/estudios-2/` → `/es/estudios/`.
+  - Padrão do link interno corrigido no SKILL.md: `/{pt-pt|es}/blog/` → `/blog/{pt-pt|es}/`.
+  - As LPs comerciais continuam em `contenido.`/`conteudo.getbuzzmonitor.com`, ainda no ar. Nota no CONTEXT.md explicando a exceção.
+  - Todas as URLs do CONTEXT.md revalidadas em 2026-10-15: HTTP 200 sem redirect.
+  - **Dedupe contra o blog real ligado (por isso MINOR):** o sitemap do blog passou a listar os posts ES e PT-PT (cerca de 860 e 870). O Passo 2.5 cruza o tema contra ele, filtrando pelo prefixo da região. Era a condição combinada em julho pra ligar essa checagem.
+- `blog-criar-artigo` (BR): o mesmo sitemap agora traz `/blog/es/`, `/blog/pt-pt/` e `/blog/en/`. O Passo 2.5 descarta essas URLs, pra não marcar tema BR como coberto por post de outro idioma nem jogar post estrangeiro no `blog-cache.md`.
+- `blog-criar-artigo-cxpress`: só a linha de sitemap da tabela comparativa com as irmãs. Os domínios da Cxpress não mudaram: a migração pra `cxpress.ai/{pt-br|es|pt-pt}/` ainda não foi ao ar.
+- `blog-diario`: tabela de blog URLs da Buzzmonitor com `/blog/es/` e `/blog/pt-pt/` + nota do sitemap único com filtro por prefixo.
+- `brand/buzzmonitor/BRANDBOOK.md`: case Hering (que as skills citam como verificado) e tabela de URLs regionais corrigida.
+- `clusters-latam.md` e `clusters-portugal.md`: URL do blog corrigida (`/{es|pt-pt}/blog/` → `/blog/{es|pt-pt}/`) e nota de dedupe atualizada.
+- `conhecimento/config/notion-ids.md`: chaves `artigos-seo-buzzmonitor-br`, `artigos-blog-pt-buzzmonitor` e `artigos-blog-latam-buzzmonitor`.
+
+---
+
+## `blog-criar-artigo-cxpress` — histórico anterior à main
+### 2026-08-20 — v1.0.0 — Criacao da skill: blog SEO Cxpress com 3 versoes simultaneas (BR + PT-PT + ES-LATAM)
+
+Nova skill standalone para Cxpress. Gera 1 artigo por run em 3 versoes simultaneas: PT-BR (base) + PT-PT e ES-LATAM (traducoes/adaptacoes no mesmo run). Diferente das skills irmas de Buzzmonitor (BR e intl) porque o publico da Cxpress tem maturidade equivalente nas 3 regioes — todos sao MoFu/BoFu, com CTAs comerciais.
+
+Capacidades inauguradas:
+- **3 outputs por run** — escreve em PT-BR, traduz para PT-PT (pilar linguistico obrigatorio) e ES-LATAM (pilar linguistico obrigatorio), mantendo a estrutura intacta
+- **3 crawls de sitemap ao vivo** — blog.cxpress.io, blog.cxpress.pt e blog.cxpress.ai (sitemap_index.xml de cada) antes de escrever
+- **Semrush em 3 bancos por run** — `br` (PT-BR), `pt` (PT-PT), `mx` (ES-LATAM/Mexico)
+- **12 subpastas Notion** — 4 clusters x 3 regioes; cada artigo vai para a subpasta do cluster correto da regiao
+- **3 logs de estado independentes** — `_state-br.json`, `_state-pt.json`, `_state-latam.json` em `conteudo-blog/cxpress/`
+- **Blog-caches de partida** — `blog-cache-{br|pt|latam}.md` com os 20+ artigos pre-existentes por regiao, para dedupe e linkagem interna
+
+Arquivos criados: `SKILL.md`, `CONTEXT.md`, `clusters-cxpress.md`, `blog-cache-{br|pt|latam}.md`, `_state-{br|pt|latam}.json`.
+
+**Nota (2026-09-30, antes do primeiro commit da skill):** aplicada aqui a mesma correcao estrutural feita em `blog-criar-artigo` e `blog-criar-artigo-intl` na mesma data — CTA final vira o ultimo paragrafo do corpo, ANTES do FAQ (que passa a ser sempre a ultima secao do artigo), e link de LP nunca pode aparecer dentro de uma resposta de FAQ (regras 13 e 14 em "Regras editoriais inegociaveis"). Como a skill ainda nao tinha sido commitada, a correcao entra dentro da propria v1.0.0, sem bump de versao.
+
+---
+
+## `blog-criar-artigo-intl` — histórico anterior à main
+### 2026-09-30 — v1.3.1 — FAQ sempre por ultimo, CTA antes dele, LP fora de resposta de FAQ
+
+Mesma correcao aplicada em `blog-criar-artigo` (BR) nesta data (v1.4.1), ver detalhe la: paragrafo de CTA final (e eventual "leia mais") passam a ser os ultimos paragrafos do corpo, ANTES do FAQ — o FAQ vira sempre a ultima secao do artigo. Link de LP so em lugar estrategico (corpo ou CTA final), nunca dentro de resposta de FAQ. Regra 16 reescrita (invertendo a orientacao anterior, que mandava o CTA vir depois do FAQ) e regra 17 nova em "Regras editoriais inegociaveis". PATCH.
+
+### 2026-07-24 — v1.3.0 — Fim da fila fixa: geracao sob demanda, clusters por regiao, Semrush (pt/mx) e dominio de cases corrigido
+
+Mesma mudanca de modelo aplicada em `blog-criar-artigo` (BR) nesta data, adaptada pras duas regioes:
+
+- **Passo 2 reescrito** ("Selecionar o Proximo Artigo da Fila" → "Receber ou Escolher o Tema"): a fila fixa compartilhada de 20 pautas (`briefings-intl/2026-07-topo-funil-pt-latam.md`) foi encerrada (20/20 em PT e em LATAM) e nao e mais consumida. A Barbara traz o tema, ou pede pra skill escolher entre os clusters de `conhecimento/produto/buzzmonitor/seo/clusters-portugal.md` e `clusters-latam.md` (2 arquivos novos, trazidos pela Barbara nesta mesma data — 5 clusters cada, todos em rotacao). Ao escolher sozinha, evita repetir o cluster do ultimo artigo gerado naquela regiao.
+- **Passo 3 novo: Pesquisa de Palavra-chave (Keyword Magic Tool)**. Banco de dados Semrush fixo por regiao — `pt` pra Portugal (sem ambiguidade), `mx` pra LATAM (decisao da Barbara: Mexico como mercado de referencia unico, ja que o Semrush nao tem banco "LATAM" agregado; sem combinar paises nem variar por tema).
+- **Passo 2.5 (dedupe) simplificado, nao ampliado**: passa a cruzar contra o historico da propria skill (`_state-{regiao}.json`), mas **continua sem** checagem contra o blog real — a internacionalizacao do site ainda esta em andamento, sem sitemap internacional confiavel ainda. Diferente do BR, que ja ganhou essa camada extra na mesma data.
+- **Mecanica de reserva de slug antecipada (regra 15, desde v1.1.0) desativada**: dependia de uma fila fixa conhecida de antemao pra reservar slug de itens futuros. Sem fila fixa, links internos passam a apontar so pra artigos **ja gerados** por esta skill (mesmo padrao do BR); tema futuro ainda nao gerado usa placeholder textual simples.
+- **Dominio das URLs de "Cases publicados" corrigido pelo Victor em 2026-07-23** (commit anterior a esta mudanca de modelo): as 53 URLs de case (36 ES + 17 PT) apontavam pra `buzzmonitor.com/{es,pt-pt}/blog/{slug}`, que da 404 hoje — trocadas pro dominio atual `getbuzzmonitor.com/{es,pt-pt}/{slug}`, cada uma validada por HTTP 200. Nota explicita no CONTEXT.md de que os dois dominios (`getbuzzmonitor.com` pras paginas de case antigas, `buzzmonitor.com/.../blog/` pro dominio novo pos-internacionalizacao onde os artigos desta skill vao morar) coexistem e nao devem ser confundidos.
+- **`_state-pt.json` e `_state-latam.json` mudam de papel**: de "controle de fila" pra **log corrido** (numero sequencial continuando de onde parou, cluster, keyword + candidatas pesquisadas). Os 20 itens de cada regiao continuam no arquivo com o schema anterior, sem migracao.
+- Frontmatter: `description` e `argument-hint` reescritos (`[regiao] [tema]` no lugar de `[regiao] [numero-ou-slug] [caminho-briefing]`).
+
+MINOR na numeracao (mesmo criterio aplicado ao BR — muda bastante a interface, mas o conhecimento editorial em si, incluindo o pilar linguistico obrigatorio e o CTA proibido, nao mudou).
+
+### 2026-07-23 — v1.2.3 — Corrigido o dominio das URLs de cases publicados (getbuzzmonitor.com)
+
+Vindo da revisao do PR (#103). As 53 URLs de cases publicados no CONTEXT.md (36 ES + 17 PT) apontavam pra `buzzmonitor.com/{es,pt-pt}/blog/{slug}`, que retorna 404 hoje: o blog internacional ainda nao migrou pra esse esquema — so o institucional (home, ebooks, estudos, webinars) ja esta em `buzzmonitor.com/{es,pt-pt}/`. Os cases vivem hoje no dominio legado `getbuzzmonitor.com/{es,pt-pt}/{slug}` (sem `/blog/`). Corrigidas as 53 URLs, cada uma validada por HTTP 200 antes do commit. Preservados de proposito: os 2 templates de link interno da fila (`buzzmonitor.com/{pt-pt|es}/blog/{slug}` — esquema-alvo pos-migracao pros artigos que a skill ainda vai publicar) e a nota sobre o sitemap internacional futuro. Confirmado tambem que o slug `hering-mejoro-su-nps-con-social-istening` (sem "l" em "listening") e o slug real do site, nao um erro de digitacao. PATCH (correcao de dados, sem mudar comportamento). Commit do Victor: `892d456`.
+
+### 2026-07-23 — v1.2.2 — Documentada a pendencia de checagem de sobreposicao (sem sitemap internacional ainda)
+
+Nova secao no CONTEXT.md ("Sobreposicao com conteudo ja publicado — pendente") explicando por que esta skill ainda nao tem o mesmo Passo 2.5 de dedupe que a `blog-criar-artigo` (BR) ganhou na mesma data: a `/blog-diario` nunca rodou pra Buzzmonitor PT/LATAM (sem risco de colisao com ela ainda), e o sitemap internacional (`buzzmonitor.com/pt-pt/blog/sitemap.xml`, `buzzmonitor.com/es/blog/sitemap.xml`) ainda nao existe/nao e confiavel porque a internacionalizacao do site esta em andamento. Decisao da Barbara: revisitar quando o sitemap estiver pronto, replicando o mesmo padrao (WebFetch + veredito JA_COBERTO/PARCIAL/LACUNA + parar-e-perguntar). Documentacao apenas, sem mudanca de comportamento — PATCH.
+
+### 2026-07-23 — v1.2.1 — Corrigido MCP id defasado do Notion no allowed-tools
+
+O `allowed-tools` do frontmatter usava o id `mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-*`, o mesmo id que o `blog-diario/CONTEXT.md` ja documentava como defasado ("nao copiar"). Trocado pro id ativo `mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-*` (o mesmo que `blog-diario` usa). Adicionada a mesma nota de "MCP ids variam por ambiente" logo apos o titulo, pra sinalizar que o id precisa ser conferido/atualizado caso o servidor conectado mude. PATCH (correcao, sem mudar comportamento).
+
+### 2026-07-22 — v1.2.0 — CTA final obrigatorio apos o FAQ; paragrafos curtos reforcados
+
+Auditoria da usuaria nos 14 primeiros artigos LATAM encontrou dois problemas recorrentes. Primeiro: 4 artigos (itens 5, 9, 11, 13) ficaram sem paragrafo de fechamento — o link de "leia mais" pedido pelo item tinha sido inserido no meio do corpo (onde fazia sentido de contexto) e nada foi escrito depois do FAQ, entao o artigo terminava abruptamente na ultima resposta. Corrigido nos 14 arquivos locais e nas paginas do Notion (o link foi movido/duplicado como paragrafo de fechamento real). Segundo: varios paragrafos passavam de 4 frases (alguns com 5-6 frases via ponto-e-virgula ou multiplas oracoes), quebrados em paragrafos menores. Nova regra 16 exige explicitamente esse paragrafo de fechamento pos-FAQ; regra 10 (paragrafos curtos) foi reforcada com orientacao de onde quebrar. PATCH pro comportamento documentado, mas MINOR porque adiciona uma regra nova de verificacao obrigatoria — bump pra 1.2.0 por seguranca.
+
+### 2026-07-22 — v1.1.0 — Links internos usam URL real de producao, nunca placeholder
+
+Feedback da usuaria apos o primeiro artigo de teste (item 01, LATAM): links pra artigos da mesma fila que ainda nao foram gerados nao usam mais texto placeholder ("[LINK: titulo — publicar apos {}]"); usam direto a URL real que o artigo vai ter quando publicado (`https://buzzmonitor.com/{pt-pt|es}/blog/{slug}/`), sem UTM. Isso exige reservar o slug do item de destino antes dele existir — novo status `reservado` em `_state-{regiao}.json` (so `numero`/`titulo`/`slug`/`reservado_por`/`data_reserva`), que a skill deve reaproveitar (nunca substituir) quando aquele item for gerado de verdade. Passo 2 agora trata item `reservado` como pendente normal; Passo 3 checa slug ja reservado antes de gerar um novo. MINOR (comportamento novo, mas nao quebra fluxo ja documentado).
+
+### 2026-07-22 — v1.0.0 — Primeira versão
+
+Skill nova, standalone, irma de `blog-criar-artigo` mas para Buzzmonitor Portugal (PT-PT) e Buzzmonitor LATAM (ES-LATAM), a partir de analise de publico da usuaria: mercados imaturos no tema (CTR organico ~0,8% PT / ~0,4% LATAM), busca informacional basica ("o que e", "como"), vocabulario desalinhado com o produto. Editorial deliberadamente invertida vs a versao BR: conteudo topo-de-funil puro (conceitos, glossario, primeiros passos), pilar linguistico obrigatorio (`conhecimento/linguistico/{pt-portugal|es-latam}/padrao-linguistico.md`, carregado sempre — diferente do BR, que dispensa), produto so tarde e leve (nunca cedo), e **sem CTA comercial** (proibido "teste gratis"/"fale com consultor" — so leia-mais/ebook/webinar). Argumento `[regiao]` (`pt`|`latam`) obrigatorio. 1 briefing compartilhado (`conteudo-blog/buzzmonitor/briefings-intl/2026-07-topo-funil-pt-latam.md`, 20 temas) gera 2 artigos por item — 1 por regiao —, cada regiao com fila de progresso propria (`_state-pt.json`/`_state-latam.json`) e pasta Notion propria (`artigos-blog-pt-buzzmonitor`/`artigos-blog-latam-buzzmonitor` em `notion-ids.md`). Reaproveita `geo-llm.md` e `regras-anti-ia.md` (+ anexo do idioma) da base existente. Links de autoridade (home, LPs, cases publicados PT/ES, paginas de ebook/estudo/webinar) documentados em `CONTEXT.md`, com regra de so citar numero de case quando ja verificado no `BRANDBOOK.md`.
+
+---
+
+## `blog-criar-artigo` — histórico anterior à main
+### 2026-09-30 — v1.4.1 — FAQ sempre por ultimo, CTA antes dele, LP fora de resposta de FAQ
+
+Correcao pedida pela Barbara depois de revisar os artigos gerados: o paragrafo de CTA final estava caindo depois do FAQ (ultimo paragrafo do arquivo), quando deveria ser o ultimo paragrafo do corpo, logo ANTES do FAQ — o FAQ passa a ser sempre a ultima secao do artigo, sem nenhum paragrafo de texto corrido depois da ultima resposta. Junto, ficou explicito que link de LP comercial so pode aparecer em lugar estrategico (paragrafo do corpo ou no proprio CTA final) e nunca dentro do texto de uma resposta de FAQ. Esqueleto do Passo 4 reordenado e regras 14 e 15 adicionadas em "Regras editoriais inegociaveis". Mesma correcao aplicada em paralelo em `blog-criar-artigo-intl` (v1.3.1). PATCH (ajusta estrutura de saida, nao muda interface nem publico).
+
+### 2026-07-24 — v1.4.0 — Fim da fila fixa: geracao sob demanda, clusters, Semrush e crawl ao vivo
+
+Mudanca de modelo pedida pela Barbara: o lote de 20 pautas pre-escritas foi encerrado (19/20 gerados) e a skill deixa de depender de um arquivo de briefing fixo. A partir de agora:
+
+- **Passo 2 reescrito** ("Selecionar o Proximo Artigo da Fila" → "Receber ou Escolher o Tema"): a Barbara traz o tema, ou pede pra skill escolher entre os clusters de `conhecimento/produto/buzzmonitor/seo/clusters-brasil.md` (arquivo tambem atualizado nesta data — expandido de 5 pra 8 clusters, com dados de SERP/competitivos mais completos; ver nota de uso por skill dentro do proprio arquivo). Ao escolher sozinha, a skill evita repetir o cluster do ultimo artigo gerado (rastreado no `_state.json`) e so escolhe entre os clusters em rotacao (Social Listening, IA, Atendimento ao Cliente, Metricas & Analytics, Estrategia de Social Media) — nunca "Cases de Sucesso"/"Buzzmonitor na Pratica" (outro time) nem "Institucional" (sem foco de SEO).
+- **Passo 2.5 (dedupe) ganha uma 2ª fonte**: crawl ao vivo do sitemap real (`https://buzzmonitor.com/blog/sitemap.xml`, via `WebFetch`, novo em `allowed-tools`), alem do `blog-cache.md` local. Post achado no crawl e ausente do cache vira entrada nova nele (append-only). **Removida** a checagem contra o `_state.json` da `/blog-diario` — decisao da Barbara de nao usar mais essa skill pra Buzzmonitor BR (ver CHANGELOG de `clusters-brasil.md` e nota em `.claude/skills/blog-criar-artigo/CONTEXT.md`).
+- **Passo 3 novo: Pesquisa de Palavra-chave (Keyword Magic Tool)**. Antes a keyword vinha pronta do item do briefing; agora a skill consulta `keyword_research` do Semrush (novo em `allowed-tools`, mesmo MCP `ad5dce33-...` que a `/blog-diario` usa) pra comparar 2-4 candidatas por volume real + intencao comercial antes de fechar. Documenta as candidatas comparadas no relatorio final, nao so a vencedora.
+- **`_state.json` muda de papel**: de "controle de fila" (status pendente/publicado por item de um briefing fixo) pra **log corrido** de tudo que a skill ja gerou (numero sequencial continuando de onde parou, cluster, keyword + candidatas pesquisadas). Os 19 itens do lote antigo continuam no arquivo com o schema anterior, sem migração — só os novos itens (a partir do número 21) usam o schema novo.
+- Frontmatter: `description` e `argument-hint` reescritos (`[tema]` no lugar de `[numero-ou-slug] [caminho-briefing]`).
+
+MAJOR na prática (muda a interface e o comportamento esperado), mas mantido como MINOR na numeração porque o conhecimento editorial em si (tom, público, anti-IA, GEO, CTA, cases) não mudou — só a origem do tema/keyword e o fim da fila fixa.
+
+### 2026-07-23 — v1.3.1 — Schema do `_state.json` no CONTEXT alinhado ao SKILL; case Hering adicionado ao BRANDBOOK
+
+Dois ajustes vindos da revisao do PR (#103). Primeiro: o schema de `_state.json` documentado no `CONTEXT.md` estava desatualizado — nao listava os campos `title_seo`, `meta_descricao` e `palavra_chave` que o Passo 7 do `SKILL.md` grava por item desde a v1.1.0 (a skill intl ja trazia o schema completo). Alinhado agora ao SKILL. Segundo: o `CONTEXT.md` desta skill e o da intl afirmavam que o case Hering (NPS +11 pontos em 12 meses) ja estava verificado no `BRANDBOOK.md`, mas ele nao constava na secao "Cases de Sucesso Verificados" (so Youse estava). Numero confirmado na fonte (blog Buzzmonitor, jul/2024 a ago/2025) e o case Hering foi adicionado ao `BRANDBOOK.md`, tornando a afirmacao verdadeira para as duas skills. Sem mudanca de comportamento nem de interface — PATCH.
+
+### 2026-07-23 — v1.3.0 — Passo 2.5: checagem de sobreposicao com conteudo ja publicado (dedupe)
+
+Fechando uma lacuna real: o item 08 do briefing atual colidiu com um post que a `/blog-diario` ja tinha publicado em 2026-06-30 (mesma marca, escolhida de forma autonoma por aquela skill), e isso so foi percebido manualmente na revisao final, depois do artigo inteiro escrito. Novo Passo 2.5, entre a selecao do item (Passo 2) e a geracao de metadados (Passo 3): cruza o tema/palavra-chave do item contra `conhecimento/produto/buzzmonitor/blog-cache.md` (indice cumulativo do blog real, compartilhado com a familia `news-*` e a `/blog-diario`) e `blog-seo/buzzmonitor/_state.json` (posts e temas rejeitados da `/blog-diario`), ambos agora lidos no Passo 1. Veredito por intencao — JA_COBERTO / PARCIAL / LACUNA, nao so match literal de keyword. Em JA_COBERTO a skill **para e pergunta** ao usuario (seguir com angulo diferente / pular item / confirmar que ja sabia), nunca decide sozinha. PARCIAL vira nota em "Pendencias" (rodape do artigo + relatorio final); LACUNA segue normal. Corrigido de passagem um path errado no Passo 1 (apontava pra `conteudo-blog/buzzmonitor/CONTEXT.md`, que nao existe — o certo e `.claude/skills/blog-criar-artigo/CONTEXT.md`). MINOR (adiciona capacidade, nao quebra fluxo existente).
+
+**Fora do escopo desta versao:** o mesmo mecanismo pra `blog-criar-artigo-intl` (PT/LATAM) ainda depende do sitemap internacional do site, que nao existe/nao e confiavel enquanto a internacionalizacao esta em andamento — ver nota na propria skill intl (v1.2.2) e no `CONTEXT.md` desta skill ("Sobreposicao com conteudo ja publicado (Passo 2.5)").
+
+### 2026-07-23 — v1.2.1 — Corrigido MCP id defasado do Notion no allowed-tools
+
+Mesma correcao aplicada em `blog-criar-artigo-intl`: o `allowed-tools` usava o id defasado `mcp__d23bd62b-b780-49e6-9a00-d29a01f11d75__notion-*` (provavelmente herdado por copia de uma skill antiga da familia `news-*`). Trocado pro id ativo `mcp__051d3b1a-1085-41d4-96c0-ee1719c740c3__notion-*`, com a mesma nota de "MCP ids variam por ambiente" que `blog-diario` e `/seo-report` ja tem. PATCH.
+
+### 2026-07-20 — v1.2.0 — Links externos de autoridade com UTM (obrigatorio)
+
+Novo passo obrigatorio: todo artigo leva no minimo 1 link de blog + 1 de home + 1 de LP, escolhidos de uma tabela fixa em `CONTEXT.md` com 5 posts do blog real que ja performam bem no organico + home + as 3 LPs comerciais (`plataforma-completa`, `-listening`, `-atendimento`), fornecida pela usuaria. Hiperlinks de verdade no corpo (nao lista de referencia), com anchor text natural, e toda URL externa leva UTM (`utm_source=blog-buzzmonitor&utm_medium=organic&utm_campaign={slug-do-artigo}&utm_content={destino}`) para o time comercial rastrear origem SEO. Objetivo duplo: autoridade topica via interlinking (cluster → pillar) e atribuicao comercial. MINOR.
+
+> **Nota pos-merge (2026-07-20):** o pull trouxe a skill `/blog-diario` (autonoma, multi-marca, ja em `conhecimento/produto/{marca}/seo/clusters-*.md`), que cobre parte do mesmo terreno. Decisao da Barbara: manter as duas — `blog-diario` e autonoma/orientada a volume de busca; `blog-criar-artigo` e curada a partir de briefing humano e cobre de proposito o que a `blog-diario` evita (cases nominais, tutoriais de plataforma). Ha sobreposicao de keyword em 6 dos 20 itens do briefing atual com os clusters ja existentes da `blog-diario` — conferir manualmente antes de publicar no blog real pra evitar duplicata/canibalizacao. Convencao de UTM e politica de anti-IA das duas skills ainda divergem; unificacao fica pra depois.
+
+### 2026-07-20 — v1.1.0 — Metadados SEO, H3 para sub-itens, paragrafos curtos, FAQ minimo 3
+
+Ajustes de feedback apos validar o artigo de teste (item 01) com a usuaria. Passo 3 agora gera 5 metadados **antes** do corpo do artigo (H1, Title SEO ate 60 caracteres, meta descricao ate 145-150 caracteres, slug, palavra-chave principal), que abrem tanto o arquivo local quanto o callout da pagina no Notion. Passo 4 passou a exigir H3 para sub-casos/sub-criterios dentro de um H2 (em vez de negrito inline seguido de paragrafo corrido) e paragrafos de 2-4 frases (quebrar quando cobrir mais de uma ideia). FAQ (`geo-llm.md` §6) agora tem piso de 3 perguntas, nao 2. `_state.json` passa a guardar `title_seo`, `meta_descricao` e `palavra_chave` por item. MINOR (adiciona exigencias sem quebrar o fluxo ja documentado).
+
+### 2026-07-20 — v1.0.0 — Primeira versão
+
+Skill nova, standalone, so Buzzmonitor Brasil. Gera 1 artigo de blog SEO/comercial por execucao a partir de uma fila de pautas priorizada pela usuaria (`conteudo-blog/buzzmonitor/briefings/`), publicando draft no Notion na pasta **Artigos SEO** (`conhecimento/config/notion-ids.md`, chave `artigos-seo-buzzmonitor-br`). Difere deliberadamente de `news-criar-post`: conteudo comercial de meio/fundo de funil (produto pode aparecer cedo, comparativos diretos com concorrentes sao esperados), nao editorial. Introduz a camada `conhecimento/copywriting/geo-llm.md` — estrutura de citabilidade para LLMs/AI Overviews (resposta direta isolada, dados citaveis, tabelas comparativas, listas numeradas, FAQ, resumo executivo), reutilizavel por outras skills de conteudo. Primeira leva: 20 artigos priorizados em `conteudo-blog/buzzmonitor/briefings/2026-07-artigos-prioritarios-br.md`. LATAM e PT ficam fora do escopo (mercados com maturidade diferente — exigem skill propria quando chegar a vez).
+
+---
+
 ## `seo-report` — multi-marca, conversão por artigo e relatório executivo
 ### 2026-10-07 — 1.0.1 → 2.6.1 (MAJOR, PR #754 + ajustes da revisão)
 

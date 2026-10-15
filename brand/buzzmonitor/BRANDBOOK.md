@@ -201,6 +201,13 @@ cada funcionalidade da plataforma:
 - **Uso:** Buzz Pills para resumos rapidos + Auto Tag Suggestions para filtrar mencoes da marca correta
 - **Transformacao:** Equipe liberta de analise manual; monitoramento preciso mesmo em categoria competitiva
 
+#### Hering
+- **Setor:** Moda / Varejo
+- **Resultados:** +11 pontos no NPS da marca em 12 meses (jul/2024 a ago/2025)
+- **Uso:** Monitoramento de redes sociais e submarcas, coleta de sentimentos, mencoes, reclamacoes e elogios, analise da concorrencia, relatorios automaticos semanais e mensais, IA Insights e integracao com Analytics
+- **Transformacao:** Classificacao de sentimento mais precisa, acompanhamento diario de riscos a imagem da marca e gestao de crises baseada em dados
+- **Fonte:** https://buzzmonitor.com/blog/como-a-hering-aumentou-em-11-pontos-o-nps-da-marca-em-12-meses-com-social-listening-estrategico/
+
 ---
 
 ## 3. URLs e Contatos Oficiais
@@ -208,8 +215,10 @@ cada funcionalidade da plataforma:
 | Regiao | Site | Blog |
 |---|---|---|
 | Brasil | https://buzzmonitor.com.br | https://buzzmonitor.com/blog/ |
-| LATAM | https://buzzmonitor.com/ | https://buzzmonitor.com/blog/ |
-| Portugal | https://buzzmonitor.com/ | https://buzzmonitor.com/blog/ |
+| LATAM | https://buzzmonitor.com/es/ | https://buzzmonitor.com/blog/es/ |
+| Portugal | https://buzzmonitor.com/pt-pt/ | https://buzzmonitor.com/blog/pt-pt/ |
+
+> Atualizado em 2026-10-15: LATAM e Portugal migraram de `getbuzzmonitor.com` pra `buzzmonitor.com` por volta de 2026-09-20. O blog regional fica em `/blog/{idioma}/` (nao `/{idioma}/blog/`) e o de Portugal usa `pt-pt` (nao `pt`). Os tres blogs dividem o mesmo sitemap (`https://buzzmonitor.com/blog/sitemap_index.xml`): filtre pelo prefixo da regiao.
 
 ---
 

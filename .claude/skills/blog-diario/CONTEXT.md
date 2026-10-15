@@ -68,11 +68,13 @@ Quando o destino não estiver mapeado: `notion-search` por `Conteúdos complemen
 | Marca | Brasil | LATAM | Portugal |
 |---|---|---|---|
 | cxpress | https://blog.cxpress.io/ | https://blog.cxpress.io/ | https://blog.cxpress.pt/blog/ |
-| buzzmonitor | https://buzzmonitor.com/blog/ | https://buzzmonitor.com/blog/ | https://buzzmonitor.com/blog/ |
+| buzzmonitor | https://buzzmonitor.com/blog/ | https://buzzmonitor.com/blog/es/ | https://buzzmonitor.com/blog/pt-pt/ |
 | buzzcreators | https://blog.buzzcreators.com.br | https://buzzcreators.com/blog/ | https://buzzcreators.com/blog/ |
 | elife | (confirmar) | (confirmar) | (confirmar) |
 
 Fonte canônica: `## 3. URLs e Contatos Oficiais` do BRANDBOOK de cada marca. Sitemap = `{BlogURL}sitemap*.xml` (tratar sitemap-index → filhos + paginação; tolerar ausência → cair pro cache).
+
+> **Buzzmonitor — sitemap único pras 3 regiões (2026-10-15):** desde a migração de set/2026 (`getbuzzmonitor.com` → `buzzmonitor.com`), LATAM e Portugal não têm sitemap próprio (`/blog/es/sitemap.xml` e `/blog/pt-pt/sitemap.xml` dão 404). Use sempre `https://buzzmonitor.com/blog/sitemap_index.xml` e filtre pelo prefixo: Brasil = URLs **sem** `/blog/es/`, `/blog/pt-pt/` e `/blog/en/`; LATAM = só `/blog/es/`; Portugal = só `/blog/pt-pt/`. Sem o filtro, o dedupe de uma região compara contra o blog das outras.
 
 ## Pesos de score (seleção de tema)
 
