@@ -494,7 +494,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .prova .wrap{position:relative;z-index:1}
     .prova__head{text-align:center;max-width:820px;margin:0 auto 56px}
     .prova__head .eyebrow{color:#9fb7ff;display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:9999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
-    .prova__head .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange)}
+    @media (max-width:560px){.prova__head .eyebrow{text-align:left;line-height:1.4;border-radius:18px;padding:10px 16px;text-wrap:balance}}
+    .prova__head .eyebrow::before{flex:none;content:"";width:8px;height:8px;border-radius:50%;background:var(--orange)}
     .prova__head h2{color:#fff;font-size:clamp(30px,4vw,44px);margin-top:20px}
     .prova__grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:56px;align-items:center}
 
@@ -879,7 +880,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="prova__bg" aria-hidden="true"></div>
     <div class="wrap">
       <div class="prova__head reveal">
-        <span class="eyebrow">Case · Cacau Show</span>
+        <span class="eyebrow">Resultados da Cacau Show usando a Cxpress</span>
         <h2 id="case-title">SLA de 8 horas para 26 minutos na maior operação sazonal do ano</h2>
       </div>
       <div class="prova__grid">
