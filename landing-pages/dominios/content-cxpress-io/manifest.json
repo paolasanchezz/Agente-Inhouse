@@ -131,6 +131,11 @@
       "source": "landing-pages/cxpress/coex-whatsapp-latam"
     },
     {
+      "slug": "concierge-redes-sociais-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/concierge-redes-sociais-pt"
+    },
+    {
       "slug": "conheca-a-cxpress",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/conheca-a-cxpress"
@@ -299,6 +304,11 @@
       "slug": "telefonia-ia-latam",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/telefonia-ia-latam"
+    },
+    {
+      "slug": "telefonia-ia-pt",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/telefonia-ia-pt"
     },
     {
       "slug": "tempo-de-resposta",

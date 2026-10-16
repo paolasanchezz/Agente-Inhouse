@@ -1,0 +1,122 @@
+LP: cxpress / telefonia-ia-pt
+IDIOMA: PT-PT (pt-PT)
+FONTE: landing-pages/cxpress/telefonia-ia-latam/copy.txt (ES-LATAM) + brand/cxpress/BRANDBOOK.md
+ESTAGIO: MoFu/BoFu
+REGIAO: portugal · GTM-NW6V5KBM
+FORMULARIO: mock. Embed real entra depois via /lp-integrar-form
+
+=== HERO ===
+OVERLINE: Cxpress.voz · Telefonia na nuvem com IA
+H1: O seu cliente repete a mesma história em cada chamada
+SUB: A chamada entra, a pessoa explica tudo outra vez, e o que foi dito no WhatsApp na semana passada não aparece em lado nenhum.
+SUB: A Cxpress.voz atende com IA, encaminha cada chamada para quem sabe resolver e guarda o histórico ao lado do WhatsApp, do e-mail e das redes. No mesmo painel.
+CTA: Pedir uma demonstração
+BODY: Chamadas · WhatsApp · Voicebot
+BODY: Mais de 800 empresas no Brasil, LATAM e Portugal atendem com a Cxpress.
+
+=== CLIENTES ===
+LABEL: Marcas que atendem com a Cxpress
+
+=== O QUE MUDA ===
+OVERLINE: Cxpress.voz
+H2: A central telefónica deixou de ser uma caixa na parede
+BODY: Telefonia na nuvem, no mesmo painel onde a sua equipa já atende tudo o resto.
+
+H3: Cada chamada chega a quem sabe resolver
+BODY: A distribuição inteligente organiza a fila e encaminha o contacto para o colaborador mais indicado. Menos transferências e menos "vou passar ao departamento".
+
+H3: Atenda de onde estiver
+BODY: Computador, telemóvel ou telefone IP. Sem central física, sem cabos e sem esperar pelo técnico.
+
+H3: Um voicebot que atende ao primeiro toque
+BODY: Atendimento automatizado 24 horas por dia, sete dias por semana, em linguagem natural.
+
+H3: Cada chamada também em texto
+BODY: A transcrição automática passa a conversa a texto, para rever casos, formar a equipa e auditar sem voltar a ouvir o áudio.
+
+H3: Gravações e métricas à mão
+BODY: As gravações ficam acessíveis e os indicadores da operação aparecem em painéis, sem montar relatórios à mão.
+
+H3: Telefone e WhatsApp, um só número
+BODY: Os dois canais no mesmo número. Deixa de distribuir contactos diferentes consoante o sítio por onde lhe escrevem.
+
+=== CTA INTERMÉDIO ===
+BODY: Peça um diagnóstico gratuito da sua operação de atendimento com os nossos consultores.
+CTA: Pedir diagnóstico
+
+=== TODA A PLATAFORMA ===
+OVERLINE: Para além do telefone
+H2: O telefone é um canal. A Cxpress é a operação inteira.
+BODY: Os módulos que já vêm na mesma plataforma.
+
+H3: Centralização de canais
+BODY: WhatsApp com API Oficial, e-mail, Facebook, Instagram, telefone e o chat do site num só painel, com o histórico completo de cada cliente.
+
+H3: Automatização com IA
+BODY: A IA responde ao primeiro nível em linguagem natural, a qualquer hora, e passa a conversa a uma pessoa com todo o contexto.
+
+H3: Gestão de tickets
+BODY: Distribuição automática ou manual por setor e por colaborador, com as filas organizadas e o histórico num só lugar.
+
+H3: Painéis analíticos
+BODY: Os indicadores da área em painéis que substituem as folhas de cálculo.
+
+=== PORQUE A CXPRESS ===
+OVERLINE: Diferenças que se notam
+H2: O que não vem em qualquer plataforma
+
+H3: API Oficial do WhatsApp
+BODY: Integração certificada, não WhatsApp Web. O seu número trabalha com as regras da Meta a favor.
+
+H3: Um histórico por cliente, não por canal
+BODY: Quem atende vê tudo o que veio antes, tenha o contacto chegado por telefone, WhatsApp ou e-mail.
+
+H3: A IA sabe quando passar a vez
+BODY: Quando o caso se complica, a conversa passa a uma pessoa com o contexto completo.
+
+H3: Pensada para empresas sem equipa de TI
+BODY: Implementação simples, sem o peso nem o preço de uma solução enterprise.
+
+=== QUEM SOMOS ===
+H2: A plataforma que unifica o seu atendimento
+BODY: A Cxpress é uma plataforma na nuvem do Grupo Elife que unifica e automatiza os canais de atendimento da sua empresa. WhatsApp, redes sociais, e-mail e telefone passam a dar uma visão única da relação com o cliente, do primeiro contacto até à resolução do caso.
+
+=== FECHO ===
+H2: Veja a Cxpress.voz a funcionar na sua operação
+BODY: Um consultor mostra a plataforma com os canais que a sua empresa já usa, e avalia o que faz sentido mudar primeiro.
+CTA: Pedir uma demonstração
+
+=== FOOTER ===
+FOOTER: A Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de utilização · Política de privacidade
+
+# ================================================================
+# NOTAS
+# ================================================================
+#
+# PT-PT, conforme conhecimento/linguistico/pt-portugal/padrao-linguistico.md:
+# - possessivo com artigo: "o seu cliente", "a sua equipa", "o seu numero"
+# - "equipa" (nao "time"), "telemovel" (nao "celular"), "folhas de calculo"
+# - "setor", "colaborador", "contacto" (com c)
+# - CTA nominal: "Pedir uma demonstracao", "Pedir diagnostico". PT-PT prefere a
+#   forma nominal ao imperativo vigoroso do PT-BR
+# - zero exclamacao: a forca vem do facto
+# - tratamento "voce" em 3a pessoa, sem misturar com "tu"
+#
+# ADAPTACAO, NAO TRADUCAO LITERAL
+# A LATAM abre com "Tu cliente repite la misma historia en cada llamada". Mantive o
+# eixo, mas a segunda linha do hero passou a mostrar a cena ("a pessoa explica tudo
+# outra vez, e o que foi dito no WhatsApp na semana passada nao aparece"), porque
+# a regra de ouro do fundamentos-copy.md pede dor concreta antes da solucao.
+#
+# O QUE SAIU DA VERSAO LATAM
+# - "Chatbots com voz personalizada" do bloco de modulos: esta no BRANDBOOK mas nao
+#   e sustentado por nada na pagina, e empilhar 5 modulos dilui. Ficaram 4.
+#
+# NUMEROS
+# Usei so o claim publico de "+800 empresas". Nenhum numero de case entrou, porque
+# nao ha case de telefonia documentado para Portugal.
+#
+# ANTI-IA
+# em-dash 0 · exclamacao 0 · filler 0 · frase de IA 0 · metafora aquatica 0
+# antitese-por-negacao 2 ("nao WhatsApp Web" e "por cliente, nao por canal"), no limite

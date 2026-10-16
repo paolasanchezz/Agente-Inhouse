@@ -1,0 +1,110 @@
+LP: cxpress / concierge-redes-sociais-pt
+IDIOMA: PT-PT (pt-PT)
+FONTE: docs.superhuman.com/@cxpress-elife/sentinela (doc oficial do Concierge) + agente-concierge-pt
+ESTAGIO: MoFu/BoFu
+REGIAO: portugal · GTM-NW6V5KBM
+FORMULARIO: mock. Embed real entra depois via /lp-integrar-form
+
+=== HERO ===
+OVERLINE: Agente Concierge · Respostas automáticas em redes sociais
+H1: Há comentários sem resposta debaixo do anúncio que está a pagar
+SUB: Cada pergunta que fica pendurada num post patrocinado é dinheiro de media a trabalhar contra si. Quem comenta quer comprar, e quem lê vê que ninguém respondeu.
+SUB: O Agente Concierge responde aos comentários no Facebook, Instagram, Google e TikTok, a qualquer hora, com o tom de voz da sua marca.
+CTA: Pedir uma demonstração
+BODY: Facebook · Instagram · Google · TikTok
+BODY: Mais de 800 empresas no Brasil, LATAM e Portugal atendem com a Cxpress.
+
+=== CLIENTES ===
+LABEL: Marcas que atendem com a Cxpress
+
+=== O PROBLEMA ===
+OVERLINE: O que acontece hoje
+H2: A campanha corre bem e é aí que o problema aparece
+BODY: Quanto melhor o anúncio, mais comentários. E o volume não escolhe hora.
+
+H3: Chegam fora do horário da equipa
+BODY: Grande parte dos comentários aparece à noite e ao fim de semana, quando não há ninguém de serviço. Na segunda-feira já passou o momento.
+
+H3: Pergunta repetida ocupa a equipa toda
+BODY: Preço, prazo, morada da loja, se há stock. São sempre as mesmas, e respondê-las à mão consome o tempo de quem devia estar a tratar do que é difícil.
+
+H3: O que fica sem resposta fica à vista
+BODY: Ao contrário de uma mensagem privada, o comentário sem resposta é público. Quem chega depois lê a pergunta e lê o silêncio.
+
+=== A SAÍDA ===
+OVERLINE: Como funciona
+H2: Um agente que responde ao comentário no momento em que ele aparece
+
+H3: Publicações, Reels e anúncios
+BODY: O agente responde a comentários em publicações de feed, em Reels e em anúncios patrocinados. No Instagram cobre também as transmissões em direto, e no Google as avaliações.
+
+H3: Com o tom de voz que definir
+BODY: O agente é treinado com a base de conhecimento da sua marca e responde em linguagem natural. Você decide como ele fala em cada canal.
+
+H3: Sem horário
+BODY: Funciona sem parar, independentemente do horário de atendimento configurado na conta. O comentário da meia-noite recebe resposta à meia-noite.
+
+H3: O que precisa de pessoa vai para pessoa
+BODY: A reclamação, o caso sensível e o que exige decisão passam para a equipa, com o contexto da conversa junto.
+
+=== PARA QUEM ===
+H2: Para marcas que já vivem de presença digital
+LIST ITEM: Investe em media paga e recebe comentários em cada campanha
+LIST ITEM: Tem equipa de social ou de atendimento, e o volume já não cabe no dia
+LIST ITEM: Responde hoje à mão, em várias contas e várias plataformas
+LIST ITEM: Vende ou agenda a partir do que acontece nas redes
+
+=== TUDO NUM SÓ PAINEL ===
+H2: As redes ao lado dos outros canais
+BODY: Na Cxpress, o que vem das redes fica no mesmo painel do WhatsApp, do e-mail, do chat e do telefone. Um cliente, um histórico, uma visão completa.
+
+=== FECHO ===
+H2: Veja o Agente Concierge a responder nas suas contas
+BODY: Um consultor mostra o agente a funcionar nos canais que a sua marca já usa, e avalia o volume que dá para automatizar.
+CTA: Pedir uma demonstração
+
+=== FOOTER ===
+FOOTER: A Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de utilização · Política de privacidade
+
+# ================================================================
+# NOTAS
+# ================================================================
+#
+# PORQUE ESTE ANGULO, E NAO O DA PAGINA QUE JA EXISTE
+# A agente-concierge-pt abre com "Nao deixe comentarios sem resposta" e fala de
+# "Agente para Engagement". E verdadeiro, mas serve a qualquer pessoa com um perfil
+# de Instagram, inclusive quem nao tem operacao nem orcamento. Mesmo problema de
+# qualificacao que medimos no Brasil em outubro: 37 leads de Meta, 2 com e-mail de
+# empresa.
+#
+# Este H1 corta por porte sem dizer preco: so tem "anuncio que esta a pagar" quem
+# investe em media. Quem nao investe nao se reconhece e nao preenche.
+#
+# NAO CANIBALIZA
+# Conferido em 16/10 na conta Cxpress Portugal (1246835670520012): os dois anuncios
+# de concierge (`Concierge 04` e `Concierge 05`) estao ADSET_PAUSED, com 0 euros e
+# 0 impressoes em 30 dias. A pagina existente nao recebe trafego pago, entao nao ha
+# historico a proteger. Ainda assim, decidir o que fazer com ela antes de por as
+# duas no ar ao mesmo tempo.
+#
+# PRECISAO FACTUAL (fonte: doc oficial do Concierge)
+# - Responde a comentarios em publicacoes de Facebook, Instagram, GMB e TikTok,
+#   incluindo feed, Reels, anuncios patrocinados, lives (so Instagram) e avaliacoes
+#   (so GMB). Esta tudo na pagina, nada inventado.
+# - ⚠️ O Concierge responde APENAS a comentarios de primeiro nivel. Comentarios
+#   aninhados nao sao processados. Nao escrevi isto na pagina (nao e material para
+#   LP), mas tambem nao escrevi nada que prometa o contrario. Nao acrescentar
+#   "responde a todas as conversas" numa revisao futura.
+# - "independentemente do horario de atendimento configurado na conta" e literal
+#   da documentacao.
+#
+# PT-PT
+# possessivo com artigo · "equipa" · "morada" (nao "endereco") · "stock" ·
+# "em direto" (nao "ao vivo") · "media paga" · CTA nominal · zero exclamacao
+#
+# ANTI-IA
+# em-dash 0 · exclamacao 0 · filler 0 · frase de IA 0 · metafora aquatica 0
+# antitese-por-negacao 1 ("Ao contrario de uma mensagem privada")
+# (na 1a escrita passou um "de forma continua"; corrigido para "sem parar")
+# listas de 3, 4 e 4 itens, comprimento variado
