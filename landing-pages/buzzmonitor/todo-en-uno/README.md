@@ -96,3 +96,9 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: removidos do hero o dashboard animado e os cards AI Insights / Alerta de crise (pedido do usuario). Hero = copy | formulario.
 
 - 2026-10-15: slug renomeado `todo-en-uno-premium-latam` -> `todo-en-uno` (pedido do usuario). Destino: content.buzzmonitor.com/todo-en-uno
+
+## 7 modulos + navegacao das abas (2026-10-15)
+
+- Deck e abas com 7 modulos: novos 06 MCP (tela estilo Claude consultando Buzzmonitor) e 07 Trends (tela Trends: temas em alta com sparklines, sentimento, quem esta falando).
+- "Como funciona": dica "Elige un modulo..." (mobile: "Toca... o desliza"), botoes anterior/seguinte com contador 01/07, ponto pulsante na proxima aba ate o usuario interagir, swipe no mobile, abas com scroll horizontal.
+- Deck: espacamento e tempos de distribuicao genericos por N cartas. OG regenerada com os 7 modulos.
