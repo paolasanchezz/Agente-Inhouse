@@ -111,3 +111,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: descricao das cartas maior (desktop 14px, mobile 15px); carta 07 agora diz "Temas en tendencia".
 - 2026-10-15: "Temas en alza" -> "Temas en tendencia" tambem na tela e no texto do painel Trends; entrelinha da descricao das cartas no desktop 1.2.
 - 2026-10-15: "Como funciona": contador 01/07 com setas movido para baixo das telas dos modulos.
+- 2026-10-15: "Como funciona": todas as telas com a altura da de Analytics (408px de design); as mais longas cortam embaixo com degrade.
