@@ -891,6 +891,19 @@
     /* 7 cartas no deck */
     .deck .dcard{--w:236px}
     @media (max-width:640px){.deck .dcard{--w:210px}}
+
+    /* deck movil: pila + puntos de progreso */
+    .deck__dots{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);display:flex;gap:7px;z-index:30}
+    .deck__dots i{width:7px;height:7px;border-radius:50%;background:rgba(18,12,22,.18);transition:background .3s,width .3s}
+    .deck__dots i.on{background:var(--orange)}
+    @media (max-width:699px){
+      .deck.is-pinned .deck__track{height:460vh}
+      .deck.is-pinned .dcard{transition:opacity .25s}
+      .deck .dcard{--w:min(300px,80vw);height:400px}
+      .deck.is-pinned .dcard{margin-top:-200px}
+      .deck.is-pinned .deck__stage{height:410px}
+      .dcard__desc{font-size:14px}
+    }
   </style>
 </head>
 <body>
@@ -1313,13 +1326,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var pinned=!RM&&window.innerHeight>560;
   if(pinned)deck.classList.add('is-pinned');
   var seeds=cards.map(function(){return{r:(Math.random()*2-1)*22,x:(Math.random()*2-1)*160}});
+  var dots=null;
   function deal(p){
-    var w=window.innerWidth,n=cards.length,mob=w<700,gap=mob?Math.min(22,(w-230)/(n-1)):Math.min(170,(w-340)/(n-1));
+    var w=window.innerWidth,vh=window.innerHeight,n=cards.length,mob=w<700;
+    if(mob){
+      /* movil: pila — cada carta entra sola y queda completa al frente; las anteriores quedan detras como mazo */
+      var top=-1,qs=cards.map(function(c,i){var s=i*(.86/(n-1))-.04,q=clamp((p-s)/.12,0,1);if(q>.5)top=i;return q});
+      cards.forEach(function(c,i){
+        var q=qs[i],e=ease(q),d=top>=0?Math.max(0,top-i):0;
+        var y=vh*.9*(1-e)-Math.min(d,3)*14,sc=1-Math.min(d,3)*.05,r=(1-e)*(i%2?6:-6);
+        c.style.transform='translate3d(0,'+y.toFixed(1)+'px,0) scale('+sc.toFixed(3)+') rotate('+r.toFixed(2)+'deg)';
+        c.style.opacity=d>3?'0':'1';
+        c.style.zIndex=i+1;
+        if(q>.55&&!c.classList.contains('on')){c.classList.add('on');counters(c)}
+      });
+      if(!dots){dots=document.createElement('div');dots.className='deck__dots';dots.setAttribute('aria-hidden','true');dots.innerHTML=cards.map(function(){return '<i></i>'}).join('');deck.querySelector('.deck__stage').appendChild(dots)}
+      [].forEach.call(dots.children,function(dt,i){dt.classList.toggle('on',i<=top)});
+      return;
+    }
+    if(dots){dots.remove();dots=null}
+    var gap=Math.min(170,(w-340)/(n-1));
     cards.forEach(function(c,i){
       var s=i*(.62/(n-1)),q=clamp((p-s)/.26,0,1),e=ease(q),k=1-e,m=i-(n-1)/2;
-      var x=m*gap+seeds[i].x*k,y=Math.abs(m)*(mob?10:16)+window.innerHeight*.85*k,r=m*(mob?1.8:2.6)+seeds[i].r*k;
+      var x=m*gap+seeds[i].x*k,y=Math.abs(m)*16+vh*.85*k,r=m*2.6+seeds[i].r*k;
       c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+r.toFixed(2)+'deg)';
-      c.style.zIndex=i+1;
+      c.style.opacity='1';c.style.zIndex=i+1;
       if(q>.55&&!c.classList.contains('on')){c.classList.add('on');counters(c)}
     });
   }
@@ -1408,7 +1439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nav.classList.toggle('solid',y>20&&overDark);nav.classList.toggle('light',!overDark);
     var hb=hero.getBoundingClientRect();
     if(!RM){hs.style.setProperty('--tilt',(14*(1-ease(clamp(y/(vh*.7),0,1)))).toFixed(2)+'deg');hs.style.setProperty('--sc',(.95+.05*ease(clamp(y/(vh*.7),0,1))).toFixed(3))}
-    if(sticky)sticky.classList.toggle('show',hb.bottom<0&&demo.getBoundingClientRect().top>vh*.8);
+    var dr=deck.getBoundingClientRect(),inDeck=pinned&&dr.top<vh*.5&&dr.bottom>vh*.5;if(sticky)sticky.classList.toggle('show',hb.bottom<0&&demo.getBoundingClientRect().top>vh*.8&&!inDeck);
     if(pinned){var r=deck.getBoundingClientRect(),tot=deck.offsetHeight-vh;if(!autoRun&&(r.bottom<0||r.top>vh*.5))autoP=0;deal(Math.max(clamp(-r.top/tot,0,1),autoP))}
     var fr=feat.getBoundingClientRect();inView=fr.top<vh*.6&&fr.bottom>vh*.4;
     if(!counted&&stats.getBoundingClientRect().top<vh*.85)statCount();

@@ -102,3 +102,5 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - Deck e abas com 7 modulos: novos 06 MCP (tela estilo Claude consultando Buzzmonitor) e 07 Trends (tela Trends: temas em alta com sparklines, sentimento, quem esta falando).
 - "Como funciona": dica "Elige un modulo..." (mobile: "Toca... o desliza"), botoes anterior/seguinte com contador 01/07, ponto pulsante na proxima aba ate o usuario interagir, swipe no mobile, abas com scroll horizontal.
 - Deck: espacamento e tempos de distribuicao genericos por N cartas. OG regenerada com os 7 modulos.
+
+- 2026-10-15: deck no mobile virou pilha (cada carta entra sozinha e fica inteira na frente, anteriores atras como baralho) + pontos de progresso; CTA fixo some dentro do deck. Desktop segue em leque.
