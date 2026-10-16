@@ -107,3 +107,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: cartas do deck reordenadas (numero + titulo em cima, tela no meio, descricao embaixo). Desktop: leque escala pela altura disponivel, sem corte embaixo em notebooks baixos. Mobile: titulo das cartas de tras some na pilha.
 - 2026-10-15: mobile ganha respiro abaixo da descricao das cartas; desktop com entrelinha menor na descricao (1.3).
 - 2026-10-15: desktop, entrada das cartas mais espacada (intervalo maior entre cartas, track 350vh, auto-deal 2,9s) pra dar tempo de ler cada uma.
+- 2026-10-15: desktop, entrada das cartas ainda mais lenta (track 430vh, auto-deal 3,6s) e leque ancorado logo abaixo do titulo do bloco (sem margem entre titulo e cartas).
