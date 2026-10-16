@@ -1392,7 +1392,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(!pinned)return;e.preventDefault();
       var top=Math.round(deck.getBoundingClientRect().top+window.pageYOffset);
       autoP=0;window.scrollTo({top:top,behavior:RM?'auto':'smooth'});
-      if(history.replaceState)history.replaceState(null,'','#modulos');
       var t0=performance.now();
       (function wait(){if(Math.abs(window.pageYOffset-top)<3||performance.now()-t0>1500){autoDeal()}else requestAnimationFrame(wait)})();
     });
@@ -1439,6 +1438,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(placeInk);
   select(0);
   $$('[data-tab]').forEach(function(a){a.addEventListener('click',function(){stopAuto();select(+a.dataset.tab-1)})});
+  /* enlaces internos: desplazan al bloque sin agregar #seccion a la URL */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented)return;
+    var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(!t)return;
+    e.preventDefault();t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});
+    if(id==='main'){t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}
+  });
   $$('.tabnav__b').forEach(function(b){b.addEventListener('click',function(){stopAuto();var n=tabs.length;select((cur+(+b.dataset.dir)+n)%n)})});
   (function(){var pn=$('.panels'),x0=null,y0=null;if(!pn)return;
     pn.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});

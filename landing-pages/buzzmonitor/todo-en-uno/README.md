@@ -112,3 +112,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: "Temas en alza" -> "Temas en tendencia" tambem na tela e no texto do painel Trends; entrelinha da descricao das cartas no desktop 1.2.
 - 2026-10-15: "Como funciona": contador 01/07 com setas movido para baixo das telas dos modulos.
 - 2026-10-15: revertida a altura fixa das telas do "Como funciona" (#831). No deck de modulos, todas as imagens das cartas ficam com a altura da de Analytics (desktop 194px, mobile 257px; celular baixo 210px); a carta cresce pra caber descricao de 3 linhas.
+- 2026-10-15: links internos (#modulos, #funcionalidades, #demo, #main) rolam ate o bloco sem adicionar #secao na URL.
