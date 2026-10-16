@@ -132,7 +132,7 @@ FOOTER: Política de Privacidad y uso de Cookies
 #   Animaciones estilo guillaumezhu: letras en escalera en H1/H2, pantalla del hero que se endereza con el scroll, blobs fluidos, mazo de tarjetas.
 # 2026-10-15: formulario Jotform LATAM movido al hero (label "Demo con un especialista"). Cierre: título + lead + CTA "Quiero agendar mi demo" que sube al formulario. Prueba social del hero con logos de Coca-Cola, Nubank y Uber.
 # 2026-10-15: 7 módulos (pedido del usuario). "cinco" -> "siete" y "5 funcionalidades" -> "7 funcionalidades".
-#   Card 06 MCP | Conecta Claude con Buzzmonitor · Card 07 Trends | Temas en alza, sentimiento y quién está hablando
+#   Card 06 MCP | Conecta Claude con Buzzmonitor · Card 07 Trends | Temas en tendencia, sentimiento y quién está hablando
 #   Panel 06 MCP: H3 "Pregúntale a Claude por tus datos de Buzzmonitor." BODY "Conecta tu cuenta de Buzzmonitor a Claude y consulta menciones, dashboards y tickets sin salir de la conversación."
 #     LI: Consultas en lenguaje natural · Reportes de Social Listening con un prompt · Acceso a listening, trends, competidores y dashboards (fuente: copy de mcp-es)
 #   Panel 07 Trends: H3 "Descubre de qué está hablando tu audiencia hoy." BODY "Buzzmonitor Trends te muestra los temas en alza, el sentimiento del público, los top posts y quién está hablando."
