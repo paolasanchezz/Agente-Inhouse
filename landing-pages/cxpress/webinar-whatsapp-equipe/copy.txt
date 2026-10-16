@@ -1,20 +1,20 @@
 === HERO ===
-OVERLINE: Webinar gratuito para líderes de atendimento e operações · 27 de outubro · 11h
+OVERLINE: Webinar gratuito para líderes de atendimento e operações · 4 de novembro · 11h
 H1: WhatsApp Business em Escala: Proteja a sua operação de bloqueios
 SUB: Quando o WhatsApp se torna parte importante da operação, a estrutura usada para atender precisa acompanhar esse crescimento.
 SUB: Entenda quais práticas podem levar a restrições e como escalar o atendimento pela API Oficial mantendo o número que seus clientes já conhecem.
 CTA: Garantir minha vaga
-BODY: 27 de outubro, 11h · Online e gratuito
+BODY: 4 de novembro, 11h · Online e gratuito
 BODY: Mais de 800 empresas atendem pela API Oficial com a Cxpress.
 LABEL: WhatsApp em escala, com mais segurança e controle
-LABEL: Quando · 27 de outubro, terça-feira, às 11h
+LABEL: Quando · 4 de novembro, quarta-feira, às 11h
 LABEL: Formato · Online · aproximadamente 40 minutos
 LABEL: Para quem · Líderes de atendimento e operações que precisam escalar o WhatsApp com segurança
 LABEL: Investimento · Gratuito
 
 === INSCRIÇÃO ===
 H2: Garantir minha vaga
-SUB: 27 de outubro, terça-feira, às 11h
+SUB: 4 de novembro, quarta-feira, às 11h
 BODY: Você recebe o link por e-mail após a inscrição e um lembrete no dia.
 CTA: Garantir minha vaga
 
