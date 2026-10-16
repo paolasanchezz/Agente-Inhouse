@@ -200,6 +200,11 @@
       "slug": "teste-de-maturidade-resultado-maduro",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/teste-de-maturidade-resultado-maduro"
+    },
+    {
+      "slug": "todo-en-uno",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/todo-en-uno"
     }
   ],
   "extra_files": {

@@ -1,0 +1,133 @@
+=== NAV ===
+LINK: Módulos
+LINK: Funcionalidades
+CTA: Agendar demo
+
+=== HERO ===
+OVERLINE: Para equipos de marketing y agencias
+H1: La plataforma de social listening todo en uno.
+SUB: Escucha a tu audiencia, atiende a tus clientes con IA y mide tu marca y tu competencia en tiempo real. Todo desde un solo lugar.
+CTA: Quiero agendar una demo
+LABEL: Más de 1.000 marcas y agencias ya trabajan así
+TAB: Social Listening
+TAB: Atención al cliente
+TAB: Dashboards
+TAB: Analytics
+TAB: Programación
+
+=== MODULOS ===
+OVERLINE: Una plataforma, cinco funcionalidades
+H2: Todo lo que hoy haces en cinco pestañas, en una.
+LIST ITEM: 01 Social Listening | Tendencias, conversaciones y alertas de crisis
+LIST ITEM: 02 Atención al cliente | Tickets organizados y respuestas con IA
+LIST ITEM: 03 Dashboards | El desempeño de tu marca en tiempo real
+LIST ITEM: 04 Analytics | Tu marca frente a tu competencia
+LIST ITEM: 05 Programación | Publicaciones en todas tus redes
+
+=== LOGOS ===
+LABEL: Agencias
+LOGO: McCann
+LOGO: IPG Mediabrands
+LOGO: TBWA
+LOGO: Havas
+LOGO: Eureka&Co
+LOGO: Kaleidoscopio Agency
+LOGO: Sube
+
+=== PROBLEMA ===
+OVERLINE: El costo de las herramientas sueltas
+H2: ¿Te suena familiar?
+LIST ITEM: Pagas varias licencias y ninguna cuenta la historia completa.
+LIST ITEM: Los mensajes de clientes se pierden entre bandejas.
+LIST ITEM: El reporte del mes cuesta días de trabajo manual.
+LIST ITEM: Te enteras de la crisis cuando ya es tendencia.
+
+=== FUNCIONALIDADES ===
+OVERLINE: Cómo funciona
+H2: Conoce cada módulo.
+
+H3: 01 · Social Listening
+SUB: Entérate antes de que sea tendencia.
+BODY: Monitorea tu marca y tu competencia en redes sociales y medios digitales en tiempo real.
+LIST ITEM: AI Insights: conclusiones de tus reportes en un clic
+LIST ITEM: Sentimiento de cada mención clasificado por IA
+LIST ITEM: Alertas automáticas para prevenir crisis
+
+H3: 02 · Atención al cliente
+SUB: Responde hasta 3 veces más rápido.
+BODY: Todos los mensajes de tus redes en una sola bandeja, ordenados por urgencia.
+LIST ITEM: Smart Replies con IA integrada
+LIST ITEM: Control de SLA
+LIST ITEM: ChatGPT integrado
+
+H3: 03 · Dashboards
+SUB: Tu reporte listo antes de la reunión.
+BODY: Dashboards ilimitados y personalizados que se actualizan solos.
+LIST ITEM: Métricas de marca, campañas y competencia
+LIST ITEM: Actualización en tiempo real
+LIST ITEM: Etiquetas para detallar cada reporte
+
+H3: 04 · Analytics
+SUB: Descubre qué funciona y qué hace tu competencia.
+BODY: Mide tus perfiles y campañas en tiempo real y compáralos con tus competidores.
+LIST ITEM: Benchmarking competitivo
+LIST ITEM: Performance de campañas en tiempo real
+LIST ITEM: Insights de consumidor basados en datos
+
+H3: 05 · Programación
+SUB: Publica en todas tus redes desde un solo lugar.
+BODY: Planifica, aprueba y publica con tu equipo, con ayuda de la IA.
+LIST ITEM: Publicación simultánea en varias redes
+LIST ITEM: Copies con ChatGPT e imágenes con IA
+LIST ITEM: Flujos de aprobación y calendario colaborativo
+
+CTA: Quiero ver las 5 funcionalidades en una demo
+
+=== CIFRAS ===
+LABEL: 1.000+ | clientes en el mundo
+LABEL: 300+ | clientes enterprise
+LABEL: 10k | usuarios
+LABEL: 500+ | agencias
+
+=== TESTIMONIOS ===
+H2: Lo dicen quienes ya lo usan.
+QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes. | Pablo Ferrer, Head of Social Media · MRM // McCANN
+QUOTE: Buzzmonitor nos ayuda a gerenciar toda la información que recibimos de nuestros consumidores y a dar respuesta de forma relevante. | Sérgio Leal, Director de Marketing y Comunicación · McDonald's
+QUOTE: Es una herramienta con excelente costo y beneficio, siempre tiene actualizaciones y recibimos mucho apoyo del equipo de atención al cliente. | Rafaela Antunes, Directora de Medios y Datos · Content House
+
+=== CTA-FINAL ===
+OVERLINE: Demo con un especialista
+H2: Mira tu marca dentro de Buzzmonitor.
+BODY: Agenda una demo con un especialista y conoce las 5 funcionalidades aplicadas a tu operación.
+CTA: Quiero agendar mi demo
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+FOOTER: Política de Privacidad y uso de Cookies
+
+# ---------------------------------------------------------------
+# v2 (2026-10-08): feedback del usuario, "muy genérica, título con mucho texto, más fácil de leer, título que responda al painpoint".
+# - H1 de 7 palabras, nombra el dolor (fragmentación). SUB responde con la solución.
+# - Textos de cada funcionalidad: 1 frase + 3 viñetas cortas.
+# - Sección RESULTADOS eliminada (repetía las viñetas de funcionalidades).
+# - Testimonios: 3 de 6 (los más completos). Los otros 3 siguen en el historial (v1).
+# - Cierre sin "30 minutos" ni "configuramos un monitoreo" (dato no confirmado).
+# Revision anti-IA: em-dash 0 · antítesis-por-negación 0 · exclamaciones 0 · preguntas retóricas 1 (PROBLEMA).
+# v3 (2026-10-08): hero opción 1 elegida por el usuario. H1 de posicionamiento (no de dolor), decisión explícita del usuario,
+#   desvío consciente de fundamentos-copy §0 / GUIDELINES §3. Orden de módulos definido por el usuario:
+#   Social Listening, Atención al cliente, Dashboards, Analytics, Programación. Franja MODULOS agregada bajo el hero.
+# v4 (2026-10-08): "Programador de contenidos" unificado como "Programación" en toda la LP (pedido del usuario). Diseño inspirado en mailerbot.com con estilo Buzzmonitor.
+#   Microcopy nuevo del rediseño: overlines de sección, H2 "Conoce cada módulo." en funcionalidades (el H2 anterior pasó a la franja MODULOS), label "Agencias".
+# v6 (2026-10-08): rediseño inspirado en guillaumezhu.com (marco con degradado fluido, cubo 3D de módulos que gira con el scroll, nav de vidrio, letras en escalera, mazo de tarjetas fijo que se reparte con el scroll). Textos de tamaño moderado. Microcopy nuevo: NAV (Módulos, Funcionalidades, Agendar demo); cara extra del cubo "IA · Buzzmonitor".
+# v7 (2026-10-08): minimal premium oscuro + gráficas estilo dashboard Buzzmonitor (interactivas).
+#   UI ILUSTRATIVA (no es copy de marketing; son datos ficticios dentro de mockups de producto, aria-hidden):
+#   "Menciones · Tu marca", "En vivo", "30 días", "Período actual/anterior", "Sentimiento" (Positivo 58% / Neutro 29% / Negativo 13%),
+#   "Alerta de crisis · Menciones negativas +340% en 2 h", temas en alza (envíos, precio, atención, app, Black Friday, devolución),
+#   bandeja con 4 tickets de ejemplo + "Respuesta sugerida por IA" (Hola, Mariana...), KPIs (Alcance 2,4 M, Engagement 4,8%, Menciones 48,2k, Sentimiento +62),
+#   Share of voice (Tu marca 41% vs Competidor A/B/C), calendario semana 41 con estados Aprobado/En revisión/Borrador.
+#   [VERIFICAR] Que el equipo esté de acuerdo con mostrar datos ficticios en mockups (práctica común en LPs SaaS) y que los nombres de ejemplo no coincidan con clientes reales.
+# v8 (2026-10-08): mockups rehechos como réplica de la interfaz de Buzzmonitor (light UI: barra superior, encabezados "Monitoreo/Atención/Dashboard/Analytics/Contenido",
+#   "Colección · Dashboard", tortas Positivo/Neutro/Negativo, barras azules, "Asuntos relacionados", velocímetro SLA, Smart Replies, AI Insights), basada en capturas
+#   reales del repo (hero-dashboard-monitoreo.png, dashboard-analytics.png, painel-sla.png). Sin "Tu marca": proyectos/temas genéricos y perfiles "Perfil A-D".
+#   Animaciones estilo guillaumezhu: letras en escalera en H1/H2, pantalla del hero que se endereza con el scroll, blobs fluidos, mazo de tarjetas.
+# 2026-10-15: formulario Jotform LATAM movido al hero (label "Demo con un especialista"). Cierre: título + lead + CTA "Quiero agendar mi demo" que sube al formulario. Prueba social del hero con logos de Coca-Cola, Nubank y Uber.
