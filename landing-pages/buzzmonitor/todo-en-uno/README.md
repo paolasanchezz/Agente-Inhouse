@@ -104,3 +104,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - Deck: espacamento e tempos de distribuicao genericos por N cartas. OG regenerada com os 7 modulos.
 
 - 2026-10-15: deck no mobile virou pilha (cada carta entra sozinha e fica inteira na frente, anteriores atras como baralho) + pontos de progresso; CTA fixo some dentro do deck. Desktop segue em leque.
+- 2026-10-15: cartas do deck reordenadas (numero + titulo em cima, tela no meio, descricao embaixo). Desktop: leque escala pela altura disponivel, sem corte embaixo em notebooks baixos. Mobile: titulo das cartas de tras some na pilha.
