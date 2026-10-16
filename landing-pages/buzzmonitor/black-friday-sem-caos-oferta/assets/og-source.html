@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --primary:#390155; --dark:#25003a;
+    --accent:#EB7C2E; --yellow:#FCBD4F; --lighter:#F2D8FF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;position:relative;
+    background:linear-gradient(150deg,var(--primary) 0%,var(--dark) 100%);
+    font-family:'Poppins','Open Sans',Arial,sans-serif;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 90px;color:#fff;
+  }
+  .glow1{position:absolute;width:560px;height:560px;border-radius:50%;
+    top:-200px;right:-160px;
+    background:radial-gradient(circle,rgba(235,124,46,0.45) 0%,transparent 68%)}
+  .glow2{position:absolute;width:520px;height:520px;border-radius:50%;
+    bottom:-220px;left:-160px;
+    background:radial-gradient(circle,rgba(252,189,79,0.20) 0%,transparent 70%)}
+  .overline{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:24px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;
+    color:#fff;background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:9999px;padding:13px 28px;margin-bottom:38px;
+    width:fit-content;position:relative;z-index:2;
+  }
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--yellow)}
+  .big{font-size:128px;font-weight:900;line-height:0.95;color:var(--accent);
+    letter-spacing:-3px;position:relative;z-index:2;
+    text-shadow:0 8px 60px rgba(235,124,46,0.4)}
+  .sub{font-size:52px;font-weight:800;line-height:1.1;color:#fff;
+    letter-spacing:-1px;margin-top:6px;position:relative;z-index:2}
+  .brand{position:absolute;bottom:54px;left:90px;display:flex;align-items:center;z-index:2}
+  .brand img{height:46px;width:auto}
+  .tag{position:absolute;bottom:60px;right:90px;z-index:2;
+    font-size:22px;font-weight:500;color:rgba(255,255,255,0.8)}
+</style>
+</head>
+<body>
+  <span class="glow1"></span>
+  <span class="glow2"></span>
+  <div class="overline"><span class="dot"></span>Oferta exclusiva do webinar</div>
+  <div class="big">50% off</div>
+  <div class="sub">nos 2 primeiros meses<br>de Buzzmonitor</div>
+  <div class="brand"><img src="../../../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt=""></div>
+  <div class="tag">Webinar Black Friday sem Caos</div>
+</body>
+</html>

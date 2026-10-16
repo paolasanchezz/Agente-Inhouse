@@ -1,0 +1,79 @@
+=== HERO ===
+BADGE: Oferta exclusiva do webinar (box degradê roxo, sem data)
+H1: Black Friday sem caos, com 50% off nos 2 primeiros meses.
+SUB: Essa oferta é só para quem esteve no webinar Black Friday sem Caos e quer chegar na data com o monitoramento da marca pronto.
+CTA: Quero aproveitar a oferta
+# Watermark do hero: "50%" (antes "14").
+
+
+=== OFERTA ===
+EYEBROW: A oferta exclusiva
+DESTAQUE: 50% off nos 2 primeiros meses de Buzzmonitor
+BODY: Para participantes do webinar "Black Friday sem Caos", preparamos uma condição especial: metade do valor nos 2 primeiros meses de assinatura, com teste grátis e suporte consultivo dedicado para deixar alertas e atendimento prontos antes do volume de menções subir.
+LIST ITEM: 14 dias grátis de Buzzmonitor
+LIST ITEM: Suporte consultivo especializado durante o período de teste
+LIST ITEM: Configuração de alertas de possível crise para a sua Black Friday
+BONUS: Funciona assim: você testa a Buzzmonitor por 14 dias grátis e, se decidir continuar, paga [metade do valor nos 2 primeiros meses].
+LABEL: válida por tempo limitado
+CTA: Quero aproveitar a oferta
+# Destaque desta oferta (pedido da Catharina): 50% off nos 2 primeiros meses. Nas ofertas anteriores o destaque era "14 dias grátis" e o desconto vinha vago no bônus ("desconto imperdível"). Aqui o desconto vira o número gigante e o bônus explica a mecânica teste -> desconto.
+
+
+=== BENEFICIOS ===
+H2: O que muda na sua Black Friday com a Buzzmonitor
+LIST ITEM: Alertas de possível crise ativos antes da Black Friday começar
+LIST ITEM: Reclamação real separada do ruído e agrupada por tema: entrega, estoque, atendimento e preço
+LIST ITEM: Menções e atendimento no mesmo painel, sem copiar reclamação de uma tela pra outra
+LIST ITEM: Resposta escalada na alta demanda sem aumentar o time de atendimento
+LIST ITEM: Resumo diário pra acompanhar tudo sem lotar a tela de notificação
+# Itens derivados do "O que você vai levar" e do DIFERENCIAL da LP de inscrição black-friday-sem-caos.
+
+
+=== MODULOS ===
+H2: Uma plataforma. Quatro módulos integrados.
+H3: Listening
+BODY: Monitoramento de crises, triggers automáticos e classificação de sentimento. Você sabe o que estão falando da sua marca antes de ser tarde.
+H3: Analytics
+BODY: Insights qualitativos, pesquisa ilimitada e relatórios personalizados para entender o tamanho real de uma crise.
+H3: Atendimento ao Cliente
+BODY: Gestão multicanal com KPIs consolidados e sugestões com IA para responder mais rápido e melhor.
+H3: Agendamento
+BODY: Publicações ilimitadas e criação de conteúdo com IA integrada, sem alternar entre ferramentas na hora de responder.
+# Identico as ofertas anteriores.
+
+
+=== PROVA SOCIAL ===
+H2: 1.000+ marcas já monitoram com a Buzzmonitor
+LIST ITEM: 1.000+ clientes globais
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agências parceiras
+LIST ITEM: 10.000 usuários ativos
+
+
+=== CLIENTES ===
+EYEBROW: Quem já confia
+H2: Marcas que confiam na Buzzmonitor
+NOTA: e mais de 1.000 marcas no Brasil, América Latina e Portugal
+# Mural de logos (mural-1.jpeg + mural-2.jpeg) reaproveitado de reports-monitoramento-ia-agencias-oferta, slideshow 16s.
+
+
+=== URGENCIA ===
+LABEL: oferta por tempo limitado
+H2: Essa condição vale só para quem participou do webinar.
+BODY: O teste de 14 dias é gratuito, o suporte consultivo também, e os 2 primeiros meses saem pela metade do preço. A oferta é por tempo limitado, e a Black Friday chega em 27 de novembro.
+CTA: Aproveitar oferta exclusiva
+
+
+=== CTA FINAL ===
+H2: Comece agora. Sem compromisso.
+BODY: 14 dias grátis para montar o monitoramento da sua marca antes da Black Friday e 50% off nos 2 primeiros meses, com suporte de quem entende do seu negócio.
+FORM TITLE: Garanta sua oferta
+# Form: mesmo JotForm reaproveitado em todas as LPs de oferta (ID 253573505200650), diferente do form de inscricao do webinar (252154974852667).
+
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados. | Política de Privacidade
+
+# Fonte/padrao: LP reports-monitoramento-ia-agencias-oferta (mesmo template de gestao-de-crises-ia-agosto-2026-oferta). Adaptado: destaque da oferta (50% off nos 2 primeiros meses), HERO, OFERTA (body, 3o item, bonus), BENEFICIOS, URGENCIA body e CTA FINAL sub para o tema Black Friday.
+# Revisao anti-IA: em-dash 0, exclamacao 0, antitese-por-negacao 0, filler 0, metafora aquatica 0. Concorrentes: nenhum.
+# Black Friday 2026 = sexta 27/11 (conferido no calendario).
