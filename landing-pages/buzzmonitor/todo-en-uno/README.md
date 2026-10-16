@@ -110,3 +110,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: desktop, entrada das cartas ainda mais lenta (track 430vh, auto-deal 3,6s) e leque ancorado logo abaixo do titulo do bloco (sem margem entre titulo e cartas).
 - 2026-10-15: descricao das cartas maior (desktop 14px, mobile 15px); carta 07 agora diz "Temas en tendencia".
 - 2026-10-15: "Temas en alza" -> "Temas en tendencia" tambem na tela e no texto do painel Trends; entrelinha da descricao das cartas no desktop 1.2.
+- 2026-10-15: "Como funciona": contador 01/07 com setas movido para baixo das telas dos modulos.
