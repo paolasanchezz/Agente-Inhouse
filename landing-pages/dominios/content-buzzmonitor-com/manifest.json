@@ -47,6 +47,11 @@
       "source": "landing-pages/buzzmonitor/buzztalk-gestao-multimarcas-para-agencias"
     },
     {
+      "slug": "buzztalk-gestao-multimarcas-agencias-rj",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/buzztalk-gestao-multimarcas-agencias-rj"
+    },
+    {
       "slug": "encontrar-creators",
       "marca": "buzzcreators",
       "source": "landing-pages/buzzcreators/encontrar-creators"
