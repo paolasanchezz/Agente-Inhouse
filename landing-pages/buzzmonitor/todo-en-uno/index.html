@@ -910,8 +910,10 @@
     .dcard__go{bottom:16px;right:16px}
     .dcard__top{transition:opacity .3s}
     .dcard.back .dcard__top{opacity:0}
-    /* como funciona: todas las pantallas con la altura de Analytics; las mas largas se cortan con un degradado suave */
-    .panel .scr.cut::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none}
+    /* deck: todas las imagenes con el alto de la de Analytics; la tarjeta crece para que la descripcion de 3 lineas quepa */
+    @media (min-width:700px){.deck .dcard{height:384px}.deck.is-pinned .dcard{margin-top:-192px}.dcard__vis{flex:none;height:194px}}
+    @media (max-width:699px){.deck .dcard{height:426px}.deck.is-pinned .dcard{margin-top:-213px}.deck.is-pinned .deck__stage{height:436px}.dcard__vis{flex:none;height:257px}}
+    @media (max-width:699px) and (max-height:740px){.deck .dcard{height:379px}.deck.is-pinned .dcard{margin-top:-190px}.deck.is-pinned .deck__stage{height:389px}.dcard__vis{height:210px}.deck__dots{bottom:-24px}}
     @media (min-width:700px){.dcard__desc{line-height:1.2;font-size:14px}.deck.is-pinned .deck__track{height:430vh}}
     @media (max-width:699px){.dcard .dcard__txt{padding-bottom:12px}.dcard .dcard__desc{font-size:15px}.dcard__go{bottom:24px}}
     @media (min-width:700px){
@@ -1251,7 +1253,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ---------- fit replica screens ---------- */
   var screens=$$('.scr');
-  function fit(){screens.forEach(function(s){var w=+s.dataset.w,inn=s.firstElementChild,k=s.clientWidth/w;s.style.setProperty('--k',k.toFixed(4));var pn=s.closest('.panel');s.classList.toggle('cut',!!pn&&inn.offsetHeight>420);s.style.height=((pn?408:inn.offsetHeight)*k).toFixed(1)+'px'})}
+  function fit(){screens.forEach(function(s){var w=+s.dataset.w,inn=s.firstElementChild,k=s.clientWidth/w;s.style.setProperty('--k',k.toFixed(4));s.style.height=(inn.offsetHeight*k).toFixed(1)+'px'})}
   fit();window.addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);setTimeout(fit,600);
 
   /* ---------- counters / typing (scoped) ---------- */
