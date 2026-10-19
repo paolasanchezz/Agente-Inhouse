@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:description" content="05 de Novembro · 11h (Brasília) · Online e Ao Vivo. Monitore comentários negativos e escale o atendimento na Black Friday, com demo ao vivo." />
 <meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}" />
 
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#EB7C2E" />
 
 <script type="application/ld+json">
 {
@@ -54,35 +54,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;900&family=Lato:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
+  /* Estetica dos criativos do webinar (out/2026): letra condensada pesada em caixa alta,
+     cores chapadas da marca, selos em pilula, adesivo roxo inclinado e elementos de interface. */
   :root {
-    --c-primary:   #390155;
-    --c-accent:    #EB7C2E;
-    --c-accent-2:  #DE2451;
+    --roxo:    #390155;
+    --laranja: #EB7C2E;
+    --rosa:    #DE2451;
+    --amarelo: #FCBD4F;
+    --lilas:   #F2D8FF;
+    --agua:    #C4FAF8;
 
-    --c-n900: #14111a;
-    --c-n700: #4a4658;
-    --c-n500: #8a8598;
-    --c-n300: #dcd9e0;
-    --c-n100: #f6f4f2;
-    --c-n0:   #ffffff;
+    --n900: #1a1220;
+    --n700: #4a3f55;
+    --n300: #e2dce6;
+    --n100: #f6f4f2;
+    --n0:   #ffffff;
 
-    --grad-hot: linear-gradient(120deg, #DE2451 0%, #EB7C2E 100%);
+    --ff-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --ff-body:    "Hanken Grotesk", system-ui, sans-serif;
 
-    --ff-display: "League Spartan", Georgia, serif;
-    --ff-sub:     "Manrope", system-ui, sans-serif;
-    --ff-body:    "Lato", "Helvetica Neue", sans-serif;
-
-    --r-sm: 4px;
-    --r-md: 12px;
-    --r-lg: 22px;
+    --r-md: 14px;
+    --r-lg: 28px;
     --r-pill: 9999px;
-
-    --sh-sm:  0 1px 2px rgba(20,17,26,.05);
-    --sh-md:  0 14px 38px -14px rgba(20,17,26,.18);
-    --sh-cta: 0 14px 30px -10px rgba(235,124,46,.55);
 
     --t-quick: 180ms cubic-bezier(.2,.8,.2,1);
     --t-slow:  620ms cubic-bezier(.2,.8,.2,1);
@@ -94,381 +90,308 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   html { scroll-behavior: smooth; overflow-x: hidden; }
   section[id], :target { scroll-margin-top: 32px; }
   body {
-    margin: 0;
-    background: var(--c-n0);
-    color: var(--c-n900);
-    font-family: var(--ff-body);
-    font-size: 17px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    margin: 0; background: var(--n0); color: var(--roxo);
+    font-family: var(--ff-body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
   img, svg { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-  h1, h2, h3 { font-family: var(--ff-display); font-weight: 900; line-height: 1.02; letter-spacing: -0.025em; margin: 0; text-wrap: balance; }
-  h2 { font-weight: 700; letter-spacing: -0.018em; }
-  h3 { font-weight: 700; letter-spacing: -0.012em; }
-  p  { margin: 0; }
+  h1, h2, h3 { font-family: var(--ff-display); font-weight: 800; line-height: .95; letter-spacing: -0.01em; margin: 0; text-transform: uppercase; }
+  p { margin: 0; }
+
+  /* Quebra equilibrada (GUIDELINES §21) */
+  h1, h2, h3, .hero-h2, .stat-caption, .problem-intro, .urgency-sub, .l-item h3, .for-list li, .pill, .diff-copy h3 { text-wrap: balance; }
+  .hero-sub, .problem-plain p, .diff-copy p, .legal { text-wrap: pretty; }
 
   .wrap { width: min(100% - 48px, var(--max)); margin-inline: auto; }
-  .eyebrow {
-    font-family: var(--ff-sub);
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
 
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-    outline: 3px solid var(--c-accent);
-    outline-offset: 3px;
-    border-radius: 6px;
+    outline: 3px solid var(--roxo); outline-offset: 3px; border-radius: 6px;
   }
 
   .skip {
-    position: absolute; left: 12px; top: 12px;
-    background: var(--c-primary); color: #fff;
-    padding: 10px 16px; border-radius: 8px;
-    z-index: 100; font-weight: 700;
-    width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0 0 0 0); clip-path: inset(100%);
-    white-space: nowrap;
+    position: absolute; left: 12px; top: 12px; background: var(--roxo); color: #fff;
+    padding: 10px 16px; border-radius: 8px; z-index: 100; font-weight: 700;
+    width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(100%); white-space: nowrap;
   }
   .skip:focus { width: auto; height: auto; overflow: visible; clip: auto; clip-path: none; }
 
-  /* ----- Nav ----- */
-  .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: 24px 0; }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .brand-mark { display: inline-flex; align-items: center; }
-  .brand-mark img { height: 28px; width: auto; display: block; }
-  @media (max-width: 680px) { .brand-mark img { height: 24px; } }
-  .nav-meta {
-    color: var(--c-n700);
-    font-family: var(--ff-sub); font-size: 12px;
-    letter-spacing: .16em; text-transform: uppercase;
-    display: flex; align-items: center; gap: 10px;
+  /* Selo em pilula (mesmo dos criativos) */
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--ff-display); font-weight: 600; font-size: 18px;
+    letter-spacing: .08em; text-transform: uppercase; line-height: 1;
+    border: 2px solid currentColor; border-radius: var(--r-pill); padding: 9px 20px 8px;
     white-space: nowrap;
   }
-  .nav-meta .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--c-accent-2); }
-  .nav-meta .dot::after {
-    content: ""; position: absolute; inset: -3px;
-    border-radius: 50%; background: var(--c-accent-2); opacity: .3;
-    animation: pulse 2.2s ease-in-out infinite;
-    transform-origin: center;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: .3; }
-    50% { transform: scale(2.2); opacity: 0; }
-  }
-  @media (max-width: 680px) { .nav-meta { display: none; } }
 
-  /* ============================================================
-     HERO
-     ============================================================ */
-  .hero { position: relative; padding: 128px 0 96px; background: var(--c-n0); overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: center; }
-  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 56px; } }
-
-  .hero-eyebrow {
+  /* Botao: pilula roxa (criativos) */
+  .btn {
     display: inline-flex; align-items: center; gap: 12px;
-    color: var(--c-accent-2); margin-bottom: 28px;
-  }
-  .hero-eyebrow .rule { width: 48px; height: 1.5px; background: var(--c-accent-2); }
-
-  .hero h1 {
-    font-size: clamp(34px, 4.6vw, 64px);
-    line-height: 1; letter-spacing: -0.032em;
-    font-weight: 900; color: var(--c-n900);
-  }
-  .hero h1 .grad {
-    background: var(--grad-hot);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-
-  .hero h1 .chaos-word { color: var(--c-accent); }
-
-  .hero-h2 {
-    margin-top: 28px;
-    font-family: var(--ff-display);
-    font-size: clamp(21px, 2.5vw, 32px);
-    font-weight: 700; line-height: 1.18; letter-spacing: -0.02em;
-    color: var(--c-n900); max-width: 30ch; text-wrap: balance;
-  }
-
-  .hero-sub {
-    margin-top: 24px;
-    font-family: var(--ff-sub); font-weight: 300;
-    font-size: clamp(17px, 1.5vw, 19.5px);
-    color: var(--c-n700); max-width: 52ch; line-height: 1.55;
-  }
-  .hero-sub strong { font-weight: 500; color: var(--c-n900); }
-
-  .hero-cta-row { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-  .hero-times {
-    margin-top: 24px;
-    font-family: var(--ff-sub); font-size: 13px;
-    letter-spacing: .14em; text-transform: uppercase;
-    color: var(--c-n500);
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
-  }
-  .hero-times b { color: var(--c-n900); font-weight: 700; }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--c-accent); color: #fff;
-    padding: 18px 28px; border-radius: var(--r-pill);
-    font-family: var(--ff-sub); font-weight: 500; font-size: 16.5px;
-    letter-spacing: .01em; box-shadow: var(--sh-cta);
+    background: var(--roxo); color: var(--amarelo);
+    padding: 18px 30px 17px; border-radius: var(--r-pill);
+    font-family: var(--ff-display); font-weight: 800; font-size: 24px;
+    letter-spacing: .02em; text-transform: uppercase; line-height: 1;
+    box-shadow: 0 16px 32px -14px rgba(57,1,85,.55);
     touch-action: manipulation;
-    transition: transform var(--t-quick), box-shadow var(--t-quick), background var(--t-quick);
-  }
-  .btn-primary:hover { transform: translateY(-2px); background: var(--c-primary); box-shadow: 0 18px 36px -10px rgba(57,1,85,.5); }
-  .btn-primary:active { transform: translateY(0); }
-  .btn-primary .arrow { transition: transform var(--t-quick); }
-  .btn-primary:hover .arrow { transform: translateX(4px); }
-
-  /* ----- Hero visual: ticket ----- */
-  .hero-visual {
-    position: relative;
-    max-width: 420px;
-    margin-inline: auto;
-    width: 100%;
-  }
-  @media (min-width: 961px) { .hero-visual { margin-inline: auto 0; } }
-
-  .ticket {
-    position: relative;
-    background: #fff;
-    border-radius: var(--r-lg);
-    padding: 36px 34px 32px;
-    font-family: var(--ff-sub);
-    border: 1px solid var(--c-n300);
-    box-shadow: 0 30px 60px -30px rgba(57,1,85,.18), 0 8px 20px -12px rgba(20,17,26,.1);
-    overflow: hidden;
-    transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
-  }
-  .hero-visual:hover .ticket {
-    transform: translateY(-6px);
-    box-shadow: 0 44px 80px -28px rgba(57,1,85,.32), 0 16px 32px -16px rgba(20,17,26,.18);
-  }
-  @media (prefers-reduced-motion: reduce) { .ticket { transform: none; transition: none; } }
-  .ticket::before {
-    content: ""; position: absolute;
-    top: 0; left: 0; right: 0; height: 5px;
-    background: var(--grad-hot);
-  }
-  .ticket-label { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--c-accent-2); font-weight: 500; }
-  .ticket-date {
-    margin-top: 12px;
-    font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(40px, 4.4vw, 56px);
-    line-height: .98; letter-spacing: -0.03em; color: var(--c-n900);
-  }
-  .ticket-date .slash { color: var(--c-accent); }
-  .ticket-date small { display: block; font-family: var(--ff-sub); font-weight: 400; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--c-n500); margin-top: 10px; }
-  /* Contador regressivo: painel roxo com destaque (numero "flipa" pro laranja ao virar) */
-  .box-countdown { margin-top: 22px; background: var(--c-primary); border-radius: var(--r-md); padding: 15px 15px 13px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; box-shadow: 0 14px 30px -16px rgba(57,1,85,.6); }
-  .box-countdown .bc-unit { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 11px 6px 9px; text-align: center; }
-  .box-countdown .bc-num { display: block; font-family: var(--ff-display); font-weight: 900; font-size: 26px; line-height: 1; letter-spacing: -0.03em; color: #fff; font-variant-numeric: tabular-nums; transition: transform .15s, color .15s; }
-  .box-countdown .bc-num.flip { transform: scale(1.18); color: var(--c-accent); }
-  .box-countdown .bc-label { display: block; font-family: var(--ff-sub); font-size: 8.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 6px; }
-  .box-countdown.ended { display: block; padding: 16px; text-align: center; font-family: var(--ff-sub); font-size: 14px; font-weight: 700; color: var(--c-accent); }
-  @media (prefers-reduced-motion: reduce) { .box-countdown .bc-num { transition: none; } }
-  .ticket-rows { margin-top: 24px; border-top: 1px dashed var(--c-n300); padding-top: 20px; display: grid; gap: 14px; font-size: 14px; }
-  .ticket-rows > div { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-  .ticket-rows dt { color: var(--c-n500); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; margin: 0; }
-  .ticket-rows dd { margin: 0; font-weight: 500; color: var(--c-n900); text-align: right; }
-
-  /* Decorações flutuantes */
-  .deco { position: absolute; pointer-events: none; z-index: 1; }
-  .deco-pill-1 { width: 11px; height: 62px; border-radius: 9999px; border: 1.5px solid var(--c-accent-2); top: 16%; left: -30px; transform: rotate(-20deg); animation: pillBob1 5s ease-in-out infinite; }
-  .deco-pill-2 { width: 46px; height: 11px; border-radius: 9999px; background: var(--c-accent); opacity: 0.6; top: -20px; right: 22%; transform: rotate(14deg); animation: pillBob2 4.2s ease-in-out infinite 0.5s; }
-  .deco-pill-3 { width: 8px; height: 46px; border-radius: 9999px; background: var(--c-primary); opacity: 0.28; bottom: 10%; right: -20px; transform: rotate(-9deg); animation: pillBob3 6.5s ease-in-out infinite 1.3s; }
-  @keyframes pillBob1 { 0%,100% { transform: rotate(-20deg) translateY(0); } 50% { transform: rotate(-20deg) translateY(-9px); } }
-  @keyframes pillBob2 { 0%,100% { transform: rotate(14deg)  translateY(0); } 50% { transform: rotate(14deg)  translateY(-7px); } }
-  @keyframes pillBob3 { 0%,100% { transform: rotate(-9deg)  translateY(0); } 50% { transform: rotate(-9deg)  translateY(-10px); } }
-  .deco-dot { position: absolute; border-radius: 50%; z-index: 1; pointer-events: none; }
-  .deco-dot-1 { background: var(--c-accent-2); width: 9px; height: 9px; top: 4%; left: 28%; animation: decoBob 4.5s ease-in-out infinite; }
-  .deco-dot-2 { background: var(--c-accent); width: 6px; height: 6px; bottom: 24%; left: -14px; animation: decoBob 5.5s ease-in-out infinite 0.8s; }
-  .deco-ring { position: absolute; width: 28px; height: 28px; border: 1.5px solid var(--c-accent); border-radius: 50%; bottom: -10px; left: 18%; opacity: 0.55; z-index: 1; pointer-events: none; animation: decoBob 6s ease-in-out infinite 1.5s; }
-  @keyframes decoBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  @media (prefers-reduced-motion: reduce) {
-    .deco-pill-1, .deco-pill-2, .deco-pill-3, .deco-dot-1, .deco-dot-2, .deco-ring { animation: none; }
-  }
-
-  /* ============================================================
-     SEÇÕES
-     ============================================================ */
-  section { padding: 128px 0; position: relative; }
-  @media (max-width: 720px) { section { padding: 80px 0; } }
-
-  .sec-head { display: grid; gap: 16px; margin-bottom: 58px; max-width: 1000px; }
-  .sec-head .eyebrow { color: var(--c-accent-2); }
-  .sec-head h2, .urgency h2, .final h2, .diff-copy h3 { font-size: clamp(28px, 3.2vw, 46px); }
-  .sec-head h2 { color: var(--c-n900); }
-
-  /* ----- PROBLEMA ----- */
-  .problem { background: var(--c-n100); }
-  .stat-callout { text-align: center; max-width: 760px; margin: 0 auto 64px; display: block; }
-  .stat-callout .stat-num {
-    display: block;
-    font-family: var(--ff-display); font-weight: 900;
-    font-size: clamp(44px, 7vw, 92px);
-    line-height: .95; letter-spacing: -0.02em;
-    background: var(--grad-hot);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .stat-callout .stat-caption {
-    display: block; margin-top: 18px;
-    font-family: var(--ff-sub); font-weight: 400;
-    font-size: clamp(17px, 1.6vw, 20px);
-    color: var(--c-n700); line-height: 1.55;
-  }
-  .stat-callout .stat-caption strong { font-weight: 700; color: var(--c-n900); }
-  .problem-intro {
-    text-align: center; max-width: 680px; margin: 0 auto 40px;
-    font-family: var(--ff-display); font-weight: 700; font-size: clamp(22px, 2.6vw, 28px);
-    color: var(--c-n900); line-height: 1.3;
-  }
-  .problem-plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 880px; margin-inline: auto; }
-  .problem-plain li {
-    display: grid; grid-template-columns: 44px 1fr; gap: 22px; align-items: start;
-    padding: 26px 0; border-bottom: 1px solid var(--c-n300);
-  }
-  .problem-plain li:first-child { border-top: 1px solid var(--c-n300); }
-  .problem-plain .x-mark {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(222, 36, 81, .11);
-    display: grid; place-items: center;
-    color: var(--c-accent-2); flex-shrink: 0;
-    transition: background var(--t-quick);
-  }
-  .problem-plain li:hover .x-mark { animation: xshake .45s cubic-bezier(.36,.07,.19,.97); background: rgba(222,36,81,.18); }
-  @keyframes xshake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
-  @media (prefers-reduced-motion: reduce) { .problem-plain li:hover .x-mark { animation: none; } }
-  .problem-plain p { color: var(--c-n900); font-size: 17px; line-height: 1.5; }
-  @media (max-width: 560px) { .problem-plain li { grid-template-columns: 36px 1fr; gap: 16px; } .problem-plain .x-mark { width: 36px; height: 36px; } }
-
-  /* ----- DIFERENCIAL ----- */
-  .different { background: var(--c-n0); }
-  .diff-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 72px; align-items: center; }
-  @media (max-width: 960px) { .diff-grid { grid-template-columns: 1fr; gap: 48px; } }
-
-  /* Visual de radar: primeiros sinais de crise sendo captados */
-  .radar-card { position: relative; max-width: 380px; width: 100%; margin-inline: auto; }
-  .radar-svg { width: 100%; height: auto; filter: drop-shadow(0 22px 38px rgba(57,1,85,.14)); }
-  .radar-badge {
-    position: absolute; width: 46px; height: 46px; border-radius: 50%;
-    display: grid; place-items: center; box-shadow: 0 10px 22px -8px rgba(20,17,26,.35);
-    animation: lv-bob-1 3.8s ease-in-out infinite;
-  }
-  .radar-badge-1 { background: var(--c-accent-2); top: 4%; right: 2%; }
-  .radar-badge-2 { background: var(--c-accent); bottom: 8%; left: 0%; animation: lv-bob-2 4.4s ease-in-out infinite 0.6s; }
-  @media (prefers-reduced-motion: reduce) { .radar-badge { animation: none; } }
-
-  .diff-copy h3 { color: var(--c-n900); line-height: 1.1; letter-spacing: -0.02em; }
-  .diff-copy p { margin-top: 18px; color: var(--c-n700); font-size: 16.5px; max-width: 52ch; }
-  .diff-copy p .hot { font-weight: 700; color: var(--c-accent-2); }
-
-  /* ----- LEARN: grid 3+3 ----- */
-  .learn { background: var(--c-n100); }
-  .l-grid { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 960px) { .l-grid { grid-template-columns: 1fr; } }
-  .l-item {
-    background: #fff; padding: 30px 28px; border-radius: var(--r-lg);
-    border: 1px solid var(--c-n300);
-    display: grid; grid-template-columns: 40px 1fr; gap: 18px; align-items: center;
     transition: transform var(--t-quick), box-shadow var(--t-quick);
   }
-  .l-item:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
-  .l-item .check { width: 36px; height: 36px; border-radius: 50%; background: var(--c-primary); display: grid; place-items: center; color: #fff; }
-  .l-item h3 { font-size: 17px; font-weight: 600; color: var(--c-n900); line-height: 1.38; letter-spacing: -0.005em; }
-  /* Item em destaque: o case real */
-  .l-item--live { background: var(--c-primary); border-color: var(--c-primary); box-shadow: 0 20px 44px -20px rgba(57,1,85,.6); }
-  .l-item--live:hover { box-shadow: 0 26px 54px -22px rgba(57,1,85,.7); }
-  .l-item--live .check { background: var(--grad-hot); box-shadow: 0 8px 18px -8px rgba(222,36,81,.7); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -14px rgba(57,1,85,.65); }
+  .btn:active { transform: translateY(0); }
+  .btn .arrow { transition: transform var(--t-quick); }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* Adesivo roxo inclinado (o "sem caos." dos criativos) */
+  .sticker {
+    display: inline-block; background: var(--roxo); color: var(--laranja);
+    padding: .02em .22em .1em; transform: rotate(-3deg); text-transform: none;
+    font-weight: 800; letter-spacing: -0.01em;
+  }
+
+  /* ----- Nav ----- */
+  .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: 18px 0; background: #fff; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand-mark { display: inline-flex; align-items: center; }
+  .brand-mark img { height: 30px; width: auto; display: block; }
+  .nav-meta { display: flex; align-items: center; gap: 10px; color: var(--roxo); font-family: var(--ff-body); font-weight: 600; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+  .nav-meta .dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--rosa); }
+  .nav-meta .dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--rosa); opacity: .3; animation: livePulse 2.2s ease-in-out infinite; }
+  @keyframes livePulse { 0%,100% { transform: scale(1); opacity: .3; } 50% { transform: scale(2.2); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .nav-meta .dot::after { animation: none; } }
+  /* Eyebrow do hero: linha + texto (sem pilula) */
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 22px; color: var(--roxo); font-family: var(--ff-body); font-weight: 600; font-size: 15px; letter-spacing: .2em; text-transform: uppercase; }
+  .hero-eyebrow .rule { width: 52px; height: 2px; background: var(--roxo); }
+  .nav .pill { color: var(--roxo); font-size: 16px; }
+  @media (max-width: 680px) { .nav-meta { display: none; } .brand-mark img { height: 24px; } .hero-eyebrow { font-size: 14px; letter-spacing: .1em; white-space: nowrap; } .hero-eyebrow .rule { display: none; } }
+
+  /* ============================================================
+     HERO (laranja chapado, como o criativo "Black Friday sem caos")
+     ============================================================ */
+  .hero { position: relative; padding: 128px 0 72px; background: var(--laranja); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 56px; } }
+
+  .hero .pill { color: var(--roxo); margin-bottom: 20px; font-size: 16px; }
+  .hero h1 {
+    font-weight: 900; font-size: clamp(52px, 14.5vw, 124px);
+    line-height: .8; letter-spacing: -0.02em; color: var(--roxo);
+    display: flex; flex-wrap: wrap; align-items: flex-end; column-gap: .22em;
+  }
+  .hero h1 .bf { white-space: nowrap; }
+  .hero h1 .sticker { flex-basis: 100%; width: fit-content; max-width: max-content; font-size: .52em; line-height: 1; margin-top: .14em; margin-left: .04em; }
+
+  .hero-h2 {
+    margin-top: 26px; font-family: var(--ff-display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(28px, 2.3vw, 32px); line-height: 1; letter-spacing: 0;
+    color: var(--roxo); max-width: none;
+  }
+  .hero-sub {
+    margin-top: 12px; font-weight: 500;
+    font-size: clamp(18px, 1.3vw, 18.5px); line-height: 1.55;
+    color: var(--roxo); max-width: 64ch;
+  }
+  .hero-sub strong { font-weight: 700; }
+  .hero-cta-row { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .hero-times {
+    margin-top: 16px; font-family: var(--ff-display); font-weight: 600; font-size: 19px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--roxo);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+  }
+  .hero-times b { font-weight: 800; }
+  .hero-times .sep { width: 2px; height: 20px; background: var(--roxo); opacity: .6; }
+
+  /* Ticket */
+  .hero-visual { position: relative; max-width: 380px; margin-inline: auto; width: 100%; }
+  .ticket {
+    position: relative; background: #fff; border-radius: var(--r-lg);
+    padding: 28px 28px 24px; color: var(--roxo);
+    box-shadow: 0 40px 70px -30px rgba(57,1,85,.55);
+    transform: rotate(2.5deg);
+    transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .hero-visual:hover .ticket { transform: rotate(0deg) translateY(-4px); }
+  @media (prefers-reduced-motion: reduce) { .ticket { transition: none; } .hero-visual:hover .ticket { transform: rotate(2.5deg); } }
+  .ticket-label { display: inline-block; font-family: var(--ff-display); font-weight: 700; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; background: var(--amarelo); color: var(--roxo); border-radius: var(--r-pill); padding: 6px 14px 5px; }
+  .ticket-date {
+    margin-top: 16px; font-family: var(--ff-display); font-weight: 900; text-transform: uppercase;
+    font-size: clamp(58px, 5vw, 72px); line-height: .9; letter-spacing: -0.01em;
+  }
+  .ticket-date small { display: block; font-family: var(--ff-display); font-weight: 600; font-size: 20px; letter-spacing: .06em; margin-top: 8px; color: var(--n700); }
+  .box-countdown { margin-top: 22px; background: var(--roxo); border-radius: var(--r-md); padding: 14px 14px 12px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .box-countdown .bc-unit { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 10px 4px 8px; text-align: center; }
+  .box-countdown .bc-num { display: block; font-family: var(--ff-display); font-weight: 900; font-size: 34px; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; transition: transform .15s, color .15s; }
+  .box-countdown .bc-num.flip { transform: scale(1.18); color: var(--amarelo); }
+  .box-countdown .bc-label { display: block; font-family: var(--ff-display); font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 4px; }
+  .box-countdown.ended { display: block; padding: 16px; text-align: center; font-family: var(--ff-display); font-size: 22px; font-weight: 800; text-transform: uppercase; color: var(--amarelo); }
+  @media (prefers-reduced-motion: reduce) { .box-countdown .bc-num { transition: none; } }
+  .ticket-rows { margin: 22px 0 0; display: grid; gap: 12px; font-size: 16px; }
+  .ticket-rows > div { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--n300); padding-bottom: 10px; }
+  .ticket-rows > div:last-child { border-bottom: 0; padding-bottom: 0; }
+  .ticket-rows dt { font-family: var(--ff-display); font-weight: 600; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--n700); margin: 0; }
+  .ticket-rows dd { margin: 0; font-weight: 700; text-align: right; }
+
+  /* ============================================================
+     SECOES (fundo branco ↔ off-white; a cor fica nos paineis)
+     ============================================================ */
+  section { padding: 128px 0; position: relative; }
+  @media (max-width: 720px) { section { padding: 84px 0; } }
+  .sec-head { margin-bottom: 56px; max-width: 900px; }
+  .sec-head h2, .urgency h2, .final h2 { font-size: clamp(44px, 5.4vw, 76px); }
+
+  /* Painel colorido com cantos arredondados (o "card" dos criativos) */
+  .panel { border-radius: var(--r-lg); position: relative; overflow: hidden; }
+
+  /* ----- PROBLEMA (painel amarelo, como o criativo "Alta demanda") ----- */
+  .problem { background: var(--n0); }
+  .stat-callout { display: block; background: var(--amarelo); padding: 64px 56px; margin: 0 auto 72px; max-width: 1000px; text-align: center; }
+  .stat-callout .stat-num { display: block; font-family: var(--ff-display); font-weight: 900; text-transform: uppercase; font-size: clamp(64px, 10vw, 150px); line-height: .82; letter-spacing: -0.02em; color: var(--roxo); }
+  .stat-callout .stat-caption { display: block; margin-top: 22px; font-family: var(--ff-body); text-transform: none; font-weight: 500; font-size: clamp(18px, 1.7vw, 21px); line-height: 1.5; color: var(--roxo); letter-spacing: 0; max-width: 58ch; margin-inline: auto; }
+  .stat-callout .stat-caption strong { font-weight: 700; }
+  @media (max-width: 640px) { .stat-callout { padding: 44px 28px; } }
+  .problem-intro { max-width: 760px; margin: 0 auto 36px; font-family: var(--ff-display); font-weight: 700; text-transform: uppercase; font-size: clamp(28px, 3vw, 38px); line-height: 1.02; color: var(--roxo); text-align: center; }
+  .problem-plain { list-style: none; margin: 0 auto; padding: 0; display: flex; flex-direction: column; max-width: 880px; }
+  .problem-plain li { display: grid; grid-template-columns: 48px 1fr; gap: 22px; align-items: start; padding: 24px 0; border-bottom: 1px solid var(--n300); }
+  .problem-plain li:first-child { border-top: 1px solid var(--n300); }
+  .problem-plain .x-mark { width: 48px; height: 48px; border-radius: 50%; background: var(--rosa); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+  .problem-plain p { color: var(--n900); font-size: 18px; line-height: 1.5; padding-top: 10px; }
+  @media (max-width: 560px) { .problem-plain li { grid-template-columns: 40px 1fr; gap: 16px; } .problem-plain .x-mark { width: 40px; height: 40px; } .problem-plain p { padding-top: 6px; } }
+
+  /* ----- DIFERENCIAL (painel lilas com o celular de comentarios) ----- */
+  .different { background: var(--n100); }
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  @media (max-width: 960px) { .diff-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .phone-panel { background: var(--lilas); display: grid; place-items: center; padding: 64px 32px; }
+  .phone {
+    position: relative; width: min(300px, 72%); aspect-ratio: 9 / 17;
+    background: #1C1022; border-radius: 48px; padding: 12px;
+    box-shadow: 0 44px 80px -30px rgba(57,1,85,.55), inset 0 0 0 3px #3a2a44;
+    transform: rotate(-6deg);
+  }
+  .phone-screen { width: 100%; height: 100%; background: #fff; border-radius: 38px; overflow: hidden; display: flex; flex-direction: column; color: #1a1a1a; font-family: var(--ff-body); }
+  .phone-island { height: 46px; display: grid; place-items: center; flex: none; }
+  .phone-island span { width: 92px; height: 26px; border-radius: 999px; background: #1C1022; display: block; }
+  .phone-bar { display: flex; align-items: center; gap: 10px; padding: 2px 18px 12px; border-bottom: 1px solid #EEEAF0; font-weight: 700; font-size: 16px; flex: none; }
+  .phone-bar span { flex: 1; text-align: center; margin-right: 28px; }
+  .cmt { display: flex; gap: 10px; padding: 13px 16px; background: #FFF1F4; border-bottom: 1px solid #fff; }
+  .cmt .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; flex: none; font-weight: 700; font-size: 13px; color: var(--roxo); }
+  .cmt .meta { font-size: 13px; color: #555; }
+  .cmt .meta b { color: #1a1a1a; }
+  .cmt .txt { font-size: 15px; line-height: 1.3; margin-top: 2px; }
+  .cmt-ghost { display: flex; gap: 10px; padding: 13px 16px; }
+  .cmt-ghost .av { width: 34px; height: 34px; border-radius: 50%; background: #EEE7F1; flex: none; }
+  .cmt-ghost .ln { display: flex; flex-direction: column; gap: 7px; padding-top: 4px; }
+  .cmt-ghost .ln i { display: block; height: 9px; border-radius: 5px; background: #E2DBE6; }
+  .phone-alert {
+    position: absolute; left: -26px; top: 28%; width: 58px; height: 58px; border-radius: 50%;
+    background: var(--rosa); color: #fff; display: grid; place-items: center;
+    font-family: var(--ff-display); font-weight: 900; font-size: 38px; line-height: 1;
+    box-shadow: 0 0 0 10px rgba(222,36,81,.18), 0 0 0 22px rgba(222,36,81,.08);
+  }
+
+  /* Feed do celular: comentarios negativos subindo sem parar */
+  .feed { position: relative; flex: 1; overflow: hidden; }
+  .feed::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(180deg, rgba(255,255,255,0), #fff); pointer-events: none; }
+  .feed-track { display: flex; flex-direction: column; animation: feedUp 11s linear infinite; }
+  @keyframes feedUp { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  .phone-alert { animation: alertPulse 1.6s ease-in-out infinite; }
+  @keyframes alertPulse { 0%,100% { box-shadow: 0 0 0 10px rgba(222,36,81,.18), 0 0 0 22px rgba(222,36,81,.08); } 50% { box-shadow: 0 0 0 16px rgba(222,36,81,.22), 0 0 0 32px rgba(222,36,81,.06); } }
+  @media (prefers-reduced-motion: reduce) { .feed-track, .phone-alert { animation: none; } }
+  .diff-copy h3 { font-size: clamp(36px, 3.6vw, 52px); color: var(--roxo); line-height: .98; }
+  .diff-copy p { margin-top: 22px; color: var(--n900); font-size: 18px; max-width: 52ch; }
+  .diff-copy p .hot { font-weight: 700; background: var(--amarelo); color: var(--roxo); padding: 0 .2em; }
+
+  /* ----- PROGRAMA ----- */
+  .learn { background: var(--n0); }
+  .l-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 960px) { .l-grid { grid-template-columns: 1fr; } }
+  .l-item {
+    background: #fff; padding: 30px 28px; border-radius: var(--r-lg); border: 2px solid var(--roxo);
+    display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: center;
+    transition: transform var(--t-quick), box-shadow var(--t-quick);
+  }
+  .l-item:hover { transform: translateY(-3px); box-shadow: 8px 8px 0 var(--roxo); }
+  .l-item .check { width: 44px; height: 44px; border-radius: 50%; background: var(--roxo); display: grid; place-items: center; color: var(--amarelo); }
+  .l-item h3 { font-family: var(--ff-body); text-transform: none; font-size: 18px; font-weight: 600; color: var(--n900); line-height: 1.38; letter-spacing: 0; }
+  .l-item--live { background: var(--roxo); }
+  .l-item--live .check { background: var(--amarelo); color: var(--roxo); }
   .l-item--live h3 { color: #fff; }
+  .l-item--live:hover { box-shadow: 8px 8px 0 var(--amarelo); }
 
-  /* ----- PARA QUEM ----- */
-  .for { background: var(--c-n100); padding: 88px 0; overflow: hidden; }
+  /* ----- PARA QUEM (painel agua com a atendente e os baloes) ----- */
+  .for { background: var(--n100); overflow: hidden; }
   .for .sec-head { margin-bottom: 28px; }
-  .for-grid { display: grid; grid-template-columns: 1.2fr .85fr; gap: 56px; align-items: start; }
-  @media (max-width: 900px) { .for-grid { grid-template-columns: 1fr; gap: 36px; } }
-  .for-list { display: flex; flex-direction: column; gap: 0; padding: 0; margin: 0; list-style: none; counter-reset: forlist; }
+  .for-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
+  @media (max-width: 900px) { .for-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .for-list { display: flex; flex-direction: column; padding: 0; margin: 0; list-style: none; counter-reset: forlist; }
   .for-list li {
-    counter-increment: forlist;
-    display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 24px;
-    font-family: var(--ff-sub); font-weight: 500;
-    font-size: clamp(17px, 1.6vw, 20px); color: var(--c-n900);
-    padding: 22px 0; border-bottom: 1px solid var(--c-n300);
+    counter-increment: forlist; display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 22px;
+    font-weight: 500; font-size: clamp(17px, 1.6vw, 20px); color: var(--n900);
+    padding: 20px 0; border-bottom: 1px solid var(--n300);
   }
-  .for-list li::before { content: counter(forlist, decimal-leading-zero); font-family: var(--ff-display); font-weight: 900; font-size: 22px; color: var(--c-accent); letter-spacing: -0.01em; line-height: 1; }
+  .for-list li::before { content: counter(forlist, decimal-leading-zero); font-family: var(--ff-display); font-weight: 900; font-size: 40px; color: var(--rosa); line-height: 1; }
   .for-list li:last-child { border-bottom: 0; }
-  .for-cta { margin-top: 36px; }
-  .for-visual { position: relative; display: grid; place-items: center; aspect-ratio: 1/1; max-width: 380px; margin-inline: auto; width: 100%; }
-  .listen-vis { display: flex; align-items: center; justify-content: center; width: 100%; }
-  .listen-svg { width: 100%; max-width: 380px; overflow: visible; filter: drop-shadow(0 22px 38px rgba(57,1,85,.14)); }
-  @keyframes lv-bob-1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  @keyframes lv-bob-2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-  @keyframes lv-bob-3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-  .lv-bob-1 { animation: lv-bob-1 3.5s ease-in-out infinite; }
-  .lv-bob-2 { animation: lv-bob-2 4.2s ease-in-out infinite 0.8s; }
-  .lv-bob-3 { animation: lv-bob-3 3s ease-in-out infinite 1.6s; }
-  @media (prefers-reduced-motion: reduce) { .lv-bob-1, .lv-bob-2, .lv-bob-3 { animation: none; } }
-  .for-visual::before { content: ""; position: absolute; width: 78%; height: 78%; border-radius: 50%; background: var(--grad-hot); opacity: .12; filter: blur(30px); z-index: 1; }
-  .for-visual::after { content: ""; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1.5px dashed var(--c-n300); z-index: 1; }
+  .for-cta { margin-top: 32px; }
+  .crowd-panel { aspect-ratio: 1 / 1.1; max-width: 480px; width: 100%; margin-inline: auto; overflow: visible; }
+  /* fundo: circulo chapado lilas + anel tracejado girando (radar de monitoramento) */
+  .crowd-panel::before { content: ""; position: absolute; left: 50%; top: 48%; width: 78%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: var(--lilas); }
+  .crowd-panel::after { content: ""; position: absolute; left: 50%; top: 48%; width: 94%; aspect-ratio: 1; border-radius: 50%; border: 2px dashed rgba(57,1,85,.28); animation: spin 40s linear infinite; }
+  @keyframes spin { from { transform: translate(-50%, -50%) rotate(0); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+  .crowd-panel .atendente {
+    position: absolute; left: 50%; bottom: -2%; width: 60%; height: auto; transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(180deg, #000 78%, rgba(0,0,0,0) 98%);
+    mask-image: linear-gradient(180deg, #000 78%, rgba(0,0,0,0) 98%);
+    z-index: 1; transform-origin: 50% 100%;
+    animation: working 3.2s ease-in-out infinite;
+  }
+  /* "trabalhando": balanco leve, como quem digita e olha o celular */
+  @keyframes working { 0%,100% { transform: translateX(-50%) rotate(0deg) translateY(0); } 30% { transform: translateX(-50%) rotate(-1.2deg) translateY(-3px); } 60% { transform: translateX(-50%) rotate(.8deg) translateY(-1px); } }
+  .crowd-panel .balao { position: absolute; height: auto; z-index: 2; filter: drop-shadow(0 10px 16px rgba(57,1,85,.18)); }
+  .b-wa { width: 36%; left: 0%;  top: 8%;  --dl: .2s; }
+  .b-ig { width: 29%; left: -2%; top: 31%; --dl: 1.4s; }
+  .b-ms { width: 30%; left: 2%;  top: 53%; --dl: 2.6s; }
+  .b-x  { width: 31%; right: 0%; top: 12%; --dl: .8s; }
+  .b-fb { width: 34%; right: -2%; top: 34%; --dl: 2s; }
+  .b-em { width: 31%; right: 1%; top: 56%; --dl: 3.2s; }
+  .crowd-panel.in .balao { animation: pop .5s cubic-bezier(.2,1.4,.4,1) var(--dl) both, bob 4.4s ease-in-out calc(var(--dl) + .5s) infinite; }
+  @keyframes pop { from { opacity: 0; transform: scale(.4) translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { .crowd-panel .balao, .crowd-panel.in .balao, .crowd-panel .atendente, .crowd-panel::after { animation: none; } }
 
-  /* ----- URGÊNCIA ----- */
-  .urgency { background: var(--c-primary); color: #fff; overflow: hidden; position: relative; padding: 144px 0; }
-  .urgency::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.1); top: -260px; right: -120px; }
-  .urgency::after { content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.07); top: -180px; right: 180px; }
+  /* ----- URGENCIA (a unica secao escura) ----- */
+  .urgency { background: var(--roxo); color: #fff; overflow: hidden; padding: 150px 0; }
   .urgency .wrap { text-align: center; }
-  .urgency h2 { max-width: 700px; margin-inline: auto; color: #fff; line-height: 1.2; }
-  .urgency-sub {
-    margin: 26px auto 0; max-width: 620px;
-    font-family: var(--ff-display); font-weight: 700;
-    font-size: clamp(19px, 2.1vw, 27px);
-    color: rgba(255,255,255,.92); line-height: 1.4;
-  }
-  .urgency .tag {
-    display: inline-block; padding: 0 .42em .08em;
-    background: var(--grad-hot); color: #fff;
-    font-weight: 900; font-style: italic; border-radius: 14px;
-    box-shadow: 0 10px 24px -10px rgba(222,36,81,.55);
-    transform: rotate(-2deg); transform-origin: left center;
-  }
+  .urgency h2 { max-width: 900px; margin-inline: auto; color: #fff; line-height: .95; }
+  .urgency h2 .hl { color: var(--amarelo); }
+  .urgency-sub { margin: 28px auto 0; max-width: 640px; font-weight: 500; font-size: clamp(19px, 1.9vw, 23px); color: rgba(255,255,255,.9); line-height: 1.45; }
 
   /* ----- CTA FINAL + form ----- */
-  .final { background: var(--c-n100); }
+  .final { background: var(--n0); }
   .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   @media (max-width: 960px) { .final-grid { grid-template-columns: 1fr; gap: 48px; } }
-  .final h2 { color: var(--c-n900); }
-  .final .when { margin-top: 22px; font-family: var(--ff-sub); font-weight: 400; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--c-n700); }
-  .final .when b { color: var(--c-accent); font-weight: 700; }
+  .final h2 { color: var(--roxo); }
+  .final .when { margin-top: 24px; font-family: var(--ff-display); font-weight: 600; font-size: 24px; letter-spacing: .06em; text-transform: uppercase; color: var(--roxo); }
+  .final .when b { font-weight: 800; }
+  .final .when .box-countdown { max-width: 420px; }
   .final .perks { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
-  .final .perk { display: flex; align-items: center; gap: 12px; font-family: var(--ff-sub); font-size: 15px; color: var(--c-n700); }
-  .final .perk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
-
-  /* ----- Jotform embed wrapper (canonico) ----- */
+  .final .perk { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--n900); font-weight: 500; }
+  .final .perk-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); flex-shrink: 0; }
+  .jotform-embed { background: var(--n100); border-radius: var(--r-lg); padding: 12px; }
   .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
   /* ----- Footer ----- */
-  footer { background: var(--c-n900); color: rgba(255,255,255,.75); padding: 70px 0 34px; font-family: var(--ff-sub); font-size: 14px; }
+  footer { background: var(--n900); color: rgba(255,255,255,.75); padding: 70px 0 34px; font-size: 15px; }
   footer .f-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; align-items: center; }
-  footer .f-links { display: flex; flex-wrap: wrap; gap: 22px 26px; align-items: center; }
-  footer .f-link { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); display: inline-flex; align-items: center; gap: 8px; transition: color 180ms ease; }
-  footer .f-link:hover, footer .f-link:focus-visible { color: var(--c-accent); }
-  footer .legal { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 32px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; line-height: 1.7; }
-  footer .legal a { color: var(--c-accent); }
+  footer .f-link { font-family: var(--ff-display); font-weight: 600; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); display: inline-flex; align-items: center; gap: 8px; transition: color 180ms ease; }
+  footer .f-link:hover, footer .f-link:focus-visible { color: var(--amarelo); }
+  footer .legal { font-size: 14px; color: rgba(255,255,255,.55); margin-top: 32px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; line-height: 1.7; }
+  footer .legal a { color: var(--amarelo); }
 
   /* ----- Reveal ----- */
   @media (prefers-reduced-motion: no-preference) {
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--t-slow), transform var(--t-slow); transition-delay: var(--d, 0ms); }
     .reveal.in { opacity: 1; transform: none; }
   }
-
 </style>
 </head>
 <body>
@@ -484,10 +407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://buzzmonitor.com/" target="_blank" rel="noopener noreferrer" class="brand-mark" aria-label="Buzzmonitor: página inicial">
       <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" width="220" height="44" fetchpriority="high" />
     </a>
-    <div class="nav-meta">
-      <span class="dot" aria-hidden="true"></span>
-      <span>Ao vivo</span>
-    </div>
+    <div class="nav-meta"><span class="dot" aria-hidden="true"></span><span>Ao vivo</span></div>
   </div>
 </header>
 
@@ -497,12 +417,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <div class="hero-eyebrow">
-          <span class="rule" aria-hidden="true"></span>
-          <span class="eyebrow">Webinar gratuito · Buzzmonitor</span>
-        </div>
+        <div class="hero-eyebrow"><span class="rule" aria-hidden="true"></span><span>Webinar gratuito &middot; Buzzmonitor</span></div>
         <h1 id="hero-title">
-          Black Friday sem <span class="chaos-word">caos</span>.
+          <span class="bf">Black Friday</span>
+          <span class="sticker">sem caos.</span>
         </h1>
         <h2 class="hero-h2">
           Como se preparar para períodos de alta demanda?
@@ -511,36 +429,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Um comentário que passaria batido em outubro pode virar uma crise de reputação durante a Black Friday. Como prevenir a reputação da sua marca em períodos de alta demanda? <strong>Descubra ao vivo.</strong>
         </p>
         <div class="hero-cta-row">
-          <a href="#inscricao" class="btn-primary">
+          <a href="#inscricao" class="btn">
             <span>Quero minha vaga gratuita</span>
-            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
         <p class="hero-times" aria-label="Horário do evento">
-          <b>11h</b>&nbsp;(Brasília) <span style="color:var(--c-n300)">·</span> Online e Ao Vivo
+          <b>11h</b> (Brasília) <span class="sep" aria-hidden="true"></span> Online e Ao Vivo
         </p>
       </div>
 
       <div class="hero-visual">
-        <span class="deco deco-pill-1" aria-hidden="true"></span>
-        <span class="deco deco-pill-2" aria-hidden="true"></span>
-        <span class="deco deco-pill-3" aria-hidden="true"></span>
-        <span class="deco-dot deco-dot-1" aria-hidden="true"></span>
-        <span class="deco-dot deco-dot-2" aria-hidden="true"></span>
-        <span class="deco-ring" aria-hidden="true"></span>
-
         <aside class="ticket" aria-label="Informações do webinar">
           <div class="ticket-label">Save the date</div>
           <div class="ticket-date">
-            05&nbsp;<span class="slash">NOV</span>
+            05 NOV
             <small>Quinta-feira &middot; 11h (Brasília)</small>
           </div>
+          <div class="box-countdown js-countdown" aria-hidden="true"><div class="bc-unit"><span class="bc-num" data-cd="d">--</span><span class="bc-label">Dias</span></div><div class="bc-unit"><span class="bc-num" data-cd="h">--</span><span class="bc-label">Horas</span></div><div class="bc-unit"><span class="bc-num" data-cd="m">--</span><span class="bc-label">Min</span></div><div class="bc-unit"><span class="bc-num" data-cd="s">--</span><span class="bc-label">Seg</span></div></div>
           <dl class="ticket-rows">
             <div><dt>Formato</dt><dd>Online &middot; Ao vivo</dd></div>
             <div><dt>Duração</dt><dd>60 min</dd></div>
             <div><dt>Investimento</dt><dd>Gratuito</dd></div>
           </dl>
-          <div class="box-countdown js-countdown" aria-hidden="true"><div class="bc-unit"><span class="bc-num" data-cd="d">--</span><span class="bc-label">Dias</span></div><div class="bc-unit"><span class="bc-num" data-cd="h">--</span><span class="bc-label">Horas</span></div><div class="bc-unit"><span class="bc-num" data-cd="m">--</span><span class="bc-label">Min</span></div><div class="bc-unit"><span class="bc-num" data-cd="s">--</span><span class="bc-label">Seg</span></div></div>
         </aside>
       </div>
     </div>
@@ -550,7 +461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== PROBLEMA: 4 itens ===== -->
   <section class="problem" aria-labelledby="problem-title">
     <div class="wrap">
-      <h2 class="stat-callout reveal" id="problem-title">
+      <h2 class="stat-callout panel reveal" id="problem-title">
         <span class="stat-num">9 mil interações</span>
         <span class="stat-caption">automatizadas por mês é o que a <strong>Caffeine Army</strong> mantém, com <strong>3 mil comentários monitorados mensalmente e 8% de engajamento médio</strong> mesmo nos períodos de maior volume.</span>
       </h2>
@@ -589,52 +500,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== DIFERENCIAL / O CONCEITO ===== -->
   <section class="different" aria-labelledby="diff-title">
     <div class="wrap diff-grid">
-      <div class="radar-card reveal" aria-hidden="true">
-        <svg class="radar-svg" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="radar-g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#DE2451"/>
-              <stop offset="100%" stop-color="#EB7C2E"/>
-            </linearGradient>
-            <clipPath id="radar-clip"><circle cx="140" cy="140" r="118"/></clipPath>
-          </defs>
-          <circle cx="140" cy="140" r="118" fill="#FBF7FB"/>
-          <circle cx="140" cy="140" r="118" stroke="#E6E1EB" stroke-width="1.5"/>
-          <circle cx="140" cy="140" r="86" stroke="#E6E1EB" stroke-width="1" stroke-dasharray="3 7"/>
-          <circle cx="140" cy="140" r="52" stroke="#E6E1EB" stroke-width="1" stroke-dasharray="3 7"/>
-          <g clip-path="url(#radar-clip)">
-            <g>
-              <path d="M140,140 L140,22 A118,118 0 0,1 234,78 Z" fill="url(#radar-g)" opacity="0.16"/>
-              <animateTransform attributeName="transform" type="rotate" from="0 140 140" to="360 140 140" dur="7s" repeatCount="indefinite"/>
-            </g>
-          </g>
-          <line x1="22" y1="140" x2="258" y2="140" stroke="#EDE9F0" stroke-width="1"/>
-          <line x1="140" y1="22" x2="140" y2="258" stroke="#EDE9F0" stroke-width="1"/>
-          <!-- sinais captados (blips) -->
-          <circle cx="188" cy="100" r="5" fill="#DE2451"/>
-          <circle cx="188" cy="100" r="5" fill="none" stroke="#DE2451" stroke-width="1.5" opacity="0.6">
-            <animate attributeName="r" values="5;30;30" dur="2.6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-            <animate attributeName="opacity" values="0.6;0;0" dur="2.6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-          </circle>
-          <circle cx="104" cy="176" r="3.5" fill="#EB7C2E" opacity="0.8"/>
-          <circle cx="104" cy="176" r="3.5" fill="none" stroke="#EB7C2E" stroke-width="1.5" opacity="0.5">
-            <animate attributeName="r" values="3.5;22;22" dur="3.2s" begin="1s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-            <animate attributeName="opacity" values="0.5;0;0" dur="3.2s" begin="1s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-          </circle>
-          <circle cx="160" cy="190" r="3" fill="#390155" opacity="0.5"/>
-          <!-- centro: ponto de deteccao -->
-          <circle cx="140" cy="140" r="9" fill="#390155"/>
-          <circle cx="140" cy="140" r="9" fill="none" stroke="#390155" stroke-width="1.5" opacity="0.4">
-            <animate attributeName="r" values="9;42;42" dur="2.2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-            <animate attributeName="opacity" values="0.4;0;0" dur="2.2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-          </circle>
-        </svg>
-        <span class="radar-badge radar-badge-1" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </span>
-        <span class="radar-badge radar-badge-2" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8M12 12V4M6 20v-4M6 16v-2M18 20v-6M18 14v-2"/></svg>
-        </span>
+      <div class="phone-panel panel reveal" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-island"><span></span></div>
+            <div class="phone-bar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <span>Comentários</span>
+            </div>
+            <div class="feed">
+              <div class="feed-track">
+                <div class="cmt"><span class="av" style="background:#FFD5C3">MF</span><div><div class="meta"><b>marina.f</b> · agora</div><div class="txt">Péssima experiência na compra da Black Friday</div></div></div>
+                <div class="cmt"><span class="av" style="background:#CDFDFC">JP</span><div><div class="meta"><b>joao.pedro</b> · 1 min</div><div class="txt">Entrega atrasada de novo? Inaceitável!</div></div></div>
+                <div class="cmt"><span class="av" style="background:#FFE1AD">LO</span><div><div class="meta"><b>lu.oliveira</b> · 2 min</div><div class="txt">Nunca mais compro aqui.</div></div></div>
+                <div class="cmt-ghost"><span class="av"></span><div class="ln"><i style="width:80px"></i><i style="width:170px"></i></div></div>
+                <div class="cmt"><span class="av" style="background:#FFD5C3">MF</span><div><div class="meta"><b>marina.f</b> · agora</div><div class="txt">Péssima experiência na compra da Black Friday</div></div></div>
+                <div class="cmt"><span class="av" style="background:#CDFDFC">JP</span><div><div class="meta"><b>joao.pedro</b> · 1 min</div><div class="txt">Entrega atrasada de novo? Inaceitável!</div></div></div>
+                <div class="cmt"><span class="av" style="background:#FFE1AD">LO</span><div><div class="meta"><b>lu.oliveira</b> · 2 min</div><div class="txt">Nunca mais compro aqui.</div></div></div>
+                <div class="cmt-ghost"><span class="av"></span><div class="ln"><i style="width:80px"></i><i style="width:170px"></i></div></div>
+              </div>
+            </div>
+          </div>
+          <span class="phone-alert">!</span>
+        </div>
       </div>
       <div class="diff-copy reveal" style="--d: 160ms">
         <h3 id="diff-title">Com a Buzzmonitor, sua empresa vê os primeiros sinais de crise de reputação também em períodos de alta demanda.</h3>
@@ -647,45 +535,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="learn" id="programa" aria-labelledby="learn-title">
     <div class="wrap">
       <header class="sec-head reveal">
-        <span class="eyebrow">O programa</span>
         <h2 id="learn-title">O que você vai levar deste webinar</h2>
       </header>
 
       <div class="l-grid">
         <article class="l-item reveal" style="--d: 0ms">
-          <span class="check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           <h3>Alertas de possível crise configurados antes da Black Friday começar valendo.</h3>
         </article>
         <article class="l-item reveal" style="--d: 100ms">
-          <span class="check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           <h3>Ruído separado de reclamação real, agrupado por tema (entrega, estoque, atendimento, preço).</h3>
         </article>
         <article class="l-item reveal" style="--d: 200ms">
-          <span class="check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           <h3>Resposta escalada em períodos de alta demanda, sem aumentar o time de atendimento.</h3>
         </article>
         <article class="l-item reveal" style="--d: 300ms">
-          <span class="check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           <h3>Resumo diário pra acompanhar tudo sem lotar a tela de notificação.</h3>
         </article>
         <article class="l-item reveal" style="--d: 400ms">
-          <span class="check" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <h3>Demo ao vivo da plataforma configurada pra um cenário de Black Friday.</h3>
         </article>
         <article class="l-item l-item--live reveal" style="--d: 500ms">
-          <span class="check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-          </span>
+          <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           <h3>Case real: como a Caffeine Army monitora o volume de comentários negativos sem perder engajamento.</h3>
         </article>
       </div>
@@ -708,97 +583,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li class="reveal" style="--d: 320ms">Cuida da reputação ou do CRM da marca e quer identificar uma possível crise antes de alguém reclamar em massa</li>
           </ul>
           <div class="for-cta reveal" style="--d: 400ms">
-            <a href="#inscricao" class="btn-primary">
+            <a href="#inscricao" class="btn">
               <span>Quero minha vaga grátis</span>
-              <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
         </div>
-        <div class="for-visual reveal" style="--d: 200ms" aria-hidden="true">
-          <div class="listen-vis">
-            <svg class="listen-svg" viewBox="0 0 320 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="lv-g" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#DE2451"/>
-                  <stop offset="100%" stop-color="#EB7C2E"/>
-                </linearGradient>
-              </defs>
-              <circle cx="160" cy="170" r="138" stroke="#EDE9F0" stroke-width="1.5"/>
-              <circle cx="160" cy="170" r="100" stroke="#E6E1EB" stroke-width="1" stroke-dasharray="4 7"/>
-              <circle cx="160" cy="152" r="0" stroke="#390155" stroke-width="1.5" opacity="0.25">
-                <animate attributeName="r" values="0;72;72" dur="3s" repeatCount="indefinite" begin="0s" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-                <animate attributeName="opacity" values="0.25;0;0" dur="3s" repeatCount="indefinite" begin="0s" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-              </circle>
-              <circle cx="160" cy="152" r="0" stroke="#390155" stroke-width="1.5" opacity="0.2">
-                <animate attributeName="r" values="0;72;72" dur="3s" repeatCount="indefinite" begin="1.1s" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-                <animate attributeName="opacity" values="0.2;0;0" dur="3s" repeatCount="indefinite" begin="1.1s" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-              </circle>
-              <rect x="68" y="62" width="184" height="180" rx="20" fill="white" stroke="#DDD9E3" stroke-width="1.5"/>
-              <rect x="68" y="62" width="184" height="5" rx="2.5" fill="url(#lv-g)"/>
-              <circle cx="88" cy="83" r="3.5" fill="#DE2451" opacity="0.65"/>
-              <circle cx="101" cy="83" r="3.5" fill="#EB7C2E" opacity="0.65"/>
-              <circle cx="114" cy="83" r="3.5" fill="#390155" opacity="0.35"/>
-              <circle cx="216" cy="82" r="7" fill="none" stroke="url(#lv-g)" stroke-width="2"/>
-              <circle cx="228" cy="82" r="7" fill="none" stroke="url(#lv-g)" stroke-width="2"/>
-              <polyline points="84,150 102,148 120,150 138,143 156,145 174,136 190,132 204,118 218,96" stroke="url(#lv-g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M84,150 102,148 120,150 138,143 156,145 174,136 190,132 204,118 218,96 L218,178 L84,178 Z" fill="url(#lv-g)" opacity="0.08"/>
-              <circle cx="218" cy="96" r="4.5" fill="#DE2451"/>
-              <circle cx="218" cy="96" r="4.5" fill="none" stroke="#DE2451" stroke-width="1.5" opacity="0.6">
-                <animate attributeName="r" values="4.5;13;13" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-                <animate attributeName="opacity" values="0.6;0;0" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7;1" keySplines="0.4 0 0.2 1;0 0 0 0"/>
-              </circle>
-              <line x1="80" y1="178" x2="240" y2="178" stroke="#DDD9E3" stroke-width="1"/>
-              <rect x="90" y="200" width="15" height="30" rx="3" fill="#390155" opacity="0.5">
-                <animate attributeName="height" values="30;40;30" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="200;190;200" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="112" y="206" width="15" height="24" rx="3" fill="#DE2451" opacity="0.6">
-                <animate attributeName="height" values="24;34;24" dur="2s" begin="0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="206;196;206" dur="2s" begin="0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="134" y="196" width="15" height="34" rx="3" fill="url(#lv-g)" opacity="0.78">
-                <animate attributeName="height" values="34;44;34" dur="2.8s" begin="0.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="196;186;196" dur="2.8s" begin="0.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="156" y="202" width="15" height="28" rx="3" fill="#EB7C2E" opacity="0.7">
-                <animate attributeName="height" values="28;38;28" dur="2.2s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="202;192;202" dur="2.2s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="178" y="192" width="15" height="38" rx="3" fill="#390155" opacity="0.45">
-                <animate attributeName="height" values="38;48;38" dur="3.0s" begin="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="192;182;192" dur="3.0s" begin="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="200" y="184" width="15" height="46" rx="3" fill="#DE2451" opacity="0.72">
-                <animate attributeName="height" values="46;56;46" dur="1.8s" begin="0.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="184;174;184" dur="1.8s" begin="0.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <rect x="222" y="176" width="15" height="54" rx="3" fill="url(#lv-g)" opacity="0.88">
-                <animate attributeName="height" values="54;66;54" dur="2.6s" begin="1.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-                <animate attributeName="y" values="176;164;176" dur="2.6s" begin="1.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-              </rect>
-              <g class="lv-bob-1">
-                <rect x="240" y="42" width="58" height="36" rx="13" fill="#390155"/>
-                <polygon points="250,78 262,78 256,89" fill="#390155"/>
-                <rect x="251" y="54" width="24" height="3.5" rx="1.75" fill="rgba(255,255,255,0.55)"/>
-                <rect x="251" y="62" width="34" height="3.5" rx="1.75" fill="rgba(255,255,255,0.35)"/>
-              </g>
-              <g class="lv-bob-2">
-                <rect x="6" y="128" width="52" height="32" rx="11" fill="#EB7C2E"/>
-                <polygon points="14,160 26,160 20,171" fill="#EB7C2E"/>
-                <rect x="15" y="139" width="30" height="3.5" rx="1.75" fill="rgba(255,255,255,0.65)"/>
-                <rect x="15" y="147" width="20" height="3.5" rx="1.75" fill="rgba(255,255,255,0.45)"/>
-              </g>
-              <g class="lv-bob-3">
-                <rect x="244" y="258" width="54" height="34" rx="11" fill="#DE2451"/>
-                <polygon points="254,292 266,292 260,303" fill="#DE2451"/>
-                <rect x="253" y="269" width="32" height="3.5" rx="1.75" fill="rgba(255,255,255,0.6)"/>
-                <rect x="253" y="277" width="20" height="3.5" rx="1.75" fill="rgba(255,255,255,0.4)"/>
-              </g>
-              <circle cx="34" cy="54" r="5" fill="#EB7C2E" opacity="0.55" class="lv-bob-1"/>
-              <circle cx="294" cy="198" r="4" fill="#390155" opacity="0.45" class="lv-bob-2"/>
-              <circle cx="26" cy="286" r="3.5" fill="#DE2451" opacity="0.5" class="lv-bob-3"/>
-            </svg>
-          </div>
+        <div class="crowd-panel panel reveal" style="--d: 200ms" aria-hidden="true">
+          <img class="atendente" src="assets/bfsc-atendente.webp" alt="" width="640" height="929" loading="lazy" />
+          <img class="balao b-wa" src="assets/bfsc-balao-whatsapp.png" alt="" width="228" height="118" loading="lazy" />
+          <img class="balao b-ig" src="assets/bfsc-balao-instagram.png" alt="" width="177" height="94" loading="lazy" />
+          <img class="balao b-ms" src="assets/bfsc-balao-messenger.png" alt="" width="186" height="99" loading="lazy" />
+          <img class="balao b-x" src="assets/bfsc-balao-x.png" alt="" width="192" height="88" loading="lazy" />
+          <img class="balao b-fb" src="assets/bfsc-balao-facebook.png" alt="" width="209" height="89" loading="lazy" />
+          <img class="balao b-em" src="assets/bfsc-balao-email.png" alt="" width="194" height="89" loading="lazy" />
         </div>
       </div>
     </div>
@@ -807,7 +605,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== URGÊNCIA ===== -->
   <section class="urgency" aria-labelledby="urg-title">
     <div class="wrap reveal">
-      <h2 id="urg-title">A Black Friday de 2026 chega em poucas semanas.</h2>
+      <h2 id="urg-title">A Black Friday de 2026 chega em <span class="hl">poucas semanas.</span></h2>
       <p class="urgency-sub">Quem tem um monitoramento bem feito não vai precisar correr atrás do prejuízo.</p>
     </div>
   </section>
@@ -817,7 +615,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap final-grid">
       <div class="reveal">
         <h2 id="final-title">Nos vemos no dia 05 de novembro.</h2>
-        <p class="when"><b>11h</b> &middot; Online e Ao Vivo</p>
+        <div class="when">
+          <p><b>11h</b> &middot; Online e Ao Vivo</p>
+          <div class="box-countdown js-countdown" aria-hidden="true"><div class="bc-unit"><span class="bc-num" data-cd="d">--</span><span class="bc-label">Dias</span></div><div class="bc-unit"><span class="bc-num" data-cd="h">--</span><span class="bc-label">Horas</span></div><div class="bc-unit"><span class="bc-num" data-cd="m">--</span><span class="bc-label">Min</span></div><div class="bc-unit"><span class="bc-num" data-cd="s">--</span><span class="bc-label">Seg</span></div></div>
+        </div>
         <div class="perks">
           <div class="perk"><span class="perk-dot"></span>Webinar 100% gratuito</div>
           <div class="perk"><span class="perk-dot"></span>Demo ao vivo da plataforma configurada pra Black Friday</div>
@@ -872,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <script>
-  // Contador regressivo no box da data - alvo: 05/11/2026 11:00 Brasilia (UTC-3)
+  // Contador regressivo nos boxes de data - alvo: 05/11/2026 11:00 Brasilia (UTC-3)
   (function () {
     var widgets = document.querySelectorAll('.js-countdown');
     if (!widgets.length) return;

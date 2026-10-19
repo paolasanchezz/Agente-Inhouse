@@ -35,3 +35,7 @@ Visual segue o mesmo sistema de design das últimas LPs de webinar Buzzmonitor (
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg` (header)
 - `../../brand/buzzmonitor/assets/logos/logo-reversed.svg` (footer)
 - `../../brand/buzzmonitor/assets/logos/logo-icon.png` (favicon + avatar do mockup de vídeo)
+
+## Redesign 2026-10-19
+
+Visual refeito com a estética dos criativos do webinar (Barlow Condensed + Hanken Grotesk, cores chapadas da marca, adesivo "sem caos.", celular com comentários subindo, atendente com balões de notificação). Copy, formulário Jotform, SEO e GTM inalterados. Assets novos com prefixo `bfsc-` (namespace no `/assets/buzzmonitor/` do guarda-chuva).
