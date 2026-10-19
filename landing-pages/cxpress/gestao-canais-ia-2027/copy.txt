@@ -42,14 +42,21 @@ LIST ITEM: Troca direta com especialistas e com gente que vive o mesmo problema
 
 === PROGRAMACAO ===
 H2: Como vai ser a manhã
-LIST ITEM: 09h00 · Recepção e coffee
-LIST ITEM: 09h30 · Boas-vindas e abertura
-LIST ITEM: 09h40 · Cenário da gestão de canais com IA em 2027 (dados de mercado e tendências)
-LIST ITEM: 10h05 · Centralização de canais e IA na prática
-LIST ITEM: 10h45 · Perguntas
-LIST ITEM: 11h00 · Coffee break e networking
-LIST ITEM: 11h20 · Bate-papo com cliente
-LIST ITEM: 11h45 · Perguntas e encerramento
+# v3 programacao (2026-10-19, pedido do usuario): titulos novos + frase de apoio (BODY) por item.
+LIST ITEM: 09h00 · Recepção e café de boas-vindas
+LIST ITEM: 09h30 · Abertura
+BODY: Apresentação da agenda e dos temas que vamos abordar no encontro.
+LIST ITEM: 09h40 · Atendimento em 2027: tendências que vão transformar a experiência do cliente
+BODY: Um panorama de dados e mudanças no comportamento dos consumidores que já estão impactando a gestão dos canais.
+LIST ITEM: 10h05 · Menos atrito, mais agilidade: IA e canais conectados no atendimento
+BODY: O que muda quando a empresa acompanha a jornada do cliente de ponta a ponta e usa a IA para resolver as interações certas.
+LIST ITEM: 10h45 · Sua dúvida no palco
+BODY: Espaço aberto para o público perguntar e ouvir quem vive a gestão do atendimento no dia a dia.
+LIST ITEM: 11h00 · Pausa para o café e networking
+LIST ITEM: 11h20 · Cases reais: como evoluir a experiência do cliente
+BODY: Conheça iniciativas, aprendizados e resultados que mostram o impacto de melhorias na jornada dos consumidores.
+LIST ITEM: 11h45 · Perguntas finais e encerramento
+BODY: Retomamos os principais aprendizados e respondemos às últimas dúvidas.
 
 === PALESTRANTES ===
 H2: Quem vai estar no palco
