@@ -5,15 +5,16 @@ LABEL: META DESCRIPTION: Evento presencial gratuito em São Paulo, 12/11, das 9h
 === HERO ===
 OVERLINE: EVENTO PRESENCIAL · SÃO PAULO · 12 DE NOVEMBRO
 H1: Gestão de canais de atendimento com IA em 2027
-SUB: Uma manhã com casos práticos de empresas que centralizaram seus canais e agilizaram o suporte e vendas com IA, sem aumentar o time nem embarcar num projeto de meses. E quem estiver na sala ainda confere as novidades da plataforma Cxpress, divulgadas no próprio evento.
+SUB: Seu cliente não quer saber em qual canal está a conversa. Ele espera contexto, continuidade e uma solução.
+SUB: Em uma manhã, vamos conectar tendências de 2027 à prática: como IA e canais integrados podem reduzir atritos, quais métricas ajudam a enxergar gargalos e o que cases reais revelam sobre a evolução da experiência do cliente.
 LABEL: 12/11 · 9h às 12h · São Paulo - SP
 CTA: Garantir minha vaga
 
 === POR-QUE-IR ===
-H2: Atendimento em 2027 não é mais sobre responder rápido.
-BODY: É sobre responder no canal certo, com contexto, sem o cliente repetir a mesma história três vezes.
-BODY: Quem resolveu isso não contratou mais gente. Organizou os canais num painel só e colocou IA pra trabalhar onde dói.
-BODY: Neste encontro a gente abre a operação real: o que funcionou, o que deu errado e os números por trás de quem já unificou WhatsApp, e-mail, redes e webchat.
+H2: Atender bem em 2027 vai além de responder rápido.
+BODY: É estar no canal certo, com contexto e continuidade, sem fazer o cliente repetir a mesma história.
+BODY: Canais integrados e IA bem aplicada ajudam a ganhar escala e agilidade, preservando o olhar humano.
+BODY: Neste encontro, você vai ver como tendências de mercado se traduzem em decisões práticas: o papel da IA e dos canais conectados, as métricas que revelam gargalos e o impacto de iniciativas reais na experiência do cliente.
 
 === NOVIDADES ===
 OVERLINE: NOVIDADES DA PLATAFORMA
@@ -32,13 +33,14 @@ BODY: [COUNTDOWN até 12/11/2026 09:00 · dias / horas / minutos / segundos]
 BODY: [MAPA · Google Maps embed do endereço Av. Paulista, 688, São Paulo]
 
 === APRENDIZADOS ===
-H2: O que você leva deste encontro
-LIST ITEM: Como empresas centralizaram WhatsApp, e-mail, redes, webchat e telefonia numa operação só
-LIST ITEM: Onde a IA reduz o tempo de resposta de verdade, e onde ela só atrapalha
-LIST ITEM: Os números por trás da mudança: demandas resolvidas por hora, tempo médio, gargalos
-LIST ITEM: Um caminho claro pra organizar seus canais sem aumentar o time
-LIST ITEM: As novidades da plataforma Cxpress, divulgadas e demonstradas ao vivo
-LIST ITEM: Troca direta com especialistas e com gente que vive o mesmo problema
+# v4 (2026-10-19, pedido do usuario): hero SUB, POR-QUE-IR e APRENDIZADOS reescritos pelo usuario. Em-dash do item 3 trocado por virgula (regras-anti-ia).
+H2: O que você leva para a sua operação
+LIST ITEM: Uma leitura das tendências de 2027 e de como elas estão mudando as expectativas dos consumidores.
+LIST ITEM: Como reduzir o esforço do cliente ao conectar canais, histórico e IA, com exemplos práticos da Cxpress.
+LIST ITEM: Onde a IA acelera respostas e amplia a capacidade do time, e quando a interação humana faz diferença.
+LIST ITEM: Quais indicadores ajudam a identificar gargalos, acompanhar a qualidade e orientar melhorias.
+LIST ITEM: Cases reais, aprendizados e resultados na evolução da experiência do cliente.
+LIST ITEM: Troca com especialistas e profissionais que enfrentam desafios parecidos no atendimento.
 
 === PROGRAMACAO ===
 H2: Como vai ser a manhã
