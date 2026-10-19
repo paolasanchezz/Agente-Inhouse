@@ -1,0 +1,74 @@
+# Copy estruturada — LP Evento presencial "Como crescer sua marca com influenciadores em 2027"
+# Marca: Buzzmonitor + Buzzcreators · Domínio: evento.buzzmonitor.com
+# Evento: 03 de Dezembro de 2026 · 14h às 17h30 · Av. Paulista, 1499, cj. 1704 · Presencial · Gratuito
+# Layout: duplicado de buzzcreators/vendendo-com-creators (evento presencial, mesmo Jotform 260213440661648)
+# Copy: trazida do webinar buzzmonitor/crescer-marca-influenciadores-setembro-2026 (15/09/2026),
+#       adaptada de online para presencial ("webinar" -> "evento"; removidos 60 min, gravação, 11h, Q&A online).
+#       Fontes de cada dado estão documentadas no copy.txt do webinar (não repetidas aqui).
+
+=== HERO ===
+OVERLINE: Evento presencial gratuito · Buzzmonitor + Buzzcreators
+H1: Como crescer sua marca com [influenciadores em 2027]
+LABEL: 03 de Dezembro · 14h às 17h30 · São Paulo · Vagas limitadas
+CTA: Quero minha vaga gratuita
+TICKET: Save the date · 03 · Dezembro · 2026 · Horário 14h às 17h30 · Local São Paulo · Formato Presencial · selo Gratuito
+
+=== PROBLEMA (seção hook) ===
+H2: Investir em creator sem estratégia clara desperdiça orçamento e não gera dado
+STAT: 35,6% foi o crescimento do mercado global de influenciadores em 2025, saindo de US$ 24 bi para US$ 32,55 bi. A forma de medir o retorno não acompanhou esse ritmo. Hoje, funciona mais ou menos assim:
+FONTE: Influencer Marketing Hub, Benchmark Report 2025
+1. O resultado chega por print · As métricas do lado do creator viravam captura de tela no WhatsApp, quando viravam. Consolidar a performance real da campanha era impossível.
+2. 53% têm dificuldade em provar o retorno · Segundo o YOUPIX/Nielsen (2025), mais da metade das marcas que investem em creator tem dificuldade em provar o retorno desse investimento.
+3. Cada campanha começa do zero · Sem continuidade entre uma campanha e a outra, o aprendizado sobre cada creator se perde. A próxima negociação começa sem histórico de performance.
+4. Micro e nano ficam de fora por achismo · Marcas concentram orçamento em perfis grandes, mas micro e nanoinfluenciadores entregam até 3 vezes mais ROI e 60% mais engajamento (blog Buzzcreators). Sem dado, essa troca nem entra na mesa.
+FECHAMENTO: Reconheceu sua marca nesses pontos? A gente te mostra como sair desse cenário.
+
+=== O QUE VOCÊ VAI LEVAR ===
+H2: O que você vai levar deste evento
+1. De busca fria pra programa contínuo · Mais de 90% das marcas que o Buzzcreators acompanha já trocaram a busca ativa (outbound) por recrutamento inbound e programas contínuos.
+2. O que mudou no Collab do Instagram · De 2 para 4 colaboradores por post, com a Collaborative Media API e o Partnership Ads via API.
+3. As métricas que a API libera · Alcance, saves, shares e performance por creator, dos dois lados da parceria, direto pela API.
+4. CPM e preço de creator, sem achismo · No Brasil, nano parte de R$ 100/post, micro vai a R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators).
+5. Pagamento variável por performance · Fixo por embaixador, bônus por views ou comissão por venda: três modelos ligados à performance de cada creator.
+6. (DESTAQUE) Case real: Eskala, Employer Branding · Engajamento 11x maior que o perfil oficial (6,67% vs. 0,57%), 172 posts de creators em 30 dias e ROI 3x maior que mídia paga.
+CTA: Quero estar lá dia 03/12
+
+=== CONCEITO (banner gradiente) ===
+H2: Buzzmonitor analisa a saúde da marca. / Buzzcreators escala o ROI dos creators.
+SUB: Entenda como as duas plataformas podem ser úteis e trabalhar em conjunto para crescer a sua marca com influenciadores.
+LABEL: 03 de Dezembro · 14h às 17h30 · São Paulo · Vagas limitadas
+CTA: Quero participar
+
+=== QUEM APRESENTA ===
+NOME: Bruno Filho
+CARGO: Coordenador de Novos Negócios · Buzzcreators
+BIO 1: Coordena novos negócios do Buzzcreators, a plataforma de gestão de campanhas com creators do Grupo Elife. Acompanhou de perto o programa de colaboradores-creators que abre o evento, da governança aos números do primeiro mês de campanha.
+BIO 2: Mais de 10 anos em SaaS, e-commerce e marketing digital. Fundou e vendeu sua primeira startup aos 27 anos.
+
+=== PARA QUEM ===
+H2: Este evento é pra você que…
+1. Lidera marketing numa marca D2C ou B2C e quer crescer com creators
+2. Gerencia influência e cansou de provar resultado com print
+3. Cuida de social media e está na linha de frente das campanhas
+4. Trabalha com performance e quer atribuir receita a cada creator
+5. Atende marcas numa agência e precisa escalar influência sem inchar o time
+
+=== INSCRIÇÃO ===
+H2: Nos vemos no dia 03 de Dezembro.
+CHIPS: 03 de Dezembro · 2026 | 14h às 17h30 | São Paulo · Av. Paulista, 1499
+FORM: Jotform 260213440661648 (o mesmo de vendendo-com-creators)
+ONDE ACONTECE: Av. Paulista, 1499, cj. 1704, Bela Vista, São Paulo · SP, 01311-200
+MAPS: https://www.google.com/maps/search/?api=1&query=Av.%20Paulista%2C%201499%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001311-200
+
+=== URGÊNCIA ===
+TAG: Últimas vagas
+H2: Mais de 90% das marcas do Buzzcreators já saíram da busca fria. / Ele é o único integrado ao social listening da Buzzmonitor.
+CTA: Quero me inscrever grátis
+
+=== VÍDEO (mantido da LP de origem) ===
+H2: Conheça o Buzzcreators
+BODY: Revolucione suas campanhas de marketing de influência com o Buzzcreators, a plataforma que simplifica e potencializa sua conexão com influenciadores.
+EMBED: YouTube nBK4ehM0YLo
+
+=== FOOTER ===
+© 2026 Buzzmonitor · Buzzcreators · eventos@buzzmonitor.com.br
