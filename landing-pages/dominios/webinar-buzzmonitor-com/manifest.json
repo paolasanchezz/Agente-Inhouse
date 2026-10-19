@@ -186,6 +186,16 @@
       "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-vsl-confirmado"
     },
     {
+      "slug": "perpetuo-monitoramento-vsl-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-vsl-pt"
+    },
+    {
+      "slug": "perpetuo-monitoramento-vsl-pt-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-vsl-pt-confirmado"
+    },
+    {
       "slug": "perpetuo-social-listening",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/perpetuo-social-listening"
