@@ -41,3 +41,7 @@ HTML/CSS/JS idênticos ao template. Reaproveitado sem alteração: Módulos, Pro
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg`, `logo-reversed.svg`, `logo-icon.png`
 - `./assets/logos/mural-1.jpeg`, `./assets/logos/mural-2.jpeg`
+
+## Redesign 2026-10-19
+
+Visual refeito com a mesma estética da LP de inscrição `black-friday-sem-caos` (criativos do webinar): Barlow Condensed + Hanken Grotesk, hero laranja com adesivo "50% off", painel amarelo da oferta, cards com borda roxa, faixa branca no topo. Copy, JotForm `253573505200650`, SEO e GTM inalterados. Eyebrows genéricos de seção removidos.
