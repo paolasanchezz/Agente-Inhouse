@@ -65,7 +65,9 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 
 - **Âncoras sem `#` na URL** (pedido do Victor, 2026-10-07): os botões e o skip-link são `<a href="#secao">`, mas um script intercepta o clique, rola até a seção (suave, ou direto com reduced motion) e move o foco para ela sem gravar o `#` no endereço. O `href` fica no HTML de propósito, para funcionar sem JavaScript e no clique do meio.
 - **GTM:** `GTM-WFJVK858`, o container aprovado para `content.buzzmonitor.com`, o mesmo da `encontrar-creators`. `brand/buzzcreators/tracking.json` continua `null`. O gate do CI só avisa e não bloqueia.
-- **Form:** mock (`action="#"`) com os campos nome, e-mail corporativo, empresa, cargo, marca/categoria e budget mensal (select). Integrar via `/lp-integrar-form buzzcreators/agente-tami "<snippet>"` depois de aprovado.
+- **Form:** Jotform `250292843162657` ("BR | Proposta | BCreators | Geral"), o mesmo da página `buzzcreators.com.br/marcas`, pedido do Victor em 2026-10-19. Entrou no lugar do mock (nome, e-mail, empresa, cargo, marca/categoria, budget), que saiu da página.
+  - Campos, botão ("Agende uma Demonstração Grátis!") e página de agradecimento são do Jotform, não da `copy.txt`. Mudar algo neles muda também na /marcas.
+  - O CSP de `content.buzzmonitor.com` já libera `*.jotform.com`.
 - **SEO:**
   - description (153 caracteres), 10 tags OG, 4 de Twitter.
   - JSON-LD com Organization + WebPage + SoftwareApplication "Tami".
@@ -90,7 +92,7 @@ Pedido do Victor: visual mais inovador e moderno, com degradê fluido de roxo, l
 - [x] HTML gerado e revisado localmente
 - [x] OG image 1200×630 → `assets/og-agente-tami.png`
 - [ ] Validar pendência P1 (canais do 1º contato) com Produto e Jurídico **antes de publicar**
-- [ ] Formulário real: `/lp-integrar-form buzzcreators/agente-tami "<snippet>"`
+- [x] Formulário real: Jotform `250292843162657` (2026-10-19)
 - [x] Publicada em `content.buzzmonitor.com` (2026-10-07 como `/assistente-tami`; desde 2026-10-08 em `/agente-tami`, com 308 da URL antiga)
 
 ## Assets referenciados
