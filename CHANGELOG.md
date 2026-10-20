@@ -12,6 +12,18 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `lp-gerar` + `lp-revisar` — botão de âncora não deixa mais `#inscricao` na URL
+### 2026-10-20 — `lp-gerar` 1.8.2 → 1.9.0 · `lp-revisar` 1.8.2 → 1.9.0 (MINOR)
+
+- Pedido do Victor: tirar de todas as LPs no ar o `#inscricao` que entra na URL quando se clica num botão, e virar regra. O hash ia junto pro `url_conversao` do CRM (o Jotform manda a URL com fragmento), pro `?lp=` do redirect pós-form e pro link copiado da barra, onde a UTM colada depois do `#` se perde.
+- A correção mora no build, não em cada LP: `build_umbrella.py` injeta `landing-pages/_componentes/ancoras-sem-hash/ancoras-sem-hash.js` antes do último `</body>` em toda LP de todo manifesto, sem opt-in. O botão segue `<a href="#inscricao">` e rola como antes (scroll nativo, `scroll-margin-top`, foco do skip-link, `hashchange` da LP); a URL fica só com `pathname + search` e o clique não empilha histórico. Também limpa o `pushState('#…')` do `webflow.js` e o hash de quem chega por link com `#`. Build local: 210 LPs nos 6 manifestos, 1 injeção em cada.
+- Regra nova no GUIDELINES §22: proibido JS que grave hash, copiar o script LATAM da #709 pra LP nova e link de fora (anúncio, e-mail, post, outra LP) com `#secao`. LP solo/Webflow cola o script à mão. Convenção de UTM ganhou "sem `#secao` no link".
+- `lp-gerar`: item §22 no briefing da `frontend-design` + checklist 4.1 (grep de escrita de hash e de link absoluto com fragmento).
+- `lp-revisar`: Passo 3.8 (CRITICO) com os mesmos greps, a exigência da trava colada em LP fora do CI e os códigos `ANCHOR-HASH-WRITE` / `ANCHOR-HASH-LINK`.
+- Fora do alcance: LP sem source no repo que ainda responde em projeto solo (`cxpress-lp-quiz-atendimento-latam`, Buzz Compass em `buzzmonitor-lp-buzz-radar`).
+
+---
+
 ## `blog-criar-artigo` — dedupe do Passo 2.5 lê o sitemap com `curl`, não com `WebFetch`
 ### 2026-10-15 — 1.4.2 → 1.4.3 (PATCH)
 

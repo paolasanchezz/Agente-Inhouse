@@ -3,7 +3,7 @@ name: lp-gerar
 description: Gera HTML estatico completo de landing page a partir de copy estruturada (output do lp-preparar), aplicando brand tokens da marca e as GUIDELINES universais. Orquestra a skill frontend-design.
 argument-hint: "[marca] [slug] — ex: buzzmonitor monitoramento-maio (le copy.txt da pasta landing-pages/{marca}/{slug}/)"
 allowed-tools: Read, Write, Glob, Grep, Skill
-version: 1.8.2
+version: 1.9.0
 ---
 
 # Skill: Gerar HTML de Landing Page
@@ -133,6 +133,10 @@ Guidelines universais (obrigatorias — landing-pages/GUIDELINES.md):
     * Urgencia = fundo dark + tag cor quente rotacionada
 - §9 Copy dita estrutura — ordem e contagem dos blocos NAO podem mudar
 - §11 Form = mock <form action="#" onsubmit="event.preventDefault()"> (integracao real vira depois)
+- §22 CTA que rola ate o form = <a href="#inscricao"> simples. NAO escrever JS que grave hash na URL
+  (location.hash=, pushState/replaceState com #, smooth-scroll com "atualizar URL") nem colar script
+  de ancora: o build injeta a trava que mantem a URL sem #. Link pra fora (outra LP, CTA externo)
+  nunca leva #secao
 - §15 SEO obrigatorio (bloco completo no <head> — ver instrucoes abaixo)
 - §16 Multi-idioma: hreflang + canonical (so se houver LPs irmas)
 - §17 Header/footer: logo aponta pra home regional com target=_blank rel=noopener
@@ -279,6 +283,7 @@ Antes de escrever o arquivo, verifique o HTML retornado.
 - [ ] GTM injetado (se `{GTM_ID}` != null): `<script>` no `<head>` apos viewport **e** `<noscript>` apos `<body>`. ID correto em ambos os blocos.
 - [ ] Todas as imagens tem `alt` ou `aria-hidden="true"`
 - [ ] Form esta em mock (`action="#"`)
+- [ ] **Nenhum JS grava `#` na URL (GUIDELINES §22).** `grep -nE 'location\.hash\s*=|(push|replace)State\([^)]*#'` no HTML tem que sair vazio, e nenhum `href` absoluto pra LP nossa termina em `#secao`. Ancora interna fica `<a href="#inscricao">` puro, sem script proprio de rolagem (o build injeta a trava)
 - [ ] Numero de itens em cada secao bate com a copy (GUIDELINES §9)
 - [ ] Nenhum emoji decorativo injetado que nao estava na copy
 - [ ] **Reveal-on-scroll com fallback robusto se JS quebrar.** Se houver classe `.reveal` com `opacity:0`, deve haver `<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>` no `<head>` (ou esquema equivalente: `.no-js` + remocao via JS). So o `@media (prefers-reduced-motion: reduce)` nao basta — protege apenas usuarios com reduced motion, nao o caso geral de JS bloqueado/falhado.

@@ -76,6 +76,10 @@ Exemplos:
   `content.cxpress.io`).
 - Valor estavel: UTM ja publicada nao se renomeia sem motivo, senao a serie historica
   do relatorio quebra em duas.
+- **Sem `#secao` no link.** Nada de `.../slug?utm_source=email#inscricao`: o fragmento vai
+  parar no `url_conversao`, e UTM colada depois do `#` (`.../slug#inscricao?utm_source=x`)
+  nao chega no form, o lead some do filtro. Link de conversao e sempre pagina + UTMs. Pra o
+  form aparecer antes, a resposta e a posicao dele na LP, nao a ancora (GUIDELINES §10 e §22).
 
 ## 5. Divergencias conhecidas (nao replicar)
 

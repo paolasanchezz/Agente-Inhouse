@@ -96,7 +96,7 @@ A posição ideal varia com a temperatura do tráfego. **Default forte** — ove
 
 - **ToFu — webinar, material rico, lead frio** → formulário na **2ª seção** (logo após o hero). Lead frio aceita preencher por curiosidade; o objetivo é volume, MQL pipeline filtra depois. Mover o form para o fim aqui desperdiça intenção quente.
 - **MoFu / BoFu / Remarketing — material avançado, comparativos, agendar demo, falar com vendas, retargeting** → formulário na **4ª seção ou na última seção** (meio/fim da página, após prova social e diferencial). O scroll funciona como filtro de intenção: quem chega ao form passou pelo argumento e tende a converter como SQL. Form no topo aqui infla CPL com leads que ainda não entenderam a oferta.
-- **Em todos os casos**: manter um **CTA visível no hero (§1)** — botão que rola suave até o form. Captura tráfego decidido sem sacrificar quem precisa do contexto.
+- **Em todos os casos**: manter um **CTA visível no hero (§1)** — botão que rola suave até o form, sem gravar `#` na URL (§22). Captura tráfego decidido sem sacrificar quem precisa do contexto.
 
 ## 11. Integração tardia de formulário
 
@@ -442,6 +442,24 @@ const linhas = [...porLinha.values()];
 Medir com a página **visível**: em aba de preview escondida o `innerWidth` vira 0, o layout degenera e todo número sai errado.
 
 Histórico: 2026-08-28, Victor apontou na `cxpress/planos` a nota do fim dos cards quebrando em linha cheia + linha curta ("…serviços adicionais / são cotados junto com o time comercial") havendo espaço pra equilibrar, e pediu que a regra valesse pras construções futuras. 2026-08-30, o pedido voltou na `cxpress/evite-banimento-whatsapp` ("evite diagramação com palavras órfãs na linha e desequilibradas no peso das linhas") e rendeu as ressalvas 3 e 4 e a correção do método de medição.
+
+## 22. Âncora interna — o botão rola até o form, a URL não ganha `#`
+
+Clicar em "Garantir minha vaga" leva até o formulário, mas a URL continua a mesma: **nunca** `…/slug#inscricao` (nem `#form`, `#agendar`, `#demo`, `#main`…).
+
+**Por quê:** o `#secao` ficava na barra depois do clique e ia junto pra tudo que lê a URL da página: o `url_conversao` que chega no CRM (o Jotform manda a URL com fragmento), o `?lp=` do redirect pós-form e o link que alguém copia da barra pra montar anúncio ou e-mail. UTM colada depois do `#` não chega no servidor nem no form, e o lead some do filtro das dashboards de CM.
+
+**Como funciona:** o botão continua `<a href="#inscricao">` no HTML (funciona sem JS, o teclado e o leitor de tela tratam como link). Quem segura a URL é o build: `build_umbrella.py` injeta [`_componentes/ancoras-sem-hash/`](_componentes/ancoras-sem-hash/README.md) antes do `</body>` em **toda** LP dos guarda-chuvas. A rolagem, o `scroll-margin-top`, o foco do skip-link e o `hashchange` da LP seguem nativos. Não precisa colar nada na LP.
+
+**Proibido:**
+
+- JS próprio que grava hash: `location.hash = …`, `history.pushState`/`replaceState` com `#`, lib de smooth-scroll com opção de "atualizar a URL".
+- Copiar pra LP nova o script "Ancoras internas sem #secao na URL" das LPs LATAM (#709): o build já cobre. Nas LPs que já têm, ele pode ficar (as duas travas convivem).
+- Link de fora pra LP com `#secao`: anúncio, e-mail, newsletter, post, QR code, botão de outra LP. Sempre a URL da página + UTMs, sem âncora. Se o form precisa aparecer antes, isso se resolve na posição dele (§10), não com `#inscricao` no link.
+
+**Fora do CI** (LP solo ou Webflow) o build não roda: colar o conteúdo de `ancoras-sem-hash.js` num `<script>` antes do `</body>` (no Webflow, custom code da página ou do site, campo "Before `</body>` tag").
+
+Histórico: 2026-09-29, a #709 corrigiu 45 LPs LATAM uma a uma. 2026-10-20, Victor pediu tirar de todas as LPs no ar ("isso tem atrapalhado muito") e virar regra; a correção foi pro build pra não depender de cada LP lembrar.
 
 ---
 

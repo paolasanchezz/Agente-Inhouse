@@ -155,7 +155,8 @@ Proximo: /lp-publicar {marca} {slug} [dominio]
   e o campo interno de URL de pagina do proprio Jotform, que resolve a URL da LP a partir do
   `parentURL` que o embed sempre transmite. Verificado em 2026-08-11 no Supabase LATAM: leads de
   LP **sem** qualquer shim (ex: `content.buzzmonitor.com/plataforma-integral-social-media`)
-  chegam com `url_conversao` completa, com query string e ate fragmento `#hash`. Um shim de
+  chegam com `url_conversao` completa, com query string e ate fragmento `#hash` (o `#inscricao`
+  do clique no CTA; desde 2026-10-20 o build tira o `#` da URL, GUIDELINES §22). Um shim de
   `window.qsProxy` pra preencher o campo `url` foi adicionado e revertido no mesmo dia — enche um
   campo que ninguem consome. Antes de "consertar" atribuicao de LP, olhar o **destino**
   (`deals_latam_*_staging` / dashboards), nao o campo vazio no formulario.

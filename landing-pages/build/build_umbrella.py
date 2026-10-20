@@ -30,6 +30,15 @@ PLACEHOLDER_LEAK = re.compile(r"\{\{[A-Z_]+\}\}")
 VERCEL_ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>'
 HEAD_CLOSE = re.compile(r"</head>", re.I)
 
+# Âncora interna (href="#inscricao", #form...) rola sem deixar o #secao na URL — o hash
+# vazava pro url_conversao do CRM e pro link copiado da barra. Vale pra TODA LP, sem
+# opt-in: o script entra inline antes do último </body> (depois dos scripts da própria
+# LP, que precisam ler o hash primeiro). Fonte e racional: _componentes/ancoras-sem-hash/.
+ANCORAS_SEM_HASH_JS = os.path.join("landing-pages", "_componentes", "ancoras-sem-hash",
+                                   "ancoras-sem-hash.js")
+ANCORAS_MARCADOR = 'data-lp="ancoras-sem-hash"'
+BODY_CLOSE = re.compile(r"</body>", re.I)
+
 
 def die(msg):
     sys.stderr.write(f"ERRO build_umbrella: {msg}\n")
@@ -56,7 +65,19 @@ def inject_web_analytics(html, slug):
     return HEAD_CLOSE.sub(f"{VERCEL_ANALYTICS_TAG}\n</head>", html, count=1)
 
 
-def transform_html(html, marca, slug, dominio, web_analytics=False):
+def inject_ancoras_sem_hash(html, js):
+    """Insere o script antes do último </body> (ou no fim, se não houver). Idempotente."""
+    if ANCORAS_MARCADOR in html:
+        return html
+    tag = f"<script {ANCORAS_MARCADOR}>\n{js.strip()}\n</script>\n"
+    fechamentos = list(BODY_CLOSE.finditer(html))
+    if not fechamentos:
+        return html + tag
+    pos = fechamentos[-1].start()
+    return html[:pos] + tag + html[pos:]
+
+
+def transform_html(html, marca, slug, dominio, web_analytics=False, ancoras_js=None):
     """Regras do Passo 1.5 da lp-publicar (modo guarda-chuva)."""
     html = html.replace(f"../../brand/{marca}/assets/", f"/assets/{marca}/")
     # ./assets/{marca}/X já namespaceado: só absolutiza — antes do genérico, senão duplica
@@ -72,6 +93,8 @@ def transform_html(html, marca, slug, dominio, web_analytics=False):
                   r"\1\2", html)
     if web_analytics:
         html = inject_web_analytics(html, slug)
+    if ancoras_js:
+        html = inject_ancoras_sem_hash(html, ancoras_js)
     return html
 
 
@@ -89,6 +112,10 @@ def main():
         os.path.join(os.path.dirname(manifest_path), "..", "..", ".."))
     dominio = manifest["dominio"]
     web_analytics = bool(manifest.get("web_analytics", False))
+    ancoras_path = os.path.join(repo, ANCORAS_SEM_HASH_JS)
+    if not os.path.isfile(ancoras_path):
+        die(f"componente obrigatório não existe: {ANCORAS_SEM_HASH_JS}")
+    ancoras_js = read_text(ancoras_path)
     avisos = []
 
     if os.path.isdir(dist):
@@ -106,7 +133,7 @@ def main():
         html = read_text(index)
         if not html.lstrip("﻿ \t\r\n").lower().startswith(("<!doctype html", "<html")):
             die(f"{slug}: index.html não começa com doctype/html")
-        html = transform_html(html, marca, slug, dominio, web_analytics)
+        html = transform_html(html, marca, slug, dominio, web_analytics, ancoras_js)
         if RELATIVE_LEAK.search(html):
             die(f"{slug}: path relativo sobrando pós-rewrite")
         if PLACEHOLDER_LEAK.search(html):

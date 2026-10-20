@@ -3,7 +3,7 @@ name: lp-revisar
 description: Auditoria dupla de landing page (frontend-design em review mode + web-design-guidelines). Aplica achados criticos automaticamente, marca melhorias e nice-to-haves como opcionais em REVISAO.md.
 argument-hint: "[marca]/[slug] — ex: buzzmonitor/monitoramento-maio"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Skill, WebFetch
-version: 1.8.2
+version: 1.9.0
 ---
 
 # Skill: Revisar Landing Page
@@ -352,6 +352,31 @@ Adicionar todos os criticos de SEO/hreflang/logo/OG no bucket principal de criti
 - OG-IMAGE-DIMENSIONS: og-{slug}.png tem (1024, 512), esperado (1200, 630)
 - OG-IMAGE-DUPLICATE: assets/og-image.png presente (anti-padrao §18) — renomear para og-{slug}.png; se og-{slug}.png ja existe, apagar a duplicata
 - LOGO-SERIF: logo-color.svg (header, linha N) tem <text> vivo — serifa no browser; trocar por logo-color.png ou raster (§19)
+```
+
+## Passo 3.8: Ancora sem `#` na URL (v1.9.0, GUIDELINES §22, CRITICO)
+
+O CTA que rola ate o form nao pode deixar `#inscricao` (ou qualquer `#secao`) na URL: o hash vai junto pro `url_conversao` do CRM, pro `?lp=` do redirect pos-form e pro link que alguem copia da barra. Nos guarda-chuvas o build injeta a trava (`landing-pages/_componentes/ancoras-sem-hash/`); a revisao garante que a LP nao trabalha contra ela.
+
+```bash
+F=landing-pages/{marca}/{slug}/index.html
+# 1. JS que grava hash na URL -> tem que sair vazio
+grep -nE 'location\.hash\s*=|(push|replace)State\([^)]*#|updateURL|updateHash' "$F"
+# 2. Link absoluto pra LP nossa com fragmento -> tem que sair vazio
+grep -noE 'href="https://(content|webinar|evento|material)\.[a-z.]+/[^"]*#[^"]*"' "$F"
+# 3. Copia antiga do script LATAM (#709) em LP nova -> melhoria, nao critico
+grep -c 'sem #secao na URL' "$F"
+```
+
+- Achado 1 ou 2 → CRITICO, aplicar no Passo 4: tirar a escrita de hash (deixar a rolagem nativa do `<a href="#x">`) e tirar o `#secao` do link.
+- Achado 3 em LP **nova** → MELHORIA ("remover, o build ja cobre"). Em LP antiga que ja tinha, nao mexer.
+- LP **fora do CI** (solo/Webflow — dominio fora de `MIGRADOS.json`): sem build, a trava tem que estar colada no HTML. `grep -c 'ancoras-sem-hash' "$F"` = 0 → CRITICO: colar o conteudo de `ancoras-sem-hash.js` num `<script>` antes do `</body>`.
+
+Formato:
+
+```
+- ANCHOR-HASH-WRITE: linha N grava hash (location.hash = '#form') — remover, a ancora nativa ja rola (§22)
+- ANCHOR-HASH-LINK: CTA da linha N aponta pra https://webinar.buzzmonitor.com/slug#inscricao — tirar o #inscricao
 ```
 
 ## Passo 4: Aplicar Criticos
