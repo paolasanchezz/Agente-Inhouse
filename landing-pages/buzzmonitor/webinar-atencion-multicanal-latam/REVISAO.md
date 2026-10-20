@@ -13,7 +13,7 @@
 - [x] `.sp-company img` (logo Buzzmonitor nos cards de speaker) agora tem `width="120" height="24"` explicitos — elimina o risco de layout shift.
 - [x] Mesmas imagens agora com `loading="lazy"` (estao abaixo do fold).
 - [x] `.ai-pulse` (circulo decorativo animado) agora com `aria-hidden="true"`.
-- [x] `aria-label` redundante removido do link do Instagram no footer — o texto visivel (`@getbuzzmonitor.es`) ja e o nome acessivel; o icone SVG ja tinha `aria-hidden="true"`.
+- [x] `aria-label` redundante removido do link do Instagram no footer — o texto visivel (`@buzzmonitor.es`) ja e o nome acessivel; o icone SVG ja tinha `aria-hidden="true"`.
 - [x] `.ai-core` (circulo "IA") trocou o fundo de `--grad-hot` para `--c-primary` solido — contraste do texto branco sobe de ~2.8:1 para >8:1 (AA/AAA), sem alterar layout ou tamanho.
 
 ## Nice-to-haves (2)

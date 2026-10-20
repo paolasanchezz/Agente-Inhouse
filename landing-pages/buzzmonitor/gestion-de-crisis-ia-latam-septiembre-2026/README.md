@@ -27,7 +27,7 @@ Se publicará en `webinar.buzzmonitor.com/gestion-de-crisis-ia-latam-septiembre-
 - Speakers: Raquel Oliveira + Amanda Bozza (en vez de Nathalia Crivellaro, Potyra Santos y Bruna Barreto) — grid ajustado a 2 columnas
 - Formulario: Jotform compartido de LATAM (`jsform/261188302248052`, mismo de `webinar-atencion-multicanal-latam`) en vez del JotForm en portugués de la original
 - Orden de secciones: formulario en la 2ª sección (la original lo tiene al final) — a pedido del usuario, siguiendo el patrón de `webinar-atencion-multicanal-latam`
-- Instagram del footer: `@getbuzzmonitor.es` (cuenta LATAM, en vez de `@buzzmonitorbr`)
+- Instagram del footer: `@buzzmonitor.es` (cuenta LATAM, en vez de `@buzzmonitorbr`)
 - Slug/URL nuevos, sin tocar la LP original ni su registro en el manifiesto
 
 ## Cómo actualizar

@@ -11,7 +11,7 @@
 2. **Horário multi-país:** a fonte só mostrava "11h (Brasília)". Como o público ES-LATAM é multi-país, foi adicionado o desdobramento padrão já usado nas demais LPs LATAM da marca: `10:00 MX · 11:00 COL/PER · 12:00 CL · 13:00 ARG · 18:00 ESP` (equivalente real às 11h de Brasília/10h do México, mesmo padrão de `gestion-de-crisis-ia-latam-septiembre-2026`).
 3. **GTM:** trocado de `GTM-WFJVK858` (Brasil) pra `GTM-MKQBX2MG` (região LATAM, `brand/buzzmonitor/tracking.json`).
 4. **Formulário:** a fonte usa o JotForm compartilhado de eventos BR (`252154974852667`, "BR | MKT | LPs - Eventos Geral"). Trocado pelo JotForm compartilhado de eventos LATAM já usado em `gestion-de-crisis-ia-latam-septiembre-2026`, `webinar-atencion-multicanal-latam` e `social-listening-mayo-2026-latam`: **`261188302248052`**.
-5. **Links institucionais/JSON-LD:** `sameAs`/URL da Organization trocados de `buzzmonitor.com` (BR) + Instagram `@buzzmonitorbr` pra `getbuzzmonitor.com/es/` + Instagram `@getbuzzmonitor.es`, seguindo o padrão já confirmado nas outras LPs LATAM da marca.
+5. **Links institucionais/JSON-LD:** `sameAs`/URL da Organization trocados de `buzzmonitor.com` (BR) + Instagram `@buzzmonitorbr` pra `buzzmonitor.com/es/` + Instagram `@buzzmonitor.es`, seguindo o padrão já confirmado nas outras LPs LATAM da marca.
 6. **Rodapé:** o link de Política de Privacidade (`buzzmonitor.com/politica-de-privacidade/`, só existe em PT) foi **removido** em vez de adivinhar uma URL em espanhol não confirmada — mesma decisão já tomada em `gestion-de-crisis-ia-latam-septiembre-2026`, cujo rodapé também não tem esse link.
 7. **Locale de formatação de número** (contagem animada da prova social): trocado de `toLocaleString('pt-BR')` pra `toLocaleString('es-419')`.
 

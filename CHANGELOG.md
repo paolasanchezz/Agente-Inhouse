@@ -12,6 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## brand/buzzmonitor — redes LATAM renomeadas de `getbuzzmonitor` para `buzzmonitor.es`
+### 2026-10-20 — `brand-manifest.json` (sem versão)
+
+- As contas LATAM viraram "Buzzmonitor en Español": Instagram, Threads e TikTok `@buzzmonitor.es`; X e YouTube `@buzzmonitor_es`; Facebook segue `/Buzzmonitorespanol`. Instagram e YouTube das LPs já tinham sido trocados na #849, e o Instagram do manifest na #850.
+- `regions.latam` ganhou `socialName`, `threads`, `tiktok`, `facebook`, `x` e `youtube`, nas mesmas URLs do rodapé de `buzzmonitor.com/es/`. Até aqui o manifest só tinha o Instagram, e X/YouTube/Facebook eram copiados de LP em LP, que foi como o handle antigo se espalhou por 33 LPs. `lp-gerar`/`lp-revisar` continuam lendo só `instagram` (pro `sameAs`).
+- Docs de 5 LPs ES (README, REVISAO, copy.txt) que ainda citavam `@getbuzzmonitor.es`/`@getbuzzmonitor_es` foram atualizados. A entrada de 2026-05-21 abaixo fica como histórico.
+- Fora do repo, ainda com os handles antigos em 2026-10-20: rodapé do blog ES (`buzzmonitor.com/blog/es/`, Elementor, que também mistura as contas BR) e as páginas GreatPages em `contenido.getbuzzmonitor.com` (`/agencias`, `/registro-eventos`, `/muchas-gracias`).
+
+---
+
 ## `lp-gerar` + `lp-revisar` — botão de âncora não deixa mais `#inscricao` na URL
 ### 2026-10-20 — `lp-gerar` 1.8.2 → 1.9.0 · `lp-revisar` 1.8.2 → 1.9.0 (MINOR)
 

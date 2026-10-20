@@ -17,6 +17,12 @@
       "latam": {
         "home": "https://buzzmonitor.com/es/",
         "instagram": "https://www.instagram.com/buzzmonitor.es/",
+        "socialName": "Buzzmonitor en Español",
+        "threads": "https://www.threads.com/@buzzmonitor.es",
+        "tiktok": "https://www.tiktok.com/@buzzmonitor.es",
+        "facebook": "https://www.facebook.com/Buzzmonitorespanol/",
+        "x": "https://x.com/buzzmonitor_es",
+        "youtube": "https://www.youtube.com/@buzzmonitor_es",
         "htmlLang": "es-419",
         "hreflang": "es-419",
         "ogLocale": "es_LA"

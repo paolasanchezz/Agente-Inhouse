@@ -96,7 +96,7 @@ LABEL: MCDONALD'S · Sérgio Leal, Director de Marketing y Comunicación
 OVERLINE: Mira la plataforma en acción
 H2: La plataforma de IA más avanzada para monitorear tu marca
 CTA: Quiero agendar una demo
-# [NOTA] Video oficial em espanhol do canal GetBuzzmonitor ES: youtube nBMZZZKrMpI ("La Inteligencia Artificial y Buzzmonitor lo cambian todo"), o mesmo embutido na LP "mejor plataforma" atual. Facade lazy (thumbnail + clique) pra nao penalizar performance.
+# [NOTA] Video oficial em espanhol do canal Buzzmonitor en Español: youtube nBMZZZKrMpI ("La Inteligencia Artificial y Buzzmonitor lo cambian todo"), o mesmo embutido na LP "mejor plataforma" atual. Facade lazy (thumbnail + clique) pra nao penalizar performance.
 
 === FOOTER ===
 BODY: La plataforma de social listening y atención al cliente con IA que monitorea, analiza y protege tu marca en tiempo real.
