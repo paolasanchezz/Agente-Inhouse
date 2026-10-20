@@ -572,9 +572,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cta-lead{margin-top:18px;font-size:clamp(18px,1.35vw, 19px);line-height:1.7;color:rgba(255,255,255,.82);max-width:62ch;margin-left:auto;margin-right:auto}
   .cta :focus-visible{outline-color:#fff}
   .cta .jotform-embed{position:relative;z-index:2;max-width:600px;margin:38px auto 0;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(10,14,45,.55);text-align:left}
-  .cta-side-actions{margin-top:28px;display:flex;justify-content:center}
-  .cta-mail{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:16px;color:#fff;text-decoration:underline;text-underline-offset:4px}
-  .cta-mail:hover{color:#fff;text-decoration-thickness:2px}
   .jotform-embed iframe{width:100%!important;max-width:100%!important;border:0;display:block}
 
   /* ================= FOOTER ================= */
@@ -935,7 +932,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .kpi p{ font-size:17px; }
   .pillar small{ font-size:14px; }
   .diff-card p{ font-size:17px; }
-  .cta-mail{ font-size:17px; }
   .footer p{ font-size:16px; }
   .wa-modal__head p{ font-size:17px; }
   .wa-modal__wait{ font-size:17px; }
@@ -1088,7 +1084,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="cta__card reveal">
         <h2 id="cta-title">Centralize Chamados e Tickets em uma Única Plataforma</h2>
         <p class="cta-lead">Organize solicitações, distribua tickets e acompanhe toda a operação em tempo real. Agende uma demonstração gratuita.</p>
-        <div class="cta-side-actions"><a href="mailto:comercial@gocxpress.com.br" class="cta-mail">comercial@gocxpress.com.br</a></div>
       </div>
       <div class="jotform-embed reveal" id="jotHost" data-jotform="261045149477663">
         <noscript><iframe src="https://form.jotform.com/261045149477663" title="Agende uma demonstração gratuita da Cxpress" style="width:100%;height:800px;border:0"></iframe></noscript>
@@ -1301,21 +1296,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
-/* Dois embeds do MESMO formulario (secao de contato + modal do botao
-   flutuante). O resizer do jsform acha o iframe pelo id do FORMULARIO, entao
-   as mensagens de altura do modal redimensionariam o embed da secao. Este
-   listener, registrado antes do jsform, aplica a altura no iframe do modal e
-   barra a mensagem ali. */
+/* Embeds do MESMO formulario fora do jsform (modal do botao flutuante e iframe
+   de contingencia da secao). O resizer do jsform acha o iframe pelo id do
+   FORMULARIO, entao as mensagens de altura desses frames redimensionariam o
+   embed da secao. Este listener, registrado antes do jsform, aplica a altura
+   no proprio frame e barra a mensagem ali. */
 (function(){
   window.addEventListener('message', function(e){
     var origem = String(e.origin || '');
     if(origem.indexOf('jotform') === -1 && origem.indexOf('jotfor.ms') === -1) return;
     if(typeof e.data !== 'string') return;
-    var modalFrame = document.querySelector('.wa-modal__frame');
-    if(!modalFrame || e.source !== modalFrame.contentWindow) return;
+    var alvo = null;
+    var frames = document.querySelectorAll('.wa-modal__frame, #jotHost iframe[data-contingencia]');
+    for(var i = 0; i < frames.length; i++){
+      if(e.source === frames[i].contentWindow){ alvo = frames[i]; break; }
+    }
+    if(!alvo) return;
     if(e.data.indexOf('setHeight:') === 0){
       var altura = parseInt(e.data.split(':')[1], 10);
-      if(altura > 0){ modalFrame.style.height = altura + 'px'; }
+      if(altura > 0){ alvo.style.height = altura + 'px'; }
     }
     e.stopImmediatePropagation();
   });
@@ -1351,32 +1350,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sc.type = 'text/javascript';
       sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
       sc.onerror = contingencia;
+      /* O jsform as vezes chega depois do prazo da contingencia (medido: ate
+         9 s) e injeta o proprio iframe ao lado do de reserva: dois formularios
+         empilhados. Ele cria o iframe ao executar, entao no load fica so o dele. */
+      sc.onload = function(){
+        if (!jotHost.querySelector('iframe:not([data-contingencia])')) return;
+        var sobras = jotHost.querySelectorAll('[data-contingencia]');
+        for (var i = 0; i < sobras.length; i++) sobras[i].parentNode.removeChild(sobras[i]);
+      };
       jotHost.appendChild(sc);
       setTimeout(function(){ if (!jotHost.querySelector('iframe')) contingencia(); }, 6000);
     };
     /* Rede de seguranca: se o jsform nao executar (bloqueador, rede), cai para
-       iframe simples e, junto, um link para abrir o formulario em nova aba. */
+       iframe simples e, junto, um link para abrir o formulario em nova aba.
+       Repassa a query da pagina (UTMs, fbclid) como o jsform faz, senao o lead
+       da contingencia chega sem origem. A altura vem por postMessage. */
+    var urlReserva = function(){
+      var qs = location.search ? location.search.slice(1) + '&' : '';
+      return 'https://form.jotform.com/' + jotHost.dataset.jotform + '?' + qs +
+        'parentURL=' + encodeURIComponent(location.href);
+    };
     var contingencia = function(){
       if (jotHost.querySelector('iframe')) return;
-      var ns = jotHost.querySelector('noscript');
-      if (ns && ns.textContent.indexOf('<iframe') > -1) {
-        jotHost.insertAdjacentHTML('beforeend', ns.textContent);
-      } else {
-        var f = document.createElement('iframe');
-        f.src = 'https://form.jotform.com/' + jotHost.dataset.jotform;
-        f.title = 'Formulário de contato';
-        f.style.cssText = 'width:100%;height:900px;border:0;display:block';
-        jotHost.appendChild(f);
-      }
+      var f = document.createElement('iframe');
+      f.src = urlReserva();
+      f.title = 'Agende uma demonstração gratuita da Cxpress';
+      f.setAttribute('data-contingencia', '');
+      f.setAttribute('scrolling', 'no');
+      f.style.cssText = 'width:100%;height:600px;border:0;display:block';
+      jotHost.appendChild(f);
       ultimoRecurso();
     };
     var ultimoRecurso = function(){
       if (jotHost.dataset.recurso) return;
       jotHost.dataset.recurso = '1';
-      var url = 'https://form.jotform.com/' + jotHost.dataset.jotform;
       jotHost.insertAdjacentHTML('beforeend',
-        '<p style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
-        '<a href="' + url + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
+        '<p data-contingencia style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
+        '<a href="' + urlReserva().replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
     };
     var sec = jotHost.closest ? jotHost.closest('section[id]') : null;
     if (sec && sec.id) {
