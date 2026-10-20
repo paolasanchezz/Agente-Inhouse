@@ -1166,6 +1166,36 @@ button.cta-primary:active {
   .mapa-lines .ml-route, .mapa-lines .ml-pin { transition: none; stroke-dashoffset: 0; }
   .mapa-lines .ml-pin { opacity: .85; }
 }
+
+/* --- O que voce vai levar (5 etapas do metodo) --- */
+.levar { padding: var(--section-y) var(--pad-x); background: var(--c-white); }
+.levar__inner { max-width: var(--max-w); margin: 0 auto; text-align: center; }
+.levar__eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--c-purple); margin-bottom: 14px; }
+.levar h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 44px); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; color: var(--c-text); max-width: 720px; margin: 0 auto 18px; }
+.levar__lead { font-size: 18px; line-height: 1.6; color: var(--c-text-2); max-width: 640px; margin: 0 auto 52px; }
+.levar__steps { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; text-align: left; counter-reset: none; position: relative; }
+.levar__steps::before { content: ""; position: absolute; top: 46px; left: 8%; right: 8%; height: 3px; background: var(--gradient-brand); border-radius: 3px; opacity: .35; z-index: 0; }
+.levar__steps li { position: relative; z-index: 1; background: var(--c-white); border: 1px solid var(--c-gray-100); border-radius: var(--radius-lg); padding: 26px 22px 28px; transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.levar__steps li:hover { transform: translateY(-4px); border-color: var(--c-purple); box-shadow: var(--shadow-lg); }
+.levar__num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: var(--c-purple-dark); color: var(--c-white); font-weight: 700; font-size: 15px; margin-bottom: 18px; }
+.levar__steps li:nth-child(even) .levar__num { background: var(--c-orange-dark); color: var(--c-purple-dark); }
+.levar__steps strong { display: block; font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--c-purple-dark); margin-bottom: 8px; }
+.levar__steps li > span:last-child { display: block; font-size: 15.5px; line-height: 1.55; color: var(--c-text-2); }
+.levar__case { max-width: 760px; margin: 40px auto 0; background: var(--c-peach); border-left: 4px solid var(--c-orange); border-radius: 4px 16px 16px 4px; padding: 22px 26px; text-align: left; display: flex; gap: 18px; align-items: center; }
+.levar__case-tag { flex-shrink: 0; background: var(--c-purple-dark); color: var(--c-white); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; }
+.levar__case p { font-size: 17px; line-height: 1.55; color: var(--c-text); margin: 0; }
+.levar__case strong { color: var(--c-orange-dark); }
+.levar__cta { display: block; width: fit-content; margin: 40px auto 0; }
+@media (max-width: 1024px) { .levar__steps { grid-template-columns: repeat(3, 1fr); } .levar__steps::before { display: none; } }
+@media (max-width: 640px) {
+  .levar__steps { grid-template-columns: 1fr; gap: 12px; }
+  .levar__steps li { display: grid; grid-template-columns: 42px 1fr; column-gap: 16px; padding: 20px; }
+  .levar__num { grid-row: span 2; margin-bottom: 0; }
+  .levar__steps strong { font-size: 19px; margin-bottom: 4px; }
+  .levar__lead { font-size: 17px; margin-bottom: 36px; }
+  .levar__case { flex-direction: column; align-items: flex-start; }
+  .levar__steps li > span:last-child { font-size: 16px; }
+}
 </style>
 </head>
 <body>
@@ -1276,18 +1306,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="beneficios" aria-labelledby="beneficios-title">
-    <div class="beneficios__inner">
-      <h2 id="beneficios-title" class="reveal">O que você vai levar deste evento</h2>
-      <ul class="beneficios__list">
-        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span><strong>De busca fria pra programa contínuo</strong><small>Mais de 90% das marcas que o Buzzcreators acompanha já trocaram a busca ativa (outbound) por recrutamento inbound e programas contínuos.</small></span></li>
-        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span><strong>O que mudou no Collab do Instagram</strong><small>De 2 para 4 colaboradores por post, com a Collaborative Media API e o Partnership Ads via API.</small></span></li>
-        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span><strong>As métricas que a API libera</strong><small>Alcance, saves, shares e performance por creator, dos dois lados da parceria, direto pela API.</small></span></li>
-        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span><strong>CPM e preço de creator, sem achismo</strong><small>No Brasil, nano parte de R$ 100/post, micro vai a R$ 2.500, e o CPM de mercado roda entre R$ 15 e R$ 35 (blog Buzzcreators).</small></span></li>
-        <li class="reveal"><span class="check" aria-hidden="true">✓</span><span><strong>Pagamento variável por performance</strong><small>Fixo por embaixador, bônus por views ou comissão por venda: três modelos ligados à performance de cada creator.</small></span></li>
-        <li class="reveal is-destaque"><span class="check" aria-hidden="true">✓</span><span><strong>Case real: Eskala, Employer Branding</strong><small>Engajamento 11x maior que o perfil oficial (6,67% vs. 0,57%), 172 posts de creators em 30 dias e ROI 3x maior que mídia paga.</small></span></li>
-      </ul>
-      <a href="#cta-final" class="cta-primary reveal beneficios__cta">Quero participar</a>
+  <section class="levar" aria-labelledby="levar-title">
+    <div class="levar__inner">
+      <span class="levar__eyebrow reveal">O método do encontro</span>
+      <h2 id="levar-title" class="reveal">O que você vai levar deste encontro</h2>
+      <p class="levar__lead reveal">Um método em 5 etapas para trocar a campanha solta por um sistema com creators que melhora a cada volta. Na tarde do dia 03, a gente abre cada uma delas.</p>
+      <ol class="levar__steps">
+        <li class="reveal"><span class="levar__num">01</span><strong>Atrair</strong><span>Onde estão os creators que já falam bem da sua marca, e como chegar até eles sem abordar um por um.</span></li>
+        <li class="reveal"><span class="levar__num">02</span><strong>Avaliar</strong><span>O critério que separa quem vende de quem só tem seguidor.</span></li>
+        <li class="reveal"><span class="levar__num">03</span><strong>Ativar</strong><span>O que oferecer para o creator querer trabalhar com você, e por que o mesmo roteiro para todo mundo trava o resultado.</span></li>
+        <li class="reveal"><span class="levar__num">04</span><strong>Amplificar</strong><span>Como descobrir quais conteúdos merecem verba de mídia, sem adivinhar criativo.</span></li>
+        <li class="reveal"><span class="levar__num">05</span><strong>Aprender</strong><span>Como guardar o que funcionou para a próxima campanha não começar do zero.</span></li>
+      </ol>
+      <div class="levar__case reveal">
+        <span class="levar__case-tag">Case real</span>
+        <p>Como uma rede de varejo de moda transformou os próprios colaboradores em creators e vendeu <strong>3x mais por cupom</strong> do que com a mídia paga tradicional.</p>
+      </div>
+      <a href="#cta-final" class="cta-primary reveal levar__cta">Quero participar</a>
     </div>
   </section>
 
