@@ -60,6 +60,11 @@ body.com-fechar .close{display:inline-flex}
 /* O radar vira imagem de fundo: maior que a tela, por tras de todo o texto, com opacidade baixa para nao atrapalhar a leitura */
 .attract .radar{position:absolute;left:50%;top:50%;width:min(150vmin,2200px);max-width:none;transform:translate(-50%,-50%);opacity:.3;z-index:0;pointer-events:none}
 .attract .radar i{width:1.5rem;height:1.5rem}
+/* Mesmo radar da tela inicial como fundo das etapas do formulario: fixo, maior que a tela, mais apagado para nao competir com os campos */
+.fundo-radar{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.fundo-radar .radar{position:absolute;left:50%;top:50%;width:min(150vmin,2200px);max-width:none;transform:translate(-50%,-50%);opacity:.22}
+.fundo-radar .radar i{width:1.5rem;height:1.5rem}
+.screen .step{position:relative;z-index:1}
 .radar{position:relative;width:min(100%,46vmin);aspect-ratio:1;justify-self:center;border-radius:50%;
   background:repeating-radial-gradient(circle,transparent 0 12.4%,rgba(255,255,255,.10) 12.5% 12.9%),radial-gradient(circle,rgba(235,124,46,.14),transparent 70%);border:2px solid rgba(255,255,255,.18)}
 .radar::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(235,124,46,0) 0deg,rgba(235,124,46,.05) 250deg,rgba(222,36,81,.62) 360deg);animation:varre 4.2s linear infinite}
