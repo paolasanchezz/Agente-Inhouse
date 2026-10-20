@@ -94,9 +94,9 @@ relevância (descarta "Natura 2000", "in natura"; sem IA, mantém todos) -> esco
   continua servindo a mesma aplicação em paralelo.
 - **Domínio anterior mudou nesta sessão**: se um deploy futuro sair com outro domínio ainda
   (custom domain diferente ou hash), atualizar os mesmos campos acima em `index.html`.
-- **OG image**: `assets/og-buzz-radar.png` (1200×630) ainda não foi gerada — pendência de
-  GUIDELINES §18. Sem ela, preview no WhatsApp/LinkedIn cai num fallback genérico. Não bloqueia a
-  demo ao vivo, mas gerar antes de compartilhar o link amplamente.
+- **OG image**: `assets/og-buzz-compass.png` (1200x630, 174 KB), gerada em 2026-10-20 a partir da tela inicial do totem e
+  referenciada em `index.html` (`og:image` e `twitter:image`). Para regerar depois de mudar a tela inicial, capture o
+  `/totem` em 1920x1008 e reduza para 1200x630.
 - **E-mail comercial**: `resultado.html` usa `comercial@buzzmonitor.com.br` no CTA de contato,
   seguindo o padrão `comercial@{dominio}.com.br` usado por Cxpress/Buzzcreators em outras LPs —
   **não confirmado que essa caixa existe pra Buzzmonitor**. Verificar antes de divulgar.
@@ -206,14 +206,16 @@ tela vertical e horizontal. Teclado: o do sistema; os formulários rolam quando 
 **Pendências do totem (decisão ou ação humana):**
 
 - Resend: chave e domínio remetente verificado (ou usar o webhook/AC como destino do lead).
-- Texto "Fale com a equipe da Buzzmonitor aqui no evento" no fim do resultado: confirmar se há equipe no local.
-- Aviso de consentimento da tela de dados ("concorda em receber o resultado por e-mail e contato da Buzzmonitor"):
-  confirmar com quem cuida de LGPD.
-- Qualquer pessoa pode chamar `/api/totem` com marcas aleatórias (cada chamada gasta IA e a API guest). Se for divulgar
-  o link, criar regra de limite de requisições no Firewall da Vercel.
+- ~~Texto "Fale com a equipe da Buzzmonitor aqui no evento"~~ e ~~aviso de consentimento da tela de dados~~ ("Ao
+  continuar, você concorda em receber o resultado por e-mail e contato da Buzzmonitor sobre o Buzz Compass"):
+  **confirmados em 2026-10-20** (os textos que estão hoje em `totem.html` e `assets/totem-app.js`). Se alguém mudar a
+  redação, mudar nos dois arquivos e avisar quem cuida de LGPD.
+- **Sem limite de chamadas, de propósito (decisão de 2026-10-20):** a meta é que o maior número possível de pessoas faça o
+  Compass. O que existe é só a proteção do cache: a URL de análise é normalizada (`api/totem.js`), então o mesmo pedido
+  não gera análise nova. Cada marca nova gasta IA e consultas à Trends; acompanhar o custo durante o evento.
 - A chave guest da Trends e o limite de uso valem para o totem também (ver pendência acima).
-- Testar a leitura do QR code com um celular real e a análise com IA em produção antes do evento (localmente só o modo
-  reserva foi exercitado; a IA foi testada com resposta simulada).
+- Testar no totem real (1920x1080) antes do evento: teclado na tela (cobre cerca de 40% da altura), toque dentro dos
+  quadros de posts do Instagram, Facebook e X, e leitura do QR code com um celular. A análise com IA já roda em produção.
 
 ## Logos
 
