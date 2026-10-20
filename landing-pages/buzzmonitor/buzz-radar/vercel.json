@@ -1,0 +1,44 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {
+    "api/totem.js": { "maxDuration": 60 },
+    "api/totem-lead.js": { "maxDuration": 30 }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.jotform.com https://*.jotfor.ms https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://analytics.tiktok.com https://snap.licdn.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' https:; frame-src https://*.jotform.com https://*.jotfor.ms https://td.doubleclick.net https://www.google.com https://www.instagram.com https://www.facebook.com https://platform.twitter.com; connect-src 'self' https://*.jotform.com https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net https://analytics.tiktok.com https://ads.tiktok.com https://analytics.google.com https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.google.com.br https://px.ads.linkedin.com https://px4.ads.linkedin.com https://www.linkedin.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://analytics-ipv6.tiktokw.us; form-action 'self' https://*.jotform.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests"
+        }
+      ]
+    }
+  ]
+}

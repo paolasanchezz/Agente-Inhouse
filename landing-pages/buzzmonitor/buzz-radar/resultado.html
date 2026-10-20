@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WFJVK858');</script>
+  <!-- End Google Tag Manager -->
+  <title>Seu Compass de Mercado | Buzzmonitor</title>
+  <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap');
+    :root{--purple:#390155;--orange:#EB7C2E;--teal:#0E9D9B;--pink:#DE2451;--yellow:#FCBD4F;--n900:#1a1a1a;--n700:#4a4a4a;--n400:#888;--n200:#e8e8e8;--n100:#f5f5f5;--n0:#fff;--f-head:'League Spartan',sans-serif;--f-body:'Lato',sans-serif;--r-sm:6px;--r-md:12px;--r-lg:16px;--r-full:9999px;--sh:0 4px 20px rgba(0,0,0,.08);--sh-lg:0 12px 40px rgba(0,0,0,.14)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--f-body);color:var(--n900);background:var(--n100);line-height:1.6}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    *:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+    .container{max-width:980px;margin:0 auto;padding:0 24px}
+    h1,h2,h3{font-family:var(--f-head);line-height:1.15}
+    h2{font-size:clamp(22px,3vw,32px);font-weight:800}
+    h3{font-size:18px;font-weight:700}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:var(--r-full);font-size:15px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s}
+    .btn-primary{background:var(--orange);color:#fff}
+    .btn-primary:hover{background:#d4691a}
+    .btn-ghost{background:transparent;border-color:#fff;color:#fff}
+    .btn-ghost:hover{background:#fff;color:var(--purple)}
+
+    .top{background:var(--purple);color:#fff;padding:20px 0}
+    .top__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .top img{height:36px;filter:brightness(0) invert(1)}
+    .top a.home{font-size:13px;color:#e8d5f5}
+
+    .head{background:linear-gradient(135deg,var(--purple),#5a0d7a);color:#fff;padding:52px 0 64px;text-align:center}
+    .head .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(255,255,255,.15);padding:6px 16px;border-radius:var(--r-full);margin-bottom:18px}
+    .head h1{font-size:clamp(24px,3.6vw,38px);font-weight:900;max-width:760px;margin:0 auto 12px}
+    .head p{color:#e8d5f5;max-width:640px;margin:0 auto}
+
+    .score-wrap{max-width:900px;margin:-40px auto 0;padding:0 24px}
+    .score-card{background:#fff;border-radius:20px;box-shadow:var(--sh-lg);padding:36px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center}
+    @media(max-width:680px){.score-card{grid-template-columns:1fr;text-align:center}}
+    .ring-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .ring-label{font-size:13px;font-weight:700;color:var(--n700);text-transform:uppercase;letter-spacing:.04em}
+    .subscores{display:flex;flex-direction:column;gap:14px}
+    .subscore-row{display:flex;align-items:center;gap:12px}
+    .subscore-row .label{flex:0 0 200px;font-size:14px;font-weight:700;color:var(--n900)}
+    .subscore-row .bar{flex:1;height:10px;background:var(--n200);border-radius:var(--r-full);overflow:hidden}
+    .subscore-row .bar__fill{height:100%;border-radius:var(--r-full)}
+    .subscore-row .val{flex:0 0 34px;text-align:right;font-size:13px;font-weight:700;color:var(--n700)}
+    @media(max-width:680px){.subscore-row{flex-direction:column;gap:6px}.subscore-row .label{flex:none}.subscore-row .bar{width:100%}}
+
+    section.block{padding:56px 0}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    @media(max-width:760px){.cards{grid-template-columns:1fr}}
+    .card{background:#fff;border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh);border-left:6px solid var(--n200)}
+    .card--oportunidade{border-color:var(--teal)}
+    .card--risco{border-color:var(--pink)}
+    .card--tendencia{border-color:var(--yellow)}
+    .card--competitivo{border-color:var(--purple);position:relative;overflow:hidden}
+    .card__tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .card--oportunidade .card__tag{color:var(--teal)}
+    .card--risco .card__tag{color:var(--pink)}
+    .card--tendencia .card__tag{color:#c98f1f}
+    .card--competitivo .card__tag{color:var(--purple)}
+    .card h3{margin-bottom:8px}
+    .card p{color:var(--n700);margin:0}
+    .card--locked-body{filter:blur(7px);user-select:none;pointer-events:none}
+    .card--competitivo{padding:0}
+    .card--competitivo .lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;background:rgba(255,255,255,.55)}
+    .card--competitivo .lock-inner{padding:26px}
+    .lock-overlay .lock-icon{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+    .lock-overlay p{max-width:34ch;font-weight:700;color:var(--n900);margin:0}
+
+    .fraction-note{text-align:center;color:var(--n700);font-size:15px;margin:30px 0 0}
+    .fraction-note strong{color:var(--n900)}
+
+    .charts{background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh);padding:30px;margin-top:36px}
+    .charts h2{margin-bottom:20px;font-size:clamp(20px,2.4vw,28px)}
+    .chart-block{margin-bottom:48px}
+    .chart-block:last-child{margin-bottom:0}
+    .chart-block__title{font-size:16px;font-weight:800;color:var(--n900);margin-bottom:12px}
+    .pie-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    @media(max-width:600px){.pie-row{grid-template-columns:1fr}}
+    .pie-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .pie-legend{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--n700)}
+    .pie-legend span.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+    .pie-legend strong{color:var(--n900)}
+    .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .bar-row .label{flex:0 0 130px;font-size:13px;color:var(--n700)}
+    .bar-row .label strong{color:var(--n900);font-weight:800}
+    .bar-row .track{flex:1;height:14px;background:var(--n200);border-radius:var(--r-full);overflow:hidden}
+    .bar-row .track__fill{display:block;height:100%;background:var(--purple);border-radius:var(--r-full)}
+
+    .word-cloud{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:2px 16px;padding:20px 12px;text-align:center;line-height:.82}
+    .word-cloud__term{font-family:var(--f-head);font-weight:700;white-space:nowrap;display:inline-block;color:var(--purple);transition:transform .2s}
+    .word-cloud__term:hover{transform:scale(1.1)}
+
+    .posts-real{display:flex;flex-direction:column;gap:14px}
+    .post-card{background:var(--n100);border-radius:var(--r-md);padding:18px 20px;display:flex;gap:14px}
+    .post-card__rank{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+    .post-card__body{flex:1;min-width:0}
+    .post-card__author{font-weight:800;color:var(--n900);font-size:14px}
+    .post-card__date{font-size:12px;color:var(--n400);margin-bottom:8px}
+    .post-card p{margin:0 0 8px;font-size:14px;color:var(--n900);font-style:italic}
+    .post-card a{font-size:12px;font-weight:700;color:var(--purple);white-space:nowrap;display:inline-block;margin-bottom:14px}
+    .post-card__stats{display:flex;gap:22px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--n200)}
+    .post-card__stat{display:flex;flex-direction:column;gap:2px}
+    .post-card__stat .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--n400)}
+    .post-card__stat .val{font-size:15px;font-weight:800;color:var(--n900)}
+    .influencer-list{display:flex;flex-wrap:wrap;gap:10px}
+    .influencer-chip{background:var(--n100);border-radius:var(--r-full);padding:8px 16px;font-size:13px;font-weight:700;color:var(--n900);display:flex;align-items:center;gap:6px}
+    .influencer-chip .rede{color:var(--n400);font-weight:400;text-transform:capitalize}
+
+    .trends-link{background:var(--n100);border-radius:var(--r-lg);padding:22px 26px;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .trends-link p{margin:0;font-size:14px;color:var(--n700)}
+    .trends-link strong{color:var(--n900)}
+    .trends-link__actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    .meta-note{text-align:center;font-size:13px;color:var(--n400);margin-top:18px}
+
+    .cta{background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;text-align:center;padding:64px 0}
+    .cta h2{color:#fff;margin-bottom:12px}
+    .cta p{color:rgba(255,255,255,.92);margin-bottom:26px;max-width:520px;margin-left:auto;margin-right:auto}
+
+    .cta-form-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-lg);padding:36px;max-width:640px;margin:36px auto 0;text-align:center}
+    .cta-form-card h3{color:var(--n900);margin-bottom:16px}
+    .price-badge{display:inline-flex;align-items:center;gap:6px;background:var(--n100);color:var(--purple);font-weight:800;font-size:14px;padding:9px 20px;border-radius:var(--r-full);margin-bottom:18px}
+    .cta-form-card .jotform-embed{text-align:left}
+    .jotform-embed iframe{width:100% !important;max-width:100% !important;border:0;display:block}
+
+    #errorState{display:none;padding:100px 24px;text-align:center}
+    #errorState h1{font-size:24px;margin-bottom:14px}
+    #resultRoot{display:none}
+
+    footer{background:var(--n900);color:#999;padding:36px 0;text-align:center;font-size:13px}
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFJVK858" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="errorState">
+    <h1>Não encontramos esse relatório</h1>
+    <p>O link pode estar incompleto. <a href="/" style="color:var(--purple);font-weight:700">Rode o seu Compass novamente →</a></p>
+  </div>
+
+  <div id="resultRoot">
+    <div class="top">
+      <div class="container top__inner">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor">
+        <a class="home" href="/">buzzmonitor.com/buzz-radar</a>
+      </div>
+    </div>
+
+    <header class="head">
+      <div class="container">
+        <span class="eyebrow">Seu Compass de Mercado</span>
+        <h1 id="saudacao">Diagnóstico gerado</h1>
+        <p id="subhead"></p>
+      </div>
+    </header>
+
+    <div class="score-wrap">
+      <div class="score-card">
+        <div class="ring-wrap">
+          <svg id="scoreRing" width="180" height="180" viewBox="0 0 180 180"></svg>
+          <span class="ring-label">Compass Score</span>
+        </div>
+        <div class="subscores" id="subscores"></div>
+      </div>
+    </div>
+
+    <section class="block">
+      <div class="container">
+        <div class="cards" id="cardsOpen"></div>
+        <div class="cards" style="margin-top:22px">
+          <div class="charts" style="grid-column:1/-1">
+            <h2>Os números por trás do seu Compass</h2>
+            <div class="pie-row">
+              <div class="chart-block">
+                <div class="chart-block__title">Sentimento das conversas (30 dias)</div>
+                <div class="pie-wrap">
+                  <svg id="chartSentimento" width="150" height="150" viewBox="0 0 150 150"></svg>
+                  <div class="pie-legend" id="chartSentimentoLegend"></div>
+                </div>
+              </div>
+              <div class="chart-block">
+                <div class="chart-block__title">Gênero de quem comenta</div>
+                <div class="pie-wrap">
+                  <svg id="chartGenero" width="150" height="150" viewBox="0 0 150 150"></svg>
+                  <div class="pie-legend" id="chartGeneroLegend"></div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-block">
+              <div class="chart-block__title">Onde as conversas acontecem</div>
+              <div id="chartCanais"></div>
+            </div>
+            <div class="chart-block">
+              <div class="chart-block__title">Volume de menções, dia a dia</div>
+              <svg id="chartSerie" width="100%" height="90" viewBox="0 0 600 90" preserveAspectRatio="none"></svg>
+            </div>
+            <div class="chart-block">
+              <div class="chart-block__title">Do que o mercado está falando</div>
+              <div class="word-cloud" id="chartTermos"></div>
+            </div>
+          </div>
+          <div class="charts" id="provaCard" style="grid-column:1/-1;display:none">
+            <h3>Quem está falando sobre isso</h3>
+            <div class="chart-block">
+              <div class="chart-block__title">Posts reais dos últimos 30 dias</div>
+              <div class="posts-real" id="chartPosts"></div>
+            </div>
+            <div class="chart-block" id="influencersBlock" style="display:none">
+              <div class="chart-block__title">Vozes influentes no nicho</div>
+              <div class="influencer-list" id="chartInfluencers"></div>
+            </div>
+          </div>
+          <div class="trends-link" style="grid-column:1/-1">
+            <p>Todo esse dado vem do <strong>Buzzmonitor Trends</strong>, a mesma ferramenta que roda pra clientes reais.</p>
+            <div class="trends-link__actions">
+              <button class="btn btn-ghost" style="border-color:var(--purple);color:var(--purple)" id="copyLinkBtn" type="button">Copiar link do meu Compass</button>
+              <a class="btn btn-ghost" style="border-color:var(--purple);color:var(--purple)" href="https://trends.app.buzzmonitor.com.br/" target="_blank" rel="noopener">Rodar você mesmo ↗</a>
+            </div>
+          </div>
+        </div>
+        <p class="fraction-note" id="fractionNote"></p>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="container">
+        <h2>Quer o Compass completo, com monitoramento da marca e concorrentes?</h2>
+        <p>Um especialista da Buzzmonitor te mostra o restante do diagnóstico e como aplicar isso na sua estratégia.</p>
+
+        <div class="cta-form-card">
+          <span class="price-badge">Planos a partir de R$ 1.790</span>
+          <h3>Solicite uma proposta personalizada</h3>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/252995108251662"></script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">&copy; 2026 Buzzmonitor. Todos os direitos reservados.</div>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      function b64urlDecode(str) {
+        var b64 = str.replace(/-/g, '+').replace(/_/g, '/');
+        while (b64.length % 4) b64 += '=';
+        return decodeURIComponent(escape(atob(b64)));
+      }
+
+      var params = new URLSearchParams(window.location.search);
+      var raw = params.get('d');
+      var data = null;
+      if (raw) {
+        try { data = JSON.parse(b64urlDecode(raw)); } catch (_) { data = null; }
+      }
+
+      if (!data) {
+        document.getElementById('errorState').style.display = 'block';
+        return;
+      }
+      document.getElementById('resultRoot').style.display = 'block';
+
+      // Dado externo (posts/termos/influenciadores vem de redes sociais reais, nao confiavel):
+      // nunca inserir via innerHTML sem escapar.
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+      function safeHref(url) {
+        return /^https?:\/\//i.test(url || '') ? esc(url) : '#';
+      }
+
+      var scores = data.scores || {};
+      var narrativa = data.narrativa || null;
+      var charts = data.charts || {};
+      var meta = data.meta || {};
+      var prova = data.prova || {};
+
+      // Saudacao / cabecalho: template fixo, nao vem mais da IA (so precisa do primeiro nome).
+      var primeiroNome = (data.nome || '').trim().split(/\s+/)[0] || '';
+      document.getElementById('saudacao').textContent = primeiroNome
+        ? ('Olá, ' + primeiroNome + '! Aqui estão os insights do Buzz Compass para o seu segmento.')
+        : 'Aqui estão os insights do Buzz Compass para o seu segmento.';
+      document.getElementById('subhead').textContent = 'Segmento: ' + (data.segmentoLabel || '') + ' · Baseado em conversas reais dos últimos 30 dias.';
+      document.title = 'Seu Compass de Mercado: ' + (data.empresa || '') + ' | Buzzmonitor';
+
+      // Radar score ring
+      (function renderRing() {
+        var val = Math.max(0, Math.min(100, scores.radar_score || 0));
+        var r = 78, cx = 90, cy = 90;
+        var circumference = 2 * Math.PI * r;
+        var offset = circumference * (1 - val / 100);
+        var color = val >= 70 ? 'var(--teal)'.replace('var(--teal)', '#0E9D9B') : (val >= 40 ? '#FCBD4F' : '#DE2451');
+        var svg = document.getElementById('scoreRing');
+        svg.innerHTML =
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="#e8e8e8" stroke-width="16"/>' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="16" ' +
+          'stroke-linecap="round" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '" ' +
+          'transform="rotate(-90 ' + cx + ' ' + cy + ')"/>' +
+          '<text x="' + cx + '" y="' + (cy + 10) + '" text-anchor="middle" font-family="League Spartan, sans-serif" font-size="40" font-weight="900" fill="#1a1a1a">' + val + '</text>';
+      })();
+
+      // Subscores
+      (function renderSubscores() {
+        var items = [
+          { label: 'Volume do mercado', val: scores.presenca, color: '#390155' },
+          { label: 'Sentimento', val: scores.sentimento, color: '#0E9D9B' },
+          { label: 'Ritmo de crescimento', val: scores.oportunidades, color: '#EB7C2E' },
+          { label: 'Diversidade de temas', val: scores.diversidade_temas, color: '#DE2451' },
+        ];
+        var wrap = document.getElementById('subscores');
+        wrap.innerHTML = items.map(function(it) {
+          var v = Math.max(0, Math.min(100, it.val || 0));
+          return '<div class="subscore-row"><span class="label">' + it.label + '</span>' +
+            '<span class="bar"><span class="bar__fill" style="width:' + v + '%;background:' + it.color + '"></span></span>' +
+            '<span class="val">' + v + '</span></div>';
+        }).join('');
+      })();
+
+      // Cards abertos
+      (function renderCards() {
+        var fallback = function(titulo, texto) { return { titulo: titulo, texto: texto }; };
+        var oportunidade = (narrativa && narrativa.oportunidade) || fallback('Oportunidade detectada', 'Seu segmento somou ' + (meta.volume_total_30d || 0) + ' menções reais nos últimos 30 dias. Ainda não temos a leitura em texto, mas o volume está aqui embaixo, nos números.');
+        var risco = (narrativa && narrativa.risco) || fallback('Ponto de atenção', 'O sentimento negativo nas conversas do seu segmento merece acompanhamento direto. Veja o gráfico de sentimento abaixo.');
+        var tendencia = (narrativa && narrativa.tendencia_emergente) || fallback('Tendência em observação', 'A série diária de menções abaixo mostra como o volume se moveu nos últimos 30 dias.');
+
+        var cardsHtml = [
+          { css: 'oportunidade', icon: '🟢', tag: 'Oportunidade', d: oportunidade },
+          { css: 'risco', icon: '🔴', tag: 'Risco', d: risco },
+          { css: 'tendencia', icon: '🔥', tag: 'Tendência emergente', d: tendencia },
+        ].map(function(c) {
+          return '<div class="card card--' + c.css + '"><span class="card__tag">' + c.icon + ' ' + c.tag + '</span>' +
+            '<h3>' + esc(c.d.titulo) + '</h3><p>' + esc(c.d.texto) + '</p></div>';
+        }).join('');
+        cardsHtml += '<div class="card card--competitivo">' +
+          '<div class="card--locked-body lock-inner" id="cardLocked"></div>' +
+          '<div class="lock-overlay">' +
+          '<span class="lock-icon" aria-hidden="true">&#128274;</span>' +
+          '<p>Isso é só uma fração do que a Buzzmonitor pode fazer. Monitore o que falam da marca, seus concorrentes e tenha histórico estendido.</p>' +
+          '<a href="#cta" class="btn btn-primary" style="padding:11px 22px;font-size:14px">Desbloquear Compass completo</a>' +
+          '</div></div>';
+        document.getElementById('cardsOpen').innerHTML = cardsHtml;
+
+        var competitivo = (narrativa && narrativa.espaco_competitivo) || fallback('Espaço competitivo', 'A leitura completa do espaço competitivo do seu segmento fica disponível na conversa com um especialista.');
+        document.getElementById('cardLocked').innerHTML = '<span class="card__tag">🟡 Espaço competitivo</span><h3>' + esc(competitivo.titulo) + '</h3><p>' + esc(competitivo.texto) + '</p>';
+
+        var fractionEl = document.getElementById('fractionNote');
+        fractionEl.innerHTML = 'Isso é apenas uma fração do que a Buzzmonitor encontrou sobre <strong>' + esc(data.segmentoLabel || 'o seu segmento') + '</strong>.' +
+          (meta.dados_parciais ? ' Alguns dados desta consulta vieram incompletos: recomendamos rodar novamente ou falar com um especialista.' : '');
+      })();
+
+      // Grafico de sentimento (barra empilhada)
+      // Grafico de pizza reutilizavel (sentimento e genero usam a mesma formatacao)
+      function polarToCartesian(cx, cy, r, angleDeg) {
+        var rad = (angleDeg - 90) * Math.PI / 180;
+        return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+      }
+      function describeSlice(cx, cy, r, startAngle, endAngle) {
+        var start = polarToCartesian(cx, cy, r, endAngle);
+        var end = polarToCartesian(cx, cy, r, startAngle);
+        var largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+        return ['M', cx, cy, 'L', start.x, start.y, 'A', r, r, 0, largeArcFlag, 0, end.x, end.y, 'Z'].join(' ');
+      }
+      function renderPie(svgId, legendId, segmentos) {
+        var svg = document.getElementById(svgId);
+        var legend = document.getElementById(legendId);
+        var total = segmentos.reduce(function(s, sg) { return s + Math.max(0, sg.val || 0); }, 0);
+        if (total <= 0) {
+          svg.innerHTML = '';
+          legend.innerHTML = '<p style="color:var(--n400);font-size:13px">Sem dados suficientes.</p>';
+          return;
+        }
+        var comValor = segmentos.filter(function(sg) { return (sg.val || 0) > 0; });
+        if (comValor.length === 1) {
+          svg.innerHTML = '<circle cx="75" cy="75" r="70" fill="' + comValor[0].color + '"></circle>';
+          legend.innerHTML = '<span><span class="dot" style="background:' + comValor[0].color + '"></span>' + esc(comValor[0].label) + ' <strong>100%</strong></span>';
+          return;
+        }
+        var angulo = 0, paths = '', legendHtml = '';
+        segmentos.forEach(function(sg) {
+          var pct = (sg.val || 0) / total * 100;
+          if (pct <= 0) return;
+          var fim = angulo + pct * 3.6;
+          paths += '<path d="' + describeSlice(75, 75, 70, angulo, fim) + '" fill="' + sg.color + '"></path>';
+          var pctFmt = (Math.round(pct * 10) / 10).toString().replace(/\.0$/, '');
+          legendHtml += '<span><span class="dot" style="background:' + sg.color + '"></span>' + esc(sg.label) + ' <strong>' + pctFmt + '%</strong></span>';
+          angulo = fim;
+        });
+        svg.innerHTML = paths;
+        legend.innerHTML = legendHtml;
+      }
+
+      (function renderSentimento() {
+        var s = charts.sentimento || { positivos: 0, neutros: 0, negativos: 0 };
+        renderPie('chartSentimento', 'chartSentimentoLegend', [
+          { label: 'Positivo', val: s.positivos, color: '#0E9D9B' },
+          { label: 'Neutro', val: s.neutros, color: '#c9c9c9' },
+          { label: 'Negativo', val: s.negativos, color: '#DE2451' },
+        ]);
+      })();
+
+      (function renderGenero() {
+        var g = charts.genero || [];
+        var achar = function(label) { return (g.find(function(d) { return d.label === label; }) || {}).value || 0; };
+        // Desconsidera "nao identificado" de proposito: e maioria esmagadora dos dados (perfis
+        // sem genero inferido) e nao ajuda a leitura. Feminino/Masculino somam 100% entre si.
+        renderPie('chartGenero', 'chartGeneroLegend', [
+          { label: 'Feminino', val: achar('FEMALE'), color: '#DE2451' },
+          { label: 'Masculino', val: achar('MALE'), color: '#390155' },
+        ]);
+      })();
+
+      // Grafico de canais (barras horizontais, porcentagem antes do nome do canal)
+      (function renderCanais() {
+        var canais = charts.canais || [];
+        var nomeCanal = { misc: 'Sites', instagram: 'Instagram', facebook: 'Facebook', twitter: 'Twitter' };
+        var total = Math.max(1, canais.reduce(function(s, c) { return s + (c.value || 0); }, 0));
+        var max = Math.max(1, Math.max.apply(null, canais.map(function(c) { return c.value || 0; }).concat([0])));
+        var wrap = document.getElementById('chartCanais');
+        wrap.innerHTML = canais.map(function(c) {
+          var pctBarra = Math.round(((c.value || 0) / max) * 100);
+          var pctTotal = Math.round(((c.value || 0) / total) * 100);
+          var nome = nomeCanal[c.label] || c.label;
+          return '<div class="bar-row"><span class="label"><strong>' + pctTotal + '%</strong> ' + esc(nome) + '</span>' +
+            '<span class="track"><span class="track__fill" style="width:' + pctBarra + '%"></span></span></div>';
+        }).join('') || '<p style="color:var(--n400);font-size:13px">Sem dados de canal para este segmento.</p>';
+      })();
+
+      // Serie diaria (sparkline em SVG)
+      (function renderSerie() {
+        var serie = (charts.serie_diaria || []).slice();
+        var svg = document.getElementById('chartSerie');
+        if (serie.length < 2) { svg.innerHTML = ''; return; }
+        var values = serie.map(function(d) { return d.value || 0; });
+        var max = Math.max.apply(null, values.concat([1]));
+        var w = 600, h = 90, pad = 6;
+        var stepX = (w - pad * 2) / (values.length - 1);
+        var points = values.map(function(v, i) {
+          var x = pad + i * stepX;
+          var y = h - pad - (v / max) * (h - pad * 2);
+          return x + ',' + y;
+        });
+        var linePath = 'M' + points.join(' L');
+        var areaPath = linePath + ' L' + (pad + (values.length - 1) * stepX) + ',' + (h - pad) + ' L' + pad + ',' + (h - pad) + ' Z';
+        svg.innerHTML =
+          '<path d="' + areaPath + '" fill="#0E9D9B" opacity="0.12"></path>' +
+          '<path d="' + linePath + '" fill="none" stroke="#0E9D9B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>';
+      })();
+
+      // Nuvem de palavras (termos mais citados no segmento, mesmo dado do Buzzmonitor Trends)
+      (function renderTermos() {
+        var termos = (charts.termos || []).slice(0, 16);
+        var wrap = document.getElementById('chartTermos');
+        if (!termos.length) { wrap.innerHTML = '<p style="color:var(--n400);font-size:13px">Sem termos suficientes para este segmento.</p>'; return; }
+        // Mantem a ordem por ranking (maior primeiro): com justify-content:center, os termos
+        // maiores tendem a ficar centralizados no topo, igual a referencia visual do Trends.
+        var ordenados = termos.slice().sort(function(a, b) { return (b.value || 0) - (a.value || 0); });
+        var max = Math.max.apply(null, ordenados.map(function(t) { return t.value || 0; }).concat([1]));
+        var min = Math.min.apply(null, ordenados.map(function(t) { return t.value || 0; }).concat([max]));
+        wrap.innerHTML = ordenados.map(function(t) {
+          var ratio = max === min ? 1 : (t.value - min) / (max - min);
+          var size = Math.round(15 + ratio * 55);
+          return '<span class="word-cloud__term" style="font-size:' + size + 'px" title="' + t.value + ' menções">' + esc(t.label) + '</span>';
+        }).join('');
+      })();
+
+      // Prova social: posts reais + influenciadores do nicho
+      (function renderProva() {
+        var posts = prova.posts || [];
+        var influenciadores = prova.influenciadores || [];
+        if (!posts.length && !influenciadores.length) return;
+        document.getElementById('provaCard').style.display = 'block';
+
+        function formatDataPost(raw) {
+          if (!raw || String(raw).length < 14) return '';
+          var s = String(raw);
+          return s.slice(8, 10) + ':' + s.slice(10, 12) + ' ' + s.slice(6, 8) + '/' + s.slice(4, 6) + '/' + s.slice(0, 4);
+        }
+        function formatNumeroCompacto(n) {
+          n = n || 0;
+          if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0', '') + 'M';
+          if (n >= 1000) return (n / 1000).toFixed(1).replace('.0', '') + 'K';
+          return String(n);
+        }
+        var postsWrap = document.getElementById('chartPosts');
+        // Mesmo formato do "Top posts" do Buzzmonitor Trends: numerado, autor, data,
+        // texto e a linha de estatisticas (Interacoes/Curtidas/Comentarios/Compartilhamento).
+        postsWrap.innerHTML = posts.length ? posts.map(function(p, i) {
+          var link = p.link ? '<a href="' + safeHref(p.link) + '" target="_blank" rel="noopener">Ver post original ↗</a>' : '';
+          return '<div class="post-card">' +
+            '<div class="post-card__rank">' + (i + 1) + '</div>' +
+            '<div class="post-card__body">' +
+            '<div class="post-card__author">' + esc(p.autor || 'Perfil não identificado') + '</div>' +
+            '<div class="post-card__date">' + esc(formatDataPost(p.data)) + '</div>' +
+            '<p>"' + esc(p.texto) + '"</p>' +
+            link +
+            '<div class="post-card__stats">' +
+            '<div class="post-card__stat"><span class="label">Interações</span><span class="val">' + formatNumeroCompacto(p.interacoes) + '</span></div>' +
+            '<div class="post-card__stat"><span class="label">Curtidas</span><span class="val">' + formatNumeroCompacto(p.curtidas) + '</span></div>' +
+            '<div class="post-card__stat"><span class="label">Comentários</span><span class="val">' + formatNumeroCompacto(p.comentarios) + '</span></div>' +
+            '<div class="post-card__stat"><span class="label">Compartilhamento</span><span class="val">' + formatNumeroCompacto(p.compartilhamentos) + '</span></div>' +
+            '</div>' +
+            '</div></div>';
+        }).join('') : '<p style="color:var(--n400);font-size:13px">Sem posts em destaque para este segmento.</p>';
+
+        if (influenciadores.length) {
+          document.getElementById('influencersBlock').style.display = 'block';
+          function formatSeguidores(n) {
+            if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0', '') + 'M';
+            if (n >= 1000) return (n / 1000).toFixed(1).replace('.0', '') + 'mil';
+            return String(n);
+          }
+          document.getElementById('chartInfluencers').innerHTML = influenciadores.map(function(inf) {
+            return '<span class="influencer-chip">' + esc(inf.nome) + (inf.seguidores ? ' · ' + formatSeguidores(inf.seguidores) : '') + ' <span class="rede">' + esc(inf.rede || '') + '</span></span>';
+          }).join('');
+        }
+      })();
+
+      // Copiar link
+      document.getElementById('copyLinkBtn').addEventListener('click', function() {
+        var btn = this;
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var original = btn.textContent;
+          btn.textContent = 'Link copiado!';
+          setTimeout(function() { btn.textContent = original; }, 2200);
+        }).catch(function() {});
+      });
+    })();
+  </script>
+</body>
+</html>
