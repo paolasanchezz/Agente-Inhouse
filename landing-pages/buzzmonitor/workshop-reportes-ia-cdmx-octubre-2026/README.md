@@ -32,7 +32,7 @@ Lorena Rodríguez e María José Ramírez Rincón (Business Development Represen
 
 ## v8 (2026-10-13) — data e local confirmados
 
-Quarta 28 de outubro, 9:30 h, Hotel Fontana Reforma (Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, CDMX). Aplicado no header, hero, registro, cierre ("El 28 de octubre, deja de armar reportes."), meta descriptions, JSON-LD Event (startDate + location) e na OG (linha de data e local). Speaker segue "Por definir".
+Quarta 28 de outubro, 9:30 h, Hotel Fontan Reforma (Av. Paseo de la Reforma 24, Colonia Centro, Cuauhtémoc, CDMX). Aplicado no header, hero, registro, cierre ("El 28 de octubre, deja de armar reportes."), meta descriptions, JSON-LD Event (startDate + location) e na OG (linha de data e local). Speaker segue "Por definir".
 
 ## v7 (2026-10-07) — direcao premium
 
