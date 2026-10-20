@@ -105,8 +105,9 @@ LABEL: Um produto
 === FORM ===
 H2: Entre em contato conosco!
 BODY: Explore nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação de nossos especialistas.
-MAIL: comercial@gocxpress.com.br
 CTA: Fale com especialista
+# [MAIL] E-mail comercial@gocxpress.com.br removido em 2026-10-20 a pedido do Victor
+#   (link mailto + estilos .cta-side-actions/.cta-mail que so ele usava).
 # [FORM] Jotform 261034073026647, o mesmo formulario da LP irma banimento-de-whatsapp.
 #   TROCADO em 2026-09-04 (2a rodada) a pedido do Bruno, que passou o snippet
 #   <script src="https://form.jotform.com/jsform/261034073026647"> explicitamente.
