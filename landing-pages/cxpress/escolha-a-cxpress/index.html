@@ -845,7 +845,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<!-- A pagina tem dois embeds do mesmo formulario (este e o do modal do botao
 			     flutuante) e o resizer do jsform acha o iframe pelo id do FORMULARIO: sem
 			     isto as mensagens de altura vindas do modal redimensionariam este embed.
-			     Registrado antes do resizer, aplica a altura no iframe certo e barra a
+			     Registrado antes do resizer, aplica a altura no iframe certo (o do modal
+			     ou o de reserva da secao, que tambem fica fora do jsform) e barra a
 			     mensagem ali. -->
 			<script>
 			(function(){
@@ -853,11 +854,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					var origem = String(e.origin || '');
 					if(origem.indexOf('jotform') === -1 && origem.indexOf('jotfor.ms') === -1) return;
 					if(typeof e.data !== 'string') return;
-					var modalFrame = document.querySelector('.wa-modal__frame');
-					if(!modalFrame || e.source !== modalFrame.contentWindow) return;
+					var alvo = null;
+					var frames = document.querySelectorAll('.wa-modal__frame, #jotHost iframe[data-contingencia]');
+					for(var i = 0; i < frames.length; i++){
+						if(e.source === frames[i].contentWindow){ alvo = frames[i]; break; }
+					}
+					if(!alvo) return;
 					if(e.data.indexOf('setHeight:') === 0){
 						var altura = parseInt(e.data.split(':')[1], 10);
-						if(altura > 0){ modalFrame.style.height = altura + 'px'; }
+						if(altura > 0){ alvo.style.height = altura + 'px'; }
 					}
 					e.stopImmediatePropagation();
 				});
@@ -1380,25 +1385,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     sc.type = 'text/javascript';
     sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
     sc.onerror = contingencia;
+    /* O jsform as vezes chega depois do prazo de 6 s da contingencia e injeta
+       o proprio iframe ao lado do de reserva: dois formularios empilhados. Ele
+       cria o iframe ao executar, entao no load fica so o dele. */
+    sc.onload = function(){
+      if (!jotHost.querySelector('iframe:not([data-contingencia])')) return;
+      var sobras = jotHost.querySelectorAll('[data-contingencia]');
+      for (var i = 0; i < sobras.length; i++) sobras[i].parentNode.removeChild(sobras[i]);
+    };
     jotHost.appendChild(sc);
     setTimeout(function(){ if (!jotHost.querySelector("iframe")) contingencia(); }, 6000);
   };
   /* Rede de seguranca: se o script do jsform nao executar (bloqueador, shield,
      proxy, falha de rede), sem isso o host fica em 0px pra sempre — sem iframe,
      sem aviso e sem retentativa. Degrau 1: iframe simples, que nao depende do
-     jsform. Degrau 2: link pra abrir o formulario em nova aba. */
+     jsform. Degrau 2: link pra abrir o formulario em nova aba. Os dois repassam
+     a query da pagina (UTMs, fbclid) e o parentURL, como o jsform faz, senao o
+     lead da contingencia chega sem origem. A altura vem por postMessage. */
+  var urlReserva = function(){
+    var qs = location.search ? location.search.slice(1) + '&' : '';
+    return 'https://form.jotform.com/' + jotHost.dataset.jotform + '?' + qs +
+      'parentURL=' + encodeURIComponent(location.href);
+  };
   var contingencia = function(){
     if (jotHost.querySelector("iframe")) return;
-    var ns = jotHost.querySelector("noscript");
-    if (ns && ns.textContent.indexOf("<iframe") > -1) {
-      jotHost.insertAdjacentHTML("beforeend", ns.textContent);
-    } else {
-      var f = document.createElement("iframe");
-      f.src = "https://form.jotform.com/" + jotHost.dataset.jotform;
-      f.title = "Formulário de contato";
-      f.style.cssText = "width:100%;height:900px;border:0;display:block";
-      jotHost.appendChild(f);
-    }
+    var f = document.createElement("iframe");
+    f.src = urlReserva();
+    f.title = "Formulário de pedido de demonstração";
+    f.setAttribute("data-contingencia", "");
+    f.setAttribute("scrolling", "no");
+    f.style.cssText = "width:100%;height:900px;border:0;display:block";
+    jotHost.appendChild(f);
     /* Nao da pra saber se um iframe cross-origin renderizou: o evento load
        dispara tambem na pagina de erro do navegador. Como aqui ja estamos em
        caminho degradado, o link de escape vai junto com o iframe. */
@@ -1407,10 +1424,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var ultimoRecurso = function(){
     if (jotHost.dataset.recurso) return;
     jotHost.dataset.recurso = "1";
-    var url = "https://form.jotform.com/" + jotHost.dataset.jotform;
     jotHost.insertAdjacentHTML("beforeend",
-      '<p style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
-      '<a href="' + url + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
+      '<p data-contingencia style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
+      '<a href="' + urlReserva().replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
   };
   /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
      caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
