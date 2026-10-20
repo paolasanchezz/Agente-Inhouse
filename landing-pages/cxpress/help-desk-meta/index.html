@@ -1488,6 +1488,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return 'https://form.jotform.com/' + jotHost.dataset.jotform + '?' + qs +
         'parentURL=' + encodeURIComponent(location.href);
     };
+    /* O modal do botao do WhatsApp (mais abaixo) abre o mesmo Jotform com esta URL. */
+    window.cxUrlJotform = urlReserva;
     var contingencia = function(){
       if (jotHost.querySelector('iframe')) return;
       var f = document.createElement('iframe');
@@ -1589,9 +1591,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     modal.hidden = false;
     fab.setAttribute('aria-expanded','true');
     document.body.classList.add('wa-lock');
-    /* Mesmo source aprovado da secao de contato; sem o script, cai no Jotform publico. */
-    if(!frame.getAttribute('src') && !frame.hasAttribute('srcdoc')){
-      if(window.cxFillFrame){ window.cxFillFrame(frame); } else { frame.setAttribute('src', frame.getAttribute('data-src')); }
+    /* Mesma URL da reserva da secao de contato: repassa a query da pagina (UTMs,
+       fbclid) e o parentURL, senao o lead do botao chega sem origem. */
+    if(!frame.getAttribute('src')){
+      frame.setAttribute('src', window.cxUrlJotform ? window.cxUrlJotform() : frame.getAttribute('data-src'));
     }
     fechaBtn.focus();
   }
