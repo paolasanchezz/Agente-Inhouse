@@ -1620,7 +1620,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     modal.hidden = false;
     fab.setAttribute('aria-expanded','true');
     document.body.classList.add('wa-lock');
-    if(!frame.getAttribute('src')){ frame.setAttribute('src', frame.getAttribute('data-src')); }
+    /* Repassa a query da pagina (UTMs, fbclid) e o parentURL, como o jsform da
+       secao do formulario faz; senao o lead do botao chega sem origem. */
+    if(!frame.getAttribute('src')){
+      var qs = location.search ? location.search.slice(1) + '&' : '';
+      frame.setAttribute('src', frame.getAttribute('data-src') + '?' + qs + 'parentURL=' + encodeURIComponent(location.href));
+    }
     fechaBtn.focus();
   }
   function fechar(){
