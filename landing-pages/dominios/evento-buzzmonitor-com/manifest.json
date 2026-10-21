@@ -26,6 +26,11 @@
       "source": "landing-pages/buzzcreators/influent-summit-tablet"
     },
     {
+      "slug": "inscripcion-confirmada",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/inscripcion-confirmada"
+    },
+    {
       "slug": "oferta-webinar-influencia",
       "marca": "buzzcreators",
       "source": "landing-pages/buzzcreators/oferta-webinar-influencia"

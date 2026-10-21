@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MKQBX2MG');</script>
+<!-- End Google Tag Manager -->
+
+<title>Inscripción confirmada · Buzzmonitor</title>
+<meta name="description" content="Tu lugar en el evento de Buzzmonitor está reservado. En los próximos días recibes en tu correo la fecha, el horario, el lugar o enlace de acceso y la agenda." />
+<meta name="theme-color" content="#0E0716" />
+<meta name="author" content="Buzzmonitor" />
+<!-- Pagina pos-acao (thanks page generica de eventos): noindex deliberado, precedente cxpress/evento-confirmado -->
+<meta name="robots" content="noindex, follow" />
+
+<link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Lato:wght@400;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+<style>
+  /* ============ TOKENS ============ */
+  /* Paleta de las LPs de workshop LATAM (morado #390155 + gradiente rosa→naranja) llevada a modo oscuro. */
+  :root{
+    --bg:#0E0716;
+    --bg-2:#160B22;
+    --surface:rgba(255,255,255,.04);
+    --stroke:rgba(255,255,255,.10);
+    --stroke-2:rgba(255,255,255,.18);
+    --text:#FFFFFF;
+    --text-2:rgba(255,255,255,.78);
+    --text-3:rgba(255,255,255,.62);
+    --orange-soft:#F4A26A;
+    --grad:linear-gradient(115deg, #DE2451 0%, #EB7C2E 100%);
+    --grad-text:linear-gradient(100deg, #FF6A8A 0%, #F4A26A 100%);
+    --ff-display:'League Spartan', system-ui, sans-serif;
+    --ff-body:'Lato', system-ui, sans-serif;
+    --ff-mono:'JetBrains Mono', ui-monospace, monospace;
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --spring:cubic-bezier(.34,1.56,.64,1);
+    --radius:28px;
+  }
+
+  /* ============ RESET ============ */
+  *, *::before, *::after{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; background:var(--bg); }
+  body{
+    margin:0; min-height:100vh; display:flex; flex-direction:column;
+    font-family:var(--ff-body); font-size:18px; line-height:1.6;
+    color:var(--text); background:var(--bg);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  @supports (min-height:100dvh){ body{ min-height:100dvh; } }
+  h1,h2{ font-family:var(--ff-display); color:var(--text); margin:0; line-height:1.02; letter-spacing:-0.03em; }
+  p{ margin:0; }
+  img{ max-width:100%; display:block; }
+  ul{ margin:0; padding:0; list-style:none; }
+  ::selection{ background:#DE2451; color:#fff; }
+
+  .wrap{ width:min(1200px, 100% - 48px); margin-inline:auto; position:relative; z-index:1; }
+  .wrap--narrow{ width:min(820px, 100% - 48px); }
+
+  .skip-link{ position:absolute; left:16px; top:-60px; z-index:100; background:#fff; color:var(--bg); padding:12px 18px; border-radius:10px; font-weight:700; text-decoration:none; transition:top .2s; }
+  .skip-link:focus{ top:16px; }
+  :focus-visible{ outline:2px solid var(--orange-soft); outline-offset:4px; border-radius:10px; }
+  .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+  /* ============ HEADER ============ */
+  .header{ position:absolute; inset:0 0 auto; z-index:5; padding:26px 0; }
+  .header .wrap{ display:flex; justify-content:center; }
+  .header__logo{ display:inline-flex; }
+  .header__logo img{ height:30px; width:auto; }
+
+  /* ============ CONFIRMACION (hero oscuro) ============ */
+  main{ flex:1 0 auto; }
+  .confirmacion{
+    position:relative; overflow:hidden; isolation:isolate; text-align:center;
+    padding:clamp(140px, 16vw, 200px) 0 clamp(96px, 11vw, 150px);
+    background:var(--bg);
+  }
+  /* Grilla tecnica con desvanecido radial. */
+  .confirmacion::before{
+    content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+    background-size:56px 56px;
+    background-position:center top;
+    -webkit-mask-image:radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+            mask-image:radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+  }
+  /* Halos de color de la marca. */
+  .halo{ position:absolute; z-index:-1; border-radius:50%; filter:blur(90px); pointer-events:none; }
+  .halo--a{ width:520px; height:520px; background:radial-gradient(circle, rgba(222,36,81,.55), transparent 65%); top:-160px; left:50%; transform:translateX(-50%); }
+  .halo--b{ width:460px; height:460px; background:radial-gradient(circle, rgba(106,31,160,.6), transparent 65%); bottom:-220px; left:-120px; }
+  .halo--c{ width:380px; height:380px; background:radial-gradient(circle, rgba(235,124,46,.35), transparent 65%); bottom:-160px; right:-100px; }
+  @media (max-width:720px){
+    .halo--a{ width:360px; height:360px; top:-120px; }
+    .halo--b, .halo--c{ width:300px; height:300px; }
+  }
+
+  /* Sello: anillo con borde conico que gira + check que se dibuja. */
+  .sello{
+    position:relative; width:clamp(108px, 13vw, 132px); aspect-ratio:1/1;
+    margin:0 auto clamp(30px, 3.6vw, 40px); border-radius:50%;
+  }
+  .sello__ring{
+    position:absolute; inset:0; border-radius:50%; padding:2px;
+    background:conic-gradient(from 0deg, #DE2451, #EB7C2E, rgba(255,255,255,.1) 45%, rgba(255,255,255,.1) 70%, #DE2451);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:gira 6s linear infinite;
+  }
+  .sello__core{
+    position:absolute; inset:12px; border-radius:50%;
+    background:var(--grad);
+    box-shadow:0 0 0 1px rgba(255,255,255,.18) inset, 0 20px 60px rgba(222,36,81,.45), 0 0 90px rgba(235,124,46,.25);
+    display:grid; place-items:center; color:#fff;
+  }
+  .sello__core svg{ width:44%; height:44%; }
+  .sello path{ stroke-dasharray:30; stroke-dashoffset:30; }
+  .sello.is-visible path{ animation:trazo .6s var(--ease) .45s forwards; }
+  @keyframes trazo{ to{ stroke-dashoffset:0; } }
+  @keyframes gira{ to{ transform:rotate(360deg); } }
+  .sello.reveal{ transform:translateY(20px) scale(.9); }
+  .sello.reveal.is-visible{ transform:none; }
+
+  .etiqueta{
+    display:inline-flex; align-items:center; gap:10px; margin-bottom:24px;
+    font-family:var(--ff-mono); font-size:13px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--text);
+    padding:9px 16px; border-radius:999px;
+    background:rgba(255,255,255,.06); border:1px solid var(--stroke-2);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  }
+  .etiqueta__dot{ position:relative; width:8px; height:8px; border-radius:50%; background:#3DDC97; flex:none; }
+  .etiqueta__dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid #3DDC97; opacity:0; animation:pulso 2.2s var(--ease) infinite; }
+  @keyframes pulso{ 0%{ transform:scale(.6); opacity:.9; } 100%{ transform:scale(1.9); opacity:0; } }
+
+  .confirmacion h1{
+    font-size:clamp(46px, 7.4vw, 92px); font-weight:800;
+    margin:0 auto 26px; max-width:12em;
+  }
+  .confirmacion h1 .grad{
+    background:var(--grad-text); -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:var(--orange-soft);
+  }
+  .confirmacion__sub{
+    font-size:clamp(18px, 2vw, 21px); line-height:1.65;
+    color:var(--text-2); max-width:34em; margin:0 auto;
+  }
+  .confirmacion__nota{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:15px; color:var(--text-3);
+    margin:30px auto 0; padding:10px 18px; border-radius:14px;
+    background:var(--surface); border:1px solid var(--stroke);
+  }
+  .confirmacion__nota svg{ width:18px; height:18px; flex:none; color:var(--orange-soft); }
+
+  /* ============ QUIENES SOMOS (tarjeta glass) ============ */
+  .quienes{ padding:clamp(40px, 6vw, 80px) 0 clamp(80px, 10vw, 130px); background:var(--bg); position:relative; }
+  .quienes__card{
+    display:grid; grid-template-columns:minmax(0, .95fr) minmax(0, 1.05fr);
+    gap:clamp(28px, 4vw, 56px); align-items:center;
+    max-width:1100px; margin:0 auto;
+    padding:clamp(14px, 2vw, 22px);
+    border-radius:calc(var(--radius) + 8px);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border:1px solid var(--stroke);
+    box-shadow:0 40px 120px rgba(0,0,0,.45);
+  }
+  .quienes__visual{
+    position:relative; aspect-ratio:5/4; border-radius:var(--radius); overflow:hidden; isolation:isolate;
+    background:radial-gradient(120% 90% at 0% 0%, #4A0A6E 0%, #22093A 55%, #160B22 100%);
+    border:1px solid var(--stroke);
+    display:grid; place-items:center;
+  }
+  .quienes__visual::before{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background-image:radial-gradient(rgba(255,255,255,.16) 1px, transparent 1.4px);
+    background-size:18px 18px;
+    -webkit-mask-image:linear-gradient(160deg, #000 10%, transparent 75%);
+            mask-image:linear-gradient(160deg, #000 10%, transparent 75%);
+  }
+  .quienes__visual::after{
+    content:""; position:absolute; z-index:-1; width:70%; aspect-ratio:1/1; border-radius:50%;
+    background:var(--grad); filter:blur(40px); opacity:.75; right:-22%; bottom:-38%;
+  }
+  .quienes__visual img{ width:56%; height:auto; min-height:0; /* GUIDELINES §14 */ filter:drop-shadow(0 10px 30px rgba(0,0,0,.35)); }
+  .quienes__texto{ padding:clamp(8px, 2vw, 24px) clamp(8px, 2.6vw, 36px) clamp(14px, 2vw, 24px) 0; }
+  .overline{
+    font-family:var(--ff-mono); font-size:13px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--orange-soft); margin-bottom:16px;
+  }
+  .quienes h2{ font-size:clamp(34px, 4.2vw, 52px); font-weight:800; margin-bottom:20px; }
+  .quienes__body{ font-size:18px; line-height:1.7; color:var(--text-2); max-width:32em; margin-bottom:34px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:12px;
+    min-height:54px; padding:11px 11px 11px 28px; border-radius:999px;
+    background:#fff; color:var(--bg); text-decoration:none;
+    font-family:var(--ff-display); font-weight:700; font-size:17px;
+    transition:transform .4s var(--spring), box-shadow .3s;
+  }
+  .btn__icon{
+    width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
+    background:var(--grad); color:#fff; transition:transform .4s var(--spring);
+  }
+  .btn__icon svg{ width:16px; height:16px; }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(222,36,81,.35); }
+  .btn:hover .btn__icon{ transform:rotate(45deg); }
+
+  @media (max-width:860px){
+    .quienes__card{ grid-template-columns:1fr; }
+    .quienes__texto{ padding:6px 10px 18px; }
+  }
+
+  /* ============ CLIENTES (marquesina) ============ */
+  .clientes{
+    padding:clamp(72px, 9vw, 110px) 0; text-align:center; position:relative;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    border-top:1px solid var(--stroke);
+  }
+  .clientes h2{
+    font-size:clamp(26px, 3.2vw, 38px); font-weight:800;
+    max-width:22em; margin:0 auto clamp(40px, 5vw, 60px);
+  }
+  .marquee{
+    position:relative; overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .marquee__track{ display:flex; width:max-content; animation:desliza 38s linear infinite; }
+  .marquee:hover .marquee__track{ animation-play-state:paused; }
+  .logos{ display:flex; align-items:center; gap:72px; padding-right:72px; }
+  .logos li{ display:flex; align-items:center; justify-content:center; height:52px; flex:none; }
+  .logos img{
+    max-height:38px; max-width:150px; width:auto; height:auto; min-height:0;
+    object-fit:contain; filter:brightness(0) invert(1); opacity:.6;
+    transition:opacity .25s ease;
+  }
+  .logos li:hover img{ opacity:1; }
+  @keyframes desliza{ to{ transform:translateX(-50%); } }
+  @media (max-width:560px){
+    .logos{ gap:48px; padding-right:48px; }
+    .logos img{ max-height:30px; max-width:118px; }
+  }
+
+  /* ============ FOOTER ============ */
+  .site-footer{ padding:40px 0 48px; border-top:1px solid var(--stroke); background:var(--bg-2); flex:none; }
+  .footer__row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px 32px; }
+  .footer__logo img{ height:28px; width:auto; }
+  .footer__legal{ font-size:15px; color:var(--text-3); }
+  .footer-social{ display:flex; gap:10px; flex-wrap:wrap; }
+  .footer-social a{
+    width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+    color:var(--text-2); background:var(--surface); border:1px solid var(--stroke);
+    position:relative; overflow:hidden; isolation:isolate;
+    transition:color .3s, border-color .3s, transform .4s var(--spring);
+  }
+  .footer-social a::before{ content:""; position:absolute; inset:0; z-index:-1; background:var(--grad); transform:scale(0); border-radius:50%; transition:transform .4s var(--spring); }
+  .footer-social a:hover{ color:#fff; border-color:transparent; transform:translateY(-3px); }
+  .footer-social a:hover::before{ transform:scale(1); }
+  @media (max-width:640px){
+    .footer__row{ flex-direction:column; text-align:center; }
+    .footer__legal{ font-size:16px; }
+  }
+
+  /* ============ REVEAL ============ */
+  .reveal{ opacity:0; transform:translateY(22px); filter:blur(6px); transition:opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:none; filter:none; }
+  .d1{ transition-delay:.12s; }
+  .d2{ transition-delay:.24s; }
+  .d3{ transition-delay:.36s; }
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal, .sello.reveal{ opacity:1; transform:none; filter:none; transition:none; }
+    .sello path{ stroke-dashoffset:0; }
+    .sello.is-visible path, .sello__ring, .etiqueta__dot::after{ animation:none; }
+    .marquee{ -webkit-mask-image:none; mask-image:none; }
+    .marquee__track{ animation:none; width:auto; justify-content:center; }
+    .marquee__track .logos{ flex-wrap:wrap; justify-content:center; gap:32px 48px; padding:0 24px; }
+    .marquee__track .logos[aria-hidden="true"]{ display:none; }
+    *{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
+  }
+
+  /* ===== GUIDELINES §21 - quiebre de linea equilibrado ===== */
+  h1, .clientes h2, .confirmacion__sub{ text-wrap:balance; }
+  .quienes h2, .quienes__body, .confirmacion__nota{ text-wrap:pretty; }
+
+  /* ===== GUIDELINES §20 - pisos de tipografia mobile ===== */
+  @media (max-width:640px){
+    body{ font-size:17px; }
+    .quienes__body{ font-size:17px; }
+    .confirmacion__nota{ font-size:16px; text-align:left; }
+    .skip-link{ font-size:16px; }
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKQBX2MG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link" href="#contenido">Ir al contenido</a>
+
+<header class="header">
+  <div class="wrap">
+    <a href="https://buzzmonitor.com/es/" class="header__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página principal">
+      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="157" height="30" />
+    </a>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="confirmacion" aria-labelledby="titulo-confirmacion">
+    <div class="halo halo--a" aria-hidden="true"></div>
+    <div class="halo halo--b" aria-hidden="true"></div>
+    <div class="halo halo--c" aria-hidden="true"></div>
+    <div class="wrap wrap--narrow">
+      <div class="sello reveal" aria-hidden="true">
+        <span class="sello__ring"></span>
+        <span class="sello__core">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </span>
+      </div>
+      <p class="etiqueta reveal d1"><span class="etiqueta__dot" aria-hidden="true"></span>Lugar reservado</p>
+      <h1 id="titulo-confirmacion" class="reveal d1">Gracias por <span class="grad">inscribirte.</span></h1>
+      <p class="confirmacion__sub reveal d2">Ya formas parte del evento. En los próximos días te escribimos al correo que registraste con todos los detalles: fecha, horario, lugar o enlace de acceso y agenda.</p>
+      <p class="confirmacion__nota reveal d3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+        <span>Si no ves nuestro correo, revisa también la carpeta de spam o promociones.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="quienes" aria-labelledby="titulo-quienes">
+    <div class="wrap">
+      <div class="quienes__card reveal">
+        <div class="quienes__visual" aria-hidden="true">
+          <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="320" height="61" loading="lazy" decoding="async" />
+        </div>
+        <div class="quienes__texto">
+          <p class="overline">Mientras llega el evento</p>
+          <h2 id="titulo-quienes">Mucho gusto, somos Buzzmonitor</h2>
+          <p class="quienes__body">Buzzmonitor une social listening, atención al cliente y analítica en una sola plataforma con IA. Desde el mismo panel monitoreas lo que se dice de tu marca, respondes a tus clientes y armas tus reportes.</p>
+          <a class="btn" href="https://buzzmonitor.com/es/" target="_blank" rel="noopener">Conocer Buzzmonitor<span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clientes" aria-labelledby="titulo-clientes">
+    <div class="wrap">
+      <h2 id="titulo-clientes" class="reveal">Más de 1.000 clientes en Brasil, España, LATAM y Portugal trabajan con Buzzmonitor</h2>
+    </div>
+    <div class="marquee reveal d1">
+      <div class="marquee__track">
+        <ul class="logos" role="list">
+          <li><img src="./assets/clientes/logo-samsung.png" alt="Samsung" width="348" height="54" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-sony.png" alt="Sony" width="285" height="51" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-ikea.png" alt="IKEA" width="273" height="48" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-sephora.png" alt="Sephora" width="375" height="63" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-santander.png" alt="Santander" width="414" height="75" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-havas.png" alt="Havas" width="261" height="99" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-tbwa.png" alt="TBWA" width="207" height="87" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-mccann.png" alt="McCann" width="231" height="66" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-realmadrid.png" alt="Fundación Real Madrid" width="294" height="99" loading="lazy" decoding="async" /></li>
+        </ul>
+        <!-- Copia para el loop continuo de la marquesina: oculta para lectores de pantalla. -->
+        <ul class="logos" aria-hidden="true">
+          <li><img src="./assets/clientes/logo-samsung.png" alt="" width="348" height="54" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-sony.png" alt="" width="285" height="51" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-ikea.png" alt="" width="273" height="48" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-sephora.png" alt="" width="375" height="63" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-santander.png" alt="" width="414" height="75" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-havas.png" alt="" width="261" height="99" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-tbwa.png" alt="" width="207" height="87" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-mccann.png" alt="" width="231" height="66" loading="lazy" decoding="async" /></li>
+          <li><img src="./assets/clientes/logo-realmadrid.png" alt="" width="294" height="99" loading="lazy" decoding="async" /></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer__row">
+    <a href="https://buzzmonitor.com/es/" class="footer__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página principal">
+      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="147" height="28" loading="lazy" decoding="async" />
+    </a>
+    <p class="footer__legal">© 2026 Buzzmonitor. Todos los derechos reservados.</p>
+    <nav class="footer-social" aria-label="Redes sociales de Buzzmonitor">
+      <a href="https://www.instagram.com/buzzmonitor.es/" target="_blank" rel="noopener" aria-label="Instagram de Buzzmonitor">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.89 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5ZM17.4 6.6a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0Z"/></svg>
+      </a>
+      <a href="https://x.com/buzzmonitor_es" target="_blank" rel="noopener" aria-label="X (Twitter) de Buzzmonitor">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M18.9 2h3.1l-6.77 7.73L23.2 22h-6.23l-4.88-6.39L6.5 22H3.4l7.24-8.27L2 2h6.38l4.4 5.84L18.9 2Zm-1.09 18h1.72L7.28 3.9H5.43L17.81 20Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/Buzzmonitorespanol/" target="_blank" rel="noopener" aria-label="Facebook de Buzzmonitor">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.55l.38-2.96h-2.93V8.53c0-.86.24-1.44 1.47-1.44h1.57V4.46A21 21 0 0 0 14.3 4.3c-2.26 0-3.8 1.38-3.8 3.9v2.24H8v2.96h2.5V21h3Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/buzzmonitor/" target="_blank" rel="noopener" aria-label="LinkedIn de Buzzmonitor">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.44 20h-3.37v-6.02c0-1.44-.03-3.28-2-3.28-2.01 0-2.32 1.57-2.32 3.18V20H9.38V8.5h3.24v1.57h.05c.45-.86 1.55-1.77 3.2-1.77 3.42 0 4.57 2.25 4.57 5.17V20Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@buzzmonitor_es" target="_blank" rel="noopener" aria-label="YouTube de Buzzmonitor">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 7.2s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1.01C17 3.5 12 3.5 12 3.5h-.01s-5 0-8.19.33c-.46.06-1.46.06-2.36 1.01C.73 5.56.5 7.2.5 7.2S.27 9.12.27 11.04v1.8c0 1.92.23 3.84.23 3.84s.23 1.64.94 2.36c.9.95 2.08.92 2.6 1.02 1.9.18 8.06.33 8.06.33s5 0 8.19-.33c.46-.06 1.46-.06 2.36-1.01.71-.72.94-2.36.94-2.36s.23-1.92.23-3.84v-1.8c0-1.92-.23-3.84-.23-3.84ZM9.7 14.9V8.6l6 3.15-6 3.15Z"/></svg>
+      </a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // Reveal on scroll con tres capas de fallback (GUIDELINES §4): <noscript> en el <head>;
+    // reveal inmediato sin IntersectionObserver; failsafe por timeout de 1.5s.
+    var els = document.querySelectorAll('.reveal');
+    function revealAll(){ for (var i = 0; i < els.length; i++) els[i].classList.add('is-visible'); }
+    if (!('IntersectionObserver' in window)) { revealAll(); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el){ io.observe(el); });
+    setTimeout(revealAll, 1500);
+  })();
+</script>
+</body>
+</html>

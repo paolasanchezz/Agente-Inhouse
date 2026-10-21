@@ -1,0 +1,33 @@
+=== CONFIRMACION ===
+LABEL: Lugar reservado
+H1: Gracias por inscribirte.
+SUB: Ya formas parte del evento. En los próximos días te escribimos al correo que registraste con todos los detalles: fecha, horario, lugar o enlace de acceso y agenda.
+BODY: Si no ves nuestro correo, revisa también la carpeta de spam o promociones.
+
+=== QUIENES SOMOS ===
+OVERLINE: Mientras llega el evento
+H2: Mucho gusto, somos Buzzmonitor
+BODY: Buzzmonitor une social listening, atención al cliente y analítica en una sola plataforma con IA. Desde el mismo panel monitoreas lo que se dice de tu marca, respondes a tus clientes y armas tus reportes.
+CTA: Conocer Buzzmonitor (link para buzzmonitor.com/es/, nueva pestaña)
+
+=== CLIENTES ===
+H2: Más de 1.000 clientes en Brasil, España, LATAM y Portugal trabajan con Buzzmonitor
+LOGOS: Samsung, Sony, IKEA, Sephora, Santander, Havas, TBWA, McCann, Fundación Real Madrid (assets de la-mejor-plataforma-social-listening-es/assets/clientes)
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Copy-fuente: escrita por el agente a pedido del usuario (2026-10-21). Briefing: confirmacion
+# generica de inscripcion para TODOS los eventos Buzzmonitor LATAM (workshops, webinars,
+# presenciales), exhibida despues del form. Texto fijo, sin nombre/fecha del evento: una URL
+# sirve para todos (redirect de exito del form -> evento.buzzmonitor.com/inscripcion-confirmada).
+# Pedido del usuario: agradecer la inscripcion, reiterar (sin repetir) que el lugar esta
+# reservado y que la informacion del evento llega en los proximos dias. Bloque extra elegido:
+# Quienes somos + logos. Base de estructura: cxpress/evento-confirmado.
+# Hechos reaprovechados de copy ya publicada: "mas de 1.000 clientes en Brasil, Espana, LATAM y
+# Portugal" (la-mejor-plataforma-social-listening-es, literal); "une social listening, atencion
+# al cliente y analitica en una sola plataforma con IA" (todo-en-un-panel-es). Logos: mismo set de
+# la-mejor-plataforma-social-listening-es menos Bizum (marca solo de Espana).
+# Regla "H1 = dolor" (fundamentos-copy §0) no aplica: pagina post-conversion.
+# Revision anti-IA: sin hallazgos (em-dash: 0; antitesis-por-negacion: 0; exclamacion: 0; filler: 0).
+# Fidelidad ES-LATAM: tuteo consistente, "reportes" (no "informes"), "monitoreas", sin vosotros.
