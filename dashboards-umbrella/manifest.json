@@ -2,6 +2,9 @@
   "$comment": "Manifesto do guarda-chuva de dashboards internas. Fonte unica: build_umbrella.py, nav.js e o hub sao gerados daqui. Ordem do array = ordem no seletor e no hub.",
   "projeto": "dashboards-elife",
   "sibling": "dashboards-elife",
+  "dominio": "dashboards-elife.vercel.app",
+  "projeto_vercel_id": "prj_gWXS2x2UpSphcPIXV3fK1GRzCuDa",
+  "vercel_org_id": "team_nC991VqUuSU2jXZN152xqqEg",
   "titulo": "Dashboards internas",
   "org": "Grupo Elife",
   "dashboards": [

@@ -119,3 +119,43 @@ py dashboards-umbrella/validar_contrato.py --baseline-url https://dashboards-eli
 py dashboards-umbrella/validar_contrato.py cxpress --sem-catraca                                # só contrato, uma dash
 py dashboards-umbrella/testar_contrato.py                                                       # o validador ainda pega tudo?
 ```
+
+## Atualização automática (todo dia às 07:00)
+
+Desde **2026-10-21** o workflow `.github/workflows/dashboards-deploy.yml` faz sozinho o que a `/dashboard-atualizar` fazia à mão, às **07:13 BRT** (o minuto quebrado é porque o cron do GitHub atrasa na hora cheia):
+
+```
+conectividade → exportar as 7 → validar contrato + catraca → build → deploy → smoke → (rollback)
+```
+
+Qualquer etapa que falha para a cadeia: **nada vai para o ar e o painel segue com os dados de ontem**, que é melhor que dado de hoje errado. Nesse caso chega um e-mail para o Victor dizendo em que etapa parou, com o fim do log (o validador já escreve o que consertar). No verde, silêncio.
+
+| Peça | Papel |
+|---|---|
+| `deploy_ci.py` | Build numa dist temporária, deploy, smoke e rollback. Irmão do `landing-pages/build/deploy_ci.py`. O smoke usa Basic Auth e confere, por rota, 308 sem barra, 200 com barra e o `index.html` **e o JSON** servidos byte a byte iguais aos da dist — prova que o que está no ar é exatamente o que o validador aprovou. Se reprovar, promove de volta o deploy que o alias servia antes. |
+| `notificar_falha.py` | O e-mail de falha. Apaga do texto qualquer valor de secret antes de enviar, porque o log vai bruto, sem a máscara que o GitHub aplica na tela. |
+
+**Em PR também roda — só como ensaio.** Todo PR que mexe em código de dashboard (`dashboard-*-vercel/`, `queries*.py`, `dashboards-umbrella/`) exporta, valida o contrato e builda, **sem deployar**. É o que pega, antes do merge, uma mudança no painel ou no exportador que quebraria o contrato.
+
+### Rodar à mão
+
+Actions → *Dashboards — atualizacao noturna* → **Run workflow**:
+
+| Campo | Para quê |
+|---|---|
+| `dry_run` | ensaio: exporta, valida e builda, nada vai pro ar |
+| `aceitar_catraca` + `motivo` | a catraca barrou uma queda **legítima** (limpeza de CRM, virada de ano): slug ou `tudo`, e o porquê. Nunca destrava violação de contrato |
+| `force_fail` | ensaia o rollback: deploya, simula smoke reprovado e promove o deploy anterior. Deixa no ar a versão **anterior** — rode um normal em seguida |
+
+### Secrets usados
+
+`SUPABASE_PG_URL` (a URL do **pooler**, usuário `looker_readonly` — o host direto `db.<ref>.supabase.co` é só IPv6 e o runner do GitHub é só IPv4), `DASHBOARD_BASIC_AUTH_USER`/`_PASS`, `VERCEL_TOKEN` e `RESEND_API_KEY`.
+
+### Checar a produção sem deployar
+
+```bash
+py dashboards-umbrella/deploy_ci.py --checar-producao   # 401 sem login, noindex, 308, index com nav, JSON 200 nas 7
+py dashboards-umbrella/deploy_ci.py --dry-run           # só o build, numa dist temporária
+```
+
+> **Ainda existem duas portas de deploy.** A `/dashboard-atualizar` continua deployando da máquina local, e o workflow deploya da `main`. Um deploy local feito de uma branch sobe aquele código, e a rodada da manhã seguinte devolve o da `main`. O fechamento (o hook passa a negar deploy manual deste projeto e a skill vira disparo do workflow) é a Fase 5 do plano, depois que as primeiras rodadas noturnas se provarem.

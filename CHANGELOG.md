@@ -12,6 +12,21 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM — atualização automática todo dia às 07:00 (GitHub Actions)
+### 2026-10-21 — `.github/workflows/dashboards-deploy.yml` · `dashboards-umbrella/` (sem versão)
+
+Fases 3 e 4 do plano de automação noturna. As 7 dashboards passam a se atualizar sozinhas às 07:13 BRT, sem máquina local.
+
+- **`dashboards-deploy.yml`:** conectividade → exportar as 7 → validar contrato + catraca (contra o que está no ar) → build → deploy → smoke → rollback. Qualquer falha para a cadeia e o painel segue com os dados de ontem. `workflow_dispatch` com `dry_run`, `aceitar_catraca`/`motivo` e `force_fail` (ensaio de rollback). Em **PR** que mexe em código de dashboard roda só como ensaio (exporta, valida, builda, nunca deploya) — pega quebra de contrato antes do merge.
+- **`deploy_ci.py`:** irmão do `landing-pages/build/deploy_ci.py` (mesma espinha: alvo de rollback pelo alias, smoke com retry 0/3/8/15s, promote). Diferenças: builder do guarda-chuva, `REUSADO`/aviso do build tratado como falha, smoke com Basic Auth, e por rota 308 sem barra + 200 com barra + `index.html` **e JSON** servidos byte a byte iguais aos da dist. `--checar-producao` faz o smoke estrutural do que está no ar; `--dry-run` só builda.
+- **`notificar_falha.py`:** e-mail só em falha, com a etapa, o fim do log e o que fazer. Apaga valores de secret do texto antes de enviar (o log vai bruto, sem a máscara do GitHub).
+- `manifest.json` ganhou `dominio`, `projeto_vercel_id` e `vercel_org_id` — antes só existiam no `.vercel/project.json` fora do repo.
+- Actions na v7 (Node 24): a v5 do `setup-python` gera aviso de Node 20 descontinuado, que ainda aparece no `lp-health-check` e no `pocket-event-novo`.
+- **Verificado sem tocar a produção:** smoke estrutural 24/24 contra o que está no ar; com senha errada, 16 falham em 401 (o smoke não passa à toa); build falha quando um JSON de export falta (dist efêmera, nada a reaproveitar); e os 8 arquivos que não mudaram desde o último deploy (`nav.js` e os 7 `index.html`) batem byte a byte com o servido pela Vercel — o smoke por hash não vai reprovar o primeiro deploy à toa. Fase 0 (2026-10-21): o runner nos EUA lê as 17 tabelas pelo pooler, +50 ms por consulta.
+- **Ainda há duas portas de deploy** (skill local e workflow). Fechar é a Fase 5, depois das primeiras rodadas.
+
+---
+
 ## `dashboard-atualizar` + Dashboards CM — contrato de dados entre exportador e painel
 ### 2026-10-21 — `dashboard-atualizar` 4.1.0 → 4.2.0 (MINOR) · `dashboards-umbrella/` (sem versão)
 

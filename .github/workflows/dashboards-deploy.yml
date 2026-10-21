@@ -1,0 +1,141 @@
+# Atualizacao noturna das 7 dashboards CM (guarda-chuva dashboards-elife.vercel.app).
+#
+# exportar (Supabase) -> validar contrato + catraca -> build -> deploy -> smoke -> rollback se
+# falhar -> e-mail SO se falhar. Racional e politica de versao em dashboards-umbrella/README.md.
+#
+# Gatilhos:
+#  - schedule 07:13 BRT: atualiza e deploya.
+#  - workflow_dispatch: igual, com dry_run, aceitar_catraca/motivo e force_fail (ensaio de rollback).
+#  - pull_request em codigo de dashboard: SO ensaio (exporta, valida, builda). NUNCA deploya.
+#    E o que pega, antes do merge, um PR que muda o painel ou o exportador e quebra o contrato.
+#
+# Os dados-*.json tem PII de leads: nunca subir a dist ou os JSONs como artifact.
+name: Dashboards — atualizacao noturna
+
+on:
+  schedule:
+    - cron: "13 10 * * *"   # 07:13 BRT (UTC-3). Minuto quebrado: o cron do GitHub atrasa na hora cheia.
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "So exporta, valida e builda — nada vai pro ar"
+        type: boolean
+        default: false
+      aceitar_catraca:
+        description: "Aceitar queda legitima da catraca: slug (ex. cxpress) ou 'tudo'. Vazio = nao aceitar"
+        type: string
+        default: ""
+      motivo:
+        description: "Por que a queda e legitima (obrigatorio com aceitar_catraca)"
+        type: string
+        default: ""
+      force_fail:
+        description: "Ensaio: deploya e simula falha de smoke para testar o rollback"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - "dashboard-*-vercel/**"
+      - "dashboard/queries*.py"
+      - "dashboard/gerar_relatorio_*.py"
+      - "dashboard-pessoal/lib/queries.py"
+      - "dashboards-umbrella/**"
+      - ".github/workflows/dashboards-deploy.yml"
+
+# Rodadas de producao entram em fila (duas disputando o deploy seria corrida). Ensaio de PR e
+# por branch e o push novo cancela o anterior.
+concurrency:
+  group: dashboards-${{ github.event_name == 'pull_request' && github.ref || 'producao' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash   # explicito => -eo pipefail: sem isso, `python ... | tee` que falha passa
+    env:
+      SUPABASE_PG_URL: ${{ secrets.SUPABASE_PG_URL }}
+      DASHBOARD_BASIC_AUTH_USER: ${{ secrets.DASHBOARD_BASIC_AUTH_USER }}
+      DASHBOARD_BASIC_AUTH_PASS: ${{ secrets.DASHBOARD_BASIC_AUTH_PASS }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      PROD_URL: https://dashboards-elife.vercel.app
+      # So deploya em schedule e em dispatch sem dry_run. PR nunca.
+      DEPLOYAR: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Preparar
+        run: |
+          echo "LOG_DIR=$RUNNER_TEMP/logs" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/logs"
+          pip install --quiet "psycopg[binary]"
+          echo "modo: $([ "$DEPLOYAR" = "true" ] && echo DEPLOY || echo "ENSAIO (nada vai pro ar)") · evento: ${{ github.event_name }}"
+
+      - name: Conectividade com o Supabase
+        run: |
+          echo conectividade > "$LOG_DIR/etapa.txt"
+          python - 2>&1 <<'PYEOF' | tee "$LOG_DIR/log-conectividade.txt"
+          import os, time
+          from urllib.parse import urlsplit
+          import psycopg
+          url = os.environ["SUPABASE_PG_URL"]
+          print(f"host: {urlsplit(url).hostname}")   # nunca a URL: ela carrega a senha
+          t = time.time()
+          with psycopg.connect(url, connect_timeout=20) as c, c.cursor() as cur:
+              cur.execute("select 1"); cur.fetchone()
+          print(f"conectou em {time.time() - t:.2f}s")
+          PYEOF
+
+      - name: Exportar as 7 dashboards
+        run: |
+          echo exportar > "$LOG_DIR/etapa.txt"
+          {
+            python dashboard-buzz-br-vercel/exportar_dados.py
+            python dashboard-cxpress-vercel/exportar_dados.py
+            python dashboard-latam-vercel/exportar_dados.py
+            python dashboard-buzzcreators-vercel/exportar_dados.py
+            python dashboard-pt-vercel/exportar_dados.py --marca todas
+          } 2>&1 | tee "$LOG_DIR/log-exportar.txt"
+
+      - name: Validar contrato e catraca
+        env:
+          # Via env, nao interpolado no script: texto livre no shell e injecao de comando.
+          ACEITAR: ${{ inputs.aceitar_catraca }}
+          MOTIVO: ${{ inputs.motivo }}
+        run: |
+          echo validar > "$LOG_DIR/etapa.txt"
+          EXTRA=()
+          if [ -n "$ACEITAR" ]; then
+            [ -n "$MOTIVO" ] || { echo "::error::aceitar_catraca exige um motivo"; exit 1; }
+            EXTRA=(--aceitar-catraca "$ACEITAR" --motivo "$MOTIVO")
+          fi
+          python dashboards-umbrella/validar_contrato.py --baseline-url "$PROD_URL" "${EXTRA[@]}" 2>&1 \
+            | tee "$LOG_DIR/log-validar.txt"
+
+      - name: Build, deploy, smoke e rollback
+        env:
+          FORCE_FAIL: ${{ inputs.force_fail }}
+        run: |
+          echo deploy > "$LOG_DIR/etapa.txt"
+          FLAGS=()
+          if [ "$DEPLOYAR" != "true" ]; then FLAGS+=(--dry-run); fi
+          if [ "$FORCE_FAIL" = "true" ]; then FLAGS+=(--force-fail); fi
+          python dashboards-umbrella/deploy_ci.py "${FLAGS[@]}" 2>&1 | tee "$LOG_DIR/log-deploy.txt"
+
+      - name: Avisar por e-mail
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO: victor.lopes@buzzmonitor.com.br
+          EMAIL_FROM: "Dashboards CM <onboarding@resend.dev>"
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python dashboards-umbrella/notificar_falha.py
