@@ -12,6 +12,20 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM — painel avisa quando o JSON não bate com a versão que ele sabe ler
+### 2026-10-21 — `index.html` das 5 fontes · `dashboards-umbrella/contratos/*.json` · `deploy_ci.py` (sem versão)
+
+PR 3 de 3 do plano de automação noturna. Só entrou depois que a primeira rodada pelo CI pôs `schema_version: 1` nos 7 JSONs de produção — assim o aviso nunca dispara à toa na transição.
+
+- **`const SCHEMA_ESPERADO = 1`** no `index.html` de cada painel, conferido em `ensureDados()` logo depois de ler o JSON (no PT, antes de `MotorPT.carregar`). Versão diferente mostra uma faixa logo abaixo da barra de navegação e **renderiza assim mesmo**: o número já foi validado no CI, isto é a rede da aba aberta em cache e de deploy feito sem passar pelo validador. Maior = "página em cache, recarregue"; menor ou ausente = "dados fora do contrato". A faixa é elemento próprio (o `statusBar` é apagado pelo `hideStatus()` depois do render), inline (o buzz-br não tem CSS externo) e `role="alert"`.
+- **PT** avisa também quando `etapas`, `ganhas` ou `terminais` faltam — lá o `|| []` do motor zera fechamentos e perdidos sem erro.
+- Textos na língua de cada painel: PT-BR, PT-PT ("você", "em falta", "a zero", "equipa") e ES-LATAM em "tú". O único texto em voseo do painel LATAM (`'Completá las dos fechas'` → `'Completa…'`) foi corrigido junto: o guia linguístico do repo proíbe voseo em copy LATAM geral e proíbe misturar tratamentos na mesma página.
+- **Trava de três pontas ligada:** `guard_painel: true` nos 5 contratos. O validador agora exige a constante no painel e sai com 4 se exportador, contrato e painel divergirem. Testado desalinhando o painel (espera 2) e removendo a constante: exit 4 nos dois.
+- `deploy_ci.py`: a checagem pós-rollback imprimia "24 alvo(s) ainda falhando" **antes** da primeira tentativa (o ensaio de 2026-10-21 mostrou). Agora diz que está aguardando.
+- Verificado no navegador sobre uma dist do guarda-chuva: dados v1 nas 7 rotas sem nenhum aviso (sem falso positivo) e zero erro de console; sem versão, v2 no cxpress e no LATAM (em espanhol), e PT sem `ganhas`: aviso certo, abaixo da nav, painel renderizado.
+
+---
+
 ## Dashboards CM — atualização automática todo dia às 07:00 (GitHub Actions)
 ### 2026-10-21 — `.github/workflows/dashboards-deploy.yml` · `dashboards-umbrella/` (sem versão)
 

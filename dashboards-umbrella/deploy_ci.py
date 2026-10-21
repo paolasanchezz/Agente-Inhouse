@@ -184,9 +184,12 @@ def smoke(base: str, man: dict, basic: str, dist: str | None, backoff=SMOKE_BACK
     """
     alvos = alvos_smoke(man, dist)
     falhas: list[str] = []
-    for espera in backoff:
+    for i, espera in enumerate(backoff):
         if espera:
-            log(f"smoke: {len(alvos)} alvo(s) ainda falhando — nova tentativa em {espera}s")
+            # Na 1a rodada nada foi checado ainda: dizer "ainda falhando" ali mentiria no log
+            # (o ensaio de rollback de 2026-10-21 imprimiu "24 ainda falhando" antes de tentar).
+            log(f"smoke: aguardando {espera}s antes da primeira checagem" if i == 0 else
+                f"smoke: {len(alvos)} alvo(s) ainda falhando — nova tentativa em {espera}s")
             time.sleep(espera)
         falhas, restantes = [], []
         for alvo in alvos:

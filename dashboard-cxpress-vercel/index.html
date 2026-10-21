@@ -60,11 +60,44 @@ function showStatus(msg, isError = false) { statusBar.textContent = msg; statusB
 function hideStatus() { statusBar.classList.remove('show'); }
 function toISO(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
 
+// Versao do formato do JSON que este painel sabe ler. Bumpar JUNTO com o SCHEMA_VERSION do
+// exportador e o schema_version de dashboards-umbrella/contratos/cxpress.json: o
+// validar_contrato.py falha se os tres divergirem. Versao diferente = aviso no topo e o painel
+// renderiza assim mesmo. O numero ja foi conferido no CI antes do deploy; isto e a rede da aba
+// aberta em cache e de deploy feito sem passar pelo validador.
+const SCHEMA_ESPERADO = 1;
+
+function avisarContrato(msg) {
+  if (document.getElementById('avisoContrato')) return;
+  const el = document.createElement('div');
+  el.id = 'avisoContrato';
+  el.setAttribute('role', 'alert');
+  // Inline (o buzz-br nem tem CSS externo) e no fluxo, logo abaixo da barra de navegacao fixa:
+  // persistente, ao contrario do statusBar, que o hideStatus() apaga depois do render.
+  el.style.cssText = 'position:relative;z-index:800;background:#8a2b06;color:#fff;'
+    + 'font:600 13px/1.45 system-ui,-apple-system,sans-serif;padding:10px 16px;text-align:center';
+  el.textContent = msg;
+  const nav = document.querySelector('.dnav');
+  if (nav && nav.parentNode === document.body) nav.after(el); else document.body.prepend(el);
+  console.warn('[contrato]', msg);
+}
+
+function conferirVersao(D) {
+  const v = D.schema_version;
+  if (v !== SCHEMA_ESPERADO) {
+    const recebido = v == null ? 'dados sem versão' : 'v' + v;
+    avisarContrato(v > SCHEMA_ESPERADO
+      ? `Esta página está em cache e desatualizada (espera dados v${SCHEMA_ESPERADO}, recebeu v${v}). Recarregue com Ctrl+Shift+R. Até lá, os números abaixo podem estar incompletos.`
+      : `Dados fora do contrato: a página espera dados v${SCHEMA_ESPERADO} e recebeu ${recebido}. Os números abaixo podem estar errados. Confirme antes de usar.`);
+  }
+}
+
 async function ensureDados() {
   if (DADOS) return DADOS;
   const res = await fetch('dados-cxpress.json', { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Falha ao carregar dados-cxpress.json (HTTP ${res.status})`);
   DADOS = await res.json();
+  conferirVersao(DADOS);
   return DADOS;
 }
 function hojeExport() { return (DADOS && DADOS.gerado_em) ? DADOS.gerado_em : toISO(new Date()); }

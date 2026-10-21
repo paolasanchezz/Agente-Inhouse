@@ -100,7 +100,9 @@ Inteiro simples, um por contrato. **Bumpe** quando um campo que o painel lê for
 
 Regra prática: *se a mudança faria um painel antigo mostrar número errado em vez de simplesmente ignorar, bumpe.*
 
-O bump é num PR só: `SCHEMA_VERSION` do exportador + `schema_version` do contrato. O validador sai com 4 se divergirem.
+O bump é num PR só, nas **três pontas**: `SCHEMA_VERSION` do exportador, `schema_version` do contrato e `const SCHEMA_ESPERADO` no `index.html` do painel. O validador sai com 4 se qualquer uma divergir — e como o ensaio do workflow roda em todo PR de dashboard, não dá para mergear um bump pela metade.
+
+**No painel**, versão diferente da esperada mostra uma faixa logo abaixo da barra de navegação e **renderiza assim mesmo** (o número já foi conferido no CI antes do deploy; bloquear transformaria uma aba em cache em indisponibilidade). JSON com versão **maior** = "página em cache, recarregue com Ctrl+Shift+R"; **menor ou sem versão** = "dados fora do contrato, confirme antes de usar". O PT avisa também se `etapas`, `ganhas` ou `terminais` faltarem, porque lá a ausência zera fechamentos e perdidos sem erro. Os textos saem na língua de cada painel (PT-BR, ES-LATAM em "tú", PT-PT).
 
 **E mudar só a visualização?** CSS, layout, rótulo, gráfico novo sobre campos que já existem: não toca o contrato e não tem como quebrar os dados. Se a mudança precisa de um campo novo, ele entra no exportador **e** no contrato (com o `consumidor`), e o validador avisa se faltar um.
 

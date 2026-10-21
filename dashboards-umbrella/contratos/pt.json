@@ -4,7 +4,7 @@
   "schema_version": 1,
   "exportador": "dashboard-pt-vercel/exportar_dados.py",
   "arquivo_painel": "dashboard-pt-vercel/index.html",
-  "guard_painel": false,
+  "guard_painel": true,
   "frescor_dias": 1,
   "tamanho_max_bytes": 3400000,
   "topo": {

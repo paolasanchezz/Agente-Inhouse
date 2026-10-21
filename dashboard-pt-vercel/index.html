@@ -85,12 +85,52 @@ function toISO(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
+// Versao do formato do JSON que este painel sabe ler. Bumpar JUNTO com o SCHEMA_VERSION do
+// exportador e o schema_version de dashboards-umbrella/contratos/pt.json: o
+// validar_contrato.py falha se os tres divergirem. Versao diferente = aviso no topo e o painel
+// renderiza assim mesmo. O numero ja foi conferido no CI antes do deploy; isto e a rede da aba
+// aberta em cache e de deploy feito sem passar pelo validador.
+const SCHEMA_ESPERADO = 1;
+
+function avisarContrato(msg) {
+  if (document.getElementById('avisoContrato')) return;
+  const el = document.createElement('div');
+  el.id = 'avisoContrato';
+  el.setAttribute('role', 'alert');
+  // Inline (o buzz-br nem tem CSS externo) e no fluxo, logo abaixo da barra de navegacao fixa:
+  // persistente, ao contrario do statusBar, que o hideStatus() apaga depois do render.
+  el.style.cssText = 'position:relative;z-index:800;background:#8a2b06;color:#fff;'
+    + 'font:600 13px/1.45 system-ui,-apple-system,sans-serif;padding:10px 16px;text-align:center';
+  el.textContent = msg;
+  const nav = document.querySelector('.dnav');
+  if (nav && nav.parentNode === document.body) nav.after(el); else document.body.prepend(el);
+  console.warn('[contrato]', msg);
+}
+
+function conferirVersao(D) {
+  const v = D.schema_version;
+  if (v !== SCHEMA_ESPERADO) {
+    const recebido = v == null ? 'dados sem versão' : 'v' + v;
+    avisarContrato(v > SCHEMA_ESPERADO
+      ? `Esta página está em cache e desatualizada (espera dados v${SCHEMA_ESPERADO}, recebeu v${v}). Recarregue com Ctrl+Shift+R. Até lá, os números abaixo podem estar incompletos.`
+      : `Dados fora do contrato: a página espera dados v${SCHEMA_ESPERADO} e recebeu ${recebido}. Os números abaixo podem estar errados. Confirme antes de os usar.`);
+  }
+  // motor.js faz new Set(DADOS.ganhas || []): sem estas chaves o fecho e os perdidos
+  // zeram em silencio, sem erro. O validar_contrato.py ja barra isso antes do deploy;
+  // aqui e a rede de quem deployou sem passar por ele.
+  if (!Array.isArray(D.etapas) || !Array.isArray(D.ganhas) || !Array.isArray(D.terminais)) {
+    avisarContrato('Dados incompletos (etapas, ganhas ou terminais em falta): os '
+      + 'fechamentos e os perdidos podem aparecer a zero. Avise a equipa antes de usar.');
+  }
+}
+
 async function ensureDados() {
   if (DADOS) return DADOS;
   const f = ficheiroDados();
   const res = await fetch(f, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Falha ao carregar ${f} (HTTP ${res.status})`);
   DADOS = await res.json();
+  conferirVersao(DADOS);
   MotorPT.carregar(DADOS);
   document.title = `Content Marketing · ${DADOS.nome}`;
   return DADOS;
