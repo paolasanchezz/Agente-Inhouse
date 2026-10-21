@@ -1,5 +1,7 @@
 # LP · perpetuo-monitoramento-concorrentes-pt (par captura + tks) · PT-PT
 
+> **Voltou a ser on-demand em 2026-10-21 (pedido da Catharina).** A captura usa de novo o Jotform de perpétuo `261904654263661` com `data-perpetuo-next="/perpetuo-monitoramento-vsl-pt-confirmado"`: quem preenche cai na tks **com vídeo** do par VSL. Não inscreve mais na série ClickMeeting 18086. A tks `perpetuo-monitoramento-concorrentes-pt-confirmado` (confirmação de sessão ao vivo) continua publicada, mas nenhuma captura leva mais pra ela. O resto deste README descreve o modelo ao vivo (histórico).
+
 Par PT-PT do webinar perpétuo **ao vivo** de monitorização de concorrentes. Nasceu em 2026-08-25
 como duplicação 1:1 do par PT-BR [`perpetuo-monitoramento-concorrentes`](../perpetuo-monitoramento-concorrentes/README.md)
 no modelo on-demand (form mock + vídeo gravado na tks) e passou a webinar ao vivo em 2026-09-04,
