@@ -1,0 +1,99 @@
+=== HEADER ===
+CTA: Acceder a la oferta
+# CTA da navbar, definido pelo usuario em 2026-09-21. Distinto do CTA do hero de proposito:
+# na navbar o texto e mais curto e neutro, porque acompanha o scroll a pagina inteira.
+
+
+=== HERO ===
+BADGE: Oferta exclusiva del workshop
+H1: De la primera señal a la respuesta correcta, en tiempo real.
+SUB: Esta oferta es solo para quienes estuvieron en el workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" y quieren llevar el método a la práctica.
+CTA: Quiero aprovechar la oferta
+
+
+=== OFERTA ===
+EYEBROW: La oferta exclusiva
+DESTAQUE: 15 días gratis de Buzzmonitor
+BODY: Para los participantes del workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" preparamos una condición especial: acceso completo a la plataforma y acompañamiento de un especialista para montar el monitoreo que avisa antes de que la crisis llegue a los titulares.
+LIST ITEM: 15 días gratis con acceso completo a la plataforma
+LIST ITEM: Soporte consultivo con especialistas durante toda la prueba
+LIST ITEM: Tu primer panel configurado por nuestro equipo, con las alertas de tu marca
+BONUS: Y hay algo más: al terminar los 15 días, recibes un descuento exclusivo para seguir con Buzzmonitor.
+LABEL: válida hasta el 6 de noviembre
+CTA: Quiero aprovechar la oferta
+
+
+=== CONSECUENCIA ===
+H2: Si vuelves a la rutina sin aplicar lo que aprendiste...
+LIST ITEM: Vas a seguir enterándote de las quejas por casualidad, cuando alguien del equipo las ve pasar.
+LIST ITEM: Vas a seguir sin saber si un pico de menciones es ruido o el inicio de algo serio.
+LIST ITEM: Vas a seguir respondiendo cuando la conversación ya llegó a la prensa.
+BODY: Una crisis no avisa dos veces. La diferencia entre contenerla en una hora y pasar una semana apagando incendios está en cuánto tardas en verla.
+CTA: Aprovecha la oferta
+
+
+=== BENEFICIOS ===
+H2: Lo que vas a poder ver con Buzzmonitor
+LIST ITEM: La señal débil identificada antes del pico de menciones
+LIST ITEM: El ruido separado de la amenaza real entre miles de menciones por día
+LIST ITEM: El giro de sentimiento monitoreado hora por hora, por marca y por tema
+LIST ITEM: Los perfiles que impulsan la propagación y dónde conviene responder primero
+LIST ITEM: Alertas automáticas que llegan a quien tiene que actuar, sin depender de que alguien lo note a tiempo
+
+
+=== MODULOS ===
+H2: Una plataforma. Cuatro módulos integrados.
+H3: Social Listening
+BODY: Monitoreo de crisis, alertas automáticas y clasificación de sentimiento. Sabes qué dicen de tu marca antes de que sea tarde.
+H3: Analytics
+BODY: Insights cualitativos, búsqueda ilimitada y reportes personalizados para medir el tamaño real de una crisis.
+H3: Atención al cliente
+BODY: Gestión multicanal con KPIs consolidados y sugerencias con IA para responder más rápido y mejor.
+H3: Programación
+BODY: Publicaciones ilimitadas y creación de contenido con IA integrada, sin cambiar de herramienta a la hora de responder.
+
+
+=== PRUEBA SOCIAL ===
+H2: Más de 1.000 marcas ya monitorean con Buzzmonitor
+LIST ITEM: 1.000+ clientes en el mundo
+LIST ITEM: 300+ clientes enterprise
+LIST ITEM: 500+ agencias
+LIST ITEM: 10.000 usuarios
+
+
+=== CLIENTES ===
+EYEBROW: Quiénes ya confían
+H2: Marcas que confían en Buzzmonitor
+NOTA: y más de 1.000 marcas en Brasil, Latinoamérica y Portugal
+
+
+=== URGENCIA ===
+LABEL: oferta por tiempo limitado
+H2: Esta condición vale solo para quienes participaron en el workshop.
+BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 6 de noviembre.
+CTA: Aprovechar la oferta exclusiva
+
+
+=== CTA FINAL ===
+H2: Empieza ahora. Sin compromiso.
+BODY: 15 días para montar el monitoreo de crisis de tu marca, con el acompañamiento de quien conoce tu escenario.
+LABEL: Nombre completo
+LABEL: Correo electrónico profesional
+LABEL: Teléfono
+LABEL: Empresa
+LABEL: País
+LABEL: ¿Cuál es tu cargo?
+LABEL: ¿En qué área trabajas?
+CTA: Quiero empezar ahora
+
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados. | Política de Privacidad
+
+# Idioma: ES-LATAM. Tuteo, "monitoreo" (no "monitorización"), "reportes" (no "informes"), Buzzmonitor sin articulo.
+# Revision anti-IA: sin hallazgos (em-dash: 0; exclamaciones: 0; antitesis-por-negacion: 0).
+# [2026-09-21] Fecha limite definida por el usuario: 30 de septiembre. Aplicada en OFERTA (LABEL) y en el BODY de URGENCIA. El sello de URGENCIA se deja generico ("oferta por tiempo limitado") para no repetir la fecha tres veces en la misma pantalla.
+
+# [2026-09-28] Copia para el workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" (Bogotá): nombre del evento webinar -> workshop y fecha límite 30/09 -> 14/10, a pedido del usuario. Resto de la copy (tema crisis) sin cambios.
+
+# [2026-10-21] Copia para el workshop de Ciudad de México (28/10): slug oferta-workshop-reportes-cdmx-octubre-2026 y fecha límite 14/10 -> 6/11. Resto de la copy sin cambios.
