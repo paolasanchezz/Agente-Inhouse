@@ -60,8 +60,14 @@ const MESES_C = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 
 
 function ficheiroDados() {
   const seg = window.location.pathname.split('/').filter(Boolean)[0] || '';
-  // Fora do guarda-chuva (abrir o ficheiro solto), cai no Buzzmonitor.
-  return JSON_POR_SLUG[seg] || 'dados-pt-bm.json';
+  // Sem segmento nenhum (ficheiro aberto solto, dev local), cai no Buzzmonitor.
+  if (!seg) return JSON_POR_SLUG['bm-pt'];
+  const f = JSON_POR_SLUG[seg];
+  // Sob o guarda-chuva, rota desconhecida NAO cai no Buzzmonitor: servir os dados de
+  // uma marca sob o titulo de outra e pior do que falhar. Quem apanha e o try/catch
+  // de quem chama ensureDados().
+  if (!f) throw new Error(`Rota "/${seg}/" nao tem ficheiro de dados mapeado.`);
+  return f;
 }
 
 let DADOS = null, firstLoad = true;
@@ -146,7 +152,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     btn.addEventListener('click', async () => {
       document.querySelectorAll('#presetGroup .pbtn').forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      await ensureDados();
+      try {
+        await ensureDados();
+      } catch (e) {
+        showStatus(`Erro ao carregar dados: ${e.message}`, true);
+        return;
+      }
       const { ini, fim } = presetRange(btn.dataset.preset);
       setPickerInputs(ini, fim);
       load(ini, fim);
@@ -169,7 +180,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     load(ini, fim);
   });
 
-  await ensureDados();
+  try {
+    await ensureDados();
+  } catch (e) {
+    showStatus(`Erro ao carregar dados: ${e.message}`, true);
+    return;
+  }
   const { ini, fim } = presetRange('ytd');
   setPickerInputs(ini, fim);
   load(ini, fim);

@@ -12,7 +12,16 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
-## brand/buzzmonitor — redes LATAM renomeadas de `getbuzzmonitor` para `buzzmonitor.es`
+## Dashboards CM — três falhas silenciosas no painel (preparação para o deploy noturno)
+### 2026-10-20 — `dashboard-pt-vercel/index.html` · `dashboard-buzzcreators-vercel/render.js` (sem versão)
+
+PR 1 de 3 do plano de automação noturna das dashboards. Os três bugs são independentes da automação, mas ela os torna perigosos: hoje quem roda `/dashboard-atualizar` lê o output e percebe; às 07:00 não há ninguém olhando.
+
+- **PT servia a marca errada em silêncio.** `ficheiroDados()` caía em `dados-pt-bm.json` para qualquer rota não mapeada, então uma rota nova digitada errada mostrava os dados da Buzzmonitor Portugal sob o título da Cxpress PT. Agora só o caso "ficheiro aberto solto" (sem segmento no path) cai no Buzzmonitor; rota desconhecida sob o guarda-chuva lança erro.
+- **PT não tratava erro no arranque.** Os dois `await ensureDados()` do `DOMContentLoaded` (arranque e botões de preset) não tinham `try/catch`: JSON em falta ou corrompido virava unhandled rejection — nada renderizava, nenhuma faixa de erro, só consola. As outras quatro dashboards já blindavam esse ponto. Era também pré-requisito do item anterior, já que `ficheiroDados()` passou a lançar.
+- **Buzzcreators imprimia `NaN%`.** A percentagem de cobertura dividia por `cob.deals_total` com guarda só de truthiness no `cob`; com `deals_total` ausente ou 0 saía `NaN%` no cabeçalho. Agora omite só a percentagem e mantém as contagens.
+
+Verificado a servir as 3 rotas PT reais mais uma rota inválida (com o JSON do bm presente de propósito, para isolar o guard): as 3 servem a marca certa, a inválida mostra a faixa de erro. Buzzcreators testado com `deals_total` normal (mantém `(50%)`) e forçado a 0 (omite).
 ### 2026-10-20 — `brand-manifest.json` (sem versão)
 
 - As contas LATAM viraram "Buzzmonitor en Español": Instagram, Threads e TikTok `@buzzmonitor.es`; X e YouTube `@buzzmonitor_es`; Facebook segue `/Buzzmonitorespanol`. Instagram e YouTube das LPs já tinham sido trocados na #849, e o Instagram do manifest na #850.

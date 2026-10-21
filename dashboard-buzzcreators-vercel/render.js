@@ -291,9 +291,14 @@
 
     // ---- header ----
     const cob = d.cobertura;
+    // deals_total ausente ou zero daria NaN%/Infinity% no cabecalho — nesse caso omite
+    // so a percentagem e mantem as contagens, que continuam a ser verdade.
+    const cobPct = (cob && Number(cob.deals_total) > 0)
+      ? ` (${Math.round(100 * cob.com_source / cob.deals_total)}%)`
+      : '';
     const cobTxt = cob
       ? `Atribuição recuperada por contato: <b>${fmtInt(cob.com_source)}</b> de ${fmtInt(cob.deals_total)} deals `
-        + `com UTM (${Math.round(100 * cob.com_source / cob.deals_total)}%) · <b>${fmtInt(cob.no_escopo_cm)}</b> no escopo CM.`
+        + `com UTM${cobPct} · <b>${fmtInt(cob.no_escopo_cm)}</b> no escopo CM.`
       : '';
     const header = '<div class="top"><div class="chip">Content Marketing · Buzzcreators Brasil</div>'
       + '<h1>Resultados — Content Marketing</h1><div class="sub">Dashboard · seletor de período · Buzzcreators Brasil</div>'
