@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-PT"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Open+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1200px;height:630px;overflow:hidden;font-family:'Open Sans',sans-serif;color:#fff;position:relative;background:radial-gradient(760px 480px at 82% 40%,rgba(74,105,189,.6),transparent 62%),radial-gradient(520px 360px at 4% 100%,rgba(239,134,60,.22),transparent 60%),#12163f}
+body::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px}
+.logo{position:absolute;left:72px;top:60px;height:48px}
+.tag{position:absolute;left:72px;top:168px;font:500 18px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#cfd9ff;border:1px solid rgba(255,255,255,.25);padding:9px 18px;border-radius:99px;background:rgba(255,255,255,.06)}
+h1{position:absolute;left:72px;top:232px;width:640px;font-weight:800;font-size:64px;line-height:1.08;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(95deg,#9db6ff,#fff 45%,#ffc99b);-webkit-background-clip:text;color:transparent}
+.sub{position:absolute;left:72px;bottom:62px;font:700 24px 'Open Sans';color:rgba(255,255,255,.85)}
+.ring{position:absolute;left:880px;top:150px;width:240px;height:240px;display:grid;place-items:center}
+.ring i{position:absolute;inset:0;border-radius:50%;border:3px solid rgba(239,134,60,.6)}
+.ring i:nth-child(2){inset:-46px;border-color:rgba(239,134,60,.32)}
+.ring i:nth-child(3){inset:-92px;border-color:rgba(239,134,60,.16)}
+.core{width:150px;height:150px;border-radius:50%;background:linear-gradient(145deg,#EF863C,#ff9d5c);display:grid;place-items:center;box-shadow:0 20px 50px rgba(239,134,60,.5)}
+.core svg{width:70px;height:70px}
+.wave{position:absolute;left:760px;top:480px;width:380px;height:90px;display:flex;align-items:center;gap:8px}
+.wave b{flex:1;border-radius:6px;background:linear-gradient(180deg,#9db6ff,#4A69BD);height:var(--h)}
+</style></head><body>
+<img class="logo" src="https://tami-buzzmonitor-5eye.lpcontent.net/api/library/vmg45x2mntoakw0nqafnjh4x" alt="">
+<span class="tag">Cxpress.voz · telefone em nuvem</span>
+<h1>Transforme o atendimento telefónico com a <em>IA da Cxpress.voz</em></h1>
+<p class="sub">Voicebot, filas inteligentes e dashboards num só número</p>
+<div class="ring"><i></i><i></i><i></i><div class="core"><svg viewBox="0 0 24 24" fill="none" stroke="#232960" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.3a11 11 0 006.3 6.3l1.3-2.1 4.2 1.6V18a2 2 0 01-2.2 2A16.5 16.5 0 013 5.7a2 2 0 012-2.2z"/></svg></div></div>
+<div class="wave" id="w"></div>
+<script>const w=document.getElementById('w');for(let i=0;i<30;i++){const b=document.createElement('b');b.style.setProperty('--h',(18+Math.abs(Math.sin(i*1.7)*Math.cos(i*.6))*72).toFixed(0)+'px');w.appendChild(b)}</script>
+</body></html>

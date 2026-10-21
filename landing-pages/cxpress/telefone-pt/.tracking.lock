@@ -1,0 +1,11 @@
+{
+  "regiao": "portugal",
+  "expected_gtm": "GTM-NW6V5KBM",
+  "found_gtm": [
+    "GTM-NW6V5KBM"
+  ],
+  "fingerprint": "0a66077baeec4634",
+  "status": "ok",
+  "grandfathered": false,
+  "verified_at": "2026-10-21"
+}
