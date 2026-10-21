@@ -32,6 +32,9 @@ O_QUE_FAZER = {
     "conectividade": "O runner nao alcancou o Supabase (pooler fora, credencial revogada ou "
                      "permissao do looker_readonly mudou). Nada foi exportado; o painel segue "
                      "com os dados de ontem.",
+    "filtro": "O filtro CM do buzz-br divergiu entre dashboard/queries.py (oficial) e "
+              "dashboard-pessoal/lib/queries.py (o espelho que o exportador usa). Nada foi "
+              "exportado. Replique a mudanca no espelho; o log lista o que difere.",
     "exportar": "Um exportador quebrou (query, statement_timeout, coluna renomeada no banco). "
                 "Nada foi para o ar.",
     "validar": "O validador barrou os dados — nada foi para o ar, o painel segue com os de "

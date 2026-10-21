@@ -95,6 +95,13 @@ jobs:
           print(f"conectou em {time.time() - t:.2f}s")
           PYEOF
 
+      - name: Filtro CM do buzz-br sincronizado
+        # O exportador do buzz-br usa o espelho dashboard-pessoal/lib/queries.py, nao a copia
+        # oficial. Divergiram = deals com filtro errado no ar, sem erro (caso ECHEF ROBOT, 07/2026).
+        run: |
+          echo filtro > "$LOG_DIR/etapa.txt"
+          python dashboards-umbrella/auditar_filtro_cm.py 2>&1 | tee "$LOG_DIR/log-filtro.txt"
+
       - name: Exportar as 7 dashboards
         run: |
           echo exportar > "$LOG_DIR/etapa.txt"

@@ -39,7 +39,7 @@ py dashboards-umbrella/build_umbrella.py <dist_dir> --dry-run   # mostra o plano
 py dashboards-umbrella/build_umbrella.py <dist_dir>
 ```
 
-Na prática, quem chama isso é a skill **`/dashboard-atualizar`** (exportar → build → deploy → validar). Não deploye a mão.
+Na prática, quem chama isso é o workflow noturno, via `deploy_ci.py` (seção "Atualização automática" abaixo). Deploy manual deste projeto é negado pelo hook.
 
 `<dist_dir>` é a sibling **fora do repo** (`$DASHBOARD_SIBLING_BASE/dashboards-elife`) — o build recusa qualquer caminho dentro do repositório. A credencial do Basic Auth vem de `.env.local` e só é escrita na dist, nunca no repo.
 
@@ -127,7 +127,7 @@ py dashboards-umbrella/testar_contrato.py                                       
 Desde **2026-10-21** o workflow `.github/workflows/dashboards-deploy.yml` faz sozinho o que a `/dashboard-atualizar` fazia à mão, às **07:13 BRT** (o minuto quebrado é porque o cron do GitHub atrasa na hora cheia):
 
 ```
-conectividade → exportar as 7 → validar contrato + catraca → build → deploy → smoke → (rollback)
+conectividade → filtro CM do buzz-br → exportar as 7 → validar contrato + catraca → build → deploy → smoke → (rollback)
 ```
 
 Qualquer etapa que falha para a cadeia: **nada vai para o ar e o painel segue com os dados de ontem**, que é melhor que dado de hoje errado. Nesse caso chega um e-mail para o Victor dizendo em que etapa parou, com o fim do log (o validador já escreve o que consertar). No verde, silêncio.
@@ -135,6 +135,7 @@ Qualquer etapa que falha para a cadeia: **nada vai para o ar e o painel segue co
 | Peça | Papel |
 |---|---|
 | `deploy_ci.py` | Build numa dist temporária, deploy, smoke e rollback. Irmão do `landing-pages/build/deploy_ci.py`. O smoke usa Basic Auth e confere, por rota, 308 sem barra, 200 com barra e o `index.html` **e o JSON** servidos byte a byte iguais aos da dist — prova que o que está no ar é exatamente o que o validador aprovou. Se reprovar, promove de volta o deploy que o alias servia antes. |
+| `auditar_filtro_cm.py` | Confere se o filtro CM do buzz-br está igual em `dashboard/queries.py` (oficial) e `dashboard-pessoal/lib/queries.py` (o espelho, que é o que o exportador usa). A skill manual rodava isso antes de cada export; ficou de fora na primeira versão do workflow e voltou na Fase 5. |
 | `notificar_falha.py` | O e-mail de falha. Apaga do texto qualquer valor de secret antes de enviar, porque o log vai bruto, sem a máscara que o GitHub aplica na tela. |
 
 **Em PR também roda — só como ensaio.** Todo PR que mexe em código de dashboard (`dashboard-*-vercel/`, `queries*.py`, `dashboards-umbrella/`) exporta, valida o contrato e builda, **sem deployar**. É o que pega, antes do merge, uma mudança no painel ou no exportador que quebraria o contrato.
@@ -160,4 +161,8 @@ py dashboards-umbrella/deploy_ci.py --checar-producao   # 401 sem login, noindex
 py dashboards-umbrella/deploy_ci.py --dry-run           # só o build, numa dist temporária
 ```
 
-> **Ainda existem duas portas de deploy.** A `/dashboard-atualizar` continua deployando da máquina local, e o workflow deploya da `main`. Um deploy local feito de uma branch sobe aquele código, e a rodada da manhã seguinte devolve o da `main`. O fechamento (o hook passa a negar deploy manual deste projeto e a skill vira disparo do workflow) é a Fase 5 do plano, depois que as primeiras rodadas noturnas se provarem.
+### Uma porta só
+
+O hook `.claude/hooks/guard_vercel_deploy.py` **nega** deploy manual do projeto `dashboards-elife` (por nome, `projectId`, domínio ou `.vercel/project.json` do diretório) — mesma trava das LPs migradas. Antes, um deploy local subia o código da branch em que a pessoa estivesse, pulava o validador, e a rodada seguinte devolvia o da `main`. A `/dashboard-atualizar` v5 virou disparo do workflow + acompanhamento.
+
+**Emergência (GitHub Actions fora do ar):** `LP_DEPLOY_CI_OVERRIDE=1` no **ambiente da sessão** do Claude Code troca o bloqueio por confirmação. Prefixar no comando não funciona — o hook lê o ambiente do processo, não o do comando. Passo a passo na seção "Emergência" da skill; remova a variável assim que terminar.

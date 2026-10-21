@@ -12,6 +12,20 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `dashboard-atualizar` — vira disparo do workflow; deploy manual das dashboards passa a ser negado
+### 2026-10-21 — `dashboard-atualizar` 4.2.0 → 5.0.0 (MAJOR) · `guard_vercel_deploy.py` · `dashboards-umbrella/` (sem versão)
+
+Fase 5 (última) do plano de automação noturna: fecha a segunda porta de deploy. Até aqui a skill ainda deployava da máquina local — de qualquer branch, sem passar pelo validador, e a rodada seguinte do workflow devolvia o código da `main`.
+
+- **`/dashboard-atualizar` 5.0.0 (MAJOR — muda a interface):** não exporta nem deploya mais. Argumentos novos `agora` / `ensaio` / `status` / `aceitar <slug|tudo>`; dispara `dashboards-deploy.yml`, acompanha e traduz a falha pela etapa e pelo exit code do validador. Os slugs antigos (`buzz-br`, `pt`, `todas`…) são aceitos e explicados: o guarda-chuva sempre sobe as 7 juntas. Ficaram na skill o teste local antes de PR (export + contrato + paridade), o modo emergência e as notas de domínio.
+- **Hook `guard_vercel_deploy.py`:** o nível DENY passa a cobrir o projeto `dashboards-elife`, lido de `dashboards-umbrella/manifest.json` (por nome, `projectId`, domínio ou `.vercel/project.json` do diretório-alvo), com mensagem própria que aponta o workflow. Lógica das LPs intocada; a resolução de sinal foi extraída num helper e reaproveitada. `test_guard_vercel_deploy.py` ganhou 10 casos (incluindo o comando exato que a skill 4.x rodava, o projeto de redirect antigo que segue no ASK e o `vercel inspect` que segue livre): **22/22**.
+- **`auditar_filtro_cm.py` (novo) e um passo no workflow:** a skill 4.x conferia, antes de exportar o buzz-br, se o filtro CM estava igual em `dashboard/queries.py` e no espelho `dashboard-pessoal/lib/queries.py` — que é o que o exportador usa (caso ECHEF ROBOT, 07/2026). A primeira versão do workflow tinha deixado isso de fora; agora roda antes do export, com etapa própria no e-mail de falha. Testado dessincronizando o espelho de propósito: pega na constante e no SQL gerado, exit 1.
+- **Emergência documentada do jeito que funciona:** o `LP_DEPLOY_CI_OVERRIDE=1` tem que estar no ambiente da sessão do Claude Code. Prefixado no comando (`LP_DEPLOY_CI_OVERRIDE=1 npx vercel …`) ele não chega ao hook, que lê o próprio ambiente — o deploy de emergência seria negado justo quando importa.
+- `CLAUDE.md`, `landing-pages/PLANO-MIGRACAO-CI.md` e `dashboards-umbrella/README.md`: a `/dashboard-atualizar` saiu da lista de contextos sancionados de deploy manual. **Efeito colateral bom:** a Fase 4.2 do plano de migração (revogar o token de deploy das máquinas) tinha a skill como um dos bloqueios — ela não precisa mais do token local.
+- Senha do Basic Auth agora vive em dois lugares (`.env.local` e os secrets do GitHub); a nota da skill avisa que trocar exige atualizar os dois.
+
+---
+
 ## Dashboards CM — painel avisa quando o JSON não bate com a versão que ele sabe ler
 ### 2026-10-21 — `index.html` das 5 fontes · `dashboards-umbrella/contratos/*.json` · `deploy_ci.py` (sem versão)
 

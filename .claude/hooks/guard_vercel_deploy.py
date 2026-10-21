@@ -12,8 +12,12 @@ Intercepta qualquer tentativa de deploy no Vercel e decide em DOIS niveis:
      confirmacao possivel — o caminho certo e a skill (fluxo CI) ou o
      workflow_dispatch. Escape consciente: env var LP_DEPLOY_CI_OVERRIDE=1.
 
+     Desde 2026-10-21 o nivel 1 cobre tambem o guarda-chuva das dashboards CM
+     (dashboards-umbrella/manifest.json -> projeto dashboards-elife), que passou a
+     deployar so por .github/workflows/dashboards-deploy.yml. Mesmo escape.
+
   2. ASK (confirmacao) — deploy Vercel que NAO mira projeto migrado
-     (modo solo da /lp-publicar, /dashboard-atualizar, /blog-publicar).
+     (modo solo da /lp-publicar, /blog-publicar).
      Comportamento historico do hook: se voce esta dentro dessas skills,
      aprova; se digitou um `vercel deploy` a mao, recusa e roda a skill.
 
@@ -50,7 +54,8 @@ O QUE COBRE / NAO COBRE (limites honestos)
     inspect) NAO dispara.
   - Tool MCP de deploy do Vercel (`mcp__*__deploy_to_vercel`).
   - NAO cobre: deploy pelo painel web do Vercel, `vercel deploy` escondido
-    atras de `npm run <script>`, ou um shell cujo cwd ja e a sibling sem `cd`
+    atras de `npm run <script>` ou de `py dashboards-umbrella/deploy_ci.py` (que sem
+    VERCEL_TOKEN no ambiente recusa sozinho), ou um shell cujo cwd ja e a sibling sem `cd`
     no comando (nesse ultimo, o sinal textual ainda costuma pegar pelo nome
     do projeto/dominio no comando; se nada pegar, cai no ASK — nao piora).
     A trava definitiva contra esses e o token so-CI (Fase 4.2 do plano).
@@ -86,7 +91,7 @@ VERCEL_INVOKE = re.compile(
 REASON_ASK = (
     "TRAVA DE DEPLOY VERCEL. Deploy cru (fora da skill) ja derrubou LPs vizinhas em "
     "producao (incidentes 11/mai, 13/mai, 16/jun/2026) porque pula o sync da sibling. "
-    "Se voce esta DENTRO de /lp-publicar (modo solo), /dashboard-atualizar ou /blog-publicar, "
+    "Se voce esta DENTRO de /lp-publicar (modo solo) ou /blog-publicar, "
     "pode APROVAR. Se voce digitou um 'vercel deploy' a mao, RECUSE e rode a skill. "
     "Detalhes: landing-pages/CONTEXT.md §7.1 (anti-padroes) e §7.2 (incidentes)."
 )
@@ -147,6 +152,24 @@ def load_migrated(repo_root):
         if man.get("projeto_vercel_id"):
             ids.add(str(man["projeto_vercel_id"]))
     return names, ids, domains
+
+
+def load_dashboards(repo_root):
+    """Projeto do guarda-chuva das dashboards CM, se ja deploya pelo CI. Devolve
+    (nomes_projeto, ids_projeto, dominios). O sinal de "esta no CI" e o manifesto ter
+    `projeto_vercel_id` — campo que so existe desde que o deploy passou a sair de
+    .github/workflows/dashboards-deploy.yml (2026-10-21). Ilegivel/ausente -> vazio (ASK)."""
+    try:
+        with open(os.path.join(repo_root, "dashboards-umbrella", "manifest.json"),
+                  encoding="utf-8") as fh:
+            man = json.load(fh)
+    except Exception:
+        return set(), set(), set()
+    if not man.get("projeto_vercel_id"):
+        return set(), set(), set()
+    names = {str(man["projeto"])} if man.get("projeto") else set()
+    domains = {str(man["dominio"]).lower()} if man.get("dominio") else set()
+    return names, {str(man["projeto_vercel_id"])}, domains
 
 
 def _boundary_hit(needle, haystack):
@@ -211,6 +234,16 @@ def is_deploy(tool_name, tool_input):
     return False, "", None
 
 
+def _sinal(haystack, command, payload_cwd, names, ids, domains):
+    """Os dois sinais (textual e filesystem) contra um conjunto de projetos protegidos."""
+    signal = textual_match(haystack, names, ids, domains)
+    if signal is None and command is not None:
+        pid = project_id_from_dir(extract_target_cwd(command, payload_cwd))
+        if pid and pid in ids:
+            signal = ("project.json", pid)
+    return signal
+
+
 def evaluate(tool_name, tool_input, payload_cwd, repo_root, override=False):
     """Decide a acao. Retorna dict {action: 'pass'|'ask'|'deny', reason: str,
     signal: (tipo, valor)|None}. Pura -> testavel sem I/O de hook."""
@@ -219,13 +252,12 @@ def evaluate(tool_name, tool_input, payload_cwd, repo_root, override=False):
         return {"action": "pass", "reason": "", "signal": None}
 
     names, ids, domains = load_migrated(repo_root)
+    signal = _sinal(haystack, command, payload_cwd, names, ids, domains)
 
-    signal = textual_match(haystack, names, ids, domains)
-    if signal is None and command is not None:
-        target_cwd = extract_target_cwd(command, payload_cwd)
-        pid = project_id_from_dir(target_cwd)
-        if pid and pid in ids:
-            signal = ("project.json", pid)
+    if signal is None:
+        d_signal = _sinal(haystack, command, payload_cwd, *load_dashboards(repo_root))
+        if d_signal is not None:
+            return _decisao_dashboards(d_signal, override)
 
     if signal is not None:
         tipo, valor = signal
@@ -261,6 +293,37 @@ def evaluate(tool_name, tool_input, payload_cwd, repo_root, override=False):
 
     # Deploy Vercel que nao mira projeto migrado -> confirmacao de sempre.
     return {"action": "ask", "reason": REASON_ASK, "signal": None}
+
+
+def _decisao_dashboards(signal, override):
+    """Guarda-chuva das dashboards: deploya so pelo GitHub Actions desde 2026-10-21."""
+    tipo, valor = signal
+    if override:
+        return {
+            "action": "ask",
+            "signal": signal,
+            "reason": (
+                "OVERRIDE ATIVO (LP_DEPLOY_CI_OVERRIDE). Este deploy mira o guarda-chuva das "
+                "dashboards (%s: %s), que normalmente seria BLOQUEADO: a rodada seguinte do "
+                "workflow devolve o codigo da main. So aprove se o GitHub Actions estiver fora "
+                "do ar e a atualizacao nao puder esperar." % (tipo, valor)
+            ),
+        }
+    return {
+        "action": "deny",
+        "signal": signal,
+        "reason": (
+            "BLOQUEADO: deploy manual do guarda-chuva das dashboards (%s: %s). Desde "
+            "2026-10-21 ele deploya EXCLUSIVAMENTE pelo GitHub Actions "
+            "(.github/workflows/dashboards-deploy.yml), todo dia 07:13 BRT e sob demanda — "
+            "com contrato de dados, smoke e rollback. Deploy manual sobe o codigo da sua "
+            "maquina/branch, pula o validador, e a rodada seguinte devolve o da main. Para "
+            "atualizar agora: skill /dashboard-atualizar (dispara o workflow e acompanha) ou "
+            "`gh workflow run dashboards-deploy.yml`. Actions fora do ar? Rode com "
+            "LP_DEPLOY_CI_OVERRIDE=1 no ambiente. Contexto: dashboards-umbrella/README.md."
+            % (tipo, valor)
+        ),
+    }
 
 
 def main():

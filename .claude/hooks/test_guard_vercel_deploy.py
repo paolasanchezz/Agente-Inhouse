@@ -101,6 +101,58 @@ check("MCP deploy_to_vercel migrado",
 check("MCP deploy_to_vercel generico",
       "mcp__abc__deploy_to_vercel", {"path": "/tmp/algum-projeto-solo"}, expected="ask")
 
+# --- Guarda-chuva das dashboards: deploya so pelo GitHub Actions desde 2026-10-21 ---
+D_NAMES, D_IDS, D_DOMAINS = g.load_dashboards(ROOT)
+DASH_PROJ, DASH_ID = "dashboards-elife", "prj_gWXS2x2UpSphcPIXV3fK1GRzCuDa"
+assert DASH_PROJ in D_NAMES and DASH_ID in D_IDS, "manifesto das dashboards mudou?"
+assert "dashboards-elife.vercel.app" in D_DOMAINS
+
+# 11. Exatamente o comando que a /dashboard-atualizar <= 4.x rodava -> DENY.
+check("dashboards: comando da skill antiga (--cwd sibling)",
+      *bash('npx --yes vercel deploy --prod --yes --cwd "C:/Users/x/Claude/%s" %s'
+            % (DASH_PROJ, SCOPE)),
+      expected="deny")
+
+# 12. cd na sibling, dominio e projectId no comando -> DENY.
+check("dashboards: cd sibling + deploy",
+      *bash('cd "/c/Users/x/Claude/%s" && npx vercel deploy --prod %s' % (DASH_PROJ, SCOPE)),
+      expected="deny")
+check("dashboards: dominio no comando",
+      *bash('npx vercel promote https://dashboards-elife.vercel.app --yes %s' % SCOPE),
+      expected="deny")
+check("dashboards: projectId no comando",
+      *bash('vercel deploy --prod --project %s %s' % (DASH_ID, SCOPE)), expected="deny")
+
+# 13. Filesystem: .vercel/project.json da sibling das dashboards -> DENY; override -> ASK.
+with tempfile.TemporaryDirectory() as td:
+    os.makedirs(os.path.join(td, ".vercel"))
+    with open(os.path.join(td, ".vercel", "project.json"), "w", encoding="utf-8") as fh:
+        json.dump({"projectId": DASH_ID, "orgId": "team_x"}, fh)
+    check("dashboards: filesystem .vercel/project.json via cd",
+          *bash('cd "%s" && npx --yes vercel deploy --prod --yes' % td), expected="deny")
+    check("dashboards: override converte deny em ask",
+          *bash('cd "%s" && npx --yes vercel deploy --prod --yes' % td),
+          expected="ask", override=True)
+
+# 14. Projetos ANTIGOS das dashboards (hoje redirect 308) nao estao no CI -> ASK de sempre.
+check("dashboards: projeto antigo de redirect segue no ask",
+      *bash('cd "/c/Users/x/Claude/redirects-dashboards/dashboard-cxpress-brasil" && '
+            'npx vercel deploy --prod %s' % SCOPE),
+      expected="ask")
+
+# 15. Boundary: nome do guarda-chuva como prefixo de outro -> NAO deny.
+check("dashboards: boundary 'dashboards-elife-teste'",
+      *bash('cd "/c/Users/x/dashboards-elife-teste" && npx vercel deploy %s' % SCOPE),
+      expected="ask")
+
+# 16. Read-only nas dashboards -> passthrough (inspecionar o que esta no ar continua livre).
+check("dashboards: vercel inspect (read-only)",
+      *bash('npx vercel inspect dashboards-elife.vercel.app %s' % SCOPE), expected="pass")
+
+# 17. MCP deploy_to_vercel mirando as dashboards -> DENY.
+check("dashboards: MCP deploy_to_vercel",
+      "mcp__abc__deploy_to_vercel", {"project": DASH_PROJ}, expected="deny")
+
 print()
 if _failures:
     print("FALHOU: %d caso(s) -> %s" % (len(_failures), ", ".join(_failures)))
