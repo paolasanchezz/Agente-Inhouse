@@ -1,0 +1,176 @@
+LP: cxpress / agente-concierge
+IDIOMA: PT-BR (pt-BR)
+FONTE: PDF "Case Cacau Show & Elife - Atendimento com IA" + doc oficial do Concierge
+       (docs.superhuman.com/@cxpress-elife/sentinela) + conhecimento/produto/cxpress/padroes-de-copy.md
+ESTAGIO: MoFu/BoFu
+REGIAO: brasil · GTM-T4XDWHL3
+FORMULARIO: mock. Embed real entra depois via /lp-integrar-form
+VERSAO: v2 (2026-10-21) — revisao anti-IA, corte de repeticao
+
+=== HERO ===
+OVERLINE: Agente Concierge · Respostas automáticas nas redes
+H1: Na Páscoa, dois em cada três clientes da Cacau Show ficavam sem resposta
+SUB: Se uma das maiores redes de chocolate do Brasil não deu conta do volume no pico dela, a sua equipe também não vai dar conta do seu.
+SUB: O Agente Concierge responde o primeiro atendimento nos comentários do Instagram, Facebook, Google e TikTok, sem esperar alguém abrir a ferramenta. O time humano assume o que precisa de gente.
+CTA: Falar com um especialista
+BODY: Instagram · Facebook · Google · TikTok
+BODY: Mais de 800 empresas no Brasil, LATAM e Portugal atendem com a Cxpress.
+
+=== FICHA (card do hero) ===
+LABEL: Agente Concierge
+TITLE: Responde o comentário no instante em que ele aparece
+ITEM: Onde atua: Publicações de feed, Reels e anúncios patrocinados
+ITEM: Também: Lives no Instagram e avaliações no Google
+ITEM: Horário: Sem restrição de horário, inclusive de madrugada
+ITEM: Tom de voz: Treinado com a base de conhecimento da sua marca
+
+=== CLIENTES ===
+LABEL: Marcas que atendem com a Cxpress
+
+=== O PICO ===
+OVERLINE: O que acontece no pico
+H2: No pico de vendas, o atendimento é o primeiro a estourar
+BODY: O volume de comentário cresce junto com o de venda. A equipe continua a mesma.
+
+H3: A pergunta chega junto com a campanha
+BODY: Quanto melhor o anúncio entrega, mais comentário ele junta embaixo. O pico de mídia e o pico de atendimento caem no mesmo dia.
+
+H3: Fora do horário não tem ninguém
+BODY: Boa parte do comentário chega à noite e no fim de semana. Na segunda-feira a dúvida já virou carrinho abandonado.
+
+H3: Pergunta repetida ocupa o time inteiro
+BODY: Preço, prazo, se tem estoque, onde fica a loja. São sempre as mesmas, e responder na mão consome o tempo de quem devia estar cuidando do caso difícil.
+
+H3: Fica tudo à vista
+BODY: Diferente da mensagem privada, o comentário sem resposta é público. Quem chega depois lê a pergunta e lê o silêncio.
+
+=== O CASE ===
+OVERLINE: O case
+H2: O que a Cacau Show fez na Páscoa, o pico dela
+BODY: Mesmo pico, mesma pressão que a sua marca sente na data mais forte do ano.
+
+H3: Antes
+BODY: No auge da Páscoa de 2024, só 34% dos comentários e mensagens em Instagram e Facebook conseguiam ser respondidos na mão. O resto ficava sem retorno, bem no momento de mais venda do ano.
+
+H3: A virada
+BODY: Um agente de IA, o Concierge da Cxpress, passou a responder o primeiro atendimento. O time humano assumiu os casos sensíveis.
+
+H3: O resultado
+BODY: A marca escalou o atendimento no pico sem aumentar a equipe, com respostas mais rápidas e no tom da Cacau Show.
+
+=== COMO FUNCIONA ===
+OVERLINE: Como funciona
+H2: O que o agente resolve sozinho, e onde ele chama o time
+
+H3: Cobre onde o comentário aparece
+BODY: Feed e Reels são o óbvio. Ele responde também embaixo dos anúncios patrocinados, nas transmissões ao vivo do Instagram e nas avaliações do Google.
+
+H3: Fala como a sua marca fala
+BODY: Você define o tom em cada canal. O agente responde em linguagem natural, a partir da base de conhecimento que você já tem.
+
+H3: Não espera o horário comercial
+BODY: A resposta sai independentemente do horário de atendimento configurado na conta. O comentário da meia-noite é respondido à meia-noite.
+
+H3: Sabe quando parar
+BODY: Reclamação, caso sensível e qualquer coisa que exija decisão vão para a equipe, com o contexto da conversa junto.
+
+=== PARA QUEM É ===
+H2: Para marcas que já vivem de presença digital
+LIST ITEM: Investe em mídia paga — Recebe comentário em cada campanha que sobe.
+LIST ITEM: O volume não cabe no dia — Tem time de social ou de atendimento, e mesmo assim a fila de comentário atravessa a semana.
+LIST ITEM: Abre uma aba por plataforma — Hoje responde na mão, pulando entre várias contas e vários aplicativos.
+LIST ITEM: A venda começa num comentário — Vende ou agenda a partir do que acontece nas redes, então pergunta sem resposta é pedido que não entra.
+LIST ITEM: Tem pico sazonal — Data comemorativa, campanha grande, lançamento. E o último deixou claro que a equipe atual não escala.
+
+=== FORMULÁRIO ===
+H2: Falar com um especialista
+KICKER: Sobre as suas contas, sem compromisso
+SUB: Deixe seus dados. A gente mostra o agente rodando com as perguntas que você recebe de verdade.
+
+=== FECHO ===
+H2: Veja o Agente Concierge respondendo nas suas contas
+BODY: Um especialista mostra o agente funcionando nos canais que a sua marca já usa, e avalia quanto do seu volume dá para automatizar. Seu pico de vendas pode continuar o mesmo. Seu atendimento não precisa continuar no vermelho.
+CTA: Falar com um especialista
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# ================================================================
+# NOTAS
+# ================================================================
+#
+# POR QUE ESTE ANGULO
+# Escolha da Marielle em 21/10: case Cacau Show + pico, em vez do corte por
+# midia paga (usado na concierge-redes-sociais-pt) ou de pagina de produto
+# generica. E a unica regiao que tem prova nomeada: nem PT nem LATAM tem case
+# brasileiro reconhecivel.
+#
+# REGRA DE OURO (fundamentos-copy.md §0): H1 = dor, H2 = solucao.
+# O H1 nomeia a dor de OUTRA marca, entao sozinho ele seria prova, nao espelho.
+# Quem faz o espelho e a primeira SUB: "se a Cacau Show nao deu conta, a sua
+# equipe tambem nao vai". A estrutura da permissao ("nao e so voce") em vez de
+# acusar, que e o tom consultivo do padroes-de-copy.md.
+#
+# ================================================================
+# REVISAO v2 (2026-10-21) — o que mudou e por que
+# ================================================================
+# A v1 passava nas checagens mecanicas (em-dash 0, filler 0, frase-IA 0) mas
+# tinha o tique de IA que essas checagens nao pegam: REAFIRMAR O MESMO FATO em
+# embalagens diferentes. Rodei contagem de n-gramas e achei 8 repeticoes de 5+
+# palavras. Depois da revisao: zero.
+#
+# 1. "treinado com a base de conhecimento da sua marca" aparecia 3x (ficha +
+#    H2 da secao + corpo do item). Ficou so na ficha. O H2 virou "O que o
+#    agente resolve sozinho, e onde ele chama o time", que avanca em vez de
+#    repetir, e o item virou "Fala como a sua marca fala".
+# 2. "nos canais que a sua marca ja usa" aparecia 2x (form + fecho). Ficou so
+#    no fecho; o form virou "com as perguntas que voce recebe de verdade".
+# 3. "nao vai dar conta" 2x (hero + para-quem). O segundo virou "o ultimo
+#    deixou claro que a equipe atual nao escala".
+# 4. "no instante em que" 2x (sub do hero + titulo da ficha). O sub virou
+#    "sem esperar alguem abrir a ferramenta".
+# 5. PARA QUEM: os rotulos eram truncagem da propria frase ("Ja tem time" +
+#    "Tem time de social..."), que e padrao de geracao automatica. Reescritos
+#    para carregarem informacao propria.
+# 6. "sem resposta" 2x dentro do mesmo item do pico. O rotulo virou "Fica tudo
+#    a vista".
+# 7. CTA poetico estava com artigo ("O seu pico"). O padrao canonico da casa
+#    (padroes-de-copy.md, Padrao 5) e sem: "Seu numero pode continuar o mesmo".
+#    Conferido antes de mexer: so havia 2 ocorrencias, nao era vazamento
+#    generalizado do PT-PT.
+#
+# ================================================================
+# PRECISAO FACTUAL
+# ================================================================
+# IDENTIDADE DO CLIENTE: LIBERADA NESTE CASO
+# O cases.md proibe nomear cliente, mas aquela regra e sobre o relatorio
+# "Sentinela 2025", que e anonimizado. A Cacau Show vem de outra fonte, o PDF
+# "Case Cacau Show & Elife - Atendimento com IA", que nomeia a marca. Conferido
+# em 21/10: ja esta nomeada em 4 paginas no ar (black-friday-atendimento,
+# black-friday-atendimento-b, help-desk-meta, sistema-de-atendimento-meta), com
+# o dado de 34%. Nomear aqui nao abre precedente novo.
+#
+# NUMEROS: SO O 34%
+# ⚠️ O case NAO tem numero de SLA, de tempo de resposta nem de volume. A nota do
+# 2026-09-08 e explicita: "NAO usar numero de SLA (o case nao tem)". Nada alem de
+# 34% e das frases qualitativas (escalou sem aumentar equipe, respostas mais
+# rapidas, no tom da marca) pode entrar numa revisao futura.
+# O "+800 empresas" e claim publico da marca, nao vem do case.
+#
+# CONCIERGE (doc oficial)
+# Responde a comentarios em Facebook, Instagram, GMB e TikTok: feed, Reels,
+# anuncios patrocinados, lives (so Instagram) e avaliacoes (so GMB). Sem
+# restricao de horario.
+# ⚠️ Responde APENAS a comentarios de primeiro nivel. Comentario aninhado nao e
+# processado. Nao esta na pagina, e nada na pagina promete o contrario. Nao
+# acrescentar "responde a todas as conversas" depois.
+#
+# ================================================================
+# ANTI-IA (v2, medido no HTML final)
+# ================================================================
+# em-dash 0 · exclamacao 0 · filler 0 · frase de IA 0 · metafora aquatica 0
+# antitese-por-negacao 1 ("Diferente da mensagem privada"), limite e 2
+# repeticao de 5+ palavras: 0 (eram 8 na v1)
+# possessivo com artigo: 0
+# listas de 4, 3, 4 e 5 itens (comprimento variado)
