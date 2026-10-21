@@ -12,6 +12,18 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM — PT não soma dólar como euro; Buzzcreators não mostra opção apagada como Inbound
+### 2026-10-21 — `dashboard-pt-vercel/{motor,render}.js` · `exportar_dados.py` · `dashboard-buzzcreators-vercel/render.js` · contratos (sem versão)
+
+Os dois "achados de qualidade de dado" do fim da automação noturna, investigados e tratados.
+
+- **PT — risco latente de somar USD como EUR.** O CRM PT tem **182 deals em USD** (73 Buzzmonitor, 28 Cxpress, 81 Elife), e o motor somava o valor dos fechamentos como euro sem olhar a moeda. Hoje nenhum fechamento é em USD (os 61 são EUR), então os números no ar estavam certos — mas o primeiro fechamento em dólar inflaria o "€ X em valor" em silêncio. Agora o motor só soma o que está na moeda do painel e conta o resto; o card de Fechamentos e o KPI "Valor" mostram "· N noutra moeda, fora da soma" quando houver. Comparação sem caixa, e o exportador passou a gravar `cur` em maiúsculas (o CRM misturava `eur`/`EUR`/`usd`/`USD`).
+- **Verificado com o motor real no Node:** valores de hoje idênticos à soma de referência nas três marcas (€ 35.202,61 · € 4.950,00 · € 43.455,00); com um fechamento trocado para USD, ele sai da soma, entra na contagem e o número de fechamentos não muda. No navegador, o aviso aparece nos dois KPIs e some com os dados reais. O teste no navegador pegou um bug que o do Node deixou passar: o `fecharMarco` copia campo a campo e não levava o contador novo para a seção de Fechamento.
+- **Buzzcreators — `'369'` no campo `funil`.** É o `origem_lead` do Pipedrive. A sincronização do n8n (`[Pipedrive] 3 Full Syncs API v2 → Supabase`) traduz o ID da opção pelo rótulo da lista **atual** do campo; `369` passou cru porque a opção não existe mais — 9 deals (dez/2025 a jul/2026) ainda apontam para ela. O rótulo original não é recuperável. O painel mostrava esse valor com o selo verde do Inbound; agora mostra "não mapeado" em amarelo, com o valor cru no tooltip. A correção na origem (reescolher a origem desses 9 deals no Pipedrive) é do CRM e ficou com o Victor.
+- **Contratos:** `cur` do PT passa a ser lido pelo painel (obrigatório) e ganha enum `EUR`/`USD`; `funil` do Buzzcreators ganha enum `Inbound`/`Outbound`. Os dois com severidade **aviso**: moeda nova ou opção apagada aparecem no log da rodada sem bloquear o deploy.
+
+---
+
 ## `dashboard-atualizar` — vira disparo do workflow; deploy manual das dashboards passa a ser negado
 ### 2026-10-21 — `dashboard-atualizar` 4.2.0 → 5.0.0 (MAJOR) · `guard_vercel_deploy.py` · `dashboards-umbrella/` (sem versão)
 

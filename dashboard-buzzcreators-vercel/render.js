@@ -102,6 +102,12 @@
   function badgeFunil(f) {
     const v = (f || '').trim();
     if (!v) return '<span class="dim">—</span>';
+    // Inbound e Outbound sao as opcoes do campo "Funil [Origem do lead]" no Pipedrive. Qualquer
+    // outro valor e ID de opcao apagada que a sincronizacao nao traduziu (caso '369', 9 deals em
+    // 2026-10): selo de atencao, nunca o verde do Inbound, com o valor cru no title.
+    if (v !== 'Inbound' && v !== 'Outbound') {
+      return `<span class="b b-status-pending" title="valor no CRM: ${escapeHtml(v)}">não mapeado</span>`;
+    }
     const cls = v === 'Outbound' ? 'b-reason-soft' : 'b-status-ok';
     return `<span class="b ${cls}">${escapeHtml(v)}</span>`;
   }

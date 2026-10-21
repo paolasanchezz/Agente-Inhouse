@@ -13,6 +13,8 @@ const RenderPT = (function () {
   const fInt = (n) => (n == null ? '—' : Number(n).toLocaleString('pt-PT'));
   const fPct = (n, d) => (d ? (100 * n / d).toFixed(1).replace('.', ',') + '%' : '—');
   const fEur = (n) => '€ ' + Number(n || 0).toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // Deals noutra moeda nao entram na soma em EUR (motor.js); diz quantos ficaram de fora.
+  const foraDaSoma = (n) => (n ? ` · ${fInt(n)} noutra moeda, fora da soma` : '');
 
   function fData(iso) {
     if (!iso) return '—';
@@ -143,7 +145,7 @@ const RenderPT = (function () {
       + kpi('Sem rastreio', fInt(k.sem_rastreio), fPct(k.sem_rastreio, k.total), 'sem UTM útil e sem URL de conversão')
       + kpi('Em aberto', fInt(k.aberto), fPct(k.aberto, k.total), 'fora de fecho e de perdido/desqual./churn')
       + kpi('Reuniões', fInt(r.total), fPct(r.total, k.total), 'etapa Reunião ou além')
-      + kpi('Fechamentos', fInt(k.fechamento), fPct(k.fechamento, k.total), fEur(k.valor_fechamento) + ' em valor')
+      + kpi('Fechamentos', fInt(k.fechamento), fPct(k.fechamento, k.total), fEur(k.valor_fechamento) + ' em valor' + foraDaSoma(k.fechamento_outra_moeda))
       + kpi('Perdidos e desqual.', fInt(k.perdido), fPct(k.perdido, k.total), 'por etapa, não por status')
       + '</div></section>';
 
@@ -188,7 +190,7 @@ const RenderPT = (function () {
       + '<span class="tag">etapa Fecho de Negócio ou Cliente · por data de criação</span></div>'
       + '<div class="kpi-row k4">'
       + kpi('Fechamentos', fInt(f.total), fPct(f.total, k.total), 'etapa atual Fecho de Negócio ou Cliente')
-      + kpi('Valor', fEur(f.valor), null, 'soma do valor dos deals')
+      + kpi('Valor', fEur(f.valor), null, 'soma do valor dos deals' + foraDaSoma(f.fora_da_moeda))
       + kpi('Das reuniões', fPct(f.total, r.total), null, `${fInt(f.total)} de ${fInt(r.total)} reuniões`)
       + kpi('Via CM', fInt(f.cm), fPct(f.cm, f.total), `${fInt(f.nao_cm)} não CM · ${fInt(f.sem_rastreio)} sem rastreio`)
       + '</div>'

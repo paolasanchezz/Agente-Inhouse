@@ -215,6 +215,17 @@
       ],
       "permite_nulo": true,
       "severidade": "avisar"
+    },
+    {
+      "$por_que": "opcao apagada no Pipedrive chega como ID cru (caso '369', 9 deals em 2026-10); o painel mostra 'nao mapeado'. Aviso para alguem reescolher a origem desses deals no CRM.",
+      "lista": "deals",
+      "campo": "funil",
+      "valores": [
+        "Inbound",
+        "Outbound"
+      ],
+      "permite_nulo": true,
+      "severidade": "avisar"
     }
   ],
   "referencias": [],

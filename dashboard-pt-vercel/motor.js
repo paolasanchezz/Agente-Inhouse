@@ -33,12 +33,19 @@ const MotorPT = (function () {
     const terminais = new Set(DADOS.terminais || []);
     const ganhas = new Set(DADOS.ganhas || []);
 
+    // Os KPIs de valor sao na moeda do painel (DADOS.moeda, EUR). O CRM PT tem deals em USD:
+    // somar USD como EUR inflaria o total em silencio. So soma o que esta na moeda do painel e
+    // conta o resto, para o render mostrar "N noutra moeda, fora da soma". Comparacao sem caixa
+    // porque o CRM grava 'eur' e 'EUR' (o exportador ja normaliza; isto e defesa).
+    const moeda = String(DADOS.moeda || 'EUR').toUpperCase();
+    const naMoeda = (x) => String(x.cur || moeda).toUpperCase() === moeda;
+
     const kpis = {
       total: coorte.length,
       cm: 0, nao_cm: 0, sem_rastreio: 0,
       aberto: 0, fechamento: 0, perdido: 0,
       inbound: 0, outbound: 0,
-      valor_fechamento: 0,
+      valor_fechamento: 0, fechamento_outra_moeda: 0,
     };
 
     const porEtapa = new Map();
@@ -52,14 +59,15 @@ const MotorPT = (function () {
     // ou Cliente — o `status` 'Ganho' nao entra (decisao Victor 2026-10-15).
     const novoMarco = () => ({
       total: 0, cm: 0, nao_cm: 0, sem_rastreio: 0, inbound: 0, outbound: 0,
-      valor: 0, porEtapa: new Map(), porMes: new Map(), deals: [],
+      valor: 0, fora_da_moeda: 0, porEtapa: new Map(), porMes: new Map(), deals: [],
     });
     const reunioes = novoMarco();
     const fechamentos = novoMarco();
     const statusGanhoForaDaEtapa = [];
 
     function somarMarco(m, x) {
-      m.total += 1; m[x.c] += 1; m[x.o] += 1; m.valor += x.v || 0;
+      m.total += 1; m[x.c] += 1; m[x.o] += 1;
+      if (naMoeda(x)) m.valor += x.v || 0; else m.fora_da_moeda += 1;
       m.porEtapa.set(x.e, (m.porEtapa.get(x.e) || 0) + 1);
       const mes = x.d.slice(0, 7);
       const rm = m.porMes.get(mes) || { mes, cm: 0, nao_cm: 0, sem_rastreio: 0, total: 0 };
@@ -73,7 +81,10 @@ const MotorPT = (function () {
       kpis[x.o] += 1;
 
       const ehFechamento = ganhas.has(x.e);
-      if (ehFechamento) { kpis.fechamento += 1; kpis.valor_fechamento += x.v || 0; }
+      if (ehFechamento) {
+        kpis.fechamento += 1;
+        if (naMoeda(x)) kpis.valor_fechamento += x.v || 0; else kpis.fechamento_outra_moeda += 1;
+      }
       else if (terminais.has(x.e)) kpis.perdido += 1;
       else kpis.aberto += 1;
 
@@ -117,7 +128,7 @@ const MotorPT = (function () {
     function fecharMarco(m) {
       return {
         total: m.total, cm: m.cm, nao_cm: m.nao_cm, sem_rastreio: m.sem_rastreio,
-        inbound: m.inbound, outbound: m.outbound, valor: m.valor,
+        inbound: m.inbound, outbound: m.outbound, valor: m.valor, fora_da_moeda: m.fora_da_moeda,
         etapas: DADOS.etapas
           .map(([chave, rotulo]) => ({ chave, rotulo, n: m.porEtapa.get(chave) || 0 }))
           .filter((e) => e.n > 0),

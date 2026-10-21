@@ -65,7 +65,8 @@ def exportar(cur, marca: str) -> dict:
                 "e": etapa,
                 "s": r["status"],
                 "v": float(r["valor"] or 0),
-                "cur": r["moeda"] or "EUR",
+                # O CRM grava 'eur'/'EUR'/'usd'/'USD'; o motor compara com a moeda do painel.
+                "cur": (r["moeda"] or "EUR").upper(),
                 "f": fonte,
                 "md": Q.normalizar_utm(r["utm_medium"]),
                 "cp": (r["utm_campaign"] or "").strip() or None,

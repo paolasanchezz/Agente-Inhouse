@@ -110,9 +110,10 @@
         },
         "cur": {
           "tipo": "str",
-          "obrigatorio": false,
-          "nulo": true,
-          "consumidor": null
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js",
+          "$por_que": "motor.js so soma valor na moeda do painel (EUR) e conta o resto como 'noutra moeda, fora da soma'. Sem isto, um fechamento em USD seria somado como EUR."
         },
         "d": {
           "tipo": "data",
@@ -232,6 +233,17 @@
       ],
       "permite_nulo": false,
       "severidade": "fatal"
+    },
+    {
+      "$por_que": "moeda nova aparece aqui antes de alguem estranhar a soma; nao bloqueia, porque o motor ja a deixa fora da soma em EUR.",
+      "lista": "deals",
+      "campo": "cur",
+      "valores": [
+        "EUR",
+        "USD"
+      ],
+      "permite_nulo": false,
+      "severidade": "avisar"
     }
   ],
   "referencias": [
