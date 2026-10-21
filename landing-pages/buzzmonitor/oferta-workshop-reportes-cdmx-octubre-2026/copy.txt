@@ -18,7 +18,7 @@ BODY: Para los participantes del workshop "Cómo automatizar reportes de crisis,
 LIST ITEM: 15 días gratis con acceso completo a la plataforma
 LIST ITEM: Soporte consultivo con especialistas durante toda la prueba
 LIST ITEM: Tu primer panel configurado por nuestro equipo, con las alertas de tu marca
-BONUS: Y hay algo más: al terminar los 15 días, recibes un descuento exclusivo para seguir con Buzzmonitor.
+BONUS: Y hay algo más: al terminar los 15 días, tienes 50% de descuento en tus dos primeras mensualidades de Buzzmonitor.
 LABEL: válida hasta el 6 de noviembre
 CTA: Quiero aprovechar la oferta
 
@@ -97,3 +97,4 @@ FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados. | Política de Priva
 # [2026-09-28] Copia para el workshop "Cómo automatizar reportes de crisis, competencia y tendencias con IA" (Bogotá): nombre del evento webinar -> workshop y fecha límite 30/09 -> 14/10, a pedido del usuario. Resto de la copy (tema crisis) sin cambios.
 
 # [2026-10-21] Copia para el workshop de Ciudad de México (28/10): slug oferta-workshop-reportes-cdmx-octubre-2026 y fecha límite 14/10 -> 6/11. Resto de la copy sin cambios.
+# [2026-10-21] BONUS: "descuento exclusivo" -> "50% de descuento en tus dos primeras mensualidades", para alinear con los emails post-workshop (pedido del usuario).
