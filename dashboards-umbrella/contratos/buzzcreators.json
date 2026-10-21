@@ -1,0 +1,298 @@
+{
+  "$comment": "Contrato de dados da dashboard 'buzzcreators'. Declara o que o PAINEL LE (consumidor = arquivo que le o campo; null = exportado e nao lido, pode sumir). Gerado por validar_contrato.py --sugerir sobre os dados reais e revisado. Bumpar schema_version junto com SCHEMA_VERSION do exportador. Ver dashboards-umbrella/README.md.",
+  "contrato": "buzzcreators",
+  "schema_version": 1,
+  "exportador": "dashboard-buzzcreators-vercel/exportar_dados.py",
+  "arquivo_painel": "dashboard-buzzcreators-vercel/index.html",
+  "guard_painel": false,
+  "frescor_dias": 1,
+  "tamanho_max_bytes": 3400000,
+  "topo": {
+    "schema_version": {
+      "tipo": "int",
+      "obrigatorio": true,
+      "valor": 1
+    },
+    "gerado_em": {
+      "tipo": "data",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js"
+    },
+    "escopo": {
+      "tipo": "objeto",
+      "obrigatorio": false,
+      "campos": {
+        "ini": {
+          "tipo": "data"
+        },
+        "fim": {
+          "tipo": "data"
+        }
+      },
+      "consumidor": null
+    },
+    "cobertura": {
+      "tipo": "objeto",
+      "obrigatorio": true,
+      "campos": {
+        "deals_total": {
+          "tipo": "int",
+          "$por_que": "render.js divide por este valor; zero ja e tratado (PR #863), ausente nao."
+        },
+        "com_source": {
+          "tipo": "int"
+        },
+        "no_escopo_cm": {
+          "tipo": "int"
+        }
+      },
+      "consumidor": "motor.js, render.js"
+    },
+    "deals": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "deal",
+      "minimo": 1,
+      "consumidor": "motor.js"
+    },
+    "serie": {
+      "tipo": "objeto",
+      "obrigatorio": true,
+      "series_paralelas": {
+        "rotulos": "labels",
+        "series": [
+          "leads",
+          "agendamento",
+          "reuniao",
+          "fechamento"
+        ],
+        "minimo": 4
+      },
+      "consumidor": "motor.js, render.js"
+    }
+  },
+  "registros": {
+    "deal": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "currency": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_agendamento": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_fechamento": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_lead": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_lost": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_reuniao": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "etapa_atual": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "funil": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "motivo": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "responsavel": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "status": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "url_conversao": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_campaign": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_medium": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "valor": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        }
+      }
+    }
+  },
+  "literais": [
+    {
+      "$por_que": "motor.js compara status === 'lost' (MINUSCULO, ao contrario do cxpress). Mudou a caixa, o KPI de perdidos zera.",
+      "lista": "deals",
+      "campo": "status",
+      "valor": "lost",
+      "minimo_ocorrencias": 1,
+      "severidade": "fatal"
+    }
+  ],
+  "enums": [
+    {
+      "$por_que": "status vem do Pipedrive em minusculo.",
+      "lista": "deals",
+      "campo": "status",
+      "valores": [
+        "lost",
+        "open",
+        "won"
+      ],
+      "permite_nulo": true,
+      "severidade": "avisar"
+    }
+  ],
+  "referencias": [],
+  "catraca": {
+    "padrao": {
+      "queda_pct": 2,
+      "queda_abs": 5,
+      "alta_aviso_pct": 25,
+      "alta_fatal_pct": 100,
+      "alta_abs": 10
+    },
+    "metricas": [
+      {
+        "nome": "deals_total",
+        "lista": "deals",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "deals_com_d_agendamento",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_agendamento",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_fechamento",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_fechamento",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_lead",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_lead",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_lost",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_lost",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_reuniao",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_reuniao",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "serie_semanas",
+        "caminho": "serie.labels",
+        "tipo": "tamanho",
+        "minimo": 4
+      },
+      {
+        "nome": "perdidos",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "status",
+          "op": "==",
+          "valor": "lost"
+        }
+      }
+    ]
+  }
+}

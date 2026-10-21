@@ -1,0 +1,363 @@
+{
+  "$comment": "Contrato de dados da dashboard 'pt'. Declara o que o PAINEL LE (consumidor = arquivo que le o campo; null = exportado e nao lido, pode sumir). Gerado por validar_contrato.py --sugerir sobre os dados reais e revisado. Bumpar schema_version junto com SCHEMA_VERSION do exportador. Ver dashboards-umbrella/README.md.",
+  "contrato": "pt",
+  "schema_version": 1,
+  "exportador": "dashboard-pt-vercel/exportar_dados.py",
+  "arquivo_painel": "dashboard-pt-vercel/index.html",
+  "guard_painel": false,
+  "frescor_dias": 1,
+  "tamanho_max_bytes": 3400000,
+  "topo": {
+    "schema_version": {
+      "tipo": "int",
+      "obrigatorio": true,
+      "valor": 1
+    },
+    "gerado_em": {
+      "tipo": "data",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js, render.js"
+    },
+    "marca": {
+      "tipo": "str",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": null,
+      "valores": [
+        "bm",
+        "cxpress",
+        "elife"
+      ],
+      "$por_que": "nao e lido, mas e a unica prova de que o arquivo certo foi pra rota certa (por_slug fixa o valor por rota)."
+    },
+    "nome": {
+      "tipo": "str",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js, render.js"
+    },
+    "moeda": {
+      "tipo": "str",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "motor.js",
+      "valor": "EUR"
+    },
+    "escopo": {
+      "tipo": "str",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "motor.js",
+      "$por_que": "aqui escopo e STRING de paragrafo, nao objeto {ini,fim} como nas outras quatro. O motor so repassa."
+    },
+    "etapas": {
+      "tipo": "pares",
+      "obrigatorio": true,
+      "minimo": 8,
+      "item": {
+        "tamanho": 2,
+        "0": {
+          "tipo": "str",
+          "unico": true
+        },
+        "1": {
+          "tipo": "str"
+        }
+      },
+      "consumidor": "motor.js, render.js",
+      "$por_que": "PARES POSICIONAIS que alimentam new Map(DADOS.etapas). Virar [{chave,rotulo}] nao da erro: produz Map vazio e a distribuicao por etapa esvazia."
+    },
+    "terminais": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "tipo_item": "str",
+      "minimo": 1,
+      "consumidor": "motor.js",
+      "$por_que": "motor.js faz new Set(DADOS.terminais || []): ausente NAO da erro, zera o KPI em silencio. Por isso obrigatorio."
+    },
+    "ganhas": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "tipo_item": "str",
+      "minimo": 1,
+      "consumidor": "motor.js",
+      "$por_que": "motor.js faz new Set(DADOS.ganhas || []): ausente NAO da erro, zera o KPI em silencio. Por isso obrigatorio."
+    },
+    "deals": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "deal",
+      "minimo": 1,
+      "consumidor": "motor.js, render.js"
+    }
+  },
+  "registros": {
+    "deal": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "c": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "cp": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "cur": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "d": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "dom": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "e": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "f": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": false,
+          "nulo": false,
+          "consumidor": null
+        },
+        "m": {
+          "tipo": "data",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "md": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "o": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "pa": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "r": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js",
+          "valores": [
+            0,
+            1
+          ]
+        },
+        "s": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "t": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "render.js"
+        },
+        "v": {
+          "tipo": "num",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        }
+      }
+    }
+  },
+  "literais": [
+    {
+      "$por_que": "motor.js: x.s === 'Ganho' alimenta 'ganho fora da etapa'. Volume baixo (pode ser 0 no elife-pt): so avisa.",
+      "lista": "deals",
+      "campo": "s",
+      "valor": "Ganho",
+      "minimo_ocorrencias": 0,
+      "severidade": "avisar"
+    }
+  ],
+  "enums": [
+    {
+      "$por_que": "motor.js faz kpis[x.c] += 1 — acumulador INDEXADO POR VALOR. Valor novo nao da erro: cria kpis.<novo>=NaN e some dos tres buckets reais.",
+      "lista": "deals",
+      "campo": "c",
+      "valores": [
+        "cm",
+        "nao_cm",
+        "sem_rastreio"
+      ],
+      "permite_nulo": false,
+      "severidade": "fatal"
+    },
+    {
+      "$por_que": "motor.js faz kpis[x.o] += 1 — mesma mecanica.",
+      "lista": "deals",
+      "campo": "o",
+      "valores": [
+        "inbound",
+        "outbound"
+      ],
+      "permite_nulo": false,
+      "severidade": "fatal"
+    }
+  ],
+  "referencias": [
+    {
+      "$por_que": "etapa fora do vocabulario some do rotulo e polui a distribuicao.",
+      "de": "deals[].e",
+      "para": "etapas[][0]",
+      "severidade": "fatal"
+    },
+    {
+      "$por_que": "chave em ganhas que nao existe em etapas: ganhas.has(x.e) nunca casa, fechamento 0 em silencio.",
+      "de": "ganhas[]",
+      "para": "etapas[][0]",
+      "severidade": "fatal"
+    },
+    {
+      "de": "terminais[]",
+      "para": "etapas[][0]",
+      "severidade": "fatal"
+    }
+  ],
+  "catraca": {
+    "padrao": {
+      "queda_pct": 2,
+      "queda_abs": 5,
+      "alta_aviso_pct": 25,
+      "alta_fatal_pct": 100,
+      "alta_abs": 10
+    },
+    "metricas": [
+      {
+        "nome": "etapas_n",
+        "caminho": "etapas",
+        "tipo": "tamanho",
+        "minimo": 14
+      },
+      {
+        "nome": "deals_total",
+        "lista": "deals",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "deals_com_d",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_m",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "m",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "cm",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "c",
+          "op": "==",
+          "valor": "cm"
+        }
+      },
+      {
+        "nome": "sem_rastreio",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "c",
+          "op": "==",
+          "valor": "sem_rastreio"
+        },
+        "catraca": {
+          "alta_aviso_pct": 10
+        },
+        "$por_que": "unica metrica em que CRESCER e o alarme: salto de sem_rastreio = atribuicao quebrando."
+      },
+      {
+        "nome": "fechamento",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "e",
+          "op": "em",
+          "valor": "@ganhas"
+        }
+      }
+    ]
+  },
+  "por_slug": {
+    "$comment": "O mesmo contrato roda 3 vezes; isto fixa o que muda por arquivo.",
+    "bm-pt": {
+      "topo": {
+        "marca": {
+          "valor": "bm"
+        },
+        "nome": {
+          "valor": "Buzzmonitor Portugal"
+        }
+      }
+    },
+    "cxpress-pt": {
+      "topo": {
+        "marca": {
+          "valor": "cxpress"
+        },
+        "nome": {
+          "valor": "Cxpress Portugal"
+        }
+      }
+    },
+    "elife-pt": {
+      "topo": {
+        "marca": {
+          "valor": "elife"
+        },
+        "nome": {
+          "valor": "Elife Portugal"
+        }
+      }
+    }
+  }
+}

@@ -38,6 +38,10 @@ from lib.render import serie_temporal_12m, jsonify  # noqa: E402
 
 ANO_INI = date(2026, 1, 1)
 HOJE = date.today()
+# Versao do formato deste JSON. Bumpar JUNTO com dashboards-umbrella/contratos/buzz-br.json
+# quando um campo lido pelo painel for removido, renomeado, mudar de tipo ou de literal.
+# Adicionar campo NAO bumpa. validar_contrato.py falha se os dois divergirem.
+SCHEMA_VERSION = 1
 FIM = HOJE
 OUT_PATH = ROOT / "dados-2026.json"
 # Perdidos cobrem tambem a janela do grafico de tendencia (52 semanas fechadas na segunda),
@@ -183,6 +187,7 @@ def main() -> None:
         serie = serie_temporal_12m(fetch_dict(cur, q_serie_temporal_12m(HOJE)), HOJE)
 
     out = {
+        "schema_version": SCHEMA_VERSION,
         "gerado_em": HOJE.isoformat(),
         "escopo": {"ini": ANO_INI.isoformat(), "fim": FIM.isoformat()},
         "leads": jsonify(leads),

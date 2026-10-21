@@ -98,6 +98,7 @@
       "moeda": "EUR",
       "fonte": "dashboard-pt-vercel",
       "dados": "dados-pt-bm.json",
+      "contrato": "pt",
       "arquivos": [
         "index.html",
         "estilo.css",
@@ -119,6 +120,7 @@
       "moeda": "EUR",
       "fonte": "dashboard-pt-vercel",
       "dados": "dados-pt-cxpress.json",
+      "contrato": "pt",
       "arquivos": [
         "index.html",
         "estilo.css",
@@ -140,6 +142,7 @@
       "moeda": "EUR",
       "fonte": "dashboard-pt-vercel",
       "dados": "dados-pt-elife.json",
+      "contrato": "pt",
       "arquivos": [
         "index.html",
         "estilo.css",

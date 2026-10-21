@@ -12,6 +12,25 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `dashboard-atualizar` + Dashboards CM — contrato de dados entre exportador e painel
+### 2026-10-21 — `dashboard-atualizar` 4.1.0 → 4.2.0 (MINOR) · `dashboards-umbrella/` (sem versão)
+
+PR 2 de 3 do plano de automação noturna das dashboards. É a rede que impede uma atualização desassistida de subir número errado.
+
+- **O problema:** o painel lê os campos pelo nome e compara strings cruas, sem validar nada. Um campo renomeado no exportador (`d_lead` → `data_lead`) faz todos os KPIs virarem 0 e a dashboard renderiza bonita e inteiramente zerada, sem erro. Chave de topo ausente também é muda em alguns lugares (`motor.js` do PT faz `new Set(DADOS.ganhas || [])`). E o formato já derivou na prática: entre 18/09 e 21/10 a chave `proporcao` sumiu do cxpress e a série ganhou duas chaves.
+- **`dashboards-umbrella/contratos/`** — um contrato por dashboard (as 3 PT dividem o `pt`) declarando o que o painel **lê**: tipos, enums, literais comparados, referências entre listas e métricas de catraca. O campo `consumidor` diz onde cada campo é lido; `null` = exportado e não lido, pode sumir. Gerados por `--sugerir` sobre os dados reais e revisados — o inventário escrito à mão tinha errado quatro de quatro séries.
+- **`validar_contrato.py`** — roda depois do export e antes do build; exit ≠ 0 bloqueia o deploy. Códigos distintos para contrato (2), catraca (3), versão (4) e leitura (1). Em rename, aponta a causa provável (`>>> provavel RENAME 'd_lead' -> 'data_lead'`). Nunca imprime valor de registro (os JSONs têm PII).
+- **Catraca** contra o JSON que está **no ar** (`--baseline-url`): como só rodada verde deploya, produção é o último estado verde, sem baseline para persistir — persistir em git obrigaria o CI a commitar na `main` toda noite. Métricas só cumulativas (feriado não dá falso positivo); queda abaixo do piso ou alta de +100% (JOIN dobrado) bloqueiam. `--aceitar-catraca` destrava uma queda legítima e nunca aceita violação de contrato.
+- **`testar_contrato.py`** — corrompe cópias dos JSONs reais de 19 jeitos (rename, chave de topo ausente, literal mudado, enum novo em acumulador, `etapas` em objetos, data com hora, gerado_em velho, série desalinhada, arquivo de outra marca na rota PT, versão divergente, queda, explosão, nulificação em massa, aceitação que não pode mascarar rename) e confere código e mensagem. **19/19.**
+- **`SCHEMA_VERSION = 1`** nos 5 exportadores, carimbado no JSON como `schema_version`. Política de bump no README.
+- **Exportadores leem o banco do ambiente** (`SUPABASE_PG_URL`) antes do `dashboard/.env`. Só o buzz-br fazia isso; cxpress, latam, buzzcreators e PT exigiam o arquivo, que não existe num checkout limpo do CI. Local segue idêntico.
+- `manifest.json` ganhou o campo `contrato` nas 3 entradas PT (as demais usam o próprio slug).
+- **`/dashboard-atualizar` Passo 1:** o sanity embutido (gerado_em, lista não-vazia, tamanho) deu lugar ao validador, com a tabela de exit codes e o que fazer em cada um. Valida só as dashboards exportadas, para que uma atualização parcial não falhe no frescor das outras.
+- Verificado: os 7 JSONs reais passam; e o export de hoje contra a produção real dá 68/68 métricas dentro do piso.
+- Achados de qualidade de dado, sem bloquear: `buzzcreators.deals[].funil` tem o valor `'369'` ao lado de `'Inbound'`/`'Outbound'` (ID cru num campo de rótulo?) e `pt.deals[].cur` mistura `EUR`/`eur`/`USD`/`usd` (não é lido pelo painel).
+
+---
+
 ## Dashboards CM — três falhas silenciosas no painel (preparação para o deploy noturno)
 ### 2026-10-20 — `dashboard-pt-vercel/index.html` · `dashboard-buzzcreators-vercel/render.js` (sem versão)
 
@@ -22,6 +41,10 @@ PR 1 de 3 do plano de automação noturna das dashboards. Os três bugs são ind
 - **Buzzcreators imprimia `NaN%`.** A percentagem de cobertura dividia por `cob.deals_total` com guarda só de truthiness no `cob`; com `deals_total` ausente ou 0 saía `NaN%` no cabeçalho. Agora omite só a percentagem e mantém as contagens.
 
 Verificado a servir as 3 rotas PT reais mais uma rota inválida (com o JSON do bm presente de propósito, para isolar o guard): as 3 servem a marca certa, a inválida mostra a faixa de erro. Buzzcreators testado com `deals_total` normal (mantém `(50%)`) e forçado a 0 (omite).
+
+---
+
+## brand/buzzmonitor — redes LATAM renomeadas de `getbuzzmonitor` para `buzzmonitor.es`
 ### 2026-10-20 — `brand-manifest.json` (sem versão)
 
 - As contas LATAM viraram "Buzzmonitor en Español": Instagram, Threads e TikTok `@buzzmonitor.es`; X e YouTube `@buzzmonitor_es`; Facebook segue `/Buzzmonitorespanol`. Instagram e YouTube das LPs já tinham sido trocados na #849, e o Instagram do manifest na #850.

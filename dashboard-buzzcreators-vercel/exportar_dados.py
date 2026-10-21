@@ -13,6 +13,7 @@ Uso:
 from __future__ import annotations
 
 import json
+import os
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -26,6 +27,10 @@ import psycopg  # noqa: E402
 import queries_buzzcreators as Q  # noqa: E402
 
 HOJE = date.today()
+# Versao do formato deste JSON. Bumpar JUNTO com dashboards-umbrella/contratos/buzzcreators.json
+# quando um campo lido pelo painel for removido, renomeado, mudar de tipo ou de literal.
+# Adicionar campo NAO bumpa. validar_contrato.py falha se os dois divergirem.
+SCHEMA_VERSION = 1
 OUT_PATH = ROOT / "dados-buzzcreators.json"
 ENV_PATH = DASH / ".env"
 
@@ -33,7 +38,9 @@ METRICAS_SERIE = ("leads", "agendamento", "reuniao", "fechamento")
 
 
 def load_url() -> str:
-    """Le SUPABASE_PG_URL de dashboard/.env (mesma convencao das outras dashboards)."""
+    """Le SUPABASE_PG_URL do ambiente (CI) ou de dashboard/.env (local)."""
+    if os.environ.get("SUPABASE_PG_URL"):
+        return os.environ["SUPABASE_PG_URL"].strip()
     for linha in ENV_PATH.read_text(encoding="utf-8").splitlines():
         linha = linha.strip()
         if linha.startswith("SUPABASE_PG_URL="):
@@ -81,6 +88,7 @@ def main() -> None:
         cobertura = fetch_all(cur, Q.q_cobertura())[0]
 
     out = {
+        "schema_version": SCHEMA_VERSION,
         "gerado_em": HOJE.isoformat(),
         "escopo": {"ini": date(2026, 1, 1).isoformat(), "fim": HOJE.isoformat()},
         "cobertura": {k: int(v) for k, v in cobertura.items()},

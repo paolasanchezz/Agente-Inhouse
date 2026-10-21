@@ -1,0 +1,631 @@
+{
+  "$comment": "Contrato de dados da dashboard 'buzz-br'. Declara o que o PAINEL LE (consumidor = arquivo que le o campo; null = exportado e nao lido, pode sumir). Gerado por validar_contrato.py --sugerir sobre os dados reais e revisado. Bumpar schema_version junto com SCHEMA_VERSION do exportador. Ver dashboards-umbrella/README.md.",
+  "contrato": "buzz-br",
+  "schema_version": 1,
+  "exportador": "dashboard-buzz-br-vercel/exportar_dados.py",
+  "arquivo_painel": "dashboard-buzz-br-vercel/index.html",
+  "guard_painel": false,
+  "frescor_dias": 1,
+  "tamanho_max_bytes": 3400000,
+  "topo": {
+    "schema_version": {
+      "tipo": "int",
+      "obrigatorio": true,
+      "valor": 1
+    },
+    "gerado_em": {
+      "tipo": "data",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js"
+    },
+    "escopo": {
+      "tipo": "objeto",
+      "obrigatorio": false,
+      "campos": {
+        "ini": {
+          "tipo": "data"
+        },
+        "fim": {
+          "tipo": "data"
+        }
+      },
+      "consumidor": null
+    },
+    "leads": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "lead",
+      "minimo": 1,
+      "consumidor": "index.html, motor.js"
+    },
+    "ce": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "ce",
+      "minimo": 0,
+      "consumidor": "index.html, motor.js"
+    },
+    "ra": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "ra",
+      "minimo": 0,
+      "consumidor": "index.html, motor.js"
+    },
+    "rr": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "rr",
+      "minimo": 0,
+      "consumidor": "index.html, motor.js"
+    },
+    "prop": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "prop",
+      "minimo": 0,
+      "consumidor": "index.html, motor.js"
+    },
+    "fech": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "fech",
+      "minimo": 0,
+      "consumidor": "index.html, motor.js"
+    },
+    "perdidos": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "perdido",
+      "minimo": 0,
+      "consumidor": "motor.js"
+    },
+    "serie_12m": {
+      "tipo": "objeto",
+      "obrigatorio": true,
+      "series_paralelas": {
+        "rotulos": "labels",
+        "series": [
+          "leads",
+          "ce",
+          "agendadas",
+          "propostas",
+          "fechamentos"
+        ],
+        "minimo": 4
+      },
+      "consumidor": "index.html, motor.js"
+    }
+  },
+  "registros": {
+    "lead": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "cdate_cru": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "email": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "ts": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        }
+      }
+    },
+    "ce": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        }
+      }
+    },
+    "ra": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "data_realizada": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        }
+      }
+    },
+    "rr": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "data_proposta": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        }
+      }
+    },
+    "prop": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "currency": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "valor_text": {
+          "tipo": "num",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html"
+        }
+      }
+    },
+    "fech": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "bd": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "currency": {
+          "tipo": "str",
+          "obrigatorio": false,
+          "nulo": true,
+          "consumidor": null
+        },
+        "data": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "email": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "valor": {
+          "tipo": "num",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html"
+        }
+      }
+    },
+    "perdido": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "cdate": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "data_perda": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "email": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "index.html, motor.js"
+        },
+        "motivo": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "ultima_conversao": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        }
+      }
+    }
+  },
+  "literais": [],
+  "enums": [],
+  "referencias": [],
+  "catraca": {
+    "padrao": {
+      "queda_pct": 2,
+      "queda_abs": 5,
+      "alta_aviso_pct": 25,
+      "alta_fatal_pct": 100,
+      "alta_abs": 10
+    },
+    "metricas": [
+      {
+        "nome": "leads_total",
+        "lista": "leads",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "leads_com_cdate_cru",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "cdate_cru",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "leads_com_data",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "ce_total",
+        "lista": "ce",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "ce_com_data",
+        "lista": "ce",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "ra_total",
+        "lista": "ra",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "ra_com_data",
+        "lista": "ra",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "ra_com_data_realizada",
+        "lista": "ra",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data_realizada",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "rr_total",
+        "lista": "rr",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "rr_com_data",
+        "lista": "rr",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "rr_com_data_proposta",
+        "lista": "rr",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data_proposta",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "prop_total",
+        "lista": "prop",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "prop_com_data",
+        "lista": "prop",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "fech_total",
+        "lista": "fech",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "fech_com_data",
+        "lista": "fech",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "perdidos_total",
+        "lista": "perdidos",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "perdidos_com_cdate",
+        "lista": "perdidos",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "cdate",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "perdidos_com_data_perda",
+        "lista": "perdidos",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "data_perda",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "perdidos_com_ultima_conversao",
+        "lista": "perdidos",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "ultima_conversao",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "serie_12m_semanas",
+        "caminho": "serie_12m.labels",
+        "tipo": "tamanho",
+        "minimo": 4
+      }
+    ]
+  }
+}

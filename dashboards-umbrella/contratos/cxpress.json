@@ -1,0 +1,288 @@
+{
+  "$comment": "Contrato de dados da dashboard 'cxpress'. Declara o que o PAINEL LE (consumidor = arquivo que le o campo; null = exportado e nao lido, pode sumir). Gerado por validar_contrato.py --sugerir sobre os dados reais e revisado. Bumpar schema_version junto com SCHEMA_VERSION do exportador. Ver dashboards-umbrella/README.md.",
+  "contrato": "cxpress",
+  "schema_version": 1,
+  "exportador": "dashboard-cxpress-vercel/exportar_dados.py",
+  "arquivo_painel": "dashboard-cxpress-vercel/index.html",
+  "guard_painel": false,
+  "frescor_dias": 1,
+  "tamanho_max_bytes": 3400000,
+  "topo": {
+    "schema_version": {
+      "tipo": "int",
+      "obrigatorio": true,
+      "valor": 1
+    },
+    "gerado_em": {
+      "tipo": "data",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js"
+    },
+    "escopo": {
+      "tipo": "objeto",
+      "obrigatorio": false,
+      "campos": {
+        "ini": {
+          "tipo": "data"
+        },
+        "fim": {
+          "tipo": "data"
+        }
+      },
+      "consumidor": null
+    },
+    "deals": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "deal",
+      "minimo": 1,
+      "consumidor": "motor.js"
+    },
+    "serie": {
+      "tipo": "objeto",
+      "obrigatorio": true,
+      "series_paralelas": {
+        "rotulos": "labels",
+        "series": [
+          "leads",
+          "triagem",
+          "agendamento",
+          "proposta",
+          "fechamento"
+        ],
+        "minimo": 4
+      },
+      "consumidor": "motor.js, render.js"
+    }
+  },
+  "registros": {
+    "deal": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "currency": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_agendamento": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_demo": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_fechamento": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_lead": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_lost": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_proposta": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_triagem": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "etapa": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "motivo": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "responsavel": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "status": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "valor_text": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        }
+      }
+    }
+  },
+  "literais": [
+    {
+      "$por_que": "motor.js compara status === 'Perdido' (capitalizado). Virar 'perdido'/'lost' zera o KPI de perdidos sem erro.",
+      "lista": "deals",
+      "campo": "status",
+      "valor": "Perdido",
+      "minimo_ocorrencias": 1,
+      "severidade": "fatal"
+    }
+  ],
+  "enums": [
+    {
+      "$por_que": "status nao e acumulador aqui; valor novo so merece aviso.",
+      "lista": "deals",
+      "campo": "status",
+      "valores": [
+        "Aberta",
+        "Ganho",
+        "Perdido"
+      ],
+      "permite_nulo": true,
+      "severidade": "avisar"
+    }
+  ],
+  "referencias": [],
+  "catraca": {
+    "padrao": {
+      "queda_pct": 2,
+      "queda_abs": 5,
+      "alta_aviso_pct": 25,
+      "alta_fatal_pct": 100,
+      "alta_abs": 10
+    },
+    "metricas": [
+      {
+        "nome": "deals_total",
+        "lista": "deals",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "deals_com_d_agendamento",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_agendamento",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_demo",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_demo",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_fechamento",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_fechamento",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_lead",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_lead",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_lost",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_lost",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_proposta",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_proposta",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "deals_com_d_triagem",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_triagem",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "serie_semanas",
+        "caminho": "serie.labels",
+        "tipo": "tamanho",
+        "minimo": 4
+      },
+      {
+        "nome": "perdidos",
+        "lista": "deals",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "status",
+          "op": "==",
+          "valor": "Perdido"
+        }
+      }
+    ]
+  }
+}

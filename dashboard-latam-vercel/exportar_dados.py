@@ -30,6 +30,10 @@ import queries_latam as Q  # noqa: E402
 from gerar_relatorio_latam import load_url, colher_serie, fetch_all  # noqa: E402
 
 HOJE = date.today()
+# Versao do formato deste JSON. Bumpar JUNTO com dashboards-umbrella/contratos/latam.json
+# quando um campo lido pelo painel for removido, renomeado, mudar de tipo ou de literal.
+# Adicionar campo NAO bumpa. validar_contrato.py falha se os dois divergirem.
+SCHEMA_VERSION = 1
 OUT_PATH = ROOT / "dados-latam.json"
 
 
@@ -98,6 +102,7 @@ def main() -> None:
         serie = colher_serie(cur, HOJE)
 
     out = {
+        "schema_version": SCHEMA_VERSION,
         "gerado_em": HOJE.isoformat(),
         "escopo": {"ini": date(2026, 1, 1).isoformat(), "fim": HOJE.isoformat()},
         "leads": [_jsonify(r) for r in leads],

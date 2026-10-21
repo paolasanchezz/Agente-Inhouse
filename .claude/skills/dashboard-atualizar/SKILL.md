@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza as dashboards CM dinamica-estaticas servidas no guarda-chuva unico do Vercel — Brasil (Buzzmonitor, Cxpress, Buzzcreators), LATAM e Portugal (Buzzmonitor, Cxpress, Elife), todas atras de um unico login em dashboards-elife.vercel.app. Roda o exportador Python (Supabase -> JSON de dados), monta a dist do guarda-chuva com build_umbrella.py, deploya na Vercel via CLI e valida (senha + noindex + as 7 rotas servidas). Manual-trigger.
 argument-hint: "[buzz-br|cxpress|latam|buzzcreators|bm-pt|cxpress-pt|elife-pt|pt|todas] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Edit, Bash, Glob, Grep
-version: 4.1.0
+version: 4.2.0
 ---
 
 # Skill: Atualizar Dashboards CM (guarda-chuva unico)
@@ -143,27 +143,32 @@ O build le a mesma fonte, entao aqui nao existe mais o risco de `.env.local` div
 
 ---
 
-## Passo 1: Exportar dados frescos + sanity (por dashboard escolhida)
+## Passo 1: Exportar dados frescos + validar contrato
 
 ```bash
 for D in $DASHES; do
-  set -- $(cfg "$D"); SRC=$1; JSON=$2; MAIN=$3; ARGS=$6
+  set -- $(cfg "$D"); SRC=$1; ARGS=$6
   [ "$ARGS" = "-" ] && ARGS=""
   echo "=== exportando $D"
   uv run --python 3.12 --with "psycopg[binary]" python "$SRC/exportar_dados.py" $ARGS 2>&1 | tee "tmp/dash-$D-export-$TODAY.log"
   [ "${PIPESTATUS[0]}" = "0" ] || { echo "ERRO no export de $D"; exit 1; }
-  uv run --python 3.12 python -c "
-import json,os
-p='$SRC/$JSON'; d=json.load(open(p,encoding='utf-8')); sz=os.path.getsize(p)
-assert d.get('gerado_em'), 'falta gerado_em'
-assert isinstance(d.get('$MAIN'),list) and len(d['$MAIN'])>0, '$MAIN vazio/ausente'
-assert sz < 3_400_000, f'JSON grande demais: {sz}b (rever campos/compressao)'
-print(f'sanity OK ($D) — $MAIN={len(d[\"$MAIN\"])} gerado_em={d[\"gerado_em\"]} tamanho={sz//1024}KB')
-" || { echo "ERRO no sanity de $D"; exit 1; }
 done
+# Contrato (o que o painel le) + catraca contra o que esta NO AR. So as exportadas: as outras
+# sobem com o JSON da ultima rodada delas, que ja foi validado la — e falhariam no frescor aqui.
+py dashboards-umbrella/validar_contrato.py $DASHES --baseline-url "https://$URL"
 ```
-- Export normal leva 1-3min por dashboard (conexao cold + queries). Exit != 0: abortar e propagar as ultimas 15 linhas do log (Supabase fora, statement_timeout, import).
-- Falhou o sanity: abortar (nao buildar/deployar dados suspeitos).
+- Export normal leva segundos por dashboard desde os indices de 2026-09-30 (as 7 em ~25-35s). Exit != 0: abortar e propagar as ultimas 15 linhas do log (Supabase fora, statement_timeout, import).
+- **O validador e o portao: exit != 0 = NAO buildar, NAO deployar.** O codigo diz o que fazer:
+
+| Exit | Significa | O que fazer |
+|---|---|---|
+| 0 | contrato e catraca ok (avisos permitidos) | seguir |
+| 2 | **contrato**: campo que o painel le sumiu, mudou de tipo, enum novo, literal sumido | o exportador mudou o formato sem atualizar `dashboards-umbrella/contratos/<x>.json` (ou o contrario). A mensagem diz o campo, quem le e, se for rename, a causa provavel. Corrigir antes de deployar |
+| 4 | **versao**: `SCHEMA_VERSION` do exportador, `schema_version` do contrato e o do JSON divergem | bumpar os dois juntos (politica em `dashboards-umbrella/README.md`) |
+| 3 | **catraca**: contagem caiu (ou explodiu) contra o que esta no ar | se for legitimo (limpeza de CRM, recategorizacao, virada de ano): rerodar com `--aceitar-catraca <slug> --motivo "..."`. Se nao souber explicar a queda, investigue — e o sintoma de query quebrada |
+| 1 | leitura: JSON ausente/ilegivel, contrato ausente | o exportador rodou? |
+
+O validador **nunca** imprime valor de registro (os JSONs tem PII) — so id, nome de campo e tipo de violacao. Ele cobre tudo que o sanity antigo deste passo checava (`gerado_em`, lista principal nao-vazia, tamanho < 3,4 MB) e mais. Racional completo em `dashboards-umbrella/README.md` (secao "Contrato de dados").
 
 ---
 

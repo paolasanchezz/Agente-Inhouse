@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import date
 from pathlib import Path
@@ -25,10 +26,16 @@ import psycopg  # noqa: E402
 import queries_portugal as Q  # noqa: E402
 
 HOJE = date.today()
+# Versao do formato deste JSON. Bumpar JUNTO com dashboards-umbrella/contratos/pt.json
+# quando um campo lido pelo painel for removido, renomeado, mudar de tipo ou de literal.
+# Adicionar campo NAO bumpa. validar_contrato.py falha se os dois divergirem.
+SCHEMA_VERSION = 1
 
 
 def load_url() -> str:
-    """Le SUPABASE_PG_URL de dashboard/.env — mesma convencao das outras dashboards."""
+    """Le SUPABASE_PG_URL do ambiente (CI) ou de dashboard/.env (local)."""
+    if os.environ.get("SUPABASE_PG_URL"):
+        return os.environ["SUPABASE_PG_URL"].strip()
     env = DASH / ".env"
     if env.exists():
         for line in env.read_text(encoding="utf-8").splitlines():
@@ -70,6 +77,7 @@ def exportar(cur, marca: str) -> dict:
 
     deals.sort(key=lambda x: (x["d"] or "", x["id"]))
     return {
+        "schema_version": SCHEMA_VERSION,
         "gerado_em": HOJE.isoformat(),
         "marca": marca,
         "nome": cfg["nome"],

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import sys
@@ -47,6 +48,9 @@ _MES_C = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 
 # ============ I/O ============
 
 def load_url() -> str:
+    # O CI (GitHub Actions) passa a URL pelo ambiente; local continua lendo dashboard/.env.
+    if os.environ.get("SUPABASE_PG_URL"):
+        return os.environ["SUPABASE_PG_URL"].strip()
     env_path = Path(__file__).parent / ".env"
     if not env_path.exists():
         raise SystemExit(f"ERRO: {env_path} nao existe.")

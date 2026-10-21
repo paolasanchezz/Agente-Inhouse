@@ -1,0 +1,310 @@
+{
+  "$comment": "Contrato de dados da dashboard 'latam'. Declara o que o PAINEL LE (consumidor = arquivo que le o campo; null = exportado e nao lido, pode sumir). Gerado por validar_contrato.py --sugerir sobre os dados reais e revisado. Bumpar schema_version junto com SCHEMA_VERSION do exportador. Ver dashboards-umbrella/README.md.",
+  "contrato": "latam",
+  "schema_version": 1,
+  "exportador": "dashboard-latam-vercel/exportar_dados.py",
+  "arquivo_painel": "dashboard-latam-vercel/index.html",
+  "guard_painel": false,
+  "frescor_dias": 1,
+  "tamanho_max_bytes": 3400000,
+  "topo": {
+    "schema_version": {
+      "tipo": "int",
+      "obrigatorio": true,
+      "valor": 1
+    },
+    "gerado_em": {
+      "tipo": "data",
+      "obrigatorio": true,
+      "nulo": false,
+      "consumidor": "index.html, motor.js"
+    },
+    "escopo": {
+      "tipo": "objeto",
+      "obrigatorio": false,
+      "campos": {
+        "ini": {
+          "tipo": "data"
+        },
+        "fim": {
+          "tipo": "data"
+        }
+      },
+      "consumidor": null
+    },
+    "leads": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "lead",
+      "minimo": 1,
+      "consumidor": "motor.js, render.js"
+    },
+    "fech": {
+      "tipo": "lista",
+      "obrigatorio": true,
+      "registro": "fech",
+      "minimo": 0,
+      "consumidor": "motor.js"
+    },
+    "serie": {
+      "tipo": "objeto",
+      "obrigatorio": true,
+      "series_paralelas": {
+        "rotulos": "labels",
+        "series": [
+          "leads",
+          "pc",
+          "reunion",
+          "cierres"
+        ],
+        "minimo": 4
+      },
+      "consumidor": "motor.js, render.js"
+    }
+  },
+  "registros": {
+    "lead": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "d_ce": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_lead": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_mdate": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_reunion": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "motivo": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "pais": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "responsable": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "status": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "index.html, motor.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        }
+      }
+    },
+    "fech": {
+      "chaves_extras": "avisar",
+      "campos": {
+        "currency": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "d_fech": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js"
+        },
+        "deal": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "id": {
+          "tipo": "int",
+          "obrigatorio": true,
+          "nulo": false,
+          "consumidor": "motor.js, render.js"
+        },
+        "pais": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "responsable": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_content": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "utm_source": {
+          "tipo": "str",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        },
+        "valor": {
+          "tipo": "num",
+          "obrigatorio": true,
+          "nulo": true,
+          "consumidor": "motor.js, render.js"
+        }
+      }
+    }
+  },
+  "literais": [
+    {
+      "$por_que": "motor.js compara status === 'Perdido' (capitalizado). Virar 'perdido'/'lost' zera o KPI de perdidos sem erro.",
+      "lista": "leads",
+      "campo": "status",
+      "valor": "Perdido",
+      "minimo_ocorrencias": 1,
+      "severidade": "fatal"
+    }
+  ],
+  "enums": [
+    {
+      "$por_que": "status nao e acumulador aqui; valor novo so merece aviso.",
+      "lista": "leads",
+      "campo": "status",
+      "valores": [
+        "Aberta",
+        "Ganho",
+        "Perdido"
+      ],
+      "permite_nulo": true,
+      "severidade": "avisar"
+    }
+  ],
+  "referencias": [],
+  "catraca": {
+    "padrao": {
+      "queda_pct": 2,
+      "queda_abs": 5,
+      "alta_aviso_pct": 25,
+      "alta_fatal_pct": 100,
+      "alta_abs": 10
+    },
+    "metricas": [
+      {
+        "nome": "leads_total",
+        "lista": "leads",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "leads_com_d_ce",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_ce",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "leads_com_d_lead",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_lead",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "leads_com_d_mdate",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_mdate",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "leads_com_d_reunion",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_reunion",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "fech_total",
+        "lista": "fech",
+        "tipo": "contagem"
+      },
+      {
+        "nome": "fech_com_d_fech",
+        "lista": "fech",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "d_fech",
+          "op": "nao_nulo"
+        }
+      },
+      {
+        "nome": "serie_semanas",
+        "caminho": "serie.labels",
+        "tipo": "tamanho",
+        "minimo": 4
+      },
+      {
+        "nome": "perdidos",
+        "lista": "leads",
+        "tipo": "contagem",
+        "onde": {
+          "campo": "status",
+          "op": "==",
+          "valor": "Perdido"
+        }
+      }
+    ]
+  }
+}
