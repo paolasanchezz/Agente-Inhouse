@@ -113,3 +113,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: "Como funciona": contador 01/07 com setas movido para baixo das telas dos modulos.
 - 2026-10-15: revertida a altura fixa das telas do "Como funciona" (#831). No deck de modulos, todas as imagens das cartas ficam com a altura da de Analytics (desktop 194px, mobile 257px; celular baixo 210px); a carta cresce pra caber descricao de 3 linhas.
 - 2026-10-15: links internos (#modulos, #funcionalidades, #demo, #main) rolam ate o bloco sem adicionar #secao na URL.
+- 2026-10-21: look claro. Hero (#FCFBF9 com aura suave) e "Como funciona" (branco) passam a fundo claro com tokens escopados em .lite; cierre e footer seguem escuros como contraste premium. Botoes nessas secoes e CTA fixo mobile viram escuros. Corrigido "todo en uno." do H1, que ficava invisivel (background-clip nao alcancava as letras animadas): cada letra recebe o tom do degrade via JS.

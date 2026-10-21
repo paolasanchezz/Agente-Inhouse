@@ -920,6 +920,23 @@
       .deck.is-pinned .deck__sticky{padding:84px 0 24px}
       .deck.is-pinned .deck__stage{flex:1 1 auto;height:auto;min-height:0;margin-top:0}
     }
+    /* look claro: hero y "Como funciona" en fondos claros; el cierre queda oscuro como contraste */
+    .lite{--bg:#FCFBF9;--bg2:#F6F3EF;--surf:#fff;--surf2:#F7F4F0;--hl:rgba(18,12,22,.07);--hl2:rgba(18,12,22,.14);--tx:#120C16;--mu:rgba(18,12,22,.62);--mu2:rgba(18,12,22,.45);background:var(--bg);color:var(--tx)}
+    .features.lite{--bg:#fff}
+    .lite .eyebrow{color:var(--ink2)}
+    .lite .grad{background:linear-gradient(100deg,#390155 0%,#7B3FC4 38%,#D9662A 78%,#EB7C2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .grad .sc{-webkit-text-fill-color:currentColor}
+    .lite .fluid{opacity:.2}
+    .lite .hair{opacity:.45}
+    .lite .marquee img{filter:brightness(0);opacity:.32}
+    .lite .marquee li:hover img{opacity:.75}
+    .lite .hero__form{box-shadow:0 40px 90px -40px rgba(57,1,85,.22),0 0 0 1px rgba(18,12,22,.06)}
+    .lite .scr{box-shadow:0 0 0 1px rgba(18,12,22,.07),0 40px 90px -40px rgba(57,1,85,.26)}
+    .lite .btn--light,.sticky-cta.btn--light{background:var(--ink);color:#fff}
+    .lite .btn--light:hover{box-shadow:0 0 0 6px rgba(18,12,22,.06),0 20px 50px -20px rgba(57,1,85,.5)}
+    .lite .tab:hover{background:rgba(18,12,22,.04)}
+    .lite .tabnav__b:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .nav.light.top{background:transparent;border-bottom-color:transparent}
   </style>
 </head>
 <body>
@@ -947,7 +964,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main">
 
-  <section class="hero dark" aria-labelledby="h1">
+  <section class="hero lite" aria-labelledby="h1">
     <div class="fluid" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="hair" aria-hidden="true"></div>
     <div class="wrap hero__in">
@@ -1065,7 +1082,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="features dark" id="funcionalidades" aria-labelledby="feat-t">
+  <section class="features lite" id="funcionalidades" aria-labelledby="feat-t">
     <div class="fluid fluid--b" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap">
       <div class="features__head">
@@ -1249,6 +1266,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         } else if(n.nodeType===1) walk(n);
       });
     })(el);
+  });
+  /* .grad dividido en letras: cada letra recibe su tono del degradado (background-clip no alcanza a los spans animados) */
+  $$('.grad').forEach(function(g){
+    var st=g.closest('.lite')?[[57,1,85],[123,63,196],[217,102,42],[235,124,46]]:[[255,255,255],[233,199,240],[242,162,107],[235,124,46]];
+    var cs=$$('.sc',g),n=cs.length;
+    cs.forEach(function(c,i){var t=n>1?i/(n-1)*(st.length-1):0,k=Math.min(st.length-2,Math.floor(t)),f=t-k,a=st[k],b=st[k+1];
+      c.style.color='rgb('+a.map(function(v,x){return Math.round(v+(b[x]-v)*f)}).join(',')+')'});
   });
 
   /* ---------- fit replica screens ---------- */
@@ -1466,7 +1490,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var vh=window.innerHeight,de=document.documentElement,y=window.pageYOffset||de.scrollTop,max=de.scrollHeight-vh;
     bar.style.setProperty('--p',max>0?y/max:0);
     var overDark=darks.some(function(s){var r=s.getBoundingClientRect();return r.top<=40&&r.bottom>40});
-    nav.classList.toggle('solid',y>20&&overDark);nav.classList.toggle('light',!overDark);
+    nav.classList.toggle('solid',y>20&&overDark);nav.classList.toggle('top',y<=20);nav.classList.toggle('light',!overDark);
     var hb=hero.getBoundingClientRect();
     if(!RM){hs.style.setProperty('--tilt',(14*(1-ease(clamp(y/(vh*.7),0,1)))).toFixed(2)+'deg');hs.style.setProperty('--sc',(.95+.05*ease(clamp(y/(vh*.7),0,1))).toFixed(3))}
     var dr=deck.getBoundingClientRect(),inDeck=pinned&&dr.top<vh*.5&&dr.bottom>vh*.5;if(sticky)sticky.classList.toggle('show',hb.bottom<0&&demo.getBoundingClientRect().top>vh*.8&&!inDeck);
