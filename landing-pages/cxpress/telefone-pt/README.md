@@ -27,7 +27,7 @@ Cena em HTML/CSS/JS dentro da página, em loop de 5 capítulos de 3 s: chamada a
 
 - `index.html`: fonte local (paths relativos) para testar com o servidor `lp-repo-root`.
 - `leadpages/telefone-v1.css` e `telefone-v1.js`: subidos como assets de página.
-- `assets/clientes-pt.png` (380x67) e `configuracao-audio.webp`.
+- `assets/clientes-pt.png` (380x67), `configuracao-audio.webp`, `video-capa.webp` (capa do facade) e `fonts/` (woff2 latinos; no Leadpages o CSS aponta para os assets de página, ver `telefone-v1.css` publicado).
 
 ## Pendências
 

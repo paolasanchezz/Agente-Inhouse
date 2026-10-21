@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script>document.documentElement.className+=" js"</script>
+<script>(function(){var v;Object.defineProperty(window,"__CX_FORM_SRCDOC",{configurable:true,get:function(){return v},set:function(s){v=typeof s!=="string"?s:s.replace(/(^|[^:])\/\/widgets\.jotform\.io/g,"$1https://widgets.jotform.io").replace(/window\.location\.protocol\s*\+\s*"\/\/"\s*\+\s*window\.location\.host/g,"window.origin")}})})()</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NW6V5KBM');</script>
 <title>[PT] Telefone em nuvem com IA para atendimento telefónico | Cxpress</title>
@@ -23,9 +24,9 @@
 <meta name="twitter:title" content="Telefone em nuvem com IA para atendimento telefónico | Cxpress">
 <meta name="twitter:description" content="Voicebot, distribuição inteligente de chamadas e dashboards analíticos, com telefone e WhatsApp no mesmo número.">
 <meta name="twitter:image" content="https://tami-buzzmonitor-5eye.lpcontent.net/api/pages/telefone-pt/assets/uu484e9leecyl0qx2mlui88z">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Open+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/opensans-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/sourcesans3-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/jetbrainsmono-latin.woff2">
 <link rel="stylesheet" href="leadpages/telefone-v1.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.cxpress.pt#organization","name":"Cxpress","url":"https://www.cxpress.pt","logo":"https://tami-buzzmonitor-5eye.lpcontent.net/api/library/yll4aoesfrwds25ugfa449l2"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quais são os pré-requisitos para utilizar a Cxpress?","acceptedAnswer":{"@type":"Answer","text":"Para poder utilizar a ferramenta, é necessário ter um site ativo e um colaborador responsável pela administração da plataforma."}},{"@type":"Question","name":"A inteligência artificial (IA) faz o atendimento sozinha?","acceptedAnswer":{"@type":"Answer","text":"Não. A IA da Cxpress realiza apenas o primeiro nível de atendimento (N1), a responder a perguntas sobre serviços e produtos. Um colaborador humano deve estar disponível para questões mais complexas que o chatbot não saiba responder ou quando o cliente pretender falar com um assistente humano."}},{"@type":"Question","name":"Posso ligar mais do que um número à Cxpress?","acceptedAnswer":{"@type":"Answer","text":"Sim, é possível."}},{"@type":"Question","name":"Que canais podem ser integrados?","acceptedAnswer":{"@type":"Answer","text":"Podem ser integrados de forma nativa o WhatsApp, o e-mail, as redes sociais (Facebook e Instagram), o telefone e o chat do site."}},{"@type":"Question","name":"A plataforma é compatível com integração de CRM?","acceptedAnswer":{"@type":"Answer","text":"Sim, é possível integrar com sistemas de CRM, mas é necessária uma análise prévia da nossa equipa técnica, para garantir que tudo funciona na perfeição."}}]}]}</script>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.bars i{transform:none!important}.dev svg:first-child{opacity:1}</style></noscript>
@@ -49,12 +50,6 @@
 <header class="navbar">
   <div class="navbar__inner">
     <a href="https://www.cxpress.pt/" class="navbar__logo" aria-label="Cxpress: página inicial"><img src="https://tami-buzzmonitor-5eye.lpcontent.net/api/library/vmg45x2mntoakw0nqafnjh4x" alt="Cxpress" width="150" height="36"></a>
-    <nav class="navbar__links" aria-label="Secções da página">
-      <a href="#telefone">Telefone em nuvem</a>
-      <a href="#quem-somos">Quem somos</a>
-      <a href="#faq">Perguntas Frequentes</a>
-    </nav>
-    <a href="https://app.cxpress.io" class="navbar__login" target="_blank" rel="noopener">Iniciar sessão</a>
     <a href="#agendar" class="navbar__cta"><span class="navbar__cta-full">Quero saber mais</span><span class="navbar__cta-short">Saber mais</span></a>
   </div>
 </header>
@@ -70,7 +65,7 @@
         <p class="hero__sub">Atenda um <strong>maior número de clientes</strong> em menos tempo, garantindo uma experiência mais <strong>personalizada e eficiente</strong>.</p>
         <div class="hero__actions">
           <a href="#agendar" class="btn">Quero saber mais <svg aria-hidden="true"><use href="#ico-arrow"/></svg></a>
-          <a href="#telefone" class="btn btn--ghost">Ver como funciona</a>
+          <a href="#video" class="linkghost">Ver como funciona <svg aria-hidden="true"><use href="#ico-arrow"/></svg></a>
         </div>
         <p class="hero__tagline"><svg aria-hidden="true"><use href="#ico-spark"/></svg>Unifica, simplifica e automatiza o atendimento da sua empresa</p>
       </div>
@@ -79,7 +74,7 @@
         <div class="stage__bar">
           <span class="stage__dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="stage__title">Cxpress.voz</span>
-          <span class="stage__live"><i></i>demonstração</span><button type="button" class="stage__pause" id="pauseBtn" aria-pressed="false"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Pausar animação</span></button>
+          <span class="stage__live"><i></i>demonstração</span><button type="button" class="stage__pause" id="pauseBtn" aria-pressed="false"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Pausar animações</span></button>
           <span class="stage__time mono" id="stTime" aria-hidden="true">00:00</span>
         </div>
         <div class="stage__body">
@@ -140,10 +135,41 @@
   <section class="stats" aria-label="A Cxpress.voz em números">
     <div class="container">
       <div class="stats__grid">
-        <div class="stat reveal"><span class="stat__n" data-count="24">24<small>/7</small></span><p>Voicebot a atender 24 horas por dia, 7 dias por semana</p></div>
-        <div class="stat reveal" data-step="1"><span class="stat__n" data-count="1">1<small> número</small></span><p>Telefonia e WhatsApp num único número</p></div>
-        <div class="stat reveal" data-step="2"><span class="stat__n" data-count="6">6<small> canais</small></span><p>WhatsApp, e-mail, Facebook, Instagram, telefone e chat do site, de forma nativa</p></div>
-        <div class="stat reveal" data-step="3"><span class="stat__n">N1<small></small></span><p>A IA faz o primeiro nível de atendimento e um colaborador trata o resto</p></div>
+        <article class="stat stat--a reveal">
+          <div class="stat__vis" aria-hidden="true">
+            <svg viewBox="0 0 64 64" class="dial"><circle class="dial__ticks" cx="32" cy="32" r="29"/><circle class="dial__track" cx="32" cy="32" r="22"/><circle class="dial__arc" cx="32" cy="32" r="22"/><text x="32" y="36.5" text-anchor="middle">24h</text></svg>
+          </div>
+          <span class="stat__n" data-count="24">24<small>/7</small></span>
+          <p>Voicebot a atender 24 horas por dia, 7 dias por semana</p>
+        </article>
+        <article class="stat stat--b reveal" data-step="1">
+          <div class="stat__vis" aria-hidden="true">
+            <svg viewBox="0 0 132 64" class="merge"><path class="merge__l" d="M26 32H52"/><path class="merge__r" d="M106 32H80"/><circle cx="16" cy="32" r="14" class="merge__ic"/><circle cx="116" cy="32" r="14" class="merge__ic"/><rect x="52" y="19" width="28" height="26" rx="9" class="merge__core"/><text x="66" y="37.500" text-anchor="middle">1</text><svg x="6" y="22" width="20" height="20" viewBox="0 0 24 24" style="color:#A94D07"><use href="#ico-phone"/></svg><svg x="106" y="22" width="20" height="20" viewBox="0 0 935.4 935.4" fill="#25D366"><use href="#ico-wab"/></svg></svg>
+          </div>
+          <span class="stat__n" data-count="1">1<small> número</small></span>
+          <p>Telefonia e WhatsApp num único número</p>
+        </article>
+        <article class="stat stat--c reveal" data-step="2">
+          <div class="stat__vis" aria-hidden="true">
+            <div class="chips6">
+              <i style="--d:0s"><svg viewBox="0 0 935.4 935.4" fill="#25D366"><use href="#ico-wab"/></svg></i>
+              <i style="--d:.35s;color:#4A69BD"><svg viewBox="0 0 24 24"><use href="#ico-mail"/></svg></i>
+              <i style="--d:.7s;color:#1877F2"><svg viewBox="0 0 24 24"><use href="#ico-fb"/></svg></i>
+              <i style="--d:1.05s;color:#C13584"><svg viewBox="0 0 24 24"><use href="#ico-ig"/></svg></i>
+              <i style="--d:1.4s;color:#A94D07"><svg viewBox="0 0 24 24"><use href="#ico-phone"/></svg></i>
+              <i style="--d:1.75s;color:#232960"><svg viewBox="0 0 24 24"><use href="#ico-chat"/></svg></i>
+            </div>
+          </div>
+          <span class="stat__n" data-count="6">6<small> canais</small></span>
+          <p>WhatsApp, e-mail, Facebook, Instagram, telefone e chat do site, de forma nativa</p>
+        </article>
+        <article class="stat stat--d reveal" data-step="3">
+          <div class="stat__vis" aria-hidden="true">
+            <div class="ladder"><b class="ladder__n1">N1<em>IA</em></b><svg viewBox="0 0 24 24" class="ladder__arrow"><use href="#ico-arrow"/></svg><b class="ladder__n2">N2<em>Equipa</em></b></div>
+          </div>
+          <span class="stat__n"><span class="vh">Nível </span>N1</span>
+          <p>A IA faz o primeiro nível de atendimento e um colaborador trata o resto</p>
+        </article>
       </div>
     </div>
   </section>
@@ -161,15 +187,30 @@
       <p class="agendar__body">Explore a nossa plataforma na prática e obtenha uma avaliação gratuita da sua operação de atendimento com a orientação dos nossos especialistas.</p>
     </div>
     <div class="agendar__formcol">
-      <div class="jotform-embed" id="jotHost" data-cx-jotform="eager" data-cx-title="Formulário de contacto Cxpress"><script src="https://tami-buzzmonitor-5eye.lpcontent.net/api/library/qipuozg8pkra5s8vcptzyh78" defer></script></div>
+      <div class="jotform-embed" id="jotHost" data-cx-jotform="lazy" data-cx-title="Formulário de contacto Cxpress"><script src="https://tami-buzzmonitor-5eye.lpcontent.net/api/library/qipuozg8pkra5s8vcptzyh78" defer></script></div>
     </div>
+    <p class="agendar__legal">Ao enviar este formulário, autoriza a Cxpress a tratar os seus dados para responder ao seu pedido. Saiba mais na <a href="https://cx.elifeportugal.com/politicadeprivacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
   </section>
 
-  <section class="video" aria-labelledby="video-title">
+  <section class="video" id="video" aria-labelledby="video-title">
+    <div class="video__bg" aria-hidden="true"></div>
+    <div class="video__pills video__pills--left" aria-hidden="true"><svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/><path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/><path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/></svg></div>
+    <div class="video__pills video__pills--right" aria-hidden="true"><svg viewBox="0 0 300.03 520" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="p1" d="M206.29,671.47h-2.12c-38.11,0-69-30.89-69-69v-331.95c0-38.11,30.89-69,69-69h2.12c38.11,0,69,30.89,69,69v331.95c0,38.11-30.89,69-69,69"/><path class="p3" d="M103.71,621.74h-2.35c-42.31,0-76.61-34.3-76.61-76.61V176.56c0-42.31,34.3-76.61,76.61-76.61h2.35c42.31,0,76.61,34.3,76.61,76.61v368.57c0,42.31-34.3,76.61-76.61,76.61"/><path class="p2" d="M141.38,770.88h-2.22c-40,0-72.43-32.43-72.43-72.43v-348.44c0-40,32.43-72.43,72.43-72.43h2.22c40,0,72.43,32.43,72.43,72.43v348.44c0,40-32.43,72.43-72.43,72.43"/></svg></div>
     <div class="container">
       <h2 id="video-title" class="section-title reveal">Telefone em nuvem com IA</h2>
-      <div class="video__frame reveal" data-step="1">
-        <iframe src="https://www.youtube.com/embed/7lA4FOTJw7E" title="Cxpress | A solução completa para centralizar e automatizar o seu atendimento" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="origin"></iframe>
+      <div class="video__stage reveal" data-step="1">
+        <span class="ripple" aria-hidden="true"></span><span class="ripple ripple--2" aria-hidden="true"></span>
+        <div class="video__frame">
+          <button type="button" class="vfacade" id="vPlay" aria-label="Reproduzir o vídeo: Cxpress, a solução completa para centralizar e automatizar o seu atendimento">
+            <img src="assets/video-capa.webp" alt="" width="960" height="540" loading="lazy">
+            <span class="vfacade__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="vfacade__label" aria-hidden="true">Ver o vídeo</span>
+          </button>
+          <noscript><a class="vfacade__nojs" href="https://www.youtube.com/watch?v=7lA4FOTJw7E" target="_blank" rel="noopener">Ver o vídeo no YouTube</a></noscript>
+        </div>
+        <span class="vchip vchip--a" aria-hidden="true"><i></i>Chamada atendida</span>
+        <span class="vchip vchip--b" aria-hidden="true">Voicebot · 24/7</span>
+        <span class="vchip vchip--c" aria-hidden="true">Fila: Agendamentos</span>
       </div>
       <a href="#agendar" class="btn">Quero saber mais <svg aria-hidden="true"><use href="#ico-arrow"/></svg></a>
     </div>
@@ -187,6 +228,7 @@
         <article class="bcard b3 reveal">
           <div class="vis vis--img">
             <img src="assets/configuracao-audio.webp" width="800" height="450" alt="Ecrã de configuração de áudio do voicebot na plataforma Cxpress, com a primeira frase, a velocidade da voz e a entoação" loading="lazy">
+            <div class="vis__chips" aria-hidden="true"><span>Velocidade da voz: Rápida</span><span>Entoação: Grossa</span><span>Aguardar uma resposta</span></div>
             <div class="vis__hud" aria-hidden="true"><em></em><b>Voicebot a falar</b><div class="wave is-live" data-n="26"></div></div>
           </div>
           <p class="bcard__tag">Voicebot</p>
@@ -210,7 +252,7 @@
         </article>
 
         <article class="bcard b2 reveal">
-          <div class="vis" style="min-height:230px">
+          <div class="vis">
             <span class="nohw">sem equipamentos físicos</span>
             <div class="dev" aria-hidden="true">
               <svg viewBox="0 0 260 178" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="40" y="22" width="180" height="108" rx="10" fill="rgba(255,255,255,.06)"/><path d="M110 130v20M80 152h100"/><rect x="62" y="40" width="70" height="72" rx="8" stroke="rgba(157,182,255,.7)"/><circle cx="97" cy="62" r="9" fill="#EF863C" stroke="none"/><path d="M78 98c4-12 28-12 38 0" stroke="rgba(157,182,255,.7)"/><rect x="146" y="46" width="56" height="14" rx="7" fill="rgba(33,204,120,.85)" stroke="none"/><rect x="146" y="68" width="56" height="8" rx="4" fill="rgba(255,255,255,.25)" stroke="none"/><rect x="146" y="84" width="40" height="8" rx="4" fill="rgba(255,255,255,.25)" stroke="none"/><rect x="146" y="100" width="48" height="12" rx="6" fill="#EF863C" stroke="none"/></svg>
@@ -313,7 +355,7 @@
     <a href="https://www.cxpress.pt/" class="footer__logo" aria-label="Cxpress: página inicial"><img src="https://tami-buzzmonitor-5eye.lpcontent.net/api/library/vmg45x2mntoakw0nqafnjh4x" alt="Cxpress"></a>
     <p>A Cxpress é um produto Elife. © 2026</p>
   </div>
-  <div class="cxp-legal"><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://cx.elifeportugal.com/condicoesgerais" target="_blank" rel="noopener">Condições gerais de uso da Cxpress</a><a href="https://cx.elifeportugal.com/politicadeprivacidade" target="_blank" rel="noopener">Políticas de privacidade</a></nav></div>
+  <div class="cxp-legal"><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://cx.elifeportugal.com/condicoesgerais" target="_blank" rel="noopener">Condições gerais de uso</a><a href="https://cx.elifeportugal.com/politicadeprivacidade" target="_blank" rel="noopener">Política de Privacidade</a></nav></div>
 </footer>
 
 <script src="leadpages/telefone-v1.js" defer></script>

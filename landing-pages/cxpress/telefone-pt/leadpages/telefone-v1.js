@@ -24,16 +24,11 @@ function onView(el,cb,margin){
   });
 })();
 
-/* cabeçalho + link ativo */
+/* cabeçalho */
 (function(){
   var nav=$('.navbar');
   function s(){nav.classList.toggle('is-solid',window.scrollY>30)}
   window.addEventListener('scroll',s,{passive:true});s();
-  var links=$$('.navbar__links a'),map=links.map(function(a){return $(a.getAttribute('href'))});
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=map.indexOf(e.target);links.forEach(function(l,j){l.classList.toggle('is-on',j===i);if(j===i)l.setAttribute('aria-current','true');else l.removeAttribute('aria-current')})}})},{rootMargin:'-45% 0px -50% 0px'});
-    map.forEach(function(m){if(m)io.observe(m)});
-  }
 })();
 
 /* rede de pontos no hero */
@@ -76,16 +71,17 @@ function buildRoute(host,labels){
   var dot=el('circle',{r:7,'class':'rt-dot',cx:-20,cy:-20},svg);
   var anim=el('animateMotion',{dur:'1.1s',fill:'freeze',begin:'indefinite',calcMode:'spline',keyTimes:'0;1',keySplines:'.4 0 .2 1'},dot);
   host.appendChild(svg);
-  var cur=-1;
+  var cur=-1,hotT=0;
   function go(i){
+    clearTimeout(hotT);
     if(i===cur&&!reduce){}
     cur=i;
     paths.forEach(function(p,k){p.classList.toggle('is-hot',k===i)});
-    nodes.forEach(function(n,k){n.classList.remove('is-hot');if(k===i)setTimeout(function(){n.classList.add('is-hot')},reduce?0:900)});
+    nodes.forEach(function(n){n.classList.remove('is-hot')});hotT=setTimeout(function(){nodes[i].classList.add('is-hot')},reduce?0:900);
     anim.setAttribute('path',paths[i].getAttribute('d'));
     if(!reduce&&anim.beginElement){try{anim.beginElement()}catch(e){}}else{dot.setAttribute('cx',330);dot.setAttribute('cy',ys[i]);dot.removeAttribute('transform')}
   }
-  return {go:go,reset:function(){cur=-1;paths.forEach(function(p){p.classList.remove('is-hot')});nodes.forEach(function(n){n.classList.remove('is-hot')});dot.setAttribute('cx',-20);dot.setAttribute('cy',-20)}};
+  return {go:go,reset:function(){clearTimeout(hotT);cur=-1;paths.forEach(function(p){p.classList.remove('is-hot')});nodes.forEach(function(n){n.classList.remove('is-hot')});dot.setAttribute('cx',-20);dot.setAttribute('cy',-20)}};
 }
 
 /* palco: cena de 15 s em loop */
@@ -127,8 +123,8 @@ function buildRoute(host,labels){
   function setPaused(v){
     if(v===window.__paused)return;window.__paused=v;
     document.documentElement.classList.toggle('anim-paused',v);
-    if(v){pausedAt=performance.now()}else{t0+=performance.now()-pausedAt}
-    if(pauseBtn){pauseBtn.setAttribute('aria-pressed',v?'true':'false');pauseBtn.querySelector('span').textContent=v?'Retomar animação':'Pausar animação'}
+    if(v){pausedAt=performance.now()}else{t0+=performance.now()-(pausedAt||performance.now())}
+    if(pauseBtn){pauseBtn.setAttribute('aria-pressed',v?'true':'false');pauseBtn.querySelector('span').textContent=v?'Retomar animações':'Pausar animações'}
   }
   if(pauseBtn)pauseBtn.addEventListener('click',function(){setPaused(!window.__paused)});
   st.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('.chap'))setPaused(true)});
@@ -184,6 +180,29 @@ $$('.wave').forEach(function(w){var n=w.getAttribute('data-n')||30;for(var i=0;i
 
 /* barras de dashboard (cartão, sem palco) */
 $$('.vis .bars').forEach(function(b){onView(b,function(v){if(v)b.classList.add('is-in')})});
+
+/* formulário: carrega perto do ecrã, no repouso da página ou ao clicar num CTA */
+(function(){
+  var host=$('#jotHost');if(!host)return;var done=false;
+  function mount(){if(done)return;done=true;if(window.cxMountForm)window.cxMountForm(host)}
+  onView(host,function(v){if(v)mount()},'250px 0px');
+  window.addEventListener('load',function(){setTimeout(function(){if('requestIdleCallback' in window)requestIdleCallback(mount,{timeout:4000});else mount()},2500)});
+  $$('a[href="#agendar"]').forEach(function(a){a.addEventListener('click',mount)});
+})();
+
+/* vídeo: o YouTube só carrega ao clicar */
+(function(){
+  var b=$('#vPlay');if(!b)return;
+  b.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/7lA4FOTJw7E?autoplay=1&rel=0';
+    f.title='Cxpress | A solução completa para centralizar e automatizar o seu atendimento';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.setAttribute('allowfullscreen','');f.referrerPolicy='origin';
+    b.parentNode.replaceChild(f,b);f.focus();
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'video_play',video_id:'7lA4FOTJw7E',page:'telefone-pt'})}catch(e){}
+  });
+})();
 
 /* holofote nos cartões */
 if(window.matchMedia('(hover:hover)').matches){
