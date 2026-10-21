@@ -4,7 +4,7 @@ FONTE: PDF "Case Cacau Show & Elife - Atendimento com IA" + doc oficial do Conci
        (docs.superhuman.com/@cxpress-elife/sentinela) + conhecimento/produto/cxpress/padroes-de-copy.md
 ESTAGIO: MoFu/BoFu
 REGIAO: brasil · GTM-T4XDWHL3
-FORMULARIO: mock. Embed real entra depois via /lp-integrar-form
+FORMULARIO: Jotform 261045149477663 (midia paga Cxpress BR), integrado em 21/10
 VERSAO: v2 (2026-10-21) — revisao anti-IA, corte de repeticao
 
 === HERO ===
@@ -82,7 +82,7 @@ LIST ITEM: Abre uma aba por plataforma — Hoje responde na mão, pulando entre 
 LIST ITEM: A venda começa num comentário — Vende ou agenda a partir do que acontece nas redes, então pergunta sem resposta é pedido que não entra.
 LIST ITEM: Tem pico sazonal — Data comemorativa, campanha grande, lançamento. E o último deixou claro que a equipe atual não escala.
 
-=== FORMULÁRIO ===
+=== FORMULÁRIO (Jotform 261045149477663) ===
 H2: Falar com um especialista
 KICKER: Sobre as suas contas, sem compromisso
 SUB: Deixe seus dados. A gente mostra o agente rodando com as perguntas que você recebe de verdade.

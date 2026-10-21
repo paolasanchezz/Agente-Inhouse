@@ -371,16 +371,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-family:var(--font-display)}
 
     /* formulario mock */
-    .mock{display:grid;gap:13px}
-    .mock label{display:block;font-size:13px;font-weight:600;color:var(--ink-mute);margin-bottom:6px;
-      font-family:var(--font-display);letter-spacing:.02em}
-    .mock input,.mock select{width:100%;padding:13px 14px;border:1px solid var(--rule);
-      border-radius:10px;font-size:16px;font-family:var(--font-body);color:var(--ink);background:#fff}
-    .mock input:focus,.mock select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
-    .mock button{margin-top:6px;width:100%;background:var(--blue);color:#fff;border:0;border-radius:var(--radius-btn);
-      padding:15px 20px;font-size:17px;font-weight:700;font-family:var(--font-display);cursor:pointer}
-    .mock button:hover{background:var(--blue-dark)}
-    .mock__nota{margin-top:12px;font-size:13.5px;color:var(--ink-mute);text-align:center}
+    
+    
+    
+    
+    
+    
+    
 
     .fecho{padding:104px 0 112px}
     @media (max-width:1000px){.hero__inner{grid-template-columns:1fr;gap:40px}.hero h1{max-width:none}}
@@ -427,6 +424,9 @@ section{padding:80px 0}
 .hero{padding:110px 0 80px}
 @media (max-width:860px){section{padding:64px 0}.hero{padding:84px 0 64px}}
 
+
+  /* o provedor ja traz card proprio: zera o do form-card em volta */
+  .form-card.jotform-embed{padding:0;background:none;border:0;box-shadow:none}
 </style>
 </head>
 <body>
@@ -766,19 +766,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="kicker">Sobre as suas contas, sem compromisso</p>
             <p class="sub">Deixe seus dados. A gente mostra o agente rodando com as perguntas que você recebe de verdade.</p>
           </div>
-          <div class="form-card reveal" data-d="3">
-            <form class="mock" action="#" onsubmit="event.preventDefault()" aria-label="Pedido de demonstração">
-              <div><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name"></div>
-              <div><label for="f-email">E-mail da empresa</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
-              <div><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" type="text" autocomplete="organization"></div>
-              <div><label for="f-tel">Telefone</label><input id="f-tel" name="telefone" type="tel" autocomplete="tel"></div>
-              <div><label for="f-dim">Tamanho do time de atendimento</label><select id="f-dim" name="dimensao">
-                <option>Até 4 pessoas</option><option>5 a 10 pessoas</option><option>11 a 30 pessoas</option><option>Mais de 30 pessoas</option>
-              </select></div>
-              <button type="submit">Falar com um especialista</button>
-            </form>
-            <p class="mock__nota">Formulário de exemplo. O embed real entra via /lp-integrar-form.</p>
-          </div>
+          <div class="form-card jotform-embed reveal" data-d="3">
+              <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+            </div>
         </div>
       </div>
     </section>
