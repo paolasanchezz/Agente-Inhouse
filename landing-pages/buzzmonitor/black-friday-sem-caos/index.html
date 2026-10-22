@@ -696,5 +696,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     timer = setInterval(tick, 1000);
   })();
 </script>
+<script>
+  /* Links internos (#form-section, #inscricao...) rolam normalmente, mas o # sai da URL logo depois:
+     assim um link copiado da barra nao abre a LP direto no formulario. */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('a[href^="#"]')) return;
+    setTimeout(function () {
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    }, 0);
+  });
+</script>
 </body>
 </html>

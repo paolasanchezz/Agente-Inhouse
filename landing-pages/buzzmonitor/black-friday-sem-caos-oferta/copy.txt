@@ -9,10 +9,11 @@ CTA: Quero aproveitar a oferta
 === OFERTA ===
 EYEBROW: A oferta exclusiva
 DESTAQUE: 50% off nos 2 primeiros meses de Buzzmonitor
-BODY: Para participantes do webinar "Black Friday sem Caos", preparamos uma condição especial: metade do valor nos 2 primeiros meses de assinatura, com teste grátis e suporte consultivo dedicado para deixar alertas e atendimento prontos antes do volume de menções subir.
-LIST ITEM: 14 dias grátis de Buzzmonitor
-LIST ITEM: Suporte consultivo especializado durante o período de teste
-LIST ITEM: Configuração de alertas de possível crise para a sua Black Friday
+BODY: Para participantes do webinar "Black Friday sem Caos", preparamos uma condição especial: [metade do valor nos 2 primeiros meses de assinatura], com teste grátis e suporte consultivo dedicado para deixar [alertas e atendimento prontos antes do volume de menções subir].
+LIST ITEM: [14 dias grátis] de Buzzmonitor
+LIST ITEM: [Suporte consultivo] especializado durante o período de teste
+LIST ITEM: [Alertas de crise] configurados para a sua Black Friday
+# NOTA: colchetes [ ] marcam trechos em destaque (negrito / titulo do card) no HTML.
 BONUS: Funciona assim: você testa a Buzzmonitor por 14 dias grátis e, se decidir continuar, paga [metade do valor nos 2 primeiros meses].
 LABEL: válida por tempo limitado
 CTA: Quero aproveitar a oferta

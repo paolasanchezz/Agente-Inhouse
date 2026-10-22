@@ -168,21 +168,24 @@
     .oferta-headline .label { display: block; font-size: clamp(28px, 3.4vw, 44px); font-weight: 700; margin-top: 10px; line-height: 1; }
     .oferta-body { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; color: var(--roxo); max-width: 640px; margin: 0 auto 40px; font-weight: 500; }
     .oferta-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; text-align: left; }
-    .oferta-list li { background: var(--white); border: 2px solid var(--roxo); border-radius: 22px; padding: 22px 22px; display: flex; flex-direction: column; gap: 12px; font-weight: 600; font-size: 17px; color: var(--n900); line-height: 1.4; opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), box-shadow .2s; }
+    .oferta-list li { background: rgba(255,255,255,.55); border-radius: 22px; padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; font-weight: 500; font-size: 16px; color: var(--roxo); line-height: 1.45; opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), box-shadow .2s; }
     .oferta-list.in li { opacity: 1; transform: none; }
     .oferta-list.in li:nth-child(2) { transition-delay: .12s; }
     .oferta-list.in li:nth-child(3) { transition-delay: .24s; }
-    .oferta-list.in li:hover { transform: translateY(-3px); box-shadow: 6px 6px 0 var(--roxo); transition-delay: 0s; }
+    .oferta-list.in li:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(57,1,85,.45); transition-delay: 0s; }
+    .oferta-list li strong { display: block; font-family: var(--ff-display); font-size: 24px; font-weight: 800; text-transform: uppercase; line-height: 1.05; margin-bottom: 4px; }
     @media (prefers-reduced-motion: reduce) { .oferta-list li { opacity: 1; transform: none; transition: none; } }
-    .oferta-list .ti { width: 44px; height: 44px; border-radius: 50%; background: var(--roxo); color: var(--amarelo); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
-    .oferta-bonus { display: inline-flex; align-items: center; gap: 12px; background: var(--white); border-radius: 20px; padding: 14px 24px; margin-bottom: 26px; font-size: clamp(16px, 1.5vw, 17px); font-weight: 500; color: var(--n900); line-height: 1.45; text-align: left; }
-    .oferta-bonus .ti { font-size: 26px; color: var(--rosa); flex-shrink: 0; }
-    .oferta-bonus strong { color: var(--roxo); font-weight: 800; }
+    .oferta-list .ti { width: 40px; height: 40px; border-radius: 50%; background: var(--roxo); color: var(--amarelo); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+    .oferta-bonus { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; font-size: clamp(17px, 1.6vw, 19px); font-weight: 500; color: var(--roxo); line-height: 1.5; text-align: left; max-width: 640px; }
+    .oferta-bonus .ti { font-size: 28px; color: var(--roxo); flex-shrink: 0; }
+    .oferta-bonus strong { font-weight: 800; background: linear-gradient(transparent 55%, rgba(255,255,255,.75) 55%); padding: 0 2px; }
+    .oferta-body strong { font-weight: 700; }
     .oferta-validity { font-family: var(--ff-display); font-size: 20px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--roxo); margin-bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 12px; }
     .oferta-validity::before, .oferta-validity::after { content: ""; display: block; width: 28px; height: 2px; background: var(--roxo); }
     @media (max-width: 760px) {
       .oferta-list { grid-template-columns: 1fr; gap: 12px; }
       .oferta-list li { flex-direction: row; align-items: center; }
+      .oferta-validity { font-size: 16px; white-space: nowrap; }
     }
 
     /* ===== BENEFICIOS ===== */
@@ -315,20 +318,20 @@
             <span class="num">50% off</span>
             <span class="label">nos 2 primeiros meses de Buzzmonitor</span>
           </h2>
-          <p class="oferta-body reveal" data-delay="120">Para participantes do webinar &ldquo;Black Friday sem Caos&rdquo;, preparamos uma condição especial: metade do valor nos 2 primeiros meses de assinatura, com teste grátis e suporte consultivo dedicado para deixar alertas e atendimento prontos antes do volume de menções subir.</p>
+          <p class="oferta-body reveal" data-delay="120">Para participantes do webinar &ldquo;Black Friday sem Caos&rdquo;, preparamos uma condição especial: <strong>metade do valor nos 2 primeiros meses de assinatura</strong>, com teste grátis e suporte consultivo dedicado para deixar <strong>alertas e atendimento prontos antes do volume de menções subir</strong>.</p>
 
           <ul class="oferta-list" aria-label="Itens incluídos na oferta">
             <li>
               <i class="ti ti-rocket" aria-hidden="true"></i>
-              14 dias grátis de Buzzmonitor
+              <span><strong>14 dias grátis</strong> de Buzzmonitor</span>
             </li>
             <li>
               <i class="ti ti-headset" aria-hidden="true"></i>
-              Suporte consultivo especializado durante o período de teste
+              <span><strong>Suporte consultivo</strong> especializado durante o período de teste</span>
             </li>
             <li>
               <i class="ti ti-bell-ringing" aria-hidden="true"></i>
-              Configuração de alertas de possível crise para a sua Black Friday
+              <span><strong>Alertas de crise</strong> configurados para a sua Black Friday</span>
             </li>
           </ul>
 
@@ -626,5 +629,15 @@
     })();
   </script>
 
+<script>
+  /* Links internos (#form-section, #inscricao...) rolam normalmente, mas o # sai da URL logo depois:
+     assim um link copiado da barra nao abre a LP direto no formulario. */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('a[href^="#"]')) return;
+    setTimeout(function () {
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    }, 0);
+  });
+</script>
 </body>
 </html>
