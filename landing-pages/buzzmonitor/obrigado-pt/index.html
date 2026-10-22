@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Despachante pos-envio (roda antes de qualquer render).
+       A LP de captura grava o destino num cookie de .buzzmonitor.com (bm_next), porque esta
+       pagina vive noutro subdominio e nao enxerga o sessionStorage da captura. Aqui le, apaga e
+       encaminha. Travas: consome o cookie antes de decidir (sem loop), so aceita https em
+       buzzmonitor.com ou subdominio (sem open redirect), nao redireciona pra si mesma. A validade
+       de 30 min vem do Max-Age do cookie. Sem cookie, fica nesta pagina.
+       Detalhes: landing-pages/GUIA-webinar-perpetuo-destino.md -->
+  <script>
+    (function () {
+      try {
+        var m = document.cookie.match(/(?:^|;\s*)bm_next=([^;]*)/);
+        if (!m) return;
+        document.cookie = 'bm_next=; Domain=.buzzmonitor.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
+        var to = new URL(decodeURIComponent(m[1]));
+        var host = to.hostname;
+        if (to.protocol !== 'https:') return;
+        if (host !== 'buzzmonitor.com' && host.slice(-16) !== '.buzzmonitor.com') return;
+        var norm = function (p) { return p.replace(/\/+$/, ''); };
+        if (host === location.hostname && norm(to.pathname) === norm(location.pathname)) return;
+        location.replace(to.href);
+      } catch (e) { /* cookie ilegivel: segue nesta pagina */ }
+    })();
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NCFT22CW');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Inscrição recebida | Buzzmonitor</title>
+  <meta name="description" content="Recebemos a sua inscrição. Obrigado pelo interesse na Buzzmonitor.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Buzzmonitor">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:title" content="Inscrição recebida | Buzzmonitor">
+
+  <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&family=Lato:wght@400;700&family=Manrope:wght@600;700&display=swap">
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --primary: #390155; --primary-darker: #26013a; --primary-light: #F2D8FF;
+      --accent: #EB7C2E; --accent-hover: #d96f24; --accent-light: #FFD5C3;
+      --neutral-0: #ffffff; --neutral-50: #fafafa; --neutral-700: #4a4a4a;
+      --success-bg: #CDFDFC;
+      --font-heading: 'League Spartan', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-accent: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      --container-max: 1200px; --container-pad: 24px;
+      --radius-md: 9px; --radius-pill: 9999px;
+      --ease: cubic-bezier(.22,.8,.22,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+      font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+      color: var(--primary); background: var(--neutral-50);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    h1 { font-family: var(--font-heading); margin: 0; }
+    p { margin: 0; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); }
+
+    /* ============ HEADER ============ */
+    .header { background: var(--neutral-0); border-bottom: 1px solid rgba(57,1,85,.06); }
+    .header-inner { height: 72px; display: flex; align-items: center; }
+    .header-logo { height: 32px; width: auto; display: block; }
+
+    /* ============ HERO ============ */
+    .stage {
+      flex: 1; display: flex; align-items: center; padding: 72px 0;
+      background:
+        radial-gradient(900px 460px at 88% -12%, rgba(242,216,255,.7), transparent 62%),
+        radial-gradient(720px 380px at -8% 118%, rgba(255,213,195,.4), transparent 58%),
+        var(--neutral-50);
+    }
+    .stage-head { text-align: center; max-width: 640px; margin: 0 auto; }
+    .badge-ok {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--success-bg); color: #0a7170;
+      font-family: var(--font-accent); font-weight: 700; font-size: 14px;
+      padding: 8px 16px; border-radius: var(--radius-pill); margin-bottom: 20px;
+    }
+    .badge-ok svg { width: 16px; height: 16px; }
+    .stage-head h1 { font-size: clamp(30px, 4vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .stage-head p { font-size: clamp(18px, 2.1vw, 19px); color: var(--neutral-700); margin-bottom: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-accent); font-weight: 700;
+      font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; padding: 17px 34px;
+      border-radius: var(--radius-md); background: var(--accent); color: var(--neutral-0);
+      transition: background 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .btn:hover { background: var(--accent-hover); color: var(--neutral-0); transform: translateY(-2px); }
+
+    /* ============ FOOTER ============ */
+    .footer { background: var(--primary-darker); color: rgba(255,255,255,.82); padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-logo { height: 30px; width: auto; display: block; }
+    .footer-meta { font-size: 14px; }
+
+    @media (max-width: 560px) {
+      .stage { padding: 52px 0; }
+      .header-logo { height: 26px; }
+      .footer-inner { justify-content: center; text-align: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 640px) {
+      .badge-ok { font-size: 15px; }
+      .footer-meta { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCFT22CW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="https://buzzmonitor.com/pt-pt/?utm_source=obrigado-pt" aria-label="Buzzmonitor: página inicial">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" class="header-logo" width="167" height="32">
+      </a>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="container stage-head">
+      <span class="badge-ok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Inscrição recebida
+      </span>
+      <h1>Obrigado pela sua inscrição.</h1>
+      <p>Os seus dados chegaram à equipa Buzzmonitor.</p>
+      <a href="https://buzzmonitor.com/pt-pt/?utm_source=obrigado-pt" class="btn">Saber mais</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor" class="footer-logo" width="157" height="30">
+      <div class="footer-meta">&copy; 2026 Buzzmonitor. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+</body>
+</html>

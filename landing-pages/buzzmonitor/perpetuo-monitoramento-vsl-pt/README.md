@@ -18,10 +18,10 @@ thank-you. Pedido da Catharina em 2026-10-19.
   + log de revisão).
 
 **Fluxo:** captura (Jotform `261127236463050` "Webinars Portugal", com `data-perpetuo-next="/perpetuo-monitoramento-vsl-pt-confirmado"`)
-→ o Jotform aterrissa na tks da `perpetuo-social-listening`, cujo despachante lê o `sessionStorage`
-e encaminha para `/perpetuo-monitoramento-vsl-pt-confirmado`. Pré-requisito: a Thank You Page
-do `261127236463050` precisa apontar pra essa tks (como o form BR); se não apontar, o lead cai
-no destino padrão do Jotform e não vê o vídeo.
+→ a LP grava o destino em `sessionStorage` **e** no cookie `bm_next` (`.buzzmonitor.com`, 30 min)
+→ o Jotform aterrissa em `content.buzzmonitor.com/obrigado-pt`, que lê o cookie e encaminha para
+`/perpetuo-monitoramento-vsl-pt-confirmado`. Pré-requisito: Thank You Page do form apontando para
+`https://content.buzzmonitor.com/obrigado-pt` (ver README da `obrigado-pt`).
 Detalhes em [`GUIA-webinar-perpetuo-destino.md`](../../GUIA-webinar-perpetuo-destino.md).
 
 **Vídeo:** o mesmo do par BR, `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`).

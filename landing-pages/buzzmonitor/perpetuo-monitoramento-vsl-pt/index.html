@@ -499,6 +499,14 @@
             at: Date.now()
           }));
         } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
+        /* O form "Webinars Portugal" aterrissa em content.buzzmonitor.com/obrigado-pt, outro
+           subdominio, que nao enxerga o sessionStorage daqui. Por isso o destino vai tambem num
+           cookie de .buzzmonitor.com, valido por 30 min. */
+        try {
+          var next = new URL(slot.getAttribute('data-perpetuo-next'), location.origin).href;
+          document.cookie = 'bm_next=' + encodeURIComponent(next) +
+            '; Domain=.buzzmonitor.com; Path=/; Max-Age=1800; SameSite=Lax; Secure';
+        } catch (e) { /* cookie bloqueado: cai no destino padrao do Jotform */ }
       }
     })();
   </script>
