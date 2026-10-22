@@ -152,7 +152,7 @@
     fetch('/api/totem-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome: estado.nome, email: estado.email, marca: estado.marca, segmento: estado.segmento, instagram: estado.instagram, concorrentes: estado.concorrentes, _hp: $('hp').value, _ts: estado.formTs }),
+      body: JSON.stringify({ url_conversao: location.origin + location.pathname + location.search, nome: estado.nome, email: estado.email, marca: estado.marca, segmento: estado.segmento, instagram: estado.instagram, concorrentes: estado.concorrentes, _hp: $('hp').value, _ts: estado.formTs }),
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (estado !== sessao) return; // a sessao ja foi encerrada
       estado.leadStatus = j;

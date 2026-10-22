@@ -174,7 +174,7 @@ compara números**: ranking, líder, maior crescimento e maior percentual vêm p
 - `assets/totem-render.js` (resultado, compartilhado) · `assets/totem.css` · `assets/qr.js` (gerador de QR sem
   dependência, escrito aqui; CSP continua só com `'self'`).
 - `api/totem.js` (GET, análise; parâmetros `m` marca, `s` segmento, `i` @ do Instagram, `c` concorrentes, nessa ordem, porque a URL é a chave do cache) · `api/totem-lead.js` (POST, lead + e-mail; aceita `instagram`) · `api/_lib/` (Trends, IA, buscas, análise, `perfil.js` com a limpeza do @).
-- `dev-server.js` (servidor local) · `tests/` (`node tests/qr.test.js`, `buscas.test.js`, `narrativa.test.js`, `revisao.test.js`, `score.test.js`, `totem-lead.test.js`, `leads-destinos.test.js`, `apps-script.test.js`, `totem-api.test.js`, `provas.test.js`, `relevancia.test.js`, `formato.test.js`).
+- `dev-server.js` (servidor local) · `tests/` (`node tests/qr.test.js`, `buscas.test.js`, `narrativa.test.js`, `revisao.test.js`, `score.test.js`, `totem-lead.test.js`, `leads-destinos.test.js`, `ac-contato-existente.test.js`, `apps-script.test.js`, `totem-api.test.js`, `provas.test.js`, `relevancia.test.js`, `formato.test.js`).
 
 **Por que a análise é GET:** a resposta não tem dado pessoal, então a borda da Vercel guarda por 24h. O totem consulta
 primeiro; o QR code e o e-mail apontam para a mesma URL de análise, e o celular recebe o resultado pronto. Se o cache não
@@ -191,9 +191,17 @@ Três destinos, independentes entre si (se um cair, os outros seguem) e todos op
 2. **Planilha do Google Sheets**, pelo webhook: o Apps Script `integracoes/google/buzz-compass-leads.gs` grava uma linha por
    lead (data e hora, nome, e-mail, marca, segmento, Instagram, concorrentes, link, origem). Passo a passo no cabeçalho do
    próprio script. O token (`TOTEM_LEADS_WEBHOOK_TOKEN`) impede que qualquer pessoa grave na planilha.
-3. **ActiveCampaign:** contato (nome e sobrenome separados, marca na empresa) + tag **Buzz Compass**, nunca deal. A tag é
-   buscada pelo nome e, se não existir, criada; não precisa copiar ID. Quem roda o Compass de novo não duplica nada (a
-   tag repetida é aceita).
+3. **ActiveCampaign:** tag **Buzz Compass** (buscada pelo nome e, se não existir, criada; não precisa copiar ID) e a URL de
+   conversão no campo de contato **"URL Conversão [Auto]"** (achado pelo título, não por número). Nunca cria negócio.
+   - **O e-mail já existe no AC** (busca exata, sem diferenciar maiúscula): **não cria contato novo**. Só atualiza o campo
+     "URL Conversão [Auto]" e aplica a tag. Nome e empresa que já estão no AC **não são reescritos**.
+   - **O e-mail é novo:** cria o contato completo (nome e sobrenome separados, marca na empresa), já com o campo e a tag.
+   - A URL de conversão é a página do totem onde o lead foi gerado (`https://buzzcompass.buzzmonitor.com/totem`, com as UTMs
+     se o QR/cartaz do evento as tiver; `idle`, `fbclid` e `#hash` saem). O servidor só aceita endereços do próprio projeto.
+   - Se não existir nenhum campo de contato com "URL Conversão" no nome, o contato e a tag seguem normalmente e a resposta
+     traz `crm_avisos: ["campo_url_conversao_nao_encontrado"]` (e o log também). `ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID`
+     força o ID do campo se for preciso.
+   - Quem roda o Compass de novo não duplica nada (a tag repetida é aceita e o campo é atualizado com a conversão mais recente).
 
 Se o AC ou a planilha derem erro passageiro (5xx), há uma segunda tentativa; erro de credencial (4xx) não repete e aparece no
 log (`[buzz-radar-totem] ... falhou`). **Sem nenhum destino configurado, o lead só existe no log da função** (`[totem-lead]`
@@ -207,6 +215,7 @@ no painel da Vercel, retenção curta). Configurar os três antes do evento.
 | `ACTIVECAMPAIGN_API_URL` / `ACTIVECAMPAIGN_API_TOKEN` | Liga o contato + tag no AC (URL da conta, ex. `https://CONTA.api-us1.com`, e a chave da API em Configurações > Desenvolvedor). |
 | `TOTEM_AC_TAG_NOME` | Opcional: nome da tag no AC (padrão `Buzz Compass`, achada ou criada sozinha). |
 | `ACTIVECAMPAIGN_TOTEM_TAG_ID` | Opcional: força o ID da tag e dispensa a busca pelo nome. |
+| `ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID` | Opcional: força o ID do campo de contato "URL Conversão [Auto]" (por padrão é achado pelo título). |
 | `ACTIVECAMPAIGN_TOTEM_LIST_ID` | Opcional, desligado por padrão: também inscreve o contato nesta lista do AC. Inscrever em lista é decisão de marketing e de consentimento. |
 | `TOTEM_BASE_URL` | Opcional: força o domínio do link e do QR do e-mail (padrão: o host da requisição). |
 | `OPENAI_MODEL_NARRATIVA` | Opcional: modelo que escreve os 4 cards (padrão `gpt-4o`; se não existir na conta, cai no modelo padrão). Custa mais que o `gpt-4o-mini` por análise. |

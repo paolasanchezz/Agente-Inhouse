@@ -73,7 +73,8 @@ function chamar(handler, { method = 'POST', body, headers = { host: 'radar.exemp
 
   // CRM: so contato + tag, nunca negocio
   const urlsAC = chamadas.filter((c) => c.url.includes('ac.test')).map((c) => c.url);
-  assert.deepStrictEqual(urlsAC, ['https://ac.test/api/3/contact/sync', 'https://ac.test/api/3/contactTags']);
+  // busca o contato pelo e-mail, procura o campo "URL Conversao", cria o contato (nao existia) e aplica a tag
+  assert.deepStrictEqual(urlsAC, ['https://ac.test/api/3/contacts?email=ana%40empresa.com.br', 'https://ac.test/api/3/fields?limit=100&offset=0', 'https://ac.test/api/3/contact/sync', 'https://ac.test/api/3/contactTags']);
   assert(!urlsAC.some((u) => /deal/i.test(u)), 'nunca cria deal');
   assert.strictEqual(JSON.parse(chamadas.find((c) => c.url.endsWith('contactTags')).opts.body).contactTag.tag, '99');
 

@@ -120,8 +120,9 @@ function resHttp() {
     roteador = (url) => (url.endsWith('/contact/sync') ? { status: 200, json: { contact: { id: '1' } } } : { status: 201, json: {} });
     chamadas = [];
     assert.strictEqual(await syncActiveCampaign({ email: 'a@b.com', nome: 'Ana', marca: 'X' }), 'enviado', 'URL colada: ' + colada);
-    assert.strictEqual(chamadas[0].url, 'https://ac.test/api/3/contact/sync', 'URL limpa: ' + chamadas[0].url);
-    assert.strictEqual(chamadas[0].opts.headers['Api-Token'], 'tok', 'chave sem espacos');
+    assert(chamadas.length >= 2 && chamadas.every((c) => c.url.startsWith('https://ac.test/api/3/') && !c.url.includes('/api/3/api/3')), 'URLs limpas: ' + chamadas.map((c) => c.url).join(' | '));
+    assert.strictEqual(chamadas.find((c) => c.url.endsWith('/contact/sync')).url, 'https://ac.test/api/3/contact/sync');
+    assert(chamadas.every((c) => c.opts.headers['Api-Token'] === 'tok'), 'chave sem espacos em todas as chamadas');
   }
   delete process.env.ACTIVECAMPAIGN_TOTEM_TAG_ID;
 

@@ -130,11 +130,12 @@ async function enviarWebhook(lead) {
   }
 }
 
-// --- ActiveCampaign: contato + tag "Buzz Compass" (nunca deal) ---
+// --- ActiveCampaign: contato + tag "Buzz Compass" + URL de conversao (nunca deal) ---
 const AC_TAG_PADRAO = 'Buzz Compass';
 const AC_TEMPO_POR_CHAMADA_MS = 12000; // o AC as vezes demora mais que 5 a 6s; 12s cobre o lento sem segurar o lead
 const AC_ORCAMENTO_TOTAL_MS = 50000; // teto de todas as chamadas do AC juntas (a funcao tem 60s)
 const idsDeTag = new Map(); // nome da tag -> id (so vale enquanto a funcao esta quente; refaz a busca depois)
+let idCampoUrlConversao; // id do campo "URL Conversao" depois de achado (undefined = ainda nao achou)
 
 function acHeaders(token) { return { 'Api-Token': token, 'Content-Type': 'application/json' }; }
 
@@ -153,6 +154,8 @@ async function acFetch(passo, url, opcoes, limite) {
     throw new Error(abortou ? `ac_${passo}_timeout` : `ac_${passo}_rede`);
   }
 }
+
+const semAcentoAC = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
 // Acha a tag pelo nome; se nao existir, cria. Assim ninguem precisa copiar o ID da tag para o painel da Vercel.
 async function acIdDaTag(base, token, nome, limite) {
@@ -176,25 +179,98 @@ async function acIdDaTag(base, token, nome, limite) {
   return id;
 }
 
-async function syncActiveCampaign({ email, nome, marca }) {
+// Campo personalizado de contato "URL Conversão [Auto]": procurado pelo TITULO (o numero do campo muda de conta para conta).
+// Entre varios candidatos, o que tem "[auto]" no nome ganha. ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID forca o ID.
+async function acIdDoCampoUrlConversao(base, token, limite) {
+  if (process.env.ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID) return String(process.env.ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID).trim();
+  if (idCampoUrlConversao !== undefined) return idCampoUrlConversao;
+  const candidatos = [];
+  for (let offset = 0; offset < 1000; offset += 100) {
+    const r = await acFetch('campos', `${base}/api/3/fields?limit=100&offset=${offset}`, { headers: acHeaders(token) }, limite);
+    if (!r.ok) throw new Error(`ac_campos_${r.status}`);
+    const corpo = await r.json();
+    const pagina = corpo.fields || [];
+    pagina.forEach((f) => {
+      const t = semAcentoAC(f.title);
+      if (t.includes('url') && t.includes('conversao')) candidatos.push({ id: String(f.id), auto: t.includes('[auto]') || t.includes('(auto)') });
+    });
+    const total = Number((corpo.meta && corpo.meta.total) || 0);
+    if (pagina.length < 100 || offset + 100 >= total) break;
+  }
+  const escolhido = candidatos.find((c) => c.auto) || candidatos[0] || null;
+  // So guarda o que achou: se o campo nao existe ainda, a proxima vez procura de novo (criou o campo, ja vale no lead seguinte)
+  if (escolhido) idCampoUrlConversao = escolhido.id;
+  return escolhido ? escolhido.id : null;
+}
+
+// Contato ja existente pelo e-mail (comparacao exata, sem diferenciar maiusculas). Devolve { id } ou null.
+async function acAcharContato(base, token, email, limite) {
+  const r = await acFetch('busca_contato', `${base}/api/3/contacts?email=${encodeURIComponent(email)}`, { headers: acHeaders(token) }, limite);
+  if (!r.ok) throw new Error(`ac_busca_contato_${r.status}`);
+  const achado = (((await r.json()).contacts) || []).find((c) => String(c.email || '').trim().toLowerCase() === email.trim().toLowerCase());
+  return achado ? { id: String(achado.id) } : null;
+}
+
+// Retorna { status, avisos[], contato: 'criado' | 'atualizado' }. Nunca lanca.
+async function executarAC({ email, nome, marca, urlConversao }) {
   const base = (process.env.ACTIVECAMPAIGN_API_URL || '').trim().replace(/\/+$/, '').replace(/\/api\/3$/i, '');
   const token = (process.env.ACTIVECAMPAIGN_API_TOKEN || '').trim();
-  if (!base || !token) return 'nao_configurado';
+  if (!base || !token) return { status: 'nao_configurado', avisos: [] };
   const limite = Date.now() + AC_ORCAMENTO_TOTAL_MS;
+  const avisos = [];
   try {
-    const partes = String(nome || '').trim().split(/\s+/);
-    const contactId = await tentarDeNovo(async () => {
-      const sync = await acFetch('contato', `${base}/api/3/contact/sync`, {
-        method: 'POST',
-        headers: acHeaders(token),
-        body: JSON.stringify({ contact: { email, firstName: partes[0] || '', lastName: partes.slice(1).join(' '), orgname: marca, fieldValues: [] } }),
-      }, limite);
-      if (!sync.ok) throw new Error(`ac_contato_${sync.status}`);
-      const id = ((await sync.json()).contact || {}).id;
-      if (!id) throw new Error('ac_contato_sem_id');
-      return id;
-    });
-    // tag: ID fixo por variavel (se alguem quiser forcar) ou achada/criada pelo nome
+    // 1) Esse e-mail ja esta no AC? (busca que falha nao trava o lead: o sync abaixo tambem nao duplica por e-mail)
+    let existente = null;
+    try { existente = await tentarDeNovo(() => acAcharContato(base, token, email, limite)); } catch (err) {
+      avisos.push('busca_contato_falhou');
+      console.error('[buzz-radar-totem] activecampaign aviso', err && err.message ? err.message : err);
+    }
+
+    // 2) Campo "URL Conversao [Auto]" (melhor esforco: se nao achar, o contato e a tag seguem)
+    let campoId = null;
+    if (urlConversao) {
+      try { campoId = await tentarDeNovo(() => acIdDoCampoUrlConversao(base, token, limite)); } catch (err) {
+        avisos.push('campo_url_conversao_indisponivel');
+        console.error('[buzz-radar-totem] activecampaign aviso', err && err.message ? err.message : err);
+      }
+      if (urlConversao && campoId === null && !avisos.includes('campo_url_conversao_indisponivel')) {
+        avisos.push('campo_url_conversao_nao_encontrado');
+        console.error('[buzz-radar-totem] activecampaign aviso: nao ha campo de contato com "URL Conversao" no nome');
+      }
+    }
+    const fieldValues = campoId ? [{ field: campoId, value: urlConversao }] : [];
+
+    // 3) Contato: existente = so atualiza a URL de conversao (nome e empresa que ja estao no AC ficam como estao);
+    //    novo = cria completo (nome separado, marca na empresa) ja com a URL de conversao
+    let contactId;
+    if (existente) {
+      contactId = existente.id;
+      if (fieldValues.length) {
+        await tentarDeNovo(async () => {
+          const r = await acFetch('atualiza_contato', `${base}/api/3/contacts/${contactId}`, {
+            method: 'PUT',
+            headers: acHeaders(token),
+            body: JSON.stringify({ contact: { fieldValues } }),
+          }, limite);
+          if (!r.ok) throw new Error(`ac_atualiza_contato_${r.status}`);
+        });
+      }
+    } else {
+      const partes = String(nome || '').trim().split(/\s+/);
+      contactId = await tentarDeNovo(async () => {
+        const sync = await acFetch('contato', `${base}/api/3/contact/sync`, {
+          method: 'POST',
+          headers: acHeaders(token),
+          body: JSON.stringify({ contact: { email, firstName: partes[0] || '', lastName: partes.slice(1).join(' '), orgname: marca, fieldValues } }),
+        }, limite);
+        if (!sync.ok) throw new Error(`ac_contato_${sync.status}`);
+        const id = ((await sync.json()).contact || {}).id;
+        if (!id) throw new Error('ac_contato_sem_id');
+        return String(id);
+      });
+    }
+
+    // 4) Tag: ID fixo por variavel (se alguem quiser forcar) ou achada/criada pelo nome
     const tagId = process.env.ACTIVECAMPAIGN_TOTEM_TAG_ID || await tentarDeNovo(() => acIdDaTag(base, token, process.env.TOTEM_AC_TAG_NOME || AC_TAG_PADRAO, limite));
     await tentarDeNovo(async () => {
       const r = await acFetch('aplicar_tag', `${base}/api/3/contactTags`, {
@@ -205,7 +281,8 @@ async function syncActiveCampaign({ email, nome, marca }) {
       // 422 = contato ja tinha a tag (mesma pessoa rodando de novo): esta tudo certo
       if (!r.ok && r.status !== 422) throw new Error(`ac_aplicar_tag_${r.status}`);
     });
-    // lista (opcional): so quando ha ID configurado. Inscrever em lista e decisao de marketing/consentimento, por isso desligado por padrao.
+
+    // 5) Lista (opcional): so quando ha ID configurado. Inscrever em lista e decisao de marketing/consentimento, por isso desligado por padrao.
     const listaId = process.env.ACTIVECAMPAIGN_TOTEM_LIST_ID;
     if (listaId) {
       await tentarDeNovo(async () => {
@@ -217,10 +294,31 @@ async function syncActiveCampaign({ email, nome, marca }) {
         if (!r.ok && r.status !== 422) throw new Error(`ac_lista_${r.status}`);
       });
     }
-    return 'enviado';
+    return { status: 'enviado', avisos, contato: existente ? 'atualizado' : 'criado' };
   } catch (err) {
     console.error('[buzz-radar-totem] activecampaign falhou', err && err.message ? err.message : err);
-    return 'falhou';
+    return { status: 'falhou', avisos };
+  }
+}
+
+// Versao simples (so o status), usada nos testes e por quem nao precisa dos detalhes.
+async function syncActiveCampaign(dados) { return (await executarAC(dados)).status; }
+
+// URL de conversao que vai para o campo "URL Conversao [Auto]" do AC: a pagina do totem onde o lead foi gerado (a mesma coisa
+// que as LPs mandam). O navegador informa; o servidor so aceita https, host do proprio projeto e caminho /totem, tira o ruido
+// (idle, fbclid, #hash) e corta em 500 caracteres. Qualquer outra coisa vira o endereco padrao do totem.
+function urlDeConversao(req, bruto) {
+  const padrao = `${baseUrl(req)}/totem`;
+  try {
+    const u = new URL(String(bruto || ''));
+    const hosts = new Set(['buzzcompass.buzzmonitor.com', 'buzzmonitor-lp-buzz-radar.vercel.app']);
+    try { hosts.add(new URL(baseUrl(req)).host.toLowerCase()); } catch (e) { /* ignora */ }
+    if (u.protocol !== 'https:' || !hosts.has(u.host.toLowerCase()) || !/^\/totem\/?$/.test(u.pathname)) return padrao;
+    ['idle', 'fbclid'].forEach((k) => u.searchParams.delete(k));
+    u.hash = '';
+    return u.href.slice(0, 500);
+  } catch (e) {
+    return padrao;
   }
 }
 
@@ -263,7 +361,8 @@ module.exports = async (req, res) => {
   }
 
   const link = linkDoResultado(req, { marca, segmento, instagram, concorrentes });
-  const lead = { origem: 'buzz-compass-totem', criado_em: new Date().toISOString(), nome, email, marca, segmento, instagram, concorrentes, link };
+  const urlConversao = urlDeConversao(req, body.url_conversao);
+  const lead = { origem: 'buzz-compass-totem', criado_em: new Date().toISOString(), nome, email, marca, segmento, instagram, concorrentes, link, url_conversao: urlConversao };
 
   // Registro de seguranca: enquanto nenhuma integracao estiver ligada, este log e o unico lugar onde o lead existe.
   console.log('[totem-lead]', JSON.stringify(lead));
@@ -271,17 +370,20 @@ module.exports = async (req, res) => {
   // QR do e-mail: PNG gerado por /api/qr (so links do proprio resultado)
   const qrUrl = `${baseUrl(req)}/api/qr?d=${encodeURIComponent(link)}`;
 
-  const [emailStatus, webhookStatus, acStatus] = await Promise.all([
+  const [emailStatus, webhookStatus, ac] = await Promise.all([
     enviarEmail({ nome, email, marca, link, qrUrl }),
     enviarWebhook(lead),
-    syncActiveCampaign({ email, nome, marca }),
+    executarAC({ email, nome, marca, urlConversao }),
   ]);
 
   res.statusCode = 200;
-  return res.json({ ok: true, email: emailStatus, webhook: webhookStatus, crm: acStatus, link });
+  return res.json({ ok: true, email: emailStatus, webhook: webhookStatus, crm: ac.status, ...(ac.contato ? { crm_contato: ac.contato } : {}), ...(ac.avisos && ac.avisos.length ? { crm_avisos: ac.avisos } : {}), link });
 };
 
 module.exports.htmlDoEmail = htmlDoEmail;
 module.exports.urlDemo = urlDemo;
 module.exports.syncActiveCampaign = syncActiveCampaign;
+module.exports.executarAC = executarAC;
+module.exports.urlDeConversao = urlDeConversao;
+module.exports._reiniciarCacheAC = () => { idsDeTag.clear(); idCampoUrlConversao = undefined; };
 module.exports.enviarWebhook = enviarWebhook;
