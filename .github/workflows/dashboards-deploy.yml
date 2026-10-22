@@ -4,8 +4,11 @@
 # falhar -> e-mail SO se falhar. Racional e politica de versao em dashboards-umbrella/README.md.
 #
 # Gatilhos:
-#  - schedule 07:13 BRT: atualiza e deploya.
-#  - workflow_dispatch: igual, com dry_run, aceitar_catraca/motivo e force_fail (ensaio de rollback).
+#  - workflow_dispatch: o GATILHO PRINCIPAL e o n8n, todo dia 07:00 BRT
+#    (integracoes/n8n/dashboards-disparo-diario.json). Tambem serve pra rodar a mao, com dry_run,
+#    aceitar_catraca/motivo e force_fail (ensaio de rollback).
+#  - schedule 07:13 BRT: so RESERVA. O cron do GitHub chega 4h30-9h30 atrasado neste repo
+#    (medido em 2026-10); se o n8n falhar, ele ainda atualiza, so que tarde.
 #  - pull_request em codigo de dashboard: SO ensaio (exporta, valida, builda). NUNCA deploya.
 #    E o que pega, antes do merge, um PR que muda o painel ou o exportador e quebra o contrato.
 #
@@ -14,7 +17,7 @@ name: Dashboards — atualizacao noturna
 
 on:
   schedule:
-    - cron: "13 10 * * *"   # 07:13 BRT (UTC-3). Minuto quebrado: o cron do GitHub atrasa na hora cheia.
+    - cron: "13 10 * * *"   # 07:13 BRT (UTC-3) — reserva do disparo do n8n das 07:00 (ver cabecalho).
   workflow_dispatch:
     inputs:
       dry_run:

@@ -1,0 +1,94 @@
+{
+  "name": "Dashboards CM - disparo diario 07h BRT",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Disparo manual (teste)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 340]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "name": "Todo dia 07:00 (BRT)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [0, 140]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/victorfmlopes/Agente-Inhouse/actions/workflows/dashboards-deploy.yml/dispatches",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"ref\": \"main\"}",
+        "options": {}
+      },
+      "name": "GitHub: disparar dashboards-deploy.yml",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 240],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "yIFq6rWEvNDfmSkn",
+          "name": "GitHub - disparar dashboards"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Disparo manual (teste)": {
+      "main": [
+        [
+          {
+            "node": "GitHub: disparar dashboards-deploy.yml",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todo dia 07:00 (BRT)": {
+      "main": [
+        [
+          {
+            "node": "GitHub: disparar dashboards-deploy.yml",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo"
+  }
+}

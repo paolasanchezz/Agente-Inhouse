@@ -12,6 +12,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboards CM — o n8n passa a disparar a atualização às 07:00 (o cron do GitHub atrasava horas)
+### 2026-10-22 — `integracoes/n8n/dashboards-disparo-diario.{json,md}` · `dashboard-atualizar` 5.0.0 → 5.0.1 (PATCH) · `dashboards-deploy.yml` (comentários)
+
+- **O problema:** na primeira manhã da automação, às 09:10, a rodada agendada para 07:13 ainda não tinha saído. O agendamento do GitHub Actions é "melhor esforço", e neste repositório chega com **4h30 a 9h30 de atraso** todo dia — o Pocket Event, agendado para 07:23 BRT, rodou entre 11:55 e 16:52 BRT nas últimas semanas. O GitHub também pode descartar a rodada sob carga, e aí não há falha nem e-mail.
+- **A solução:** workflow novo no n8n (`Dashboards CM - disparo diario 07h BRT`, id `0OAzSVco0PniHE54`) com relógio às 07:00 e `settings.timezone = America/Sao_Paulo` (a instância roda em UTC−4). Ele chama `POST /actions/workflows/dashboards-deploy.yml/dispatches` na API do GitHub — disparo manual não passa pela fila — com 3 tentativas. Credencial Header Auth `GitHub - disparar dashboards`: token fine-grained, só no `Agente-Inhouse`, só **Actions: read and write**, sem expiração, criado e colado no n8n pelo Victor (nunca passou pelo chat nem pelo repo). Sem alerta, por decisão dele.
+- **O cron do GitHub (07:13) fica como reserva:** se o n8n falhar, o GitHub ainda atualiza, só que tarde. Nos dias normais dá duas rodadas, inofensivas (mesmo grupo de concorrência).
+- **Testado com o gatilho adiantado:** n8n disparou às 09:57:44, a rodada nasceu no GitHub 1 s depois e ficou verde em ~2 min (deploy + smoke ok). Depois o relógio voltou para 07:00 e o workflow vivo foi conferido idêntico ao JSON versionado.
+- Skill, `CLAUDE.md` e `dashboards-umbrella/README.md` passam a dizer 07:00 via n8n.
+
+---
+
 ## Dashboards CM — PT não soma dólar como euro; Buzzcreators não mostra opção apagada como Inbound
 ### 2026-10-21 — `dashboard-pt-vercel/{motor,render}.js` · `exportar_dados.py` · `dashboard-buzzcreators-vercel/render.js` · contratos (sem versão)
 

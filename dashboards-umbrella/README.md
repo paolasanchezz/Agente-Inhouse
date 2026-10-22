@@ -124,7 +124,9 @@ py dashboards-umbrella/testar_contrato.py                                       
 
 ## Atualização automática (todo dia às 07:00)
 
-Desde **2026-10-21** o workflow `.github/workflows/dashboards-deploy.yml` faz sozinho o que a `/dashboard-atualizar` fazia à mão, às **07:13 BRT** (o minuto quebrado é porque o cron do GitHub atrasa na hora cheia):
+Desde **2026-10-21** o workflow `.github/workflows/dashboards-deploy.yml` faz sozinho o que a `/dashboard-atualizar` fazia à mão. **Quem dispara é o n8n, todo dia às 07:00 BRT** (`integracoes/n8n/dashboards-disparo-diario.json`), e as dashboards ficam prontas por volta das 07:03.
+
+O `cron` do próprio workflow (07:13) ficou só como **reserva**: o agendamento do GitHub é "melhor esforço" e, neste repositório, chega com 4h30 a 9h30 de atraso (medido em 2026-10 — na primeira manhã, às 09:10, a rodada agendada ainda não tinha saído). Se o n8n falhar, o GitHub ainda atualiza, só que tarde.
 
 ```
 conectividade → filtro CM do buzz-br → exportar as 7 → validar contrato + catraca → build → deploy → smoke → (rollback)

@@ -1,14 +1,14 @@
 ---
 name: dashboard-atualizar
-description: Atualiza agora as 7 dashboards CM do guarda-chuva (dashboards-elife.vercel.app — Buzzmonitor, Cxpress e Buzzcreators Brasil, LATAM e as 3 de Portugal) disparando o workflow do GitHub Actions que ja roda sozinho todo dia as 07:13 BRT. O workflow exporta do Supabase, valida o contrato de dados, deploya com smoke e rollback. A skill tambem faz ensaio sem deploy, aceita queda legitima da catraca e mostra o estado das ultimas rodadas. Deploy manual da maquina local esta bloqueado pelo hook desde 2026-10-21. Manual-trigger.
+description: Atualiza agora as 7 dashboards CM do guarda-chuva (dashboards-elife.vercel.app — Buzzmonitor, Cxpress e Buzzcreators Brasil, LATAM e as 3 de Portugal) disparando o workflow do GitHub Actions que o n8n ja dispara sozinho todo dia as 07:00 BRT. O workflow exporta do Supabase, valida o contrato de dados, deploya com smoke e rollback. A skill tambem faz ensaio sem deploy, aceita queda legitima da catraca e mostra o estado das ultimas rodadas. Deploy manual da maquina local esta bloqueado pelo hook desde 2026-10-21. Manual-trigger.
 argument-hint: "[agora|ensaio|status|aceitar <slug|tudo>] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Bash, Glob, Grep
-version: 5.0.0
+version: 5.0.1
 ---
 
 # Skill: Atualizar Dashboards CM
 
-As 7 dashboards de Content Marketing **se atualizam sozinhas todo dia às 07:13 BRT** pelo workflow `.github/workflows/dashboards-deploy.yml` (desde 2026-10-21). Esta skill serve para o que foge da rotina: **atualizar fora de hora**, **ensaiar** sem deployar, **destravar a catraca** quando uma queda é legítima, ou **ver como foram as últimas rodadas**.
+As 7 dashboards de Content Marketing **se atualizam sozinhas todo dia às 07:00 BRT**: o n8n dispara o workflow `.github/workflows/dashboards-deploy.yml` (`integracoes/n8n/dashboards-disparo-diario.json`) e elas ficam prontas por volta das 07:03. O agendamento do próprio GitHub (07:13) é só reserva — ele chega com horas de atraso neste repositório. Esta skill serve para o que foge da rotina: **atualizar fora de hora**, **ensaiar** sem deployar, **destravar a catraca** quando uma queda é legítima, ou **ver como foram as últimas rodadas**.
 
 Ela **não** exporta nem deploya da máquina local. O hook `guard_vercel_deploy.py` nega deploy manual do projeto `dashboards-elife`: um deploy local subia o código da branch em que você estivesse, pulava o validador, e a rodada seguinte devolvia o da `main`. Agora há um caminho só, e ele passa pelo contrato de dados.
 
