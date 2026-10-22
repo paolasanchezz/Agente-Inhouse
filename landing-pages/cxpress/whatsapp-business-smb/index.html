@@ -706,9 +706,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="agendar__req">*Preços para canais WhatsApp + E-mail. <a href="mailto:comercial@gocxpress.com.br">comercial@gocxpress.com.br</a></p>
         </div>
         <div class="agendar__formcol reveal">
-          <div class="jotform-embed" id="jotHost" data-jotform="261045149477663">
-            <noscript><iframe src="https://form.jotform.com/261045149477663" title="Formulário de agendamento de demonstração" style="width:100%;height:900px;border:0"></iframe></noscript>
-          </div>
+      <div class="jotform-embed">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+      </div>
         </div>
       </div>
     </section>
@@ -776,78 +776,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })();
   </script>
 
-<script>
-  /* Jotform diferido (padrao das LPs irmas). O <script src> do jsform era
-     parser-blocking no meio do HTML: segurava o DOMContentLoaded ate o
-     provedor responder. Agora carrega por proximidade, com pre-carga por
-     intencao pros CTAs que saltam direto pra ca. */
-  (function(){
-    var jotHost = document.getElementById('jotHost');
-    if (!jotHost) return;
-    var carregaJot = function(){
-      if (jotHost.dataset.carregado) return;
-      jotHost.dataset.carregado = '1';
-      var sc = document.createElement('script');
-      sc.type = 'text/javascript';
-      sc.src = 'https://form.jotform.com/jsform/' + jotHost.dataset.jotform;
-      sc.onerror = contingencia;
-      jotHost.appendChild(sc);
-      setTimeout(function(){ if (!jotHost.querySelector("iframe")) contingencia(); }, 6000);
-    };
-    /* Rede de seguranca: se o script do jsform nao executar (bloqueador, shield,
-       proxy, falha de rede), sem isso o host fica em 0px pra sempre - sem iframe,
-       sem aviso e sem retentativa. Degrau 1: iframe simples, que nao depende do
-       jsform. Degrau 2: link pra abrir o formulario em nova aba. */
-    var contingencia = function(){
-      if (jotHost.querySelector("iframe")) return;
-      var ns = jotHost.querySelector("noscript");
-      if (ns && ns.textContent.indexOf("<iframe") > -1) {
-        jotHost.insertAdjacentHTML("beforeend", ns.textContent);
-      } else {
-        var f = document.createElement("iframe");
-        f.src = "https://form.jotform.com/" + jotHost.dataset.jotform;
-        f.title = "Formulário de contato";
-        f.style.cssText = "width:100%;height:900px;border:0;display:block";
-        jotHost.appendChild(f);
-      }
-      /* Nao da pra saber se um iframe cross-origin renderizou: o evento load
-         dispara tambem na pagina de erro do navegador. Como aqui ja estamos em
-         caminho degradado, o link de escape vai junto com o iframe. */
-      ultimoRecurso();
-    };
-    var ultimoRecurso = function(){
-      if (jotHost.dataset.recurso) return;
-      jotHost.dataset.recurso = "1";
-      var url = "https://form.jotform.com/" + jotHost.dataset.jotform;
-      jotHost.insertAdjacentHTML("beforeend",
-        '<p style="margin:0;background:#fff;border-radius:14px;padding:20px;text-align:center;font-size:16px">' +
-        '<a href="' + url + '" target="_blank" rel="noopener" style="color:#232960;font-weight:700">Abrir o formulário em uma nova aba</a></p>');
-    };
-    /* Pre-carga por intencao: as ancoras de CTA saltam direto pra ca, e nesse
-       caso o observer so dispararia no salto. Hover/toque ja aquece. O id da
-       secao sai do proprio DOM, sem hardcode. */
-    var sec = jotHost.closest ? jotHost.closest('section[id]') : null;
-    if (sec && sec.id) {
-      var atalhos = document.querySelectorAll('a[href="#' + sec.id + '"]');
-      Array.prototype.forEach.call(atalhos, function(a){
-        ['pointerenter', 'touchstart', 'click'].forEach(function(ev){
-          a.addEventListener(ev, carregaJot, {once: true, passive: true});
-        });
-      });
-    }
-    /* O host nasce com altura 0 (so tem o <noscript>), e IntersectionObserver
-       nao dispara em elemento sem area: observar o host direto deixava o
-       formulario sem carregar pra quem apenas rolava ate a secao, sem passar
-       o mouse em nenhum CTA. Observamos a secao, que tem altura real. */
-    if ('IntersectionObserver' in window && sec) {
-      var ioJot = new IntersectionObserver(function(en){
-        en.forEach(function(e){ if (e.isIntersecting){ ioJot.disconnect(); carregaJot(); } });
-      }, {rootMargin: '600px 0px'});
-      ioJot.observe(sec);
-    } else {
-      carregaJot();
-    }
-  })();
-  </script>
 </body>
 </html>
