@@ -12,6 +12,13 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Dashboard CM Cxpress — deals de teste saem do escopo
+### 2026-10-22 — `dashboard/queries_cxpress.py` · `dashboard/MAPEAMENTO-CAMPOS-cxpress.md` §2.2.3
+
+- O time valida LP, form, UTM e automação criando deal no funil principal, e esses deals caíam no escopo CM (URL de conversão `content.cxpress.io`). Só em 20/10 foram 5 (`utm_source=teste-interno`).
+- `filtro_nao_teste()` entra no `_escopo()` — vale pra dash local, pro export do Vercel e pro `/seo-report`. Tira o deal quando a `utm_source` é `teste`/`test`, o título tem a palavra teste/test ou o e-mail do contato (via `dim_contacts_elife_cxpress`) é de domínio interno/de exemplo ou tem "teste" como pedaço separado. Escape manual: `DEALS_TESTE_IDS`.
+- Saíram 25 deals (todos Perdido/Aberta, nenhum com triagem, agendamento, demo, proposta ou fechamento). Regras medidas na tabela inteira (11.240 deals) sem nenhum lead real pego. Contrato e catraca OK contra produção; paridade SQL × motor.js 556/556.
+
 ## `setup-agencia` — passo novo para conectar o Supabase (consultar deals pelo chat)
 ### 2026-10-22 — `setup-agencia` 0.6.0 → 0.7.0 (MINOR) · `checar_supabase.py` (novo) · `CLAUDE.md`
 

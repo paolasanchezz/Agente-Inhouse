@@ -20,6 +20,7 @@ ESCOPO calibrado 2026-06-09 (auditoria utm_source/medium/url_conversao + validac
   funil, porque funil_auto reflete o PROCESSO de vendas e nao a origem do lead. Ver filtro_inbound().
 - filtro_cm: exclui Google Ads (google+cpc); inclui whitelist social/owned + URL clinicas/content.
 - 2026-08-07: 'webinar' entrou na whitelist de utm_source (ver CM_UTM_SOURCES).
+- 2026-10-22: deals de teste saem do escopo (filtro_nao_teste, MAPEAMENTO §2.2.3).
 """
 from __future__ import annotations
 
@@ -226,9 +227,51 @@ def filtro_cm(alias: str = '') -> str:
     )"""
 
 
+# ============ DEALS DE TESTE (decisao Victor 2026-10-22) ============
+# O time valida LP, form, UTM e automacao do CRM criando deal de verdade no funil principal, e
+# esses deals caem no escopo CM (a URL de conversao e content.cxpress.io). Auditoria de
+# 2026-10-22: ~22 deals de teste no escopo, 5 so em 20/10 (utm_source=teste-interno). Todos
+# Perdido/Aberta sem agendamento — inflavam Leads e Perdidos.
+#
+# Regras medidas na TABELA INTEIRA (11.240 deals, todas as datas) antes de entrar: tudo o que
+# casa e teste ou funcionario do grupo, nenhum lead real. Ao ampliar, medir de novo.
+# 1. utm_source 'teste' ou 'test' (com ou sem sufixo: teste-interno, test_x)
+# 2. titulo com a PALAVRA teste/test (\m...\M: "Teste CRM", "cx teste", "Test Company").
+#    'testes' fica de fora de proposito: "Laboratorio de Testes" seria empresa real.
+# 3. e-mail do contato (dim_contacts_elife_cxpress, a tabela de deals nao tem e-mail) em
+#    dominio interno do grupo ou de exemplo — funcionario convertendo em LP nao e lead CM.
+# 4. e-mail do contato com 'teste' como pedaco separado (testecrm@, gestaoteste@, @testecrm.com,
+#    .com.brteste). Exige nao-letra antes ou depois pra nao pegar nome que contenha as letras.
+# 5. DEALS_TESTE_IDS: teste que escapa das regras (e-mail pessoal, titulo sem "teste", sem UTM).
+TESTE_DOMINIOS_EMAIL: list[str] = [
+    'buzzmonitor.com.br', 'buzzmonitor.com', 'gocxpress.com.br', 'cxpress.com.br', 'cxpress.io',
+    'elife.com.br', 'example.com', 'test.com',
+]
+DEALS_TESTE_IDS: list[int] = []
+
+
+def filtro_nao_teste(alias: str = '') -> str:
+    """TRUE quando o deal NAO e teste (regras acima). Entra no _escopo, entao vale pra dash local,
+    pro export do Vercel e pra quem mais reusa o escopo (seo_report_conversoes)."""
+    a = (alias + '.') if alias else ''
+    contato = f"{alias}.contact" if alias else f"{TABELA}.contact"
+    dominios = "|".join(d.replace('.', '\\.') for d in TESTE_DOMINIOS_EMAIL)
+    ids = f"\n      AND {a}id NOT IN ({', '.join(str(i) for i in DEALS_TESTE_IDS)})" if DEALS_TESTE_IDS else ""
+    return f"""(
+      LOWER(TRIM(COALESCE({a}utm_source, ''))) !~ '^teste?([^a-z]|$)'
+      AND COALESCE({a}title, '') !~* '\\mteste?\\M'
+      AND NOT EXISTS (
+        SELECT 1 FROM dim_contacts_elife_cxpress c
+        WHERE c.id = {contato}
+          AND (LOWER(c.email) ~ '@({dominios})$'
+               OR LOWER(c.email) ~ '(^|[^a-z])teste|teste([^a-z]|$)')
+      ){ids}
+    )"""
+
+
 def _escopo(alias: str = 'd') -> str:
-    """Combina inbound + CM (ambos no-op por padrao). Use no WHERE das queries."""
-    return f"({filtro_inbound(alias)}) AND ({filtro_cm(alias)})"
+    """Combina inbound + CM (inbound e no-op) e tira os deals de teste. Use no WHERE das queries."""
+    return f"({filtro_inbound(alias)}) AND ({filtro_cm(alias)}) AND ({filtro_nao_teste(alias)})"
 
 
 # ============ KPIs (7 do funil, contados pela data do evento) ============

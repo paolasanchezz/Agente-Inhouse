@@ -198,13 +198,28 @@ reativado 03/06 com triagem + agendamento + demo marcada, status `Aberta` — co
 ativo ao mesmo tempo. Na base há 25 `Aberta` + 4 `Ganho` com lost+motivo órfãos. Sem o status, um
 deal recuperado/ganho ainda apareceria nos perdidos da coorte.
 
+### 2.2.3. Deals de teste ficam fora (2026-10-22)
+
+O time valida LP, form, UTM e automação criando deal de verdade no funil principal, e esses deals
+caíam no escopo CM (a URL de conversão é `content.cxpress.io`). `filtro_nao_teste()` entra no
+`_escopo()` e tira o deal quando: `utm_source` é `teste`/`test` (com ou sem sufixo, ex. `teste-interno`);
+o título tem a **palavra** teste/test; ou o e-mail do contato (`contact` → `dim_contacts_elife_cxpress.id`,
+porque a tabela de deals não tem e-mail) é de domínio interno do grupo/de exemplo
+(`TESTE_DOMINIOS_EMAIL`) ou tem "teste" como pedaço separado (`testecrm@`, `gestaoteste@`). Teste que
+escapa das regras vai por ID em `DEALS_TESTE_IDS`.
+
+Na entrada saíram **25 deals** do escopo (5 só em 20/10/2026), todos Perdido/Aberta, nenhum com
+triagem, agendamento, demo, proposta ou fechamento: só Leads e Perdidos caíram. As regras foram medidas
+na tabela inteira (11.240 deals) antes de entrar — tudo o que casa é teste ou funcionário. Ao ampliar
+domínio ou padrão, medir de novo na tabela inteira: falso positivo aqui some com lead real em silêncio.
+
 ### 2.3. Diferenças vs Buzzmonitor BR
 
 | Aspecto | Buzzmonitor BR | Cxpress BR |
 |---|---|---|
 | Dedup | por e-mail (`email_contato_principal_bd_sdr`) | por deal (sem coluna de e-mail) |
 | Reconversão | override manual `RECONVERSOES_MANUAIS` | n/a |
-| Whitelist/blacklist nominal | `EMAIL_WHITELIST` + `EMAIL_BLACKLIST` | n/a (sem e-mail) |
+| Whitelist/blacklist nominal | `EMAIL_WHITELIST` + `EMAIL_BLACKLIST` | só deals de teste, por regra + `DEALS_TESTE_IDS` (§2.2.3) |
 | `whatsapp` | dentro (decisão Victor jan/2026) | fora (decisão Victor jun/2026) |
 | `youtube` | n/a (volume zero) | fora |
 | Blog/conteúdo próprio | `buzzmonitor.com.br/blog/%`, `content.elife`, slugs CM | `home.cxpress.io/atendimento-para-clinicas`, `content.cxpress.io` |
