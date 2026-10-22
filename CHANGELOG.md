@@ -12,6 +12,17 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `setup-agencia` — passo novo para conectar o Supabase (consultar deals pelo chat)
+### 2026-10-22 — `setup-agencia` 0.6.0 → 0.7.0 (MINOR) · `checar_supabase.py` (novo) · `CLAUDE.md`
+
+- **O problema:** uma colaboradora com a senha do `looker_readonly` não conseguia consultar deals pelo Claude ("Connection closed"). O servidor `supabase` do `.mcp.json` lê `SUPABASE_PG_URL` do ambiente, não do `dashboard/.env`, e nenhum passo do setup criava essa variável. Mesmo criando à mão, a conexão caía em três armadilhas: o host direto (`db.…supabase.co`) só funciona em IPv6; o `#` da senha corta a URL se não virar `%23`; e no PowerShell o `$` entre aspas duplas some da senha.
+- **Passo 5 novo (Dados de deals):** checa o `uv` (o `.mcp.json` roda o servidor com `uvx`), pede que a senha venha do Victor por fora do chat e entrega **um comando de uma linha** que a pessoa roda no terminal dela. O comando pede a senha escondida, codifica e grava a URL do **pooler** com o usuário com sufixo. No Windows ela vai nas variáveis de usuário; no Mac/Linux, no `env` do `~/.claude/settings.json`, porque o app do Mac ignora o `export` do `~/.zshrc`. A senha não passa pelo agente em nenhum momento.
+- **`checar_supabase.py`:** lê a variável de onde o passo gravou (registro do Windows / `settings.json` / ambiente), então valida sem reiniciar o Claude. Confere formato, host, sufixo do usuário e `#` cru antes de abrir conexão, para não queimar tentativas de senha (o Supabase bloqueia o IP depois de várias erradas). Em seguida conecta, roda um `SELECT`, conta as tabelas de deals visíveis e devolve um código de erro por causa, sem nunca imprimir a senha. Com `--gravar-env`, espelha a mesma URL no `dashboard/.env` (só a linha `SUPABASE_PG_URL=`), que é o que `/auditar-deals-cm`, `/seo-report` e os exportadores leem. Testado: cada código de formato, a conexão real com a URL do pooler (`[OK]`, 41 tabelas de deals), o `.env` ausente/diferente/igual numa cópia da árvore e os dois comandos de gravação com senha falsa (`#`, `!`, `$` e espaços nas pontas).
+- **Correção de carona:** a pergunta "O que você vai usar?" tinha 5 opções, e o `AskUserQuestion` aceita no máximo 4. Newsletter, copy e tradução viraram uma opção só ("Conteúdo"), porque as três levam ao mesmo passo (Notion). A quarta vaga ficou com "Dados de deals". Test drive e resumo viraram Passos 6 e 7, e o resumo lembra de fechar e abrir o Claude, porque o servidor só lê a variável nova quando o app abre.
+- `CLAUDE.md`: uma linha em Setup dizendo de onde o MCP do Supabase lê a conexão e que a `/setup-agencia` configura.
+
+---
+
 ## `dashboard-atualizar` — corrige o que a documentação dizia sobre a virada de ano
 ### 2026-10-22 — `dashboard-atualizar` 5.0.1 → 5.0.2 (PATCH) · `dashboards-umbrella/README.md`
 

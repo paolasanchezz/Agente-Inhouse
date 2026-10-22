@@ -96,6 +96,9 @@ O pipeline antigo (`/meta-ads-*` + scripts Python locais) foi desativado mas man
 ### Notion
 Requer MCP Notion conectado. IDs das pastas ja estao hardcoded nas skills e nos CONTEXT.md.
 
+### Supabase (consultar deals pelo chat)
+O MCP `supabase` do `.mcp.json` (so leitura) le a conexao da variavel `SUPABASE_PG_URL` do ambiente — **nao do `dashboard/.env`**. Sem ela da "Connection closed". Configurar pelo Passo 5 da `/setup-agencia` (pooler IPv4 + senha codificada, sem a senha passar pelo chat).
+
 ### Demais skills
 Funcionam sem setup adicional.
 
@@ -107,7 +110,7 @@ Funcionam sem setup adicional.
 
 | Comando | Quando usar |
 |---|---|
-| `/setup-agencia` | Setup interativo do zero — Python, Notion MCP, Bunzzai MCP. Use na primeira vez ou ao trocar de maquina. |
+| `/setup-agencia` | Setup interativo do zero — Python, Notion MCP, Bunzzai MCP, Supabase. Use na primeira vez ou ao trocar de maquina. |
 
 ### Nao sabe qual comando rodar? Use um destes (advisors):
 

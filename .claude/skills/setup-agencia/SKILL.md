@@ -1,9 +1,9 @@
 ---
 name: setup-agencia
-description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, verificar MCP Bunzzai, autenticar Vercel CLI para Landing Pages) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
-argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so anuncios' | /setup-agencia 'so copy e newsletter' | /setup-agencia 'so lp'"
+description: Guia interativo de primeiro setup para novos colaboradores do agente inhouse. Conduz do zero (instalar Python, conectar Notion, verificar MCP Bunzzai, autenticar Vercel CLI para Landing Pages, conectar o Supabase para consultar deals) ate a primeira skill rodando. Usar quando o usuario digitar /setup-agencia ou disser "e minha primeira vez" / "como comeco".
+argument-hint: "(opcional) — texto livre. Ex: /setup-agencia | /setup-agencia 'so anuncios' | /setup-agencia 'so copy e newsletter' | /setup-agencia 'so lp' | /setup-agencia 'so supabase'"
 allowed-tools: AskUserQuestion, Read, Bash, Glob
-version: 0.6.0
+version: 0.7.0
 ---
 
 # Skill: /setup-agencia — Setup guiado para newbies
@@ -17,7 +17,7 @@ Voce esta executando um **script deterministico** de onboarding. Nao improvise p
 3. **Linguagem PT-BR coloquial e didatica.** Assuma que o usuario pode nunca ter aberto um terminal.
 4. **Apos cada acao tecnica (instalar, copiar, etc.), valide antes de seguir.** Nao acumule falhas silenciosas.
 5. **Falhas → mensagem hardcoded de "Fallback"**, nao improviso.
-6. **No final, valide cada modulo (Notion ping, MCP Bunzzai ping, Vercel CLI whoami) e ofereca um test drive.**
+6. **No final, valide cada modulo (Notion ping, MCP Bunzzai ping, Vercel CLI whoami, `SELECT` no Supabase) e ofereca um test drive.**
 7. **Se o usuario travar em qualquer ponto, ofereca pausar.** O setup pode ser retomado depois rodando `/setup-agencia` de novo.
 
 ---
@@ -56,23 +56,25 @@ Guarde como `os_user`. Determina exemplos de comando ao longo da skill.
 - header: "Uso"
 - multiSelect: true
 - options:
-  1. "Newsletters (/newsletter)" — "Gerar newsletters semanais para as marcas."
-  2. "Copy / anuncios escritos (/escrever)" — "Criar, revisar ou pesquisar copy."
-  3. "Traducao de copy (/traduzir)" — "Traduzir copy para PT-PT ou ES-LATAM."
-  4. "Analise de Meta Ads (/anuncios)" — "Relatorios de performance de campanhas via MCP Bunzzai (sem token Meta)."
-  5. "Landing Pages (/landing-page)" — "Criar e publicar LPs no Vercel."
+  1. "Conteudo (/escrever, /newsletter, /traduzir)" — "Copy, newsletters e traducao para PT-PT ou ES-LATAM."
+  2. "Analise de Meta Ads (/anuncios)" — "Relatorios de performance de campanhas via MCP Bunzzai (sem token Meta)."
+  3. "Landing Pages (/landing-page)" — "Criar e publicar LPs no Vercel."
+  4. "Dados de deals (Supabase)" — "Consultar deals e leads direto no banco, so leitura. Ex: 'quantos deals CM fechamos em setembro?'"
+
+> O `AskUserQuestion` aceita no maximo 4 opcoes. Por isso newsletter, copy e traducao vem juntas: as tres dependem so do Notion.
 
 Guarde como `modulos`. Determina quais blocos de setup vamos rodar:
-- **Newsletter / Copy / Traducao** → exigem **Notion MCP** funcionando → **rodar Passo 2**
+- **Conteudo** → exige **Notion MCP** funcionando → **rodar Passo 2**
 - **Meta Ads** → exige **MCP Bunzzai** conectado (zero setup local — sem token Meta) → **rodar Passo 3**
 - **Landing Pages** → exige **Vercel CLI autenticado** + **Python 3.10+** (PageSpeed CLI) → **rodar Passo 3 (Python) + Passo 4**
+- **Dados de deals** → exige **uv** + a variavel **`SUPABASE_PG_URL`** → **rodar Passo 5**. Nao precisa do Python do Passo 3: o uv baixa o Python que usa.
 - Quem marca tudo, faz tudo.
 
 ---
 
 ## Passo 2 — Setup do Notion MCP
 
-> **Pular este passo se `modulos` nao inclui nenhum dos: Newsletter, Copy, Traducao.**
+> **Pular este passo se `modulos` nao inclui Conteudo.**
 
 ### 2.1 — MCP do Notion
 
@@ -392,7 +394,141 @@ Em qualquer caso, seguir para Passo 5.
 
 ---
 
-## Passo 5 — Test drive (opcional)
+## Passo 5 — Conexao com o Supabase (dados de deals)
+
+> **Pular este passo se `modulos` nao inclui Dados de deals.**
+
+**Contexto pra voce, agente (nao exiba):** o servidor `supabase` do `.mcp.json` roda o `postgres-mcp` via `uvx`, so leitura (`--access-mode=restricted`), e pega a URL do banco em `${SUPABASE_PG_URL}`, no ambiente do Claude. **Ele nao le o `dashboard/.env`.** Sem a variavel, o servidor recebe o texto `${SUPABASE_PG_URL}` no lugar da URL, nao conecta e o Claude mostra "Connection closed". Tres armadilhas ja derrubaram colaboradores (2026-10-22), e os comandos abaixo evitam as tres:
+
+1. O host direto `db.vymnlivcgokmyonqlkah.supabase.co` so funciona em IPv6 e falha na maioria das redes. O certo e o **pooler** `aws-1-sa-east-1.pooler.supabase.com:5432`, com o usuario `looker_readonly.vymnlivcgokmyonqlkah` (com o sufixo do projeto).
+2. A senha tem caracteres especiais. Dentro da URL, `#` vira `%23` (sem isso a URL e cortada no `#`) e `$` vira `%24`.
+3. No PowerShell, um `$` entre aspas duplas e lido como variavel e some da senha. E colar varias linhas de uma vez faz o `Read-Host` engolir a linha seguinte como senha. Por isso o comando do Windows e uma linha so, com aspas simples.
+
+**A senha nunca passa pelo chat.** A pessoa digita a senha no terminal dela, e o `checar_supabase.py` nunca imprime a senha. Nao peca a senha, e se ela for colada no chat, nao repita.
+
+Onde a variavel fica: no **Windows**, nas variaveis de usuario (o app herda). No **Mac/Linux**, no `env` do `~/.claude/settings.json`: o app do Mac ignora variaveis exportadas no `~/.zshrc`, e o `env` do settings vale em toda sessao.
+
+### 5.1 — uv instalado?
+
+Use `Bash`:
+```
+uvx --version 2>/dev/null || "$HOME/.local/bin/uvx" --version 2>/dev/null || echo "UV_NAO_INSTALADO"
+```
+
+- Retornou versao → exiba `[OK] uv {versao}` e siga para 5.2.
+- `UV_NAO_INSTALADO` → exiba conforme `os_user`:
+
+**Se Windows:**
+> O `uv` e o programa que roda a conexao com o banco. Pra instalar:
+> 1. Abra o **PowerShell** (tecla Windows, digite `PowerShell` e de Enter).
+> 2. Cole a linha abaixo e de Enter:
+>    `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+> 3. Quando terminar, me diga "instalei".
+
+**Se Mac ou Linux:**
+> O `uv` e o programa que roda a conexao com o banco. Pra instalar:
+> 1. Abra o Terminal.
+> 2. Cole a linha abaixo e de Enter:
+>    `curl -LsSf https://astral.sh/uv/install.sh | sh`
+> 3. Quando terminar, me diga "instalei".
+
+Aguarde "instalei" e rode o mesmo comando de checagem. Se ainda der `UV_NAO_INSTALADO` → Fallback "uv-falhou".
+
+### 5.2 — Senha do banco
+
+`AskUserQuestion`:
+- question: "Voce ja tem a senha do usuario de leitura do banco (looker_readonly)?"
+- header: "Senha"
+- multiSelect: false
+- options:
+  1. "Nao tenho / nao sei (Recomendado)" — "Te explico como pedir."
+  2. "Sim, ja tenho" — "O Victor ja me passou."
+
+Se "Nao tenho", exiba **literalmente**:
+
+> Peca a senha do usuario `looker_readonly` ao Victor (`victor.lopes@buzzmonitor.com.br`). Se der, use um gerenciador de senhas em vez de mensagem.
+>
+> **Nao cole a senha aqui no chat.** No proximo passo ela vai direto num comando que voce roda no seu terminal, e eu nao vejo.
+>
+> Quando tiver a senha, me diga "tenho". Se for demorar, a gente pausa e voce roda `/setup-agencia` de novo depois.
+
+Aguarde "tenho" (ou ofereca o Fallback "usuario-trava").
+
+### 5.3 — Gravar a variavel (quem roda e a pessoa, no terminal dela)
+
+Exiba **literalmente**, conforme `os_user`:
+
+**Se Windows:**
+> 1. Abra o **PowerShell** (tecla Windows, digite `PowerShell` e de Enter). Tem que ser o PowerShell, nao o Prompt de Comando.
+> 2. Copie a linha abaixo **inteira** (e uma linha so), cole no PowerShell e de Enter:
+>
+> ```powershell
+> $s = Read-Host 'Senha do looker_readonly' -AsSecureString; $p = [Runtime.InteropServices.Marshal]::PtrToStringBSTR([Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)); [Environment]::SetEnvironmentVariable('SUPABASE_PG_URL', 'postgresql://looker_readonly.vymnlivcgokmyonqlkah:' + [uri]::EscapeDataString($p.Trim()) + '@aws-1-sa-east-1.pooler.supabase.com:5432/postgres', 'User'); 'Variavel gravada.'
+> ```
+>
+> 3. Quando ele pedir a senha, cole e de Enter. Vao aparecer asteriscos no lugar das letras, e normal.
+> 4. Quando aparecer `Variavel gravada.`, me diga "pronto".
+
+**Se Mac ou Linux:**
+> 1. Abra o Terminal.
+> 2. Copie a linha abaixo **inteira** (e uma linha so), cole e de Enter:
+>
+> ```bash
+> python3 -c "import getpass,json,pathlib,urllib.parse as u; p=pathlib.Path.home()/'.claude'/'settings.json'; d=json.loads(p.read_text()) if p.exists() else {}; s=getpass.getpass('Senha do looker_readonly: ').strip(); d.setdefault('env',{})['SUPABASE_PG_URL']='postgresql://looker_readonly.vymnlivcgokmyonqlkah:'+u.quote(s,safe='')+'@aws-1-sa-east-1.pooler.supabase.com:5432/postgres'; p.parent.mkdir(exist_ok=True); p.write_text(json.dumps(d,indent=2)+'\n'); print('Variavel gravada.')"
+> ```
+>
+> 3. Quando ele pedir a senha, cole e de Enter. Nada aparece enquanto voce digita, e normal.
+> 4. Quando aparecer `Variavel gravada.`, me diga "pronto".
+
+Aguarde "pronto".
+
+### 5.4 — Validar a conexao
+
+Use `Bash` (timeout 180s; na primeira vez o uv baixa o Python 3.12 e o driver do Postgres, entao pode levar uns 30s):
+```
+UV=$(command -v uv || echo "$HOME/.local/bin/uv"); "$UV" run --no-project --python 3.12 --with "psycopg[binary]" python .claude/skills/setup-agencia/checar_supabase.py
+```
+
+O script le a variavel de onde o 5.3 gravou, entao funciona sem reiniciar nada. Ele confere o formato, conecta, roda um `SELECT` e conta as tabelas de deals visiveis.
+
+- `[OK] Conectado no Supabase ...` → exiba a linha, marque `supabase_ok = true` e siga para 5.5 com o valor de `ENV_ARQUIVO=`.
+- `ERRO=...` → trate pelo codigo:
+
+| Codigo | O que fazer |
+|---|---|
+| `VAR_AUSENTE` | A variavel nao foi gravada. Repita o 5.3 (no Windows, confira se colou no PowerShell e nao no Prompt de Comando). |
+| `HOST_DIRETO`, `HOST_DESCONHECIDO`, `USUARIO_SEM_SUFIXO`, `CARACTERE_CRU`, `FORMATO_INVALIDO`, `SENHA_VAZIA` | A variavel foi gravada a mao, fora do comando do 5.3. Repita o 5.3: o comando sobrescreve o valor. |
+| `SENHA_ERRADA` | A senha nao confere. Peca de novo ao Victor e repita o 5.3. **Nao fique tentando:** depois de varias senhas erradas o Supabase bloqueia o IP por um tempo, e o bloqueio pega todo mundo na mesma rede. |
+| `USUARIO_ERRADO` | O pooler nao reconheceu o usuario → Fallback "supabase-falhou". |
+| `REDE` | Esta rede nao alcanca o banco (firewall, VPN, sem internet) ou o IP foi bloqueado por senhas erradas. Tente outra rede; se continuar → Fallback "supabase-falhou". |
+| `OUTRO` | Fallback "supabase-falhou", com o detalhe que o script mostrou (ele ja vem sem a senha). |
+
+Depois de 2 tentativas sem sucesso, ofereca pular este modulo (Fallback "usuario-trava").
+
+### 5.5 — Espelhar no `dashboard/.env`
+
+Os scripts Python do repo (`/auditar-deals-cm`, a parte de conversao do `/seo-report`, os exportadores das dashboards) leem o `dashboard/.env`, nao a variavel. Deixar os dois iguais evita que um aponte pra um lugar e o outro pra outro.
+
+Conforme o `ENV_ARQUIVO=` do 5.4:
+- `igual` → exiba `[OK] dashboard/.env ja usa a mesma conexao.`
+- `ausente` → rode o comando do 5.4 com `--gravar-env` no final (sem perguntar; o arquivo e gitignored). Espere `ENV_ARQUIVO=gravado` e exiba `[OK] Conexao gravada tambem em dashboard/.env.`
+- `diferente` → `AskUserQuestion`:
+  - question: "O dashboard/.env tem outra conexao com o banco. Troco pela que acabou de funcionar?"
+  - header: "dashboard/.env"
+  - multiSelect: false
+  - options:
+    1. "Sim, trocar (Recomendado)" — "O arquivo fica igual a variavel que acabou de conectar."
+    2. "Nao, manter como esta" — "Nao mexo no arquivo."
+
+  Se "Sim" → rode com `--gravar-env` e espere `ENV_ARQUIVO=gravado`. O script so troca a linha `SUPABASE_PG_URL=` e mantem as outras.
+
+### 5.6 — Reiniciar o Claude (fica pro fim do setup)
+
+O Claude so le variaveis novas quando abre, entao o servidor `supabase` so conecta depois de reiniciar. Nao peca isso agora (encerraria o setup). O lembrete vai no resumo final (Passo 7).
+
+---
+
+## Passo 6 — Test drive (opcional)
 
 `AskUserQuestion`:
 - question: "Quer fazer um teste rapido pra confirmar que tudo funciona?"
@@ -405,7 +541,9 @@ Em qualquer caso, seguir para Passo 5.
 Se "Sim":
 - Se `bunzzai_ok == true` → sugerir: "Vou rodar `/bunzzai buzzmonitor_brl` (analise de tendencias de uma conta — leve e ja te mostra a interface). Posso?"
 - Senao se `notion_ok == true` → sugerir: "Vou rodar `/news-pesquisar buzzmonitor brasil` como teste. Posso?"
-- Senao → pular teste, ir direto ao Passo 5.
+- Senao → pular teste, ir direto ao Passo 7.
+
+(O Supabase nao entra no test drive: o servidor `supabase` so conecta depois de reiniciar o Claude.)
 
 Aguarde "sim". Depois envie literalmente:
 
@@ -413,7 +551,7 @@ Aguarde "sim". Depois envie literalmente:
 
 ---
 
-## Passo 6 — Resumo final (texto literal)
+## Passo 7 — Resumo final (texto literal)
 
 Exiba (substitua os ✓/✗ conforme o estado real — omita as linhas que nao se aplicam ao perfil do usuario, ex: nao mostrar "Vercel CLI" se Landing Pages nao foi marcado):
 
@@ -423,6 +561,7 @@ Exiba (substitua os ✓/✗ conforme o estado real — omita as linhas que nao s
 > - [✓ ou ✗] Python {versao} instalado (so necessario pra Landing Pages e auditorias pontuais)
 > - [✓ ou ✗] MCP Bunzzai conectado (fonte unica de analise de Meta Ads — sem token expirando)
 > - [✓ ou ✗] Vercel CLI autenticado em elife-group
+> - [✓ ou ✗] Conexao com o Supabase testada (deals, so leitura)
 >
 > **Comandos pra comecar (todos abrem guias interativos):**
 > - `/escrever` — copy
@@ -430,6 +569,9 @@ Exiba (substitua os ✓/✗ conforme o estado real — omita as linhas que nao s
 > - `/traduzir` — traducao PT-PT / ES-LATAM
 > - `/anuncios` — analise de Meta Ads (via Bunzzai)
 > - `/landing-page` — landing pages
+> - Dados de deals: pergunte direto no chat, ex: `quantos deals CM fechamos em setembro?`
+>
+> **Falta uma coisa pro Supabase:** o Claude so le a conexao nova quando abre. Feche o Claude **de vez** e abra de novo. No Windows, clique com o botao direito no icone dele perto do relogio e escolha Sair (fechar so a janela nao basta). No Mac, use Cmd+Q. Se aparecer um pedido pra aprovar o servidor `supabase` do projeto, aprove. Depois, numa conversa nova, peca `liste as tabelas de deals no Supabase` pra conferir.
 >
 > **Quando terminar alteracoes:** rode `/commit` — ele cria uma branch, commita e abre um Pull Request pro Victor revisar. Nunca commita em main.
 >
@@ -492,5 +634,15 @@ Exiba (substitua os ✓/✗ conforme o estado real — omita as linhas que nao s
 > LP_SIBLING_BASE=/caminho/que/voce/quer
 > ```
 
+### "uv-falhou"
+> Nao encontrei o `uv`, o programa que roda a conexao com o banco. Rode de novo o comando de instalacao num terminal novo e confira se terminou sem erro. Se continuar, peca ajuda ao Victor.
+>
+> Por enquanto, podemos pular a conexao com o Supabase e configurar os demais modulos. Quer seguir?
+
+### "supabase-falhou"
+> Nao consegui conectar no banco (`{codigo}`{: detalhe}). Isso costuma ser do lado da conta, nao seu. Mande esse codigo ao Victor (`victor.lopes@buzzmonitor.com.br`) pra ele conferir o usuario `looker_readonly`. O codigo nao contem a senha.
+>
+> Por enquanto, podemos pular a conexao com o Supabase e configurar os demais modulos. Quer seguir?
+
 ### "usuario-trava" (use a qualquer momento)
-> Sem problemas. Voce pode parar aqui e voltar depois — basta rodar `/setup-agencia` de novo. O que ja configurou (Notion, Python, .env, Vercel etc.) fica salvo. Quer parar?
+> Sem problemas. Voce pode parar aqui e voltar depois — basta rodar `/setup-agencia` de novo. O que ja configurou (Notion, Python, .env, Vercel, Supabase etc.) fica salvo. Quer parar?
