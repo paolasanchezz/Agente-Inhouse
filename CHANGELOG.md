@@ -12,6 +12,12 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## `dashboard-atualizar` — corrige o que a documentação dizia sobre a virada de ano
+### 2026-10-22 — `dashboard-atualizar` 5.0.1 → 5.0.2 (PATCH) · `dashboards-umbrella/README.md`
+
+- A skill e o README diziam que em 1º de janeiro "as listas zeram e a catraca dispara nas 7". **Errado:** o início do período é uma data fixa (`2026-01-01` nos exportadores e em `dashboard/queries_latam.py`), não o ano corrente. Em 1º de janeiro a exportação segue acumulando 2026 + 2027, as contagens não caem e a catraca não dispara. Ela só dispara quando alguém **mover** esse início para um ano novo — mudança deliberada, num PR —, e aí a primeira rodada precisa de `aceitar_catraca=tudo`.
+- Acrescentado o que de fato cresce com o tempo: o tamanho dos JSONs (o validador avisa em 80% do teto; o LATAM, o maior, deve chegar lá por volta de meados de 2027).
+
 ## Dashboards CM — o n8n passa a disparar a atualização às 07:00 (o cron do GitHub atrasava horas)
 ### 2026-10-22 — `integracoes/n8n/dashboards-disparo-diario.{json,md}` · `dashboard-atualizar` 5.0.0 → 5.0.1 (PATCH) · `dashboards-deploy.yml` (comentários)
 

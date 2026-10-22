@@ -3,7 +3,7 @@ name: dashboard-atualizar
 description: Atualiza agora as 7 dashboards CM do guarda-chuva (dashboards-elife.vercel.app — Buzzmonitor, Cxpress e Buzzcreators Brasil, LATAM e as 3 de Portugal) disparando o workflow do GitHub Actions que o n8n ja dispara sozinho todo dia as 07:00 BRT. O workflow exporta do Supabase, valida o contrato de dados, deploya com smoke e rollback. A skill tambem faz ensaio sem deploy, aceita queda legitima da catraca e mostra o estado das ultimas rodadas. Deploy manual da maquina local esta bloqueado pelo hook desde 2026-10-21. Manual-trigger.
 argument-hint: "[agora|ensaio|status|aceitar <slug|tudo>] (sem arg = pergunta com chips)"
 allowed-tools: AskUserQuestion, Read, Bash, Glob, Grep
-version: 5.0.1
+version: 5.0.2
 ---
 
 # Skill: Atualizar Dashboards CM
@@ -61,7 +61,7 @@ gh workflow run $WF --repo $REPO --ref main                                   # 
 # gh workflow run $WF --repo $REPO --ref main -f aceitar_catraca="<slug|tudo>" -f motivo="<por que caiu>"
 ```
 
-**Aceitar catraca** só quando a queda tem explicação (limpeza de CRM, recategorização em massa, virada de ano). Destrava só a catraca daquele slug — nunca uma violação de contrato. Se você não sabe explicar a queda, **não aceite**: queda inexplicada é o sintoma de query quebrada.
+**Aceitar catraca** só quando a queda tem explicação (limpeza de CRM, recategorização em massa, início do período movido para um ano novo). Destrava só a catraca daquele slug — nunca uma violação de contrato. Se você não sabe explicar a queda, **não aceite**: queda inexplicada é o sintoma de query quebrada.
 
 Achar o run que acabou de nascer (o `gh workflow run` não devolve o id em todas as versões):
 
@@ -168,7 +168,7 @@ py dashboards-umbrella/deploy_ci.py --checar-producao
 
 - **Senha do Basic Auth vive em dois lugares:** `.env.local` (uso local) e os secrets `DASHBOARD_BASIC_AUTH_USER`/`_PASS` do GitHub (o build do CI). Trocar a senha = atualizar **os dois** e disparar **Atualizar agora**; esquecer o secret faz o CI buildar com a senha velha.
 - **Dados gitignored:** `dados-*.json` têm PII de leads e valores comerciais. O workflow nunca os sobe como artifact; só vão para o deploy, atrás do login.
-- **Virada de ano:** as listas são do ano corrente e zeram em 1º de janeiro, então a catraca dispara nas 7 — aceite com motivo "virada de ano", junto com o ajuste de `ANO_INI`/cutoff nos `exportar_dados.py` que essa data já exige.
+- **Virada de ano:** nada quebra sozinho em 1º de janeiro. O início do período é uma data fixa (`2026-01-01` nos exportadores e em `queries_latam.py`), não "o ano corrente", então a exportação segue acumulando 2026 + 2027 e a catraca não dispara. Ela só dispara quando alguém **mover** esse início para 2027 — mudança deliberada, num PR; aí rode a primeira atualização com **Aceitar catraca** `tudo` e motivo "novo ano". O que cresce com o tempo é o tamanho dos JSONs: o validador avisa em 80% do teto (o LATAM, maior, deve chegar lá por volta de meados de 2027).
 - **Projetos antigos** (`dashboard-buzzmonitor-brasil`, `dashboard-cxpress-brasil`, `dashboard-buzzmonitor-latam`, `dashboard-buzzcreators-brasil`) são redirect 308 para o guarda-chuva. Não deployar dashboard neles.
 - **Portugal** tem modelo próprio — coorte por data de criação, distribuição de etapa atual (não conversão), CM como classificação. O porquê está em `dashboard/AUDITORIA-PORTUGAL.md`; não "corrija" isso para parecer com o BR sem reler a auditoria.
 - **Diferenças por dashboard:** buzz-br = funil 7 KPIs e filtro CM em duas cópias (auditadas a cada rodada). cxpress = funil 7 KPIs, superfície única. latam = funil 5 fases ES/USD, leads inbound∪outbound + fechamentos de contratos. buzzcreators = funil 5 KPIs (sem Proposta), fonte Pipedrive com UTM recuperada por join com o contato. Runbooks: `dashboard/DEPLOY*.md`.

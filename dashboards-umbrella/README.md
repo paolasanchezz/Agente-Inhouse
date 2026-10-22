@@ -92,7 +92,7 @@ Toda métrica é **cumulativa**, nunca janelada: num sábado ela não cresce, ma
 
 **Queda legítima** (limpeza de CRM, recategorização): rode com `--aceitar-catraca <slug> --motivo "…"`. Destrava só a catraca daquele slug — **nunca** aceita violação de contrato. Deixar a rodada deployar já re-ancora: a noite seguinte compara contra o número novo.
 
-**Virada de ano:** as listas são do ano corrente, então em 1º de janeiro tudo zera e a catraca dispara em todas. É esperado — rode com `--aceitar-catraca tudo --motivo "virada de ano"`, junto com o ajuste de `ANO_INI` nos exportadores que essa data já exige.
+**Virada de ano:** nada quebra sozinho em 1º de janeiro. O início do período é uma **data fixa** (`2026-01-01` nos exportadores e em `dashboard/queries_latam.py`), não "o ano corrente" — a exportação segue acumulando 2026 + 2027 e as contagens não caem. A catraca só dispara quando alguém **mover** esse início para 2027, uma mudança deliberada, num PR: aí a primeira rodada depois do merge precisa de `--aceitar-catraca tudo --motivo "novo ano"`. O que cresce com o tempo é o tamanho dos JSONs; o validador avisa ao passar de 80% do teto (o LATAM, o maior, deve chegar lá por volta de meados de 2027).
 
 ### Mudou o formato? A política de versão
 
@@ -149,7 +149,7 @@ Actions → *Dashboards — atualizacao noturna* → **Run workflow**:
 | Campo | Para quê |
 |---|---|
 | `dry_run` | ensaio: exporta, valida e builda, nada vai pro ar |
-| `aceitar_catraca` + `motivo` | a catraca barrou uma queda **legítima** (limpeza de CRM, virada de ano): slug ou `tudo`, e o porquê. Nunca destrava violação de contrato |
+| `aceitar_catraca` + `motivo` | a catraca barrou uma queda **legítima** (limpeza de CRM, início do período movido para um ano novo): slug ou `tudo`, e o porquê. Nunca destrava violação de contrato |
 | `force_fail` | ensaia o rollback: deploya, simula smoke reprovado e promove o deploy anterior. Deixa no ar a versão **anterior** — rode um normal em seguida |
 
 ### Secrets usados
