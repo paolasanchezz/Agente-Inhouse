@@ -115,3 +115,4 @@ Link do header `#modulos`: rola ate o topo da secao e distribui as 5 cartas auto
 - 2026-10-15: links internos (#modulos, #funcionalidades, #demo, #main) rolam ate o bloco sem adicionar #secao na URL.
 - 2026-10-21: look claro. Hero (#FCFBF9 com aura suave) e "Como funciona" (branco) passam a fundo claro com tokens escopados em .lite; cierre e footer seguem escuros como contraste premium. Botoes nessas secoes e CTA fixo mobile viram escuros. Corrigido "todo en uno." do H1, que ficava invisivel (background-clip nao alcancava as letras animadas): cada letra recebe o tom do degrade via JS.
 - 2026-10-21: textos secundarios de 14px sobem (prova social do hero e legendas das stats 15,5px; contador 01/07 e descricao das cartas no desktop 15px). Prova social do hero sem max-width: 1 linha no desktop, 2 no mobile.
+- 2026-10-21: logos de clientes do hero maiores (50px desktop, 44px mobile) com sombra suave pra separar os circulos.
