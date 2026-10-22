@@ -924,7 +924,7 @@
     .lite{--bg:#FCFBF9;--bg2:#F6F3EF;--surf:#fff;--surf2:#F7F4F0;--hl:rgba(18,12,22,.07);--hl2:rgba(18,12,22,.14);--tx:#120C16;--mu:rgba(18,12,22,.7);--mu2:rgba(18,12,22,.6);background:var(--bg);color:var(--tx)}
     .features.lite{--bg:#fff}
     .lite .eyebrow{color:var(--ink2)}
-    .lite .grad{background:linear-gradient(100deg,#390155 0%,#7B3FC4 38%,#D9662A 78%,#EB7C2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lite .grad{background:linear-gradient(100deg,#EB7C2E 0%,#EB7C2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .grad .sc{-webkit-text-fill-color:currentColor}
     .lite .fluid{opacity:.2}
     .lite .hair{opacity:.45}
@@ -964,10 +964,42 @@
     .hero__in{padding-bottom:64px}
     @media (min-width:1061px){.hero__in{grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:64px}}
     @media (max-width:640px){.hero{padding-top:92px}.hero__in{padding-bottom:52px}}
-    .hero__form{display:flex;flex-direction:column;align-items:center;padding:28px 18px 8px}
+    .hero__form{display:flex;flex-direction:column;align-items:center;padding:28px 18px 22px}
     .hero__form .eyebrow{margin:0 0 0;justify-content:center}
     .hero__form .jotform-embed{align-self:stretch;margin-top:-18px;min-height:400px}
-    @media (max-width:640px){.hero__form{padding:20px 12px 6px}}
+    @media (max-width:640px){.hero__form{padding:20px 12px 18px}}
+    /* 7 en 1 en el hero: los 7 modulos como circulos con el color e icono de la presentacion; hover muestra nombre y descripcion, clic abre la pestana en Como funciona */
+    .hero h1{font-size:clamp(50px,5.4vw,78px)}
+    @media (max-width:640px){.hero h1{font-size:clamp(42px,12vw,52px)}}
+    .h7wrap{margin-top:28px}
+    .h7{list-style:none;margin:0;padding:0;display:flex;gap:10px;position:relative;width:max-content;max-width:100%}
+    .h7::before{content:"";position:absolute;left:20px;right:20px;top:50%;border-top:1px dashed rgba(18,12,22,.2)}
+    .h7 li{position:relative;opacity:0;transform:translateY(8px) scale(.8);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i)*70ms + 350ms)}
+    .h7wrap.in .h7 li{opacity:1;transform:none}
+    .h7__i{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--c);color:var(--ic,#fff);box-shadow:0 0 0 3px var(--bg),0 8px 16px -8px rgba(18,12,22,.45);transition:transform .35s var(--ease),opacity .35s}
+    .h7__i svg{width:19px;height:19px}
+    .h7__img{display:block;width:100%;height:100%;border-radius:50%;transform:scale(.62)}
+    .h7__i:hover,.h7__i:focus-visible{transform:translateY(-3px)}
+    .h7:hover .h7__i:not(:hover){opacity:.5}
+    .h7__tip{position:absolute;left:50%;bottom:calc(100% + 14px);width:230px;transform:translate(-50%,6px);opacity:0;pointer-events:none;background:var(--ink);color:rgba(255,255,255,.72);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.4;text-align:left;box-shadow:0 20px 40px -18px rgba(18,12,22,.6);transition:opacity .25s,transform .35s var(--ease);z-index:5}
+    .h7__tip b{display:block;margin-bottom:3px;font-family:var(--display);font-weight:600;font-size:15px;color:#fff}
+    .h7 li:first-child .h7__tip{left:0;transform:translate(0,6px)}
+    .h7__i:hover .h7__tip,.h7__i:focus-visible .h7__tip{opacity:1;transform:translate(-50%,0)}
+    .h7 li:first-child .h7__i:hover .h7__tip,.h7 li:first-child .h7__i:focus-visible .h7__tip{transform:none}
+    .h7__names{display:none;margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--mu)}
+    @media (hover:none){.h7__tip{display:none}.h7__names{display:block}}
+    @media (max-width:640px){.h7{gap:8px}.h7__i{width:36px;height:36px}.h7__i svg{width:16px;height:16px}.h7__names{display:block}}
+    @media (prefers-reduced-motion:reduce){.h7 li{opacity:1;transform:none;transition:none}}
+    /* opcion A: los 7 modulos como pastillas (icono de color + nombre), sobrias y legibles sin hover */
+    .h7{flex-wrap:wrap;gap:8px;width:auto;max-width:540px}
+    .h7::before{display:none}
+    .h7__i{width:auto;height:auto;display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:999px;background:#fff;color:var(--ink);border:1px solid rgba(18,12,22,.1);box-shadow:0 6px 14px -10px rgba(18,12,22,.3);font-family:var(--display);font-size:14.5px;font-weight:500;letter-spacing:-.005em;text-decoration:none;white-space:nowrap;transition:transform .35s var(--ease),border-color .3s,box-shadow .35s}
+    .h7__i svg{width:28px;height:28px;padding:6px;border-radius:50%;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+    .h7 li:nth-child(7) .h7__i svg{color:#A8730A}
+    .h7__img{width:28px;height:28px;transform:none}
+    .h7__i:hover,.h7__i:focus-visible{transform:translateY(-2px);border-color:color-mix(in srgb,var(--c) 45%,#fff);box-shadow:0 12px 22px -14px rgba(18,12,22,.4)}
+    .h7:hover .h7__i:not(:hover){opacity:1}
+    @media (max-width:640px){.h7{gap:7px}.h7__i{width:auto;height:auto;font-size:13.5px;padding:4px 12px 4px 4px}.h7__i svg{width:26px;height:26px;padding:5.5px}.h7__img{width:26px;height:26px}}
   </style>
 </head>
 <body>
@@ -1001,8 +1033,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap hero__in">
       <div class="hero__copy">
         <span class="eyebrow rv in">Para equipos de marketing y agencias</span>
-        <h1 id="h1" class="stair">Siete soluciones en <span class="grad">una sola plataforma</span></h1>
+        <h1 id="h1" class="stair">7 soluciones, <span class="grad">1 plataforma</span></h1>
         <p class="sub rv" data-d="5">Escucha a tu audiencia, atiende a tus clientes con IA y mide tu marca y tu competencia en tiempo real. Todo desde un solo lugar.</p>
+        <div class="h7wrap rv" data-d="6"><ul class="h7" aria-label="Las 7 soluciones de Buzzmonitor"><li style="--i:0"><a class="h7__i" href="#funcionalidades" data-tab="1" style="--c:#3B5BD6" aria-label="Listening: Todo lo que se dice de tu marca, competencia y sector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="h7__n">Listening</span><span class="h7__tip" aria-hidden="true"><b>Listening</b>Todo lo que se dice de tu marca, competencia y sector</span></a></li><li style="--i:1"><a class="h7__i" href="#funcionalidades" data-tab="2" style="--c:#3C9A9A" aria-label="Atención Multicanal: Redes, WhatsApp, email y reseñas en una sola bandeja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2-5.4A8.4 8.4 0 1 1 21 11.5z"/><path d="M8 12.5c1-1.4 2-1.4 3 0s2 1.4 3 0 2-1.4 3 0"/></svg><span class="h7__n">Atención Multicanal</span><span class="h7__tip" aria-hidden="true"><b>Atención Multicanal</b>Redes, WhatsApp, email y reseñas en una sola bandeja</span></a></li><li style="--i:2"><a class="h7__i" href="#funcionalidades" data-tab="3" style="--c:#8A4BB0" aria-label="Dashboards: Escucha, atención y analítica en paneles a tu medida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M7 16l3-3 2 2 4-4"/></svg><span class="h7__n">Dashboards</span><span class="h7__tip" aria-hidden="true"><b>Dashboards</b>Escucha, atención y analítica en paneles a tu medida</span></a></li><li style="--i:3"><a class="h7__i" href="#funcionalidades" data-tab="4" style="--c:#D23A55" aria-label="Analytics: Métricas y rendimiento de tus perfiles y competidores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-6"/></svg><span class="h7__n">Analytics</span><span class="h7__tip" aria-hidden="true"><b>Analytics</b>Métricas y rendimiento de tus perfiles y competidores</span></a></li><li style="--i:4"><a class="h7__i" href="#funcionalidades" data-tab="5" style="--c:#EB7C2E" aria-label="Publisher: Planifica y publica en todas tus redes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l15 8-15 8 3-8z"/><path d="M8 12h12"/></svg><span class="h7__n">Publisher</span><span class="h7__tip" aria-hidden="true"><b>Publisher</b>Planifica y publica en todas tus redes</span></a></li><li style="--i:5"><a class="h7__i" href="#funcionalidades" data-tab="6" style="--c:#D77655" aria-label="MCP: Pregunta a Claude por tus datos en lenguaje natural"><img class="h7__img" src="./assets/claude.png" alt="" width="42" height="42"><span class="h7__n">MCP</span><span class="h7__tip" aria-hidden="true"><b>MCP</b>Pregunta a Claude por tus datos en lenguaje natural</span></a></li><li style="--i:6"><a class="h7__i" href="#funcionalidades" data-tab="7" style="--c:#F2BE5C;--ic:#3A2400" aria-label="Trends: Qué está en tendencia, con hasta 24 meses de histórico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span class="h7__n">Trends</span><span class="h7__tip" aria-hidden="true"><b>Trends</b>Qué está en tendencia, con hasta 24 meses de histórico</span></a></li></ul></div>
         <div class="hero__cta rv" data-d="7">
           
           <p class="hero__proof"><span class="avs" role="img" aria-label="Clientes de Buzzmonitor: Coca-Cola, Nubank y Uber"><i><img src="./assets/logos-clientes/coca-cola.png" alt="" width="64" height="20"></i><i><img src="./assets/logos-clientes/nu.png" alt="" width="30" height="17"></i><i><img src="./assets/logos-clientes/uber.png" alt="" width="51" height="18"></i></span>Más de 1.000 marcas y agencias ya trabajan así</p>
@@ -1300,7 +1333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   /* .grad dividido en letras: cada letra recibe su tono del degradado (background-clip no alcanza a los spans animados) */
   $$('.grad').forEach(function(g){
-    var st=g.closest('.lite')?[[57,1,85],[123,63,196],[217,102,42],[235,124,46]]:[[255,255,255],[233,199,240],[242,162,107],[235,124,46]];
+    var st=g.closest('.lite')?[[235,124,46],[235,124,46]]:[[255,255,255],[233,199,240],[242,162,107],[235,124,46]];
     var cs=$$('.sc',g),n=cs.length;
     cs.forEach(function(c,i){var t=n>1?i/(n-1)*(st.length-1):0,k=Math.min(st.length-2,Math.floor(t)),f=t-k,a=st[k],b=st[k+1];
       c.style.color='rgb('+a.map(function(v,x){return Math.round(v+(b[x]-v)*f)}).join(',')+')'});

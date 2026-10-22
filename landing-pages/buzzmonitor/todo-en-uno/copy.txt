@@ -5,7 +5,7 @@ CTA: Agendar demo
 
 === HERO ===
 OVERLINE: Para equipos de marketing y agencias
-H1: Siete soluciones en una sola plataforma
+H1: 7 soluciones, 1 plataforma
 SUB: Escucha a tu audiencia, atiende a tus clientes con IA y mide tu marca y tu competencia en tiempo real. Todo desde un solo lugar.
 CTA: Quiero agendar una demo
 LABEL: Más de 1.000 marcas y agencias ya trabajan así
@@ -139,3 +139,4 @@ FOOTER: Política de Privacidad y uso de Cookies
 #     LI: Temas en tendencia en tiempo real · Sentimiento del público por tema · Top posts y principales voces (fuente: copy de plataforma-completa-para-dados)
 #   Microcopy de navegación en "Cómo funciona": "Elige un módulo para ver cómo funciona" (desktop) / "Toca un módulo o desliza para explorarlos" (mobile), contador "01 / 07".
 # v9 (2026-10-21): H1 trocado a pedido do usuario por "Siete soluciones en una sola plataforma" (degrade em "una sola plataforma"). <title>, meta e OG seguem com "La plataforma de social listening todo en uno".
+# v10 (2026-10-21): H1 "7 soluciones, 1 plataforma" ("1 plataforma" em laranja #EB7C2E). Linha 7 en 1 no hero com os nomes da apresentacao comercial: Listening, Atencion Multicanal, Dashboards, Analytics, Publisher, MCP, Trends (descricoes da apresentacao Buzzmonitor 2026; Trends "con hasta 24 meses de historico").
