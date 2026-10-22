@@ -174,7 +174,7 @@ compara números**: ranking, líder, maior crescimento e maior percentual vêm p
 - `assets/totem-render.js` (resultado, compartilhado) · `assets/totem.css` · `assets/qr.js` (gerador de QR sem
   dependência, escrito aqui; CSP continua só com `'self'`).
 - `api/totem.js` (GET, análise; parâmetros `m` marca, `s` segmento, `i` @ do Instagram, `c` concorrentes, nessa ordem, porque a URL é a chave do cache) · `api/totem-lead.js` (POST, lead + e-mail; aceita `instagram`) · `api/_lib/` (Trends, IA, buscas, análise, `perfil.js` com a limpeza do @).
-- `dev-server.js` (servidor local) · `tests/` (`node tests/qr.test.js`, `buscas.test.js`, `narrativa.test.js`, `revisao.test.js`, `score.test.js`, `totem-lead.test.js`).
+- `dev-server.js` (servidor local) · `tests/` (`node tests/qr.test.js`, `buscas.test.js`, `narrativa.test.js`, `revisao.test.js`, `score.test.js`, `totem-lead.test.js`, `leads-destinos.test.js`, `apps-script.test.js`, `totem-api.test.js`, `provas.test.js`, `relevancia.test.js`, `formato.test.js`).
 
 **Por que a análise é GET:** a resposta não tem dado pessoal, então a borda da Vercel guarda por 24h. O totem consulta
 primeiro; o QR code e o e-mail apontam para a mesma URL de análise, e o celular recebe o resultado pronto. Se o cache não
@@ -182,17 +182,33 @@ estiver na borda daquela região, a análise roda de novo (até ~30s) com uma te
 só marca e concorrentes, nunca nome ou e-mail (vai para o Google Analytics).
 
 **Lead:** sai no instante em que o visitante envia, independente da análise (se a Trends falhar, o contato não se perde).
-Três destinos, todos opcionais e sem derrubar a resposta se falharem: e-mail (Resend), webhook e ActiveCampaign (só
-contato + tag, nunca deal). **Sem nenhum configurado, o lead só existe no log da função** (`[totem-lead]` no painel da
-Vercel, retenção curta). Configurar pelo menos um antes do evento.
+Três destinos, independentes entre si (se um cair, os outros seguem) e todos opcionais:
+
+1. **E-mail para o lead (Resend)**, com o **QR code** do resultado, o botão "Ver meu Compass" e o convite para encaminhar ao
+   time. O QR é um PNG gerado por `api/qr.js` (Gmail e Outlook não mostram SVG nem imagem embutida); só gera QR de links
+   `/totem-resultado` do próprio projeto. O link e o QR continuam valendo depois do evento (o resultado roda de novo se
+   o cache da borda tiver expirado).
+2. **Planilha do Google Sheets**, pelo webhook: o Apps Script `integracoes/google/buzz-compass-leads.gs` grava uma linha por
+   lead (data e hora, nome, e-mail, marca, segmento, Instagram, concorrentes, link, origem). Passo a passo no cabeçalho do
+   próprio script. O token (`TOTEM_LEADS_WEBHOOK_TOKEN`) impede que qualquer pessoa grave na planilha.
+3. **ActiveCampaign:** contato (nome e sobrenome separados, marca na empresa) + tag **Buzz Compass**, nunca deal. A tag é
+   buscada pelo nome e, se não existir, criada; não precisa copiar ID. Quem roda o Compass de novo não duplica nada (a
+   tag repetida é aceita).
+
+Se o AC ou a planilha derem erro passageiro (5xx), há uma segunda tentativa; erro de credencial (4xx) não repete e aparece no
+log (`[buzz-radar-totem] ... falhou`). **Sem nenhum destino configurado, o lead só existe no log da função** (`[totem-lead]`
+no painel da Vercel, retenção curta). Configurar os três antes do evento.
 
 | Variável (projeto Vercel, Sensitive) | Efeito |
 |---|---|
-| `RESEND_API_KEY` | Liga o e-mail do resultado. Sem ela, só QR code. |
-| `TOTEM_EMAIL_FROM` | Remetente, ex. `Buzzmonitor <radar@buzzmonitor.com.br>`. O remetente padrão (`onboarding@resend.dev`) só entrega para o dono da conta Resend: é preciso um domínio verificado. |
-| `TOTEM_LEADS_WEBHOOK_URL` | Recebe o lead em JSON (n8n, Apps Script, etc.). |
-| `ACTIVECAMPAIGN_API_URL` / `ACTIVECAMPAIGN_API_TOKEN` / `ACTIVECAMPAIGN_TOTEM_TAG_ID` | Contato + tag no AC (igual à LP; depende da autorização descrita acima). |
-| `TOTEM_BASE_URL` | Opcional: força o domínio do link do e-mail (padrão: o host da requisição). |
+| `RESEND_API_KEY` | Liga o e-mail do resultado (chave `re_...` criada no painel do Resend com permissão só de envio). Sem ela, o lead não recebe e-mail (no totem o QR continua na tela). |
+| `TOTEM_EMAIL_FROM` | Remetente, ex. `Buzzmonitor <compass@buzzmonitor.com.br>`. O remetente padrão (`onboarding@resend.dev`, o mesmo usado no health check e no Pocket Event) **só entrega para o dono da conta Resend**: para os leads receberem, o domínio do remetente precisa estar verificado no Resend (registros DNS SPF e DKIM). |
+| `TOTEM_LEADS_WEBHOOK_URL` / `TOTEM_LEADS_WEBHOOK_TOKEN` | URL `/exec` do Apps Script da planilha e a senha que ele confere (`integracoes/google/buzz-compass-leads.gs`). Também serve para n8n ou outro destino que receba JSON. |
+| `ACTIVECAMPAIGN_API_URL` / `ACTIVECAMPAIGN_API_TOKEN` | Liga o contato + tag no AC (URL da conta, ex. `https://CONTA.api-us1.com`, e a chave da API em Configurações > Desenvolvedor). |
+| `TOTEM_AC_TAG_NOME` | Opcional: nome da tag no AC (padrão `Buzz Compass`, achada ou criada sozinha). |
+| `ACTIVECAMPAIGN_TOTEM_TAG_ID` | Opcional: força o ID da tag e dispensa a busca pelo nome. |
+| `ACTIVECAMPAIGN_TOTEM_LIST_ID` | Opcional, desligado por padrão: também inscreve o contato nesta lista do AC. Inscrever em lista é decisão de marketing e de consentimento. |
+| `TOTEM_BASE_URL` | Opcional: força o domínio do link e do QR do e-mail (padrão: o host da requisição). |
 | `OPENAI_MODEL_NARRATIVA` | Opcional: modelo que escreve os 4 cards (padrão `gpt-4o`; se não existir na conta, cai no modelo padrão). Custa mais que o `gpt-4o-mini` por análise. |
 | `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | Mesmas da LP: montam as buscas e escrevem a leitura. Sem elas o totem funciona em modo reserva (busca pelo nome exato, só concorrentes informados, cards genéricos). |
 
@@ -205,7 +221,12 @@ tela vertical e horizontal. Teclado: o do sistema; os formulários rolam quando 
 
 **Pendências do totem (decisão ou ação humana):**
 
-- Resend: chave e domínio remetente verificado (ou usar o webhook/AC como destino do lead).
+- Resend: criar a chave e **verificar o domínio remetente** (sem isso o e-mail só chega para o dono da conta Resend). Depois
+  `RESEND_API_KEY` e `TOTEM_EMAIL_FROM` na Vercel.
+- Planilha: criar a planilha, publicar o Apps Script e colocar `TOTEM_LEADS_WEBHOOK_URL` e `TOTEM_LEADS_WEBHOOK_TOKEN` na Vercel.
+- ActiveCampaign: `ACTIVECAMPAIGN_API_URL` e `ACTIVECAMPAIGN_API_TOKEN` na Vercel (a tag Buzz Compass é criada sozinha).
+- Depois de colocar qualquer variável: republicar o projeto (variável nova só vale no próximo deploy) e fazer 1 Compass de
+  teste conferindo os três destinos.
 - ~~Texto "Fale com a equipe da Buzzmonitor aqui no evento"~~ e ~~aviso de consentimento da tela de dados~~ ("Ao
   continuar, você concorda em receber o resultado por e-mail e contato da Buzzmonitor sobre o Buzz Compass"):
   **confirmados em 2026-10-20** (os textos que estão hoje em `totem.html` e `assets/totem-app.js`). Se alguém mudar a

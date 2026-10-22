@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "functions": {
     "api/totem.js": { "maxDuration": 60 },
-    "api/totem-lead.js": { "maxDuration": 30 }
+    "api/totem-lead.js": { "maxDuration": 60 }
   },
   "headers": [
     {
