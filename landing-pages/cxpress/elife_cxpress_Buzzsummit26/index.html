@@ -88,7 +88,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ===== Header (fundo preto = fundo do proprio SVG) ===== */
     .hd{background:#000;position:sticky;top:0;z-index:60;box-shadow:0 6px 24px rgba(0,0,0,.25)}
     .hd__inner{max-width:var(--maxw);margin:0 auto;padding:0;display:flex;align-items:center;justify-content:center}
-    .hd__logo{width:100%;max-width:760px;height:auto;clip-path:inset(5px)}
+    .hd__frame{position:relative;width:100%;max-width:760px;aspect-ratio:1920/350;overflow:hidden}
+    .hd__logo{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);max-width:none;object-fit:fill}
 
     /* ===== Captura ===== */
     .cap{background:var(--off);padding:88px 0 112px}
@@ -157,7 +158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="hd">
     <div class="hd__inner">
-      <img class="hd__logo" src="./assets/logo-elife-cxpress-buzzsummit26.svg" alt="Elife | Cxpress no Buzz Summit 2026" width="1920" height="350">
+      <div class="hd__frame"><img class="hd__logo" src="./assets/logo-elife-cxpress-buzzsummit26.svg" alt="Elife | Cxpress no Buzz Summit 2026" width="1920" height="350"></div>
     </div>
   </header>
 
@@ -172,21 +173,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>window.enableEventObserver=true</script>
 <script>window.enableDateFieldSelectInputs=false</script>
 <script>window.CDN="https://cdn.jotfor.ms/"</script>
-<script>window.umdRootPath="https://cdn.jotfor.ms/s/umd/17803aba824/"</script>
-<script>window.staticRootPath="https://cdn.jotfor.ms/s/static/17803aba824/"</script>
-<script>window['__jfrouter'] = [{"ACTIVE_APP":"for-form-render","REVISION_HASH":"17803aba824"}];</script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/secure-message-bus.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/static/prototype.forms.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/static/jotform.forms.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/punycode-1.4.1.min.js" type="text/javascript" defer></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/vendor/maskedinput_5.0.9.min.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/dropdownV2.js" type="text/javascript" defer></script>
-<script src="https://cdn.jotfor.ms/s/umd/17803aba824/for-widgets-server.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/form-widgets/17803aba824/for-direct-embed-widget-helper.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/umd/17803aba824/for-aria-notify-polyfill.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/vendor/math-processor.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/vendor/smoothscroll.min.js" type="text/javascript"></script>
-<script src="https://cdn.jotfor.ms/s/static/17803aba824/js/errorNavigation.js" type="text/javascript"></script>
+<script>window.umdRootPath="https://cdn.jotfor.ms/s/umd/b7865c308a5/"</script>
+<script>window.staticRootPath="https://cdn.jotfor.ms/s/static/b7865c308a5/"</script>
+<script>window['__jfrouter'] = [{"ACTIVE_APP":"for-form-render","REVISION_HASH":"b7865c308a5"}];</script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/secure-message-bus.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/static/prototype.forms.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/static/jotform.forms.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/punycode-1.4.1.min.js" type="text/javascript" defer></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/vendor/maskedinput_5.0.9.min.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/dropdownV2.js" type="text/javascript" defer></script>
+<script src="https://cdn.jotfor.ms/s/umd/b7865c308a5/for-widgets-server.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/form-widgets/b7865c308a5/for-direct-embed-widget-helper.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/umd/b7865c308a5/for-aria-notify-polyfill.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/vendor/math-processor.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/vendor/smoothscroll.min.js" type="text/javascript"></script>
+<script src="https://cdn.jotfor.ms/s/static/b7865c308a5/js/errorNavigation.js" type="text/javascript"></script>
 <script type="text/javascript">	JotForm.newDefaultTheme = true;
 	JotForm.extendsNewTheme = false;
 	// {GPT_APP_SCRIPT}
@@ -227,9 +228,9 @@ if (window.JotForm && JotForm.accessible) $('input_38').setAttribute('tabindex',
 	});
 
    setTimeout(function() {
-JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4","subLabel":"","text":"Seu nome","type":"control_textbox"},{"description":"","name":"emailComercial","qid":"5","subLabel":"","text":"Seu email da empresa","type":"control_email"},{"description":"","name":"telefone","qid":"6","text":"Seu WhatsApp","type":"control_phone"},{"description":"","name":"nomeEmpresa","qid":"7","subLabel":"","text":"Sua empresa","type":"control_textbox"},{"description":"","name":"utm_source","qid":"11","subLabel":"","text":"UTM_SOURCE","type":"control_textbox"},{"description":"","name":"utm_medium","qid":"12","subLabel":"","text":"UTM_MEDIUM","type":"control_textbox"},{"description":"","name":"utm_campaign","qid":"13","subLabel":"","text":"UTM_CAMPAIGN","type":"control_textbox"},{"description":"","name":"utm_term","qid":"14","subLabel":"","text":"UTM_TERM","type":"control_textbox"},{"description":"","name":"utm_content","qid":"15","subLabel":"","text":"UTM_CONTENT","type":"control_textbox"},{"name":"insiraUma","qid":"16","text":"Get Page URL","type":"control_widget"},{"description":"","name":"url","qid":"18","subLabel":"","text":"url","type":"control_textbox"},{"description":"","name":"gclid24","qid":"24","subLabel":"","text":"Gclid","type":"control_textbox"},{"description":"","name":"gclid","qid":"34","subLabel":"","text":"fbclid","type":"control_textbox"},{"description":"","name":"campaignid","qid":"35","subLabel":"","text":"campaignid  ","type":"control_textbox"},{"description":"","name":"adsetid","qid":"36","subLabel":"","text":"adsetid","type":"control_textbox"},{"description":"","name":"adid","qid":"37","subLabel":"","text":"adid","type":"control_textbox"},{"description":"","name":"adset","qid":"38","subLabel":"","text":"adset","type":"control_textbox"},{"description":"","name":"volumetriaMensal","qid":"41","subLabel":"","text":"Volumetria mensal de demandas neste canal","type":"control_dropdown"},{"description":"","name":"quaisCanais","qid":"43","subLabel":"","text":"Quais canais precisa de apoio?","type":"control_dropdown"},{"description":"","name":"insiraUma46","qid":"46","text":"","type":"control_checkbox"},{"name":"enviar47","qid":"47","text":"Inscrever-se","type":"control_button"},{"description":"","name":"oQue","qid":"48","subLabel":"","text":"O que gostaria de resolver na sua operacao?","type":"control_dropdown"},{"description":"","name":"executivoComercial","qid":"49","subLabel":"","text":"Executivo comercial","type":"control_dropdown"}]);}, 20); 
+JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4","subLabel":"","text":"Seu nome","type":"control_textbox"},{"description":"","name":"emailComercial","qid":"5","subLabel":"","text":"Seu email da empresa","type":"control_email"},{"description":"","name":"telefone","qid":"6","text":"Seu WhatsApp","type":"control_phone"},{"description":"","name":"nomeEmpresa","qid":"7","subLabel":"","text":"Sua empresa","type":"control_textbox"},{"description":"","name":"utm_source","qid":"11","subLabel":"","text":"UTM_SOURCE","type":"control_textbox"},{"description":"","name":"utm_medium","qid":"12","subLabel":"","text":"UTM_MEDIUM","type":"control_textbox"},{"description":"","name":"utm_campaign","qid":"13","subLabel":"","text":"UTM_CAMPAIGN","type":"control_textbox"},{"description":"","name":"utm_term","qid":"14","subLabel":"","text":"UTM_TERM","type":"control_textbox"},{"description":"","name":"utm_content","qid":"15","subLabel":"","text":"UTM_CONTENT","type":"control_textbox"},{"name":"insiraUma","qid":"16","text":"Get Page URL","type":"control_widget"},{"description":"","name":"url","qid":"18","subLabel":"","text":"url","type":"control_textbox"},{"description":"","name":"gclid24","qid":"24","subLabel":"","text":"Gclid","type":"control_textbox"},{"description":"","name":"gclid","qid":"34","subLabel":"","text":"fbclid","type":"control_textbox"},{"description":"","name":"campaignid","qid":"35","subLabel":"","text":"campaignid  ","type":"control_textbox"},{"description":"","name":"adsetid","qid":"36","subLabel":"","text":"adsetid","type":"control_textbox"},{"description":"","name":"adid","qid":"37","subLabel":"","text":"adid","type":"control_textbox"},{"description":"","name":"adset","qid":"38","subLabel":"","text":"adset","type":"control_textbox"},{"description":"","name":"volumetriaMensal","qid":"41","subLabel":"","text":"Volumetria mensal de demandas neste canal","type":"control_dropdown"},{"description":"","name":"quaisCanais","qid":"43","subLabel":"","text":"Quais canais precisa de apoio?","type":"control_dropdown"},{"description":"","name":"insiraUma46","qid":"46","text":"","type":"control_checkbox"},{"name":"enviar47","qid":"47","text":"Inscrever-se","type":"control_button"},{"description":"","name":"executivoComercial","qid":"49","subLabel":"","text":"Executivo comercial","type":"control_dropdown"},{"description":"","name":"oQue50","qid":"50","subLabel":"","text":"O que gostaria de resolver na sua operacao?","type":"control_dropdown"}]);}, 20); 
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/stylebuilder/static/form-common.css?v=6931bfe
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/stylebuilder/static/form-common.css?v=aa1a9ad
 "/>
 <style type="text/css">@media print{*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
 
@@ -247,9 +248,9 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
         }
       </style>
     <link id="custom-font" type="text/css" rel="stylesheet" href="//cdn.jotfor.ms/fonts/?family=Roboto" />
-<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?v=4.1.6041"/>
-<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/s/static/17803aba824/css/styles/payment/payment_styles.css?4.1.6041" />
-<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/s/static/17803aba824/css/styles/payment/payment_feature.css?4.1.6041" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?v=4.1.6340"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/s/static/b7865c308a5/css/styles/payment/payment_styles.css?4.1.6340" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/s/static/b7865c308a5/css/styles/payment/payment_feature.css?4.1.6340" />
 <style type="text/css" id="form-designer-style">
     /* Injected CSS Code */
 
@@ -277,9 +278,21 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
 .form-all {
   font-size: 13px;
 }
+.jfDropdownV2,
+.form-dropdown-wrapper > select.form-dropdown[data-ui-version="v2"] {
+  --jfDropdownV2-background-image: none;
+}
+.jfDropdownV2 > .jfDropdownV2-header,
+.jfDropdownV2 > .jfDropdownV2-popup,
+.jfDropdownV2.jfDropdownV2--list,
+.jfDropdownV2.jfDropdownV2--list > .jfDropdownV2-optionList,
+.form-dropdown-wrapper > select.form-dropdown[data-ui-version="v2"] {
+  background-color: var(--jfDropdownV2-bg, #FFFFFF);
+  background-image: var(--jfDropdownV2-background-image, none);
+}
 .form-textbox,
 .form-textarea,
-.form-dropdown,
+.form-dropdown:where(:not([data-ui-version="v2"])),
 .form-radio-other-input,
 .form-checkbox-other-input,
 .form-captcha input,
@@ -324,7 +337,27 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
     .form-sub-label {
       color: 1a1a1a;
     }
-  /*PREFERENCES STYLE*/
+  .jfDropdownV2 .jfDropdownV2-placeholder,
+.jfDropdownV2 .jfDropdownV2-selectedText,
+.jfDropdownV2 .jfDropdownV2-search,
+.jfDropdownV2 .jfDropdownV2-empty,
+.jfDropdownV2 .jfDropdownV2-option,
+.jfDropdownV2.jfDropdownV2--single .jfDropdownV2-option.isSelected,
+.jfDropdownV2.jfDropdownV2--list.jfDropdownV2--single .jfDropdownV2-option.isSelected,
+.jfDropdownV2 .jfDropdownV2-option--empty .jfDropdownV2-optionText,
+.jfDropdownV2 .jfDropdownV2-searchClear {
+  color: var(--jfDropdownV2-font, rgb(0, 0, 0));
+}
+.jfDropdownV2 .jfDropdownV2-search::placeholder {
+  color: var(--jfDropdownV2-font, rgb(0, 0, 0));
+}
+.jfDropdownV2 .jfDropdownV2-searchIcon {
+  border-color: var(--jfDropdownV2-font, rgb(0, 0, 0));
+}
+.jfDropdownV2 .jfDropdownV2-searchIcon::after {
+  background-color: var(--jfDropdownV2-font, rgb(0, 0, 0));
+}
+/*PREFERENCES STYLE*/
 /* 17 - INPUT WIDTHS */
 /*  20 - FORM PADDING */
 @media screen and (min-width: 768px) {
@@ -342,6 +375,28 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
 }
 [data-type="control_text"] {
   padding: 0px 0px 0;
+}
+.form-dropdown:where(:not([data-ui-version="v2"])):not(.time-dropdown) {
+  border-radius: 4px;
+}
+li[data-type="control_dropdown"] > div.form-input:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):before,
+li[data-type="control_dropdown"] > div.form-input:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):after,
+li[data-type="control_dropdown"] > div.form-input-wide:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):before,
+li[data-type="control_dropdown"] > div.form-input-wide:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):after,
+li[data-type="control_dropdown"] .form-sub-label-container:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):before,
+li[data-type="control_dropdown"] .form-sub-label-container:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):after,
+li[data-type="control_dropdown"] > div > div.form-input-wide:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):before,
+li[data-type="control_dropdown"] > div > div.form-input-wide:where(:not(:has(select[data-ui-version="v2"], .jfDropdownV2))):after {
+  content: none;
+  display: none;
+  border: 0;
+  background-image: none;
+  border-radius: 0;
+  transform: none;
+}
+.form-dropdown:where(:not([data-ui-version="v2"])) {
+  margin: 0;
+  border-width: 1px;
 }
 /* 12 - ROUNDED INPUTS */
 .form-textbox:not(#productSearch-input),
@@ -362,7 +417,7 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
 .form-textarea {
   border-radius: 4px;
 }
-.form-dropdown {
+.form-dropdown:where(:not([data-ui-version="v2"])) {
   border-radius: 4px;
   appearance: none;
   margin: 0;
@@ -378,6 +433,9 @@ JotForm.paymentExtrasOnTheFly([{"description":"","name":"nomeCompleto","qid":"4"
   border-radius: 0 0 20px 20px;
 }
 .form-section li:first-child .form-header-group {
+  border-radius: 20px;
+}
+.form-section li:first-child .header-large {
   border-radius: 20px 20px 0 0;
 }
 .submit-button {
@@ -439,12 +497,56 @@ li[data-type="control_button"] button.jf-form-buttons.form-pagebreak-back:hover 
 .form-all .form-pagebreak-next {
   min-width: 128px;
 }
-.form-header-group .form-header,
-.form-header-group .form-subHeader {
+.form-header-group:where(:not(.has-heading-color)) .form-header,
+.form-header-group:where(:not(.has-heading-color)) .form-subHeader {
   color: rgb(0, 0, 0);
 }
 li[data-type=control_fileupload] .qq-upload-button {
   background-color: #FFFFFF;
+}
+.jfDropdownV2 > .jfDropdownV2-header,
+.jfDropdownV2.isOpen > .jfDropdownV2-header {
+  background-image: var(--jfDropdownV2-background-image, none);
+}
+.jfDropdownV2 > .jfDropdownV2-header::before {
+  content: none;
+  display: none;
+}
+.jfDropdownV2 > .jfDropdownV2-header::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-image: none;
+  border-radius: 0;
+  box-sizing: content-box;
+  right: 11.5px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  pointer-events: none;
+  color: #57647e;
+  border-style: solid;
+  border-color: currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-70%) rotate(45deg);
+}
+.jfDropdownV2.isOpen > .jfDropdownV2-header::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+[dir="rtl"] .jfDropdownV2 > .jfDropdownV2-header::after {
+  right: auto;
+  left: 11.5px;
+}
+.jfDropdownV2 > .jfDropdownV2-header,
+.jfDropdownV2 > .jfDropdownV2-popup,
+.jfDropdownV2.jfDropdownV2--list {
+  border-radius: 4px;
+}
+.form-line.form-line-error .jfDropdownV2 > .jfDropdownV2-header,
+.form-line.form-line-error .jfDropdownV2.isOpen > .jfDropdownV2-header,
+.form-line.form-line-error .jfDropdownV2.jfDropdownV2--list {
+  border-color: #F23A3C;
+  box-shadow: 0 0 0 1px #F23A3C;
 }
 
 /*FORM LAYOUT PRESETS*/
@@ -512,7 +614,10 @@ li[data-type=control_fileupload] .qq-upload-button {
 }
 .supernova.stacked-form .form-textbox,
 .supernova.stacked-form .form-textarea,
-.supernova.stacked-form .form-dropdown {
+.supernova.stacked-form .form-dropdown:where(:not([data-ui-version="v2"])),
+.supernova.stacked-form .jfDropdownV2-header,
+.supernova.stacked-form .jfDropdownV2-popup,
+.supernova.stacked-form .jfDropdownV2--list {
   border-radius: 8px;
 }
 
@@ -610,10 +715,10 @@ li[data-type=control_fileupload] .qq-upload-button {
 }
 
 @media (min-width: 768px) {
-  .stageScroller.supernova.split-left-form .form-all,
-  .stageScroller.supernova.split-right-form .form-all,
-  .supernova.jf-editor-preview.split-left-form .form-all,
-  .supernova.jf-editor-preview.split-right-form .form-all {
+  .stageScroller.supernova.split-left-form:has(#formCoverLogo) .form-all,
+  .stageScroller.supernova.split-right-form:has(#formCoverLogo) .form-all,
+  .supernova.jf-editor-preview.split-left-form:has(#formCoverLogo) .form-all,
+  .supernova.jf-editor-preview.split-right-form:has(#formCoverLogo) .form-all {
     position: unset !important;
     top: unset !important;
     left: unset !important;
@@ -697,9 +802,7 @@ li[data-type=control_fileupload] .qq-upload-button {
 }
 /*FORM LAYOUT PRESETS*/
 
-
-/*__INSPECT_SEPERATOR__*/
-.form-input-wide jf-required div .form-sub-label-container {
+/*__INSPECT_SEPERATOR__*/.form-input-wide jf-required div .form-sub-label-container {
     width : 100%;
 }
 
@@ -951,10 +1054,34 @@ li[data-type=control_fileupload] .qq-upload-button {
 }
 
 
+#jfDropdownV2-placeholder-input_50 {
+    visibility : hidden;
+}
+
+#jfDropdownV2-placeholder-input_50::before {
+    content : "Favor selecione";
+    visibility : visible;
+    color : rgb(136, 148, 171);
+}
+
+#cid_50 .jfDropdownV2-chips:empty {
+    display : none;
+}
+
+#cid_50 .jfDropdownV2-popup[aria-hidden="true"] {
+    display : none !important;
+}/* id_50 igual id_43 */
+
+#id_50 .form-input-wide, #id_50 .jfDropdownV2, #id_50 .jfDropdownV2-header {
+    display : grid;
+    width : 100%;
+    gap : 12px;
+    border-radius : 20px;
+}/* fim */
     /* Injected CSS Code */
 </style>
 
-<form class="jotform-form" onsubmit="return typeof testSubmitFunction !== 'undefined' && testSubmitFunction();" action="https://submit.jotform.com/submit/261027611029650" method="post" name="form_261027611029650" id="261027611029650" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="261027611029650" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" /><input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1792521805740" /><input type="hidden" id="submitSource" name="submitSource" value="unknown" /><input type="hidden" id="submitDate" name="submitDate" value="undefined" /><input type="hidden" id="buildDate" name="buildDate" value="1792521805740" /><input type="hidden" name="uploadServerUrl" value="https://upload.jotform.com/upload" /><input type="hidden" name="eventObserver" value="1" />
+<form class="jotform-form" onsubmit="return typeof testSubmitFunction !== 'undefined' && testSubmitFunction();" action="https://submit.jotform.com/submit/261027611029650" method="post" name="form_261027611029650" id="261027611029650" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="261027611029650" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" /><input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1792674096946" /><input type="hidden" id="submitSource" name="submitSource" value="unknown" /><input type="hidden" id="submitDate" name="submitDate" value="undefined" /><input type="hidden" id="buildDate" name="buildDate" value="1792674096946" /><input type="hidden" name="uploadServerUrl" value="https://upload.jotform.com/upload" /><input type="hidden" name="eventObserver" value="1" />
   <div role="main" class="form-all">
     <ul class="form-section page-section" role="presentation">
       <li class="form-line jf-required" data-type="control_textbox" id="id_4"><label class="form-label form-label-top form-label-auto" id="label_4" for="input_4"> Seu nome<span class="form-required" aria-hidden="true">*</span> </label>
@@ -987,9 +1114,8 @@ li[data-type=control_fileupload] .qq-upload-button {
             <option value="+10K">+10K</option>
           </select> </div>
       </li>
-      <li class="form-line jf-required" data-type="control_dropdown" id="id_48"><label class="form-label form-label-top form-label-auto" id="label_48" for="input_48"> O que gostaria de resolver na sua operação?<span class="form-required" aria-hidden="true">*</span> </label>
-        <div id="cid_48" class="form-input-wide jf-required" data-layout="half"> <select class="form-dropdown validate[required]" id="input_48" name="q48_oQue" style="width:310px" data-ui-version="v2" data-visible-options="10" data-search-visibility="Auto" data-component="dropdown" required="" aria-label="O que gostaria de resolver na sua operação?">
-            <option value="" selected="">Favor selecionar</option>
+      <li class="form-line jf-required" data-type="control_dropdown" id="id_50"><label class="form-label form-label-top form-label-auto" id="label_50" for="input_50"> O que gostaria de resolver na sua operação?<span class="form-required" aria-hidden="true">*</span> </label>
+        <div id="cid_50" class="form-input-wide jf-required" data-layout="half"> <select class="form-dropdown validate[required]" id="input_50" name="q50_oQue50[]" style="width:310px" data-ui-version="v2" data-visible-options="10" data-search-visibility="Auto" multiple="" data-component="dropdown" required="" aria-label="O que gostaria de resolver na sua operação?">
             <option value="Unificar diferentes canais de atendimento em um mesmo painel de trabalho">Unificar diferentes canais de atendimento em um mesmo painel de trabalho</option>
             <option value="Implementar IA para responder demandas da área de Atendimento ao Cliente">Implementar IA para responder demandas da área de Atendimento ao Cliente</option>
             <option value="Implementar IA para responder demandas da área de Marketing/Vendas">Implementar IA para responder demandas da área de Marketing/Vendas</option>
