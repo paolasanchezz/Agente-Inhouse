@@ -877,7 +877,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="cta-lead">Organize canais, equipes e clientes, automatize interações com Inteligência Artificial e acompanhe toda a operação em uma única plataforma. Agende uma demonstração gratuita.</p>
       </div>
       <div class="jotform-embed">
-        <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+        <!-- async: o jsform se acha pelo src e insere o iframe logo depois do proprio
+             script, entao carrega igual (sempre, logo no load) sem travar a montagem
+             do resto da pagina enquanto baixa. -->
+        <script type="text/javascript" async src="https://form.jotform.com/jsform/261045149477663"></script>
       </div>
     </div>
   </section>
@@ -1287,8 +1290,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     els.forEach(function(el){ io.observe(el); });
   }
 
-  /* Cenas animadas: pausam quando o bloco sai de vista. */
-  var fx = document.querySelectorAll('[data-fx]');
+  /* Cenas animadas: pausam quando o bloco sai de vista. Vale para as cenas
+     [data-fx] e para cada secao inteira, porque ha animacao em loop fora das
+     cenas (esteira de clientes, cartoes, badges) que rodava o tempo todo. */
+  var fx = document.querySelectorAll('[data-fx], main > section');
   if (fx.length && 'IntersectionObserver' in window) {
     var ioFx = new IntersectionObserver(function(entradas){
       entradas.forEach(function(e){ e.target.classList.toggle('fx-idle', !e.isIntersecting); });
