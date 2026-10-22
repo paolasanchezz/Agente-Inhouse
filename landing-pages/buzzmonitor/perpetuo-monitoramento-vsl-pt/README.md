@@ -17,9 +17,11 @@ thank-you. Pedido da Catharina em 2026-10-19.
   para PT-PT via `/traduzir` (`traducao/entregas/2026-10/tks-perpetuo-monitoramento-vsl-pt-pt.md`
   + log de revisão).
 
-**Fluxo:** captura (Jotform `261904654263661`, com `data-perpetuo-next="/perpetuo-monitoramento-vsl-pt-confirmado"`)
+**Fluxo:** captura (Jotform `261127236463050` "Webinars Portugal", com `data-perpetuo-next="/perpetuo-monitoramento-vsl-pt-confirmado"`)
 → o Jotform aterrissa na tks da `perpetuo-social-listening`, cujo despachante lê o `sessionStorage`
-e encaminha para `/perpetuo-monitoramento-vsl-pt-confirmado`. Nada a configurar no Jotform.
+e encaminha para `/perpetuo-monitoramento-vsl-pt-confirmado`. Pré-requisito: a Thank You Page
+do `261127236463050` precisa apontar pra essa tks (como o form BR); se não apontar, o lead cai
+no destino padrão do Jotform e não vê o vídeo.
 Detalhes em [`GUIA-webinar-perpetuo-destino.md`](../../GUIA-webinar-perpetuo-destino.md).
 
 **Vídeo:** o mesmo do par BR, `https://www.youtube.com/watch?v=fG4KpFnwbb4` (embed `www.youtube.com/embed/fG4KpFnwbb4`).
@@ -38,8 +40,10 @@ UTMs no mesmo padrão do par BR (`utm_source=webinar-perp` + `utm_content` = slu
 
 ## Pendências
 
-- **Jotform em PT-BR:** o form compartilhado é o "BR | MKT | Webinar Perpétuo" (rótulos em PT-BR,
-  ex: "Sobrenome"). Se precisar de rótulos PT-PT, é um formulário separado.
+- **Jotform PT-PT:** desde 2026-10-22 a captura usa o "Webinars Portugal" (`261127236463050`,
+  rótulos PT-PT, ex: "Apelido"), no lugar do compartilhado BR (`261904654263661`).
 - **Vídeo:** gravação em PT-BR. Trocar o embed se houver gravação PT-PT.
 - **Flip `index`** quando for a versão final (hoje `noindex`).
 - **Testar no ar:** preencher o form, confirmar que caiu no vídeo certo e que o lead entrou no Jotform.
+
+**Form provider:** Jotform — troca para `261127236463050` "Webinars Portugal" (2026-10-22)
