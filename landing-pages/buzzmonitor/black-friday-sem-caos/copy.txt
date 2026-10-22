@@ -8,22 +8,19 @@
 
 === HERO ===
 
-OVERLINE: Webinar gratuito · Buzzmonitor
-
 H1: Black Friday sem caos.
 
 H2: Como se preparar para períodos de alta demanda?
 
-SUB: Um comentário que passaria batido em outubro pode virar uma crise de reputação durante a Black Friday. Como prevenir a reputação da sua marca em períodos de alta demanda? Descubra ao vivo.
+SUB: Um comentário que passaria batido em outubro pode virar crise de reputação na Black Friday.
 
 CTA: Quero minha vaga gratuita
 
 TICKET:
-- LABEL: Save the date
+- LABEL: Webinar gratuito
 - DATA: 05 NOV · Quinta-feira · 11h (Brasília)
 - Formato: Online · Ao vivo
 - Duração: 60 min
-- Investimento: Gratuito
 
 
 === PROBLEMA ===

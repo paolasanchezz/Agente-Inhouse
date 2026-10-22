@@ -159,11 +159,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nav-meta .dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: var(--rosa); opacity: .3; animation: livePulse 2.2s ease-in-out infinite; }
   @keyframes livePulse { 0%,100% { transform: scale(1); opacity: .3; } 50% { transform: scale(2.2); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .nav-meta .dot::after { animation: none; } }
-  /* Eyebrow do hero: linha + texto (sem pilula) */
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 22px; color: var(--roxo); font-family: var(--ff-body); font-weight: 600; font-size: 15px; letter-spacing: .2em; text-transform: uppercase; }
-  .hero-eyebrow .rule { width: 52px; height: 2px; background: var(--roxo); }
   .nav .pill { color: var(--roxo); font-size: 16px; }
-  @media (max-width: 680px) { .nav-meta { display: none; } .brand-mark img { height: 24px; } .hero-eyebrow { font-size: 14px; letter-spacing: .1em; white-space: nowrap; } .hero-eyebrow .rule { display: none; } }
+  @media (max-width: 680px) { .nav-meta { display: none; } .brand-mark img { height: 24px; } }
 
   /* ============================================================
      HERO (laranja chapado, como o criativo "Black Friday sem caos")
@@ -192,14 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: var(--roxo); max-width: 64ch;
   }
   .hero-sub strong { font-weight: 700; }
-  .hero-cta-row { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-  .hero-times {
-    margin-top: 16px; font-family: var(--ff-display); font-weight: 600; font-size: 19px;
-    letter-spacing: .06em; text-transform: uppercase; color: var(--roxo);
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
-  }
-  .hero-times b { font-weight: 800; }
-  .hero-times .sep { width: 2px; height: 20px; background: var(--roxo); opacity: .6; }
+  .hero-cta-row { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
 
   /* Ticket */
   .hero-visual { position: relative; max-width: 380px; margin-inline: auto; width: 100%; }
@@ -417,7 +407,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <div class="hero-eyebrow"><span class="rule" aria-hidden="true"></span><span>Webinar gratuito &middot; Buzzmonitor</span></div>
         <h1 id="hero-title">
           <span class="bf">Black Friday</span>
           <span class="sticker">sem caos.</span>
@@ -426,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Como se preparar para períodos de alta demanda?
         </h2>
         <p class="hero-sub">
-          Um comentário que passaria batido em outubro pode virar uma crise de reputação durante a Black Friday. Como prevenir a reputação da sua marca em períodos de alta demanda? <strong>Descubra ao vivo.</strong>
+          Um comentário que passaria batido em outubro pode virar crise de reputação na Black Friday.
         </p>
         <div class="hero-cta-row">
           <a href="#inscricao" class="btn">
@@ -434,14 +423,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
-        <p class="hero-times" aria-label="Horário do evento">
-          <b>11h</b> (Brasília) <span class="sep" aria-hidden="true"></span> Online e Ao Vivo
-        </p>
       </div>
 
       <div class="hero-visual">
         <aside class="ticket" aria-label="Informações do webinar">
-          <div class="ticket-label">Save the date</div>
+          <div class="ticket-label">Webinar gratuito</div>
           <div class="ticket-date">
             05 NOV
             <small>Quinta-feira &middot; 11h (Brasília)</small>
@@ -450,7 +436,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <dl class="ticket-rows">
             <div><dt>Formato</dt><dd>Online &middot; Ao vivo</dd></div>
             <div><dt>Duração</dt><dd>60 min</dd></div>
-            <div><dt>Investimento</dt><dd>Gratuito</dd></div>
           </dl>
         </aside>
       </div>
