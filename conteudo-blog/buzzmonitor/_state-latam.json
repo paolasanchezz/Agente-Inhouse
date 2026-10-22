@@ -1,8 +1,8 @@
 {
-  "ultima_atualizacao": "2026-08-11",
+  "ultima_atualizacao": "2026-10-15",
   "regiao": "latam",
   "idioma": "es-latam",
-  "total_artigos": 21,
+  "total_artigos": 24,
   "nota": "A partir de 2026-07-24 este arquivo virou log corrido (nao ha mais fila fixa). Os itens abaixo (01-20) sao do lote antigo do briefing compartilhado briefings-intl/2026-07-topo-funil-pt-latam.md, mantidos no schema anterior por historico. Novos itens a partir do numero 21 usam o schema novo (campos cluster + keyword_candidatas) — ver .claude/skills/blog-criar-artigo-intl/CONTEXT.md.",
   "itens": [
     {
@@ -285,6 +285,65 @@
       "caminho_local": "conteudo-blog/buzzmonitor/artigos-latam/21-inteligencia-artificial-redes-sociales.md",
       "pendencias": "Confirmar com o time de produto quais skills estao disponiveis no MCP LATAM (artigo lista 5 tipos com base no video do canal Buzzmonitor — validar antes de publicar)",
       "data": "2026-08-11"
+    },
+    {
+      "numero": "22",
+      "titulo": "Historias de Instagram: qué son y cómo usarlas en tu marca",
+      "cluster": "Estrategia en Social Media",
+      "slug": "historias-de-instagram",
+      "title_seo": "Historias de Instagram: qué son y cómo usarlas",
+      "meta_descricao": "Descubre qué son las historias de Instagram, cuánto duran, qué stickers puedes usar y cómo aprovecharlas para acercar tu marca a tu público.",
+      "palavra_chave": "historias de instagram",
+      "keyword_candidatas": [
+        {"termo": "historias de instagram", "volume": 27100, "database": "mx"},
+        {"termo": "instagram stories", "volume": 27100, "database": "mx"},
+        {"termo": "historias destacadas instagram", "volume": 1000, "database": "mx"},
+        {"termo": "como hacer historias en instagram", "volume": 140, "database": "mx"},
+        {"termo": "que son las historias de instagram", "volume": 20, "database": "mx"}
+      ],
+      "url_notion": "https://app.notion.com/p/3fa3934026fd81618736f76821a0d93b",
+      "caminho_local": "conteudo-blog/buzzmonitor/artigos-latam/22-historias-de-instagram.md",
+      "pendencias": "Keyword definida pela Barbara. Confirmar no app o limite de 60 s por historia em video; link pro #24 so funciona apos publicar; avaliar o post de 2019 sobre Stories (como-tu-marca-puede-impactar-en-instagram-stories-con-sus-campanas) pra nao competir pela mesma busca",
+      "data": "2026-10-15"
+    },
+    {
+      "numero": "23",
+      "titulo": "Manejo de redes sociales: qué es y qué tareas incluye",
+      "cluster": "Estrategia en Social Media",
+      "slug": "manejo-de-redes-sociales",
+      "title_seo": "Manejo de redes sociales: qué es y qué tareas incluye",
+      "meta_descricao": "Descubre qué es el manejo de redes sociales, qué tareas incluye, quién se encarga y cómo organizar una semana de trabajo en tus perfiles.",
+      "palavra_chave": "manejo de redes sociales",
+      "keyword_candidatas": [
+        {"termo": "manejo de redes sociales", "volume": 720, "database": "mx"},
+        {"termo": "gestion de redes sociales", "volume": 590, "database": "mx"},
+        {"termo": "administracion de redes sociales", "volume": 110, "database": "mx"},
+        {"termo": "que es el manejo de redes sociales", "volume": 10, "database": "mx"},
+        {"termo": "community manager", "volume": 14800, "database": "mx"}
+      ],
+      "url_notion": "https://app.notion.com/p/3fa3934026fd81718513d0c30352df2c",
+      "caminho_local": "conteudo-blog/buzzmonitor/artigos-latam/23-manejo-de-redes-sociales.md",
+      "pendencias": "Keyword definida pela Barbara. Link pro #24 so funciona apos publicar",
+      "data": "2026-10-15"
+    },
+    {
+      "numero": "24",
+      "titulo": "Social media marketing: qué es y cómo funciona",
+      "cluster": "Estrategia en Social Media",
+      "slug": "social-media-marketing",
+      "title_seo": "Social media marketing: qué es y cómo funciona",
+      "meta_descricao": "Descubre qué es el social media marketing, cuáles son sus pilares, en qué se diferencia del marketing digital y cómo saber si funciona.",
+      "palavra_chave": "Social Media Marketing",
+      "keyword_candidatas": [
+        {"termo": "social media marketing", "volume": 22200, "database": "mx"},
+        {"termo": "marketing en redes sociales", "volume": 480, "database": "mx"},
+        {"termo": "que es social media marketing", "volume": 110, "database": "mx"},
+        {"termo": "marketing digital en redes sociales", "volume": 110, "database": "mx"}
+      ],
+      "url_notion": "https://app.notion.com/p/3fa3934026fd81c08074e1b8ac965e08",
+      "caminho_local": "conteudo-blog/buzzmonitor/artigos-latam/24-social-media-marketing.md",
+      "pendencias": "Keyword definida pela Barbara. Links pro #22 e #23 so funcionam apos publicar",
+      "data": "2026-10-15"
     }
   ]
 }
