@@ -921,7 +921,7 @@
       .deck.is-pinned .deck__stage{flex:1 1 auto;height:auto;min-height:0;margin-top:0}
     }
     /* look claro: hero y "Como funciona" en fondos claros; el cierre queda oscuro como contraste */
-    .lite{--bg:#FCFBF9;--bg2:#F6F3EF;--surf:#fff;--surf2:#F7F4F0;--hl:rgba(18,12,22,.07);--hl2:rgba(18,12,22,.14);--tx:#120C16;--mu:rgba(18,12,22,.62);--mu2:rgba(18,12,22,.45);background:var(--bg);color:var(--tx)}
+    .lite{--bg:#FCFBF9;--bg2:#F6F3EF;--surf:#fff;--surf2:#F7F4F0;--hl:rgba(18,12,22,.07);--hl2:rgba(18,12,22,.14);--tx:#120C16;--mu:rgba(18,12,22,.7);--mu2:rgba(18,12,22,.6);background:var(--bg);color:var(--tx)}
     .features.lite{--bg:#fff}
     .lite .eyebrow{color:var(--ink2)}
     .lite .grad{background:linear-gradient(100deg,#390155 0%,#7B3FC4 38%,#D9662A 78%,#EB7C2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -949,6 +949,16 @@
     /* programacion: miniaturas que parecen posts reales (foto de producto, video vertical, promo, paisaje, miniatura de YouTube, carrusel) */
     .pth.ph{overflow:hidden;background:#eee}
     .pth.ph svg{display:block;width:100%;height:100%}
+    /* legibilidad: footer con mas contraste; en movil las pantallas de "Como funciona" se rearman a 400px de ancho (columnas apiladas) para no reducirse a la mitad */
+    .footer{color:rgba(243,238,245,.64)}
+    @media (max-width:699px){
+      .panel .scr__in{width:400px!important}
+      .panel .bm-grid:not(.g1){grid-template-columns:minmax(0,1fr)}
+      .panel .bm-grid .w+.w{border-left:0;border-top:1px solid #ececec}
+      .panel .cal{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .panel .cal .cd:nth-child(5){display:none}
+      .panel .kps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}
+    }
   </style>
 </head>
 <body>
@@ -982,7 +992,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap hero__in">
       <div class="hero__copy">
         <span class="eyebrow rv in">Para equipos de marketing y agencias</span>
-        <h1 id="h1" class="stair">La plataforma de social listening <span class="grad">todo en uno.</span></h1>
+        <h1 id="h1" class="stair">Siete soluciones en <span class="grad">una sola plataforma</span></h1>
         <p class="sub rv" data-d="5">Escucha a tu audiencia, atiende a tus clientes con IA y mide tu marca y tu competencia en tiempo real. Todo desde un solo lugar.</p>
         <div class="hero__cta rv" data-d="7">
           
@@ -1289,7 +1299,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ---------- fit replica screens ---------- */
   var screens=$$('.scr');
-  function fit(){screens.forEach(function(s){var w=+s.dataset.w,inn=s.firstElementChild,k=s.clientWidth/w;s.style.setProperty('--k',k.toFixed(4));s.style.height=(inn.offsetHeight*k).toFixed(1)+'px'})}
+  function fit(){screens.forEach(function(s){var inn=s.firstElementChild,w=inn.offsetWidth||+s.dataset.w,k=s.clientWidth/w;s.style.setProperty('--k',k.toFixed(4));s.style.height=(inn.offsetHeight*k).toFixed(1)+'px'})}
   fit();window.addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);setTimeout(fit,600);
 
   /* ---------- counters / typing (scoped) ---------- */
