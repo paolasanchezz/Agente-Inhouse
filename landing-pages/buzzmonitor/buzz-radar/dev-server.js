@@ -1,6 +1,6 @@
 // Servidor local para testar o Buzz Radar (paginas + funcoes de api/) sem `vercel dev`.
 //   node landing-pages/buzzmonitor/buzz-radar/dev-server.js [porta]     (porta padrao 8936)
-// Imita o que a Vercel faz no deploy: cleanUrls (/totem -> totem.html), funcoes em /api/<nome> com req.query,
+// Imita o que a Vercel faz no deploy: cleanUrls (/lp -> lp.html; a raiz / e o totem, index.html), funcoes em /api/<nome> com req.query,
 // req.body e res.json, e /brand/* apontando para a pasta brand/ do repo (os HTMLs de source usam ../../brand/...,
 // que o passo de deploy reescreve para /assets/logos/...).
 // Variaveis de ambiente (OPENAI_API_KEY, RESEND_API_KEY...) vem do processo; sem chave a IA fica desligada e o
@@ -64,6 +64,9 @@ http.createServer(async (req, res) => {
       return res.end('erro na funcao');
     }
   }
+
+  // Como no vercel.json: /totem (endereco antigo do totem) redireciona para a raiz, mantendo a query.
+  if (rota === '/totem') { res.statusCode = 307; res.setHeader('Location', '/' + url.search); return res.end(); }
 
   const candidatos = [];
   if (rota === '/') candidatos.push([RAIZ, 'index.html']);

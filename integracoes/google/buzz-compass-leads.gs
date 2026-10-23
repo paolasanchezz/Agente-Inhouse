@@ -20,6 +20,9 @@
  *      TOTEM_LEADS_WEBHOOK_TOKEN = a senha do passo 3
  *    e republicar o projeto (variavel nova so vale no proximo deploy).
  * 7. Testar: rodar `testarLinha` aqui (grava uma linha de teste; apague depois) e depois fazer um Compass de verdade.
+ *
+ * JA TINHA PUBLICADO A VERSAO ANTIGA (so ate a coluna "Origem")? Para ganhar as colunas de URL de conversao e UTMs: cole este arquivo
+ * de novo, rode `prepararCabecalhos` (reescreve so a linha 1) e publique "Nova versao" (ver abaixo). As linhas antigas ficam como estao.
  * └──────────────────────────────────────────────────────────────────
  *
  * MUDOU O CODIGO DEPOIS DE PUBLICAR? Implantar > Gerenciar implantacoes > editar (lapis) > Versao: "Nova versao".
@@ -35,7 +38,8 @@ var NOME_ABA = 'Leads';
 
 var COLUNAS = [
   'Data e hora', 'Nome', 'E-mail', 'Marca', 'Segmento', 'Instagram da marca',
-  'Concorrentes informados', 'Link do resultado', 'Origem'
+  'Concorrentes informados', 'Link do resultado', 'Origem',
+  'URL de conversao', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'
 ];
 
 function aba_() {
@@ -108,7 +112,13 @@ function doPost(e) {
       texto_(d.instagram ? '@' + String(d.instagram).replace(/^@/, '') : ''),
       texto_(concorrentes),
       texto_(d.link),
-      texto_(d.origem || 'buzz-compass-totem')
+      texto_(d.origem || 'buzz-compass-totem'),
+      texto_(d.url_conversao),
+      texto_(d.utm_source),
+      texto_(d.utm_medium),
+      texto_(d.utm_campaign),
+      texto_(d.utm_content),
+      texto_(d.utm_term)
     ]);
     return resposta_({ ok: true });
   } catch (err) {
@@ -125,5 +135,6 @@ function doGet() {
 
 // Para testar sem a Vercel: grava uma linha de exemplo (apague depois).
 function testarLinha() {
-  gravarLinha_([dataHora_(), 'Teste', 'teste@exemplo.com', 'Marca Teste', 'Segmento Teste', '@marcateste', 'Concorrente A, Concorrente B', 'https://buzzcompass.buzzmonitor.com/totem-resultado?m=Marca+Teste', 'teste-manual']);
+  gravarLinha_([dataHora_(), 'Teste', 'teste@exemplo.com', 'Marca Teste', 'Segmento Teste', '@marcateste', 'Concorrente A, Concorrente B', 'https://buzzcompass.buzzmonitor.com/totem-resultado?m=Marca+Teste', 'teste-manual',
+    'https://buzzcompass.buzzmonitor.com/totem', 'evento', '', '', 'captacao-buzz-compass', '']);
 }

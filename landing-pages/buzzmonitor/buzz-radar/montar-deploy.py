@@ -101,6 +101,15 @@ def main():
                 if not simular:
                     os.remove(os.path.join(base, *rel.split('/')))
 
+    # HTMLs da raiz que nao existem mais na origem (ex.: totem.html, que virou index.html) tambem saem do destino
+    if os.path.isdir(destino):
+        for nome in sorted(os.listdir(destino)):
+            if nome.endswith('.html') and nome not in plano and os.path.isfile(os.path.join(destino, nome)):
+                print('remove    ' + nome)
+                removidos += 1
+                if not simular:
+                    os.remove(os.path.join(destino, nome))
+
     print('\n%s%s: %d novos, %d atualizados, %d removidos, %d ja iguais' % ('[simulacao] ' if simular else '', destino, novos, alterados, removidos, iguais))
     if not os.path.isdir(os.path.join(destino, '.vercel')) and not simular:
         print('Atencao: %s nao tem .vercel (vinculo com o projeto). Rode `npx vercel link` la dentro antes do primeiro deploy.' % destino)

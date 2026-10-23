@@ -34,7 +34,8 @@ function criarAmbiente({ token = 'segredo', trava = true } = {}) {
   return { linhas, formatos, post, doGet: () => JSON.parse(vm.runInContext('doGet', contexto)().texto) };
 }
 
-const lead = { token: 'segredo', origem: 'buzz-compass-totem', criado_em: '2026-10-21T15:30:00.000Z', nome: 'Ana Souza', email: 'ana@empresa.com.br', marca: 'Natura', segmento: 'Cosméticos e Beleza', instagram: 'naturabrasil', concorrentes: ['Boticário', 'Eudora'], link: 'https://buzzcompass.buzzmonitor.com/totem-resultado?m=Natura' };
+const lead = { token: 'segredo', origem: 'buzz-compass-totem', criado_em: '2026-10-21T15:30:00.000Z', nome: 'Ana Souza', email: 'ana@empresa.com.br', marca: 'Natura', segmento: 'Cosméticos e Beleza', instagram: 'naturabrasil', concorrentes: ['Boticário', 'Eudora'], link: 'https://buzzcompass.buzzmonitor.com/totem-resultado?m=Natura',
+  url_conversao: 'https://buzzcompass.buzzmonitor.com/totem?utm_source=evento&utm_campaign=marketing-day', utm_source: 'evento', utm_medium: '', utm_campaign: 'marketing-day', utm_content: 'captacao-buzz-compass', utm_term: '' };
 
 // grava uma linha com os campos certos, na ordem das colunas
 let amb = criarAmbiente();
@@ -44,6 +45,9 @@ const [dataHora, nome, email, marca, segmento, insta, concorrentes, link, origem
 assert(dataHora.startsWith('America/Sao_Paulo|dd/MM/yyyy HH:mm:ss|2026-10-21T15:30'), 'data em horario de Brasilia: ' + dataHora);
 assert.deepStrictEqual([nome, email, marca, segmento, insta, concorrentes, origem], ['Ana Souza', 'ana@empresa.com.br', 'Natura', 'Cosméticos e Beleza', '@naturabrasil', 'Boticário, Eudora', 'buzz-compass-totem']);
 assert.strictEqual(link, lead.link);
+// colunas de rastreio (URL de conversao + 5 UTMs) logo depois da Origem; as vazias ficam vazias
+assert.deepStrictEqual(Array.from(amb.linhas[0]).slice(9), ['https://buzzcompass.buzzmonitor.com/totem?utm_source=evento&utm_campaign=marketing-day', 'evento', '', 'marketing-day', 'captacao-buzz-compass', '']);
+assert.strictEqual(amb.linhas[0].length, 15, '9 colunas antigas + 6 de rastreio');
 
 // token errado, ausente ou script sem TOKEN configurado: nao grava nada
 amb = criarAmbiente();

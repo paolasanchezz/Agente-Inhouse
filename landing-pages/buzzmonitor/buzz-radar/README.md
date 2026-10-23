@@ -4,7 +4,7 @@
 > Mudou só o que as pessoas leem (páginas, e-mail, prompts da IA). Continuam como estavam, de propósito, até haver
 > decisão: nome da pasta (`buzz-radar`), arquivos e rotas (`api/radar.js`, `/api/radar`), projeto na Vercel
 > (`buzzmonitor-lp-buzz-radar`), domínio antigo (`buzzradar.buzzmonitor.com`, registrado no projeto e sem DNS; pode ser removido), `canonical`/`og:url`/
-> `og:image` do `index.html`, a tag do ActiveCampaign (hoje "Buzz Radar" no pedido
+> `og:image` do `lp.html`, a tag do ActiveCampaign (hoje "Buzz Radar" no pedido
 > original: criar/renomear para "Buzz Compass" antes de ligar o CRM).
 
 
@@ -40,7 +40,7 @@ não pular essa confirmação).
 
 ## Arquivos
 
-- `index.html` — LP principal (hero, problema, form, diferencial, prova, urgência, CTA, footer).
+- `lp.html` — LP original, servida em `/lp` (hero, problema, form, diferencial, prova, urgência, CTA, footer).
 - `resultado.html` — página de diagnóstico. Recebe os dados via parâmetro `?d=` (JSON
   base64url-encoded na própria URL — sem banco de dados novo; o link em si é o relatório,
   compartilhável e permanente). `noindex, nofollow` de propósito (não é conteúdo pra indexar).
@@ -86,17 +86,17 @@ relevância (descarta "Natura 2000", "in natura"; sem IA, mantém todos) -> esco
 
 - **Domínio**: `buzzcompass.buzzmonitor.com` (custom domain, registrado no projeto Vercel
   `buzzmonitor-lp-buzz-radar` em 2026-09-02) é o domínio pretendido, já refletido no `<head>` de
-  `index.html` (`canonical`, `og:url`, `og:image`, `twitter:image`, JSON-LD). **DNS configurado e
-  verificado em 2026-10-20**: o domínio resolve, o certificado é válido e `/totem` e `/api/totem`
+  `lp.html` (`canonical`, `og:url`, `og:image`, `twitter:image`, JSON-LD). **DNS configurado e
+  verificado em 2026-10-20**: o domínio resolve, o certificado é válido e a raiz (totem) e `/api/totem`
   respondem 200 nele. O QR code usa o endereço de onde o totem foi aberto (`location.origin`) e o
-  e-mail usa o host da requisição, então abrir o totem por `https://buzzcompass.buzzmonitor.com/totem`
+  e-mail usa o host da requisição, então abrir o totem por `https://buzzcompass.buzzmonitor.com`
   faz o QR e o e-mail saírem com esse domínio. O `https://buzzmonitor-lp-buzz-radar.vercel.app`
   continua servindo a mesma aplicação em paralelo.
 - **Domínio anterior mudou nesta sessão**: se um deploy futuro sair com outro domínio ainda
-  (custom domain diferente ou hash), atualizar os mesmos campos acima em `index.html`.
+  (custom domain diferente ou hash), atualizar os mesmos campos acima em `lp.html`.
 - **OG image**: `assets/og-buzz-compass.png` (1200x630, 174 KB), gerada em 2026-10-20 a partir da tela inicial do totem e
-  referenciada em `index.html` (`og:image` e `twitter:image`). Para regerar depois de mudar a tela inicial, capture o
-  `/totem` em 1920x1008 e reduza para 1200x630.
+  referenciada em `lp.html` (`og:image` e `twitter:image`). Para regerar depois de mudar a tela inicial, capture a
+  raiz (`/`) em 1920x1008 e reduza para 1200x630.
 - **E-mail comercial**: `resultado.html` usa `comercial@buzzmonitor.com.br` no CTA de contato,
   seguindo o padrão `comercial@{dominio}.com.br` usado por Cxpress/Buzzcreators em outras LPs —
   **não confirmado que essa caixa existe pra Buzzmonitor**. Verificar antes de divulgar.
@@ -105,15 +105,17 @@ relevância (descarta "Natura 2000", "in natura"; sem IA, mantém todos) -> esco
   pública, sem login). Não é API oficial documentada para este uso. Antes de escalar tráfego pago
   sobre isso, validar limite de uso com engenharia.
 
-## Totem (evento): `/totem` e `/totem-resultado`
+## Totem (evento): `/` e `/totem-resultado`
 
-Segunda experiência do projeto, mais direta, para rodar em um totem touch no evento. A LP original (`index.html` +
-`resultado.html`) continua existindo e funcionando do mesmo jeito. Visual preto com laranja (degradê laranja e rosa nos
+Segunda experiência do projeto, mais direta, para rodar em um totem touch no evento. Desde 2026-10-23 o totem é a **página
+principal** (`index.html`, em `https://buzzcompass.buzzmonitor.com`, sem caminho). O endereço antigo `/totem` redireciona para a
+raiz (307, mantendo a query: QR codes e links já impressos continuam valendo). A LP original (`lp.html` + `resultado.html`)
+continua existindo e funcionando do mesmo jeito, agora em `/lp` (o `canonical` dela aponta para `/lp`). Visual preto com laranja (degradê laranja e rosa nos
 destaques).
 
 **Fluxo:** tela de atração (toque em qualquer lugar) -> marca + segmento (obrigatório) + até 3 concorrentes (opcionais) -> nome e e-mail ->
 análise (menos de 1 minuto) -> resultado -> QR code + "Encerrar sessão". Botão X no topo, à direita, em todas as telas
-da sessão. Sem toque por 2 minutos, volta sozinho ao início (aviso aos 110s) e limpa tudo. Teste com `/totem?idle=8000`.
+da sessão. Sem toque por 2 minutos, volta sozinho ao início (aviso aos 110s) e limpa tudo. Teste com `/?idle=8000`.
 
 **Resultado:** a tela separa, com etiqueta **Marca** ou **Segmento** acima de cada parte, o que é da marca e o que é do
 segmento (a marca e os concorrentes estão dentro dele). Ordem: **Compass Score da marca** (Presença, Reputação, Ritmo de
@@ -168,7 +170,7 @@ compara números**: ranking, líder, maior crescimento e maior percentual vêm p
 
 **Arquivos novos:**
 
-- `totem.html` + `assets/totem-app.js`: quiosque (fluxo, inatividade, encerrar).
+- `index.html` (raiz) + `assets/totem-app.js`: quiosque (fluxo, inatividade, encerrar).
 - `totem-resultado.html` + `assets/totem-resultado.js`: página aberta pelo QR code ou pelo e-mail (celular). Inclui o
   selo "Planos a partir de R$ 1.790" e o formulário de proposta (Jotform), liberados quando o resultado chega.
 - `assets/totem-render.js` (resultado, compartilhado) · `assets/totem.css` · `assets/qr.js` (gerador de QR sem
@@ -184,7 +186,7 @@ só marca e concorrentes, nunca nome ou e-mail (vai para o Google Analytics).
 **Lead:** sai no instante em que o visitante envia, independente da análise (se a Trends falhar, o contato não se perde).
 Três destinos, independentes entre si (se um cair, os outros seguem) e todos opcionais:
 
-1. **E-mail para o lead (Resend)**, com o **QR code** do resultado, o botão "Ver meu Compass" e o convite para encaminhar ao
+1. **E-mail para o lead (SendGrid; Resend como alternativa)**, com o **QR code** do resultado, o botão "Ver meu Compass" e o convite para encaminhar ao
    time. O QR é um PNG gerado por `api/qr.js` (Gmail e Outlook não mostram SVG nem imagem embutida); só gera QR de links
    `/totem-resultado` do próprio projeto. O link e o QR continuam valendo depois do evento (o resultado roda de novo se
    o cache da borda tiver expirado).
@@ -196,12 +198,25 @@ Três destinos, independentes entre si (se um cair, os outros seguem) e todos op
    - **O e-mail já existe no AC** (busca exata, sem diferenciar maiúscula): **não cria contato novo**. Só atualiza o campo
      "URL Conversão [Auto]" e aplica a tag. Nome e empresa que já estão no AC **não são reescritos**.
    - **O e-mail é novo:** cria o contato completo (nome e sobrenome separados, marca na empresa), já com o campo e a tag.
-   - A URL de conversão é a página do totem onde o lead foi gerado (`https://buzzcompass.buzzmonitor.com/totem`, com as UTMs
-     se o QR/cartaz do evento as tiver; `idle`, `fbclid` e `#hash` saem). O servidor só aceita endereços do próprio projeto.
-   - Se não existir nenhum campo de contato com "URL Conversão" no nome, o contato e a tag seguem normalmente e a resposta
-     traz `crm_avisos: ["campo_url_conversao_nao_encontrado"]` (e o log também). `ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID`
-     força o ID do campo se for preciso.
-   - Quem roda o Compass de novo não duplica nada (a tag repetida é aceita e o campo é atualizado com a conversão mais recente).
+   - **Rastreio de origem (contato criado e atualizado):** além da tag, são preenchidos os campos de contato **URL Conversão
+     [Auto]** e **UTM Source / Medium / Campaign / Content / Term [Auto]** (achados pelo título, só campos de texto com `[Auto]`;
+     campos de histórico numerados ("UTM Campaign 1", "Source 2"...), "Origem", Gclid, AdName e títulos "antigo"/"legado" são
+     ignorados. Atenção: na conta o campo se chama **"UTM Campaing [AUTO]"** (com a grafia "Campaing"); o casamento aceita
+     Campaign, Campaing e Campanha). Os valores seguem `conhecimento/config/convencao-utm.md`:
+     - a URL de conversão é a página do totem onde o lead foi gerado (`https://buzzcompass.buzzmonitor.com/`; `/totem` antigo vira a raiz; `idle`,
+       `fbclid` e `#hash` saem). O servidor só aceita endereços do próprio projeto;
+     - as UTMs que estiverem na URL da página valem (ex.: QR de cartaz com `/?utm_source=evento&utm_medium=cartaz&utm_campaign=marketing-day`);
+     - o que faltar: `utm_source` = **`evento`** e `utm_content` = **`captacao-buzz-compass`** (`{tipo-de-pagina}-{conteudo}`).
+       `utm_medium`, `utm_campaign` e `utm_term` são opcionais na convenção: só entram se vierem na URL ou pelas variáveis
+       `TOTEM_UTM_MEDIUM_PADRAO`, `TOTEM_UTM_CAMPAIGN_PADRAO`, `TOTEM_UTM_TERM_PADRAO` (também existem `TOTEM_UTM_SOURCE_PADRAO` e `TOTEM_UTM_CONTENT_PADRAO`);
+     - contato **existente**: a atribuição é **trocada por inteira** (o que não veio fica vazio) para não misturar uma UTM nova
+       com resto da anterior. Contato novo recebe só o que tem valor.
+   - Campo que não existir no AC: o contato e a tag seguem e a resposta traz `crm_avisos` (`campo_utm_source_nao_encontrado`
+     etc.; também vai para o log). O mapa de campos fica na memória da função por 10 minutos (campo criado depois entra sozinho).
+     `ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID` força o ID do campo da URL de conversão.
+   - A resposta de `/api/totem-lead` traz `rastreio` com o que foi gravado (URL e UTMs), e o webhook/planilha recebem os mesmos campos.
+   - Quem roda o Compass de novo não duplica nada (a tag repetida é aceita e os campos são atualizados com a conversão mais recente).
+   - O botão "Agende uma demonstração gratuita" do e-mail leva para `https://promo.buzzmonitor.com/plataforma-completa` (padrão no código; `TOTEM_DEMO_URL` troca) com `utm_source=buzz-compass`, `utm_medium=e-mail-resultado` e `utm_content=resultado-buzz-compass`.
 
 Se o AC ou a planilha derem erro passageiro (5xx), há uma segunda tentativa; erro de credencial (4xx) não repete e aparece no
 log (`[buzz-radar-totem] ... falhou`). **Sem nenhum destino configurado, o lead só existe no log da função** (`[totem-lead]`
@@ -209,29 +224,31 @@ no painel da Vercel, retenção curta). Configurar os três antes do evento.
 
 | Variável (projeto Vercel, Sensitive) | Efeito |
 |---|---|
-| `RESEND_API_KEY` | Liga o e-mail do resultado (chave `re_...` criada no painel do Resend com permissão só de envio). Sem ela, o lead não recebe e-mail (no totem o QR continua na tela). |
-| `TOTEM_EMAIL_FROM` | Remetente, ex. `Buzzmonitor <compass@buzzmonitor.com.br>`. O remetente padrão (`onboarding@resend.dev`, o mesmo usado no health check e no Pocket Event) **só entrega para o dono da conta Resend**: para os leads receberem, o domínio do remetente precisa estar verificado no Resend (registros DNS SPF e DKIM). |
+| `SENDGRID_API_KEY` | Liga o e-mail do resultado pelo **SendGrid** (chave `SG....` criada no painel com permissão só de **Mail Send**). Tem prioridade sobre o Resend: com as duas chaves, só o SendGrid envia. Exige `TOTEM_EMAIL_FROM` com remetente verificado no SendGrid (sem ele o envio falha e o aviso aparece no log). O rastreio de cliques fica desligado de propósito, para o link do resultado e as UTMs do botão não serem reescritos. |
+| `RESEND_API_KEY` | Alternativa ao SendGrid, usada só se não houver `SENDGRID_API_KEY`. Liga o e-mail do resultado (chave `re_...` criada no painel do Resend com permissão só de envio). Sem ela, o lead não recebe e-mail (no totem o QR continua na tela). |
+| `TOTEM_EMAIL_FROM` | Remetente, ex. `Buzzmonitor <compass@buzzmonitor.com.br>`. **Obrigatório no SendGrid** (o endereço precisa ser um Single Sender verificado ou ter o domínio autenticado lá). No Resend, o remetente padrão (`onboarding@resend.dev`, o mesmo usado no health check e no Pocket Event) **só entrega para o dono da conta Resend**: para os leads receberem, o domínio do remetente precisa estar verificado no Resend (registros DNS SPF e DKIM). |
 | `TOTEM_LEADS_WEBHOOK_URL` / `TOTEM_LEADS_WEBHOOK_TOKEN` | URL `/exec` do Apps Script da planilha e a senha que ele confere (`integracoes/google/buzz-compass-leads.gs`). Também serve para n8n ou outro destino que receba JSON. |
 | `ACTIVECAMPAIGN_API_URL` / `ACTIVECAMPAIGN_API_TOKEN` | Liga o contato + tag no AC (URL da conta, ex. `https://CONTA.api-us1.com`, e a chave da API em Configurações > Desenvolvedor). |
 | `TOTEM_AC_TAG_NOME` | Opcional: nome da tag no AC (padrão `Buzz Compass`, achada ou criada sozinha). |
 | `ACTIVECAMPAIGN_TOTEM_TAG_ID` | Opcional: força o ID da tag e dispensa a busca pelo nome. |
 | `ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID` | Opcional: força o ID do campo de contato "URL Conversão [Auto]" (por padrão é achado pelo título). |
+| `TOTEM_UTM_SOURCE_PADRAO` / `TOTEM_UTM_MEDIUM_PADRAO` / `TOTEM_UTM_CAMPAIGN_PADRAO` / `TOTEM_UTM_CONTENT_PADRAO` / `TOTEM_UTM_TERM_PADRAO` | Opcionais: UTMs gravadas no AC quando a URL do totem não traz a sua (padrão: source `evento` e content `captacao-buzz-compass`; as outras ficam vazias). Ex.: `TOTEM_UTM_CAMPAIGN_PADRAO=marketing-day`. |
 | `ACTIVECAMPAIGN_TOTEM_LIST_ID` | Opcional, desligado por padrão: também inscreve o contato nesta lista do AC. Inscrever em lista é decisão de marketing e de consentimento. |
 | `TOTEM_BASE_URL` | Opcional: força o domínio do link e do QR do e-mail (padrão: o host da requisição). |
 | `OPENAI_MODEL_NARRATIVA` | Opcional: modelo que escreve os 4 cards (padrão `gpt-4o`; se não existir na conta, cai no modelo padrão). Custa mais que o `gpt-4o-mini` por análise. |
 | `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | Mesmas da LP: montam as buscas e escrevem a leitura. Sem elas o totem funciona em modo reserva (busca pelo nome exato, só concorrentes informados, cards genéricos). |
 
 **Rodar local:** `node landing-pages/buzzmonitor/buzz-radar/dev-server.js 8938` (ou a configuração
-`buzz-radar-totem` do `.claude/launch.json`). Abrir `http://localhost:8938/totem`. Sem chave de IA, testa o modo reserva.
+`buzz-radar-totem` do `.claude/launch.json`). Abrir `http://localhost:8938/` (a LP original fica em `/lp`). Sem chave de IA, testa o modo reserva.
 
 **Configurar o totem:** Chrome em quiosque, por exemplo
-`chrome --kiosk --noerrdialogs --disable-pinch --overscroll-history-navigation=0 https://<dominio>/totem`. Funciona em
+`chrome --kiosk --noerrdialogs --disable-pinch --overscroll-history-navigation=0 https://<dominio>`. Funciona em
 tela vertical e horizontal. Teclado: o do sistema; os formulários rolam quando o teclado cobre parte da tela.
 
 **Pendências do totem (decisão ou ação humana):**
 
-- Resend: criar a chave e **verificar o domínio remetente** (sem isso o e-mail só chega para o dono da conta Resend). Depois
-  `RESEND_API_KEY` e `TOTEM_EMAIL_FROM` na Vercel.
+- E-mail: no SendGrid, criar a chave (só Mail Send) e **verificar o remetente** (Single Sender ou autenticação de domínio). Depois
+  `SENDGRID_API_KEY` e `TOTEM_EMAIL_FROM` na Vercel. (Alternativa: Resend, com `RESEND_API_KEY` e domínio verificado.)
 - Planilha: criar a planilha, publicar o Apps Script e colocar `TOTEM_LEADS_WEBHOOK_URL` e `TOTEM_LEADS_WEBHOOK_TOKEN` na Vercel.
 - ActiveCampaign: `ACTIVECAMPAIGN_API_URL` e `ACTIVECAMPAIGN_API_TOKEN` na Vercel (a tag Buzz Compass é criada sozinha).
 - Depois de colocar qualquer variável: republicar o projeto (variável nova só vale no próximo deploy) e fazer 1 Compass de
@@ -255,7 +272,7 @@ barra de topo, não importa a altura. As páginas usam os **SVG** (`logo-primary
 
 ## Antes de deployar: reescrever paths de asset
 
-`index.html` e `resultado.html` usam a convenção padrão de **source** do repo pra logos/favicon
+`lp.html`, `index.html` e `resultado.html` usam a convenção padrão de **source** do repo pra logos/favicon
 (`../../brand/buzzmonitor/assets/logos/*.png`, ver `landing-pages/GUIDELINES.md` §12) — aponta
 certo pro repo, mas **não resolve sozinho** quando servido puro (é reescrito por `lp-publicar`
 normalmente, que aqui não roda). Antes do deploy, replicar manualmente essa transformação:

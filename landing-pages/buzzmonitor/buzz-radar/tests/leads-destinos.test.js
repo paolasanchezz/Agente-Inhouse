@@ -11,7 +11,7 @@ global.fetch = async (url, opts) => {
   const r = await roteador(String(url), opts || {}, chamadas.length);
   return { ok: r.status >= 200 && r.status < 300, status: r.status, json: async () => r.json || {}, text: async () => (r.text !== undefined ? r.text : JSON.stringify(r.json || {})) };
 };
-const limparEnv = () => ['RESEND_API_KEY', 'TOTEM_LEADS_WEBHOOK_URL', 'TOTEM_LEADS_WEBHOOK_TOKEN', 'ACTIVECAMPAIGN_API_URL', 'ACTIVECAMPAIGN_API_TOKEN', 'ACTIVECAMPAIGN_TOTEM_TAG_ID', 'ACTIVECAMPAIGN_TAG_ID', 'ACTIVECAMPAIGN_TOTEM_LIST_ID', 'TOTEM_AC_TAG_NOME', 'TOTEM_BASE_URL'].forEach((k) => delete process.env[k]);
+const limparEnv = () => ['SENDGRID_API_KEY', 'TOTEM_EMAIL_FROM', 'RESEND_API_KEY', 'TOTEM_LEADS_WEBHOOK_URL', 'TOTEM_LEADS_WEBHOOK_TOKEN', 'ACTIVECAMPAIGN_API_URL', 'ACTIVECAMPAIGN_API_TOKEN', 'ACTIVECAMPAIGN_TOTEM_TAG_ID', 'ACTIVECAMPAIGN_TAG_ID', 'ACTIVECAMPAIGN_TOTEM_LIST_ID', 'TOTEM_AC_TAG_NOME', 'TOTEM_BASE_URL'].forEach((k) => delete process.env[k]);
 
 const handlerLead = require('../api/totem-lead.js');
 const { syncActiveCampaign, enviarWebhook, htmlDoEmail } = handlerLead;
@@ -242,19 +242,20 @@ function resHttp() {
   const botao = html.match(/<a href="([^"]+)"[^>]*>Agende uma demonstração gratuita<\/a>/);
   assert(botao, 'botao de demonstracao existe');
   const u = new URL(botao[1].replace(/&amp;/g, '&'));
-  assert.deepStrictEqual([u.origin, u.searchParams.get('utm_source'), u.searchParams.get('utm_medium'), u.searchParams.get('utm_campaign')], ['https://buzzmonitor.com', 'buzz-compass', 'email', 'buzz-compass-resultado']);
+  // UTMs no padrao de conhecimento/config/convencao-utm.md: utm_source = canal (vocabulario fechado: email), utm_content = {tipo-de-pagina}-{conteudo}
+  assert.deepStrictEqual([u.origin, u.searchParams.get('utm_source'), u.searchParams.get('utm_medium'), u.searchParams.get('utm_content'), u.searchParams.has('utm_campaign')], ['https://promo.buzzmonitor.com', 'buzz-compass', 'e-mail-resultado', 'resultado-buzz-compass', false]);
   // marca com HTML nao quebra a copy nova
   assert(!/<script>/.test(htmlDoEmail({ nome: 'A', marca: '<script>x</script>', link: 'https://x/' })), 'marca escapada tambem no paragrafo novo');
 
   // urlDemo: variavel de ambiente troca o destino; UTMs que o endereco ja tem sao respeitadas; valor invalido nao quebra o e-mail
   process.env.TOTEM_DEMO_URL = 'https://buzzmonitor.com.br/agende-uma-demonstracao';
-  assert.strictEqual(urlDemo(), 'https://buzzmonitor.com.br/agende-uma-demonstracao?utm_source=buzz-compass&utm_medium=email&utm_campaign=buzz-compass-resultado');
+  assert.strictEqual(urlDemo(), 'https://buzzmonitor.com.br/agende-uma-demonstracao?utm_source=buzz-compass&utm_medium=e-mail-resultado&utm_content=resultado-buzz-compass');
   process.env.TOTEM_DEMO_URL = 'https://buzzmonitor.com.br/demo?ref=abc&utm_source=outra';
   const comUtm = new URL(urlDemo());
-  assert.deepStrictEqual([comUtm.searchParams.get('ref'), comUtm.searchParams.get('utm_source'), comUtm.searchParams.get('utm_medium')], ['abc', 'outra', 'email'], 'nao sobrescreve utm existente');
+  assert.deepStrictEqual([comUtm.searchParams.get('ref'), comUtm.searchParams.get('utm_source'), comUtm.searchParams.get('utm_medium')], ['abc', 'outra', 'e-mail-resultado'], 'nao sobrescreve utm existente; o que falta entra');
   for (const ruim of ['javascript:alert(1)', 'nao-e-url', '', 'ftp://x.com/a']) {
     process.env.TOTEM_DEMO_URL = ruim;
-    assert(urlDemo().startsWith('https://buzzmonitor.com/'), 'valor invalido cai no padrao: ' + ruim);
+    assert(urlDemo().startsWith('https://promo.buzzmonitor.com/plataforma-completa?'), 'valor invalido cai no padrao: ' + ruim);
   }
   delete process.env.TOTEM_DEMO_URL;
 
@@ -264,8 +265,52 @@ function resHttp() {
   chamadas = [];
   await chamarLead(valido);
   const texto2 = chamadas.find((c) => c.url.includes('resend.com')).corpo.text;
-  assert(texto2.includes('Isso é só 10% do que a Buzzmonitor pode entregar!') && texto2.includes('dedicado à sua marca') && /Agende uma demonstração gratuita: https:\/\/buzzmonitor\.com\/\?utm_source=buzz-compass/.test(texto2), 'texto simples: ' + texto2.slice(-420));
+  assert(texto2.includes('Isso é só 10% do que a Buzzmonitor pode entregar!') && texto2.includes('dedicado à sua marca') && /Agende uma demonstração gratuita: https:\/\/promo\.buzzmonitor\.com\/plataforma-completa\?utm_source=buzz-compass&utm_medium=e-mail-resultado&utm_content=resultado-buzz-compass/.test(texto2), 'texto simples: ' + texto2.slice(-420));
   assert(!/—/.test(chamadas.find((c) => c.url.includes('resend.com')).corpo.html + texto2), 'sem travessao');
+
+  // ---------- SendGrid: provedor preferencial quando ha SENDGRID_API_KEY ----------
+  limparEnv();
+  process.env.SENDGRID_API_KEY = 'SG.teste';
+  process.env.RESEND_API_KEY = 're_teste';
+  process.env.TOTEM_EMAIL_FROM = 'Buzzmonitor Compass <compass@exemplo.com>';
+  roteador = (url) => (url.includes('sendgrid.com') ? { status: 202, text: '' } : { status: 200, json: { id: 'x' } });
+  chamadas = [];
+  r = await chamarLead(valido);
+  assert.strictEqual(r.body.email, 'enviado', 'SendGrid responde 202 sem corpo: conta como enviado');
+  assert(!chamadas.some((c) => c.url.includes('resend.com')), 'com as duas chaves, so o SendGrid envia');
+  const sgChamada = chamadas.find((c) => c.url.includes('api.sendgrid.com/v3/mail/send'));
+  assert(sgChamada, 'chamou a API de envio do SendGrid');
+  assert.strictEqual(sgChamada.opts.headers.Authorization, 'Bearer SG.teste');
+  const sg = sgChamada.corpo;
+  assert.deepStrictEqual(sg.personalizations, [{ to: [{ email: 'ana@empresa.com.br' }] }]);
+  assert.deepStrictEqual(sg.from, { email: 'compass@exemplo.com', name: 'Buzzmonitor Compass' }, 'remetente separado em nome e e-mail');
+  assert.strictEqual(sg.subject, 'Seu Buzz Compass de Natura está pronto');
+  assert.deepStrictEqual(sg.content.map((c) => c.type), ['text/plain', 'text/html'], 'text/plain vem antes do html');
+  assert(sg.content[1].value.includes('Quer mostrar para o seu time?') && sg.content[0].value.includes(r.body.link), 'mesmo conteudo do e-mail de sempre');
+  assert(!/—/.test(sg.content[0].value + sg.content[1].value), 'sem travessao');
+  assert.deepStrictEqual(sg.tracking_settings, { click_tracking: { enable: false, enable_text: false } }, 'links nao sao reescritos pelo SendGrid');
+  // remetente sem nome
+  process.env.TOTEM_EMAIL_FROM = 'compass@exemplo.com';
+  chamadas = [];
+  await chamarLead(valido);
+  assert.deepStrictEqual(chamadas.find((c) => c.url.includes('sendgrid.com')).corpo.from, { email: 'compass@exemplo.com' });
+  // sem remetente verificado nao ha padrao seguro: nao chama a API e os outros destinos seguem
+  delete process.env.TOTEM_EMAIL_FROM;
+  chamadas = [];
+  r = await chamarLead(valido);
+  assert.strictEqual(r.body.email, 'falhou');
+  assert(!chamadas.some((c) => c.url.includes('sendgrid.com')), 'sem remetente nao chama o SendGrid');
+  // API recusa (remetente nao verificado / chave invalida): falha so do e-mail
+  process.env.TOTEM_EMAIL_FROM = 'Buzzmonitor <compass@exemplo.com>';
+  roteador = (url) => (url.includes('sendgrid.com') ? { status: 403, text: '{"errors":[{"message":"The from address does not match a verified Sender Identity."}]}' } : { status: 200, json: {} });
+  r = await chamarLead(valido);
+  assert.strictEqual(r.body.email, 'falhou');
+  // so SendGrid configurado (sem Resend) tambem funciona; so Resend continua funcionando como antes
+  delete process.env.RESEND_API_KEY;
+  roteador = (url) => (url.includes('sendgrid.com') ? { status: 202, text: '' } : { status: 200, json: {} });
+  assert.strictEqual((await chamarLead(valido)).body.email, 'enviado');
+  limparEnv();
+  assert.strictEqual((await chamarLead(valido)).body.email, 'nao_configurado', 'sem nenhum provedor o e-mail fica desligado');
 
   // ---------- PNG do QR ----------
   assert.strictEqual(crc32(Buffer.from('123456789')), 0xcbf43926, 'CRC-32 com o vetor padrao');
