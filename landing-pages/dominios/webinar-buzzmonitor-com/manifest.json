@@ -156,6 +156,16 @@
       "source": "landing-pages/buzzmonitor/perpetuo-case-youse-confirmado"
     },
     {
+      "slug": "perpetuo-case-youse-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-case-youse-pt"
+    },
+    {
+      "slug": "perpetuo-case-youse-pt-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-case-youse-pt-confirmado"
+    },
+    {
       "slug": "perpetuo-monitoramento-concorrentes",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/perpetuo-monitoramento-concorrentes"
@@ -204,6 +214,16 @@
       "slug": "perpetuo-social-listening-confirmado",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/perpetuo-social-listening-confirmado"
+    },
+    {
+      "slug": "perpetuo-social-listening-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-social-listening-pt"
+    },
+    {
+      "slug": "perpetuo-social-listening-pt-confirmado",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/perpetuo-social-listening-pt-confirmado"
     },
     {
       "slug": "primeiro-listening-5-passos",
