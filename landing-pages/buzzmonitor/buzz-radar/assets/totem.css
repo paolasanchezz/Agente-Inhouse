@@ -317,3 +317,61 @@ body.phone{overflow-x:hidden}
 .sub__label .sent-pos{color:#14B8A6}
 .sub__label .sent-neg{color:#ff6b8a}
 .sub__label small b{font-weight:800}
+
+/* Celular no fluxo completo (index.html aberto pelo QR do palco ou por link, largura ate 820px): o JS troca body.kiosk por body.phone.
+   Mesma experiencia do totem em escala de telefone: tipografia e botoes menores, campos com 16px (o iOS nao da zoom), sem o X do quiosque. */
+body.phone{min-height:100dvh}
+body.phone .bar{padding:.8rem 1.1rem calc(.8rem) 1.1rem;padding-top:calc(.8rem + env(safe-area-inset-top))}
+body.phone .bar img{height:1.9rem}
+body.phone .close{display:none !important}
+body.phone .screen{padding-top:calc(3.8rem + env(safe-area-inset-top))}
+body.phone .btn{padding:0 1.3rem;gap:.5rem}
+body.phone .btn--lg{min-height:3.6rem;padding:0 1.6rem;font-size:1.2rem}
+body.phone .attract{padding:0 1.25rem calc(2rem + env(safe-area-inset-bottom))}
+body.phone .attract__texto{width:100%}
+body.phone .attract .eyebrow{font-size:.74rem;letter-spacing:.1em}
+body.phone .attract h1{font-size:clamp(2rem,9.6vw,3rem);margin:.8rem 0 1.1rem}
+body.phone .attract p.sub-lead{font-size:1.02rem;margin-bottom:.8rem}
+body.phone .attract__cta{margin-top:1.4rem}
+body.phone .attract__cta .btn{width:100%}
+body.phone .attract .radar,body.phone .fundo-radar .radar{width:130vmax}
+body.phone .step{width:calc(100% - 2.5rem);padding-bottom:calc(2rem + env(safe-area-inset-bottom))}
+body.phone .step .progresso{margin-bottom:1.1rem}
+body.phone .step h2{font-size:1.75rem}
+body.phone .step .dica{font-size:.98rem;margin-bottom:1.2rem}
+body.phone .step .dica--sec{margin:1.1rem 0 .6rem}
+body.phone .field{margin-bottom:.9rem}
+body.phone .field input[type=text],body.phone .field input[type=email]{height:3.4rem;padding:0 1rem;font-size:1rem}
+body.phone .grupo-concorrentes{gap:0}
+/* barra de acoes fixa no rodape da rolagem: o botao de avancar fica sempre a vista, mesmo com a lista de concorrentes aberta */
+body.phone .step .acoes{position:sticky;bottom:0;z-index:2;margin-top:.6rem;padding:1.1rem 0 calc(.8rem + env(safe-area-inset-bottom));background:linear-gradient(0deg,var(--bg) 68%,rgba(7,7,8,0))}
+body.phone .step{padding-bottom:1rem;max-width:36rem}
+body.phone .acoes .btn--ghost{flex:0 0 auto}
+body.phone .consent{font-size:.8rem}
+body.phone .loading{padding:0 1.25rem 3rem}
+body.phone .loading h2{font-size:1.6rem}
+body.phone .etapas li{font-size:1rem}
+body.phone .falha h2{font-size:1.5rem}
+body.phone .falha .acoes .btn{width:100%}
+body.phone .res-scroll{padding:0 0 3rem}
+body.phone .divisor{margin:2.2rem 0 1rem;padding-top:1.4rem}
+body.phone .divisor h2{font-size:1.6rem}
+body.phone .card{padding:1.2rem 1.2rem}
+body.phone .cmp{padding:1rem}
+body.phone .bar-row__label{flex-basis:6.5rem}
+body.phone .post-quadro,body.phone .post-quadro--facebook,body.phone .post-quadro--x{height:30rem}
+body.phone .fim{padding:1.4rem;gap:1.2rem}
+body.phone .fim h2{font-size:1.5rem}
+body.phone .cta-final{font-size:1rem;padding:0 1rem}
+body.phone .encerrar .btn{width:calc(100% - 2rem)}
+/* celular deitado: pouca altura, entao a tela inicial perde o texto de apoio e fica so com titulo, resumo e botao */
+@media (max-height:480px){
+  body.phone .screen{padding-top:3.4rem}
+  body.phone .attract h1{font-size:1.7rem;margin:0 0 .6rem}
+  body.phone .attract .eyebrow,body.phone .attract p.sub-lead:nth-of-type(2){display:none}
+  body.phone .attract p.sub-lead{font-size:.95rem;margin-bottom:.5rem}
+  body.phone .attract__cta{margin-top:.8rem}
+  body.phone .btn--lg{min-height:3rem}
+  body.phone .step h2{font-size:1.4rem}
+}
+body.phone .toast{bottom:calc(1.4rem + env(safe-area-inset-bottom));width:calc(100% - 2rem);text-align:center;border-radius:1.2rem}

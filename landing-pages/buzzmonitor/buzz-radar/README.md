@@ -117,6 +117,16 @@ destaques).
 análise (menos de 1 minuto) -> resultado -> QR code + "Encerrar sessão". Botão X no topo, à direita, em todas as telas
 da sessão. Sem toque por 2 minutos, volta sozinho ao início (aviso aos 110s) e limpa tudo. Teste com `/?idle=8000`.
 
+**Celular (largura até 820px):** a mesma página vira modo celular (`index.html` troca `kiosk` por `phone` antes da primeira
+pintura; `assets/totem.css`, bloco `body.phone`). Mudanças em relação ao quiosque: tipografia, botões e campos em escala de
+telefone (campos com 16px, para o iOS não dar zoom); botão de avançar fixo no rodapé dos formulários; sem X de encerrar e sem
+reinício por inatividade; nome e e-mail com preenchimento automático do navegador; resultado com links dos posts abertos e, no
+lugar do QR "leve no celular", o botão "Analisar outra marca". Testado em 320, 375, 768 e 812x375 (deitado) sem rolagem
+horizontal. Para ver o quiosque no celular, só uma tela com largura acima de 820px.
+
+**QR do palco (Buzz Summit):** aponta para `https://buzzcompass.buzzmonitor.com/?utm_source=buzz-compass&utm_medium=palco-buzz-summit&utm_content=qr-code-palco`.
+O lead grava essas UTMs no ActiveCampaign e na planilha (a `utm_content` da URL vale no lugar do padrão `captacao-buzz-compass`).
+
 **Resultado:** a tela separa, com etiqueta **Marca** ou **Segmento** acima de cada parte, o que é da marca e o que é do
 segmento (a marca e os concorrentes estão dentro dele). Ordem: **Compass Score da marca** (Presença, Reputação, Ritmo de
 crescimento e Vantagem competitiva, ver `SCORING.md`) -> **4 cards de insight pronto em texto** (oportunidade, risco,

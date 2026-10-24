@@ -6,6 +6,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
+  // Celular: index.html marca o body com .phone antes do script rodar. Sem reinicio por inatividade, links dos posts abertos, autofill ligado.
+  var PHONE = document.body.classList.contains('phone');
   var IDLE_MS = Math.max(3000, Number(params.get('idle')) || 120000);
   var AVISO_MS = Math.max(1500, IDLE_MS - 10000);
   var TIMEOUT_ANALISE_MS = 75000;
@@ -35,7 +37,7 @@
     clearTimeout(timerAviso); clearTimeout(timerIdle);
     esconderToast();
     // Na tela de atracao nao ha sessao para encerrar; durante a analise quem manda e o timeout da propria chamada.
-    if (tela === 'attract' || tela === 'loading') return;
+    if (PHONE || tela === 'attract' || tela === 'loading') return;
     timerAviso = setTimeout(function () {
       mostrarToast('Voltando ao início em ' + Math.round((IDLE_MS - AVISO_MS) / 1000) + ' segundos. Toque na tela para continuar.');
     }, AVISO_MS);
@@ -189,6 +191,7 @@
   function armarIdleNaFalha() {
     // Na falha ninguem esta olhando a analise: volta a valer o tempo de inatividade.
     clearTimeout(timerIdle);
+    if (PHONE) return;
     timerIdle = setTimeout(resetarTudo, IDLE_MS);
   }
 
@@ -202,19 +205,20 @@
   // --- Resultado ---
 
   function mostrarResultado(data) {
-    TotemRender.render($('resBody'), data, { nome: estado.nome, marca: estado.marca, segmento: estado.segmento, kiosk: true });
+    TotemRender.render($('resBody'), data, { nome: estado.nome, marca: estado.marca, segmento: estado.segmento, kiosk: !PHONE });
     // O QR leva a mesma analise ja consultada aqui (mesma URL = cache da borda): so marca, segmento e concorrentes digitados.
     estado.link = TotemRender.linkDoResultado(location.origin, estado.marca, estado.concorrentes, estado.segmento, estado.instagram);
     var qr = '';
-    try { qr = QR.toSvg(estado.link, { ecc: 'M', margin: 2 }); } catch (err) { qr = ''; }
+    // No celular a pessoa ja esta com o resultado na mao: sem QR, so o aviso do e-mail e o botao para analisar outra marca.
+    if (!PHONE) { try { qr = QR.toSvg(estado.link, { ecc: 'M', margin: 2 }); } catch (err) { qr = ''; } }
     $('fim').innerHTML =
       '<section class="fim">' + (qr ? '<div class="qr">' + qr + '</div>' : '') +
-      '<div><h2>Leve o seu Compass no celular</h2>' +
-      '<p>Aponte a câmera para o QR code e abra o resultado completo, com os mesmos gráficos.</p>' +
+      '<div><h2>' + (PHONE ? 'Guarde o seu Compass' : 'Leve o seu Compass no celular') + '</h2>' +
+      (PHONE ? '<p>O link do resultado funciona em qualquer aparelho e a qualquer momento.</p>' : '<p>Aponte a câmera para o QR code e abra o resultado completo, com os mesmos gráficos.</p>') +
       '<p class="email-status" id="emailStatus"></p></div></section>' +
-      '<p class="cta-final">Quer o Compass completo, com monitoramento contínuo da marca e dos concorrentes? Fale com a equipe da Buzzmonitor aqui no evento.</p>' +
-      '<div class="encerrar"><button type="button" class="btn btn--primary btn--lg" id="btnEncerrar">Encerrar sessão</button></div>';
-    $('btnEncerrar').addEventListener('click', resetarTudo);
+      '<p class="cta-final">Quer o Compass completo, com monitoramento contínuo da marca e dos concorrentes? Fale com a equipe da Buzzmonitor' + (PHONE ? '.' : ' aqui no evento.') + '</p>' +
+      '<div class="encerrar"><button type="button" class="btn btn--primary btn--lg" id="btnEncerrar">' + (PHONE ? 'Analisar outra marca' : 'Encerrar sessão') + '</button></div>';
+    $('btnEncerrar').addEventListener('click', function () { resetarTudo(); if (PHONE) irParaMarca(); });
     atualizarStatusEmail();
     $('resScroll').scrollTop = 0;
     mostrar('result');
@@ -235,9 +239,16 @@
   $('btnStart').addEventListener('click', function (e) { e.stopPropagation(); irParaMarca(); });
   $('btnClose').addEventListener('click', resetarTudo);
 
-  // Quiosque: sem menu de contexto, sem zoom por gesto.
-  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
-  ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (ev) { document.addEventListener(ev, function (e) { e.preventDefault(); }); });
+  if (PHONE) {
+    // Celular: o navegador pode preencher nome e e-mail, e o botao de falha deixa de falar em "sessao".
+    $('nome').setAttribute('autocomplete', 'name');
+    $('email').setAttribute('autocomplete', 'email');
+    $('btnEncerrarFalha').textContent = 'Recomeçar';
+  } else {
+    // Quiosque: sem menu de contexto, sem zoom por gesto.
+    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (ev) { document.addEventListener(ev, function (e) { e.preventDefault(); }); });
+  }
 
   mostrar('attract');
 })();
