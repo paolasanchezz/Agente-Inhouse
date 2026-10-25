@@ -1,0 +1,102 @@
+=== NAV ===
+LINK: Gestión
+LINK: Analytics
+LINK: Para quién
+CTA: Agendar demo
+
+=== HERO ===
+OVERLINE: Gestión de redes sociales + Analytics
+H1: Tu día se va entre publicar, responder y armar reportes
+SUB: Buzzmonitor reúne tu calendario, los mensajes de tus redes y los resultados de tus perfiles en una sola plataforma. Menos pestañas abiertas y más tiempo para pensar el contenido.
+CTA: Quiero ver cómo funciona
+LABEL: Más de 1.000 marcas y 500 agencias ya trabajan así
+
+=== DOLORES ===
+OVERLINE: El día a día de quien maneja redes
+H2: Si trabajas con redes sociales, esto te va a sonar
+LIST ITEM: Programas en una herramienta, respondes en otra y mides en una tercera.
+LIST ITEM: Los comentarios y mensajes directos se acumulan y alguno siempre queda sin respuesta.
+LIST ITEM: El reporte de fin de mes te consume días copiando números a una hoja de cálculo.
+LIST ITEM: Tu jefe o tu cliente pregunta qué funcionó y no tienes una respuesta rápida.
+LIST ITEM: No sabes qué está publicando tu competencia ni cómo le va.
+
+=== GESTION ===
+OVERLINE: Gestión integral de redes sociales
+H2: Todo lo que haces en redes, en un solo lugar
+SUB: Planifica, publica y atiende a tu comunidad sin saltar de una herramienta a otra.
+
+H3: Planifica y publica
+BODY: Arma tu calendario, programa publicaciones en varias redes a la vez y aprueba el contenido con tu equipo o con tu cliente antes de que salga.
+LIST ITEM: Calendario colaborativo
+LIST ITEM: Publicación simultánea en varias redes
+LIST ITEM: Flujos de aprobación
+LIST ITEM: Copies con ChatGPT e imágenes con IA
+
+H3: Responde a tu comunidad
+BODY: Los comentarios y mensajes de todas tus redes llegan a una sola bandeja, ordenados para que nada se quede sin respuesta.
+LIST ITEM: Bandeja única para todas tus redes
+LIST ITEM: Smart Replies: respuestas sugeridas por IA
+LIST ITEM: Respuestas hasta 3 veces más rápidas
+
+CTA: Quiero verlo en una demo
+
+=== ANALYTICS ===
+OVERLINE: Analytics
+H2: Entiende qué funciona sin pelearte con hojas de cálculo
+SUB: Mide tus perfiles y campañas en tiempo real y compáralos con tu competencia.
+LIST ITEM: Tus métricas en un panel | Crecimiento de seguidores, interacciones y engagement de cada perfil, en tiempo real.
+LIST ITEM: Tus mejores publicaciones | Descubre qué contenido genera más respuesta y repite lo que funciona.
+LIST ITEM: Tu competencia a la vista | Compara tu desempeño con el de tus competidores y mira cuáles son sus top posts.
+LIST ITEM: Reportes listos para la reunión | Dashboards personalizados que se actualizan solos y AI Insights para resumir las conclusiones en un clic.
+
+=== PARA-QUIEN ===
+OVERLINE: Para quién es
+H2: Hecho para quien vive las redes todos los días
+
+H3: Social media managers
+BODY: Ve el calendario, los resultados y la competencia en el mismo lugar, y planifica con datos.
+
+H3: Community managers
+BODY: Responde todos los comentarios y mensajes desde una bandeja, con respuestas sugeridas por IA.
+
+H3: Agencias pequeñas
+BODY: Maneja varios clientes sin sumar herramientas y entrega reportes sin rehacerlos cada mes.
+
+H3: Marketing managers
+BODY: Ten claro qué está funcionando y muéstralo con números en cada reunión.
+
+=== TESTIMONIOS ===
+H2: Lo dicen quienes ya lo usan
+QUOTE: Cubre todas las necesidades de los profesionales de Social Media Marketing al permitir escuchar, analizar y actuar sobre la conversación relacionada con tus clientes. | José Manuel López, Social Media Coordinador · Publicis
+QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes. | Pablo Ferrer, Head of Social Media · MRM // McCANN
+QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchmark también y lo más importante es que tenemos una perspectiva mucho más amplia de la conversación. | Celina Mendoza, Copywriter Coordinator · Sube Agencia
+
+=== CTA-FINAL ===
+OVERLINE: Demo con un especialista
+H2: Mira tus redes dentro de Buzzmonitor
+BODY: Agenda una demo y te mostramos cómo planificar, publicar, responder y medir desde una sola plataforma.
+LABEL: Nombre
+LABEL: Email corporativo
+LABEL: Empresa
+LABEL: Cargo
+LABEL: País
+LABEL: Celular
+CTA: Quiero agendar mi demo
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+FOOTER: Política de Privacidad y uso de Cookies
+
+# ---------------------------------------------------------------
+# Origen: brief en el chat (2026-10-25). Copy escrita por el agente con los 3 pilares cargados
+#   (padrao-linguistico ES-LATAM, fundamentos-copy, regras-anti-ia + anexo ES-LATAM).
+# Público: social media managers, community managers, agencias pequeñas, marketing managers. Lenguaje no técnico.
+# Funnel: MoFu/BoFu (agendar demo) -> form en la última sección (GUIDELINES §10), CTA del hero baja al form.
+# Diferenciación vs LPs vecinas (todo-en-uno, plataforma-integral-social-media): ángulo operativo del día a día
+#   (publicar + responder + medir), sin Social Listening/MCP/Trends como protagonistas.
+# Hechos de producto tomados de copy LATAM ya publicada (todo-en-uno, plataforma-integral-social-media):
+#   publicación simultánea, flujos de aprobación, calendario colaborativo, copies con ChatGPT e imágenes con IA,
+#   Smart Replies, "hasta 3 veces más rápido", AI Insights, dashboards que se actualizan solos, benchmarking/top posts,
+#   1.000+ clientes, 500+ agencias. Testimonios literales de esas LPs.
+# Idioma: ES-LATAM (es-419), tuteo, sin artículo antes de Buzzmonitor. 0 brasileñismos, 0 "informe"/"monitorización".
+# Revision anti-IA: em-dash 0 · antítesis-por-negación 0 · exclamaciones 0 · preguntas retóricas 0 · "Además" 0.
