@@ -60,3 +60,7 @@ Feedback: "mais premium, menos pasteis; amigavel e acessivel, mas profissional; 
 
 - Design aprovado? → `/lp-integrar-form buzzmonitor/gestion-redes-analytics-latam "<snippet>"`
 - Publicar → `/lp-publicar buzzmonitor gestion-redes-analytics-latam [dominio]`
+
+## v4 (2026-10-25): hero mais compacto
+
+- Padding do hero reduzido a pedido do usuario: desktop 88/112px -> 56/72px, mobile 52/72px -> 36/56px. Hero + form cabem na primeira dobra em 1024x768.
