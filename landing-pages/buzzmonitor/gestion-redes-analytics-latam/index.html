@@ -109,7 +109,7 @@
     ul{margin:0;padding:0;list-style:none}
     .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px}
 
-    h1,h2,h3,.sub,.over,.label,.pain li,.an-card p,.who-card p,.cta-final p{text-wrap:balance}
+    h1,h2,h3,.sub,.over,.label,.pain li,.an-card p,.who-card p{text-wrap:balance}
     .gest-block p,.quote blockquote{text-wrap:pretty}
 
     .skip{position:absolute;left:8px;top:-80px;z-index:100;background:var(--roxo);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}
@@ -145,42 +145,10 @@
     .hero .label{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink-2);max-width:33em}
     .shield{flex:none;width:36px;height:36px;border-radius:10px;background:var(--roxo);color:#fff;display:grid;place-items:center}
 
-    /* Hero app window */
-    .app{position:relative;background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow-lg);overflow:hidden}
-    .app-bar{display:flex;align-items:center;gap:7px;height:42px;padding:0 16px;border-bottom:1px solid var(--line);background:#fcfbfd}
-    .app-bar i{width:10px;height:10px;border-radius:50%;background:#e3dde8}
-    .app-bar b{margin-left:14px;width:160px;height:18px;border-radius:6px;background:#f1edf4}
-    .app-body{display:grid;grid-template-columns:58px 1fr;min-height:400px}
-    .app-side{background:var(--night);display:flex;flex-direction:column;align-items:center;gap:14px;padding:18px 0}
-    .app-side img{width:28px;height:28px;margin-bottom:6px}
-    .app-side span{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.08)}
-    .app-side span.on{background:var(--laranja)}
-    .app-main{padding:20px;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto 1fr;gap:14px;background:#fcfbfd}
-    .pane{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
-    .pane-h{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-    .pane-h i{width:70px;height:9px;border-radius:5px;background:#d9d1df}
-    .pane-h u{margin-left:auto;width:34px;height:9px;border-radius:5px;background:#efeaf2}
-    .p-cal{grid-column:1/-1}
-    .cal{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-    .cal .d{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.06em;color:#857c8c;text-align:center}
-    .cal .c{height:54px;border-radius:8px;border:1px solid #f0ecf3;padding:6px;display:flex;flex-direction:column;gap:5px}
-    .cal .p{height:10px;border-radius:4px;background:#e6dfeb}
-    .cal .p.r{background:var(--roxo)} .cal .p.o{background:var(--laranja)} .cal .p.t{background:var(--teal)}
-    .w60{width:60%}.w80{width:80%}
-    .msg{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f0f5}
-    .msg:last-child{border-bottom:0}
-    .av{flex:none;width:26px;height:26px;border-radius:50%;background:#e6dfeb}
-    .ln{flex:1;display:flex;flex-direction:column;gap:6px}
-    .ln i{display:block;height:7px;border-radius:4px;background:#ece7f0}
-    .ln i:first-child{width:60%;background:#d6cddc}
-    .msg.ai{margin-top:4px;padding:9px 10px;border-radius:10px;border:1px solid rgba(14,157,155,.35);background:rgba(14,157,155,.06)}
-    .msg.ai .av{background:var(--teal);display:grid;place-items:center}
-    .bars{display:flex;align-items:flex-end;gap:7px;height:110px;padding-top:6px;border-bottom:1px solid var(--line)}
-    .bars i{flex:1;border-radius:4px 4px 0 0;background:#ddd5e3}
-    .bars i.h{background:var(--roxo)}
-    .spark{display:flex;gap:10px;margin-top:12px}
-    .spark span{flex:1;height:8px;border-radius:4px;background:#efeaf2}
-    .spark span:first-child{background:var(--teal);flex:.6}
+    /* Hero form */
+    .hero-form{background:#fff;color:var(--ink);border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow-lg);padding:28px 22px 10px;scroll-margin-top:96px}
+    .hero-form .over{margin:0 0 6px 12px}
+    .hero-form .jotform-embed{min-height:420px}
 
     /* sections */
     section{scroll-margin-top:80px}
@@ -242,16 +210,6 @@
     .quote figcaption{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-3)}
     .quote figcaption strong{display:block;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);margin-bottom:2px}
 
-    /* CTA FINAL */
-    .cta-final{background:var(--night);color:#fff;padding:128px 0;position:relative;overflow:hidden}
-    .cta-final::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
-    .cta-final::after{content:"";position:absolute;right:-200px;top:-200px;width:700px;height:700px;background:radial-gradient(closest-side,rgba(57,1,85,.95),transparent)}
-    .cta-final .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-    .cta-final .over{color:#fff}
-    .cta-final h2{color:#fff;font-size:clamp(34px,4vw,52px);margin:18px 0 20px}
-    .cta-final p{font-size:clamp(18px,1.6vw,20px);color:#cfc3d8;max-width:30em}
-    .form-shell{background:#fff;color:var(--ink);border-radius:20px;padding:26px 22px 10px;box-shadow:0 50px 90px -40px rgba(0,0,0,.7);min-height:520px}
-
     /* FOOTER */
     .foot{background:#13041c;color:#bfb2c9;padding:40px 0;border-top:1px solid var(--line-dark)}
     .foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -272,16 +230,16 @@
       .who-card:nth-child(-n+2){border-bottom:1px solid var(--line)}
     }
     @media (max-width:980px){
-      .hero .wrap,.pain-grid,.gest-grid,.cta-final .wrap{grid-template-columns:1fr}
+      .hero .wrap,.pain-grid,.gest-grid{grid-template-columns:1fr}
       .pain-grid{gap:40px}
       .pain-grid .sec-head{position:static}
-      .app{max-width:600px;width:100%;margin:0 auto}
+      .hero-form{max-width:600px;width:100%;margin:0 auto}
       .quotes{grid-template-columns:1fr}
       .nav-links a:not(.btn){display:none}
     }
     @media (max-width:640px){
       .wrap{padding:0 20px}
-      .sec,.cta-final{padding:88px 0}
+      .sec{padding:88px 0}
       .hero{padding:52px 0 72px}
       .hero h1{font-size:clamp(36px,9vw,44px)}
       .hero h1 .hl{white-space:normal}
@@ -289,13 +247,7 @@
       .who-card{border-right:0;border-bottom:1px solid var(--line)}
       .who-card:last-child{border-bottom:0}
       .gest-block{padding:28px 22px}
-      .form-shell{padding:20px 12px 6px}
-      .app-body{grid-template-columns:44px 1fr;min-height:0}
-      .app-side img{width:22px;height:22px}
-      .app-side span{width:20px;height:20px}
-      .app-main{grid-template-columns:1fr;padding:14px}
-      .p-chart{display:none}
-      .cal .c{height:42px}
+      .hero-form{padding:22px 12px 6px}
       .hero .btn{width:100%}
       .nav-logo img{height:26px}
     }
@@ -343,37 +295,10 @@
           <p class="label"><span class="shield" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.5c0 4.3-3 8-7 9.5-4-1.5-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Más de 1.000 marcas y 500 agencias ya trabajan así</p>
         </div>
 
-        <div class="hero-visual app" aria-hidden="true">
-          <div class="app-bar"><i></i><i></i><i></i><b></b></div>
-          <div class="app-body">
-            <div class="app-side">
-              <img src="../../brand/buzzmonitor/assets/logos/logo-icon.png" alt="">
-              <span class="on"></span><span></span><span></span><span></span>
-            </div>
-            <div class="app-main">
-              <div class="pane p-cal">
-                <div class="pane-h"><i></i><u></u></div>
-                <div class="cal">
-                  <span class="d">L</span><span class="d">M</span><span class="d">M</span><span class="d">J</span><span class="d">V</span>
-                  <div class="c"><span class="p r"></span><span class="p w60"></span></div>
-                  <div class="c"><span class="p o w80"></span></div>
-                  <div class="c"><span class="p w80"></span><span class="p r w60"></span></div>
-                  <div class="c"><span class="p t"></span></div>
-                  <div class="c"><span class="p w60"></span><span class="p r"></span></div>
-                </div>
-              </div>
-              <div class="pane p-inbox">
-                <div class="pane-h"><i></i><u></u></div>
-                <div class="msg"><span class="av"></span><span class="ln"><i></i><i></i></span></div>
-                <div class="msg"><span class="av"></span><span class="ln"><i></i><i></i></span></div>
-                <div class="msg ai"><span class="av"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="#fff"/></svg></span><span class="ln"><i style="background:rgba(14,157,155,.45)"></i><i style="background:rgba(14,157,155,.2)"></i></span></div>
-              </div>
-              <div class="pane p-chart">
-                <div class="pane-h"><i></i><u></u></div>
-                <div class="bars"><i style="height:36%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:62%"></i><i style="height:55%"></i><i class="h" style="height:94%"></i></div>
-                <div class="spark"><span></span><span></span></div>
-              </div>
-            </div>
+        <div class="hero-form" id="inscripcion">
+          <span class="over">Demo con un especialista</span>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
           </div>
         </div>
       </div>
@@ -487,21 +412,6 @@
       </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="cta-final" id="inscripcion" aria-labelledby="cta-title">
-      <div class="wrap">
-        <div class="rv">
-          <span class="over">Demo con un especialista</span>
-          <h2 id="cta-title">Mira tus redes dentro de Buzzmonitor</h2>
-          <p>Agenda una demo y te mostramos cómo planificar, publicar, responder y medir desde una sola plataforma.</p>
-        </div>
-        <div class="form-shell rv">
-          <div class="jotform-embed">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="foot">

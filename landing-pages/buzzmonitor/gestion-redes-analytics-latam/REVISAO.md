@@ -3,6 +3,13 @@
 **Data:** 2026-10-25
 **Auditores:** design review (GUIDELINES) + web-design-guidelines (a11y/HTML) + checks deterministicos (GTM, SEO, contraste, mobile)
 
+## v3 (2026-10-25): formulario no hero
+
+- A pedido do usuario: Jotform 241825239057661 movido para o hero (lado direito, no lugar da janela de produto), com overline "Demo con un especialista" e `id="inscripcion"`. Os 3 CTAs (`#inscripcion`) agora sobem ao hero.
+- Secao CTA final removida (H2 "Mira tus redes dentro de Buzzmonitor" + body), junto com o CSS do mockup e do bloco final.
+- Desvio consciente de GUIDELINES §10 (MoFu/BoFu = form no fim), decisao explicita do usuario, igual a LP todo-en-uno.
+- Verificado: desktop 1024 e mobile 375 sem overflow, Jotform carrega sem erro de console.
+
 ## v2 (2026-10-25): redesign premium a pedido do usuario
 
 Feedback: "mais premium, menos pasteis; amigavel e acessivel, mas profissional; transmitir confianca, fiabilidade e seguranca".

@@ -10,6 +10,8 @@ H1: Tu día se va entre publicar, responder y armar reportes
 SUB: Buzzmonitor reúne tu calendario, los mensajes de tus redes y los resultados de tus perfiles en una sola plataforma. Menos pestañas abiertas y más tiempo para pensar el contenido.
 CTA: Quiero ver cómo funciona
 LABEL: Más de 1.000 marcas y 500 agencias ya trabajan así
+FORM-OVERLINE: Demo con un especialista
+FORM: Jotform LATAM 241825239057661 (embed en el hero)
 
 === DOLORES ===
 OVERLINE: El día a día de quien maneja redes
@@ -71,18 +73,6 @@ QUOTE: Cubre todas las necesidades de los profesionales de Social Media Marketin
 QUOTE: Es muy completa, tanto para el área de análisis, estrategia y reporting, como en la atención a nuestros clientes. | Pablo Ferrer, Head of Social Media · MRM // McCANN
 QUOTE: Los tiempos de entrega han mejorado mucho, el tiempo de análisis Benchmark también y lo más importante es que tenemos una perspectiva mucho más amplia de la conversación. | Celina Mendoza, Copywriter Coordinator · Sube Agencia
 
-=== CTA-FINAL ===
-OVERLINE: Demo con un especialista
-H2: Mira tus redes dentro de Buzzmonitor
-BODY: Agenda una demo y te mostramos cómo planificar, publicar, responder y medir desde una sola plataforma.
-LABEL: Nombre
-LABEL: Email corporativo
-LABEL: Empresa
-LABEL: Cargo
-LABEL: País
-LABEL: Celular
-CTA: Quiero agendar mi demo
-
 === FOOTER ===
 FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
 FOOTER: Política de Privacidad y uso de Cookies
@@ -100,3 +90,5 @@ FOOTER: Política de Privacidad y uso de Cookies
 #   1.000+ clientes, 500+ agencias. Testimonios literales de esas LPs.
 # Idioma: ES-LATAM (es-419), tuteo, sin artículo antes de Buzzmonitor. 0 brasileñismos, 0 "informe"/"monitorización".
 # Revision anti-IA: em-dash 0 · antítesis-por-negación 0 · exclamaciones 0 · preguntas retóricas 0 · "Además" 0.
+# 2026-10-25 (v3): a pedido del usuario, formulario movido al hero (en lugar del mockup) y sección CTA-FINAL eliminada
+#   (H2 "Mira tus redes dentro de Buzzmonitor" + body). Desvío consciente de GUIDELINES §10 (MoFu = form al final).

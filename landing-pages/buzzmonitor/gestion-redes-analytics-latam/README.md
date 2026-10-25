@@ -8,14 +8,13 @@
 ## Estrutura
 
 1. NAV (Gestión · Analytics · Para quién · Agendar demo)
-2. HERO: dor no H1 + mockup ilustrativo de UI (calendario, bandeja, metricas; `aria-hidden`, sem numeros nem texto de marketing)
+2. HERO: dor no H1 + Jotform 241825239057661 a direita (`#inscripcion`, overline "Demo con un especialista")
 3. DOLORES: 5 itens, lista vertical com X rosa
 4. GESTION: 2 blocos (Planifica y publica · Responde a tu comunidad) + CTA
 5. ANALYTICS: grid de 4 cards com ✓ teal
 6. PARA QUIEN: 4 cards por perfil
 7. TESTIMONIOS: 3 depoimentos (Publicis, MRM // McCANN, Sube Agencia)
-8. CTA FINAL: Jotform 241825239057661 (`#inscripcion`), MoFu/BoFu = ultima secao (GUIDELINES §10)
-9. FOOTER
+8. FOOTER
 
 ## Estado
 
@@ -29,7 +28,6 @@
 
 - Skip link "Saltar al contenido" e aria-labels.
 - (Form mock removido: os campos agora vem do proprio Jotform.)
-- Mockup do hero: so iniciais dos dias (L M M J V), sem dados.
 
 ## Assets referenciados
 
