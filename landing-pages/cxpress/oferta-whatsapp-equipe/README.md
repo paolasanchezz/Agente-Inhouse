@@ -17,7 +17,7 @@
 
 ## Decisoes
 
-- **Formulario em mock** (`action="#"`), a pedido da usuaria: ela vai indicar qual form integrar. Campos: Nome, E-mail de trabalho, Telefone, Nome da empresa. Botao usa o CTA da copy, "Garantir oferta".
+- **Formulario:** publicado primeiro em mock para aprovacao (2026-10-27) e depois trocado pelo Jotform compartilhado das ofertas Cxpress BR.
 - **SEO com placeholders** `{{DOMAIN}}`, `{{OG_IMAGE_PATH}}` e `{{BRAND_LOGO_PNG_PATH}}`, resolvidos na publicacao.
 - **Sem "ao vivo"**: o webinar e reprise da gravacao.
 - **Risco de bloqueio** citado so para app nao oficial, em tom condicional (correcao factual do PR #744 da LP do webinar).
@@ -27,7 +27,9 @@
 - [x] HTML gerado
 - [x] OG image 1200×630 → `assets/og-oferta-whatsapp-equipe.png` (template em `assets/og-template.html`)
 - [x] Revisao — ver `REVISAO.md` (2 criticos aplicados)
-- [ ] Formulario integrado — `/lp-integrar-form cxpress/oferta-whatsapp-equipe [snippet]` (aguardando a usuaria indicar o form)
+- [x] Formulario integrado — Jotform `261045149477663` ("CXPRESS BR | MKT | LPs - Proposta | META ADS"), o mesmo das outras ofertas Cxpress BR. O CRM diferencia os leads desta LP pela URL/UTM.
+
+**Form provider:** Jotform (2026-10-27)
 - [ ] Publicado — `/lp-publicar cxpress oferta-whatsapp-equipe content.cxpress.io`
 
 ## A confirmar antes de publicar

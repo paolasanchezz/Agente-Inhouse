@@ -199,18 +199,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .form-note { font-size: 14px; color: var(--ink-mute); margin-top: 14px; line-height: 1.5; }
 
-  /* ----- Form mock (GUIDELINES §11) -----
-     Placeholder ate a integracao real via /lp-integrar-form. */
-  .lp-form { display: flex; flex-direction: column; gap: 14px; }
-  .lp-form .field { display: flex; flex-direction: column; gap: 6px; }
-  .lp-form label { font-family: var(--font-heading); font-weight: 600; font-size: 14px; color: var(--ink); }
-  .lp-form input {
-    font: inherit; font-size: 16px; color: var(--ink); background: var(--paper);
-    border: 1px solid var(--ink-mute); border-radius: var(--radius-btn); padding: 12px 14px;
-    transition: border-color .15s ease;
-  }
-  .lp-form input:focus { outline: 2px solid var(--blue); outline-offset: 1px; border-color: var(--blue); }
-  .lp-form .btn { margin-top: 6px; }
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: o provedor ja vem com card proprio.
+     A regra do iframe garante que, se o provedor renderizar via iframe, ele
+     ocupa 100% da largura sem borda. */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
   /* mobile: headline sempre antes do form (sem order:-1 no visual) */
   @media (max-width: 980px) {
@@ -387,25 +380,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </li>
           </ul>
 
-          <form class="lp-form" action="#" onsubmit="event.preventDefault()">
-            <div class="field">
-              <label for="f-nome">Nome</label>
-              <input id="f-nome" name="nome" type="text" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="f-email">E-mail de trabalho</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="f-telefone">Telefone</label>
-              <input id="f-telefone" name="telefone" type="tel" autocomplete="tel" required>
-            </div>
-            <div class="field">
-              <label for="f-empresa">Nome da empresa</label>
-              <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Garantir oferta <span class="arrow" aria-hidden="true">→</span></button>
-          </form>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+          </div>
           <p class="form-note">Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta.</p>
         </div>
         </div>
