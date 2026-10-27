@@ -276,6 +276,11 @@
       "source": "landing-pages/cxpress/oferta-whatsapp-comercial-bloqueado"
     },
     {
+      "slug": "oferta-whatsapp-equipe",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/oferta-whatsapp-equipe"
+    },
+    {
       "slug": "planos",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/planos"

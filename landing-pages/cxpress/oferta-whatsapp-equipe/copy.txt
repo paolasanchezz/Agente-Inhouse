@@ -1,0 +1,67 @@
+=== META ===
+BODY: Marca: Cxpress. Regiao: Brasil (PT-BR). Dominio: content.cxpress.io (guarda-chuva). Slug sugerido: oferta-whatsapp-equipe.
+BODY: Pagina de oferta pos-webinar do "WhatsApp Business em Escala: Proteja a sua operacao de bloqueios" (content.cxpress.io/webinar-whatsapp-equipe), sessao de 4 de novembro de 2026, quarta-feira, 11h.
+BODY: Estrutura: mesma familia de oferta-atendimento-blackfriday (Hero + form, Marcas, Impacto, Depois da virada, Footer).
+BODY: Oferta: agente de IA personalizado + economia de R$ 4 mil + sem multa de cancelamento. Partiu da oferta-atendimento-blackfriday; o bullet de implantacao em 21 dias foi trocado pela economia de R$ 4 mil em 2026-10-23, a pedido da usuaria.
+LABEL: <title> sugerido: WhatsApp em Escala: condição especial para quem participou do webinar | Cxpress
+BODY: meta description sugerida: Leve o atendimento da sua equipe para a API Oficial com a Cxpress, mantendo o seu número. Condição especial para quem participou do webinar.
+
+=== HERO ===
+LABEL: Oferta exclusiva para quem participou do webinar
+H1: Sua equipe cresceu e o WhatsApp ficou pequeno para a operação
+SUB: No webinar, você viu até onde o WhatsApp Business acompanha uma equipe, quais práticas podem levar a restrições e como escalar o atendimento pela API Oficial mantendo o número que seus clientes já conhecem.
+BODY: Agora, aproveite a condição especial da Cxpress para colocar essa estrutura em pé antes do pico de fim de ano.
+LABEL: O que está incluído na sua condição
+# [ALTERADO a pedido da usuaria, 2026-10-23] Era "Condição especial para quem participou do webinar", que repetia o kicker do hero.
+LIST ITEM: Criação do primeiro agente de IA personalizado, de acordo com as necessidades da sua operação
+LIST ITEM: Economize R$ 4 mil e comece com uma estrutura pronta para escalar seu atendimento
+# [ALTERADO a pedido da usuaria, 2026-10-23] Era "Implantação em até 21 dias, tudo pronto para sua empresa aproveitar a Black Friday".
+LIST ITEM: Contrato sem multa de cancelamento
+CTA: Garantir oferta
+LABEL: Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta.
+
+=== MARCAS ===
+LABEL: Mais de 800 empresas atendem pela API Oficial com a Cxpress
+
+=== IMPACTO ===
+H2: Até quando sua operação aguenta no improviso?
+BODY: Celular dividido entre turnos, app paralelo para distribuir conversas, planilha para saber quem respondeu quem. Com volume baixo, dá conta.
+BODY: Nos períodos de pico de atendimento, as mensagens se multiplicam, a fila cresce e cada conversa sem resposta pode virar uma venda do concorrente. E um app não oficial pode colocar o número em risco de restrição justo quando a operação mais precisa dele.
+# [ALTERADO a pedido da usuaria, 2026-10-23] Tirada a mencao a Black Friday: era "Na Black Friday, ..." e "...justo na semana que mais importa".
+
+=== DEPOIS DA VIRADA ===
+H2: O que muda quando a equipe atende pela API Oficial
+LIST ITEM: Todos os atendentes no mesmo número, com filas e distribuição automática das conversas
+LIST ITEM: Histórico de cada cliente salvo, independentemente de quem atendeu
+LIST ITEM: Agente de IA respondendo as dúvidas repetidas a qualquer hora
+LIST ITEM: Fila, SLA e desempenho da equipe acompanhados em um só lugar
+BODY: O número continua o mesmo. A estrutura por trás dele fica pronta para o pico.
+CTA: Garantir oferta
+
+=== FOOTER ===
+FOOTER: Cxpress é um produto Elife. © 2026
+FOOTER: Condições gerais de uso da Cxpress · Políticas de privacidade
+
+# ================================================================
+# NOTAS
+# ================================================================
+#
+# REPRISE: o webinar e reprise da gravacao. Esta pagina nao diz "ao vivo" nem cita perguntas
+# respondidas na sessao.
+#
+# CORRECAO FACTUAL HERDADA (PR #744): numero de atendentes NAO e causa de bloqueio. O WhatsApp
+# Business conecta ate 4 dispositivos (mais em alguns planos Meta Verified). O risco citado
+# aqui e so o de apps nao oficiais, em tom condicional ("pode colocar em risco").
+#
+# A CONFIRMAR ANTES DE PUBLICAR
+# 1. Prazo de 21 dias: deixou de valer, o bullet saiu em 2026-10-23. Se a oferta tiver
+#    validade, vale incluir a data.
+# 2. "Mais de 800 empresas atendem pela API Oficial com a Cxpress": numero herdado da LP do
+#    webinar. Confirmar que segue atual.
+# 3. Formulario: reaproveitar o Jotform 261045149477663 da oferta-atendimento-blackfriday ou
+#    criar um novo para separar os leads deste webinar.
+#
+# ANTI-IA
+# em-dash 0 | exclamacao 0 | filler 0 | frase de IA 0 | metafora aquatica 0
+# antitese-por-negacao 0 | pergunta retorica 1 (H2 do Impacto) | listas: 3 (oferta, literal) e 4
+# "API Oficial" com O maiusculo, grafia da Marielle.
