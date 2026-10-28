@@ -203,7 +203,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__pills .p3{width:120px;height:46px;background:var(--warning);bottom:18px;right:-12px;opacity:.9}
     .hero__mockup{
       position:relative;z-index:1;
-      width:100%;max-width:540px;height:auto;min-height:0;
+      display:block;width:100%;max-width:540px;height:auto;min-height:0;
+      aspect-ratio:566/318;object-fit:contain;background:var(--white);
       filter:drop-shadow(0 24px 48px rgba(35,41,96,.18));
     }
 
@@ -276,7 +277,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size:clamp(40px,4vw,56px);line-height:1;
       color:var(--primary-dark);display:block;margin-bottom:14px;
     }
-    .stat__label{font-size:16px;line-height:1.5;color:var(--neutral-700)}
+    .stat__label{display:block;font-size:16px;line-height:1.5;color:var(--neutral-700)}
     .prova__notes{
       max-width:720px;margin:0 auto 48px;text-align:center;
     }
@@ -309,8 +310,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .feature + .feature{border-top:1px solid var(--neutral-100)}
     .feature__media{display:grid;place-items:center;min-height:0}
-    .feature__media img{
-      width:100%;max-width:480px;height:auto;min-height:0;
+    .feature__media img,.feature__media video{
+      display:block;width:100%;max-width:480px;height:auto;min-height:0;
       border-radius:var(--radius-card);
       border:1px solid var(--neutral-100);
       box-shadow:0 10px 28px rgba(35,41,96,.12);
@@ -402,6 +403,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .footer__logo img{display:block;height:34px;width:auto}
     .footer p{color:var(--primary-lighter);font-size:15px;line-height:1.6}
+    .footer a:not(.footer__logo){color:inherit;text-underline-offset:3px}
+    .footer a:not(.footer__logo):hover{color:var(--white)}
 
     /* ===== Responsivo ===== */
     @media (max-width:980px){
@@ -434,6 +437,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width:520px){
       .prova__grid{grid-template-columns:1fr}
       .hero__overline{white-space:normal}
+      /* o rotulo longo quebrava em 2 linhas alinhado a esquerda; ocupando a largura cabe em 1 */
+      .btn{display:block;text-align:center;padding:16px 18px;font-size:16px}
+      .fecho__inner{padding:0 24px}
     }
 
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
@@ -444,6 +450,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn{background:#21CC78}
     .btn:hover{background:#1AAE63;box-shadow:0 10px 24px rgba(33,204,120,.28)}
     .hero__overline::before{background:#21CC78}
+
+  /* ===== GUIDELINES 21 - quebra de linha equilibrada ===== */
+  .hero h1,.hero__sub,.section-title,.card h3,.feature h3,.stat__label,
+  .prova__notes p,.faq summary,.fecho h2,.agendar h3,.agendar__req,.quem-somos h2{text-wrap:balance}
+  .card p,.feature p,.faq details p,.agendar__body,.quem-somos p,.footer p{text-wrap:pretty}
 
   /* ===== GUIDELINES 20 - pisos de tipografia mobile ===== */
   @media (max-width:640px){
@@ -489,7 +500,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="p2"></span>
             <span class="p3"></span>
           </div>
-          <img class="hero__mockup" src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales de atención (WhatsApp, correo electrónico, redes sociales, teléfono) integrados en el mismo panel" width="566" height="318" loading="eager">
+          <video class="hero__mockup" autoplay muted loop playsinline preload="auto" width="566" height="318" poster="../../brand/cxpress/assets/plataforma/plataforma-canais-poster.webp" aria-label="Animación de la plataforma Cxpress mostrando los canales de atención (WhatsApp, correo electrónico, redes sociales, teléfono) integrados en el mismo panel">
+            <source src="../../brand/cxpress/assets/plataforma/plataforma-canais.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
@@ -499,7 +512,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="clientes__inner">
         <h2 id="clientes-title" class="section-title reveal">Clientes que confían en Cxpress para optimizar su atención</h2>
         <div class="clientes__grid reveal">
-          <img src="../../brand/cxpress/assets/plataforma/clientes-cxpress.png" alt="Logos de clientes que usan Cxpress, entre ellos Koin, Advanta, Mondial, Vivo, Sephora, Smartfit, ThermoFisher, J&amp;T Express, Eletrobras y Cacau Show" width="1886" height="906" loading="lazy">
+          <picture><source srcset="../../brand/cxpress/assets/plataforma/clientes-cxpress.webp" type="image/webp"><img src="../../brand/cxpress/assets/plataforma/clientes-cxpress.png" alt="Logos de clientes que usan Cxpress, entre ellos Koin, Advanta, Mondial, Vivo, Sephora, Smartfit, ThermoFisher, J&amp;T Express, Eletrobras y Cacau Show" width="1886" height="906" loading="lazy"></picture>
         </div>
       </div>
     </section>
@@ -571,7 +584,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="feature reveal">
           <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-canais.gif" alt="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel" width="566" height="318" loading="lazy">
+            <video muted loop playsinline preload="none" width="566" height="318" poster="../../brand/cxpress/assets/plataforma/plataforma-canais-poster.webp" data-src="../../brand/cxpress/assets/plataforma/plataforma-canais.mp4" aria-label="Animación de la plataforma Cxpress mostrando los canales correo electrónico, WhatsApp, Facebook, Instagram, Webchat y teléfono integrados en el mismo panel"></video>
           </div>
           <div class="feature__text">
             <h3>Todos los canales en el mismo panel</h3>
@@ -581,7 +594,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="feature reveal">
           <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.gif" alt="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial" width="786" height="442" loading="lazy">
+            <video muted loop playsinline preload="none" width="786" height="442" poster="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia-poster.webp" data-src="../../brand/cxpress/assets/plataforma/plataforma-chatbot-ia.mp4" aria-label="Animación de la plataforma Cxpress mostrando la configuración de las reglas de comportamiento del chatbot con inteligencia artificial"></video>
           </div>
           <div class="feature__text">
             <h3>Atención 24/7 con apoyo de IA</h3>
@@ -598,7 +611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="feature reveal">
           <div class="feature__media">
-            <img src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.gif" alt="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono" width="816" height="458" loading="lazy">
+            <video muted loop playsinline preload="none" width="816" height="458" poster="../../brand/cxpress/assets/plataforma/plataforma-dashboard-poster.webp" data-src="../../brand/cxpress/assets/plataforma/plataforma-dashboard.mp4" aria-label="Animación del dashboard de la plataforma Cxpress con indicadores de atención como tiempo promedio de espera, tickets y tasa de abandono"></video>
           </div>
           <div class="feature__text">
             <h3>Dashboards en lugar de planillas</h3>
@@ -673,7 +686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://cxpress.ai/" class="footer__logo" target="_blank" rel="noopener" aria-label="Cxpress: página principal">
         <img src="../../brand/cxpress/assets/logos/logo-reversed.svg" alt="" width="150" height="34">
       </a>
-      <p>Cxpress es un producto Elife. © 2026<br>Condiciones generales de uso de Cxpress · Políticas de privacidad</p>
+      <p>Cxpress es un producto Elife. © 2026<br><a href="https://www.cxpress.ai/condiciones-generales" target="_blank" rel="noopener">Condiciones generales de uso de Cxpress</a> · <a href="https://www.cxpress.ai/politica-de-privacidad" target="_blank" rel="noopener">Políticas de privacidad</a></p>
     </div>
   </footer>
 
@@ -695,6 +708,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       els.forEach(function(el){io.observe(el)});
     })();
   </script>
+<script>
+  /* Videos da plataforma (eram GIFs de ate 2,4 MB). Os de baixo da dobra so ganham o
+     src perto da tela (autoplay ignora preload=none) e todos pausam fora de vista.
+     Com reduced-motion fica so o poster. */
+  (function () {
+    var calmo = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var vids = document.querySelectorAll('.hero__mockup, .feature__media video');
+    if (calmo) { vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); }); return; }
+    function tocar(v) {
+      if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); }
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    if (!('IntersectionObserver' in window)) { vids.forEach(tocar); return; }
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { if (e.isIntersecting) tocar(e.target); else e.target.pause(); });
+    }, { rootMargin: '400px 0px' });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>
 <script>
   /* Ancoras internas sem #secao na URL: o hash ia parar no ?lp= do redirect pos-form.
      Skip-link fica nativo; clique via teclado move o foco pro destino, como o browser faria. */
