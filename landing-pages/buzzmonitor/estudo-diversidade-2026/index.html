@@ -185,31 +185,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .premio{background:linear-gradient(155deg,#14134A 0%,#221F7D 40%,#3632AA 75%,#6B67C7 100%);color:#fff;position:relative;overflow:hidden}
   .premio .kicker{color:var(--amarelo)}
   .achados .kicker{color:var(--estudo-azul)}
-  .premio .h2{color:#fff;max-width:20ch}
-  .premio__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
-  .premio .lead{color:#EAD9F5}
-  .chips{display:flex;flex-direction:column;gap:14px}
-  .chip{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 20px;font-family:var(--display);font-weight:700;font-size:1.1rem}
-  .chip .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto}
+  .premio .h2{color:#fff}
+  .premio .lead{color:#EAD9F5;margin:14px auto 0}
+  .premio .lead strong{color:#fff}
+  .premio__head{max-width:760px;margin:0 auto 44px;text-align:center;position:relative;z-index:2}
+  .premio__badge{display:inline-block;font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--roxo);background:var(--amarelo);padding:6px 14px;border-radius:999px;margin-bottom:16px}
+  .premio__title{font-size:clamp(2.6rem,6vw,4.4rem)}
+  .premio__winners{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;max-width:1100px;margin:0 auto;position:relative;z-index:2}
+  .premio .win-card{border-color:transparent}
+  .win-card__wordmark{font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:.95;color:#0A3D8F;letter-spacing:-.01em}
+  .win-card__wordmark small{font-size:.62em;font-weight:800;color:#E4002B}
   .premio__sun{position:absolute;right:-90px;bottom:-90px;width:320px;height:320px;opacity:.14;pointer-events:none}
-  /* ---------- PREMIO 2025 (edição anterior) ---------- */
-  .premio25{background:var(--off);position:relative;overflow:hidden}
-  .premio25 .kicker{color:var(--laranja)}
-  .premio25__head{max-width:760px;margin:0 auto 44px;text-align:center}
-  .premio25__badge{display:inline-block;font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--roxo);background:var(--lilas);padding:6px 14px;border-radius:999px;margin-bottom:16px}
-  .premio25__head .lead{margin:14px auto 0}
-  .premio25__grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
-  .win-card{width:200px;background:#fff;border:1px solid var(--borda);border-radius:18px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}
+  .win-card{width:250px;background:#fff;border:1px solid var(--borda);border-radius:20px;padding:30px 22px 26px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}
   .win-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(57,1,85,.14)}
-  .win-card__logo{height:64px;width:100%;display:flex;align-items:center;justify-content:center}
+  .win-card__logo{height:72px;width:100%;display:flex;align-items:center;justify-content:center}
   .win-card__logo img{max-height:100%;max-width:100%;object-fit:contain}
-  .win-card--dark{background:var(--roxo);border-color:var(--roxo)}
-  .win-card--dark .win-card__cat{color:#fff}
-  .win-card__cat{font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--tinta2);letter-spacing:.01em;line-height:1.3}
-  .premio25__note{max-width:760px;margin:40px auto 0;display:flex;flex-direction:column;gap:12px;list-style:none}
-  .premio25__note li{position:relative;padding-left:26px;font-size:.98rem;color:var(--tinta2);line-height:1.55}
-  .premio25__note li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--laranja)}
-  @media(max-width:560px){.win-card{width:158px;padding:20px 14px}}
+  .win-card__cat{font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--roxo);letter-spacing:-.005em;line-height:1.1;padding-top:18px;border-top:3px solid var(--amarelo);width:100%}
+  @media(max-width:560px){.win-card{width:calc(50% - 8px);padding:22px 12px 20px;gap:14px}.win-card__logo{height:56px}.win-card__cat{font-size:1.05rem;padding-top:14px}.premio__winners{gap:16px}}
 
   /* ---------- VISUAL LISTENING ---------- */
   .vlisten{position:relative;overflow:hidden;background:linear-gradient(165deg,#F4F1FD 0%,#EAE6F9 100%)}
@@ -280,7 +272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---------- responsive ---------- */
   @media(max-width:980px){
-    .hero .wrap,.destaque__wrap,.premio__grid,.porque__wrap,.cta__grid{grid-template-columns:1fr}
+    .hero .wrap,.destaque__wrap,.porque__wrap,.cta__grid{grid-template-columns:1fr}
     .hero{padding-top:48px}
     .hero__sub{max-width:none}
     .hero__figure{max-width:320px;padding:88px 78px 68px 78px}
@@ -295,7 +287,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero__stat strong{font-size:1.02rem}
     .mosaic{max-width:460px;margin:8px auto 0}
     .mgrid{grid-template-columns:repeat(2,1fr)}
-    .premio__grid{gap:32px}
   }
   @media(max-width:560px){
     .mgrid{grid-template-columns:1fr}
@@ -433,63 +424,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section premio">
     <svg class="premio__sun spin" viewBox="0 0 120 120" aria-hidden="true" style="transform-box:fill-box"><g fill="#FCBD4F"><rect x="56" y="6" width="8" height="34" rx="4"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(45 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(90 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(135 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(180 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(225 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(270 60 60)"/><rect x="56" y="6" width="8" height="34" rx="4" transform="rotate(315 60 60)"/></g><circle cx="60" cy="60" r="16" fill="#FCBD4F"/></svg>
     <div class="wrap">
-      <div class="premio__grid">
-        <div class="reveal">
-          <p class="kicker">Buzz Summit 2026</p>
-          <h2 class="h2">Os vencedores serão anunciados no Buzz Summit 2026</h2>
-          <p class="lead">As marcas que mais se destacaram em representatividade nas redes sociais serão reveladas em outubro, no Buzz Summit 2026.</p>
-          <a href="https://www.buzzsummit.com.br/buzzsummit-2026/?utm_source=lp-estudo-diversidade&amp;utm_content=estudo-de-diversidade" class="btn" style="margin-top:28px" target="_blank" rel="noopener">Conheça o Buzz Summit 2026</a>
-        </div>
-        <div class="chips reveal">
-          <div class="chip"><span class="dot" style="background:var(--laranja)"></span>Presença de Idosos</div>
-          <div class="chip"><span class="dot" style="background:var(--amarelo)"></span>Presença de PCDs</div>
-          <div class="chip"><span class="dot" style="background:var(--pessego)"></span>Presença Negra</div>
-          <div class="chip"><span class="dot" style="background:var(--lilas)"></span>Presença Feminina</div>
-          <div class="chip"><span class="dot" style="background:#8B85E0"></span>Presença de Pessoas Sexualmente Diversas</div>
-        </div>
+      <div class="premio__head reveal">
+        <span class="premio__badge">Edição 2026</span>
+        <p class="kicker">2º Prêmio Diversidade na Comunicação</p>
+        <h2 class="h2 premio__title">Os vencedores de 2026</h2>
+        <p class="lead">As marcas que mais se destacaram em representatividade nas redes sociais foram reconhecidas em outubro, no <strong>Buzz Summit 2026</strong>, em 7 categorias.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== PREMIO 2025 (edição anterior) ===================== -->
-  <section class="section premio25">
-    <div class="wrap">
-      <div class="premio25__head reveal">
-        <span class="premio25__badge">Edição 2025</span>
-        <p class="kicker">1º Prêmio Diversidade na Comunicação</p>
-        <h2 class="h2">Os vencedores da edição passada</h2>
-        <p class="lead">Na 7ª edição do estudo, a Buzzmonitor analisou mais de 6 mil publicações dos maiores anunciantes do Brasil para eleger as marcas mais representativas em 5 categorias. O reconhecimento aconteceu no <strong>Buzz Summit 2025</strong>, o maior evento de Social Media e IA do Brasil.</p>
-      </div>
-      <div class="premio25__grid stagger">
-        <article class="win-card win-card--dark reveal" style="--i:0">
-          <div class="win-card__logo"><img src="./assets/vencedores-2025/calcitran.png" alt="Logo da Calcitran" loading="lazy"></div>
-          <p class="win-card__cat">Presença de Idosos</p>
+      <div class="premio__winners stagger">
+        <article class="win-card reveal" style="--i:0">
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/dove.png" alt="Logo da Dove" loading="lazy"></div>
+          <p class="win-card__cat">Presença Feminina e Plus Size</p>
         </article>
         <article class="win-card reveal" style="--i:1">
-          <div class="win-card__logo"><img src="./assets/vencedores-2025/ariel.png" alt="Logo da Ariel" loading="lazy"></div>
-          <p class="win-card__cat">Presença de PCDs</p>
-        </article>
-        <article class="win-card reveal" style="--i:2">
-          <div class="win-card__logo"><img src="./assets/vencedores-2025/bet-nacional.svg" alt="Logo da Bet Nacional" loading="lazy"></div>
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/knorr.svg" alt="Logo da Knorr" loading="lazy"></div>
           <p class="win-card__cat">Presença Negra</p>
         </article>
+        <article class="win-card reveal" style="--i:2">
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/fanta.svg" alt="Logo da Fanta" loading="lazy"></div>
+          <p class="win-card__cat">Presença Asiática</p>
+        </article>
         <article class="win-card reveal" style="--i:3">
-          <div class="win-card__logo"><img src="./assets/vencedores-2025/magalu.svg" alt="Logo da Magalu" loading="lazy"></div>
-          <p class="win-card__cat">Presença Feminina</p>
+          <div class="win-card__logo"><span class="win-card__wordmark">Sustagen<br><small>Adultos+</small></span></div>
+          <p class="win-card__cat">Presença Terceira Idade</p>
         </article>
         <article class="win-card reveal" style="--i:4">
-          <div class="win-card__logo"><img src="./assets/vencedores-2025/brilhante.jpg" alt="Logo da Brilhante" loading="lazy"></div>
-          <p class="win-card__cat">Presença de Pessoas Sexualmente Diversas</p>
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/sky.svg" alt="Logo da Sky" loading="lazy"></div>
+          <p class="win-card__cat">Presença PcDs</p>
+        </article>
+        <article class="win-card reveal" style="--i:5">
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/bradesco.png" alt="Logo do Bradesco" loading="lazy"></div>
+          <p class="win-card__cat">Presença LGBTQIAPN+</p>
+        </article>
+        <article class="win-card reveal" style="--i:6">
+          <div class="win-card__logo"><img src="./assets/vencedores-2026/vivo.svg" alt="Logo da Vivo" loading="lazy"></div>
+          <p class="win-card__cat">Presença Indígena</p>
         </article>
       </div>
-      <ul class="premio25__note reveal">
-        <li><strong>Idosos</strong> triplicaram a presença nas campanhas, ainda de forma limitada.</li>
-        <li><strong>Presença feminina</strong> cresceu, mas seguiu ligada a estereótipos de beleza e cuidado.</li>
-        <li><strong>Representatividade negra</strong> aumentou, mas continuou abaixo da realidade brasileira.</li>
-        <li><strong>População LGBTQIAPN+</strong> avançou de forma simbólica e restrita.</li>
-        <li><strong>PCDs e pessoas obesas</strong> seguiram quase invisíveis nas campanhas.</li>
-        <li><strong>Asiáticos</strong> continuaram super-representados em papéis tecnológicos.</li>
-      </ul>
     </div>
   </section>
 

@@ -22,19 +22,13 @@ LIST ITEM: PcDs (0,5%) e pessoas gordas (0,9%) seguem quase invisíveis, a pior 
 LIST ITEM: Asiáticos seguem super-representados: 12,1% de presença no estudo contra 0,4% da população brasileira
 
 === PREMIO ===
-OVERLINE: Buzz Summit 2026
-H2: Os vencedores serão anunciados no Buzz Summit 2026
-BODY: As marcas que mais se destacaram em representatividade nas redes sociais serão reveladas em outubro, no Buzz Summit 2026.
-CTA: Conheça o Buzz Summit
+BADGE: Edição 2026
+OVERLINE: 2º Prêmio Diversidade na Comunicação
+H2: Os vencedores de 2026
+BODY: As marcas que mais se destacaram em representatividade nas redes sociais foram reconhecidas em outubro, no Buzz Summit 2026, em 7 categorias.
 
-LIST ITEM: Presença de Idosos
-LIST ITEM: Presença de PCDs
-LIST ITEM: Presença Negra
-LIST ITEM: Presença Feminina
-LIST ITEM: Presença de Pessoas Sexualmente Diversas
+VENCEDORES 2026: Dove (Presença Feminina e Plus Size), Knorr (Presença Negra), Fanta (Presença Asiática), Sustagen Adultos+ (Presença Terceira Idade), Sky (Presença PcDs), Bradesco (Presença LGBTQIAPN+) e Vivo (Presença Indígena).
 
-VENCEDORES 2025 LABEL: Vencedores da edição 2025
-VENCEDORES 2025: Calcitran (Presença de Idosos), Ariel (Presença de PCDs), Bet Nacional (Presença Negra), Magalu (Presença Feminina) e Brilhante (Presença de Pessoas Sexualmente Diversas).
 
 === POR QUE IMPORTA ===
 H2: Por que este estudo importa?
