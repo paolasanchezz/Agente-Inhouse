@@ -199,6 +199,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .form-note { font-size: 14px; color: var(--ink-mute); margin-top: 14px; line-height: 1.5; }
 
+  /* ----- Jotform embed wrapper (canonico) -----
+     Sem padding/background/border: o provedor ja vem com card proprio.
+     A regra do iframe garante que, se o provedor renderizar via iframe, ele
+     ocupa 100% da largura sem borda. */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
   /* mobile: headline sempre antes do form (sem order:-1 no visual) */
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -374,26 +380,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </li>
           </ul>
 
-          <form class="lead-form" id="formOferta" novalidate>
-            <div class="lead-field">
-              <label for="lf-nome">Seu nome</label>
-              <input type="text" id="lf-nome" name="nome" autocomplete="name" required>
-            </div>
-            <div class="lead-field">
-              <label for="lf-email">Seu e-mail de trabalho</label>
-              <input type="email" id="lf-email" name="email" autocomplete="email" required>
-            </div>
-            <div class="lead-field">
-              <label for="lf-whatsapp">WhatsApp</label>
-              <input type="tel" id="lf-whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" required>
-            </div>
-            <div class="lead-field">
-              <label for="lf-empresa">Nome da empresa onde voc&ecirc; trabalha</label>
-              <input type="text" id="lf-empresa" name="empresa" autocomplete="organization" required>
-            </div>
-            <button type="submit" class="btn btn-primary lead-submit" id="lfSubmit">Garantir minha condi&ccedil;&atilde;o</button>
-            <p class="lead-status" id="lfStatus" role="status" aria-live="polite"></p>
-          </form>
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261045149477663"></script>
+          </div>
           <p class="form-note">Ao enviar, você concorda em ser contatado pela Cxpress sobre esta oferta.</p>
         </div>
         </div>
@@ -677,32 +666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
     <p class="footer-text">Cxpress é um produto Elife. © 2026</p>
   </div>
-<div class="cxp-legal" data-cxp-legal><style>.cxp-legal{width:min(1200px,calc(100% - 48px));margin:28px auto 0;padding:22px 0 0;border-top:1px solid rgba(255,255,255,.16);text-align:center;font-family:inherit}.cxp-legal .cxp-legal__title{display:block;margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;color:rgba(255,255,255,.62)}.cxp-legal .cxp-legal__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 24px}.cxp-legal .cxp-legal__nav a{font-size:14px;line-height:1.5;color:rgba(255,255,255,.88);text-decoration:underline;text-underline-offset:3px}.cxp-legal .cxp-legal__nav a:hover{color:#fff}.cxp-legal--light{border-top-color:rgba(12,36,97,.14)}.cxp-legal--light .cxp-legal__title{color:#5b6489}.cxp-legal--light .cxp-legal__nav a{color:#0C2461}.cxp-legal--inline{width:auto;margin:0;padding:0;border-top:0;text-align:left}.cxp-legal--inline .cxp-legal__nav{justify-content:flex-start}
-  /* ----- Formulario nativo (grava na planilha via Apps Script) ----- */
-  .lead-form { display: flex; flex-direction: column; gap: 16px; }
-  .lead-field { display: flex; flex-direction: column; gap: 6px; }
-  .lead-field label {
-    font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--ink-soft);
-  }
-  .lead-field input {
-    font-family: var(--font-body); font-size: 16px; color: var(--ink);
-    padding: 13px 14px; border: 1px solid var(--rule); border-radius: var(--radius-btn);
-    background: var(--paper); width: 100%;
-    transition: border-color .15s ease, box-shadow .15s ease;
-  }
-  .lead-field input::placeholder { color: var(--ink-mute); }
-  .lead-field input:hover { border-color: #CBD2DC; }
-  .lead-field input:focus {
-    outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(43,92,230,.15);
-  }
-  .lead-field input[aria-invalid="true"] { border-color: var(--danger); }
-  .lead-field .lead-erro { font-size: 13px; color: var(--danger); }
-  .lead-submit { width: 100%; margin-top: 4px; }
-  .lead-submit[disabled] { opacity: .65; cursor: progress; transform: none; }
-  .lead-status { font-size: 14.5px; line-height: 1.5; margin: 0; min-height: 0; }
-  .lead-status[data-estado="erro"] { color: var(--danger); }
-  .lead-status[data-estado="ok"] { color: var(--blue-deep); font-weight: 600; }
-</style><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://elife.com.br/index.php/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a><a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso</a></nav></div>
+<div class="cxp-legal" data-cxp-legal><style>.cxp-legal{width:min(1200px,calc(100% - 48px));margin:28px auto 0;padding:22px 0 0;border-top:1px solid rgba(255,255,255,.16);text-align:center;font-family:inherit}.cxp-legal .cxp-legal__title{display:block;margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;color:rgba(255,255,255,.62)}.cxp-legal .cxp-legal__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 24px}.cxp-legal .cxp-legal__nav a{font-size:14px;line-height:1.5;color:rgba(255,255,255,.88);text-decoration:underline;text-underline-offset:3px}.cxp-legal .cxp-legal__nav a:hover{color:#fff}.cxp-legal--light{border-top-color:rgba(12,36,97,.14)}.cxp-legal--light .cxp-legal__title{color:#5b6489}.cxp-legal--light .cxp-legal__nav a{color:#0C2461}.cxp-legal--inline{width:auto;margin:0;padding:0;border-top:0;text-align:left}.cxp-legal--inline .cxp-legal__nav{justify-content:flex-start}</style><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://elife.com.br/index.php/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a><a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso</a></nav></div>
 </footer>
 
 <script>
@@ -724,107 +688,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
 </script>
 
-
-  <script>
-  (function () {
-    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbx7PYQrnl-7JFkr08fFDtP-3vyOLvx1lSmYN4e568y68i7mVrFiMc2mR-ZVRYBBHP4HUw/exec';
-    var RASTREIO = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content',
-                    'gclid','fbclid','campaignid','adsetid','adid','adset'];
-
-    var form = document.getElementById('formOferta');
-    if (!form) return;
-    var botao = document.getElementById('lfSubmit');
-    var status = document.getElementById('lfStatus');
-    var textoBotao = botao.textContent;
-
-    function avisar(msg, estado) {
-      status.textContent = msg;
-      if (estado) { status.setAttribute('data-estado', estado); }
-      else { status.removeAttribute('data-estado'); }
-    }
-
-    function limparErro(campo) {
-      campo.removeAttribute('aria-invalid');
-      var e = campo.parentNode.querySelector('.lead-erro');
-      if (e) { e.parentNode.removeChild(e); }
-    }
-
-    function marcarErro(campo, msg) {
-      campo.setAttribute('aria-invalid', 'true');
-      if (!campo.parentNode.querySelector('.lead-erro')) {
-        var p = document.createElement('span');
-        p.className = 'lead-erro';
-        p.textContent = msg;
-        campo.parentNode.appendChild(p);
-      }
-    }
-
-    Array.prototype.forEach.call(form.querySelectorAll('input'), function (c) {
-      c.addEventListener('input', function () { limparErro(c); });
-    });
-
-    function validar() {
-      var falhas = [];
-      Array.prototype.forEach.call(form.querySelectorAll('input[required]'), function (c) {
-        limparErro(c);
-        var v = c.value.trim();
-        if (!v) { marcarErro(c, 'Preencha este campo.'); falhas.push(c); return; }
-        if (c.type === 'email' && v.indexOf('@') < 1) {
-          marcarErro(c, 'Confira o e-mail.'); falhas.push(c);
-        }
-        if (c.type === 'tel' && v.replace(/\D/g, '').length < 10) {
-          marcarErro(c, 'Inclua o DDD.'); falhas.push(c);
-        }
-      });
-      return falhas;
-    }
-
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-
-      var falhas = validar();
-      if (falhas.length) {
-        avisar('Confira os campos destacados.', 'erro');
-        falhas[0].focus();
-        return;
-      }
-
-      var q = new URLSearchParams(window.location.search);
-      var dados = {
-        nome: form.nome.value.trim(),
-        email: form.email.value.trim(),
-        whatsapp: form.whatsapp.value.trim(),
-        empresa: form.empresa.value.trim(),
-        url: window.location.href
-      };
-      RASTREIO.forEach(function (k) { dados[k] = q.get(k) || ''; });
-
-      botao.disabled = true;
-      botao.textContent = 'Enviando...';
-      avisar('');
-
-      fetch(ENDPOINT, {
-        method: 'POST',
-        // text/plain evita o preflight CORS, que o Apps Script nao responde.
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(dados)
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (r) {
-          if (!r || !r.ok) { throw new Error(r && r.error ? r.error : 'Resposta invalida'); }
-          form.reset();
-          avisar('Pronto. Recebemos os seus dados e o nosso time entra em contato.', 'ok');
-        })
-        .catch(function (err) {
-          console.error('Falha no envio:', err);
-          avisar('Nao conseguimos enviar. Tente de novo em instantes ou escreva para comercial@cxpress.io.', 'erro');
-        })
-        .then(function () {
-          botao.disabled = false;
-          botao.textContent = textoBotao;
-        });
-    });
-  })();
-  </script>
 </body>
 </html>
