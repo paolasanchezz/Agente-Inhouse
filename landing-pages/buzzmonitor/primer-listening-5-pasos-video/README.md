@@ -15,7 +15,7 @@ Parte da migracao dos 3 perpetuos LATAM (`caso-smartfit`, `gestion-crisis`, `pri
 
 1. **Slug novo (`-video`), nao reaproveitar `-confirmado`:** a usuaria pediu manter tudo do ClickMeeting no ar ate a troca do form. `primer-listening-5-pasos-confirmado` segue servindo o fluxo atual (sala ClickMeeting); quando a LP de captura migrar pro Jotform, o destino passa a ser esta pagina.
 2. **Video:** YouTube `_En4vJnCsLc` ("Webinar: Tu primer listening en 5 pasos", canal Buzzmonitor en Español), embed `youtube.com/embed/_En4vJnCsLc?rel=0`, carrega no load.
-3. **Botao comercial:** mesmo destino e UTMs da `-confirmado` atual (`content.buzzmonitor.com/plataforma-integral-social-media?utm_source=perpetuo&utm_content=agradecimento-perpetuo-primer-listening`) e texto trocado pra "¡Agenda una demo gratuita!" a pedido da usuaria (2026-11-03).
+3. **Botao comercial:** mesmo destino e UTMs da `-confirmado` atual (`content.buzzmonitor.com/plataforma-integral-social-media?utm_source=perpetuo&utm_content=agradecimento-perpetuo-primer-listening`) e texto "¡Agenda tu demo gratuita!". Copy do hero e do CTA final reescrita a partir do texto da usuaria (2026-11-03).
 4. **Redes sociais LATAM no footer:** Instagram `buzzmonitor.es`, X `Buzzmonitor_ES`, Facebook `Buzzmonitorespanol`, LinkedIn `buzzmonitor`, YouTube `@buzzmonitor_es` (mesmo set atual de `agencias-es` e demais LPs LATAM, pos-PR 861); site `buzzmonitor.com/es/`.
 5. **Sem secao de clientes** (a referencia Cxpress tem): escopo pedido foi video + botao + redes.
 
