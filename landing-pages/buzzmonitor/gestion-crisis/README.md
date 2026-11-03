@@ -44,3 +44,5 @@
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg`, `logo-reversed.svg`, `logo-icon.png`
 - `./assets/lorena-rodriguez.jpg` (LP-local, reaproveitado de `social-listening-mayo-2026-latam/assets/`)
 - `./assets/crm-bonus-logo.jpg` (LP-local, logo do cliente, autorizado pelo usuario em 2026-08-07 — ver nota no `copy.txt`)
+
+**Form provider:** Jotform 261188302248052 (2026-11-03) — substituiu o form proprio do ClickMeeting (`/api/clickmeeting-register`). A inscricao na sala e a pagina de agradecimento passam a ser do Jotform; o bloco de data da proxima sessao (`/api/next-webinar`) continua.

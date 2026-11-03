@@ -43,3 +43,5 @@
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg`, `logo-reversed.svg`, `logo-icon.png`
 - `./assets/milagro-pantoja.jpg` (LP-local, reaproveitado de `atencion-al-cliente-es/assets/`)
 - `./assets/smart-fit-logo.webp` (LP-local, logo do cliente, autorizado pelo usuario em 2026-08-06)
+
+**Form provider:** Jotform 261188302248052 (2026-11-03) — substituiu o form proprio do ClickMeeting (`/api/clickmeeting-register`). A inscricao na sala e a pagina de agradecimento passam a ser do Jotform; o bloco de data da proxima sessao (`/api/next-webinar`) continua.

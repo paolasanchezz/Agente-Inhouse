@@ -25,7 +25,7 @@ Esta LP tem uma irma em PT-BR ja publicada: `primeiro-listening-5-passos`. O HTM
 
 - [x] HTML gerado
 - [x] Revisao (frontend-design review + web-design-guidelines) — ver `REVISAO.md` (2 criticos aplicados, 2 melhorias + 1 nice-to-have documentados)
-- [ ] CTA final integrado com link/embed real de inscricao (ClickMeeting, Jotform, HubSpot, etc.) — rodar `/lp-integrar-form` quando tiver o provedor
+- [x] Formulario integrado (Jotform 261188302248052, 2026-11-03)
 - [ ] Publicado — `webinar.buzzmonitor.com` esta migrado pro fluxo CI (manifest + PR), ver `.claude/skills/lp-publicar/SKILL.md` Passo 0.0
 
 ## Pendencias
@@ -38,3 +38,5 @@ Esta LP tem uma irma em PT-BR ja publicada: `primeiro-listening-5-passos`. O HTM
 
 - `../../brand/buzzmonitor/assets/logos/logo-primary.svg`, `logo-reversed.svg`, `logo-icon.png`
 - `./assets/juan-diego-forero.jpg` (LP-local, reaproveitado de `monitoreo-competidores-ia-latam/assets/`)
+
+**Form provider:** Jotform 261188302248052 (2026-11-03) — substituiu o form proprio do ClickMeeting (`/api/clickmeeting-register`). A inscricao na sala e a pagina de agradecimento passam a ser do Jotform; o bloco de data da proxima sessao (`/api/next-webinar`) continua.
