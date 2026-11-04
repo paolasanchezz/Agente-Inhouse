@@ -1,5 +1,5 @@
 === HEADER ===
-INDICADOR: Oferta válida hasta el 28 de noviembre
+INDICADOR: Oferta válida hasta el 26 de noviembre
 CTA: Acceder a la oferta
 
 
@@ -14,7 +14,7 @@ TICKET: 15 días gratis de Buzzmonitor
 TICKET LABEL: Incluye
 TICKET VALUE: Soporte consultivo y tu primer panel configurado
 TICKET LABEL: Válida hasta
-TICKET VALUE: 28 de noviembre de 2026 / Solo para participantes del workshop
+TICKET VALUE: 26 de noviembre de 2026 / Solo para participantes del workshop
 
 
 === OFERTA ===
@@ -26,7 +26,7 @@ CARD 02: Soporte consultivo | Especialistas de Buzzmonitor te acompañan durante
 CARD 03: Tu primer panel listo | Nuestro equipo lo configura con las búsquedas y alertas de tu marca.
 CARD 04 (BONUS): 50% de descuento | Al terminar los 15 días, pagas la mitad en tus dos primeras mensualidades de Buzzmonitor.
 CTA: Quiero aprovechar la oferta
-MICRO: Válida hasta el 28 de noviembre
+MICRO: Válida hasta el 26 de noviembre
 
 
 === CONSECUENCIA ===
@@ -72,9 +72,9 @@ NOTA: y más de 1.000 marcas en Brasil, Latinoamérica y Portugal
 
 === URGENCIA ===
 H2: Esta condición vale solo para quienes estuvieron en Lima.
-BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 28 de noviembre.
+BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 26 de noviembre.
 PUNCH: Tu tiempo tiene valor. Empieza a recuperarlo esta semana.
-INFO: Válida hasta el 28 de noviembre de 2026
+INFO: Válida hasta el 26 de noviembre de 2026
 INFO: 15 días gratis + 50% de descuento en tus dos primeras mensualidades
 CTA: Aprovechar la oferta exclusiva
 
@@ -96,5 +96,5 @@ CONTACTO: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com.
 # Idioma: ES-LATAM. Tuteo, "monitoreo", "reportes", Buzzmonitor sin artículo.
 # Base: oferta-workshop-reportes-cdmx-octubre-2026 (condiciones de la oferta: 15 días + soporte + primer panel + 50% en las 2 primeras mensualidades).
 # Tema adaptado al workshop de Lima (19/11, "El valor del tiempo": 6 IAs + 7 Skills, convertir conversaciones en decisiones). La copy del CDMX era de crisis; aquí el eje es tiempo/señales/decisiones.
-# Fecha límite 28/11: SUPUESTO (mismo intervalo de 9 días del CDMX, 28/10 -> 6/11). Confirmar con el equipo.
+# [2026-11-04] Fecha límite confirmada: 28/11. [2026-11-04] Cambiada a 26/11 a pedido del usuario.
 # Revisión anti-IA: em-dash 0; exclamaciones 0; antítesis-por-negación 0 (la QUOTE es contraste temporal, mismo sujeto, 1 instancia); listas variadas (4, 3, 5, 4, 4, 3).

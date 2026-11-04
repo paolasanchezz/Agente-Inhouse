@@ -22,8 +22,8 @@ Oferta pos-evento do workshop presencial "El valor del tiempo" (Lima, 19/11/2026
 
 ## Pendencias
 
-- [ ] **Data limite da oferta: 28 de novembro e um SUPOSTO** (mesmo intervalo de 9 dias usado no CDMX: evento 28/10 → oferta ate 6/11). Confirmar. Aparece na barra, ticket do hero, oferta, urgencia (2x) e OG image.
-- [ ] Publicar: PR com source + entrada no `landing-pages/dominios/content-buzzmonitor-com/manifest.json` (o CI deploya).
+- [x] Data limite da oferta: 26 de novembro (era 28/11; alterada a pedido do usuario em 2026-11-04). Aparece na barra, ticket do hero, oferta, urgencia (2x) e OG image.
+- [x] Publicado em content.buzzmonitor.com (PR #938)
 
 ## Assets
 
