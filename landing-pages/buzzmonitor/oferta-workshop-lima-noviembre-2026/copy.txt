@@ -1,0 +1,100 @@
+=== HEADER ===
+INDICADOR: Oferta válida hasta el 28 de noviembre
+CTA: Acceder a la oferta
+
+
+=== HERO ===
+BADGE: Oferta exclusiva del workshop · Lima
+H1: Que tu próxima señal no llegue tarde.
+SUB: Lleva a tu marca lo que viste en Lima: la IA y las Skills de Buzzmonitor trabajando con tus propias conversaciones.
+BODY: Esta condición es solo para quienes participaron en el encuentro "El valor del tiempo", el 19 de noviembre en Lima.
+CTA: Quiero aprovechar la oferta
+MICRO: 15 días gratis · Sin compromiso
+TICKET: 15 días gratis de Buzzmonitor
+TICKET LABEL: Incluye
+TICKET VALUE: Soporte consultivo y tu primer panel configurado
+TICKET LABEL: Válida hasta
+TICKET VALUE: 28 de noviembre de 2026 / Solo para participantes del workshop
+
+
+=== OFERTA ===
+EYEBROW: La oferta exclusiva
+H2: 15 días gratis de Buzzmonitor, con un especialista a tu lado.
+BODY: Preparamos una condición especial para que lo que viste en la presentación pase a tu día a día: acceso completo a la plataforma y acompañamiento para configurar el monitoreo de tu marca desde el primer día.
+CARD 01: 15 días gratis | Acceso completo a la plataforma, con las 6 IAs y las 7 Skills que conociste en el workshop.
+CARD 02: Soporte consultivo | Especialistas de Buzzmonitor te acompañan durante toda la prueba.
+CARD 03: Tu primer panel listo | Nuestro equipo lo configura con las búsquedas y alertas de tu marca.
+CARD 04 (BONUS): 50% de descuento | Al terminar los 15 días, pagas la mitad en tus dos primeras mensualidades de Buzzmonitor.
+CTA: Quiero aprovechar la oferta
+MICRO: Válida hasta el 28 de noviembre
+
+
+=== CONSECUENCIA ===
+EYEBROW: Después del workshop
+H2: Si vuelves a la rutina sin aplicar lo que viste en Lima...
+LIST ITEM: Las señales van a seguir apareciendo cuando la conversación ya creció.
+LIST ITEM: Vas a seguir armando reportes a mano, con horas que podrías usar para decidir.
+LIST ITEM: Cada pregunta sobre tu audiencia va a empezar otra vez desde cero.
+QUOTE: Una señal que entiendes a tiempo se convierte en decisión. La misma señal, una semana después, se convierte en urgencia.
+
+
+=== LO QUE VAS A USAR ===
+EYEBROW: Lo que vas a usar
+H2: Las IAs y las Skills del workshop, ahora con tus datos.
+BODY: Durante la prueba trabajas con las mismas herramientas de la presentación, aplicadas a la conversación sobre tu marca, tu competencia y tu sector.
+TAG: Sin código. Sin prompts técnicos. Sin empezar cada análisis desde cero.
+CTA: Quiero probarlo con mi marca
+ITEM 01: AI Insights y Buzz Pills | Hallazgos y síntesis listos para leer, sin revisar miles de menciones una por una.
+ITEM 02: Skill de Crisis | Una situación de riesgo analizada a tiempo para definir prioridades.
+ITEM 03: Skill de Tendencias | Temas emergentes y señales que merecen seguimiento, antes de que todos hablen de ellos.
+ITEM 04: Skill de Campañas | Qué conversación generó tu campaña y cómo reaccionó la audiencia.
+ITEM 05: MCP | Tus datos de Buzzmonitor consultados desde una conversación con asistentes como Claude.
+
+
+=== MODULOS ===
+EYEBROW: La plataforma
+H2: Una plataforma. Cuatro módulos integrados.
+H3: Social Listening | Monitoreo de marca, alertas automáticas y clasificación de sentimiento para saber qué dicen de ti mientras todavía puedes actuar.
+H3: Analytics | Insights cualitativos, búsqueda ilimitada y reportes personalizados para responder las preguntas de tu equipo con datos.
+H3: Atención al cliente | Gestión multicanal con KPIs consolidados y sugerencias con IA para responder más rápido y mejor.
+H3: Programación | Publicaciones ilimitadas y creación de contenido con IA integrada, en la misma herramienta.
+
+
+=== PRUEBA SOCIAL ===
+EYEBROW: Quiénes ya confían
+H2: Más de 1.000 marcas ya monitorean con Buzzmonitor
+METRIC: 1.000+ clientes en el mundo
+METRIC: 300+ clientes enterprise
+METRIC: 500+ agencias
+METRIC: 10.000 usuarios
+NOTA: y más de 1.000 marcas en Brasil, Latinoamérica y Portugal
+
+
+=== URGENCIA ===
+H2: Esta condición vale solo para quienes estuvieron en Lima.
+BODY: El período de prueba es gratis. El soporte consultivo también. La oferta cierra el 28 de noviembre.
+PUNCH: Tu tiempo tiene valor. Empieza a recuperarlo esta semana.
+INFO: Válida hasta el 28 de noviembre de 2026
+INFO: 15 días gratis + 50% de descuento en tus dos primeras mensualidades
+CTA: Aprovechar la oferta exclusiva
+
+
+=== CTA FINAL / FORM ===
+EYEBROW: Activa tu prueba
+H2: Empieza ahora. Sin compromiso.
+BODY: 15 días para poner en marcha el monitoreo de tu marca, con el acompañamiento de quien conoce tu escenario.
+RECAP: 15 días gratis con acceso completo
+RECAP: Tu primer panel configurado por nuestro equipo
+RECAP: 50% de descuento en tus dos primeras mensualidades
+FORM: Jotform 241825239057661 (mismo form de las ofertas post-workshop de Bogotá y CDMX)
+
+
+=== FOOTER ===
+FOOTER: © Buzzmonitor 2026 | Política de privacidad
+CONTACTO: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com.
+
+# Idioma: ES-LATAM. Tuteo, "monitoreo", "reportes", Buzzmonitor sin artículo.
+# Base: oferta-workshop-reportes-cdmx-octubre-2026 (condiciones de la oferta: 15 días + soporte + primer panel + 50% en las 2 primeras mensualidades).
+# Tema adaptado al workshop de Lima (19/11, "El valor del tiempo": 6 IAs + 7 Skills, convertir conversaciones en decisiones). La copy del CDMX era de crisis; aquí el eje es tiempo/señales/decisiones.
+# Fecha límite 28/11: SUPUESTO (mismo intervalo de 9 días del CDMX, 28/10 -> 6/11). Confirmar con el equipo.
+# Revisión anti-IA: em-dash 0; exclamaciones 0; antítesis-por-negación 0 (la QUOTE es contraste temporal, mismo sujeto, 1 instancia); listas variadas (4, 3, 5, 4, 4, 3).
