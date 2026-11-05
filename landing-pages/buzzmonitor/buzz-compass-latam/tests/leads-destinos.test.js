@@ -375,3 +375,4 @@ function resHttp() {
   limparEnv();
   console.log('leads-destinos.test.js: ok');
 })().catch((e) => { console.error(e); process.exit(1); });
+

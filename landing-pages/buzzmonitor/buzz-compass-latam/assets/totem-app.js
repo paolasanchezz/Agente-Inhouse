@@ -229,7 +229,7 @@
     if (!el) return;
     var s = estado.leadStatus;
     if (!s) el.textContent = 'Enviando el enlace a ' + estado.email + '…';
-    else if (s.email === 'enviado') el.textContent = 'También te enviamos el enlace a ' + estado.email + '.';
+    else if (s.email === 'enviado' || s.email === 'via_ac') el.textContent = 'También te enviamos el enlace a ' + estado.email + '.';
     else el.textContent = '';
   }
 

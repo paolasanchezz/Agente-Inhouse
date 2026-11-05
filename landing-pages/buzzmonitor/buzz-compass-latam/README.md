@@ -65,6 +65,7 @@ LATAM** (Sensitive), sem mexer em código:
 | `ACTIVECAMPAIGN_API_TOKEN` | chave da API dessa conta (Configurações > Desenvolvedor) |
 | `TOTEM_AC_TAG_NOME` | opcional; padrão `Buzz Compass LATAM` (criada sozinha se não existir) |
 | `ACTIVECAMPAIGN_TOTEM_LIST_ID` | opcional; inscreve numa lista. Decisão de marketing e consentimento |
+| `TOTEM_EMAIL_VIA_AC` | `1` = o e-mail do resultado sai pela automação do AC (seção abaixo), sem SendGrid |
 | `TOTEM_UTM_CAMPAIGN_PADRAO` | ex.: `[LATAM][Evento]-nome-do-evento`, para o lead não chegar sem campanha |
 
 Como o projeto é separado, o token LATAM nunca se mistura com o do Brasil. O token do AC é full-access: só no painel
@@ -78,6 +79,43 @@ alimenta o fluxo LATAM hoje.
 URL de conteúdo conhecida ou `utm_source` da whitelist. Um domínio novo do Compass LATAM não está na lista de URLs: se
 esses leads tiverem de aparecer como CM, incluir o domínio no filtro ou garantir uma `utm_source` da whitelist no QR/link
 do evento. Decisão do Victor.
+
+## E-mail pelo ActiveCampaign (LATAM)
+
+Na LATAM o e-mail do resultado sai por uma **automação do ActiveCampaign**, não pelo SendGrid. Basta a variável
+`TOTEM_EMAIL_VIA_AC=1` no projeto Vercel: aí o SendGrid/Resend não é chamado (mesmo que a chave exista) e a function grava
+no contato, **antes** de aplicar a tag, os campos que o e-mail usa.
+
+**No AC (uma vez):**
+
+1. **Campos do contato** (Contatos > Gerenciar campos > Adicionar campo). O título precisa ter `[AUTO]`:
+   | Título | Tipo | O que recebe |
+   |---|---|---|
+   | `Buzz Compass Link [AUTO]` | Área de texto | link do resultado (`https://buzzcompass.buzzmonitor.com/es/totem-resultado?...`) |
+   | `Buzz Compass QR [AUTO]` | Área de texto | endereço do PNG do QR (`.../es/api/qr?d=...`) |
+   | `Buzz Compass Marca [AUTO]` | Texto | marca analisada (opcional; para o assunto) |
+   Os de URL de conversão e UTMs (`URL Conversión [AUTO]`, `UTM Source [AUTO]`...) já devem existir; se não existirem, o
+   contato e a tag seguem e a resposta avisa (`crm_avisos`).
+2. **Automação:** gatilho "Tag adicionada: **Buzz Compass LATAM**", **executa várias vezes** -> ação "Enviar e-mail".
+   Corpo: colar `email-ac/resultado-buzz-compass-es.html` (gerado a partir do e-mail do SendGrid). Conferir no editor do AC
+   se as tags de personalização dos campos são as mesmas do arquivo (`%BUZZ_COMPASS_LINK_AUTO%`, `%BUZZ_COMPASS_QR_AUTO%`,
+   `%BUZZ_COMPASS_MARCA_AUTO%`); o AC gera a tag a partir do título. Assunto sugerido:
+   `Tu Buzz Compass de %BUZZ_COMPASS_MARCA_AUTO% ya está listo`.
+3. Desligar o rastreio de cliques nesse e-mail, se possível (o AC reescreve links e as UTMs do botão de demo podem mudar).
+
+**Pessoa que roda de novo:** a tag já existe e o AC não dispararia a automação. A function tira a tag e aplica de novo,
+então chega o e-mail do Compass novo. **Sem os campos Link e QR no AC**, a resposta vem com `email: "falhou"` e o log diz
+o motivo (o totem não promete o e-mail).
+
+## De onde vem cada variável
+
+| Variável | De onde tirar |
+|---|---|
+| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | As mesmas do projeto do Brasil. Vercel não mostra valor de variável Sensitive: pegar com quem as cadastrou (conta `contentmkt-9826`) ou gerar nova em platform.openai.com / console.anthropic.com. A Anthropic é só reserva. |
+| `ACTIVECAMPAIGN_API_URL` / `ACTIVECAMPAIGN_API_TOKEN` | No AC LATAM: Configurações > Desenvolvedor (URL e chave da API). |
+| `TOTEM_EMAIL_VIA_AC` | `1` (e-mail pela automação acima). |
+| `TOTEM_UTM_CAMPAIGN_PADRAO` (opcional) | Texto livre, escolhido por quem organiza o evento, em minúsculas e com hífens (`conhecimento/config/convencao-utm.md`), ex.: `marketing-day-cdmx-2026`. Vale para todo lead que chegar sem `utm_campaign` na URL. Se o QR/cartaz de cada evento já levar `?utm_campaign=...`, não precisa. |
+| `TOTEM_LEADS_WEBHOOK_URL` / `TOTEM_LEADS_WEBHOOK_TOKEN` (opcional) | Só se quiser os leads também numa planilha do Google. Seguir o passo a passo no topo de `integracoes/google/buzz-compass-leads.gs` (cria planilha, cola o script, define o TOKEN, publica como app da web, copia a URL `/exec`). Pode ser a planilha do Brasil (mesmos valores do projeto do Brasil; a coluna Origem separa `buzz-compass-totem-latam`) ou uma nova. |
 
 ## Como funciona o QR e o e-mail
 

@@ -240,6 +240,14 @@ function chaveDoCampo(titulo, tipo) {
   if (tipo && !/^(text|textarea)$/i.test(tipo)) return null;
   const t = semAcentoAC(titulo).trim();
   if (!/\[auto\]|\(auto\)/.test(t)) return null;
+  // Versao LATAM: o e-mail sai por uma automacao do AC, que precisa do link do resultado e da imagem do QR em campos do
+  // contato: "Buzz Compass Link [AUTO]" e "Buzz Compass QR [AUTO]" (ver README, secao "E-mail pelo ActiveCampaign").
+  if (t.includes('compass')) {
+    if (/\bqr\b/.test(t)) return 'compass_qr';
+    if (t.includes('link') || t.includes('enlace')) return 'compass_link';
+    if (t.includes('marca')) return 'compass_marca';
+    return null;
+  }
   if (/origem|antigo|legado|\bold\b|adname|gclid/.test(t)) return null;
   if (/\d\s*(\[auto\]|\(auto\))?\s*$/.test(t)) return null; // campo numerado do historico
   if (t.includes('url') && (t.includes('conversao') || t.includes('conversion'))) return 'url_conversao';
@@ -297,7 +305,7 @@ async function acAcharContato(base, token, email, limite) {
 
 // Retorna { status, avisos[], contato: 'criado' | 'atualizado' }. Nunca lanca.
 // existente = so atualiza os campos de rastreio (nome e empresa do AC ficam); novo = cria completo ja com os campos.
-async function executarAC({ email, nome, marca, urlConversao, rastreio }) {
+async function executarAC({ email, nome, marca, urlConversao, rastreio, compass }) {
   const base = (process.env.ACTIVECAMPAIGN_API_URL || '').trim().replace(/\/+$/, '').replace(/\/api\/3$/i, '');
   const token = (process.env.ACTIVECAMPAIGN_API_TOKEN || '').trim();
   if (!base || !token) return { status: 'nao_configurado', avisos: [] };
@@ -312,16 +320,18 @@ async function executarAC({ email, nome, marca, urlConversao, rastreio }) {
     }
 
     // 2) Campos de rastreio (URL Conversao + UTMs). Melhor esforco: sem o mapa de campos, o contato e a tag seguem.
-    const valores = rastreio || valoresDeRastreio(urlConversao);
+    const valores = { ...(rastreio || valoresDeRastreio(urlConversao)), ...(compass ? { compass_link: compass.link, compass_qr: compass.qr, compass_marca: marca } : {}) };
+    const CHAVES_COMPASS = compass ? ['compass_link', 'compass_qr', 'compass_marca'] : [];
+    const OBRIGATORIOS_COMPASS = compass ? ['compass_link', 'compass_qr'] : []; // marca e opcional: sem ela o e-mail usa texto fixo
     let mapa = {};
-    if (valores.url_conversao || valores.utm_source) {
+    if (valores.url_conversao || valores.utm_source || compass) {
       try { mapa = await tentarDeNovo(() => acMapaDeCampos(base, token, limite)); } catch (err) {
         avisos.push('campos_de_rastreio_indisponiveis');
         console.error('[buzz-compass-latam] activecampaign aviso', err && err.message ? err.message : err);
       }
     }
     const fieldValues = [];
-    ['url_conversao', ...CHAVES_UTM].forEach((chave) => {
+    ['url_conversao', ...CHAVES_UTM, ...CHAVES_COMPASS].forEach((chave) => {
       if (!mapa[chave]) return;
       const valor = valores[chave];
       // Contato novo: so o que tem valor. Contato existente: a atribuicao e trocada por inteira (o que nao veio fica vazio),
@@ -329,7 +339,7 @@ async function executarAC({ email, nome, marca, urlConversao, rastreio }) {
       if (valor) fieldValues.push({ field: mapa[chave], value: valor });
       else if (existente) fieldValues.push({ field: mapa[chave], value: '' });
     });
-    const faltando = (valores.url_conversao ? ['url_conversao'] : []).concat(CHAVES_UTM.filter((k) => valores[k])).filter((k) => !mapa[k]);
+    const faltando = (valores.url_conversao ? ['url_conversao'] : []).concat(CHAVES_UTM.filter((k) => valores[k]), OBRIGATORIOS_COMPASS).filter((k) => !mapa[k]);
     if (!avisos.includes('campos_de_rastreio_indisponiveis') && faltando.length) {
       avisos.push(...faltando.map((k) => `campo_${k}_nao_encontrado`));
       console.error(`[buzz-compass-latam] activecampaign aviso: sem campo de contato para ${faltando.join(', ')}`);
@@ -375,6 +385,19 @@ async function executarAC({ email, nome, marca, urlConversao, rastreio }) {
       }, limite);
       // 422 = contato ja tinha a tag (mesma pessoa rodando de novo): esta tudo certo
       if (!r.ok && r.status !== 422) throw new Error(`ac_aplicar_tag_${r.status}`);
+      // Versao LATAM, e-mail pela automacao do AC: tag repetida nao dispara a automacao de novo. Tira a tag e aplica outra vez
+      // para a pessoa receber o e-mail do Compass novo (os campos Link/QR ja foram atualizados acima).
+      if (r.status === 422 && compass) {
+        const lista = await acFetch('tags_do_contato', `${base}/api/3/contacts/${contactId}/contactTags`, { headers: acHeaders(token) }, limite);
+        if (!lista.ok) throw new Error(`ac_tags_do_contato_${lista.status}`);
+        const ct = (((await lista.json()).contactTags) || []).find((x) => String(x.tag) === String(tagId));
+        if (ct) {
+          const del = await acFetch('tira_tag', `${base}/api/3/contactTags/${ct.id}`, { method: 'DELETE', headers: acHeaders(token) }, limite);
+          if (!del.ok && del.status !== 404) throw new Error(`ac_tira_tag_${del.status}`);
+          const de2 = await acFetch('reaplica_tag', `${base}/api/3/contactTags`, { method: 'POST', headers: acHeaders(token), body: JSON.stringify({ contactTag: { contact: contactId, tag: tagId } }) }, limite);
+          if (!de2.ok) throw new Error(`ac_reaplica_tag_${de2.status}`);
+        }
+      }
     });
 
     // 5) Lista (opcional): so quando ha ID configurado. Inscrever em lista e decisao de marketing/consentimento, por isso desligado por padrao.
@@ -470,11 +493,17 @@ module.exports = async (req, res) => {
   // QR do e-mail: PNG gerado por /api/qr (so links do proprio resultado)
   const qrUrl = `${baseUrl(req)}/api/qr?d=${encodeURIComponent(link)}`;
 
-  const [emailStatus, webhookStatus, ac] = await Promise.all([
-    enviarEmail({ nome, email, marca, link, qrUrl }),
+  // Versao LATAM: com TOTEM_EMAIL_VIA_AC=1 o e-mail do resultado sai por uma automacao do ActiveCampaign (disparada pela tag,
+  // lendo o link e o QR dos campos do contato) e o SendGrid/Resend nao e usado.
+  const viaAC = process.env.TOTEM_EMAIL_VIA_AC === '1';
+  const [emailDireto, webhookStatus, ac] = await Promise.all([
+    viaAC ? Promise.resolve(null) : enviarEmail({ nome, email, marca, link, qrUrl }),
     enviarWebhook(lead),
-    executarAC({ email, nome, marca, urlConversao, rastreio }),
+    executarAC({ email, nome, marca, urlConversao, rastreio, compass: viaAC ? { link, qr: qrUrl } : null }),
   ]);
+  const semCampoCompass = (ac.avisos || []).some((a) => /compass|campos_de_rastreio_indisponiveis/.test(a));
+  const emailStatus = !viaAC ? emailDireto : (ac.status === 'enviado' && !semCampoCompass ? 'via_ac' : 'falhou');
+  if (viaAC && emailStatus === 'falhou') console.error('[buzz-compass-latam] e-mail via AC nao vai sair: contato, tag ou campos Buzz Compass Link/QR [AUTO] faltando', ac.status, ac.avisos);
 
   res.statusCode = 200;
   return res.json({ ok: true, email: emailStatus, webhook: webhookStatus, crm: ac.status, ...(ac.contato ? { crm_contato: ac.contato } : {}), ...(ac.avisos && ac.avisos.length ? { crm_avisos: ac.avisos } : {}), rastreio: { url_conversao: rastreio.url_conversao, utm_source: rastreio.utm_source, utm_medium: rastreio.utm_medium, utm_campaign: rastreio.utm_campaign, utm_content: rastreio.utm_content, utm_term: rastreio.utm_term }, link });
