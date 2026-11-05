@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-MX" class="kiosk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MKQBX2MG');</script>
+  <!-- End Google Tag Manager -->
+  <title>Buzz Compass | Tótem | Buzzmonitor</title>
+  <meta name="description" content="Buzz Compass, una experiencia de Buzzmonitor: diagnóstico de social listening de tu marca, comparado con tus competidores, con conversaciones reales de los últimos 30 días.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Buzzmonitor">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:url" content="https://buzzmonitor-lp-buzz-compass-latam.vercel.app/">
+  <meta property="og:title" content="Buzz Compass: descubre qué está diciendo tu mercado">
+  <meta property="og:description" content="Diagnóstico de mercado gratis con social listening e IA. Resultado en menos de 1 minuto.">
+  <meta property="og:image" content="https://buzzmonitor-lp-buzz-compass-latam.vercel.app/assets/og-buzz-compass.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Buzz Compass: diagnóstico de mercado con IA de Buzzmonitor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buzz Compass: descubre qué está diciendo tu mercado">
+  <meta name="twitter:description" content="Diagnóstico de mercado gratis con social listening e IA. Resultado en menos de 1 minuto.">
+  <meta name="twitter:image" content="https://buzzmonitor-lp-buzz-compass-latam.vercel.app/assets/og-buzz-compass.png">
+  <link rel="icon" type="image/png" href="../../brand/buzzmonitor/assets/logos/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;800;900&family=Lato:wght@400;700&display=swap">
+  <link rel="stylesheet" href="assets/totem.css">
+</head>
+<body class="kiosk">
+  <!-- Celular (aberto pelo QR do palco ou por um link): escala de telefone, sem as travas do quiosque. Decidido antes da primeira pintura. -->
+  <script>if (window.matchMedia('(max-width: 820px)').matches) { document.documentElement.classList.remove('kiosk'); document.body.className = 'phone'; }</script>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKQBX2MG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <p style="padding:2rem">Este tótem necesita JavaScript activado.</p></noscript>
+
+  <header class="bar">
+    <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="Buzzmonitor">
+    <button type="button" class="close" id="btnClose" aria-label="Terminar sesión">&times;</button>
+  </header>
+
+  <main id="app">
+    <!-- 0. Atrair: radar grande ao fundo (opacidade baixa), texto centralizado por cima -->
+    <section class="screen attract on" id="s-attract" aria-labelledby="t-attract">
+      <div class="radar" aria-hidden="true">
+        <i style="left:62%;top:24%;animation-delay:.4s"></i>
+        <i style="left:28%;top:36%;animation-delay:1.3s"></i>
+        <i style="left:70%;top:58%;animation-delay:2.1s"></i>
+        <i style="left:38%;top:70%;animation-delay:2.9s"></i>
+        <i style="left:52%;top:42%;animation-delay:3.5s"></i>
+      </div>
+      <div class="attract__texto">
+        <span class="eyebrow">Buzz Compass · Una experiencia de Buzzmonitor</span>
+        <h1 id="t-attract">¿Qué se está diciendo de <em>tu marca</em> ahora mismo?</h1>
+        <p class="sub-lead">En solo 1 minuto, Buzz Compass cruza miles de conversaciones reales de tu sector en redes sociales de los últimos 30 días, compara tu marca con tus competidores y te muestra oportunidades, riesgos y tendencias.</p>
+        <p class="sub-lead">Recibe gratis el diagnóstico de social listening de tu marca.</p>
+        <div class="attract__cta"><button type="button" class="btn btn--primary btn--lg" id="btnStart">Toca para empezar</button></div>
+      </div>
+    </section>
+
+    <!-- 1. Marca e concorrentes -->
+    <section class="screen" id="s-marca" aria-labelledby="t-marca">
+      <div class="fundo-radar" aria-hidden="true">
+        <div class="radar">
+          <i style="left:62%;top:24%;animation-delay:.4s"></i>
+          <i style="left:28%;top:36%;animation-delay:1.3s"></i>
+          <i style="left:70%;top:58%;animation-delay:2.1s"></i>
+          <i style="left:38%;top:70%;animation-delay:2.9s"></i>
+          <i style="left:52%;top:42%;animation-delay:3.5s"></i>
+        </div>
+      </div>
+      <form class="step" id="f-marca" novalidate autocomplete="off">
+        <div class="progresso" aria-hidden="true"><i class="on"></i><i></i></div>
+        <h2 id="t-marca">¿Qué marca vamos a analizar?</h2>
+        <p class="dica">Escribe el nombre como la gente suele escribirlo en redes.</p>
+        <div class="par">
+        <div class="field" id="fld-marca">
+          <label for="marca">Nombre de la marca</label>
+          <input type="text" id="marca" maxlength="80" placeholder="Ej.: Bimbo" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next">
+          <div class="msg" role="alert">Escribe el nombre de la marca.</div>
+        </div>
+        <div class="field" id="fld-segmento">
+          <label for="segmento">Sector</label>
+          <input type="text" id="segmento" maxlength="60" list="lista-segmentos" placeholder="Ej.: Alimentos y bebidas" autocomplete="off" autocapitalize="sentences" autocorrect="off" spellcheck="false" enterkeyhint="next">
+          <datalist id="lista-segmentos">
+            <option value="Alimentos y bebidas"></option>
+            <option value="Belleza y cuidado personal"></option>
+            <option value="Moda y ropa"></option>
+            <option value="E-commerce y retail"></option>
+            <option value="Supermercados y autoservicio"></option>
+            <option value="Bancos y fintech"></option>
+            <option value="Seguros"></option>
+            <option value="Educación"></option>
+            <option value="Salud y bienestar"></option>
+            <option value="Bienes raíces"></option>
+            <option value="Turismo y viajes"></option>
+            <option value="Automotriz"></option>
+            <option value="Telecomunicaciones"></option>
+            <option value="Tecnología y SaaS"></option>
+            <option value="Restaurantes y comida rápida"></option>
+            <option value="Agencias de marketing y comunicación"></option>
+            <option value="Gobierno y sector público"></option>
+            <option value="ONG y organizaciones sin fines de lucro"></option>
+          </datalist>
+          <div class="msg" role="alert">Escribe el sector de la marca.</div>
+        </div>
+        </div>
+        <div class="field" id="fld-instagram">
+          <label for="instagram">Instagram de la marca (opcional)</label>
+          <input type="text" id="instagram" maxlength="60" placeholder="@grupobimbo" inputmode="url" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next">
+        </div>
+        <p class="dica dica--sec"><b>Competidores</b> (opcional). Si lo dejas en blanco, Buzzmonitor los elige según el mercado de tu marca.</p>
+        <div class="grupo-concorrentes">
+          <div class="field"><label for="c1">Competidor 1</label><input type="text" id="c1" maxlength="60" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false"></div>
+          <div class="field"><label for="c2">Competidor 2</label><input type="text" id="c2" maxlength="60" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false"></div>
+          <div class="field"><label for="c3">Competidor 3</label><input type="text" id="c3" maxlength="60" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="done"></div>
+        </div>
+        <div class="acoes"><button type="submit" class="btn btn--primary">Continuar</button></div>
+      </form>
+    </section>
+
+    <!-- 2. Dados do lead -->
+    <section class="screen" id="s-lead" aria-labelledby="t-lead">
+      <div class="fundo-radar" aria-hidden="true">
+        <div class="radar">
+          <i style="left:62%;top:24%;animation-delay:.4s"></i>
+          <i style="left:28%;top:36%;animation-delay:1.3s"></i>
+          <i style="left:70%;top:58%;animation-delay:2.1s"></i>
+          <i style="left:38%;top:70%;animation-delay:2.9s"></i>
+          <i style="left:52%;top:42%;animation-delay:3.5s"></i>
+        </div>
+      </div>
+      <form class="step" id="f-lead" novalidate autocomplete="off">
+        <div class="progresso" aria-hidden="true"><i class="on"></i><i class="on"></i></div>
+        <h2 id="t-lead">¿A dónde te enviamos tu Compass?</h2>
+        <p class="dica">Ves el resultado ahora y te llega el enlace por correo.</p>
+        <div class="field" id="fld-nome">
+          <label for="nome">Tu nombre</label>
+          <input type="text" id="nome" maxlength="100" placeholder="Nombre y apellido" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next">
+          <div class="msg" role="alert">Escribe tu nombre.</div>
+        </div>
+        <div class="field" id="fld-email">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" maxlength="200" placeholder="tu@empresa.com" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email" enterkeyhint="go">
+          <div class="msg" role="alert">Escribe un correo válido.</div>
+        </div>
+        <input type="text" id="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="acoes">
+          <button type="button" class="btn btn--ghost" id="btnVoltar">Regresar</button>
+          <button type="submit" class="btn btn--primary">Quiero mi Compass</button>
+        </div>
+        <p class="consent">Al continuar, aceptas recibir el resultado por correo y que Buzzmonitor te contacte sobre Buzz Compass.</p>
+      </form>
+    </section>
+
+    <!-- 3. Analisando -->
+    <section class="screen" id="s-loading" aria-labelledby="t-loading">
+      <div class="loading" id="loadBox">
+        <div class="radar" aria-hidden="true">
+          <i style="left:60%;top:26%;animation-delay:.3s"></i><i style="left:30%;top:60%;animation-delay:1.6s"></i><i style="left:66%;top:62%;animation-delay:2.6s"></i>
+        </div>
+        <h2 class="titulo-carregando" id="t-loading">Analizando <b id="loadMarca"></b></h2>
+        <ol class="etapas" id="etapas" aria-live="polite">
+          <li>Armando las búsquedas de tu marca</li>
+          <li>Leyendo conversaciones reales de los últimos 30 días</li>
+          <li>Sumando a tus competidores a la comparación</li>
+          <li>Midiendo sentimiento y ritmo de crecimiento</li>
+          <li>Escribiendo tu diagnóstico</li>
+        </ol>
+        <p class="aviso" id="loadAviso"></p>
+        <div class="falha" role="alert">
+          <h2>No pudimos terminar en este momento</h2>
+          <p class="muted" id="falhaMsg"></p>
+          <div class="acoes">
+            <button type="button" class="btn btn--primary" id="btnTentar">Intentar de nuevo</button>
+            <button type="button" class="btn btn--ghost" id="btnEncerrarFalha">Terminar sesión</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Resultado -->
+    <section class="screen" id="s-result" aria-label="Resultado del Buzz Compass">
+      <div class="res-scroll" id="resScroll">
+        <div class="wrap">
+          <div id="resBody"></div>
+          <div id="fim"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/qr.js"></script>
+  <script src="assets/totem-render.js"></script>
+  <script src="assets/totem-app.js"></script>
+</body>
+</html>
