@@ -154,6 +154,11 @@
     .teaser-cap { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 2; color: #fff; text-align: left; }
     .teaser-cap b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
     .teaser-cap span { font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: rgba(255,255,255,.78); }
+    .teaser-art { position: absolute; inset: 0; background: radial-gradient(120% 90% at 20% 10%, #4a0a6b 0%, var(--ink) 62%); }
+    .teaser-art svg { position: absolute; }
+    .ta-lupa { width: 38%; height: 38%; left: 9%; top: 12%; transform: rotate(-10deg); }
+    .ta-sino { width: 30%; height: 30%; right: 9%; top: 9%; transform: rotate(12deg); }
+    .ta-star { width: 12%; height: 12%; right: 31%; top: 46%; }
     .teaser-bar { position: absolute; left: 24px; right: 24px; bottom: 12px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.25); z-index: 2; }
     .teaser-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 34%; background: var(--orange); border-radius: 4px; }
 
@@ -265,7 +270,7 @@
         <div class="stage reveal">
           <svg class="deco-star" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 6 C54 36 64 46 94 50 C64 54 54 64 50 94 C46 64 36 54 6 50 C36 46 46 36 50 6 Z" fill="#FCBD4F" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg>
           <div class="teaser" aria-hidden="true">
-            <img src="assets/speakers/speaker-victor-gurgel.png" alt="" loading="lazy">
+            <div class="teaser-art"><svg class="ta-lupa" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><path d="M84 84 L108 108" stroke="#1b0d24" stroke-width="14" stroke-linecap="round"/><circle cx="54" cy="54" r="42" fill="#EB7C2E" stroke="#1b0d24" stroke-width="6"/><circle cx="54" cy="54" r="29" fill="#FFF4EA" stroke="#1b0d24" stroke-width="5"/><circle cx="45.0" cy="52" r="4.2" fill="#1b0d24"/><circle cx="63.0" cy="52" r="4.2" fill="#1b0d24"/><circle cx="46.4" cy="50.4" r="1.4" fill="#fff"/><circle cx="64.4" cy="50.4" r="1.4" fill="#fff"/><path d="M48.0 60.0 Q54 66.0 60.0 60.0" fill="none" stroke="#1b0d24" stroke-width="3.2" stroke-linecap="round"/><path d="M30 30 Q36 22 46 20" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9"/></svg><svg class="ta-sino" viewBox="0 0 140 150" aria-hidden="true" focusable="false"><path d="M28 70 Q8 50 12 28" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M112 70 Q132 50 128 28" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><circle cx="12" cy="24" r="7" fill="#1b0d24"/><circle cx="128" cy="24" r="7" fill="#1b0d24"/><path d="M70 18 C40 18 32 44 32 72 C32 92 24 102 18 110 L122 110 C116 102 108 92 108 72 C108 44 100 18 70 18 Z" fill="#FCBD4F" stroke="#1b0d24" stroke-width="6" stroke-linejoin="round"/><circle cx="70" cy="12" r="8" fill="#FCBD4F" stroke="#1b0d24" stroke-width="5"/><path d="M56 112 Q70 132 84 112" fill="#FCBD4F" stroke="#1b0d24" stroke-width="6" stroke-linejoin="round"/><path d="M56 140 L60 124 M84 140 L80 124" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><circle cx="59.65" cy="66" r="4.83" fill="#1b0d24"/><circle cx="80.35" cy="66" r="4.83" fill="#1b0d24"/><circle cx="61.260000000000005" cy="64.16" r="1.6099999999999999" fill="#fff"/><circle cx="81.96" cy="64.16" r="1.6099999999999999" fill="#fff"/><path d="M63.1 75.2 Q70 82.1 76.9 75.2" fill="none" stroke="#1b0d24" stroke-width="3.6799999999999997" stroke-linecap="round"/></svg><svg class="ta-star" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 6 C54 36 64 46 94 50 C64 54 54 64 50 94 C46 64 36 54 6 50 C36 46 46 36 50 6 Z" fill="#FCBD4F" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg></div>
             <svg class="teaser-play" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#1b0d24" stroke-width="5"/><path d="M41 32 L70 50 L41 68 Z" fill="#EB7C2E" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg>
             <div class="teaser-cap"><b>Monitoramento de concorrentes, do zero</b><span>Vídeo gravado · assista na hora</span></div>
             <div class="teaser-bar"><i></i></div>
@@ -309,19 +314,6 @@
       </div>
     </section>
 
-    <!-- QUEM APRESENTA -->
-    <section class="speaker">
-      <div class="container reveal">
-        <div class="speaker-card">
-          <img class="speaker-photo" src="assets/speakers/speaker-victor-gurgel.png" alt="Victor Gurgel" loading="lazy" width="92" height="92">
-          <div>
-            <span class="speaker-label">Quem apresenta</span>
-            <h3 class="speaker-name">Victor Gurgel</h3>
-            <p class="speaker-role">Executivo de Novos Negócios · Buzzmonitor</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- NUMEROS -->
     <section class="proof">

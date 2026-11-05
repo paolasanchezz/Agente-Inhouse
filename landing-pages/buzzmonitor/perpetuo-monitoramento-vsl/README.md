@@ -23,7 +23,7 @@ youtube.com, não nocookie: o CSP do guarda-chuva só libera `www.youtube.com`).
 (UTMs definidas pela Catharina em 2026-10-14).
 
 **OG:** reusa `og-perpetuo-monitoramento-concorrentes.png` da LP-mãe (mesma headline do tema).
-**Speaker:** Victor Gurgel (foto copiada da LP-mãe).
+**Speaker:** sem bloco de apresentador desde 2026-11-05 (Victor Gurgel saiu da Buzzmonitor). O teaser do vídeo usa ilustração, não foto. O vídeo em si ainda é apresentado por ele.
 
 ## Pendências
 
