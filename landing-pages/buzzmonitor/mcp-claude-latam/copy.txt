@@ -19,7 +19,7 @@ LIST ITEM: 3. Copia este enlace y pégalo en el campo de URL del servidor MCP re
 LABEL: https://mcp.buzzmonitor.com.br/sse
 CTA: COPIAR ENLACE
 BODY: Paso 0: configura tu proyecto de monitoreo en Buzzmonitor. Si aún no tienes una cuenta, crea una prueba gratuita y arma tu primer proyecto.
-CTA: CREAR CUENTA GRATIS →
+CTA: CREA TU CUENTA GRATIS →
 
 === TICKER ===
 LIST ITEM: Analiza miles de menciones
@@ -37,8 +37,7 @@ BODY: Crea tu proyecto, conecta el MCP y descubre cómo cambia tu forma de anali
 LABEL: 50% OFF
 H3: en tus primeros 2 meses 🚀
 BODY: Después de tu periodo de prueba, si decides contratar Buzzmonitor, puedes acceder a esta oferta especial para nuevas contrataciones elegibles.
-CTA: PROBAR GRATIS →
-CTA: HABLAR CON VENTAS
+CTA: AGENDA UNA DEMO →
 BODY: Aplican términos y condiciones.
 
 === VALOR ===
@@ -91,9 +90,8 @@ CTA: QUIERO HABLAR CON EL EQUIPO →
 H2: Empieza por el MCP.
 H2: Quédate por todo lo demás.
 BODY: Prueba Buzzmonitor, conecta Claude y descubre una forma más rápida de convertir conversaciones digitales en insights.
-CTA: CONECTAR MCP →
-CTA: PROBAR GRATIS
-CTA: HABLAR CON VENTAS →
+CTA: AGENDA UNA DEMO →
+CTA: CONECTAR MCP
 
 === FOOTER ===
 FOOTER: © 2026 Buzzmonitor · Todos los derechos reservados
