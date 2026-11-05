@@ -3,11 +3,34 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/totem", "destination": "/", "permanent": false }
+    {
+      "source": "/totem",
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/es/totem",
+      "destination": "/es",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/es",
+      "destination": "/"
+    },
+    {
+      "source": "/es/:path*",
+      "destination": "/:path*"
+    }
   ],
   "functions": {
-    "api/totem.js": { "maxDuration": 60 },
-    "api/totem-lead.js": { "maxDuration": 60 }
+    "api/totem.js": {
+      "maxDuration": 60
+    },
+    "api/totem-lead.js": {
+      "maxDuration": 60
+    }
   },
   "headers": [
     {

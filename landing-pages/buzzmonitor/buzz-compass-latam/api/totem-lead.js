@@ -16,10 +16,15 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+// Versao LATAM: o endereco publico e buzzcompass.buzzmonitor.com/es (o projeto do Brasil faz proxy de /es/* para este projeto).
+// Pelo proxy a requisicao pode chegar com o host do proprio projeto na Vercel: os dois viram o endereco publico. Outro host
+// (localhost, previa) usa o proprio host, sempre com /es.
+const BASE_PUBLICA = 'https://buzzcompass.buzzmonitor.com/es';
 function baseUrl(req) {
   if (process.env.TOTEM_BASE_URL) return process.env.TOTEM_BASE_URL.replace(/\/$/, '');
-  const host = req.headers['x-forwarded-host'] || req.headers.host || 'buzzmonitor-lp-buzz-compass-latam.vercel.app';
-  return `https://${host}`;
+  const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+  if (!host || host === 'buzzcompass.buzzmonitor.com' || host === 'buzzmonitor-lp-buzz-compass-latam.vercel.app') return BASE_PUBLICA;
+  return `https://${host}/es`;
 }
 
 // Mesma URL de analise do totem (m + c), sem dado pessoal na URL (a ordem dos parametros e a do totem: e a chave do cache).
@@ -403,10 +408,11 @@ function urlDeConversao(req, bruto) {
   try {
     const u = new URL(String(bruto || ''));
     // Versao LATAM: o dominio final ainda nao foi decidido; o host de TOTEM_BASE_URL (ou o da requisicao) sempre entra.
-    const hosts = new Set(['buzzmonitor-lp-buzz-compass-latam.vercel.app']);
+    const hosts = new Set(['buzzcompass.buzzmonitor.com', 'buzzmonitor-lp-buzz-compass-latam.vercel.app']);
     try { hosts.add(new URL(baseUrl(req)).host.toLowerCase()); } catch (e) { /* ignora */ }
-    if (u.protocol !== 'https:' || !hosts.has(u.host.toLowerCase()) || !/^\/(totem\/?)?$/.test(u.pathname)) return padrao;
-    u.pathname = '/';
+    // so a pagina do totem LATAM: /es, /es/ ou /es/totem (todas viram /es/)
+    if (u.protocol !== 'https:' || !hosts.has(u.host.toLowerCase()) || !/^\/es(\/|\/totem\/?)?$/.test(u.pathname)) return padrao;
+    u.pathname = '/es/';
     ['idle', 'fbclid'].forEach((k) => u.searchParams.delete(k));
     u.hash = '';
     return u.href.slice(0, 500);

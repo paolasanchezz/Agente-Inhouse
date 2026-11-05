@@ -192,7 +192,7 @@ function resHttp() {
   let r = await chamarLead(valido);
   assert.deepStrictEqual([r.body.email, r.body.webhook, r.body.crm], ['enviado', 'enviado', 'enviado']);
   const email = chamadas.find((c) => c.url.includes('resend.com')).corpo;
-  const qrEsperado = 'https://buzzcompass.buzzmonitor.com/api/qr?d=' + encodeURIComponent(r.body.link);
+  const qrEsperado = 'https://buzzcompass.buzzmonitor.com/es/api/qr?d=' + encodeURIComponent(r.body.link);
   assert(email.html.includes(qrEsperado.replace(/&/g, '&amp;')), 'o e-mail tem a imagem do QR apontando para o resultado');
   assert(email.html.includes('¿Quieres mostrárselo a tu equipo?') && email.html.includes('Reenvía este correo'), 'texto de compartilhamento');
   assert(email.text.includes(r.body.link) && /reenvía/i.test(email.text), 'versao em texto tambem leva o link e o convite a encaminhar');

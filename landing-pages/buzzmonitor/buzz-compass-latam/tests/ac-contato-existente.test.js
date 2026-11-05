@@ -20,7 +20,7 @@ const limparEnv = () => ENV_UTM.forEach((k) => delete process.env[k]);
 process.env.ACTIVECAMPAIGN_API_URL = 'https://ac.test';
 process.env.ACTIVECAMPAIGN_API_TOKEN = 'tok';
 process.env.ACTIVECAMPAIGN_TOTEM_TAG_ID = '9'; // tag nao e o foco deste teste
-const URL_CONV = 'https://buzzcompass.buzzmonitor.com/';
+const URL_CONV = 'https://buzzcompass.buzzmonitor.com/es/';
 const dados = { email: 'ana@empresa.com.br', nome: 'TESTE THAMIRES RIOS', marca: 'Teste Buzzmonitor', urlConversao: URL_CONV };
 
 // campos de contato do AC, copiados da conta real da Buzzmonitor (ids e titulos de verdade, inclusive a grafia "Campaing" do 847),
@@ -218,23 +218,23 @@ const comoMapa = (lista) => Object.fromEntries(lista.map((f) => [f.field, f.valu
   assert.strictEqual(sujo.utm_content.length, 200, 'corta em 200');
   assert.deepStrictEqual([valoresDeRastreio('').utm_source, valoresDeRastreio('lixo').utm_content, valoresDeRastreio(undefined).url_conversao], ['evento', 'captacao-buzz-compass', ''], 'sem URL valida: so os padroes');
 
-  // ---- 15) URL de conversao enviada pelo navegador: so a pagina do totem do proprio projeto ----
+  // ---- 15) URL de conversao enviada pelo navegador: so a pagina do totem LATAM (/es) ----
   const req = { headers: { host: 'buzzcompass.buzzmonitor.com' } };
-  // o totem fica na raiz do dominio; /totem (endereco antigo, que redireciona) e aceito e vira a raiz
-  const padrao = 'https://buzzcompass.buzzmonitor.com/';
-  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/'), padrao);
-  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com'), padrao);
-  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/totem'), padrao, '/totem antigo vira a raiz');
-  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/?utm_source=evento&utm_medium=qr&idle=8000&fbclid=abc#topo'),
-    'https://buzzcompass.buzzmonitor.com/?utm_source=evento&utm_medium=qr', 'mantem as UTMs; tira idle, fbclid e #hash');
-  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/totem?utm_source=evento&utm_medium=qr'),
-    'https://buzzcompass.buzzmonitor.com/?utm_source=evento&utm_medium=qr', 'link antigo com /totem e UTMs vira raiz com as UTMs');
-  assert.strictEqual(urlDeConversao(req, 'https://buzzmonitor-lp-buzz-compass-latam.vercel.app/'), 'https://buzzmonitor-lp-buzz-compass-latam.vercel.app/');
-  for (const ruim of ['https://site-malicioso.com/', 'http://buzzcompass.buzzmonitor.com/', 'javascript:alert(1)', 'nao-e-url', '', undefined, null,
-    'https://buzzcompass.buzzmonitor.com/outra-pagina', 'https://buzzcompass.buzzmonitor.com/lp', 'https://buzzcompass.buzzmonitor.com.evil.com/']) {
+  const padrao = 'https://buzzcompass.buzzmonitor.com/es/';
+  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/es'), padrao);
+  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/es/'), padrao);
+  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/es/totem'), padrao, '/es/totem vira /es/');
+  assert.strictEqual(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/es?utm_source=evento&utm_medium=qr&idle=8000&fbclid=abc#topo'),
+    'https://buzzcompass.buzzmonitor.com/es/?utm_source=evento&utm_medium=qr', 'mantem as UTMs; tira idle, fbclid e #hash');
+  // pelo proxy do Brasil a requisicao pode chegar com o host do projeto LATAM na Vercel: o padrao continua o endereco publico
+  assert.strictEqual(urlDeConversao({ headers: { host: 'buzzmonitor-lp-buzz-compass-latam.vercel.app' } }, ''), padrao);
+  assert.strictEqual(urlDeConversao(req, 'https://buzzmonitor-lp-buzz-compass-latam.vercel.app/es'), 'https://buzzmonitor-lp-buzz-compass-latam.vercel.app/es/');
+  for (const ruim of ['https://site-malicioso.com/es', 'http://buzzcompass.buzzmonitor.com/es', 'javascript:alert(1)', 'nao-e-url', '', undefined, null,
+    'https://buzzcompass.buzzmonitor.com/', 'https://buzzcompass.buzzmonitor.com/totem', 'https://buzzcompass.buzzmonitor.com/es/outra-pagina',
+    'https://buzzcompass.buzzmonitor.com/esx', 'https://buzzcompass.buzzmonitor.com.evil.com/es']) {
     assert.strictEqual(urlDeConversao(req, ruim), padrao, 'vira o padrao: ' + ruim);
   }
-  assert(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/?utm_campaign=' + 'x'.repeat(900)).length <= 500, 'corta em 500');
+  assert(urlDeConversao(req, 'https://buzzcompass.buzzmonitor.com/es?utm_campaign=' + 'x'.repeat(900)).length <= 500, 'corta em 500');
 
   console.log('ac-contato-existente.test.js: ok');
 })().catch((e) => { console.error(e); process.exit(1); });

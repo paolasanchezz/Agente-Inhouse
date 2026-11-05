@@ -8,13 +8,14 @@
 const QR = require('../assets/qr.js');
 const { matrizParaPng } = require('./_lib/png');
 
-const HOSTS_EXTRA = ['buzzmonitor-lp-buzz-compass-latam.vercel.app']; // versao LATAM: + host da requisicao e de TOTEM_BASE_URL
+const HOSTS_EXTRA = ['buzzcompass.buzzmonitor.com', 'buzzmonitor-lp-buzz-compass-latam.vercel.app']; // versao LATAM: + host da requisicao e de TOTEM_BASE_URL
 
 // So links do proprio resultado: sem isso o endpoint viraria gerador de QR para qualquer endereco (phishing com a nossa marca).
 function linkPermitido(valor, hostDaRequisicao) {
   let u;
   try { u = new URL(String(valor || '')); } catch (e) { return null; }
-  if (u.protocol !== 'https:' || u.pathname !== '/totem-resultado') return null;
+  // versao LATAM: o resultado vive em /es/totem-resultado (o /totem-resultado sem prefixo tambem vale, no endereco direto do projeto)
+  if (u.protocol !== 'https:' || !/^(\/es)?\/totem-resultado$/.test(u.pathname)) return null;
   const hosts = new Set([...HOSTS_EXTRA, String(hostDaRequisicao || '').toLowerCase()]);
   if (process.env.TOTEM_BASE_URL) { try { hosts.add(new URL(process.env.TOTEM_BASE_URL).host.toLowerCase()); } catch (e) { /* ignora */ } }
   return hosts.has(u.host.toLowerCase()) ? u.href : null;

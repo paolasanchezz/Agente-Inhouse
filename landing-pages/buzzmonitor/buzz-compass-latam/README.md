@@ -8,6 +8,22 @@ e o que falta para ela ir ao ar.
 
 Criado em 2026-11-05 a partir da versão em produção (`dpl_8YJcDGhdYqWDTXZyJbSVuB2jABK3`, idêntica ao `main`).
 
+## Endereço: `https://buzzcompass.buzzmonitor.com/es`
+
+Decisão de 2026-11-05: a versão LATAM vive no **mesmo domínio do Brasil, no caminho `/es`**. O domínio continua no
+projeto do Brasil (`buzzmonitor-lp-buzz-radar`); o `vercel.json` dele tem só um **proxy** (`rewrites` externos) que manda
+`/es` e `/es/*` para este projeto (`buzzmonitor-lp-buzz-compass-latam`). Assim cada país tem as próprias variáveis de
+ambiente (o token do AC LATAM nunca entra no projeto do Brasil) e o código do Brasil não muda.
+
+- Todos os caminhos absolutos do front têm `/es` (`TotemRender.base`): CSS, scripts, `/es/api/totem`, `/es/api/totem-lead`,
+  `/es/totem-resultado`, logos em `/es/assets/logos/` (o `montar-deploy.py` reescreve).
+- Este projeto também atende `/es/*` sozinho (`rewrites` internos `/es/:path*` -> `/:path*` no `vercel.json`), então o
+  endereço direto `https://buzzmonitor-lp-buzz-compass-latam.vercel.app/es` funciona igual.
+- O link do QR, do e-mail e a URL de conversão saem sempre como `https://buzzcompass.buzzmonitor.com/es/...`, mesmo quando
+  a requisição chega pelo proxy com o host `.vercel.app` (`baseUrl` em `api/totem-lead.js`; `TOTEM_BASE_URL` força outro).
+- **Ordem de publicação:** primeiro este projeto (criar + deploy), depois o projeto do Brasil com o `vercel.json` novo.
+  Se o Brasil subir antes, `/es` responde erro do proxy até o LATAM existir.
+
 ## O que entrou (e o que ficou de fora)
 
 - **Entrou:** o totem da raiz (`index.html` + `assets/totem-app.js`), o resultado compartilhado (`assets/totem-render.js`),
@@ -79,10 +95,8 @@ domínio verificado). Sem isso, o lead ainda vê o QR na tela, mas não recebe n
 
 ## Pendências antes de ir ao ar
 
-1. **Domínio e projeto Vercel.** Decidir o endereço (sugestão: `buzzcompass-latam.buzzmonitor.com` ou similar), criar o
-   projeto `buzzmonitor-lp-buzz-compass-latam` e apontar o DNS. Depois trocar `og:url`/`og:image` em `index.html` (hoje
-   `buzzmonitor-lp-buzz-compass-latam.vercel.app`) e, se quiser, `TOTEM_BASE_URL`. O host da requisição já é aceito
-   automaticamente pelo QR e pela URL de conversão.
+1. **Projeto Vercel.** Criar `buzzmonitor-lp-buzz-compass-latam` (sem domínio próprio: o endereço público vem do proxy do
+   Brasil em `/es`, ver acima).
 2. **Variáveis de ambiente** no projeto novo: IA (`OPENAI_API_KEY` e/ou `ANTHROPIC_API_KEY`, `OPENAI_MODEL_NARRATIVA`),
    AC LATAM (tabela acima), e-mail (SendGrid) e, opcional, planilha. Sem IA o totem roda em modo reserva (busca pelo nome
    exato, categoria = palavras do setor, textos montados só com os números): funciona, mas a categoria fica genérica
@@ -101,7 +115,7 @@ domínio verificado). Sem isso, o lead ainda vê o QR na tela, mas não recebe n
 node landing-pages/buzzmonitor/buzz-compass-latam/dev-server.js 8939
 ```
 
-Abrir `http://localhost:8939/` (totem; `/?idle=8000` para testar a volta ao início). Testes:
+Abrir `http://localhost:8939/es` (totem; `/es?idle=8000` para testar a volta ao início). O servidor local tira o `/es`. Testes:
 `for t in landing-pages/buzzmonitor/buzz-compass-latam/tests/*.test.js; do node $t; done` (13 arquivos, todos passando
 em 2026-11-05).
 

@@ -32,7 +32,7 @@ function chamar(handler, { method = 'POST', body, headers = { host: 'radar.exemp
   assert.strictEqual(r.status, 200);
   assert.deepStrictEqual([r.body.email, r.body.webhook, r.body.crm], ['nao_configurado', 'nao_configurado', 'nao_configurado']);
   assert.strictEqual(chamadas.length, 0);
-  assert(r.body.link.startsWith('https://radar.exemplo.com/totem-resultado?m=Natura+%26+Cia&s=Cosm%C3%A9ticos+e+Beleza&c=Botic%C3%A1rio&c=Avon&c=Eudora'), r.body.link); // m, s, c nessa ordem (chave do cache); ate 3 concorrentes, vazio descartado
+  assert(r.body.link.startsWith('https://radar.exemplo.com/es/totem-resultado?m=Natura+%26+Cia&s=Cosm%C3%A9ticos+e+Beleza&c=Botic%C3%A1rio&c=Avon&c=Eudora'), r.body.link); // m, s, c nessa ordem (chave do cache); ate 3 concorrentes, vazio descartado
   assert(!r.body.link.includes('Ana') && !r.body.link.includes('Empresa'), 'sem dado pessoal na URL');
 
   // 1b) @ do Instagram: entra no link entre s e c (ordem da chave de cache), limpo; lixo vira vazio e some do link

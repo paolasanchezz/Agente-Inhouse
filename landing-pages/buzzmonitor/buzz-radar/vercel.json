@@ -5,6 +5,10 @@
   "redirects": [
     { "source": "/totem", "destination": "/", "permanent": false }
   ],
+  "rewrites": [
+    { "source": "/es", "destination": "https://buzzmonitor-lp-buzz-compass-latam.vercel.app/es" },
+    { "source": "/es/:path*", "destination": "https://buzzmonitor-lp-buzz-compass-latam.vercel.app/es/:path*" }
+  ],
   "functions": {
     "api/totem.js": { "maxDuration": 60 },
     "api/totem-lead.js": { "maxDuration": 60 }

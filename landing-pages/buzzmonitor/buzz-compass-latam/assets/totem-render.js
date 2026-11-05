@@ -29,10 +29,12 @@
     return p;
   }
   // A MESMA url de analise e usada pelo totem, pelo QR code e pelo e-mail: e ela que o cache da borda guarda.
-  function apiUrl(marca, concorrentes, segmento, instagram) { return '/api/totem?' + parametros(marca, concorrentes, segmento, instagram).toString(); }
+  // Versao LATAM: tudo vive em buzzcompass.buzzmonitor.com/es (o projeto do Brasil faz proxy de /es/* para este projeto).
+  var BASE = '/es';
+  function apiUrl(marca, concorrentes, segmento, instagram) { return BASE + '/api/totem?' + parametros(marca, concorrentes, segmento, instagram).toString(); }
   // Sem dado pessoal na URL (ela vai para o QR code, o e-mail e o Google Analytics): so marca, segmento, @ da marca e concorrentes.
   function linkDoResultado(origem, marca, concorrentes, segmento, instagram) {
-    return origem + '/totem-resultado?' + parametros(marca, concorrentes, segmento, instagram).toString();
+    return origem + BASE + '/totem-resultado?' + parametros(marca, concorrentes, segmento, instagram).toString();
   }
   // Mesma limpeza do servidor (api/_lib/perfil.js): "@natura", "natura" e "instagram.com/natura" viram "natura".
   function limparPerfil(v) {
@@ -383,5 +385,5 @@
       secaoProva(data.prova, nomeMarca, o.kiosk);
   }
 
-  raiz.TotemRender = { render: render, apiUrl: apiUrl, linkDoResultado: linkDoResultado, limparPerfil: limparPerfil, esc: esc, fmt: fmt };
+  raiz.TotemRender = { base: BASE, render: render, apiUrl: apiUrl, linkDoResultado: linkDoResultado, limparPerfil: limparPerfil, esc: esc, fmt: fmt };
 })(window);

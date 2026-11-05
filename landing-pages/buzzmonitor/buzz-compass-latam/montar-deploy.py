@@ -24,7 +24,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ_REPO = os.path.abspath(os.path.join(AQUI, '..', '..', '..'))
 LOGOS_ORIGEM = os.path.join(RAIZ_REPO, 'brand', 'buzzmonitor', 'assets', 'logos')
 CAMINHO_LOGO_RELATIVO = '../../brand/buzzmonitor/assets/logos/'
-CAMINHO_LOGO_DEPLOY = '/assets/logos/'
+CAMINHO_LOGO_DEPLOY = '/es/assets/logos/'  # versao LATAM: servida em /es
 PASTAS = ['api', 'assets']
 ARQUIVOS_RAIZ_EXTRA = ['vercel.json']
 

@@ -41,7 +41,9 @@ async function lerCorpo(req) {
 
 http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORTA}`);
-  const rota = decodeURIComponent(url.pathname);
+  // Versao LATAM: tudo vive em /es (em producao o proxy do projeto do Brasil manda /es/* para ca); aqui o prefixo e tirado.
+  let rota = decodeURIComponent(url.pathname);
+  if (rota === '/es' || rota.startsWith('/es/')) rota = rota.slice(3) || '/';
 
   if (rota.startsWith('/api/')) {
     const nome = rota.slice(5).replace(/[^a-z0-9-]/gi, '');
