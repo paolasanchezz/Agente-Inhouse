@@ -1,0 +1,944 @@
+<!DOCTYPE html><html style=""><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<!-- LEADPAGES:START (cole tudo daqui ate LEADPAGES:END num widget HTML de largura total, sem padding) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&amp;family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap">
+<style>
+  .bzia{--purple:#390155;--purple-2:#5a1a80;--purple-ink:#2a0a3d;--orange:#EB7C2E;--orange-dark:#d4691a;--pink:#EC4F74;--teal:#0E9D9B;--yellow:#FCBD4F;--lilac:#F4ECFA;--blush:#FDF3EF;--n900:#1a1a1a;--n700:#4a4a4a;--n500:#6b6b6b;--n200:#ececec;--n100:#f6f5f8;--f-head:'League Spartan',sans-serif;--f-body:'Lato',sans-serif;--r-md:12px;--r-lg:24px;--r-full:9999px;--sh:0 6px 24px rgba(57,1,85,.08);--sh-lg:0 24px 60px rgba(57,1,85,.16);--nav-h:64px;font-family:var(--f-body);color:var(--n900);background:#fff;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased;font-size:16px}
+  .bzia *,.bzia *::before,.bzia *::after{box-sizing:border-box;margin:0;padding:0}
+  .bzia img{max-width:100%;height:auto;display:block}
+  .bzia a{text-decoration:none;color:inherit}
+  .bzia ul{list-style:none}
+  .bzia b,.bzia strong{font-weight:700}
+  .bzia *:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+  .bzia .container{max-width:1180px;margin:0 auto;padding:0 24px}
+  .bzia h1,.bzia h2,.bzia h3{font-family:var(--f-head);line-height:1.08;color:var(--n900);letter-spacing:-.01em}
+  .bzia h2{font-size:clamp(28px,3.4vw,42px);font-weight:800}
+  .bzia .hl{color:var(--purple)}
+  .bzia .grad{background:linear-gradient(90deg,var(--orange),var(--pink),var(--orange));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bziaShine 6s linear infinite}
+  @keyframes bziaShine{to{background-position:-200% 0}}
+  .bzia section{padding:96px 0;scroll-margin-top:var(--nav-h)}
+  @media(max-width:760px){.bzia section{padding:64px 0}}
+
+  /* Botoes */
+  .bzia .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 30px;border-radius:var(--r-full);font-family:var(--f-body);font-size:15px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--orange),var(--pink));background-size:180% 100%;background-position:0 0;box-shadow:0 10px 24px rgba(236,79,116,.26);transition:background-position .4s ease,transform .2s ease,box-shadow .2s ease;white-space:nowrap;border:0;cursor:pointer}
+  .bzia .btn:hover{background-position:100% 0;transform:translateY(-2px);box-shadow:0 14px 30px rgba(236,79,116,.34)}
+  .bzia .btn svg{width:18px;height:18px;flex-shrink:0;transition:transform .2s ease}
+  .bzia .btn:hover svg{transform:translateX(4px)}
+  .bzia .btn--ghost{background:transparent;color:var(--purple);box-shadow:inset 0 0 0 2px var(--purple)}
+  .bzia .btn--ghost:hover{background:var(--purple);color:#fff;box-shadow:inset 0 0 0 2px var(--purple)}
+  @media(max-width:420px){.bzia .btn{white-space:normal;text-align:center}}
+
+  /* Reveal */
+  .bzia .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+  .bzia .reveal.visible{opacity:1;transform:none}
+  .bzia .reveal--l{transform:translateX(-28px)}.bzia .reveal--r{transform:translateX(28px)}
+  .bzia .d1{transition-delay:.1s}.bzia .d2{transition-delay:.2s}.bzia .d3{transition-delay:.3s}.bzia .d4{transition-delay:.4s}
+
+  /* Overline */
+  .bzia .ov{display:inline-flex;align-items:center;gap:8px;background:var(--lilac);color:var(--purple);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-full);margin-bottom:18px}
+  .bzia .ov svg{width:16px;height:16px;color:var(--orange)}
+  .bzia .ov--dark{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.24)}
+
+  /* Nav */
+  .bzia .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s ease,box-shadow .3s ease}
+  .bzia .nav.is-scrolled{border-color:var(--n200);box-shadow:0 4px 18px rgba(57,1,85,.06)}
+  .bzia .nav__inner{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:var(--nav-h)}
+  .bzia .nav__logo img{height:32px;width:auto}
+  .bzia .nav__links{display:flex;gap:26px}
+  .bzia .nav__link{font-size:14px;font-weight:700;color:var(--n700);position:relative;padding:4px 0;transition:color .2s}
+  .bzia .nav__link::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--orange);transform:scaleX(0);transition:transform .25s ease}
+  .bzia .nav__link:hover,.bzia .nav__link.is-active{color:var(--purple)}
+  .bzia .nav__link.is-active::after{transform:scaleX(1)}
+  .bzia .nav__cta{padding:10px 22px;font-size:14px;box-shadow:none}
+  @media(max-width:1020px){.bzia .nav__links{display:none}}
+  @media(max-width:520px){.bzia .nav__logo img{height:26px}.bzia .nav__cta{display:none}}
+
+  /* Hero */
+  .bzia .hero{position:relative;overflow:hidden;padding:72px 0 88px;background-image:radial-gradient(circle,rgba(57,1,85,.07) 1.5px,transparent 1.7px),linear-gradient(180deg,var(--n100),#fff 80%);background-size:22px 22px,100% 100%;animation:bziaDots 18s linear infinite}
+  @keyframes bziaDots{to{background-position:22px 22px,0 0}}
+  .bzia .hero__glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:bziaGlow 14s ease-in-out infinite}
+  .bzia .hero__glow--a{width:520px;height:520px;right:-120px;top:-160px;background:rgba(235,124,46,.18)}
+  .bzia .hero__glow--b{width:460px;height:460px;left:-200px;bottom:-200px;background:rgba(90,26,128,.14);animation-delay:-7s}
+  @keyframes bziaGlow{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,24px) scale(1.08)}}
+  .bzia .hero__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .bzia .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:900;margin-bottom:24px}
+  .bzia .hero__p{font-size:clamp(16px,1.5vw,18px);color:var(--n700);margin-bottom:14px;max-width:560px}
+  .bzia .hero__p b{color:var(--n900)}
+  .bzia .hero__ctas{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 36px}
+  .bzia .hero__stats{display:flex;gap:16px;flex-wrap:wrap}
+  .bzia .stat-chip{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--n200);border-radius:16px;padding:12px 18px 12px 12px;box-shadow:var(--sh)}
+  .bzia .stat-chip__ic{width:40px;height:40px;border-radius:12px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center}
+  .bzia .stat-chip__ic svg{width:22px;height:22px}
+  .bzia .stat-chip__v{display:block;font-family:var(--f-head);font-weight:900;font-size:24px;line-height:1;color:var(--purple)}
+  .bzia .stat-chip__l{font-size:13px;color:var(--n700)}
+  .bzia .formcard{position:relative;background:linear-gradient(145deg,var(--purple),var(--purple-2));border-radius:28px;padding:14px;box-shadow:var(--sh-lg)}
+  .bzia .formcard::before{content:"";position:absolute;inset:-2px;border-radius:30px;background:conic-gradient(from var(--bzia-a,0deg),var(--orange),var(--pink),var(--purple-2),var(--orange));z-index:-1;animation:bziaSpin 6s linear infinite;filter:blur(14px);opacity:.55}
+  @property --bzia-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+  @keyframes bziaSpin{to{--bzia-a:360deg}}
+  .bzia .formcard__head{color:#fff;text-align:center;padding:14px 10px 12px;font-family:var(--f-head);font-weight:800;font-size:20px}
+  .bzia .formcard__frame{background:#fff;border-radius:18px;overflow:hidden;min-height:520px}
+  .bzia .formcard__frame iframe{display:block;width:100%;min-width:100%;height:560px;border:0}
+  .bzia .formcard__fallback{display:block;padding:24px;text-align:center;color:var(--purple);font-weight:700}
+  @media(max-width:960px){.bzia .hero__grid{grid-template-columns:1fr;gap:48px}.bzia .hero{padding-top:48px}}
+
+  /* Faixa de logos */
+  .bzia .logos{padding:44px 0;border-top:1px solid var(--n200);border-bottom:1px solid var(--n200);background:#fff}
+  .bzia .logos__viewport{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .bzia .logos__track{display:flex;width:max-content;animation:bziaMarquee 40s linear infinite}
+  .bzia .logos__track img{height:30px;width:auto;max-width:none;opacity:.6;filter:grayscale(1);transition:opacity .3s,filter .3s}
+  .bzia .logos__track:hover img{opacity:1;filter:none}
+  @keyframes bziaMarquee{to{transform:translateX(-50%)}}
+
+  /* Canais / IA na sua marca */
+  .bzia .ai{background:#fff}
+  .bzia .ai__grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .bzia .ai h2{margin-bottom:28px}
+  .bzia .checks{display:grid;gap:14px}
+  .bzia .checks li{display:flex;gap:14px;align-items:flex-start;font-size:16px;color:var(--n700)}
+  .bzia .checks li b{color:var(--n900)}
+  .bzia .checks__ic{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(14,157,155,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .bzia .checks__ic svg{width:15px;height:15px}
+  .bzia .chan{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;padding:28px 28px 40px;border-radius:32px;background:radial-gradient(circle at 50% 50%,var(--lilac),#fff 72%)}
+  .bzia .chan__it{position:relative;aspect-ratio:1/1;cursor:pointer;padding:0;font:inherit;background:#fff;border:1px solid var(--n200);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;animation:bziaBob 5s ease-in-out infinite}
+  .bzia .chan__it img{width:52%;height:52%;object-fit:contain}
+  .bzia .chan__it:hover,.bzia .chan__it:focus-visible,.bzia .chan__it.is-lit{transform:translateY(-6px) scale(1.06);box-shadow:0 16px 32px rgba(235,124,46,.22);border-color:rgba(235,124,46,.5)}
+  .bzia .chan__it:nth-child(3n+1){animation-delay:-1.6s}.bzia .chan__it:nth-child(3n+2){animation-delay:-3.2s}
+  @keyframes bziaBob{0%,100%{translate:0 0}50%{translate:0 -5px}}
+  .bzia .chan__badge{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;font-weight:700;font-size:14px;padding:10px 20px;border-radius:var(--r-full);box-shadow:var(--sh-lg);white-space:nowrap}
+  .bzia .chan__badge svg{width:18px;height:18px;color:var(--yellow)}
+  @media(max-width:960px){.bzia .ai__grid{grid-template-columns:1fr;gap:56px}}
+  .bzia .chan__name{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);background:var(--purple-ink);color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
+  .bzia .chan__it:hover .chan__name,.bzia .chan__it:focus-visible .chan__name{opacity:1;transform:translate(-50%,0)}
+  .bzia .chan__badge{cursor:default}
+  .bzia .chan__badge svg{animation:bziaTap 1.6s ease-in-out infinite}
+  @keyframes bziaTap{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+  /* Modal das redes */
+  .bzia .netd{border:0;padding:0;margin:auto;width:min(560px,calc(100% - 24px));max-height:calc(100% - 24px);border-radius:28px;background:#fff;color:var(--n900);box-shadow:0 40px 100px rgba(26,4,40,.45);overflow:hidden;font-family:var(--f-body)}
+  .bzia .netd::backdrop{background:rgba(26,4,40,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .bzia .netd[open]{animation:bziaPop .28s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes bziaPop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+  .bzia .netd__in{display:flex;flex-direction:column;max-height:calc(100vh - 24px)}
+  .bzia .netd__head{position:relative;display:flex;align-items:center;gap:16px;padding:26px 64px 22px 26px;background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff}
+  .bzia .netd__ic{flex-shrink:0;width:60px;height:60px;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+  .bzia .netd__ic img{width:36px;height:36px;object-fit:contain}
+  .bzia .netd__kick{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:2px}
+  .bzia .netd__title{font-family:var(--f-head);font-weight:800;font-size:26px;line-height:1.1;color:#fff}
+  .bzia .netd__x{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .bzia .netd__x:hover{background:rgba(255,255,255,.26)}
+  .bzia .netd__x svg{width:18px;height:18px}
+  .bzia .netd__body{padding:22px 26px 8px;overflow-y:auto}
+  .bzia .netd__lead{font-size:17px;font-weight:700;color:var(--n900);line-height:1.45;margin-bottom:14px}
+  .bzia .netd__scope{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .bzia .netd__chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:6px 12px;border-radius:var(--r-full);background:var(--lilac);color:var(--purple)}
+  .bzia .netd__chip svg{width:14px;height:14px}
+  .bzia .netd__list{display:grid;gap:12px;margin-bottom:18px}
+  .bzia .netd__row{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:start;font-size:15px;color:var(--n700);padding-bottom:12px;border-bottom:1px dashed var(--n200)}
+  .bzia .netd__row:last-child{border-bottom:0;padding-bottom:0}
+  .bzia .netd__lbl{font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-dark);padding-top:3px}
+  .bzia .netd__time{display:flex;gap:12px;align-items:center;background:rgba(14,157,155,.09);border:1px solid rgba(14,157,155,.25);border-radius:16px;padding:12px 14px;margin-bottom:6px}
+  .bzia .netd__time svg{flex-shrink:0;width:22px;height:22px;color:var(--teal)}
+  .bzia .netd__time b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+  .bzia .netd__time span{font-size:15px;font-weight:700;color:var(--n900)}
+  .bzia .netd__note{font-size:12px;color:var(--n500);margin:6px 0 4px}
+  .bzia .netd__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 26px 22px;border-top:1px solid var(--n200)}
+  .bzia .netd__nav{display:flex;gap:8px}
+  .bzia .netd__arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--n200);background:#fff;color:var(--purple);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+  .bzia .netd__arrow:hover{background:var(--lilac);border-color:var(--purple)}
+  .bzia .netd__arrow svg{width:18px;height:18px}
+  .bzia .netd__foot .btn{padding:12px 22px;font-size:14px}
+  @media(max-width:480px){.bzia .netd__row{grid-template-columns:1fr;gap:2px}.bzia .netd__title{font-size:22px}.bzia .netd__foot .btn{padding:12px 16px;font-size:13px}}
+  @media(max-width:480px){.bzia .chan{gap:8px;padding:16px 14px 36px}.bzia .chan__it{border-radius:12px}.bzia .chan__name{display:none}}
+
+  @media(max-width:480px){.bzia .chan{gap:10px;padding:18px}.bzia .chan__it{border-radius:14px}}
+
+  /* Modulos */
+  .bzia .mods{background:linear-gradient(180deg,var(--n100),#fff 30%);padding-top:0;padding-bottom:24px}
+  .bzia .mods__tabs{position:sticky;top:var(--nav-h);z-index:50;display:flex;justify-content:center;padding:18px 0}
+  .bzia .mods__tabs-in{display:flex;gap:6px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--n200);padding:6px;border-radius:var(--r-full);box-shadow:var(--sh);overflow-x:auto;max-width:100%;scrollbar-width:none}
+  .bzia .mods__tabs-in::-webkit-scrollbar{display:none}
+  .bzia .mods__tab{flex-shrink:0;font-size:14px;font-weight:700;color:var(--n700);padding:10px 18px;border-radius:var(--r-full);transition:background .25s,color .25s}
+  .bzia .mods__tab:hover{color:var(--purple)}
+  .bzia .mods__tab.is-active{background:var(--purple);color:#fff}
+  .bzia .mod{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding:72px 0;scroll-margin-top:calc(var(--nav-h) + 80px)}
+  .bzia .mod + .mod{border-top:1px dashed var(--n200)}
+  .bzia .mod--flip .mod__media{order:-1}
+  .bzia .mod__num{display:block;font-family:var(--f-head);font-weight:900;font-size:15px;letter-spacing:.12em;color:var(--orange);margin-bottom:12px}
+  .bzia .mod h2{margin-bottom:14px}
+  .bzia .mod__tag{font-style:italic;font-weight:700;color:var(--orange-dark);margin-bottom:20px;font-size:16px}
+  .bzia .mod p{color:var(--n700);margin-bottom:16px}
+  .bzia .mod__punch{display:flex;gap:12px;align-items:flex-start;background:var(--lilac);border-left:4px solid var(--purple);border-radius:0 14px 14px 0;padding:14px 18px;color:var(--purple)!important;font-weight:700;margin:22px 0 28px!important}
+  .bzia .mod__punch svg{flex-shrink:0;width:20px;height:20px;margin-top:2px;color:var(--orange)}
+  .bzia .mod__media{position:relative}
+  .bzia .frame{position:relative;border-radius:var(--r-lg);background:#fff;box-shadow:var(--sh-lg);border:1px solid var(--n200);overflow:hidden}
+  .bzia .frame--bare{background:none;border:0;box-shadow:none;overflow:visible}
+  .bzia .frame__bar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--n200);background:var(--n100)}
+  .bzia .frame__bar i{width:10px;height:10px;border-radius:50%;background:#ddd}
+  .bzia .frame__bar i:nth-child(1){background:#ff6058}.bzia .frame__bar i:nth-child(2){background:#ffc130}.bzia .frame__bar i:nth-child(3){background:#27ca40}
+  .bzia .mod__blob{position:absolute;inset:8% -4% -6% 8%;border-radius:40px;background:linear-gradient(135deg,rgba(235,124,46,.16),rgba(236,79,116,.12));z-index:0;transform:rotate(-3deg)}
+  .bzia .mod--flip .mod__blob{inset:8% 8% -6% -4%;transform:rotate(3deg)}
+  .bzia .mod__media > *:not(.mod__blob):not(.float){position:relative;z-index:1}
+  .bzia .float{position:absolute;z-index:2!important;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:10px 16px 10px 10px;box-shadow:var(--sh-lg);font-size:13px;font-weight:700;color:var(--n900);animation:bziaBob 5s ease-in-out infinite}
+  .bzia .float img{width:34px;height:34px;border-radius:10px}
+  .bzia .float__ic{width:34px;height:34px;border-radius:10px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center}
+  .bzia .float__ic svg{width:18px;height:18px}
+  .bzia .rep{position:relative;padding-bottom:22%}
+  .bzia .rep__a{width:88%}
+  .bzia .rep__b{position:absolute!important;right:0;bottom:0;width:62%;animation:bziaBob 6s ease-in-out infinite -2s}
+  .bzia .rep img{border-radius:18px;box-shadow:var(--sh-lg);background:#fff}
+  @media(max-width:960px){.bzia .mod{grid-template-columns:1fr;gap:44px;padding:56px 0}.bzia .mod--flip .mod__media{order:0}.bzia .mod__media{max-width:640px}}
+  @media(max-width:560px){.bzia .float{display:none}}
+
+  /* Video */
+  .bzia .vid{background:linear-gradient(135deg,var(--purple-ink),var(--purple) 55%,var(--purple-2));color:#fff;text-align:center;position:relative;overflow:hidden}
+  .bzia .vid::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1.5px,transparent 1.7px);background-size:24px 24px;pointer-events:none}
+  .bzia .vid h2{color:#fff;margin-bottom:40px;position:relative}
+  .bzia .vid h2 .sp{display:inline-block;color:var(--yellow);animation:bziaTwinkle 2.4s ease-in-out infinite}
+  @keyframes bziaTwinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.25) rotate(12deg)}}
+  .bzia .vid__frame{position:relative;max-width:900px;margin:0 auto;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18);background:#000}
+  .bzia .vid__frame iframe,.bzia .vid__poster{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .bzia .vid__poster{cursor:pointer;background:#000 center/cover no-repeat;display:flex;align-items:center;justify-content:center}
+  .bzia .vid__poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(57,1,85,.1),rgba(57,1,85,.45))}
+  .bzia .vid__play{position:relative;z-index:1;width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(236,79,116,.6);animation:bziaPing 2s ease-out infinite;transition:transform .2s}
+  .bzia .vid__poster:hover .vid__play{transform:scale(1.08)}
+  .bzia .vid__play svg{width:34px;height:34px;color:#fff;margin-left:5px}
+  @keyframes bziaPing{0%{box-shadow:0 0 0 0 rgba(236,79,116,.55)}100%{box-shadow:0 0 0 28px rgba(236,79,116,0)}}
+  .bzia .vid__pills{position:relative;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .bzia .vid__pill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);padding:12px 20px;border-radius:var(--r-full);font-weight:700;font-size:15px}
+  .bzia .vid__pill svg{width:20px;height:20px;color:var(--yellow)}
+
+  /* Teste 14 dias */
+  .bzia .trial{background:#fff}
+  .bzia .trial__box{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;background:linear-gradient(135deg,var(--blush),#fff 60%);border:1px solid rgba(235,124,46,.22);border-radius:36px;padding:56px;overflow:hidden}
+  .bzia .trial h2{margin-bottom:14px}
+  .bzia .trial h2 .grad{white-space:nowrap}
+  .bzia .trial__lead{color:var(--n700);margin-bottom:22px}
+  .bzia .trial__lead b{color:var(--n900)}
+  .bzia .trial .checks{margin-bottom:30px}
+  .bzia .trial .checks li{font-size:15px}
+  .bzia .price{display:inline-flex;flex-direction:column;gap:14px;background:#fff;border-radius:22px;padding:22px 26px;box-shadow:var(--sh-lg);border:1px solid var(--n200)}
+  .bzia .price__label{font-size:14px;color:var(--n700)}
+  .bzia .price__v{font-family:var(--f-head);font-weight:900;color:var(--purple);line-height:1;display:flex;align-items:baseline;gap:4px}
+  .bzia .price__cur{font-size:22px}
+  .bzia .price__num{font-size:52px;font-variant-numeric:tabular-nums}
+  .bzia .price__cents{font-size:24px}
+  .bzia .price__per{font-size:16px;font-family:var(--f-body);font-weight:400;color:var(--n700)}
+  .bzia .trial__media{position:relative}
+  .bzia .trial__badge{position:absolute;top:4%;left:0;z-index:2;transform:rotate(-8deg);background:var(--yellow);color:var(--purple);font-weight:900;font-family:var(--f-head);font-size:16px;padding:10px 18px;border-radius:var(--r-full);box-shadow:var(--sh-lg);animation:bziaBob 4s ease-in-out infinite}
+  @media(max-width:960px){.bzia .trial__box{grid-template-columns:1fr;padding:36px 24px}.bzia .trial__media{max-width:480px;margin:0 auto}}
+
+  /* Depoimentos */
+  .bzia .testi{background:var(--n100);overflow:hidden}
+  .bzia .testi__head{text-align:center;margin-bottom:44px}
+  .bzia .testi__head p{color:var(--n700);font-size:18px;margin-top:10px}
+  .bzia .testi__rows{display:grid;gap:12px}
+  .bzia .testi__row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .bzia .testi__track{display:flex;width:max-content;animation:bziaMarquee 70s linear infinite}
+    .bzia .testi__row:hover .testi__track{animation-play-state:paused}
+  .bzia .testi__track img{height:360px;width:auto;max-width:none}
+  @media(max-width:600px){.bzia .testi__track img{height:280px}}
+
+  /* Numeros + clientes */
+  .bzia .proof{background:#fff;text-align:center}
+  .bzia .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:72px}
+  .bzia .num{background:#fff;border:1px solid var(--n200);border-radius:22px;padding:28px 16px;box-shadow:var(--sh);transition:transform .3s ease,box-shadow .3s ease}
+  .bzia .num:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+  .bzia .num__v{display:block;font-family:var(--f-head);font-weight:900;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--purple);margin-bottom:8px;font-variant-numeric:tabular-nums}
+  .bzia .num__l{font-size:15px;color:var(--n700)}
+  .bzia .proof h2{margin-bottom:36px}
+  .bzia .proof__wall{max-width:1000px;margin:0 auto}
+  @media(max-width:860px){.bzia .nums{grid-template-columns:1fr 1fr}}
+
+  /* Resultados / CTA final */
+  .bzia .res{background:linear-gradient(135deg,var(--purple-ink),var(--purple) 60%,var(--purple-2));color:#fff;text-align:center;position:relative;overflow:hidden}
+  .bzia .res__glow{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(90px);background:rgba(235,124,46,.22);top:-300px;left:50%;transform:translateX(-50%);pointer-events:none}
+  .bzia .res .container{position:relative}
+  .bzia .res__lead{max-width:640px;margin:0 auto 14px;color:#e6d3f5;font-size:18px}
+  .bzia .res h2{color:#fff;max-width:720px;margin:0 auto 48px}
+  .bzia .res__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;text-align:left}
+  .bzia .res__card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:28px;transition:background .3s,transform .3s}
+  .bzia .res__card:hover{background:rgba(255,255,255,.12);transform:translateY(-4px)}
+  .bzia .res__ic{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .bzia .res__ic svg{width:26px;height:26px;color:#fff}
+  .bzia .res__card p{font-family:var(--f-head);font-weight:700;font-size:20px;line-height:1.25}
+  @media(max-width:860px){.bzia .res__cards{grid-template-columns:1fr}}
+
+  /* Newsletter */
+  .bzia .nl{background:#fff;padding:80px 0}
+  .bzia .nl__box{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:var(--lilac);border-radius:32px;padding:48px 56px}
+  .bzia .nl__ov{font-weight:900;font-size:13px;letter-spacing:.16em;color:var(--orange-dark);margin-bottom:10px}
+  .bzia .nl h2{margin-bottom:10px}
+  .bzia .nl p{color:var(--n700)}
+  .bzia .nl__form{display:flex;flex-direction:column;gap:8px}
+  .bzia .nl__form label{font-size:14px;font-weight:700;color:var(--purple)}
+  .bzia .nl__row{display:flex;gap:10px;background:#fff;border-radius:var(--r-full);padding:6px;box-shadow:var(--sh);border:1px solid var(--n200)}
+  .bzia .nl__row input{flex:1;min-width:0;border:0;background:transparent;font:inherit;padding:10px 16px;outline:none;color:var(--n900)}
+  .bzia .nl__row:focus-within{border-color:var(--purple)}
+  .bzia .nl__row .btn{padding:12px 22px;box-shadow:none}
+  .bzia .nl__ok{display:none;font-weight:700;color:var(--teal)}
+  @media(max-width:860px){.bzia .nl__box{grid-template-columns:1fr;padding:32px 22px}}
+
+  /* Footer */
+  .bzia .foot{background:var(--purple);color:#fff;padding:56px 0 28px}
+  .bzia .foot__logo img{height:28px;width:auto;margin-bottom:16px}
+  .bzia .foot__desc{max-width:420px;color:#d9c3ea;font-size:14px;margin-bottom:24px}
+  .bzia .foot__soc{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+  .bzia .foot__sic{width:36px;height:36px;border-radius:var(--r-full);background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s ease,transform .2s ease}
+  .bzia .foot__sic:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
+  .bzia .foot__bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;color:#d9c3ea}
+  .bzia .foot__privlink:hover{color:#fff}
+
+  /* CTA fixo mobile */
+  .bzia .mcta{position:fixed;left:12px;right:12px;bottom:12px;z-index:120;display:none;transform:translateY(140%);transition:transform .35s ease}
+  .bzia .mcta .btn{width:100%;box-shadow:0 12px 30px rgba(57,1,85,.35)}
+  .bzia .mcta.is-on{transform:none}
+  @media(max-width:760px){.bzia .mcta{display:block}}
+
+
+  /* ===================== TEMA: linha visual da plataforma-completa-listening ===================== */
+  .bzia{--pink:#EC4F74;--peach:#FFE9DE;--blush:#FFF6F1;--rose:#FDEEF2;--g:linear-gradient(90deg,#EB7C2E,#EC4F74);--g135:linear-gradient(135deg,#EB7C2E,#EC4F74);--sh-p:0 24px 60px -24px rgba(236,79,116,.35)}
+  .bzia .grad{background:linear-gradient(90deg,#EB7C2E,#EC4F74,#EB7C2E);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bzia .btn{background:var(--g);background-size:180% 100%;box-shadow:0 12px 26px -8px rgba(236,79,116,.55)}
+  .bzia .btn:hover{box-shadow:0 18px 34px -10px rgba(236,79,116,.65)}
+  .bzia .btn--ghost{color:var(--pink);background:linear-gradient(#fff,#fff) padding-box,var(--g) border-box;border:2px solid transparent;box-shadow:none}
+  .bzia .btn--ghost:hover{color:#fff;background:var(--g) border-box;border-color:transparent;box-shadow:0 12px 26px -8px rgba(236,79,116,.5)}
+  .bzia .ov{background:var(--peach);color:#C85A14}
+  .bzia .ov svg{color:var(--pink)}
+
+  /* nav */
+  .bzia .nav__link::after{background:var(--g)}
+
+  /* hero: branco com brilhos pessego/rosa e rede de linhas */
+  .bzia .hero{background:#fff;animation:none}
+  .bzia .hero__glow--a{width:620px;height:620px;left:-220px;right:auto;top:-220px;background:rgba(255,196,160,.55);filter:blur(90px)}
+  .bzia .hero__glow--b{width:620px;height:620px;right:-200px;left:auto;top:40px;bottom:auto;background:rgba(236,79,116,.22);filter:blur(100px)}
+  .bzia .hero__net{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .bzia .hero__grid{z-index:1}
+  .bzia .stat-chip{border-color:rgba(236,79,116,.12);box-shadow:0 16px 36px -18px rgba(236,79,116,.45)}
+  .bzia .stat-chip__ic{background:var(--g135)}
+  .bzia .stat-chip__v{color:var(--n900)}
+  .bzia .formcard{background:var(--g135);padding:2px;border-radius:30px;box-shadow:0 30px 70px -26px rgba(236,79,116,.55)}
+  .bzia .formcard::before{inset:10% -6% -10%;border-radius:40px;background:radial-gradient(closest-side,rgba(236,79,116,.35),transparent);filter:blur(40px);animation:none;opacity:1}
+  .bzia .formcard__frame{border-radius:28px;padding:12px}
+  .bzia .formcard__frame iframe{border-radius:18px}
+
+  /* logos */
+  .bzia .logos{border-color:rgba(236,79,116,.1)}
+
+  /* canais */
+  .bzia .ai{background:linear-gradient(180deg,var(--blush),#fff 60%)}
+  .bzia .checks__ic{width:28px;height:28px;border-radius:9px;background:var(--g135);color:#fff;box-shadow:0 8px 16px -8px rgba(236,79,116,.7)}
+  .bzia .ai .checks li{background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 10px 26px -18px rgba(57,1,85,.35);align-items:center}
+  .bzia .ai .checks{gap:10px}
+  .bzia .chan{background:linear-gradient(#fff,#fff) padding-box,var(--g135) border-box;border:2px solid transparent;box-shadow:var(--sh-p)}
+  .bzia .chan__it{border-color:rgba(236,79,116,.1);box-shadow:0 8px 20px -14px rgba(57,1,85,.35)}
+  .bzia .chan__it:hover,.bzia .chan__it:focus-visible,.bzia .chan__it.is-lit{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,var(--g135) border-box;box-shadow:0 16px 30px -12px rgba(236,79,116,.5)}
+  .bzia .chan__badge{background:var(--g);box-shadow:0 14px 30px -10px rgba(236,79,116,.6)}
+  .bzia .chan__badge svg{color:#fff}
+
+  /* modulos */
+  .bzia .mods{background:#fff}
+  .bzia .mods__tab.is-active{background:var(--g)}
+  .bzia .mods__tabs-in{border-color:rgba(236,79,116,.15)}
+  .bzia .mod + .mod{border-top:0}
+  .bzia .mod:nth-child(even){position:relative}
+  .bzia .mod:nth-child(even)::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:linear-gradient(180deg,var(--blush),var(--rose));z-index:-1}
+  .bzia .mods .container{position:relative;z-index:0}
+  .bzia .mod__num{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bzia .mod__tag{font-family:var(--f-head);font-style:normal;font-weight:800;font-size:19px;line-height:1.3;color:var(--n900)}
+  .bzia .mod__blob{inset:6% 4%;border-radius:50%;transform:none;background:radial-gradient(closest-side,rgba(236,79,116,.18),rgba(255,196,160,.18) 55%,transparent);filter:blur(10px)}
+  .bzia .mod--flip .mod__blob{inset:6% 4%;transform:none}
+  .bzia .mod__media::before,.bzia .mod__media::after{content:"";position:absolute;width:30px;height:30px;z-index:2;pointer-events:none}
+  .bzia .mod__media::before{top:-10px;left:-10px;border-top:2px solid var(--orange);border-left:2px solid var(--orange);border-radius:10px 0 0 0}
+  .bzia .mod__media::after{bottom:-10px;right:-10px;border-bottom:2px solid var(--pink);border-right:2px solid var(--pink);border-radius:0 0 10px 0}
+  .bzia .frame{border-color:rgba(236,79,116,.12);box-shadow:var(--sh-p)}
+  .bzia .float{box-shadow:0 18px 36px -14px rgba(236,79,116,.5)}
+  .bzia .float__ic{background:var(--g135)}
+  .bzia .rep img{box-shadow:var(--sh-p)}
+
+  /* video */
+  .bzia .vid{background:linear-gradient(180deg,#fff,var(--blush));color:var(--n900)}
+  .bzia .vid::before{background-image:radial-gradient(circle,rgba(236,79,116,.12) 1.4px,transparent 1.6px)}
+  .bzia .vid h2{color:var(--n900)}
+  .bzia .vid h2 .sp{color:var(--orange)}
+  .bzia .vid__frame{border:0;padding:3px;background:var(--g135);box-shadow:0 40px 90px -30px rgba(236,79,116,.55)}
+  .bzia .vid__frame iframe,.bzia .vid__poster{inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);border-radius:calc(var(--r-lg) - 3px)}
+  .bzia .vid__play{background:var(--g135)}
+  .bzia .vid__pill{background:#fff;border:1px solid rgba(236,79,116,.14);color:var(--n900);box-shadow:0 12px 26px -16px rgba(57,1,85,.4)}
+  .bzia .vid__pill svg{color:var(--pink)}
+
+  /* teste 14 dias */
+  .bzia .trial{background:#fff}
+  .bzia .trial__box{background:radial-gradient(60% 80% at 0% 0%,rgba(255,196,160,.35),transparent 60%),radial-gradient(50% 70% at 100% 100%,rgba(236,79,116,.14),transparent 60%),#fff;border:1px solid rgba(236,79,116,.14);box-shadow:var(--sh-p)}
+  .bzia .trial h2{display:inline;color:#fff;background:var(--g);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:2px 12px;border-radius:10px;line-height:1.45}
+  .bzia .trial h2 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;animation:none}
+  .bzia .trial h2 + .trial__lead{margin-top:22px}
+  .bzia .price{border:0;background:linear-gradient(#fff,#fff) padding-box,var(--g135) border-box;border:2px solid transparent;box-shadow:0 20px 44px -22px rgba(236,79,116,.5)}
+  .bzia .price__num{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bzia .price__cur,.bzia .price__cents{color:var(--n900)}
+  .bzia .trial__media{isolation:isolate}
+  .bzia .trial__media::before{content:"";position:absolute;inset:-6%;border-radius:50%;border:2px dashed rgba(235,124,46,.45);z-index:-1;animation:bziaOrbit 40s linear infinite}
+  .bzia .trial__media::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--pink);right:6%;bottom:8%;box-shadow:0 0 0 6px rgba(236,79,116,.15);z-index:1}
+  @keyframes bziaOrbit{to{transform:rotate(360deg)}}
+  .bzia .trial__badge{background:var(--g);color:#fff}
+
+  /* depoimentos */
+  .bzia .testi{background:linear-gradient(180deg,var(--rose),#fff5f7)}
+
+  /* numeros e clientes */
+  .bzia .num{border-color:rgba(236,79,116,.12);box-shadow:0 16px 36px -22px rgba(57,1,85,.35)}
+  .bzia .num__v{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bzia .proof__wall{background:#fff;border:1px solid rgba(236,79,116,.14);border-radius:28px;padding:24px;box-shadow:var(--sh-p)}
+
+  /* resultados */
+  .bzia .res{background:linear-gradient(180deg,var(--blush),var(--rose));color:var(--n900)}
+  .bzia .res__glow{background:rgba(255,196,160,.45)}
+  .bzia .res__lead{color:var(--n700)}
+  .bzia .res h2{color:var(--n900)}
+  .bzia .res__card{background:linear-gradient(#fff,#fff) padding-box,var(--g135) border-box;border:2px solid transparent;box-shadow:0 18px 40px -24px rgba(236,79,116,.55)}
+  .bzia .res__card:hover{background:linear-gradient(#fff,#fff) padding-box,var(--g135) border-box}
+  .bzia .res__ic{background:var(--g135)}
+  .bzia .res__card p{color:var(--n900)}
+
+  /* newsletter */
+  .bzia .nl__box{background:linear-gradient(135deg,var(--blush),var(--rose));border:1px solid rgba(236,79,116,.14)}
+  .bzia .nl__ov{color:var(--pink)}
+  .bzia .nl__form label{color:var(--n900)}
+
+  /* rodape claro, com linha em degrade */
+  .bzia .foot{background:var(--blush);color:var(--n900);border-top:3px solid transparent;border-image:var(--g) 1}
+  .bzia .foot__desc{color:var(--n700)}
+  .bzia .foot__sic{background:var(--g135);color:#fff}
+  .bzia .foot__sic:hover{background:var(--g135);transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(236,79,116,.6)}
+  .bzia .foot__bottom{border-top-color:rgba(236,79,116,.15);color:var(--n700)}
+  .bzia .foot__privlink{text-decoration:underline;text-underline-offset:3px}
+  .bzia .foot__privlink:hover{color:var(--pink)}
+
+  /* janela das redes */
+  .bzia .netd__head{background:var(--g135)}
+  .bzia .netd__lbl{color:var(--pink)}
+  .bzia .netd__chip{background:var(--blush);color:#C85A14}
+  .bzia .netd__arrow{color:var(--pink);border-color:rgba(236,79,116,.2)}
+  .bzia .netd__arrow:hover{background:var(--blush);border-color:var(--pink)}
+
+  .bzia .hero__grid>*,.bzia .ai__grid>*,.bzia .mod>*,.bzia .trial__box>*{min-width:0}
+  /* mobile: o form do Jotform tem largura fixa, ganha mais espaco */
+  @media(max-width:560px){.bzia .formcard__frame{padding:4px}.bzia .container{padding:0 16px}}
+
+
+  /* ===================== HEAD: fundo, H1 e efeitos ===================== */
+
+  /* H1 */
+  .bzia .h1x{font-family:var(--f-head);font-size:clamp(40px,5.1vw,66px);font-weight:900;line-height:1.02;letter-spacing:-.035em;color:#1a0f24;margin-bottom:26px}
+  .bzia .h1x .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .02em .1em;margin-bottom:-.1em}
+  .bzia .h1x .w>span{display:inline-block;transform:translateY(105%);animation:bzWord .9s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--i) * 55ms + .1s)}
+  @keyframes bzWord{to{transform:none}}
+  .bzia .h1x .g1{background:linear-gradient(90deg,#E8621A,#F28C1E 45%,#F7B21B);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bzia .h1x .g2{background:linear-gradient(90deg,#E8621A,#F59E1F,#F7B21B,#F28C1E,#E8621A);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bzWord .9s cubic-bezier(.22,1,.36,1) forwards,bzSheen 5s linear 1.4s infinite;animation-delay:calc(var(--i) * 55ms + .1s),1.4s}
+  @keyframes bzSheen{to{background-position:-250% 0}}
+  .bzia .h1x .mk{position:relative;display:inline-block;white-space:nowrap}
+  .bzia .h1x .mk__line{position:absolute;left:-2%;bottom:-.12em;width:104%;height:.36em;overflow:visible;pointer-events:none}
+  .bzia .h1x .mk__line path{fill:none;stroke:url(#bziaMk);stroke-width:5;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:320;opacity:.85;animation:bzDraw 1s cubic-bezier(.65,0,.35,1) 1.05s forwards}
+  @keyframes bzDraw{to{stroke-dashoffset:0}}
+  .bzia .h1x .ai-w{position:relative;display:inline-block;white-space:nowrap}
+  .bzia .h1x .spark{position:absolute;right:-.62em;top:-.28em;width:.5em;height:.5em;fill:#FCBD4F;filter:drop-shadow(0 4px 8px rgba(235,124,46,.45));opacity:0;animation:bzSparkIn .5s ease 1.5s forwards,bzTwk 2.6s ease-in-out 2s infinite}
+  @keyframes bzSparkIn{to{opacity:1}}
+  @keyframes bzTwk{50%{transform:scale(.7) rotate(25deg)}}
+  @media(max-width:560px){.bzia .h1x{font-size:clamp(34px,9.6vw,44px)}.bzia .h1x .spark{right:-.5em}}
+
+
+
+  /* nomes das redes: so no hover/foco (reforcado contra CSS do Leadpages) */
+  .bzia .chan .chan__it .chan__name{opacity:0!important;visibility:hidden!important}
+  .bzia .chan .chan__it:hover .chan__name,.bzia .chan .chan__it:focus-visible .chan__name{opacity:1!important;visibility:visible!important}
+  /* Hero em tons laranja/amarelo */
+  .bzia .hero__glow--a{background:rgba(255,168,96,.55)}
+  .bzia .hero__glow--b{background:rgba(252,189,79,.38)}
+  .bzia .hero .stat-chip__ic{background:linear-gradient(135deg,#E8621A,#F7B21B)}
+  .bzia .hero .stat-chip{box-shadow:0 16px 36px -18px rgba(235,124,46,.45);border-color:rgba(235,124,46,.14)}
+  .bzia .formcard{background:linear-gradient(135deg,#E8621A,#F59E1F 55%,#F7B21B);box-shadow:0 30px 70px -26px rgba(235,124,46,.5)}
+  .bzia .formcard::before{background:radial-gradient(closest-side,rgba(247,178,27,.32),transparent)}
+  /* Tami saindo de tras da lateral esquerda do form */
+  .bzia .tami{--tw:clamp(220px,17.5vw,272px);position:absolute;left:calc(100% - var(--tw) * .1 + 3px);bottom:6%;width:var(--tw);z-index:3;pointer-events:none;line-height:0}
+  .bzia .tami__img,.bzia .tami__vid{display:block;width:100%;height:auto;opacity:0;transition:opacity .3s}
+  .bzia .tami__vid{position:absolute;inset:0;height:100%;object-fit:contain}
+  .bzia .tami .tami__anim{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none}
+  .bzia .tami.is-img .tami__img,.bzia .tami.is-vid .tami__vid{opacity:1}
+  @media(min-width:1101px){.bzia .hero__grid{grid-template-columns:minmax(0,1fr) minmax(420px,460px);gap:48px;padding-right:max(24px,calc(clamp(220px,17.5vw,272px) * .9 + 10px - max((100vw - 1180px)/2,0px)))}.bzia .h1x{font-size:clamp(40px,4vw,66px)}.bzia .tami{--tw:clamp(220px,17.5vw,272px)}}
+  @media(max-width:1100px){.bzia .tami{display:none}}
+
+  @media(prefers-reduced-motion:reduce){
+    .bzia *,.bzia *::before,.bzia *::after{animation:none!important;transition:none!important}
+    .bzia .reveal{opacity:1!important;transform:none!important}
+    .bzia .h1x .w>span{transform:none!important}.bzia .h1x .mk__line path{stroke-dashoffset:0!important}.bzia .h1x .spark{opacity:1!important}.bzia .tami__img{opacity:1!important}.bzia .tami__vid{display:none!important}
+  }
+</style>
+<noscript><style>.bzia .reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+<style id="htmlpub-breakpoint-visibility">@media (max-width: 767px) { .hp-hide-mobile { display: none !important; } }
+@media (min-width: 768px) and (max-width: 1199px) { .hp-hide-tablet { display: none !important; } }
+@media (min-width: 1200px) { .hp-hide-desktop { display: none !important; } }</style></head><body><div class="bzia">
+
+<nav class="nav" aria-label="Navegação principal" style="">
+  <div class="nav__inner" style="">
+    <a href="https://buzzmonitor.com/" class="nav__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+      <img src="https://content.buzzmonitor.com/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" width="150" height="32" style="">
+    </a>
+    <div class="nav__links">
+      <a href="#bzia-monitoramento" class="nav__link" data-spy="bzia-monitoramento" style="">Monitoramento</a>
+      <a href="#bzia-relacionamento" class="nav__link" data-spy="bzia-relacionamento" style="">Relacionamento</a>
+      <a href="#bzia-relatorios" class="nav__link" data-spy="bzia-relatorios">Relatórios</a>
+      <a href="#bzia-agendamento" class="nav__link" data-spy="bzia-agendamento">Agendamento</a>
+      <a href="#bzia-planos" class="nav__link" data-spy="bzia-planos">Planos</a>
+    </div>
+    <a href="#bzia-form" class="btn nav__cta">Agendar demonstração grátis</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO + FORM -->
+<section class="hero" aria-labelledby="bzia-h1">
+  <canvas class="hero__net" aria-hidden="true" style="" width="1584" height="766"></canvas>
+  <div class="hero__glow hero__glow--a" aria-hidden="true" style=""></div>
+  <div class="hero__glow hero__glow--b" aria-hidden="true" style=""></div>
+  <div class="container hero__grid" style="">
+    <div style="">
+      <h1 id="bzia-h1" class="h1x" style=""><span class="w"><span style="--i: 1;">Transforme</span></span> <span class="w"><span style="--i: 2;">a</span></span> <span class="w"><span style="--i: 3;">gestão</span></span> <span class="w"><span style="--i: 4;">da</span></span> <span class="w"><span style="--i: 5;">sua</span></span> <span class="w"><span style="--i: 6;">marca</span></span> <span class="w"><span style="--i: 7;">nas</span></span> <span class="mk"><span class="w"><span class="g1" style="--i: 8;">redes</span></span> <span class="w"><span class="g1" style="--i: 9;">sociais</span></span><svg class="mk__line" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true" style=""><defs><linearGradient id="bziaMk" x1="0" x2="1"><stop offset="0" stop-color="#E8621A"></stop><stop offset="1" stop-color="#F7B21B"></stop></linearGradient></defs><path d="M3 14 C 60 4, 120 4, 170 10 S 260 17, 297 6" style=""></path></svg></span> <span class="w"><span style="--i: 10;">com</span></span> <span class="ai-w"><span class="w"><span class="g2" style="--i: 11;">inteligência</span></span> <span class="w"><span class="g2" style="--i: 12;">artificial</span></span><svg class="spark" viewBox="0 0 24 24" aria-hidden="true" style=""><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"></path></svg></span></h1>
+      <p class="hero__p reveal d1" style=""><b>Monitore</b> as redes sociais da sua marca, <b>agende</b> publicações, <b>interaja</b> com clientes de forma eficiente e analise resultados com precisão.</p>
+      <p class="hero__p reveal d1" style="">A Buzzmonitor oferece tudo o que você precisa para uma <b>gestão de redes sociais</b> completa e de alta qualidade. Simplifique processos, otimize estratégias e conquiste resultados extraordinários!</p>
+      <div class="hero__ctas reveal d2" style="">
+        <a href="#bzia-form" class="btn" style="">Agendar demonstração grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+      <div class="hero__stats reveal d3">
+        <div class="stat-chip"><span class="stat-chip__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg></span><span><strong class="stat-chip__v" data-count="1000" data-suffix="+">1.000+</strong><span class="stat-chip__l">clientes em todo o mundo</span></span></div>
+        <div class="stat-chip"><span class="stat-chip__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span><span><strong class="stat-chip__v" data-count="500" data-suffix="+">500+</strong><span class="stat-chip__l">agências</span></span></div>
+      </div>
+    </div>
+    <div class="formcard reveal d2" id="bzia-form" style=""><span class="tami" aria-hidden="true"><img class="tami__img" src="/api/pages/XPHHtX4wus/assets/f2kpbus9h6ndskuv3cm3qnef?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="340" height="439" style="" fetchpriority="high"><img class="tami__anim" src="/api/pages/XPHHtX4wus/assets/pn6eqla4e4s0pn1oiy7c9frn?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="340" height="439" loading="lazy"></span>
+      <div class="formcard__frame" id="bzia-jotform">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/250074757320049"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos" aria-label="Empresas que já confiam na Buzzmonitor" style="">
+  <div class="logos__viewport">
+    <div class="logos__track">
+      <img src="/api/pages/XPHHtX4wus/assets/o6bvx8eej0gitpexfcwj875z?w=1200&fit=scale-down&format=auto&quality=82" alt="Grupo Casas Bahia, Salon Line, Claro, Shein, Visa, SA365, Hotmart, Globoplay, Content House, Ampla e Mestiça" width="3580" height="64" loading="lazy">
+      <img src="/api/pages/XPHHtX4wus/assets/o6bvx8eej0gitpexfcwj875z?w=1200&fit=scale-down&format=auto&quality=82" alt="" aria-hidden="true" width="3580" height="64" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- IA NA SUA MARCA -->
+<section class="ai" aria-labelledby="bzia-ai-h2" style="">
+  <div class="container ai__grid" style="">
+    <div>
+      <span class="ov reveal"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 6.2 19 9l1.3-2.8L23 5l-2.7-1.2L19 1l-1.2 2.8L15 5l2.8 1.2M17 12l-5.5-2.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12m3.3 5.8L19 15l-1.2 2.8L15 19l2.8 1.3L19 23l1.3-2.7L23 19"></path></svg>Use IA na sua marca!</span>
+      <h2 id="bzia-ai-h2" class="reveal d1">Descubra os interesses do seu público e destaque sua marca!</h2>
+      <ul class="checks">
+        <li class="reveal d1"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Crie e agende conteúdos com <b>ChatGPT</b> integrado em segundos</span></li>
+        <li class="reveal d1"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Monitore</b> menções a marca, termos e concorrentes nas redes sociais</span></li>
+        <li class="reveal d2"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Entenda o que o público espera</b> da sua marca e do seu mercado</span></li>
+        <li class="reveal d2"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Atenda clientes até <b>3x mais rápido</b> e otimize processos com IA</span></li>
+        <li class="reveal d3"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Tenha <b>mais de 50 métricas de performance</b> em tempo real</span></li>
+        <li class="reveal d3"><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Tudo em uma única plataforma e com <b>visão integrada de dados</b></span></li>
+      </ul>
+    </div>
+    <div class="reveal reveal--r d2">
+      <div class="chan" id="bzia-chan" aria-label="Canais integrados à Buzzmonitor" style="">
+        <!--REDES:START-->
+        <button type="button" class="chan__it" data-net="facebook" aria-haspopup="dialog" aria-label="Facebook: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI0OHB4IiBoZWlnaHQ9IjQ4cHgiPjxsaW5lYXJHcmFkaWVudCBpZD0iTGQ2c3FydGN4TXlja0VsNnhlRGRNYSIgeDE9IjkuOTkzIiB4Mj0iNDAuNjE1IiB5MT0iOS45OTMiIHkyPSI0MC42MTUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyYWE0ZjQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDdhZDkiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjTGQ2c3FydGN4TXlja0VsNnhlRGRNYSkiIGQ9Ik0yNCw0QzEyLjk1NCw0LDQsMTIuOTU0LDQsMjRzOC45NTQsMjAsMjAsMjBzMjAtOC45NTQsMjAtMjBTMzUuMDQ2LDQsMjQsNHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjYuNzA3LDI5LjMwMWg1LjE3NmwwLjgxMy01LjI1OGgtNS45ODl2LTIuODc0YzAtMi4xODQsMC43MTQtNC4xMjEsMi43NTctNC4xMjFoMy4yODNWMTIuNDYgYy0wLjU3Ny0wLjA3OC0xLjc5Ny0wLjI0OC00LjEwMi0wLjI0OGMtNC44MTQsMC03LjYzNiwyLjU0Mi03LjYzNiw4LjMzNHYzLjQ5OEgxNi4wNnY1LjI1OGg0Ljk0OHYxNC40NTIgQzIxLjk4OCw0My45LDIyLjk4MSw0NCwyNCw0NGMwLjkyMSwwLDEuODItMC4wODQsMi43MDctMC4yMDRWMjkuMzAxeiIvPjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Facebook</span></button>
+        <button type="button" class="chan__it" data-net="instagram" aria-haspopup="dialog" aria-label="Instagram: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgaWQ9Imluc3RhZ3JhbSI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImIiPgogICAgICA8Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSI2NCIgZmlsbD0ibm9uZSI+PC9jaXJjbGU+CiAgICA8L2NsaXBQYXRoPgogICAgPGNsaXBQYXRoIGlkPSJjIj4KICAgICAgPHBhdGggZmlsbD0ibm9uZSIgZD0iTTEwNC0xNjNIMjRhMjQuMDcgMjQuMDcgMCAwIDAtMjQgMjR2ODBhMjQuMDcgMjQuMDcgMCAwIDAgMjQgMjRoODBhMjQuMDcgMjQuMDcgMCAwIDAgMjQtMjR2LTgwYTI0LjA3IDI0LjA3IDAgMCAwLTI0LTI0Wm0xNiAxMDRhMTYgMTYgMCAwIDEtMTYgMTZIMjRBMTYgMTYgMCAwIDEgOC01OXYtODBhMTYgMTYgMCAwIDEgMTYtMTZoODBhMTYgMTYgMCAwIDEgMTYgMTZaIj48L3BhdGg+CiAgICA8L2NsaXBQYXRoPgogICAgPGNsaXBQYXRoIGlkPSJlIj4KICAgICAgPGNpcmNsZSBjeD0iODIiIGN5PSIyMDkiIHI9IjUiIGZpbGw9Im5vbmUiPjwvY2lyY2xlPgogICAgPC9jbGlwUGF0aD4KICAgIDxjbGlwUGF0aCBpZD0iZyI+CiAgICAgIDxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik02NC0xMTVhMTYgMTYgMCAwIDAtMTYgMTYgMTYgMTYgMCAwIDAgMTYgMTYgMTYgMTYgMCAwIDAgMTYtMTYgMTYgMTYgMCAwIDAtMTYtMTZabTAgMjRhOCA4IDAgMCAxLTgtOCA4IDggMCAwIDEgOC04IDggOCAwIDAgMSA4IDggOCA4IDAgMCAxLTggOFoiPjwvcGF0aD4KICAgIDwvY2xpcFBhdGg+CiAgICA8Y2xpcFBhdGggaWQ9ImgiPgogICAgICA8cGF0aCBmaWxsPSJub25lIiBkPSJNODQtNjNINDRhMTYgMTYgMCAwIDEtMTYtMTZ2LTQwYTE2IDE2IDAgMCAxIDE2LTE2aDQwYTE2IDE2IDAgMCAxIDE2IDE2djQwYTE2IDE2IDAgMCAxLTE2IDE2Wm0tNDAtNjRhOCA4IDAgMCAwLTggOHY0MGE4IDggMCAwIDAgOCA4aDQwYTggOCAwIDAgMCA4LTh2LTQwYTggOCAwIDAgMC04LThaIj48L3BhdGg+CiAgICA8L2NsaXBQYXRoPgogICAgPGNsaXBQYXRoIGlkPSJpIj4KICAgICAgPGNpcmNsZSBjeD0iODIiIGN5PSItMTE3IiByPSI1IiBmaWxsPSJub25lIj48L2NpcmNsZT4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImEiIGN4PSIyNy41IiBjeT0iMTIxLjUiIHI9IjEzNy41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZDY3NiI+PC9zdG9wPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4yNSIgc3RvcC1jb2xvcj0iI2YyYTQ1NCI+PC9zdG9wPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4zOCIgc3RvcC1jb2xvcj0iI2YwNWMzYyI+PC9zdG9wPgogICAgICA8c3RvcCBvZmZzZXQ9Ii43IiBzdG9wLWNvbG9yPSIjYzIyZjg2Ij48L3N0b3A+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk2IiBzdG9wLWNvbG9yPSIjNjY2NmFkIj48L3N0b3A+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk5IiBzdG9wLWNvbG9yPSIjNWM2Y2IyIj48L3N0b3A+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IHhsaW5rOmhyZWY9IiNhIiBpZD0iZCIgY3g9IjI3LjUiIGN5PSItNDEuNSIgcj0iMTQ4LjUiPjwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgeGxpbms6aHJlZj0iI2EiIGlkPSJmIiBjeD0iMTMuODciIGN5PSIzMDMuMzgiIHI9IjE4NS42MyI+PC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCB4bGluazpocmVmPSIjYSIgaWQ9ImoiIGN4PSIxMy44NyIgY3k9Ii0yMi42MiIgcj0iMTg1LjYzIj48L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KICA8ZyBjbGlwLXBhdGg9InVybCgjYikiPgogICAgPGNpcmNsZSBjeD0iMjcuNSIgY3k9IjEyMS41IiByPSIxMzcuNSIgZmlsbD0idXJsKCNhKSI+PC9jaXJjbGU+CiAgPC9nPgogIDxnIGNsaXAtcGF0aD0idXJsKCNjKSI+CiAgICA8Y2lyY2xlIGN4PSIyNy41IiBjeT0iLTQxLjUiIHI9IjE0OC41IiBmaWxsPSJ1cmwoI2QpIj48L2NpcmNsZT4KICA8L2c+CiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2UpIj4KICAgIDxjaXJjbGUgY3g9IjEzLjg3IiBjeT0iMzAzLjM4IiByPSIxODUuNjMiIGZpbGw9InVybCgjZikiPjwvY2lyY2xlPgogIDwvZz4KICA8ZyBjbGlwLXBhdGg9InVybCgjZykiPgogICAgPGNpcmNsZSBjeD0iMjcuNSIgY3k9Ii00MS41IiByPSIxNDguNSIgZmlsbD0idXJsKCNkKSI+PC9jaXJjbGU+CiAgPC9nPgogIDxnIGNsaXAtcGF0aD0idXJsKCNoKSI+CiAgICA8Y2lyY2xlIGN4PSIyNy41IiBjeT0iLTQxLjUiIHI9IjE0OC41IiBmaWxsPSJ1cmwoI2QpIj48L2NpcmNsZT4KICA8L2c+CiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2kpIj4KICAgIDxjaXJjbGUgY3g9IjEzLjg3IiBjeT0iLTIyLjYyIiByPSIxODUuNjMiIGZpbGw9InVybCgjaikiPjwvY2lyY2xlPgogIDwvZz4KICA8Y2lyY2xlIGN4PSI4MiIgY3k9IjQ2IiByPSI1IiBmaWxsPSIjZmZmIj48L2NpcmNsZT4KICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNNjQgNDhhMTYgMTYgMCAxIDAgMTYgMTYgMTYgMTYgMCAwIDAtMTYtMTZabTAgMjRhOCA4IDAgMSAxIDgtOCA4IDggMCAwIDEtOCA4WiI+PC9wYXRoPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgeD0iMzIiIHk9IjMyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSI4IiByeD0iMTIiIHJ5PSIxMiI+PC9yZWN0Pgo8L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Instagram</span></button>
+        <button type="button" class="chan__it" data-net="x" aria-haspopup="dialog" aria-label="X (Twitter): ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTE4LjI0NCAyLjI1aDMuMzA4bC03LjIyNyA4LjI2IDguNTAyIDExLjI0SDE2LjE3bC01LjIxNC02LjgxN0w0Ljk5IDIxLjc1SDEuNjhsNy43My04LjgzNUwxLjI1NCAyLjI1SDguMDhsNC43MTMgNi4yMzF6bS0xLjE2MSAxNy41MmgxLjgzM0w3LjA4NCA0LjEyNkg1LjExN3oiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">X</span></button>
+        <button type="button" class="chan__it" data-net="threads" aria-haspopup="dialog" aria-label="Threads: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyBhcmlhLWxhYmVsPSJUaHJlYWRzIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBjbGFzcz0ieDE5aHFjeSIgZD0iTTE0MS41MzcgODguOTg4M0MxNDAuNzEgODguNTkxOSAxMzkuODcgODguMjEwNCAxMzkuMDE5IDg3Ljg0NTFDMTM3LjUzNyA2MC41MzgyIDEyMi42MTYgNDQuOTA1IDk3LjU2MTkgNDQuNzQ1Qzk3LjQ0ODQgNDQuNzQ0MyA5Ny4zMzU1IDQ0Ljc0NDMgOTcuMjIyIDQ0Ljc0NDNDODIuMjM2NCA0NC43NDQzIDY5Ljc3MzEgNTEuMTQwOSA2Mi4xMDIgNjIuNzgwN0w3NS44ODEgNzIuMjMyOEM4MS42MTE2IDYzLjUzODMgOTAuNjA1MiA2MS42ODQ4IDk3LjIyODYgNjEuNjg0OEM5Ny4zMDUxIDYxLjY4NDggOTcuMzgxOSA2MS42ODQ4IDk3LjQ1NzYgNjEuNjg1NUMxMDUuNzA3IDYxLjczODEgMTExLjkzMiA2NC4xMzY2IDExNS45NjEgNjguODE0QzExOC44OTMgNzIuMjE5MyAxMjAuODU0IDc2LjkyNSAxMjEuODI1IDgyLjg2MzhDMTE0LjUxMSA4MS42MjA3IDEwNi42MDEgODEuMjM4NSA5OC4xNDUgODEuNzIzM0M3NC4zMjQ3IDgzLjA5NTQgNTkuMDExMSA5Ni45ODc5IDYwLjAzOTYgMTE2LjI5MkM2MC41NjE1IDEyNi4wODQgNjUuNDM5NyAxMzQuNTA4IDczLjc3NSAxNDAuMDExQzgwLjgyMjQgMTQ0LjY2MyA4OS44OTkgMTQ2LjkzOCA5OS4zMzIzIDE0Ni40MjNDMTExLjc5IDE0NS43NCAxMjEuNTYzIDE0MC45ODcgMTI4LjM4MSAxMzIuMjk2QzEzMy41NTkgMTI1LjY5NiAxMzYuODM0IDExNy4xNDMgMTM4LjI4IDEwNi4zNjZDMTQ0LjIxNyAxMDkuOTQ5IDE0OC42MTcgMTE0LjY2NCAxNTEuMDQ3IDEyMC4zMzJDMTU1LjE3OSAxMjkuOTY3IDE1NS40MiAxNDUuOCAxNDIuNTAxIDE1OC43MDhDMTMxLjE4MiAxNzAuMDE2IDExNy41NzYgMTc0LjkwOCA5Ny4wMTM1IDE3NS4wNTlDNzQuMjA0MiAxNzQuODkgNTYuOTUzOCAxNjcuNTc1IDQ1LjczODEgMTUzLjMxN0MzNS4yMzU1IDEzOS45NjYgMjkuODA3NyAxMjAuNjgyIDI5LjYwNTIgOTZDMjkuODA3NyA3MS4zMTc4IDM1LjIzNTUgNTIuMDMzNiA0NS43MzgxIDM4LjY4MjdDNTYuOTUzOCAyNC40MjQ5IDc0LjIwMzkgMTcuMTEgOTcuMDEzMiAxNi45NDA1QzExOS45ODggMTcuMTExMyAxMzcuNTM5IDI0LjQ2MTQgMTQ5LjE4NCAzOC43ODhDMTU0Ljg5NCA0NS44MTM2IDE1OS4xOTkgNTQuNjQ4OCAxNjIuMDM3IDY0Ljk1MDNMMTc4LjE4NCA2MC42NDIyQzE3NC43NDQgNDcuOTYyMiAxNjkuMzMxIDM3LjAzNTcgMTYxLjk2NSAyNy45NzRDMTQ3LjAzNiA5LjYwNjY4IDEyNS4yMDIgMC4xOTUxNDggOTcuMDY5NSAwSDk2Ljk1NjlDNjguODgxNiAwLjE5NDQ3IDQ3LjI5MjEgOS42NDE4IDMyLjc4ODMgMjguMDc5M0MxOS44ODE5IDQ0LjQ4NjQgMTMuMjI0NCA2Ny4zMTU3IDEzLjAwMDcgOTUuOTMyNUwxMyA5NkwxMy4wMDA3IDk2LjA2NzVDMTMuMjI0NCAxMjQuNjg0IDE5Ljg4MTkgMTQ3LjUxNCAzMi43ODgzIDE2My45MjFDNDcuMjkyMSAxODIuMzU4IDY4Ljg4MTYgMTkxLjgwNiA5Ni45NTY5IDE5Mkg5Ny4wNjk1QzEyMi4wMyAxOTEuODI3IDEzOS42MjQgMTg1LjI5MiAxNTQuMTE4IDE3MC44MTFDMTczLjA4MSAxNTEuODY2IDE3Mi41MSAxMjguMTE5IDE2Ni4yNiAxMTMuNTQxQzE2MS43NzYgMTAzLjA4NyAxNTMuMjI3IDk0LjU5NjIgMTQxLjUzNyA4OC45ODgzWk05OC40NDA1IDEyOS41MDdDODguMDAwNSAxMzAuMDk1IDc3LjE1NDQgMTI1LjQwOSA3Ni42MTk2IDExNS4zNzJDNzYuMjIzMiAxMDcuOTMgODEuOTE1OCA5OS42MjYgOTkuMDgxMiA5OC42MzY4QzEwMS4wNDcgOTguNTIzNCAxMDIuOTc2IDk4LjQ2OCAxMDQuODcxIDk4LjQ2OEMxMTEuMTA2IDk4LjQ2OCAxMTYuOTM5IDk5LjA3MzcgMTIyLjI0MiAxMDAuMjMzQzEyMC4yNjQgMTI0LjkzNSAxMDguNjYyIDEyOC45NDYgOTguNDQwNSAxMjkuNTA3WiI+PC9wYXRoPjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Threads</span></button>
+        <button type="button" class="chan__it" data-net="wordpress" aria-haspopup="dialog" aria-label="WordPress: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiMwMjhDQjAiLz4KPHBhdGggZD0iTTYuNDU1MzggMTZDNi40NTUzOCAxOS43ODIzIDguNjU1MzggMjMuMDQgMTEuODM2OSAyNC41ODg1TDcuMjg0NjIgMTIuMTE2MkM2LjczNzk4IDEzLjMzOCA2LjQ1NTQxIDE0LjY2MTUgNi40NTUzOCAxNlpNMTYgMjUuNTQ0NkMxNy4xMDg1IDI1LjU0NDYgMTguMTc0NiAyNS4zNSAxOS4xNzMxIDI1LjAwMzFMMTkuMTA1NCAyNC44NzYyTDE2LjE2OTIgMTYuODM3N0wxMy4zMDkyIDI1LjE1NTRDMTQuMTU1NCAyNS40MDkyIDE1LjA2MDggMjUuNTQ0NiAxNiAyNS41NDQ2Wk0xNy4zMTE1IDExLjUyMzhMMjAuNzYzOCAyMS43ODc3TDIxLjcyIDE4LjYwNjJDMjIuMTI2MiAxNy4yODYyIDIyLjQzOTIgMTYuMzM4NSAyMi40MzkyIDE1LjUxNzdDMjIuNDM5MiAxNC4zMzMxIDIyLjAxNjIgMTMuNTIwOCAyMS42NjA4IDEyLjg5NDZDMjEuMTcgMTIuMDk5MiAyMC43MjE1IDExLjQzMDggMjAuNzIxNSAxMC42NTIzQzIwLjcyMTUgOS43NzIzMSAyMS4zODE1IDguOTYgMjIuMzI5MiA4Ljk2SDIyLjQ0NzdDMjAuNjg5IDcuMzQ1NDYgMTguMzg3NCA2LjQ1MTQxIDE2IDYuNDU1MzhDMTQuNDE5MiA2LjQ1NTA5IDEyLjg2MzIgNi44NDc3NyAxMS40NzE4IDcuNTk4MDlDMTAuMDgwNSA4LjM0ODQyIDguODk3NDYgOS40MzI4NSA4LjAyOTIzIDEwLjc1MzhMOC42Mzg0NiAxMC43NzA4QzkuNjM2OTIgMTAuNzcwOCAxMS4xNzY5IDEwLjY0MzggMTEuMTc2OSAxMC42NDM4QzExLjcwMTUgMTAuNjE4NSAxMS43NjA4IDExLjM3MTUgMTEuMjQ0NiAxMS40MzA4QzExLjI0NDYgMTEuNDMwOCAxMC43Mjg1IDExLjQ5ODUgMTAuMTQ0NiAxMS41MjM4TDEzLjYzMDggMjEuODYzOEwxNS43MjA4IDE1LjYwMjNMMTQuMjMxNSAxMS41MjM4QzEzLjg5OCAxMS41MDU0IDEzLjU2NSAxMS40NzcyIDEzLjIzMzEgMTEuNDM5MkMxMi43MTY5IDExLjQwNTQgMTIuNzc2MiAxMC42MTg1IDEzLjI5MjMgMTAuNjQzOEMxMy4yOTIzIDEwLjY0MzggMTQuODY2MiAxMC43NzA4IDE1LjgwNTQgMTAuNzcwOEMxNi44MDM4IDEwLjc3MDggMTguMzQzOCAxMC42NDM4IDE4LjM0MzggMTAuNjQzOEMxOC44NiAxMC42MTg1IDE4LjkyNzcgMTEuMzcxNSAxOC40MTE1IDExLjQzMDhDMTguNDExNSAxMS40MzA4IDE3Ljg5NTQgMTEuNDkgMTcuMzExNSAxMS41MjM4Wk0yMC43OTc3IDI0LjI1QzIyLjI0MTYgMjMuNDEwNCAyMy40Mzk5IDIyLjIwNjYgMjQuMjcyOSAyMC43NTg5QzI1LjEwNTkgMTkuMzExMiAyNS41NDQ0IDE3LjY3MDMgMjUuNTQ0NiAxNkMyNS41NDQ2IDE0LjM0MTUgMjUuMTIxNSAxMi43ODQ2IDI0LjM3NjkgMTEuNDIyM0MyNC41MjgxIDEyLjkyMTEgMjQuMzAxMiAxNC40MzM5IDIzLjcxNjkgMTUuODIyM0wyMC43OTc3IDI0LjI1Wk0xNiAyN0MxMy4wODI2IDI3IDEwLjI4NDcgMjUuODQxMSA4LjIyMTgzIDIzLjc3ODJDNi4xNTg5MyAyMS43MTUzIDUgMTguOTE3NCA1IDE2QzUgMTMuMDgyNiA2LjE1ODkzIDEwLjI4NDcgOC4yMjE4MyA4LjIyMTgzQzEwLjI4NDcgNi4xNTg5MyAxMy4wODI2IDUgMTYgNUMxOC45MTc0IDUgMjEuNzE1MyA2LjE1ODkzIDIzLjc3ODIgOC4yMjE4M0MyNS44NDExIDEwLjI4NDcgMjcgMTMuMDgyNiAyNyAxNkMyNyAxOC45MTc0IDI1Ljg0MTEgMjEuNzE1MyAyMy43NzgyIDIzLjc3ODJDMjEuNzE1MyAyNS44NDExIDE4LjkxNzQgMjcgMTYgMjdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">WordPress</span></button>
+        <button type="button" class="chan__it" data-net="bluesky" aria-haspopup="dialog" aria-label="Bluesky: ver como a Buzzmonitor funciona" style=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnIHN0eWxlPSJzdHJva2U6IG5vbmU7IHN0cm9rZS13aWR0aDogMDsgc3Ryb2tlLWRhc2hhcnJheTogbm9uZTsgc3Ryb2tlLWxpbmVjYXA6IGJ1dHQ7IHN0cm9rZS1saW5lam9pbjogbWl0ZXI7IHN0cm9rZS1taXRlcmxpbWl0OiAxMDsgZmlsbDogbm9uZTsgZmlsbC1ydWxlOiBub256ZXJvOyBvcGFjaXR5OiAxOyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40MDY1OTM0MDY1OTM0MDE2IDEuNDA2NTkzNDA2NTkzNDAxNikgc2NhbGUoMi44MSAyLjgxKSI+Cgk8cGF0aCBkPSJNIDQ1IDkwIEwgNDUgOTAgQyAyMC4xNDcgOTAgMCA2OS44NTMgMCA0NSB2IDAgQyAwIDIwLjE0NyAyMC4xNDcgMCA0NSAwIGggMCBjIDI0Ljg1MyAwIDQ1IDIwLjE0NyA0NSA0NSB2IDAgQyA5MCA2OS44NTMgNjkuODUzIDkwIDQ1IDkwIHoiIHN0eWxlPSJzdHJva2U6IG5vbmU7IHN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogbm9uZTsgc3Ryb2tlLWxpbmVjYXA6IGJ1dHQ7IHN0cm9rZS1saW5lam9pbjogbWl0ZXI7IHN0cm9rZS1taXRlcmxpbWl0OiAxMDsgZmlsbDogcmdiKDU5LDE2MCwyNTQpOyBmaWxsLXJ1bGU6IG5vbnplcm87IG9wYWNpdHk6IDE7IiB0cmFuc2Zvcm09IiBtYXRyaXgoMSAwIDAgMSAwIDApICIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cgk8cGF0aCBkPSJNIDI5Ljk3NyAyNS43OTMgQyAzNi4wNTggMzAuMzU4IDQyLjU5OSAzOS42MTUgNDUgNDQuNTgyIGMgMi40MDIgLTQuOTY3IDguOTQyIC0xNC4yMjQgMTUuMDIzIC0xOC43ODkgYyA0LjM4OCAtMy4yOTQgMTEuNDk3IC01Ljg0MyAxMS40OTcgMi4yNjcgYyAwIDEuNjIgLTAuOTI5IDEzLjYwNyAtMS40NzMgMTUuNTUzIGMgLTEuODkzIDYuNzY2IC04Ljc5MiA4LjQ5MSAtMTQuOTI5IDcuNDQ3IGMgMTAuNzI3IDEuODI2IDEzLjQ1NiA3Ljg3MyA3LjU2MiAxMy45MiBjIC0xMS4xOTIgMTEuNDg1IC0xNi4wODcgLTIuODgyIC0xNy4zNDEgLTYuNTYzIGMgLTAuMjMgLTAuNjc1IC0wLjMzNyAtMC45OTEgLTAuMzM5IC0wLjcyMiBjIC0wLjAwMiAtMC4yNjggLTAuMTA5IDAuMDQ3IC0wLjMzOSAwLjcyMiBjIC0xLjI1NCAzLjY4MSAtNi4xNDggMTguMDQ4IC0xNy4zNDEgNi41NjMgYyAtNS44OTMgLTYuMDQ3IC0zLjE2NSAtMTIuMDk1IDcuNTYyIC0xMy45MiBjIC02LjEzNyAxLjA0NCAtMTMuMDM2IC0wLjY4MSAtMTQuOTI5IC03LjQ0NyBjIC0wLjU0NSAtMS45NDYgLTEuNDczIC0xMy45MzMgLTEuNDczIC0xNS41NTMgQyAxOC40OCAxOS45NSAyNS41ODkgMjIuNDk5IDI5Ljk3NyAyNS43OTMgTCAyOS45NzcgMjUuNzkzIHoiIHN0eWxlPSJzdHJva2U6IG5vbmU7IHN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogbm9uZTsgc3Ryb2tlLWxpbmVjYXA6IGJ1dHQ7IHN0cm9rZS1saW5lam9pbjogbWl0ZXI7IHN0cm9rZS1taXRlcmxpbWl0OiAxMDsgZmlsbDogcmdiKDI1NSwyNTUsMjU1KTsgZmlsbC1ydWxlOiBub256ZXJvOyBvcGFjaXR5OiAxOyIgdHJhbnNmb3JtPSIgbWF0cml4KDEgMCAwIDEgMCAwKSAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L2c+Cjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Bluesky</span></button>
+        <button type="button" class="chan__it" data-net="youtube" aria-haspopup="dialog" aria-label="YouTube: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjAiIGZpbGw9IiNGRjAwMDAiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zNS4zMDA1IDE2LjM3ODFDMzUuNjk5NiAxNi43NzcyIDM1Ljk4NzIgMTcuMjczOSAzNi4xMzQ2IDE3LjgxODdDMzYuOTgzNSAyMS4yMzU3IDM2Ljc4NzMgMjYuNjMyNCAzNi4xNTExIDMwLjE4MTNDMzYuMDAzNyAzMC43MjYxIDM1LjcxNjEgMzEuMjIyOCAzNS4zMTcgMzEuNjIxOUMzNC45MTc5IDMyLjAyMSAzNC40MjEyIDMyLjMwODYgMzMuODc2NCAzMi40NTZDMzEuODgxOSAzMyAyMy44NTQ0IDMzIDIzLjg1NDQgMzNDMjMuODU0NCAzMyAxNS44MjY5IDMzIDEzLjgzMjQgMzIuNDU2QzEzLjI4NzYgMzIuMzA4NiAxMi43OTA5IDMyLjAyMSAxMi4zOTE4IDMxLjYyMTlDMTEuOTkyNyAzMS4yMjI4IDExLjcwNTEgMzAuNzI2MSAxMS41NTc3IDMwLjE4MTNDMTAuNzAzOCAyNi43NzkxIDEwLjkzNzkgMjEuMzc5MSAxMS41NDEyIDE3LjgzNTJDMTEuNjg4NiAxNy4yOTAzIDExLjk3NjIgMTYuNzkzNiAxMi4zNzUzIDE2LjM5NDVDMTIuNzc0NCAxNS45OTU0IDEzLjI3MTEgMTUuNzA3OSAxMy44MTU5IDE1LjU2MDRDMTUuODEwNCAxNS4wMTY1IDIzLjgzNzkgMTUgMjMuODM3OSAxNUMyMy44Mzc5IDE1IDMxLjg2NTQgMTUgMzMuODU5OSAxNS41NDRDMzQuNDA0NyAxNS42OTE0IDM0LjkwMTQgMTUuOTc5IDM1LjMwMDUgMTYuMzc4MVpNMjcuOTQyMyAyNEwyMS4yODMgMjcuODU3MVYyMC4xNDI4TDI3Ljk0MjMgMjRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">YouTube</span></button>
+        <button type="button" class="chan__it" data-net="linkedin" aria-haspopup="dialog" aria-label="LinkedIn: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjgwMHB4IiB3aWR0aD0iODAwcHgiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIAoJIHZpZXdCb3g9IjAgMCAyOTEuMzE5IDI5MS4zMTkiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMwRTc2QTg7IiBkPSJNMTQ1LjY1OSwwYzgwLjQ1LDAsMTQ1LjY2LDY1LjIxOSwxNDUuNjYsMTQ1LjY2cy02NS4yMSwxNDUuNjU5LTE0NS42NiwxNDUuNjU5UzAsMjI2LjEsMCwxNDUuNjYKCQlTNjUuMjEsMCwxNDUuNjU5LDB6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGRkZGOyIgZD0iTTgyLjA3OSwyMDAuMTM2aDI3LjI3NXYtOTAuOTFIODIuMDc5VjIwMC4xMzZ6IE0xODguMzM4LDEwNi4wNzcKCQljLTEzLjIzNywwLTI1LjA4MSw0LjgzNC0zMy40ODMsMTUuNTA0di0xMi42NTRIMTI3LjQ4djkxLjIxaDI3LjM3NXYtNDkuMzI0YzAtMTAuNDI0LDkuNTUtMjAuNTkzLDIxLjUxMi0yMC41OTMKCQlzMTQuOTEyLDEwLjE2OSwxNC45MTIsMjAuMzM4djQ5LjU3aDI3LjI3NXYtNTEuNkMyMTguNTUzLDExMi42ODYsMjAxLjU4NCwxMDYuMDc3LDE4OC4zMzgsMTA2LjA3N3ogTTk1LjU4OSwxMDAuMTQxCgkJYzcuNTM4LDAsMTMuNjU2LTYuMTE4LDEzLjY1Ni0xMy42NTZTMTAzLjEyNyw3Mi44Myw5NS41ODksNzIuODNzLTEzLjY1Niw2LjExOC0xMy42NTYsMTMuNjU2Uzg4LjA1MSwxMDAuMTQxLDk1LjU4OSwxMDAuMTQxeiIvPgo8L2c+Cjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">LinkedIn</span></button>
+        <button type="button" class="chan__it" data-net="gmb" aria-haspopup="dialog" aria-label="Google Meu Negócio: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjIxODUiIHdpZHRoPSIyNTAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMC40MyAxMDY0IDkyOC42OSI+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMCUiIHgyPSI5OS45OTklIiB5MT0iNDkuOTk5JSIgeTI9IjQ5Ljk5OSUiPjxzdG9wIG9mZnNldD0iLjAzIiBzdG9wLWNvbG9yPSIjNDA3OWQ4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDk4OWY1Ii8+PC9saW5lYXJHcmFkaWVudD48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGwtcnVsZT0ibm9uemVybyI+PHJlY3QgZmlsbD0iIzQ5ODlmNSIgaGVpZ2h0PSI2OTYuMTQiIHJ4PSIzNi44OCIgd2lkdGg9IjkzMSIgeD0iNTMuNDUiIHk9IjIzMi45OCIvPjxwYXRoIGQ9Ik05MzYuODEgMjI3Ljc1SDEwMC4wNmMtMjUuOTIgMC00Ni4wOSAyMDAuNi00Ni4wOSAyMjYuNTJMNTEyLjIgOTI5LjEyaDQyNC42MWMyNi0uMDcxIDQ3LjA1OS0yMS4xMyA0Ny4xMy00Ny4xM1YyNzQuODdjLS4wNzctMjUuOTk2LTIxLjEzNC00Ny4wNDktNDcuMTMtNDcuMTJ6IiBmaWxsPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTI2Ni4wMyAzNDkuNTZoMjY2Vi40NEgzMDUuODZ6IiBmaWxsPSIjM2M0YmE2Ii8+PHBhdGggZD0iTTc5OC4wMyAzNDkuNTZoLTI2NlYuNDRINzU4LjJ6TTk4NC40NSA2Ni42MmwuMzMgMS4xOWMtLjA4LS40Mi0uMjQtLjgxLS4zMy0xLjE5eiIgZmlsbD0iIzdiYWJmNyIvPjxwYXRoIGQ9Ik05ODQuNzggNjcuOGwtLjMzLTEuMTlDOTc2LjAxNyAyNy45OTMgOTQxLjgzNy40NTUgOTAyLjMxLjQzSDc1OC4yTDc5OCAzNDkuNTZoMjY2eiIgZmlsbD0iIzNmNTFiNSIvPjxwYXRoIGQ9Ik03OS42MSA2Ni42MmwtLjMzIDEuMTljLjA4LS40Mi4yNC0uODEuMzMtMS4xOXoiIGZpbGw9IiM3YmFiZjciLz48cGF0aCBkPSJNNzkuMjcgNjcuOGwuMzMtMS4xOUM4OC4wMzMgMjcuOTkzIDEyMi4yMTMuNDU1IDE2MS43NC40M2gxNDQuMTJMMjY2IDM0OS41NkgweiIgZmlsbD0iIzdiYWJmNyIvPjwvZz48cGF0aCBkPSJNMjY2LjQ4IDM0OS40N2MwIDczLjQxMi01OS41MTMgMTMyLjkyNS0xMzIuOTI1IDEzMi45MjVTLjYzIDQyMi44ODIuNjMgMzQ5LjQ3eiIgZmlsbD0iIzcwOWJlMCIvPjxwYXRoIGQ9Ik01MzIuMzMgMzQ5LjQ3YzAgNzMuNDEyLTU5LjUxMyAxMzIuOTI1LTEzMi45MjUgMTMyLjkyNVMyNjYuNDggNDIyLjg4MiAyNjYuNDggMzQ5LjQ3eiIgZmlsbD0iIzNjNGJhNiIvPjxwYXRoIGQ9Ik03OTguMTggMzQ5LjQ3YzAgNzMuNDEyLTU5LjUxMyAxMzIuOTI1LTEzMi45MjUgMTMyLjkyNVM1MzIuMzMgNDIyLjg4MiA1MzIuMzMgMzQ5LjQ3eiIgZmlsbD0iIzcwOWJlMCIvPjxwYXRoIGQ9Ik0xMDY0IDM0OS40N2MwIDczLjQxMi01OS41MTMgMTMyLjkyNS0xMzIuOTI1IDEzMi45MjVTNzk4LjE1IDQyMi44ODIgNzk4LjE1IDM0OS40N3oiIGZpbGw9IiMzYzRiYTYiLz48cGF0aCBkPSJNOTMxLjA4IDcwOS42Yy0uNDctNi4zMy0xLjI1LTEyLjExLTIuMzYtMTkuNDloLTE0NWMwIDIwLjI4IDAgNDIuNDEtLjA4IDYyLjdoODRhNzMuMDUgNzMuMDUgMCAwIDEtMzAuNzUgNDYuODlzMC0uMzUtLjA2LS4zNmE4OCA4OCAwIDAgMS0zNCAxMy4yNyA5OS44NSA5OS44NSAwIDAgMS0zNi43OS0uMTYgOTEuOSA5MS45IDAgMCAxLTM0LjMxLTE0Ljg3IDk1LjcyIDk1LjcyIDAgMCAxLTMzLjczLTQzLjFjLS41Mi0xLjM1LTEtMi43MS0xLjQ5LTQuMDl2LS4xNWwuMTMtLjFhOTMgOTMgMCAwIDEtLjA1LTU5Ljg0QTk2LjI3IDk2LjI3IDAgMCAxIDcxOC45IDY1NGMyMy41ODctMjQuMzk5IDU4LjgyOS0zMy41NzYgOTEuMzItMjMuNzhhODMgODMgMCAwIDEgMzMuMjMgMTkuNTZsMjguMzQtMjguMzRjNS01LjA1IDEwLjE5LTkuOTQgMTUtMTUuMTZhMTQ5Ljc4IDE0OS43OCAwIDAgMC00OS42NC0zMC43NCAxNTYuMDggMTU2LjA4IDAgMCAwLTEwMy44My0uOTFjLTEuMTczLjQtMi4zNC44MTctMy41IDEuMjVBMTU1LjE4IDE1NS4xOCAwIDAgMCA2NDYgNjUxYTE1Mi42MSAxNTIuNjEgMCAwIDAtMTMuNDIgMzguNzhjLTE2LjA1MiA3OS43NzIgMzIuNjIzIDE1OC4yOTQgMTExLjIxIDE3OS40IDI1LjY5IDYuODggNTMgNi43MSA3OC44OS44M2ExMzkuODggMTM5Ljg4IDAgMCAwIDYzLjE0LTMyLjgxYzE4LjY0LTE3LjE1IDMyLTQwIDM5LTY0LjI3YTE3OSAxNzkgMCAwIDAgNi4yNi02My4zM3oiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvZz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Google Meu Negócio</span></button>
+        <button type="button" class="chan__it" data-net="tiktok" aria-haspopup="dialog" aria-label="TikTok: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjkxLjcyNDk5ODIxNjM2MjQ1IDI5MS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTAwIiBoZWlnaHQ9IjI0OTUiPjxwYXRoIGQ9Ik0yMTkuNTEgMjkxLjFINzEuNThDMzIuMDUgMjkxLjEgMCAyNTkuMDUgMCAyMTkuNTFWNzEuNThDMCAzMi4wNSAzMi4wNSAwIDcxLjU4IDBoMTQ3LjkzYzM5LjUzIDAgNzEuNTggMzIuMDUgNzEuNTggNzEuNTh2MTQ3LjkzYy4wMSAzOS41NC0zMi4wNCA3MS41OS03MS41OCA3MS41OXoiLz48ZyBmaWxsPSIjMjVmNGVlIj48cGF0aCBkPSJNMTIwLjk2IDEyMy44OXYtOC44YTY0LjgzIDY0LjgzIDAgMCAwLTkuMjMtLjc5Yy0yOS45My0uMDYtNTYuNDIgMTkuMzMtNjUuNDEgNDcuODdzMS42MiA1OS42MiAyNi4xOCA3Ni43MWMtMjUuNzctMjcuNTgtMjQuMy03MC44MyAzLjI4LTk2LjZhNjguNDI1IDY4LjQyNSAwIDAgMSA0NS4xOC0xOC4zOXoiLz48cGF0aCBkPSJNMTIyLjYyIDIyMy41M2MxNi43My0uMDIgMzAuNDgtMTMuMiAzMS4yMi0yOS45MlY0NC40NGgyNy4yNWE1MC43IDUwLjcgMCAwIDEtLjc5LTkuNDRoLTM3LjI3djE0OS4wMmMtLjYyIDE2LjgtMTQuNDEgMzAuMTEtMzEuMjIgMzAuMTQtNS4wMi0uMDQtOS45Ny0xLjI4LTE0LjQyLTMuNmEzMS4yNzYgMzEuMjc2IDAgMCAwIDI1LjIzIDEyLjk3ek0yMzEuOTggOTUuMDV2LTguMjljLTEwLjAzIDAtMTkuODQtMi45Ni0yOC4xOS04LjUxYTUxLjYzIDUxLjYzIDAgMCAwIDI4LjE5IDE2Ljh6Ii8+PC9nPjxwYXRoIGQ9Ik0yMDMuOCA3OC4yNmE1MS4zMDEgNTEuMzAxIDAgMCAxLTEyLjc2LTMzLjg5aC05Ljk1YTUxLjU2NCA1MS41NjQgMCAwIDAgMjIuNzEgMzMuODl6TTExMS43MyAxNTEuNThjLTE3LjI4LjA5LTMxLjIyIDE0LjE3LTMxLjEzIDMxLjQ1YTMxLjI5MyAzMS4yOTMgMCAwIDAgMTYuNzEgMjcuNTNjLTEwLjExLTEzLjk2LTYuOTktMzMuNDggNi45Ny00My42YTMxLjE5MSAzMS4xOTEgMCAwIDEgMTguMzQtNS45M2MzLjEzLjA0IDYuMjQuNTMgOS4yMyAxLjQ1di0zNy45M2MtMy4wNS0uNDYtNi4xNC0uNy05LjIzLS43MmgtMS42NnYyOC44NGMtMy4wMS0uODItNi4xMi0xLjE4LTkuMjMtMS4wOXoiIGZpbGw9IiNmZTJjNTUiLz48cGF0aCBkPSJNMjMxLjk4IDk1LjA1djI4Ljg0YTg4LjQ0MiA4OC40NDIgMCAwIDEtNTEuNjktMTYuOHY3NS43N2MtLjA4IDM3LjgxLTMwLjc1IDY4LjQyLTY4LjU2IDY4LjQyYTY3LjgxNiA2Ny44MTYgMCAwIDEtMzkuMjItMTIuNGMyNS43MyAyNy42NyA2OS4wMiAyOS4yNSA5Ni43IDMuNTJhNjguMzk3IDY4LjM5NyAwIDAgMCAyMS44My01MC4wOXYtNzUuNTZhODguNjQ2IDg4LjY0NiAwIDAgMCA1MS43NiAxNi41OFY5Ni4yMWMtMy42NC0uMDItNy4yNi0uNC0xMC44Mi0xLjE2eiIgZmlsbD0iI2ZlMmM1NSIvPjxwYXRoIGQ9Ik0xODAuMjkgMTgyLjg3VjEwNy4xYTg4LjUwNSA4OC41MDUgMCAwIDAgNTEuNzYgMTYuNThWOTQuODRhNTEuNzMgNTEuNzMgMCAwIDEtMjguMjYtMTYuNTggNTEuNjM0IDUxLjYzNCAwIDAgMS0yMi43MS0zMy44OWgtMjcuMjV2MTQ5LjI0Yy0uNzEgMTcuMjctMTUuMjcgMzAuNjktMzIuNTQgMjkuOTlhMzEuMjc4IDMxLjI3OCAwIDAgMS0yNC4wNi0xMi45Yy0xNS4yOS04LjA1LTIxLjE2LTI2Ljk3LTEzLjExLTQyLjI2YTMxLjI3NCAzMS4yNzQgMCAwIDEgMjcuNTMtMTYuNzFjMy4xMy4wMyA2LjI0LjUxIDkuMjMgMS40NFYxMjMuOWMtMzcuNzQuNjQtNjcuODIgMzIuMTktNjcuMTggNjkuOTNhNjguMzUzIDY4LjM1MyAwIDAgMCAxOC43MyA0NS44NiA2Ny44MzQgNjcuODM0IDAgMCAwIDM5LjI5IDExLjYxYzM3LjgyLS4wMSA2OC40OS0zMC42MiA2OC41Ny02OC40M3oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">TikTok</span></button>
+        <button type="button" class="chan__it" data-net="googleplay" aria-haspopup="dialog" aria-label="Google Play: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSIxNDRweCIgaGVpZ2h0PSIxNDRweCIgYmFzZVByb2ZpbGU9ImJhc2ljIj48bGluZWFyR3JhZGllbnQgaWQ9IkFyYWZmaFd3d0VxWmZnRkVCWkZvcWEiIHgxPSIxOC4xMDIiIHgyPSIyNS4yOTciIHkxPSIzLjI0NCIgeTI9IjM0Ljc0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMzVhYjRhIi8+PHN0b3Agb2Zmc2V0PSIuMjk3IiBzdG9wLWNvbG9yPSIjMzFhMTQ1Ii8+PHN0b3Agb2Zmc2V0PSIuNzk4IiBzdG9wLWNvbG9yPSIjMjg4NzM5Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjM3YTMzIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI0FyYWZmaFd3d0VxWmZnRkVCWkZvcWEpIiBkPSJNMTMuNDg4LDQuMDEyQzEwLjc5NCwyLjUwOCw3LjYwNSwzLjc3OCw2LjQ1LDYuMzIzTDI0LjEyNiwyNGw5LjAxNC05LjAxNEwxMy40ODgsNC4wMTJ6Ii8+PGxpbmVhckdyYWRpZW50IGlkPSJBcmFmZmhXd3dFcVpmZ0ZFQlpGb3FiIiB4MT0iMTkuMTU4IiB4Mj0iMjEuMTk0IiB5MT0iMjMuODYyIiB5Mj0iNjYuOTMxIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjE0ZTVkIi8+PHN0b3Agb2Zmc2V0PSIuNDk5IiBzdG9wLWNvbG9yPSIjZWEzZDRmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTEyMTM4Ii8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI0FyYWZmaFd3d0VxWmZnRkVCWkZvcWIpIiBkPSJNMzMuMTQsMzMuMDE0TDI0LjEyNiwyNEw2LjQ1LDQxLjY3NyBjMS4xNTYsMi41NDYsNC4zNDUsMy44MTUsNy4wMzgsMi4zMTJMMzMuMTQsMzMuMDE0eiIvPjxsaW5lYXJHcmFkaWVudCBpZD0iQXJhZmZoV3d3RXFaZmdGRUJaRm9xYyIgeDE9IjMyLjk0MyIgeDI9IjM2LjU0MSIgeTE9IjE0Ljg5OSIgeTI9IjQzLjYxMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZDg0NCIvPjxzdG9wIG9mZnNldD0iLjUxOSIgc3RvcC1jb2xvcj0iI2ZmYzYzZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmYjAzYSIvPjwvbGluZWFyR3JhZGllbnQ+PHBhdGggZmlsbD0idXJsKCNBcmFmZmhXd3dFcVpmZ0ZFQlpGb3FjKSIgZD0iTTQxLjQxOSwyOC4zOTMgYzEuNzItMC45NiwyLjU4LTIuNjc2LDIuNTgxLTQuMzkzYy0wLjAwMS0xLjcxNy0wLjg2MS0zLjQzNC0yLjU4MS00LjM5M2wtOC4yNzktNC42MjFMMjQuMTI2LDI0bDkuMDE0LDkuMDE0TDQxLjQxOSwyOC4zOTN6Ii8+PGxpbmVhckdyYWRpZW50IGlkPSJBcmFmZmhXd3dFcVpmZ0ZFQlpGb3FkIiB4MT0iMTMuODUzIiB4Mj0iMTUuNTcyIiB5MT0iNS45MDEiIHkyPSI0Mi44MTEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9Ii4wMDMiIHN0b3AtY29sb3I9IiMwMDkwZTYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDY1YTAiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjQXJhZmZoV3d3RXFaZmdGRUJaRm9xZCkiIGQ9Ik02LjQ1LDYuMzIzQzYuMTY4LDYuOTQ4LDYsNy42NTIsNiw4LjQwOCB2MzEuMTc5YzAsMC43NjEsMC4xNjQsMS40NjMsMC40NSwyLjA5bDE3LjY3NC0xNy42OEw2LjQ1LDYuMzIzeiIvPjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Google Play</span></button>
+        <button type="button" class="chan__it" data-net="email" aria-haspopup="dialog" aria-label="E-mail: ver como a Buzzmonitor funciona" style=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNCIgeT0iOSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiByeD0iNSIgZmlsbD0iI0VCN0MyRSIvPjxwYXRoIGQ9Ik02IDEzbDE4IDEzIDE4LTEzIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMy4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">E-mail</span></button>
+        <button type="button" class="chan__it" data-net="whatsapp" aria-haspopup="dialog" aria-label="WhatsApp: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI5NnB4IiBoZWlnaHQ9Ijk2cHgiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNC44NjgsNDMuMzAzbDIuNjk0LTkuODM1QzUuOSwzMC41OSw1LjAyNiwyNy4zMjQsNS4wMjcsMjMuOTc5QzUuMDMyLDEzLjUxNCwxMy41NDgsNSwyNC4wMTQsNWM1LjA3OSwwLjAwMiw5Ljg0NSwxLjk3OSwxMy40Myw1LjU2NmMzLjU4NCwzLjU4OCw1LjU1OCw4LjM1Niw1LjU1NiwxMy40MjhjLTAuMDA0LDEwLjQ2NS04LjUyMiwxOC45OC0xOC45ODYsMTguOThjLTAuMDAxLDAsMCwwLDAsMGgtMC4wMDhjLTMuMTc3LTAuMDAxLTYuMy0wLjc5OC05LjA3My0yLjMxMUw0Ljg2OCw0My4zMDN6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQuODY4LDQzLjgwM2MtMC4xMzIsMC0wLjI2LTAuMDUyLTAuMzU1LTAuMTQ4Yy0wLjEyNS0wLjEyNy0wLjE3NC0wLjMxMi0wLjEyNy0wLjQ4M2wyLjYzOS05LjYzNmMtMS42MzYtMi45MDYtMi40OTktNi4yMDYtMi40OTctOS41NTZDNC41MzIsMTMuMjM4LDEzLjI3Myw0LjUsMjQuMDE0LDQuNWM1LjIxLDAuMDAyLDEwLjEwNSwyLjAzMSwxMy43ODQsNS43MTNjMy42NzksMy42ODMsNS43MDQsOC41NzcsNS43MDIsMTMuNzgxYy0wLjAwNCwxMC43NDEtOC43NDYsMTkuNDgtMTkuNDg2LDE5LjQ4Yy0zLjE4OS0wLjAwMS02LjM0NC0wLjc4OC05LjE0NC0yLjI3N2wtOS44NzUsMi41ODlDNC45NTMsNDMuNzk4LDQuOTExLDQzLjgwMyw0Ljg2OCw0My44MDN6Ii8+PHBhdGggZmlsbD0iI2NmZDhkYyIgZD0iTTI0LjAxNCw1YzUuMDc5LDAuMDAyLDkuODQ1LDEuOTc5LDEzLjQzLDUuNTY2YzMuNTg0LDMuNTg4LDUuNTU4LDguMzU2LDUuNTU2LDEzLjQyOGMtMC4wMDQsMTAuNDY1LTguNTIyLDE4Ljk4LTE4Ljk4NiwxOC45OGgtMC4wMDhjLTMuMTc3LTAuMDAxLTYuMy0wLjc5OC05LjA3My0yLjMxMUw0Ljg2OCw0My4zMDNsMi42OTQtOS44MzVDNS45LDMwLjU5LDUuMDI2LDI3LjMyNCw1LjAyNywyMy45NzlDNS4wMzIsMTMuNTE0LDEzLjU0OCw1LDI0LjAxNCw1IE0yNC4wMTQsNDIuOTc0QzI0LjAxNCw0Mi45NzQsMjQuMDE0LDQyLjk3NCwyNC4wMTQsNDIuOTc0QzI0LjAxNCw0Mi45NzQsMjQuMDE0LDQyLjk3NCwyNC4wMTQsNDIuOTc0IE0yNC4wMTQsNDIuOTc0QzI0LjAxNCw0Mi45NzQsMjQuMDE0LDQyLjk3NCwyNC4wMTQsNDIuOTc0QzI0LjAxNCw0Mi45NzQsMjQuMDE0LDQyLjk3NCwyNC4wMTQsNDIuOTc0IE0yNC4wMTQsNEMyNC4wMTQsNCwyNC4wMTQsNCwyNC4wMTQsNEMxMi45OTgsNCw0LjAzMiwxMi45NjIsNC4wMjcsMjMuOTc5Yy0wLjAwMSwzLjM2NywwLjg0OSw2LjY4NSwyLjQ2MSw5LjYyMmwtMi41ODUsOS40MzljLTAuMDk0LDAuMzQ1LDAuMDAyLDAuNzEzLDAuMjU0LDAuOTY3YzAuMTksMC4xOTIsMC40NDcsMC4yOTcsMC43MTEsMC4yOTdjMC4wODUsMCwwLjE3LTAuMDExLDAuMjU0LTAuMDMzbDkuNjg3LTIuNTRjMi44MjgsMS40NjgsNS45OTgsMi4yNDMsOS4xOTcsMi4yNDRjMTEuMDI0LDAsMTkuOTktOC45NjMsMTkuOTk1LTE5Ljk4YzAuMDAyLTUuMzM5LTIuMDc1LTEwLjM1OS01Ljg0OC0xNC4xMzVDMzQuMzc4LDYuMDgzLDI5LjM1Nyw0LjAwMiwyNC4wMTQsNEwyNC4wMTQsNHoiLz48cGF0aCBmaWxsPSIjNDBjMzUxIiBkPSJNMzUuMTc2LDEyLjgzMmMtMi45OC0yLjk4Mi02Ljk0MS00LjYyNS0xMS4xNTctNC42MjZjLTguNzA0LDAtMTUuNzgzLDcuMDc2LTE1Ljc4NywxNS43NzRjLTAuMDAxLDIuOTgxLDAuODMzLDUuODgzLDIuNDEzLDguMzk2bDAuMzc2LDAuNTk3bC0xLjU5NSw1LjgyMWw1Ljk3My0xLjU2NmwwLjU3NywwLjM0MmMyLjQyMiwxLjQzOCw1LjIsMi4xOTgsOC4wMzIsMi4xOTloMC4wMDZjOC42OTgsMCwxNS43NzctNy4wNzcsMTUuNzgtMTUuNzc2QzM5Ljc5NSwxOS43NzgsMzguMTU2LDE1LjgxNCwzNS4xNzYsMTIuODMyeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE5LjI2OCwxNi4wNDVjLTAuMzU1LTAuNzktMC43MjktMC44MDYtMS4wNjgtMC44MmMtMC4yNzctMC4wMTItMC41OTMtMC4wMTEtMC45MDktMC4wMTFjLTAuMzE2LDAtMC44MywwLjExOS0xLjI2NSwwLjU5NGMtMC40MzUsMC40NzUtMS42NjEsMS42MjItMS42NjEsMy45NTZjMCwyLjMzNCwxLjcsNC41OSwxLjkzNyw0LjkwNmMwLjIzNywwLjMxNiwzLjI4Miw1LjI1OSw4LjEwNCw3LjE2MWM0LjAwNywxLjU4LDQuODIzLDEuMjY2LDUuNjkzLDEuMTg3YzAuODctMC4wNzksMi44MDctMS4xNDcsMy4yMDItMi4yNTVjMC4zOTUtMS4xMDgsMC4zOTUtMi4wNTcsMC4yNzctMi4yNTVjLTAuMTE5LTAuMTk4LTAuNDM1LTAuMzE2LTAuOTA5LTAuNTU0cy0yLjgwNy0xLjM4NS0zLjI0Mi0xLjU0M2MtMC40MzUtMC4xNTgtMC43NTEtMC4yMzctMS4wNjgsMC4yMzhjLTAuMzE2LDAuNDc0LTEuMjI1LDEuNTQzLTEuNTAyLDEuODU5Yy0wLjI3NywwLjMxNy0wLjU1NCwwLjM1Ny0xLjAyOCwwLjExOWMtMC40NzQtMC4yMzgtMi4wMDItMC43MzgtMy44MTUtMi4zNTRjLTEuNDEtMS4yNTctMi4zNjItMi44MS0yLjYzOS0zLjI4NWMtMC4yNzctMC40NzQtMC4wMy0wLjczMSwwLjIwOC0wLjk2OGMwLjIxMy0wLjIxMywwLjQ3NC0wLjU1NCwwLjcxMi0wLjgzMWMwLjIzNy0wLjI3NywwLjMxNi0wLjQ3NSwwLjQ3NC0wLjc5MWMwLjE1OC0wLjMxNywwLjA3OS0wLjU5NC0wLjA0LTAuODMxQzIwLjYxMiwxOS4zMjksMTkuNjksMTYuOTgzLDE5LjI2OCwxNi4wNDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">WhatsApp</span></button>
+        <button type="button" class="chan__it" data-net="reclameaqui" aria-haspopup="dialog" aria-label="Reclame Aqui: ver como a Buzzmonitor funciona"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAA+CAMAAAC/SK2pAAAAwFBMVEUcj2EhiWIRkVJrkV6LolaLq0YokWoA/wAxnTmOvSZebGgDAPskeFaVxCr5+f+UwiYmb1xxbZ2NrzsA/////wCQnaYpJHeGqjQ4ool7oTaUcpR5mDsWelFcn5I9pYWEpjj/AP//AABaH+90fx+RNlvBW4SqVf9EjXznF0X/f38/P79csCwzZpkJfkp/f9SZAP//Vf9fP1+Swx0AhkoAAACUxiKPuDCOuSsUh1mOtzARh1UOfkhvtyaJqjuVwidJqDE3ovxcAAAAQHRSTlOeXuonJ1ktAf/rEgFW2gKlKglaAQELCY0lWQk1lBtWLAEBBRMOGQNKCwIE/wXbBgUDCP7+APqQ0ZOuz6T+bZz/aRrJtgAAAzZJREFUeNqdmIl2qjAQhgMBFKl1qVu1e+++35CAULHv/1Y3QQTJTFjunJ72HAqfmUnmnx8JL2MUTY6To/o5Toq/+a+5S+msus0ib3qQDeekusMRDAmhIk4yJyg+jtghiKsayEVBJS85oa7CsA102wSSKD9y+IDvMZB1AXoO1s0giYopn2Kc8IEPqhUtE9YasWOF+IouQHTCOpDSsC017vgdQOwdBZFL0Fx0Afl2C2jAXcb+e0n7CrR4ijqtiB0w0N1Faj+SbitiwxbQKMaaoyOI/KpAVN80kd1miehWJDI6gwaw03zK+RbpPwz09qUCZfoDY0den8E1oaAPVWqR/kCSa1DWCZSWqfGVXmsR4Rmjxb4AOQDkNoLs2gm370sQaBDhGBqnANW6N6UFaAFrLbUHrVFxskkN9HN6XhFUtVOtV4mhRT7X9eS8IkTV1gFauiIz8rEO8s4gZwzOdZ6xa8jMWhpAO2TTFrJvYsMporQOKmuEb5oDzvXhtOvpbJpqWkuKBtGfiGffqBubTiPhOOiVHwFoHcXmhvW4F2IgvoWqJhrUUaqGp49a0mOCHM5tQZ5MK9r5vdRajrEpBho0+wcgH7KzcJAUo1bQYVibYgZQkPTAqMa60d0NOYGAqjWKolQx6dv0CZmDaC/QniOgP6TVq4HpaiEgco2DhOEA5Zl5GGirQAHYNH3EDvXMQLHvFWgELFYyNhfJ8lRoK0pzEFS126ShSLYKbR7ZGwWiIDNXS1ag9koDPUNf7Dtz0T4VayCPoKoW6JfeO4AWcNMScCAOHUDSceglOvKdzm4rkgJBi+Xy15j1y40S5K1IPPJtzPrl9kAQXywt1qeENXQJ5v0JVDWRUETqhq2g36DW0QvSxy1FuiLQF+djn4p+RZIguGlzeUjhDqgikTIQEBSjnfI5mJ9Jl9dFjNIOoNyrrYB/+K60cXqTB6cpLDZskBelXGukSF75TubpoDsCGoRFuD9hNqElaGMDEObVBuhAGO6/mkF7Qg2+GH6dcLCqV3sPvNaQzAeqlt/6OGb4J5hAstbiHGp8jONVYU/H6oq4iEzZSiNoHmmRnb4E+Zvp/4jcoFzR/V4L6x/hND8/6FbgPwAAAABJRU5ErkJggg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Reclame Aqui</span></button>
+        <button type="button" class="chan__it" data-net="pinterest" aria-haspopup="dialog" aria-label="Pinterest: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSIxNDRweCIgaGVpZ2h0PSIxNDRweCI+PGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjAiIGZpbGw9IiNFNjAwMjMiLz48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMjQuNDQzOTA4NywxMS40MTYxMzc3Yy04LjYzMjMyNDIsMC0xMy4yMTUzOTMxLDUuNzk0NjE2Ny0xMy4yMTUzOTMxLDEyLjEwMzA4ODQJYzAsMi45MzM4Mzc5LDEuNTYxNTIzNCw2LjU4NTM4ODIsNC4wNTk5OTc2LDcuNzQ4NDEzMWMwLjM3ODQxOCwwLjE3NjIwODUsMC41ODE1NDMsMC4xMDAwMzY2LDAuNjY4NDU3LTAuMjY2OTA2NwljMC4wNjY4OTQ1LTAuMjc4NDQyNCwwLjQwMzgwODYtMS42MzY5MDE5LDAuNTU1MzU4OS0yLjI2ODQzMjZjMC4wNDg0NjE5LTAuMjAxNTM4MSwwLjAyNDY1ODItMC4zNzQ2MzM4LTAuMTM4NDI3Ny0wLjU3MzEyMDEJYy0wLjgyNjk2NTMtMS4wMDMwNTE4LTEuNDg4NDY0NC0yLjg0NjEzMDQtMS40ODg0NjQ0LTQuNTY0NTc1MmMwLTQuNDExNTYwMSwzLjMzOTk2NTgtOC42Nzk5OTI3LDkuMDI5OTY4My04LjY3OTk5MjcJYzQuOTEzMDg1OSwwLDguMzUzMDg4NCwzLjM0ODQ0OTcsOC4zNTMwODg0LDguMTM2OTAxOWMwLDUuNDA5OTczMS0yLjczMjI5OTgsOS4xNTg0NDczLTYuMjg2OTI2Myw5LjE1ODQ0NzMJYy0xLjk2MzA3MzcsMC0zLjQzMzA0NDQtMS42MjM4NDAzLTIuOTYxNTQ3OS0zLjYxNTM1NjRjMC41NjU0Mjk3LTIuMzc2OTUzMSwxLjY1NjkyMTQtNC45NDE1MjgzLDEuNjU2OTIxNC02LjY1ODQ0NzMJYzAtMS41MzU0MDA0LTAuODIzMDU5MS0yLjgxNjk1NTYtMi41Mjk5NjgzLTIuODE2OTU1NmMtMi4wMDY5NTgsMC0zLjYxODQ2OTIsMi4wNzUzNzg0LTMuNjE4NDY5Miw0Ljg1NjkzMzYJYzAsMS43NzAwMTk1LDAuNTk4NDQ5NywyLjk2ODQ0NDgsMC41OTg0NDk3LDIuOTY4NDQ0OHMtMS45ODIyOTk4LDguMzgxNTMwOC0yLjM0NTM5NzksOS45NDE1MjgzCWMtMC40MDE5Nzc1LDEuNzIyMjktMC4yNDUzMDAzLDQuMTQxNjAxNi0wLjA3MTM1MDEsNS43MjMzODg3bDAsMGMwLjQ1MTExMDgsMC4xNzY4Nzk5LDAuOTAyNDA0OCwwLjM1Mzc1OTgsMS4zNjg3NzQ0LDAuNDk4MTA3OWwwLDAJYzAuODE2ODk0NS0xLjMyNzgxOTgsMi4wMzQ5NzMxLTMuNTA1Njc2MywyLjQ4NjQ1MDItNS4yNDIyNDg1YzAuMjQzODM1NC0wLjkzNjE1NzIsMS4yNDY4ODcyLTQuNzU0NjM4NywxLjI0Njg4NzItNC43NTQ2Mzg3CWMwLjY1MTU1MDMsMS4yNDM4OTY1LDIuNTU2MTUyMywyLjI5NjkzNiw0LjU4MzEyOTksMi4yOTY5MzZjNi4wMzE0OTQxLDAsMTAuMzc4NDE4LTUuNTQ2OTM2LDEwLjM3ODQxOC0xMi40NDAwMDI0CUMzNi43NzM4NjQ3LDE2LjM1OTE5MTksMzEuMzgyMzI0MiwxMS40MTYxMzc3LDI0LjQ0MzkwODcsMTEuNDE2MTM3N3oiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Pinterest</span></button>
+        <button type="button" class="chan__it" data-net="reddit" aria-haspopup="dialog" aria-label="Reddit: ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjIiIGZpbGw9IiNGRjQ1MDAiLz48cGF0aCBkPSJNMjQgMTkuNWwyLjItOC4yIDUgMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEuOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGNpcmNsZSBjeD0iMzIuNiIgY3k9IjEyLjYiIHI9IjIuNyIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEzLjIiIGN5PSIyMy40IiByPSIzLjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzNC44IiBjeT0iMjMuNCIgcj0iMy4yIiBmaWxsPSIjZmZmIi8+PGVsbGlwc2UgY3g9IjI0IiBjeT0iMjguNCIgcng9IjEyLjQiIHJ5PSI4LjYiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIxOS40IiBjeT0iMjcuMiIgcj0iMi4xIiBmaWxsPSIjRkY0NTAwIi8+PGNpcmNsZSBjeD0iMjguNiIgY3k9IjI3LjIiIHI9IjIuMSIgZmlsbD0iI0ZGNDUwMCIvPjxwYXRoIGQ9Ik0xOS4yIDMxLjZjMyAyLjEgNi42IDIuMSA5LjYgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY0NTAwIiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Reddit</span></button>
+        <button type="button" class="chan__it" data-net="rss" aria-haspopup="dialog" aria-label="Blogs, sites e fóruns (RSS): ver como a Buzzmonitor funciona"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiByeD0iMTAiIGZpbGw9IiNGOEE1MUIiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjMzIiByPSIzLjYiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTIgMjIuNWExMy41IDEzLjUgMCAwIDEgMTMuNSAxMy41TTEyIDEyLjVBMjMuNSAyMy41IDAgMCAxIDM1LjUgMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">Blogs, sites e fóruns</span></button>
+        <button type="button" class="chan__it" data-net="appstore" aria-haspopup="dialog" aria-label="App Store: ver como a Buzzmonitor funciona" style=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMThCRkZCIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjA3MkYzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiByeD0iMTAiIGZpbGw9InVybCgjZykiLz48cGF0aCBkPSJNMjUuOCAxMy41IDE2LjMgMzBNMjIuMiAxMy41IDMxLjcgMzBNMTMgMjZoMjJNMTUuNSAzNC41bC0xLjYgMi42TTMyLjUgMzQuNWwxLjYgMi42IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMy4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" alt="" width="48" height="48"><span class="chan__name" aria-hidden="true">App Store</span></button>
+        <!--REDES:END-->
+<span class="chan__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-.5v-1a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.6 14a1.5 1.5 0 0 1 2.4-1.8L9 15"></path></svg>Clique numa rede e veja como funciona</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULOS -->
+<section class="mods" aria-label="Módulos da Buzzmonitor" style="">
+  <div class="mods__tabs" style="">
+    <div class="mods__tabs-in" role="navigation" aria-label="Módulos" style="">
+      <a href="#bzia-monitoramento" class="mods__tab" data-spy="bzia-monitoramento">Monitoramento</a>
+      <a href="#bzia-relacionamento" class="mods__tab" data-spy="bzia-relacionamento">Relacionamento</a>
+      <a href="#bzia-relatorios" class="mods__tab" data-spy="bzia-relatorios">Relatórios</a>
+      <a href="#bzia-agendamento" class="mods__tab" data-spy="bzia-agendamento">Agendamento</a>
+    </div>
+  </div>
+  <div class="container" style="">
+
+    <article class="mod" id="bzia-monitoramento" data-spy-target="" style="">
+      <div class="reveal reveal--l">
+        <span class="mod__num">01</span>
+        <h2>Monitoramento de Redes Sociais</h2>
+        <p class="mod__tag">A IA faz o trabalho duro e a sua marca ganha produtividade e inteligência de dados!</p>
+        <p>Entenda o que seu público acha da sua empresa, o que ele espera do seu mercado e como você pode ajudá-lo em todas as redes sociais. Monitore termos e menções, identifique oportunidades e previna crises de imagem.</p>
+        <p>E mais ainda: conte com a ferramenta IA Insights da Buzzmonitor para receber análises resumidas dos seus relatórios de monitoramento, ajudando você a economizar tempo e energia, enquanto acessa os principais insights de forma rápida!</p>
+        <a href="#bzia-form" class="btn btn--ghost" style="margin-top: 12px;">Agendar demonstração grátis</a>
+      </div>
+      <div class="mod__media reveal reveal--r d1">
+        <span class="mod__blob" aria-hidden="true"></span>
+        <div class="frame frame--bare"><img src="/api/pages/XPHHtX4wus/assets/e8aj8qy0zhzpuozzme57mc1q?w=1200&fit=scale-down&format=auto&quality=82" alt="Tela de monitoramento da Buzzmonitor com o painel IA Insights" width="1079" height="842" style="" loading="lazy"></div>
+        <span class="float" style="top: -4%; left: -2%;"><span class="float__ic" aria-hidden="true" style=""><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5.5-2.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12z"></path></svg></span>IA Insights</span>
+      </div>
+    </article>
+
+    <article class="mod mod--flip" id="bzia-relacionamento" data-spy-target="" style="">
+      <div class="reveal reveal--r" style="">
+        <span class="mod__num" style="">02</span>
+        <h2 style="">Relacionamento Multicanal</h2>
+        <p class="mod__tag" style="">Aumente a satisfação dos clientes, melhore a reputação e venda mais!</p>
+        <p style="">Centralize o atendimento de todas as redes sociais e canais digitais da sua marca em uma única tela e responda clientes até 3x mais rápido com a IA da Buzzmonitor.</p>
+        <p style="">Usando a primeira plataforma de atendimento com ChatGPT integrado, você também consegue melhorar as respostas e corrigir erros em segundos. E mais: otimize processos de classificação, sentimentalização e alertas, totalmente automatizados por IA.</p>
+        <a href="#bzia-form" class="btn btn--ghost" style="margin-top: 12px;">Agendar demonstração grátis</a>
+      </div>
+      <div class="mod__media reveal reveal--l d1">
+        <span class="mod__blob" aria-hidden="true"></span>
+        <div class="frame">
+          <div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img src="/api/pages/XPHHtX4wus/assets/e0uljltox55u5aimz9i9q5q1?w=1200&fit=scale-down&format=auto&quality=82" alt="Animação do atendimento multicanal da Buzzmonitor com ChatGPT melhorando a resposta" width="720" height="405" loading="lazy">
+        </div>
+        <span class="float" style="bottom: -6%; right: -2%;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAAwFBMVEXeJFEAAAD+/f3iJFLdG0nyxtL46e3wucf/AADjaIfqmK3ldpLoiaHlJFPdOWLhWHrcMlzeR23sprndJFHZI1DgSm/jJFPjJFL009z23OPng5zjI1LTI07dIlDgHk3PHVHZHVLeUnXgJFJ/AH/iHFXtrsCqVVXMM2bMM0xVAFXhI1T/M2biX4DgPWTXH1DeJFHfJVLiKlW/P3+ZMzPvsL//MzN/AABVVVXMMzMAAAAAAAAAAAAAAAAAAAAAAAAAAABBSeVNAAAAQHRSTlP+AP79/v39/QH9/fz70v39/fz8bTH9c7X9/fuWFU3/EyL9TQIJ/QMFCgMvBf3+QbzAEgQF/wUCAwUAAAAAAAAACDZXeAAABdVJREFUeNqtWIl22kgQHJiRhCTQhQQICLZzbHZz7X38/5dtX3NJwnFeMu/ZxoBququre7pHrRbXBn4e+v5wOe4Urd3xsu/7t/LRwlJ3YP7r98ed5qWUvNgd9x/e34FaBFr9fjgKRLjorePh+jKLYLv+sJuBBGC7w4cFq+YWPSCMemYh1MPXLXr9FRiBev0s0GZ1vUxg9LKTWl+usXuxRf0uekobWQtYetfft+hVvLtRbb4tiqIc1AKW1q/uAP27j3BMUyZrWadtZRbc2/+0BPTLBCd3MLjSs5oZpfXhzQxos4pxVLGerKxhvmKbHOPK4kz4yciMrGyrz0PepeRfO9R5PTQBFvK0CYE2qz7G6ciGliyAn7ZAqJR+nbrce6l1L0hi0UMYd21KxNmqG6NrbdhCu5LcI+0eAos2q0tkT4Vbn4010qj8NCGsa6x/+sImKSEokiES3blNzcDmpFlRlueOg5lU9nOhiSy6ho4ZU43wlBWOaYif9bpoFUetJtzES/wqFm3+2WtvjaqLER+jDeHfkmGQeOupofc6ZU06WIuCDDO5sFobekRUmeSWeN4tR6TchFmnwMGDY8PJcGzgPdO+c6rGMuAExGH1zh0ABCy6+ui4IOOXTEtepR3xCjBD7jMuC03SIAGFuRHJOUF3MgQ6EzngJOFUQPqpFC2aOgwsZopa/X3UQdRBhsoCbcFFULGQPrKpNTmo8Uupo/v4EVyzyUGbrEujQ6CWNoVQIukcv641QDztOhifKMp7ho5t8UEPlDaE02LqncqhY+63jWG6Pzn29yv18zEwKCFjA4sq8IoUmRZYRWpWwwkczgO2wbe36pFFxLbyJwFQI+SkLWWeoyprywho96i+SIbj42Nzi4HSphZFQPBuLnhUTaxqpS4pS1GF3+Z4BhZl6FXJKWHl1Fq1pZVP9L2SAmIGS3UEJOQwTUgyQX2SxPFVXF/ULuD6PAfKBnhPSyk5cW0EVZ1TJs4BHR3Q06JFpTK2KpRCFSKBIk5htgHbStRpKq/5kOyb/eqtkbIkVGHRAvlaICRcXo1WRgRkREf+xICdOpTIyCcccXFqXNh8jfkLnOZ4ZhgpkB8JMgQ6G1JDgtxo04VKCk9W8o0yImE2IPsrHQJtDVfHjMMDr94FgbOvGpaYpqBQte2mFmEwTCYks4SFYmo0rUnl2tZ81C9Lzp06RLZNaQYi3z4bS7ar17TDepTSYJ5Iv7aQgZX5egqEOhMpQfh/84WfSqu0HVpORRSktoKcAJ19uoEgL0Hg7JFhGKrZpmGKzICKwKKL2uv4pHaHGB4bFdIgSZvNgDKft5C0X1zYWGJcJFC/EL+bsWUkqadk3xovYSwjj45tUlIpRWKkLAOjiDj8r5pYRF8vjCtsttQqVz2l9cDzwpdZpyMLxEF2XL8Nij9bZIRk1PlQnugPldkqco2DnwXF3/dqVNsKknYr5wUZJnJoI4u4F7MG0XH00fqmVWoDcjNPSUCVVZUDMoqqZ2HPtV/fh0c2a542wWYP3Ept8ZHgbQ0XmYSblExFR3bQROSB2xCmXNQGcmJRtAIkalPuoL3GbQ0HovQ93w2zWgo0lAzCaUbBKdS0rVlZKWkyKc2DFh/J8YnjOgQwJ2xse9uMHlxR4ZSwHZU/xFI5BTjBxgJD6YD2m400o0GXzSzW0ne2UpYKW5cM5uNYhYOEb0aD9hjSVBzpzmVZZK4RjQJbRONN2B4HDbtpuklvfvITA5eg4KSeNOyxc5P5KnNsaJFhGRoUjxDxUAOB6hI/xBStHUi5+nbxyDYZauIxC7gcnup6GE7c1uZDVQ0lM5ZNx9HNM4Mf9dS4mmw6/hXq+cEP1pv9bDDXTtXz+ereKDofaq1wtm7ESsrGhKf8neF4Pq6LuNVQwtC+zQdllH7JuD6/QJAHFq8Rnr1AWLjS8Pc933Sl8aMuWWhdX3Ltc/0xF1GPL7qIYqu+/2pMrPrDX9ap8LKu//ObLusWrw8Pff9w//rwf4o0T7UfP1IiAAAAAElFTkSuQmCC" alt="" aria-hidden="true">ChatGPT integrado</span>
+      </div>
+    </article>
+
+    <article class="mod" id="bzia-relatorios" data-spy-target="" style="">
+      <div class="reveal reveal--l">
+        <span class="mod__num">03</span>
+        <h2>Relatórios em tempo real</h2>
+        <p class="mod__tag">Mais de 50 métricas de performance em dashboards modernos real-time</p>
+        <p>Analise os dados das redes sociais com facilidade: identifique seus melhores posts, seu engajamento, o sentimento do público sobre a sua marca e muito mais. Tudo isso em dashboards completos e intuitivos, atualizados em tempo real.</p>
+        <p>Tenha acesso também a dados de performance da concorrência e compare resultados, identifique oportunidades e tenha insights para melhorar sua estratégia digital.</p>
+        <a href="#bzia-form" class="btn btn--ghost" style="margin-top: 12px;">Agendar demonstração grátis</a>
+      </div>
+      <div class="mod__media reveal reveal--r d1">
+        <span class="mod__blob" aria-hidden="true"></span>
+        <div class="rep">
+          <img class="rep__a" src="/api/pages/XPHHtX4wus/assets/vz8fylsc94klnjvqn3mbw56z?w=1200&fit=scale-down&format=auto&quality=82" alt="Dashboard da Buzzmonitor com gráficos de volume e ranking de menções" width="749" height="497" style="" loading="lazy">
+          <img class="rep__b" src="/api/pages/XPHHtX4wus/assets/s3c4j570l3h79zrtl25w8pl7?w=1200&fit=scale-down&format=auto&quality=82" alt="Gráfico de distribuição de reações do público" width="746" height="398" style="" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <article class="mod mod--flip" id="bzia-agendamento" data-spy-target="" style="">
+      <div class="reveal reveal--r" style="">
+        <span class="mod__num">04</span>
+        <h2 style="">Criação e agendamento de posts com Inteligência Artificial</h2>
+        <p class="mod__tag" style="">Mais agilidade e qualidade para os conteúdos das redes sociais com IA!</p>
+        <p>Com a integração do ChatGPT na Buzzmonitor, você consegue criar imagens e legendas para seus posts das redes sociais, além de melhorar textos e receber hashtags relevantes.</p>
+        <p>Tudo isso dentro do módulo de agendamento, onde você também pode criar o planejamento de conteúdo, programar os posts para diferentes canais, determinar tarefas para a sua equipe e criar fluxos de aprovação - com dados de performance de dias e horários atualizados.</p>
+        <a href="#bzia-form" class="btn btn--ghost" style="margin-top: 12px;">Agendar demonstração grátis</a>
+      </div>
+      <div class="mod__media reveal reveal--l d1">
+        <span class="mod__blob" aria-hidden="true"></span>
+        <div class="frame frame--bare"><img src="/api/pages/XPHHtX4wus/assets/dg9zmrmy6fwt446iu1cy9z7x?w=1200&fit=scale-down&format=auto&quality=82" alt="Módulo de agendamento da Buzzmonitor criando post com ChatGPT" width="1300" height="796" loading="lazy"></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="vid" aria-labelledby="bzia-vid-h2" style="">
+  <div class="container" style="">
+    <h2 id="bzia-vid-h2" class="reveal">A <span class="grad" style="">Inteligência Artificial</span> muda tudo <span class="sp" aria-hidden="true">✦</span></h2>
+    <div class="vid__frame reveal d1" id="bzia-video" data-yt="Z1FddOh05O4">
+      <button type="button" class="vid__poster" style="background-image: url(&quot;https://i.ytimg.com/vi/Z1FddOh05O4/hqdefault.jpg&quot;);" aria-label="Assistir ao vídeo: Inteligência Artificial transforma a Buzzmonitor">
+        <span class="vid__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+      </button>
+    </div>
+    <div class="vid__pills">
+      <span class="vid__pill reveal d1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 12l-5.5-2.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12z"></path></svg>Insights rápidos com IA</span>
+      <span class="vid__pill reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M3 20V10M9 20V4M15 20v-7M21 20V8"></path></svg>Monitore sua marca</span>
+      <span class="vid__pill reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"></path></svg>Decisões mais estratégicas</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTE 14 DIAS -->
+<section class="trial" id="bzia-planos" aria-labelledby="bzia-trial-h2" data-spy-target="" style="">
+  <div class="container" style="">
+    <div class="trial__box" style="">
+      <div class="reveal reveal--l" style="">
+        <h2 id="bzia-trial-h2">Experimente grátis por <span class="grad">14 dias</span></h2>
+        <p class="trial__lead">Tenha <b>várias soluções digitais em uma única plataforma</b>, líder no uso de IA, para impulsionar seus resultados e te ajudar a vender mais!</p>
+        <ul class="checks" style="">
+          <li><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Monitoramento de redes sociais</b> e análises geradas por IA</span></li>
+          <li><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Atendimento multicanal</b> otimizado por IA</span></li>
+          <li style=""><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Relatórios de <b>performance da marca e concorrentes</b></span></li>
+          <li><span class="checks__ic" aria-hidden="true" style=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Otimização de processos e mais <b>produtividade</b> com IA</span></li>
+          <li style=""><span class="checks__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="">E muito mais…</span></li>
+        </ul>
+        <div class="price" style="">
+          <span class="price__label" style="">Planos a partir de</span>
+          <span class="price__v" style=""><span class="price__cur">R$</span><span class="price__num" data-count="1790" data-plain="">1.790</span><span class="price__cents">,00</span><span class="price__per">/mês</span></span>
+          <a href="#bzia-form" class="btn">Agendar demonstração grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+      <div class="trial__media reveal reveal--r d1" style="">
+        <span class="trial__badge">14 dias grátis</span>
+        <img src="/api/pages/XPHHtX4wus/assets/hphz3kv5x3ubbj4sf39kj7wk?w=1200&fit=scale-down&format=auto&quality=82" alt="Profissional usando a plataforma Buzzmonitor com dashboards ao redor" width="1000" height="921" style="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testi" id="bzia-depoimentos" aria-labelledby="bzia-testi-h2" style="">
+  <div class="container testi__head">
+    <h2 id="bzia-testi-h2" class="reveal visible" style="">Ainda não está convencido?</h2>
+    <p class="reveal d1 visible">Leia o feedback de quem já utiliza a Buzzmonitor</p>
+  </div>
+  <div class="testi__rows reveal d2 visible">
+    <div class="testi__row">
+      <div class="testi__track">
+        <img src="/api/pages/XPHHtX4wus/assets/otrxb2ysspve9hqy9bb2w7al?w=1200&fit=scale-down&format=auto&quality=82" alt="Depoimentos de clientes da Buzzmonitor, como José Manuel López, da Publicis Groupe, avaliando a plataforma com 5 estrelas" width="3108" height="491" loading="lazy">
+        <img src="/api/pages/XPHHtX4wus/assets/otrxb2ysspve9hqy9bb2w7al?w=1200&fit=scale-down&format=auto&quality=82" alt="" aria-hidden="true" width="3108" height="491" style="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMEROS + EMPRESAS -->
+<section class="proof" aria-labelledby="bzia-proof-h2" style="">
+  <div class="container" style="">
+    <div class="nums">
+      <div class="num reveal visible"><strong class="num__v" data-count="1000" data-suffix="+">1.000+</strong><span class="num__l">clientes em todo o mundo</span></div>
+      <div class="num reveal d1 visible"><strong class="num__v" data-count="500" data-suffix="+">500+</strong><span class="num__l">agências</span></div>
+      <div class="num reveal d2 visible" style=""><strong class="num__v" data-count="10" data-suffix="k">10k</strong><span class="num__l">usuários</span></div>
+      <div class="num reveal d3 visible"><strong class="num__v" data-count="300" data-suffix="+">300+</strong><span class="num__l">clientes enterprise</span></div>
+    </div>
+    <h2 id="bzia-proof-h2" class="reveal visible" style="">Empresas que já confiam na <span class="hl">Buzzmonitor</span></h2>
+    <img class="proof__wall reveal d1 visible" src="/api/pages/XPHHtX4wus/assets/blpcty1neve4dh9q7pi2morw?w=1200&fit=scale-down&format=auto&quality=82" alt="Logos de empresas clientes da Buzzmonitor" width="1600" height="768" style="" loading="lazy">
+  </div>
+</section>
+
+<!-- RESULTADOS / CTA -->
+<section class="res" aria-labelledby="bzia-res-h2">
+  <div class="res__glow" aria-hidden="true" style=""></div>
+  <div class="container" style="">
+    <p class="res__lead reveal visible" style="">Junte-se aos mais de 1000 clientes no Brasil, Espanha, LATAM e Portugal que já alcançaram resultados incríveis com a Buzzmonitor.</p>
+    <h2 id="bzia-res-h2" class="reveal d1 visible" style="">Descubra o que podemos fazer pela sua empresa</h2>
+    <div class="res__cards">
+      <div class="res__card reveal d1 visible"><span class="res__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3M8 11h6M11 8v6"></path></svg></span><p>Clientes que melhoraram a sua estratégia com Social Listening</p></div>
+      <div class="res__card reveal d2 visible" style=""><span class="res__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg></span><p>Clientes que conseguiram evitar crises de reputação</p></div>
+      <div class="res__card reveal d3 visible"><span class="res__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5M9 2h6"></path></svg></span><p>Clientes que melhoraram o seu SLA</p></div>
+    </div>
+    <a href="#bzia-form" class="btn reveal visible">Agendar demonstração grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot__logo"><img src="https://content.buzzmonitor.com/assets/buzzmonitor/logos/logo-primary.svg" alt="Buzzmonitor" width="130" height="28"></div>
+    <p class="foot__desc">A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.</p>
+    <div class="foot__soc">
+      <a href="https://www.instagram.com/buzzmonitorbr/" aria-label="Instagram" target="_blank" rel="noopener" class="foot__sic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+      <a href="https://twitter.com/buzzmonitor" aria-label="X (Twitter)" target="_blank" rel="noopener" class="foot__sic"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+      <a href="https://www.facebook.com/buzzmonitorbr" aria-label="Facebook" target="_blank" rel="noopener" class="foot__sic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.494v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.324-.593 1.324-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path></svg></a>
+      <a href="https://www.linkedin.com/company/buzzmonitor/" aria-label="LinkedIn" target="_blank" rel="noopener" class="foot__sic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+      <a href="https://www.youtube.com/@buzzmonitorbrasil" aria-label="YouTube" target="_blank" rel="noopener" class="foot__sic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a>
+    </div>
+    <div class="foot__bottom">
+      <span>© Buzzmonitor 2026</span>
+      <a class="foot__privlink" href="https://buzzmonitor.com.br/privacidade" target="_blank" rel="noopener">Política de Privacidade e uso de Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="netd" id="bzia-netd" aria-labelledby="bzia-netd-t">
+  <div class="netd__in">
+    <div class="netd__head">
+      <span class="netd__ic"><img id="bzia-netd-ic" src="data:," alt="" width="36" height="36"></span>
+      <div><p class="netd__kick">Buzzmonitor +</p><h3 class="netd__title" id="bzia-netd-t"></h3></div>
+      <button type="button" class="netd__x" data-netd-close="" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+    </div>
+    <div class="netd__body">
+      <p class="netd__lead" id="bzia-netd-lead"></p>
+      <div class="netd__scope" id="bzia-netd-scope"></div>
+      <div class="netd__list" id="bzia-netd-list"></div>
+      <div class="netd__time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg><div><b>Tempo de coleta</b><span id="bzia-netd-time"></span></div></div>
+      <p class="netd__note">Tempos estimados. Em picos de volume, podem passar do previsto.</p>
+    </div>
+    <div class="netd__foot">
+      <div class="netd__nav">
+        <button type="button" class="netd__arrow" data-netd-step="-1" aria-label="Rede anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+        <button type="button" class="netd__arrow" data-netd-step="1" aria-label="Próxima rede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+      </div>
+      <a href="#bzia-form" class="btn" data-netd-cta="">Agendar demonstração grátis</a>
+    </div>
+  </div>
+</dialog>
+
+<div class="mcta" id="bzia-mcta"><a href="#bzia-form" class="btn">Agendar demonstração grátis</a></div>
+
+</div>
+
+<!--REDES-DATA:START--><script type="application/json" id="bzia-redes">{"facebook": {"nome": "Facebook", "escopo": "both", "lead": "Acompanhe páginas da sua marca e de concorrentes e responda posts, comentários e Inbox na mesma tela.", "itens": [["Monitora", "Posts, lives, comentários e reações de páginas públicas, além de anúncios da Biblioteca de Anúncios."], ["Atende", "Responde posts, comentários e Inbox, envia mensagem privada a partir de um comentário e oculta ou apaga comentários."], ["Mede", "Seguidores, top posts, engajamento, alcance e dados de posts patrocinados."], ["Histórico", "Recupera posts e comentários de até 1 ano atrás."]], "tempo": "Inbox em até 10 min · posts e comentários da sua página em até 35 min"}, "instagram": {"nome": "Instagram", "escopo": "both", "lead": "Do feed ao story: tudo o que falam do seu perfil chega pra equipe responder sem sair da Buzzmonitor.", "itens": [["Monitora", "Posts de perfis públicos, hashtags e anúncios. No perfil da marca, também reels, stories, lives, menções, marcações e collabs."], ["Atende", "Responde comentários, DMs e menções, inclusive em lives ao vivo, e curte, oculta ou apaga comentários."], ["Mede", "Seguidores, top posts, engajamento, visualizações e vezes salvo."], ["Histórico", "Recupera posts, comentários e DMs de até 1 ano atrás."]], "tempo": "Comentários, menções e DMs em até 10 min"}, "x": {"nome": "X (Twitter)", "escopo": "both", "lead": "Acompanhe conversas sobre a sua marca em tempo quase real e responda pelo mesmo painel.", "itens": [["Monitora", "Posts, reposts e citações por termo, hashtag ou perfil."], ["Atende", "Responde posts, comentários e DMs (também com DM Deep Link), curte, oculta comentários e segue usuários."], ["Mede", "Seguidores, top posts, engajamento e visualizações."]], "tempo": "Termos e hashtags em até 5 min"}, "threads": {"nome": "Threads", "escopo": "both", "lead": "Veja o que aparece sobre a sua marca no Threads e converse com o público de lá.", "itens": [["Monitora", "Posts públicos por palavra-chave. No perfil da marca, posts, comentários e menções."], ["Atende", "Responde, reposta e cita posts e comentários."], ["Mede", "Visualizações, curtidas, respostas, republicações e citações."], ["Agenda", "Programa posts direto pela plataforma."]], "tempo": "Posts e comentários do perfil em até 15 min"}, "wordpress": {"nome": "WordPress", "escopo": "adm", "lead": "Traga os comentários do blog da marca pra mesma fila de atendimento das redes.", "itens": [["Coleta", "Publicações e comentários do seu site."], ["Atende", "Responde comentários pela Buzzmonitor."], ["Histórico", "Recupera posts e comentários dos últimos 30 dias."]], "tempo": "A cada 30 min"}, "bluesky": {"nome": "Bluesky", "escopo": "both", "lead": "Monitore a marca no Bluesky e responda de lá mesmo, com DMs incluídas.", "itens": [["Monitora", "Perfis e palavras-chave (no texto, no @ ou na hashtag), além de reposts e citações."], ["Atende", "Responde posts, comentários e DMs, curte, reposta, segue ou bloqueia usuários."], ["Mede", "Curtidas, comentários, reposts e citações."], ["Histórico", "Recupera posts e comentários de até 1 ano atrás."]], "tempo": "A cada 10 min no perfil conectado"}, "youtube": {"nome": "YouTube", "escopo": "both", "lead": "Cuide dos comentários do canal e compare o desempenho com canais concorrentes.", "itens": [["Coleta", "Vídeos públicos e comentários do seu canal."], ["Atende", "Responde e curte comentários e curte vídeos."], ["Mede", "Assinantes, visualizações e engajamento, também de canais concorrentes, e os top vídeos do seu canal."], ["Agenda", "Programa vídeos no YouTube Shorts."]], "tempo": "A cada 10 min"}, "linkedin": {"nome": "LinkedIn", "escopo": "both", "lead": "Acompanhe a página da empresa e as menções a ela, e responda sem trocar de ferramenta.", "itens": [["Monitora", "Posts orgânicos e patrocinados, comentários e menções à página, além de posts de páginas públicas."], ["Atende", "Responde posts e comentários, curte e apaga comentários."], ["Mede", "Seguidores, top posts, engajamento e impressões."], ["Agenda", "Programa posts da página."]], "tempo": "Menções em até 10 min"}, "gmb": {"nome": "Google Meu Negócio", "escopo": "adm", "lead": "Centralize as avaliações de todas as suas lojas e responda cada uma pela plataforma.", "itens": [["Coleta", "Avaliações, comentários e perguntas dos seus locais verificados."], ["Atende", "Responde avaliações, comentários e perguntas e gera QR Code e link de avaliação via WhatsApp."], ["Mede", "Evolução das avaliações e nota média."], ["Histórico", "Recupera avaliações de até 1 ano atrás."]], "tempo": "Em até 20 min"}, "tiktok": {"nome": "TikTok", "escopo": "adm", "lead": "Responda comentários e DMs do TikTok da marca na mesma fila das outras redes.", "itens": [["Coleta", "Vídeos orgânicos e patrocinados, comentários, menções e hashtags da marca aprovadas pelo TikTok."], ["Atende", "Responde comentários e mensagens privadas e curte ou oculta comentários."], ["Mede", "Seguidores, top posts, engajamento, alcance e visualizações."], ["Agenda", "Programa vídeos do perfil."]], "tempo": "DMs em até 5 min · comentários em até 10 min"}, "googleplay": {"nome": "Google Play", "escopo": "adm", "lead": "Leia e responda as avaliações do seu app Android sem abrir o console do Google.", "itens": [["Coleta", "Avaliações do seu aplicativo."], ["Atende", "Responde avaliações pela Buzzmonitor, com filtro por nota."]], "tempo": "Em até 30 min"}, "email": {"nome": "E-mail", "escopo": "adm", "lead": "Coloque os e-mails de atendimento na mesma tela das redes sociais.", "itens": [["Coleta", "E-mails recebidos e enviados dos endereços conectados."], ["Atende", "Responde com assinatura, edita o assunto, envia e-mail ativo e usa o domínio da sua empresa."]], "tempo": "Em até 10 min"}, "whatsapp": {"nome": "WhatsApp", "escopo": "adm", "lead": "Atenda pelo WhatsApp com chatbot e todo o histórico junto dos outros canais.", "itens": [["Coleta", "Mensagens, áudios, vídeos, imagens e PDFs."], ["Atende", "Responde mensagens, inicia conversas e usa chatbot."]], "tempo": "Em até 5 min (em geral, no mesmo minuto)"}, "reclameaqui": {"nome": "Reclame Aqui", "escopo": "adm", "lead": "Trate as reclamações do Reclame Aqui com os dados do cliente na mão.", "itens": [["Coleta", "Reclamações públicas e privadas, com CPF, e-mail e telefone do reclamante."], ["Atende", "Responde com anexos, pede avaliação do atendimento e solicita moderação."], ["Filtra", "Por status da reclamação e por avaliações pendentes ou solicitadas."]], "tempo": "Reclamações do dia em até 10 min"}, "pinterest": {"nome": "Pinterest", "escopo": "adm", "lead": "Acompanhe o desempenho dos pins do seu perfil comercial.", "itens": [["Coleta", "Pins criados e salvos, com título e descrição."], ["Mede", "Curtidas, comentários, engajamento, impressões e cliques, inclusive em links."], ["Histórico", "Recupera pins dos últimos 30 dias."]], "tempo": "A cada 1 hora"}, "reddit": {"nome": "Reddit", "escopo": "pub", "lead": "Descubra o que falam da sua marca nos subreddits e entre na conversa.", "itens": [["Monitora", "Posts, comentários e respostas nos subreddits cadastrados, por palavra-chave."], ["Atende", "Responde posts e comentários pelo perfil conectado."], ["Histórico", "Recupera posts de até 1 ano atrás."]], "tempo": "A cada 20 min"}, "rss": {"nome": "Blogs, sites e fóruns (RSS)", "escopo": "pub", "lead": "Vá além das redes: monitore notícias, blogs e fóruns que citam a sua marca.", "itens": [["Monitora", "Posts e comentários de sites cadastrados por URL ou por termo, na base de sites da Buzzmonitor."], ["Filtra", "Por tipo de fonte: notícias, blogs, fóruns, fotos e vídeos."], ["Histórico", "Recupera posts de até 2 anos atrás."]], "tempo": "A cada 10 horas"}, "appstore": {"nome": "App Store", "escopo": "both", "lead": "Acompanhe as avaliações do seu app no iPhone e também as de apps concorrentes.", "itens": [["Monitora", "Avaliações com comentário de qualquer app, com filtro por nota e país."], ["Atende", "No app da marca, coleta avaliações com e sem texto e responde pela plataforma."]], "tempo": "A cada 30 min no app da marca"}}</script><!--REDES-DATA:END-->
+
+<script>
+(function(){
+  var root=document.querySelector('.bzia'); if(!root || window.__bziaInit) return; window.__bziaInit=true;
+  /* o editor do Leadpages salva o HTML ja modificado pelo script: limpa esses restos antes de iniciar */
+  root.removeAttribute('data-bzia-init');
+  Array.prototype.forEach.call(root.querySelectorAll('.is-lit'),function(el){el.classList.remove('is-lit');});
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var navH=function(){return (root.querySelector('.nav')||{}).offsetHeight||64;};
+
+  /* Tami: video WebM com transparencia (fluido); Safari recebe o WebP animado. Comeca quando a hero aparece */
+  (function(){ var t=root.querySelector('.tami'); if(!t || getComputedStyle(t).display==='none') return;
+    var v=t.querySelector('.tami__vid'), im=t.querySelector('.tami__img'), an=t.querySelector('.tami__anim');
+    if(reduce){ t.classList.add('is-img'); return; }
+    var ua=navigator.userAgent, isSafari=/^((?!chrome|chromium|android|crios|fxios|edg).)*safari/i.test(ua);
+    var webmOk=!isSafari && v && v.canPlayType && v.canPlayType('video/webm; codecs="vp9"');
+    var started=false;
+    function useImg(){ if(v){ try{v.pause();}catch(e){} } var a=new Image(); a.onload=function(){ im.src=a.src; t.classList.remove('is-vid'); t.classList.add('is-img'); }; a.onerror=function(){ t.classList.add('is-img'); }; a.src=an.currentSrc||an.src; }
+    function go(){ if(started || document.hidden) return; started=true;
+      if(webmOk){ v.addEventListener('playing',function(){ t.classList.add('is-vid'); },{once:true}); v.addEventListener('error',useImg,{once:true});
+        try{ v.currentTime=0; }catch(e){} var pr=v.play(); if(pr && pr.catch) pr.catch(useImg); }
+      else useImg(); }
+    if('IntersectionObserver' in window) new IntersectionObserver(function(e){ if(e[0].isIntersecting) setTimeout(go,600); },{threshold:.3}).observe(t.parentNode);
+    else go();
+    document.addEventListener('visibilitychange',function(){ if(!document.hidden) go(); }); })();
+
+  /* Rede de linhas no hero (decorativa) */
+  (function(){ var cv=root.querySelector('.hero__net'); if(!cv || reduce) return; var ctx=cv.getContext('2d'), pts=[], W, H, dpr=Math.min(window.devicePixelRatio||1,2), run=true, hero=root.querySelector('.hero');
+    function size(){ W=cv.offsetWidth; H=cv.offsetHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); var n=Math.min(60,Math.floor(W*H/22000)); pts=[]; for(var i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}); }
+    function draw(){ if(!run) return; ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){ var p=pts[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1;
+        for(var j=i+1;j<pts.length;j++){ var q=pts[j], dx=p.x-q.x, dy=p.y-q.y, d=dx*dx+dy*dy; if(d<16000){ ctx.strokeStyle='rgba(235,124,46,'+(.18*(1-d/16000))+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); } }
+        ctx.fillStyle='rgba(247,178,27,.5)'; ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,6.3); ctx.fill(); }
+      requestAnimationFrame(draw); }
+    if('IntersectionObserver' in window) new IntersectionObserver(function(e){ var v=e[0].isIntersecting; if(v && !run){ run=true; draw(); } run=v; }).observe(hero);
+    window.addEventListener('resize',size); size(); draw(); })();
+
+  /* Scroll suave com compensacao do menu fixo */
+  function goTo(id){
+    var t=document.getElementById(id); if(!t) return false;
+    var extra=t.hasAttribute('data-spy-target')&&t.classList.contains('mod')?70:12;
+    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-navH()-extra,behavior:reduce?'auto':'smooth'});
+    return true;
+  }
+  root.querySelectorAll('a[href^="#bzia-"]:not([data-netd-cta])').forEach(function(a){
+    a.addEventListener('click',function(e){ if(goTo(a.getAttribute('href').slice(1))) e.preventDefault(); });
+  });
+
+  /* Reveal */
+  var els=root.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.12});
+    els.forEach(function(el){ro.observe(el);});
+  } else els.forEach(function(el){el.classList.add('visible');});
+
+  /* Contadores */
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
+  var counters=root.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window && !reduce){
+    var co=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting) return; co.unobserve(e.target);
+      var el=e.target,end=+el.getAttribute('data-count'),suf=el.getAttribute('data-suffix')||'',t0=null,dur=1400;
+      (function step(ts){ if(!t0) t0=ts; var p=Math.min((ts-t0)/dur,1),v=Math.round(end*(1-Math.pow(1-p,3))); el.textContent=fmt(v)+suf; if(p<1) requestAnimationFrame(step); })(performance.now());
+    });},{threshold:.6});
+    counters.forEach(function(c){co.observe(c);});
+  }
+
+  /* Menu: sombra ao rolar + scrollspy nos modulos */
+  var nav=root.querySelector('.nav'), links=root.querySelectorAll('[data-spy]'), targets=root.querySelectorAll('[data-spy-target]');
+  var mcta=document.getElementById('bzia-mcta'), form=document.getElementById('bzia-form'), hero=root.querySelector('.hero');
+  var ticking=false;
+  function onScroll(){
+    ticking=false;
+    var y=window.pageYOffset; nav&&nav.classList.toggle('is-scrolled',y>8);
+    var line=navH()+140, cur=null;
+    targets.forEach(function(t){ var r=t.getBoundingClientRect(); if(r.top<=line && r.bottom>line) cur=t.id; });
+    links.forEach(function(l){ l.classList.toggle('is-active',l.getAttribute('data-spy')===cur); });
+    if(mcta&&hero&&form){
+      var hb=hero.getBoundingClientRect().bottom, fr=form.getBoundingClientRect(), fvis=fr.top<window.innerHeight&&fr.bottom>0;
+      mcta.classList.toggle('is-on',hb<0&&!fvis);
+    }
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll);} },{passive:true});
+  onScroll();
+
+  /* Canais: destaque passeando pelos icones (para ao interagir) */
+  var chans=root.querySelectorAll('.chan__it'), litTimer=null;
+  if(chans.length && !reduce){
+    var li=0; litTimer=setInterval(function(){ chans.forEach(function(c){c.classList.remove('is-lit');}); chans[li%chans.length].classList.add('is-lit'); li+=5; if(li%chans.length===0) li++; },1100);
+  }
+  function stopLit(){ if(litTimer){ clearInterval(litTimer); litTimer=null; chans.forEach(function(c){c.classList.remove('is-lit');}); } }
+
+  /* Modal das redes (conteudo em #bzia-redes, gerado de redes.json) */
+  var dataEl=document.getElementById('bzia-redes'), dlg=document.getElementById('bzia-netd');
+  if(dataEl && dlg){
+    var NETS=JSON.parse(dataEl.textContent), order=Object.keys(NETS), cur=0, lastBtn=null;
+    var SCOPE={pub:'Perfis e termos públicos',adm:'Contas da sua marca'};
+    var ICO_PUB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
+    var ICO_ADM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
+    var byId=function(id){return document.getElementById(id);};
+    function chip(txt,ico){ var c=document.createElement('span'); c.className='netd__chip'; c.innerHTML=ico; c.appendChild(document.createTextNode(txt)); return c; }
+    function fill(i){
+      cur=(i+order.length)%order.length; var n=NETS[order[cur]];
+      var bi=root.querySelector('.chan__it[data-net="'+order[cur]+'"] img'); if(bi) byId('bzia-netd-ic').src=bi.src; byId('bzia-netd-t').textContent=n.nome; byId('bzia-netd-lead').textContent=n.lead; byId('bzia-netd-time').textContent=n.tempo;
+      var sc=byId('bzia-netd-scope'); sc.innerHTML='';
+      if(n.escopo!=='adm') sc.appendChild(chip(SCOPE.pub,ICO_PUB));
+      if(n.escopo!=='pub') sc.appendChild(chip(SCOPE.adm,ICO_ADM));
+      var ls=byId('bzia-netd-list'); ls.innerHTML='';
+      n.itens.forEach(function(it){ var r=document.createElement('div'); r.className='netd__row'; var l=document.createElement('span'); l.className='netd__lbl'; l.textContent=it[0]; var t=document.createElement('span'); t.textContent=it[1]; r.appendChild(l); r.appendChild(t); ls.appendChild(r); });
+      var bd=dlg.querySelector('.netd__body'); if(bd) bd.scrollTop=0;
+      if(window.dataLayer) window.dataLayer.push({event:'bzia_rede_aberta',rede:order[cur]});
+    }
+    function openNet(id,btn){
+      stopLit(); lastBtn=btn||null; fill(Math.max(0,order.indexOf(id)));
+      if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open','');
+      document.documentElement.style.overflow='hidden';
+    }
+    function closeNet(){ document.documentElement.style.overflow=''; if(typeof dlg.close==='function'){ if(dlg.open) dlg.close(); } else dlg.removeAttribute('open'); }
+    dlg.addEventListener('close',function(){ document.documentElement.style.overflow=''; if(lastBtn) lastBtn.focus({preventScroll:true}); });
+    chans.forEach(function(c){ c.addEventListener('click',function(){ openNet(c.getAttribute('data-net'),c); }); });
+    dlg.addEventListener('click',function(e){
+      if(e.target===dlg || e.target.closest('[data-netd-close]')) return closeNet();
+      var st=e.target.closest('[data-netd-step]'); if(st) return fill(cur+Number(st.getAttribute('data-netd-step')));
+      if(e.target.closest('[data-netd-cta]')){ e.preventDefault(); lastBtn=null; closeNet(); goTo('bzia-form'); }
+    });
+    dlg.addEventListener('keydown',function(e){ if(e.key==='ArrowRight') fill(cur+1); if(e.key==='ArrowLeft') fill(cur-1); });
+  }
+
+  /* Video: carrega o YouTube so no clique */
+  var vid=document.getElementById('bzia-video');
+  if(vid){ var btn=vid.querySelector('.vid__poster'); btn&&btn.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube.com/embed/'+vid.getAttribute('data-yt')+'?autoplay=1&rel=0&playsinline=1';
+    f.title='Inteligência Artificial transforma a Buzzmonitor';
+    f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'); f.setAttribute('allowfullscreen','');
+    vid.innerHTML=''; vid.appendChild(f);
+  }); }
+
+})();
+</script>
+<!-- LEADPAGES:END --></body></html>

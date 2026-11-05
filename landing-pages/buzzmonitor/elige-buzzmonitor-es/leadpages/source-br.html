@@ -1,0 +1,980 @@
+<!DOCTYPE html><html style=""><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800;900&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+
+<style>
+html,body{overflow-x:hidden;margin:0!important;padding:0!important;background:#0B0112!important}
+.bzm{--bg:#0B0112;--bg2:#14031F;--purple:#390155;--violet:#7B2CBF;--orange:#EB7C2E;--orange2:#FF9A4D;--yellow:#FCBD4F;--teal:#19C3B3;--red:#FF4D6D;
+  --ink:#16091F;--txt:#4A4152;--line:rgba(255,255,255,.09);--glass:rgba(255,255,255,.045);
+  --fh:'League Spartan',sans-serif;--fb:'Lato',sans-serif;--fm:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  position:relative;width:100vw;margin-left:calc(50% - 50vw);font-family:var(--fb);color:#fff;background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;text-align:left}
+.bzm *,.bzm *::before,.bzm *::after{box-sizing:border-box;margin:0;padding:0}
+.bzm img{max-width:100%;height:auto;display:block;border:0}
+.bzm a{text-decoration:none;color:inherit}
+.bzm ul{list-style:none}
+.bzm button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.bzm h1,.bzm h2,.bzm h3,.bzm h4{font-family:var(--fh);line-height:1.05;font-weight:800;letter-spacing:-.02em;color:inherit}
+.bzm [id]{scroll-margin-top:84px}
+.bzm :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+.bz-wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.bz-sec{position:relative;padding:120px 0;overflow:hidden}
+.bz-light{background:#F7F5FA;color:var(--ink)}
+.bz-light p{color:var(--txt)}
+.bz-h2{font-size:clamp(30px,4.2vw,54px)}
+.bz-lead{font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.72);max-width:640px}
+.bz-center{text-align:center;margin-left:auto;margin-right:auto}
+.bz-grad{font-style:normal;background:linear-gradient(90deg,var(--orange),var(--yellow),var(--orange2),var(--orange));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bzShift 6s linear infinite}
+@keyframes bzShift{to{background-position:300% 0}}
+
+/* overline */
+.bz-over{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange2);padding:8px 14px;border:1px solid rgba(235,124,46,.35);border-radius:999px;background:rgba(235,124,46,.08);margin-bottom:22px}
+.bz-light .bz-over{color:var(--purple);border-color:rgba(57,1,85,.2);background:rgba(57,1,85,.05)}
+.bz-live{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(235,124,46,.7);animation:bzLive 1.8s infinite}
+@keyframes bzLive{70%{box-shadow:0 0 0 10px rgba(235,124,46,0)}100%{box-shadow:0 0 0 0 rgba(235,124,46,0)}}
+
+/* buttons */
+.bz-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;font-family:var(--fb);font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;isolation:isolate;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s,color .3s}
+.bz-btn svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.bz-btn:hover svg{transform:translateX(4px)}
+.bz-btn--fill{background:linear-gradient(135deg,var(--orange),#F2913F);color:#fff;box-shadow:0 10px 30px -8px rgba(235,124,46,.65),inset 0 1px 0 rgba(255,255,255,.3)}
+.bz-btn--fill::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s var(--ease);z-index:-1}
+.bz-btn--fill:hover{transform:translateY(-3px);box-shadow:0 18px 40px -10px rgba(235,124,46,.8)}
+.bz-btn--fill:hover::after{transform:translateX(120%)}
+.bz-btn--ghost{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);color:#fff;backdrop-filter:blur(8px)}
+.bz-btn--ghost:hover{border-color:var(--orange);background:rgba(235,124,46,.12);transform:translateY(-3px)}
+
+/* reveal */
+.bz-rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.bz-rv.is-in{opacity:1;transform:none}
+.bz-rv--scale{transform:scale(.94)}
+.bz-rv--left{transform:translateX(-40px)}
+.bz-rv--right{transform:translateX(40px)}
+
+/* ============ NAV ============ */
+.bz-nav{position:fixed;top:0;left:0;right:0;z-index:999;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+.bz-nav.is-solid{background:rgba(11,1,18,.78);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-color:var(--line)}
+.bz-nav__in{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.bz-nav__logo img{height:38px;width:auto}
+.bz-nav__links{display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.bz-nav__links a{font-size:14px;font-weight:700;color:rgba(255,255,255,.7);padding:8px 16px;border-radius:999px;transition:color .25s,background .25s}
+.bz-nav__links a:hover{color:#fff}
+.bz-nav__links a.is-on{color:#fff;background:rgba(255,255,255,.1)}
+.bz-nav .bz-btn{padding:11px 22px;font-size:14px}
+.bz-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--violet),var(--orange),var(--yellow))}
+@media(max-width:960px){.bz-nav__links{display:none}}
+
+/* ============ HERO ============ */
+.bz-hero{position:relative;padding:170px 0 0;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,#2A0640 0%,var(--bg) 60%)}
+.bz-hero__net{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55}
+.bz-gridbg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 30%,#000 20%,transparent 75%);animation:bzGrid 20s linear infinite}
+@keyframes bzGrid{to{background-position:0 64px,64px 0}}
+.bz-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(90px);opacity:.75}
+.bz-aurora span{position:absolute;border-radius:50%}
+.bz-aurora span:nth-child(1){width:520px;height:520px;background:#7B2CBF;top:-120px;left:8%;animation:bzFloat1 16s ease-in-out infinite}
+.bz-aurora span:nth-child(2){width:460px;height:460px;background:#EB7C2E;top:120px;right:4%;opacity:.55;animation:bzFloat2 18s ease-in-out infinite}
+.bz-aurora span:nth-child(3){width:380px;height:380px;background:#C2185B;top:420px;left:38%;opacity:.35;animation:bzFloat1 22s ease-in-out infinite reverse}
+@keyframes bzFloat1{50%{transform:translate(80px,60px) scale(1.15)}}
+@keyframes bzFloat2{50%{transform:translate(-90px,40px) scale(.9)}}
+.bz-hero__txt{text-align:center;max-width:980px;margin:0 auto}
+.bz-h1{font-size:clamp(42px,7.4vw,96px);font-weight:900;letter-spacing:-.035em;margin-bottom:26px}
+.bz-h1 .bz-word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
+.bz-h1 .bz-word>span{display:inline-block;transform:translateY(110%);animation:bzUp 1.1s var(--ease) forwards;animation-delay:var(--d)}
+@keyframes bzUp{to{transform:none}}
+.bz-hero__sub{margin:0 auto 38px;opacity:0;animation:bzFade 1s var(--ease) .75s forwards}
+.bz-hero__ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:bzFade 1s var(--ease) .9s forwards}
+@keyframes bzFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.bz-stats{display:flex;justify-content:center;gap:0;margin:56px auto 0;max-width:720px;border:1px solid var(--line);border-radius:20px;background:var(--glass);backdrop-filter:blur(10px);opacity:0;animation:bzFade 1s var(--ease) 1.05s forwards}
+.bz-stat{flex:1;padding:22px 18px;text-align:center;position:relative}
+.bz-stat+.bz-stat::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--line)}
+.bz-stat__v{display:block;font-family:var(--fh);font-weight:900;font-size:clamp(28px,3.4vw,40px);line-height:1;background:linear-gradient(180deg,#fff,#E9D5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bz-stat__l{display:block;margin-top:8px;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.bz-hero__stage{position:relative;margin:80px auto 0;max-width:1200px;perspective:1600px;padding:0 24px}
+.bz-hero__device{position:relative;transform-origin:50% 0;transform:rotateX(24deg) scale(.9);transition:transform .15s linear;will-change:transform}
+.bz-hero__device img{position:relative;z-index:2;width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+.bz-hero__halo{position:absolute;left:10%;right:10%;top:10%;bottom:0;z-index:1;background:radial-gradient(50% 50% at 50% 50%,rgba(235,124,46,.55),rgba(123,44,191,.35) 45%,transparent 70%);filter:blur(40px);animation:bzPulse 5s ease-in-out infinite}
+@keyframes bzPulse{50%{opacity:.6;transform:scale(1.06)}}
+.bz-hero__fade{position:absolute;left:0;right:0;bottom:0;height:160px;z-index:3;background:linear-gradient(transparent,var(--bg))}
+
+/* marquee logos */
+.bz-trust{padding:40px 0 90px;text-align:center;position:relative;z-index:4;background:var(--bg)}
+.bz-trust p{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:30px}
+.bz-marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.bz-marq__track{display:flex;width:max-content;animation:bzMarq 34s linear infinite}
+.bz-marq:hover .bz-marq__track{animation-play-state:paused}
+.bz-marq__row{display:flex;align-items:center;gap:72px;padding:0 36px}
+.bz-trust .bz-marq__row img{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.5;transition:opacity .3s,transform .3s}
+.bz-trust .bz-marq__row img:hover{opacity:1;transform:scale(1.08)}
+@keyframes bzMarq{to{transform:translateX(-50%)}}
+
+/* ============ COMPARATIVO ============ */
+.bz-cmp{background:radial-gradient(80% 60% at 50% 0%,#1E0530,var(--bg) 70%)}
+.bz-cmp .bz-h2{text-align:center;max-width:860px;margin:0 auto 18px}
+.bz-cmp .bz-lead{text-align:center;margin:0 auto 56px}
+.bz-arena{position:relative;border-radius:28px;padding:1px;background:linear-gradient(160deg,rgba(235,124,46,.6),rgba(123,44,191,.35) 40%,rgba(255,255,255,.06) 70%)}
+.bz-arena__in{border-radius:27px;background:linear-gradient(180deg,#150422,#0E0217);overflow:hidden;position:relative}
+.bz-arena__in::before{content:"";position:absolute;top:-200px;left:50%;width:700px;height:400px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(235,124,46,.22),transparent);pointer-events:none}
+.bz-arena__bar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bz-tabs{position:relative;display:flex;gap:2px;padding:4px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);overflow-x:auto;scrollbar-width:none;max-width:100%}
+.bz-tabs::-webkit-scrollbar{display:none}
+.bz-tab{position:relative;z-index:1;font-family:var(--fm);font-weight:700;font-size:13px;letter-spacing:.06em;padding:9px 16px;border-radius:10px;color:rgba(255,255,255,.55);transition:color .3s;flex:none;overflow:hidden}
+.bz-tab:hover{color:#fff}
+.bz-tab.is-on{color:#fff}
+.bz-tab__timer{position:absolute;left:10px;right:10px;bottom:4px;height:2px;border-radius:2px;background:rgba(255,255,255,.2);transform:scaleX(0);transform-origin:0 50%}
+.bz-tab.is-on .bz-tab__timer{background:#fff}
+.bz-tab.is-on.is-run .bz-tab__timer{animation:bzTimer var(--t,4.5s) linear forwards}
+@keyframes bzTimer{to{transform:scaleX(1)}}
+.bz-tabs__pill{position:absolute;z-index:0;top:4px;bottom:4px;left:0;border-radius:10px;background:linear-gradient(135deg,var(--orange),#C85A14);box-shadow:0 6px 20px -6px rgba(235,124,46,.8);transition:transform .5s var(--ease),width .5s var(--ease)}
+.bz-mode{display:flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.bz-mode button{font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;color:rgba(255,255,255,.6);transition:all .3s}
+.bz-mode button.is-on{background:#fff;color:var(--ink)}
+.bz-arena.is-all .bz-tabs__pill{opacity:0}
+.bz-arena.is-all .bz-tab.is-on{color:rgba(255,255,255,.55)}
+
+.bz-score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:34px 28px 26px;border-bottom:1px solid var(--line)}
+.bz-score__side{display:flex;align-items:center;gap:18px}
+.bz-score__side--r{justify-content:flex-end;text-align:right}
+.bz-ring{position:relative;width:92px;height:92px;flex:none}
+.bz-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.bz-ring circle{fill:none;stroke-width:7}
+.bz-ring .bg{stroke:rgba(255,255,255,.08)}
+.bz-ring .fg{stroke-linecap:round;transition:stroke-dashoffset 1.1s var(--ease)}
+.bz-ring--bm .fg{stroke:url(#bzRingGrad)}
+.bz-ring--cp .fg{stroke:rgba(255,255,255,.55)}
+.bz-ring__v{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--fh);font-weight:900;font-size:24px}
+.bz-ring__v small{font-size:13px;opacity:.5;font-weight:700}
+.bz-score__name{font-family:var(--fh);font-weight:900;font-size:clamp(22px,3vw,34px);line-height:1}
+.bz-score__name img{height:40px;width:auto}
+.bz-score__tag{display:block;margin-top:8px;font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.bz-vs{font-family:var(--fm);font-weight:700;font-size:13px;letter-spacing:.2em;color:rgba(255,255,255,.4);width:54px;height:54px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);position:relative}
+.bz-vs::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px dashed rgba(235,124,46,.4);animation:bzSpin 14s linear infinite}
+@keyframes bzSpin{to{transform:rotate(360deg)}}
+.bz-glitch{display:inline-block}
+.bz-glitch.is-swap{animation:bzGlitch .5s steps(2) both}
+@keyframes bzGlitch{0%{opacity:0;transform:translateY(8px);filter:blur(6px)}40%{opacity:1;transform:translateX(-3px);text-shadow:3px 0 var(--orange),-3px 0 var(--teal)}100%{transform:none;filter:none;text-shadow:none}}
+
+.bz-rows{padding:8px 0}
+.bz-row{display:grid;grid-template-columns:1fr 150px 150px;align-items:center;gap:12px;padding:18px 28px;position:relative;transition:background .3s}
+.bz-row+.bz-row{border-top:1px solid rgba(255,255,255,.05)}
+.bz-row:hover{background:rgba(255,255,255,.025)}
+.bz-row::before{content:"";position:absolute;left:0;top:18%;bottom:18%;width:3px;border-radius:0 3px 3px 0;background:var(--orange);transform:scaleY(0);transition:transform .5s var(--ease)}
+.bz-row.is-win::before{transform:scaleY(1)}
+.bz-row__f{font-size:15px;color:rgba(255,255,255,.78)}
+.bz-row__f strong{color:#fff;font-weight:700}
+.bz-row__c{display:flex;justify-content:center}
+.bz-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;transition:transform .5s var(--ease),background .4s,box-shadow .4s}
+.bz-mark svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.bz-mark--y{color:#0B0112;background:linear-gradient(135deg,#3BE3C9,var(--teal));box-shadow:0 0 22px -4px rgba(25,195,179,.7)}
+.bz-mark--n{color:var(--red);background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.3)}
+.bz-mark--cy{color:var(--teal);background:rgba(25,195,179,.1);border:1px solid rgba(25,195,179,.35)}
+.bz-mark.is-flip{animation:bzFlip .6s var(--ease) both;animation-delay:var(--fd,0s)}
+@keyframes bzFlip{0%{transform:rotateY(90deg) scale(.6);opacity:0}100%{transform:none;opacity:1}}
+.bz-row__h{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+.bz-matrix{display:none;overflow-x:auto;padding:10px 0 4px}
+.bz-arena.is-all .bz-matrix{display:block}
+.bz-arena.is-all .bz-duel{display:none}
+.bz-matrix table{width:100%;min-width:900px;border-collapse:separate;border-spacing:0}
+.bz-matrix th,.bz-matrix td{padding:12px 8px;text-align:center;font-size:13px}
+.bz-matrix th{font-family:var(--fm);font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.55);position:sticky;top:0}
+.bz-matrix td:first-child,.bz-matrix th:first-child{text-align:left;padding-left:28px;width:38%;color:rgba(255,255,255,.75);font-family:var(--fb);font-weight:400;letter-spacing:0}
+.bz-matrix td:first-child strong{color:#fff}
+.bz-matrix tr+tr td{border-top:1px solid rgba(255,255,255,.05)}
+.bz-matrix .is-bm{background:linear-gradient(180deg,rgba(235,124,46,.14),rgba(235,124,46,.06))}
+.bz-matrix thead .is-bm{border-radius:14px 14px 0 0}
+.bz-matrix tfoot .is-bm{border-radius:0 0 14px 14px}
+.bz-matrix thead .is-bm img{height:26px;margin:0 auto}
+.bz-matrix tbody tr:hover td{background-color:rgba(255,255,255,.03)}
+.bz-matrix .col-hover{background-color:rgba(255,255,255,.04)}
+.bz-dot{display:inline-block;width:14px;height:14px;border-radius:50%;transform:scale(0);transition:transform .5s var(--ease);transition-delay:var(--dd,0s)}
+.bz-arena.is-all.is-drawn .bz-dot{transform:scale(1)}
+.bz-dot--y{background:var(--teal);box-shadow:0 0 12px rgba(25,195,179,.6)}
+.bz-dot--n{background:transparent;border:2px solid rgba(255,77,109,.55)}
+.bz-dot--bm{background:linear-gradient(135deg,var(--yellow),var(--orange));box-shadow:0 0 14px rgba(235,124,46,.8)}
+.bz-matrix tfoot td{font-family:var(--fh);font-weight:900;font-size:18px;padding-top:16px;padding-bottom:16px;border-top:1px solid var(--line)}
+.bz-matrix tfoot td small{font-size:11px;opacity:.5}
+.bz-cmp__foot{text-align:center;margin-top:24px;font-size:13px;color:rgba(255,255,255,.4)}
+@media(max-width:760px){
+  .bz-score{grid-template-columns:1fr 1fr;gap:14px;padding:24px 18px}
+  .bz-score__side,.bz-score__side--r{flex-direction:column;justify-content:center;text-align:center;gap:12px}
+  .bz-score__side--r{flex-direction:column-reverse}
+  .bz-score__name img{height:30px}
+  .bz-vs{display:none}
+  .bz-ring{width:70px;height:70px}.bz-ring__v{font-size:18px}
+  .bz-row{grid-template-columns:1fr 54px 54px;padding:16px 16px;gap:8px}
+  .bz-row__f{font-size:13.5px}
+  .bz-mark{width:30px;height:30px;border-radius:10px}
+  .bz-arena__bar{padding:14px}
+  .bz-mode{width:100%}.bz-mode button{flex:1}
+}
+
+/* ============ INTEGRAÇÃO + FORM ============ */
+.bz-integ .bz-gridbg-l{position:absolute;inset:0;background-image:radial-gradient(rgba(57,1,85,.12) 1.2px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
+.bz-integ__grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:center}
+.bz-integ .bz-h2{margin-bottom:18px}
+.bz-integ__sub{font-family:var(--fh);font-weight:700;font-size:clamp(19px,1.8vw,23px);color:var(--orange)!important;margin-bottom:18px}
+.bz-integ p+p{margin-top:14px}
+.bz-integ__stats{display:flex;gap:16px;margin:32px 0}
+.bz-chip{flex:1;padding:18px 20px;border-radius:18px;background:#fff;border:1px solid rgba(57,1,85,.08);box-shadow:0 10px 30px -12px rgba(57,1,85,.18)}
+.bz-chip b{display:block;font-family:var(--fh);font-weight:900;font-size:34px;line-height:1;color:var(--purple)}
+.bz-chip span{font-size:13px;color:var(--txt)}
+.bz-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--purple)}
+.bz-link i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--purple);color:#fff;font-style:normal;transition:transform .4s var(--ease)}
+.bz-link:hover i{transform:translateX(5px) rotate(-45deg)}
+.bz-form{position:relative;border-radius:30px;padding:2px;overflow:hidden;isolation:isolate}
+.bz-form::before{content:"";position:absolute;inset:-60%;z-index:-1;background:conic-gradient(from 0deg,var(--orange),var(--violet),var(--yellow),var(--orange));animation:bzSpin 6s linear infinite}
+.bz-form__in{border-radius:28px;background:#fff;padding:14px}
+.bz-form iframe{display:block;width:100%;min-height:620px;border:0;border-radius:20px}
+.bz-form__glow{position:absolute;inset:10% -10% -10%;z-index:-2;background:radial-gradient(closest-side,rgba(235,124,46,.35),transparent);filter:blur(40px)}
+
+/* ============ FUNCIONALIDADES (explorer) ============ */
+.bz-feat .bz-h2{text-align:center;max-width:820px;margin:0 auto 16px}
+.bz-feat .bz-lead{text-align:center;margin:0 auto 60px;color:var(--txt)}
+.bz-ex{display:grid;grid-template-columns:360px 1fr;gap:28px;align-items:stretch}
+.bz-ex__nav{display:flex;flex-direction:column;gap:8px}
+.bz-ex__btn{position:relative;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;text-align:left;background:transparent;border:1px solid transparent;color:var(--ink);font-family:var(--fh);font-weight:700;font-size:17px;transition:all .35s var(--ease);overflow:hidden}
+.bz-ex__btn:hover{background:#fff;border-color:rgba(57,1,85,.08)}
+.bz-ex__btn.is-on{background:#fff;border-color:rgba(235,124,46,.35);box-shadow:0 16px 40px -18px rgba(57,1,85,.35);transform:translateX(6px)}
+.bz-ex__btn .n{font-family:var(--fm);font-size:11px;color:rgba(22,9,31,.35);margin-left:auto}
+.bz-ex__ic{width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;background:rgba(57,1,85,.06);color:var(--purple);transition:all .35s var(--ease)}
+.bz-ex__btn.is-on .bz-ex__ic{background:linear-gradient(135deg,var(--orange),#C85A14);color:#fff;box-shadow:0 8px 20px -6px rgba(235,124,46,.7)}
+.bz-ex__ic svg,.bz-ex__big svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bz-ex__stage{position:relative;border-radius:28px;background:var(--bg);color:#fff;overflow:hidden;min-height:520px;isolation:isolate}
+.bz-ex__stage::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 100% 0%,rgba(123,44,191,.55),transparent 60%),radial-gradient(50% 60% at 0% 100%,rgba(235,124,46,.35),transparent 60%)}
+.bz-ex__stage::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:radial-gradient(80% 80% at 70% 20%,#000,transparent);mask-image:radial-gradient(80% 80% at 70% 20%,#000,transparent)}
+.bzm .bz-ex__stage .bz-panel{position:relative;padding:48px}
+.bzm .bz-ex__stage .bz-panel:not(.is-on){display:none!important}
+.bzm .bz-ex__stage .bz-panel.is-on{display:block!important;animation:bzPanelIn .6s var(--ease) both}
+@keyframes bzPanelIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.bz-panel__num{position:absolute;right:32px;top:10px;font-family:var(--fh);font-weight:900;font-size:180px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.1);pointer-events:none}
+.bz-ex__big{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),#C85A14);box-shadow:0 14px 30px -8px rgba(235,124,46,.8);margin-bottom:26px}
+.bz-ex__big svg{width:30px;height:30px}
+.bz-panel h3{font-size:clamp(26px,2.6vw,36px);margin-bottom:14px}
+.bz-panel p{color:rgba(255,255,255,.72);max-width:560px;margin-bottom:30px}
+.bz-panel ul{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bz-panel li{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);opacity:0;transform:translateY(12px)}
+.bz-panel.is-on li{animation:bzFade .6s var(--ease) forwards;animation-delay:calc(var(--i) * 60ms + .15s)}
+.bz-panel li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:6px;background:rgba(25,195,179,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2319C3B3' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat}
+@media(max-width:960px){
+  .bz-ex{grid-template-columns:1fr}
+  .bz-ex__nav{flex-direction:row;overflow-x:auto;scrollbar-width:none;padding-bottom:6px;scroll-snap-type:x mandatory}
+  .bz-ex__nav::-webkit-scrollbar{display:none}
+  .bz-ex__btn{flex:none;font-size:14px;padding:10px 14px;scroll-snap-align:start}
+  .bz-ex__btn.is-on{transform:none}
+  .bz-ex__btn .n{display:none}
+  .bz-ex__ic{width:34px;height:34px}
+  .bzm .bz-ex__stage .bz-panel{padding:30px 22px}
+  .bz-panel ul{grid-template-columns:1fr}
+  .bz-panel__num{font-size:110px;right:16px}
+  .bz-ex__stage{min-height:0}
+}
+
+/* ============ IA ============ */
+.bz-ia{background:radial-gradient(90% 70% at 20% 0%,#2A0640,var(--bg) 65%)}
+.bz-ia__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center;margin-bottom:80px}
+.bz-ia .bz-h2{margin-bottom:22px}
+.bz-ia__txt{color:rgba(255,255,255,.72);margin-bottom:34px}
+.bz-hud{position:relative;padding:14px;border-radius:24px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.bz-hud img{border-radius:14px;width:100%}
+.bz-hud__scan{position:absolute;left:14px;right:14px;top:14px;height:30%;border-radius:14px;background:linear-gradient(180deg,transparent,rgba(235,124,46,.18),transparent);animation:bzScan 4s ease-in-out infinite;pointer-events:none}
+@keyframes bzScan{0%,100%{transform:translateY(0)}50%{transform:translateY(230%)}}
+.bz-hud i{position:absolute;width:22px;height:22px;border:2px solid var(--orange)}
+.bz-hud i:nth-of-type(1){top:-6px;left:-6px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+.bz-hud i:nth-of-type(2){top:-6px;right:-6px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.bz-hud i:nth-of-type(3){bottom:-6px;left:-6px;border-right:0;border-top:0;border-radius:0 0 0 8px}
+.bz-hud i:nth-of-type(4){bottom:-6px;right:-6px;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.bz-hud__glow{position:absolute;inset:-20%;z-index:-1;background:radial-gradient(closest-side,rgba(123,44,191,.5),transparent);filter:blur(30px)}
+.bz-pills{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.bz-pill{position:relative;border-radius:22px;padding:1px;background:rgba(255,255,255,.08);overflow:hidden;isolation:isolate;transition:transform .5s var(--ease)}
+.bz-pill::before{content:"";position:absolute;inset:-80%;z-index:-1;background:conic-gradient(from 0deg,transparent 0 70%,var(--orange) 80%,var(--yellow) 88%,transparent 95%);animation:bzSpin 4s linear infinite;opacity:0;transition:opacity .4s}
+.bz-pill:hover{transform:translateY(-8px)}
+.bz-pill:hover::before{opacity:1}
+.bz-pill__in{height:100%;border-radius:21px;padding:24px 20px;background:linear-gradient(180deg,#1A052A,#10021A)}
+.bz-pill__ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:rgba(235,124,46,.12);color:var(--orange2);border:1px solid rgba(235,124,46,.25)}
+.bz-pill__ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bz-pill h3{font-size:19px;margin-bottom:8px;color:#fff}
+.bz-pill p{font-size:13.5px;color:rgba(255,255,255,.6)}
+
+/* ============ VÍDEO ============ */
+.bz-vid{padding-top:40px;text-align:center}
+.bz-vid .bz-h2{margin-bottom:48px}
+.bz-vid__frame{position:relative;max-width:1000px;margin:0 auto;border-radius:26px;padding:2px;background:linear-gradient(135deg,var(--orange),var(--violet) 50%,rgba(255,255,255,.1));box-shadow:0 40px 120px -30px rgba(235,124,46,.5)}
+.bz-vid__frame>div{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#000}
+.bz-vid__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ============ PLANOS ============ */
+.bz-trial{background:var(--bg)}
+.bz-trial__mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(40% 60% at 15% 30%,rgba(123,44,191,.7),transparent 70%),radial-gradient(45% 60% at 85% 70%,rgba(235,124,46,.6),transparent 70%),radial-gradient(30% 40% at 60% 10%,rgba(252,189,79,.25),transparent 70%);filter:blur(20px);animation:bzMesh 14s ease-in-out infinite alternate}
+@keyframes bzMesh{to{transform:scale(1.15) translate(-3%,2%)}}
+.bz-trial__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center}
+.bz-trial__t{font-family:var(--fh);font-weight:900;font-size:clamp(34px,4.6vw,60px);line-height:1;letter-spacing:-.03em;margin-bottom:20px}
+.bz-trial__p{color:rgba(255,255,255,.8);margin-bottom:28px;max-width:540px}
+.bz-checks{display:grid;gap:12px}
+.bz-checks li{display:flex;gap:12px;align-items:center;font-size:15px;color:rgba(255,255,255,.9)}
+.bz-checks li::before{content:"";flex:none;width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FCBD4F' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/13px no-repeat;border:1px solid rgba(255,255,255,.18)}
+.bz-price{position:relative;border-radius:30px;padding:2px;overflow:hidden;isolation:isolate;transform-style:preserve-3d;transition:transform .2s}
+.bz-price::before{content:"";position:absolute;inset:-60%;z-index:-1;background:conic-gradient(from 0deg,rgba(255,255,255,.1),var(--yellow),var(--orange),rgba(255,255,255,.1) 40%,rgba(255,255,255,.1));animation:bzSpin 5s linear infinite}
+.bz-price__in{position:relative;border-radius:28px;padding:44px 40px;background:rgba(18,3,28,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.bz-badge{position:absolute;top:22px;right:22px;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--yellow);padding:8px 14px;border-radius:999px;box-shadow:0 0 0 0 rgba(252,189,79,.6);animation:bzBadge 2.4s infinite}
+@keyframes bzBadge{0%{box-shadow:0 0 0 0 rgba(252,189,79,.55)}70%{box-shadow:0 0 0 14px rgba(252,189,79,0)}100%{box-shadow:0 0 0 0 rgba(252,189,79,0)}}
+.bz-price__l{font-family:var(--fm);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px}
+.bz-price__v{font-family:var(--fh);font-weight:900;line-height:1;display:flex;align-items:flex-start;gap:6px;margin-bottom:34px}
+.bz-price__v .cur{font-size:22px;margin-top:10px;color:rgba(255,255,255,.7)}
+.bz-price__v{flex-wrap:nowrap;white-space:nowrap}
+.bz-price__v .num{font-size:clamp(54px,6vw,84px);letter-spacing:-.04em;background:linear-gradient(180deg,#fff,#FFD9B8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bz-price__v .cts{font-size:26px;margin-top:10px}
+.bz-price__v .per{font-size:16px;font-weight:500;color:rgba(255,255,255,.55);align-self:flex-end;margin-bottom:12px;font-family:var(--fb)}
+.bz-price .bz-btn{width:100%;justify-content:center}
+
+/* ============ DEPOIMENTOS ============ */
+.bz-testi .bz-h2{text-align:center;margin:0 auto 14px}
+.bz-testi .bz-lead{text-align:center;margin:0 auto 56px;color:var(--txt)}
+.bz-testi .bz-marq__track{animation-duration:40s}
+.bz-testi .bz-marq__row{gap:24px;padding:0 12px;align-items:stretch}
+.bz-tcard{width:400px;flex:none;border-radius:24px;background:#fff;overflow:hidden;box-shadow:0 20px 50px -24px rgba(57,1,85,.35);border:1px solid rgba(57,1,85,.06);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.bz-tcard:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 30px 60px -24px rgba(235,124,46,.45)}
+.bz-tcard img{width:100%;height:auto}
+
+/* ============ CLIENTES ============ */
+.bz-clients{background:#fff;color:var(--ink);text-align:center;padding-top:40px}
+.bz-clients .bz-h2{margin:0 auto 48px;max-width:760px}
+.bz-wall{position:relative;border-radius:28px;padding:30px;background:#F7F5FA;border:1px solid rgba(57,1,85,.06);overflow:hidden}
+.bz-wall img{margin:0 auto;clip-path:inset(0 100% 0 0);transition:clip-path 1.6s var(--ease)}
+.bz-wall.is-in img{clip-path:inset(0 0 0 0)}
+.bz-wall::after{content:"";position:absolute;top:0;bottom:0;width:120px;left:-140px;background:linear-gradient(90deg,transparent,rgba(235,124,46,.18),transparent);animation:bzSweep 5s ease-in-out infinite 1.8s}
+@keyframes bzSweep{0%{left:-140px}60%,100%{left:110%}}
+.bz-badges{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.bz-badges .bz-chip{text-align:center}
+.bz-badges .bz-chip b{font-size:clamp(30px,3.4vw,44px);background:linear-gradient(135deg,var(--purple),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:760px){.bz-badges{grid-template-columns:1fr 1fr}.bz-wall{padding:14px}}
+
+/* ============ FOOTER ============ */
+.bz-foot{position:relative;background:var(--bg);padding:80px 0 30px;overflow:hidden}
+.bz-foot::before{content:"";position:absolute;left:50%;top:-300px;width:900px;height:500px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(123,44,191,.35),transparent)}
+.bz-foot__top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.bz-foot__logo img{height:40px;width:auto;margin-bottom:18px}
+.bz-foot p{max-width:420px;color:rgba(255,255,255,.6);font-size:15px}
+.bz-soc{display:flex;gap:10px}
+.bz-soc a{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:all .35s var(--ease)}
+.bz-soc a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-4px)}
+.bz-soc svg{width:18px;height:18px;fill:#fff}
+.bz-foot__bot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:rgba(255,255,255,.45)}
+.bz-foot__bot a:hover{color:#fff}
+.bz-foot__big{font-family:var(--fh);font-weight:900;font-size:clamp(60px,15vw,210px);line-height:.8;letter-spacing:-.05em;text-align:center;margin-top:50px;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent 85%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+
+/* spotlight (cards) */
+.bz-spot{position:relative}
+.bz-spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(235,124,46,.14),transparent 60%)}
+.bz-spot:hover::after{opacity:1}
+
+/* responsive geral */
+@media(max-width:960px){
+  .bz-sec{padding:84px 0}
+  .bz-integ__grid,.bz-ia__grid,.bz-trial__grid{grid-template-columns:1fr;gap:48px}
+  .bz-integ__grid .bz-form{order:2}
+  .bz-pills{grid-template-columns:1fr 1fr}
+  .bz-hero{padding-top:130px}
+  .bz-hero__stage{margin-top:56px}
+}
+@media(max-width:560px){
+  .bz-wrap{padding:0 18px}
+  .bz-pills{grid-template-columns:1fr}
+  .bz-stats{flex-direction:column}
+  .bz-stat+.bz-stat::before{left:22%;right:22%;top:0;bottom:auto;width:auto;height:1px}
+  .bz-hero__ctas .bz-btn{width:100%;justify-content:center}
+  .bz-integ__stats{flex-direction:column}
+  .bz-price__in{padding:36px 24px}
+  .bz-tcard{width:300px}
+  .bz-nav .bz-btn{padding:10px 16px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .bzm *,.bzm *::before,.bzm *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .bz-rv{opacity:1;transform:none}
+  .bz-hero__device{transform:none!important}
+}
+</style>
+
+<style id="htmlpub-breakpoint-visibility">@media (max-width: 767px) { .hp-hide-mobile { display: none !important; } }
+@media (min-width: 768px) and (max-width: 1199px) { .hp-hide-tablet { display: none !important; } }
+@media (min-width: 1200px) { .hp-hide-desktop { display: none !important; } }</style></head><body style=""><div class="bzm" id="bzm">
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true"><defs><linearGradient id="bzRingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FCBD4F"></stop><stop offset="1" stop-color="#EB7C2E"></stop></linearGradient></defs></svg>
+
+  <!-- ============ NAV ============ -->
+  <nav class="bz-nav is-solid" aria-label="Navegação principal" style="">
+    <div class="bz-nav__in" style="">
+      <a href="https://buzzmonitor.com/" class="bz-nav__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial"><img src="/api/pages/j6dPN2G_eu/assets/zozxlzodf59sn2xa6a2zxxag?w=1200&fit=scale-down&format=auto&quality=82" alt="Buzzmonitor" width="103" height="30" fetchpriority="high"></a>
+      <div class="bz-nav__links">
+        <a href="#comparativo" class="">Comparativo</a>
+        <a href="#funcionalidades" class="">Funcionalidades</a>
+        <a href="#ia" class="">Inteligência Artificial</a>
+        <a href="#planos">Planos</a>
+        <a href="#depoimentos" class="is-on">Depoimentos</a>
+      </div>
+      <a href="#planos" class="bz-btn bz-btn--fill" style="">Começar Grátis</a>
+    </div>
+    <div class="bz-progress" style="transform: scaleX(1.00004);"></div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="bz-hero" data-persist-nav-id="nav-yhqhh1x">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <canvas class="bz-hero__net" aria-hidden="true" width="2560" height="2067"></canvas>
+    <div class="bz-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="bz-gridbg" aria-hidden="true" style=""></div>
+    <div class="bz-wrap bz-hero__txt" style="">
+      <span class="bz-over" style="animation: bzFade .8s var(--ease) both;"><i class="bz-live"></i>Comparativo de plataformas</span>
+      <h1 class="bz-h1" style="margin-left: -28px; margin-right: -28px;">
+        <span class="bz-word" style=""><span style="--d: .1s;">Compare.</span></span>
+        <span class="bz-word"><span style="--d: .22s;">Analise.</span></span>
+        <span class="bz-word" style=""><span style="--d: .34s;">Escolha a&nbsp;</span></span><span class="bz-word" style=""><span style="--d: .46s;"><em class="bz-grad" style="">Buzzmonitor.</em></span></span>
+      </h1>
+      <p class="bz-lead bz-hero__sub" style="">Veja lado a lado como as principais plataformas de social media performam e descubra por que a Buzzmonitor é a escolha inteligente para mais de 1.000 marcas pelo mundo, que querem dados, agilidade e suporte especializado em um só lugar.</p>
+      <div class="bz-hero__ctas">
+        <a href="#planos" class="bz-btn bz-btn--fill">Começar Grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="#comparativo" class="bz-btn bz-btn--ghost" data-persist-nav-cta="">Ver comparativo completo</a>
+      </div>
+      <div class="bz-stats is-in">
+        <div class="bz-stat"><strong class="bz-stat__v is-in" data-count="1000" data-suffix="+" data-done="1">1.000+</strong><span class="bz-stat__l" style="">clientes no mundo</span></div>
+        <div class="bz-stat"><strong class="bz-stat__v is-in" data-count="500" data-suffix="+" data-done="1">500+</strong><span class="bz-stat__l">agências parceiras</span></div>
+        <div class="bz-stat"><strong class="bz-stat__v is-in" data-count="97" data-done="1">97</strong><span class="bz-stat__l">NPS (de 100)</span></div>
+      </div>
+    </div>
+    <div class="bz-hero__stage">
+      <div class="bz-hero__device" style="transform: rotateX(0deg) scale(1);">
+        <div class="bz-hero__halo" aria-hidden="true"></div>
+        <img src="/api/pages/j6dPN2G_eu/assets/vm4galuhue4miqbchur992ca?w=1200&fit=scale-down&format=auto&quality=82" alt="Plataforma Buzzmonitor" width="1440" height="553" data-persist-nav-logo="" data-persist-nav-logo-ar="2.603978300180832" style="" loading="lazy">
+      </div>
+      <div class="bz-hero__fade" aria-hidden="true" style=""></div>
+    </div>
+  </header>
+
+  <!-- ============ LOGOS ============ -->
+  <section class="bz-trust" style="">
+    <p class="bz-rv is-in">Empresas que já confiam na Buzzmonitor</p>
+    <div class="bz-marq bz-rv is-in" style="--d: .1s;">
+      <div class="bz-marq__track">
+        <div class="bz-marq__row">
+          <img src="/api/pages/j6dPN2G_eu/assets/psdlf8jcvmqp4kiidqr1brn2?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/fb9u7ub9sonsstyhfg5nbg9m?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/vltex0gc55rxh84dv5ffkpi1?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/jx353cbingspwig58rfnn8rj?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/ztuqgyk0q8dhoe2d3a9m4t45?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/fyrbolxhchupnecp9yxb0tgm?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/tx4d5qz1ks0024tpodvu2n6s?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/qeenx6hudu04b8bf8yfqamgs?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/yptqt1pcovozkxb8nbfdfqto?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/mn5gypah9qzktg3vqvga3xy5?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor"><img src="/api/pages/j6dPN2G_eu/assets/lr62cghhcztxjj17st4awtvx?w=1200&fit=scale-down&format=auto&quality=82" alt="Logo cliente Buzzmonitor">
+        </div>
+        <div class="bz-marq__row" aria-hidden="true">
+          <img src="/api/pages/j6dPN2G_eu/assets/psdlf8jcvmqp4kiidqr1brn2?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/fb9u7ub9sonsstyhfg5nbg9m?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/vltex0gc55rxh84dv5ffkpi1?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/jx353cbingspwig58rfnn8rj?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/ztuqgyk0q8dhoe2d3a9m4t45?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/fyrbolxhchupnecp9yxb0tgm?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/tx4d5qz1ks0024tpodvu2n6s?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/qeenx6hudu04b8bf8yfqamgs?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/yptqt1pcovozkxb8nbfdfqto?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/mn5gypah9qzktg3vqvga3xy5?w=1200&fit=scale-down&format=auto&quality=82" alt=""><img src="/api/pages/j6dPN2G_eu/assets/lr62cghhcztxjj17st4awtvx?w=1200&fit=scale-down&format=auto&quality=82" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARATIVO ============ -->
+  <section class="bz-sec bz-cmp" id="comparativo" aria-labelledby="bz-cmp-h2" style="">
+    <div class="bz-wrap" style="">
+      <div class="bz-center" style="text-align: center;"><span class="bz-over bz-rv is-in"><i class="bz-live"></i>Comparativo</span></div>
+      <h2 id="bz-cmp-h2" class="bz-h2 bz-rv is-in" style="">Compare as principais plataformas de social media</h2>
+      <p class="bz-lead bz-rv is-in" style="--d: .1s;">Módulos de Monitoramento, Atendimento, Analytics, Agendamento, Tendências e Influenciadores, tudo com IA, em uma única interface.</p>
+
+      <div class="bz-arena bz-rv bz-rv--scale is-in" style="--d: .15s;">
+        <div class="bz-arena__in">
+          <div class="bz-arena__bar" style="">
+            <div class="bz-tabs" role="tablist" aria-label="Selecionar concorrente">
+              <span class="bz-tabs__pill" aria-hidden="true" style="width: 65px; transform: translateX(0px);"></span>
+              <button type="button" class="bz-tab is-on" role="tab" aria-selected="true" style="--t: 4500ms;">TRB<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">HPL<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">SPT<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">EMP<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">MLB<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">STL<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">ZDK<i class="bz-tab__timer"></i></button>
+              <button type="button" class="bz-tab" role="tab" aria-selected="false">VTK<i class="bz-tab__timer"></i></button>
+            </div>
+            <div class="bz-mode" role="group" aria-label="Modo de visualização">
+              <button type="button" class="is-on" data-mode="duel">Lado a lado</button>
+              <button type="button" data-mode="all" style="">Todas</button>
+            </div>
+          </div>
+
+          <div class="bz-duel">
+            <div class="bz-score" style="">
+              <div class="bz-score__side">
+                <div class="bz-ring bz-ring--bm"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="44"></circle><circle class="fg" cx="50" cy="50" r="44" style="stroke-dasharray: 276.46; stroke-dashoffset: 0;"></circle></svg><span class="bz-ring__v"><span>9<small>/9</small></span></span></div>
+                <div><span class="bz-score__name"><img src="/api/pages/j6dPN2G_eu/assets/zozxlzodf59sn2xa6a2zxxag?w=1200&fit=scale-down&format=auto&quality=82" alt="Buzzmonitor"></span></div>
+              </div>
+              <div class="bz-vs">VS</div>
+              <div class="bz-score__side bz-score__side--r">
+                <div><span class="bz-score__name"><span class="bz-glitch is-swap" id="bz-cp-name">TRB</span></span></div>
+                <div class="bz-ring bz-ring--cp"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="44"></circle><circle class="fg" cx="50" cy="50" r="44" style="stroke-dasharray: 276.46; stroke-dashoffset: 276.46;"></circle></svg><span class="bz-ring__v" style=""><span style=""><span id="bz-cp-score" style="">0</span><small>/9</small></span></span></div>
+              </div>
+            </div>
+            <div class="bz-rows" style="">
+              <div class="bz-row is-win" data-states="0,0,0,0,0,1,0,0" style=""><div class="bz-row__f">Módulos de Monitoramento, Atendimento, Analytics, Agendamento, Tendências e Influenciadores, <strong>com IA</strong>, em uma única interface.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:0ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,0,0,0,0,0" style=""><div class="bz-row__f">Suporte ao <strong>Facebook, Instagram, YouTube, TikTok, LinkedIn</strong>, Reclame Aqui, WhatsApp, Google Meu Negócio, Lojas (Android e iOS) e E-mail.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:55ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,0,0,0,0,0" style=""><div class="bz-row__f">Dashboards em tempo real, ilimitados, <strong>sem custos extras</strong>, customizáveis e compartilháveis via URL.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:110ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,1,1,1,0,1,0,1" style=""><div class="bz-row__f"><strong>Monitoramento e Analytics</strong> da concorrência para Facebook, Instagram e YouTube.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:165ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,1,0,1,1,1" style=""><div class="bz-row__f"><strong>Tickets, times, filas, FAQ, mensagens internas, CRM</strong>, histórico do usuário e insights em tempo real.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:220ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,0,0,0,0,0" style=""><div class="bz-row__f"><strong>Inteligência artificial</strong> para análise de sentimento, sugestão de resposta, classificação de comentários, melhorias em textos e criação de imagens.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:275ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,0,0,0,0,0" style=""><div class="bz-row__f">Buscas históricas <strong>ilimitadas e gratuitas</strong> em mais de um bilhão de posts e 200 milhões de usuários.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:330ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,1,1,0,1,0,0" style=""><div class="bz-row__f">Monitoramento de <strong>mais de dez mil fontes</strong> de notícias e órgãos de defesa do consumidor com alertas 24x7.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:385ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+              <div class="bz-row is-win" data-states="0,0,0,0,0,0,0,0" style=""><div class="bz-row__f">Excelência no <strong>relacionamento multicanal</strong> com os clientes e um time de CS com NPS <strong>97 (de 100)</strong>.</div><div class="bz-row__c"><span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg></span></div><div class="bz-row__c"><span class="bz-mark bz-mark--n is-flip" style="--fd:440ms" aria-label="TRB: não"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></div></div>
+            </div>
+          </div>
+
+          <div class="bz-matrix" aria-label="Comparativo com todas as plataformas"><table><thead><tr><th scope="col">Recurso</th><th scope="col" class="is-bm"><img src="/api/pages/j6dPN2G_eu/assets/zozxlzodf59sn2xa6a2zxxag?w=1200&fit=scale-down&format=auto&quality=82" alt="Buzzmonitor"></th><th scope="col">TRB</th><th scope="col">HPL</th><th scope="col">SPT</th><th scope="col">EMP</th><th scope="col">MLB</th><th scope="col">STL</th><th scope="col">ZDK</th><th scope="col">VTK</th></tr></thead><tbody><tr><td>Módulos de Monitoramento, Atendimento, Analytics, Agendamento, Tendências e Influenciadores, <strong>com IA</strong>, em uma única interface.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:0ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:30ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:60ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:90ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:120ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:150ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:180ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:210ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:240ms"></span></td></tr><tr><td>Suporte ao <strong>Facebook, Instagram, YouTube, TikTok, LinkedIn</strong>, Reclame Aqui, WhatsApp, Google Meu Negócio, Lojas (Android e iOS) e E-mail.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:40ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:70ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:100ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:130ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:160ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:190ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:220ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:250ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:280ms"></span></td></tr><tr><td>Dashboards em tempo real, ilimitados, <strong>sem custos extras</strong>, customizáveis e compartilháveis via URL.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:80ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:110ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:140ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:170ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:200ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:230ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:260ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:290ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:320ms"></span></td></tr><tr><td><strong>Monitoramento e Analytics</strong> da concorrência para Facebook, Instagram e YouTube.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:120ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:150ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:180ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:210ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:240ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:270ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:300ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:330ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:360ms"></span></td></tr><tr><td><strong>Tickets, times, filas, FAQ, mensagens internas, CRM</strong>, histórico do usuário e insights em tempo real.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:160ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:190ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:220ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:250ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:280ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:310ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:340ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:370ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:400ms"></span></td></tr><tr><td><strong>Inteligência artificial</strong> para análise de sentimento, sugestão de resposta, classificação de comentários, melhorias em textos e criação de imagens.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:200ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:230ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:260ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:290ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:320ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:350ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:380ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:410ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:440ms"></span></td></tr><tr><td>Buscas históricas <strong>ilimitadas e gratuitas</strong> em mais de um bilhão de posts e 200 milhões de usuários.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:240ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:270ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:300ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:330ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:360ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:390ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:420ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:450ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:480ms"></span></td></tr><tr><td>Monitoramento de <strong>mais de dez mil fontes</strong> de notícias e órgãos de defesa do consumidor com alertas 24x7.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:280ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:310ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:340ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:370ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:400ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:430ms"></span></td><td><span class="bz-dot bz-dot--y" style="--dd:460ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:490ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:520ms"></span></td></tr><tr><td>Excelência no <strong>relacionamento multicanal</strong> com os clientes e um time de CS com NPS <strong>97 (de 100)</strong>.</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:320ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:350ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:380ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:410ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:440ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:470ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:500ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:530ms"></span></td><td><span class="bz-dot bz-dot--n" style="--dd:560ms"></span></td></tr></tbody><tfoot><tr><td></td><td class="is-bm">9<small>/9</small></td><td>0<small>/9</small></td><td>1<small>/9</small></td><td>2<small>/9</small></td><td>3<small>/9</small></td><td>0<small>/9</small></td><td>4<small>/9</small></td><td>1<small>/9</small></td><td>2<small>/9</small></td></tr></tfoot></table></div>
+        </div>
+      </div>
+      <p class="bz-cmp__foot bz-rv is-in" style="">Comparativo elaborado pela Buzzmonitor com base em recursos públicos das principais plataformas de social media. Funcionalidades de terceiros podem mudar sem aviso prévio.</p>
+    </div>
+  </section>
+
+  <!-- ============ INTEGRAÇÃO + FORM ============ -->
+  <section class="bz-sec bz-light bz-integ" id="funcionalidades" aria-labelledby="bz-integ-h2">
+    <div class="bz-gridbg-l" aria-hidden="true" style=""></div>
+    <div class="bz-wrap bz-integ__grid" style="">
+      <div class="bz-form bz-rv bz-rv--left is-in" id="form" aria-label="Formulário de contato">
+        <div class="bz-form__glow" aria-hidden="true"></div>
+        <div class="bz-form__in" style="">
+          <script type="text/javascript" src="https://form.jotform.com/jsform/250074757320049"></script>
+        </div>
+      </div>
+      <div style="">
+        <span class="bz-over bz-rv is-in">Ecossistema integrado</span>
+        <h2 id="bz-integ-h2" class="bz-h2 bz-rv is-in" style="">Integração total para uma gestão inteligente.</h2>
+        <p class="bz-integ__sub bz-rv is-in" style="--d: .08s; margin-left: 0px; margin-right: -17px;">Sua IA integrada para fazer o trabalho pesado por você.</p>
+        <p class="bz-rv is-in" style="--d: .12s;">Na Buzzmonitor, cada módulo conversa com o outro: monitoramento, atendimento, analytics, dashboards e agendamento de posts. Tudo em um único ecossistema inteligente.</p>
+        <p class="bz-rv is-in" style="--d: .16s;">Nossa IA resolve o trabalho chato, analisa todos esses dados e te entrega insights prontos, para sua equipe focar no que importa: a estratégia.</p>
+        <div class="bz-integ__stats bz-rv is-in" style="--d: .2s;">
+          <div class="bz-chip bz-spot"><b data-count="1000" data-suffix="+" data-done="1" class="is-in">1.000+</b><span>clientes em todo o mundo</span></div>
+          <div class="bz-chip bz-spot" style=""><b data-count="300" data-suffix="+" style="" data-done="1" class="is-in">300+</b><span>clientes enterprise</span></div>
+        </div>
+        <a href="#funcionalidades-grid" class="bz-link bz-rv is-in" style="--d: .24s;">Saiba por que a Buzzmonitor é a mais completa <i>→</i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FUNCIONALIDADES ============ -->
+  <section class="bz-sec bz-light bz-feat" id="funcionalidades-grid" aria-labelledby="bz-feat-h2" style="padding-top: 40px;">
+    <div class="bz-wrap" style="">
+      <div style="text-align: center;"><span class="bz-over bz-rv is-in">Funcionalidades</span></div>
+      <h2 id="bz-feat-h2" class="bz-h2 bz-rv is-in" style="">Tudo que sua operação precisa, numa única plataforma</h2>
+      <p class="bz-lead bz-rv is-in" style="--d: .1s;">Seis frentes integradas para monitorar, atender, publicar e decidir com dados.</p>
+
+      <div class="bz-ex bz-rv is-in" style="--d: .15s;">
+        <div class="bz-ex__nav" role="tablist" aria-label="Funcionalidades">
+          <button type="button" class="bz-ex__btn is-on" role="tab" aria-selected="true" style=""><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>Monitoramento de Redes Sociais<span class="n">01</span></button>
+          <button type="button" class="bz-ex__btn" role="tab" aria-selected="false"><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M7 15l4-6 4 3 5-7"></path></svg></span>Métricas de Social Media<span class="n">02</span></button>
+          <button type="button" class="bz-ex__btn" role="tab" aria-selected="false"><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg></span>Atendimento Omnichannel<span class="n">03</span></button>
+          <button type="button" class="bz-ex__btn" role="tab" aria-selected="false" style=""><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>Agendamento e Publicação<span class="n">04</span></button>
+          <button type="button" class="bz-ex__btn" role="tab" aria-selected="false"><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg></span>Dashboards Inteligentes<span class="n">05</span></button>
+          <button type="button" class="bz-ex__btn" role="tab" aria-selected="false"><span class="bz-ex__ic"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path></svg></span>Gestão de Crises<span class="n">06</span></button>
+        </div>
+
+        <div class="bz-ex__stage bz-spot">
+          <div class="bz-panel is-on" role="tabpanel" style=""><span class="bz-panel__num" style="">01</span>
+            <div class="bz-ex__big" style=""><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></div>
+            <h3>Monitoramento de Redes Sociais</h3>
+            <p style="">Descubra tendências, sentimentos e oportunidades com monitoramento de dados avançados das redes sociais em tempo real.</p>
+            <ul style=""><li style="--i: 0;">Sentimento sobre a marca</li><li style="--i: 1;">Mapeamento do público e interesses</li><li style="--i: 2;">Pesquisa ilimitada por keywords</li><li style="--i: 3;">Relatórios ilimitados e personalizados</li><li style="--i: 4;">Análises de relatórios feitas por IA</li><li style="--i: 5;">Insights qualitativos com IA</li><li style="--i: 6;">Monitoramento de concorrentes</li><li style="--i: 7;">Alertas de prevenção a crises de marca</li></ul>
+          </div>
+          <div class="bz-panel" role="tabpanel"><span class="bz-panel__num">02</span>
+            <div class="bz-ex__big"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M7 15l4-6 4 3 5-7"></path></svg></div>
+            <h3>Métricas de Social Media</h3>
+            <p>Conte com mais de 50 métricas avançadas para medir sua performance frente à concorrência, revelando tendências para sua marca.</p>
+            <ul><li style="--i: 0;">Performance de várias redes sociais</li><li style="--i: 1;">Performance de concorrentes</li><li style="--i: 2;">Análise de stories e reels</li><li style="--i: 3;">Análise de posts orgânicos e patrocinados</li><li style="--i: 4;">Comparações com concorrentes</li><li style="--i: 5;">Personalização de relatórios</li><li style="--i: 6;">Filtros por projeto, data e rede social</li></ul>
+          </div>
+          <div class="bz-panel" role="tabpanel"><span class="bz-panel__num">03</span>
+            <div class="bz-ex__big"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg></div>
+            <h3>Atendimento Omnichannel</h3>
+            <p>Centralize todos os canais digitais e conte com IA para classificar e unificar tickets e filas, sugerir respostas e otimizar toda a operação.</p>
+            <ul><li style="--i: 0;">Mais de 15 canais digitais numa só tela</li><li style="--i: 1;">Relatórios de performance da equipe</li><li style="--i: 2;">Templates de respostas pré-definidas</li><li style="--i: 3;">IA para sugerir respostas</li><li style="--i: 4;">Sentimentos e tags automáticas com IA</li><li style="--i: 5;">KPIs do atendimento e da equipe</li><li style="--i: 6;">Alertas para termos sensíveis</li><li style="--i: 7;">ChatGPT para melhorar respostas</li><li style="--i: 8;">Atendimento com tickets</li></ul>
+          </div>
+          <div class="bz-panel" role="tabpanel"><span class="bz-panel__num">04</span>
+            <div class="bz-ex__big"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div>
+            <h3>Agendamento e Publicação</h3>
+            <p>Planeje, programe e publique em múltiplos canais com um fluxo único, ganhando tempo e mantendo sua presença sempre ativa.</p>
+            <ul><li style="--i: 0;">Publicações ilimitadas</li><li style="--i: 1;">Programação em várias redes sociais</li><li style="--i: 2;">ChatGPT para criar conteúdo</li><li style="--i: 3;">ChatGPT para gerar imagens</li><li style="--i: 4;">Encurtamento de links</li><li style="--i: 5;">Histórico de publicações</li><li style="--i: 6;">Fluxo de trabalho e aprovação</li><li style="--i: 7;">Calendário de conteúdos</li></ul>
+          </div>
+          <div class="bz-panel" role="tabpanel"><span class="bz-panel__num">05</span>
+            <div class="bz-ex__big"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg></div>
+            <h3>Dashboards Inteligentes</h3>
+            <p>Tenha relatórios dinâmicos atualizados em tempo real, gráficos totalmente customizáveis e insights que transformam métricas em ações estratégicas.</p>
+            <ul><li style="--i: 0;">Dados de listening, atendimento e analytics num só lugar</li><li style="--i: 1;">Dados atualizados em tempo real</li><li style="--i: 2;">Análises resumidas feitas por IA</li><li style="--i: 3;">Compartilháveis externamente com senha</li><li style="--i: 4;">Dashboards ilimitados, modernos e personalizáveis</li><li style="--i: 5;">Um dashboard para cada situação: campanha, concorrentes, saúde da marca</li></ul>
+          </div>
+          <div class="bz-panel" role="tabpanel"><span class="bz-panel__num">06</span>
+            <div class="bz-ex__big"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path></svg></div>
+            <h3>Gestão de Crises</h3>
+            <p>Aja desde a prevenção da crise até a recuperação, com dados em tempo real e IA para sair mais forte.</p>
+            <ul><li style="--i: 0;">Alertas de termos críticos</li><li style="--i: 1;">Alertas para sinais negativos virais</li><li style="--i: 2;">Detecte sinais antes que a crise comece</li><li style="--i: 3;">Atendimento rápido e centralizado</li><li style="--i: 4;">Acompanhamento em tempo real</li><li style="--i: 5;">Dados para decisões assertivas</li><li style="--i: 6;">Extração de oportunidades nas crises</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IA ============ -->
+  <section class="bz-sec bz-ia" id="ia" aria-labelledby="bz-ia-h2" style="">
+    <div class="bz-wrap" style="">
+      <div class="bz-ia__grid" style="">
+        <div style="">
+          <span class="bz-over bz-rv is-in"><i class="bz-live"></i>Buzzmonitor + IA</span>
+          <h2 id="bz-ia-h2" class="bz-h2 bz-rv is-in" style="">A IA está no <br>nosso <em class="bz-grad">DNA.</em></h2>
+          <p class="bz-ia__txt bz-rv is-in" style="--d: .1s;">A Buzzmonitor é pioneira em IA aplicada a social media e atendimento. Nossas IAs transformam a rotina da sua equipe com relatórios ágeis, insights preditivos, automações que eliminam processos manuais massivos e recomendações inteligentes que orientam decisões mais precisas.</p>
+          <a href="#planos" class="bz-btn bz-btn--fill bz-rv is-in" style="--d: .18s;">Quero agendar minha demonstração <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+        <div class="bz-hud bz-rv bz-rv--right is-in" style="--d: .1s;">
+          <div class="bz-hud__glow" aria-hidden="true" style=""></div>
+          <img src="/api/pages/j6dPN2G_eu/assets/q2adg6gb34o4uk9c7ahd93ng?w=1200&fit=scale-down&format=auto&quality=82" alt="Monitoramento audiovisual Buzzmonitor" width="797" height="448" style="" loading="lazy">
+          <div class="bz-hud__scan" aria-hidden="true"></div>
+          <i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="bz-pills">
+        <div class="bz-pill bz-rv is-in" style="--d: 0s;"><div class="bz-pill__in"><div class="bz-pill__ic"><svg viewBox="0 0 24 24"><path d="M10.5 20.5a4.95 4.95 0 01-7-7l6-6a4.95 4.95 0 017 7z"></path><path d="M8.5 8.5l7 7"></path></svg></div><h3>Buzz Pills</h3><p>Funcionalidade que realiza análises e fornece insights automaticamente.</p></div></div>
+        <div class="bz-pill bz-rv is-in" style="--d: .08s;"><div class="bz-pill__in" style=""><div class="bz-pill__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"></path></svg></div><h3 style="">AI Insights</h3><p>Funcionalidade que oferece análises geradas por IA com insights no seu e-mail.</p></div></div>
+        <div class="bz-pill bz-rv is-in" style="--d: .16s;"><div class="bz-pill__in" style=""><div class="bz-pill__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path><path d="M8 9h8M8 13h5"></path></svg></div><h3>ChatGPT</h3><p style="">Integração com a IA da OpenAI para atendimento e criação de conteúdos.</p></div></div>
+        <div class="bz-pill bz-rv is-in" style="--d: .24s;"><div class="bz-pill__in"><div class="bz-pill__ic"><svg viewBox="0 0 24 24"><path d="M9 17l-5-5 5-5"></path><path d="M20 18v-2a4 4 0 00-4-4H4"></path></svg></div><h3>Smart Replies</h3><p>Funcionalidade que sugere opções de respostas automáticas.</p></div></div>
+        <div class="bz-pill bz-rv is-in" style="--d: .32s;"><div class="bz-pill__in" style=""><div class="bz-pill__ic"><svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"></path><circle cx="7.5" cy="7.5" r="1.2"></circle></svg></div><h3>Classificação automática</h3><p style="">A IA define o sentimento, o tipo de mensagem e aplica tags, para otimizar o atendimento.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VÍDEO ============ -->
+  <section class="bz-sec bz-vid bz-ia" aria-labelledby="bz-vid-h2" style="background: var(--bg);">
+    <div class="bz-wrap" style="">
+      <h2 id="bz-vid-h2" class="bz-h2 bz-rv is-in" style="">A Inteligência Artificial muda tudo ✨</h2>
+      <div class="bz-vid__frame bz-rv bz-rv--scale is-in" style="--d: .1s;">
+        <div style=""><iframe src="https://www.youtube.com/embed/Z1FddOh05O4?rel=0" title="Inteligência Artificial transforma a Buzzmonitor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLANOS ============ -->
+  <section class="bz-sec bz-trial" id="planos" aria-labelledby="bz-trial-h2">
+    <div class="bz-trial__mesh" aria-hidden="true" style=""></div>
+    <div class="bz-wrap bz-trial__grid" style="">
+      <div style="">
+        <span class="bz-over bz-rv is-in"><i class="bz-live"></i>Oferta por tempo limitado</span>
+        <p class="bz-trial__t bz-rv" id="bz-trial-h2" style="">Experimente grátis por 14 dias</p>
+        <p class="bz-trial__p bz-rv" style="--d: .08s;">Tenha várias soluções digitais em uma única plataforma, líder no uso de IA, para impulsionar seus resultados e ajudar a vender mais.</p>
+        <ul class="bz-checks" style="">
+          <li class="bz-rv" style="--d: .12s;">Monitoramento de redes sociais e análises geradas por IA</li>
+          <li class="bz-rv" style="--d: .18s;">Atendimento multicanal otimizado por IA</li>
+          <li class="bz-rv" style="--d: .24s;">Relatórios de performance da marca e concorrentes</li>
+          <li class="bz-rv" style="--d: .30s;">Otimização de processos e mais produtividade com IA</li>
+          <li class="bz-rv" style="--d: .36s;">E muito mais</li>
+        </ul>
+      </div>
+      <div class="bz-price bz-rv bz-rv--scale" style="--d: .15s;" data-tilt="">
+        <div class="bz-price__in">
+          <span class="bz-badge" style="">14 dias grátis</span>
+          <p class="bz-price__l">Planos a partir de</p>
+          <p class="bz-price__v" style=""><span class="cur">R$</span><span class="num" data-count="1790">1.790</span><span class="cts">,00</span><span class="per">/mês</span></p>
+          <a href="#form" class="bz-btn bz-btn--fill">Agendar demonstração grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS ============ -->
+  <section class="bz-sec bz-light bz-testi" id="depoimentos" aria-labelledby="bz-testi-h2" style="">
+    <div class="bz-wrap">
+      <h2 id="bz-testi-h2" class="bz-h2 bz-rv" style="">Ainda não está convencido?</h2>
+      <p class="bz-lead bz-rv" style="--d: .1s;">Leia o feedback de quem já utiliza a Buzzmonitor.</p>
+    </div>
+    <div class="bz-marq bz-rv is-in" style="--d: .15s;">
+      <div class="bz-marq__track">
+        <div class="bz-marq__row">
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/uja5p55div5a1ognc4mh0hze?w=1200&fit=scale-down&format=auto&quality=82" alt="Depoimento de cliente Buzzmonitor" width="500" height="500" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/trjnvn22cvb8nz98nf3igsgp?w=1200&fit=scale-down&format=auto&quality=82" alt="Depoimento de cliente Buzzmonitor" width="500" height="500" style="" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/c7qhkpsux3d5xpk74d6q9zo3?w=1200&fit=scale-down&format=auto&quality=82" alt="Depoimento de cliente Buzzmonitor" width="500" height="500" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/o4d64vumlmlkg1krw83xbb7g?w=1200&fit=scale-down&format=auto&quality=82" alt="Depoimento de cliente Buzzmonitor" width="500" height="500" loading="lazy"></div>
+        </div>
+        <div class="bz-marq__row" aria-hidden="true">
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/uja5p55div5a1ognc4mh0hze?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="500" height="500" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/trjnvn22cvb8nz98nf3igsgp?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="500" height="500" style="" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/c7qhkpsux3d5xpk74d6q9zo3?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="500" height="500" loading="lazy"></div>
+          <div class="bz-tcard"><img src="/api/pages/j6dPN2G_eu/assets/o4d64vumlmlkg1krw83xbb7g?w=1200&fit=scale-down&format=auto&quality=82" alt="" width="500" height="500" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLIENTES ============ -->
+  <section class="bz-sec bz-clients" aria-labelledby="bz-cl-h2" style="">
+    <div class="bz-wrap" style="">
+      <h2 id="bz-cl-h2" class="bz-h2 bz-rv is-in" style="">Empresas que já confiam na Buzzmonitor</h2>
+      <div class="bz-wall bz-rv is-in" style=""><img src="/api/pages/j6dPN2G_eu/assets/fpokt249ckqs18i8vnm2k5bt?w=1200&fit=scale-down&format=auto&quality=82" alt="Empresas que já confiam na Buzzmonitor" width="2200" height="1100" style="" loading="lazy"></div>
+      <div class="bz-badges" style="">
+        <div class="bz-chip bz-spot bz-rv is-in" style="--d: 0s;"><b data-count="1000" data-suffix="+" data-done="1" class="is-in">1.000+</b><span>clientes em todo o mundo</span></div>
+        <div class="bz-chip bz-spot bz-rv is-in" style="--d: .08s; --mx: 7px; --my: 73.04167175292969px;"><b data-count="300" data-suffix="+" data-done="1" class="is-in" style="">300+</b><span>clientes enterprise</span></div>
+        <div class="bz-chip bz-spot bz-rv is-in" style="--d: .16s;"><b data-count="500" data-suffix="+" data-done="1" class="is-in">500+</b><span>agências</span></div>
+        <div class="bz-chip bz-spot bz-rv is-in" style="--d: .24s;"><b data-count="10" data-suffix="k" style="" data-done="1" class="is-in">10k</b><span>usuários</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bz-foot" style="">
+    <div class="bz-wrap" style="">
+      <div class="bz-foot__top" style="">
+        <div>
+          <div class="bz-foot__logo"><img src="/api/pages/j6dPN2G_eu/assets/zozxlzodf59sn2xa6a2zxxag?w=1200&fit=scale-down&format=auto&quality=82" alt="Buzzmonitor" width="137" height="40" loading="lazy"></div>
+          <p>A plataforma de social listening e atendimento com IA que monitora, analisa e protege sua marca em tempo real.</p>
+        </div>
+        <div class="bz-soc" style="">
+          
+          
+          
+          
+        </div>
+      </div>
+      <div class="bz-foot__bot" style="">
+        <span>© Buzzmonitor 2026</span>
+        <a href="https://buzzmonitor.com/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade e uso de Cookies</a>
+      </div>
+      
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+<script>
+(function () {
+  try { window.jotformEmbedHandler("iframe[id='JotFormIFrame-250074757320049']", "https://form.jotform.com/"); } catch (e) {}
+
+  var root = document.getElementById('bzm');
+  if (!root) return;
+  var $ = function (s, c) { return (c || root).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fmt = function (n) { return Math.round(n).toLocaleString('pt-BR'); };
+
+  /* ---------- rolagem suave para âncoras ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 76, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- contadores ---------- */
+  function countUp(el) {
+    if (el.dataset.done) return; el.dataset.done = 1;
+    var to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null, dur = 1600;
+    if (reduce) return;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = fmt(to * e) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- reveal ao rolar ---------- */
+  var io = new IntersectionObserver(function (ents) {
+    ents.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('is-in');
+      $$('[data-count]', en.target).forEach(countUp);
+      if (en.target.dataset.count) countUp(en.target);
+      io.unobserve(en.target);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  $$('.bz-rv, .bz-wall, .bz-stats, [data-count]').forEach(function (el) { io.observe(el); });
+
+  /* ---------- nav: fundo, progresso e link ativo ---------- */
+  var nav = $('.bz-nav'), bar = $('.bz-progress'), links = $$('.bz-nav__links a');
+  var device = $('.bz-hero__device');
+  var ticking = false;
+  function onScroll() {
+    var y = window.pageYOffset, h = document.documentElement.scrollHeight - window.innerHeight;
+    nav.classList.toggle('is-solid', y > 30);
+    bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+    if (device && !reduce) {
+      var r = device.getBoundingClientRect(), p = Math.min(Math.max(1 - (r.top - 80) / (window.innerHeight * .7), 0), 1);
+      device.style.transform = 'rotateX(' + (24 - 24 * p).toFixed(2) + 'deg) scale(' + (.9 + .1 * p).toFixed(3) + ')';
+    }
+    var cur = null;
+    links.forEach(function (a) {
+      var s = document.getElementById(a.getAttribute('href').slice(1));
+      if (s && s.getBoundingClientRect().top < window.innerHeight * .4) cur = a;
+    });
+    links.forEach(function (a) { a.classList.toggle('is-on', a === cur); });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ---------- spotlight que segue o mouse ---------- */
+  $$('.bz-spot').forEach(function (el) {
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* ---------- tilt 3D no card de preço ---------- */
+  $$('[data-tilt]').forEach(function (el) {
+    if (reduce || window.matchMedia('(hover: none)').matches) return;
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      el.style.transform = 'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg)';
+    });
+    el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+  });
+
+  /* ---------- rede de partículas no hero ---------- */
+  (function () {
+    var cv = $('.bz-hero__net'); if (!cv || reduce) return;
+    var ctx = cv.getContext('2d'), pts = [], W, H, dpr = Math.min(window.devicePixelRatio || 1, 2), mouse = { x: -999, y: -999 }, run = true;
+    function size() {
+      W = cv.offsetWidth; H = cv.offsetHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.min(90, Math.floor(W * H / 16000)); pts = [];
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 });
+    }
+    function draw() {
+      if (!run) return;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i]; p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+        for (var j = i + 1; j < pts.length; j++) {
+          var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+          if (d < 15000) { ctx.strokeStyle = 'rgba(235,124,46,' + (.22 * (1 - d / 15000)) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        }
+        var md = (p.x - mouse.x) * (p.x - mouse.x) + (p.y - mouse.y) * (p.y - mouse.y);
+        ctx.fillStyle = md < 22000 ? 'rgba(252,189,79,.95)' : 'rgba(255,255,255,.45)';
+        ctx.beginPath(); ctx.arc(p.x, p.y, md < 22000 ? 2.2 : 1.4, 0, 6.3); ctx.fill();
+        if (md < 22000) { ctx.strokeStyle = 'rgba(252,189,79,' + (.35 * (1 - md / 22000)) + ')'; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+      }
+      requestAnimationFrame(draw);
+    }
+    var hero = $('.bz-hero');
+    hero.addEventListener('pointermove', function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('pointerleave', function () { mouse.x = mouse.y = -999; });
+    new IntersectionObserver(function (e) { var v = e[0].isIntersecting; if (v && !run) { run = true; draw(); } run = v; }).observe(hero);
+    window.addEventListener('resize', size);
+    size(); draw();
+  })();
+
+  /* ---------- COMPARATIVO ---------- */
+  (function () {
+    var arena = $('.bz-arena'); if (!arena) return;
+    var tabs = $$('.bz-tab', arena), pill = $('.bz-tabs__pill', arena), rows = $$('.bz-row', arena);
+    var nameEl = $('#bz-cp-name'), scoreEl = $('#bz-cp-score');
+    var names = tabs.map(function (t) { return t.textContent.trim(); });
+    var data = rows.map(function (r) { return r.dataset.states.split(',').map(Number); });
+    var total = rows.length;
+    var scores = names.map(function (_, i) { return data.reduce(function (s, r) { return s + r[i]; }, 0); });
+    var C = 2 * Math.PI * 44;
+    var ICON_Y = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>', ICON_N = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+    var ringBm = $('.bz-ring--bm .fg', arena), ringCp = $('.bz-ring--cp .fg', arena);
+    [ringBm, ringCp].forEach(function (c) { c.style.strokeDasharray = C; c.style.strokeDashoffset = C; });
+
+    rows.forEach(function (r) {
+      var c = r.querySelectorAll('.bz-row__c');
+      c[0].innerHTML = '<span class="bz-mark bz-mark--y" aria-label="Buzzmonitor: sim">' + ICON_Y + '</span>';
+    });
+
+    var cur = 0, timer = null, DUR = 4500, visible = false, hovering = false, mode = 'duel';
+
+    function movePill() {
+      var t = tabs[cur];
+      pill.style.width = t.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + (t.offsetLeft - 4) + 'px)';
+    }
+    function animScore(to) {
+      var from = +scoreEl.textContent, t0 = null;
+      function st(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 700, 1); scoreEl.textContent = Math.round(from + (to - from) * p); if (p < 1) requestAnimationFrame(st); }
+      requestAnimationFrame(st);
+    }
+    function render(i) {
+      cur = i;
+      tabs.forEach(function (t, k) { t.classList.toggle('is-on', k === i); t.classList.remove('is-run'); t.setAttribute('aria-selected', k === i); });
+      movePill();
+      nameEl.textContent = names[i];
+      nameEl.classList.remove('is-swap'); void nameEl.offsetWidth; nameEl.classList.add('is-swap');
+      rows.forEach(function (r, k) {
+        var ok = data[k][i] === 1, cell = r.querySelectorAll('.bz-row__c')[1];
+        cell.innerHTML = '<span class="bz-mark ' + (ok ? 'bz-mark--cy' : 'bz-mark--n') + ' is-flip" style="--fd:' + (k * 55) + 'ms" aria-label="' + names[i] + ': ' + (ok ? 'sim' : 'não') + '">' + (ok ? ICON_Y : ICON_N) + '</span>';
+        r.classList.toggle('is-win', !ok);
+      });
+      ringBm.style.strokeDashoffset = 0;
+      ringCp.style.strokeDashoffset = C * (1 - scores[i] / total);
+      animScore(scores[i]);
+      schedule();
+    }
+    function schedule() {
+      clearTimeout(timer);
+      tabs.forEach(function (t) { t.classList.remove('is-run'); });
+      if (reduce || !visible || hovering || mode !== 'duel') return;
+      var t = tabs[cur]; t.style.setProperty('--t', DUR + 'ms'); void t.offsetWidth; t.classList.add('is-run');
+      timer = setTimeout(function () { render((cur + 1) % tabs.length); }, DUR);
+    }
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () {
+        if (mode !== 'duel') setMode('duel');
+        render(k);
+        t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      });
+    });
+    arena.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+    arena.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    window.addEventListener('resize', movePill);
+
+    /* matriz com todas as plataformas */
+    var mx = $('.bz-matrix', arena), html = '<table><thead><tr><th scope="col">Recurso</th><th scope="col" class="is-bm"><img src="' + $('.bz-score__name img', arena).getAttribute('src') + '" alt="Buzzmonitor"></th>';
+    names.forEach(function (n) { html += '<th scope="col">' + n + '</th>'; });
+    html += '</tr></thead><tbody>';
+    rows.forEach(function (r, k) {
+      html += '<tr><td>' + r.querySelector('.bz-row__f').innerHTML + '</td><td class="is-bm"><span class="bz-dot bz-dot--bm" style="--dd:' + (k * 40) + 'ms"></span></td>';
+      data[k].forEach(function (v, c) { html += '<td><span class="bz-dot ' + (v ? 'bz-dot--y' : 'bz-dot--n') + '" style="--dd:' + (k * 40 + (c + 1) * 30) + 'ms"></span></td>'; });
+      html += '</tr>';
+    });
+    html += '</tbody><tfoot><tr><td></td><td class="is-bm">' + total + '<small>/' + total + '</small></td>';
+    scores.forEach(function (s) { html += '<td>' + s + '<small>/' + total + '</small></td>'; });
+    html += '</tr></tfoot></table>';
+    mx.innerHTML = html;
+    var cells = $$('th, td', mx);
+    $$('tr', mx).forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, ci) {
+        if (ci < 2) return;
+        td.addEventListener('mouseenter', function () { $$('tr', mx).forEach(function (r) { r.children[ci] && r.children[ci].classList.add('col-hover'); }); });
+        td.addEventListener('mouseleave', function () { cells.forEach(function (c) { c.classList.remove('col-hover'); }); });
+      });
+    });
+
+    var modeBtns = $$('.bz-mode button', arena);
+    function setMode(m) {
+      mode = m;
+      modeBtns.forEach(function (b) { b.classList.toggle('is-on', b.dataset.mode === m); });
+      arena.classList.toggle('is-all', m === 'all');
+      arena.classList.remove('is-drawn');
+      if (m === 'all') { void arena.offsetWidth; requestAnimationFrame(function () { arena.classList.add('is-drawn'); }); }
+      schedule();
+    }
+    modeBtns.forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
+
+    new IntersectionObserver(function (e) {
+      var was = visible; visible = e[0].isIntersecting;
+      if (visible && !was) render(cur); else schedule();
+    }, { threshold: .3 }).observe(arena);
+    setTimeout(movePill, 300);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+  })();
+
+  /* ---------- explorador de funcionalidades ---------- */
+  (function () {
+    var btns = $$('.bz-ex__btn'), panels = $$('.bz-panel');
+    panels.forEach(function (p) { $$('li', p).forEach(function (li, i) { li.style.setProperty('--i', i); }); });
+    btns.forEach(function (b, k) {
+      b.setAttribute('aria-selected', k === 0);
+      b.addEventListener('click', function () {
+        btns.forEach(function (x, j) { x.classList.toggle('is-on', j === k); x.setAttribute('aria-selected', j === k); });
+        panels.forEach(function (p, j) { p.classList.toggle('is-on', j === k); });
+        if (window.innerWidth < 960) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      });
+    });
+  })();
+})();
+</script></body></html>
