@@ -7,7 +7,7 @@ Par de páginas de **webinar perpétuo** (case, BOFU), clonado do par `perpetuo-
 | Captura | `perpetuo-case-youse` | hero + form "preencha e assista" + "o que você vai aprender" + autoridade | noindex |
 | Thank-you | `perpetuo-case-youse-confirmado` | vídeo embedado + CTA "fale com especialista" | noindex |
 
-**Fluxo:** captura (form mock) → submit redireciona pra `/perpetuo-case-youse-confirmado` → assiste ao vídeo → CTA de WhatsApp.
+**Fluxo (desde 2026-11-05):** captura (Jotform BR compartilhado `261904654263661`, com `data-perpetuo-next="/perpetuo-case-youse-confirmado"`) → o despachante da tks da `perpetuo-social-listening` encaminha pra `/perpetuo-case-youse-confirmado` → assiste ao vídeo → CTA "Agendar demo gratuita" (`content.buzzmonitor.com/monitoramento-com-ia?utm_source=webinar-perp&utm_content=perpetuo-case-youse`). Até essa data o form era mock e não gravava lead.
 
 **Vídeo:** `https://www.youtube.com/watch?v=pv9r6IKA4fg` (embed `www.youtube.com/embed/pv9r6IKA4fg`). **Usar youtube.com, NÃO youtube-nocookie** — o CSP do guarda-chuva só libera `www.youtube.com` no `frame-src`.
 
@@ -20,12 +20,11 @@ Briefing da Catharina: tema "Como a Youse cortou o SLA de 36h pra 3h (case)", es
 ## Pendências antes de finalizar
 
 - **Confirmar dados do case (Victor):** SLA 36h→3h, equipe 75% menor, "seguradora digital" — vêm dos cases antigos; conferir.
-- **Link do WhatsApp:** CTAs da tks com temp `https://buzzmonitor.com/`. Trocar pelo link real.
-- **Form real:** captura ainda mock.
+- **CTA da tks:** saiu do temp `https://buzzmonitor.com/` pra página de demo com UTM. Se o destino certo for WhatsApp, trocar o link.
 - **OG dedicada:** hoje reusa `og-primeiro-listening-5-passos.png`. Trocar por uma do case.
 - **Números de autoridade (Victor):** 1.000+/300+/500+/10mil + uso das marcas.
 - **Flip `index`** quando for a versão final (hoje `noindex` de review).
 
 ## Construção
 
-Captura **dark premium**; tks **clara**. Anti-IA (0 em-dash, "a Buzzmonitor" feminino). Publicar via fluxo CI: worktree a partir da main + entrada no manifesto + PR pela web.
+Visual refeito em 2026-11-05 (referência Jitter: fundo branco, título gigante com personagens, pílulas lilás), igual aos outros 5 pares VSL. Anti-IA (0 em-dash, "a Buzzmonitor" feminino). Publicar via fluxo CI: worktree a partir da main + entrada no manifesto + PR pela web.
