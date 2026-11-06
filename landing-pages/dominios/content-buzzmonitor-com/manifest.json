@@ -250,6 +250,12 @@
     "assinatura/indique-e-ganhe.gif": "brand/buzzmonitor/assets/assinatura/indique-e-ganhe.gif",
     "assinatura/selo-fia-2026.png": "brand/buzzmonitor/assets/assinatura/selo-fia-2026.png",
     "assinatura/formas-buzz.png": "brand/buzzmonitor/assets/assinatura/formas-buzz.png",
-    "assets/dominio/favicon.png": "brand/buzzmonitor/assets/logos/logo-icon.png"
+    "assets/dominio/favicon.png": "brand/buzzmonitor/assets/logos/logo-icon.png",
+    "email/social-linkedin.png": "brand/buzzmonitor/assets/email/social-linkedin.png",
+    "email/social-instagram.png": "brand/buzzmonitor/assets/email/social-instagram.png",
+    "email/social-facebook.png": "brand/buzzmonitor/assets/email/social-facebook.png",
+    "email/social-x.png": "brand/buzzmonitor/assets/email/social-x.png",
+    "email/social-youtube.png": "brand/buzzmonitor/assets/email/social-youtube.png",
+    "email/social-tiktok.png": "brand/buzzmonitor/assets/email/social-tiktok.png"
   }
 }
