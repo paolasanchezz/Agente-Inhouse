@@ -34,15 +34,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Lato:ital,wght@0,400;0,700;1,400&family=Manrope:wght@500;600;700;800&display=swap">
   <style>
     :root {
-      --ink: #1b0d24;
-      --ink-2: #4d4357;
+      --paper: #F6F2EC;
+      --paper-2: #EFE8DD;
+      --ink: #22012f;
+      --ink-2: #5b4e66;
       --purple: #390155;
+      --violet: #5A1B86;
       --lilac: #E9D3FF;
-      --lilac-2: #DCBEFF;
+      --yellow: #FCBD4F;
       --orange: #EB7C2E;
-      --paper: #ffffff;
-      --mist: #f5f3f7;
-      --line: #e9e4ee;
+      --line: #ddd3c5;
 
       --font-display: 'League Spartan', sans-serif;
       --font-body: 'Lato', sans-serif;
@@ -55,76 +56,57 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: hidden; }
     body { margin: 0; font-family: var(--font-body); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    h1, h2, h3 { font-family: var(--font-display); margin: 0; line-height: 1; letter-spacing: -0.035em; }
+    h1, h2, h3 { font-family: var(--font-display); margin: 0; line-height: 1.04; letter-spacing: -0.025em; }
     p { margin: 0; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
-    ::selection { background: var(--lilac-2); color: var(--ink); }
+    ::selection { background: var(--yellow); color: var(--ink); }
     .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-    .skip-link { position:absolute; left:-9999px; top:8px; background:var(--ink); color:#fff; padding:12px 18px; border-radius:12px; z-index:200; font-weight:700; }
+    .skip-link { position:absolute; left:-9999px; top:8px; background:var(--purple); color:#fff; padding:12px 18px; border-radius:12px; z-index:200; font-weight:700; }
     .skip-link:focus-visible { left:12px; }
-    :focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 8px; }
+    :focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; border-radius: 8px; }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* header: minimo, como a referencia */
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.86); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); }
-    .header-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(246,242,236,.88); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--line); }
+    .header-inner { height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .header-logo { height: 28px; width: auto; }
-    .pill-dark { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: #fff; background: var(--ink); padding: 11px 20px; border-radius: 999px; white-space: nowrap; transition: transform .2s var(--ease), background .2s var(--ease); }
-    .pill-dark:hover { transform: translateY(-2px); background: var(--purple); }
 
-    /* selo do topo ("New: Infinite Canvas") */
-    .badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: var(--ink-2); background: var(--mist); border: 1px solid var(--line); padding: 7px 16px 7px 8px; border-radius: 999px; white-space: nowrap; }
-    .badge b { font-weight: 800; color: var(--purple); background: #fff; border: 1px solid var(--line); padding: 2px 10px; border-radius: 999px; }
-    .badge svg { width: 15px; height: 15px; color: var(--purple); }
+    /* botao: pilula de contorno + circulo amarelo com seta (como "Join us" da ref) */
+    .btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-ui); font-weight: 800; font-size: 16px; color: var(--ink); background: #fff; border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 6px 6px 22px; white-space: nowrap; transition: transform .22s var(--ease), background .22s var(--ease); }
+    .btn .circ { width: 40px; height: 40px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; flex: none; transition: transform .22s var(--ease); }
+    .btn .circ svg { width: 18px; height: 18px; }
+    .btn:hover { transform: translateY(-2px); background: var(--lilac); }
+    .btn:hover .circ { transform: rotate(45deg); }
+    .btn-sm { font-size: 14px; padding: 4px 4px 4px 16px; gap: 10px; }
+    .btn-sm .circ { width: 32px; height: 32px; }
+    .btn-solid { background: var(--yellow); border-color: var(--yellow); }
+    .btn-solid .circ { background: var(--ink); color: var(--yellow); }
+    .btn-solid:hover { background: #ffd27a; }
 
-    /* titulo gigante com personagens */
-    .mega { font-weight: 900; color: var(--ink); text-wrap: balance; }
-    .glyph { display: inline-block; position: relative; width: .74em; height: .74em; margin: 0 .015em; vertical-align: -.04em; }
-    .glyph-svg { position: absolute; inset: -6% -4% -2%; width: 108%; height: 108%; overflow: visible; }
-    .perch { position: relative; display: inline-block; }
-    .nw { white-space: nowrap; }
-    .perch-svg { position: absolute; width: .6em; height: .6em; top: -.5em; right: -.3em; transform: rotate(12deg); overflow: visible; pointer-events: none; }
-    .perch-l .perch-svg { right: auto; left: -.34em; transform: rotate(-12deg); }
-    @keyframes wobble { 0%,100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(5deg) translateY(-4%); } }
-    @keyframes bob { 0%,100% { transform: rotate(12deg) translateY(0); } 50% { transform: rotate(4deg) translateY(-10%); } }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: var(--purple); border: 1.5px solid var(--purple); border-radius: 999px; padding: 6px 16px; background: transparent; white-space: nowrap; }
+    .badge i { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+
+    .mega { font-weight: 800; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+    .pill-arw { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; width: 1.7em; height: .82em; margin: -.1em .08em 0; border-radius: 999px; background: var(--yellow); border: 2px solid var(--ink); color: var(--ink); }
+    .pill-arw svg { width: 62%; height: 62%; }
+    .pill-word { display: inline-block; color: var(--violet); border: 2.5px solid var(--yellow); border-radius: 999px; padding: 0 .22em; line-height: 1.05; }
+
+    .deco { position: absolute; pointer-events: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes twinkle { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(.75); opacity: .7; } }
     @media (prefers-reduced-motion: no-preference) {
-      .glyph-svg { animation: wobble 3.4s ease-in-out infinite; transform-origin: 50% 60%; }
-      .perch-svg { animation: bob 2.8s ease-in-out infinite; transform-origin: 50% 100%; }
+      .deco-ast { animation: spin 18s linear infinite; }
+      .deco-spk { animation: twinkle 2.6s ease-in-out infinite; }
     }
 
-    /* botoes em pilula */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--font-ui); font-weight: 800; font-size: 16px; padding: 17px 32px; border-radius: 999px; border: 0; cursor: pointer; white-space: nowrap; transition: transform .22s var(--ease), background .22s var(--ease), box-shadow .22s var(--ease); }
-    .btn-lilac { background: var(--lilac); color: var(--purple); box-shadow: inset 0 0 0 1.5px var(--lilac-2); }
-    .btn-lilac:hover { background: var(--lilac-2); transform: translateY(-3px); }
-    .btn .arw { transition: transform .22s var(--ease); }
-    .btn:hover .arw { transform: translateX(4px); }
-
-    /* faixa de logos */
-    .logos { padding: 8px 0 0; }
-    .logos-rule { display: flex; align-items: center; gap: 18px; font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: var(--ink-2); text-align: center; text-wrap: balance; }
-    .logos-rule::before, .logos-rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-    .logos-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px 34px; margin-top: 26px; }
-    .logos-row span { font-family: var(--font-display); font-weight: 800; font-size: 23px; letter-spacing: -0.02em; color: #8d8496; white-space: nowrap; }
-
-    /* rodape */
-    .footer { border-top: 1px solid var(--line); padding: 34px 0; }
+    .footer { border-top: 1px solid var(--line); padding: 30px 0; }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-    .footer-logo { height: 26px; width: auto; }
+    .footer-logo { height: 24px; width: auto; }
     .footer-meta { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-family: var(--font-ui); font-size: 14px; color: var(--ink-2); }
     .footer-meta a { text-decoration: underline; text-underline-offset: 3px; }
-    .footer-meta a:hover { color: var(--purple); }
-
-    /* fecho escuro (a unica secao escura da pagina) */
-    .closing { background: var(--ink); color: #fff; padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-    .closing h2 { font-size: clamp(38px, 6.4vw, 76px); font-weight: 900; color: #fff; max-width: 15em; margin: 0 auto; text-wrap: balance; }
-    .closing p { font-size: 19px; color: rgba(255,255,255,.72); margin: 22px auto 36px; max-width: 34em; text-wrap: balance; }
-    .closing .deco { position: absolute; width: 110px; height: 110px; opacity: .95; }
-    .closing .deco-a { top: 56px; left: 7%; transform: rotate(-14deg); }
-    .closing .deco-b { bottom: 52px; right: 8%; width: 90px; height: 90px; transform: rotate(10deg); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -132,89 +114,120 @@
       .reveal { opacity: 1 !important; transform: none !important; }
     }
 
-    /* HERO centralizado */
-    .hero { padding: 72px 0 64px; text-align: center; }
-    .hero .badge { margin-bottom: 30px; }
-    .hero h1 { font-size: clamp(46px, 8.2vw, 100px); max-width: 11.5em; margin: 0 auto; }
-    .hero-lead { font-size: clamp(18px, 1.9vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 36em; margin: 28px auto 0; text-wrap: pretty; }
+    .hero { position: relative; padding: 52px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: start; }
+    .hero .badge { margin-bottom: 22px; }
+    .hero h1 { font-size: clamp(32px, 4.4vw, 56px); }
+    .hero-lead { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 34em; margin: 22px 0 0; text-wrap: pretty; }
     .hero-lead strong { color: var(--ink); }
-    .hero-actions { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
-    .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; }
-    .trust span { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: var(--ink-2); }
-    .trust svg { width: 15px; height: 15px; color: var(--purple); }
+    .hero .deco-ast { width: 54px; height: 54px; left: 8%; top: 120px; }
+    .hero .deco-spk { width: 40px; height: 40px; right: 10%; top: 96px; }
+    .hero-stats { display: flex; gap: 28px; margin-top: 28px; font-family: var(--font-ui); font-size: 14px; color: var(--ink-2); line-height: 1.3; }
+    .hero-stats b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--purple); text-transform: uppercase; letter-spacing: -0.02em; }
 
-    /* PALCO cinza: teaser do video + form */
-    .stage-wrap { padding: 72px 0 0; }
-    .stage { background: var(--mist); border-radius: 36px; padding: 48px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; position: relative; }
-    .stage .deco-star { position: absolute; width: 64px; height: 64px; top: -26px; left: 38px; transform: rotate(-10deg); }
-    .teaser { position: relative; border-radius: 26px; overflow: hidden; background: var(--ink); aspect-ratio: 16 / 10; box-shadow: 0 30px 60px -30px rgba(27,13,36,.45); }
-    .teaser img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
-    .teaser::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,13,36,0) 45%, rgba(27,13,36,.82) 100%); }
-    .teaser-play { position: absolute; top: 50%; left: 50%; width: 92px; height: 92px; transform: translate(-50%,-50%); z-index: 2; }
-    .teaser-cap { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 2; color: #fff; text-align: left; }
-    .teaser-cap b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
-    .teaser-cap span { font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: rgba(255,255,255,.78); }
-    .teaser-bar { position: absolute; left: 24px; right: 24px; bottom: 12px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.25); z-index: 2; }
-    .teaser-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 34%; background: var(--orange); border-radius: 4px; }
+    /* fileira de cards verticais */
+    .cards { margin-top: 56px; display: grid; grid-template-columns: .8fr 1fr 1.15fr 1fr .8fr; gap: 16px; align-items: center; }
+    .vc { position: relative; border-radius: 24px; overflow: hidden; }
+    .vc-1, .vc-5 { height: 190px; }
+    .vc-2, .vc-4 { height: 280px; }
+    .vc-3 { height: 360px; }
+    .vc-1 { background: var(--purple); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 22px; align-content: center; }
+    .vc-1 img { width: 100%; aspect-ratio: 1; border-radius: 14px; background: #fff; padding: 8px; }
+    .vc-2, .vc-4 { background: var(--ink); }
+    .vc-2 img, .vc-4 img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+    .vc-4 img { object-position: 30% top; }
+    .vc-3 { background: var(--violet); border: 3px solid var(--yellow); }
+    .vc-3 img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+    .vc-3 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34,1,47,0) 45%, rgba(34,1,47,.9) 100%); }
+    .vc-3 .play { position: absolute; top: 14px; right: 14px; width: 56px; height: 56px; z-index: 2; } /* canto, nunca no rosto */
+    .vc-3 .cap { position: absolute; left: 18px; right: 18px; bottom: 16px; color: #fff; text-align: left; }
+    .vc-3 .cap b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.1; }
+    .vc-3 .cap span { font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: rgba(255,255,255,.8); }
+    .vc-5 { background: var(--yellow); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; }
+    .vc-5 .ico { width: 34px; height: 34px; color: var(--purple); }
+    .vc-5 b { font-family: var(--font-display); font-weight: 900; font-size: 30px; line-height: .95; letter-spacing: -0.03em; color: var(--ink); text-transform: uppercase; }
+    .vc-5 span { display: block; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: var(--purple); margin-top: 6px; }
 
-    .form-card { background: #fff; border-radius: 28px; padding: 32px 28px 22px; box-shadow: 0 1px 0 var(--line), 0 30px 60px -36px rgba(27,13,36,.35); scroll-margin-top: 90px; }
-    .form-title { font-family: var(--font-display); font-weight: 900; font-size: 30px; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 8px; text-wrap: balance; }
-    .form-sub { font-family: var(--font-ui); font-weight: 600; font-size: 14px; color: var(--ink-2); margin-bottom: 14px; }
+    /* painel roxo com o formulario, na primeira dobra ao lado do titulo */
+    .form-panel { background: var(--purple); color: #fff; border-radius: 32px; padding: 28px 24px 22px; scroll-margin-top: 90px; }
+    .form-panel h2 { font-size: 30px; font-weight: 800; text-transform: uppercase; color: #fff; }
+    .form-panel h2 em { font-style: normal; color: var(--yellow); }
+    .form-panel .sub { font-size: 15px; color: rgba(255,255,255,.82); margin: 8px 0 16px; }
+    .trust { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 24px; }
+    .trust span { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-weight: 700; font-size: 15px; color: var(--ink); }
+    .trust .tk { width: 28px; height: 28px; border-radius: 50%; background: var(--yellow); color: var(--ink); display: grid; place-items: center; flex: none; }
+    .trust .tk svg { width: 14px; height: 14px; }
+    .form-card { background: #fff; color: var(--ink); border-radius: 22px; padding: 16px 14px 6px; }
     .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
 
-    /* O QUE VOCE VAI APRENDER */
-    .learn { padding: 140px 0 120px; }
-    .sec-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
-    .eyebrow { font-family: var(--font-ui); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--purple); }
-    .sec-head h2 { font-size: clamp(38px, 5vw, 60px); font-weight: 900; margin-top: 14px; text-wrap: balance; }
-    .sec-head p { font-size: 18px; color: var(--ink-2); margin-top: 18px; text-wrap: balance; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .step { background: var(--mist); border-radius: 28px; padding: 30px 28px 34px; transition: transform .3s var(--ease), background .3s var(--ease); }
-    .step:hover { transform: translateY(-6px) rotate(-.4deg); background: #efebf3; }
-    .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
-    .step-n { font-family: var(--font-display); font-weight: 900; font-size: 15px; color: var(--purple); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
-    .step-ico { width: 66px; height: 66px; }
-    .step h3 { font-size: 26px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin-bottom: 12px; text-wrap: balance; }
-    .step p { font-size: 16px; color: var(--ink-2); text-wrap: pretty; }
+    /* o que voce vai aprender: moldura com 3 cards de cor (como "Our Classes" da ref) */
+    .learn { padding: 110px 0 0; }
+    .frame { border: 1.5px solid var(--line); border-radius: 36px; padding: 40px; background: rgba(255,255,255,.45); }
+    .frame-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 32px; }
+    .frame-head h2 { font-size: clamp(30px, 3.8vw, 44px); font-weight: 800; text-transform: uppercase; }
+    .frame-head p { font-size: 16px; color: var(--ink-2); max-width: 26em; text-align: right; text-wrap: pretty; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step { border-radius: 26px; padding: 24px 22px 0; display: flex; flex-direction: column; overflow: hidden; border: 2px solid var(--purple); background: var(--lilac); transition: transform .3s var(--ease); }
+    .step:hover { transform: translateY(-6px); }
+    .step:nth-child(2) { background: var(--purple); color: #fff; border-color: var(--purple); }
+    .step-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .step h3 { font-size: 23px; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+    .step .circ { width: 40px; height: 40px; border-radius: 50%; background: var(--purple); color: #fff; display: grid; place-items: center; flex: none; }
+    .step:nth-child(2) .circ { background: var(--yellow); color: var(--ink); }
+    .step .circ svg { width: 20px; height: 20px; }
+    .step hr { border: 0; border-top: 1.5px solid currentColor; opacity: .25; margin: 16px 0 14px; }
+    .step p { font-size: 15.5px; color: var(--ink-2); text-wrap: pretty; }
+    .step:nth-child(2) p { color: rgba(255,255,255,.82); }
+    .step-img { margin: 20px -2px 0; height: 150px; border-radius: 18px 18px 0 0; overflow: hidden; background: #fff; }
+    .step-img img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
 
-    /* QUEM APRESENTA */
-    .speaker { padding: 0 0 130px; text-align: center; }
-    .speaker-card { display: inline-flex; align-items: center; gap: 22px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 12px 34px 12px 12px; text-align: left; box-shadow: 0 20px 50px -34px rgba(27,13,36,.4); }
-    .speaker-photo { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; background: var(--lilac); }
-    .speaker-label { font-family: var(--font-ui); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--purple); }
-    .speaker-name { font-family: var(--font-display); font-weight: 900; font-size: 28px; letter-spacing: -0.03em; line-height: 1.05; margin-top: 4px; }
-    .speaker-role { font-family: var(--font-ui); font-weight: 600; font-size: 15px; color: var(--ink-2); margin-top: 2px; }
+    /* numeros + marcas */
+    .proof { padding: 100px 0 0; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat { background: #fff; border: 1.5px solid var(--line); border-radius: 24px; padding: 24px 22px; }
+    .stat:nth-child(1) { background: var(--yellow); border-color: var(--yellow); }
+    .stat-n { font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 4.6vw, 54px); letter-spacing: -0.04em; line-height: 1; color: var(--purple); }
+    .stat:nth-child(1) .stat-n { color: var(--ink); }
+    .stat-l { display: block; font-family: var(--font-ui); font-weight: 700; font-size: 15px; color: var(--ink-2); margin-top: 8px; text-wrap: balance; }
+    .logos { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 30px; }
+    .logos p { width: 100%; text-align: center; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: var(--ink-2); margin-bottom: 4px; }
+    .logos span { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #9c8fa6; letter-spacing: -0.01em; }
 
-    /* NUMEROS */
-    .proof { background: var(--mist); padding: 120px 0; }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .stat { background: #fff; border-radius: 26px; padding: 30px 26px; }
-    .stat-n { font-family: var(--font-display); font-weight: 900; font-size: clamp(42px, 5vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
-    .stat-l { display: block; font-family: var(--font-ui); font-weight: 600; font-size: 15px; color: var(--ink-2); margin-top: 10px; text-wrap: balance; }
-    .proof p.proof-sub { text-align: center; font-size: 18px; color: var(--ink-2); max-width: 34em; margin: 40px auto 0; text-wrap: balance; }
+    /* fecho */
+    .closing { position: relative; padding: 120px 0 110px; text-align: center; }
+    .closing h2 { font-size: clamp(32px, 5vw, 58px); font-weight: 800; text-transform: uppercase; max-width: 16em; margin: 0 auto; text-wrap: balance; }
+    .closing p { font-size: 18px; color: var(--ink-2); margin: 20px auto 30px; max-width: 32em; }
+    .closing .deco-ast { width: 46px; height: 46px; left: 12%; top: 110px; }
+    .closing .deco-ast2 { width: 60px; height: 60px; right: 11%; bottom: 120px; }
+    .closing .deco-spk { width: 34px; height: 34px; right: 22%; top: 84px; }
 
     @media (max-width: 900px) {
-      .hero { padding: 48px 0 48px; }
-      .stage { grid-template-columns: 1fr; padding: 22px; border-radius: 28px; gap: 22px; }
-      .stage .teaser { display: none; }
+      .hero { padding: 44px 0 30px; }
+      .cards { grid-template-columns: 1fr 1.2fr 1fr; }
+      .vc-1, .vc-5 { display: none; }
+      .vc-2, .vc-4 { height: 210px; }
+      .vc-3 { height: 270px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .cards { margin-top: 40px; }
+      .frame { padding: 22px; border-radius: 28px; }
+      .frame-head { flex-direction: column; align-items: flex-start; }
+      .frame-head p { text-align: left; }
       .steps { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
-      .learn { padding: 100px 0 90px; }
-      .proof, .closing { padding: 90px 0; }
-      .speaker { padding-bottom: 100px; }
-      .logos-row { justify-content: center; }
+      .learn, .proof { padding-top: 80px; }
+      .closing { padding: 90px 0 80px; }
+      .hero .deco-ast, .hero .deco-spk { display: none; }
     }
     @media (max-width: 560px) {
-      .header .pill-dark { padding: 10px 16px; }
-      .badge { font-size: 14px; white-space: normal; text-align: left; }
-      .hero-actions .btn { width: 100%; }
-      .speaker-card { border-radius: 28px; flex-direction: column; text-align: center; padding: 22px; }
-      .logos-row span { font-size: 19px; }
-      .closing .deco { width: 64px; height: 64px; }
-      .closing .deco-a { top: 26px; left: 4%; }
-      .closing .deco-b { bottom: 24px; right: 4%; width: 56px; height: 56px; }
-      .stat { padding: 22px 18px; }
-      .form-card { padding: 26px 18px 16px; }
+      .form-panel { padding: 22px 14px 14px; border-radius: 26px; }
+      .vc-3 .cap b { font-size: 16px; }
+      .vc-3 .cap span { display: none; }
+      .vc-3 .play { width: 40px; height: 40px; top: 10px; right: 10px; }
+      .cards { gap: 10px; }
+      .vc { border-radius: 18px; }
+      .badge { white-space: normal; text-align: left; font-size: 14px; }
+      .closing .deco-ast, .closing .deco-ast2, .closing .deco-spk { display: none; }
+      .form-card { padding: 12px 8px 4px; }
     }
   </style>
 </head>
@@ -229,101 +242,72 @@
       <a href="https://content.buzzmonitor.com/monitoramento-manual-pt?utm_source=webinar-perp&amp;utm_content=perpetuo-case-youse-pt" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
         <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" class="header-logo" width="146" height="28">
       </a>
-      <a href="#form" class="pill-dark">Assistir agora</a>
+      <a href="#form" class="btn btn-sm">Assistir agora<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
     </div>
   </header>
 
   <main id="main">
-    <!-- HERO (referencia: Jitter, titulo gigante com personagens) -->
     <section class="hero">
+      
+      
       <div class="container">
-        <span class="badge reveal" style="--d:.04s"><b>Gratuito</b> Webinar · Caso Youse</span>
-        <h1 class="mega reveal" style="--d:.1s"><span class="perch perch-l">Como<svg class="perch-svg" viewBox="0 0 80 120" aria-hidden="true" focusable="false"><path d="M48 4 L10 68 H38 L28 116 L70 46 H42 Z" fill="#EB7C2E" stroke="#1b0d24" stroke-width="6" stroke-linejoin="round"/></svg></span> a Youse <span class="nw">c<span class="glyph"><span class="sr-only">o</span><svg class="glyph-svg" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect x="50" y="2" width="20" height="12" rx="4" fill="#1b0d24"/><circle cx="60" cy="64" r="50" fill="#0E9D9B" stroke="#1b0d24" stroke-width="6"/><circle cx="60" cy="64" r="38" fill="#CDFDFC" stroke="#1b0d24" stroke-width="5"/><path d="M60 64 L60 38" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M60 64 L80 74" stroke="#DE2451" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="64" r="5" fill="#1b0d24"/></svg></span>rtou</span> o SLA de 36h para 3h</h1>
-        <p class="hero-lead reveal" style="--d:0.18s">A Youse, seguradora digital, tinha o apoio ao cliente subcontratado e um SLA de 36 horas. Ao internalizar o atendimento, com a Buzzmonitor, o SLA caiu para 3 horas, com uma equipa 75% mais pequena. <strong>É possível replicar.</strong></p>
-        <div class="hero-actions reveal" style="--d:.28s">
-          <a href="#form" class="btn btn-lilac">Preencha e assista <span class="arw" aria-hidden="true">&darr;</span></a>
-          <div class="trust">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Gratuito</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Diretamente na plataforma</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Sem folha de cálculo</span>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="badge reveal" style="--d:.04s"><i></i>Webinar gratuito · Caso Youse</span>
+            <h1 class="mega reveal" style="--d:.1s">Como a Youse cortou o SLA <span class="pill-arw" aria-hidden="true"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h38"/><path d="M33 4l9 8-9 8"/></svg></span> de 36h para <span class="pill-word">3h</span></h1>
+            <p class="hero-lead reveal" style="--d:.18s">A Youse, seguradora digital, tinha o apoio ao cliente subcontratado e um SLA de 36 horas. Ao internalizar o atendimento, com a Buzzmonitor, o SLA caiu para 3 horas, com uma equipa 75% mais pequena. <strong>É possível replicar.</strong></p>
+            <div class="trust reveal" style="--d:.22s">
+            <span><i class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>Gratuito</span>
+            <span><i class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>Diretamente na plataforma</span>
+            <span><i class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>Sem folha de cálculo</span>
+            </div>
+            <p class="hero-stats reveal" style="--d:.26s"><span>Mais de<b>1.000 marcas</b></span><span>Mais de<b>10 mil utilizadores</b></span></p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LOGOS -->
-    <section class="logos" aria-label="Mais de 1.000 marcas já contam com a Buzzmonitor">
-      <div class="container reveal">
-        <p class="logos-rule">Mais de 1.000 marcas já contam com a Buzzmonitor</p>
-        <div class="logos-row"><span>Youse</span><span>Turbi</span><span>Brisanet</span><span>Hering</span><span>Bionatural</span><span>Caffeine Army</span><span>Herval</span><span>Softys</span></div>
-      </div>
-    </section>
-
-    <!-- PALCO: video + formulario -->
-    <section class="stage-wrap">
-      <div class="container">
-        <div class="stage reveal">
-          <svg class="deco-star" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 6 C54 36 64 46 94 50 C64 54 54 64 50 94 C46 64 36 54 6 50 C36 46 46 36 50 6 Z" fill="#FCBD4F" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg>
-          <div class="teaser" aria-hidden="true">
-            <img src="assets/speakers/speaker-nathalia-crivellaro.png" alt="" loading="lazy">
-            <svg class="teaser-play" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#1b0d24" stroke-width="5"/><path d="M41 32 L70 50 L41 68 Z" fill="#EB7C2E" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg>
-            <div class="teaser-cap"><b>Caso Youse: SLA de 36h para 3h</b><span>Vídeo gravado · assista de imediato</span></div>
-            <div class="teaser-bar"><i></i></div>
-          </div>
-          <div class="form-card" id="form">
-            <h2 class="form-title">Assista ao vídeo agora</h2>
-            <p class="form-sub">Preencha e o vídeo abre de imediato.</p>
-          <div class="jotform-embed" data-perpetuo-next="/perpetuo-case-youse-pt-confirmado">
+          <div class="form-panel reveal" id="form" style="--d:.2s">
+            <h2>Assista ao vídeo <em>agora</em></h2>
+            <p class="sub">Preencha o formulário e o vídeo abre de imediato, nesta mesma página.</p>
+            <div class="form-card">
+            <div class="jotform-embed" data-perpetuo-next="/perpetuo-case-youse-pt-confirmado">
             <script type="text/javascript" src="https://form.jotform.com/jsform/261127236463050"></script>
           </div>
+            </div>
           </div>
         </div>
+        <div class="cards reveal" style="--d:.3s" aria-hidden="true"><div class="vc vc-1"><img src="assets/ico-instagram.webp" alt=""><img src="assets/ico-tiktok.webp" alt=""><img src="assets/ico-youtube.webp" alt=""><img src="assets/ico-linkedin.webp" alt=""></div><div class="vc vc-2"><img src="assets/tela-plataforma.png" alt="" loading="lazy"></div><div class="vc vc-3"><img src="assets/speakers/speaker-nathalia-crivellaro.png" alt="" loading="lazy"><div class="shade"></div><span class="play"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FCBD4F"/><path d="M26 20l18 12-18 12z" fill="#22012f"/></svg></span><div class="cap"><b>Nathalia Crivellaro</b><span>Executiva de Contas · Buzzmonitor</span></div></div><div class="vc vc-4"><img src="assets/tela-mencoes.webp" alt="" loading="lazy"></div><div class="vc vc-5"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>36h → 3h</b><span>com equipa mais pequena</span></div></div></div>
       </div>
     </section>
 
-    <!-- O QUE VOCE VAI APRENDER -->
     <section class="learn">
       <div class="container">
-        <div class="sec-head reveal">
-          <span class="eyebrow">O webinar</span>
-          <h2>O que vai aprender</h2>
-          <p>O que a Youse mudou no atendimento quando internalizou o apoio ao cliente, e o que pode replicar na sua equipa.</p>
-        </div>
-        <div class="steps">
+        <div class="frame">
+          <div class="frame-head reveal">
+            <h2>O que vai aprender</h2>
+            <p>O que a Youse mudou no atendimento quando internalizou o apoio ao cliente, e o que pode replicar na sua equipa.</p>
+          </div>
+          <div class="steps">
           <article class="step reveal" style="--d:0.05s">
-            <div class="step-top"><span class="step-n">01</span><svg class="step-ico" viewBox="0 0 150 140" aria-hidden="true" focusable="false"><path d="M22 64 Q4 44 10 22" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M128 64 Q146 44 140 22" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><circle cx="10" cy="18" r="7" fill="#1b0d24"/><circle cx="140" cy="18" r="7" fill="#1b0d24"/><path d="M40 20 H110 Q130 20 130 40 V84 Q130 104 110 104 H72 L46 128 L50 104 H40 Q20 104 20 84 V40 Q20 20 40 20 Z" fill="#D9B8FF" stroke="#1b0d24" stroke-width="6" stroke-linejoin="round"/><circle cx="64.65" cy="58" r="4.83" fill="#1b0d24"/><circle cx="85.35" cy="58" r="4.83" fill="#1b0d24"/><circle cx="66.26" cy="56.16" r="1.6099999999999999" fill="#fff"/><circle cx="86.96" cy="56.16" r="1.6099999999999999" fill="#fff"/><path d="M68.1 67.2 Q75 74.1 81.9 67.2" fill="none" stroke="#1b0d24" stroke-width="3.6799999999999997" stroke-linecap="round"/></svg></div>
-            <h3>O que a Youse mudou no apoio ao cliente</h3>
+            <div class="step-top"><h3>O que a Youse mudou no apoio ao cliente</h3><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></div>
+            <hr>
             <p>O que mudou no atendimento quando o apoio ao cliente deixou de ser externo e passou para dentro de casa.</p>
+            <div class="step-img"><img src="assets/tela-plataforma.png" alt="" loading="lazy"></div>
           </article>
           <article class="step reveal" style="--d:0.14s">
-            <div class="step-top"><span class="step-n">02</span><svg class="step-ico" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect x="50" y="2" width="20" height="12" rx="4" fill="#1b0d24"/><circle cx="60" cy="64" r="50" fill="#0E9D9B" stroke="#1b0d24" stroke-width="6"/><circle cx="60" cy="64" r="38" fill="#CDFDFC" stroke="#1b0d24" stroke-width="5"/><path d="M60 64 L60 38" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M60 64 L80 74" stroke="#DE2451" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="64" r="5" fill="#1b0d24"/></svg></div>
-            <h3>De 36h para 3h, com uma equipa mais pequena</h3>
+            <div class="step-top"><h3>De 36h para 3h, com uma equipa mais pequena</h3><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></div>
+            <hr>
             <p>Como o SLA caiu de 36 horas para 3, com uma equipa 75% mais pequena.</p>
+            <div class="step-img"><img src="assets/tela-dashboard.png" alt="" loading="lazy"></div>
           </article>
           <article class="step reveal" style="--d:0.23s">
-            <div class="step-top"><span class="step-n">03</span><svg class="step-ico" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 6 C54 36 64 46 94 50 C64 54 54 64 50 94 C46 64 36 54 6 50 C36 46 46 36 50 6 Z" fill="#FCBD4F" stroke="#1b0d24" stroke-width="5" stroke-linejoin="round"/></svg></div>
-            <h3>O que pode replicar na sua equipa</h3>
+            <div class="step-top"><h3>O que pode replicar na sua equipa</h3><span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></div>
+            <hr>
             <p>O que pode retirar deste caso e aplicar no atendimento da sua marca.</p>
+            <div class="step-img"><img src="assets/tela-ai-insights.webp" alt="" loading="lazy"></div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUEM APRESENTA -->
-    <section class="speaker">
-      <div class="container reveal">
-        <div class="speaker-card">
-          <img class="speaker-photo" src="assets/speakers/speaker-nathalia-crivellaro.png" alt="Nathalia Crivellaro" loading="lazy" width="92" height="92">
-          <div>
-            <span class="speaker-label">Quem apresenta</span>
-            <h3 class="speaker-name">Nathalia Crivellaro</h3>
-            <p class="speaker-role">Executiva de Contas · Buzzmonitor</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NUMEROS -->
     <section class="proof">
       <div class="container">
         <div class="stats reveal">
@@ -332,18 +316,18 @@
           <div class="stat"><div class="stat-n" data-count data-target="500" data-suffix="+">0</div><span class="stat-l">agências</span></div>
           <div class="stat"><div class="stat-n" data-count data-target="10" data-suffix=" mil">0</div><span class="stat-l">utilizadores ativos</span></div>
         </div>
-        <p class="proof-sub reveal">Social listening, atendimento e analytics do Grupo Elife, com IA nativa em todas as camadas.</p>
+        <div class="logos reveal"><p>Marcas que contam com a Buzzmonitor</p><span>Youse</span><span>Turbi</span><span>Brisanet</span><span>Hering</span><span>Bionatural</span><span>Caffeine Army</span><span>Herval</span><span>Softys</span></div>
       </div>
     </section>
 
-    <!-- FECHO -->
     <section class="closing">
-      <svg class="deco deco-a" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect x="50" y="2" width="20" height="12" rx="4" fill="#1b0d24"/><circle cx="60" cy="64" r="50" fill="#0E9D9B" stroke="#1b0d24" stroke-width="6"/><circle cx="60" cy="64" r="38" fill="#CDFDFC" stroke="#1b0d24" stroke-width="5"/><path d="M60 64 L60 38" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M60 64 L80 74" stroke="#DE2451" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="64" r="5" fill="#1b0d24"/></svg>
-      <svg class="deco deco-b" viewBox="0 0 150 140" aria-hidden="true" focusable="false"><path d="M22 64 Q4 44 10 22" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><path d="M128 64 Q146 44 140 22" fill="none" stroke="#1b0d24" stroke-width="6" stroke-linecap="round"/><circle cx="10" cy="18" r="7" fill="#1b0d24"/><circle cx="140" cy="18" r="7" fill="#1b0d24"/><path d="M40 20 H110 Q130 20 130 40 V84 Q130 104 110 104 H72 L46 128 L50 104 H40 Q20 104 20 84 V40 Q20 20 40 20 Z" fill="#D9B8FF" stroke="#1b0d24" stroke-width="6" stroke-linejoin="round"/><circle cx="64.65" cy="58" r="4.83" fill="#1b0d24"/><circle cx="85.35" cy="58" r="4.83" fill="#1b0d24"/><circle cx="66.26" cy="56.16" r="1.6099999999999999" fill="#fff"/><circle cx="86.96" cy="56.16" r="1.6099999999999999" fill="#fff"/><path d="M68.1 67.2 Q75 74.1 81.9 67.2" fill="none" stroke="#1b0d24" stroke-width="3.6799999999999997" stroke-linecap="round"/></svg>
+      
+      
+      
       <div class="container reveal">
-        <h2>Pronto para fazer o mesmo na sua equipa?</h2>
+        <h2>Pronto para fazer o <span class="pill-word">mesmo</span> na sua equipa?</h2>
         <p>Assista ao vídeo e perceba a melhor forma de o fazer.</p>
-        <a href="#form" class="btn btn-lilac">Assistir ao vídeo agora <span class="arw" aria-hidden="true">&uarr;</span></a>
+        <a href="#form" class="btn btn-solid">Assistir ao vídeo agora<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span></a>
       </div>
     </section>
   </main>
@@ -351,7 +335,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="https://content.buzzmonitor.com/monitoramento-manual-pt?utm_source=webinar-perp&amp;utm_content=perpetuo-case-youse-pt" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
-        <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" class="footer-logo" width="136" height="26">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-primary.svg" alt="Buzzmonitor" class="footer-logo" width="126" height="24">
       </a>
       <div class="footer-meta">
         <span>&copy; 2026 Buzzmonitor. Todos os direitos reservados.</span>
