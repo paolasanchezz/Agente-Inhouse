@@ -1,0 +1,100 @@
+=== HEADER ===
+INDICADOR: Oferta válida hasta el 17 de diciembre
+CTA: Acceder a la oferta
+
+
+=== HERO ===
+BADGE: Oferta exclusiva · Webinar Marketing Trends 2027
+LABEL: Marketing Trends 2027
+H1: Ya conoces las tendencias de 2027. Ahora escucha qué dice tu cliente.
+SUB: Lleva lo que viste en el webinar a tu marca: 15 días gratis de Buzzmonitor, con un especialista a tu lado y tu primer panel configurado.
+CTA: Quiero aprovechar la oferta
+LABEL: 15 días gratis
+LABEL: Soporte consultivo
+LABEL: Tu primer panel configurado
+LABEL: 50% en tus dos primeras mensualidades
+LABEL: Válida hasta el 17 de diciembre
+MICRO: Solo para quienes se inscribieron en el webinar Marketing Trends 2027
+
+
+=== OFERTA ===
+EYEBROW: La oferta exclusiva
+H2: 15 días gratis de Buzzmonitor, con un especialista a tu lado.
+BODY: Preparamos una condición especial para que las tendencias que revisamos pasen del plan a tu día a día: acceso completo a la plataforma y acompañamiento para configurar el monitoreo de tu marca desde el primer día.
+CARD 01: 15 días gratis | Acceso completo a la plataforma, con las IAs y las Skills de Buzzmonitor.
+CARD 02: Soporte consultivo | Especialistas de Buzzmonitor te acompañan durante toda la prueba.
+CARD 03: Tu primer panel listo | Nuestro equipo lo configura con las búsquedas y alertas de tu marca.
+CARD 04 (BONUS): 50% de descuento | Al terminar los 15 días, pagas la mitad en tus dos primeras mensualidades de Buzzmonitor.
+CTA: Quiero aprovechar la oferta
+MICRO: Válida hasta el 17 de diciembre
+
+
+=== CONSECUENCIA ===
+EYEBROW: Después del webinar
+H2: Si enero llega y el plan de 2027 sigue en una presentación...
+LIST ITEM: Te vas a enterar de lo que dicen de tu marca cuando la conversación ya creció.
+LIST ITEM: Vas a defender el presupuesto con reportes armados a mano y sin pruebas de qué funcionó.
+LIST ITEM: Las tendencias van a llegar a tu sector antes que a tu plan.
+QUOTE: Una tendencia que ves a tiempo se convierte en estrategia. La misma tendencia, seis meses después, es lo que ya hace tu competencia.
+
+
+=== DE LA TENDENCIA A TU MARCA ===
+EYEBROW: De la tendencia a tu marca
+H2: Así llevas las tendencias de 2027 a tu día a día con Buzzmonitor
+SUB: Durante la prueba trabajas con tus propios datos: la conversación sobre tu marca, tu competencia y tu sector.
+ITEM (Tendencia 05 · Reputación): Social Listening y Skill de Crisis | Alertas y sentimiento para saber qué dicen de tu marca mientras todavía puedes actuar.
+ITEM (Tendencia 03 · Contenido más humano): AI Insights y Buzz Pills | Lo que dice tu audiencia, resumido en hallazgos listos para leer, para crear contenido con sus palabras.
+ITEM (Tendencia 09 · Probar el resultado): Skill de Campañas | Qué conversación generó cada campaña y cómo reaccionó la audiencia.
+ITEM (Tendencia 08 · Datos propios): MCP | Tus datos de Buzzmonitor consultados desde una conversación con asistentes como Claude.
+ITEM (Tendencia 07 · Marketing, ventas y atención): Atención al cliente | Gestión multicanal con KPIs consolidados, en la misma plataforma del monitoreo.
+CTA: Quiero probarlo con mi marca
+
+
+=== MODULOS ===
+EYEBROW: La plataforma
+H2: Una plataforma. Cuatro módulos integrados.
+H3: Social Listening | Monitoreo de marca, alertas automáticas y clasificación de sentimiento para saber qué dicen de ti mientras todavía puedes actuar.
+H3: Analytics | Insights cualitativos, búsqueda ilimitada y reportes personalizados para responder las preguntas de tu equipo con datos.
+H3: Atención al cliente | Gestión multicanal con KPIs consolidados y sugerencias con IA para responder más rápido y mejor.
+H3: Programación | Publicaciones ilimitadas y creación de contenido con IA integrada, en la misma herramienta.
+
+
+=== PRUEBA SOCIAL ===
+EYEBROW: Quiénes ya confían
+H2: Más de 1.000 marcas ya monitorean con Buzzmonitor
+METRIC: 1.000+ clientes en el mundo
+METRIC: 300+ clientes enterprise
+METRIC: 500+ agencias
+METRIC: 10.000 usuarios
+NOTA: y más de 1.000 marcas en Brasil, Latinoamérica y Portugal
+
+
+=== URGENCIA ===
+EYEBROW: Oferta por tiempo limitado
+H2: Esta condición es solo para quienes se inscribieron en Marketing Trends 2027.
+BODY: La prueba es gratis. El soporte consultivo también. La oferta cierra el 17 de diciembre.
+PUNCH: Llega a enero con el monitoreo de tu marca ya funcionando.
+INFO: Válida hasta el 17 de diciembre de 2026
+INFO: 15 días gratis + 50% de descuento en tus dos primeras mensualidades
+CTA: Aprovechar la oferta exclusiva
+
+
+=== CTA FINAL / FORM ===
+EYEBROW: Activa tu prueba
+H2: Empieza ahora. Sin compromiso.
+BODY: 15 días para poner en marcha el monitoreo de tu marca, con el acompañamiento de quien conoce tu escenario.
+RECAP: 15 días gratis con acceso completo
+RECAP: Tu primer panel configurado por nuestro equipo
+RECAP: 50% de descuento en tus dos primeras mensualidades
+FORM: Jotform 241825239057661 (mismo form de las ofertas post-evento de Bogotá, CDMX y Lima)
+
+
+=== FOOTER ===
+CONTACTO: ¿Tienes alguna duda? Escríbenos a rrss@getbuzzmonitor.com.
+FOOTER: © Buzzmonitor 2026 | Política de privacidad
+
+# Idioma: ES-LATAM. Tuteo, "monitoreo", "reportes", Buzzmonitor sin artículo.
+# Base: oferta-workshop-lima-noviembre-2026 (mismas condiciones: 15 días + soporte + primer panel + 50% en las 2 primeras mensualidades; mismo form).
+# Tema adaptado al webinar Marketing Trends 2027 (10/12): cada herramienta se conecta con una de las 9 tendencias del programa.
+# Público: inscritos (asistentes y no asistentes), por eso "quienes se inscribieron" y no "quienes estuvieron".
+# Revisión anti-IA: em-dash 0; exclamaciones 0; antítesis-por-negación 0 (la QUOTE es contraste temporal, mismo sujeto, 1 instancia); listas variadas (5, 4, 3, 5, 4, 4, 2, 3).
