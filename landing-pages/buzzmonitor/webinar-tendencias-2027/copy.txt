@@ -1,0 +1,81 @@
+=== HERO ===
+OVERLINE: Webinar en vivo · 10 de diciembre · Gratuito
+H1: Tu presupuesto de 2027 no va a crecer. Lo que te van a exigir, sí.
+SUB: Te presentamos las 9 tendencias de marketing para 2027, con datos de más de 15 estudios de América Latina y el mundo, y qué hacer con cada una.
+CTA: Aparta tu lugar gratis
+LABEL: Marketing Trends 2027
+
+=== FECHA ===
+LABEL: Jueves 10 de diciembre
+LABEL: 10:00 MX
+LABEL: 11:00 COL
+LABEL: 11:00 PER
+LABEL: 13:00 CL
+LABEL: 13:00 ARG
+LABEL: Online y en vivo
+LABEL: Gratuito
+
+=== FORMULARIO ===
+OVERLINE: Inscripción
+H2: Aparta tu lugar en el webinar
+BODY: Es gratis y en vivo. Al registrarte, recibes el enlace de acceso en tu correo.
+CTA: Quiero mi lugar
+
+=== CONTEXTO ===
+OVERLINE: Lo que ya cambió
+H2: 2027 llega con menos clics, más IA en la compra y la misma presión por resultados
+LABEL: 56%
+BODY: de los CMOs dicen que el presupuesto no alcanza para la estrategia.
+LABEL: Fuente: Gartner, CMO Spend Survey 2026
+LABEL: 68%
+BODY: de las búsquedas en Google terminaron sin ningún clic entre enero y abril de 2026.
+LABEL: Fuente: SparkToro/Similarweb
+LABEL: 75%
+BODY: de las compras entre empresas van a tener influencia de agentes de IA en 2027.
+LABEL: Fuente: Forrester, Predictions 2027
+LABEL: 1/3
+BODY: de las iniciativas de IA en B2C se van a recortar por su costo.
+LABEL: Fuente: Forrester, Predictions 2027
+
+=== PROGRAMA ===
+OVERLINE: Programa
+H2: Las 9 tendencias que vamos a revisar
+SUB: Para cada una, el dato que la respalda y qué hacer en tu empresa a partir de enero.
+LIST ITEM: 01. El clic está desapareciendo de las búsquedas
+LIST ITEM: 02. Aparecer en las respuestas de la IA
+LIST ITEM: 03. Contenido más humano
+LIST ITEM: 04. Creators como parte fija del marketing
+LIST ITEM: 05. Reputación: lo que otros dicen de tu marca
+LIST ITEM: 06. La IA entró en el momento de la compra
+LIST ITEM: 07. Marketing, ventas y atención trabajando juntos
+LIST ITEM: 08. Los datos propios valen más
+LIST ITEM: 09. Probar el resultado de cada campaña
+CTA: Quiero ver las 9 tendencias
+
+=== PARA QUIEN ES ===
+OVERLINE: Para quién es
+H2: Este webinar es para ti si...
+LIST ITEM: Estás armando el plan de marketing de 2027 y necesitas datos para defender el presupuesto.
+LIST ITEM: Lideras un equipo de marketing, comunicación o contenido y quieres saber dónde poner el foco el próximo año.
+LIST ITEM: Trabajas en una agencia y vas a presentar tendencias a tus clientes.
+LIST ITEM: Ves caer el tráfico de tu sitio y no sabes si el problema es tuyo o del mercado.
+
+=== QUIEN PRESENTA ===
+OVERLINE: Quién presenta
+H2: Con quién vas a aprender
+LABEL: Lorena Rodríguez, Business Developer · Buzzmonitor
+LABEL: Luis Pérez, Business Developer · Buzzmonitor
+
+=== CTA FINAL ===
+OVERLINE: La gran pregunta de 2027
+H2: ¿Sabes qué está diciendo tu cliente hoy?
+BODY: El 10 de diciembre te mostramos qué cambia en el marketing en 2027 y por dónde empezar a prepararte.
+CTA: Aparta tu lugar gratis
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos los derechos reservados.
+
+# Revision anti-IA: sin achados (em-dash: 0). Antitesis-por-negacion: 0. Exclamaciones: 0.
+# Idioma: ES-LATAM (tuteo, "monitoreo/reporte" respetados, CTAs en 1a persona, sin "vosotros").
+# [NOTA] Datos de Brasil del estudio (84% de los brasileños, RD Station) fueron excluidos a propósito por ser LATAM.
+# [NOTA] Cargo de Lorena: en el workshop CDMX figura como "Business Development Representative"; aquí se usa "Business Developer" (igual que en webinar-atencion-multicanal-latam). Confirmar.
