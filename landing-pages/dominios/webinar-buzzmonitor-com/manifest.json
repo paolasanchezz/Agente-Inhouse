@@ -146,6 +146,11 @@
       "source": "landing-pages/buzzmonitor/monitoreo-competidores-ia-latam"
     },
     {
+      "slug": "oferta-marketing-trends-2027",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/oferta-marketing-trends-2027"
+    },
+    {
       "slug": "oferta-webinar-gestion-crisis-ia-septiembre-26",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/oferta-webinar-gestion-crisis-ia-septiembre-26"
@@ -309,6 +314,11 @@
       "slug": "webinar-diversidade-2026",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/webinar-diversidade-2026"
+    },
+    {
+      "slug": "webinar-marketing-trends-2027",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/webinar-marketing-trends-2027"
     },
     {
       "slug": "webinar-tendencias-2027",
