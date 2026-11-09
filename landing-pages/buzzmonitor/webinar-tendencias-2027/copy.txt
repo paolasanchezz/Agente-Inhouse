@@ -1,9 +1,11 @@
 === HERO ===
 OVERLINE: Webinar en vivo · 10 de diciembre · Gratuito
-H1: Tu presupuesto de 2027 no va a crecer. Lo que te van a exigir, sí.
-SUB: Te presentamos las 9 tendencias de marketing para 2027, con datos de más de 15 estudios de América Latina y el mundo, y qué hacer con cada una.
+H1: Las 9 tendencias que van a cambiar el marketing en 2027, reveladas en vivo
+SUB: En una hora, Buzzmonitor te muestra qué cambia el próximo año y qué hacer en cada caso, con datos de más de 15 estudios de América Latina y el mundo.
 CTA: Aparta tu lugar gratis
 LABEL: Marketing Trends 2027
+
+CONTADOR: Empieza en · hasta el 10/12/2026, 10:00 MX (al terminar: "El webinar ya empezó.")
 
 === FECHA ===
 LABEL: Jueves 10 de diciembre
@@ -37,20 +39,16 @@ LABEL: 1/3
 BODY: de las iniciativas de IA en B2C se van a recortar por su costo.
 LABEL: Fuente: Forrester, Predictions 2027
 
-=== PROGRAMA ===
-OVERLINE: Programa
-H2: Las 9 tendencias que vamos a revisar
-SUB: Para cada una, el dato que la respalda y qué hacer en tu empresa a partir de enero.
-LIST ITEM: 01. El clic está desapareciendo de las búsquedas
-LIST ITEM: 02. Aparecer en las respuestas de la IA
-LIST ITEM: 03. Contenido más humano
-LIST ITEM: 04. Creators como parte fija del marketing
-LIST ITEM: 05. Reputación: lo que otros dicen de tu marca
-LIST ITEM: 06. La IA entró en el momento de la compra
-LIST ITEM: 07. Marketing, ventas y atención trabajando juntos
-LIST ITEM: 08. Los datos propios valen más
-LIST ITEM: 09. Probar el resultado de cada campaña
-CTA: Quiero ver las 9 tendencias
+=== LO QUE VAS A APRENDER ===
+EYEBROW: Lo que te llevas
+H2: Sales del webinar con tu plan de 2027 más claro
+SUB: Una hora para dejar de leer listas de tendencias y saber cuáles aplican a tu empresa y por dónde empezar en enero.
+ITEM 01: Qué hacer con el tráfico que estás perdiendo en Google | Cómo medir y recuperar visibilidad ahora que 68% de las búsquedas terminan sin clic.
+ITEM 02: Cómo lograr que la IA mencione a tu marca | Qué tipo de contenido aparece en las respuestas de ChatGPT, Gemini y Perplexity cuando alguien pregunta por tu categoría.
+ITEM 03: Dónde invertir en contenido y creators | Qué formatos y alianzas con creators están dando resultado y cuáles conviene recortar.
+ITEM 04: Cómo cuidar tu reputación cuando el cliente compra con IA | Por qué lo que dicen de tu marca en redes y reseñas pesa más cuando un agente de IA recomienda una compra.
+ITEM 05: Argumentos para defender tu presupuesto ante dirección | Datos de más de 15 estudios para demostrar el resultado de cada campaña y alinear marketing, ventas y atención.
+CTA: Quiero apartar mi lugar
 
 === PARA QUIEN ES ===
 OVERLINE: Para quién es
