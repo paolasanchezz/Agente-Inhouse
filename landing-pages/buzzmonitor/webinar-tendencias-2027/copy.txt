@@ -1,7 +1,7 @@
 === HERO ===
 OVERLINE: Webinar en vivo · 10 de diciembre · Gratuito
 H1: Las 9 tendencias que van a cambiar el marketing en 2027, reveladas en vivo
-SUB: En una hora, Buzzmonitor te muestra qué cambia el próximo año y qué hacer en cada caso, con datos de más de 15 estudios de América Latina y el mundo.
+SUB: Te mostraremos qué cambiará el próximo año y qué hacer en cada caso, con datos de más de 15 estudios de América Latina y el mundo.
 CTA: Aparta tu lugar gratis
 LABEL: Marketing Trends 2027
 
