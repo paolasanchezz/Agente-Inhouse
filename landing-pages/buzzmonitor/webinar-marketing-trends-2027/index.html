@@ -89,22 +89,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .dk .logo .l1{color:#b8b2c9}
 
   /* hero */
-  .hero{position:relative;padding-block:clamp(36px,6vh,72px) 24px;overflow:hidden;isolation:isolate}
+  .hero{position:relative;padding-block:clamp(24px,4vh,48px) 24px;overflow:hidden;isolation:isolate}
   .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);z-index:-1;opacity:.55}
   .hero::before{width:520px;height:520px;background:#ffc79e;left:-160px;top:40px}
   .hero::after{width:560px;height:560px;background:#d8cbff;right:-180px;top:-60px}
-  .hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:start}
-  .hl{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding-top:8px}
-  .hl h1{font-size:clamp(38px,4.8vw,64px)}
-  .hl .sub{margin:0;max-width:560px;font-size:19px;color:var(--muted);line-height:1.5}
+  .hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:start}
+  .hl{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-top:4px}
+  .hl h1{font-size:clamp(34px,3.7vw,50px)}
+  .hl .sub{margin:0;max-width:540px;font-size:17px;color:var(--muted);line-height:1.5}
   .facts{display:flex;flex-wrap:wrap;gap:10px}
   .facts span{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;padding:9px 14px;border-radius:99px;background:var(--card);box-shadow:0 1px 0 var(--line),0 10px 24px -16px rgba(18,13,36,.35)}
   .facts svg{width:17px;height:17px;fill:none;stroke:var(--orange);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
   /* contador */
   .count{display:flex;flex-direction:column;gap:10px;margin-top:6px}
-  .hr{display:flex;flex-direction:column;gap:28px}
+  .hr{display:flex;flex-direction:column;gap:18px}
   .hr .count{align-items:center;margin-top:0}
+  .hr .cd div{width:72px;height:74px;border-radius:16px}
+  .hr .cd b{font-size:30px}
+  .hr .cd span{font-size:11px;margin-top:4px}
   .count .lb{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .cd{display:flex;gap:10px}
   .cd div{display:flex;flex-direction:column;align-items:center;justify-content:center;width:88px;height:92px;border-radius:20px;background:var(--ink);color:#fff;box-shadow:0 18px 40px -22px rgba(18,13,36,.8)}
@@ -117,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .cd.done{font-size:17px;font-weight:600}
 
   /* formulário */
-  .form{background:var(--card);border-radius:30px;padding:30px 30px 24px;box-shadow:0 50px 100px -50px rgba(18,13,36,.55),0 0 0 1px var(--line);position:relative}
+  .form{background:var(--card);border-radius:28px;padding:22px 26px 16px;box-shadow:0 50px 100px -50px rgba(18,13,36,.55),0 0 0 1px var(--line);position:relative}
   .form .eyebrow{background:var(--lilac-2);color:var(--violet);box-shadow:none}
   .form h2{font-size:clamp(24px,2.4vw,30px);margin:14px 0 6px}
   .form .fs{margin:0 0 18px;color:var(--muted);font-size:15px;line-height:1.45}
@@ -154,9 +157,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .ab li svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .ab li b{display:block;font-size:16px;font-weight:600;margin-bottom:2px}
   .ab li span{display:block;font-size:14.5px;color:var(--muted);line-height:1.45}
-  .proof{text-align:center}
-  .proof .k{display:block;font-size:clamp(56px,7vw,92px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--violet);font-variant-numeric:tabular-nums}
-  .proof p{margin:8px 0 32px;color:var(--muted);font-size:18px}
+  .proof{text-align:center;padding-top:104px}
+  .pc{display:inline-flex;flex-direction:column;align-items:center;gap:16px;padding:30px 40px 28px;border-radius:32px;background:var(--card);box-shadow:0 1px 0 var(--line),0 40px 80px -56px rgba(18,13,36,.5);margin-bottom:40px}
+  .pc .lb{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .odo{display:flex;gap:8px;align-items:stretch}
+  .odo .dg,.odo .pl{position:relative;width:clamp(54px,6vw,76px);height:clamp(72px,8vw,100px);border-radius:18px;background:var(--ink);color:#fff;overflow:hidden;box-shadow:0 18px 40px -22px rgba(18,13,36,.8)}
+  .odo .dg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 45%,rgba(0,0,0,.18));pointer-events:none}
+  .odo .col{display:flex;flex-direction:column;transition:transform 2.2s cubic-bezier(.2,.75,.15,1)}
+  .odo .col i,.odo .pl i{display:grid;place-items:center;height:clamp(72px,8vw,100px);font-style:normal;font-size:clamp(40px,4.6vw,58px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+  .odo .sep{align-self:flex-end;font-size:clamp(34px,4vw,50px);font-weight:600;color:var(--violet);line-height:1;padding-bottom:6px}
+  .odo .pl{background:linear-gradient(160deg,var(--orange-2),var(--orange) 60%,#c4581a);color:var(--ink)}
+  .proof p{margin:0;color:var(--muted);font-size:18px}
   .marq{position:relative;overflow:hidden;padding-block:8px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
   .track{display:flex;align-items:center;gap:56px;width:max-content}
   .track img{height:34px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(1.1) contrast(.6);opacity:.45;transition:opacity .25s}
@@ -264,6 +275,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cd span{font-size:10.5px;letter-spacing:.04em}
     .cd.done{display:block}
     .track{gap:36px}
+    .proof{padding-top:72px}
+    .pc{padding:24px 18px 22px;margin-inline:4px}
+    .odo{gap:6px}
     .track img{height:26px}
     .fan{height:280px}
     .tc{width:140px;height:190px;margin-left:-70px}
@@ -287,7 +301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hgrid">
       <div class="hl">
         <span class="eyebrow">Webinar gratuito e ao vivo</span>
-        <span class="logo" style="--s:clamp(54px,7vw,96px)" aria-hidden="true"><span class="l1">Marketing</span><span class="l2"><b>Trends</b><i>2027</i></span><svg class="ln" viewBox="0 0 400 34"><path d="M2 28 L80 24 L130 28 L200 15 L250 20 L384 6" fill="none" stroke="url(#lg1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle class="halo" cx="384" cy="6" r="11" fill="#eb7c2e" opacity=".25"/><circle cx="384" cy="6" r="5.5" fill="#eb7c2e"/></svg></span>
+        <span class="logo" style="--s:clamp(46px,5.2vw,72px)" aria-hidden="true"><span class="l1">Marketing</span><span class="l2"><b>Trends</b><i>2027</i></span><svg class="ln" viewBox="0 0 400 34"><path d="M2 28 L80 24 L130 28 L200 15 L250 20 L384 6" fill="none" stroke="url(#lg1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle class="halo" cx="384" cy="6" r="11" fill="#eb7c2e" opacity=".25"/><circle cx="384" cy="6" r="5.5" fill="#eb7c2e"/></svg></span>
         <h1 id="h1">As 9 tendências que vão mudar o marketing em 2027, reveladas <span class="chip">ao vivo</span></h1>
         <p class="sub">Em uma hora, a Buzzmonitor mostra o que muda no próximo ano e o que fazer em cada caso, com dados de mais de 15 pesquisas do Brasil e de fora.</p>
         <div class="facts">
@@ -350,8 +364,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="proof" aria-labelledby="cl-t" style="padding-bottom:96px">
   <div class="in">
-    <span class="k" data-to="1000" data-suf="+">1.000+</span>
-    <p id="cl-t">clientes em todo o mundo usam a Buzzmonitor</p>
+    <div class="pc">
+      <span class="lb">Quem já usa</span>
+      <div class="odo" data-odo="1000" role="img" aria-label="Mais de 1.000"><span class="dg"><span class="col"><i>1</i></span></span><span class="sep">.</span><span class="dg"><span class="col"><i>0</i></span></span><span class="dg"><span class="col"><i>0</i></span></span><span class="dg"><span class="col"><i>0</i></span></span><span class="pl"><i>+</i></span></div>
+      <p id="cl-t">clientes em todo o mundo usam a Buzzmonitor</p>
+    </div>
   </div>
   <div class="marq" aria-label="Alguns clientes da Buzzmonitor"><div class="track" id="track"><img src="./assets/clientes-mt27/amazon.png" alt="amazon" loading="lazy"><img src="./assets/clientes-mt27/andalucia.png" alt="andalucia" loading="lazy"><img src="./assets/clientes-mt27/bershka.png" alt="bershka" loading="lazy"><img src="./assets/clientes-mt27/bizum.png" alt="bizum" loading="lazy"><img src="./assets/clientes-mt27/burger-king.png" alt="burger king" loading="lazy"><img src="./assets/clientes-mt27/caja-rural.png" alt="caja rural" loading="lazy"><img src="./assets/clientes-mt27/coca-cola.png" alt="coca cola" loading="lazy"><img src="./assets/clientes-mt27/eureka-co.png" alt="eureka co" loading="lazy"><img src="./assets/clientes-mt27/evo.png" alt="evo" loading="lazy"><img src="./assets/clientes-mt27/flax-kale.png" alt="flax kale" loading="lazy"><img src="./assets/clientes-mt27/fundacion-real-madrid.png" alt="fundacion real madrid" loading="lazy"><img src="./assets/clientes-mt27/havas.png" alt="havas" loading="lazy"><img src="./assets/clientes-mt27/holaluz.png" alt="holaluz" loading="lazy"><img src="./assets/clientes-mt27/ikea.png" alt="ikea" loading="lazy"><img src="./assets/clientes-mt27/islas-canarias.png" alt="islas canarias" loading="lazy"><img src="./assets/clientes-mt27/loreal.png" alt="loreal" loading="lazy"><img src="./assets/clientes-mt27/mapfre.png" alt="mapfre" loading="lazy"><img src="./assets/clientes-mt27/mccann.png" alt="mccann" loading="lazy"><img src="./assets/clientes-mt27/mcdonalds.png" alt="mcdonalds" loading="lazy"><img src="./assets/clientes-mt27/nu.png" alt="nu" loading="lazy"><img src="./assets/clientes-mt27/omd.svg" alt="omd" loading="lazy"><img src="./assets/clientes-mt27/ouigo.png" alt="ouigo" loading="lazy"><img src="./assets/clientes-mt27/repsol.png" alt="repsol" loading="lazy"><img src="./assets/clientes-mt27/samsung.png" alt="samsung" loading="lazy"><img src="./assets/clientes-mt27/santander.png" alt="santander" loading="lazy"><img src="./assets/clientes-mt27/sephora.png" alt="sephora" loading="lazy"><img src="./assets/clientes-mt27/sony.png" alt="sony" loading="lazy"><img src="./assets/clientes-mt27/sube.png" alt="sube" loading="lazy"><img src="./assets/clientes-mt27/tbwa.png" alt="tbwa" loading="lazy"><img src="./assets/clientes-mt27/uber.png" alt="uber" loading="lazy"><img src="./assets/clientes-mt27/amazon.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/andalucia.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/bershka.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/bizum.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/burger-king.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/caja-rural.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/coca-cola.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/eureka-co.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/evo.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/flax-kale.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/fundacion-real-madrid.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/havas.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/holaluz.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/ikea.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/islas-canarias.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/loreal.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/mapfre.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/mccann.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/mcdonalds.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/nu.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/omd.svg" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/ouigo.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/repsol.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/samsung.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/santander.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/sephora.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/sony.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/sube.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/tbwa.png" alt="" aria-hidden="true" loading="lazy"><img src="./assets/clientes-mt27/uber.png" alt="" aria-hidden="true" loading="lazy"></div></div>
 </section>
@@ -414,6 +431,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function step(ts){ if(!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(to * e).toLocaleString('pt-BR') + (p === 1 ? suf : ''); if(p < 1) requestAnimationFrame(step); }
     requestAnimationFrame(step);
   }
+  /* contador de clientes: cada dígito rola para cima até o valor; o primeiro sobe direto, os da direita dão voltas a mais */
+  [].forEach.call(document.querySelectorAll('[data-odo]'), function(od){
+    if(still || !('IntersectionObserver' in window)) return;
+    var cols = [].slice.call(od.querySelectorAll('.col')), n = cols.length;
+    cols.forEach(function(c, i){
+      var target = +c.textContent, laps = Math.min(i, 2), seq = '';
+      for(var k = 0; k <= laps * 10 + target; k++) seq += '<i>' + (k % 10) + '</i>';
+      c.innerHTML = seq; c.setAttribute('data-steps', laps * 10 + target);
+      c.style.transitionDelay = (i * .12) + 's';
+    });
+    var oo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; oo.disconnect();
+      cols.forEach(function(c){ c.style.transform = 'translateY(-' + (100 * +c.getAttribute('data-steps') / (+c.getAttribute('data-steps') + 1)) + '%)'; });
+    }); }, { threshold: .6 });
+    oo.observe(od);
+  });
   if('IntersectionObserver' in window && !still){
     var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); io.unobserve(e.target); } }); }, { threshold: .6 });
     nums.forEach(function(el){ io.observe(el); });
