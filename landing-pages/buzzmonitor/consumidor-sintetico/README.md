@@ -75,7 +75,7 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 
 - [x] HTML gerado (SEO completo, JSON-LD válido, GTM nos 2 blocos, em-dash 0, mobile 375px sem overflow, pisos §20 ok)
 - [x] OG image 1200×630 → `assets/og-consumidor-sintetico.png`
-- [ ] Revisão (frontend-design review + web-design-guidelines) — rodar `/lp-revisar buzzmonitor/consumidor-sintetico`
+- [x] Revisão (2026-11-10): 5 críticos aplicados, melhorias em `REVISAO.md`
 - [x] Formulário integrado
 
 **Form provider:** Jotform 252995108251662 (2026-11-10)
