@@ -1,0 +1,159 @@
+# LP Consumidor Sintético · Buzzmonitor · PT-BR · MoFu/BoFu (agendar demonstração)
+# Formulário: seção final (GUIDELINES §10, MoFu/BoFu) + CTA do hero rolando até ele.
+#
+# DIREÇÃO VISUAL (para o lp-gerar, a partir das referências aprovadas)
+# - Ref. 1 (editorial, tipografia gigante sobre fundo creme): usar na seção PAUSA ("1.000") e no H1.
+#   Fundo off-white quente, display bem pesado, muito respiro.
+# - Ref. 2 (SaaS com headline centralizada + arco de retratos): o hero é um ARCO DE CARDS DE PERSONAS
+#   (o "painel"), cada card com rótulo demográfico curto. É a metáfora visual do produto: uma amostra
+#   de gente diversa, não um avatar. Módulos em grid bento (cards de tamanhos diferentes).
+# - Comparativo (seção DIFERENCIAL) em 3 colunas; a coluna Buzzmonitor em destaque (cor primária).
+# - Paleta: 2-3 cores do tokens.json da Buzzmonitor; uma única seção escura (DIFERENCIAL ou CTA FINAL).
+
+=== HERO ===
+# [AJUSTE 2026-11-10] Sem overline, a pedido da Thamires. H1 em benefício com "Consumidor Sintético:" em destaque grande (desvio consciente do §3; a seção PROBLEMA saiu).
+H1: Consumidor Sintético: saiba o que seu consumidor pensa em minutos
+SUB: Teste campanhas, criativos, produtos e mensagens com até 1.000 consumidores sintéticos, construídos com dados do IBGE, do Critério Brasil e do social listening da Buzzmonitor. A resposta sai em minutos, antes de você investir.
+CTA: Agendar uma demonstração
+CTA: Ver como funciona
+LABEL: Base do IBGE + social listening
+LABEL: Pesquisa quantitativa e qualitativa
+LABEL: Resultado em minutos
+# [VISUAL] Texto à esquerda + mosaico de 9 retratos à direita, com destaque um a um (versão A escolhida). Rótulos dos 9 retratos, sem nome de pessoa real (4 novos adicionados para cobrir o mosaico):
+LABEL: 34 anos · Recife · Classe B2
+LABEL: 19 anos · Porto Alegre · Classe C1
+LABEL: 52 anos · Belo Horizonte · Classe A
+LABEL: 27 anos · Manaus · Classe C2
+LABEL: 41 anos · São Paulo · Classe B1
+LABEL: 63 anos · Florianópolis · Classe B1
+LABEL: 71 anos · Fortaleza · Classe C2
+LABEL: 23 anos · Salvador · Classe C1
+LABEL: 25 anos · Curitiba · Classe B2
+
+=== TICKER ===
+LIST ITEM: Campanhas
+LIST ITEM: Criativos
+LIST ITEM: Copies
+LIST ITEM: Conceitos
+LIST ITEM: Produtos
+LIST ITEM: Embalagens
+LIST ITEM: Posicionamentos
+LIST ITEM: Jornadas
+LIST ITEM: Mensagens
+LIST ITEM: Hipóteses de negócio
+
+=== SOLUCAO ===
+OVERLINE: O que são Consumidores Sintéticos?
+H2: Um painel de consumidores disponível na hora em que a decisão está sendo tomada.
+BODY: O Consumidor Sintético simula como um público reage a algo que ainda não foi lançado. Você descreve a audiência em uma linha, como "mães jovens em São Paulo" ou "Geração Z". A ferramenta monta o painel com dados demográficos do IBGE e do Critério Brasil e enriquece com o que esse público já diz nas redes, captado pela Buzzmonitor.
+QUOTE: O social listening mostra o que o seu público já disse. O Consumidor Sintético simula o que ele diria.
+STAT: 1.000 | Até 1.000 consumidores sintéticos por audiência.
+STAT: IBGE | Características reais, da base populacional do IBGE
+STAT: REDES SOCIAIS | Enriquecido por dados de social listening
+
+=== COMO FUNCIONA ===
+H2: Da pergunta ao relatório na mesma sessão de trabalho
+H3: 01 · Descreva a audiência
+BODY: Uma linha basta. O perfil é completado com dados do IBGE e do Critério Brasil, então a amostra não depende de um briefing perfeito.
+H3: 02 · Rode o teste
+BODY: Use um questionário pronto ou gerado por IA, apresente um criativo ou uma copy antes de publicar, ou levante hipóteses a partir dos comentários que a Buzzmonitor já monitora.
+H3: 03 · Receba o resultado
+BODY: Respostas simuladas, relatório em PDF com os achados e sugestões de melhoria para levar à próxima reunião.
+
+=== DIFERENCIAL ===
+OVERLINE: Por que o método importa
+H2: Uma persona convence na apresentação. Uma amostra representativa sustenta a decisão.
+BODY: Há três jeitos de ouvir um consumidor antes do lançamento. Só um deles começa pela população.
+H3: Pedir a um chatbot que finja ser cliente
+LIST ITEM: O público é o que você imaginou no prompt
+LIST ITEM: Sem base populacional
+LIST ITEM: Sem como saber de onde veio cada resposta
+H3: Personas geradas só a partir de quem posta
+LIST ITEM: Ancoradas em menções reais, o que ajuda
+LIST ITEM: Representam quem fala nas redes, e só quem fala
+LIST ITEM: Deixam de fora quem consome e não posta
+LIST ITEM: Leitura qualitativa, sem questionário com amostra
+H3: Consumidor Sintético da Buzzmonitor
+LIST ITEM: Até 1.000 respondentes sintéticos por audiência, para pesquisa quantitativa
+LIST ITEM: Painel com base no IBGE e no Critério Brasil
+LIST ITEM: O social listening da Buzzmonitor entra no mesmo fluxo, também pelo MCP da Buzzmonitor
+LIST ITEM: Inclui todo o público: quem fala nas redes e quem não fala
+LIST ITEM: Metodologia de origem acadêmica
+# [NOTA] Coluna 2 descreve a categoria de "personas a partir de menções" sem citar concorrente pelo nome (regra de conhecimento/produto: não nomear concorrentes). Reconhecer o ponto forte deles ("o que ajuda") dá credibilidade ao comparativo.
+
+=== PAUSA ===
+H2: 1.000 consumidores. Resposta em minutos.
+# [VISUAL] Seção de respiro, sem CTA nem card. "1.000" em display gigante (ref. 1).
+
+=== MODULOS ===
+H2: Um módulo para cada tipo de decisão
+H3: Teste de Comunicação
+BODY: Mostre um criativo ou uma copy à audiência sintética e receba o score de alinhamento (acima de 75 é positivo), os pontos de atenção e as reações previstas, antes de publicar.
+H3: Pesquisa quantitativa
+BODY: Questionário pronto ou gerado por IA, respondido por até 1.000 consumidores sintéticos. Disposição a pagar, preferência entre conceitos, pontos de melhoria na experiência.
+H3: Hipóteses de Pesquisa
+BODY: Hipóteses levantadas a partir dos comentários que você já monitora na Buzzmonitor, cada uma com nível de confiança alto, médio ou baixo. Sem escrever um briefing novo.
+# [VALIDAR] Você chamou de "Hipóteses de monitoramento"; a base de produto registra "Hipóteses de Pesquisa". Confirmar o nome oficial.
+H3: Focus Group
+BODY: Converse com um grupo de consumidores sintéticos e aprofunde o porquê por trás de cada resposta.
+# [VALIDAR] Módulo citado por você, ainda sem descrição na base de produto. Confirmar o que ele entrega.
+H3: UX
+BODY: Avalie jornadas, fluxos e telas pelo olhar do público antes de ir para o desenvolvimento.
+# [VALIDAR] Idem: confirmar escopo do módulo UX.
+H3: Gestão de Crises
+BODY: Simule como o público reagiria a um posicionamento ou a uma nota oficial antes de publicá-los.
+# [VALIDAR] Idem: confirmar escopo do módulo de Gestão de Crises.
+
+=== RESULTADOS ===
+H2: O que o relatório revela
+LIST ITEM: Motivações de compra
+LIST ITEM: Barreiras de adoção
+LIST ITEM: Percepção da marca
+LIST ITEM: Argumentos mais persuasivos
+LIST ITEM: Disposição a pagar
+LIST ITEM: Oportunidades de melhoria
+
+=== PARA QUEM ===
+H2: Para quem precisa decidir antes de o mercado responder
+H3: Marketing e Branding
+BODY: Teste campanha, criativo e posicionamento antes de comprar mídia.
+H3: Insights, Consumer Intelligence e Pesquisa de Mercado
+BODY: Rode pesquisa quantitativa sob demanda e chegue ao campo com hipóteses mais afiadas.
+H3: Produto, Inovação e UX
+BODY: Valide conceito, embalagem, jornada e preço antes de desenvolver.
+H3: CX e Trade Marketing
+BODY: Encontre barreiras e pontos de melhoria na experiência do cliente.
+H3: Agências
+BODY: Leve o resultado de pesquisa para a própria reunião com o cliente, em vez de uma proposta que leva semanas. Vira argumento de venda.
+
+=== PROVA ===
+H2: Validado antes de chegar à gôndola
+QUOTE: A Maracugina usou o Teste de Comunicação para validar criativos e copy da campanha de lançamento de uma nova linha de produtos, com uma audiência sintética construída para o público-alvo da marca.
+# [NOTA] Os números do case não estão documentados. Se houver score ou depoimento autorizado, entra aqui; sem isso, manter só o relato.
+
+=== PLATAFORMA ===
+OVERLINE: Uma plataforma completa
+H2: O Consumidor Sintético mora dentro de uma plataforma inteira de inteligência do consumidor.
+BODY: Ele faz parte da Buzzmonitor, a mesma plataforma que monitora a conversa sobre a sua marca, classifica sentimento, atende o seu cliente e gera relatórios completos. Quando um teste aponta uma objeção, dá para conferir no listening se ela já aparece nas redes, sem trocar de ferramenta.
+LIST ITEM: Social listening com IA: integração com Claude, Buzz Pills e AI Insights
+LIST ITEM: SAC 2.0 para atendimento multicanal
+LIST ITEM: Alertas de termos sensíveis por e-mail e WhatsApp
+LIST ITEM: MCP da Buzzmonitor: os dados da conta no Claude ou no ChatGPT, com Skills de análise prontas
+LIST ITEM: Plataforma otimizada para português e espanhol
+LABEL: A Buzzmonitor foi a primeira plataforma do Brasil a criar um MCP para social listening.
+
+=== CTA FINAL ===
+H2: Sua próxima campanha pode passar por 1.000 consumidores antes de ir ao ar.
+BODY: Agende uma demonstração e veja um teste rodando com uma audiência do seu mercado.
+# [VALIDAR] Confirmar se a demo roda um teste com audiência do mercado do lead. Se não, trocar por "Agende uma demonstração com um especialista da Buzzmonitor."
+LABEL: Nome
+LABEL: E-mail corporativo
+LABEL: Empresa
+LABEL: Cargo
+LABEL: Telefone
+CTA: Agendar demonstração
+
+=== FOOTER ===
+FOOTER: © 2026 Buzzmonitor. Todos os direitos reservados.
+
+# Revisão anti-IA: sem achados (em-dash: 0). Antítese-por-negação: 0. Exclamações: 0. Perguntas retóricas: 0 fora do FAQ.

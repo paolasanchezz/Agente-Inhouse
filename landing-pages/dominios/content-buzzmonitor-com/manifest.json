@@ -57,6 +57,11 @@
       "source": "landing-pages/buzzmonitor/buzztalks-tendencias-2027-planejamento-sp"
     },
     {
+      "slug": "consumidor-sintetico",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/consumidor-sintetico"
+    },
+    {
       "slug": "encontrar-creators",
       "marca": "buzzcreators",
       "source": "landing-pages/buzzcreators/encontrar-creators"
