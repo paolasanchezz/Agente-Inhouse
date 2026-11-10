@@ -142,6 +142,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   /* clientes passando */
+  .about{padding:0 0 88px}
+  .ab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:center;padding:44px;border-radius:32px;background:var(--card);box-shadow:0 1px 0 var(--line),0 40px 80px -60px rgba(18,13,36,.45)}
+  .ab h2{font-size:clamp(28px,3.2vw,40px);margin:16px 0 12px}
+  .ab p{margin:0 0 22px;color:var(--muted);font-size:17px;line-height:1.55}
+  .ab ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .ab li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;padding:16px 18px;border-radius:20px;background:var(--lilac-2)}
+  .ab li:nth-child(2){background:#fff3ea}
+  .ab li i{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--violet);color:#fff;font-style:normal}
+  .ab li:nth-child(2) i{background:var(--orange)}
+  .ab li svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ab li b{display:block;font-size:16px;font-weight:600;margin-bottom:2px}
+  .ab li span{display:block;font-size:14.5px;color:var(--muted);line-height:1.45}
   .proof{text-align:center}
   .proof .k{display:block;font-size:clamp(56px,7vw,92px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--violet);font-variant-numeric:tabular-nums}
   .proof p{margin:8px 0 32px;color:var(--muted);font-size:18px}
@@ -229,6 +241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   @media (max-width:1000px){
     .hgrid{grid-template-columns:minmax(0,1fr);gap:36px}
+    .ab{grid-template-columns:minmax(0,1fr);gap:28px}
     .learn{grid-template-columns:repeat(2,minmax(0,1fr))}
     .spk{grid-template-columns:minmax(0,1fr)}
     .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -236,6 +249,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   @media (max-width:640px){
     .blk,.stage{padding-block:64px}
+    .ab{padding:28px 20px;border-radius:24px}
+    .about{padding-bottom:64px}
     .learn{grid-template-columns:minmax(0,1fr)}
     .bonus{grid-template-columns:auto minmax(0,1fr)}
     .bonus .btn{grid-column:1 / -1}
@@ -349,6 +364,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>As vagas são gratuitas. Inscreva-se para receber o link de acesso.</p>
       <div class="cd" data-cd aria-label="Contagem regressiva para o webinar"></div>
       <a class="btn org" href="#inscricao" style="padding:17px 28px;font-size:16px">Garantir minha vaga gratuita →</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" aria-labelledby="ab-t">
+  <div class="in">
+    <div class="ab">
+      <div>
+        <span class="eyebrow">Sobre a Buzzmonitor</span>
+        <h2 id="ab-t">Inteligência digital para decisões de marca</h2>
+        <p>A Buzzmonitor é a plataforma de social listening, atendimento e analytics do Grupo Elife. Monitoramos as redes sociais, analisamos sentimentos e gerenciamos as interações com clientes em tempo real, com IA em cada etapa.</p>
+        <a class="btn" href="https://buzzmonitor.com.br" target="_blank" rel="noopener">Conheça a Buzzmonitor →</a>
+      </div>
+      <ul>
+        <li><i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/></svg></i><div><b>Social listening</b><span>O que estão falando da sua marca, dos concorrentes e do mercado, com detecção de tendências antes que virem crise ou oportunidade.</span></div></li>
+        <li><i><svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/></svg></i><div><b>Atendimento</b><span>Todas as conversas das redes num só lugar, para o time responder mais rápido.</span></div></li>
+        <li><i><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></i><div><b>Analytics com IA</b><span>Milhares de menções traduzidas em resumos, sentimento e próximos passos.</span></div></li>
+      </ul>
     </div>
   </div>
 </section>
