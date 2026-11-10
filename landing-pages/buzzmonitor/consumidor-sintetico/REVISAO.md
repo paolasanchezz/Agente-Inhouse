@@ -22,30 +22,36 @@
 
 ## A confirmar com o time
 
-- [ ] O form 252995108251662 se chama "Página Remarketing" no Jotform. Confirmar que reaproveitar esse form nesta LP e intencional para a atribuicao de leads.
+- [x] O form 252995108251662 se chama "Página Remarketing" no Jotform. Thamires confirmou o uso nesta LP (2026-11-10).
 
 ## Melhorias opcionais (8)
 
-- [ ] Anel de foco laranja (`:focus-visible`) tem ~2,5:1 sobre o creme — usar `--ink`/`--roxo` nas areas claras e manter laranja so nos blocos escuros
-- [ ] `.who__row h3` fica com 21px no celular — subir o minimo do clamp para 22px
+- [x] Anel de foco laranja (`:focus-visible`) tem ~2,5:1 sobre o creme — usar `--ink`/`--roxo` nas areas claras e manter laranja so nos blocos escuros
+- [x] `.who__row h3` fica com 21px no celular — subir o minimo do clamp para 22px
 - [ ] Cinco secoes seguidas de cards (Modulos, Resultados, Para quem, Prova, Plataforma) — dar a uma delas um layout sem card ou devolver o respiro de topo
-- [ ] Ordem narrativa (GUIDELINES §6): Plataforma ficou entre a Prova e o CTA final (pedido da Thamires) — alternativa e deixar a Prova colada no CTA
-- [ ] `<blockquote>` usado em textos que nao sao citacao (frase do card escuro e case Maracugina) — trocar por `<div>`/`<figure>` ou atribuir a citacao com `<cite>`
+- [x] (mantido, decisao da Thamires) Ordem narrativa (GUIDELINES §6): Plataforma ficou entre a Prova e o CTA final (pedido da Thamires) — alternativa e deixar a Prova colada no CTA
+- [x] `<blockquote>` usado em textos que nao sao citacao (frase do card escuro e case Maracugina) — trocar por `<div>`/`<figure>` ou atribuir a citacao com `<cite>`
 - [ ] Efeito de levantar no hover dos cards "Para quem" sugere clique — remover ou limitar a `hover:hover` + sem reduced-motion
-- [ ] H1 e mosaico comecam invisiveis ate o JS rodar (`.reveal`) — atrasa o LCP; tirar o `.reveal` do H1/mosaico ou animar so o `transform`
+- [x] H1 e mosaico comecam invisiveis ate o JS rodar (`.reveal`) — atrasa o LCP; tirar o `.reveal` do H1/mosaico ou animar so o `transform`
 - [ ] "Para quem" usa `<div>` em vez de lista (`<ul>`/`<li>`) como os outros grupos
 
 ## Nice-to-haves (9)
 
-- [ ] Mosaico com `role="img"` contendo `<figure>`/`<figcaption>` — usar `<div>`/`<span>`
-- [ ] Numeros "01/02/03" dentro do `<h3>` de uma `<ol>` sao lidos duas vezes — `aria-hidden` no `.step__n`
-- [ ] `role="region"` na faixa decorativa cria um landmark desnecessario
-- [ ] Links do logo abrem nova aba sem avisar — "(abre em nova aba)" no `aria-label`
-- [ ] Texto dos cards de dado (`.stat p`) em 14px — 15-16px leria melhor sobre a foto
-- [ ] `text-wrap:balance` faltando em `.dif__lead`, `.plat__stat p`, `.sol__kicker`, `.sol__quote p`, `.plat__body`
-- [ ] CSS morto do form mock (`.form`, `.field`, `.form__legal`...), `.overline--light` e `--rosa`
-- [ ] Icone do `.plat__stat` (abaixo da dobra) sem `loading="lazy"`
-- [ ] Prioridade das fotos do hero: `fetchpriority="high"` nas 1-2 primeiras e `decoding="async"` nas demais
+- [x] Mosaico com `role="img"` contendo `<figure>`/`<figcaption>` — usar `<div>`/`<span>`
+- [x] Numeros "01/02/03" dentro do `<h3>` de uma `<ol>` sao lidos duas vezes — `aria-hidden` no `.step__n`
+- [x] `role="region"` na faixa decorativa cria um landmark desnecessario
+- [x] Links do logo abrem nova aba sem avisar — "(abre em nova aba)" no `aria-label`
+- [x] Texto dos cards de dado (`.stat p`) em 14px — 15-16px leria melhor sobre a foto
+- [x] `text-wrap:balance` faltando em `.dif__lead`, `.plat__stat p`, `.sol__kicker`, `.sol__quote p`, `.plat__body`
+- [x] CSS morto do form mock (`.form`, `.field`, `.form__legal`...), `.overline--light` e `--rosa`
+- [x] Icone do `.plat__stat` (abaixo da dobra) sem `loading="lazy"`
+- [x] Prioridade das fotos do hero: `fetchpriority="high"` nas 1-2 primeiras e `decoding="async"` nas demais
+
+## Rodada 2 (2026-11-10)
+
+- Aplicadas as melhorias e nice-to-haves marcados [x] acima. Case Maracugina virou `<div class="proof__case">` (sem aspas de depoimento). `<blockquote>` do card escuro mantido.
+- Hero: H1, subtitulo, CTAs e mosaico aparecem ja visiveis (animacao so de deslocamento), sem esperar o JS.
+- Em aberto: cinco secoes seguidas de cards; efeito de hover nos cards "Para quem"; "Para quem" em `<div>` em vez de lista.
 
 ## Proximos passos
 

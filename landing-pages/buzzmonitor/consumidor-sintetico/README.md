@@ -66,10 +66,10 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 
 ## Pendências de copy (marcadas `[VALIDAR]` no copy.txt)
 
-- Nome do módulo de hipóteses ("Hipóteses de Pesquisa" × "Hipóteses de monitoramento").
-- Escopo de Focus Group, UX e Gestão de Crises.
 - Se a demo roda teste com audiência do mercado do lead (BODY do CTA final).
 - Número/depoimento autorizado do case Maracugina.
+
+Resolvidos em 2026-11-10: nome "Hipóteses de Pesquisa" e descrições de Focus Group, UX e Gestão de Crises (texto da Thamires).
 
 ## Estado
 

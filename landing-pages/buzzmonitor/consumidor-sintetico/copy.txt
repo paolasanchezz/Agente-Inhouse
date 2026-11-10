@@ -93,16 +93,12 @@ H3: Pesquisa quantitativa
 BODY: Questionário pronto ou gerado por IA, respondido por até 1.000 consumidores sintéticos. Disposição a pagar, preferência entre conceitos, pontos de melhoria na experiência.
 H3: Hipóteses de Pesquisa
 BODY: Hipóteses levantadas a partir dos comentários que você já monitora na Buzzmonitor, cada uma com nível de confiança alto, médio ou baixo. Sem escrever um briefing novo.
-# [VALIDAR] Você chamou de "Hipóteses de monitoramento"; a base de produto registra "Hipóteses de Pesquisa". Confirmar o nome oficial.
 H3: Focus Group
-BODY: Converse com um grupo de consumidores sintéticos e aprofunde o porquê por trás de cada resposta.
-# [VALIDAR] Módulo citado por você, ainda sem descrição na base de produto. Confirmar o que ele entrega.
+BODY: Converse com um grupo de consumidores sintéticos e aprofunde motivadores e valores por trás de cada resposta.
 H3: UX
-BODY: Avalie jornadas, fluxos e telas pelo olhar do público antes de ir para o desenvolvimento.
-# [VALIDAR] Idem: confirmar escopo do módulo UX.
+BODY: Avalie através do olhar do público as jornadas, fluxos e telas de seu app, site ou loja antes de ir para o desenvolvimento.
 H3: Gestão de Crises
-BODY: Simule como o público reagiria a um posicionamento ou a uma nota oficial antes de publicá-los.
-# [VALIDAR] Idem: confirmar escopo do módulo de Gestão de Crises.
+BODY: Simule como o público reage a um posicionamento ou a uma nota oficial antes de publicá-los.
 
 === RESULTADOS ===
 H2: O que o relatório revela

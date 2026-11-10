@@ -95,7 +95,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --dark-2:#2A1A33;
   --roxo:#390155;
   --laranja:#EB7C2E;
-  --rosa:#DE2451;
   --display:'League Spartan',system-ui,sans-serif;
   --serif:'Instrument Serif',Georgia,serif;
   --text:'Hanken Grotesk',system-ui,sans-serif;
@@ -118,13 +117,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 .tone{color:var(--muted)}
 
 /* text-wrap §21 */
-h1,h2,h3,.lead,.overline,.feat span,.mtag,.step p,.cmp li,.bx p,.res li,.plat__item p,.who__row p,.stat p,.final__body,.pause__line{text-wrap:balance}
-.sol__body,.foot p,.form__legal,.proof blockquote p{text-wrap:pretty}
+h1,h2,h3,.lead,.overline,.feat span,.mtag,.step p,.cmp li,.bx p,.res li,.plat__item p,.who__row p,.stat p,.final__body,.pause__line,.dif__lead,.plat__stat p,.sol__kicker,.sol__quote p,.plat__body{text-wrap:balance}
+.sol__body,.foot p,.proof__case p{text-wrap:pretty}
 
 /* a11y */
 .skip{position:absolute;left:16px;top:-80px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;z-index:200;text-decoration:none;font-weight:600}
 .skip:focus{top:16px}
-:focus-visible{outline:3px solid var(--laranja);outline-offset:3px;border-radius:10px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:10px}
+.nav :focus-visible,.final :focus-visible,.foot :focus-visible,.sol__card :focus-visible,.bx--dark :focus-visible{outline-color:var(--laranja)}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--text);font-weight:600;font-size:17px;text-decoration:none;border-radius:999px;padding:8px 8px 8px 24px;border:1px solid transparent;cursor:pointer;transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;white-space:nowrap}
@@ -142,7 +142,6 @@ h1,h2,h3,.lead,.overline,.feat span,.mtag,.step p,.cmp li,.bx p,.res li,.plat__i
 /* overline */
 .overline{display:inline-flex;align-items:center;gap:8px;font-family:var(--text);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .overline svg{width:16px;height:16px;color:var(--laranja);flex:none}
-.overline--light{color:#d8cbe0}
 
 /* NAV (ref 3) */
 .nav{position:sticky;top:14px;z-index:60;padding:0 16px}
@@ -226,7 +225,7 @@ section{scroll-margin-top:100px}
 .stat{background:#fff;border-radius:18px;padding:18px 18px 16px;box-shadow:0 20px 40px -24px rgba(0,0,0,.5)}
 .stat b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(30px,3vw,40px);letter-spacing:-.04em;line-height:1;color:var(--ink)}
 .stat b em{font-style:normal;color:var(--laranja)}
-.stat p{margin-top:8px;font-size:14px;line-height:1.4;color:var(--ink-2)}
+.stat p{margin-top:8px;font-size:15px;line-height:1.4;color:var(--ink-2)}
 .stat--wide{grid-column:1 / -1;display:flex;align-items:center;gap:18px}
 .stat--wide b{font-size:clamp(24px,2.3vw,30px);letter-spacing:-.02em;flex:none}
 .stat--wide p{margin-top:0}
@@ -336,7 +335,7 @@ section{scroll-margin-top:100px}
 .who__row{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:24px 22px 26px;display:flex;flex-direction:column;gap:14px;min-height:280px;transition:transform .3s ease,border-color .3s ease}
 .who__row:hover{transform:translateY(-4px);border-color:var(--sand-2)}
 .who__n{font-size:14px;font-weight:600;color:var(--laranja)}
-.who__row h3{font-size:clamp(21px,1.7vw,23px);letter-spacing:-.025em;line-height:1.12}
+.who__row h3{font-size:clamp(22px,1.7vw,23px);letter-spacing:-.025em;line-height:1.12}
 .who__row p{margin-top:auto;font-size:16px;color:var(--ink-2);line-height:1.5}
 
 /* PROVA */
@@ -344,9 +343,9 @@ section{scroll-margin-top:100px}
 .proof__title{background:var(--sand);border-radius:var(--r-lg);padding:clamp(30px,4vw,48px);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:40px}
 .proof__logo{height:clamp(44px,4.4vw,58px);width:auto;border-radius:6px}
 .proof__title .h2{font-size:clamp(30px,3.4vw,46px)}
-.proof blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(30px,4vw,52px);position:relative}
-.proof blockquote::before{content:"\201C";display:block;font-family:var(--serif);font-size:110px;line-height:.6;color:var(--laranja);height:46px}
-.proof blockquote p{font-size:clamp(20px,2vw,26px);line-height:1.45;color:var(--ink);font-weight:500;letter-spacing:-.01em}
+.proof__case{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(30px,4vw,52px);position:relative}
+.proof__case::before{content:"";display:block;width:44px;height:4px;border-radius:4px;background:var(--laranja);margin-bottom:26px}
+.proof__case p{font-size:clamp(20px,2vw,26px);line-height:1.45;color:var(--ink);font-weight:500;letter-spacing:-.01em}
 
 
 /* CTA FINAL (ref 1 banner) */
@@ -359,14 +358,6 @@ section{scroll-margin-top:100px}
 .final__body{margin-top:24px;color:#ddd1e4;font-size:clamp(18px,1.6vw,20px)}
 .final .avatars{justify-content:flex-start;margin-top:32px}
 .final .avatars img,.final .avatars span{border-color:var(--dark)}
-.form{background:#fff;border-radius:26px;padding:clamp(24px,3vw,36px);color:var(--ink)}
-.form__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field label{font-size:14px;font-weight:600;color:var(--ink-2)}
-.field input{font:inherit;font-size:17px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s,background .2s}
-.field input:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 4px rgba(235,124,46,.2)}
-.form .btn{width:100%;justify-content:space-between;margin-top:4px}
-.form__legal{margin-top:14px;font-size:14px;color:var(--ink-2);line-height:1.5}
 
 /* FOOTER */
 .foot{padding:0 0 16px}
@@ -378,8 +369,9 @@ section{scroll-margin-top:100px}
 /* reveal */
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
-.js .hero .reveal{transition-delay:calc(var(--d,0) * 100ms)}
-@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}.ticker__track{animation:none}.btn,.btn__ic{transition:none}}
+.js .hero .reveal{opacity:1;transform:none;transition:none;animation:heroUp .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0) * 90ms)}
+@keyframes heroUp{from{transform:translateY(18px)}}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}.js .hero .reveal{animation:none}.ticker__track{animation:none}.btn,.btn__ic{transition:none}}
 
 /* RESPONSIVE */
 @media (max-width:1080px){
@@ -434,7 +426,6 @@ section{scroll-margin-top:100px}
   .who{grid-template-columns:1fr}
   .who__row{min-height:0}
   .who__row p{font-size:17px}
-  .form__row{grid-template-columns:1fr;gap:0}
   .final__box{border-radius:28px;padding:36px 16px 24px}
   .final__box > div:first-child{padding:0 8px}
   .stats{grid-template-columns:1fr 1fr;gap:8px;left:12px;right:12px;bottom:12px}
@@ -460,7 +451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="nav">
   <div class="nav__in">
-    <a href="https://buzzmonitor.com/" class="nav__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+    <a href="https://buzzmonitor.com/" class="nav__logo" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial (abre em nova aba)">
       <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="124" height="28">
     </a>
     <a class="btn btn--primary btn--sm" href="#demo">Agendar demonstração<span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
@@ -482,9 +473,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="reveal" style="--d:3">
         <div class="mosaic" role="img" aria-label="Painel de consumidores sintéticos de diferentes idades, cidades e classes sociais">
-          <div class="mcol"><figure class="mc mc--pill" style="--h:210"><img src="assets/p-03.jpg" alt="" width="560" height="760"><figcaption class="mtag">19 anos · Porto Alegre · Classe C1</figcaption></figure><figure class="mc " style="--h:170"><img src="assets/p-06.jpg" alt="" width="560" height="760"><figcaption class="mtag">71 anos · Fortaleza · Classe C2</figcaption></figure><figure class="mc mc--leaf2" style="--h:190"><img src="assets/p-04.jpg" alt="" width="560" height="760"><figcaption class="mtag">27 anos · Manaus · Classe C2</figcaption></figure></div>
-          <div class="mcol"><figure class="mc mc--leaf" style="--h:170"><img src="assets/p-11.jpg" alt="" width="560" height="760"><figcaption class="mtag">34 anos · Recife · Classe B2</figcaption></figure><figure class="mc " style="--h:220"><img src="assets/p-07.jpg" alt="" width="560" height="760"><figcaption class="mtag">63 anos · Florianópolis · Classe B1</figcaption></figure><figure class="mc mc--pill" style="--h:150"><img src="assets/p-05.jpg" alt="" width="560" height="760"><figcaption class="mtag">23 anos · Salvador · Classe C1</figcaption></figure></div>
-          <div class="mcol"><figure class="mc " style="--h:190"><img src="assets/p-02.jpg" alt="" width="900" height="1100"><figcaption class="mtag">41 anos · São Paulo · Classe B1</figcaption></figure><figure class="mc mc--leaf" style="--h:160"><img src="assets/p-17.jpg" alt="" width="560" height="760"><figcaption class="mtag">52 anos · Belo Horizonte · Classe A</figcaption></figure><figure class="mc mc--leaf2" style="--h:230"><img src="assets/p-10.jpg" alt="" width="560" height="760"><figcaption class="mtag">25 anos · Curitiba · Classe B2</figcaption></figure></div>
+          <div class="mcol"><div class="mc mc--pill" style="--h:210"><img src="assets/p-03.jpg" alt="" width="560" height="760" fetchpriority="high"><span class="mtag">19 anos · Porto Alegre · Classe C1</span></div><div class="mc " style="--h:170"><img src="assets/p-06.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">71 anos · Fortaleza · Classe C2</span></div><div class="mc mc--leaf2" style="--h:190"><img src="assets/p-04.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">27 anos · Manaus · Classe C2</span></div></div>
+          <div class="mcol"><div class="mc mc--leaf" style="--h:170"><img src="assets/p-11.jpg" alt="" width="560" height="760" fetchpriority="high"><span class="mtag">34 anos · Recife · Classe B2</span></div><div class="mc " style="--h:220"><img src="assets/p-07.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">63 anos · Florianópolis · Classe B1</span></div><div class="mc mc--pill" style="--h:150"><img src="assets/p-05.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">23 anos · Salvador · Classe C1</span></div></div>
+          <div class="mcol"><div class="mc " style="--h:190"><img src="assets/p-02.jpg" alt="" width="900" height="1100" decoding="async"><span class="mtag">41 anos · São Paulo · Classe B1</span></div><div class="mc mc--leaf" style="--h:160"><img src="assets/p-17.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">52 anos · Belo Horizonte · Classe A</span></div><div class="mc mc--leaf2" style="--h:230"><img src="assets/p-10.jpg" alt="" width="560" height="760" decoding="async"><span class="mtag">25 anos · Curitiba · Classe B2</span></div></div>
         </div>
         <p class="mosaic__cap" aria-hidden="true"></p>
       </div>
@@ -499,11 +490,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- TICKER -->
-  <div class="ticker" role="region" aria-label="O que dá para testar">
+  <div class="ticker">
     <button class="ticker__btn" type="button" aria-pressed="false" aria-label="Pausar animação"><svg class="i-pause" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3" height="10" rx="1"/><rect x="8" y="2" width="3" height="10" rx="1"/></svg><svg class="i-play" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M4 2.5v9l7.5-4.5z"/></svg></button>
     <div class="ticker__mask">
     <div class="ticker__track">
-      <ul>
+      <ul aria-label="O que dá para testar">
         <li>Campanhas</li><li>Criativos</li><li>Copies</li><li>Conceitos</li><li>Produtos</li><li>Embalagens</li><li>Posicionamentos</li><li>Jornadas</li><li>Mensagens</li><li>Hipóteses de negócio</li>
       </ul>
       <ul aria-hidden="true">
@@ -545,17 +536,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <ol class="steps">
         <li class="step reveal">
-          <h3><span class="step__n">01</span><span class="step__dot"> · </span>Descreva a audiência</h3>
+          <h3><span class="step__n" aria-hidden="true">01</span><span class="step__dot" aria-hidden="true"> · </span>Descreva a audiência</h3>
           <div class="step__art" aria-hidden="true"><div class="mock"><div class="mock__input">mães jovens em São Paulo<i></i></div><div class="mock__dots"><img src="assets/p-04.jpg" alt="" loading="lazy" width="560" height="760"><img src="assets/p-10.jpg" alt="" loading="lazy" width="560" height="760"><img src="assets/p-03.jpg" alt="" loading="lazy" width="560" height="760"><span></span></div></div></div>
           <p>Uma linha basta. O perfil é completado com dados do IBGE e do Critério Brasil, então a amostra não depende de um briefing perfeito.</p>
         </li>
         <li class="step reveal">
-          <h3><span class="step__n">02</span><span class="step__dot"> · </span>Rode o teste</h3>
+          <h3><span class="step__n" aria-hidden="true">02</span><span class="step__dot" aria-hidden="true"> · </span>Rode o teste</h3>
           <div class="step__art" aria-hidden="true"><div class="mock"><div class="mock__row"><img src="assets/p-11.jpg" alt="" loading="lazy" width="560" height="760"><span class="mock__bar"><b style="width:82%"></b></span></div><div class="mock__row"><img src="assets/p-07.jpg" alt="" loading="lazy" width="560" height="760"><span class="mock__bar"><b style="width:64%"></b></span></div><div class="mock__row"><img src="assets/p-13.jpg" alt="" loading="lazy" width="560" height="760"><span class="mock__bar"><b style="width:45%"></b></span></div></div></div>
           <p>Use um questionário pronto ou gerado por IA, apresente um criativo ou uma copy antes de publicar, ou levante hipóteses a partir dos comentários que a Buzzmonitor já monitora.</p>
         </li>
         <li class="step reveal">
-          <h3><span class="step__n">03</span><span class="step__dot"> · </span>Receba o resultado</h3>
+          <h3><span class="step__n" aria-hidden="true">03</span><span class="step__dot" aria-hidden="true"> · </span>Receba o resultado</h3>
           <div class="step__art" aria-hidden="true"><div class="mock"><div class="mock__doc"><span class="mock__pdf">PDF</span><span class="mock__chart"><i style="height:38%"></i><i style="height:58%"></i><i style="height:46%"></i><i style="height:74%"></i><i style="height:96%"></i></span></div></div></div>
           <p>Respostas simuladas, relatório em PDF com os achados e sugestões de melhoria para levar à próxima reunião.</p>
         </li>
@@ -640,19 +631,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="bx__txt">
             <span class="bx__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="2"/><path d="M3 19c.8-3 2.7-4.5 5-4.5s4.2 1.5 5 4.5M11 19c.8-3 2.7-4.5 5-4.5s4.2 1.5 5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>Focus Group</h3>
-            <p>Converse com um grupo de consumidores sintéticos e aprofunde o porquê por trás de cada resposta.</p>
+            <p>Converse com um grupo de consumidores sintéticos e aprofunde motivadores e valores por trás de cada resposta.</p>
           </div>
           <div class="bx__img"><img src="assets/p-05.jpg" alt="" width="560" height="760" loading="lazy"></div>
         </article>
         <article class="bx reveal">
           <span class="bx__ic" aria-hidden="true" style="background:var(--sand)"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 8.5h18M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
           <h3>UX</h3>
-          <p>Avalie jornadas, fluxos e telas pelo olhar do público antes de ir para o desenvolvimento.</p>
+          <p>Avalie através do olhar do público as jornadas, fluxos e telas de seu app, site ou loja antes de ir para o desenvolvimento.</p>
         </article>
         <article class="bx bx--wide bx--dark reveal">
           <span class="bx__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2.5 19.5h19L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4.5M12 17v.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
           <h3>Gestão de Crises</h3>
-          <p>Simule como o público reagiria a um posicionamento ou a uma nota oficial antes de publicá-los.</p>
+          <p>Simule como o público reage a um posicionamento ou a uma nota oficial antes de publicá-los.</p>
         </article>
       </div>
     </div>
@@ -691,9 +682,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="sec" style="padding-top:0" aria-labelledby="proof-h2">
     <div class="wrap proof">
       <div class="proof__title reveal"><img class="proof__logo" src="assets/logo-maracugina.png" alt="Maracugina" width="812" height="246" loading="lazy"><h2 id="proof-h2" class="h2">Validado antes de chegar à gôndola</h2></div>
-      <blockquote class="reveal">
+      <div class="proof__case reveal">
         <p>A Maracugina usou o Teste de Comunicação para validar criativos e copy da campanha de lançamento de uma nova linha de produtos, com uma audiência sintética construída para o público-alvo da marca.</p>
-      </blockquote>
+      </div>
     </div>
   </section>
 
@@ -715,7 +706,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="plat__item"><span aria-hidden="true">05</span><p>Plataforma otimizada para português e espanhol</p></li>
       </ul>
       <div class="plat__stat reveal">
-        <img src="../../brand/buzzmonitor/assets/logos/logo-icon.png" alt="" width="48" height="48">
+        <img src="../../brand/buzzmonitor/assets/logos/logo-icon.png" alt="" width="48" height="48" loading="lazy">
         <p>A Buzzmonitor foi a primeira plataforma do Brasil a criar um MCP para social listening.</p>
       </div>
     </div>
@@ -742,7 +733,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="foot">
   <div class="box">
     <div class="foot__in">
-      <a href="https://buzzmonitor.com/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial">
+      <a href="https://buzzmonitor.com/" target="_blank" rel="noopener" aria-label="Buzzmonitor: página inicial (abre em nova aba)">
         <img src="../../brand/buzzmonitor/assets/logos/logo-reversed.svg" alt="" width="116" height="26">
       </a>
       <p>© 2026 Buzzmonitor. Todos os direitos reservados.</p>
