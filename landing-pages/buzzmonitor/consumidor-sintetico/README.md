@@ -58,7 +58,8 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 | p-13.jpg | 1600603406200-5b2a104684ac |
 | p-17.jpg | 1779630986800-f0ed643f357b |
 | p-21.jpg | 1695927621677-ec96e048dce2 |
-| p-22.jpg | 1790574341204-85a583303492 |
+
+**Foto do Pexels** (licença gratuita do Pexels; atribuição não obrigatória): `p-23.jpg`, foto de Mizuno K, https://www.pexels.com/pt-br/foto/cidade-meio-urbano-mulher-rua-13740534/ (enviada pela Thamires; usada no mosaico do hero e na seção "O que são").
 
 ## Pendências
 
