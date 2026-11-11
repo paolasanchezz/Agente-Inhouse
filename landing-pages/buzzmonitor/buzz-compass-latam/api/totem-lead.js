@@ -1,5 +1,5 @@
 // Totem Buzz Compass: captura do lead depois que ele pediu a analise.
-// POST /api/totem-lead  { nome, email, marca, segmento, instagram, concorrentes[], _hp, _ts }
+// POST /api/totem-lead  { nome, email, marca, segmento, pais, instagram, concorrentes[], _hp, _ts }
 //
 // Faz tres coisas, todas opcionais, independentes entre si e sem derrubar a resposta se alguma falhar:
 //   1. e-mail para o lead com o QR code e o link do resultado (SendGrid com SENDGRID_API_KEY, ou Resend com RESEND_API_KEY; ambos
@@ -11,6 +11,7 @@
 
 const { normalize, fetchWithTimeout } = require('./_lib/trends');
 const { limparPerfil } = require('./_lib/perfil');
+const { limparPais } = require('./_lib/paises');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,10 +29,11 @@ function baseUrl(req) {
 }
 
 // Mesma URL de analise do totem (m + c), sem dado pessoal na URL (a ordem dos parametros e a do totem: e a chave do cache).
-function linkDoResultado(req, { marca, segmento, instagram, concorrentes }) {
+function linkDoResultado(req, { marca, segmento, pais, instagram, concorrentes }) {
   const p = new URLSearchParams();
   p.set('m', marca);
   if (segmento) p.set('s', segmento);
+  if (pais) p.set('p', pais);
   if (instagram) p.set('i', instagram);
   concorrentes.forEach((c) => p.append('c', c));
   return `${baseUrl(req)}/totem-resultado?${p.toString()}`;
@@ -469,6 +471,7 @@ module.exports = async (req, res) => {
   const email = normalize(body.email, 200).toLowerCase();
   const marca = normalize(body.marca, 80);
   const segmento = normalize(body.segmento, 60);
+  const pais = limparPais(body.pais);
   const instagram = limparPerfil(body.instagram);
   const concorrentes = (Array.isArray(body.concorrentes) ? body.concorrentes : [])
     .map((c) => normalize(String(c || ''), 60)).filter(Boolean).slice(0, 3);
@@ -482,10 +485,10 @@ module.exports = async (req, res) => {
     return res.json({ ok: false, error: 'invalid_email', message: 'Correo no válido.' });
   }
 
-  const link = linkDoResultado(req, { marca, segmento, instagram, concorrentes });
+  const link = linkDoResultado(req, { marca, segmento, pais, instagram, concorrentes });
   const urlConversao = urlDeConversao(req, body.url_conversao);
   const rastreio = valoresDeRastreio(urlConversao);
-  const lead = { origem: 'buzz-compass-totem-latam', criado_em: new Date().toISOString(), nome, email, marca, segmento, instagram, concorrentes, link, ...rastreio };
+  const lead = { origem: 'buzz-compass-totem-latam', criado_em: new Date().toISOString(), nome, email, marca, segmento, pais, instagram, concorrentes, link, ...rastreio };
 
   // Registro de seguranca: enquanto nenhuma integracao estiver ligada, este log e o unico lugar onde o lead existe.
   console.log('[totem-lead]', JSON.stringify(lead));

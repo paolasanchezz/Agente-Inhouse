@@ -7,7 +7,20 @@
 //   - palavras separadas por espaco, sem aspas, exigem que TODAS aparecam no post (E implicito)
 //   - AND, NOT, && e & NAO sao operadores: viram palavra literal e zeram o resultado
 
+const { AsyncLocalStorage } = require('node:async_hooks');
+
 const BM_API_BASE = 'https://api.buzzmonitor.com.br';
+
+// Fuso da analise em curso (horas em relacao a UTC). Cada analise roda dentro de comFuso(), entao duas analises
+// simultaneas na mesma instancia (paises diferentes) nao se misturam. Fora de comFuso() vale -6 (Cidade do Mexico).
+const contexto = new AsyncLocalStorage();
+function fusoAtual() {
+  const store = contexto.getStore();
+  return store && Number.isFinite(store.fuso) ? store.fuso : -6;
+}
+function comFuso(fuso, fn) {
+  return contexto.run({ fuso }, fn);
+}
 
 // Credencial "guest" da ferramenta gratuita publica (trends.app.buzzmonitor.com.br). Mesma da api/radar.js.
 // Nao e API oficial documentada para este uso: validar limite com engenharia antes de escalar trafego.
@@ -36,12 +49,12 @@ async function fetchWithTimeout(url, opts, ms) {
   }
 }
 
-// Versao LATAM: idioma es (a Trends nao filtra por pais, entao entra Mexico, resto da America Latina e Espanha) e fuso da Cidade do Mexico (-6). Barra falso positivo em ingles e portugues. Para volume, service vazio = todas as redes.
+// Versao LATAM: idioma es (a Trends nao filtra por pais, entao entra Mexico, resto da America Latina e Espanha) e fuso do pais escolhido (padrao -6, Cidade do Mexico). Barra falso positivo em ingles e portugues. Para volume, service vazio = todas as redes.
 // O endpoint de posts responde 500 com service vazio (testado em 2026-10-16): precisa da lista explicita.
 const SERVICES_POSTS = ['facebook', 'instagram', 'misc', 'twitter'];
 
 function generalParams(query, since, until, service = []) {
-  return { since, until, language: ['es'], timezone: '-6.0', service, query };
+  return { since, until, language: ['es'], timezone: fusoAtual().toFixed(1), service, query };
 }
 
 // Erro passageiro (rede, timeout, 5xx) merece uma segunda tentativa; 4xx (query invalida) nao: repetir nao muda nada.
@@ -83,7 +96,8 @@ function bmPosts(query, since, until, size, sort = 'top_posts_field', servicos =
 }
 
 // Perfis influentes ligados a uma palavra. A busca so responde a UMA palavra (frase composta e OR devolvem 0).
-async function bmInfluencers(palavra, idiomas = '[]') {
+// paises: lista JSON de codigos ISO (ex.: '["CO"]'). Diferente dos posts, aqui o filtro por pais funciona (testado em 2026-11-10).
+async function bmInfluencers(palavra, idiomas = '[]', paises = '[]') {
   const qs = new URLSearchParams({
     searchFor: `""${palavra}""`,
     socialNetworks: '["instagram", "facebook", "youtube"]',
@@ -94,7 +108,7 @@ async function bmInfluencers(palavra, idiomas = '[]') {
     'languages[]': idiomas,
     age: '[]',
     page: '0',
-    countries: '[]',
+    countries: paises,
     interests: '[]',
   });
   const r = await fetchWithTimeout(`https://crawler.influencers.buzzmonitor.com.br/influencers/search?${qs.toString()}`, {
@@ -147,4 +161,4 @@ async function emLote(tarefas, limite) {
   return resultados;
 }
 
-module.exports = { BM_GUEST_AUTH, normalize, bmDate, fetchWithTimeout, bmVolume, bmPosts, bmInfluencers, bmPerfilInstagram, emLote };
+module.exports = { fusoAtual, comFuso, BM_GUEST_AUTH, normalize, bmDate, fetchWithTimeout, bmVolume, bmPosts, bmInfluencers, bmPerfilInstagram, emLote };

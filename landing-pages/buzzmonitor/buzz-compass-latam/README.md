@@ -24,6 +24,29 @@ ambiente (o token do AC LATAM nunca entra no projeto do Brasil) e o código do B
 - **Ordem de publicação:** primeiro este projeto (criar + deploy), depois o projeto do Brasil com o `vercel.json` novo.
   Se o Brasil subir antes, `/es` responde erro do proxy até o LATAM existir.
 
+## Seletor de país (2026-11-10)
+
+Na tela "¿Qué marca vamos a analizar?" o visitante escolhe o país (obrigatório): **México, Colombia, Chile, Argentina e
+Perú**, e só esses. A lista fica em `api/_lib/paises.js` (servidor) e em `assets/totem-render.js` (front), com o mesmo
+código ISO nos dois.
+
+**A Trends não filtra post por país.** Testado em 2026-11-10 na API guest: `location`, `country` e `countries` em
+`general_params` ou no corpo são ignorados (o volume não muda), e cerca de 90% dos posts não trazem a localização do
+autor, então nem dá para filtrar depois. O país segmenta a análise por estes caminhos:
+
+- **Buscas** (`api/_lib/buscas.js`, `planSystem`): a IA monta a busca para o mercado do país: concorrentes sugeridos que
+  competem ali, `@perfil` e `#hashtag` locais da marca além do global, a categoria como se diz naquele país. Sem IA (modo
+  reserva) o país não muda a busca.
+- **Perfis ligados à marca:** a busca de influenciadores aceita `countries` com o código ISO (essa sim filtra). Se não houver
+  perfil do país (depois de tirar as marcas da comparação), vale a lista geral em espanhol.
+- **Fuso** das séries diárias e das chamadas da Trends (`comFuso` em `api/_lib/trends.js`, por análise, sem misturar duas
+  análises simultâneas).
+- **Leitura da IA:** o país vai no payload (`pais`), com a regra de nunca apresentar os números como sendo só daquele país.
+
+O país entra na URL de análise como `p` (ordem `m, s, p, i, c`, a chave do cache), no link do QR/e-mail e no lead
+(`pais` no log e no webhook da planilha; o Apps Script só grava a coluna se for atualizado). Links antigos sem `p`
+continuam valendo, com México como referência. Testes: `tests/pais.test.js`.
+
 ## O que entrou (e o que ficou de fora)
 
 - **Entrou:** o totem da raiz (`index.html` + `assets/totem-app.js`), o resultado compartilhado (`assets/totem-render.js`),
@@ -37,11 +60,12 @@ ambiente (o token do AC LATAM nunca entra no projeto do Brasil) e o código do B
 | Ponto | Brasil | LATAM |
 |---|---|---|
 | Idioma da busca na Trends | `language: ['pt']` | `language: ['es']` (`api/_lib/trends.js`). **A Trends não filtra por país**: entram México, resto da América Latina e Espanha. |
-| Fuso (séries diárias e datas) | `-3` (Brasília) | `-6` (Cidade do México, sem horário de verão desde 2022) |
+| Fuso (séries diárias e datas) | `-3` (Brasília) | o do país escolhido (México `-6`, Colômbia e Peru `-5`, Argentina `-3`, Chile `-3`/`-4` conforme o horário de verão); sem país, `-6` |
 | Prompts da IA (buscas, homônimo, relevância, narrativa) | português | espanhol do México, com exemplos mexicanos (Bimbo, Corona, Liverpool, OXXO) e as regras do `padrao-linguistico.md` ES-LATAM (tuteo, "celular", "reporte", "monitoreo") |
 | Formato de número | 40.459 e 2,4% | 40,459 e 2.4% (`formatarNumerosEsMx` em `api/_lib/analise.js`) |
 | Léxico de queixa/elogio | "reclamação", "péssimo", "amei"... | "queja", "pésimo", "estafa", "profeco", "me encanta", "lo recomiendo"... |
-| Influenciadores | perfis em `pt` | perfis em `es` |
+| Influenciadores | perfis em `pt` | perfis em `es`, primeiro os do país escolhido |
+| País | não tem | seletor **País** (México, Colômbia, Chile, Argentina, Peru), ver seção abaixo |
 | Textos sem IA (`narrativaPorDados`) | português | espanhol |
 | E-mail do resultado | "Seu Buzz Compass de X está pronto" | "Tu Buzz Compass de X ya está listo" |
 | Botão de demo do e-mail | `promo.buzzmonitor.com/plataforma-completa` | `content.buzzmonitor.com/plataforma-completa-social-media-latam` (LP LATAM no ar, `lang=es-419`) |

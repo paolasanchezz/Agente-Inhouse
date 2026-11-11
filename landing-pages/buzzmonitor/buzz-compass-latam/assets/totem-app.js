@@ -19,7 +19,7 @@
   var timerAviso = null, timerIdle = null, timerEtapas = null, timerToast = null;
 
   function novoEstado() {
-    return { marca: '', segmento: '', instagram: '', concorrentes: [], nome: '', email: '', formTs: 0, leadEnviado: false, leadStatus: null, controller: null, link: '' };
+    return { marca: '', segmento: '', pais: '', instagram: '', concorrentes: [], nome: '', email: '', formTs: 0, leadEnviado: false, leadStatus: null, controller: null, link: '' };
   }
 
   // --- Navegacao ---
@@ -59,7 +59,7 @@
     clearTimeout(timerAviso); clearTimeout(timerIdle); clearInterval(timerEtapas);
     if (estado.controller) estado.controller.abort();
     estado = novoEstado();
-    Array.prototype.forEach.call(document.querySelectorAll('#app input'), function (i) { i.value = ''; });
+    Array.prototype.forEach.call(document.querySelectorAll('#app input, #app select'), function (i) { i.value = ''; });
     Array.prototype.forEach.call(document.querySelectorAll('.field.erro'), function (f) { f.classList.remove('erro'); });
     $('resBody').innerHTML = '';
     $('fim').innerHTML = '';
@@ -83,12 +83,16 @@
     e.preventDefault();
     var marca = $('marca').value.trim();
     var segmento = $('segmento').value.trim();
+    var pais = TotemRender.limparPais($('pais').value);
     marcarErro('fld-marca', marca.length < 2);
     marcarErro('fld-segmento', segmento.length < 2);
+    marcarErro('fld-pais', !pais);
     if (marca.length < 2) { $('marca').focus(); return; }
     if (segmento.length < 2) { $('segmento').focus(); return; }
+    if (!pais) { $('pais').focus(); return; }
     estado.marca = marca;
     estado.segmento = segmento;
+    estado.pais = pais;
     estado.instagram = TotemRender.limparPerfil($('instagram').value);
     estado.concorrentes = ['c1', 'c2', 'c3'].map(function (id) { return $(id).value.trim(); }).filter(function (v) { return v.length >= 2; });
     estado.formTs = Date.now();
@@ -154,7 +158,7 @@
     fetch(TotemRender.base + '/api/totem-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url_conversao: location.origin + location.pathname + location.search, nome: estado.nome, email: estado.email, marca: estado.marca, segmento: estado.segmento, instagram: estado.instagram, concorrentes: estado.concorrentes, _hp: $('hp').value, _ts: estado.formTs }),
+      body: JSON.stringify({ url_conversao: location.origin + location.pathname + location.search, nome: estado.nome, email: estado.email, marca: estado.marca, segmento: estado.segmento, pais: estado.pais, instagram: estado.instagram, concorrentes: estado.concorrentes, _hp: $('hp').value, _ts: estado.formTs }),
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (estado !== sessao) return; // a sessao ja foi encerrada
       estado.leadStatus = j;
@@ -169,7 +173,7 @@
     var controller = new AbortController();
     estado.controller = controller;
     var limite = setTimeout(function () { controller.abort(); }, TIMEOUT_ANALISE_MS);
-    fetch(TotemRender.apiUrl(estado.marca, estado.concorrentes, estado.segmento, estado.instagram), { signal: controller.signal })
+    fetch(TotemRender.apiUrl(estado.marca, estado.concorrentes, estado.segmento, estado.instagram, estado.pais), { signal: controller.signal })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, json: j }; }); })
       .then(function (res) {
         clearTimeout(limite);
@@ -205,9 +209,9 @@
   // --- Resultado ---
 
   function mostrarResultado(data) {
-    TotemRender.render($('resBody'), data, { nome: estado.nome, marca: estado.marca, segmento: estado.segmento, kiosk: !PHONE });
-    // O QR leva a mesma analise ja consultada aqui (mesma URL = cache da borda): so marca, segmento e concorrentes digitados.
-    estado.link = TotemRender.linkDoResultado(location.origin, estado.marca, estado.concorrentes, estado.segmento, estado.instagram);
+    TotemRender.render($('resBody'), data, { nome: estado.nome, marca: estado.marca, segmento: estado.segmento, pais: estado.pais, kiosk: !PHONE });
+    // O QR leva a mesma analise ja consultada aqui (mesma URL = cache da borda): so marca, segmento, pais e concorrentes digitados.
+    estado.link = TotemRender.linkDoResultado(location.origin, estado.marca, estado.concorrentes, estado.segmento, estado.instagram, estado.pais);
     var qr = '';
     // No celular a pessoa ja esta com o resultado na mao: sem QR, so o aviso do e-mail e o botao para analisar outra marca.
     if (!PHONE) { try { qr = QR.toSvg(estado.link, { ecc: 'M', margin: 2 }); } catch (err) { qr = ''; } }

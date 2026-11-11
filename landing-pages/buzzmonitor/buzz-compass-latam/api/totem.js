@@ -1,5 +1,6 @@
 // Totem Buzz Compass: analise de uma marca contra 3 concorrentes.
-// GET /api/totem?m=Marca&s=Segmento&i=perfil_instagram&c=Concorrente1&c=Concorrente2&c=Concorrente3  (s, i e c opcionais, c ate 3)
+// GET /api/totem?m=Marca&s=Segmento&p=MX&i=perfil_instagram&c=Concorrente1&c=Concorrente2&c=Concorrente3  (s, p, i e c opcionais, c ate 3)
+// p = pais (MX, CO, CL, AR, PE; ver api/_lib/paises.js). Sem p, vale o comportamento anterior (Mexico como referencia).
 //
 // GET de proposito: a resposta nao tem dado pessoal (o lead vai em /api/totem-lead) e por isso pode ficar no cache da
 // borda por 24h. O totem consulta primeiro; quando a pessoa abre o link do QR code ou do e-mail (mesma URL de
@@ -9,6 +10,7 @@
 const { normalize } = require('./_lib/trends');
 const { analisar } = require('./_lib/analise');
 const { limparPerfil } = require('./_lib/perfil');
+const { limparPais } = require('./_lib/paises');
 
 function paraLista(valor) {
   if (Array.isArray(valor)) return valor;
@@ -42,6 +44,9 @@ module.exports = async (req, res) => {
   // @ do Instagram da marca (opcional): so o handle limpo vai para a busca.
   const instagram = limparPerfil(req.query && req.query.i);
 
+  // Pais (codigo ISO). Valor fora da lista e descartado (e a URL e redirecionada para a forma limpa, sem ele).
+  const pais = limparPais(req.query && req.query.p);
+
   const vistos = new Set([marca.toLowerCase()]);
   const informados = [];
   for (const bruto of paraLista(req.query && req.query.c)) {
@@ -60,11 +65,12 @@ module.exports = async (req, res) => {
   // em producao (2026-10-20). A forma limpa so tem chaves permitidas e valores ja normalizados, entao nunca redireciona de novo.
   const debug = Boolean(req.query && req.query.debug === '1' && debugPermitido(req));
   const q = req.query || {};
-  const permitidas = new Set(['m', 's', 'i', 'c', ...(debug ? ['debug'] : [])]);
+  const permitidas = new Set(['m', 's', 'p', 'i', 'c', ...(debug ? ['debug'] : [])]);
   const brutosC = paraLista(q.c);
   const suja = Object.keys(q).some((k) => !permitidas.has(k))
     || q.m !== marca
     || (q.s === undefined ? '' : String(q.s)) !== segmento
+    || (q.p === undefined ? '' : String(q.p)) !== pais
     || (q.i === undefined ? '' : String(q.i)) !== instagram
     || brutosC.length !== informados.length
     || brutosC.some((c, k) => c !== informados[k]);
@@ -72,6 +78,7 @@ module.exports = async (req, res) => {
     const canonica = new URLSearchParams();
     canonica.set('m', marca);
     if (segmento) canonica.set('s', segmento);
+    if (pais) canonica.set('p', pais);
     if (instagram) canonica.set('i', instagram);
     informados.forEach((c) => canonica.append('c', c));
     if (debug) canonica.set('debug', '1');
@@ -82,7 +89,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const resultado = await analisar({ marca, segmento, informados, instagram, debug });
+    const resultado = await analisar({ marca, segmento, pais, informados, instagram, debug });
     // Cache so na borda (s-maxage): max-age=0 faz o navegador sempre perguntar a borda. Sem isso (ou com
     // stale-while-revalidate) o navegador serve uma copia velha, e o totem mostraria resultado desatualizado.
     res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400');

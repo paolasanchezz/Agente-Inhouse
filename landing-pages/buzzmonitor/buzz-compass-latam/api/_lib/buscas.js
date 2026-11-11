@@ -53,14 +53,23 @@ const SINTAXE = `Sintaxis aceptada por la búsqueda, y solo esta:
   CORRECTO: "bimbo" OR "grupo bimbo" OR #bimbo OR @grupobimbo
   INCORRECTO (deja el resultado en cero): "bimbo" "grupo bimbo" #bimbo @grupobimbo`;
 
-const PLAN_SYSTEM = `Armas búsquedas para Buzzmonitor Trends (social listening: posts públicos en español de México y del resto de América Latina, últimos 30 días).
+// Sem pais (links antigos), Mexico e a referencia, como antes. Com pais, o mercado de referencia e o pais escolhido.
+// A Trends nao filtra post por pais: o que segmenta e a busca (concorrentes, perfis, hashtags e vocabulario do pais).
+function planSystem(pais) {
+  const ref = pais ? pais.nome : 'México';
+  const regraPais = pais
+    ? `
+País elegido por el visitante: ${ref}. Trends NO filtra posts por país, así que la búsqueda es lo que segmenta: arma todo para el mercado de ${ref}. Cuando la marca tenga @perfil o #hashtag propio de ${ref} (ej.: @falabella_co, #mercadolibrearg), inclúyelo además del global. Usa la categoría como se dice en ${ref}. Excluye con guion homónimos que sean de otro país solo si son claros. Competidores sugeridos: los que compiten con la marca en ${ref}.`
+    : '';
+  return `Armas búsquedas para Buzzmonitor Trends (social listening: posts públicos en español de México y del resto de América Latina, últimos 30 días).${regraPais}
 ${SINTAXE}
 Reglas de la marca y de los competidores: cubre el nombre con y sin acento, junto y separado, apodo común, @perfil oficial probable y #hashtag cuando el nombre sea distintivo. Si el nombre es una palabra común (corona, modelo, victoria, liverpool, claro, sol, estrella, vivo, total)), NUNCA incluyas el nombre suelto: ánclalo SOLO en frases compuestas con el segmento ("cerveza corona", "tienda liverpool", "claro internet"), @perfil y #hashtag, y excluye el sentido equivocado con guion. No inventes perfiles si no tienes seguridad: omítelos. Si "perfil_instagram_oficial_da_marca" viene lleno, usa exactamente ese @ en la búsqueda de la marca (y no inventes otro).
 El visitante indica el segmento de la marca: úsalo para desambiguar el nombre (la marca pertenece a ese segmento), para armar la categoría y para sugerir competidores de ese mismo segmento.
-Regla de la categoría: términos genéricos de uso y compra de lo que vende la marca, como lo dice la gente en México y América Latina (con y sin acento), SIN nombres de marcas.
+Regla de la categoría: términos genéricos de uso y compra de lo que vende la marca, como lo dice la gente en ${pais ? ref : 'México y América Latina'} (con y sin acento), SIN nombres de marcas.
 Cada query con un máximo de ${MAX_QUERY} caracteres.
-Competidores: devuelve primero todos los que indicó el visitante (origem "informado", respetando el nombre que escribió). Después, si se pide, sugiere candidatos (origem "sugerido"): competidores directos en México (o en América Latina, si la marca no opera en México), mismo mercado y tamaño comparable, con conversación espontánea en redes, sin repetir los indicados.
+Competidores: devuelve primero todos los que indicó el visitante (origem "informado", respetando el nombre que escribió). Después, si se pide, sugiere candidatos (origem "sugerido"): competidores directos en ${ref} (o en América Latina, si la marca no opera en ${ref}), mismo mercado y tamaño comparable, con conversación espontánea en redes, sin repetir los indicados.
 Si no reconoces la marca, arma la búsqueda solo con el nombre exacto entre comillas y sus variantes de escritura, y devuelve competidores sugeridos solo si tienes seguridad del mercado.`;
+}
 
 // Erro classico de modelo: alternativas coladas so por espaco ("a" "b" #c @d). Na Trends espaco e E, entao o resultado
 // zera. Frase entre aspas, #hashtag e @perfil seguidos um do outro viram alternativas (OR). Exclusoes (-"x") ficam como
@@ -197,17 +206,19 @@ function categoriaPeloSegmento(segmento) {
   return { nome: segmento, query: sanitizarQuery(palavras.join(' OR ')) };
 }
 
-async function planejarBuscas({ marca, segmento, informados, instagram }) {
+// pais: { codigo, nome } (api/_lib/paises.js) ou null.
+async function planejarBuscas({ marca, segmento, pais, informados, instagram }) {
   const faltam = Math.max(0, 3 - informados.length);
   const pedido = {
     marca_digitada: marca,
     segmento_da_marca: segmento || null,
+    pais_do_mercado: pais ? pais.nome : null,
     perfil_instagram_oficial_da_marca: instagram ? `@${instagram}` : null,
     concorrentes_informados: informados,
     sugerir_quantos_candidatos: faltam > 0 ? faltam + 2 : 0,
   };
   const plano = await chamarJSON({
-    system: PLAN_SYSTEM,
+    system: planSystem(pais),
     user: pedido,
     schema: PLAN_SCHEMA,
     schemaName: 'plano_de_buscas',

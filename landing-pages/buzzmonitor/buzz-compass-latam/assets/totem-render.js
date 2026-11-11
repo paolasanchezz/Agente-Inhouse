@@ -19,11 +19,13 @@
   function fmt(n) { return Number(n || 0).toLocaleString('es-MX'); }
   function pct(n) { return n == null ? '–' : n + '%'; }
 
-  // Ordem fixa dos parametros (m, s, c...): e a chave do cache da borda, igual no totem, no QR code e no e-mail.
-  function parametros(marca, concorrentes, segmento, instagram) {
+  // Ordem fixa dos parametros (m, s, p, i, c...): e a chave do cache da borda, igual no totem, no QR code e no e-mail.
+  // p = pais (codigo ISO: MX, CO, CL, AR, PE).
+  function parametros(marca, concorrentes, segmento, instagram, pais) {
     var p = new URLSearchParams();
     p.set('m', marca);
     if (segmento) p.set('s', segmento);
+    if (pais) p.set('p', pais);
     if (instagram) p.set('i', instagram);
     (concorrentes || []).forEach(function (c) { p.append('c', c); });
     return p;
@@ -31,11 +33,14 @@
   // A MESMA url de analise e usada pelo totem, pelo QR code e pelo e-mail: e ela que o cache da borda guarda.
   // Versao LATAM: tudo vive em buzzcompass.buzzmonitor.com/es (o projeto do Brasil faz proxy de /es/* para este projeto).
   var BASE = '/es';
-  function apiUrl(marca, concorrentes, segmento, instagram) { return BASE + '/api/totem?' + parametros(marca, concorrentes, segmento, instagram).toString(); }
-  // Sem dado pessoal na URL (ela vai para o QR code, o e-mail e o Google Analytics): so marca, segmento, @ da marca e concorrentes.
-  function linkDoResultado(origem, marca, concorrentes, segmento, instagram) {
-    return origem + BASE + '/totem-resultado?' + parametros(marca, concorrentes, segmento, instagram).toString();
+  function apiUrl(marca, concorrentes, segmento, instagram, pais) { return BASE + '/api/totem?' + parametros(marca, concorrentes, segmento, instagram, pais).toString(); }
+  // Sem dado pessoal na URL (ela vai para o QR code, o e-mail e o Google Analytics): so marca, segmento, pais, @ da marca e concorrentes.
+  function linkDoResultado(origem, marca, concorrentes, segmento, instagram, pais) {
+    return origem + BASE + '/totem-resultado?' + parametros(marca, concorrentes, segmento, instagram, pais).toString();
   }
+  // Mesma lista do servidor (api/_lib/paises.js).
+  var PAISES = { MX: 'México', CO: 'Colombia', CL: 'Chile', AR: 'Argentina', PE: 'Perú' };
+  function limparPais(v) { var c = String(v || '').trim().toUpperCase(); return PAISES[c] ? c : ''; }
   // Mesma limpeza do servidor (api/_lib/perfil.js): "@natura", "natura" e "instagram.com/natura" viram "natura".
   function limparPerfil(v) {
     var s = String(v || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^(www\.)?instagram\.com\//, '').replace(/[\/?#].*$/, '').replace(/^@+/, '');
@@ -362,7 +367,7 @@
       '</section>';
   }
 
-  // opts: { nome, marca, segmento, kiosk }
+  // opts: { nome, marca, segmento, pais, kiosk }
   function render(container, data, opts) {
     var o = opts || {};
     var nomeMarca = (data.marca && data.marca.nome) || o.marca || 'tu marca';
@@ -370,13 +375,14 @@
     var meta = data.meta || {};
     var mercado = data.mercado || {};
     var segmento = (data.marca && data.marca.segmento) || o.segmento || mercado.nome || '';
+    var nomePais = (data.marca && data.marca.pais && data.marca.pais.nome) || PAISES[limparPais(o.pais)] || '';
     var aviso = meta.dados_parciais
       ? '<p class="notice">Algunos datos de esta consulta llegaron incompletos. La lectura de abajo puede ser parcial.</p>' : '';
 
     container.innerHTML =
       '<header class="res-head"><span class="eyebrow">Tu Compass de Mercado</span>' +
       '<h1>' + (primeiro ? '¡Hola, ' + esc(primeiro) + '! ' : '') + 'Aquí está el Buzz Compass de ' + esc(nomeMarca) + '.</h1>' +
-      '<p class="muted">' + (segmento ? 'Sector: ' + esc(segmento) + ' · ' : '') + 'Basado en conversaciones reales de los últimos 30 días, en español, en Buzzmonitor Trends.</p></header>' +
+      '<p class="muted">' + (segmento ? 'Sector: ' + esc(segmento) + ' · ' : '') + (nomePais ? 'País: ' + esc(nomePais) + ' · ' : '') + 'Basado en conversaciones reales de los últimos 30 días, en español, en Buzzmonitor Trends.</p></header>' +
       aviso +
       secaoPlacar((data.marca || {}).scores, nomeMarca, (data.marca || {}).instagram, (data.comparacao || [])[0]) +
       cartoes(data.narrativa, nomeMarca) +
@@ -385,5 +391,5 @@
       secaoProva(data.prova, nomeMarca, o.kiosk);
   }
 
-  raiz.TotemRender = { base: BASE, render: render, apiUrl: apiUrl, linkDoResultado: linkDoResultado, limparPerfil: limparPerfil, esc: esc, fmt: fmt };
+  raiz.TotemRender = { base: BASE, render: render, apiUrl: apiUrl, linkDoResultado: linkDoResultado, limparPerfil: limparPerfil, limparPais: limparPais, esc: esc, fmt: fmt };
 })(window);

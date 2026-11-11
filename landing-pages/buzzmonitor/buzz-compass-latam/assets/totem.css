@@ -91,6 +91,12 @@ body.com-fechar .close{display:inline-flex}
 .field input::placeholder{color:rgba(255,255,255,.34)}
 .field input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 .35rem rgba(235,124,46,.22)}
 .field.erro input{border-color:var(--pink)}
+/* selector de pais: mesma caixa dos inputs, seta propria (o select nativo herda o visual do sistema) */
+.field select{width:100%;height:4.4rem;padding:0 3.2rem 0 1.3rem;border-radius:1rem;border:2px solid var(--line);background-color:var(--glass);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23EB7C2E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.3rem center;color:#fff;font:inherit;font-size:1.35rem;-webkit-appearance:none;appearance:none;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.field select:invalid{color:rgba(255,255,255,.34)}
+.field select option{background:#141416;color:#fff}
+.field select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 .35rem rgba(235,124,46,.22)}
+.field.erro select{border-color:var(--pink)}
 .field .msg{display:none;color:#ff7a99;font-size:.95rem;margin-top:.4rem}
 .field.erro .msg{display:block}
 .grupo-concorrentes{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
@@ -273,7 +279,7 @@ body.phone{overflow-x:hidden}
   .step .dica--sec{margin:.7rem 0 .4rem}
   .field{margin-bottom:.4rem}
   .field label{margin-bottom:.25rem}
-  .field input[type=text],.field input[type=email]{height:3.2rem;font-size:1.2rem}
+  .field input[type=text],.field input[type=email],.field select{height:3.2rem;font-size:1.2rem}
   .step .btn{min-height:3.4rem}
   .acoes{margin-top:.6rem}
   .step{padding-bottom:1rem}
@@ -342,6 +348,7 @@ body.phone .step .dica{font-size:.98rem;margin-bottom:1.2rem}
 body.phone .step .dica--sec{margin:1.1rem 0 .6rem}
 body.phone .field{margin-bottom:.9rem}
 body.phone .field input[type=text],body.phone .field input[type=email]{height:3.4rem;padding:0 1rem;font-size:1rem}
+body.phone .field select{height:3.4rem;padding:0 2.8rem 0 1rem;font-size:1rem;background-position:right 1rem center}
 body.phone .grupo-concorrentes{gap:0}
 /* barra de acoes fixa no rodape da rolagem: o botao de avancar fica sempre a vista, mesmo com a lista de concorrentes aberta */
 body.phone .step .acoes{position:sticky;bottom:0;z-index:2;margin-top:.6rem;padding:1.1rem 0 calc(.8rem + env(safe-area-inset-bottom));background:linear-gradient(0deg,var(--bg) 68%,rgba(7,7,8,0))}

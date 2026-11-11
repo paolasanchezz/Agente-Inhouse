@@ -2,10 +2,11 @@
 // -> narrativa por IA. Os numeros nunca vem da IA: ela so escreve texto em cima do que foi calculado aqui.
 // O Compass Score e da MARCA (api/_lib/score.js, documentado em SCORING.md); o segmento aparece nos graficos e nos cards.
 
-const { normalize, fetchWithTimeout, bmDate, bmVolume, bmPosts, bmInfluencers, bmPerfilInstagram, emLote } = require('./trends');
+const { fusoAtual, comFuso, normalize, fetchWithTimeout, bmDate, bmVolume, bmPosts, bmInfluencers, bmPerfilInstagram, emLote } = require('./trends');
 const { chamarJSON } = require('./llm');
 const { planejarBuscas, revisarBusca, soAncoras, queryExata, categoriaPeloSegmento } = require('./buscas');
 const { scoreDaMarca, crescimentoPct } = require('./score');
+const { dadosDoPais, fusoHoras } = require('./paises');
 
 // --- Utilidades de dado ---
 
@@ -20,11 +21,11 @@ function contarSentimento(data) {
   return { positivos, neutros, negativos, total: positivos + neutros + negativos };
 }
 
-// 30 dias corridos no fuso da Cidade do Mexico (-6, sem horario de verao desde 2022), na mesma ordem para todos os grupos (barra comparar linha com linha).
+// 30 dias corridos no fuso do pais da analise (padrao -6, Cidade do Mexico; ver trends.js comFuso), na mesma ordem para todos os grupos (barra comparar linha com linha).
 function chavesDosDias() {
   const chaves = [];
   for (let i = 29; i >= 0; i--) {
-    const d = new Date(Date.now() - 6 * 3600e3 - i * 86400e3);
+    const d = new Date(Date.now() + fusoAtual() * 3600e3 - i * 86400e3);
     chaves.push(`${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, '0')}${String(d.getUTCDate()).padStart(2, '0')}`);
   }
   return chaves;
@@ -117,6 +118,7 @@ const NARRATIVE_SCHEMA = {
 const NARRATIVE_SYSTEM = `Eres la analista de inteligencia de mercado detrás de Buzz Compass, una herramienta de Buzzmonitor. Estás leyendo el resultado de una persona que acaba de correr el Buzz Compass de su propia marca en un tótem, durante un evento en América Latina.
 Tono de voz: profesional, accesible, basado en datos, con energía y claridad. Tutea siempre ("tu marca"), nunca "usted" ni "vosotros". Nunca uses "revolucionario", "disruptivo" ni hype vacío. Nunca sugieras que la inteligencia artificial reemplaza a las personas. Nunca uses la palabra "momentum".
 Recibes: "marca_em_foco", el "segmento", la lectura del "mercado" (toda la conversación del segmento, con la marca y los competidores adentro), los "fatos" ya comparados y la "comparacao" de cada marca con ejemplos reales de posts positivos y negativos. Los posts están en español (México, el resto de América Latina y también España). La base es limitada (proyectos que ya monitorean clientes de Buzzmonitor), no es todo internet en tiempo real.
+Si viene "pais", la persona eligió ese país: las búsquedas y los competidores se armaron para ese mercado y puedes nombrar el país, pero Trends no filtra los posts por ubicación (entra conversación en español de toda la región), así que NUNCA digas que los números son solo de ese país ni "en México"/"en Colombia" como si fuera un conteo por país.
 
 CÓMO TRABAJAR, en este orden:
 1) Llena "temas" PRIMERO. Lee los "exemplos_positivos" y "exemplos_negativos" de cada marca y del mercado y lista de 4 a 8 temas CONCRETOS que de verdad aparecen en esos posts (ej.: "cupón de descuento en la tienda en línea", "lanzamiento de una nueva línea de producto", "queja por retraso en la entrega"). Para cada uno: sentimiento, dónde aparece (marca, competidor o mercado), "evidencia" (fragmento corto del ejemplo) y "posts_na_amostra" (cuántos ejemplos tratan de eso). Ignora el post que no habla del segmento ni de la marca (noticia aleatoria, otro asunto). Solo lista temas que existen en los ejemplos: nunca inventes.
@@ -500,7 +502,7 @@ function escolherInfluenciadores(resultados, nomesDaComparacao) {
   const evitar = nomesDaComparacao.map(semAcento);
   const vistos = new Set();
   for (const r of resultados) {
-    if (!r || !r.ok) continue;
+    if (!r || !r.ok || !r.value) continue;
     const lista = (r.value.data || []).map((inf) => {
       const social = (inf.social || [])[0] || {};
       return { nome: normalize(inf.name, 60) || null, rede: social.social_network || null, seguidores: social.followers || 0 };
@@ -630,14 +632,20 @@ async function corrigirHomonimos(grupos, segmento, sinceStr, untilStr) {
   return log;
 }
 
-async function analisar({ marca, segmento, informados, instagram, debug }) {
+// Cada analise roda no fuso do pais escolhido (series diarias e chamadas da Trends). Sem pais, -6 (Cidade do Mexico).
+function analisar(entrada) {
+  return comFuso(fusoHoras(entrada && entrada.pais), () => analisarNoFuso(entrada));
+}
+
+async function analisarNoFuso({ marca, segmento, pais: codigoPais, informados, instagram, debug }) {
+  const pais = dadosDoPais(codigoPais);
   const until = new Date();
   const since = new Date(until.getTime() - 30 * 24 * 60 * 60 * 1000);
   const meio = new Date(since.getTime() + 15 * 24 * 60 * 60 * 1000);
   const [sinceStr, untilStr, meioStr] = [bmDate(since), bmDate(until), bmDate(meio)];
 
   // A conferencia do perfil roda junto com o plano de buscas: nao soma tempo.
-  const [plano, perfilInstagram] = await Promise.all([planejarBuscas({ marca, segmento, informados, instagram }), conferirPerfil(instagram, marca)]);
+  const [plano, perfilInstagram] = await Promise.all([planejarBuscas({ marca, segmento, pais, informados, instagram }), conferirPerfil(instagram, marca)]);
 
   // Onda 1: volume por sentimento de cada marca candidata e da categoria (valida a query e mede o tamanho da conversa).
   const grupoMarca = { nome: plano.marca.nome, query: plano.marca.query };
@@ -708,6 +716,8 @@ async function analisar({ marca, segmento, informados, instagram, debug }) {
     () => bmPosts(queryMarca, sinceStr, untilStr, 40, 'top_posts_field', ['twitter']),
     () => bmPosts(queryMarca, sinceStr, untilStr, 40, 'top_posts_field', ['misc']),
     () => bmInfluencers(grupoMarca.nome, '["es"]'), // so perfis em espanhol: sem isso aparece gente de outro pais com o mesmo nome
+    // com pais escolhido, primeiro os perfis daquele pais; se nao houver nenhum, vale a lista em espanhol acima
+    pais ? () => bmInfluencers(grupoMarca.nome, '["es"]', JSON.stringify([pais.codigo])) : () => Promise.resolve(null),
   ]);
   const onda2 = await emLote(tarefas, 10);
   const pega = (chave) => (pos[chave] ? onda2.slice(pos[chave][0], pos[chave][0] + pos[chave][1]) : []);
@@ -781,8 +791,8 @@ async function analisar({ marca, segmento, informados, instagram, debug }) {
   });
 
   const sugeridosNaComparacao = finais.some((c) => c.origem === 'sugerido');
-  const [provaIg, provaFb, provaX, provaSites, provaInfl] = pega('prova');
-  const influenciadores = escolherInfluenciadores([provaInfl], marcasDaComparacao.map((g) => g.nome));
+  const [provaIg, provaFb, provaX, provaSites, provaInfl, provaInflPais] = pega('prova');
+  const influenciadores = escolherInfluenciadores([provaInflPais, provaInfl], marcasDaComparacao.map((g) => g.nome));
   // candidatos limitados a 4 por rede antes da conferencia de IA (a lista fica curta e a chamada barata)
   const candidatosDePosts = candidatosDaMarca([provaIg, provaFb, provaX, provaSites], fichaDe(grupoMarca.nome))
     .filter((p, i, todos) => todos.slice(0, i).filter((q) => q.rede === p.rede).length < 4);
@@ -808,6 +818,7 @@ async function analisar({ marca, segmento, informados, instagram, debug }) {
     dados_parciais: dadosParciais,
     marca_em_foco: grupoMarca.nome,
     segmento: nomeMercado,
+    pais: pais ? pais.nome : null,
     mercado: paraIAMercado(mercado, nomeMercado),
     concorrentes_sugeridos: sugeridosNaComparacao,
     fatos,
@@ -848,7 +859,7 @@ async function analisar({ marca, segmento, informados, instagram, debug }) {
     ok: true,
     // ?debug=1: mostra o que a IA recebeu (so dado publico da Trends + nomes digitados) para auditar o texto dos cards
     ...(debug ? { debug: { payload_ia: payload } } : {}),
-    marca: { nome: grupoMarca.nome, segmento: segmento || null, query: grupoMarca.query, instagram: perfilInstagram, scores: scoresMarca },
+    marca: { nome: grupoMarca.nome, segmento: segmento || null, pais: pais ? { codigo: pais.codigo, nome: pais.nome } : null, query: grupoMarca.query, instagram: perfilInstagram, scores: scoresMarca },
     mercado: {
       nome: nomeMercado,
       query: queryMercado,
