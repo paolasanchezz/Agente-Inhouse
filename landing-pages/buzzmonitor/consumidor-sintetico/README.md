@@ -47,7 +47,6 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 
 | Arquivo | Photo ID |
 |---|---|
-| p-02.jpg | 1580489944761-15a19d654956 |
 | p-03.jpg | 1611695434369-a8f5d76ceb7b |
 | p-04.jpg | 1662850886700-4ec19bd30d11 |
 | p-05.jpg | 1573515159471-0eb7ec72912c |
@@ -56,9 +55,10 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 | p-08.jpg | 1604261605115-4b34b646a05c |
 | p-10.jpg | 1588676478223-cea188261d35 |
 | p-11.jpg | 1507003211169-0a1dd7228f2d |
-| p-12.jpg | 1583264277168-58ceba4b84e7 |
 | p-13.jpg | 1600603406200-5b2a104684ac |
 | p-17.jpg | 1779630986800-f0ed643f357b |
+| p-20.jpg | 1772989665252-7cb41ae759cc |
+| p-21.jpg | 1695927621677-ec96e048dce2 |
 
 ## Pendências
 
