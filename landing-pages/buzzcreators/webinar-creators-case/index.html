@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- GTM: brand/buzzcreators/tracking.json esta com container null. Nao injetado (ver README). -->
+
+  <title>Webinar: vendedores que viram creators e vendem 3x mais | Buzzcreators</title>
+  <link rel="canonical" href="https://{{DOMAIN}}/webinar-creators-case">
+
+  <meta name="description" content="Veja como uma rede de moda transformou vendedores em creators e vendeu 3x mais que a própria mídia paga, sem e-commerce. Webinar gratuito de 12 minutos.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Buzzcreators">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Buzzcreators">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://{{DOMAIN}}/webinar-creators-case">
+  <meta property="og:title" content="Como uma rede de moda vendeu 3x mais que a própria mídia paga">
+  <meta property="og:description" content="O segredo estava atrás do balcão. Webinar gratuito: o passo a passo para transformar colaboradores em creators que vendem.">
+  <meta property="og:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webinar Buzzcreators: como uma rede de moda vendeu 3x mais que a própria mídia paga com os próprios vendedores">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Como uma rede de moda vendeu 3x mais que a própria mídia paga">
+  <meta name="twitter:description" content="O segredo estava atrás do balcão. Webinar gratuito: o passo a passo para transformar colaboradores em creators que vendem.">
+  <meta name="twitter:image" content="https://{{DOMAIN}}/{{OG_IMAGE_PATH}}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://buzzcreators.com.br#organization",
+        "name": "Buzzcreators",
+        "url": "https://buzzcreators.com.br",
+        "logo": "https://{{DOMAIN}}/assets/buzzcreators/logos/logo-color.png"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://{{DOMAIN}}/webinar-creators-case#webpage",
+        "name": "Webinar: vendedores que viram creators e vendem 3x mais | Buzzcreators",
+        "url": "https://{{DOMAIN}}/webinar-creators-case",
+        "inLanguage": "pt-BR",
+        "isPartOf": { "@id": "https://buzzcreators.com.br#organization" },
+        "description": "Veja como uma rede de moda transformou vendedores em creators e vendeu 3x mais que a própria mídia paga, sem e-commerce. Webinar gratuito de 12 minutos."
+      },
+      {
+        "@type": "Event",
+        "name": "Webinar: como uma rede de moda vendeu 3x mais que a própria mídia paga com os próprios vendedores",
+        "url": "https://{{DOMAIN}}/webinar-creators-case",
+        "description": "Webinar gravado de 12 minutos com a governança e os 4 pilares de um programa de colaboradores-creators.",
+        "inLanguage": "pt-BR",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "isAccessibleForFree": true,
+        "location": { "@type": "VirtualLocation", "url": "https://{{DOMAIN}}/webinar-creators-case" },
+        "performer": { "@type": "Person", "name": "Bruno Filho" },
+        "organizer": { "@id": "https://buzzcreators.com.br#organization" },
+        "publisher": { "@id": "https://buzzcreators.com.br#organization" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="../../brand/buzzcreators/assets/logos/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&display=swap">
+
+  <style>
+    /* ============ TOKENS (brand/buzzcreators/tokens.json) ============
+       Paleta da LP: roxo escuro (faixas), roxo medio (CTA/cards/destaques). Laranja so em micro-detalhe
+       (linha do eyebrow e setas), como na LP de referencia.
+       Referencia visual: buzzcreators.com.br/gestao-de-influenciadores (faixas roxas + cards brancos). */
+    :root {
+      --primary-dark: #3a1652;
+      --primary-darker: #2c1040;
+      --primary: #6a3895;
+      --primary-hover: #55297a;
+      --accent: #ff8119;
+      --accent-dark: #ff7300;
+      --neutral-0: #ffffff;
+      --neutral-100: #f7f9fb;
+      --neutral-200: #eaeef1;
+      --neutral-300: #d1d1d1;
+      --neutral-700: #4a4a4a;
+      --neutral-900: #1a1a1a;
+      --danger: #dc2626;
+      --on-dark: rgba(255,255,255,.86);
+      --on-dark-soft: rgba(255,255,255,.7);
+      --font: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-md: 0 4px 12px rgba(58,22,82,.08);
+      --shadow-lg: 0 18px 40px rgba(20,6,32,.28);
+      --container: 1160px;
+      --ease: cubic-bezier(.22,.8,.22,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: var(--font); font-size: 17px; line-height: 1.6;
+      color: var(--neutral-900); background: var(--neutral-0); overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { color: var(--primary-dark); margin: 0; line-height: 1.15; letter-spacing: -.02em; }
+    p { margin: 0; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--primary); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+    /* GUIDELINES §21: quebra equilibrada */
+    h1, h2, h3, .sub, .lead, .eyebrow, .stat-label, .note, .card-teaser, .microcopy, .tag { text-wrap: balance; }
+    .body-long, .speaker-body { text-wrap: pretty; }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 8px; z-index: 100;
+      background: var(--primary-dark); color: #fff; padding: 12px 18px; border-radius: var(--radius-sm); font-weight: 700;
+    }
+    .skip-link:focus-visible { left: 12px; }
+
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+    .section { padding: 72px 0; }
+    .center { text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px;
+      font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--primary);
+    }
+    .eyebrow::before { content: ""; width: 20px; height: 3px; border-radius: 2px; background: var(--accent); }
+    .eyebrow--light { color: #fff; }
+    .h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; }
+    .lead { font-size: clamp(18px, 2vw, 20px); color: var(--neutral-700); max-width: 680px; margin-top: 14px; }
+    .center .lead { margin-left: auto; margin-right: auto; }
+
+    /* ============ BOTOES ============ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 54px; padding: 15px 28px; border: 2px solid var(--primary); border-radius: var(--radius-sm);
+      background: var(--primary); color: #fff; font: 700 17px/1.2 var(--font); text-decoration: none; cursor: pointer;
+      box-shadow: 0 8px 20px -6px rgba(106,56,149,.55);
+      transition: background 200ms var(--ease), transform 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .btn:hover { background: var(--primary-hover); border-color: var(--primary-hover); transform: translateY(-1px); color: #fff; }
+    .btn .arrow { color: var(--accent); font-size: 1.15em; line-height: 1; transition: transform 200ms var(--ease); }
+    .btn:hover .arrow { transform: translateX(3px); }
+    .btn--light { background: #fff; border-color: #fff; color: var(--primary-dark); box-shadow: 0 10px 24px -8px rgba(0,0,0,.45); }
+    .btn--light .arrow { color: var(--primary); }
+    .btn--light:hover { background: var(--neutral-200); border-color: var(--neutral-200); color: var(--primary-dark); }
+    .btn--ghost-light { background: transparent; border-color: rgba(255,255,255,.7); color: #fff; box-shadow: none; }
+    .btn--ghost-light:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+    /* ============ HEADER ============ */
+    .header { background: #fff; }
+    .header-inner { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-logo { height: 28px; width: auto; }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255,129,25,.22); flex: none; }
+
+    /* ============ HERO (faixa roxa + form branco + numeros) ============ */
+    .hero {
+      position: relative; overflow: hidden; color: #fff; padding: 40px 0 0;
+      background:
+        radial-gradient(900px 480px at 85% 0%, rgba(106,56,149,.85) 0%, rgba(106,56,149,0) 70%),
+        var(--primary-dark);
+    }
+    .hero::after { /* picote de cupom decorativo */
+      content: ""; position: absolute; left: -120px; bottom: 120px; width: 360px; height: 360px; border-radius: 50%;
+      border: 2px dashed rgba(255,129,25,.35); pointer-events: none;
+    }
+    .hero-grid { display: grid; gap: 32px; align-items: start; position: relative; z-index: 1; }
+    .hero-content .overline {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; white-space: nowrap;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); color: #fff;
+      font-size: 14px; font-weight: 700; margin-bottom: 18px;
+    }
+    .hero h1 { color: #fff; font-size: clamp(34px, 4.4vw, 52px); font-weight: 800; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero .sub { font-size: clamp(18px, 2vw, 21px); font-weight: 300; color: var(--on-dark); margin-top: 18px; max-width: 560px; }
+    .hero-list { list-style: none; padding: 0; margin: 26px 0 0; display: none; }
+    .hero-list li { position: relative; padding-left: 32px; margin-bottom: 12px; color: var(--on-dark); }
+    .hero-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center; background: var(--accent); color: var(--primary-darker); font-size: 13px; font-weight: 800;
+    }
+
+    /* Numeros dentro da faixa */
+    .hero-stats { position: relative; z-index: 1; margin-top: 48px; padding: 32px 0 40px; border-top: 1px solid rgba(255,255,255,.14); }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 16px; }
+    .stat { text-align: center; }
+    .stat-num { display: block; font-size: clamp(34px, 4.2vw, 50px); font-weight: 800; color: #fff; line-height: 1; letter-spacing: -.03em; }
+    .stat-num::after { content: ""; display: block; width: 28px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.35); margin: 10px auto 8px; }
+    .stat-label { display: block; font-size: 15px; color: var(--on-dark); }
+    .note { text-align: center; font-size: 14px; color: rgba(255,255,255,.72); margin-top: 24px; }
+
+    /* ============ FORM ============ */
+    .form-card {
+      background: #fff; color: var(--neutral-900); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); padding: 26px 20px; scroll-margin-top: 16px; position: relative;
+    }
+    .form-card::before { /* picote de cupom no topo */
+      content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 4px;
+      background: repeating-linear-gradient(90deg, var(--primary) 0 10px, transparent 10px 18px); border-radius: 0 0 4px 4px;
+    }
+    .form-card h2 { font-size: clamp(22px, 2.4vw, 26px); font-weight: 800; }
+    .form-intro { font-size: 15px; color: var(--neutral-700); margin: 4px 0 18px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--neutral-900); }
+    .field .opt { font-weight: 400; color: var(--neutral-700); }
+    .field input, .field select {
+      width: 100%; min-height: 50px; padding: 12px 14px; font: 400 17px var(--font); color: var(--neutral-900);
+      background: var(--neutral-100); border: 1.5px solid var(--neutral-300); border-radius: var(--radius-sm);
+      appearance: none; -webkit-appearance: none; transition: border-color .2s, box-shadow .2s, background-color .2s;
+    }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a3895' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px;
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--primary); background-color: #fff; box-shadow: 0 0 0 4px rgba(106,56,149,.16); }
+    .field.has-error input, .field.has-error select { border-color: var(--danger); background-color: #fff7f7; }
+    .field-error { display: none; font-size: 14px; color: #b91c1c; margin-top: 5px; }
+    .field.has-error .field-error { display: block; }
+    .field-row { display: grid; gap: 0 12px; }
+    .form-card .btn { width: 100%; margin-top: 4px; }
+    .btn[aria-busy="true"] { pointer-events: none; opacity: .85; }
+    .btn .spinner { display: none; width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; }
+    .btn[aria-busy="true"] .spinner { display: inline-block; animation: spin .7s linear infinite; }
+    .btn[aria-busy="true"] .arrow { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .microcopy { text-align: center; font-size: 15px; color: var(--neutral-700); margin-top: 12px; }
+    .microcopy strong { color: var(--primary-dark); }
+    .legal { text-align: center; font-size: 14px; color: var(--neutral-700); margin-top: 8px; }
+
+    /* ----- Jotform embed wrapper (canonico) -----
+       Sem padding/background/border: o provedor ja vem com card proprio. */
+    .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
+
+    /* ============ CENARIO + VIRADA ============ */
+    .scenario { background: var(--neutral-100); }
+    .scenario-grid { display: grid; gap: 28px; align-items: stretch; margin-top: 36px; }
+    .problem-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; align-content: start; }
+    .problem-list li {
+      display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start;
+      padding: 16px 18px; background: #fff; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+    }
+    .x-icon { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #fef2f2; color: var(--danger); }
+    .x-icon svg { width: 16px; height: 16px; }
+    .problem-list h3 { font-size: 22px; font-weight: 700; color: var(--neutral-900); }
+    .problem-list p { color: var(--neutral-700); margin-top: 2px; }
+    .turn {
+      position: relative; overflow: hidden; padding: 36px 26px; border-radius: var(--radius-lg); color: #fff; max-width: 920px; margin: 0 auto; text-align: center;
+      background: linear-gradient(150deg, var(--primary) 0%, var(--primary-dark) 100%); box-shadow: var(--shadow-md);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .turn::after { content: ""; position: absolute; right: -50px; bottom: -50px; width: 180px; height: 180px; border-radius: 50%; border: 2px dashed rgba(255,255,255,.22); }
+    .turn .eyebrow { align-self: center; }
+    .turn h2 { color: #fff; font-size: clamp(30px, 3.6vw, 44px); font-weight: 800; position: relative; }
+    .turn p { color: var(--on-dark); font-size: clamp(18px, 2vw, 20px); max-width: 680px; margin: 16px auto 0; position: relative; }
+
+    /* ============ APRENDER ============ */
+    .base {
+      display: grid; gap: 8px 28px; align-items: center; margin: 36px 0 16px; padding: 22px 24px;
+      background: var(--primary-dark); color: #fff; border-radius: var(--radius-md);
+    }
+    .base-tag { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-soft); }
+    .base h3 { color: #fff; font-size: clamp(22px, 2.4vw, 26px); margin-top: 2px; }
+    .base p { color: var(--on-dark); }
+    .pillars { display: grid; gap: 16px; }
+    .pillar {
+      display: flex; flex-direction: column; padding: 24px; background: #fff; border-radius: var(--radius-md);
+      border: 1px solid var(--neutral-200); border-top: 4px solid var(--primary); box-shadow: var(--shadow-md);
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+    }
+    .pillar:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(58,22,82,.12); }
+    .pillar-num {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;
+      font-size: 14px; font-weight: 700; color: var(--primary);
+    }
+    .pillar-num::before { content: "✓"; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 14px; }
+    .pillar h3 { font-size: clamp(22px, 2vw, 24px); }
+    .pillar p { color: var(--neutral-700); margin-top: 8px; }
+    .card-teaser { margin-top: auto; padding-top: 14px; font-size: 15px; font-weight: 500; color: var(--primary-dark); }
+    .card-teaser::before { content: "▸ "; color: var(--accent); }
+
+    /* ============ CLIENTES (numeros + grade de logos) ============ */
+    .clients { background: var(--neutral-100); }
+    .clients-grid { display: grid; gap: 28px; grid-template-areas: "l" "r" "logos"; align-items: center; }
+    .cstats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cstats--l { grid-area: l; } .cstats--r { grid-area: r; }
+    .cstat { background: #fff; border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(58,22,82,.10); padding: 20px 14px; text-align: center; }
+    .cstat-num { display: block; font-size: clamp(30px, 3vw, 34px); font-weight: 800; color: var(--primary); line-height: 1.1; letter-spacing: -.02em; }
+    .cstat-label { display: block; font-size: 15px; color: var(--neutral-700); margin-top: 4px; line-height: 1.35; }
+    .logos { grid-area: logos; display: flex; flex-direction: column; align-items: center; background: #fff; border-radius: var(--radius-lg); padding: 16px 8px; }
+    .logos img { height: auto; min-height: 0; }
+    .logos .la { width: 100%; max-width: 627px; }
+    .logos .lb { width: 79.3%; max-width: 497px; } /* 497/627: mesma escala da metade A */
+
+    /* ============ FECHAMENTO (speaker + urgencia + CTAs, unica faixa escura de conteudo) ============ */
+    .closing { position: relative; overflow: hidden; padding: 80px 0; background: var(--primary-darker); color: #fff; }
+    .closing::before {
+      content: ""; position: absolute; right: -160px; top: -160px; width: 520px; height: 520px;
+      border-radius: 50%; border: 2px dashed rgba(255,255,255,.08); pointer-events: none;
+    }
+    .speaker {
+      position: relative; display: grid; gap: 20px; justify-items: center; text-align: center; max-width: 820px; margin: 0 auto;
+      padding: 26px 22px; border-radius: var(--radius-lg); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    }
+    .speaker-photo {
+      width: 140px; height: 140px; border-radius: 50%; object-fit: cover; background: var(--primary);
+      border: 4px solid #fff; min-height: 0;
+    }
+    .speaker .eyebrow { color: #fff; margin-bottom: 8px; }
+    .speaker-name { color: #fff; font-size: clamp(26px, 2.6vw, 30px); font-weight: 800; }
+    .speaker-role { font-weight: 500; color: var(--on-dark-soft); margin-top: 2px; }
+    .speaker-body { color: var(--on-dark); margin-top: 10px; }
+
+    .urgency { position: relative; text-align: center; margin-top: 64px; }
+    .tag {
+      display: inline-block; padding: 8px 18px; border-radius: 6px; background: #fff; color: var(--primary-dark);
+      font-weight: 800; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; transform: rotate(-3deg); margin-bottom: 24px;
+    }
+    .urgency h2 { color: #fff; font-size: clamp(34px, 4vw, 46px); font-weight: 800; max-width: 860px; margin: 0 auto; }
+    .urgency p { color: var(--on-dark); font-size: clamp(18px, 2vw, 20px); max-width: 620px; margin: 18px auto 0; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+    .closing .microcopy { color: rgba(255,255,255,.72); }
+    .closing .microcopy strong { color: #fff; }
+
+    /* ============ FOOTER ============ */
+    .footer { padding: 32px 0; background: var(--primary-dark); color: var(--on-dark); font-size: 14px; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+    .footer-logo { height: 26px; width: auto; filter: brightness(0) invert(1); }
+    .footer a { color: var(--on-dark); }
+    .footer a:hover { color: #fff; }
+    .social { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; }
+    .social a {
+      display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); transition: background 200ms var(--ease), color 200ms var(--ease);
+    }
+    .social a:hover { background: #fff; color: var(--primary-dark); border-color: #fff; }
+    .social svg { width: 18px; height: 18px; }
+
+    /* ============ BREAKPOINTS ============ */
+    @media (min-width: 640px) {
+      .field-row { grid-template-columns: 1fr 1fr; align-items: start; }
+      .field-row label { min-height: 2.8em; line-height: 1.4; display: flex; flex-wrap: wrap; align-items: flex-end; align-content: flex-end; column-gap: .3em; }
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+      .pillars { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+    }
+    @media (min-width: 981px) {
+      .section { padding: 104px 0; }
+      .hero { padding: 64px 0 0; }
+      .hero-grid { grid-template-columns: 1.08fr .92fr; gap: 56px; }
+      .hero-list { display: block; }
+      .form-card { padding: 34px 30px; }
+      .scenario-grid { grid-template-columns: 1.1fr .9fr; gap: 32px; }
+      .turn { padding: 64px 56px; }
+      .base { grid-template-columns: 240px 1fr; }
+      .pillars { grid-template-columns: repeat(4, 1fr); }
+      .closing { padding: 112px 0; }
+      .clients-grid { grid-template-columns: 190px 1fr 190px; grid-template-areas: "l logos r"; gap: 24px; }
+      .cstats { grid-template-columns: 1fr; gap: 120px; }
+      .logos { flex-direction: row; align-items: flex-start; padding: 8px; }
+      .logos .la { width: 55.8%; } .logos .lb { width: 44.2%; } /* 627 e 497 de 1124px */
+      .speaker { grid-template-columns: auto 1fr; text-align: left; justify-items: start; align-items: center; gap: 32px; padding: 32px 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Ir para o conteúdo</a>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="https://buzzcreators.com.br" target="_blank" rel="noopener" aria-label="Buzzcreators: página inicial">
+        <img src="../../brand/buzzcreators/assets/logos/logo-color.png" alt="" class="header-logo" width="198" height="28">
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO + FORM + NUMEROS ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="overline"><span class="live-dot" aria-hidden="true"></span>Webinar gratuito · Assista agora</span>
+          <h1 id="hero-title">Como uma rede de moda <em>vendeu 3x mais que a própria mídia paga</em> sem <span style="white-space:nowrap">e-commerce</span>, sem influenciador famoso e sem anúncio</h1>
+          <p class="sub">O segredo estava atrás do balcão. Veja o passo a passo para transformar seus colaboradores em creators que vendem.</p>
+          <ul class="hero-list">
+            <li>O case de uma das grandes redes de varejo de moda do país, com loja física forte</li>
+            <li>A governança e os 4 pilares de um programa de colaboradores-creators</li>
+            <li>Como medir cada venda sem ter e-commerce</li>
+            <li>Os resultados do 1º mês, número a número</li>
+          </ul>
+        </div>
+
+        <div class="form-card" id="formulario">
+          <h2>Assista agora, de graça</h2>
+          <p class="form-intro">Preencha e o vídeo abre na hora.</p>
+
+          <!-- INÍCIO FORM CRM: Jotform EXCLUSIVO deste webinar (263146158898674), integrado em 2026-11-11.
+               Thank You Page do proprio Jotform -> https://webinar.buzzmonitor.com/webinar-creators-case-confirmado.
+               Nunca trocar por form compartilhado com outros webinars. -->
+          <div class="jotform-embed">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/263146158898674"></script>
+          </div>
+          <p class="microcopy"><strong>Acesso imediato</strong> · 12 minutos</p>
+          <!-- FIM FORM CRM -->
+        </div>
+      </div>
+
+      <div class="container hero-stats" role="group" aria-label="Resultados do case">
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-num">3x</span><span class="stat-label">mais vendas que a mídia paga</span></div>
+          <div class="stat"><span class="stat-num">12x</span><span class="stat-label">mais engajamento</span></div>
+          <div class="stat"><span class="stat-num">4,5x</span><span class="stat-label">mais conteúdo</span></div>
+          <div class="stat"><span class="stat-num">3.719</span><span class="stat-label">comentários vs. 301</span></div>
+        </div>
+        <p class="note">1º mês do programa: colaboradores x Instagram oficial da marca. Vendas por cupom x estratégia de mídia paga da própria marca.</p>
+      </div>
+    </section>
+
+    <!-- ============ A ESTRATEGIA (destaque) ============ -->
+    <section class="section scenario" aria-labelledby="turn-title">
+      <div class="container">
+        <div class="turn">
+          <span class="eyebrow eyebrow--light">A estratégia</span>
+          <h2 id="turn-title">Essa marca olhou para dentro</h2>
+          <p class="body-long">Em vez de buscar alguém famoso lá fora, ela percebeu que o vendedor já conhece o produto e fala como o cliente, com o sotaque da cidade. E a audiência dele é o cliente em potencial que mora a 15 minutos da loja.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ O QUE VOCE VAI APRENDER ============ -->
+    <section class="section" aria-labelledby="learn-title">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">O que você vai aprender</span>
+          <h2 class="h2" id="learn-title">Não é colocar o funcionário para postar. É um programa estruturado.</h2>
+          <p class="lead">Em 12 minutos, você vê a base e os 4 pilares que fizeram o projeto sair do &ldquo;post aqui, vídeo ali&rdquo; e virar resultado de venda.</p>
+        </div>
+
+        <div class="base">
+          <div>
+            <span class="base-tag">A base</span>
+            <h3>Governança</h3>
+          </div>
+          <p>Quem precisa estar na mesa para o projeto deixar de ser &ldquo;ideia do marketing&rdquo; e virar prioridade da empresa.</p>
+        </div>
+
+        <div class="pillars">
+          <article class="pillar">
+            <span class="pillar-num">Pilar 1</span>
+            <h3>Adesão e orgulho</h3>
+            <p>Employer branding: como criar desejo de participar sem tornar nada obrigatório.</p>
+            <span class="card-teaser">De 28 para 33 creators em um mês. Veja o que manteve o engajamento.</span>
+          </article>
+          <article class="pillar">
+            <span class="pillar-num">Pilar 2</span>
+            <h3>Treinamento com influenciadores</h3>
+            <p>Roteiro, gravação e ganchos ensinados por quem vive disso.</p>
+            <span class="card-teaser">A regra para padronizar sem engessar.</span>
+          </article>
+          <article class="pillar">
+            <span class="pillar-num">Pilar 3</span>
+            <h3>Cupom rastreável</h3>
+            <p>Como vender e medir cada venda sem ter e-commerce.</p>
+            <span class="card-teaser">Saber de qual creator veio cada venda.</span>
+          </article>
+          <article class="pillar">
+            <span class="pillar-num">Pilar 4</span>
+            <h3>Virar máquina</h3>
+            <p>Gestão de quem produz, o que performa e o que vende.</p>
+            <span class="card-teaser">172 publicações no mês sem virar caos para o marketing.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLIENTES ============ -->
+    <section class="section clients" aria-label="Clientes da Buzzmonitor">
+      <div class="container clients-grid">
+        <div class="cstats cstats--l">
+          <div class="cstat"><span class="cstat-num">1.000+</span><span class="cstat-label">clientes em todo o mundo</span></div>
+          <div class="cstat"><span class="cstat-num">500+</span><span class="cstat-label">agências</span></div>
+        </div>
+        <div class="logos">
+          <img class="la" src="./assets/clientes-a.png" width="627" height="600" loading="lazy" alt="Logos de clientes: McDonald&#39;s, Burger King, KFC, Bob&#39;s, Pizza Hut, Seara, Friboi, Swift, Fazenda Futuro, Vigor, Pepsi, Toddy, Chilli Beans, Shein, Levi&#39;s, Globo, Grupo RBS, SporTV, Globoplay, Abril, Magalu, Casas Bahia, Extra, MadeiraMadeira, Ponto, Big, Assaí, Roldão, St Marche, Oba Hortifruti, Visa, Stone, Rappi Bank, Guiabolso, Banco Pan, Volkswagen, Honda, Mitsubishi Motors, Toyota e Renault">
+          <img class="lb" src="./assets/clientes-b.png" width="497" height="600" loading="lazy" alt="Mais clientes: Habib&#39;s, Spoleto, Cacau Show, Kopenhagen, Forno de Minas, Ajinomoto, Doritos, Cheetos, Arezzo&amp;Co, Puket, Umbro, Fila, Ticketmaster, Ingresso.com, CVC, Hurb, Evino, Wine, Decathlon, Marisa, Petz, Special Dog, Enjoei, Herval, Superdigital, Daycoval, Banco BV, Mycon, Hyundai, Volvo, Yamaha e Verisure">
+        </div>
+        <div class="cstats cstats--r">
+          <div class="cstat"><span class="cstat-num">300+</span><span class="cstat-label">clientes enterprise</span></div>
+          <div class="cstat"><span class="cstat-num">10k</span><span class="cstat-label">usuários</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO: SPEAKER + URGENCIA + CTAs ============ -->
+    <section class="closing" aria-labelledby="urgency-title">
+      <div class="container">
+        <div class="speaker">
+          <img src="./assets/bruno-filho.png" alt="Bruno Filho" class="speaker-photo" width="200" height="200" loading="lazy">
+          <div>
+            <span class="eyebrow">Quem apresenta</span>
+            <h3 class="speaker-name">Bruno Filho</h3>
+            <p class="speaker-role">Coordenador do projeto Buzzcreators na Buzzmonitor</p>
+            <p class="speaker-body">Bruno mostra, passo a passo, como o programa foi desenhado: da governança ao cupom rastreável, até virar um time interno de creators rodando todo mês.</p>
+          </div>
+        </div>
+
+        <div class="urgency">
+          <span class="tag">E no final</span>
+          <h2 id="urgency-title">O erro que faz 9 em cada 10 marcas desperdiçarem o ativo mais barato que já têm</h2>
+          <p>Ele aparece nos minutos finais do webinar. E é provável que a sua marca esteja cometendo esse erro agora.</p>
+          <div class="cta-row">
+            <a href="#formulario" class="btn btn--light">Quero assistir agora <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="https://www.buzzcreators.com.br/gestao-de-influenciadores?utm_source=webinar&amp;utm_content=captacao-perpetuo-creators-case" target="_blank" rel="noopener" class="btn btn--ghost-light">Conhecer o Buzzcreators <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="microcopy"><strong>Acesso imediato</strong> · 12 minutos</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="https://buzzcreators.com.br" target="_blank" rel="noopener" aria-label="Buzzcreators: página inicial">
+        <img src="../../brand/buzzcreators/assets/logos/logo-color.png" alt="" class="footer-logo" width="184" height="26" loading="lazy">
+      </a>
+      <ul class="social" aria-label="Redes sociais">
+        <li><a href="https://www.instagram.com/buzzcreatorsbr/" target="_blank" rel="noopener" aria-label="Instagram do Buzzcreators"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/company/buzzmonitor" target="_blank" rel="noopener" aria-label="LinkedIn da Buzzmonitor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a></li>
+        <li><a href="https://www.youtube.com/@buzzmonitorbrasil" target="_blank" rel="noopener" aria-label="YouTube da Buzzmonitor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.2V8.8L15.5 12z"/></svg></a></li>
+        <li><a href="https://www.facebook.com/buzzmonitorbr" target="_blank" rel="noopener" aria-label="Facebook da Buzzmonitor"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.2c-.3 0-1.3-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.2H7.5V12h2.8v10H14V12h2.8l.4-3.5z"/></svg></a></li>
+      </ul>
+      <span>&copy; 2026 Buzzcreators · <a href="https://buzzmonitor.com.br/privacidade" target="_blank" rel="noopener">Política de privacidade</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

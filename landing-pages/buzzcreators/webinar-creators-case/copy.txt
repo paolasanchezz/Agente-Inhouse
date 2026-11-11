@@ -1,0 +1,104 @@
+# LP de captura · Webinar perpetuo Buzzcreators #01 (LP Aula)
+# Par: webinar-creators-case (captura) + webinar-creators-case-confirmado (video)
+# Fonte: briefing da conversa de 2026-11-10/11 + transcricao/roteiro do video (dados apenas do video).
+# Regra: nao citar o nome da marca do case. Usar "uma das grandes redes de varejo de moda do pais".
+
+=== HERO ===
+OVERLINE: Webinar gratuito · Assista agora
+H1: Como uma rede de moda vendeu 3x mais que a própria mídia paga sem e-commerce, sem influenciador famoso e sem anúncio
+# H1 alternativa B: Os melhores creators da sua marca já estão atrás do balcão. Veja como uma rede de moda vendeu 3x mais que a própria mídia paga com eles
+# H1 alternativa C: 172 posts, 12x mais engajamento e 3x mais vendas que a mídia paga: o programa que transformou vendedores de loja em creators
+SUB: O segredo estava atrás do balcão. Veja o passo a passo para transformar seus colaboradores em creators que vendem.
+LIST ITEM: O case de uma das grandes redes de varejo de moda do país, com loja física forte
+LIST ITEM: A governança e os 4 pilares de um programa de colaboradores-creators
+LIST ITEM: Como medir cada venda sem ter e-commerce
+LIST ITEM: Os resultados do 1º mês, número a número
+
+=== FORM (ao lado do hero no desktop, logo abaixo no mobile) ===
+H2: Assista agora, de graça
+BODY: Preencha e o vídeo abre na hora.
+FIELDS: Nome · E-mail corporativo · Empresa · Cargo (Analista, Coordenador, Gerente, Diretor/C-level, Outro) · Nº de lojas/colaboradores (opcional: até 50, 51–200, 201–1000, +1000) · Telefone/WhatsApp (opcional)
+CTA: Quero assistir agora
+MICROCOPY: Acesso imediato · 12 minutos
+FORM: Jotform EXCLUSIVO 263146158898674 (integrado 2026-11-11). Thank You Page do Jotform -> /webinar-creators-case-confirmado. Nunca form compartilhado.
+# LEGAL do mock saiu: o Jotform ja traz o opt-out "Não desejo receber newsletter e novidades da Buzzmonitor".
+
+=== NUMEROS (dentro da faixa roxa do hero) ===
+STAT: 3x · mais vendas que a mídia paga
+STAT: 12x · mais engajamento
+STAT: 4,5x · mais conteúdo
+STAT: 3.719 · comentários vs. 301
+NOTE: 1º mês do programa: colaboradores x Instagram oficial da marca. Vendas por cupom x estratégia de mídia paga da própria marca.
+
+# PROBLEMA (os 3 caminhos caros): cortado na v6 a pedido do time (2026-11-11). Influenciador famoso,
+#   e-commerce e midia paga nao estao errados; a LP so destaca a estrategia diferente.
+
+=== A ESTRATEGIA (card roxo em destaque, secao propria) ===
+OVERLINE: A estratégia
+H2: Essa marca olhou para dentro
+BODY: Em vez de buscar alguém famoso lá fora, ela percebeu que o vendedor já conhece o produto e fala como o cliente, com o sotaque da cidade. E a audiência dele é o cliente em potencial que mora a 15 minutos da loja.
+
+=== O QUE VOCE VAI APRENDER (base + grid de 4) ===
+OVERLINE: O que você vai aprender
+H2: Não é colocar o funcionário para postar. É um programa estruturado.
+BODY: Em 12 minutos, você vê a base e os 4 pilares que fizeram o projeto sair do "post aqui, vídeo ali" e virar resultado de venda.
+BASE: A base · Governança | Quem precisa estar na mesa para o projeto deixar de ser "ideia do marketing" e virar prioridade da empresa.
+CARD: Pilar 1 · Adesão e orgulho | Employer branding: como criar desejo de participar sem tornar nada obrigatório. | De 28 para 33 creators em um mês. Veja o que manteve o engajamento.
+CARD: Pilar 2 · Treinamento com influenciadores | Roteiro, gravação e ganchos ensinados por quem vive disso. | A regra para padronizar sem engessar.
+CARD: Pilar 3 · Cupom rastreável | Como vender e medir cada venda sem ter e-commerce. | Saber de qual creator veio cada venda.
+CARD: Pilar 4 · Virar máquina | Gestão de quem produz, o que performa e o que vende. | 172 publicações no mês sem virar caos para o marketing.
+
+# FLUXO DO CUPOM: cortado na v2 (pedido de LP mais curta, 2026-11-11). O Pilar 3 ja cobre o cupom.
+
+=== CLIENTES (v3, pedido do time em 2026-11-11, mesma secao da LP gestao-de-influenciadores) ===
+STAT: 1.000+ · clientes em todo o mundo
+STAT: 500+ · agências
+STAT: 300+ · clientes enterprise
+STAT: 10k · usuários
+LOGOS: assets/clientes-a.png + assets/clientes-b.png (recorte da imagem enviada pelo time)
+
+=== SPEAKER (abre a secao escura de fechamento) ===
+OVERLINE: Quem apresenta
+NAME: Bruno Filho
+ROLE: Coordenador do projeto Buzzcreators na Buzzmonitor
+BODY: Bruno mostra, passo a passo, como o programa foi desenhado: da governança ao cupom rastreável, até virar um time interno de creators rodando todo mês.
+PHOTO: ./assets/bruno-filho.png (formato circular; copiar de ../conheca-o-buzzcreators/assets/bruno-filho.png)
+
+=== URGENCIA + CTA FINAL (mesma secao escura do speaker) ===
+TAG: E no final
+H2: O erro que faz 9 em cada 10 marcas desperdiçarem o ativo mais barato que já têm
+BODY: Ele aparece nos minutos finais do webinar. E é provável que a sua marca esteja cometendo esse erro agora.
+
+CTA: Quero assistir agora (rola até o form)
+CTA SECUNDARIO: Conhecer o Buzzcreators -> https://www.buzzcreators.com.br/gestao-de-influenciadores?utm_source=webinar&utm_content=captacao-perpetuo-creators-case (nova aba)
+MICROCOPY: Acesso imediato · 12 minutos
+# H2 e BODY do antigo CTA final ("Quantos creators a sua marca já tem atrás do balcão?") cortados na v2.
+
+=== FOOTER ===
+TEXT: © 2026 Buzzcreators · Política de privacidade (https://buzzmonitor.com.br/privacidade, mesmo link da LP gestao-de-influenciadores)
+SOCIAL: Instagram @buzzcreatorsbr · LinkedIn /buzzmonitor · YouTube @buzzmonitorbrasil · Facebook /buzzmonitorbr
+
+# === REVISAO ANTI-IA (/copy-revisar, 2026-11-11, v4) ===
+# Em-dash: 0 (HTML das 2 paginas e este arquivo).
+# Antitese-por-negacao: 2 ("Não é colocar o funcionário para postar. É um programa estruturado." + "Em vez de buscar alguém famoso lá fora", mantido a pedido do time), no limite.
+# Trios: reduzidos. Ficou o H1 do briefing ("sem e-commerce, sem influenciador famoso e sem anúncio"); a secao dos 3 caminhos
+#   saiu na v6; ficou "quem produz, o que performa e o que vende" (descricao de produto).
+# Filler 2.0 removido: "de verdade" (Pilar 2), "na prática" (Pilar 1), "exatamente" (Pilar 3).
+# "100% gratuito" saiu do microcopy: repetia "Webinar gratuito" e "de graça".
+# Grafia (brandbook): "comunicações da Buzzcreators" -> "do Buzzcreators".
+# Exclamacao: 1 (tks). Emoji: 0. Perguntas retoricas: 1 por secao.
+# [SUGESTAO GUIDELINES §3] O H1 abre pelo ganho (3x mais vendas), nao pela dor. Mantido porque e o gancho do video
+#   e veio do briefing. Alternativa pela dor: "Seu cliente decide a compra no celular e sua loja nao aparece".
+#   Decisao de quem aprova a copy.
+
+# ======================================================================
+# PAGINA DO VIDEO (webinar-creators-case-confirmado), v4, so titulo + video + CTA
+# ======================================================================
+=== TKS ===
+H1: Pronto! Seu acesso foi liberado
+H1 (com nome do form): Pronto, {nome}! Seu acesso foi liberado
+VIDEO: YouTube kR0Iq1bFWLc, autoplay no mudo a partir de 3:00
+BOTAO SOBRE O VIDEO: O vídeo já começou. Clique para ouvir
+TELA FINAL DO VIDEO: Quantos creators a sua marca já tem dentro de casa?
+TELA FINAL BOTOES: Assistir de novo · Conhecer o Buzzcreators
+CTA: Conhecer o Buzzcreators -> https://www.buzzcreators.com.br/gestao-de-influenciadores?utm_source=webinar&utm_content=agradecimento-perpetuo-creators-case

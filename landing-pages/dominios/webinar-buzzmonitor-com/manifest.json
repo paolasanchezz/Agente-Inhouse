@@ -316,6 +316,16 @@
       "source": "landing-pages/buzzmonitor/webinar-atencion-multicanal-latam"
     },
     {
+      "slug": "webinar-creators-case",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/webinar-creators-case"
+    },
+    {
+      "slug": "webinar-creators-case-confirmado",
+      "marca": "buzzcreators",
+      "source": "landing-pages/buzzcreators/webinar-creators-case-confirmado"
+    },
+    {
       "slug": "webinar-diversidade-2026",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/webinar-diversidade-2026"
