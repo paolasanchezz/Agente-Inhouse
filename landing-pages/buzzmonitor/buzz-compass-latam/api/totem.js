@@ -83,7 +83,9 @@ module.exports = async (req, res) => {
     informados.forEach((c) => canonica.append('c', c));
     if (debug) canonica.set('debug', '1');
     res.statusCode = 308;
-    res.setHeader('Location', `/api/totem?${canonica.toString()}`);
+    // Com /es: o endereco publico e buzzcompass.buzzmonitor.com/es (proxy do projeto do Brasil). Sem o prefixo, o
+    // redirecionamento caia na API do Brasil. Este projeto tambem atende /es/* sozinho (vercel.json), entao vale nos dois hosts.
+    res.setHeader('Location', `/es/api/totem?${canonica.toString()}`);
     res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400');
     return res.end();
   }

@@ -61,7 +61,7 @@ function chamar(url, { host = 'buzzcompass.buzzmonitor.com', method = 'GET', url
   for (const [rotulo, url] of sujas) {
     const r = await chamar(url);
     assert.strictEqual(r.status, 308, 'redireciona: ' + rotulo);
-    assert(r.headers.Location.startsWith('/api/totem?m=Natura'), rotulo + ' -> ' + r.headers.Location);
+    assert(r.headers.Location.startsWith('/es/api/totem?m=Natura'), rotulo + ' -> ' + r.headers.Location);
     assert(!/[?&](x|debug)=/.test(r.headers.Location), rotulo + ' perdeu o parametro extra: ' + r.headers.Location);
   }
   assert.strictEqual(chamadas.length, 0, 'redirecionamento nao roda analise');
