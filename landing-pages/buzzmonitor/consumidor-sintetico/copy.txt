@@ -122,6 +122,18 @@ BODY: Encontre barreiras e pontos de melhoria na experiência do cliente.
 H3: Agências
 BODY: Leve o resultado de pesquisa para a própria reunião com o cliente, em vez de uma proposta que leva semanas. Vira argumento de venda.
 
+=== CUSTO E TEMPO ===
+# [AJUSTE 2026-11-11] Seção nova pedida pela Thamires para quebrar a sequência de cards. Fica entre PARA QUEM e PROVA. Sem números de custo (não documentados).
+OVERLINE: Tempo e orçamento
+H2: Pesquisa de mercado custa caro e leva semanas. O Consumidor Sintético responde em minutos, sem custo de campo.
+BODY: Recrutar painel, ir a campo e tabular respostas pesa no orçamento, e por isso a pesquisa costuma ficar para os grandes lançamentos. Com consumidores sintéticos, dá para testar cada versão antes de investir e guardar o orçamento de pesquisa para o que já passou pelo filtro.
+LABEL: Pesquisa tradicional
+LIST ITEM: Semanas entre o briefing e o relatório
+LIST ITEM: Custo de recrutamento e de campo a cada estudo
+LABEL: Consumidor Sintético
+LIST ITEM: Respostas em minutos
+LIST ITEM: Sem recrutamento e sem ida a campo
+
 === PROVA ===
 H2: Validado antes de chegar à gôndola
 QUOTE: A Maracugina usou o Teste de Comunicação para validar criativos e copy da campanha de lançamento de uma nova linha de produtos, com uma audiência sintética construída para o público-alvo da marca.
@@ -141,7 +153,6 @@ LABEL: A Buzzmonitor foi a primeira plataforma do Brasil a criar um MCP para soc
 === CTA FINAL ===
 H2: Sua próxima campanha pode passar por 1.000 consumidores antes de ir ao ar.
 BODY: Agende uma demonstração e veja um teste rodando com uma audiência do seu mercado.
-# [VALIDAR] Confirmar se a demo roda um teste com audiência do mercado do lead. Se não, trocar por "Agende uma demonstração com um especialista da Buzzmonitor."
 LABEL: Nome
 LABEL: E-mail corporativo
 LABEL: Empresa

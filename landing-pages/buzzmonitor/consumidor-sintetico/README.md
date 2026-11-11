@@ -18,7 +18,8 @@
 7. Pausa: "1.000" gigante + avatares
 8. Módulos: grade de 6 cards
 9. Resultados: grade com 6 ✓
-10. Para quem: 5 cards numerados
+10. Para quem: 5 cards numerados (lista `<ul>`)
+10b. Tempo e orçamento: faixa roxa de destaque, pesquisa tradicional × Consumidor Sintético (quebra a sequência de cards)
 11. Prova: case Maracugina (logo pendente, aguardando arquivo oficial)
 12. Plataforma: chapéu "Uma plataforma completa" + faixa escura com 5 itens + faixa do MCP (movida para depois do case)
 13. CTA final: bloco escuro + form mock (`#demo`)
@@ -64,12 +65,9 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 - Logo da Maracugina (arquivo oficial) para o case.
 - 4 rótulos demográficos novos no hero (63 Florianópolis B1, 71 Fortaleza C2, 23 Salvador C1, 25 Curitiba B2): conferir se fazem sentido.
 
-## Pendências de copy (marcadas `[VALIDAR]` no copy.txt)
+## Pendências de copy
 
-- Se a demo roda teste com audiência do mercado do lead (BODY do CTA final).
-- Número/depoimento autorizado do case Maracugina.
-
-Resolvidos em 2026-11-10: nome "Hipóteses de Pesquisa" e descrições de Focus Group, UX e Gestão de Crises (texto da Thamires).
+Nenhuma. Em 2026-11-11 a Thamires decidiu manter o texto da demo e o case Maracugina sem números.
 
 ## Estado
 
