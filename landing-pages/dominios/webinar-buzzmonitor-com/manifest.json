@@ -151,6 +151,11 @@
       "source": "landing-pages/buzzmonitor/oferta-marketing-trends-2027"
     },
     {
+      "slug": "oferta-marketing-trends-2027-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/oferta-marketing-trends-2027-pt"
+    },
+    {
       "slug": "oferta-webinar-gestion-crisis-ia-septiembre-26",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/oferta-webinar-gestion-crisis-ia-septiembre-26"
@@ -319,6 +324,11 @@
       "slug": "webinar-marketing-trends-2027",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/webinar-marketing-trends-2027"
+    },
+    {
+      "slug": "webinar-marketing-trends-2027-pt",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/webinar-marketing-trends-2027-pt"
     },
     {
       "slug": "webinar-tendencias-2027",
