@@ -13,5 +13,5 @@
 - Formulário: mesmo Jotform da edição anterior (ID `250504226492654`)
 
 ## Pendências
-- [ ] Convidada ainda não definida: card omitido (comentário no HTML explica como adicionar)
+- [x] Convidada: Caterina Pesce, Coordenadora de Comunicação Digital, FSB Holding (adicionada em 2026-11-11; foto e logo em `assets/`)
 - [ ] Conferir se o Jotform pede a cidade/data certa (o form é o mesmo da edição SP)
