@@ -57,8 +57,8 @@ Arquivos em `assets/`, recortados e comprimidos para web (~970 KB no total). IDs
 | p-11.jpg | 1507003211169-0a1dd7228f2d |
 | p-13.jpg | 1600603406200-5b2a104684ac |
 | p-17.jpg | 1779630986800-f0ed643f357b |
-| p-20.jpg | 1772989665252-7cb41ae759cc |
 | p-21.jpg | 1695927621677-ec96e048dce2 |
+| p-22.jpg | 1790574341204-85a583303492 |
 
 ## Pendências
 
