@@ -62,3 +62,9 @@ Historico: em 2026-11-11 o form compartilhado `261904654263661` chegou a ser int
 - `../../brand/buzzcreators/assets/logos/logo-icon.png` (favicon)
 - `./assets/bruno-filho.png`
 - `./assets/og-webinar-creators-case.png` (OG, resolvida pelo build via `{{OG_IMAGE_PATH}}`)
+
+## Destino pos-envio (2026-11-12)
+
+O Jotform `263146158898674` foi clonado do form de social listening e a Thank You Page dele ainda aponta para `/perpetuo-social-listening-confirmado`. Para nao depender disso, a LP usa o mecanismo do `landing-pages/GUIA-webinar-perpetuo-destino.md`: o embed tem `data-perpetuo-next="/webinar-creators-case-confirmado"` e um script grava `bmPerpetuoNext` no `sessionStorage` ao carregar; o despachante da tks de social listening le a chave e encaminha para o video deste webinar.
+
+Limpeza recomendada no painel do Jotform: trocar a Thank You Page do form para `https://webinar.buzzmonitor.com/webinar-creators-case-confirmado`. Ai o encaminhamento vira so rede de seguranca. Falta tambem incluir esta LP na tabela do §6 do GUIA (fica para um PR de mecanica).

@@ -405,9 +405,11 @@
           <p class="form-intro">Preencha e o vídeo abre na hora.</p>
 
           <!-- INÍCIO FORM CRM: Jotform EXCLUSIVO deste webinar (263146158898674), integrado em 2026-11-11.
-               Thank You Page do proprio Jotform -> https://webinar.buzzmonitor.com/webinar-creators-case-confirmado.
+               O form foi clonado do de social listening e a Thank You Page dele ainda aponta para
+               /perpetuo-social-listening-confirmado. O despachante daquela pagina le o bmPerpetuoNext gravado
+               abaixo e encaminha para /webinar-creators-case-confirmado (GUIA-webinar-perpetuo-destino.md).
                Nunca trocar por form compartilhado com outros webinars. -->
-          <div class="jotform-embed">
+          <div class="jotform-embed" data-perpetuo-next="/webinar-creators-case-confirmado">
             <script type="text/javascript" src="https://form.jotform.com/jsform/263146158898674"></script>
           </div>
           <p class="microcopy"><strong>Acesso imediato</strong> · 12 minutos</p>
@@ -543,5 +545,20 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      'use strict';
+      // Destino pos-envio (GUIA-webinar-perpetuo-destino.md §2.1): o Jotform aterrissa numa tks fixa,
+      // que le esta chave e encaminha para o video DESTE webinar. Grava no carregamento.
+      var slot = document.querySelector('[data-perpetuo-next]');
+      if (!slot) return;
+      try {
+        sessionStorage.setItem('bmPerpetuoNext', JSON.stringify({
+          to: slot.getAttribute('data-perpetuo-next'),
+          at: Date.now()
+        }));
+      } catch (e) { /* sessionStorage bloqueado: cai no destino padrao do Jotform */ }
+    })();
+  </script>
 </body>
 </html>
