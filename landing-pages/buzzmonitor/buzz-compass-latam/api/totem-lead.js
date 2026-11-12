@@ -256,9 +256,19 @@ function chaveDoCampo(titulo, tipo) {
   if (t.includes('utm')) return CHAVES_UTM.find((k) => PALAVRAS_UTM[k].some((w) => t.includes(w))) || null;
   return null;
 }
+// Versao LATAM: a conta AC LATAM ja tem os campos de ultimo toque com o titulo igual ao nome do parametro, sem [AUTO]:
+// "URL_CONVERSAO", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term" (os mesmos que a dashboard CM LATAM le).
+// So o titulo EXATO vale (sem diferenciar maiuscula): "UTM Campaign", "utm_source_" (o jogo secundario, com _ no fim) e os
+// numerados continuam de fora. Se a conta tiver tambem o campo [AUTO], ele tem prioridade.
+const TITULOS_EXATOS = { url_conversao: 'url_conversao', utm_source: 'utm_source', utm_medium: 'utm_medium', utm_campaign: 'utm_campaign', utm_content: 'utm_content', utm_term: 'utm_term' };
+function chaveExataDoCampo(titulo, tipo) {
+  if (tipo && !/^(text|textarea)$/i.test(tipo)) return null;
+  return TITULOS_EXATOS[semAcentoAC(titulo).trim()] || null;
+}
 async function acMapaDeCampos(base, token, limite) {
   if (cacheCampos && Date.now() - cacheCampos.em < CAMPOS_VALIDADE_MS) return cacheCampos.mapa;
   const candidatos = {};
+  const exatos = {};
   for (let offset = 0; offset < 2000; offset += 100) {
     const r = await acFetch('campos', `${base}/api/3/fields?limit=100&offset=${offset}`, { headers: acHeaders(token) }, limite);
     if (!r.ok) throw new Error(`ac_campos_${r.status}`);
@@ -267,11 +277,14 @@ async function acMapaDeCampos(base, token, limite) {
     pagina.forEach((f) => {
       const chave = chaveDoCampo(f.title, f.type);
       if (chave && !candidatos[chave]) candidatos[chave] = { id: String(f.id) }; // o primeiro que servir
+      const exata = chaveExataDoCampo(f.title, f.type);
+      if (exata && !exatos[exata]) exatos[exata] = { id: String(f.id) };
     });
     const total = Number((corpo.meta && corpo.meta.total) || 0);
     if (pagina.length < 100 || offset + 100 >= total) break;
   }
   const mapa = {};
+  Object.keys(exatos).forEach((k) => { mapa[k] = exatos[k].id; }); // [AUTO] (abaixo) sobrescreve
   Object.keys(candidatos).forEach((k) => { mapa[k] = candidatos[k].id; });
   if (process.env.ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID) mapa.url_conversao = String(process.env.ACTIVECAMPAIGN_URL_CONVERSAO_FIELD_ID).trim();
   cacheCampos = { em: Date.now(), mapa };

@@ -211,6 +211,20 @@ const comoMapa = (lista) => Object.fromEntries(lista.map((f) => [f.field, f.valu
   // campo com o titulo certo mas de outro tipo (lista suspensa, data) nunca recebe texto
   assert.deepStrictEqual(Object.keys(await mapaDe([T(1, 'UTM Medium [AUTO]', 'dropdown'), T(2, 'UTM Term [AUTO]', 'date'), T(3, 'UTM Campaing [AUTO]')])).sort(), ['3'], 'so o campo de texto e usado');
 
+  // ---- 13c) conta LATAM: campos com o titulo igual ao parametro, sem [AUTO] ----
+  const exatos = await mapaDe([T(10, 'URL_CONVERSAO'), T(11, 'utm_source'), T(12, 'utm_medium'), T(13, 'utm_campaign'), T(14, 'utm_content'), T(15, 'utm_term'),
+    T(20, 'utm_source_'), T(21, 'utm_campaign 1'), T(22, 'UTM_CAMPAIGN_')]);
+  assert.strictEqual(exatos['10'], URL_CONV + '?utm_medium=m&utm_campaign=c&utm_term=t', 'URL_CONVERSAO recebe a URL de conversao');
+  assert.deepStrictEqual([exatos['11'], exatos['12'], exatos['13'], exatos['15']], ['evento', 'm', 'c', 't'], 'utm_* recebem as UTMs');
+  assert.strictEqual(exatos['14'], 'captacao-buzz-compass');
+  assert.deepStrictEqual(['20', '21', '22'].filter((id) => id in exatos), [], 'jogo secundario (_ no fim) e numerado ficam de fora');
+  // titulo exato de outro tipo (lista) nao recebe texto
+  assert.deepStrictEqual(Object.keys(await mapaDe([T(11, 'utm_source', 'dropdown'), T(13, 'utm_campaign')])), ['13']);
+  // [AUTO] tem prioridade sobre o titulo exato
+  const ambos = await mapaDe([T(13, 'utm_campaign'), T(30, 'UTM Campaing [AUTO]')]);
+  assert.strictEqual(ambos['30'], 'c');
+  assert(!('13' in ambos), 'com [AUTO] presente, o exato nao e usado');
+
   // ---- 14) valoresDeRastreio: limpeza do que vem do navegador ----
   limparEnv();
   const sujo = valoresDeRastreio(URL_CONV + '?utm_source=' + encodeURIComponent('even\u0000to\n') + '&utm_content=' + 'x'.repeat(500));

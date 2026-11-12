@@ -118,8 +118,11 @@ no contato, **antes** de aplicar a tag, os campos que o e-mail usa.
    | `Buzz Compass Link [AUTO]` | Área de texto | link do resultado (`https://buzzcompass.buzzmonitor.com/es/totem-resultado?...`) |
    | `Buzz Compass QR [AUTO]` | Área de texto | endereço do PNG do QR (`.../es/api/qr?d=...`) |
    | `Buzz Compass Marca [AUTO]` | Texto | marca analisada (opcional; para o assunto) |
-   Os de URL de conversão e UTMs (`URL Conversión [AUTO]`, `UTM Source [AUTO]`...) já devem existir; se não existirem, o
-   contato e a tag seguem e a resposta avisa (`crm_avisos`).
+   URL de conversão e UTMs: na conta AC LATAM os campos de último toque se chamam `URL_CONVERSAO`, `utm_source`,
+   `utm_medium`, `utm_campaign`, `utm_content` e `utm_term` (sem `[AUTO]`, os mesmos que a dashboard CM LATAM lê). O código
+   aceita esses títulos exatos; o jogo secundário (`utm_source_`, com `_` no fim) e os numerados ficam de fora. Se existir
+   também um campo `[AUTO]`, ele tem prioridade. Campo que faltar: o contato e a tag seguem e a resposta avisa (`crm_avisos`).
+   O campo `Buzz Compass Marca [AUTO]` é do tipo "Entrada de texto" (`text` na API).
 2. **Automação:** gatilho "Tag adicionada: **Buzz Compass LATAM**", **executa várias vezes** -> ação "Enviar e-mail".
    Corpo: colar `email-ac/resultado-buzz-compass-es.html` (gerado a partir do e-mail do SendGrid). Conferir no editor do AC
    se as tags de personalização dos campos são as mesmas do arquivo (`%BUZZ_COMPASS_LINK_AUTO%`, `%BUZZ_COMPASS_QR_AUTO%`,
