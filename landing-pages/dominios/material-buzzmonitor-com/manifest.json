@@ -31,6 +31,16 @@
       "source": "landing-pages/buzzmonitor/marketing-trends-2027"
     },
     {
+      "slug": "marketing-trends-2027-latam",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/marketing-trends-2027-latam"
+    },
+    {
+      "slug": "marketing-trends-2027-latam-gracias",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/marketing-trends-2027-latam-gracias"
+    },
+    {
       "slug": "mcp",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/mcp"
