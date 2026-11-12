@@ -52,8 +52,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .top h1{font-size:clamp(36px,5vw,60px);margin:20px 0 16px}
   .top p{font-size:19px;color:#3d3850;margin:0 0 28px;max-width:540px}
   .top small{display:block;margin-top:16px;font-size:14px;color:var(--muted)}
-  .cover img{width:100%;height:auto}
-  .cover{border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(18,13,36,.45);transform:rotate(3deg);max-width:420px;margin-inline:auto}
+  /* abanico de tarjetas (mismo estilo de la LP) */
+  .deck{position:relative;height:420px;max-width:460px;width:100%;margin-inline:auto}
+  .deck .tc{position:absolute;left:50%;top:50%;width:210px;height:280px;margin:-140px 0 0 -105px;padding:20px;border-radius:22px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 30px 50px -28px rgba(18,13,36,.6),inset 0 0 0 1px rgba(255,255,255,.18);transform:translateX(var(--x)) translateY(var(--y)) rotate(var(--r));animation:float 6s ease-in-out infinite;animation-delay:var(--d)}
+  .deck .tc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 40%);pointer-events:none}
+  .deck .tn{align-self:flex-start;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.22)}
+  .deck .tt{display:block;font-size:21px;font-weight:600;line-height:1.12;letter-spacing:-.025em}
+  .deck .tv{display:block;font-size:24px;font-weight:600;letter-spacing:-.04em;margin-top:12px;padding-top:12px;border-top:1px solid rgba(128,128,128,.35)}
+  .deck .g0{background:linear-gradient(160deg,#ffb37a,#eb7c2e 55%,#c4581a);color:#1a0d05}
+  .deck .g1{background:linear-gradient(160deg,#7a52ff,#3a12a3 60%,#1d0866);color:#fff}
+  .deck .g2{background:linear-gradient(160deg,#f3eeff,#c9b5ff);color:var(--ink)}
+  .deck .g3{background:linear-gradient(160deg,#2f2645,#120d24);color:#fff}
+  .deck .g3 .tv{color:var(--orange-2)}
+  @keyframes float{50%{translate:0 -8px}}
+  @media (prefers-reduced-motion:reduce){.deck .tc{animation:none}}
   .next{padding:clamp(70px,9vw,110px) 0;background:var(--card)}
   .next h2{font-size:clamp(28px,3.8vw,44px);text-align:center;margin:0 auto 40px;max-width:720px}
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -73,7 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .footer-social svg{width:18px;height:18px}
   .oldfooter{padding:44px 0 56px;text-align:center;color:var(--muted);font-size:14px}
   .oldfooter img{width:120px;margin:0 auto 12px}
-  @media (max-width:860px){.top .in,.cards{grid-template-columns:1fr}.cover{max-width:320px}}
+  @media (max-width:860px){.top .in,.cards{grid-template-columns:1fr}.deck{height:340px}.deck .tc{transform:translateX(calc(var(--x)*.6)) translateY(var(--y)) rotate(var(--r))}.deck .tc{width:176px;height:236px;margin:-118px 0 0 -88px;padding:16px}.deck .tt{font-size:17px}.deck .tv{font-size:20px}}
 </style>
 </head>
 <body>
@@ -92,7 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="btn" href="./assets/marketing-trends-2027-buzzmonitor-es.pdf" download="Marketing Trends 2027 - Buzzmonitor.pdf" target="_blank" rel="noopener">Descargar el reporte en PDF <span aria-hidden="true">↓</span></a>
       <small>¿No lo ves en tu bandeja de entrada? Revisa la carpeta de promociones o de spam.</small>
     </div>
-    <div class="cover" aria-hidden="true"><img src="./assets/mt27-latam-portada.png" width="1200" height="1060" alt=""></div>
+    <div class="deck" aria-hidden="true"><div class="tc g2" style="--x:-150px;--y:18px;--r:-10deg;--d:0s"><span class="tn">Tendencia 03</span><span><span class="tt">Contenido más humano</span><span class="tv">77%</span></span></div><div class="tc g3" style="--x:150px;--y:26px;--r:9deg;--d:1.2s"><span class="tn">Tendencia 09</span><span><span class="tt">Demostrar el resultado de las campañas</span><span class="tv">3%</span></span></div><div class="tc g1" style="--x:-62px;--y:-6px;--r:-4deg;--d:.6s"><span class="tn">Tendencia 02</span><span><span class="tt">Aparecer en las respuestas de la IA</span><span class="tv">5 a 10%</span></span></div><div class="tc g0" style="--x:58px;--y:4px;--r:4deg;--d:1.8s"><span class="tn">Tendencia 01</span><span><span class="tt">Los clics están desapareciendo de las búsquedas</span><span class="tv">68%</span></span></div></div>
   </div>
 </section>
 
