@@ -19,7 +19,7 @@
   <meta property="og:title" content="Seu acesso foi liberado · Webinar Buzzcreators">
 
   <link rel="icon" type="image/png" href="../../brand/buzzcreators/assets/logos/logo-icon.png">
-  <link rel="preconnect" href="https://www.youtube-nocookie.com">
+  <link rel="preconnect" href="https://www.youtube.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&display=swap">
@@ -221,7 +221,7 @@
           </div>
 
           <noscript>
-            <iframe src="https://www.youtube-nocookie.com/embed/kR0Iq1bFWLc?start=180&amp;rel=0&amp;modestbranding=1&amp;playsinline=1"
+            <iframe src="https://www.youtube.com/embed/kR0Iq1bFWLc?start=180&amp;rel=0&amp;modestbranding=1&amp;playsinline=1"
               title="Webinar Buzzcreators: vendedores que viram creators e vendem 3x mais" allowfullscreen></iframe>
           </noscript>
         </div>
@@ -270,78 +270,58 @@
       var wrap = document.getElementById('video-wrap');
       var btnSound = document.getElementById('video-sound');
       var endScreen = document.getElementById('video-end');
-      var player = null, started = false, corrected = false;
 
       function removeLoading() { var l = wrap.querySelector('.video-loading'); if (l) l.remove(); }
 
+      // CSP do guarda-chuva (vercel.json): frame-src libera so www.youtube.com e script-src NAO libera
+      // o iframe_api. Por isso: iframe direto em www.youtube.com/embed com enablejsapi=1 e controle via
+      // postMessage (protocolo do proprio player), sem carregar script do YouTube.
       var PLAYER_VARS = { autoplay: 1, mute: 1, start: VIDEO_START, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3, enablejsapi: 1 };
       if (location.origin && location.origin !== 'null') PLAYER_VARS.origin = location.origin;
+      var qs = Object.keys(PLAYER_VARS).map(function (k) { return k + '=' + encodeURIComponent(PLAYER_VARS[k]); }).join('&');
 
-      function fallbackIframe() {
-        if (started) return;
-        started = true;
-        var qs = Object.keys(PLAYER_VARS).map(function (k) { return k + '=' + encodeURIComponent(PLAYER_VARS[k]); }).join('&');
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VIDEO_ID) + '?' + qs;
-        iframe.title = VIDEO_TITLE;
-        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-        iframe.allowFullscreen = true;
-        iframe.addEventListener('load', removeLoading);
-        document.getElementById('player').replaceWith(iframe);
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(VIDEO_ID) + '?' + qs;
+      iframe.title = VIDEO_TITLE;
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      document.getElementById('player').replaceWith(iframe);
+
+      function cmd(func, args) {
+        try {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), 'https://www.youtube.com');
+        } catch (e) {}
       }
 
-      window.onYouTubeIframeAPIReady = function () {
-        if (started) return;
-        started = true;
-        player = new YT.Player('player', {
-          host: 'https://www.youtube-nocookie.com',
-          videoId: VIDEO_ID, width: '100%', height: '100%', playerVars: PLAYER_VARS,
-          events: {
-            onReady: function (e) {
-              e.target.getIframe().title = VIDEO_TITLE;
-              removeLoading();
-              e.target.mute();
-              e.target.playVideo();
-              btnSound.hidden = false;
-            },
-            onStateChange: function (e) {
-              if (e.data === YT.PlayerState.ENDED) {
-                btnSound.hidden = true;
-                endScreen.hidden = false;
-              } else if (e.data === YT.PlayerState.PLAYING) {
-                endScreen.hidden = true;
-                if (!corrected) { // garante o inicio exato em VIDEO_START
-                  corrected = true;
-                  var t = e.target.getCurrentTime();
-                  if (t < VIDEO_START - 0.5 || t > VIDEO_START + 2) e.target.seekTo(VIDEO_START, true);
-                }
-              }
-            }
-          }
-        });
-      };
+      iframe.addEventListener('load', function () {
+        removeLoading();
+        btnSound.hidden = false;
+        // pede ao player que avise mudancas de estado (para a tela de fim)
+        try { iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'bc-player', channel: 'widget' }), 'https://www.youtube.com'); } catch (e) {}
+        cmd('mute'); cmd('playVideo');
+      });
+
+      window.addEventListener('message', function (ev) {
+        if (ev.origin !== 'https://www.youtube.com' || ev.source !== iframe.contentWindow) return;
+        var d; try { d = typeof ev.data === 'string' ? JSON.parse(ev.data) : ev.data; } catch (e) { return; }
+        if (!d) return;
+        var state = d.event === 'onStateChange' ? d.info : (d.event === 'infoDelivery' && d.info && typeof d.info.playerState === 'number' ? d.info.playerState : null);
+        if (state === 0) { btnSound.hidden = true; endScreen.hidden = false; }      // terminou
+        else if (state === 1) { endScreen.hidden = true; }                          // tocando
+      });
 
       btnSound.addEventListener('click', function () {
         btnSound.hidden = true;
-        if (!player) return;
-        player.unMute(); player.setVolume(100);
-        player.seekTo(VIDEO_START, true); // recomeca do inicio da fala, com som
-        player.playVideo();
+        cmd('unMute'); cmd('setVolume', [100]);
+        cmd('seekTo', [VIDEO_START, true]); // recomeca do inicio da fala, com som
+        cmd('playVideo');
         window.dataLayer.push({ event: 'webinar_perpetuo_01_som_ativado' });
       });
 
       document.getElementById('video-replay').addEventListener('click', function () {
         endScreen.hidden = true;
-        if (!player) return;
-        player.unMute(); player.seekTo(VIDEO_START, true); player.playVideo();
+        cmd('unMute'); cmd('seekTo', [VIDEO_START, true]); cmd('playVideo');
       });
-
-      var api = document.createElement('script');
-      api.src = 'https://www.youtube.com/iframe_api';
-      api.async = true;
-      api.onerror = fallbackIframe;
-      document.head.appendChild(api);
-      setTimeout(fallbackIframe, 8000);
     })();
   </script>
 </body>
