@@ -107,6 +107,12 @@ relevância (descarta "Natura 2000", "in natura"; sem IA, mantém todos) -> esco
 
 ## Totem (evento): `/` e `/totem-resultado`
 
+**Visitante de país de língua espanhola vai para `/es` (2026-11-11):** o `vercel.json` redireciona a raiz `/` (307, mantendo a
+query, então as UTMs do QR seguem) para `/es` quando o país do IP (`x-vercel-ip-country`) é um destes: AR, BO, CL, CO, CR, CU, DO,
+EC, ES, GQ, GT, HN, MX, NI, PA, PE, PR, PY, SV, UY, VE. Só a raiz: `/totem-resultado`, `/lp` e `/api` não mudam (link de resultado
+do Brasil aberto do exterior continua funcionando). Para ver a versão Brasil de um desses países, abrir `/?br` (ou `/?br=1`).
+A regra é da Vercel (`has` com o cabeçalho de país), não roda no `dev-server.js` local.
+
 Segunda experiência do projeto, mais direta, para rodar em um totem touch no evento. Desde 2026-10-23 o totem é a **página
 principal** (`index.html`, em `https://buzzcompass.buzzmonitor.com`, sem caminho). O endereço antigo `/totem` redireciona para a
 raiz (307, mantendo a query: QR codes e links já impressos continuam valendo). A LP original (`lp.html` + `resultado.html`)
