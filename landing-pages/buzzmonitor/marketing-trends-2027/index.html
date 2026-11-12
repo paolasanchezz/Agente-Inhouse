@@ -256,6 +256,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .gw{transition:filter .7s ease}
   .zone{position:relative}
+  /* bloqueio das tendências: conteúdo desfocado + pop-up com o form do Jotform na frente */
+  .stage.lock .gw{filter:blur(14px) saturate(.6);pointer-events:none;user-select:none;max-height:820px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+  body.gated .sm{filter:blur(12px) saturate(.6);pointer-events:none;user-select:none;max-height:520px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 50%,transparent);mask-image:linear-gradient(#000 50%,transparent)}
+  .gate{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(12,9,21,.28);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility 0s linear .4s}
+  .gate.in{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .4s ease}
+  .gate[hidden]{display:none}
+  .gcard{position:relative;width:min(620px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;background:#fff;color:var(--ink);border-radius:30px;padding:30px 26px 14px;box-shadow:0 50px 100px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.4);text-align:left}
+  .gate.in .gcard{animation:gateIn .7s cubic-bezier(.2,.8,.2,1)}
+  @keyframes gateIn{from{opacity:0;transform:translateY(40px) scale(.96)}}
+  .gcard .eyebrow{background:var(--lilac-2);color:var(--violet);box-shadow:none;margin-inline:8px}
+  .gcard h3{font-size:clamp(26px,3vw,34px);margin:16px 8px 8px;color:var(--ink)}
+  .gsub{margin:0 8px 14px;color:var(--muted);font-size:16px}
+  .jotform-embed{min-height:320px}
+  /* ----- Jotform embed wrapper (canonico) ----- */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; }
   /* resumo das tendências */
   .sm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
   .si{display:flex;flex-direction:column;gap:10px;text-align:left;border:0;cursor:pointer;background:var(--card);border-radius:22px;padding:22px 22px 20px;box-shadow:0 1px 0 var(--line),0 20px 40px -32px rgba(18,13,36,.4);transition:transform .3s,box-shadow .3s}
@@ -308,6 +323,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .scene .lead strong{background:none;color:#c4581a}
     .bridge{break-inside:avoid}
     .bridge .btn{display:none}
+    .gate{display:none!important}
+    .stage.lock .gw,body.gated .sm{filter:none;max-height:none;-webkit-mask-image:none;mask-image:none}
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
@@ -352,6 +369,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cf .tc .tt{font-size:25px}
     .cf .tc .tv{font-size:26px}
     .box{padding:22px}
+    .gate{padding:10px}
+    .gcard{padding:22px 10px 10px;border-radius:24px}
+    .stage.lock .gw{max-height:980px}
     .refs ul{columns:1}
     .bar .btn{display:none}
     .br{grid-template-columns:minmax(0,1fr) 40px}
@@ -397,6 +417,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 
 <div class="zone" id="zone">
+<!-- pop-up com o form do Jotform: fica na frente das tendências desfocadas até a pessoa enviar -->
+<div class="gate" id="gate" role="dialog" aria-labelledby="g-t">
+  <div class="gcard">
+    <span class="eyebrow">Conteúdo liberado na hora</span>
+    <h3 id="g-t">Libere as 9 tendências e o PDF</h3>
+    <p class="gsub" id="g-sub">Preencha para ver o que fazer em cada tendência e baixar o report completo.</p>
+    <div class="jotform-embed"><script type="text/javascript" src="https://form.jotform.com/jsform/263134611373855"></script></div>
+  </div>
+</div>
 <section class="stage" id="tendencias" aria-labelledby="tr-t">
   <div class="glow" id="glow" aria-hidden="true"></div>
   <div class="in">
@@ -919,6 +948,66 @@ window.MT27 = (function () {
   D.y2026.forEach(function(y){ y.ksrc.concat(y.src).forEach(addRef); });
   D.scenes.concat(D.trends).forEach(function(x){ x.data.forEach(function(d){ d.src.forEach(addRef); }); });
   document.getElementById('refs').innerHTML = refs.map(function(s){ return '<li>' + srcLink(s) + '</li>'; }).join('');
+
+  /* bloqueio com o form do Jotform: o pop-up aparece quando as tendências (ou o resumo) entram na tela,
+     com o conteúdo desfocado atrás, e some se a pessoa rolar para fora dessa parte.
+     Quando o Jotform avisa que o envio terminou, libera o conteúdo e o PDF e guarda um sinal neste navegador. */
+  var JF_ID = '263134611373855';
+  var stage = document.getElementById('tendencias'), gate = document.getElementById('gate'), gw = document.getElementById('gw');
+  var sm = document.getElementById('sm'), pdfBtn = document.getElementById('pdf-btn');
+  var unlocked = false, pendingPdf = false, inView = { tendencias: false, resumo: false };
+  try { unlocked = localStorage.getItem('mt27-liberado') === '1'; } catch(e){}
+  function syncGate(){ if(!unlocked) gate.classList.toggle('in', inView.tendencias || inView.resumo || pendingPdf); }
+  if(unlocked) gate.hidden = true;
+  else {
+    stage.classList.add('lock'); gw.inert = true;
+    document.body.classList.add('gated'); sm.inert = true;
+    if('IntersectionObserver' in window){
+      var gio = new IntersectionObserver(function(es){ es.forEach(function(e){ inView[e.target.id] = e.isIntersecting; }); syncGate(); }, { threshold: .12 });
+      gio.observe(stage); gio.observe(document.getElementById('resumo'));
+    } else gate.classList.add('in');
+  }
+  function unlock(){
+    if(unlocked) return;
+    unlocked = true;
+    try { localStorage.setItem('mt27-liberado', '1'); } catch(e){}
+    /* deixa a mensagem de obrigado do Jotform aparecer por um instante antes de fechar o pop-up */
+    setTimeout(function(){
+      stage.classList.remove('lock'); gw.inert = false;
+      document.body.classList.remove('gated'); sm.inert = false;
+      gate.classList.remove('in');
+      setTimeout(function(){ gate.hidden = true; }, 450);
+      if(pendingPdf){ pendingPdf = false; pdfBtn.click(); }
+    }, 1600);
+  }
+  addEventListener('message', function(e){
+    if(!/(^|\.)jotform\.com$/.test((e.origin || '').replace(/^https?:\/\//, ''))) return;
+    var d = e.data;
+    if(typeof d === 'string'){ try { d = JSON.parse(d); } catch(err){ return; } }
+    if(d && d.action === 'submission-completed' && (!d.formID || String(d.formID) === JF_ID)) unlock();
+  });
+  /* reserva: depois do envio o iframe carrega a página de obrigado (segundo carregamento) */
+  (function hook(){
+    var f = document.getElementById(JF_ID);
+    if(!f) return setTimeout(hook, 300);
+    var loads = 0;
+    f.addEventListener('load', function(){ loads++; if(loads > 1) unlock(); });
+  })();
+  /* PDF também fica atrás do form: com o conteúdo bloqueado, o botão abre o pop-up e o download sai depois do envio */
+  pdfBtn.addEventListener('click', function(e){
+    if(unlocked) return;
+    e.preventDefault();
+    pendingPdf = true;
+    document.getElementById('g-sub').textContent = 'Preencha para baixar o report em PDF. Ele começa a baixar assim que você enviar.';
+    syncGate();
+  });
+  /* clicar fora do card fecha o pop-up aberto pelo botão do PDF (ele volta quando a pessoa chega nas tendências) */
+  gate.addEventListener('click', function(e){
+    if(e.target !== gate || !pendingPdf) return;
+    pendingPdf = false;
+    document.getElementById('g-sub').textContent = 'Preencha para ver o que fazer em cada tendência e baixar o report completo.';
+    syncGate();
+  });
 })();
 </script>
 </body>
