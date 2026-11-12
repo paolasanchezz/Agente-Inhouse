@@ -15,6 +15,6 @@
 - Formulário: mesmo Jotform da edição anterior (ID `250504226492654`)
 
 ## Pendências
-- [ ] Mediadora/speakers: trocar o card "Em breve" por foto, nome e cargo (seção PALESTRANTES no index.html)
+- [x] Palestrantes: Breno Soutto (Head de Insights) e Letícia Melo (Business Development), ambos Buzzmonitor (adicionados em 2026-11-12)
 - [x] OG image gerada (assets/og-template-*.html + Chrome headless)
 - [ ] Conferir se o Jotform pede a cidade/data certa (o form é o mesmo das edições anteriores)
