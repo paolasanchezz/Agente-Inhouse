@@ -113,7 +113,7 @@
         <div class="par">
         <div class="field" id="fld-pais">
           <label for="pais">País</label>
-          <select id="pais" required>
+          <select id="pais" required aria-describedby="nota-pais">
             <option value="" disabled selected>Elige el país</option>
             <option value="MX">México</option>
             <option value="CO">Colombia</option>
@@ -121,6 +121,7 @@
             <option value="AR">Argentina</option>
             <option value="PE">Perú</option>
           </select>
+          <p class="nota" id="nota-pais">Define el mercado de referencia: orienta la búsqueda y los competidores sugeridos.</p>
           <div class="msg" role="alert">Elige el país de la marca.</div>
         </div>
         <div class="field" id="fld-instagram">

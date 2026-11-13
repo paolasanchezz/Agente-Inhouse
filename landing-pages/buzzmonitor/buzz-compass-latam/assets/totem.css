@@ -98,6 +98,7 @@ body.com-fechar .close{display:inline-flex}
 .field select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 .35rem rgba(235,124,46,.22)}
 .field.erro select{border-color:var(--pink)}
 .field .msg{display:none;color:#ff7a99;font-size:.95rem;margin-top:.4rem}
+.field .nota{color:var(--muted);font-size:.85rem;line-height:1.4;margin-top:.4rem}
 .field.erro .msg{display:block}
 .grupo-concorrentes{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
 @media (orientation:portrait){.grupo-concorrentes{grid-template-columns:1fr}}

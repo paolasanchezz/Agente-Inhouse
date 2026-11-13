@@ -382,7 +382,7 @@
     container.innerHTML =
       '<header class="res-head"><span class="eyebrow">Tu Compass de Mercado</span>' +
       '<h1>' + (primeiro ? '¡Hola, ' + esc(primeiro) + '! ' : '') + 'Aquí está el Buzz Compass de ' + esc(nomeMarca) + '.</h1>' +
-      '<p class="muted">' + (segmento ? 'Sector: ' + esc(segmento) + ' · ' : '') + (nomePais ? 'País: ' + esc(nomePais) + ' · ' : '') + 'Basado en conversaciones reales de los últimos 30 días, en español, en Buzzmonitor Trends.</p></header>' +
+      '<p class="muted">' + (segmento ? 'Sector: ' + esc(segmento) + ' · ' : '') + (nomePais ? 'Mercado de referencia: ' + esc(nomePais) + ' · ' : '') + 'Basado en conversaciones reales de los últimos 30 días, en español, en Buzzmonitor Trends.</p></header>' +
       aviso +
       secaoPlacar((data.marca || {}).scores, nomeMarca, (data.marca || {}).instagram, (data.comparacao || [])[0]) +
       cartoes(data.narrativa, nomeMarca) +
