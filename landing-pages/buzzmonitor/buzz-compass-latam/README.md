@@ -158,21 +158,25 @@ São dois QR diferentes, e nenhum leva dado pessoal (nome e e-mail nunca entram 
 Para o e-mail sair: `SENDGRID_API_KEY` + `TOTEM_EMAIL_FROM` com remetente verificado no SendGrid (ou `RESEND_API_KEY` com
 domínio verificado). Sem isso, o lead ainda vê o QR na tela, mas não recebe nada por e-mail.
 
-## Pendências antes de ir ao ar
+## Estado e pendências (2026-11-13)
 
-1. **Projeto Vercel.** Criar `buzzmonitor-lp-buzz-compass-latam` (sem domínio próprio: o endereço público vem do proxy do
-   Brasil em `/es`, ver acima).
-2. **Variáveis de ambiente** no projeto novo: IA (`OPENAI_API_KEY` e/ou `ANTHROPIC_API_KEY`, `OPENAI_MODEL_NARRATIVA`),
-   AC LATAM (tabela acima), e-mail (SendGrid) e, opcional, planilha. Sem IA o totem roda em modo reserva (busca pelo nome
-   exato, categoria = palavras do setor, textos montados só com os números): funciona, mas a categoria fica genérica
-   (no teste com "Tiendas de conveniencia" entrou conversa de política com a palavra "conveniencia").
-3. **Publicação.** É projeto solo com backend (fora do pipeline estático): `python montar-deploy.py` monta a pasta e o
-   deploy passa pela confirmação do hook `guard_vercel_deploy.py`. Nunca deployar este código no projeto do Brasil.
-4. **Preço LATAM:** se houver um "Planes desde USD X", recolocar o selo em `totem-resultado.html`.
-5. **Revisão nativa:** a copy passou pelos 3 pilares (linguístico ES-LATAM, fundamentos, anti-IA), mas vale uma leitura
-   de alguém do time LATAM antes do evento, principalmente do texto de consentimento ("Al continuar, aceptas recibir el
-   resultado por correo y que Buzzmonitor te contacte sobre Buzz Compass"), que no Brasil passou por quem cuida de LGPD.
-6. **Teste com IA ligada** em preview da Vercel (1 Compass real de ponta a ponta conferindo e-mail, AC e QR).
+**No ar** em `https://buzzcompass.buzzmonitor.com/es` desde 2026-11-05 (projeto `buzzmonitor-lp-buzz-compass-latam`, proxy no
+projeto do Brasil; visitante de país hispano que abre a raiz vai para `/es`). Variáveis no projeto: `OPENAI_API_KEY`,
+`ANTHROPIC_API_KEY`, `ACTIVECAMPAIGN_API_URL`, `ACTIVECAMPAIGN_API_TOKEN`, `TOTEM_EMAIL_VIA_AC`.
+
+1. **OpenAI sem crédito.** Em 2026-11-13 a chave do projeto LATAM respondia `429 credit_balance_exhausted` em toda chamada.
+   A IA segue funcionando pelo Claude (`ANTHROPIC_API_KEY`), e desde esta data a reserva recebe o prazo cheio quando o OpenAI
+   cai na hora (`api/_lib/llm.js`, `tests/llm-reserva.test.js`). Resolver: recarregar crédito na organização dessa chave ou
+   trocar por uma chave de uma organização com saldo e republicar o projeto LATAM.
+2. **Teste de ponta a ponta com lead real** (contato no AC LATAM, campos, tag, automação e e-mail): ainda não feito.
+3. **Preço LATAM:** se houver um "Planes desde USD X", recolocar o selo em `totem-resultado.html`.
+4. **Revisão nativa:** leitura de alguém do time LATAM, principalmente do texto de consentimento ("Al continuar, aceptas
+   recibir el resultado por correo y que Buzzmonitor te contacte sobre Buzz Compass"), que no Brasil passou por quem cuida
+   de LGPD.
+
+**Publicar mudanças:** `python montar-deploy.py ~/Documents/buzzmonitor-lp-buzz-compass-latam` e deploy `--prod` desse projeto
+(confirmação do hook `guard_vercel_deploy.py`). Nunca deployar este código no projeto do Brasil. Variável nova ou alterada na
+Vercel só vale depois de um novo deploy.
 
 ## Rodar local
 
