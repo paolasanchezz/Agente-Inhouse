@@ -692,6 +692,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- INSCRICAO: segunda dobra, logo apos o hero (pedido 13/11) -->
+  <section class="signup pad" id="inscricao" aria-labelledby="signup-title">
+    <div class="wrap signup-inner">
+      <span class="eyebrow reveal">Inscrição gratuita</span>
+      <h2 id="signup-title" class="reveal">Garanta a sua vaga</h2>
+      <p class="signup-sub reveal">9 de dezembro, quarta-feira, às 11h. Online e gratuito. Você recebe o link por e-mail e um lembrete no dia.</p>
+      <div class="countdown-bar" id="countdown" aria-live="polite">
+          <div class="cb-unit"><div class="cb-num" id="cd-days">00</div><div class="cb-lab">Dias</div></div>
+          <div class="cb-unit"><div class="cb-num" id="cd-hours">00</div><div class="cb-lab">Horas</div></div>
+          <div class="cb-unit"><div class="cb-num" id="cd-mins">00</div><div class="cb-lab">Minutos</div></div>
+          <div class="cb-unit"><div class="cb-num" id="cd-secs">00</div><div class="cb-lab">Segundos</div></div>
+        </div>
+      <div class="jotform-embed" id="jotEmbed">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
+      </div>
+    </div>
+  </section>
+
   <!-- POR QUE IR -->
   <section class="context pad">
     <div class="wrap context-inner reveal">
@@ -926,21 +944,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- INSCRICAO: depois do Sobre, antes do rodape (pedido 14/10) -->
-  <section class="signup pad" id="inscricao" aria-labelledby="signup-title">
-    <div class="wrap signup-inner">
-      <span class="eyebrow reveal">Inscrição gratuita</span>
-      <h2 id="signup-title" class="reveal">Garanta a sua vaga</h2>
-      <p class="signup-sub reveal">9 de dezembro, quarta-feira, às 11h. Online e gratuito. Você recebe o link por e-mail e um lembrete no dia.</p>
-      <div class="countdown-bar" id="countdown" aria-live="polite">
-          <div class="cb-unit"><div class="cb-num" id="cd-days">00</div><div class="cb-lab">Dias</div></div>
-          <div class="cb-unit"><div class="cb-num" id="cd-hours">00</div><div class="cb-lab">Horas</div></div>
-          <div class="cb-unit"><div class="cb-num" id="cd-mins">00</div><div class="cb-lab">Minutos</div></div>
-          <div class="cb-unit"><div class="cb-num" id="cd-secs">00</div><div class="cb-lab">Segundos</div></div>
-        </div>
-      <div class="jotform-embed" id="jotEmbed">
-        <script type="text/javascript" src="https://form.jotform.com/jsform/261033482583658"></script>
-      </div>
+  <!-- FECHAMENTO: a pagina e longa e o formulario agora fica no topo; este bloco
+       devolve o leitor para ele sem obriga-lo a rolar tudo de volta. -->
+  <section class="fecho" aria-labelledby="fecho-title">
+    <div class="wrap fecho-inner reveal" data-fx>
+      <h2 id="fecho-title">Garanta a sua vaga</h2>
+      <p>9 de dezembro, quarta-feira, &agrave;s 11h. Online e gratuito.</p>
+      <a class="btn btn-primary" href="#inscricao">Garantir minha vaga</a>
     </div>
   </section>
 
@@ -1197,6 +1207,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      laranja da marca, que e a mesma cor do destaque do H1. */
   .hero .btn-primary{background:#EF863C;color:#17193F;box-shadow:0 18px 38px -18px rgba(239,134,60,.65)}
   .hero .btn-primary:hover{background:#F59B57;color:#17193F}
+
+  /* =========================================================================
+     Formulario na segunda dobra (13/11). A secao de inscricao passou a vir
+     logo apos o hero, entao ela perde o papel de fecho da pagina e ganha um
+     bloco proprio de fechamento la embaixo, que devolve o leitor ao form.
+     ========================================================================= */
+  .fecho{
+    background:linear-gradient(160deg,#1C2150 0%,#2A3068 60%,#333B7A 100%);
+    color:#fff;padding:92px 0;
+  }
+  .fecho-inner{text-align:center;max-width:720px;margin-inline:auto}
+  .fecho h2{color:#fff;font-size:clamp(30px,3.4vw,46px);line-height:1.1;letter-spacing:-.02em;margin:0}
+  .fecho p{color:rgba(255,255,255,.82);font-size:clamp(17px,1.4vw,19.5px);margin:16px 0 32px}
+  .fecho .btn-primary{background:#EF863C;color:#17193F;font-size:16.5px;padding:17px 34px;
+    box-shadow:0 18px 38px -18px rgba(239,134,60,.65)}
+  .fecho .btn-primary:hover{background:#F59B57;color:#17193F}
+  @media (max-width:640px){ .fecho{padding:72px 0} }
 </style><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://elife.com.br/index.php/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a><a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso</a></nav></div>
 </footer>
 
