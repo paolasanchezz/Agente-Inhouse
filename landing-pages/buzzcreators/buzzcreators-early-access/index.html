@@ -100,13 +100,13 @@
   a{color:inherit}
   button{font:inherit;color:inherit}
   .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;position:relative}
-  h1,h2,h3,.sub,.lead,.how-card p,.who-panel p,.form-note,.form-required,label{text-wrap:balance}
+  h1,h2,h3,.sub,.lead,.how-card p,.who-panel p,label{text-wrap:balance}
 
   .skip-link{position:absolute;left:16px;top:-60px;z-index:200;background:var(--orange);color:var(--ink);
     padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;transition:top .2s}
   .skip-link:focus{top:16px}
   :focus-visible{outline:3px solid #fff;outline-offset:3px;border-radius:8px}
-  .who :focus-visible,.form :focus-visible{outline-color:var(--plum)}
+  .who :focus-visible{outline-color:var(--plum)}
 
   .kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;letter-spacing:.16em;
     text-transform:uppercase;color:var(--lilac);margin:0 0 22px}
@@ -328,23 +328,11 @@
   .reg .wrap{display:grid;grid-template-columns:1fr;gap:40px}
   .reg h2{font-size:clamp(42px,7vw,84px);margin-bottom:18px}
   .reg .lead{margin:0;font-size:clamp(18px,1.7vw,21px);color:var(--muted);max-width:30ch}
-  .form{position:relative;border-radius:28px;padding:30px 22px;background:#fff;color:var(--ink);display:grid;grid-template-columns:1fr;gap:18px;
-    box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
   .sticker{position:absolute;top:-18px;right:18px;padding:10px 16px;border-radius:12px;background:var(--orange);color:var(--ink);font-weight:800;font-size:15px;
     transform:rotate(4deg);box-shadow:0 10px 24px -8px rgba(0,0,0,.45);white-space:nowrap}
-  .form-required{margin:0;font-size:14px;color:#4b4258}
-  .field{display:flex;flex-direction:column;gap:8px}
-  .field label{font-size:15px;font-weight:700;color:var(--plum)}
-  .field input,.field select{font:400 17px/1.3 "DM Sans",sans-serif;color:var(--ink);width:100%;padding:16px;border:1.5px solid #7b8799;border-radius:14px;
-    background:#fff;transition:border-color .2s,box-shadow .2s}
-  .field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:46px;color-scheme:light;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%233a1652' stroke-width='2'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 16px center}
-  .field input:hover,.field select:hover{border-color:#5d6879}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 4px rgba(106,56,149,.2)}
-  .field input:user-invalid,.field select:user-invalid{border-color:#c2410c;box-shadow:0 0 0 4px rgba(194,65,12,.14)}
-  .form .btn{width:100%;margin-top:4px}
-  .form-note{margin:0;font-size:14px;color:#4b4258;text-align:center}
+  .jotform-embed{position:relative;border-radius:28px;background:#fff;padding:14px 6px 6px;box-shadow:0 30px 80px -30px rgba(0,0,0,.6);min-height:420px}
+  /* ----- Jotform embed wrapper (canonico) ----- */
+  .jotform-embed iframe { width: 100% !important; max-width: 100% !important; border: 0; display: block; border-radius: 0 0 22px 22px; }
 
   /* ---------- Cierre ---------- */
   .final{position:relative;overflow:hidden;isolation:isolate;padding:120px 0 130px;text-align:center;
@@ -385,8 +373,6 @@
   @media (min-width:760px){
     .dock{display:none}
     .how-card{flex-basis:46%}
-    .form{padding:40px;grid-template-columns:1fr 1fr;gap:20px}
-    .form-required,.field--full,.form .btn,.form-note{grid-column:1 / -1}
   }
   @media (min-width:1000px){
     .hero{padding:150px 0 110px;min-height:100vh;display:flex;align-items:center}
@@ -582,44 +568,10 @@
         <h2 id="reg-title">Entra antes que nadie.</h2>
         <p class="lead">Regístrate y te avisamos primero cuando abramos el acceso en tu país.</p>
       </div>
-      <form class="form reveal" action="#" method="post" onsubmit="event.preventDefault()">
+      <div class="jotform-embed reveal">
         <span class="sticker" aria-hidden="true">Acceso anticipado</span>
-        <p class="form-required">Todos los campos son obligatorios.</p>
-        <div class="field">
-          <label for="f-nombre">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-correo">Correo de trabajo</label>
-          <input id="f-correo" name="correo" type="email" autocomplete="email" inputmode="email" spellcheck="false" required>
-        </div>
-        <div class="field">
-          <label for="f-empresa">Empresa</label>
-          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required>
-        </div>
-        <div class="field">
-          <label for="f-pais">País</label>
-          <select id="f-pais" name="pais" autocomplete="country-name" required>
-            <option value="" disabled selected>Selecciona</option>
-            <option>Argentina</option><option>Bolivia</option><option>Chile</option><option>Colombia</option>
-            <option>Costa Rica</option><option>Ecuador</option><option>El Salvador</option><option>Guatemala</option>
-            <option>Honduras</option><option>México</option><option>Panamá</option><option>Paraguay</option>
-            <option>Perú</option><option>República Dominicana</option><option>Uruguay</option><option>Venezuela</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="field field--full">
-          <label for="f-perfil">¿Cuál es tu perfil?</label>
-          <select id="f-perfil" name="perfil" required>
-            <option value="" disabled selected>Selecciona</option>
-            <option>Marca</option>
-            <option>Agencia</option>
-            <option>Creador de contenido</option>
-          </select>
-        </div>
-        <button class="btn" type="submit">Quiero acceso anticipado</button>
-        <p class="form-note">Solo te escribiremos con novedades del lanzamiento.</p>
-      </form>
+        <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
+      </div>
     </div>
   </section>
 

@@ -11,7 +11,7 @@ Versao v3 (atual):
 1. Hero: H1 de dor + sub + CTA, celular animado "do caos ao orden" (+ fitas cruzadas decorativas)
 2. Como funciona: 4 passos em carrossel deslizavel (mobile) / grid 2×2 (desktop), cada um com mini-interface animada
 3. Para quem: tabs Agencia / Marca / Creador
-4. Registro: form mock (`#inscripcion`)
+4. Registro: embed Jotform 241825239057661 (`#inscripcion`)
 5. Fecho: H2 + CTA
 6. Footer
 
@@ -37,7 +37,9 @@ Versao v3 (atual):
 - [x] Checagem manual: em-dash 0, JSON-LD valido, 10 og + 4 twitter, sem JS que grava `#`, pisos mobile ok (H1 34px, H2 28px, corpo 17-18px), sem overflow horizontal em 375px
 - [x] OG image 1200×630 → `assets/og-buzzcreators-early-access.png`
 - [x] Revisao formal (`/lp-revisar`, 2026-11-13) — 4 criticos aplicados, opcionais em `REVISAO.md`
-- [ ] Formulario integrado — rodar `/lp-integrar-form buzzcreators/buzzcreators-early-access [snippet]`
+- [x] Formulario integrado
+
+**Form provider:** Jotform, form `241825239057661` via embed `jsform` (2026-11-13, a pedido do Ulises pra nao esperar o backend custom). Os campos e o texto do form vem do Jotform, nao do `copy.txt` (labels Nome/Correio/Pais/Perfil e a nota "Solo te escribiremos..." do mock sairam). Pendente no Jotform: Nome e E-mail estao como campo oculto e "Tu WhatsApp" aparece 2x. Ajustar no Jotform nao precisa de redeploy. Backend custom (form proprio -> funcao serverless -> API Jotform) segue como evolucao futura com revisao do Victor.
 - [ ] Publicado — rodar `/lp-publicar buzzcreators buzzcreators-early-access [dominio]` (sugestao: `content.buzzmonitor.com`)
 
 ## Assets referenciados
