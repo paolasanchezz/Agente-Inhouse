@@ -1,0 +1,11 @@
+{
+  "regiao": "brasil",
+  "expected_gtm": "GTM-T4XDWHL3",
+  "found_gtm": [
+    "GTM-T4XDWHL3"
+  ],
+  "fingerprint": "4617312fd2e310d8",
+  "status": "ok",
+  "grandfathered": false,
+  "verified_at": "2026-09-25"
+}

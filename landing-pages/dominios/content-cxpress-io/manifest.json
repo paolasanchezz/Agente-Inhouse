@@ -361,6 +361,11 @@
       "source": "landing-pages/cxpress/webinar-whatsapp-equipe"
     },
     {
+      "slug": "webinar-canais-ia-2027",
+      "marca": "cxpress",
+      "source": "landing-pages/cxpress/webinar-canais-ia-2027"
+    },
+    {
       "slug": "webinar-bloqueo-whatsapp",
       "marca": "cxpress",
       "source": "landing-pages/cxpress/webinar-bloqueo-whatsapp"
@@ -506,7 +511,6 @@
     "assinatura-elife/logo-elife.gif": "brand/elife/assets/assinatura/logo-elife.gif",
     "assinatura-elife/slogan-elife.png": "brand/elife/assets/assinatura/slogan-elife.png",
     "assinatura-elife/selo-fia-2026.png": "brand/elife/assets/assinatura/selo-fia-2026.png",
-    "assinatura-elife/selo-lugares-mais-incriveis-2026.png": "brand/elife/assets/assinatura/selo-lugares-mais-incriveis-2026.png",
     "assets/cxpress/mockup-plataforma-laptop.png": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/mockup-plataforma-laptop.png",
     "assets/cxpress/og-banimento-whatsapp-latam.png": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/og-banimento-whatsapp-latam.png",
     "assets/cxpress/plataforma-canais.gif": "landing-pages/dominios/content-cxpress-io/extras/assets/cxpress/plataforma-canais.gif",
