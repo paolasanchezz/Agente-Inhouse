@@ -108,7 +108,7 @@ do evento. Decisão do Victor.
 
 Na LATAM o e-mail do resultado sai por uma **automação do ActiveCampaign**, não pelo SendGrid. Basta a variável
 `TOTEM_EMAIL_VIA_AC=1` no projeto Vercel: aí o SendGrid/Resend não é chamado (mesmo que a chave exista) e a function grava
-no contato, **antes** de aplicar a tag, os campos que o e-mail usa.
+no contato, numa atualização só, os campos que o e-mail usa e o **carimbo de envio** que dispara a automação.
 
 **No AC (uma vez):**
 
@@ -118,21 +118,28 @@ no contato, **antes** de aplicar a tag, os campos que o e-mail usa.
    | `Buzz Compass Link [AUTO]` | Área de texto | link do resultado (`https://buzzcompass.buzzmonitor.com/es/totem-resultado?...`) |
    | `Buzz Compass QR [AUTO]` | Área de texto | endereço do PNG do QR (`.../es/api/qr?d=...`) |
    | `Buzz Compass Marca [AUTO]` | Texto | marca analisada (opcional; para o assunto) |
+   | `Buzz Compass Envío [AUTO]` | Texto (ou data/hora) | data e hora do envio em UTC (`2026-11-13T21:05:01Z`), **muda a cada lead**: é o gatilho da automação. Tag no AC: `%BUZZ_COMPASS_ENVIO_AUTO%` |
    URL de conversão e UTMs: na conta AC LATAM os campos de último toque se chamam `URL_CONVERSAO`, `utm_source`,
    `utm_medium`, `utm_campaign`, `utm_content` e `utm_term` (sem `[AUTO]`, os mesmos que a dashboard CM LATAM lê). O código
    aceita esses títulos exatos; o jogo secundário (`utm_source_`, com `_` no fim) e os numerados ficam de fora. Se existir
    também um campo `[AUTO]`, ele tem prioridade. Campo que faltar: o contato e a tag seguem e a resposta avisa (`crm_avisos`).
    O campo `Buzz Compass Marca [AUTO]` é do tipo "Entrada de texto" (`text` na API).
-2. **Automação:** gatilho "Tag adicionada: **Buzz Compass LATAM**", **executa várias vezes** -> ação "Enviar e-mail".
+2. **Automação:** gatilho "**Campo muda: Buzz Compass Envío [AUTO]**" (qualquer valor), **executa várias vezes** -> ação
+   "Enviar e-mail". (Até 2026-11-13 o gatilho era a tag; trocado porque tag repetida não dispara de novo, ver abaixo.)
    Corpo: colar `email-ac/resultado-buzz-compass-es.html` (gerado a partir do e-mail do SendGrid). Conferir no editor do AC
    se as tags de personalização dos campos são as mesmas do arquivo (`%BUZZ_COMPASS_LINK_AUTO%`, `%BUZZ_COMPASS_QR_AUTO%`,
    `%BUZZ_COMPASS_MARCA_AUTO%`); o AC gera a tag a partir do título. Assunto sugerido:
    `Tu Buzz Compass de %BUZZ_COMPASS_MARCA_AUTO% ya está listo`.
 3. Desligar o rastreio de cliques nesse e-mail, se possível (o AC reescreve links e as UTMs do botão de demo podem mudar).
 
-**Pessoa que roda de novo:** a tag já existe e o AC não dispararia a automação. A function tira a tag e aplica de novo,
-então chega o e-mail do Compass novo. **Sem os campos Link e QR no AC**, a resposta vem com `email: "falhou"` e o log diz
-o motivo (o totem não promete o e-mail).
+**Por que o gatilho é o campo Envío e não a tag:** o AC responde **200** (não 422) quando a tag já está no contato e não
+"adiciona" de novo, então quem rodava o Compass pela segunda vez (ou um teste repetido) não recebia o e-mail. Visto em
+produção em 2026-11-13. O carimbo de envio muda a cada lead, inclusive da mesma pessoa e da mesma marca, e o link, o QR e a
+marca vão no mesmo update, então já estão gravados quando a automação roda. A tag **Buzz Compass LATAM** continua sendo
+aplicada, só para segmentar quem fez o Compass.
+
+**Sem os campos Link, QR ou Envío no AC**, a resposta vem com `email: "falhou"` e `crm_avisos` nomeia o campo
+(ex.: `campo_compass_envio_nao_encontrado`); o totem não promete o e-mail.
 
 ## De onde vem cada variável
 
