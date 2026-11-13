@@ -648,7 +648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="hero-lead hero-lead--sm">Em uma hora, conectamos as tend&ecirc;ncias de 2027 &agrave; pr&aacute;tica: onde a IA acelera, quais m&eacute;tricas revelam gargalos e o que um case real mostra sobre reduzir o esfor&ccedil;o do cliente.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#inscricao">Garantir minha vaga</a>
-          <a class="btn btn-ghost" href="#agenda-title">Ver a programa&ccedil;&atilde;o</a>
+          <a class="btn btn-ghost" href="#aprendizados-title">O que voc&ecirc; leva</a>
         </div>
         <div class="hero-pill">
           <span class="pi">
@@ -670,7 +670,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="hero-visual">
         <div class="hv-card">
-          <img src="./assets/enrico-chiari.jpg" alt="Enrico Chiari" width="800" height="800" fetchpriority="high">
+          <img src="./assets/enrico-hero.jpg" alt="Enrico Chiari" width="880" height="1100" fetchpriority="high">
           <div class="hv-name">
             <strong>Enrico Chiari</strong>
             <span>New Business &amp; Sales Manager &middot; Cxpress</span>
@@ -812,56 +812,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </button>
           </div>
         </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROGRAMACAO -->
-  <section class="agenda pad" aria-labelledby="agenda-title">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Programação</span>
-        <h2 id="agenda-title">Como vai ser a hora</h2>
-      </div>
-      <div class="day reveal" aria-hidden="true">
-        <div class="day__bar">
-          <span class="day__seg day__seg--talk" style="flex:8" data-i="0"></span>
-          <span class="day__seg day__seg--talk" style="flex:33" data-i="1"></span>
-          <span class="day__seg day__seg--talk" style="flex:33" data-i="2"></span>
-          <span class="day__seg day__seg--chat" style="flex:17" data-i="3"></span>
-          <span class="day__seg day__seg--qa" style="flex:9" data-i="4"></span>
-        </div>
-        <div class="day__ticks"><span style="left:0">11h</span><span style="left:33.33%">11h20</span><span style="left:66.66%">11h40</span><span style="left:100%">12h</span></div>
-      </div>
-      <div class="tl-wrap" id="tlWrap">
-        <div class="tl__rail" aria-hidden="true"><span class="tl__fill"></span></div>
-        <ol class="tl timeline" id="tl">
-          <li class="tl-item tl-item--talk reveal" data-i="0">
-            <time class="tl-time">11h00</time>
-            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span>
-            <div class="tl-card"><p class="tl-title">Abertura</p><p class="tl-text">O que esperar da próxima hora e por que 2027 já começou na sua operação.</p></div>
-          </li>
-          <li class="tl-item tl-item--talk reveal" data-i="1">
-            <time class="tl-time">11h05</time>
-            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span>
-            <div class="tl-card"><p class="tl-title">Atendimento em 2027: as tendências que já estão em curso</p><p class="tl-text">Dados e mudanças de comportamento do consumidor que estão redesenhando a gestão dos canais.</p></div>
-          </li>
-          <li class="tl-item tl-item--talk reveal" data-i="2">
-            <time class="tl-time">11h25</time>
-            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg></span>
-            <div class="tl-card"><p class="tl-title">Menos atrito, mais agilidade: IA e canais conectados</p><p class="tl-text">O que muda quando a empresa acompanha a jornada de ponta a ponta e usa IA nas interações certas.</p></div>
-          </li>
-          <li class="tl-item tl-item--chat reveal" data-i="3">
-            <time class="tl-time">11h45</time>
-            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></span>
-            <div class="tl-card"><p class="tl-title">Case real: de 8 horas para 26 minutos</p><p class="tl-text">Como a Cacau Show atravessou o pico da Páscoa sem contratar, e o que dá para copiar disso.</p></div>
-          </li>
-          <li class="tl-item tl-item--qa reveal" data-i="4">
-            <time class="tl-time">11h55</time>
-            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span>
-            <div class="tl-card"><p class="tl-title">Perguntas e encerramento</p><p class="tl-text">Espaço aberto para dúvidas sobre aplicar isso na sua operação.</p></div>
-          </li>
-        </ol>
       </div>
     </div>
   </section>
@@ -1200,6 +1150,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .hv-chip--a{left:-4%}.hv-chip--b{right:-5%}.hv-chip--c{left:-3%}
   }
   @media (prefers-reduced-motion: reduce){ .hv-chip{animation:none!important} }
+
+  /* =========================================================================
+     Ajustes de 13/11, segunda rodada: margem lateral do hero mais larga,
+     tipografia maior e menos espaco morto entre dobras.
+     ========================================================================= */
+
+  /* O hero deixa de respeitar a largura maxima do resto da pagina e passa a
+     sangrar, com recuo lateral proporcional. E o que aproxima a margem da
+     referencia da Buzzcreators, onde o conteudo comeca bem mais a esquerda. */
+  .hero .wrap{max-width:none;padding-inline:clamp(24px,4.4vw,88px)}
+  .hero-grid{gap:clamp(40px,5vw,92px);align-items:center}
+  .hero-col{max-width:660px}
+
+  /* Tipografia maior em toda a primeira dobra */
+  .hero h1{font-size:clamp(38px,5.1vw,68px);line-height:1.03;letter-spacing:-.025em}
+  .hero-lead{font-size:clamp(18px,1.68vw,22px);line-height:1.5;max-width:620px}
+  .hero-lead--sm{font-size:clamp(16px,1.35vw,18.5px);line-height:1.55}
+  .eyebrow--dark{font-size:13.5px;padding:8px 18px}
+  .hero .pi{font-size:15.5px}
+  .hero .btn{font-size:16.5px;padding:17px 30px}
+
+  /* Menos ar entre as dobras. Estava em 140px em cima e embaixo, o que somava
+     280px de vazio na troca de uma secao para outra. */
+  .pad{padding:96px 0}
+  .hero{padding:112px 0 100px}
+  .section-head{margin-bottom:38px}
+
+  /* Texto de corpo das demais secoes tambem sobe um degrau */
+  .context-inner{max-width:940px}
+  .context-inner h2{font-size:clamp(28px,3.1vw,42px);line-height:1.12}
+  .context-inner p{font-size:clamp(17px,1.4vw,19.5px);line-height:1.6}
+  .ben-card p{font-size:17px;line-height:1.55}
+  .news-body p{font-size:17px;line-height:1.6}
+
+  @media (max-width:1020px){
+    .hero .wrap{padding-inline:24px}
+    .hero-col{max-width:none}
+  }
+  @media (max-width:640px){
+    .pad{padding:72px 0}
+    .hero{padding:84px 0 76px}
+  }
+
+  /* O botao principal era navy sobre hero navy: sumia. Na dobra escura ele vira
+     laranja da marca, que e a mesma cor do destaque do H1. */
+  .hero .btn-primary{background:#EF863C;color:#17193F;box-shadow:0 18px 38px -18px rgba(239,134,60,.65)}
+  .hero .btn-primary:hover{background:#F59B57;color:#17193F}
 </style><span class="cxp-legal__title">Termos e Políticas</span><nav class="cxp-legal__nav" aria-label="Termos e Políticas"><a href="https://elife.com.br/index.php/politica-de-privacidade/" target="_blank" rel="noopener">Políticas de privacidade</a><a href="https://blog.cxpress.io/condicoes-gerais-de-uso-da-cxpress/" target="_blank" rel="noopener">Condições gerais de uso</a></nav></div>
 </footer>
 
@@ -1294,6 +1291,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     var wrap = document.getElementById('tlWrap'), list = document.getElementById('tl');
+    // a secao de programacao saiu da pagina: sem os elementos, nada a animar
     if(!wrap || !list) return;
     var items = Array.prototype.slice.call(list.querySelectorAll('.tl-item'));
     var segs = Array.prototype.slice.call(document.querySelectorAll('.day__seg'));
