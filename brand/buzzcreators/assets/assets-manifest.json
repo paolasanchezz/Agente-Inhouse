@@ -39,6 +39,10 @@
       "favicon": {
         "png": "logos/favicon.png",
         "usage": "Favicon raster (PNG). Para LPs, copiar como /assets/logos/logo-icon.png conforme padrao do projeto."
+      },
+      "faviconSquare": {
+        "png": "logos/favicon-square.png",
+        "usage": "Favicon quadrado 512x512 (simbolo branco sobre Rich Purple #3a1652, cantos arredondados, traco engrossado pra ler em 16px). Preferir ao logo-icon.png (1210x1324, fundo branco opaco) em LPs novas."
       }
     },
     "patterns": {}

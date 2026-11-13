@@ -27,6 +27,10 @@
 - [x] Form: nota "Todos los campos son obligatorios." + borda de erro com `:user-invalid` + `spellcheck="false"` no e-mail. Ao integrar o embed real, conferir se o embed traz isso proprio
 - [x] `.pause` usa `aria-labelledby="pause-title"` no lugar do `aria-label`
 
+## Favicon (2026-11-13, pedido do Ulises)
+
+O `logo-icon.png` do brand (1210x1324, nao quadrado, fundo branco opaco, traco fino) ficava ilegivel na aba (caixa branca com linha roxa quase invisivel). Criado `brand/buzzcreators/assets/logos/favicon-square.png` (512x512, simbolo branco sobre Rich Purple, cantos arredondados, traco engrossado pra ler em 16px) e a LP aponta pra ele. Desvio da GUIDELINES §12 (que manda usar `logo-icon.png`): um link so, PNG do brand, path absoluto no deploy; so muda o arquivo. As outras LPs Buzzcreators seguem no `logo-icon.png` ate alguem decidir trocar.
+
 ## Redesign v3 "experiencia" (2026-11-13, pedido do Ulises)
 
 O Ulises achou a versao dark "com cara de LP feita por IA" (vidro, glow, texto em degradê) e pediu algo diferenciado, com mais animacao, otimizado pra celular, copy mais curta e com impacto imediato pra agencias/marcas. Mudou:
