@@ -7,8 +7,8 @@
 
 ## Origem
 
-Adaptada da LP do evento presencial `gestao-canais-ia-2027` (12/11/2026), mantendo tema,
-conteúdo e palestrantes. A campanha do evento fez CpL de R$ 23 a R$ 31 e 23,7% de conversão
+Adaptada da LP do evento presencial `gestao-canais-ia-2027` (12/11/2026), mantendo tema e conteúdo.
+A apresentação fica só com o Enrico Chiari, que agora aparece no hero em vez de numa seção propria. A campanha do evento fez CpL de R$ 23 a R$ 31 e 23,7% de conversão
 na página, o melhor desempenho da conta junto com o SMB.
 
 ## O que mudou em relação à LP do evento
