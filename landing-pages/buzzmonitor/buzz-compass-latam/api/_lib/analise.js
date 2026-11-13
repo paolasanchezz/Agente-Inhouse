@@ -245,6 +245,21 @@ function narrativaPorDados({ marca, segmento, mercado, comparacao, sugeridos }) 
   return { oportunidade, risco, tendencia_emergente: tendencia, concorrentes };
 }
 
+// Card da IA que veio vazio ou cortado (resposta truncada no limite de tokens) e trocado pelo card montado com os dados, em vez
+// de sumir da tela. reserva: funcao que devolve a narrativaPorDados (so e chamada se faltar algum card).
+const CARDS = ['oportunidade', 'risco', 'tendencia_emergente', 'concorrentes'];
+const cardCompleto = (c) => Boolean(c && ['titulo', 'segmento', 'marca'].every((k) => typeof c[k] === 'string' && c[k].trim()));
+function completarNarrativa(daIA, reserva) {
+  const faltando = CARDS.filter((k) => !cardCompleto(daIA[k]));
+  if (!faltando.length) return daIA;
+  console.error('[buzz-compass-latam] narrativa da IA sem os cards', faltando.join(', '), '- completando com os dados');
+  const r = reserva();
+  const final = { ...daIA };
+  faltando.forEach((k) => { final[k] = r[k]; });
+  if (daIA._modelo) Object.defineProperty(final, '_modelo', { value: daIA._modelo, enumerable: false });
+  return final;
+}
+
 // --- Coleta e leitura de um grupo (o mercado e lido com as mesmas chamadas e as mesmas contas da LP original) ---
 
 const N_TAREFAS_MERCADO = 10;
@@ -845,7 +860,9 @@ async function analisarNoFuso({ marca, segmento, pais: codigoPais, informados, i
     user: payload,
     schema: NARRATIVE_SCHEMA,
     schemaName: 'buzz_compass_totem',
-    maxTokens: 2200,
+    // 2500 (era 2200): o Claude, reserva quando o OpenAI cai, escreve mais longo e em 2026-11-13 acabou o limite antes do 4o card.
+    // Nao subir muito: a chamada tem 32s e a funcao 60s. Card que ainda vier cortado e completado com os dados (completarNarrativa).
+    maxTokens: 2500,
     timeoutMs: 32000,
     temperature: 0.4,
     // modelo mais forte para a leitura (se nao existir na conta, cai no padrao). Troca por variavel de ambiente.
@@ -853,7 +870,8 @@ async function analisarNoFuso({ marca, segmento, pais: codigoPais, informados, i
   });
   // O rascunho de temas serve so para a IA se ancorar na evidencia antes de escrever: nao vai para a tela.
   if (daIA) delete daIA.temas;
-  const narrativa = daIA ? formatarTextosEsMx(daIA) : narrativaPorDados({ marca: grupoMarca.nome, segmento: nomeMercado, mercado, comparacao, sugeridos: sugeridosNaComparacao });
+  const reservaNarrativa = () => narrativaPorDados({ marca: grupoMarca.nome, segmento: nomeMercado, mercado, comparacao, sugeridos: sugeridosNaComparacao });
+  const narrativa = daIA ? completarNarrativa(formatarTextosEsMx(daIA), reservaNarrativa) : reservaNarrativa();
 
   return {
     ok: true,
@@ -890,4 +908,4 @@ async function analisarNoFuso({ marca, segmento, pais: codigoPais, informados, i
   };
 }
 
-module.exports = { analisar, narrativaPorDados, formatarNumerosEsMx, formatarTextosEsMx, escolherPostsDaMarca, candidatosDaMarca, selecionarPostsDaMarca, conferirRelevancia, lerMeta, previaDoSite };
+module.exports = { analisar, narrativaPorDados, completarNarrativa, formatarNumerosEsMx, formatarTextosEsMx, escolherPostsDaMarca, candidatosDaMarca, selecionarPostsDaMarca, conferirRelevancia, lerMeta, previaDoSite };

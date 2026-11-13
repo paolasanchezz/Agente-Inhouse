@@ -43,3 +43,25 @@ assert(n.tendencia_emergente.segmento.includes('video'), 'formato que performa')
 assert(n.oportunidade.segmento.includes('Sandália confortável'), 'exemplo positivo real');
 assert(n.oportunidade.marca.includes('78%'), 'a marca tem o proprio percentual positivo no paragrafo dela');
 console.log('narrativa.test.js: ok');
+
+// Card da IA vazio ou cortado (Claude no limite de tokens, 2026-11-13): troca so ele pelo card dos dados
+const { completarNarrativa } = require('../api/_lib/analise.js');
+const daIA = {
+  oportunidade: { titulo: 'Antojo de quincena', segmento: 'texto do mercado', marca: 'texto da marca' },
+  risco: { titulo: 'Risco', segmento: 'x', marca: 'y' },
+  tendencia_emergente: { titulo: 'Tendencia', segmento: 'x', marca: 'y' },
+};
+Object.defineProperty(daIA, '_modelo', { value: 'anthropic:claude-sonnet-5', enumerable: false });
+const erroOriginal = console.error; console.error = () => {};
+const completa = completarNarrativa(daIA, () => n);
+console.error = erroOriginal;
+assert.strictEqual(completa.oportunidade.titulo, 'Antojo de quincena', 'card da IA completo fica');
+assert.deepStrictEqual(completa.concorrentes, n.concorrentes, 'card que faltou vem dos dados');
+assert.strictEqual(completa._modelo, 'anthropic:claude-sonnet-5', 'mantem o modelo que escreveu');
+const vazio = completarNarrativa({ ...daIA, concorrentes: { titulo: 'Competidores', segmento: '', marca: 'algo' } }, () => n);
+assert.deepStrictEqual(vazio.concorrentes, n.concorrentes, 'card com campo vazio tambem e trocado');
+let chamouReserva = false;
+const inteira = { ...daIA, concorrentes: { titulo: 'a', segmento: 'b', marca: 'c' } };
+assert.strictEqual(completarNarrativa(inteira, () => { chamouReserva = true; return n; }), inteira, 'narrativa completa passa direto');
+assert(!chamouReserva, 'sem card faltando, nem monta a reserva');
+console.log('narrativa.test.js (cards completos): ok');
