@@ -568,7 +568,7 @@
         <h2 id="reg-title">Entra antes que nadie.</h2>
         <p class="lead">Regístrate y te avisamos primero cuando abramos el acceso en tu país.</p>
       </div>
-      <div class="jotform-embed reveal">
+      <div class="jotform-embed reveal" data-perpetuo-next="/buzzcreators-early-access-gracias">
         <span class="sticker" aria-hidden="true">Acceso anticipado</span>
         <script type="text/javascript" src="https://form.jotform.com/jsform/241825239057661"></script>
       </div>
@@ -700,6 +700,9 @@
   if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){movePill(d.querySelector('.tab[aria-selected="true"]'))});
 
   /* CTA fijo en móvil: aparece al pasar el hero y se esconde cuando el formulario está a la vista */
+  // Destino pos-envio do form compartilhado (GUIA-webinar-perpetuo-destino.md §2.1)
+  var slot=d.querySelector('[data-perpetuo-next]');
+  if(slot){try{sessionStorage.setItem('bmPerpetuoNext',JSON.stringify({to:slot.getAttribute('data-perpetuo-next'),at:Date.now()}))}catch(e){}}
   var dock=d.getElementById('dock'), heroCta=d.getElementById('hero-cta'), reg=d.getElementById('inscripcion');
   if(hasIO){
     var heroVis=true, regVis=false;

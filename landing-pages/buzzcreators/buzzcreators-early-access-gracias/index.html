@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0610">
+<title>Ya estás en la lista | Buzzcreators</title>
+<meta name="description" content="Tu lugar en el acceso anticipado de Buzzcreators en Latinoamérica está reservado. Te escribimos primero cuando abramos en tu país.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://{{DOMAIN}}/buzzcreators-early-access-gracias">
+
+<link rel="icon" type="image/png" href="../../brand/buzzcreators/assets/logos/favicon-square.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+
+<noscript><style>.reveal,.fade{opacity:1!important;transform:none!important}.ticket{opacity:1!important}.stamp{opacity:1!important;transform:rotate(-12deg)!important}</style></noscript>
+
+<style>
+  /*
+    Pagina de agradecimiento de /buzzcreators-early-access. Mismo sistema visual de la LP de
+    captura (degradado negro -> Rich Purple, naranja Sundown como acento). Momento central: un
+    "pase" de acceso anticipado que entra girando y recibe el sello "Confirmado".
+    Sin OG/JSON-LD: pagina post-conversion, noindex, nadie la comparte (precedente:
+    buzzmonitor/inscripcion-confirmada). Lo que se comparte es la LP de captura.
+  */
+  :root{
+    color-scheme:dark;
+    --ink:#0b0610;
+    --plum:#3a1652;
+    --violet:#6a3895;
+    --lilac:#cbb5ea;
+    --orange:#ec7c29;
+    --orange-hi:#f59a52;
+    --paper:#f4f0f8;
+    --text:#f7f3fb;
+    --muted:rgba(247,243,251,.74);
+    --line:rgba(255,255,255,.14);
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --spring:cubic-bezier(.34,1.56,.64,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;background:var(--ink)}
+  body{margin:0;font-family:"DM Sans",system-ui,sans-serif;color:var(--text);background:var(--ink);
+    font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  button{font:inherit;color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative}
+  h1,h2,h3,p{text-wrap:balance}
+
+  .skip-link{position:absolute;left:16px;top:-60px;z-index:200;background:var(--orange);color:var(--ink);
+    padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;transition:top .2s}
+  .skip-link:focus{top:16px}
+  :focus-visible{outline:3px solid #fff;outline-offset:3px;border-radius:8px}
+  .next :focus-visible{outline-color:var(--plum)}
+
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--lilac);margin:0 0 22px}
+  .kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    font:700 18px/1 "DM Sans",sans-serif;text-decoration:none;cursor:pointer;
+    padding:21px 30px;border-radius:999px;border:0;background:var(--orange);color:var(--ink);
+    transition:transform .2s var(--ease),background-color .2s,box-shadow .3s}
+  .btn:hover{background:var(--orange-hi);box-shadow:0 0 0 6px rgba(236,124,41,.18)}
+  .btn:active{transform:scale(.96)}
+
+  /* ---------- Header ---------- */
+  .header{position:absolute;top:0;left:0;right:0;z-index:10;padding-top:env(safe-area-inset-top)}
+  .header .wrap{display:flex;align-items:center;height:72px}
+  .header__logo img{height:22px;width:auto}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;isolation:isolate;min-height:100svh;padding:112px 0 72px;display:flex;align-items:center;
+    background:linear-gradient(168deg,#0b0610 0%,#0b0610 40%,#22103a 72%,#3a1652 100%)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:linear-gradient(180deg,#000 0%,transparent 75%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 75%)}
+  .hero .wrap{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;width:100%}
+  .hero h1{margin:0 0 .5em;font-weight:800;font-size:clamp(46px,12.4vw,104px);line-height:.94;letter-spacing:-.055em}
+  .hero h1 em{font-style:normal;color:var(--orange-hi)}
+  .hero .sub{margin:0 0 18px;font-size:clamp(19px,2vw,23px);line-height:1.45;max-width:30ch;color:var(--text)}
+  .hero .note{margin:0;font-size:16px;color:var(--muted);max-width:34ch}
+
+  .js .fade{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .is-on .fade{opacity:1;transform:none}
+  .js .is-on .fade-2{transition-delay:.12s}
+  .js .is-on .fade-3{transition-delay:.24s}
+  .js .is-on .fade-4{transition-delay:.36s}
+
+  /* ---------- Pase (ticket) ---------- */
+  .pass-stage{position:relative;justify-self:center;width:min(360px,100%);perspective:1200px;margin-bottom:24px}
+  .ticket{position:relative;border-radius:26px;background:var(--paper);color:var(--ink);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06);
+    transform:rotate(-5deg);transform-style:preserve-3d;transition:transform .5s var(--ease)}
+  .js .ticket{opacity:0;transform:translateY(80px) rotate(14deg) scale(.86)}
+  .js .is-on .ticket{opacity:1;transform:rotate(-5deg);transition:opacity .5s ease .25s,transform 1s var(--spring) .25s}
+  .ticket__top{padding:26px 26px 22px;border-radius:26px 26px 0 0;
+    background:linear-gradient(150deg,#3a1652 0%,#6a3895 100%);color:#fff}
+  .ticket__row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .ticket__label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lilac)}
+  .ticket__icon{width:34px;height:auto}
+  .ticket__brand{margin:26px 0 4px;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .ticket__where{margin:0;font-size:15px;color:rgba(255,255,255,.82)}
+  /* perforacion */
+  .ticket__cut{position:relative;height:28px;background:var(--paper)}
+  .ticket__cut::before{content:"";position:absolute;left:22px;right:22px;top:50%;border-top:2px dashed #cdc3d9}
+  .ticket__bottom{padding:6px 26px 30px}
+  .ticket__status{margin:0 0 18px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--plum)}
+  .barcode{height:46px;border-radius:6px;
+    background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 9px,transparent 9px 11px,var(--ink) 11px 12px,transparent 12px 16px);
+    opacity:.85}
+
+  .stamp{position:absolute;right:-18px;bottom:-34px;width:118px;height:118px;border-radius:50%;
+    display:grid;place-items:center;text-align:center;background:var(--orange);color:var(--ink);
+    box-shadow:0 18px 40px -12px rgba(0,0,0,.7),inset 0 0 0 5px rgba(11,6,16,.85),inset 0 0 0 9px var(--orange),inset 0 0 0 11px rgba(11,6,16,.85);
+    transform:rotate(-12deg);z-index:3}
+  .stamp span{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  .stamp svg{width:32px;height:32px}
+  .stamp path{stroke-dasharray:40;stroke-dashoffset:0}
+  .js .stamp{opacity:0;transform:rotate(-30deg) scale(2.4)}
+  .js .is-on .stamp{opacity:1;transform:rotate(-12deg) scale(1);transition:opacity .15s ease 1.25s,transform .45s cubic-bezier(.5,1.8,.5,1) 1.25s}
+  .js .stamp path{stroke-dashoffset:40}
+  .js .is-on .stamp path{stroke-dashoffset:0;transition:stroke-dashoffset .5s var(--ease) 1.6s}
+  .is-on .ticket.thump{animation:thump .4s ease 1.3s}
+  @keyframes thump{40%{translate:0 6px}}
+
+  /* confeti: piezas posicionadas por JS, una sola rafaga */
+  .burst{position:absolute;left:calc(100% - 41px);top:calc(100% - 25px);width:0;height:0;z-index:2;pointer-events:none}
+  .burst i{position:absolute;left:0;top:0;width:var(--s,10px);height:var(--s,10px);border-radius:var(--r,2px);background:var(--c);opacity:0}
+  .is-on .burst i{animation:fly 1.3s cubic-bezier(.15,.7,.3,1) 1.3s forwards}
+  @keyframes fly{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--rot))}}
+
+  /* ---------- Lo que viene ---------- */
+  .next{background:var(--paper);color:var(--ink);padding:96px 0}
+  .next h2{margin:0 0 40px;font-size:clamp(40px,7vw,80px);font-weight:800;line-height:.98;letter-spacing:-.05em;color:var(--plum)}
+  .next-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  .step{position:relative;border-radius:24px;background:#fff;padding:30px 26px;border:1px solid #e2e8f0;box-shadow:0 20px 50px -34px rgba(58,22,82,.55)}
+  .step__n{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--plum);color:#fff;
+    font-weight:800;font-size:16px;margin-bottom:18px}
+  .step h3{margin:0 0 8px;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--plum)}
+  .step p{margin:0;font-size:18px;color:#3d3449}
+
+  /* ---------- Compartir ---------- */
+  .share{position:relative;overflow:hidden;isolation:isolate;text-align:center;padding:110px 0 120px;
+    background:linear-gradient(180deg,#0b0610 0%,#22103a 55%,#3a1652 100%)}
+  .share::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:44px 44px}
+  .share h2{margin:0 auto 20px;max-width:16ch;font-size:clamp(36px,6.4vw,72px);font-weight:800;line-height:1;letter-spacing:-.05em}
+  .share h2 em{font-style:normal;color:var(--orange-hi)}
+  .share p{margin:0 auto 36px;max-width:32ch;font-size:clamp(18px,1.8vw,21px);color:var(--muted)}
+  .copied{display:block;min-height:1.6em;margin-top:16px;font-size:16px;font-weight:700;color:var(--orange-hi)}
+  .copied:empty{visibility:hidden}
+
+  .footer{background:var(--ink);color:var(--muted);padding:40px 0 48px;border-top:1px solid var(--line)}
+  .footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
+  .footer__logo img{height:22px;width:auto}
+  .footer p{margin:0;font-size:14px}
+
+  .js .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .reveal.is-in{opacity:1;transform:none}
+  .js .reveal.d2{transition-delay:.12s}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .js .fade,.js .reveal,.js .ticket{opacity:1;transform:none}
+    .js .ticket{transform:rotate(-5deg)}
+    .js .stamp{opacity:1;transform:rotate(-12deg)}
+    .js .stamp path{stroke-dashoffset:0}
+    .burst{display:none}
+  }
+
+  @media (min-width:760px){
+    .next-grid{grid-template-columns:1fr 1fr;gap:20px}
+    .step{padding:38px 34px}
+  }
+  @media (min-width:1000px){
+    .hero{padding:120px 0 90px}
+    .hero .wrap{grid-template-columns:1.2fr .8fr;gap:64px}
+    .pass-stage{justify-self:end;width:380px}
+    .next{padding:130px 0}
+  }
+  @media (max-width:420px){
+    .stamp{width:100px;height:100px;right:-6px;bottom:-30px}
+    .stamp span{font-size:11px}
+    .stamp svg{width:26px;height:26px}
+    .ticket__brand{font-size:34px}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="header">
+  <div class="wrap">
+    <a href="https://buzzcreators.com" class="header__logo" target="_blank" rel="noopener" aria-label="Buzzcreators: página principal">
+      <img src="../../brand/buzzcreators/assets/logos/logo-branca-2.svg" alt="" width="791" height="103">
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 1. CONFIRMACION -->
+  <section class="hero" id="hero" aria-labelledby="ty-title">
+    <div class="wrap">
+      <div>
+        <p class="kicker fade">Acceso anticipado</p>
+        <h1 id="ty-title" class="fade fade-2">Ya estás en <em>la lista.</em></h1>
+        <p class="sub fade fade-3">Cuando abramos Buzzcreators en tu país, te escribimos primero al correo que registraste.</p>
+        <p class="note fade fade-4">Si no ves nuestro correo, revisa también la carpeta de spam o promociones.</p>
+      </div>
+
+      <div class="pass-stage" aria-hidden="true">
+        <div class="ticket" id="ticket">
+          <div class="ticket__top">
+            <div class="ticket__row">
+              <span class="ticket__label">Acceso anticipado</span>
+              <img class="ticket__icon" src="../../brand/buzzcreators/assets/logos/logo-icon-white.svg" alt="" width="1210" height="1324">
+            </div>
+            <p class="ticket__brand">Buzzcreators</p>
+            <p class="ticket__where">Próximamente en Latinoamérica</p>
+          </div>
+          <div class="ticket__cut"></div>
+          <div class="ticket__bottom">
+            <p class="ticket__status">Tu lugar está reservado</p>
+            <div class="barcode"></div>
+          </div>
+        </div>
+        <div class="stamp"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Confirmado</span></div>
+        <div class="burst" id="burst"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LO QUE VIENE -->
+  <section class="next" aria-labelledby="next-title">
+    <div class="wrap">
+      <h2 id="next-title" class="reveal">Lo que viene.</h2>
+      <div class="next-grid">
+        <article class="step reveal">
+          <span class="step__n" aria-hidden="true">01</span>
+          <h3>Te escribimos primero</h3>
+          <p>Las novedades del lanzamiento llegan a tu correo antes que a nadie.</p>
+        </article>
+        <article class="step reveal d2">
+          <span class="step__n" aria-hidden="true">02</span>
+          <h3>Solo lo importante</h3>
+          <p>Solo te escribiremos con novedades del lanzamiento.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. COMPARTIR -->
+  <section class="share" aria-labelledby="share-title">
+    <div class="wrap reveal">
+      <h2 id="share-title">¿Tu equipo también persigue creadores <em>por WhatsApp?</em></h2>
+      <p>Compárteles la página para que también entren a la lista.</p>
+      <button class="btn" type="button" id="share-btn">Compartir la página
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+      </button>
+      <span class="copied" id="copied" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <a href="https://buzzcreators.com" class="footer__logo" target="_blank" rel="noopener" aria-label="Buzzcreators: página principal">
+      <img src="../../brand/buzzcreators/assets/logos/logo-branca-2.svg" alt="" width="791" height="103" loading="lazy" decoding="async">
+    </a>
+    <p>Del Grupo Elife, creadores de Buzzmonitor.</p>
+    <p>© 2026 Buzzcreators · Grupo Elife. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Entrada del hero (pase + sello + confeti)
+  var hero=d.getElementById('hero'), ticket=d.getElementById('ticket'), burst=d.getElementById('burst');
+  if(!reduce){
+    var colors=['#ec7c29','#f59a52','#cbb5ea','#6a3895','#f4f0f8'];
+    for(var i=0;i<18;i++){
+      var p=d.createElement('i'), a=(i/18)*Math.PI*2+(Math.random()*.4), r=90+Math.random()*90;
+      p.style.setProperty('--x',Math.round(Math.cos(a)*r)+'px');
+      p.style.setProperty('--y',Math.round(Math.sin(a)*r-30)+'px');
+      p.style.setProperty('--rot',Math.round(Math.random()*540-270)+'deg');
+      p.style.setProperty('--c',colors[i%colors.length]);
+      p.style.setProperty('--s',(6+Math.round(Math.random()*7))+'px');
+      p.style.setProperty('--r',i%3===0?'50%':'2px');
+      burst.appendChild(p);
+    }
+    ticket.classList.add('thump');
+  }
+  requestAnimationFrame(function(){requestAnimationFrame(function(){hero.classList.add('is-on')})});
+
+  // Inclinacion del pase con el puntero (solo desktop con mouse)
+  if(!reduce&&window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var stage=ticket.parentNode;
+    setTimeout(function(){
+      stage.addEventListener('pointermove',function(e){
+        var b=stage.getBoundingClientRect(), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5;
+        ticket.style.transition='transform .15s ease-out';
+        ticket.style.transform='rotate(-5deg) rotateY('+(x*14)+'deg) rotateX('+(-y*12)+'deg)';
+      });
+      stage.addEventListener('pointerleave',function(){ticket.style.transition='transform .6s var(--ease)';ticket.style.transform='rotate(-5deg)'});
+    },1800);
+  }
+
+  // Reveal al hacer scroll
+  var rev=d.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{threshold:.15});
+    Array.prototype.forEach.call(rev,function(el){io.observe(el)});
+  }else{Array.prototype.forEach.call(rev,function(el){el.classList.add('is-in')})}
+
+  // Compartir la LP de captura (menu nativo en celular; copia el enlace en desktop)
+  var btn=d.getElementById('share-btn'), out=d.getElementById('copied');
+  var url=location.origin+'/buzzcreators-early-access';
+  btn.addEventListener('click',function(){
+    var touch=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+    if(navigator.share&&touch){
+      navigator.share({title:'Buzzcreators',text:'Deja de perseguir creadores por WhatsApp.',url:url}).catch(function(){});
+      return;
+    }
+    var done=function(){out.textContent='Enlace copiado';setTimeout(function(){out.textContent=''},3000)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,function(){prompt('',url)})}
+    else{prompt('',url)}
+  });
+})();
+</script>
+</body>
+</html>

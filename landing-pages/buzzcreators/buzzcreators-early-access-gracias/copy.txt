@@ -1,0 +1,40 @@
+=== CONFIRMACION ===
+OVERLINE: Acceso anticipado
+H1: Ya estás en la lista.
+SUB: Cuando abramos Buzzcreators en tu país, te escribimos primero al correo que registraste.
+BODY: Si no ves nuestro correo, revisa también la carpeta de spam o promociones.
+LABEL: (ticket animado) Acceso anticipado
+LABEL: Buzzcreators
+LABEL: Próximamente en Latinoamérica
+LABEL: Tu lugar está reservado
+LABEL: Confirmado
+
+=== LO-QUE-SIGUE ===
+H2: Lo que viene.
+H3: Te escribimos primero
+BODY: Las novedades del lanzamiento llegan a tu correo antes que a nadie.
+H3: Solo lo importante
+BODY: Solo te escribiremos con novedades del lanzamiento.
+
+=== COMPARTIR ===
+H2: ¿Tu equipo también persigue creadores por WhatsApp?
+BODY: Compárteles la página para que también entren a la lista.
+CTA: Compartir la página (en celular abre el menú de compartir; en desktop copia el enlace)
+LABEL: Enlace copiado
+LABEL: (texto del menú de compartir, literal del H1 de la LP de captura) Deja de perseguir creadores por WhatsApp.
+
+=== FOOTER ===
+FOOTER: Del Grupo Elife, creadores de Buzzmonitor.
+FOOTER: © 2026 Buzzcreators · Grupo Elife. Todos los derechos reservados.
+
+# Copy-fuente: escrita por el agente a pedido del Ulises (2026-11-13). Briefing: pagina de
+# agradecimiento especifica de Buzzcreators, exhibida despues del form de
+# /buzzcreators-early-access (lista de espera del lanzamiento LATAM).
+# Promesa reaprovechada literal de la LP de captura: "te avisamos primero cuando abramos el acceso
+# en tu país" (reformulada a "te escribimos primero") y "Solo te escribiremos con novedades del
+# lanzamiento." (nota del form mock, literal). Sin promesas nuevas (fecha, etapas, beneficios).
+# Regla "H1 = dolor" (fundamentos-copy §0) no aplica: pagina post-conversion. La dolor vuelve en
+# el H2 de compartir, con el mismo gancho del H1 de la LP de captura.
+# Revision anti-IA: em-dash 0; antitesis-por-negacion 0; exclamaciones 0; preguntas retoricas 1;
+# filler 0; listas de 2 items.
+# Fidelidad ES-LATAM: tuteo consistente, "celular", "correo", sin vosotros, Buzzcreators sin articulo.
