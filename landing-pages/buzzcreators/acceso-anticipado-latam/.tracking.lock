@@ -1,9 +1,0 @@
-{
-  "regiao": "latam",
-  "expected_gtm": null,
-  "found_gtm": [],
-  "fingerprint": "ed1bd55fd71f0bb8",
-  "status": "ok",
-  "grandfathered": false,
-  "verified_at": "2026-11-13"
-}

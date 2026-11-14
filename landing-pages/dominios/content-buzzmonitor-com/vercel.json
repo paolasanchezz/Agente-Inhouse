@@ -7,6 +7,11 @@
       "source": "/assistente-tami",
       "destination": "/agente-tami",
       "permanent": true
+    },
+    {
+      "source": "/acceso-anticipado-latam",
+      "destination": "/buzzcreators-early-access",
+      "permanent": true
     }
   ],
   "headers": [

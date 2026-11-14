@@ -7,11 +7,6 @@
   "web_analytics": true,
   "lps": [
     {
-      "slug": "acceso-anticipado-latam",
-      "marca": "buzzcreators",
-      "source": "landing-pages/buzzcreators/acceso-anticipado-latam"
-    },
-    {
       "slug": "agencias-es",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/agencias-es"
