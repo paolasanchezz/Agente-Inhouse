@@ -167,3 +167,5 @@ auto-corrigir contraste da §6). Peca Bloom com texto corrompido → regenerar o
 - **Branco sobre laranja** (Cxpress/Buzzmonitor) reprova AA → texto escuro (ver §6).
 - **Pre-requisito tecnico** (engine HTML): Playwright + Chromium —
   `python -m pip install playwright && python -m playwright install chromium`.
+  Sem Playwright (ou com ele quebrado — no Windows o `greenlet` costuma falhar ao carregar a DLL),
+  o `render.py` usa o Chrome instalado e entrega os mesmos PNGs. Nao e preciso fazer nada.

@@ -12,6 +12,33 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Criativo — render.py cai no Chrome headless quando o Playwright nao carrega
+### 2026-11-13 — `.claude/skills/criativo/assets/render.py` · `criativos/GUIDELINES.md` · skill `criativo` 1.1.1 -> 1.2.0
+
+Gerando as pecas do webinar de dezembro, o `render.py` morreu com `ImportError: DLL load
+failed while importing _greenlet` — o Playwright esta instalado, mas o greenlet nao carrega
+a DLL nesta maquina Windows. A skill parava ali, com traceback, sem alternativa.
+
+Agora o `render.py` tem dois motores e escolhe sozinho: Playwright quando ele importa, Chrome
+headless quando nao. O contrato de linha de comando, os nomes de arquivo e o overlay-guia
+continuam iguais. So avisa qual motor entrou.
+
+No caminho Chrome o guia e desenhado com Pillow em vez de ler o padding computado do `.canvas`.
+Ao portar o calculo, vale lembrar: **padding em porcentagem no CSS resolve contra a largura do
+bloco, inclusive no topo e na base** — calcular os 10%/11% contra a altura desenha uma margem
+mais severa do que a que o navegador aplicou e gera falso positivo de vazamento de safe-zone.
+
+Ajustes da revisao: a injecao de `data-uso`/`data-fmt` so casava `class="canvas c1"` e
+pulava `<div class="canvas">` (os cards do Buzz Academy saiam com margem e escala de 4x5 em
+qualquer formato). Agora casa `canvas` como palavra inteira, entra antes de um atributo fixado
+no card e avisa se nao achar o `.canvas` — no teste, Chrome e Playwright geram PNGs identicos
+pixel a pixel. O PNG vai primeiro pra uma pasta temporaria (o PNG antigo e apagado antes, entao
+falha nao passa por sucesso), o Chrome tem timeout de 60s por card, o script sai com erro
+quando alguma peca falha, procura tambem Chrome por usuario e Edge, e confere o Pillow antes
+de comecar em `anuncio`.
+
+---
+
 ## Dashboard CM Cxpress — deals de teste saem do escopo
 ### 2026-10-22 — `dashboard/queries_cxpress.py` · `dashboard/MAPEAMENTO-CAMPOS-cxpress.md` §2.2.3
 

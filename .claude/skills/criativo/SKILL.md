@@ -3,7 +3,7 @@ name: criativo
 description: Gera imagens de criativo (estatico/carrossel) ponta a ponta — adapta a copy, carrega brandbook + GUIDELINES, gera (HTML/Playwright por padrao ou Bloom sob pedido), revisa as imagens e entrega numa pasta local. Aplica margem de seguranca por uso (organico|anuncio) e formato (1x1|4x5|9x16). Texto pixel-perfect no caminho HTML.
 argument-hint: "[marca] [regiao] [tipo] [uso] [formato] [slug] + copy (colada/arquivo/Notion). Sem args, pergunta com chips. Ex: cxpress brasil carrossel anuncio 4x5 case-10-para-4"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_check_credits, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_list_brands, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_onboard_brand, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_create_logo_upload_url, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_generate_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_edit_image, mcp__2b376cfc-3735-4db6-b756-53e1c3b8b48a__bloom_get_image
-version: 1.1.1
+version: 1.2.0
 ---
 
 # Skill: /criativo — gerar criativo ponta a ponta
@@ -78,7 +78,9 @@ paleta/decorativos/mascote/grafia). Glob `assets/logos/` e `assets/mascot/` pra 
 3. Aplique as regras de design do GUIDELINES: §5 tipografia (display vs body), §6 cor + **auto-AA**
    (nunca branco sobre laranja — texto escuro), §7 decorativos canonicos, §8 mascote so quando agrega.
    `render.py` injeta `data-uso`/`data-fmt` no `.canvas` — nao hardcodar safe-zone no css da peca.
-4. Render (Pre-req Playwright+Chromium — GUIDELINES §Lembretes; em `anuncio` gera tambem `-guia.png`):
+4. Render (Pre-req Playwright+Chromium — GUIDELINES §Lembretes; em `anuncio` gera tambem `-guia.png`).
+   Se o Playwright nao carregar (no Windows o greenlet falha com `DLL load failed while importing
+   _greenlet`), o `render.py` cai sozinho no Chrome headless e segue — mesma saida, mesmo contrato:
    ```bash
    # Python resiliente ao shim da Store no Windows (testa execucao; macOS/Linux -> python3). Single-token.
    PYBIN=""; for _c in py python3 python; do command -v "$_c" >/dev/null 2>&1 && "$_c" -c '' >/dev/null 2>&1 && { PYBIN="$_c"; break; }; done; PYBIN="${PYBIN:-python}"
