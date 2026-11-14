@@ -7,6 +7,14 @@
 #   supervisionada antes do cutover e como fallback manual.
 # Cada deploy roda build determinístico + smoke test de todas as URLs do manifesto;
 # falha => rollback automático pro deploy anterior (deploy_ci.py).
+#
+# Run da main builda a PONTA ATUAL da main (no início do job), não o SHA que
+# disparou o run. A fila do concurrency segue a ordem de chegada dos jobs, não a
+# dos commits: em 2026-11-13 dois merges com 7s de diferença (#998, #1008) fizeram
+# o run do commit mais velho deployar por último e tirar do ar o redirect do mais
+# novo, com CI verde. Buildando a ponta, o último job da fila sempre publica o
+# estado mais novo — inclusive quando o commit mais novo não toca LP (sem run
+# próprio). Dispatch de outra branch (ensaio) continua buildando a própria ref.
 name: Deploy LPs
 
 on:
@@ -58,11 +66,26 @@ jobs:
       matrix:
         dominio: ${{ fromJson(needs.planejar.outputs.dominios) }}
     # serializa deploys por domínio — corrida entre dois pushes vira fila
+    # (a ordem da fila não é a dos commits: por isso o checkout abaixo pega a ponta)
     concurrency:
       group: lp-deploy-${{ matrix.dominio }}
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+        with:
+          # main -> ponta atual da main (ver cabeçalho); vazio -> SHA do run
+          ref: ${{ github.ref == 'refs/heads/main' && 'refs/heads/main' || '' }}
+      - name: Commit publicado
+        run: |
+          PUB="$(git rev-parse HEAD)"
+          if [ "$PUB" = "$GITHUB_SHA" ]; then
+            MSG="publicando ${PUB:0:8} (commit que disparou o run)"
+          else
+            MSG="run disparado por ${GITHUB_SHA:0:8}, publicando a ponta atual da main ${PUB:0:8}"
+            echo "::notice title=${{ matrix.dominio }}::${MSG}"
+          fi
+          echo "$MSG"
+          echo "**${{ matrix.dominio }}:** ${MSG}" >> "$GITHUB_STEP_SUMMARY"
       - name: Deploy + smoke + rollback
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

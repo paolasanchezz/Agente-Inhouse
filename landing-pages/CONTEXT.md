@@ -112,6 +112,7 @@ Como funciona:
 3. **Merge-bot** (`lp-pr.yml`): PR cujo diff só toca conteúdo (LPs, manifestos, `brand/*/assets/`) mergeia sozinho após validações e dispara o deploy — autonomia do time preservada. Diff tocando mecânica (skills, build/, .github/, `vercel.json`, MIGRADOS.json) → label `precisa-revisao-victor`.
 4. **Fluxo operacional completo** (sync → manifesto → validação local → entrega → acompanhamento): Passo 0.0 da skill `lp-publicar` v4.
 5. Deploy manual de emergência: `gh workflow run lp-deploy.yml -f dominio={dominio}` (dispatch builda a main atual; `force_fail=true` só pra ensaio de rollback supervisionado).
+6. **Todo run da main builda a ponta da main no início do job**, e não o commit que disparou o run. Os deploys de um domínio fazem fila (`concurrency`), mas a fila segue a ordem de chegada dos jobs, não a dos commits. Antes de 2026-11-13, dois merges seguidos podiam deixar a main antiga por último no ar, com o CI todo verde (#998 + #1008). O passo "Commit publicado" do job mostra o SHA que foi ao ar.
 
 O que este modelo elimina: sibling local, `lp-sync` pré-deploy, drift-check, corrida entre colaboradores (deploy soma a main inteira — LP de X nunca some no deploy de Y) e token Vercel nas máquinas (revogação na Fase 4 do plano).
 

@@ -12,6 +12,24 @@ Cada skill é versionada de forma independente, no campo `version` do frontmatte
 
 ---
 
+## Deploy de LPs — run antigo nao publica mais a main velha por ultimo
+### 2026-11-13 — `.github/workflows/lp-deploy.yml` · `landing-pages/CONTEXT.md` §2.6
+
+Os merges das #998 e #1008, com 7s de diferenca, dispararam dois runs do `lp-deploy`. O run
+do commit mais velho terminou o planejamento 2s depois, entrou por ultimo na fila do
+`concurrency` e publicou a main antiga nos 6 dominios. O redirect `/acceso-anticipado-latam`
+saiu do ar e a LP velha voltou a dar 200, com o CI todo verde. Foi preciso re-disparar o
+`content.buzzmonitor.com` a mao.
+
+Agora o job de deploy de um run da main (push, ou dispatch do merge-bot) faz checkout da
+**ponta atual da main** no inicio do job, em vez do SHA que disparou o run. Quem roda por
+ultimo publica o estado mais novo, inclusive quando o commit mais novo nao toca LP e por isso
+nao tem run proprio (pular o deploy quando o SHA nao e a ponta deixaria esse caso sem deploy).
+Dispatch de outra branch continua buildando a propria ref. O passo "Commit publicado" mostra
+o SHA que foi ao ar e avisa quando ele e diferente do que disparou o run.
+
+---
+
 ## Criativo — render.py cai no Chrome headless quando o Playwright nao carrega
 ### 2026-11-13 — `.claude/skills/criativo/assets/render.py` · `criativos/GUIDELINES.md` · skill `criativo` 1.1.1 -> 1.2.0
 
