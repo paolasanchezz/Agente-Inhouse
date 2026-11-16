@@ -182,6 +182,11 @@
       "source": "landing-pages/buzzmonitor/plataforma-buzzmonitor"
     },
     {
+      "slug": "paltaforma-completa",
+      "marca": "buzzmonitor",
+      "source": "landing-pages/buzzmonitor/paltaforma-completa"
+    },
+    {
       "slug": "plataforma-completa-atendimento",
       "marca": "buzzmonitor",
       "source": "landing-pages/buzzmonitor/plataforma-completa-atendimento"
