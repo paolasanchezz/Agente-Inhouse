@@ -1026,10 +1026,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .ben-card.reveal{transition:opacity .6s ease, transform .6s var(--ease,cubic-bezier(.2,.7,.2,1))}
   .ben-card.reveal.in{transform:rotate(var(--incl,0deg))}
 
-  /* Contagem regressiva em ladrilhos separados, no lugar da barra unica */
+  /* Contagem regressiva em ladrilhos separados, no lugar da barra unica.
+     A margem inferior e obrigatoria: .jotform-embed tem margin:0, entao sem ela
+     os ladrilhos encostam no cartao branco do formulario (pedido 16/11). */
   .countdown-bar{
     background:none;border:0;padding:0;
-    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px;
+    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:24px 0 48px;
   }
   .cb-unit{
     flex:0 1 112px;min-width:92px;padding:16px 10px 13px;
